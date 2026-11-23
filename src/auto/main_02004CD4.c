@@ -62,6 +62,7 @@ void func_0200518c(s32 arg0) {
         *(volatile u8 *)0x04000248 = 0x81;
         break;
     case 0:
+    case 1:
         break;
     }
     func_02004810(data_0215cd60[0]);
@@ -125,5 +126,10 @@ s32 func_02005468(void) {
 extern void func_020056c8(s32);
 void func_02005760(void) {
     func_020056c8(1);
+}
+
+extern u16 data_0215cddc;
+u16 func_02005a74(void) {
+    return data_0215cddc;
 }
 
