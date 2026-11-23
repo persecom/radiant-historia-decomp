@@ -13,3 +13,9 @@ void func_020a9aa8(void *arg0) {
     }
 }
 
+void func_020aa334(void *arg0) {
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
