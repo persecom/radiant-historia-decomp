@@ -41,3 +41,8 @@ void func_0212eb38(void) {
     func_02134f18();
 }
 
+extern void func_02134f34(void);
+void func_0212eb44(void) {
+    func_02134f34();
+}
+
