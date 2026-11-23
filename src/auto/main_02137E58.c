@@ -31,6 +31,10 @@ void func_0213808c(void) {
     func_0213800c(1);
 }
 
+void func_0213809c(void) {
+    func_02137fc8(3);
+}
+
 void func_021380ac(void) {
     func_0213800c(3);
 }
