@@ -16,6 +16,15 @@ void func_021369c0(void) {
     func_02138130();
 }
 
+extern s32 func_02136b34(void *, void *);
+s32 func_02136b08(void *arg0, void *arg1) {
+    s32 ret;
+    func_021369a8();
+    ret = func_02136b34(arg0, arg1);
+    func_021369b4();
+    return ret;
+}
+
 extern void func_02136be4(void *);
 void func_02136bc8(void *arg0) {
     func_021369a8();
