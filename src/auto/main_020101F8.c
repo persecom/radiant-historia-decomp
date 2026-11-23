@@ -11,3 +11,7 @@ void func_020106ac(void) {
     func_0200fba4();
 }
 
+void func_02010e40(void) {
+    func_0200fb84();
+}
+
