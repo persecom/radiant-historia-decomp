@@ -6,6 +6,15 @@ extern void func_0213807c(void);
 extern void func_0213808c(void);
 extern void func_02138280(void);
 extern void func_02137fc8(s32);
+extern void func_02136958(void);
+extern void func_02137ec4(void);
+void func_02137eac(void) {
+    func_02136958();
+    func_021369a8();
+    func_02137ec4();
+    func_021369b4();
+}
+
 void func_0213807c(void) {
     func_02137fc8(1);
 }
