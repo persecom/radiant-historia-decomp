@@ -1,0 +1,33 @@
+{
+  "created": "from scratch",
+  "platform": "nds",
+  "version": "brje",
+  "compiler": "DS/2.0/sp1p5",
+  "analysis": 6,
+  "game": {
+    "what": "your copy of the game (.nds)",
+    "path": "extract/baserom.nds",
+    "sha1": "fa6d2b0e786ed196a911e9036e86d55027cf0fe2"
+  },
+  "setup": [
+    [
+      "python",
+      "tools/configure.py",
+      "brje",
+      "--dsd",
+      "/home/kw/.local/share/decompnet/toolchains/dsd/dsd",
+      "--compilers",
+      "/home/kw/.local/share/decompnet/toolchains/mwccarm/mwccarm",
+      "--wibo",
+      "/home/kw/.local/share/decompnet/toolchains/wibo/wibo"
+    ],
+    [
+      "ninja",
+      "prepare"
+    ]
+  ],
+  "rebuild": {
+    "identical": false,
+    "detail": "ninja: build stopped: subcommand failed."
+  }
+}

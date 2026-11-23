@@ -1,0 +1,5 @@
+    .text       start:0x01ff8000 end:0x01ff852c kind:code align:32
+    .bss        start:0x01ff8540 end:0x01ff8540 kind:bss align:32
+
+src/auto/itcm_01FF8000.c:
+    .text start:0x01ff8000 end:0x01ff852c

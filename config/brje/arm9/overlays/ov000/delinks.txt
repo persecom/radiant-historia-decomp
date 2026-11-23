@@ -1,0 +1,10 @@
+    .text       start:0x02176a00 end:0x02178598 kind:code align:32
+    .rodata     start:0x02178598 end:0x021785b8 kind:rodata align:4
+    .ctor       start:0x021785b8 end:0x021785cc kind:rodata align:4
+    .bss        start:0x021785e0 end:0x02178600 kind:bss align:32
+
+src/auto/ov000_02176A00.c:
+    .text start:0x02176a00 end:0x02177ad0
+
+src/auto/ov000_02177AA0.c:
+    .text start:0x02177ad0 end:0x02178598

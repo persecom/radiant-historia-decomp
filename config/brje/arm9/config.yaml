@@ -1,0 +1,34 @@
+rom_config: ../../../extract/brje/config.yaml
+build_path: ../../../build/brje
+delinks_path: ../../../build/brje/delinks
+enable_dsprot: true
+main_module:
+  name: main
+  object: ../../../build/brje/build/arm9.bin
+  hash: 57bcfb0452f5c7c1
+  delinks: delinks.txt
+  symbols: symbols.txt
+  relocations: relocs.txt
+autoloads:
+  - kind: Itcm
+    name: itcm
+    object: ../../../build/brje/build/itcm.bin
+    hash: beaf35666a7a334b
+    delinks: itcm/delinks.txt
+    symbols: itcm/symbols.txt
+    relocations: itcm/relocs.txt
+  - kind: Dtcm
+    name: dtcm
+    object: ../../../build/brje/build/dtcm.bin
+    hash: 1d09d96b89f578c0
+    delinks: dtcm/delinks.txt
+    symbols: dtcm/symbols.txt
+    relocations: dtcm/relocs.txt
+overlays:
+  - id: 0
+    name: ov000
+    object: ../../../build/brje/build/arm9_ov000.bin
+    hash: 47292831bfc91daf
+    delinks: overlays/ov000/delinks.txt
+    symbols: overlays/ov000/symbols.txt
+    relocations: overlays/ov000/relocs.txt
