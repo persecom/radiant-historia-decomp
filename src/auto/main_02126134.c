@@ -26,3 +26,8 @@ void func_02126a1c(void) {
     func_02138d68();
 }
 
+extern void func_02138dd8(void);
+void func_02126a4c(void) {
+    func_02138dd8();
+}
+
