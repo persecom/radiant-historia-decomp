@@ -11,6 +11,13 @@ void func_02137454(void *arg0) {
     func_021369b4();
 }
 
+extern void func_021375e0(void *);
+void func_021375c4(void *arg0) {
+    func_021369a8();
+    func_021375e0(arg0);
+    func_021369b4();
+}
+
 void func_021378cc(void) {
     func_021378d8();
 }
