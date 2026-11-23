@@ -23,6 +23,13 @@ void func_02136bc8(void *arg0) {
     func_021369b4();
 }
 
+extern void func_02136ce8(u32, u32, u32);
+void func_02136cbc(u32 arg0, u32 arg1, u32 arg2) {
+    func_021369a8();
+    func_02136ce8(arg0, arg1, arg2);
+    func_021369b4();
+}
+
 extern void func_02136d54(void *);
 void func_02136d38(void *arg0) {
     func_021369a8();
