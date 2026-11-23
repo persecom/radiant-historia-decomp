@@ -4,3 +4,7 @@
 extern u8 *data_02160a6c;
 extern u8 *data_02160244;
 extern void func_02030b7c(void *, s32, s32);
+
+s32 func_02062570(s32 *arg0) {
+    return arg0[1];
+}
