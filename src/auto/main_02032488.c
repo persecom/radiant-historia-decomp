@@ -16,3 +16,10 @@ void func_02033144(void) {
     func_020c319c();
 }
 
+extern void func_0210c5dc(void *);
+void func_0203319c(void *arg0) {
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
