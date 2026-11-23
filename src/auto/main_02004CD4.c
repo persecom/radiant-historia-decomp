@@ -5,6 +5,7 @@ extern u16 data_0215cd68;
 extern u16 data_0215cd60[];
 extern s32 func_02005398(u16 *);
 extern void func_02004810(s32);
+extern void func_020056c8(s32);
 void func_02004cd4(s32 arg0) {
     data_0215cd60[0] = (data_0215cd60[0] | data_0215cd60[8]) & ~arg0;
     data_0215cd60[8] = arg0;
