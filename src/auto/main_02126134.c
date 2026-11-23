@@ -144,6 +144,13 @@ BOOL func_02126504(void *arg0) {
     return TRUE;
 }
 
+void func_02126584(void *arg0) {
+    if (*(void **)((u8 *)arg0 + 4) != NULL) {
+        func_02126c74(*(void **)((u8 *)arg0 + 4));
+        *(void **)((u8 *)arg0 + 4) = NULL;
+    }
+}
+
 extern void func_02126c18(void);
 extern void func_021268e4(void *);
 extern void func_02126c1c(void);
