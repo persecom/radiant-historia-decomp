@@ -21,6 +21,11 @@ void func_0213825c(void *arg0, void *arg1) {
     func_0213808c();
 }
 
+extern void func_0213841c(s32);
+void func_021384b0(void) {
+    func_0213841c(1);
+}
+
 void func_021386f0(void *arg0) {
     if (arg0 != NULL) {
         func_021390fc(arg0);
