@@ -44,8 +44,54 @@ void func_0210d85c(s32 arg0) {
     *(s32 *)(data_02162730 + 8) = arg0;
 }
 
+void func_0210d86c(void) {
+    func_021167ac(data_021628e0, 0xc);
+    func_021167ac(data_021628d4, 0xc);
+    func_021167ac(data_021628a4, 0xc);
+    func_021167ac(data_021628c8, 0xc);
+    func_021167ac(data_021628bc, 0xc);
+    func_021167ac(data_021628b0, 0xc);
+    func_021167ac(data_02162898, 0xc);
+    func_021167ac(data_0216288c, 0xc);
+    func_0210e640();
+    *(s32 *)(data_0216280c + 0x24) = 0x3c;
+    *(s32 *)(data_0216280c + 0x28) = 0;
+    *(s32 *)(data_0216280c + 0x10) = 1;
+    *(s32 *)(data_0216280c + 0x14) = 1;
+    *(void (**)(void))(data_0216280c + 0x1c) = func_0210ddfc;
+}
+
+void func_0210d92c(u8 *arg0, u8 *arg1) {
+    s32 val = *(s32 *)(arg1 + 4);
+    u8 *cur = NULL;
+    if (val < 0) {
+        val = -val;
+    }
+    while ((cur = (cur == NULL) ? *(u8 **)arg0 : *(u8 **)(cur + *(u16 *)(arg0 + 0xa) + 4)) != NULL) {
+        s32 curVal = *(s32 *)(cur + 4);
+        if (curVal < 0) {
+            curVal = -curVal;
+        }
+        if (val < curVal) {
+            break;
+        }
+    }
+    if (cur == NULL) {
+        func_021167f0(arg0, arg1);
+    } else if (cur == *(u8 **)arg0) {
+        func_02116844(arg0, arg1);
+    } else {
+        func_02116894(arg0, cur, arg1);
+    }
+}
+
 void func_0210d9e4(u8 *arg0) {
     u8 *list = (*(s32 *)(data_0216280c + 0x44) == 0) ? data_021628e0 : data_021628b0;
     func_0210d92c(list, arg0);
+}
+
+void func_0210da14(u8 *arg0) {
+    u8 *list = (*(s32 *)(data_0216280c + 0x44) == 0) ? data_021628e0 : data_021628b0;
+    func_0210d9ac(list, arg0);
 }
 
