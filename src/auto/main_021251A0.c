@@ -36,3 +36,8 @@ void func_02125240(void) {
     func_02003ce8();
 }
 
+extern void func_02003dc8(void);
+void func_0212524c(void) {
+    func_02003dc8();
+}
+
