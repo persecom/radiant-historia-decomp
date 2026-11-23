@@ -93,3 +93,10 @@ void func_02126c20(void) {
     func_0212bda8();
 }
 
+extern void func_02126e70(void *);
+void func_02126c74(void *arg0) {
+    if (arg0 != NULL) {
+        func_02126e70(arg0);
+    }
+}
+
