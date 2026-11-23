@@ -33,8 +33,34 @@ void func_02076dcc(void) {
     *(volatile u32 *)0x04000000 = (*(volatile u32 *)0x04000000 & ~0x1f00) | 0x1f00;
 }
 
+void func_02076fdc(s32 arg0, s32 arg1) {
+    u16 buf[10];
+    *(volatile u32 *)0x04000480 = 0x4b7f;
+    buf[0] = 1;
+    buf[1] = 0;
+    buf[2] = 0x68;
+    buf[3] = 0x5d;
+    buf[4] = 0xb;
+    buf[5] = arg0;
+    buf[6] = arg1;
+    buf[7] = 0x66;
+    buf[8] = 0x5d;
+    buf[9] = 0xb;
+    func_021098ac(buf);
+    buf[1] = 0;
+    buf[2] = 0x75;
+    buf[3] = 0x7c;
+    buf[4] = 0xb;
+    buf[5] = arg0 + 0x5d;
+    buf[6] = arg1;
+    buf[7] = 0x66;
+    buf[8] = 0x7c;
+    buf[9] = 0xb;
+    func_021098ac(buf);
+}
+
 s32 func_0207708c(void *arg0, s32 arg1, s32 arg2) {
-    s32 y = *(s32 *)arg0 + arg2 - arg1;
+    s32 y = arg2 + *(s32 *)arg0 - arg1;
     s32 x;
     s32 i;
     if (y <= -13 || y >= 192) {
