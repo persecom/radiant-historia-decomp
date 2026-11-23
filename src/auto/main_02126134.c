@@ -3,6 +3,17 @@
 
 extern void func_02138af0(void);
 extern void func_02126778(void *);
+extern BOOL func_0212646c(void *);
+extern BOOL func_021265b4(void *);
+extern void func_021265dc(void *);
+extern BOOL func_02138ae8(void *);
+extern void func_0213904c(void *);
+extern BOOL func_021265bc(void *);
+extern s32 func_02138d60(void *);
+extern u32 func_021265c4(void *);
+extern void func_02139034(void *, u32);
+extern void func_0213905c(void *);
+extern void func_021263ac(void *, void *);
 void *func_0212642c(void *arg0) {
     return *(void **)((u8 *)arg0 + 0x10);
 }
