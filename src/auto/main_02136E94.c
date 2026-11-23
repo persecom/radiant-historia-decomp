@@ -19,6 +19,13 @@ void func_02137018(u32 arg0, u32 arg1, u32 arg2) {
     func_021369b4();
 }
 
+void func_02137318(void) {
+    func_021369a8();
+    func_02137330();
+    func_021369b4();
+    func_02136980();
+}
+
 void func_02137454(void *arg0) {
     func_021369a8();
     func_02137470(arg0);
