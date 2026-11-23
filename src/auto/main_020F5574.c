@@ -17,6 +17,10 @@ void func_020f56a4(void) {
     func_020bd690();
 }
 
+s32 func_020f5704(s32 arg0) {
+    return data_02160c7c[arg0];
+}
+
 void *func_020f5724(void) {
     return data_02160c9c;
 }
