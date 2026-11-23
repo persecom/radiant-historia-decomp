@@ -2,6 +2,30 @@
 #include "common.h"
 
 extern u32 data_0215f0a0[4];
+u32 func_0200f684(u32 arg0) {
+    u32 result = 0;
+    s32 i;
+    u32 mult;
+
+    for (i = 0; i < 8; i++) {
+        if (((arg0 >> (i * 4)) & 0xf) >= 10) {
+            return 0;
+        }
+    }
+
+    mult = 1;
+    for (i = 0; i < 8; i++) {
+        result += ((arg0 >> (i * 4)) & 0xf) * mult;
+        mult *= 10;
+    }
+
+    return result;
+}
+
+s32 func_0200f6ec(void) {
+    return func_0200f6fc(0x27);
+}
+
 u32 func_0200f94c(void) {
     return data_0215f0a0[0];
 }
