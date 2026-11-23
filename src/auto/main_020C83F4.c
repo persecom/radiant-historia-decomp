@@ -12,3 +12,10 @@ void func_020c8780(void *arg0) {
 void func_020c8a08(void) {
     func_020c6f14();
 }
+
+void func_020c8ba0(void *arg0) {
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
