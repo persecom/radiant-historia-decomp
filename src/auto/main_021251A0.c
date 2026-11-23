@@ -94,3 +94,8 @@ void func_02125328(void) {
     func_020037d4();
 }
 
+extern void func_02003894(void);
+void func_02125334(void) {
+    func_02003894();
+}
+
