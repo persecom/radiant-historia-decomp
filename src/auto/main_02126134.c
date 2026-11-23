@@ -1,5 +1,7 @@
 /* 75 functions from 0x02126134 to 0x02126F50 (main), found by ds-decomp. */
 #include "common.h"
+void func_02126a4c(void);
+
 void func_021269bc(void);
 
 void func_02126a1c(void);
@@ -145,6 +147,12 @@ void func_021269f8(void *arg0, void *arg1) {
 extern void func_02138d68(void);
 void func_02126a1c(void) {
     func_02138d68();
+}
+
+void func_02126a28(void *arg0, void *arg1) {
+    func_02126c18();
+    ((void (*)(void *, void *))func_02126a4c)(arg0, arg1);
+    func_02126c1c();
 }
 
 extern void func_02138dd8(void);
