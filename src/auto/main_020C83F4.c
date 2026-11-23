@@ -26,6 +26,17 @@ void func_020c8488(u8 *arg0) {
     (*(void (**)(void *))(*(u8 **)(arg0 + 0x30) + 8))(*(void **)(arg0 + 0x30));
 }
 
+void func_020c84ac(u8 *arg0) {
+    if (*(void **)(arg0 + 0x40) != NULL) {
+        func_020a98a0(*(void **)(arg0 + 0x40));
+        if (*(void **)(arg0 + 0x40) != NULL) {
+            func_0210c5dc(*(void **)(arg0 + 0x40));
+            *(void **)(arg0 + 0x40) = NULL;
+        }
+        *(void **)(arg0 + 0x40) = NULL;
+    }
+}
+
 void func_020c8780(void *arg0) {
     if (arg0 != NULL) {
         func_0210c5dc(arg0);
