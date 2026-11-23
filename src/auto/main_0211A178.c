@@ -11,3 +11,8 @@ void func_0211a4d4(void) {
     func_0211c52c();
 }
 
+extern u32 data_02155ed0[4];
+u32 func_0211ab38(void) {
+    return data_02155ed0[0];
+}
+
