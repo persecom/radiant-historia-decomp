@@ -70,7 +70,7 @@ void func_021263ac(void *arg0, void *arg1) {
     }
     func_0213904c(arg1);
     if (func_021265b4(*(void **)((u8 *)arg0 + 0x10))
-        && func_021265bc(*(void **)((u8 *)arg0 + 0x10))
+        && (func_021265bc)(*(void **)((u8 *)arg0 + 0x10))
         && func_02138d60(arg1) == 1) {
         func_02139034(arg1, func_021265c4(*(void **)((u8 *)arg0 + 0x10)));
     }
