@@ -297,6 +297,13 @@ void func_02126bc4(void) {
     func_02138f98();
 }
 
+extern void func_02126be4(void);
+void func_02126bd0(void) {
+    func_02126c18();
+    func_02126be4();
+    func_02126c1c();
+}
+
 extern void func_0213809c(void);
 void func_02126c00(void) {
     func_0213809c();
