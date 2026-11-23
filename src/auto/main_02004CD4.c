@@ -68,3 +68,8 @@ s32 func_02005454(void) {
     return func_02005398(&data_0215cd72);
 }
 
+extern u16 data_0215cd74;
+s32 func_02005468(void) {
+    return func_02005398(&data_0215cd74);
+}
+
