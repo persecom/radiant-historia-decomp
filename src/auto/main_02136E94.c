@@ -59,3 +59,12 @@ void func_02137a58(u32 arg0, u32 arg1, u32 arg2) {
     func_021369b4();
 }
 
+extern void *func_02137d68(void *);
+void *func_02137d44(void *arg0) {
+    void *ret;
+    func_021369a8();
+    ret = func_02137d68(arg0);
+    func_021369b4();
+    return ret;
+}
+
