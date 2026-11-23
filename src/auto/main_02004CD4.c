@@ -99,6 +99,21 @@ void func_02005298(s32 arg0) {
     func_02004810(data_0215cd60[0]);
 }
 
+void func_02005318(s32 arg0) {
+    data_0215cd60[0] = (data_0215cd60[0] | data_0215cd60[12]) & ~arg0;
+    data_0215cd60[12] = arg0;
+    switch (arg0) {
+    case 0x100:
+        *(volatile u32 *)0x04001000 |= 0x80000000;
+        *(volatile u8 *)0x04000249 = 0x83;
+        break;
+    case 0:
+        *(volatile u32 *)0x04001000 &= ~0x80000000;
+        break;
+    }
+    func_02004810(data_0215cd60[0]);
+}
+
 extern u16 data_0215cd6e;
 s32 func_020053d0(void) {
     *(volatile u32 *)0x04000000 &= ~0x40000000;
