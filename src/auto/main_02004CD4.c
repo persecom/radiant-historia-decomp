@@ -1,2 +1,54 @@
 /* 55 functions from 0x02004CD4 to 0x02005C90 (main), found by ds-decomp. */
 #include "common.h"
+
+extern u16 data_0215cd68;
+extern u16 data_0215cd60[];
+extern s32 func_02005398(u16 *);
+extern void func_02004810(u16);
+void func_02004cd4(s32 arg0) {
+    data_0215cd60[0] = (data_0215cd60[0] | data_0215cd60[8]) & ~arg0;
+    data_0215cd60[8] = arg0;
+    switch (arg0) {
+    case 0x20:
+        *(volatile u32 *)0x04000000 |= 0x80000000;
+        *(volatile u8 *)0x04000245 = 0x85;
+        break;
+    case 0x40:
+        *(volatile u32 *)0x04000000 |= 0x80000000;
+        *(volatile u8 *)0x04000246 = 0x85;
+        break;
+    case 0:
+        *(volatile u32 *)0x04000000 &= ~0x80000000;
+        break;
+    }
+    func_02004810(data_0215cd60[0]);
+}
+
+void func_020050c4(s32 arg0) {
+    data_0215cd60[0] = (data_0215cd60[0] | data_0215cd60[3]) & ~arg0;
+    data_0215cd60[3] = arg0;
+    switch (arg0) {
+    case 4:
+        *(volatile u8 *)0x04000242 = 0x82;
+        break;
+    case 8:
+        *(volatile u8 *)0x04000243 = 0x82;
+        break;
+    case 0xc:
+        *(volatile u8 *)0x04000243 = 0x8a;
+        *(volatile u8 *)0x04000242 = 0x82;
+        break;
+    case 0:
+        break;
+    }
+    func_02004810(data_0215cd60[0]);
+}
+
+void func_02005168(u16 arg0) {
+    data_0215cd60[0] |= arg0;
+    func_02004810(arg0);
+}
+
+s32 func_02005418(void) {
+    return func_02005398(&data_0215cd68);
+}
