@@ -15,6 +15,11 @@ void func_0210d6f4(void *arg0) {
     func_02113c18(arg0);
 }
 
+void func_0210d828(void) {
+    *(s16 *)(data_02162730 + 4) = -1;
+    *(s32 *)(data_02162730 + 8) = 0;
+}
+
 void func_0210d85c(s32 arg0) {
     *(s32 *)(data_02162730 + 8) = arg0;
 }
