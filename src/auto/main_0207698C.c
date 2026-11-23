@@ -27,3 +27,31 @@ void func_02076d6c(void) {
         break;
     }
 }
+
+void func_02076dcc(void) {
+    *(volatile u32 *)0x0400001c = 0;
+    *(volatile u32 *)0x04000000 = (*(volatile u32 *)0x04000000 & ~0x1f00) | 0x1f00;
+}
+
+s32 func_0207708c(void *arg0, s32 arg1, s32 arg2) {
+    s32 y = *(s32 *)arg0 + arg2 - arg1;
+    s32 x;
+    s32 i;
+    if (y <= -13 || y >= 192) {
+        return *(s32 *)arg0;
+    }
+    x = 10;
+    if (*(s32 *)((u8 *)arg0 + 0x24) == 2) {
+        func_02076fdc(x, y);
+        return *(s32 *)arg0;
+    }
+    for (i = 0; i < 32; i++) {
+        s8 c = ((s8 *)arg0 + 4)[i];
+        if (c == 0) {
+            break;
+        }
+        x += func_02076df4(c, x, y, *(s32 *)((u8 *)arg0 + 0x24));
+    }
+    return *(s32 *)arg0;
+}
+
