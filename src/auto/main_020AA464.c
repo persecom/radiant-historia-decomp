@@ -7,3 +7,9 @@ void func_020aa710(void *arg0) {
         func_0210c5dc(arg0);
     }
 }
+
+extern void func_020ade8c(s32);
+void func_020aad6c(void) {
+    func_020ade8c(1);
+}
+
