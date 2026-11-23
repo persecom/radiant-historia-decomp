@@ -5,3 +5,11 @@ extern void func_0210da44(void);
 void func_020a98a0(void) {
     func_0210da44();
 }
+
+extern void func_0210c5dc(void *);
+void func_020a9aa8(void *arg0) {
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
