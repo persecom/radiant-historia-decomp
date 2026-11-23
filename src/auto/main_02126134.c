@@ -128,6 +128,22 @@ void func_021264f0(void *arg0) {
     }
 }
 
+BOOL func_02126504(void *arg0) {
+    void *ptr;
+    if (*(void **)((u8 *)arg0 + 4) != NULL) {
+        ((void (*)(void *))func_02126c20)(data_02156518);
+        return FALSE;
+    }
+    ptr = func_02126c2c((u8 *)arg0 + 8, 0x44);
+    *(void **)((u8 *)arg0 + 4) = ptr;
+    if (ptr == NULL) {
+        ((void (*)(void *))func_02126c20)(data_02156548);
+        return FALSE;
+    }
+    func_02126cb0(ptr, 0, 0, 0, 0);
+    return TRUE;
+}
+
 extern void func_02126c18(void);
 extern void func_021268e4(void *);
 extern void func_02126c1c(void);
