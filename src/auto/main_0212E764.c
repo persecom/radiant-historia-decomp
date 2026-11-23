@@ -91,6 +91,10 @@ void func_0212ebb0(void) {
     func_0213575c();
 }
 
+s32 func_0212ebc0(void) {
+    return 0;
+}
+
 void *func_0212f468(void *arg0) {
     return *(void **)((u8 *)arg0 + 0x10);
 }
