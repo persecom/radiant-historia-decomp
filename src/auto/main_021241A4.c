@@ -2,6 +2,49 @@
 #include "common.h"
 
 extern void func_02003c78(void);
+void func_021241a4(s32 *arg0, u8 *arg1) {
+    s32 r2 = *(s32 *)(arg1 + 0x24);
+    u16 r3 = *(u16 *)(arg1 + 0x2c);
+    u16 h = *(u16 *)(arg1 + 0x2e);
+    s32 y = *(s32 *)(arg1 + 0x28);
+    arg0[0] = 0x1000;
+    arg0[5] = 0x1000;
+    arg0[1] = 0;
+    arg0[12] = (-r2 * r3) << 4;
+    arg0[13] = (y * h) << 4;
+    arg0[4] = 0;
+}
+
+void func_021243ac(s32 *arg0, u8 *arg1) {
+    s32 lr = *(s32 *)(arg1 + 0x1c);
+    s32 r4 = *(s32 *)(arg1 + 0x18);
+    u16 r3 = *(u16 *)(arg1 + 0x2c);
+    u16 r1 = *(u16 *)(arg1 + 0x2e);
+    arg0[5] = lr;
+    arg0[0] = r4;
+    arg0[1] = 0;
+    arg0[12] = ((0x1000 - r4) * r3) << 3;
+    arg0[13] = ((0x1000 - lr) * r1) << 3;
+    arg0[4] = 0;
+}
+
+void func_02124788(s32 *arg0, u8 *arg1) {
+    s32 ty = *(s32 *)(arg1 + 0x28);
+    s32 sy = *(s32 *)(arg1 + 0x1c);
+    s32 sx = *(s32 *)(arg1 + 0x18);
+    s32 tx = *(s32 *)(arg1 + 0x24);
+    s32 t1 = (s32)(((s64)(-ty) * sy) >> 12);
+    s32 t2 = (s32)(((s64)tx * sx) >> 12);
+    s32 h = *(u16 *)(arg1 + 0x2e);
+    s32 w = *(u16 *)(arg1 + 0x2c);
+    arg0[0] = sx;
+    arg0[5] = sy;
+    arg0[1] = 0;
+    arg0[12] = (w * (-t2)) << 4;
+    arg0[13] = ((-h) * (sy + t1 - 0x1000)) << 4;
+    arg0[4] = 0;
+}
+
 s32 func_02124b90(void) {
     return 0;
 }
@@ -25,6 +68,15 @@ void func_021250a0(u32 arg0, u32 arg1, u32 arg2) {
     func_0200439c();
     func_020043f8(arg0, arg1, arg2);
     func_02004544();
+}
+
+extern void func_02004588(void);
+extern void func_020045bc(u32, u32, u32);
+extern void func_0200462c(void);
+void func_021250cc(u32 arg0, u32 arg1, u32 arg2) {
+    func_02004588();
+    func_020045bc(arg0, arg1, arg2);
+    func_0200462c();
 }
 
 void func_02125140(void) {
