@@ -71,3 +71,7 @@ void func_02125294(void) {
     func_02003c08();
 }
 
+void func_021252a0(void) {
+    func_02003b28();
+}
+
