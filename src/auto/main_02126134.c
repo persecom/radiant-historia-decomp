@@ -56,6 +56,20 @@ void *func_0212642c(void *arg0) {
     return *(void **)((u8 *)arg0 + 0x10);
 }
 
+void func_02126434(void *arg0) {
+    s32 i;
+    for (i = 0; i < 4; i++) {
+        ((void **)arg0)[i] = NULL;
+    }
+    *(s32 *)((u8 *)arg0 + 0x74) = 0;
+    *(s32 *)((u8 *)arg0 + 0x78) = 0;
+    *(s32 *)((u8 *)arg0 + 0x7c) = 0;
+    *(void **)((u8 *)arg0 + 0x80) = NULL;
+    *(void **)((u8 *)arg0 + 0x84) = NULL;
+    *(void **)((u8 *)arg0 + 0x88) = NULL;
+    *(void **)((u8 *)arg0 + 0x8c) = NULL;
+}
+
 void func_021264f0(void *arg0) {
     if (arg0 != NULL) {
         func_02126778(arg0);
