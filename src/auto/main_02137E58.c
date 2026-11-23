@@ -31,6 +31,10 @@ void func_0213808c(void) {
     func_0213800c(1);
 }
 
+void func_021380ac(void) {
+    func_0213800c(3);
+}
+
 void func_0213825c(void *arg0, void *arg1) {
     func_0213807c();
     ((void (*)(void *, void *))func_02138280)(arg0, arg1);
