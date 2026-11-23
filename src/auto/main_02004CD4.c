@@ -4,7 +4,7 @@
 extern u16 data_0215cd68;
 extern u16 data_0215cd60[];
 extern s32 func_02005398(u16 *);
-extern void func_02004810(u16);
+extern void func_02004810(s32);
 void func_02004cd4(s32 arg0) {
     data_0215cd60[0] = (data_0215cd60[0] | data_0215cd60[8]) & ~arg0;
     data_0215cd60[8] = arg0;
@@ -44,8 +44,8 @@ void func_020050c4(s32 arg0) {
     func_02004810(data_0215cd60[0]);
 }
 
-void func_02005168(u16 arg0) {
-    data_0215cd60[0] |= arg0;
+void func_02005168(s32 arg0) {
+    data_0215cd60[0] |= (u16)arg0;
     func_02004810(arg0);
 }
 
