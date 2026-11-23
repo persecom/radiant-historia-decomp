@@ -9,6 +9,26 @@ void func_021264f0(void *arg0) {
     }
 }
 
+extern void func_02126c18(void);
+extern void func_021268e4(void *);
+extern void func_02126c1c(void);
+extern BOOL func_0212646c(void *);
+extern BOOL func_021265b4(void *);
+extern void func_021265dc(void *);
+extern BOOL func_02138ae8(void *);
+extern void func_0213904c(void *);
+extern BOOL func_021265bc(void *);
+extern s32 func_02138d60(void *);
+extern u32 func_021265c4(void *);
+extern void func_02139034(void *, u32);
+extern void func_0213905c(void *);
+extern void func_021263ac(void *, void *);
+void func_021268c8(void *arg0) {
+    func_02126c18();
+    func_021268e4(arg0);
+    func_02126c1c();
+}
+
 void func_02126964(void) {
     func_02138af0();
 }
