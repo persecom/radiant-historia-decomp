@@ -13,6 +13,12 @@ void func_020c8a08(void) {
     func_020c6f14();
 }
 
+extern void func_020c71bc(void);
+s32 func_020c8b90(void) {
+    func_020c71bc();
+    return 0;
+}
+
 void func_020c8ba0(void *arg0) {
     if (arg0 != NULL) {
         func_0210c5dc(arg0);
