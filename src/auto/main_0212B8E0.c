@@ -34,3 +34,11 @@ void func_0212c3b0(void *arg0, void *arg1) {
     ((void (*)(void *, void *))func_0212c3d4)(arg0, arg1);
     func_0212a9f8();
 }
+
+extern void func_0212c478(void);
+void func_0212c464(void) {
+    func_0212a9f4();
+    func_0212c478();
+    func_0212a9f8();
+}
+
