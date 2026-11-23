@@ -8,6 +8,11 @@ s32 func_02113824(void) {
     return 0;
 }
 
+extern u32 data_0216bf8c[4];
+u32 func_02113834(void) {
+    return data_0216bf8c[0];
+}
+
 void func_02113980(void) {
     func_02114c80();
 }
