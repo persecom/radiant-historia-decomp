@@ -7,3 +7,13 @@ void func_021273f0(void *arg0) {
         func_02127600(arg0);
     }
 }
+
+extern void func_0212a9f4(void);
+extern void func_02127e74(void *);
+extern void func_0212a9f8(void);
+void func_02127e58(void *arg0) {
+    func_0212a9f4();
+    func_02127e74(arg0);
+    func_0212a9f8();
+}
+
