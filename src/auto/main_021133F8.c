@@ -45,6 +45,16 @@ u32 func_02113624(u32 *arg0) {
     return arg0[1] >> 1;
 }
 
+void func_02113630(s32 *arg0, s32 *arg1) {
+    UnkStruct20 a = data_02155d30;
+    UnkStruct20 b = data_02155d44;
+    s32 i;
+    for (i = 0; i < 5; i++) {
+        arg0[i] = func_020a94b8(a.a[i]);
+        arg1[i] = func_020a94b8(b.a[i]);
+    }
+}
+
 s32 func_02113824(void) {
     func_02112f88();
     return 0;
