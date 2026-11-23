@@ -35,6 +35,11 @@ void func_0210d828(void) {
     *(s32 *)(data_02162730 + 8) = 0;
 }
 
+void func_0210d844(s16 arg0) {
+    *(s16 *)(data_02162730 + 4) = arg0;
+    *(s32 *)(data_02162730 + 8) = 1;
+}
+
 void func_0210d85c(s32 arg0) {
     *(s32 *)(data_02162730 + 8) = arg0;
 }
