@@ -31,6 +31,10 @@ void func_0212e5ac(void) {
     func_0212a9f8();
 }
 
+s32 func_0212e5d4(void) {
+    return 0;
+}
+
 extern void func_0212c4c8(void);
 void func_0212e610(void) {
     func_0212c4c8();
