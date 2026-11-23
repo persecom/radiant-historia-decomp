@@ -38,7 +38,14 @@ s32 func_02005d0c(u16 arg0) {
 }
 
 s32 func_02005d2c(u16 arg0) {
-    return func_02005d0c(arg0);
+    s32 (*fn)(u16) = func_02005d0c;
+    return fn(arg0);
+}
+
+extern void func_02005d58(void);
+extern s32 func_02005d38(u16);
+s32 func_02005d38(u16 arg0) {
+    return func_02005c90(arg0, (void *)0x02ffffe8, func_02005d58, 1);
 }
 
 void func_02005ec0(void) {
