@@ -132,6 +132,11 @@ s32 func_020053d0(void) {
     return func_02005398(&data_0215cd6e);
 }
 
+s32 func_020053f4(void) {
+    *(volatile u32 *)0x04000000 &= ~0x80000000;
+    return func_02005398(&data_0215cd70);
+}
+
 s32 func_02005418(void) {
     return func_02005398(&data_0215cd68);
 }
