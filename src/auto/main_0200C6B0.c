@@ -8,22 +8,22 @@ s32 func_0200ca2c(void *arg0) {
     u32 r4 = *(u32 *)((u8 *)arg0 + 0x34);
     void *r1 = *(void **)((u8 *)r3 + 0x20);
     u32 r2 = r4 * 8;
-    u32 sp0[2];
-    u32 sp8[2];
+    struct { u32 a; u32 b; } sp8;
+    struct { void *a; u32 b; } sp0;
     s32 res;
-    if (*(u32 *)((u8 *)r1 + 0x8) <= r2) {
+    if (r2 >= *(u32 *)((u8 *)r1 + 0x8)) {
         return 0xb;
     }
-    sp0[0] = (u32)r3;
-    sp0[1] = *(u32 *)((u8 *)r1 + 0x4) + r2;
-    res = func_0200c248(sp0, sp8, 8);
-    if (res != 0) {
-        return res;
+    sp0.a = r3;
+    sp0.b = *(u32 *)((u8 *)r1 + 0x4) + r2;
+    res = func_0200c248(&sp0, &sp8, 8);
+    if (res == 0) {
+        *(u32 *)((u8 *)arg0 + 0x30) = sp8.a;
+        *(u32 *)((u8 *)arg0 + 0x34) = sp8.b;
+        *(u32 *)((u8 *)arg0 + 0x38) = r4;
+        res = func_0200cb40(arg0, 7, 1);
     }
-    *(u32 *)((u8 *)arg0 + 0x30) = sp8[0];
-    *(u32 *)((u8 *)arg0 + 0x34) = sp8[1];
-    *(u32 *)((u8 *)arg0 + 0x38) = r4;
-    return func_0200cb40(arg0, 7, 1);
+    return res;
 }
 
 s32 func_0200cab4(void *arg0) {
@@ -41,9 +41,8 @@ s32 func_0200cad8(void *arg0) {
     void *lr = *(void **)((u8 *)arg0 + 0x8);
     u32 r2 = *(u32 *)((u8 *)arg0 + 0x2c);
     u32 r3 = *(u32 *)((u8 *)arg0 + 0x38);
-    void *r12 = *(void **)((u8 *)lr + 0x20);
     *(u32 *)((u8 *)arg0 + 0x2c) = r2 + r3;
-    return (*(s32 (**)(void *, u32, u32, u32))((u8 *)r12 + 0x20))(
+    return (*(s32 (**)(void *, u32, u32, u32))((u8 *)(*(void **)((u8 *)lr + 0x20)) + 0x20))(
         lr,
         *(u32 *)((u8 *)arg0 + 0x30),
         r2,
