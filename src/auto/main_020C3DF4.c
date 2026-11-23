@@ -7,3 +7,10 @@ void func_020c4bec(void *arg0) {
         func_0210c5dc(arg0);
     }
 }
+
+void func_020c4c1c(void *arg0) {
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
