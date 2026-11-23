@@ -11,3 +11,8 @@ void *func_0210a4b4(void) {
     return data_02162610;
 }
 
+extern u8 data_02162614[64];
+void *func_0210a4c0(void) {
+    return data_02162614;
+}
+
