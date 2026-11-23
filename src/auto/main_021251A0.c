@@ -107,6 +107,15 @@ void func_021252c4(void) {
     func_0200365c();
 }
 
+extern void func_020042e4(void);
+extern void func_020042fc(u32, u32, u32);
+extern void func_02004364(void);
+void func_021252d0(u32 arg0, u32 arg1, u32 arg2) {
+    func_020042e4();
+    func_020042fc(arg0, arg1, arg2);
+    func_02004364();
+}
+
 extern void func_020037d4(void);
 void func_02125328(void) {
     func_020037d4();
