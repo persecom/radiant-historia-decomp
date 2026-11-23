@@ -32,6 +32,14 @@ void func_02002028(u32 arg0) {
     *(volatile u64 *)0x04000298 = arg0;
 }
 
+void func_02002058(s32 arg0, s32 arg1) {
+    *(volatile u16 *)0x04000280 = 1;
+    *(volatile s32 *)0x04000290 = 0;
+    *(volatile s32 *)0x04000294 = arg0;
+    *(volatile s32 *)0x04000298 = arg1;
+    *(volatile s32 *)0x0400029c = 0;
+}
+
 s32 func_02002080(s32 arg0, u32 arg1) {
     *(volatile u16 *)0x04000280 = 0;
     *(volatile s32 *)0x04000290 = arg0;
