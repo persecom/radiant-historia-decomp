@@ -72,6 +72,13 @@ void func_02128580(void *arg0) {
     func_0212a9f8();
 }
 
+extern void func_021285c4(void);
+void func_021285b0(void) {
+    func_0212a9f4();
+    func_021285c4();
+    func_0212a9f8();
+}
+
 extern void func_021286c0(void);
 void func_0212869c(void *arg0, void *arg1) {
     func_0212a9f4();
