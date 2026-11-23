@@ -49,6 +49,40 @@ void func_02005168(s32 arg0) {
     func_02004810(arg0);
 }
 
+void func_0200518c(s32 arg0) {
+    data_0215cd60[0] = (data_0215cd60[0] | data_0215cd60[9]) & ~arg0;
+    data_0215cd60[9] = arg0;
+    switch (arg0) {
+    case 0x4:
+        *(volatile u8 *)0x04000242 = 0x84;
+        break;
+    case 0x180:
+        *(volatile u8 *)0x04000249 = 0x81;
+    case 0x80:
+        *(volatile u8 *)0x04000248 = 0x81;
+        break;
+    case 0:
+        break;
+    }
+    func_02004810(data_0215cd60[0]);
+}
+
+void func_02005228(s32 arg0) {
+    data_0215cd60[0] = (data_0215cd60[0] | data_0215cd60[10]) & ~arg0;
+    data_0215cd60[10] = arg0;
+    switch (arg0) {
+    case 0x8:
+        *(volatile u8 *)0x04000243 = 0x84;
+        break;
+    case 0x100:
+        *(volatile u8 *)0x04000249 = 0x82;
+        break;
+    case 0:
+        break;
+    }
+    func_02004810(data_0215cd60[0]);
+}
+
 s32 func_02005418(void) {
     return func_02005398(&data_0215cd68);
 }
