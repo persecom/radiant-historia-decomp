@@ -5,3 +5,9 @@ extern void func_0210cce4(s32);
 void func_0210cd50(void) {
     func_0210cce4(0);
 }
+
+extern void func_0210cd90(s32);
+void func_0210ce5c(void) {
+    func_0210cd90(0);
+}
+
