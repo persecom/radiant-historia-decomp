@@ -25,6 +25,15 @@ void func_02137454(void *arg0) {
     func_021369b4();
 }
 
+extern void *func_021374f4(void *);
+void *func_021374d0(void *arg0) {
+    void *ret;
+    func_021369a8();
+    ret = func_021374f4(arg0);
+    func_021369b4();
+    return ret;
+}
+
 extern void func_02137574(u32, u32, u32);
 void func_02137548(u32 arg0, u32 arg1, u32 arg2) {
     func_021369a8();
