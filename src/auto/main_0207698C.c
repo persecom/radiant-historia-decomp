@@ -60,8 +60,8 @@ void func_02076fdc(s32 arg0, s32 arg1) {
 }
 
 s32 func_0207708c(void *arg0, s32 arg1, s32 arg2) {
-    s32 y = arg2 + *(s32 *)arg0 - arg1;
     s32 x;
+    s32 y = arg2 + *(s32 *)arg0 - arg1;
     s32 i;
     if (y <= -13 || y >= 192) {
         return *(s32 *)arg0;
