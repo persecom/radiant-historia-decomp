@@ -59,3 +59,7 @@ s32 func_0200d52c(void) {
     return 0;
 }
 
+s32 func_0200d634(void) {
+    return 0;
+}
+
