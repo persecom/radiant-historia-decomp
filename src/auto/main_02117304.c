@@ -34,9 +34,9 @@ void *func_02117358(void **arg0) {
 void *func_02117370(void *arg0) {
     void *r4 = func_02117358((void **)((u8 *)arg0 + 0x24));
     if (r4 != NULL) {
-        u32 r0 = *(u32 *)((u8 *)arg0 + 0x20);
+        u8 flags = *(u32 *)((u8 *)arg0 + 0x20);
         u32 r2 = *(u32 *)((u8 *)arg0 + 0x28);
-        if ((r0 & 0xff) & 1) {
+        if (flags & 1) {
             func_02008e24(0, r4, r2);
         }
     }
