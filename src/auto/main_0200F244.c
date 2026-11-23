@@ -26,6 +26,14 @@ s32 func_0200f6ec(void) {
     return func_0200f6fc(0x27);
 }
 
+s32 func_0200f6fc(s32 arg0) {
+    s32 ret = 0;
+    if (func_0200a6e4(5, (arg0 << 8) & 0x7f00, 0) >= 0) {
+        ret = 1;
+    }
+    return ret;
+}
+
 u32 func_0200f94c(void) {
     return data_0215f0a0[0];
 }
