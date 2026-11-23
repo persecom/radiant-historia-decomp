@@ -109,6 +109,11 @@ void func_0212f738(void) {
     func_0212f548();
 }
 
+extern u8 data_021747a0[12];
+void func_0212f744(s32 arg0) {
+    *(s32 *)(data_021747a0 + 8) = arg0;
+}
+
 extern void func_0213234c(void);
 void func_0212f754(void) {
     func_0213234c();
