@@ -159,6 +159,10 @@ s32 func_021265b4(void *arg0) {
     return *(s32 *)((u8 *)arg0 + 0x4c);
 }
 
+s32 func_021265bc(void *arg0) {
+    return *(s8 *)((u8 *)arg0 + 0x50);
+}
+
 extern void func_02126c18(void);
 extern void func_021268e4(void *);
 extern void func_02126c1c(void);
