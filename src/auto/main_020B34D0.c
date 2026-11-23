@@ -2,6 +2,11 @@
 #include "common.h"
 
 extern void func_020b3890(void);
+extern u8 data_021601e0;
+void func_020b3744(u8 arg0) {
+    data_021601e0 = arg0;
+}
+
 void func_020b3908(void) {
     func_020b3890();
 }
