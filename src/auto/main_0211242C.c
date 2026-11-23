@@ -16,3 +16,11 @@ void func_021128d4(void *arg0) {
     }
 }
 
+extern void func_020c8818(void *);
+void func_02112ac0(void *arg0) {
+    func_020c8818(arg0);
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
