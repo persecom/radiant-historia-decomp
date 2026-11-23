@@ -153,6 +153,10 @@ s32 func_02005468(void) {
     return func_02005398(&data_0215cd74);
 }
 
+void func_02005750(void) {
+    func_020056c8(0);
+}
+
 extern void func_020056c8(s32);
 void func_02005760(void) {
     func_020056c8(1);
