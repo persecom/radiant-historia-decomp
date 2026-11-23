@@ -299,9 +299,9 @@ void func_02126b5c(void) {
     func_02138ea4();
 }
 
-extern void func_02138f34(void);
-void func_02126b94(void) {
-    func_02138f34();
+extern s32 func_02138f34(void *, void *);
+s32 func_02126b94(void *arg0, void *arg1) {
+    return func_02138f34(arg0, arg1);
 }
 
 extern void func_02138f98(void);
