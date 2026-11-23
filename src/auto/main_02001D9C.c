@@ -9,6 +9,11 @@ s32 func_02001fb0(s32 arg0, s32 arg1) {
     return func_02001ff4();
 }
 
+s32 func_02001fc0(u32 arg0) {
+    func_02002028(arg0);
+    return func_02001ff4();
+}
+
 s64 func_02001fd0(void) {
     while (*(volatile u16 *)0x04000280 & 0x8000) {
     }
