@@ -11,9 +11,9 @@ u32 func_ov000_02176a00(u32 (*arg0)(void *), void *arg1) {
     u32 *p;
     u32 sum;
 
+    funcs[2] = 0;
     funcs[0] = (u32)(func_ov000_02177f8c + 0x1000) + 0x320;
     funcs[1] = (u32)(func_ov000_02177438 + 0x1000) + 0x320;
-    funcs[2] = 0;
 
     sum = 0x30eb87;
     p = funcs;
