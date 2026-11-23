@@ -21,6 +21,10 @@ s32 func_020f5704(s32 arg0) {
     return data_02160c7c[arg0];
 }
 
+void func_020f5714(s32 arg0, s32 arg1) {
+    data_02160c7c[arg0] = arg1;
+}
+
 void *func_020f5724(void) {
     return data_02160c9c;
 }
