@@ -9,3 +9,12 @@ void func_02111708(void *arg0) {
         func_0210c5dc(arg0);
     }
 }
+
+extern void func_021121b8(void *);
+void func_02112198(void *arg0) {
+    func_021121b8(arg0);
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
