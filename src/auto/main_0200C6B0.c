@@ -37,6 +37,25 @@ s32 func_0200cab4(void *arg0) {
     return 0;
 }
 
+s32 func_0200cad8(void *arg0) {
+    void *lr = *(void **)((u8 *)arg0 + 0x8);
+    u32 r2 = *(u32 *)((u8 *)arg0 + 0x2c);
+    u32 r3 = *(u32 *)((u8 *)arg0 + 0x38);
+    void *r12 = *(void **)((u8 *)lr + 0x20);
+    *(u32 *)((u8 *)arg0 + 0x2c) = r2 + r3;
+    return (*(s32 (**)(void *, u32, u32, u32))((u8 *)r12 + 0x20))(
+        lr,
+        *(u32 *)((u8 *)arg0 + 0x30),
+        r2,
+        r3
+    );
+}
+
 s32 func_0200cb38(void) {
     return 0;
 }
+
+s32 func_0200d52c(void) {
+    return 0;
+}
+
