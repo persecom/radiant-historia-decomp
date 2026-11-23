@@ -299,6 +299,17 @@ void func_02126b5c(void) {
     func_02138ea4();
 }
 
+extern s32 func_02126b94(void *, void *);
+extern u32 func_02126c90(void *);
+extern void func_02013878(void *, s32, s32);
+s32 func_02126b68(void *arg0, void *arg1) {
+    s32 ret;
+    func_02126c18();
+    ret = func_02126b94(arg0, arg1);
+    func_02126c1c();
+    return ret;
+}
+
 extern s32 func_02138f34(void *, void *);
 s32 func_02126b94(void *arg0, void *arg1) {
     return func_02138f34(arg0, arg1);
