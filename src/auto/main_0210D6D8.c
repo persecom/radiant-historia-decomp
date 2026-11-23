@@ -38,3 +38,9 @@ void func_0210d828(void) {
 void func_0210d85c(s32 arg0) {
     *(s32 *)(data_02162730 + 8) = arg0;
 }
+
+void func_0210d9e4(u8 *arg0) {
+    u8 *list = (*(s32 *)(data_0216280c + 0x44) == 0) ? data_021628e0 : data_021628b0;
+    func_0210d92c(list, arg0);
+}
+
