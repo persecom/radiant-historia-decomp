@@ -16,6 +16,8 @@ void func_02126a1c(void);
 
 
 extern void func_02138af0(void);
+extern void func_02126c18(void);
+extern void func_02126c1c(void);
 extern void func_02126778(void *);
 extern BOOL func_0212646c(void *);
 extern BOOL func_021265b4(void *);
