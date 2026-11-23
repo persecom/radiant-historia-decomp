@@ -21,8 +21,28 @@ extern s32 func_020a94b8(s32);
 
 extern void func_02114c80(void);
 extern void func_02112f88(void);
+void func_0211355c(void) {
+    void *file = func_021092d8(data_02155dac);
+    if (file != NULL) {
+        do {
+            u8 *entry = func_0210c594(0x2c, data_02155c3c);
+            *(u16 *)(entry + 0) = func_020f685c(file, 0);
+            *(s32 *)(entry + 4) = func_020f685c(file, 0);
+            *(u16 *)(entry + 8) |= (u16)(func_020f685c(file, 0) != 0 ? 1 : 0);
+            func_021167f0(data_0216bf88 + 0x30, entry);
+        } while (func_02109444(file) != 0);
+    }
+    if (file != NULL) {
+        func_021093b0(file);
+    }
+}
+
 s32 func_0211361c(s32 *arg0) {
     return arg0[1];
+}
+
+u32 func_02113624(u32 *arg0) {
+    return arg0[1] >> 1;
 }
 
 s32 func_02113824(void) {
@@ -37,6 +57,10 @@ u32 func_02113834(void) {
 
 void func_02113980(void) {
     func_02114c80();
+}
+
+void func_02113b58(void **arg0, s32 arg1) {
+    func_021140b8(*arg0, arg1);
 }
 
 extern void func_021142f0(void);
