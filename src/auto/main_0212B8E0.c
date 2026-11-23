@@ -10,6 +10,12 @@ s32 func_0212c088(void) {
     return 0;
 }
 
+extern void func_021285b0(void);
+s32 func_0212c098(void) {
+    func_021285b0();
+    return 0;
+}
+
 void func_0212c3b0(void *arg0, void *arg1) {
     func_0212a9f4();
     ((void (*)(void *, void *))func_0212c3d4)(arg0, arg1);
