@@ -5,6 +5,13 @@ extern void func_0212a9f4(void);
 extern void func_0212a9f8(void);
 extern void func_0212c3d4(void);
 extern void func_0212c464(void);
+extern void func_0212bfb8(void);
+void func_0212bfa4(void) {
+    func_0212a9f4();
+    func_0212bfb8();
+    func_0212a9f8();
+}
+
 s32 func_0212c088(void) {
     func_0212c464();
     return 0;
