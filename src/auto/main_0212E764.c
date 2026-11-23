@@ -6,6 +6,11 @@ void func_0212e7e4(void) {
     func_021383cc();
 }
 
+extern u32 data_021744d8[4];
+u32 func_0212ea54(void) {
+    return data_021744d8[0];
+}
+
 extern void func_02134748(void);
 void func_0212eac8(void) {
     func_02134748();
