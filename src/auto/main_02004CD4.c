@@ -99,6 +99,12 @@ void func_02005298(s32 arg0) {
     func_02004810(data_0215cd60[0]);
 }
 
+extern u16 data_0215cd6e;
+s32 func_020053d0(void) {
+    *(volatile u32 *)0x04000000 &= ~0x40000000;
+    return func_02005398(&data_0215cd6e);
+}
+
 s32 func_02005418(void) {
     return func_02005398(&data_0215cd68);
 }
