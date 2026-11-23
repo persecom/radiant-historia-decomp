@@ -57,6 +57,10 @@ void func_02005d70(void) {
     *(volatile u16 *)0x04000204 |= 0x80;
 }
 
+s32 func_02005d88(u16 arg0) {
+    return func_02005c80(arg0, (void *)0x02ffffe0, func_02005dd8);
+}
+
 void func_02005ec0(void) {
     func_02012e3c();
 }
