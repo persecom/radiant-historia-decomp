@@ -26,3 +26,8 @@ void func_021324a8(void) {
     func_0212f760();
 }
 
+extern u8 data_021749dc[64];
+void *func_02132f14(void) {
+    return data_021749dc;
+}
+
