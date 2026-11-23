@@ -33,6 +33,16 @@ s32 func_020624c8(void) {
     return 0;
 }
 
+void func_02062530(void) {
+    u8 *ptr = *(u8 **)data_02160244;
+    s32 i;
+    for (i = 0; i < 10; i++) {
+        *(s32 *)(ptr + 0x10 + i * 4) = 0;
+    }
+    *(s32 *)(ptr + 4) = 0;
+    *(u16 *)(ptr + 0x3e) = 0;
+}
+
 s32 func_02062570(s32 *arg0) {
     return arg0[1];
 }
