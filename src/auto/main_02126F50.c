@@ -8,6 +8,10 @@ void func_021273f0(void *arg0) {
     }
 }
 
+s32 func_021275f8(s32 *arg0) {
+    return arg0[1];
+}
+
 extern void func_0212a9f4(void);
 extern void func_02127e74(void *);
 extern void func_0212a9f8(void);
