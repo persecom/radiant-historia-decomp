@@ -16,6 +16,17 @@ s32 func_020c7604(void) {
     return 0;
 }
 
+extern void func_020c7838(void *);
+extern u32 func_020c73b8(void);
+extern void func_020c74fc(void *);
+extern void func_020c753c(void *);
+void func_020c7818(void *arg0) {
+    func_020c7838(arg0);
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
 extern void func_020c6d78(void);
 s32 func_020c812c(void) {
     func_020c6d78();
