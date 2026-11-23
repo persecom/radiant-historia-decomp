@@ -114,6 +114,14 @@ void func_02005318(s32 arg0) {
     func_02004810(data_0215cd60[0]);
 }
 
+s32 func_02005398(u16 *arg0) {
+    s32 val = *arg0;
+    *arg0 = 0;
+    data_0215cd60[0] |= (u16)val;
+    func_02004810(val);
+    return val;
+}
+
 extern u16 data_0215cd6e;
 s32 func_020053d0(void) {
     *(volatile u32 *)0x04000000 &= ~0x40000000;
