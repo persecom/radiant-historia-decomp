@@ -3,6 +3,10 @@
 
 extern void func_02138af0(void);
 extern void func_02126778(void *);
+void *func_0212642c(void *arg0) {
+    return *(void **)((u8 *)arg0 + 0x10);
+}
+
 void func_021264f0(void *arg0) {
     if (arg0 != NULL) {
         func_02126778(arg0);
