@@ -48,6 +48,15 @@ void func_021375c4(void *arg0) {
     func_021369b4();
 }
 
+extern s32 func_02137680(void *, void *);
+s32 func_02137654(void *arg0, void *arg1) {
+    s32 ret;
+    func_021369a8();
+    ret = func_02137680(arg0, arg1);
+    func_021369b4();
+    return ret;
+}
+
 void func_021378cc(void) {
     func_021378d8();
 }
