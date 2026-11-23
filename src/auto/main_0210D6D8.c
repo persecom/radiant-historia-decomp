@@ -67,7 +67,7 @@ void func_0210d92c(u8 *arg0, u8 *arg1) {
     if (val < 0) {
         val = -val;
     }
-    while ((cur = (cur == NULL) ? *(u8 **)arg0 : *(u8 **)(cur + *(u16 *)(arg0 + 0xa) + 4)) != NULL) {
+    while ((cur = (cur != NULL) ? *(u8 **)(cur + *(u16 *)(arg0 + 0xa) + 4) : *(u8 **)arg0) != NULL) {
         s32 curVal = *(s32 *)(cur + 4);
         if (curVal < 0) {
             curVal = -curVal;
