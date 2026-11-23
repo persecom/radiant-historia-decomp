@@ -2,6 +2,8 @@
 #include "common.h"
 
 extern u32 func_02008154(void);
+extern s32 func_02005c80(u16, void *, void *);
+extern void func_02005dd8(void);
 extern u32 func_02008128(void);
 extern s32 func_02009148(u16, void *);
 extern void func_02008168(u32);
