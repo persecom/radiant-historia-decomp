@@ -23,6 +23,39 @@ void func_020c7448(void *arg0) {
     }
 }
 
+s32 func_020c745c(void *arg0) {
+    if (*(s32 *)((u8 *)arg0 + 0x30) == 0) {
+        return 1;
+    }
+    switch (*(u8 *)((u8 *)arg0 + 0x3a)) {
+    case 0: {
+        u16 max = *(u16 *)((u8 *)arg0 + 0x38);
+        *(u16 *)((u8 *)arg0 + 0x36) += 1;
+        if (*(u16 *)((u8 *)arg0 + 0x36) > max) {
+            *(u8 *)((u8 *)arg0 + 0x3a) = 1;
+            *(u16 *)((u8 *)arg0 + 0x36) = max;
+        }
+        break;
+    }
+    case 1:
+        *(u16 *)((u8 *)arg0 + 0x36) -= 1;
+        if (*(u16 *)((u8 *)arg0 + 0x36) == 0) {
+            *(u16 *)((u8 *)arg0 + 0x36) = 0;
+            *(u8 *)((u8 *)arg0 + 0x3a) = 0;
+        }
+        break;
+    }
+    switch (*(u8 *)((u8 *)arg0 + 0x34)) {
+    case 0:
+        func_020c74fc(arg0);
+        break;
+    case 1:
+        func_020c753c(arg0);
+        break;
+    }
+    return 0;
+}
+
 s32 func_020c7604(void) {
     return 0;
 }
