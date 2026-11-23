@@ -21,6 +21,13 @@ void func_021369c0(void) {
     func_02138130();
 }
 
+void func_02136a24(void) {
+    func_02136958();
+    func_021369a8();
+    func_02136a3c();
+    func_021369b4();
+}
+
 extern s32 func_02136b34(void *, void *);
 s32 func_02136b08(void *arg0, void *arg1) {
     s32 ret;
