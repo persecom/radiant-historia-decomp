@@ -2,6 +2,12 @@
 #include "common.h"
 
 extern void func_02114c80(void);
+extern void func_02112f88(void);
+s32 func_02113824(void) {
+    func_02112f88();
+    return 0;
+}
+
 void func_02113980(void) {
     func_02114c80();
 }
