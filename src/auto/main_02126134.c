@@ -163,6 +163,23 @@ s32 func_021265bc(void *arg0) {
     return *(s8 *)((u8 *)arg0 + 0x50);
 }
 
+extern u32 func_02126c90(void *);
+extern void func_02013878(void *, s32, s32);
+u32 func_021265c4(void *arg0) {
+    return func_02126c90(*(void **)((u8 *)arg0 + 4));
+}
+
+void func_02126778(void *arg0) {
+    *(void **)((u8 *)arg0 + 0x00) = NULL;
+    *(void **)((u8 *)arg0 + 0x04) = NULL;
+    func_02013878((u8 *)arg0 + 0x08, 0, 0x44);
+    *(s32 *)((u8 *)arg0 + 0x4c) = 0;
+    *(u8 *)((u8 *)arg0 + 0x50) = 0;
+    *(s32 *)((u8 *)arg0 + 0x54) = 0x1e;
+    *(s32 *)((u8 *)arg0 + 0x58) = 0x3c;
+    *(s32 *)((u8 *)arg0 + 0x5c) = 0x78;
+}
+
 void func_021267c0(void *arg0, u8 arg1) {
     *(u8 *)((u8 *)arg0 + 0x50) = arg1;
 }
