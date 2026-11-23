@@ -151,6 +151,10 @@ void func_02126584(void *arg0) {
     }
 }
 
+void func_021265a8(void *arg0) {
+    *(s32 *)((u8 *)arg0 + 0x4c) = 0;
+}
+
 extern void func_02126c18(void);
 extern void func_021268e4(void *);
 extern void func_02126c1c(void);
