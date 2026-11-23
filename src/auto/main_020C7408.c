@@ -2,6 +2,9 @@
 #include "common.h"
 
 extern void func_0210c5dc(void *);
+extern u32 func_020c73b8(void);
+extern void func_020c74fc(void *);
+extern void func_020c753c(void *);
 s32 func_020c7440(void) {
     return 0;
 }
