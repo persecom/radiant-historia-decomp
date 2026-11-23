@@ -304,8 +304,6 @@ void func_02126b5c(void) {
 }
 
 extern s32 func_02126b94(void *, void *);
-extern u32 func_02126c90(void *);
-extern void func_02013878(void *, s32, s32);
 s32 func_02126b68(void *arg0, void *arg1) {
     s32 ret;
     func_02126c18();
