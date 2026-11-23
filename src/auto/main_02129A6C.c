@@ -5,3 +5,9 @@ extern void func_0213807c(void);
 void func_0212a9dc(void) {
     func_0213807c();
 }
+
+extern void func_0213808c(void);
+void func_0212a9e8(void) {
+    func_0213808c();
+}
+
