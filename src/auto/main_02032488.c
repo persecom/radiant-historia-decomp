@@ -11,3 +11,8 @@ void func_02033138(void) {
     func_020c3134();
 }
 
+extern void func_020c319c(void);
+void func_02033144(void) {
+    func_020c319c();
+}
+
