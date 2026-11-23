@@ -9,6 +9,10 @@ BOOL func_020c7408(void) {
     return (func_020c73b8() & 4) != 0;
 }
 
+BOOL func_020c7420(void) {
+    return (func_020c73b8() & 8) != 0;
+}
+
 s32 func_020c7440(void) {
     return 0;
 }
