@@ -11,6 +11,10 @@ void *func_0212a220(void *arg0) {
     return *(void **)((u8 *)arg0 + 0x10);
 }
 
+s32 func_0212a4b8(s32 *arg0) {
+    return arg0[1];
+}
+
 void func_0212a9dc(void) {
     func_0213807c();
 }
