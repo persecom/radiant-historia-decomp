@@ -10,6 +10,10 @@ s32 func_02124ba0(void) {
     return 0;
 }
 
+s32 func_02124e60(void) {
+    return 0;
+}
+
 void func_02125140(void) {
     func_02003c78();
 }
