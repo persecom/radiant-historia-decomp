@@ -70,6 +70,10 @@ void func_02126434(void *arg0) {
     *(void **)((u8 *)arg0 + 0x8c) = NULL;
 }
 
+BOOL func_0212646c(void *arg0) {
+    return *(s32 *)((u8 *)arg0 + 0x74) > 0;
+}
+
 void func_021264f0(void *arg0) {
     if (arg0 != NULL) {
         func_02126778(arg0);
