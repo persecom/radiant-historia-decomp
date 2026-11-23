@@ -40,3 +40,9 @@ s32 func_0200e6bc(u32 arg0, u32 arg1, void *arg2) {
 void func_0200f0e4(s32 arg0) {
     func_0200f004(data_0215f04c, arg0);
 }
+
+extern u8 data_0215f054[8];
+void func_0200f0fc(s32 arg0) {
+    func_0200f004(data_0215f054, arg0);
+}
+
