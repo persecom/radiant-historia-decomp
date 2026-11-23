@@ -11,3 +11,8 @@ u16 func_0200788c(void) {
     return data_0215d128;
 }
 
+extern u16 data_0215d138;
+u16 func_02007a68(void) {
+    return data_0215d138;
+}
+
