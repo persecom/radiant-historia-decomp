@@ -9,6 +9,14 @@ void func_020c8780(void *arg0) {
     }
 }
 
+extern void func_020c8818(void *);
+void func_020c87f8(void *arg0) {
+    func_020c8818(arg0);
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
 void func_020c8a08(void) {
     func_020c6f14();
 }
