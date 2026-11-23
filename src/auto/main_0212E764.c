@@ -91,6 +91,10 @@ void func_0212ebb0(void) {
     func_0213575c();
 }
 
+void *func_0212f468(void *arg0) {
+    return *(void **)((u8 *)arg0 + 0x10);
+}
+
 extern void func_0212f548(void);
 void func_0212f738(void) {
     func_0212f548();
