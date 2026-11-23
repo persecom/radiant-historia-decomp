@@ -5,6 +5,11 @@ extern void func_021390fc(void *);
 extern void func_0213807c(void);
 extern void func_0213808c(void);
 extern void func_02138280(void);
+extern void func_02137fc8(s32);
+void func_0213807c(void) {
+    func_02137fc8(1);
+}
+
 void func_0213825c(void *arg0, void *arg1) {
     func_0213807c();
     ((void (*)(void *, void *))func_02138280)(arg0, arg1);
