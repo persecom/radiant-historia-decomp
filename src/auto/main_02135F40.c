@@ -16,21 +16,21 @@ void func_02135f40(u8 *arg0, u32 arg1) {
     *(volatile u16 *)0x04000208 = ime;
 }
 
-u32 func_02136138(u8 *arg0, void *arg1, u32 arg2) {
-    s16 *buf;
+extern u32 func_0201fd28(u32, u32);
+u32 func_02136138(u8 *arg0, s16 *arg1, u32 arg2) {
     func_02135f40(arg0, arg2);
-    buf = func_02136210(arg0, arg1, arg2);
+    arg1 = func_02136210(arg0, arg1, arg2);
     if ((*(u16 *)arg0 & 4) && arg2 >= 2) {
         u32 sum = 0;
         u32 i;
         for (i = 0; i < arg2; i++) {
-            s32 v = buf[i];
+            s32 v = arg1[i];
             if (v < 0) {
                 v = -v;
             }
             sum += v;
         }
-        *(u16 *)(arg0 + 0x24) = sum / (arg2 >> 1);
+        *(u16 *)(arg0 + 0x24) = func_0201fd28(sum, arg2 >> 1);
     }
     return arg2;
 }
