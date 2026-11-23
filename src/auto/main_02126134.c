@@ -90,6 +90,16 @@ BOOL func_0212646c(void *arg0) {
     return *(s32 *)((u8 *)arg0 + 0x74) > 0;
 }
 
+s32 func_02126480(void *arg0) {
+    if (arg0 == NULL) {
+        return 0;
+    }
+    func_02126c18();
+    func_02126330(arg0);
+    func_02126c1c();
+    return 0;
+}
+
 void func_021264f0(void *arg0) {
     if (arg0 != NULL) {
         func_02126778(arg0);
