@@ -17,8 +17,23 @@ void func_02025f38(void *arg0, void *arg1, s32 arg2) {
     );
 }
 
+void *func_02026548(void) {
+    return func_0210c594(0x14, data_02155c3c);
+}
+
 void func_02026564(void *arg0) {
     if (arg0 != NULL) {
         func_0210c5dc(arg0);
     }
 }
+
+void func_02026578(void *arg0) {
+    if (arg0 != NULL) {
+        *(u16 *)((u8 *)arg0 + 0) = 0;
+        *(u16 *)((u8 *)arg0 + 2) = 0;
+        *(u16 *)((u8 *)arg0 + 4) = 0;
+        *(u32 *)((u8 *)arg0 + 8) = 0;
+        *(u32 *)((u8 *)arg0 + 12) = 0;
+    }
+}
+
