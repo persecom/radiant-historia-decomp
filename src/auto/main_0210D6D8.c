@@ -3,6 +3,21 @@
 
 extern u8 data_02162730[12];
 extern s32 data_02162834[3];
+extern u8 data_0216280c[];
+extern u8 data_021628e0[12];
+extern u8 data_021628d4[12];
+extern u8 data_021628a4[12];
+extern u8 data_021628c8[12];
+extern u8 data_021628bc[12];
+extern u8 data_021628b0[12];
+extern u8 data_02162898[12];
+extern u8 data_0216288c[12];
+extern void func_021167ac(void *, s32);
+extern void func_0210e640(void);
+extern void func_0210ddfc(void);
+extern void func_021167f0(void *, void *);
+extern void func_02116844(void *, void *);
+extern void func_02116894(void *, void *, void *);
 extern void func_02113d10(s32, s32, s32);
 extern void func_02113b58(void *, s32);
 extern void func_02113c18(void *);
