@@ -15,6 +15,13 @@ void func_02137eac(void) {
     func_021369b4();
 }
 
+void func_02137f1c(void) {
+    func_021369a8();
+    func_02137f34();
+    func_021369b4();
+    func_02136980();
+}
+
 void func_0213807c(void) {
     func_02137fc8(1);
 }
