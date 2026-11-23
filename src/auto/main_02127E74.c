@@ -4,6 +4,13 @@
 extern void func_0212a9f4(void);
 extern void func_021281cc(void *);
 extern void func_0212a9f8(void);
+extern void func_02127ff4(void);
+void func_02127fe0(void) {
+    func_0212a9f4();
+    func_02127ff4();
+    func_0212a9f8();
+}
+
 void func_021281b0(void *arg0) {
     func_0212a9f4();
     func_021281cc(arg0);
