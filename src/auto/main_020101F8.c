@@ -5,3 +5,9 @@ extern void func_0200fb84(void);
 void func_020106a0(void) {
     func_0200fb84();
 }
+
+extern void func_0200fba4(void);
+void func_020106ac(void) {
+    func_0200fba4();
+}
+
