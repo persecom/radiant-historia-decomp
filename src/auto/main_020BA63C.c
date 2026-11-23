@@ -2,6 +2,11 @@
 #include "common.h"
 
 extern void func_020c52c0(void);
+extern u8 data_021601f0;
+void func_020bac70(u8 arg0) {
+    data_021601f0 = arg0;
+}
+
 void func_020bafb4(void) {
     *(volatile u32 *)0x0400001c = 0;
     *(volatile u32 *)0x04000000 = (*(volatile u32 *)0x04000000 & ~0x1f00) | 0x1f00;
