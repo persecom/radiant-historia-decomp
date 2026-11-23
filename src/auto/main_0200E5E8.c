@@ -27,6 +27,16 @@ s32 func_0200e674(u32 arg0, u32 arg1, void *arg2, void *arg3, void *arg4) {
     return func_0200e4a0(buf, 2, arg2, arg3, arg4);
 }
 
+s32 func_0200e6bc(u32 arg0, u32 arg1, void *arg2) {
+    s32 result;
+    s32 ret = func_0200e674(arg0, arg1, arg2, func_0200e314, &result);
+    if (ret != 0) {
+        return ret;
+    }
+    func_0200e290();
+    return result;
+}
+
 void func_0200f0e4(s32 arg0) {
     func_0200f004(data_0215f04c, arg0);
 }
