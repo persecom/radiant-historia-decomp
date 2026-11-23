@@ -68,3 +68,12 @@ void *func_02137d44(void *arg0) {
     return ret;
 }
 
+extern void *func_02137de0(void *);
+void *func_02137dbc(void *arg0) {
+    void *ret;
+    func_021369a8();
+    ret = func_02137de0(arg0);
+    func_021369b4();
+    return ret;
+}
+
