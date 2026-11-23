@@ -17,3 +17,10 @@ void func_0212824c(void *arg0) {
     func_0212a9f8();
 }
 
+extern void func_0212859c(void *);
+void func_02128580(void *arg0) {
+    func_0212a9f4();
+    func_0212859c(arg0);
+    func_0212a9f8();
+}
+
