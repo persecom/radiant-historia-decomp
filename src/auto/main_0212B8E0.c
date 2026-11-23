@@ -42,3 +42,8 @@ void func_0212c464(void) {
     func_0212a9f8();
 }
 
+extern u32 data_02156cd8[4];
+void func_0212c4b8(u32 arg0) {
+    data_02156cd8[0] = arg0;
+}
+
