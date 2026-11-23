@@ -109,6 +109,19 @@ s32 func_02126480(void *arg0) {
     return 0;
 }
 
+void *func_021264a8(void *arg0, u32 arg1) {
+    if (arg0 == NULL) {
+        ((void (*)(void *))func_02126c20)(data_021564b0);
+        return NULL;
+    }
+    if (arg1 < 0x60) {
+        ((void (*)(void *))func_02126c20)(data_021564e4);
+        return NULL;
+    }
+    func_02126778(arg0);
+    return arg0;
+}
+
 void func_021264f0(void *arg0) {
     if (arg0 != NULL) {
         func_02126778(arg0);
