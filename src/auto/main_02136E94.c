@@ -5,6 +5,13 @@ extern void func_021378d8(void);
 extern void func_021369a8(void);
 extern void func_02137470(void *);
 extern void func_021369b4(void);
+extern void func_02136f8c(u32, u32, u32);
+void func_02136f60(u32 arg0, u32 arg1, u32 arg2) {
+    func_021369a8();
+    func_02136f8c(arg0, arg1, arg2);
+    func_021369b4();
+}
+
 void func_02137454(void *arg0) {
     func_021369a8();
     func_02137470(arg0);
