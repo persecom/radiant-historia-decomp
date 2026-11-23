@@ -2,6 +2,39 @@
 #include "common.h"
 
 extern void func_021174a8(void);
+extern void func_02117038(void *);
+extern void func_02008e24(s32, void *, u32);
+BOOL func_02117304(void *arg0, u32 arg1) {
+    u32 *r3 = *(u32 **)((u8 *)arg0 + 0x2c);
+    if (arg1 != 0) {
+        while (r3 != NULL) {
+            if (r3[0] == arg1) {
+                break;
+            }
+            r3 = (u32 *)r3[3];
+        }
+    }
+    if (r3 == NULL) {
+        return FALSE;
+    }
+    *(u32 *)((u8 *)arg0 + 0x24) = r3[1];
+    *(u32 *)((u8 *)arg0 + 0x28) = r3[2];
+    *(u32 *)((u8 *)arg0 + 0x2c) = r3[3];
+    return TRUE;
+}
+
+void *func_02117358(void **arg0) {
+    void *r2 = *arg0;
+    if (r2 != NULL) {
+        *arg0 = *(void **)r2;
+    }
+    return r2;
+}
+
+void func_021173d4(void *arg0) {
+    func_02117038(*(void **)((u8 *)arg0 + 4));
+}
+
 void func_021174e4(void) {
     func_021174a8();
 }
