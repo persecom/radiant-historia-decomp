@@ -15,3 +15,11 @@ void func_021101cc(void *arg0) {
     }
 }
 
+extern void func_02110484(void *);
+void func_02110464(void *arg0) {
+    func_02110484(arg0);
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
