@@ -9,6 +9,18 @@ extern void func_020a98ac(void *);
 extern void func_020a98f4(void *);
 extern void func_0203bc34(s32, void *, s32, s32, s32, s32);
 extern void func_020a98a0(void *);
+void func_020c83f4(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    (*(void (**)(void *))(*(u8 **)(arg0 + 0x30) + 4))(*(void **)(arg0 + 0x30));
+    (*(void (**)(void *))(*(u8 **)(arg0 + 0x30) + 8))(*(void **)(arg0 + 0x30));
+    if (*(void **)(arg0 + 0x40) != NULL) {
+        func_020a9610(arg0 + 0x44, arg1, arg2, *(void **)(arg0 + 0x30), 0, 0);
+        func_020a98ac(*(void **)(arg0 + 0x40));
+        func_020a98f4(*(void **)(arg0 + 0x40));
+    } else {
+        func_0203bc34(arg1, *(void **)(arg0 + 0x30), arg2, 0, 0, arg3);
+    }
+}
+
 void func_020c8780(void *arg0) {
     if (arg0 != NULL) {
         func_0210c5dc(arg0);
@@ -37,5 +49,9 @@ void func_020c8ba0(void *arg0) {
     if (arg0 != NULL) {
         func_0210c5dc(arg0);
     }
+}
+
+void func_020c8ec0(u8 *arg0, s32 arg1) {
+    func_020c8dc0(arg0, arg1, *(s16 *)(arg0 + 0x36));
 }
 
