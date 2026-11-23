@@ -3,6 +3,12 @@
 
 extern void func_020c6f14(void);
 extern void func_0210c5dc(void *);
+extern void func_020c8dc0(void *, s32, s32);
+extern void func_020a9610(void *, s32, s32, void *, s32, s32);
+extern void func_020a98ac(void *);
+extern void func_020a98f4(void *);
+extern void func_0203bc34(s32, void *, s32, s32, s32, s32);
+extern void func_020a98a0(void *);
 void func_020c8780(void *arg0) {
     if (arg0 != NULL) {
         func_0210c5dc(arg0);
