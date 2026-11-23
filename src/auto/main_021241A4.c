@@ -18,6 +18,15 @@ s32 func_02125014(void) {
     return 0;
 }
 
+extern void func_0200439c(void);
+extern void func_020043f8(u32, u32, u32);
+extern void func_02004544(void);
+void func_021250a0(u32 arg0, u32 arg1, u32 arg2) {
+    func_0200439c();
+    func_020043f8(arg0, arg1, arg2);
+    func_02004544();
+}
+
 void func_02125140(void) {
     func_02003c78();
 }
