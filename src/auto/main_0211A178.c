@@ -16,3 +16,8 @@ u32 func_0211ab38(void) {
     return data_02155ed0[0];
 }
 
+extern u32 data_021701d8[4];
+void func_0211ad90(u32 arg0) {
+    data_021701d8[0] = arg0;
+}
+
