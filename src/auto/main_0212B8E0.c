@@ -4,6 +4,12 @@
 extern void func_0212a9f4(void);
 extern void func_0212a9f8(void);
 extern void func_0212c3d4(void);
+extern void func_0212c464(void);
+s32 func_0212c088(void) {
+    func_0212c464();
+    return 0;
+}
+
 void func_0212c3b0(void *arg0, void *arg1) {
     func_0212a9f4();
     ((void (*)(void *, void *))func_0212c3d4)(arg0, arg1);
