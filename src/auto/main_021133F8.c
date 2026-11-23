@@ -3,6 +3,10 @@
 
 extern void func_02114c80(void);
 extern void func_02112f88(void);
+s32 func_0211361c(s32 *arg0) {
+    return arg0[1];
+}
+
 s32 func_02113824(void) {
     func_02112f88();
     return 0;
