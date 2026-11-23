@@ -16,3 +16,10 @@ void func_021369c0(void) {
     func_02138130();
 }
 
+extern void func_02136be4(void *);
+void func_02136bc8(void *arg0) {
+    func_021369a8();
+    func_02136be4(arg0);
+    func_021369b4();
+}
+
