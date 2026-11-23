@@ -51,6 +51,10 @@ void func_02005d58(void) {
     *(volatile u16 *)0x04000204 &= ~0x80;
 }
 
+void func_02005d70(void) {
+    *(volatile u16 *)0x04000204 |= 0x80;
+}
+
 void func_02005ec0(void) {
     func_02012e3c();
 }
