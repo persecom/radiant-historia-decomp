@@ -6,6 +6,10 @@ void func_02075c84(void) {
     func_021168f8();
 }
 
+s32 func_02075c90(void) {
+    return 0;
+}
+
 extern void func_0207630c(void);
 void func_02075c98(void) {
     func_0207630c();
