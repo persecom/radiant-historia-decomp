@@ -14,6 +14,28 @@ extern u32 func_021265c4(void *);
 extern void func_02139034(void *, u32);
 extern void func_0213905c(void *);
 extern void func_021263ac(void *, void *);
+void func_02126330(void *arg0) {
+    s32 i;
+    if (!func_0212646c(arg0)) {
+        return;
+    }
+    if (*(void (**)(void *))((u8 *)arg0 + 0x80) != NULL) {
+        (*(void (**)(void *))((u8 *)arg0 + 0x80))(*(void **)((u8 *)arg0 + 0x84));
+    }
+    if (func_021265b4(*(void **)((u8 *)arg0 + 0x10))) {
+        func_021265dc(*(void **)((u8 *)arg0 + 0x10));
+    }
+    for (i = 0; i < 4; i++) {
+        void *item = ((void **)arg0)[i];
+        if (item != NULL) {
+            func_021263ac(arg0, item);
+        }
+    }
+    if (*(void (**)(void *))((u8 *)arg0 + 0x88) != NULL) {
+        (*(void (**)(void *))((u8 *)arg0 + 0x88))(*(void **)((u8 *)arg0 + 0x8c));
+    }
+}
+
 void *func_0212642c(void *arg0) {
     return *(void **)((u8 *)arg0 + 0x10);
 }
