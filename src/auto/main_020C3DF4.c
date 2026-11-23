@@ -14,3 +14,10 @@ void func_020c4c1c(void *arg0) {
     }
 }
 
+extern void func_020a5858(void *);
+void func_020c4c4c(void *arg0) {
+    if (arg0 != NULL) {
+        func_020a5858(arg0);
+    }
+}
+
