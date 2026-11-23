@@ -9,3 +9,7 @@ extern void func_0210c5dc(void *);
 extern void **func_0210c594(s32, s32);
 extern void *func_02064be8(void);
 extern void func_02064ce4(void *, s32, s32, s32);
+
+void func_02065cb8(u8 arg0) {
+    data_021600e0 = arg0;
+}
