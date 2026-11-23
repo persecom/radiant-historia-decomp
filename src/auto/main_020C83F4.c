@@ -71,3 +71,10 @@ void func_020c8ec0(u8 *arg0, s32 arg1) {
     func_020c8dc0(arg0, arg1, *(s16 *)(arg0 + 0x36));
 }
 
+extern void *data_02155c3c;
+extern void *func_0210c594(s32, void *);
+extern void func_020a9830(void *, void *, s32, s32, s32, s32);
+void func_020c8ed0(u8 *arg0, s32 arg1) {
+    func_020c8dc0(arg0, *(s16 *)(arg0 + 0x34), arg1);
+}
+
