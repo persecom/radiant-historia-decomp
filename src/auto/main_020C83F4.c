@@ -21,6 +21,11 @@ void func_020c83f4(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     }
 }
 
+void func_020c8488(u8 *arg0) {
+    (*(void (**)(void *))(*(u8 **)(arg0 + 0x30) + 4))(*(void **)(arg0 + 0x30));
+    (*(void (**)(void *))(*(u8 **)(arg0 + 0x30) + 8))(*(void **)(arg0 + 0x30));
+}
+
 void func_020c8780(void *arg0) {
     if (arg0 != NULL) {
         func_0210c5dc(arg0);
