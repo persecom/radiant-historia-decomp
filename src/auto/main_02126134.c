@@ -100,6 +100,13 @@ void func_021268c8(void *arg0) {
     func_02126c1c();
 }
 
+extern void func_02126964(void);
+void func_02126940(void *arg0, void *arg1) {
+    func_02126c18();
+    ((void (*)(void *, void *))func_02126964)(arg0, arg1);
+    func_02126c1c();
+}
+
 void func_02126964(void) {
     func_02138af0();
 }
