@@ -86,6 +86,36 @@ void func_0207c5d8(void) {
     (*(u16 *)(node + 2))--;
 }
 
+s32 func_0207c640(void) {
+    u8 *node = *(u8 **)((u8 *)data_021600f0 + 8);
+    u8 *result = (u8 *)func_02047820(*(u16 *)(node + 0x14));
+    u8 *ac;
+    u8 *obj;
+    if (result == NULL) {
+        *node = 0;
+        return 0;
+    }
+    if (*node == 0) {
+        return 0;
+    }
+    func_0210d46c();
+    func_0210d27c(0x3f);
+    func_0206e8f0(0x12, result, 2);
+    func_0207c9bc(result);
+    func_02047490(result);
+    ((u8 *)data_02155984)[0xc8] = 5;
+    ((u8 *)data_02155984)[0xc9] = 4;
+    *node = 0;
+    *(u16 *)(node + 2) = 0;
+    *(u16 *)(node + 0x14) = 0;
+    ((u8 *)data_021600ac)[0x879] = 1;
+    ac = data_021600ac;
+    obj = *(u8 **)(ac + 0x68);
+    *(Vec3_0207c640 *)(obj + 0x24) = *(Vec3_0207c640 *)obj;
+    *(u32 *)(ac + 0x888) = 1;
+    return 1;
+}
+
 void func_0207cbac(void) {
     u8 *node = *(u8 **)((u8 *)data_021600f0 + 8);
     u8 *child = *(u8 **)(node + 0x18);
