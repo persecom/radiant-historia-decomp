@@ -1,5 +1,7 @@
 /* 27 functions from 0x02120518 to 0x02121494 (main), found by ds-decomp. */
 #include "common.h"
+extern const u8 data_02144f4c[], data_02144f4d[], data_02144f4e[], data_02144f4f[];
+void func_02009138(void *);
 static inline u32 *get_name_02120e30(u8 *dict, u32 i) {
     if (dict != NULL && i < dict[1]) {
         u8 *p = dict + *(u16 *)(dict + 6);
@@ -237,26 +239,28 @@ u32 *entry;
 if(name==NULL) return -1;
 if(dict[1]<16) {
 u32 a=name[0], b=name[1], c=name[2], d=name[3];
-for(i=0;i<dict[1];i++) {
-if(dict!=NULL && i<dict[1]) {
+i=0;
+if(i < (u32)dict[1]) do {
+if(dict!=NULL && i<*(volatile u8 *)(dict+1)) {
 u8 *p=dict+*(u16 *)(dict+6);
 entry=(u32 *)(p+*(u16 *)(p+2)+i*16);
 } else entry=NULL;
 if(entry[0]==a && entry[1]==b && entry[2]==c && entry[3]==d) return i;
-}
+i++;
+} while(i<*(volatile u8 *)(dict+1));
 } else {
 u8 *nodes=dict+8;
+u32 prev;
 u32 idx=nodes[1];
 u8 *node;
-u32 bit;
-u32 prev;
+s32 bit;
 if(idx!=0) {
 node=nodes+idx*4;
 bit=node[0];
 prev=nodes[0];
 while(prev>bit) {
 idx=node[1+((name[bit>>5]>>(bit&31))&1)];
-prev=node[0];
+prev=*(volatile u8 *)node;
 node=nodes+idx*4;
 bit=node[0];
 }
