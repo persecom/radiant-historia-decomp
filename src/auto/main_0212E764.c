@@ -432,17 +432,16 @@ void func_0212f0f0(u32 *arg0, void *arg1) {
 void func_0212f384(s32 *, s32, s32 *, s32 *);
 void func_0212f178(u8 *p) {
     s32 count = (32 - *(s32 *)(p+0xc)) / 8;
-    s32 a[2], b[2];
+    Buffer_0212f178 a, b;
     void *obj;
     if (*(s32 *)(p+0x24) < 4) {
-        a[0] = *(s32 *)(p+0x1c);
-        a[1] = *(s32 *)(p+0x20);
-        if (a[1]) {
-            func_0212f384(a, a[1]-*(s32 *)(p+0x24), a, b);
+        a = *(Buffer_0212f178 *)(p+0x1c);
+        if (a.len) {
+            func_0212f384((s32 *)&a, a.len-*(s32 *)(p+0x24), (s32 *)&a, (s32 *)&b);
             obj = *(void **)(p+4);
-            ((void (*)(void *,s32,s32 *))(*(u32 **)obj)[8])(obj,0,a);
+            ((void (*)(void *,s32,s32 *))(*(u32 **)obj)[8])(obj,0,(s32 *)&a);
             obj = *(void **)(p+4);
-            ((void (*)(void *,s32,s32 *))(*(u32 **)obj)[7])(obj,1,b);
+            ((void (*)(void *,s32,s32 *))(*(u32 **)obj)[7])(obj,1,(s32 *)&b);
         }
         obj = *(void **)(p+4);
         ((void (*)(void *,s32,s32,s32 *))(*(u32 **)obj)[6])(obj,1,*(s32 *)(p+0x18),(s32 *)(p+0x1c));
