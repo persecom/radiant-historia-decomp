@@ -173,6 +173,11 @@ void func_02132744(u8 *arg0) {
     *(u8 *)(arg0 + 9) = 1;
 }
 
+void func_02132770(u8 *arg0) {
+    func_0212f8b8(*(u32 *)(arg0 + 0));
+    *(u8 *)(arg0 + 9) = 0;
+}
+
 u32 func_02132a94(u8 *arg0) {
     return *(u32 *)(arg0 + 0x24);
 }
