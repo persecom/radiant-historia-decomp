@@ -14,6 +14,22 @@ extern void func_0212e860(void *);
 extern u32 func_0212ea54(void);
 
 extern void func_021383cc(void);
+void func_0212e764(void) {
+    while (data_02174524[0] == 1) {
+        if (func_02138500() == 0) {
+            func_0213807c();
+            if (data_021744d8[9] == 0) {
+                data_021744d8[9] = 1;
+                func_0212eaa4();
+            }
+            func_0213808c();
+            func_02006510(0);
+        }
+        data_02174524[0x270 / 4]++;
+    }
+    data_02174524[1] = 1;
+}
+
 void func_0212e7e4(void) {
     func_021383cc();
 }
