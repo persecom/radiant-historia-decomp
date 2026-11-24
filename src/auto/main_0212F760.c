@@ -88,3 +88,7 @@ s32 func_0212fd20(void) {
     return 0x60;
 }
 
+void func_0212fe50(s32 a0, s32 a1, s32 a2) {
+    func_0212f558(0, a2);
+}
+
