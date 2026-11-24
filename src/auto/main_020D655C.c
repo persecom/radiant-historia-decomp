@@ -11,68 +11,74 @@ extern void func_020bd2fc(u32, u16, u8, u8);
 extern void func_021093b0(void *);
 extern void func_020bd574(void);
 
-s32 func_020d655c(u8 *arg0, u8 *arg1) {
-    u16 v = *(u16 *)(arg0 + 0x8e);
-
-    switch (v) {
+s32 func_020d655c(u8 *arg0, u8 *arg1)
+{
+  int v = *((u16 *) (arg0 + 0x8e));
+  switch (v)
+  {
     case 1:
-        if (*(u16 *)(arg1 + 0x18) == 7 || *(u16 *)(arg1 + 0x18) == 0xa) {
-            return 1;
-        }
-        if (*(u16 *)(arg1 + 0x18) == 0x18) {
-            return 1;
-        }
-        break;
-    case 0xb:
-        if (*(u16 *)(arg1 + 0x18) == 2 || *(u16 *)(arg1 + 0x18) == 9) {
-            return 1;
-        }
-        if (*(u16 *)(arg1 + 0x18) == 0x15) {
-            return 1;
-        }
-        break;
-    case 0x15:
-        if (*(u16 *)(arg1 + 0x18) == 4) {
-            return 1;
-        }
-        break;
-    case 0x29:
-        if (*(u16 *)(arg1 + 0x18) == 0x12) {
-            return 1;
-        }
-        break;
-    case 0x51:
-        switch (*(u16 *)(arg1 + 0x18)) {
-        case 4:
-        case 0xb:
-        case 0xc:
-        case 0xd:
-        case 0xf:
-            return 1;
-        }
-        if (*(u16 *)(arg1 + 0x18) == 0x12 || *(u16 *)(arg1 + 0x18) == 0x15) {
-            return 1;
-        }
-        break;
-    case 0x20:
-        switch (*(u16 *)(arg1 + 0x18)) {
-        case 2:
-        case 4:
-        case 6:
-        case 7:
-        case 0xe:
-        case 0xf:
-            return 1;
-        }
-        if (*(u16 *)(arg1 + 0x18) == 0x14) {
-            return 1;
-        }
-        break;
-    case 0x5b:
-        if (*(u16 *)(arg1 + 0x18) == 0xb) {
-            return 1;
-        }
-        break;
+      switch (*((u16 *) (arg1 + 0x18)))
+    {
+      case 7:
+      case 0xa:
+      case 0x18:
+        return 1;
     }
-    return 0;
+      break;
+    case 0x15:
+      if ((*((u16 *) (arg1 + 0x18))) == 4)
+    {
+      return 1;
+    }
+      break;
+    case 0x51:
+      switch (*((u16 *) (arg1 + 0x18)))
+    {
+      case 3:
+      case 0xa:
+      case 0xb:
+      case 0xc:
+      case 0xe:
+      case 0x12:
+      case 0x15:
+        return 1;
+    }
+      break;
+    case 0x1f:
+    case 0x20:
+      switch (*((u16 *) (arg1 + 0x18)))
+    {
+      case 2:
+      case 4:
+      case 6:
+      case 7:
+      case 0xe:
+      case 0xf:
+      case 0x14:
+        return 1;
+    }
+      break;
+    case 0x29:
+      if ((*((u16 *) (arg1 + 0x18))) == 0x12)
+    {
+      return 1;
+    }
+      break;
+    case 0xb:
+      switch (*((u16 *) (arg1 + 0x18)))
+    {
+      case 2:
+      case 9:
+      case 0x15:
+        return 1;
+    }
+      break;
+    case 0x5b:
+      if ((*((u16 *) (arg1 + 0x18))) == 0xb)
+    {
+      return 1;
+    }
+      break;
+  }
+  return 0;
 }
