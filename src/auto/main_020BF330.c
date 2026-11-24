@@ -102,6 +102,42 @@ void *func_020bf4dc(s32 arg0) {
     return p;
 }
 
+int func_020bf508(u32 index, int state, int x, int y, s16 z) {
+u8 *p; u8 *obj; int zero=0;
+if(index>=3)return zero;
+p=*(u8 **)(data_02160244+0x60+index*4);
+if(!p)return zero;
+if(state) *(int *)(p+8)=state;
+if(*(int *)(p+8)==1) {
+if(!*(void **)(p+0x24)) {
+obj=func_020bf458(*(int *)(p+0x20),*(int *)p-1);
+*(u32 *)(obj+0x28)|=4;
+func_020ec8cc(obj,0,0);
+*(void **)(p+0x24)=obj;
+}
+*(int *)(p+8)=2;
+} else if(*(int *)(p+8)==3) {
+obj=func_020ec950(*(int *)p+1);
+func_020ec8cc(obj,zero,zero);
+func_020ec548(obj);
+*(int *)(p+0x24)=zero;*(int *)(p+8)=zero;
+} else if(*(int *)(p+8)==2) {
+obj=func_020ec950(*(int *)p+1);
+if(obj) {
+*(int *)(obj+0x14)=x<<12;
+*(int *)(obj+0x18)=y<<12;
+*(int *)(obj+0x1c)=z<<12;
+*(*(u8 **)(*(u8 **)obj+8)+0x71)=31;
+func_020ec8cc(obj,1,0);
+}
+} else if(*(int *)(p+8)==4) {
+*(int *)(p+8)=zero;
+obj=func_020ec950(*(int *)p+1);
+if(!obj)return zero;
+}
+return 1;
+}
+
 void func_020bf65c(void) {
     s32 val = 0x3f6;
     if (data_02160214 != NULL) {
