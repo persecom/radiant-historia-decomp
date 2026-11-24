@@ -323,7 +323,7 @@ extern void func_0212a864(u8 *);
 extern void func_0212a944(u8 *);
 void func_0212a73c(u16 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     func_0212a71c(arg0, arg0 + arg1, arg3);
-    func_0212a71c(arg0 + arg2, arg0 + (arg1 + arg2), arg3);
+    func_0212a71c(arg0 + arg2, arg0 + (arg2 + arg1), arg3);
 }
 
 void func_0212a774(u16 *arg0, u32 arg1, u32 arg2, s32 arg3) {
