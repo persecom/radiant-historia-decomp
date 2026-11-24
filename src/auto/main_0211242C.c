@@ -24,3 +24,9 @@ void func_02112ac0(void *arg0) {
     }
 }
 
+extern void func_020c9b64(void *);
+s32 func_02112ce0(void *arg0) {
+    func_020c9b64(*(void **)((u8 *)arg0 + 0x30));
+    return 0;
+}
+
