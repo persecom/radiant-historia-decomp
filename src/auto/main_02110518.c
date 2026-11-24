@@ -6,14 +6,13 @@ extern void func_02110abc(void *);
 
 extern void func_0210c5dc(void *);
 extern void func_0211106c(void *);
-void func_021106cc(u8 *arg0, u16 *arg1) {
+void func_021106cc(u8 *arg0, u8 *arg1) {
+    typedef struct { u16 a, b, c, d; } S;
+    S *src = (S *)arg1;
     u8 *sub = arg0 + 0x30;
     u16 i;
     for (i = 0; i < 5; i++) {
-        *(u16 *)(sub + i * 8 + 0x1e) = arg1[i * 4 + 0];
-        *(u16 *)(sub + i * 8 + 0x20) = arg1[i * 4 + 1];
-        *(u16 *)(sub + i * 8 + 0x22) = arg1[i * 4 + 2];
-        *(u16 *)(sub + i * 8 + 0x24) = arg1[i * 4 + 3];
+        *(S *)(sub + i * 8 + 0x1e) = src[i];
     }
 }
 
