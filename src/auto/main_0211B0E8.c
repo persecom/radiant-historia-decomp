@@ -1,5 +1,30 @@
 /* 18 functions from 0x0211B0E8 to 0x0211BDE8 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { s32 x,y; } Vec2_bb3c;
+extern const u16 data_02144d84[3][4];
+extern const u16 data_02144d6c[3][4];
+extern u32 *data_021701f8;
+static inline s32 Mode_bb3c(u32 a) {
+s32 mode=a&0x300;
+if(mode!=0x100 && mode!=0x300) mode|=a&0x30000000;
+return mode;
+}
+static inline s32 Width_bb3c(u32 a) {
+a &= 0xc000c000;
+return data_02144d84[(a&0xc000)>>14][(a&0xc0000000)>>30];
+}
+static inline s32 Height_bb3c(u32 a) {
+a &= 0xc000c000;
+return data_02144d6c[(a&0xc000)>>14][(a&0xc0000000)>>30];
+}
+static inline void Transform_bb3c(Vec2_bb3c *dst,const s32 *m,const Vec2_bb3c *src) {
+Vec2_bb3c temp;
+Vec2_bb3c *out=dst;
+if(dst==src)out=&temp;
+out->x=((s64)m[2]*src->y+0x1000+(s64)m[0]*src->x)>>12;
+out->y=((s64)m[3]*src->y+0x1000+(s64)m[1]*src->x)>>12;
+if(out==&temp) {dst->y=temp.y;dst->x=temp.x;}
+}
 static inline s32 tile_offset(s32 x, s32 y, s32 width, s32 height) {
     s32 by = y / 32;
     s32 ry = y % 32;
@@ -179,19 +204,20 @@ void func_0211b584(s32 arg0, s32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u
 
 void func_0211b614(void *dst, void *src, s32 sx, s32 sy, s32 dx, s32 dy, s32 dw, s32 dh, s32 w, s32 h) {
  s32 sh,sw;
- sh=(u32)*((u16 *)src+1)>>3;
  sw=(u32)*(u16 *)src>>3;
+ sh=(u32)*((u16 *)src+1)>>3;
  u16 *p=(u16 *)src+6;
  s32 ex=sx+w, ey=sy+h;
  s32 yy=dy;
  s32 x,xx;
  for(;sy<ey;sy++,yy++) {
  x=sx; xx=dx;
- if(x<ex) { for(;x<ex;x++,xx++) {
+ if(x<ex) { do {
  u16 *q=p+tile_offset(x,sy,sw,sh);
  u16 v=*q;
  ((u16 *)dst)[tile_offset(xx,yy,dw,dh)]=v;
- }
+ x++; xx++;
+ } while(x<ex);
  }
  }
 }
