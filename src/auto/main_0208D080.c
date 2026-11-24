@@ -25,6 +25,39 @@ extern const Unk10 data_02141198;
 extern void func_020a3bbc(s32);
 extern void func_021098ac(void *);
 
+void func_0208d84c(s16,s16,s16,s16);
+void func_0208db04(s16,s32,s16,s16,s16,s16,u8,s16);
+void func_0208d5c0(s32 id,s16 x,s16 y,s16 z) {
+Unk10 a=data_0214124c;
+Unk10 b=data_02141238;
+Unk10 c=data_02141080;
+u8 *p=func_02021f10(id);
+s16 mp,hp;
+hp=*(s16 *)(p+0x10);
+mp=*(s16 *)(p+0x14);
+f32 value,ratio;
+a.f1=12;a.f5=x+0x36;a.f6=y;a.f7=z;
+func_020a3bbc(0x2a);func_021098ac(&a);
+func_0208db04(0x2c,hp,x+0x51,y,6,8,5,z);
+value=func_0201f8cc(*(u16 *)(p+0x10));
+ratio=func_02020888(value,func_0201f884(*(u16 *)(p+0x12)+*(s16 *)(p+0x24)));
+func_0208d84c(x+0x36,y+8,0x22,z);
+b.f5=x+0x37;b.f6=y+9;
+b.f8=func_0201ff0c(func_020201f4(func_0201f884(b.f8),ratio));
+b.f7=z+1;func_020a3bbc(0x2b);func_021098ac(&b);
+a.f2=8;a.f1=0;a.f5=x+0x5a;a.f6=y;
+func_020a3bbc(0x2a);func_021098ac(&a);
+func_0208db04(0x2c,mp,x+0x75,y,6,8,5,z);
+value=func_0201f8cc(*(u16 *)(p+0x14));
+ratio=func_02020888(value,func_0201f884(*(u16 *)(p+0x16)+*(s16 *)(p+0x26)));
+func_0208d84c(x+0x5a,y+8,0x22,z);
+if(ratio>0.0f){
+c.f5=x+0x5b;c.f6=y+9;
+c.f8=func_0201ff0c(func_020201f4(func_0201f884(c.f8),ratio));
+c.f7=z+1;func_020a3bbc(0x2b);func_021098ac(&c);
+}
+}
+
 void func_0208d84c(s16 arg0, s16 arg1, s16 arg2, s16 arg3) {
     Unk10 a = data_02141210;
     Unk10 b = data_021411fc;
