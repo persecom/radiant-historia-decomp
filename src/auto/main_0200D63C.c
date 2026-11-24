@@ -20,7 +20,7 @@ extern s32 func_0200818c(void);
 extern s32 func_02008180(void);
 extern void func_0200a75c(void);
 extern u8 data_0215f03c[];
-extern void func_0200e320();
+extern void func_0200e320(u32);
 extern void func_0200e418(u32, u32, u32);
 
 void func_0200d790(void *arg0, u32 arg1, u32 arg2) {
