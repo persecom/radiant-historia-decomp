@@ -196,6 +196,10 @@ u8 *func_020becfc(void) {
     return data_0216020c + 0xdc;
 }
 
+void func_020bed10(void *arg0) {
+    func_02008f74(arg0, 0, 0x104);
+}
+
 u8 *func_020bed24(void) {
     return func_020becfc() + 0xdc;
 }
