@@ -15,7 +15,7 @@ typedef struct {
     s32 unk0;
     s32 unk4;
     s32 unk8;
-    u8 pad[0x10];
+    u8 pad[0xc];
     s32 unk18;
     s32 unk1c;
     s32 unk20;
