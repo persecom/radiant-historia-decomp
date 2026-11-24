@@ -13,9 +13,8 @@ typedef struct {
     s32 m8;
 } DataStruct;
 extern void func_021205ec(s32, void *, s32);
-static inline void texcoord_0211fda4(s16 s,s16 t) {
-u32 packed=(u16)s|((u32)(u16)t<<16);
-func_021205ec(0x22,&packed,1);
+static inline u32 texcoord_0211fda4(s16 s,s16 t) {
+return (u16)s|((u32)(u16)t<<16);
 }
 static inline u8 *dict_entry_0211fda4(u8 *dict,u32 index) {
 if(dict && index<dict[1]){
@@ -97,8 +96,8 @@ func_021205ec(data_02155f70[2],data_02155f7c,1);
 {u32 command=3;func_021205ec(0x10,&command,1);}
 mode=*(void **)(p+0x3c)?p[0x98]:0;
 if(mode==1){
-void (*fn)(u8 *)=*(void (**)(u8 *))(p+0x3c);
-*(u32 *)(p+8)&=~0x40;fn(p);
+*(u32 *)(p+8)&=~0x40;
+(*(void (**)(u8 *))(p+0x3c))(p);
 mode=*(void **)(p+0x3c)?p[0x98]:0;
 skip=*(u32 *)(p+8)&0x40;
 }else skip=0;
@@ -108,26 +107,16 @@ u16 height=*(u16 *)(*(u8 **)(p+0xb0)+0x2e);
 u16 width=*(u16 *)(*(u8 **)(p+0xb0)+0x2c);
 scale[0]=width<<15;scale[1]=-height<<15;scale[2]=0x10000;
 func_021205ec(0x1b,scale,3);
-{u32 packed=((u32)(u16)(s16)(height<<3)<<16)|(u16)(s16)(width<<3);func_021205ec(0x22,&packed,1);}
+texcoord_0211fda4((s16)(width<<3),(s16)(height<<3));
 }
 if(mode==2){
-void (*fn)(u8 *)=*(void (**)(u8 *))(p+0x3c);
-*(u32 *)(p+8)&=~0x40;fn(p);
+*(u32 *)(p+8)&=~0x40;
+(*(void (**)(u8 *))(p+0x3c))(p);
 mode=*(void **)(p+0x3c)?p[0x98]:0;
 skip=*(u32 *)(p+8)&0x40;
 }else skip=0;
 if(skip==0){
-u8 *resource=*(u8 **)(p+0xd8);
-u8 index=(*(u8 **)p)[1];
-u8 *entry=0,*data;
-if(resource){
-u8 *table=resource+4;
-if(table && index<table[1]){
-u16 offset=*(u16 *)(table+6);
-entry=table+offset+4+*(u16 *)(table+offset)*index;
-}
-if(entry)data=resource+*(u32 *)entry;else data=0;
-}else data=0;
+u8 *data=material_0211fda4(*(u8 **)(p+0xd8),(*(u8 **)p)[1]);
 {
 u16 flags=*(u16 *)(data+0x1e);
 if(flags&0x2000){
@@ -139,8 +128,8 @@ func_021205ec(0x18,mtx,16);
 }}
 }
 if(mode==3){
-void (*fn)(u8 *)=*(void (**)(u8 *))(p+0x3c);
-*(u32 *)(p+8)&=~0x40;fn(p);
+*(u32 *)(p+8)&=~0x40;
+(*(void (**)(u8 *))(p+0x3c))(p);
 
 skip=*(u32 *)(p+8)&0x40;
 }else skip=0;
