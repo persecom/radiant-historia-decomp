@@ -498,3 +498,23 @@ s32 func_021160c0(u32 arg0, u32 arg1, u32 arg2) {
     if (r == NULL) return 0;
     return func_02116244(arg0, r[9], *(u16 *)(r + 4), r[8], r, q, arg1, arg2);
 }
+
+extern void *func_02113fc0(u32,u8,u8);
+extern void *func_02114108(u8,void *);
+extern void func_0211405c(void *);
+extern void func_02114068(void *,void *,u32,u32);
+extern void func_02113cfc(u32,u8);
+extern void func_02113d3c(u32,u8);
+extern void func_02113d5c(u32,u32);
+s32 func_02116140(u32 arg0,u8 arg1,u16 arg2,u8 arg3,void *arg4,u32 arg5) {
+u8 *data; u32 value; u8 *info=arg4;
+void *p=func_02113fc0(arg0,arg1,arg3); void *ctx;
+if(!p)return 0;
+ctx=func_02114108(arg1,p);
+if(func_021157d0(arg2,6,ctx,0,&value)) {func_0211405c(p);return 0;}
+if(func_021156ec(arg5,1,ctx,0,(void **)&data)) {func_0211405c(p);return 0;}
+func_02114068(p,data+*(u32 *)(data+0x18),0,value);
+func_02113cfc(arg0,info[6]);func_02113d3c(arg0,info[7]);func_02113d5c(arg0,arg5);
+return 1;
+}
+
