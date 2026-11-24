@@ -96,6 +96,42 @@ void func_02122e70(u32 *arg0, u8 *arg1, u32 arg2) {
     arg0[0] |= 0x8;
 }
 
+extern void *data_02155ee4;
+void func_02122ed0(u8 *arg0, u8 *arg1, u8 *arg2) {
+    u32 i;
+    u8 *r8;
+
+    if (arg2 != NULL && *(u32 *)(arg2 + 8) != 0) {
+        r8 = arg2 + *(u32 *)(arg2 + 8);
+    } else {
+        r8 = NULL;
+    }
+
+    *(void **)(arg0 + 0xc) = data_02155ee4;
+    arg0[0x19] = arg2[0x18];
+    *(void **)(arg0 + 8) = arg1;
+    func_02008df0(0, arg0 + 0x1a, (u32)arg0[0x19] * 2);
+
+    for (i = 0; i < arg1[0xd]; i++) {
+        void *name;
+        s32 idx;
+        if ((arg1 + 0xc) != NULL && i < *(u8 *)(arg1 + 0xd)) {
+            u8 *p = (arg1 + 0xc) + *(u16 *)((arg1 + 0xc) + 6);
+            name = p + *(u16 *)(p + 2) + i * 0x10;
+        } else {
+            name = NULL;
+        }
+        if (r8 == NULL) {
+            idx = -1;
+        } else {
+            idx = func_02120e30(r8 + 4, name);
+        }
+        if (idx >= 0) {
+            *(u16 *)(arg0 + 0x1a + idx * 2) = (u16)(i | 0x100);
+        }
+    }
+}
+
 void func_02123074(u8 *arg0, void *arg1, u32 *arg2) {
     u32 off = (arg0 != NULL) ? *(u16 *)(arg0 + 0x34) : 0;
     u32 result;
