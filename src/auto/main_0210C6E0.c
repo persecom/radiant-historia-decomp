@@ -216,9 +216,9 @@ s32 func_0210cdfc(u8 *arg0, s32 arg1) {
     return arg1;
 }
 
-extern void func_0210cd90(s32);
-void func_0210ce5c(void) {
-    func_0210cd90(0);
+extern s32 func_0210cd90(s32);
+s32 func_0210ce5c(void) {
+    return func_0210cd90(0);
 }
 
 void func_0210cfc4(void) {
