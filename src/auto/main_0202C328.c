@@ -127,12 +127,13 @@ u8 *func_0202c920(u32 arg0) {
 }
 
 void func_0202cbf8(u32 arg0, void *arg1) {
+    u8 *sub;
     u32 i;
     u32 zero = 0;
     u32 one = 1;
     for (i = 9; i <= 0xb; i++) {
         if (arg0 & (one << i)) {
-            u8 *sub = *(u8 **)(data_02160244[i + 2] + 0x10);
+            sub = *(u8 **)(data_02160244[i + 2] + 0x10);
             while (sub != NULL) {
                 u8 *obj = *(u8 **)(sub + 0);
                 if (obj != NULL && *(void **)(*(u8 **)(obj + 0x118) + 0x70) != NULL) {
