@@ -72,33 +72,42 @@ void func_02011254(s32 arg0) {
     }
 }
 
-void func_020112a4(s32 arg0) {
-    s32 x = arg0;
-    u32 val = func_02008128();
-    s32 size;
-    s32 n = 8;
-    data_0215fa2c = (u32)x;
-    if (func_02010ff8() == 0) {
-        goto end;
-    }
-    size = 0x1000;
-    if (x == 0) {
-        size = 0x5000;
-    }
-    func_02007504(0xf000, size);
-    if (x != 0) {
-        func_02006d58();
-        func_02006de8();
-        func_020074d4(n);
-        func_020074f4(n);
-        func_02007528(n);
-    } else {
-        func_020074c4(n);
-        func_020074e4(n);
-        func_02007518(n);
-    }
-end:
-    func_0200813c(val);
+void func_020112a4(s32 arg0)
+{
+  int new_var;
+  s32 x = arg0;
+  u32 val = func_02008128();
+  s32 size;
+  s32 n = 8;
+  data_0215fa2c = (u32) x;
+  if (func_02010ff8() == 0)
+  {
+    goto end;
+  }
+  size = 0x1000;
+  new_var = 0xf000;
+  if (x == 0)
+  {
+    size = 0x5000;
+  }
+  func_02007504(new_var, size);
+  if (x != 0)
+  {
+    func_02006d58();
+    func_02006de8();
+    func_020074d4(n);
+    func_020074f4(n);
+    func_02007528(n);
+  }
+  else
+  {
+    func_020074c4(n);
+    func_020074e4(n);
+    func_02007518(n);
+  }
+  end:
+  func_0200813c(val);
+
 }
 
 void func_02011334(void) {
