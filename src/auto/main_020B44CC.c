@@ -2,6 +2,7 @@
 #include "common.h"
 
 extern void func_020ec548(void *);
+extern void func_020b4c00(u8 *);
 extern u8 *func_020b3890(void);
 extern void func_02022160(void *);
 extern u8 *func_020b3880(void);
