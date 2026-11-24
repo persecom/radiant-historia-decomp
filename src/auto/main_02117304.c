@@ -52,6 +52,9 @@ void func_021173d4(void *arg0) {
     func_02117038(*(void **)((u8 *)arg0 + 4));
 }
 
+void func_021173f8(void) {
+}
+
 extern void func_021173b0(void *);
 void func_0211741c(void *arg0) {
     func_021173b0(*(void **)((u8 *)arg0 + 4));
