@@ -329,16 +329,16 @@ void func_02138520(void) {
 }
 
 void func_021385d4(void) {
-    data_0215c658 = (u32)data_02145b48;
-    if (data_02176644[0] == 0) {
+    *(volatile u32 *)&data_0215c658 = (u32)data_02145b48;
+    if (*(volatile u32 *)data_02176644 == 0) {
         func_02138520();
     }
-    data_02176644[0]++;
+    *(volatile u32 *)data_02176644 = *(volatile u32 *)data_02176644 + 1;
 }
 
 void func_02138618(void) {
-    data_02176644[0]--;
-    if (data_02176644[0] == 0) {
+    *(volatile u32 *)data_02176644 = *(volatile u32 *)data_02176644 - 1;
+    if (*(volatile u32 *)data_02176644 == 0) {
         func_02138520();
         data_0217666c[0] = 0;
         data_0217666c[1] = 0;
