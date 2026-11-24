@@ -2,6 +2,15 @@
 #include "common.h"
 
 extern void func_0210cce4(s32);
+extern u32 func_0210c924(void);
+extern void func_0210c970(u32);
+extern void func_0210c9cc(void);
+void func_0210ca6c(void) {
+    u32 r4 = func_0210c924();
+    func_0210c9cc();
+    func_0210c970(r4);
+}
+
 const char *func_0210cd20(u8 *arg0, const char *arg1) {
     const char *r4 = *(const char **)(arg0 + 8);
     if (!func_021093f0(arg0)) {
