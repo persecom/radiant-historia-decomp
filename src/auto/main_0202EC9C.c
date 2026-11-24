@@ -50,7 +50,8 @@ void func_0202f41c(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, u8 arg5, u8
 }
 
 void func_0202f4d8(void *arg0) {
-    func_021168f8(&data_02160084, arg0);
+    void **p = &data_02160084;
+    func_021168f8(*p, arg0);
     if (arg0 != NULL) {
         func_0210c5dc(arg0);
     }
