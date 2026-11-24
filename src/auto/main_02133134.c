@@ -207,6 +207,16 @@ s32 func_02133500(void *arg0) {
     return ret;
 }
 
+void func_02133578(void *arg0, void *arg1) {
+    if (arg0 == NULL) {
+        ((void **)data_021749d0)[1] = NULL;
+        ((void **)data_021749d0)[2] = NULL;
+    } else {
+        ((void **)data_021749d0)[1] = arg0;
+        ((void **)data_021749d0)[2] = arg1;
+    }
+}
+
 void func_02133688(void) {
     func_0213807c();
 }
