@@ -22,3 +22,5 @@ void func_02053fdc(u8 *arg0) {
     *(u8 *)arg0 = *(u8 *)(arg0 + 0x1b);
 }
 
+extern s32 func_0205453c(void *);
+extern void func_02055564(void *, u8);
