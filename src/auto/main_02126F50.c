@@ -15,6 +15,7 @@ extern void func_02126c20(void *);
 extern void func_02127600(void *);
 extern u8 data_021565f0[52];
 extern u8 data_02156624[56];
+extern void (*data_02173428[])(void *);
 
 extern void func_02127600(void *);
 extern double func_0201e690(double);
