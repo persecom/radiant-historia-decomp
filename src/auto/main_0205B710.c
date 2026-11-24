@@ -202,3 +202,52 @@ void func_0205c490(Unk0205B710 *arg0) {
     func_020d4eb8(arg0);
 }
 
+extern void func_0202bcd4(void *, u32);
+extern s32 func_020dddf0(void *, void *);
+extern void func_020ddd5c(void *);
+extern void func_020d2bf0(void *, void *, s32, s32);
+extern void func_02060604(void);
+void func_0205c520(u8 *arg0) {
+    u8 *sub = *(u8 **)(arg0 + 0x128);
+    u8 flag = 0;
+    s32 vec[3];
+    s32 dy;
+
+    if (*(s16 *)(sub + 0x1c) == 0) {
+        s32 dist;
+        *(s32 *)(arg0 + 0x30) = 0;
+        *(s32 *)(arg0 + 0x34) = 0;
+        *(s32 *)(arg0 + 0x38) = 0;
+        func_0202bcd4(vec, *(u32 *)(sub + 0x30) & 0xff);
+        vec[1] = *(s32 *)(arg0 + 4);
+        *(s32 *)(sub + 0x44) = vec[0];
+        *(s32 *)(sub + 0x48) = vec[1];
+        *(s32 *)(sub + 0x4c) = vec[2];
+        dist = func_020dddf0(sub + 0x44, arg0);
+        if (**(u8 **)(arg0 + 0x118) != 0) {
+            *(s32 *)(arg0 + 0x78) = *(s32 *)(sub + 0x34);
+        } else {
+            *(s32 *)(arg0 + 0x78) = dist / 140;
+        }
+        func_020ddd5c(arg0);
+        func_020d2bf0(arg0, sub + 0x44, 0x8000, 0x14);
+        *(s16 *)(sub + 0x1c) = 1;
+    }
+    func_02060604();
+    func_0205bc60((s32 *)arg0, &flag, 0x14);
+    dy = (*(s32 *)(arg0 + 0x28) - *(s32 *)(arg0 + 4)) >> 12;
+    if (dy < 0) {
+        dy = -dy;
+    }
+    if (dy < 10) {
+        *(s32 *)(arg0 + 4) = *(s32 *)(arg0 + 0x28);
+        *(s32 *)(arg0 + 0x34) = 0;
+        flag++;
+    }
+    if (flag >= 2) {
+        func_020d4eb8(arg0);
+    } else {
+        func_020020f8(arg0, arg0 + 0x30, arg0);
+    }
+}
+
