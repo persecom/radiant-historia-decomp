@@ -1,6 +1,6 @@
 /* 30 functions from 0x020F46A0 to 0x020F5574 (main), found by ds-decomp. */
 #include "common.h"
-static inline int check_f53_expected(s32 (*fn)(void *, int, int), void *cb, u32 expected) { u8 result = 0; if (expected == (u32)fn(cb,0,0)) result = 1; return result; }
+static inline int check_f53_expected(s32 (*fn)(void *, int, int), void *cb, u32 expected) { int result = 0; if ((s32)fn(cb,0,0) != (s32)expected) result = 0; else result = 1; return result; }
 extern u8 *data_021626e8[];
 extern void func_0200c1a8(int, const char *);
 extern void func_0200c1fc(int, const char *);
@@ -471,7 +471,7 @@ u32 func_020f53e4(void (*arg0)(void)) {
 #pragma peephole off
 s32 func_020f53fc(void) {
 const char *name = "";
-s32 expected;
+s16 expected;
 u8 *p = *(u8 **)(data_021626e8[0] + 0x10);
 u8 i = 0;
 func_0200c1a8(0,name);
