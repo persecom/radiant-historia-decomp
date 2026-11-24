@@ -5,7 +5,6 @@ extern void *data_02155c3c;
 extern void *func_0210c594(s32, void *);
 extern void func_021168f8(void *, void *);
 extern void func_0210c5dc(void *);
-extern void func_021168f0(void *, void *);
 extern u8 *data_02160090;
 extern u8 *data_02160140;
 extern u8 *data_0216013c;
@@ -72,6 +71,34 @@ void func_020c3134(void *arg0) {
         node = *(u8 **)(node + 0x24);
         if (i > 15) {
             return;
+        }
+    }
+}
+
+void func_020c319c(u8 *arg0, u8 *arg1) {
+    u8 *node;
+    u8 i;
+    *(u32 *)(arg0 + 4) = *(u32 *)(arg1 + 4);
+    *(u32 *)(arg0 + 8) = *(u32 *)(arg1 + 8);
+    *(u32 *)(arg0 + 0xc) = *(u32 *)(arg1 + 0xc);
+    node = *(u8 **)(data_02160090 + 0x48);
+    i = 0;
+    while (node != NULL) {
+        i++;
+        node = *(u8 **)(node + 0x24);
+        if (i > 9) {
+            return;
+        }
+    }
+}
+
+void func_020c31f0(void) {
+    u8 *node = func_020c2dd8(0);
+    if (node != NULL) {
+        func_021168f8((void **)(data_02160090 + 0x48), node);
+        func_021167f0((void **)(data_02160090 + 0x54), node);
+        if (*(u16 *)(data_02160090 + 0x50) != 0) {
+            func_020c30f8();
         }
     }
 }
