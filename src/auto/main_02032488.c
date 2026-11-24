@@ -6,6 +6,10 @@ extern u8 *data_02160110;
 extern void func_021168f8(void *, void *);
 extern void func_021167f0(void *, void *);
 extern void *func_0203222c(void);
+extern void *data_02155c3c;
+extern void *func_0210c594(s32, void *);
+extern void func_021167ac(void *, s32);
+s32 func_02032c14(u8 *, void *);
 
 extern void func_020c2e80(void);
 void func_020328fc(void) {
