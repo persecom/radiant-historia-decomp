@@ -483,6 +483,31 @@ void func_02113da8(void) {
     }
 }
 
+void func_02113e5c(void) {
+ u32 mask=func_0200a040();
+ u8 *p=func_02116958(data_0216bfd8,0);
+ while(p) {
+ u8 *next=func_02116958(data_0216bfd8,p);
+ if(!p[0x2d]) {if(func_02009d58(*(s32 *)(p+0x30))) p[0x2d]=1;}
+ if(p[0x2d] && !(mask & (1<<p[0x3c]))) func_021142f0(p);
+ else {
+ s32 b,c,a,v,t;
+ func_0211677c(p+0x1c);
+ b=data_0213e51c[p[0x41]];
+ c=data_0213e51c[p[0x40]];
+ a=data_0213e51c[(*(u8 **)(p+4))[0x20]];
+ t=func_02116748(p+0x1c);
+ v=data_0213e51c[t>>8];
+ v += a+(c+b);
+ if(v < -32768) v=-32768; else if(v>32767) v=32767;
+ if(v!=*(s16 *)(p+0x3e)) {func_02009528(p[0x3c],v); *(s16 *)(p+0x3e)=v;}
+ if(p[0x2c]==2 && func_02116794(p+0x1c)) func_0211424c(p);
+ if(p[0x2f]) {func_02009508(p[0x3c]);p[0x2f]=0;}
+ }
+ p=next;
+ }
+}
+
 void *func_02113fc0(void **arg0, s32 arg1, s32 arg2) {
     u8 *slot = data_0216c424 + arg1 * 0x24;
     void *res;
