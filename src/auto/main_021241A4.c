@@ -340,9 +340,12 @@ total=size+pad;
 if(edge-data_02173174[0]>=total) {
 if(small && edge>0x10000) ok=0;
 else {ok=1; addr=*(volatile u32 *)&data_02173174[1]-total; data_02173174[1]=addr;}
-} else ok=0;
-} else ok=0;
+} else goto fail;
+} else goto fail;
 }
+goto done;
+fail: ok=0;
+done:
 if(ok) { u32 a=(addr<<13)>>16; u32 b=size>>3; return (b<<16)|a; }
 return 0;
 }
