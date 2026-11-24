@@ -33,6 +33,26 @@ void func_0208e000(u32 id, s16 x, s16 y, s16 width, s16 z) {
  }
  func_021098ac(&b);
 }
+
+void func_0208e67c(s16 x, s16 y, s32 unused, s32 selected) {
+ s16 i;
+ s32 spacing = 19;
+ for(i=0;i<data_0216010c[0x614];i++) {
+ if(selected == -1) {
+ func_0209250c(0x30,1,x,(s16)(y+i*spacing),127,17,8,16,4,2,4,4,177);
+ func_020a8810(*(void **)(((u8 (*)[0x50])data_0216010c)[i]+0x70),spacing);
+ } else if (i == selected) {
+ func_0209250c(0x30,1,x,(s16)(y+i*spacing),127,17,8,16,4,2,4,4,177);
+ func_020a8810(*(void **)(((u8 (*)[0x50])data_0216010c)[i]+0x70),spacing);
+ } else {
+ func_0209250c(0x2f,1,x,(s16)(y+i*spacing),127,17,8,16,4,2,4,4,177);
+ func_020a8810(*(void **)(((u8 (*)[0x50])data_0216010c)[i]+0x70),20);
+ }
+ func_020895a0((u16)i,(x+4)<<12,(y+1+i*spacing)<<12,90,4,(u16)(func_02085110((u8)i)+1),0,0,0);
+ func_0208d5c0((u8)func_02085110((u8)(i & 0xff)),x,(s16)(y+2+i*spacing),179);
+ }
+}
+
 extern u8 *data_0216010c;
 void func_0209250c(s32,s32,s32,s16,s32,s32,s32,s32,s32,s32,s32,s32,s32);
 void func_020a8810(void *,s32);
