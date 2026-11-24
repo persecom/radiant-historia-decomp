@@ -54,6 +54,18 @@ void func_020e9684(void *arg0) {
     func_021168f8((u8 *)*(void **)((u8 *)arg0 + 8) + 0x14, arg0);
 }
 
+void func_020e969c(void *arg0) {
+    u8 *p = (u8 *)arg0;
+    if (*(void **)(p + 0xc) != NULL) {
+        func_0210eb80(*(void **)(p + 0xc));
+        if (*(void **)(p + 0xc) != NULL) {
+            func_0210c5dc(*(void **)(p + 0xc));
+            *(void **)(p + 0xc) = NULL;
+        }
+    }
+    func_021168f8((u8 *)*(void **)(p + 8) + 0x10, arg0);
+}
+
 void func_020e9714(u8 *arg0) {
     func_021168f8(*(u8 **)(arg0 + 8) + 0x4c, arg0);
 }
