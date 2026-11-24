@@ -1,7 +1,7 @@
 /* 11 functions from 0x020EB180 to 0x020EC12C (main), found by ds-decomp. */
 #include "common.h"
 static inline s32 has_02118f24_data(u8 *p) { s32 r = 1; if (!*(void **)(p + 12)) r = 0; return r; }
-static inline s32 has_02118f24_handle(u8 *p) { s32 r = 1; if (*(s32 *)(p + 0x38) == -1) r = 0; return r; }
+static inline s32 has_02118f24_handle(u8 *p) { return *(s32 *)(p + 0x38) != -1; }
 extern s32 data_02162834[3];
 void func_02117be0(void *, s32);
 void *func_021176b0(void *, u16);
@@ -170,8 +170,8 @@ s32 func_020ebd5c(u8 *arg0, s32 arg1) {
 }
 
 void func_020ebddc(u8 *obj,s32 update) {
-u8 *p=*(u8 **)(obj+8);
 s32 one=1,zero=0,changed;
+u8 *p=*(u8 **)(obj+8);
 s32 delta;
 if(!update)return;
 delta=*(s32 *)(p+96)<<data_02162834[0];
@@ -185,10 +185,15 @@ while(*(s32 *)(p+12) && *(s32 *)(p+16)>=(*(u16 *)(*(u8 **)p+4)<<12)){
 u8 *seq;u8 *cur;s32 end; s32 mode;
 *(s32 *)(p+16)-=*(u16 *)(*(u8 **)p+4)<<12;
 changed=one;
-*(u8 **)p+=8;
-cur=*(u8 **)p;seq=*(u8 **)(p+28);
-if((*(s32 *)(p+20)>0)^*(u32 *)(p+8))end=cur>=*(u8 **)(seq+12)+*(u16 *)seq*8;
-else end=cur<=*(u8 **)(seq+12)+*(u16 *)(seq+2)*8-8;
+*(u8 **)p=(u8 *)(*(u32 *)p+8);
+cur=(u8 *)*(volatile u32 *)p;
+if((*(s32 *)(p+20)>0)^*(u32 *)(p+8)){
+seq=*(u8 **)(p+28);
+if(cur>=*(u8 **)(seq+12)+*(u16 *)seq*8)end=one;else end=zero;
+}else{
+seq=*(u8 **)(p+28);
+if(cur<=*(u8 **)(seq+12)+*(u16 *)(seq+2)*8-8)end=one;else end=zero;
+}
 if(obj)*(s32 *)(obj+32)=end;
 if(end){
 mode=*(s32 *)(p+24);
@@ -214,9 +219,9 @@ s32 valid;
 flag=*(u32 *)(*(u8 **)(p+28)+4)&255;
 func_02118eec(p+60,1);
 if(flag)func_02118e94(p+60,*(s16 *)(frame+4),*(s16 *)(frame+6));
-valid=*(void **)(bank+12)!=NULL;
+valid=has_02118f24_data(bank);
 if(valid){
-valid=*(s32 *)(p+56)!=-1;
+valid=has_02118f24_handle(p);
 if(valid){
 u32 *entry=(u32 *)(*(u8 **)(*(u8 **)(bank+12)+4)+*(u16 *)frame*8);
 func_0211a7ec(*(s32 *)(p+56),entry[0],entry[1]);
