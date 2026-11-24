@@ -2,6 +2,13 @@
 #include "common.h"
 
 extern u8 *func_020ddc08(s32);
+void func_02036298(s32 arg0, u8 arg1, s32 arg2) {
+    u8 *p = func_020ddc08(arg0);
+    p[0x192] = arg1;
+    *(s32 *)(p + 0x64) = arg2;
+    *(u16 *)(p + 0x190) = 0;
+}
+
 void func_020362e8(s32 arg0, s32 arg1) {
     u8 *p = func_020ddc08(arg0);
     *(s32 *)(p + 0xf8) = arg1;
