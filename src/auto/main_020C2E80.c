@@ -86,7 +86,7 @@ void func_020c319c(u8 *arg0, u8 *arg1) {
     while (node != NULL) {
         i++;
         node = *(u8 **)(node + 0x24);
-        if (i > 9) {
+        if (i > 10) {
             return;
         }
     }
