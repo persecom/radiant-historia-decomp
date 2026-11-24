@@ -135,3 +135,6 @@ void func_02125334(void) {
     func_02003894();
 }
 
+void func_02125e64(void) {
+}
+
