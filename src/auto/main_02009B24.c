@@ -174,6 +174,16 @@ u32 func_02009fcc(s32 arg0, u32 arg1, u32 arg2) {
     return ++p[8];
 }
 
+void func_02009ffc(u32 arg0) {
+    u8 *p = data_0215ec80 + (arg0 & 0xff) * 12;
+    if ((((s32)arg0 >> 8) & 0xff) != p[8]) {
+        return;
+    }
+    if (*(void **)p != NULL) {
+        (*(void (**)(void *))p)(*(void **)(p + 4));
+    }
+}
+
 extern u32 *data_0215ece0;
 extern void func_02006d8c(void *, s32);
 extern void func_02006dc4(void *, s32);
