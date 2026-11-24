@@ -121,6 +121,14 @@ void func_0212977c(u8 *arg0, s16 *arg1, s16 *arg2, s16 *arg3) {
     *arg3 = *(s16 *)(arg0 + 0x38);
 }
 
+void func_02129798(u8 *arg0) {
+    if (arg0 == NULL) {
+        return;
+    }
+    *(u32 *)arg0 = 0;
+    func_02013878(arg0, 0, 0x3c);
+}
+
 u32 func_021297b8(void *arg0) {
     return *(u32 *)((u8 *)arg0 + 0xc);
 }
