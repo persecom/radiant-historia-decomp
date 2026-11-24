@@ -195,6 +195,14 @@ void func_020c8d24(u8 *arg0) {
     }
 }
 
+s32 func_020c8d70(u8 *arg0) {
+    if (func_020c73c0(arg0) == 0) {
+        return 1;
+    }
+    func_020c9b64(*(void **)(arg0 + 0x30));
+    return 0;
+}
+
 void func_020c8ec0(u8 *arg0, s32 arg1) {
     func_020c8dc0(arg0, arg1, *(s16 *)(arg0 + 0x36));
 }
