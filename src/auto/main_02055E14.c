@@ -109,3 +109,19 @@ func_021098ac(&buf);
 }
 }
 
+extern s32 func_020a9738(void *,u16);
+void func_02056bb4(s32 n,s32 x,s32 y,s32 bank,s32 arg,u8 mode) {
+s32 off=n*0x50;
+func_020a994c(data_021600ac+0xb8+off);
+func_020a9610(data_021600ac+0xec+off,*(s32 *)(data_021600ac+bank*4+0x9c),arg,*(void **)(data_021600ac+off+0xb4),0,0);
+func_020a98ac(data_021600ac+0xb8+off);
+func_020a98f4(data_021600ac+0xb8+off);
+*(s32 *)(*(u8 **)(data_021600ac+off+0xb4)+0x4c)=0x2bc000;
+switch(mode) {
+case 0: *(s32 *)(*(u8 **)(data_021600ac+off+0xb4)+0x44)=x; break;
+case 1: {s32 w=func_020a9738(**(void ***)(data_021600ac+off+0xec),(u16)arg); *(s32 *)(*(u8 **)(data_021600ac+off+0xb4)+0x44)=x-(w<<12); break;}
+case 2: {s32 w=func_020a9738(**(void ***)(data_021600ac+off+0xec),(u16)arg); *(s32 *)(*(u8 **)(data_021600ac+off+0xb4)+0x44)=x-((w/2)<<12); break;}
+}
+*(s32 *)(*(u8 **)(data_021600ac+off+0xb4)+0x48)=y;
+}
+
