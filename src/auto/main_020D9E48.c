@@ -158,6 +158,35 @@ void func_020da1c0(void) {
     }
 }
 
+void func_0202b950(u8 *);
+u8 *func_0202c7d8(s32);
+void func_020da2c8(u8 *arg0) {
+u8 *obj;
+u8 *sub=*(u8 **)(arg0+0x128);
+s32 state;
+s8 i;
+*(u16 *)(data_02160080+0x14)=1;
+func_0202b950(arg0);
+state=0;
+for(i=0;i<9;i++) {
+if(*(u16 *)(data_02160080+2+i*2)!=0) {
+obj=func_0202c7d8(i);
+if(obj!=NULL && !(*(u32 *)(*(u8 **)(obj+0x118)+0x78)&0x30)) {
+if(*(u32 *)(*(u8 **)(obj+0x128)+0x24)==0 || arg0==obj) {
+if(*(u32 *)(*(u8 **)(obj+0x12c)+0x10)&2) {
+u8 *entry=func_02064cb8(*(u32 *)(obj+0x11c),*(u16 *)(data_02160080+2+i*2));
+u8 *ret=func_02026d70(obj,entry,*(s32 *)sub);
+if(obj==arg0) ret[0x12]|=1;
+*(u32 *)(*(u8 **)(obj+0x128)+0x24)=0;
+}
+} else {state=1;}
+} else {state=3; break;}
+}
+}
+if(state==0) {*(u32 *)(sub+0x24)=0x1771; return;}
+if(state==3) *(u32 *)(sub+0x24)=0x1774;
+}
+
 void func_0202ba04(u8 *);
 void func_020de4ec(void);
 u8 *func_020defcc(u32);
