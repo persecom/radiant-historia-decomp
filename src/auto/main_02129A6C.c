@@ -167,6 +167,13 @@ s32 func_0212a238(s32 *arg0) {
     return arg0[10];
 }
 
+u32 func_0212a240(u32 *arg0) {
+    if (arg0 == NULL) {
+        return 0;
+    }
+    return arg0[0xb];
+}
+
 extern void func_02129624(void);
 extern void func_02129a50(void);
 extern void *memset(void *, int, u32);
