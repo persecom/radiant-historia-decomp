@@ -142,14 +142,15 @@ void func_021281cc(void *arg0) {
     func_0212eb10(*(void **)((u8 *)a + 0xc), 0);
     func_0212eb1c(*(void **)((u8 *)a + 0xc), 0);
     func_0212c808(a->f4);
-    if (a->f2 == 2 && a->f14 != 0) {
-        p = (void *)a->f14;
-        a->f14 = 0;
-        ((void (**)(void *))*(void **)p)[3](p);
-        if (a->f74 != NULL) {
-            func_0212e5bc(a->f74);
-        }
+    if (a->f2 != 2) goto tail;
+    if (a->f14 == 0) goto tail;
+    p = (void *)a->f14;
+    a->f14 = 0;
+    ((void (**)(void *))*(void **)p)[3](p);
+    if (a->f74 != NULL) {
+        func_0212e5bc(a->f74);
     }
+tail:
     a->f14 = 0;
     a->f1 = 0;
     *(u8 *)((u8 *)a + 0xa8) = 0;
@@ -173,16 +174,14 @@ void func_02128268(void *arg0) {
     if (a->f8 != NULL) {
         func_0212db28(a->f8);
     }
-    if (a->f2 != 4) {
-        return;
-    }
+    if (a->f2 != 4) goto end;
     func_0212e5fc(*(void **)((u8 *)a + 0x94));
-    if (a->f14 == 0) {
-        return;
-    }
+    if (a->f14 == 0) goto end;
     p = (void *)a->f14;
     ((void (**)(void *))*(void **)p)[5](p);
     func_021281cc(arg0);
+end:
+    return;
 }
 
 extern void *func_021282f0(void *);
@@ -218,7 +217,7 @@ void func_02128374(u32 arg0, u32 arg1, u32 arg2) {
     func_0212a9f8();
 }
 
-extern void func_021284e0(void);
+extern void func_021284e0(u8 *, s16);
 void func_021284bc(void *arg0, void *arg1) {
     func_0212a9f4();
     ((void (*)(void *, void *))func_021284e0)(arg0, arg1);
