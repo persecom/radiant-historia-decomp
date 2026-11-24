@@ -5,7 +5,7 @@ extern s32 func_0200d510(u8 *);
 extern s32 func_02010f10(void);
 extern void func_0200b710(u32 *, u32);
 extern s32 func_0200b6c8(u32 *, u32, u32);
-extern s32 func_02010c40(void *, u32, u32, void *, u32, u32);
+extern s32 func_02010c40();
 extern void func_0200d534(u32 *);
 extern const u8 data_0213e964[];
 extern u32 data_0215ef98[2];
@@ -319,6 +319,21 @@ s32 func_0200d3c8(u8 *arg0, void *arg1, s32 arg2, u32 arg3) {
     return 0;
 }
 
+s32 func_0200d3f4(u32 *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u32 arg6, u32 arg7) {
+    *(u32 *)((u8 *)arg0 + 0x28) = arg1;
+    *(u32 *)((u8 *)arg0 + 0x2c) = arg2;
+    *(u32 *)((u8 *)arg0 + 0x30) = arg3;
+    *(u32 *)((u8 *)arg0 + 0x34) = arg4;
+    *(u32 *)((u8 *)arg0 + 0x38) = arg5;
+    *(u32 *)((u8 *)arg0 + 0x3c) = arg2;
+    *(u32 *)((u8 *)arg0 + 0x40) = arg4;
+    *(u32 *)((u8 *)arg0 + 0x44) = 0;
+    *(u32 *)((u8 *)arg0 + 0x48) = arg6 != 0 ? arg6 : (u32)func_0200d3a0;
+    *(u32 *)((u8 *)arg0 + 0x4c) = arg7 != 0 ? arg7 : (u32)func_0200d3c8;
+    func_0200b6c8(arg0, (u32)((u8 *)arg0 + 0x28), (u32)data_0213e964);
+    return 0;
+}
+
 extern const u8 data_0213e964[];
 extern s32 func_0200d140(void *, void *, void *);
 BOOL func_0200d460(u8 *arg0, void *arg1) {
@@ -373,6 +388,11 @@ s32 func_0200d52c(void) {
 void func_0200d534(u32 *arg0) {
     s32 res = func_02010f10();
     func_0200b710(arg0, res == 0 ? 0 : 5);
+}
+
+s32 func_0200d558(u32 arg0, u32 arg1, u32 arg2) {
+    func_02010c40(*(void **)data_0215ef98, arg2, arg1, func_0200d534, arg0, 1);
+    return 0x100;
 }
 
 u32 func_0200d5a0(void *arg0, s32 arg1) {
