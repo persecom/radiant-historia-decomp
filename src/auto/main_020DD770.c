@@ -191,10 +191,28 @@ s32 func_020ddcb0(u32 *arg0, u32 *arg1) {
     return func_02002404(dy, dx);
 }
 
+void func_020ddcd4(u8 *arg0) {
+    s32 scale = *(s32 *)data_02160a68.unk00;
+    s32 val = *(s32 *)(arg0 + 0x78);
+    s32 angle = (s32)(((s64)(val << 12) * scale + 0x800) >> 12);
+    s32 idx = *(u16 *)(arg0 + 0x92) >> 4;
+    *(s32 *)(arg0 + 0x30) = (s32)(((s64)data_0213a394[idx * 4] * angle + 0x800) >> 12);
+    *(s32 *)(arg0 + 0x38) = (s32)(((s64)data_0213a394[idx * 4 + 2] * angle + 0x800) >> 12);
+}
+
 void func_020ddd5c(u8 *arg0) {
     s32 a = *(s32 *)data_02160a68.unk00;
     s32 b = *(s32 *)(arg0 + 0x78) << 12;
     *(s32 *)(arg0 + 0x4c) = (s32)(((s64)a * b + 0x800) >> 12);
+}
+
+void func_020ddd8c(u8 *arg0) {
+    s32 idx = (*(u16 *)(arg0 + 0x92) >> 4) * 2;
+    s32 speed = *(s32 *)(arg0 + 0x4c);
+    s32 c = data_0213a394[idx + 1];
+    s32 s = data_0213a394[idx];
+    *(s32 *)(arg0 + 0x30) = (s32)(((s64)c * speed + 0x800) >> 12);
+    *(s32 *)(arg0 + 0x38) = (s32)(((s64)s * speed + 0x800) >> 12);
 }
 
 void func_020dddf0(void) {
@@ -203,10 +221,12 @@ void func_020dddf0(void) {
 
 s32 func_020dddfc(s32 *arg0, s32 *arg1, s32 arg2) {
     s32 minX = arg0[0] - arg2;
-    s32 maxX = arg0[0] + arg2;
     s32 minZ = arg0[2] - arg2;
+    s32 maxX = arg0[0] + arg2;
     s32 maxZ = arg0[2] + arg2;
-    if (arg1[0] >= minX && arg1[0] <= maxX && arg1[2] >= minZ && arg1[2] <= maxZ) {
+    s32 x1 = arg1[0];
+    s32 z1 = arg1[2];
+    if (x1 >= minX && x1 <= maxX && z1 >= minZ && z1 <= maxZ) {
         return 1;
     }
     return 0;
