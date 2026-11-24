@@ -216,6 +216,28 @@ s32 func_020aaa60(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     return 0;
 }
 
+s32 func_020aaaec(s32 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    s32 done = 0;
+    *arg0 = func_020aaa20(arg1, arg2, arg3, arg4);
+    if (arg4 == arg3) {
+        done = 1;
+    }
+    if (arg2 - arg1 > 0) {
+        if (*arg0 >= arg2) {
+            done = 1;
+        }
+    } else {
+        if (*arg0 <= arg2) {
+            done = 1;
+        }
+    }
+    if (done != 0) {
+        *arg0 = arg2;
+        return 1;
+    }
+    return 0;
+}
+
 extern void func_020ade8c(s32);
 void func_020aad6c(void) {
     func_020ade8c(1);
