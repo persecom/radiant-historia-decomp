@@ -199,7 +199,7 @@ void *func_020c3d24(void *arg0) {
     void *p = func_0210c594(0x34, data_02155c3c);
     *(u32 *)((u8 *)p + 0xc) = 0x1000;
     *(u32 *)((u8 *)p + 0x10) = 0x1000;
-    func_021168f0(arg0, p);
+    func_021167f0(arg0, p);
     return p;
 }
 
