@@ -302,6 +302,13 @@ void func_02117d74(void) {
     func_02117b9c();
 }
 
+void func_02117ddc(u32 *arg0) {
+    arg0[0] = 0;
+    arg0[1] = 0;
+    arg0[2] = 0;
+    *(u16 *)(arg0 + 3) = 0;
+}
+
 void func_02117e5c(void *arg0, u32 arg1, u32 arg2) {
     func_02008e08(arg0, arg1 + 0x07000400, arg2);
 }
