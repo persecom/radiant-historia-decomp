@@ -347,3 +347,12 @@ void func_02128880(void *arg0, void *arg1) {
     func_0212a9f8();
 }
 
+void func_02128b3c(void *arg0) {
+    if (func_0212d5b0(*(void **)((u8 *)arg0 + 4)) == 1) {
+        func_02128374((u32)arg0, 0, *(s16 *)((u8 *)arg0 + 0x42));
+    } else {
+        func_02128374((u32)arg0, 0, *(s16 *)((u8 *)arg0 + 0x42));
+        func_02128374((u32)arg0, 1, *(s16 *)((u8 *)arg0 + 0x44));
+    }
+}
+
