@@ -52,6 +52,39 @@ extern void func_020c3df4(void *, s32);
 extern void func_020c6d4c(u8 *);
 extern void *func_020a6360(void *, u8);
 
+typedef struct {
+    u32 unk_00;
+    u32 unk_04;
+    u32 unk_08;
+    u32 unk_0c;
+    u32 unk_10;
+} Struct20_020a7598;
+
+typedef struct {
+    u32 unk_00;
+    u32 unk_04;
+    u32 unk_08;
+    u32 unk_0c;
+    u32 unk_10;
+    u32 unk_14;
+    u32 unk_18;
+    u32 unk_1c;
+    u32 unk_20;
+} Struct36_020a7598;
+
+typedef struct {
+    Struct36_020a7598 entries[3];
+} Struct108_020a7598;
+
+extern const Struct20_020a7598 data_0214364c;
+extern const Struct108_020a7598 data_02143660;
+extern void *func_020a7460(void);
+extern void *func_020f4d40(u32);
+extern void *func_020f4c2c(u32);
+extern s32 func_020f50bc(void *, void *);
+extern void func_020f5114(void *, s32);
+extern void func_021167f0(void *, void *);
+
 void func_020a76cc(void)
 {
   u8 *p = data_021600e4;
