@@ -136,6 +136,15 @@ s32 func_0212dc14(void *arg0, void *arg1) {
     return ret;
 }
 
+s32 func_0212dc40(void *arg0, s32 arg1) {
+    s32 max = *(s32 *)((u8 *)arg0 + 0x18);
+    *(s32 *)((u8 *)arg0 + 0x5c) = arg1;
+    if (arg1 > max) {
+        *(s32 *)((u8 *)arg0 + 0x5c) = max;
+    }
+    return *(s32 *)((u8 *)arg0 + 0x5c);
+}
+
 void func_0212dce4(void *arg0) {
     func_0212e5a0();
     func_0212dd00(arg0);
