@@ -20,7 +20,6 @@ static inline s32 effect_signed_random(u16 range) {
 }
 typedef struct { s8 xy[4][2]; } DirectionTable8;
 
-#pragma peephole off
 void func_02068380(u8 *arg0)
 {
     extern void *func_02067698(u8 *, u16);
@@ -70,23 +69,21 @@ void func_02068380(u8 *arg0)
 
     Effect *e = (Effect *)arg0;
     Particle *p;
-    s32 zero = 0;
-    s32 one = 1;
 
     e->y += 0x10000;
 
     if (e->state == 0) {
         u16 i;
 
-        for (i = zero; i < 4; i++) {
+        for (i = 0; i < 4; i++) {
             p = (Particle *)func_02067698(arg0, i);
 
-            p->active = one;
+            p->active = 1;
             p->x = -p->fxScaleX / 2;
             p->y = p->fxScaleY / 2;
         }
 
-        e->state = one;
+        e->state = 1;
     }
 
     if (e->state == 1) {
@@ -150,11 +147,11 @@ void func_02068380(u8 *arg0)
         e->timer++;
 
         if (e->timer >= 0x40) {
-            e->finished = one;
+            e->finished = 1;
         }
 
         if (e->timer == 0x10) {
-            e->phase = one;
+            e->phase = 1;
         }
     }
 
@@ -162,14 +159,13 @@ void func_02068380(u8 *arg0)
         s32 n;
         Particle *p;
         u16 i;
-        s32 initialScale = 4;
         u32 rng;
         u16 random;
 
         for (i = 7; i < 10; i++) {
             p = (Particle *)func_02067698(arg0, i);
 
-            if (p->active) {
+            if (p->active != 0) {
                 s32 sx, sy;
 
                 sx = p->fxScaleX + 0xc00;
@@ -182,7 +178,7 @@ void func_02068380(u8 *arg0)
                 p->scaleY = sy >> 12;
 
                 if (p->scaleX >= 7) {
-                    p->active = zero;
+                    p->active = 0;
                 }
             } else {
                 s32 magnitude;
@@ -195,11 +191,11 @@ void func_02068380(u8 *arg0)
 
                 random = (u16)(((rng >> 16) * 24) >> 16);
 
-                if (!random && e->timer < 0x30) {
-                    p->active = one;
+                if (random == 0 && e->timer < 0x30) {
+                    p->active = 1;
 
-                    p->scaleX = zero;
-                    p->scaleY = initialScale;
+                    p->scaleX = 0;
+                    p->scaleY = 4;
 
                     p->fxScaleX = p->scaleX * 0x1000;
                     p->fxScaleY = p->scaleY * 0x1000;
@@ -242,16 +238,13 @@ void func_02068380(u8 *arg0)
     {
         s16 (*trig)[2] = (s16 (*)[2])data_0213a394;
         u16 i;
-        s32 active = 1;
-        s32 inactive = 0;
-        s32 initialScale = 8;
         u32 rng;
         u16 random;
 
         for (i = 4; i < 7; i++) {
             p = (Particle *)func_02067698(arg0, i);
 
-            if (p->active) {
+            if (p->active != 0) {
                 s32 sx, sy;
 
                 p->x += trig[(p->angle % 0x10000) >> 4][0];
@@ -272,7 +265,7 @@ void func_02068380(u8 *arg0)
                     }
                 }
 
-                p->active = inactive;
+                p->active = 0;
             } else {
                 rng = data_0216263c[1] * data_0216263c[0]
                     + data_0216263c[2];
@@ -281,15 +274,15 @@ void func_02068380(u8 *arg0)
                 data_0216263c[0] = rng;
 
                 if (random == 0) {
-                    p->active = active;
-                    p->x = inactive;
+                    p->active = 1;
+                    p->x = 0;
 
                     p->y =
                         trig[((e->timer * 0x400) % 0x10000) >> 4][0]
                         * 8;
 
-                    p->scaleX = initialScale;
-                    p->scaleY = initialScale;
+                    p->scaleX = 8;
+                    p->scaleY = 8;
 
                     p->fxScaleX = p->scaleX * 0x1000;
                     p->fxScaleY = p->scaleY * 0x1000;
@@ -307,26 +300,22 @@ void func_02068380(u8 *arg0)
 
     {
         u16 phase = e->phase;
-        s32 active = 1;
-        s32 inactive = 0;
 
         if (phase == 1) {
             u16 i;
-            s32 initialScale = 8;
-            u16 nextPhase;
 
             for (i = 10; i < 16; i++) {
                 p = (Particle *)func_02067698(arg0, i);
 
-                p->active = active;
-                p->flag2f = active;
+                p->active = 1;
+                p->flag2f = 1;
 
-                p->x = inactive;
-                p->y = inactive;
-                p->z = inactive;
+                p->x = 0;
+                p->y = 0;
+                p->z = 0;
 
-                p->scaleX = initialScale;
-                p->scaleY = initialScale;
+                p->scaleX = 8;
+                p->scaleY = 8;
 
                 p->fxScaleX = p->scaleX * 0x1000;
                 p->fxScaleY = p->scaleY * 0x1000;
@@ -438,7 +427,6 @@ void func_02068ac4(u8 *arg0)
     {
         register s32 one = 1;
         register s32 depth = -0xa000;
-        register u32 *rng;
         register u16 i;
         register s32 zero = 0;
 
@@ -449,7 +437,6 @@ void func_02068ac4(u8 *arg0)
             [(((e->timer * 0x400) % 0x10000) >> 4) * 2]
             * 8;
 
-        rng = data_0216263c;
 
         for (i = 4; i < 7; i++) {
             Particle *p = (Particle *)func_02067698(arg0, i);
@@ -462,27 +449,27 @@ void func_02068ac4(u8 *arg0)
                 u32 seed;
                 u16 random;
 
-                increment = ((volatile u32 *)rng)[2];
-                multiplier = ((volatile u32 *)rng)[1];
-                seed = ((volatile u32 *)rng)[0];
+                increment = ((volatile u32 *)data_0216263c)[2];
+                multiplier = ((volatile u32 *)data_0216263c)[1];
+                seed = ((volatile u32 *)data_0216263c)[0];
 
-                seed = multiplier * seed + increment;
+                seed = increment + multiplier * seed;
 
                 random = (u16)(((seed >> 16) * 3) >> 16);
-                rng[0] = seed;
+                data_0216263c[0] = seed;
 
                 if (random == 0) {
-                    seed = multiplier * seed + increment;
+                    seed = increment + multiplier * seed;
 
                     random = (u16)(((seed >> 16) * 32) >> 16);
-                    rng[0] = seed;
+                    data_0216263c[0] = seed;
 
                     p->x = (random - 16) * 0x1000;
 
-                    seed = rng[1] * rng[0] + rng[2];
+                    seed = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
 
                     random = (u16)(((seed >> 16) * 32) >> 16);
-                    rng[0] = seed;
+                    data_0216263c[0] = seed;
 
                     p->y = anchor->y + (random - 16) * 0x1000;
                     p->z = depth;
@@ -496,7 +483,6 @@ void func_02068ac4(u8 *arg0)
     {
         register s32 depth = -0xa000;
         register s32 inactive = 0;
-        register u32 *rng = data_0216263c;
         register u16 i;
         register s32 initialScale = inactive;
         register u32 range = 36;
@@ -515,17 +501,17 @@ void func_02068ac4(u8 *arg0)
                 s32 offset;
                 s32 scale;
 
-                increment = ((volatile u32 *)rng)[2];
-                seed1 = rng[0];
-                multiplier = rng[1];
+                increment = ((volatile u32 *)data_0216263c)[2];
+                seed1 = data_0216263c[0];
+                multiplier = data_0216263c[1];
 
-                seed1 = multiplier * seed1 + increment;
-                seed2 = multiplier * seed1 + increment;
+                seed1 = increment + multiplier * seed1;
+                seed2 = increment + multiplier * seed1;
 
                 high1 = seed1 >> 16;
                 high2 = (seed2 >> 16) * 2;
 
-                rng[0] = seed2;
+                data_0216263c[0] = seed2;
 
                 direction = (u16)(high2 >> 16);
                 offset = (u16)((high1 * 3) >> 16);
@@ -561,25 +547,25 @@ void func_02068ac4(u8 *arg0)
                 u32 seed;
                 u16 random;
 
-                seed = rng[1] * rng[0] + rng[2];
+                seed = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
 
                 random = (u16)(((seed >> 16) * 5) >> 16);
-                rng[0] = seed;
+                data_0216263c[0] = seed;
 
                 if (random == 0) {
                     p->active = 1;
                     p->phase = initialScale;
 
-                    seed = rng[1] * rng[0] + rng[2];
+                    seed = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
 
                     random = (u16)(((seed >> 16) * range) >> 16);
-                    rng[0] = seed;
+                    data_0216263c[0] = seed;
 
                     p->x = (random - 18) * 0x1000;
 
-                    seed = rng[1] * rng[0] + rng[2];
+                    seed = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
 
-                    rng[0] = seed;
+                    data_0216263c[0] = seed;
                     random = (u16)(((seed >> 16) * 16) >> 16);
 
                     p->y = anchor->y + random * 0x1000;
