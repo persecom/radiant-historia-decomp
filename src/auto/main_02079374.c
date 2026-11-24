@@ -1,8 +1,7 @@
 /* 3 functions from 0x02079374 to 0x02079874 (main), found by ds-decomp. */
 #include "common.h"
 typedef struct {s32 x,y,z;} Vec3_B793;
-typedef struct {u32 seed,mul,add;} Rng_B793;
-static inline u16 RandomB793(void *ptr) { Rng_B793 *r=(Rng_B793 *)ptr;u32 s=r->mul*r->seed+r->add;((Rng_B793 *)ptr)->seed=s;return ((s>>16)*8)>>16; }
+
 extern s32 data_02170248[], data_02170204[];
 extern void func_02002028(s32);
 extern s64 func_02001fd0(void);
