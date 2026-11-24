@@ -623,10 +623,12 @@ void func_02069c00(u8 *arg0)
                 if (RH_RANDOM(4) - 2 == 0) {
                     u16 r;
                     Particle *anchor;
+                    s32 d;
                     p->active = 1;
                     r = RH_RANDOM(64);
                     anchor = (Particle *)func_02067698(arg0, 0);
-                    p->x = ((r - 64) << 12) + anchor->x;
+                    d = r - 64;
+                    p->x = anchor->x + (d << 12);
                     p->y = (RH_RANDOM(32) - 16) << 12;
                     p->speed = RH_ABS(RH_RANDOM(20) - 10);
                     if (i >= 8) {
