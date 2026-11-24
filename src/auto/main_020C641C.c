@@ -4,7 +4,7 @@
 extern void func_0210c5dc(void *);
 extern void *func_020c641c(void);
 extern void func_020c738c(void *, s32, s32);
-extern s32 func_020c73c0(void);
+extern s32 func_020c73c0();
 extern void func_021098ac(void *);
 extern void func_020a3bbc(u16);
 extern s16 data_02160220[10];
