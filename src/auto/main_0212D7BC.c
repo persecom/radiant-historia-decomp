@@ -461,6 +461,15 @@ void func_0212e628(void) {
     func_0213808c();
 }
 
+void func_0212e634(void) {
+    if (data_021744d8[1] == 0) {
+        u16 ime = *(volatile u16 *)0x04000208;
+        *(volatile u16 *)0x04000208 = 0;
+        data_021744d8[2] = ime;
+    }
+    data_021744d8[1]++;
+}
+
 extern u32 data_02174524[0x100];
 extern u32 data_021744d8[];
 extern u8 data_02174608[];
