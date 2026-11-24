@@ -217,3 +217,21 @@ void func_0211b96c(s32 arg0, u16 *arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, 
     func_0211b910(arg0, (u32)arg1, arg2, arg3, arg4, arg5);
 }
 
+extern void func_0211b614(void *, void *, s32,s32,s32,s32,s32,s32,s32,s32);
+void func_0211b9e8(void *dst, void *src, s32 x, s32 y, s32 dx, s32 dy, s32 dw, s32 dh, s32 w, s32 h) {
+ if(dx<0) {dx=-dx; x+=dx; w-=dx; dx=0;}
+ if(dy<0) {dy=-dy; y+=dy; h-=dy; dy=0;}
+ if(dx+w>dw) w-=dx+w-dw;
+ if(dy+h>dh) h-=dy+h-dh;
+ if(x<0) {x=-x; dx+=x; w-=x; x=0;}
+ if(y<0) {y=-y; dy+=y; h-=y; y=0;}
+ if(x+w>(s32)((u32)*(u16 *)src>>3)) w-=x+w-((u32)*(u16 *)src>>3);
+ if(y+h>(s32)((u32)((u16 *)src)[1]>>3)) h-=y+h-((u32)((u16 *)src)[1]>>3);
+ if(w<=0||h<=0) return;
+ switch(((u16 *)src)[3]) {
+ case 0:func_0211b614(dst,src,x,y,dx,dy,dw,dh,w,h);break;
+ case 1:func_0211b83c(dst,src,x,y,dx,dy,dw,w,h);break;
+ case 2:func_0211b8a4(dst,src,x,y,dx,dy,dw,w,h);break;
+ }
+}
+
