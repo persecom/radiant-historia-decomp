@@ -10,8 +10,11 @@ if(mode!=0x100 && mode!=0x300) mode|=a&0x30000000;
 return mode;
 }
 static inline s32 Width_bb3c(u32 a) {
+u32 size; s32 shape;
 a &= 0xc000c000;
-return data_02144d84[(s32)(a&0xc000)>>14][(a&0xc0000000)>>30];
+size=(a&0xc0000000)>>30;
+shape=(s32)(a&0xc000)>>14;
+return data_02144d84[shape][size];
 }
 static inline s32 Height_bb3c(u32 a) {
 a &= 0xc000c000;
@@ -304,7 +307,7 @@ void func_0211bb3c(const s32 *m,u32 *sprite,const Vec2_bb3c *translation) {
 Vec2_bb3c pos;
 s16 x=(s16)((*sprite&0x1ff0000)>>16);
 s16 y;
-s32 mode,w,h;
+s32 mode,h,w;
 s32 dx,dy;
 if(x>255)x|=0xff00;
 pos.x=x<<12;
@@ -323,6 +326,7 @@ mode=mode==2?0x300:0x100;
 SetMode_bb3c(sprite,mode);
 }
 mode=Double_bb3c(*sprite);
+mode=(u8)mode;
 w=Width_bb3c(*sprite)>>1;
 h=Height_bb3c(*sprite)>>1;
 Offset_bb3c(&pos,m,w,h);
