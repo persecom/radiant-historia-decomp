@@ -105,6 +105,30 @@ void func_02111708(void *arg0) {
     }
 }
 
+void func_02111728(void *arg0) {
+    u8 *p = (u8 *)arg0;
+    if (*(void **)(p + 0x30) != NULL) {
+        func_020c9940(*(void **)(p + 0x30));
+        if (*(void **)(p + 0x30) != NULL) {
+            func_0210c5dc(*(void **)(p + 0x30));
+            *(void **)(p + 0x30) = NULL;
+        }
+        *(void **)(p + 0x30) = NULL;
+    }
+    if (*(u8 **)(p + 0x6c) != NULL) {
+        (*(void (**)(void *))(*(u8 **)(p + 0x6c) + 4))(*(void **)(p + 0x6c));
+    }
+    if (*(void **)(p + 0x34) != NULL) {
+        func_020c9940(*(void **)(p + 0x34));
+        if (*(void **)(p + 0x34) != NULL) {
+            func_0210c5dc(*(void **)(p + 0x34));
+            *(void **)(p + 0x34) = NULL;
+        }
+        *(void **)(p + 0x34) = NULL;
+    }
+    func_02111ccc(p);
+}
+
 void func_02111828(u8 *arg0) {
     u16 i;
     u32 count;
