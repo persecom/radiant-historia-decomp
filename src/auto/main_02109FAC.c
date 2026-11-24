@@ -131,10 +131,11 @@ s32 func_0210a348(u8 *arg0, s32 arg1) {
     s32 result = 0;
     *(u32 *)arg0 = result;
     arg0[0xc] = result;
-    if (func_0210a0f4(arg1, arg0 + 8, arg0 + 4) != 1) {
-        if (*(u32 *)(arg0 + 8) != 0) {
-            result = 1;
-        }
+    if (func_0210a0f4(arg1, arg0 + 8, arg0 + 4) == 1) {
+        return 0;
+    }
+    if (*(u32 *)(arg0 + 8) != 0) {
+        result = 1;
     }
     return result;
 }
@@ -145,23 +146,25 @@ s32 func_0210a38c(u8 *arg0) {
 }
 
 s32 func_0210a39c(u32 *arg0, s32 arg1, u32 *arg2) {
-    u32 max;
-    u32 cur;
-    *arg2 = arg0[0] + arg0[1];
-    max = arg0[2];
-    cur = arg0[0];
-    if (cur >= max) {
-        return 0;
-    }
+    Unk_0210a39c *p = (Unk_0210a39c *)arg0;
+    s32 ret = arg1;
+    *arg2 = p->field_0 + p->field_4;
     {
-        u32 next = cur + arg1;
-        if (next > max) {
-            arg0[0] = max;
-            return max - cur;
+        u32 max = p->field_8;
+        u32 cur = p->field_0;
+        if (cur >= max) {
+            ret = 0;
+        } else {
+            u32 next = cur + arg1;
+            if (next > max) {
+                p->field_0 = max;
+                ret = max - cur;
+            } else {
+                p->field_0 = next;
+            }
         }
-        arg0[0] = next;
-        return arg1;
     }
+    return ret;
 }
 
 s32 func_0210a3d8(u8 *arg0, u8 *arg1, s32 arg2) {
@@ -226,6 +229,31 @@ void func_0210a4cc(void) {
         u32 *field = (u32 *)((u8 *)ptr + 0x24);
         *field = 0;
     }
+}
+
+extern u8 data_02155bf0[8];
+extern u8 data_02155bf8[8];
+extern void *func_0210eb98(void *, s32);
+extern void *func_0210f3ec(void *, s32);
+extern s32 func_0210a4fc(void *, s32, s32);
+extern void func_0210f3ac(void *, void *, s32);
+void *func_0210a6d8(s32 arg0) {
+    void *r5 = func_0210f3ec(func_0210eb98(&data_02155bf0, arg0), 0);
+    if (r5 == NULL) {
+        r5 = ((void *(*)(void))func_0210a4cc)();
+        if (r5 == NULL) {
+            return NULL;
+        }
+        if (!func_0210a4fc(r5, arg0, 0)) {
+            if (r5 != NULL) {
+                func_0210c5dc(r5);
+            }
+            return NULL;
+        }
+        func_0210f3ac(func_0210eb98(&data_02155bf8, arg0), r5, 0);
+        *(s32 *)((u8 *)r5 + 0x30) = 1;
+    }
+    return r5;
 }
 
 extern void *data_02156154;
