@@ -44,17 +44,21 @@ extern void func_020c3df4(void *, s32);
 extern void func_020c6d4c(u8 *);
 extern void *func_020a6360(void *, u8);
 
-void func_020a76cc(void) {
-    u8 *p = data_021600e4;
-    func_020a78f0();
-    if (*(void **)(p + 0x154) == NULL) {
-        s32 six = 6;
-        void *obj = func_020c6d5c(six);
-        *(void **)(p + 0x154) = obj;
-        func_020c7654(*(void **)(p + 0x154), 2, 0x80008000, 0, 0, 0xa0, 0, six, 0);
-        func_020a7834();
-        func_020a773c();
-    }
+void func_020a76cc(void)
+{
+  u8 *p = data_021600e4;
+  void **new_var2;
+  void **new_var;
+  func_020a78f0();
+  new_var = (void **) (p + 0x154);
+  new_var2 = new_var;
+  if ((*new_var2) == NULL)
+  {
+    *new_var2 = func_020c6d5c(6);
+    func_020c7654(*new_var2, 2, 0x80008000, 0, 0, 0xa0, 0, 6, 0);
+    func_020a7834();
+  }
+  func_020a773c();
 }
 
 void func_020a773c(void) {
