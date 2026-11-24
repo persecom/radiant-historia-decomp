@@ -1,6 +1,12 @@
 /* 24 functions from 0x020A56CC to 0x020A66B8 (main), found by ds-decomp. */
 #include "common.h"
 typedef struct { s32 x, y; } Vec2s32_020A56CC;
+static inline void LinePosition(s32 *out,u8 *point,s32 scale,s32 *offset) {
+ out[0]=offset[0]+(*(s16 *)(point+6)*scale)/0x1000-32;
+ out[1]=offset[1]+(*(s16 *)(point+8)*scale)/0x1000+8;
+ out[0]<<=12;
+ out[1]<<=12;
+}
 extern void *func_021092d8(const char *);
 extern void func_02005e80(char *, const char *, ...);
 extern s32 func_02092994(void *, s32);
@@ -363,33 +369,33 @@ extern s32 func_020a66b8(s32 *,s32 *,s32 *,s32 *,s32,s32,s32,s32);
 void func_020a638c(u8 **list,s32 scale,s32 *offset,s32 arg) {
  u8 *next;
  u8 *line=*list;
- s32 a[2],b[2],first[2],last[2];
+ Vec2s32_020A56CC a,b,first,last;
  s32 unit;
  if(!line)return;
  do {
  u8 *point=*(u8 **)(line+4);
  unit=0x1000;
  if(point) {
- first[0]=offset[0]+(*(s16 *)(point+6)*scale)/0x1000-32;
- first[1]=offset[1]+(*(s16 *)(point+8)*scale)/0x1000+8;
- first[0]<<=12;first[1]<<=12;
+ first.x=offset[0]+(*(s16 *)(point+6)*scale)/0x1000-32;
+ first.y=offset[1]+(*(s16 *)(point+8)*scale)/0x1000+8;
+ first.x<<=12;first.y<<=12;
  }
  next=*(u8 **)(line+8);
  if(next) {
- last[0]=offset[0]+(*(s16 *)(next+6)*scale)/0x1000-32;
- last[1]=offset[1]+(*(s16 *)(next+8)*scale)/0x1000+8;
- last[0]<<=12;last[1]<<=12;
+ last.x=offset[0]+(*(s16 *)(next+6)*scale)/0x1000-32;
+ last.y=offset[1]+(*(s16 *)(next+8)*scale)/0x1000+8;
+ last.x<<=12;last.y<<=12;
  }
  while(point) {
  next=*(u8 **)(point+0x10);
  if(next) {
- a[0]=offset[0]+(*(s16 *)(point+6)*scale)/0x1000-32;
- a[1]=offset[1]+(*(s16 *)(point+8)*scale)/0x1000+8;
- a[0]<<=12;a[1]<<=12;
- b[0]=offset[0]+(*(s16 *)(next+6)*scale)/0x1000-32;
- b[1]=offset[1]+(*(s16 *)(next+8)*scale)/0x1000+8;
- b[0]<<=12;b[1]<<=12;
- unit=func_020a66b8(a,b,first,last,0x8000,unit,arg,*(s32 *)(line+0x18));
+ a.x=offset[0]+(*(s16 *)(point+6)*scale)/0x1000-32;
+ a.y=offset[1]+(*(s16 *)(point+8)*scale)/0x1000+8;
+ a.x<<=12;a.y<<=12;
+ b.x=offset[0]+(*(s16 *)(next+6)*scale)/0x1000-32;
+ b.y=offset[1]+(*(s16 *)(next+8)*scale)/0x1000+8;
+ b.x<<=12;b.y<<=12;
+ unit=func_020a66b8((s32 *)&a,(s32 *)&b,(s32 *)&first,(s32 *)&last,0x8000,unit,arg,*(s32 *)(line+0x18));
  }
  point=next;
  }
