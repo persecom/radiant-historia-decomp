@@ -10,6 +10,7 @@ extern void func_021168f8(void *, void *);
 extern void func_0210c5dc(void *);
 extern void func_020c27b4(u8, s8, u32);
 extern void func_021167f0(u8 *, u8 *);
+extern void func_02108ffc(void);
 
 void func_020c2734(u8 arg0, s8 arg1, u32 arg2);
 void func_020c2694(void) {
