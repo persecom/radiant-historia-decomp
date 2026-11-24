@@ -221,6 +221,18 @@ void func_02113980(void) {
     func_02114c80();
 }
 
+s32 func_0211398c(u32 arg0) {
+    if (arg0 == 0) {
+        return 1;
+    }
+    if (arg0 & data_0216bfc0[2]) {
+        return 0;
+    }
+    func_0200964c(arg0, 0);
+    data_0216bfc0[2] |= arg0;
+    return 1;
+}
+
 void func_02113b58(void **arg0, s32 arg1) {
     func_021140b8(*arg0, arg1);
 }
