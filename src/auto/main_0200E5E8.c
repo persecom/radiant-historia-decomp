@@ -273,6 +273,32 @@ void func_0200e9a0(void) {
     }
 }
 
+extern void func_0200e350(void);
+s32 func_0200ed20(s32 mode,s32 arg,s32 force,s32 sync) {
+switch(mode) {
+case 1:
+ if(!force && *(volatile u32 *)0x02fffc3c-data_0215f03c[1]<=7)return 0;
+ if(arg) {
+ if(sync) {while(func_0200e758(arg)!=0)func_020081a4(0x51d23);}
+ else {while(func_0200e6f4(arg,0,0)!=0)func_020081a4(0x51d23);}
+ }
+ *(volatile u16 *)0x04000304 |=1;
+ while(func_0200e8e4(data_0215f03c[5])!=0)func_020081a4(0x51d23);
+ break;
+case 0:
+ while(func_0200e8e4(0)!=0)func_020081a4(0x51d23);
+ if(*(volatile u32 *)0x02fffc3c-data_0215f03c[2]<=2){func_0200e350();func_0200e350();}
+ *(volatile u16 *)0x04000304 &=0xfffe;
+ data_0215f03c[1]=*(volatile u32 *)0x02fffc3c;
+ if(arg) {
+ if(sync) {while(func_0200e758(arg)!=0)func_020081a4(0x51d23);}
+ else {while(func_0200e6f4(arg,0,0)!=0)func_020081a4(0x51d23);}
+ }
+ break;
+}
+return 1;
+}
+
 void func_0200ef20(s32 arg0) {
     if (arg0 != 1) {
         arg0 = 0;
