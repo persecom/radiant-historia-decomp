@@ -10,17 +10,20 @@ extern void *func_020a8604(s32, s32);
 extern void func_020a8810(void *, u32);
 extern void func_020a957c(void ***);
 
-void *func_0209decc(void) {
-    void **heap = (void **)&data_02155c3c;
-    void **p = (void **)func_0210c594(0x94, data_02155c3c);
-    u16 i;
-    p[0] = func_020a94b8(data_02148958);
-    for (i = 0; i < 7; i++) {
-        p[i + 1] = func_0210c594(4, *heap);
-        *(void **)p[i + 1] = func_020a8604(4, 1);
-        func_020a8810(*(void **)p[i + 1], 7);
-    }
-    return p;
+void *func_0209decc(void)
+{
+  void **p = (void **) func_0210c594(0x94, data_02155c3c);
+  u16 i;
+  void **heap = (void **) (&data_02155c3c);
+  p[0] = func_020a94b8(data_02148958);
+  for (i = 0; i < 7; i++)
+  {
+    p[i + 1] = func_0210c594(4, *heap);
+    *((void **) p[i + 1]) = func_020a8604(4, 1);
+    func_020a8810(*((void **) p[i + 1]), 7);
+  }
+
+  return p;
 }
 
 void func_0209df60(void **arr) {
