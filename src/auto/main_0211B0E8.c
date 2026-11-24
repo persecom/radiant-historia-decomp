@@ -95,8 +95,8 @@ s32 func_0211b334(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 s32 func_0211b36c(s32 arg0, s32 *arg1, u16 *arg2, s32 arg3) {
     u16 h6 = arg2[3];
     if (h6 == 0 && arg2[2] == 1) {
-        u32 reg = (arg0 <= 3) ? *(volatile u32 *)0x04000000 : *(volatile u32 *)0x04001000;
-        return func_0211b334(arg0, (reg & 0x40000000) ? 1 : 0, (s32)arg1, arg3);
+        volatile u32 *reg = (arg0 <= 3) ? (volatile u32 *)0x04000000 : (volatile u32 *)0x04001000;
+        return func_0211b334(arg0, (*reg & 0x40000000) ? 1 : 0, (s32)arg1, arg3);
     } else {
         return func_0211b334(arg0, (*arg1 != 3 && h6 != 1) ? 1 : 0, (s32)arg1, arg3);
     }
@@ -113,6 +113,34 @@ void func_0211b584(s32 arg0, s32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u
         case 2:
             func_0211b2f4(arg0, arg3, arg4, arg5, arg6);
             break;
+    }
+}
+
+void func_0211b83c(u8 *dst, u8 *src, s32 srcX, s32 srcY, s32 dstX, s32 dstY, s32 dstStride, s32 width, s32 height) {
+    s32 srcStride = *(u16 *)src >> 3;
+    u8 *s = (src + 0xc) + srcY * srcStride + srcX;
+    u8 *d = dst + dstY * dstStride + dstX;
+    s32 endY = srcY + height;
+    s32 y;
+    for (y = srcY; y < endY; y++) {
+        func_02009008(s, d, width);
+        s += srcStride;
+        d += dstStride;
+    }
+}
+
+extern void func_0211b3dc(s32, s32, u32);
+extern void func_0211b4b8(s32, s32);
+extern void func_02008e08(u8 *, u8 *, s32);
+void func_0211b910(s32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5) {
+    if (arg3 != 0 && arg1 != 0) {
+        func_0211b36c(arg0, (s32 *)arg3, (u16 *)arg1, arg5);
+    }
+    if (arg2 != 0) {
+        func_0211b3dc(arg0, arg2, arg4);
+    }
+    if (arg1 != 0) {
+        func_0211b4b8(arg0, arg1);
     }
 }
 
