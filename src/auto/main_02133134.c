@@ -299,6 +299,12 @@ s32 func_02133bf0(void *arg0) {
     return 0;
 }
 
+void func_02133dd0(u32 arg0, u32 arg1) {
+    if (data_02174f9c[0x1ca] != 0) {
+        ((void (*)(u32, u32, u32))data_02174f9c[0x1ca])(data_02174f9c[0x1cb], arg1, arg0);
+    }
+}
+
 extern u8 data_0215bbb8[64];
 void *func_02133df8(void) {
     return data_0215bbb8;
