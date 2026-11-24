@@ -1,5 +1,6 @@
 /* 34 functions from 0x020B34D0 to 0x020B44CC (main), found by ds-decomp. */
 #include "common.h"
+extern u8 *func_020b3880(void);
 
 extern u8 *func_020b3890(void);
 extern u8 *func_020b3fd8(void);
@@ -152,6 +153,25 @@ s32 func_020b3a28(void)
     }
   }
   return 0;
+}
+
+void func_020b3a9c(u8 *p) {
+ s32 v0=*(s16 *)(p+0x7c)+*(s16 *)(p+0x9e)+*(s16 *)(p+0xc0)+*(s16 *)(p+0xe2)+*(s16 *)(p+0x104);
+ s32 v1=*(s16 *)(p+0x7e)+*(s16 *)(p+0xa0)+*(s16 *)(p+0xc2)+*(s16 *)(p+0xe4)+*(s16 *)(p+0x106);
+ s32 v2=*(s16 *)(p+0x80)+*(s16 *)(p+0xa2)+*(s16 *)(p+0xc4)+*(s16 *)(p+0xe6)+*(s16 *)(p+0x108);
+ s32 v3=*(s16 *)(p+0x82)+*(s16 *)(p+0xa4)+*(s16 *)(p+0xc6)+*(s16 *)(p+0xe8)+*(s16 *)(p+0x10a);
+ s32 v4=*(s16 *)(p+0x84)+*(s16 *)(p+0xa6)+*(s16 *)(p+0xc8)+*(s16 *)(p+0xea)+*(s16 *)(p+0x10c);
+ s32 v5=*(s16 *)(p+0x86)+*(s16 *)(p+0xa8)+*(s16 *)(p+0xca)+*(s16 *)(p+0xec)+*(s16 *)(p+0x10e);
+ s32 v6=*(s16 *)(p+0x88)+*(s16 *)(p+0xaa)+*(s16 *)(p+0xcc)+*(s16 *)(p+0xee)+*(s16 *)(p+0x110);
+ s32 v7=*(s16 *)(p+0x8a)+*(s16 *)(p+0xac)+*(s16 *)(p+0xce)+*(s16 *)(p+0xf0)+*(s16 *)(p+0x112);
+ *(s16 *)(p+0x24)=v0;
+ *(s16 *)(p+0x26)=v1;
+ *(s16 *)(p+0x28)=v2;
+ *(s16 *)(p+0x2c)=v3;
+ *(s16 *)(p+0x2a)=v4;
+ *(s16 *)(p+0x2e)=v5;
+ *(s16 *)(p+0x30)=v6;
+ *(s16 *)(p+0x32)=v7;
 }
 
 extern s32 func_020b3f14(u32);
