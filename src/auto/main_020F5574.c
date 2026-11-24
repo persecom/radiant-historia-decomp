@@ -201,8 +201,11 @@ s32 func_020f5948(void) {
         f32 f = (f32)func_02017f64(buf);
         return (s32)((f > 0.0f) ? (0.5f + 4096.0f * f) : (4096.0f * f - 0.5f));
     }
-    case 'r':
-        return (index % 360) * 0x10000 / 360;
+    case 'r': {
+        index %= 360;
+        index <<= 16;
+        return index / 360;
+    }
     case 'x':
         func_02012590(buf, data_0215200c, &index);
         return index;
