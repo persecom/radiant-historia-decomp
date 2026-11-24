@@ -19,6 +19,26 @@ extern void func_0212fb8c(void *);
 extern u32 data_021749c8[2];
 extern void func_021327cc(u8 *);
 extern s32 func_02016f58(const char *, const char *, u32);
+struct S_021749e8 {
+    u32 unk0;
+    u32 unk4;
+};
+extern struct S_021749e8 data_021749e8[10];
+struct S_02174b64 {
+    void *ptr;
+    char name[12];
+};
+extern struct S_02174b64 data_02174b64[32];
+extern char data_0215b61c[];
+extern char data_0215b640[];
+extern char data_0215b664[];
+extern void func_02132ca0(const char *);
+extern void func_02132c7c(void);
+extern void func_02132e0c(void);
+extern u32 func_02016da4(const char *);
+extern void func_02013858(void *, const void *, u32);
+void *func_02132d2c(const char *arg0, void *(*arg1)(void));
+void *func_02132dbc(const char *arg0);
 extern u8 data_021459d8[];
 extern u32 data_0215b618;
 extern u32 data_021749d0[3];
