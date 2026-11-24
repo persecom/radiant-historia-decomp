@@ -28,6 +28,14 @@ s32 func_0200b24c(char *dst, s32 dst_len, const char *src, s32 src_len, s32 *tru
     return i;
 }
 
+void func_0200b594(u8 *arg0) {
+    u32 r4 = 0;
+    u8 *r5 = arg0;
+    func_02008f74(arg0, r4, 0x5c);
+    *(u32 *)(r5 + 0x10) = r4;
+    *(u32 *)(r5 + 0xc) = r4;
+}
+
 u8 *func_0200b6b8(u8 *arg0) {
     if (*(s8 *)(arg0 + 3) != 0) {
         return *(u8 **)(arg0 + 0);
