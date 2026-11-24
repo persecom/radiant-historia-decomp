@@ -301,6 +301,18 @@ u8 func_021120a4(u8 *arg) {
     return arg[0x75];
 }
 
+void func_021120ac(u8 *arg0) {
+    u32 count = func_020c9c34(*(void **)(arg0 + 0x34));
+    s16 val = (s16)func_020c94a0(*(u8 **)(arg0 + 0x6c));
+    u16 i;
+    for (i = 0; i < count; i++) {
+        u8 *obj = func_020c9c10(*(void **)(arg0 + 0x34), i);
+        if (val == *(u16 *)(obj + 0x3a)) {
+            func_02111638(obj);
+        }
+    }
+}
+
 extern void func_021121b8(void *);
 void func_02112198(void *arg0) {
     func_021121b8(arg0);
