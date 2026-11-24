@@ -22,6 +22,16 @@ extern u32 data_02155edc;
 extern void func_02008df0(u32, void *, u32);
 extern void func_02121494(void *, u32, s32, void *);
 extern u8 *func_02121104(u8 *, u32);
+
+typedef struct {
+    u8 *unk00;
+    u8 pad04[0xd0];
+    u8 *unkd4;
+    u8 padD8[0x10];
+    void (*unke8)(u8 *);
+} Unk_02170460;
+
+extern Unk_02170460 *data_02170460;
 void func_02120518(u32 *arg0) {
     *arg0 = 0;
 }
@@ -241,8 +251,8 @@ void func_02121138(u8 *arg0, u8 *arg1, u8 *arg2) {
     u8 val;
     u8 *table;
     *(u32 *)(arg0 + 8) = (u32)arg1;
-    *(u32 *)(arg0 + 0xc) = data_02155edc;
     val = *(u8 *)(arg2 + 0x17);
+    ((u32 *)arg0)[3] = data_02155edc;
     arg0[0x19] = val;
     func_02008df0(0, arg0 + 0x1a, (u32)val * 2);
     table = arg1 + 0x14;
