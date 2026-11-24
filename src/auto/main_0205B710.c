@@ -1,5 +1,6 @@
 /* 17 functions from 0x0205B710 to 0x0205C65C (main), found by ds-decomp. */
 #include "common.h"
+extern void func_020ddd5c(void *);
 typedef struct { s32 x,y,z; } Vec5C04C;
 extern s16 data_0213a394[];
 
