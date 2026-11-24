@@ -191,7 +191,7 @@ void func_0212869c(void *arg0, void *arg1) {
     func_0212a9f8();
 }
 
-extern void func_021287c0(void);
+extern void func_021287c0(void *);
 void func_0212879c(void *arg0, void *arg1) {
     func_0212a9f4();
     ((void (*)(void *, void *))func_021287c0)(arg0, arg1);
