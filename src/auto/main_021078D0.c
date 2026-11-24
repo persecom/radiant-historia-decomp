@@ -258,6 +258,16 @@ s32 func_021085c8(u8 *arg0) {
     return 1;
 }
 
+s32 func_02108620(u8 *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
+    *(u32 *)(arg0 + 0x78) = arg4;
+    *(void **)(arg0 + 0x58) = func_0210835c();
+    if (func_021083d8(*(void **)(arg0 + 0x58), arg1, arg2, arg3, arg4) == 0) {
+        return 0;
+    }
+    arg0[0x74] = 1;
+    return func_021085c8(arg0);
+}
+
 extern void *func_02117630(void *, s32);
 extern void *func_0210c518(u32, u32);
 extern void func_02008e68(s32, void *, u32);
