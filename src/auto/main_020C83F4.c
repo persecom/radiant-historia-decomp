@@ -1,6 +1,6 @@
 /* 52 functions from 0x020C83F4 to 0x020C93F4 (main), found by ds-decomp. */
 #include "common.h"
-static inline u8 contains_020c8650(s32 x, s32 y, s32 right, s32 bottom, s32 tx, s32 ty) { if(tx>=x && tx<=right && ty>=y && ty<=bottom) return 1; return 0; }
+static inline s32 contains_020c8650(s32 x, s32 y, s32 right, s32 bottom, s32 tx, s32 ty) { if(tx>=x && tx<=right && ty>=y && ty<=bottom) return 1; return 0; }
 extern const u16 data_02144600[6];
 
 extern void func_020c6f14(void);
@@ -145,7 +145,7 @@ if(func_020c73d8(p)) {if(data_021628fa[0]==0)return 1;func_020c738c(p,0,2);}
 else {if(data_021628f8==0)return 1;if((u16)data_02162908[2]==0)return 1;}
 v=*(u8 **)(p+0x30); y=*(s16 *)(p+0x3c);x=*(s16 *)(p+0x3a);
 bottom=y+*(s32 *)(v+0x1c); right=x+*(s32 *)(v+0x18);
-tx=data_02162908[0];ty=data_02162908[1]; if(tx>=x && tx<=right && ty>=y && ty<=bottom) inside=1; else inside=0;
+tx=data_02162908[0];ty=data_02162908[1]; inside=contains_020c8650(x,y,right,bottom,tx,ty);
 if(inside) {if(!old)func_020c738c(p,2,2);return 0;}return 2;
 }
 
