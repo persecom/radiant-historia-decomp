@@ -73,3 +73,19 @@ s32 func_02092ab0(u8 *arg0, s32 arg1) {
     return val;
 }
 
+extern u8 *data_02160110;
+extern void func_021168f8(void *, void *);
+extern void func_0210c5dc(void *);
+void func_02092c54(void) {
+    u8 *base = data_02160110;
+    void *node = *(void **)(base + 0x84);
+    while (node != NULL) {
+        func_021168f8(base + 0x84, node);
+        if (node != NULL) {
+            func_0210c5dc(node);
+        }
+        base = data_02160110;
+        node = *(void **)(base + 0x84);
+    }
+}
+
