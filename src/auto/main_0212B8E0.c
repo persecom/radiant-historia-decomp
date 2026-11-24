@@ -37,6 +37,8 @@ extern void func_0212c464(void);
 extern void func_0212bfb8(void);
 extern void func_0212a9dc(void);
 extern void func_0212a9e8(void);
+extern void func_02129d80(u8 *);
+extern void func_021299c0(void *, u32);
 extern void func_0212e514(void);
 extern void func_0212e4a0(void);
 extern void func_0212e5d0(void);
