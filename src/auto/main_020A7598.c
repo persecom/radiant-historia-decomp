@@ -125,6 +125,28 @@ void func_020a7fe8(void) {
     *(volatile u32 *)0x04000000 = (*(volatile u32 *)0x04000000 & ~0x1f00) | 0x1f00;
 }
 
+void func_020a8010(void) {
+    u8 *p = *(u8 **)(data_0216013c + 0x90);
+    if (*(s32 *)(p + 4) == 0) {
+        func_020c49ec(p);
+        return;
+    }
+    func_020c3fa0(p);
+    *(s32 *)(data_0216013c + 0x22c) += 1;
+    if (*(s32 *)(data_0216013c + 0x22c) >= 0x280) {
+        *(s32 *)(data_0216013c + 0x22c) -= 0x280;
+    }
+}
+
+void func_020a8064(void) {
+    u8 *p = data_0216013c;
+    if (*(s32 *)(*(u8 **)(p + 0x90) + 4) == 0) {
+        func_020c48b8();
+        return;
+    }
+    func_020c3df4(*(void **)(p + 0x8c), 1);
+}
+
 void func_020a80cc(void) {
 }
 
