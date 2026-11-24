@@ -1,5 +1,6 @@
 /* 10 functions from 0x020AB250 to 0x020AC0B0 (main), found by ds-decomp. */
 #include "common.h"
+extern u16 data_021628f8, data_021628fa[3], data_02162900[4];
 
 extern u16 data_021626a8;
 extern u16 data_02162908[4];
