@@ -250,17 +250,17 @@ i++;
 } while(i<*(volatile u8 *)(dict+1));
 } else {
 u8 *nodes=dict+8;
-u32 prev;
+u8 *prev;
 u32 idx=nodes[1];
 u8 *node;
 s32 bit;
 if(idx!=0) {
 node=nodes+idx*4;
 bit=node[0];
-prev=nodes[0];
-while(prev>bit) {
+prev=nodes;
+while(prev[0]>(u32)bit) {
 idx=node[1+((name[bit>>5]>>(bit&31))&1)];
-prev=*(volatile u8 *)node;
+prev=node;
 node=nodes+idx*4;
 bit=node[0];
 }
@@ -465,5 +465,55 @@ got_node:
         }
     }
     data_02170460->unke8(v);
+}
+
+void func_02121314(u8 *arg0) {
+u8 index=data_02170460->unk00[1];
+u8 *dict=data_02170460->unkd4;
+u8 *node;
+u16 flags;
+s16 *v;
+if(dict!=NULL) {
+u32 *entry;
+if(dict!=NULL && index<dict[1]) {
+u16 off=*(u16 *)(dict+6);
+u16 size=*(u16 *)(dict+off);
+entry=(u32 *)(dict+off+4+size*index);
+} else entry=NULL;
+if(entry!=NULL) { node=dict+*entry; goto got_node; }
+}
+node=NULL;
+got_node:
+flags=*(u16 *)node;
+v=(s16 *)(node+4);
+if(!(flags&1)) v+=6;
+if(!(flags&2)) {
+if(flags&8) {
+s32 axis=(flags&0xf0)>>4;
+s32 a=v[0];
+s32 b=v[1];
+s32 unit;
+func_02009138(arg0+0x28);
+unit=0x1000;
+if(*(u16 *)node&0x100) unit=-unit;
+*(s32 *)(arg0+axis*4+0x28)=unit;
+*(s32 *)(arg0+data_02144f4c[axis*4]*4+0x28)=a;
+*(s32 *)(arg0+data_02144f4d[axis*4]*4+0x28)=b;
+if(*(u16 *)node&0x200) b=-b;
+*(s32 *)(arg0+data_02144f4e[axis*4]*4+0x28)=b;
+if(*(u16 *)node&0x400) a=-a;
+*(s32 *)(arg0+data_02144f4f[axis*4]*4+0x28)=a;
+} else {
+*(s32 *)(arg0+0x28)=*(s16 *)(node+2);
+*(s32 *)(arg0+0x2c)=v[0];
+*(s32 *)(arg0+0x30)=v[1];
+*(s32 *)(arg0+0x34)=v[2];
+*(s32 *)(arg0+0x38)=v[3];
+*(s32 *)(arg0+0x3c)=v[4];
+*(s32 *)(arg0+0x40)=v[5];
+*(s32 *)(arg0+0x44)=v[6];
+*(s32 *)(arg0+0x48)=v[7];
+}
+} else *(u32 *)arg0|=2;
 }
 
