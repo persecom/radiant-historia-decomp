@@ -23,6 +23,12 @@ extern u32 data_02162564[];
 extern u32 func_0210a498(u32 *);
 
 extern void func_02109c54(u8 *);
+extern void func_0200b888(void *);
+extern void func_0200bc08(void *, void *);
+extern u32 func_0200bc18(void *);
+extern void func_0200bb3c(void *, void *, u32);
+extern void func_0200baa4(void *);
+extern void *func_0210c594(u32, void *);
 
 void func_02109ea8(void *arg0) {
     u8 *p = arg0;
