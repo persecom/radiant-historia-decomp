@@ -47,6 +47,19 @@ s32 func_0200b988(u8 *arg0, void *arg1, u32 arg2, u32 arg3, u32 arg4) {
     return func_0200afb4(arg0, 7, 1);
 }
 
+s32 func_0200b9c8(u8 *arg0, FSFileID arg1) {
+    s32 ret = 0;
+    if (arg1.arc != NULL) {
+        u32 sp0[2];
+        *(void **)(arg0 + 8) = arg1.arc;
+        *(void **)(arg0 + 0x10) = sp0;
+        sp0[0] = arg1.file_id;
+        sp0[1] = 0;
+        ret = func_0200afb4(arg0, 6, 1);
+    }
+    return ret;
+}
+
 s32 func_0200bc08(void *arg0, void *arg1) {
     return func_0200ba20(arg0, arg1, 1);
 }
