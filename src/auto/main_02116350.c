@@ -111,6 +111,20 @@ void func_021165e0(u8 *arg0) {
     }
 }
 
+void func_02116604(void *arg0, void *arg1) {
+    s32 irq = func_02008128();
+    u8 *node = func_02116958(arg0, NULL);
+    while (node != NULL) {
+        u8 *next = func_02116958(arg0, node);
+        if (*(void **)(node + 8) == arg1) {
+            func_021168f8(arg0, node);
+            func_02116674(node);
+        }
+        node = next;
+    }
+    func_0200813c(irq);
+}
+
 void func_02116674(void *arg0) {
     s32 irq = func_02008128();
     func_021167f0(data_0216cb1c, arg0);
