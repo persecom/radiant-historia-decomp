@@ -345,6 +345,7 @@ void func_0210c5dc(void *arg0) {
     extern void func_021091b4(void);
     extern void func_02109f24(void *);
 
+    struct { u8 bit : 1; } flag;
     u32 irq;
     u32 result = func_02117090();
 
@@ -352,7 +353,8 @@ void func_0210c5dc(void *arg0) {
         irq = func_02008128();
         func_02006afc(&data_02162688);
     }
-    if ((u8)result & 1) {
+    *(u8 *)&flag = (u8)result;
+    if (flag.bit) {
         func_02109f24(arg0);
     } else {
         func_02117038(data_02162638, arg0);
