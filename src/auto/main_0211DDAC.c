@@ -64,6 +64,30 @@ void func_0211e180(u8 *arg0)
   *((u32 *) (arg0 + 8)) |= 0x20;
 }
 
+extern void func_021205ec(u32, void *, u32);
+void func_0211e320(u8 *arg0) {
+ u32 flags=*(u32 *)(arg0+8);
+ if(!(flags&0x200) && (flags&1)) {
+ u32 mode=*(void **)(arg0+0x18) != NULL ? arg0[0x8f]:0;
+ u32 handled;
+ if(mode==1) {
+ *(u32 *)(arg0+8)&=~0x40;
+ (*(void (**)(void *))(arg0+0x18))(arg0);
+ mode=*(void **)(arg0+0x18) != NULL ? arg0[0x8f]:0;
+ handled=*(u32 *)(arg0+8)&0x40;
+ } else handled=0;
+ if(!handled) {
+ u32 value=(*(u8 **)arg0)[1];
+ if(!(*(u32 *)(arg0+8)&0x100)) func_021205ec(0x14,&value,1);
+ }
+ if(mode==3) {
+ *(u32 *)(arg0+8)&=~0x40;
+ (*(void (**)(void *))(arg0+0x18))(arg0);
+ }
+ }
+ *(u8 **)arg0+=2;
+}
+
 void func_0211e860(u8 *arg0) {
     u32 flags = *(u32 *)(arg0 + 8);
     u8 *p;
