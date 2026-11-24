@@ -24,6 +24,58 @@ extern s8 data_0215ed78[0x100];
 extern s32 func_02012348(const char *);
 s32 func_0200b77c(const char *str, s32 pos);
 
+s32 func_0200a980(void *arg0,s32 op){
+u8 *p=arg0,*arc=*(u8 **)(p+8);
+void **table=*(void ***)(arc+0x24);
+s32 ret;
+if((u32)op>=35){ret=4;goto finish;}
+if(table[op]==0){ret=4;goto finish;}
+{
+switch(op){
+case 0:{u8 *args=*(u8 **)(p+0x10);ret=((s32 (*)(void *,void *,u32,void *))table[0])(arc,p,*(u32 *)args,args+4);break;}
+case 1:{u8 *args=*(u8 **)(p+0x10);ret=((s32 (*)(void *,void *,u32,void *))table[1])(arc,p,*(u32 *)args,args+4);break;}
+case 2:{u8 *args=*(u8 **)(p+0x10);ret=((s32 (*)(void *,void *,u32,u32))table[2])(arc,p,*(u32 *)args,*(u32 *)(args+4));break;}
+case 3:{u8 *args=*(u8 **)(p+0x10);ret=((s32 (*)(void *,void *,u32))table[3])(arc,p,*(u32 *)args);break;}
+case 4:{u8 *args=*(u8 **)(p+0x10);ret=((s32 (*)(void *,u32,u32,void *,u32))table[4])(arc,*(u32 *)args,*(u32 *)(args+4),args+8,*(u32 *)(args+12));break;}
+case 5:{u8 *args=*(u8 **)(p+0x10);ret=((s32 (*)(void *,void *,u32,u32,void *))table[5])(arc,p,*(u32 *)args,*(u32 *)(args+4),args+8);break;}
+case 6:{u8 *args=*(u8 **)(p+0x10);ret=((s32 (*)(void *,void *,u32,u32))table[6])(arc,p,*(u32 *)args,*(u32 *)(args+4));break;}
+case 7:{u8 *args=*(u8 **)(p+0x10);ret=((s32 (*)(void *,void *,u32,u32,void *))table[7])(arc,p,*(u32 *)(args+4),*(u32 *)(args+8),args);break;}
+case 8:{u8 *args=*(u8 **)(p+0x10);ret=((s32 (*)(void *,void *))table[8])(arc,p);break;}
+case 9:{u8 *args=*(u8 **)(p+0x10);((void (*)(void *))table[9])(arc);return 0;}
+case 10:{u8 *args=*(u8 **)(p+0x10);((void (*)(void *))table[10])(arc);return 0;}
+case 11:{u8 *args=*(u8 **)(p+0x10);((void (*)(void *))table[11])(arc);return 0;}
+case 12:{u8 *args=*(u8 **)(p+0x10);((void (*)(void *))table[12])(arc);return 0;}
+case 13:{u8 *args=*(u8 **)(p+0x10);ret=((s32 (*)(void *,void *,u32,u32,u32))table[13])(arc,p,*(u32 *)args,*(u32 *)(args+4),*(u32 *)(args+8));break;}
+case 14:{u8 *args=*(u8 **)(p+0x10);ret=((s32 (*)(void *,void *,void *,u32))table[14])(arc,p,args,*(u32 *)(args+4));break;}
+case 15:{u8 *args=*(u8 **)(p+0x10);ret=((s32 (*)(void *,void *,void *))table[15])(arc,p,args);break;}
+case 16:{u8 *args=*(u8 **)(p+0x10);ret=((s32 (*)(void *,void *,void *))table[16])(arc,p,args);break;}
+case 17:{u8 *args=*(u8 **)(p+0x10);((void (*)(void *))table[17])(arc);return 0;}
+case 18:{u8 *args=*(u8 **)(p+0x10);((void (*)(void *))table[18])(arc);return 0;}
+case 19:{u8 *args=*(u8 **)(p+0x10);ret=((s32 (*)(void *,void *))table[19])(arc,args);break;}
+case 20:{u8 *args=*(u8 **)(p+0x10);ret=((s32 (*)(void *,u32,u32,u32))table[20])(arc,*(u32 *)args,*(u32 *)(args+4),*(u32 *)(args+8));break;}
+case 21:{u8 *args=*(u8 **)(p+0x10);ret=((s32 (*)(void *,u32,u32))table[21])(arc,*(u32 *)args,*(u32 *)(args+4));break;}
+case 22:{u8 *args=*(u8 **)(p+0x10);ret=((s32 (*)(void *,u32,u32,u32,u32))table[22])(arc,*(u32 *)args,*(u32 *)(args+4),*(u32 *)(args+8),*(u32 *)(args+12));break;}
+case 23:{u8 *args=*(u8 **)(p+0x10);ret=((s32 (*)(void *,u32,u32,u32))table[23])(arc,*(u32 *)args,*(u32 *)(args+4),*(u32 *)(args+8));break;}
+case 24:{u8 *args=*(u8 **)(p+0x10);ret=((s32 (*)(void *,u32,u32,u32))table[24])(arc,*(u32 *)args,*(u32 *)(args+4),*(u32 *)(args+8));break;}
+case 25:{u8 *args=*(u8 **)(p+0x10);ret=((s32 (*)(void *,u32,u32,u32))table[25])(arc,*(u32 *)args,*(u32 *)(args+4),*(u32 *)(args+8));break;}
+case 26:{u8 *args=*(u8 **)(p+0x10);ret=((s32 (*)(void *,u32,u32))table[26])(arc,*(u32 *)args,*(u32 *)(args+4));break;}
+case 27:{u8 *args=*(u8 **)(p+0x10);ret=((s32 (*)(void *,u32,u32,u32,u32))table[27])(arc,*(u32 *)args,*(u32 *)(args+4),*(u32 *)(args+8),*(u32 *)(args+12));break;}
+case 28:{u8 *args=*(u8 **)(p+0x10);ret=((s32 (*)(void *,u32))table[28])(arc,*(u32 *)args);break;}
+case 30:{u8 *args=*(u8 **)(p+0x10);ret=((s32 (*)(void *,void *))table[30])(arc,p);break;}
+case 31:{u8 *args=*(u8 **)(p+0x10);ret=((s32 (*)(void *,void *,u32))table[31])(arc,p,*(u32 *)args);break;}
+case 32:{u8 *args=*(u8 **)(p+0x10);ret=((s32 (*)(void *,void *,u32,u32,u32))table[32])(arc,p,*(u32 *)args,*(u32 *)(args+4),*(u32 *)(args+8));break;}
+case 33:{u8 *args=*(u8 **)(p+0x10);ret=((s32 (*)(void *,void *))table[33])(arc,p);break;}
+case 34:{u8 *args=*(u8 **)(p+0x10);ret=((s32 (*)(void *,void *,u32,u32))table[34])(arc,p,*(u32 *)args,*(u32 *)(args+4));break;}
+default:ret=4;break;
+}}
+finish:
+if(func_0200a85c(op)==0){
+if(*(u32 *)(p+0xc)&4)ret=func_0200a928(p,ret);
+else if(ret!=0x100)func_0200a884(p,ret);
+}
+return ret;
+}
+
 s32 func_0200ad00(void *arg0, s32 arg1) {
     u8 *arc = arg0;
     u8 *ret = NULL;
