@@ -241,6 +241,46 @@ u16 func_0200a108(s32 arg0) {
     return (u16)(val | (shift << 8));
 }
 
+void func_0200a248(u8 *arg0) {
+    s32 i;
+    func_0200986c();
+    for (i = 0; i < 4; i++) {
+        u8 *node = *(u8 **)(arg0 + 0x18 + i * 8);
+        if (node != NULL) {
+            u8 *cur = *(u8 **)(node + 0x18);
+            u8 *target = arg0 + 0x18 + i * 8;
+            if (target == cur) {
+                *(u8 **)(node + 0x18) = *(u8 **)(arg0 + 0x1c + i * 8);
+                func_02006da8(node, 0x3c);
+            } else {
+                while (cur != NULL) {
+                    if (target == *(u8 **)(cur + 4)) {
+                        break;
+                    }
+                    cur = *(u8 **)(cur + 4);
+                }
+                *(u8 **)(cur + 4) = *(u8 **)(arg0 + 0x1c + i * 8);
+                func_02006da8(cur, 8);
+            }
+        }
+    }
+    func_02009880();
+}
+
+void func_0200a2e0(u8 *arg0) {
+    u8 *cur;
+    func_0200986c();
+    cur = *(u8 **)(arg0 + 0x18);
+    while (cur != NULL) {
+        u8 *next = *(u8 **)(cur + 4);
+        *(u32 *)(cur + 0) = 0;
+        *(u32 *)(cur + 4) = 0;
+        func_02006da8(cur, 8);
+        cur = next;
+    }
+    func_02009880();
+}
+
 extern s32 func_0200698c(void);
 void func_0200a328(u32 *arg0) {
     u32 tmp[2] = {0};
