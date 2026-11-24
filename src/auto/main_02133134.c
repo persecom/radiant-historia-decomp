@@ -53,10 +53,10 @@ void *func_021332a8(void *arg0) {
     p = *(void **)arg0;
     cb = *(void *(**)(void *))((u8 *)p + 0x1c);
     if (cb != NULL) {
-        ret = cb((u8 *)arg0 + 4);
+        ret = cb(*(void **)((u8 *)arg0 + 4));
     } else {
-        func_02132ca0(data_0215b7e4);
         ret = NULL;
+        func_02132ca0(data_0215b7e4);
     }
     return ret;
 }
