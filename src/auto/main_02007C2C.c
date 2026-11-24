@@ -68,19 +68,24 @@ append:
     }
 }
 
-void func_02007dd4(u8 *arg0) {
-    u8 *p = data_0215d144;
-    u32 zero = 0;
-    u8 *tail = *(u8 **)(p + 0x10);
-    *(u32 *)(arg0 + 0x14) = (u32)tail;
-    *(u32 *)(arg0 + 0x18) = zero;
-    *(u32 *)(p + 0x10) = (u32)arg0;
-    if (tail != NULL) {
-        *(u32 *)(tail + 0x18) = (u32)arg0;
-        return;
-    }
-    *(u32 *)(p + 0xc) = (u32)arg0;
-    func_02007ee4();
+void func_02007dd4(u8 *arg0)
+{
+  u8 *new_var2;
+  u8 *p = data_0215d144;
+  u8 *tail = *((u8 **) (p + 0x10));
+  u8 *new_var;
+  *((u8 **) (arg0 + 0x14)) = tail;
+  *((u8 **) (arg0 + 0x18)) = NULL;
+  *((u8 **) (p + 0x10)) = arg0;
+  new_var2 = p;
+  if (tail != NULL)
+  {
+    *((u8 **) (tail + 0x18)) = arg0;
+    return;
+  }
+  new_var = new_var2;
+  *((u8 **) (new_var + 0xc)) = arg0;
+  func_02007ee4();
 }
 
 void func_02007e0c(u8 *alarm) {
