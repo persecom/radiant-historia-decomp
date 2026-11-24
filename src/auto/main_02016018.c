@@ -10,3 +10,15 @@ void func_02016d50(s32 arg0, const char *arg1, ...) {
 void func_02016da0(void) {
 }
 
+extern s32 func_02016018(void *, void *, const char *, void *, s32);
+extern void (*data_02160038)(void);
+extern void func_02016da0(void);
+u32 func_02016da4(const char *s) {
+    u32 len = (u32)-1;
+    const u8 *p = (const u8 *)s;
+    do {
+        len++;
+    } while (*p++);
+    return len;
+}
+
