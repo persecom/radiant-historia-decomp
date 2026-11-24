@@ -67,6 +67,12 @@ void func_0212e4a0(void) {
     func_0212e5ac();
 }
 
+void func_0212e514(void) {
+    func_0212e5a0();
+    func_0212e528();
+    func_0212e5ac();
+}
+
 void func_0212e528(void) {
     func_021333b0();
 }
