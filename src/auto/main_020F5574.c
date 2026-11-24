@@ -85,13 +85,11 @@ void func_020f5798(void) {
 }
 
 void func_020f58c0(u8 *p) {
-    u8 v;
-    void **q;
-    v = p[0x1f4];
-    if (v == 1) {
-        func_02046760();
+    if (p[0x1f4] == 1) {
+        func_02046760(p);
     }
     func_0210da14(p);
+    void **q;
     q = *(void ***)(p + 0x128);
     if (q != NULL && *q != NULL) {
         func_020a9544(q);
