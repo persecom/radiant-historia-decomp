@@ -9,6 +9,19 @@ extern void func_020c27b4(u8, s8, u32);
 extern void func_021167f0(u8 *, u8 *);
 
 void func_020c2734(u8 arg0, s8 arg1, u32 arg2);
+void func_020c2694(void) {
+    u8 *node = *(u8 **)(data_02160a6c + 0xac);
+    while (node != NULL) {
+        ((s8 *)data_02160090)[0x7d]++;
+        node = *(u8 **)(node + 0x16c);
+    }
+    node = *(u8 **)(data_02160a6c + 0xb8);
+    while (node != NULL) {
+        ((s8 *)data_02160090)[0x7d]++;
+        node = *(u8 **)(node + 0x174);
+    }
+}
+
 void *func_020c2a98(u8 arg0, u8 arg1) {
     u8 *node = *(u8 **)(data_02160090 + 0x48);
     while (node != NULL) {
