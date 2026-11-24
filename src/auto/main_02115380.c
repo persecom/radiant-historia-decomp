@@ -226,3 +226,9 @@ void *func_02115b7c(void *arg0, void *arg1, s32 arg2) {
     return r4;
 }
 
+void func_02115d90(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    func_02115d10(arg0, arg2, arg3);
+    func_02009740(arg0, (u8 *)arg0 + arg1);
+    func_0200a248(arg0);
+}
+
