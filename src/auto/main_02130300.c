@@ -59,3 +59,24 @@ void func_02130a50(void) {
     func_02132af0();
 }
 
+extern s32 func_02132734(void *);
+extern void func_02132afc(void *, s32);
+extern void func_02132744(void *);
+extern void func_02132a6c(void *);
+extern s32 func_02132a9c(void *);
+extern s32 func_02132a94(void *);
+void func_02130a5c(u8 *p) {
+void *v=*(void **)(p+0xb8);s32 zero=0,i,delta,old;
+if(func_02132734(v)==0){*(s32 *)(p+0x90)=zero;*(s32 *)(p+0x88)=zero;func_02132770(v);}
+if(*(s32 *)(p+4)==1) {
+if(*(s32 *)(p+0xac)==0)func_02132afc(v,0);else func_02132afc(v,1);
+*(s32 *)(p+0x88)=zero;func_02132744(v);*(s32 *)(p+4)=2;
+} else if(*(s32 *)(p+4)==2) {
+for(i=0;i<*(s32 *)(p+0xc0);i++)func_02132a6c(v);
+delta=func_02132a9c(v);old=*(s32 *)(p+0x88);delta-=old;
+*(s32 *)(p+0x90)=delta;*(s32 *)(p+0x88)=old+delta;
+*(s32 *)(p+0x94)=func_02132a94(v);
+if(func_02132734(v)==3){func_02132770(v);*(s32 *)(p+4)=zero;}
+}
+}
+
