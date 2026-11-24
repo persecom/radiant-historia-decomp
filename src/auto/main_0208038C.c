@@ -3,7 +3,7 @@
 
 extern void func_02080e00(void);
 extern void *data_02155c3c;
-extern u8 * volatile data_0216010c;
+extern u8 *data_0216010c;
 extern void *func_0210c594(u32, void *);
 extern void func_020ec548(void *);
 void func_02080d30(void) {
@@ -13,7 +13,7 @@ void func_02080d30(void) {
         func_020ec548(*(void **)(data_0216010c + 0x5000 + 0x568));
         *(void **)(data_0216010c + 0x5000 + 0x568) = NULL;
     }
-    *(u8 *)(data_0216010c + 0x5000 + 0x56d) = 0xff;
+    *(u8 *)(data_0216010c + 0x5000 + 0x56d) = -1;
 }
 
 void func_02080db8(void) {
