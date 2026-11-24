@@ -12,6 +12,174 @@ extern s32 func_02092994(void *, s32);
 extern s32 func_02109444(void *);
 extern void func_021093b0(void *);
 
+s32 func_0210344c(void)
+{
+    typedef struct {
+        s32 id;
+        s16 scene;
+        s16 angle;
+        s32 x;
+        s32 z;
+        s32 required;
+        s32 excluded;
+        s32 param;
+        s32 alternate;
+        s8 mode;
+        s8 value;
+        s8 field22;
+        s8 field23;
+        s16 field24;
+        s16 field26;
+    } Entry;
+    extern u8 *data_02160204;
+    extern u8 *data_02160200;
+    extern u8 data_02152fa0[];
+    extern u8 data_02153388[];
+    extern u8 data_02152d48[];
+    extern void *func_02046f90(u16, u16);
+    extern void *func_020e9fe8(void *, u16);
+    extern s32 func_020f62f4(s32, s32);
+    extern void func_02052240(u8 *);
+    extern void func_0205440c(u8 *, s32);
+    extern void func_020477dc(void *, s32, s32);
+    s32 no_flag;
+    u32 one;
+    s32 instance;
+    Entry *entry;
+    s16 i;
+    s32 group;
+    u8 *obj;
+    s32 zero;
+    s16 count;
+    s32 scene;
+    s32 special, alternate_id, id, flag, v;
+    u32 mask;
+    u8 *state;
+    u8 *secondary;
+    u8 *config;
+    Entry *table;
+    i = 0;
+    config = data_02160204;
+    scene = *(u16 *)(config + 0x72);
+    zero = i;
+    group = (scene - 1) / 20 + 1;
+    count = i;
+    one = 1;
+    if (config[0x7a] == 1) {
+        return 1;
+    }
+    if (group >= 1 && group < 11) {
+        entry = (Entry *)data_02152fa0;
+    } else if (group >= 11 && group < 21) {
+        entry = (Entry *)data_02153388;
+    } else {
+        entry = (Entry *)data_02152d48;
+    }
+    special = 0x14d3;
+    no_flag = -1;
+    alternate_id = special - 10;
+    do {
+        if (scene != entry->scene || data_02160204[0x7a] != 0) {
+            goto next_record;
+        }
+        id = entry->id;
+        instance = count + 0x68b;
+        count++;
+        *(s32 *)(data_02160200 + 0x168) = entry->param;
+        flag = entry->required;
+        if (flag != no_flag) {
+            mask = one << (flag % 32);
+            if ((((u32 *)data_02160200)[flag / 32] & mask) == 0) {
+                goto next_record;
+            }
+        }
+        flag = entry->excluded;
+        if (flag != no_flag) {
+            mask = one << (flag % 32);
+            if (((u32 *)data_02160200)[flag / 32] & mask) {
+                goto next_record;
+            }
+        }
+        if (entry->id == special) {
+            obj = func_02046f90((u16)id, (u16)(instance + 0xbb9));
+        } else {
+            obj = func_02046f90((u16)id, (u16)instance);
+        }
+        secondary = func_020e9fe8((void *)0x1771, (u16)(instance + 0xbb9));
+        *(s32 *)(secondary + 0x1c) = zero;
+        *(s32 *)(secondary + 0x20) = zero;
+        *(s32 *)(secondary + 0x24) = 0x32000;
+        *(u32 *)(secondary + 0x18) &= ~1U;
+        *(u16 *)(obj + 0x92) = (u16)func_020f62f4(entry->angle, one);
+        v = func_020f62f4(entry->x, zero);
+        *(s32 *)(obj + 0) = v;
+        *(s32 *)(obj + 0x18) = v;
+        v = func_020f62f4(entry->z, zero);
+        *(s32 *)(obj + 8) = v;
+        *(s32 *)(obj + 0x20) = v;
+        if (entry->id == alternate_id) {
+            *(u16 *)(*(u8 **)(obj + 0xb0) + 0xa) = (u16)entry->field24;
+        }
+        func_02052240(obj);
+        switch (entry->mode) {
+        default:
+        case 0:
+            obj[0x9d] = zero;
+            *(s32 *)*(u8 **)(obj + 0xb0) = zero;
+            break;
+        case 1:
+            obj[0x9d] = entry->value;
+            break;
+        case 2:
+            *(s32 *)*(u8 **)(obj + 0xb0) = (s32)entry->value * 4096;
+            break;
+        }
+        v = entry->field22;
+        obj[0xce] = (u8)v;
+        if ((v & 0xff) == 3) {
+            *(u16 *)(*(u8 **)(obj + 0xb0) + 0x14) = (u16)entry->alternate;
+            *(u16 *)(*(u8 **)(obj + 0xb0) + 0x16) = (u16)entry->required;
+            *(u16 *)(*(u8 **)(obj + 0xb0) + 0x18) = (u16)entry->excluded;
+            state = data_02160200;
+            flag = *(s32 *)(state + 0x168);
+            mask = one << (flag % 32);
+            if (((u32 *)state)[flag / 32] & mask) {
+                func_0205440c(obj, one);
+            } else {
+                flag = entry->alternate;
+                if (flag != no_flag) {
+                    mask = one << (flag % 32);
+                    if (((u32 *)state)[flag / 32] & mask) {
+                        func_0205440c(obj, one);
+                    } else {
+                        *(u32 *)(obj + 0xac) |= 0x80000;
+                        func_0205440c(obj, zero);
+                    }
+                }
+                if (data_02160200 != NULL) {
+                    *(u16 *)(*(u8 **)(obj + 0xb0) + 0x22) = (u16)*(s32 *)(data_02160200 + 0x168);
+                }
+            }
+        }
+        obj[0xcf] = entry->field23;
+        *(u32 *)(obj + 0x58) = 0x1000;
+        func_020477dc(obj, zero, zero);
+        if (entry->id == special) {
+            *(u16 *)(obj + 0x96) = one;
+        }
+    next_record:
+        i++;
+        if (group >= 1 && group < 11) {
+            entry = (Entry *)(data_02152fa0 + (s32)i * 0x28);
+        } else if (group >= 11 && group < 21) {
+            entry = (Entry *)(data_02153388 + (s32)i * 0x28);
+        } else {
+            entry = (Entry *)(data_02152d48 + (s32)i * 0x28);
+        }
+    } while (entry->id != no_flag);
+    return 1;
+}
+
 s32 func_02103848(void) {
     typedef struct {
         s32 id;
