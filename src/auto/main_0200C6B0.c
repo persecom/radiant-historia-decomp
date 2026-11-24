@@ -158,6 +158,71 @@ s32 func_0200cc98(void *arg0, u8 *arg1, u32 arg2, u32 arg3) {
     return res;
 }
 
+extern s32 func_0200d52c();
+s32 func_0200ccf0(void *arg0, void *arg1, void *arg2) {
+    struct {
+        u32 unk00;
+        union {
+            u32 file_id;
+            struct {
+                u16 dir_id;
+                u16 unk06;
+            } dir;
+        } u;
+        u32 unk08;
+        u32 is_dir;
+        u32 name_len;
+        u8 name[128];
+    } entry;
+    s32 res;
+
+    *(void **)((u8 *)arg1 + 0x30) = &entry;
+    *(u32 *)((u8 *)arg1 + 0x34) = 0;
+    res = func_0200cb40(arg1, 3, 1);
+    if (res == 0) {
+        u32 len;
+        *(u32 *)((u8 *)arg2 + 0x10) = 0;
+        len = entry.name_len;
+        *(u32 *)((u8 *)arg2 + 0x118) = len;
+        func_02009008(entry.name, (u8 *)arg2 + 0x14, len);
+        *((u8 *)arg2 + 0x14 + *(u32 *)((u8 *)arg2 + 0x118)) = 0;
+        if (entry.is_dir != 0) {
+            *(u32 *)((u8 *)arg2 + 0x11c) = 0x100;
+            *(u32 *)((u8 *)arg2 + 0x16c) = entry.u.dir.dir_id | (entry.u.dir.unk06 << 16);
+            *(u32 *)((u8 *)arg2 + 0x168) = 0;
+        } else {
+            void *r1;
+            u32 id;
+            u32 r2;
+            *(u32 *)((u8 *)arg2 + 0x11c) = 0;
+            id = entry.u.file_id;
+            *(u32 *)((u8 *)arg2 + 0x16c) = id;
+            *(u32 *)((u8 *)arg2 + 0x168) = 0;
+            r1 = *(void **)((u8 *)arg0 + 0x20);
+            r2 = id * 8;
+            if (r2 < *(u32 *)((u8 *)r1 + 0x8)) {
+                struct { u32 a; u32 b; } sp8;
+                struct { void *a; u32 b; } sp0;
+                sp0.a = arg0;
+                sp0.b = *(u32 *)((u8 *)r1 + 0x4) + r2;
+                if (func_0200c248(&sp0, &sp8, 8) == 0) {
+                    *(u32 *)((u8 *)arg2 + 0x168) = sp8.b - sp8.a;
+                    if (func_0200d52c(arg0, sp8.a) != 0) {
+                        *(u32 *)((u8 *)arg2 + 0x11c) |= 0x400;
+                    }
+                }
+            }
+        }
+        *(u32 *)((u8 *)arg2 + 0x138) = 0;
+        *(u32 *)((u8 *)arg2 + 0x13c) = 0;
+        *(u32 *)((u8 *)arg2 + 0x140) = 0;
+        *(u32 *)((u8 *)arg2 + 0x144) = 0;
+        *(u32 *)((u8 *)arg2 + 0x148) = 0;
+        *(u32 *)((u8 *)arg2 + 0x14c) = 0;
+    }
+    return res;
+}
+
 s32 func_0200ce18(void *arg0, u16 arg1, void *arg2, u32 *arg3, s32 arg4) {
     u8 file[0x48];
     u32 sp0[3];
