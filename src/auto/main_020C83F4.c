@@ -144,7 +144,7 @@ u8 old=func_020c73d8(p); s32 x,y,right,bottom,tx,ty; u8 inside; u8 *v;
 if(func_020c73d8(p)) {if(data_021628fa[0]==0)return 1;func_020c738c(p,0,2);}
 else {if(data_021628f8==0)return 1;if((u16)data_02162908[2]==0)return 1;}
 v=*(u8 **)(p+0x30); y=*(s16 *)(p+0x3c);x=*(s16 *)(p+0x3a);
-bottom=y+*(s32 *)(v+0x1c); right=x+*(s32 *)(v+0x18);
+right=x+*(s32 *)(v+0x18); bottom=y+*(s32 *)(v+0x1c);
 tx=data_02162908[0];ty=data_02162908[1]; inside=contains_020c8650(x,y,right,bottom,tx,ty);
 if(inside) {if(!old)func_020c738c(p,2,2);return 0;}return 2;
 }
