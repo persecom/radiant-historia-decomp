@@ -76,6 +76,16 @@ void func_021144f0(u8 *arg0) {
     }
 }
 
+void func_021146b8(u8 *arg0) {
+    func_02009580(*(void **)(arg0 + 0x4c), 0, 1u << *(s32 *)(arg0 + 0x48), 0);
+    if (((*(s32 *)(arg0 + 0x2c) << 30) >> 31) != 0) {
+        return;
+    }
+    func_0200f0a4(arg0 + 8);
+    func_0200f0c4(arg0 + 0x18);
+    *(u32 *)(arg0 + 0x2c) |= 2;
+}
+
 void func_021148bc(u8 *arg0) {
     func_021148cc(arg0, 1);
 }
