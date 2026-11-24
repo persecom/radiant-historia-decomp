@@ -146,7 +146,8 @@ s32 func_02110228(void *arg0) {
     return 0;
 }
 
-s32 func_0211023c(void *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
+s32 func_0211023c(void *arg0) {
+    u8 unused[4];
     void *p = func_020c9c10(*(void **)((u8 *)arg0 + 0x30), 0);
     s32 result = ((s32 (*)(void *))(*(void **)((u8 *)p + 0x18)))(p);
     func_020c738c(arg0, func_020c73b8(p), 2);
@@ -174,6 +175,10 @@ void func_021102bc(u8 *arg0, u32 arg1, u32 arg2) {
 
 void func_02110340(u8 *arg0, u32 arg1) {
     func_021102bc(arg0, arg1, *(s16 *)(arg0 + 0x3a));
+}
+
+void func_02110350(u8 *arg0, u32 arg1) {
+    func_021102bc(arg0, *(s16 *)(arg0 + 0x38), arg1);
 }
 
 void func_021103a8(void *arg0) {
