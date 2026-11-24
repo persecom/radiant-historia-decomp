@@ -123,9 +123,9 @@ void func_020e972c(u8 *arg0) {
 
 void func_020e97ec(u8 *arg0) {
     u8 *p = arg0;
+    s32 i;
     s32 count = *(s32 *)(p + 0x5c);
     if (*(void **)(p + 0x60) != NULL) {
-        s32 i;
         for (i = 0; i < count; i++) {
             func_020e9714(*(u8 **)(p + 0x60) + i * 0x54);
         }
