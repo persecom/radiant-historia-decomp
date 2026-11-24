@@ -1,5 +1,11 @@
 /* 28 functions from 0x0211A178 to 0x0211B0E8 (main), found by ds-decomp. */
 #include "common.h"
+extern u16 data_02144d84[][4];
+extern u16 data_02144d6c[][4];
+extern s32 data_02144db8[8];
+extern s32 data_02144dd8[][4];
+extern s32 data_02144e08[][4];
+extern s32 data_02144db0[2];
 extern u32 data_02145ba4;
 void func_02006dc4(void *, u32);
 void func_02008690(u32, void *, void *, u32, s32);
@@ -51,6 +57,28 @@ m[0]=0x1000; m[1]=0; m[2]=0; m[3]=0x1000; m[5]=y; m[4]=x;
 { void *p=data_0216f3c4[data_0216f234[3]]; func_0211a4e0((void *)m,p,p); }
 { void *p=data_0216f6c4[data_0216f234[3]]; func_0211a4e0((void *)m,p,p); }
 data_0216f244[data_0216f234[3]]+=z;
+}
+
+s32 func_02001fc0(s32);
+void func_0211a26c(s32 x,s32 y) {
+ Mtx23 m;
+ Mtx23 *mp=&m;
+ s32 index=*(volatile s32 *)&data_0216f234[3]*24;
+ volatile u16 *entry;
+ s32 zero=0;
+ mp->v[0]=x;mp->v[1]=zero;mp->v[2]=zero;mp->v[3]=y;mp->v[4]=zero;mp->v[5]=zero;
+ func_0211a4e0(mp,(void *)((u32)data_0216f3c4+index),(void *)((u32)data_0216f3c4+index));
+ mp->v[0]=func_02001fc0(x);mp->v[1]=zero;mp->v[2]=zero;
+ {s32 t=func_02001fc0(y);index=*(volatile s32 *)&data_0216f234[3]*24;mp->v[3]=t;}mp->v[4]=zero;mp->v[5]=zero;
+ func_0211a4e0(mp,(void *)((u32)data_0216f6c4+index),(void *)((u32)data_0216f6c4+index));
+ if(!Active0211a3ac()) data_02155eb0[0]=data_0216f234[3];
+ entry=data_0216f2c4[(u16)data_0216f234[3]];
+ switch(entry[2]) {
+ case 1: break;
+ case 0: case 2: case 3:
+ { u16 n=((u16 *)data_0216f234)[1]; ((volatile u16 *)data_0216f234)[1]=n+1; entry[1]=n; }
+ entry[2]=1; break;
+ }
 }
 
 void func_0211a3ac(s32 sine,s32 cosine) {
@@ -234,6 +262,66 @@ void func_0211ab28(u32 arg0) {
 extern u32 data_02155ed0[4];
 u32 func_0211ab38(void) {
     return data_02155ed0[0];
+}
+
+extern void func_0211a8ac(void *, void *, void *, void *, s32 *);
+extern u16 data_02144d84[][4];
+extern u16 data_02144d6c[][4];
+void func_0211ab48(s32 x, s32 y, s32 z, u32 *oam, void *pTex, void *pPltt, void *pChar) {
+    s32 uv[6];
+    u32 attr;
+    u32 mode;
+
+    func_0211a8ac(oam, pTex, pPltt, pChar, uv);
+
+    attr = *oam;
+    mode = attr & 0x300;
+    if (mode != 0x100 && mode != 0x300) {
+        mode |= attr & 0x30000000;
+    }
+    if (mode == 0x300) {
+        u32 shape_size = attr & 0xc000c000;
+        u32 size = (shape_size & 0xc0000000) >> 30;
+        s32 shape = (s32)(shape_size & 0xc000) >> 14;
+        u16 w = data_02144d84[shape][size];
+        u16 h = data_02144d6c[shape][size];
+        s32 zz = data_021701d8[2] ? ((s32)data_021701d8[1] + (z << 12)) : (z << 12);
+        *(volatile s32 *)0x04000470 = (x + ((s32)w >> 1)) << 12;
+        *(volatile s32 *)0x04000470 = (y + ((s32)h >> 1)) << 12;
+        *(volatile s32 *)0x04000470 = zz;
+    } else {
+        s32 zz = data_021701d8[2] ? ((s32)data_021701d8[1] + (z << 12)) : (z << 12);
+        *(volatile s32 *)0x04000470 = x << 12;
+        *(volatile s32 *)0x04000470 = y << 12;
+        *(volatile s32 *)0x04000470 = zz;
+    }
+
+    {
+        s32 sx = uv[4];
+        s32 sy = uv[5];
+        *(volatile s32 *)0x0400046c = sx << 12;
+        *(volatile s32 *)0x0400046c = sy << 12;
+        *(volatile s32 *)0x0400046c = 0x1000;
+    }
+    *(volatile s32 *)0x04000500 = 1;
+
+    *(volatile u32 *)0x04000488 = (u16)(s16)(uv[0] >> 8) | ((u32)(u16)(s16)(uv[3] >> 8) << 16);
+    *(volatile u32 *)0x04000490 = 0x10000;
+
+    *(volatile u32 *)0x04000488 = (u16)(s16)(uv[2] >> 8) | ((u32)(u16)(s16)(uv[3] >> 8) << 16);
+    *(volatile u32 *)0x04000490 = 0x10040;
+
+    *(volatile u32 *)0x04000488 = (u16)(s16)(uv[2] >> 8) | ((u32)(u16)(s16)(uv[1] >> 8) << 16);
+    *(volatile u32 *)0x04000490 = 0x00040;
+
+    *(volatile u32 *)0x04000488 = (u16)(s16)(uv[0] >> 8) | ((u32)(u16)(s16)(uv[1] >> 8) << 16);
+    *(volatile u32 *)0x04000490 = 0x00000;
+
+    *(volatile s32 *)0x04000504 = 0;
+
+    if (data_021701d8[2]) {
+        data_021701d8[1] += data_02155ed0[0];
+    }
 }
 
 extern u32 data_021701d8[4];
