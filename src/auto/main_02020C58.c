@@ -1,6 +1,11 @@
 /* 27 functions from 0x02020C58 to 0x02021C48 (main), found by ds-decomp. */
 #include "common.h"
 
+extern void func_021072d0(u32, u32, u32);
+extern u32 func_02107294(void);
+extern void func_02107334(u32, u32, u32);
+extern void func_020106a0(void);
+extern u32 func_0200f984(void);
 extern void func_0210d220(void);
 s32 func_02021284(void);
 extern u16 func_02021618;
@@ -96,12 +101,12 @@ s32 func_02021344(u32 arg0) {
 }
 
 u32 func_02021368(u8 *data, u32 len) {
-    u32 hash = 0x12345678;
-    u32 i;
-    for (i = 0; i < len; i++) {
-        u32 v = hash + data[i];
-        u32 shift = (v + i) & 0x1f;
-        hash += (v << shift) | (v >> (0x20 - shift));
+    u32 hash = 0x23456789;
+    s32 i = 0;
+    for (; i < len; i++) {
+        u32 v = *data++ + hash;
+        u32 shift = (i + v) & 0x1f;
+        hash = hash + ((v << shift) | (v >> (0x20 - shift)));
     }
     return hash != 0 ? hash : 0xaaaaaaaa;
 }
@@ -129,19 +134,18 @@ s32 func_02021428(u16 *arg) {
     data_02160054[4] = (u32)arg;
     data_02160054[5] = 1000;
     func_0210d9e4(data_02160064);
-    data_02160054[3] = 1;
-    data_02160054[1] = 0;
     {
-        u32 **pp = &data_021626f0;
-        u32 *p = *pp;
-        if (p != NULL) {
-            u32 v = *p;
-            data_02160054[0] = v;
-            *p = 0;
-            return (s32)v;
-        }
-        return (s32)pp;
+        s32 zero = 0;
+        data_02160054[3] = 1;
+        data_02160054[1] = zero;
     }
+    if (data_021626f0 != NULL) {
+        u32 v = *data_021626f0;
+        data_02160054[0] = v;
+        *data_021626f0 = 0;
+        return (s32)v;
+    }
+    return (s32)&data_021626f0;
 }
 
 void func_0202147c(s32 arg0) {
@@ -201,6 +205,20 @@ s32 func_02021570(u32 *arg0, u32 arg1, u32 arg2) {
     return 1;
 }
 
+s32 func_020215bc(void) {
+    u32 *p = data_02160078;
+    u32 size = 0x1698;
+    s32 res = 0;
+    if (func_02021570(p, 0, size) == 0) {
+        return res;
+    }
+    func_02021514();
+    if (p[2] == func_02021368((u8 *)(p + 4), size - 0x10)) {
+        res = 1;
+    }
+    return res;
+}
+
 s32 func_02021a28(void) {
     return func_02021428(&func_02021618);
 }
@@ -213,6 +231,25 @@ s32 func_02021a3c(void) {
 extern u32 data_02160054[];
 u32 func_02021a50(void) {
     return data_02160054[3];
+}
+
+extern void func_021072d0(u32, u32, u32);
+extern u32 func_02107294(void);
+extern void func_02107334(u32, u32, u32);
+extern void func_020106a0(void);
+extern u32 func_0200f984(void);
+void func_02021bd0(s32 arg0) {
+    u32 buf[4];
+    if (func_02021344(1) == 0) {
+        return;
+    }
+    buf[0] = 0;
+    buf[1] = 0;
+    buf[2] = 0;
+    buf[3] = 0;
+    func_021072d0(arg0, (u32)buf, 0x10);
+    while (func_02107294() != 0) {
+    }
 }
 
 extern void func_02021bd0(s32);
