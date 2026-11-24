@@ -1,6 +1,11 @@
 /* 40 functions from 0x02126F50 to 0x02127E74 (main), found by ds-decomp. */
 #include "common.h"
 
+extern void func_02126c20(void *);
+extern void func_02127600(void *);
+extern u8 data_021565f0[52];
+extern u8 data_02156624[56];
+
 extern void func_02127600(void *);
 BOOL func_02127350(void *arg0) {
     void (*cb)(void *, void *) = *(void (**)(void *, void *))((u8 *)arg0 + 0x2c);
