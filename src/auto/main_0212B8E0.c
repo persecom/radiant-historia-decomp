@@ -332,3 +332,8 @@ void func_0212c7f0(u8 *arg0) {
     arg0[1] = 1;
 }
 
+void func_0212c808(u8 *arg0) {
+    func_0212a53c(*(void **)(arg0 + 4));
+    arg0[1] = 0;
+}
+
