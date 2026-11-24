@@ -60,8 +60,9 @@ void func_0200af30(u8 *s) {
     if (!(*(u32 *)(s + 0xc) & 0x40)) {
         return;
     }
-    func_0200a884(s, func_0200a980(s, (*(u32 *)(s + 0xc) >> 8) & 0xff));
-    s32 next = func_0200ad00(*(u8 **)(s + 8), 1);
+    u8 *r4b = *(u8 **)(s + 8);
+    func_0200a884(s, func_0200a980(s, (*(volatile u32 *)(s + 0xc) >> 8) & 0xff));
+    s32 next = func_0200ad00(r4b, 1);
     if (next == 0) {
         return;
     }
