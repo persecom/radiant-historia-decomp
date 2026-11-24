@@ -102,6 +102,29 @@ extern void func_02115dc0(void *, s32, s32, s32);
 
 #pragma peephole on
 
+void *func_02113fc0(u32, u8, u8);
+void *func_02114108(u8, void *);
+void func_0211405c(void *);
+void func_02114068(void *, void *, u32, u32);
+void func_02113cfc(u32, u8);
+void func_02113d3c(u32, u8);
+void func_02113d7c(u32, u32, u32);
+s32 func_02116244(u32 arg0,u8 arg1,u16 arg2,u8 arg3,void *arg4,void *arg5,u32 arg6,u32 arg7) {
+u32 value;
+u8 *info=arg4;
+void *p=func_02113fc0(arg0,arg1,arg3);
+if(!p) return 0;
+if(func_021157d0(arg2,6,func_02114108(arg1,p),0,&value)) {
+func_0211405c(p);
+return 0;
+}
+func_02114068(p,(u8 *)arg5+*(u32 *)((u8 *)arg5+0x18),*(u32 *)info,value);
+func_02113cfc(arg0,info[6]);
+func_02113d3c(arg0,info[7]);
+func_02113d7c(arg0,arg6,arg7);
+return 1;
+}
+
 void func_0211630c(s32 arg0) {
     s32 i;
     for (i = 0; i < 4; i++) {
