@@ -144,6 +144,10 @@ void func_021386f0(void *arg0) {
     }
 }
 
+u32 func_02138ae8(u8 *arg0) {
+    return *(u32 *)(arg0 + 0x58);
+}
+
 void func_02138de0(u8 *arg0, u32 arg1) {
     *(u32 *)(arg0 + 0xb4) = arg1;
 }
