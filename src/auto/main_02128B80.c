@@ -20,6 +20,15 @@ extern void func_0212b3f8(s32, s32, void *, void *);
 extern void *memset(void *, int, unsigned long);
 extern u8 data_0217348c[240];
 extern u8 data_02156a54[];
+void func_02129490(arg0)
+    u8 *arg0;
+{
+    data_02173478[1] = func_0212eb2c(*(u32 *)(arg0 + 0xc));
+    if (func_0212eb44(*(u32 *)(arg0 + 0xc)) != 2) {
+        arg0[1] = 5;
+    }
+}
+
 void func_021294c4(void) {
 }
 
