@@ -40,16 +40,16 @@ extern void func_0210dba0(void *);
 s32 func_020c7760(u8 *arg0, s32 arg1, s32 arg2) {
     u8 *obj = *(u8 **)(arg0 + 0x30);
     u8 *sub = *(u8 **)(obj + 4);
+    s32 a0 = *(s32 *)(obj + 0x14);
     s32 b = 0x2000 - *(s32 *)(sub + 0x20);
     s32 c = 0x2000 - *(s32 *)(sub + 0x24);
-    s32 a = *(s32 *)(obj + 0x14) << 12;
+    s32 a = a0 << 12;
     s32 q = func_0201fb1c(a, b);
     s32 t = q + ((u32)q >> 31);
-    s32 d = *(s32 *)(obj + 0x18);
     s32 q2;
     q = t >> 1;
     arg1 = (s16)(arg1 - q);
-    q2 = func_0201fb1c(d << 12, c);
+    q2 = func_0201fb1c(*(s32 *)(obj + 0x18) << 12, c);
     t = q2 + ((u32)q2 >> 31);
     *(s32 *)(obj + 8) = arg1;
     q2 = t >> 1;
@@ -186,6 +186,28 @@ void func_020c813c(void *arg0) {
     if (arg0 != NULL) {
         func_0210c5dc(arg0);
     }
+}
+
+s32 func_020c8150(u8 *p) {
+u8 *obj=*(u8 **)(p+0x30);
+u16 duration;
+if(!obj) return 1;
+duration=*(u16 *)(p+0x38);
+++*(u16 *)(p+0x36);
+if(*(u16 *)(p+0x36)>duration) {
+switch(p[0x34]) {
+case 2: ((void (*)(void *,s32))*(void **)(obj+0x20))(obj,0); break;
+case 1: ((void (*)(void *,s32))*(void **)(obj+0x20))(obj,31); break;
+}
+*(void **)(p+0x30)=0;
+*(u16 *)(p+0x36)=0;
+return 2;
+}
+switch(p[0x34]) {
+case 2: ((void (*)(void *,s32))*(void **)(obj+0x20))(obj,(u8)(31-(s32)(31.0f*((float)*(u16 *)(p+0x36)/(float)duration)))); break;
+case 1: { u8 alpha=(s32)(31.0f*((float)*(u16 *)(p+0x36)/(float)duration)); ((void (*)(void *,s32))*(void **)(obj+0x20))(obj,alpha); break; }
+}
+return 0;
 }
 
 s32 func_020c8268(u8 *arg0) {
