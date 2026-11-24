@@ -38,6 +38,8 @@ extern void func_02009b24(s32);
 extern void func_02009cc0(s32);
 extern void func_0200964c(u32, s32);
 extern void func_0200966c(u32, s32);
+extern void func_02009540(u32);
+extern void func_02116720(s32 *, s32, s32);
 
 typedef struct {
     s8 unk_00;
