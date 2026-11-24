@@ -12,6 +12,27 @@ typedef struct {
     s16 f4;
 } Unk_02144c84;
 
+typedef struct {
+    u16 f00;
+    s16 f02;
+    s16 f04;
+    s16 f06;
+    s16 f08;
+    s16 f0a;
+    s16 f0c;
+    s16 f0e;
+    s16 f10;
+    s16 f12;
+    s16 f14;
+    s16 f16;
+} Unk_02144c90_Item;
+
+typedef struct {
+    Unk_02144c90_Item items[2];
+} Unk_02144c90;
+
+extern const Unk_02144c90 data_02144c90;
+
 extern void func_0210c5dc(void *);
 extern s32 func_020c9490(void *);
 extern void func_020c9940(void *);
