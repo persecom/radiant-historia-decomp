@@ -88,6 +88,10 @@ s32 func_0200cc54(void *arg0, void *arg1, void *arg2, u32 *arg3) {
     return func_0200cb40(arg1, 1, 0);
 }
 
+u32 func_0200d524(u8 *arg0) {
+    return *(u32 *)(arg0 + 0x24);
+}
+
 s32 func_0200d52c(void) {
     return 0;
 }
