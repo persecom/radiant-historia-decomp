@@ -4,6 +4,19 @@ typedef struct { s16 v[10]; } Config_021100e4;
 extern const Config_021100e4 data_02144bb8;
 extern u8 *func_020c9b24(void *, u16, u8);
 extern void func_020c7894(u8 *, u8);
+static inline void ApplyConfig_021100e4(void *list, Config_021100e4 *p) {
+ u8 *obj; s32 type;
+ type=p->v[1];
+ obj=func_020c9b24(list,(u16)p->v[0],(u8)type);
+ *(s16 *)(obj+0x32)=p->v[2];
+ *(s16 *)(obj+0x34)=p->v[3];
+ *(s16 *)(obj+0x36)=p->v[4];
+ *(s16 *)(obj+0x38)=p->v[5];
+ *(s16 *)(obj+0x3e)=p->v[6];
+ *(s16 *)(obj+0x40)=p->v[7];
+ obj[0x43]+=(u8)p->v[9];
+ if(type==5) func_020c7894(obj,(u8)p->v[8]);
+}
 extern u8 *data_02160204;
 typedef struct { u8 bit0:1; u8 rest:7; } Flags_02110000;
 extern void (*data_02162a70)(void);
@@ -168,6 +181,33 @@ s32 func_021100c8(void) {
 
 void func_021100d8(void) {
     func_020bdf38();
+}
+
+s32 func_021100e4(u8 *arg0) {
+ Config_021100e4 cfg[1];
+ s32 i;
+ Config_021100e4 *p;
+ u8 *obj; s32 type;
+ func_020c6d78(arg0);
+ if (*(void **)(arg0+0x30)==0) {
+ *(void **)(arg0+0x30)=func_0210c594(8,data_02155c3c);
+ func_020c992c();
+ func_020c9a04(*(void **)(arg0+0x30),1);
+ }
+ cfg[0]=data_02144bb8;
+ for(i=0,p=cfg;i<1;i++,p++) {
+ type=p->v[1];
+ obj=func_020c9b24(*(void **)(arg0+0x30),(u16)p->v[0],(u8)type);
+ *(s16 *)(obj+0x32)=p->v[2];
+ *(s16 *)(obj+0x34)=p->v[3];
+ *(s16 *)(obj+0x36)=p->v[4];
+ *(s16 *)(obj+0x38)=p->v[5];
+ *(s16 *)(obj+0x3e)=p->v[6];
+ *(s16 *)(obj+0x40)=p->v[7];
+ obj[0x43]+=(u8)p->v[9];
+ if(type==5) func_020c7894(obj,(u8)p->v[8]);
+ }
+ return 0;
 }
 
 extern void func_0210c5dc(void *);
