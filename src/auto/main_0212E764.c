@@ -1,6 +1,7 @@
 /* 58 functions from 0x0212E764 to 0x0212F760 (main), found by ds-decomp. */
 #include "common.h"
 typedef struct { u32 words[9]; } Config_0212e860;
+static inline u32 stack_top_0212e860(u32 size,u32 base) { return ((size+3)&~3)+base; }
 extern const u32 data_0214590c;
 extern u8 data_02156e0c[], data_02156e4c[];
 extern u32 data_0215ce00[], data_02156dd8;
@@ -84,6 +85,39 @@ s32 func_0212e7f0(u32 arg0, void *arg1) {
     }
     func_0212e860(arg1);
     return 1;
+}
+
+void func_0212ea64(void);
+void func_0212ea90(void);
+void func_0212e764(void);
+void func_0212e860(void *arg) {
+ u32 value; u32 stack,base;
+ Config_0212e860 *p=arg;
+ u32 zero,one;
+ (void)*(volatile const u32 *)&data_0214590c;
+ 
+ if(!p) {func_021380bc(data_02156e0c);return;}
+ func_0212ea64();
+ if(func_0212ea54()!=1)return;
+ data_02174524[0x264/4]=data_0215ce00[1];
+ if(data_02174524[8]!=2)data_02174524[8]=2;
+ func_021385d4();
+ func_021383f4(func_0212e634,0);
+ func_02138408(func_0212e670,0);
+ if(func_02132ba4(data_02156e4c,&value)==0)data_02156dd8=value;
+ else data_02156dd8=15;
+ data_02174500=*p;
+ zero=0;one=1;
+ data_02174524[6]=zero;data_02174524[7]=zero;data_02174524[2]=one;
+ func_0212ea90();
+ stack=(((volatile Config_0212e860 *)p)->words[3]+3)&~3;
+ base=((volatile Config_0212e860 *)p)->words[6]; stack+=base;
+ func_020062d8(data_02174548,func_0212e69c,zero,stack,base,data_021744d8[10]);
+ data_02174524[4]=one;data_02174524[5]=zero;
+ func_020062d8(data_02174608,func_0212e70c,zero,((p->words[4]+3)&~3)+p->words[7],p->words[7],data_021744d8[11]);
+ if(data_02174524[8]!=2){data_02174524[0]=zero;data_02174524[1]=one;return;}
+ data_02174524[0]=one;data_02174524[1]=zero;
+ func_020062d8(data_021746c8,func_0212e764,zero,((p->words[5]+3)&~3)+p->words[8],p->words[8],data_021744d8[12]);
 }
 
 BOOL func_0212ea3c(void) {
