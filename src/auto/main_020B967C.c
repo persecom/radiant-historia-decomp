@@ -155,3 +155,7 @@ func_020b9f6c();
 }
 
 extern u16 data_02143948[6];
+typedef struct { u16 id; s16 flag, value; } Unk_020b9c84_entry;
+typedef struct { Unk_020b9c84_entry data[2]; } Unk_020b9c84_table;
+extern const Unk_020b9c84_table data_02143978;
+extern const Unk_020b9b78_2 data_021438f4;
