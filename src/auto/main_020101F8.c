@@ -50,6 +50,11 @@ extern u32 func_02008128(void);
 extern void func_0200813c(u32);
 extern void func_020057e8(u32, void *);
 extern u8 data_0215f760[16];
+extern u8 data_0215f770[28];
+extern void *func_0200fe28(u32);
+extern void func_0200fe64(u32, u32, u32);
+extern void func_0200fe80(u32, u32, u32);
+extern void func_02010e40(void);
 
 extern u32 data_0215fa20[3];
 extern u8 data_0215f660[256];
