@@ -292,6 +292,18 @@ void *func_02116970(void *list, void *object) {
     return *(void **)((u8 *)object + *(u16 *)(l + 0xa));
 }
 
+void *func_02116984(void *list, u16 index) {
+    s32 count = 0;
+    void *object = NULL;
+    while ((object = func_02116958(list, object)) != NULL) {
+        if (count == index) {
+            return object;
+        }
+        count++;
+    }
+    return NULL;
+}
+
 void* func_02116d7c(void* heap, u32 size, s32 alignment)
 {
     typedef struct Block {
