@@ -36,3 +36,10 @@ u8 *func_020b3914(void) {
     return func_020b3890() + 0x128;
 }
 
+extern void func_020b3a9c(void);
+extern void func_02009008(void *, void *, s32);
+extern u8 *func_020b4044(void);
+u8 *func_020b3fd8(void) {
+    return func_020b3880() + 0x96c;
+}
+
