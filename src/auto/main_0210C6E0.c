@@ -544,6 +544,12 @@ void func_0210d568(s32 arg0) {
     func_02113b68(0, arg0, 0);
 }
 
+void func_0210d5a0(void) {
+    func_02113b58(data_02162744, 0);
+    func_02113c18(data_02162744);
+    *(s32 *)(data_02162730 + 0xc) = -1;
+}
+
 void func_0210d6a4(void) {
 }
 
