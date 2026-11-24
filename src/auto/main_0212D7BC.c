@@ -319,7 +319,7 @@ void func_0212e588(void) {
 }
 
 extern void func_02138658(void);
-void func_0212e594(void) {
+s32 func_0212e594() {
     func_02138658();
 }
 
