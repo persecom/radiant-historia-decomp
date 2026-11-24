@@ -215,26 +215,24 @@ s32 func_0200d084(void *arg0, u8 *arg1, u16 arg2, void *arg3, void *arg4) {
 
 s32 func_0200d0d4(void *arg0, void *arg1, s32 *arg2, s32 arg3) {
     s32 *p = *(s32 **)((u8 *)arg1 + 4);
-    s32 offset = *arg2;
-    s32 base;
+    s32 pos = *arg2;
     switch (arg3) {
     case 0:
-        base = p[1];
+        pos += p[1];
         break;
     case 1:
     default:
-        base = p[3];
+        pos += p[3];
         break;
     case 2:
-        base = p[2];
+        pos += p[2];
         break;
     }
-    offset += base;
-    if (offset < p[1] || offset > p[2]) {
+    if (pos < p[1] || pos > p[2]) {
         return 6;
     }
-    p[3] = offset;
-    *arg2 = offset;
+    p[3] = pos;
+    *arg2 = pos;
     return 0;
 }
 
