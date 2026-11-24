@@ -84,7 +84,11 @@ BOOL func_020da4f0(u8 *arg0, s32 arg1) {
 void func_020da870(u8 *arg0, s32 arg1) {
     *(u8 *)(arg0 + 0x9c) = 0;
     func_020dd810(arg0, arg1, 0);
-    *(s32 *)(arg0 + 0xf8) = (*(u32 *)(*(u8 **)(arg0 + 0x118) + 0x78) & 0x10) ? 1 : 0;
+    if (*(u32 *)(*(u8 **)(arg0 + 0x118) + 0x78) & 0x10) {
+        *(volatile s32 *)(arg0 + 0xf8) = 1;
+    } else {
+        *(volatile s32 *)(arg0 + 0xf8) = 0;
+    }
 }
 
 void func_020da8a4(u8 *arg0) {
