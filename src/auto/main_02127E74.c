@@ -78,7 +78,7 @@ void func_02128030(Unk_02128030 *arg0, void *arg1) {
     s32 i;
     for (i = 0; i < (s8)arg0->f3; i++) {
         void *obj = arg0->arr[i];
-        ((void (**)(void))*(void **)obj)[5]();
+        ((void (**)(void *))*(void **)obj)[5](obj);
     }
     func_0212c7b8(arg0->f4, arg1);
     arg0->f14 = (u32)arg1;
