@@ -25,7 +25,7 @@ void func_020b8844(void) {
 }
 
 void func_020b886c(void) {
-    func_020c9b64(*(void **)(*(u8 **)data_021601ec + 0x48));
+    func_020c9b64(*(void **)(data_021601ec + 0x48));
 }
 
 void func_020b8888(void) {
