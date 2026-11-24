@@ -186,15 +186,14 @@ void func_02113844(void) {
 }
 
 void func_021138c0(void) {
-    if (func_02009964(0) != 0) {
-        goto end;
+    switch (func_02009964(0)) {
+    case 0:
+        func_02113e5c();
+        func_02114ac4();
+        func_02116350();
+        func_02009b24(0);
+        break;
     }
-    func_02113e5c();
-    func_02114ac4();
-    func_02116350();
-    func_02009b24(0);
-end:
-    return;
 }
 
 void func_021138f0(void) {
@@ -242,6 +241,10 @@ void func_021139d0(u32 arg0) {
     data_0216bfc0[2] &= ~arg0;
 }
 
+void func_02113abc(s32 arg0, u32 arg1) {
+    *(u32 *)(data_0216c440 + arg0 * 0x24) = arg1;
+}
+
 void func_02113b58(void **arg0, s32 arg1) {
     func_021140b8(*arg0, arg1);
 }
@@ -250,10 +253,9 @@ void func_02113c0c(u32 *arg0) {
     *arg0 = 0;
 }
 
-void func_02113ce8(u32 *arg0, u8 arg1) {
-    u32 v = *arg0;
-    if (v != 0) {
-        *(u8 *)(*(void **)arg0 + 0x41) = arg1;
+void func_02113ce8(u8 **arg0, u8 arg1) {
+    if (*arg0 != NULL) {
+        (*arg0)[0x41] = arg1;
     }
 }
 
