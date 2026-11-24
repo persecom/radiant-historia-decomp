@@ -114,53 +114,59 @@ extern u8 *func_020bd058(u16);
 extern s32 func_02022068(u16);
 extern u16 func_020bd294(u16);
 extern void func_02015a3c(void *,s32,s32,void *);
-void func_020b41b8(s32 mode) {
-u8 *base,*item,*entry;
-s32 count=0,i,owned;
+u8 *func_020b41b8(s32 mode) {
+Work_020b41b8 *base;
+u8 *item;
+register Entry_020b41b8 *entry;
+register s32 i;
+s32 count=0,owned;
 u32 end,start;
-base=func_020b3fd8();
+base=(Work_020b41b8 *)func_020b3fd8();
 func_02008f74(base,0,0x2a3c);
-*(s32 *)(base+0x2aac)=1;
+base->active=1;
 if(mode==0) {
-if(*((u8 *)func_020b3880()+0x3440)==1) {base[0x2ab0]|=7;*(s32 *)(base+0x2aa4)=0;}
-else if(*((u8 *)func_020b3880()+0x3440)==0){base[0x2ab0]|=8;*(s32 *)(base+0x2aa4)=3;}
-else {base[0x2ab0]|=15;*(s32 *)(base+0x2aa4)=3;}
+if(*((u8 *)func_020b3880()+0x3440)==1) {base->flags|=7;base->filter=0;}
+else if(*((u8 *)func_020b3880()+0x3440)==0){base->flags|=8;base->filter=3;}
+else {base->flags|=15;base->filter=3;}
 for(i=0;i<40;i++){
-if(*(u16 *)(base+0x2a48+i*2)!=0 && func_020b3f14(*(u16 *)(base+0x2a48+i*2))!=-1) {
-item=func_020bd058(*(u16 *)(base+0x2a48+i*2));
+if(base->ids[i]!=0 && func_020b3f14(base->ids[i])!=-1) {
+item=func_020bd058(base->ids[i]);
 if(item && item[7]==1) {
-entry=base+count*12;
-*(u16 *)(entry+4)=*(u16 *)(base+0x2a48+i*2);
-*(u32 *)entry=*(u32 *)item;
-entry[8]=0;count++;
+entry=&base->entries[count];
+entry->id=base->ids[i];
+entry->value=*(u32 *)item;
+entry->owned=0;count++;
 }
 }
 }
-*(s32 *)(base+0x2a9c)=count;
+base->count=count;
+
 } else if(mode==1) {
+Entry_020b41b8 *slot;
+s32 j;
 end=0;start=0;
-base[0x2ab0]|=15;
-if(*(s32 *)(base+0x2aa4)==-1)*(s32 *)(base+0x2aa4)=3;
-for(i=1;i<901;i++){
-if(func_020b3f14((u16)i)!=-1) {
-owned=func_02022068((u16)i);
+base->flags|=15;
+if(base->filter==-1)base->filter=3;
+for(j=1;j<901;j++){
+if(func_020b3f14((u16)j)!=-1) {
+owned=func_02022068((u16)j);
 if(owned) {
-item=func_020bd058((u16)i);
+item=func_020bd058((u16)j);
 if(item && item[7]==1) {
-entry=base+count*12;
-*(u16 *)(entry+4)=(u16)i;
-*(u32 *)entry=*(u32 *)item>>1;
-entry[8]=owned;
-*(u16 *)(entry+6)=func_020bd294((u16)i);
+slot=&base->entries[count];
+slot->id=(u16)j;
+slot->value=*(u32 *)item>>1;
+slot->owned=owned;
+slot->order=func_020bd294((u16)j);
 count++;
 }
 }
 }
 }
-*(s32 *)(base+0x2a9c)=count;
+base->count=count;
 for(i=0;i<4;i++){
 func_020b40a4(i,&end,&start);
-if((s32)(end-start)>2)func_02015a3c(base+start*12,end-start,12,func_020b4198);
+if((s32)(end-start)>2)func_02015a3c(&base->entries[start],end-start,12,func_020b4198);
 }
 }
 }
