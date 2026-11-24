@@ -166,6 +166,13 @@ void func_0213273c(void *arg0, u32 arg1) {
     *(u32 *)((u8 *)arg0 + 0x10) = arg1;
 }
 
+void func_02132744(u8 *arg0) {
+    func_02132598(arg0);
+    func_0212f0f0(*(u32 *)(arg0 + 4), *(u32 *)(arg0 + 0x10));
+    func_0212f97c(*(u32 *)(arg0 + 0), *(u32 *)(arg0 + 4));
+    *(u8 *)(arg0 + 9) = 1;
+}
+
 u32 func_02132a94(u8 *arg0) {
     return *(u32 *)(arg0 + 0x24);
 }
