@@ -129,6 +129,17 @@ void *func_020ddb54(u16 arg0) {
     return NULL;
 }
 
+void *func_020ddb90(u16 arg0) {
+    u8 *node = *(u8 **)(data_02160a68.unk04 + 0x64);
+    while (node != NULL) {
+        if (*(u16 *)(node + 0x90) == arg0) {
+            return node;
+        }
+        node = *(u8 **)(node + 0x134);
+    }
+    return NULL;
+}
+
 void *func_020ddc08(u16 arg0) {
     u8 *node = *(u8 **)(data_02160a68.unk04 + 0x64);
     while (node != NULL) {
