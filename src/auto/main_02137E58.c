@@ -1,5 +1,9 @@
 /* 53 functions from 0x02137E58 to 0x02138E00 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { s32 v[10]; } InitParams;
+extern u8 data_0215c840[], data_0215c870[], data_0215c8a8[], data_0215c8e0[], data_0215c91c[];
+extern void *func_021273a8(void *, s32);
+extern void *func_02126c2c(void *, s32);
 typedef struct { s32 v[5]; } StatusOrder;
 extern const StatusOrder data_02145b88;
 extern u8 data_0215ca20[], data_0215ca50[];
