@@ -32,5 +32,11 @@ void func_020fce30(s32 arg0, s32 arg1, u8 arg2, u8 arg3) {
     data_02160c74.unk_04->unk_2f0 = 1;
 }
 
+void func_020fce80(void) {
+    if (data_02160c74.unk_04 != NULL) {
+        data_02160c74.unk_04->unk_2f0 = 3;
+    }
+}
+
 void func_020fce9c(void) {
 }
