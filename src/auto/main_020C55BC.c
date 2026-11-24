@@ -52,3 +52,8 @@ void func_020c6334(void *arg0) {
         func_0210c5dc(arg0);
     }
 }
+
+s32 func_020c6414(void) {
+    return 9;
+}
+
