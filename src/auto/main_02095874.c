@@ -36,6 +36,26 @@ void func_02095874(void) {
     }
 }
 
+#pragma opt_propagation off
+void func_02095cb8(u8 *arg,s32 a,s32 b) {
+s32 id; u16 i; s32 x,y; u8 *p;
+if(!arg)return;
+p=*(u8 **)(arg+8); id=*(u16 *)p;
+if(arg[0x16]&1)return;
+arg[0x16]|=1;arg[0x16]|=4;arg[0x18]=a;
+y=*(s16 *)(p+0xe);x=*(s16 *)(p+0xc);
+func_020938b0(func_020936f8(0x53,id,x,(s16)(y-16),4,4,16),1,16);
+func_020938b0(func_020936f8(0x54,id,x,y,4,4,18),1,18);
+func_020938b0(func_020936f8(0x26,id,x,y,3,4,7),1,7);
+i=0;
+func_02094990(a,0);func_0209491c(a,b,1);
+do {s32 tag=i+0x77;void *obj;
+obj=func_020936f8((u16)(i+(a*4+0x2b)),id,x,y,3,4,(u16)tag);
+func_020938b0(obj,1,(u16)(i+0x77));
+i++;
+}while(i<4);
+}
+#pragma opt_propagation on
 extern void func_02094990(s32,s32);
 extern void func_0209491c(s32,s32,s32);
 #pragma opt_propagation off
