@@ -20,6 +20,17 @@ void func_02092ca0(void) {
     }
 }
 
+void func_02093224(s32 arg0) {
+    u16 i;
+    for (i = 0; i < 0xc; i++) {
+        u16 id = (u16)(i + 10);
+        u8 *ptr = (u8 *)func_02093658(id);
+        if (ptr != NULL && *(s32 *)(ptr + 8) == arg0) {
+            func_02093444(id);
+        }
+    }
+}
+
 void func_020932a8(u16 id, s16 x, s16 y) {
     u8 *ptr = (u8 *)func_02093658(id);
     s16 oldX, oldY;
