@@ -69,6 +69,7 @@ extern void *func_0210c518(s32, void *);
 extern void func_02008e68(s32, void *, s32);
 extern u16 func_0210c060(void *, s32);
 extern void func_021167f0(void *, void *);
+extern void func_021168f8(void *, void *);
 extern void *func_0210ec9c(const char *, s32, s32);
 extern void *func_0210edac(u32, u8);
 void func_0210e694(void) {
