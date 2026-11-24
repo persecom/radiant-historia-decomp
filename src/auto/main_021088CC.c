@@ -284,4 +284,6 @@ void func_02109884(u32 arg0, u32 arg1) {
         *(u32 *)(data_02162510 + 0x44) = arg1 << 0xc;
     }
 }
-
+s32 func_021090f4(u32 arg0, s32 arg1) {
+    return 0;
+}
