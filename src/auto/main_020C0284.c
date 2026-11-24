@@ -6,6 +6,8 @@ typedef struct {
 } Unk20;
 
 extern const Unk20 data_02143dcc;
+extern const Unk20 data_02143e1c;
+s32 func_0201fb1c(s32,s32);
 extern u8 *data_02160a6c;
 extern void func_020a3bbc(s32);
 extern void func_021098ac(void *);
