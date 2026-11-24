@@ -2,6 +2,15 @@
 #include "common.h"
 extern s32 data_0215118c[][7];
 void func_021098ac(void *);
+static inline void draw_020c4720(s16 sx,s16 sy,s16 w,s16 h,s16 dx,s16 dy) {
+s16 buf[10];
+buf[0]=1;buf[1]=sx;buf[2]=sy;buf[3]=w;buf[4]=h;buf[5]=dx;buf[6]=dy;buf[7]=101;buf[8]=w;buf[9]=h;
+func_021098ac(buf);
+}
+static inline void alpha_020c4720(s32 alpha) {
+if(alpha>=32)alpha=31;
+*(volatile u32 *)0x040004a4=0x10000c0|(alpha<<16);
+}
 typedef struct { u16 v[7]; } Unk14;
 extern const Unk14 data_021444d0;
 extern void func_021099f8(void *);
@@ -83,6 +92,38 @@ void func_020c46c4(void) {
 
 void func_020c470c(void) {
     func_0203be4c(*(void **)(func_020c46ac() + 0x10));
+}
+
+void func_020c4720(int idx,u32 frame) {
+s16 buf[10];
+s32 *p=data_0215118c[idx];
+s32 count,elapsed,x,y,end,alpha;
+elapsed=(s32)frame-p[5]; if(elapsed<0)return;
+end=p[6]; if((s32)frame>=end+32)return;
+count=elapsed/30; if(count>p[4])count=p[4];
+x=p[0];y=p[1];
+if(count!=0) {
+s32 width;
+if((s32)frame>=end)alpha=end+31-frame;else alpha=31;
+if(alpha==0)return;
+width=count*212;
+if(alpha>=32)alpha=31;
+*(volatile u32 *)0x040004a4=0x10000c0|(alpha<<16);
+buf[0]=1;buf[1]=p[2];buf[2]=p[3];buf[3]=(s16)width;buf[4]=16;
+buf[5]=x;buf[6]=y;buf[7]=101;buf[8]=(s16)width;buf[9]=16;
+func_021098ac(buf);
+if(count==p[4])return;
+}
+alpha=elapsed-count*30;
+if(alpha>=32)alpha=31;
+if(alpha==0)return;
+{
+int width=count*212;
+*(volatile u32 *)0x040004a4=0x10000c0|(alpha<<16);
+buf[0]=1;buf[1]=p[2]+width;buf[2]=p[3];buf[3]=212;buf[4]=16;
+buf[5]=x+width;buf[6]=y;buf[7]=101;buf[8]=212;buf[9]=16;
+func_021098ac(buf);
+}
 }
 
 void func_020c48b8(void) {
