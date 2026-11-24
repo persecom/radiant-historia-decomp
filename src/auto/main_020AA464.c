@@ -56,6 +56,14 @@ void func_020aa710(void *arg0) {
     }
 }
 
+void *func_020aa724(void) {
+    void *p = data_021601dc;
+    if (p == NULL) {
+        return NULL;
+    }
+    return *(void **)p;
+}
+
 extern void func_021168f8(void *, void *);
 extern void func_020aa3e0(void *);
 extern void *func_0210c594(u32, void *);
