@@ -16,12 +16,12 @@ void func_0200d790(void *arg0, u32 arg1, u32 arg2) {
     func_0200b988(arg0, data_0215efa0, arg1, arg1 + arg2, 0xffff);
 }
 
-void func_0200d7c0(void) {
+void func_0200d7c0(s32 arg0) {
     if (data_0215effc != 0) {
         return;
     }
     data_0215effc = 1;
-    func_0200d63c();
+    func_0200d63c(arg0);
     func_0200bc24();
 }
 
