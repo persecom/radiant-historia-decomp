@@ -145,3 +145,32 @@ void func_0205440c(u8 *arg0, s32 arg1) {
     *(u32 *)(arg0 + 0xac) = v1;
 }
 
+void func_0205443c(s32 arg0) {
+    u8 *node = *(u8 **)(data_02160204 + 0xe8);
+    if (arg0 != 0) {
+        while (node != NULL) {
+            u8 *s = *(u8 **)(node + 0xd0);
+            if (s != NULL) {
+                if (s[0xc] != 0) {
+                    return;
+                }
+                s[0xc] = s[1];
+                (*(u8 **)(node + 0xd0))[1] = 0;
+            }
+            node = *(u8 **)(node + 0x134);
+        }
+    } else {
+        while (node != NULL) {
+            u8 *s = *(u8 **)(node + 0xd0);
+            if (s != NULL) {
+                if (s[0xc] == 0) {
+                    return;
+                }
+                s[1] = s[0xc];
+                (*(u8 **)(node + 0xd0))[0xc] = 0;
+            }
+            node = *(u8 **)(node + 0x134);
+        }
+    }
+}
+
