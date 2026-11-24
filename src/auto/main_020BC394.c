@@ -9,6 +9,12 @@ typedef struct UnkStruct_02160134 {
 extern UnkStruct_02160134 data_021601f8;
 extern void func_0210c5dc(void *);
 extern u8 *data_02160078;
+extern u32 data_02155c3c;
+extern u8 data_021510fc[];
+extern void *func_0210c594(u32, u32);
+extern void func_021167ac(void *, u32);
+extern void func_021091b4(void);
+extern void *func_02109b14(void *, void *);
 void func_020bd2cc(void) {
     if (data_021601f8.unk04 == NULL) {
         return;
