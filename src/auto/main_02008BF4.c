@@ -120,21 +120,14 @@ again:
 }
 
 void func_02008e08(u8 *src, u8 *dst, s32 size) {
-    s32 i = 0;
-    while (i < size) {
-        *(u16 *)(dst + i) = *(u16 *)(src + i);
-        i += 2;
-    }
+ s32 i=0;
+again:
+ if(i<size) { *(u16 *)(dst+i)=*(u16 *)(src+i); i+=2; goto again; }
 }
 
 void func_02008e24(u32 value, u32 *dst, u32 bytes) { u32 *end=(u32 *)((u8 *)dst+bytes); again: if((s32)dst<(s32)end) { *dst++=value; goto again; } }
 
-void func_02008e38(const u32 *src, u32 *dst, u32 size) {
-    u32 *end = (u32 *)((u8 *)dst + size);
-    while (dst < end) {
-        *dst++ = *src++;
-    }
-}
+void func_02008e38(const u32 *src, u32 *dst, u32 size) { u32 *end=(u32 *)((u8 *)dst+size); again: if ((s32)dst < (s32)end) { *dst++=*src++; goto again; } }
 
 void func_02008e50(u32 *src, u32 *dst, s32 size) {
     u32 *end = (u32 *)((u8 *)src + size);
