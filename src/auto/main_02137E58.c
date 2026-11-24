@@ -10,6 +10,13 @@ extern u8 data_0215c7d0[];
 extern void func_0213807c(void);
 extern void func_0213808c(void);
 extern void func_02126c20(void *);
+extern void func_02139200(void *, void *);
+extern void func_02126c00(void);
+extern void func_02126c0c(void);
+extern void func_021394f8(void *, void *, s32, s32);
+extern u8 data_0215c960[52];
+extern u8 data_0215c994[44];
+extern u8 data_0215c9c0[44];
 extern u8 data_0215c9ec[52];
 extern u32 data_0217667c[8];
 extern u32 data_02176654[2];
@@ -125,8 +132,8 @@ void func_0213800c(s32 arg0) {
             func_021380bc(data_0215c65c, data_02176644[1], arg0);
         }
         data_02176644[1] = 0;
-        ((void (*)(u32, u32))data_02176644[6])(data_02176644[7], data_02176644[6]);
     }
+    ((void (*)(u32, u32))data_02176644[6])(data_02176644[7], data_02176644[6]);
 }
 
 void func_0213807c(void) {
@@ -341,7 +348,7 @@ void func_02138618(void) {
     *(volatile u32 *)data_02176644 = *(volatile u32 *)data_02176644 - 1;
     if (*(volatile u32 *)data_02176644 == 0) {
         func_02138520();
-        data_0217666c[1] = data_0217666c[0] = 0;
+        *(u64 *)data_0217666c = 0;
     }
 }
 
