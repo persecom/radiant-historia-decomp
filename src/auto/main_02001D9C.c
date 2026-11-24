@@ -9,10 +9,6 @@ typedef struct {
     s32 x, y;
 } Vec2;
 
-typedef union {
-    u64 packed;
-    struct { u32 x, y; } v;
-} Vec2Bits;
 
 typedef struct {
     Vec2 xy;
