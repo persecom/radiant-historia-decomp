@@ -90,6 +90,41 @@ void func_020df0c0(void) {
     *(s16 *)(base + 0xac) = (s16)(*(s16 *)(base + 0xae) * 0x8e / 30);
 }
 
+void func_020df164(void) {
+    u8 **pp = &data_02160a74;
+    u8 *base = *pp;
+    u32 *arr;
+    u8 *a;
+    u8 *b;
+    void *c;
+    *(s16 *)(base + 0xca) = -1;
+    arr = **(u32 ***)(base + 0xa0);
+    a = (u8 *)arr[0];
+    b = (u8 *)arr[1];
+    if (*(u8 *)(*(u8 **)(a + 0x118)) != 0) {
+        return;
+    }
+    c = (void *)arr[2];
+    if (b != NULL) {
+        if (func_02065c44(c) == 0 && *(u8 *)(*(u8 **)(b + 0x118)) == 1) {
+            arr[1] = (u32)a;
+            return;
+        }
+        if (*(u8 *)(*(u8 **)(b + 0x118)) != 0) {
+            return;
+        }
+    } else {
+        if (func_02065c44(c) == 0) {
+            arr[1] = (u32)a;
+            return;
+        }
+    }
+    if (func_02065c44(c) == 0) {
+        return;
+    }
+    arr[1] = (u32)func_020de56c(a);
+}
+
 void func_020df224(void *arg0, u8 *arg1) {
     s16 delta;
     u8 *p;
