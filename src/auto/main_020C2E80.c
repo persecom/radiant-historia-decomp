@@ -131,14 +131,15 @@ void func_020c35c4(u32 *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, 
 }
 
 void *func_020c3810(u16 arg0) {
-    u8 *node = *(u8 **)(data_02160140 + 0x3c);
+    u8 **head = *(u8 ***)(data_02160140 + 0x3c);
+    u8 *node = *head;
     while (node != NULL) {
         if (*(u16 *)(node + 0x16) == arg0) {
             return node;
         }
         node = *(u8 **)(node + 0x30);
     }
-    return NULL;
+    return node;
 }
 
 void *func_020c3c78(void) {
