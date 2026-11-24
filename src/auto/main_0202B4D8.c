@@ -104,11 +104,11 @@ u8 *func_0202bc44(s32 arg0) {
         p[1] = arg0 / 3 + 1;
     }
     {
-        u32 v0 = data_0214618c[idx];
-        u32 v1 = data_0214618c[idx + 1];
-        *(u32 *)(p + 4) = v0 << 12;
+        u32 v0 = data_0214618c[idx] << 12;
+        u32 v1 = data_0214618c[idx + 1] << 12;
+        *(u32 *)(p + 4) = v0;
         *(u32 *)(p + 8) = 0x20000;
-        *(u32 *)(p + 0xc) = v1 << 12;
+        *(u32 *)(p + 0xc) = v1;
     }
     func_021167ac(p + 0x10, 8);
     return p;
@@ -189,6 +189,22 @@ s32 func_0202bf08(void *arg0, u32 arg1) {
     while (node != NULL) {
         if (*(void **)(node + 0) == arg0) {
             return 1;
+        }
+        node = *(u8 **)(node + 0xc);
+    }
+    return 0;
+}
+
+s32 func_0202bf4c(u16 arg0, u32 arg1) {
+    u8 *entry = *(u8 **)(data_02160244 + arg1 * 4 + 8);
+    u8 *node = *(u8 **)(entry + 0x10);
+    while (node != NULL) {
+        u8 *obj = *(u8 **)(node + 0);
+        if (obj != NULL) {
+            u32 flags = *(u32 *)(*(u8 **)(obj + 0x118) + 0x78);
+            if ((flags & 0x30) == 0 && *(u16 *)(obj + 0x8c) == arg0) {
+                return 1;
+            }
         }
         node = *(u8 **)(node + 0xc);
     }
