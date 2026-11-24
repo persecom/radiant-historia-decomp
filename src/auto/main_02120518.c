@@ -21,6 +21,7 @@ extern void func_02120bbc(u8 *, u32, u32);
 extern u32 data_02155edc;
 extern void func_02008df0(u32, void *, u32);
 extern void func_02121494(void *, u32, s32, void *);
+extern u8 *func_02121104(u8 *, u32);
 void func_02120518(u32 *arg0) {
     *arg0 = 0;
 }
