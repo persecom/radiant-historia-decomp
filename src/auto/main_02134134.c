@@ -127,8 +127,40 @@ s32 func_021346c4(u8 *arg0) {
     return *(s32 *)(arg0 + 0x68);
 }
 
+s32 func_021346cc(u32 arg0) {
+    u32 a, b, c;
+    u32 buf[18];
+    s32 res;
+    if (func_0213413c(arg0, &a, &b, &c) == 1) {
+        return c;
+    }
+    func_0200b888(buf);
+    if (func_0200bc08(buf, arg0) == 0) {
+        return 0;
+    }
+    res = func_0200bc18(buf);
+    func_0200baa4(buf);
+    return res;
+}
+
 void func_0213473c(void) {
     func_02135c78();
+}
+
+void func_021347e8(void) {
+    s32 i;
+    u8 *p;
+    if (--data_021756d4 != 0) {
+        return;
+    }
+    for (i = 0; i < 4; i++) {
+        p = data_021756d8 + i * 0xac;
+        if (*(s8 *)p == 1) {
+            func_02134b34(p);
+        }
+    }
+    func_02135d20();
+    func_02135c48();
 }
 
 void func_02134844(u8 *arg0, s32 arg1) {
