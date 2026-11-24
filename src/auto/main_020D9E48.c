@@ -154,17 +154,12 @@ void func_020da0dc(void) {
 }
 
 void func_020da1c0(void) {
-    u8 *node;
     u8 *next;
-    u8 **g = &data_02160080;
-    s32 zero = 0;
-    s32 two = 2;
-    s32 c3f2 = 0x3f2;
-    s32 one = 1;
-    if (*(u16 *)(*g + 0x14) == 0) {
+    u8 *node;
+    if (*(u16 *)(data_02160080 + 0x14) == 0) {
         return;
     }
-    node = *(u8 **)(*g + 0x18);
+    node = *(u8 **)(data_02160080 + 0x18);
     while (node != NULL) {
         u8 *obj = *(u8 **)(node + 0);
         u8 *sub;
@@ -174,21 +169,21 @@ void func_020da1c0(void) {
             case 0:
                 *(u8 *)(sub + 0x76) |= 1;
                 *(void **)(sub + 0x78) = node;
-                *(s16 *)(node + 0x10) = one;
+                *(s16 *)(node + 0x10) = 1;
                 break;
             case 1:
-                if (*(u16 *)(*g + 0x14) == 2) {
-                    *(u32 *)(sub + 0x24) = c3f2;
+                if (*(u16 *)(data_02160080 + 0x14) == 2) {
+                    *(u32 *)(sub + 0x24) = 0x3f2;
                     func_020d626c(obj, sub);
-                    *(s16 *)(node + 0x10) = two;
+                    *(s16 *)(node + 0x10) = 2;
                 }
                 break;
             case 2:
                 if (*(u32 *)(sub + 0x24) == 0) {
-                    *(void **)(sub + 0x78) = (void *)zero;
-                    *(u8 *)(sub + 0x76) = zero;
+                    *(void **)(sub + 0x78) = NULL;
+                    *(u8 *)(sub + 0x76) = 0;
                     if (*(u8 *)(node + 0x12) & 1) {
-                        func_020223f8(sub, zero);
+                        func_020223f8(sub, 0);
                     }
                     func_02026ddc(node);
                 }
@@ -285,7 +280,7 @@ BOOL func_020da4f0(u8 *arg0, s32 arg1) {
     return val >= r;
 }
 
-void func_020da870(u8 *arg0, s32 arg1) {
+void func_020da870(u8 *arg0, s32 arg1, s32 arg2) {
     *(u8 *)(arg0 + 0x9c) = 0;
     func_020dd810(arg0, arg1, 0);
     if (*(u32 *)(*(u8 **)(arg0 + 0x118) + 0x78) & 0x10) {
