@@ -420,6 +420,14 @@ s32 func_0212f570(void) {
     return 0;
 }
 
+s32 func_0212f6e4(void *arg0, void *arg1, void *arg2) {
+    if (*(u32 *)(data_021747a0 + 4) == 0) {
+        func_0212f570();
+    }
+    func_0212f58c(data_0215a0d0, 6, arg0, arg1, arg2);
+    return 0;
+}
+
 extern void func_0212f548(u32);
 void func_0212f738(u32 arg0) {
     func_0212f548(arg0);
