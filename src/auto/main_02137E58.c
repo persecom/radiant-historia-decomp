@@ -375,9 +375,8 @@ void func_02138618(void) {
 
 s32 func_02138658(s32 *arg0) {
     s32 ret;
-    s32 (*cb)(void) = (s32 (*)(void))data_02176644[2];
-    if (cb != NULL) {
-        ret = cb();
+    if (data_02176644[2] != 0) {
+        ret = ((s32 (*)(void *))data_02176644[2])(arg0);
     } else {
         func_0213807c();
         ret = 1;
