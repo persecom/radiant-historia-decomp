@@ -1,6 +1,6 @@
 /* 27 functions from 0x02120518 to 0x02121494 (main), found by ds-decomp. */
 #include "common.h"
-static u32 *get_name_02120e30(u8 *dict, u32 i) {
+static inline u32 *get_name_02120e30(u8 *dict, u32 i) {
     if (dict != NULL && i < dict[1]) {
         u8 *p = dict + *(u16 *)(dict + 6);
         return (u32 *)(p + *(u16 *)(p + 2) + i * 16);
