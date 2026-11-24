@@ -105,6 +105,15 @@ void func_021249bc(s32 *arg0, u8 *arg1) {
     arg0[4] = 0;
 }
 
+void func_021249f8(s32 *arg0) {
+    arg0[0] = 0x1000;
+    arg0[1] = 0;
+    arg0[4] = 0;
+    arg0[5] = 0x1000;
+    arg0[12] = 0;
+    arg0[13] = 0;
+}
+
 s32 func_02124b90(void) {
     return 0;
 }
