@@ -141,6 +141,10 @@ void func_020d9cc0(void *arg0) {
     }
 }
 
+void func_020d9d8c(u32 arg0) {
+    *(u32 *)(data_02160258 + 0x7c) |= arg0;
+}
+
 void *func_020d9df4(void) {
     return *(void **)(data_02160258 + 0x80);
 }
