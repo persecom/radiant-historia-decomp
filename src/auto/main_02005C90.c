@@ -1,5 +1,10 @@
 /* 59 functions from 0x02005C90 to 0x02006C38 (main), found by ds-decomp. */
 #include "common.h"
+extern u8 data_0215ce04[], data_0215ced0[], data_0215d058[], data_027e0000[];
+extern u8 SDK_SYS_STACKSIZE[], SDK_IRQ_STACKSIZE[];
+extern void func_020067c8(void);
+extern s32 func_020067a0(s32);
+void func_020062d8(u8 *, void (*)(void *), void *, u8 *, u32, u32);
 
 extern u32 func_02008154(void);
 extern s32 func_02005c80(u16, void *, void *);
