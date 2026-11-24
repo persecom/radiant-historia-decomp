@@ -93,12 +93,16 @@ void func_0209c970(void) {
 }
 
 void func_0209ca18(u8 *arg0, u32 arg1, u32 arg2, s16 arg3, s16 arg4, s16 arg5) {
+    s32 x, y, z;
     (*(void (**)(u8 *))(arg0 + 4))(arg0);
     func_0203bc34(arg1, arg0, arg2, 0, 0, 0);
     func_020a899c(arg0);
-    *(s32 *)(arg0 + 0x44) = arg3 << 12;
-    *(s32 *)(arg0 + 0x48) = arg4 << 12;
-    *(s32 *)(arg0 + 0x4c) = arg5 << 12;
+    x = arg3 << 12;
+    y = arg4 << 12;
+    z = arg5 << 12;
+    *(s32 *)(arg0 + 0x44) = x;
+    *(s32 *)(arg0 + 0x48) = y;
+    *(s32 *)(arg0 + 0x4c) = z;
 }
 
 void func_0209ca84(u32 arg0, u16 arg1, u16 arg2, u16 arg3) {
