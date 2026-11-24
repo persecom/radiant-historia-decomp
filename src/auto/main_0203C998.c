@@ -12,11 +12,12 @@ extern void func_020020f8(void *, void *, void *);
 extern void func_020f4668(void *);
 
 void func_0203d7c0(void) {
-    if (data_02160098[1] != NULL) {
+    u8 **p = data_02160098;
+    if (p[1] != NULL) {
         return;
     }
-    data_02160098[1] = func_0210c594(0x70, data_02155c3c);
-    func_021167ac(data_02160098[1] + 0x64, 4);
+    p[1] = func_0210c594(0x70, data_02155c3c);
+    func_021167ac(p[1] + 0x64, 4);
 }
 
 void func_0203d800(void) {
@@ -31,6 +32,15 @@ void func_0203d800(void) {
         func_0210c5dc(data_02160098[1]);
         data_02160098[1] = NULL;
     }
+}
+
+void func_0203d864(u32 *arg0) {
+    u32 *dst = (u32 *)data_02160098[1];
+    dst[0] = arg0[0];
+    dst[1] = arg0[1];
+    dst[2] = arg0[2];
+    func_020020f8(data_02160098[1], data_02160098[1] + 0xc, data_02160098[1]);
+    func_020f4668(data_02160098[1]);
 }
 
 s32 func_0203d960(s32 arg0) {
