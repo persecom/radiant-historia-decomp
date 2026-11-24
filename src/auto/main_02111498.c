@@ -43,6 +43,51 @@ extern u32 func_02111dbc(u8 *, u32);
 extern void func_020c738c(u8 *, s32, s32);
 extern void func_020c83f4(void *, u32, u16, s32);
 extern void func_021115bc(u8 *, u16);
+void func_02111498(u8 *arg0) {
+    u8 *p48 = *(u8 **)(arg0 + 0x48);
+    u32 r4 = 0;
+    u8 *r5;
+    u8 *sub = p48 + 0x30;
+    u32 r7 = 0;
+    u8 *r9;
+    u16 anim;
+    void *v7;
+    u8 *v6;
+
+    r5 = func_02111d7c(p48, *(u16 *)(arg0 + 0x3a));
+    if (r5 != NULL) {
+        r4 = func_02111dbc(p48, *(u16 *)(r5 + 4));
+    }
+
+    r9 = func_020c9c10(*(void **)(arg0 + 0x30), 1);
+    if (r5 != NULL) {
+        func_020c738c(r9, 0, 1);
+        *(u16 *)(r9 + 0x4c) = *(u16 *)(r5 + 2);
+    } else {
+        func_020c738c(r9, 1, 1);
+    }
+
+    if (r5 != NULL && (r5[6] & 1)) {
+        r7 = 1;
+    }
+
+    if (*(u16 *)(arg0 + 0x3c) != 0) {
+        anim = ((u16 *)(sub + 0x1a))[r7];
+    } else {
+        anim = ((u16 *)(sub + 0x1e))[r7];
+    }
+    func_021115bc(arg0, anim);
+
+    v7 = func_020c9c10(*(void **)(arg0 + 0x30), 2);
+    if (r5 == NULL) {
+        return;
+    }
+
+    v6 = func_020c9c10(*(void **)(arg0 + 0x30), 3);
+    func_020c83f4(v7, r4, *(u16 *)(r5 + 2), 0);
+    func_020c738c(v6, 1, 1);
+}
+
 void func_02111594(void) {
 }
 
