@@ -67,6 +67,10 @@ void func_02135724(u16 *arg0, u16 arg1) {
     }
 }
 
+void func_021357dc(u8 **arg0, u8 arg1) {
+    arg0[3][4] = arg1;
+}
+
 void func_02135c00(void) {
     func_0213807c();
 }
