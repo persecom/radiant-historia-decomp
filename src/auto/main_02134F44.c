@@ -18,6 +18,48 @@ typedef struct {
 extern Unk_021756d8 data_021756d8[4];
 
 extern void func_0213807c(void);
+void func_0213545c(u8 *arg0) {
+    s32 i = 0;
+    s32 n;
+    if ((s8)arg0[4] >= 1 && (s8)arg0[3] >= 1 && (s8)arg0[2] == 2) {
+        n = 2;
+    } else {
+        n = (s8)arg0[3];
+    }
+    for (; i < n; i++) {
+        func_0213689c(((void **)(arg0 + 0x20))[i]);
+    }
+}
+
+void func_021354ac(u8 *arg0) {
+    if (func_02134c94(arg0) == 1) {
+        func_02134f44(arg0);
+        return;
+    }
+    if (func_02134edc(arg0) != 1) {
+        return;
+    }
+    if (*(u16 *)(arg0 + 0x2c) != 0) {
+        func_02134f44(arg0);
+    } else {
+        func_0213545c(arg0);
+        if (func_02136930(*(void **)(arg0 + 0x20)) != 0) {
+            return;
+        }
+        arg0[6] = 0;
+        func_02134cb4(arg0, 0, 0);
+    }
+}
+
+void func_0213551c(void) {
+    s32 i;
+    for (i = 0; i < 4; i++) {
+        if (data_021756d8[i].field_0 == 1) {
+            func_021354ac((u8 *)&data_021756d8[i]);
+        }
+    }
+}
+
 void func_02135c00(void) {
     func_0213807c();
 }
@@ -25,5 +67,11 @@ void func_02135c00(void) {
 extern void func_0213808c(void);
 void func_02135c0c(void) {
     func_0213808c();
+}
+
+void func_02135c18(void) {
+    func_02013878(data_021759b4, 0, 0x100);
+    data_021759ac[1] = 0;
+    data_021759ac[0] = 0;
 }
 
