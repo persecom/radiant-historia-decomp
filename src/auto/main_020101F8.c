@@ -26,6 +26,7 @@ extern void func_02010fa8(s32, s32);
 extern void func_0201082c(u32);
 extern void func_0200fddc(void);
 typedef struct { u32 field_0; } ZeroTarget_0215f120;
+static inline void set_zero_0210b10(ZeroTarget_0215f120 *p, u32 v) { p->field_0 = v; }
 extern void func_020059e4(u32);
 extern void func_02005a14(u32);
 extern void func_020059b4(u32);
@@ -231,10 +232,12 @@ void func_02010a94(u8 *arg0) {
 }
 
 void func_02010b10(void) {
+    ZeroTarget_0215f120 *z;
     func_0201076c();
     func_02010f58();
     func_0201082c(8);
-    set_zero(*(u32 **)data_0215f120);
+    z = *(ZeroTarget_0215f120 **)data_0215f120;
+    z->field_0 = 0;
     func_0200fddc();
 }
 
