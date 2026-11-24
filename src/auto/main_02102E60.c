@@ -12,6 +12,236 @@ extern s32 func_02092994(void *, s32);
 extern s32 func_02109444(void *);
 extern void func_021093b0(void *);
 
+s32 func_02102e60(void)
+{
+    typedef struct {
+        s8 anim_mode;
+        u8 pad01[3];
+        s32 anim_id;
+        u8 anim_value;
+        u8 pad09;
+        s16 scene;
+        s16 angle;
+        u16 pad0e;
+        s32 x;
+        s32 z;
+        s8 kind;
+        u8 pad19[3];
+        s32 required;
+        s32 excluded;
+        s32 param;
+        s32 alternate;
+        s8 mode;
+        s8 value;
+        s8 field2e;
+        s8 field2f;
+        u32 field30;
+    } Entry;
+    extern u8 *data_02160204;
+    extern u8 *data_02160200;
+    extern u8 data_02154018[];
+    extern u8 data_0215493c[];
+    extern u8 data_02153860[];
+    extern void *func_02046f90(u16, u16);
+    extern void *func_020e9fe8(void *, u16);
+    extern s32 func_020f62f4(s32, s32);
+    extern void func_02052240(u8 *);
+    extern void func_0205440c(u8 *, s32);
+    extern void func_020477dc(void *, s32, s32);
+    s32 no_flag;
+    u32 one;
+    Entry *entry;
+    s16 i;
+    s32 group;
+    s16 count;
+    u8 *obj;
+    s32 object_id;
+    s32 instance;
+    s32 scene;
+    s32 first_id;
+    s32 other_id;
+    s32 small_id;
+    s32 lower;
+    s32 hide_id;
+    s32 upper;
+    s32 special;
+    s32 flag, v, anim;
+    u32 mask, type;
+    u8 *state;
+    u8 *secondary;
+    Entry *table;
+    i = 0;
+    scene = *(u16 *)(data_02160204 + 0x72);
+    count = i;
+    one = 1;
+    group = (scene - 1) / 20 + 1;
+    if (group >= 1 && group < 11) {
+        entry = (Entry *)data_02154018;
+    } else if (group >= 11 && group < 21) {
+        entry = (Entry *)data_0215493c;
+    } else {
+        entry = (Entry *)data_02153860;
+    }
+    special = 5301;
+    no_flag = -1;
+    first_id = special - 300;
+    small_id = 500 - no_flag;
+    other_id = special - 220;
+    hide_id = special + 254;
+    lower = 6000 - 1000;
+    upper = 6000 - 1000;
+    do {
+        if (scene != entry->scene || data_02160204[0x7a] != 0) {
+            goto next_record;
+        }
+        if (entry->kind == 0) {
+            object_id = first_id;
+            instance = count + 0x5dd;
+        } else if (entry->kind == 1) {
+            object_id = special;
+            instance = count + 0x672;
+        }
+        count++;
+        *(s32 *)(data_02160200 + 0x168) = entry->param;
+        flag = entry->required;
+        if (flag != no_flag) {
+            mask = one << (flag % 32);
+            if ((((u32 *)data_02160200)[flag / 32] & mask) == 0) {
+                goto next_record;
+            }
+        }
+        flag = entry->excluded;
+        if (flag != no_flag) {
+            mask = one << (flag % 32);
+            if (((u32 *)data_02160200)[flag / 32] & mask) {
+                goto next_record;
+            }
+        }
+        obj = func_02046f90((u16)object_id, (u16)instance);
+        if (object_id != 2000) {
+            secondary = func_020e9fe8((void *)(special + 700), (u16)(instance + 0xbb9));
+            *(s32 *)(secondary + 0x1c) = 0;
+            *(s32 *)(secondary + 0x20) = 0;
+            *(s32 *)(secondary + 0x24) = 0x32000;
+            *(u32 *)(secondary + 0x18) &= ~1U;
+        }
+        *(u16 *)(obj + 0x92) = (u16)func_020f62f4(entry->angle, one);
+        v = func_020f62f4(entry->x, 0);
+        *(s32 *)(obj + 0) = v;
+        *(s32 *)(obj + 0x18) = v;
+        v = func_020f62f4(entry->z, 0);
+        *(s32 *)(obj + 8) = v;
+        *(s32 *)(obj + 0x20) = v;
+        if (entry->anim_mode == 0) {
+            anim = entry->anim_id;
+            if (anim > 0 && anim <= 100) {
+                *(u16 *)(*(u8 **)(obj + 0xb0) + 0xe) = 0;
+            } else if (anim > 200 && anim <= 300) {
+                *(u16 *)(*(u8 **)(obj + 0xb0) + 0xe) = 5;
+            } else if (anim > 300 && anim <= 500) {
+                *(u16 *)(*(u8 **)(obj + 0xb0) + 0xe) = one;
+            } else if (anim > 500 && anim <= 700) {
+                *(u16 *)(*(u8 **)(obj + 0xb0) + 0xe) = 2;
+            } else if (anim > 700 && anim <= 800) {
+                *(u16 *)(*(u8 **)(obj + 0xb0) + 0xe) = 3;
+            } else {
+                *(u16 *)(*(u8 **)(obj + 0xb0) + 0xe) = 0;
+            }
+            *(u16 *)(*(u8 **)(obj + 0xb0) + 0x10) = (u16)entry->anim_id;
+            *(u16 *)(*(u8 **)(obj + 0xb0) + 0x12) = entry->anim_value;
+        } else if (entry->anim_mode == 1) {
+            *(u16 *)(*(u8 **)(obj + 0xb0) + 0xe) = 4;
+            *(u16 *)(*(u8 **)(obj + 0xb0) + 0x10) = (u16)entry->anim_id;
+            *(u16 *)(*(u8 **)(obj + 0xb0) + 0x12) = one;
+        } else {
+            *(u16 *)(*(u8 **)(obj + 0xb0) + 0xe) = 5;
+            *(u16 *)(*(u8 **)(obj + 0xb0) + 0x10) = (u16)entry->anim_id;
+            *(u16 *)(*(u8 **)(obj + 0xb0) + 0x12) = entry->anim_value;
+        }
+    anim_done:
+        *(u16 *)(*(u8 **)(obj + 0xb0) + 0xa) = one;
+        func_02052240(obj);
+        type = *(u16 *)(obj + 0x8e);
+        if (type != special && type != 2000 && type != other_id && type != small_id) {
+            object_id = 0;
+            if (type > (u32)lower && type < 6000) {
+                v = *(u32 *)(obj + 0x80) | 0x400;
+                *(u32 *)(obj + 0x80) = v | 2;
+            }
+        } else {
+            switch (entry->mode) {
+            default:
+            case 0:
+                obj[0x9d] = 0;
+                *(s32 *)*(u8 **)(obj + 0xb0) = 0;
+                break;
+            case 1:
+                obj[0x9d] = entry->value;
+                break;
+            case 2:
+                *(s32 *)*(u8 **)(obj + 0xb0) = (s32)entry->value * 4096;
+                break;
+            }
+            v = entry->field2e;
+            obj[0xce] = (u8)v;
+            if ((v & 0xff) == 3) {
+                *(u16 *)(*(u8 **)(obj + 0xb0) + 0x14) = (u16)entry->alternate;
+                state = data_02160200;
+                flag = *(s32 *)(state + 0x168);
+                mask = one << (flag % 32);
+                if (((u32 *)state)[flag / 32] & mask) {
+                    func_0205440c(obj, one);
+                } else {
+                    flag = entry->alternate;
+                    if (flag != no_flag) {
+                        mask = one << (flag % 32);
+                        if (((u32 *)state)[flag / 32] & mask) {
+                            func_0205440c(obj, one);
+                        } else {
+                            *(u32 *)(obj + 0xac) |= 0x80000;
+                            func_0205440c(obj, 0);
+                        }
+                    }
+                    if (data_02160200 != NULL) {
+                        *(u16 *)(*(u8 **)(obj + 0xb0) + 0x22) = (u16)*(s32 *)(data_02160200 + 0x168);
+                    }
+                }
+            }
+            obj[0xcf] = entry->field2f;
+        }
+        if (data_02160200 != NULL) {
+            *(u16 *)(*(u8 **)(obj + 0xb0) + 0x22) = (u16)*(s32 *)(data_02160200 + 0x168);
+        }
+        if (*(u16 *)(obj + 0x8e) == hide_id) {
+            func_0205440c(obj, 0);
+        }
+        *(u32 *)(obj + 0x58) = 0x1000;
+        type = *(u16 *)(obj + 0x8e);
+        if (type > 1000 && type < (u32)upper) {
+            func_020477dc(obj, 2, 0);
+        } else if (type != 0 && type < 700) {
+            func_020477dc(obj, 2, 0);
+        } else {
+            func_020477dc(obj, 0, 0);
+        }
+        flag = entry->param;
+        mask = one << (flag % 32);
+        if (((u32 *)data_02160200)[flag / 32] & mask) {
+            func_020477dc(obj, 2, 0);
+        }
+    next_record:
+        i++;
+        if (group >= 1 && group < 11) {
+            entry = (Entry *)(data_02154018 + (s32)i * 0x34);
+        } else if (group >= 11 && group < 21) {
+            entry = (Entry *)(data_0215493c + (s32)i * 0x34);
+        } else {
+            entry = (Entry *)(data_02153860 + (s32)i * 0x34);
+        }
+    } while (entry->anim_id != no_flag);
+    return 1;
+}
+
 s32 func_0210344c(void)
 {
     typedef struct {
