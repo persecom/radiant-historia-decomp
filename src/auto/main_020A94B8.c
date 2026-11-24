@@ -76,6 +76,13 @@ void func_020a9b28(void *arg0) {
     func_020a9b40(arg0);
 }
 
+extern u8 *data_021600e4;
+extern s32 func_020a9194(void *);
+extern s32 func_020a916c(s32);
+u32 func_020aa19c(void) {
+    return *(u32 *)(data_021600e4 + 0x13c8);
+}
+
 void *func_020aa318(void) {
     return func_0210c594(0xc, data_02155c3c);
 }
