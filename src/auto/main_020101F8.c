@@ -11,7 +11,7 @@ extern void func_020059b4(u32);
 extern u32 func_02008128(void);
 extern void func_0200813c(u32);
 extern void func_020057e8(u32, void *);
-extern u32 data_0215f760[4];
+extern u8 data_0215f760[16];
 
 extern u32 data_0215fa20[3];
 extern u8 data_0215f660[256];
@@ -95,6 +95,61 @@ void func_020106b8(u32 arg0, u32 arg1) {
 void func_02010738(u32 arg0) {
     func_020106b8(0xb7, arg0);
     *(volatile u32 *)0x40001a4 = (*(volatile u32 *)0x2fffae0 & ~0x07000000) | 0xa1000000;
+}
+
+void func_0201088c(void) {
+    func_020106b8(0xb5, 0);
+    do {
+        *(volatile u32 *)0x40001a4 = (*(volatile u32 *)0x2fffae0 & ~0x07000000 | 0xa0000000) & -0x2000;
+    } while (*(volatile u32 *)0x40001a4 & 0x80000000);
+}
+
+void func_020109f4(void) {
+    u32 *p = *(u32 **)(data_0215f760 + 8);
+    if (p == NULL) {
+        return;
+    }
+    p[3] += 0x200;
+    p[4] += 0x200;
+    p[5] -= 0x200;
+    if (p[5] != 0) {
+        func_02010738(p[3]);
+        return;
+    }
+    {
+        void (**fn)(u32) = *(void (***)(u32))(data_0215f120 + 0x50c);
+        fn[1](*(u32 *)(data_0215f120 + 0x508));
+    }
+    func_020059e4(0x80000);
+    func_02005a14(0x80000);
+    *(u32 **)(data_0215f760 + 8) = NULL;
+    func_0201076c();
+    func_02010f58();
+    if (p[1] != 0) {
+        ((void (*)(u32))p[1])(p[2]);
+    }
+}
+
+void func_02010a94(u8 *arg0) {
+    u32 bak = func_02008128();
+    *(u32 **)(data_0215f760 + 8) = arg0;
+    func_020057e8(0x80000, func_020109f4);
+    func_02005a14(0x80000);
+    func_020059b4(0x80000);
+    func_0200813c(bak);
+    {
+        void (*fn)(u32, u32, u32, u32) = *(void (**)(u32, u32, u32, u32))(data_0215f120 + 0x50c);
+        fn(*(u32 *)(data_0215f120 + 0x508), 0x4100010, *(u32 *)(arg0 + 0x10), 0x200);
+    }
+    func_02010738(*(u32 *)(arg0 + 0xc));
+}
+
+void func_02010b10(void) {
+    func_0201076c();
+    func_02010f58();
+    func_0201082c(8);
+    *(u32 *)*(u32 **)data_0215f120 = 0;
+    func_0200fddc();
 }
 
 void func_02010e40(void) {
