@@ -437,6 +437,31 @@ void func_02114d00(u8 *arg0, void *arg1, s32 arg2, s32 arg3) {
     }
 }
 
+s32 func_02114db8(void *arg0,s32 heap,s32 load) {
+u8 *p=arg0;
+s32 zero=0, read;
+if(!func_0200bb10(p+0x34,zero,zero))return zero;
+if(func_0200bb3c(p+0x34,p,0x30)!=0x30)return zero;
+if(heap) {*(void **)(p+152)=func_0211543c(heap,*(u32 *)(p+28),func_021152d0,p,zero);
+if(!*(void **)(p+152))return zero;
+if(!func_0200bb10(p+0x34,*(u32 *)(p+24),zero))return zero;
+read=func_0200bb3c(p+0x34,*(void **)(p+152),*(s32 *)(p+28));
+if(read!=*(s32 *)(p+28))return zero;
+*(void **)(p+144)=func_0211543c(heap,*(u32 *)(p+36),func_021152dc,p,zero);
+if(!*(void **)(p+144))return zero;
+if(!func_0200bb10(p+0x34,*(u32 *)(p+32),zero))return zero;
+read=func_0200bb3c(p+0x34,*(void **)(p+144),*(s32 *)(p+36));
+if(read!=*(s32 *)(p+36))return zero;
+if(load && *(u32 *)(p+20)) {
+*(void **)(p+148)=func_0211543c(heap,*(u32 *)(p+20),func_021152e8,p,zero);
+if(!*(void **)(p+148))return zero;
+if(!func_0200bb10(p+0x34,*(u32 *)(p+16),zero))return zero;
+read=func_0200bb3c(p+0x34,*(void **)(p+148),*(s32 *)(p+20));
+if(read!=*(s32 *)(p+20))return zero;
+}}
+return 1;
+}
+
 u32 func_02114f58(u32 arg0) {
     u32 old = data_0216cad0[0];
     data_0216cad0[0] = arg0;
