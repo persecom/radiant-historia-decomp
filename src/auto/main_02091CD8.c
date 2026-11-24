@@ -1,7 +1,7 @@
 /* 19 functions from 0x02091CD8 to 0x02092CA0 (main), found by ds-decomp. */
 #include "common.h"
 typedef struct {
- u8 pad[0xba];
+ u8 pad[0x53ba];
  s16 unk_ba, unk_bc, unk_be;
  u8 pad_c0[0xf];
  u8 unk_cf;
