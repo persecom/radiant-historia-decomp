@@ -96,6 +96,30 @@ func_0210da14(data_021600c0 + 0x20);
 if (data_021600c0 != NULL) {func_0210c5dc(data_021600c0); data_021600c0 = NULL;}
 }
 
+void func_02055bac(void) {
+u8 *node = *(u8 **)(data_021600c0 + 0x34);
+s16 sp[10];
+if (node == NULL) return;
+do {
+if (node[2] != 0 && node[0x26] != 0) {
+*(volatile u32 *)0x040004a4 = (node[0x26] << 16) | 0xc0;
+func_02055e14(node[3]);
+sp[0] = 1;
+sp[1] = *(s16 *)(node + 4);
+sp[2] = *(s16 *)(node + 6);
+sp[3] = *(s16 *)(node + 8);
+sp[4] = *(s16 *)(node + 10);
+sp[5] = *(s16 *)(node + 12) + (*(s32 *)(node + 20) >> 12);
+sp[6] = *(s16 *)(node + 14) + (*(s32 *)(node + 24) >> 12);
+sp[7] = *(s16 *)(node + 36);
+sp[8] = *(s16 *)(node + 16) + (*(s32 *)(node + 28) >> 12);
+sp[9] = *(s16 *)(node + 18) + (*(s32 *)(node + 32) >> 12);
+func_021098ac(sp);
+}
+node = *(u8 **)(node + 0x30);
+} while (node != NULL);
+}
+
 void func_02055c90(s32 arg0) {
     UnkData_02055c90 buf;
     u8 unk8[0x28];
