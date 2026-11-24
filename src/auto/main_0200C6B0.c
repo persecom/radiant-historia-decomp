@@ -95,6 +95,10 @@ s32 func_0200d624(void) {
     return 4;
 }
 
+s32 func_0200d62c(void) {
+    return 4;
+}
+
 s32 func_0200d634(void) {
     return 0;
 }
