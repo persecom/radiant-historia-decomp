@@ -245,6 +245,19 @@ void func_02113a00(u32 arg0) {
     data_0216bfc0[0] &= ~arg0;
 }
 
+s32 func_02113a1c(void) {
+    u32 mask = 1;
+    s32 i;
+    for (i = 0; i < 8; i++) {
+        if ((data_0216bfc0[1] & mask) == 0) {
+            data_0216bfc0[1] |= mask;
+            return i;
+        }
+        mask <<= 1;
+    }
+    return -1;
+}
+
 void func_02113abc(s32 arg0, u32 arg1) {
     *(u32 *)(data_0216c440 + arg0 * 0x24) = arg1;
 }
