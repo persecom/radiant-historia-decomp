@@ -129,6 +129,19 @@ s32 func_0200ce18(void *arg0, u16 arg1, void *arg2, u32 *arg3, s32 arg4) {
     return res;
 }
 
+s32 func_0200cea4(void *arg0, u8 *arg1, u32 arg2, u32 arg3, u32 *arg4) {
+    s32 res;
+    *(u16 *)(arg1 + 0x38) = 0;
+    *(u16 *)(arg1 + 0x3a) = 0;
+    *(u32 *)(arg1 + 0x30) = arg3;
+    *(u32 *)(arg1 + 0x34) = *arg4;
+    res = func_0200cb40(arg1, 5, 1);
+    if (res == 0) {
+        *arg4 = *(u32 *)(arg1 + 0x34);
+    }
+    return res;
+}
+
 u32 func_0200d524(u8 *arg0) {
     return *(u32 *)(arg0 + 0x24);
 }
