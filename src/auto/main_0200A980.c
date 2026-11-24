@@ -88,6 +88,42 @@ u8 *func_0200b0ec(u8 *arg0, s8 *arg1) {
     return r7;
 }
 
+extern u8 data_0215ee78[0x104];
+extern u8 *func_0200b2ac(const char *, u32 *, u8 *);
+extern void func_02012244(void *, void *, s32);
+extern s32 func_0200afb4(void *, s32, s32);
+s32 func_0200b178(const char *arg0) {
+    s32 ret = 0;
+    u8 path[0x104];
+    u8 file[0x48];
+    u32 sp4[4];
+    u32 sp0 = 0;
+    u8 *arc;
+
+    arc = func_0200b2ac(arg0, &sp0, path);
+    if (arc != NULL) {
+        *(u8 **)((u8 *)&data_0215ed68 + 4) = arc;
+        *(u16 *)((u8 *)&data_0215ed68 + 8) = 0;
+        *(u16 *)((u8 *)&data_0215ed68 + 0xa) = 0;
+        *(u32 *)((u8 *)&data_0215ed68 + 0xc) = 0;
+        func_02012244(data_0215ee78, path, 0x104);
+        if (*(u32 *)(*(u8 **)(arc + 0x24) + 0x10) != 0) {
+            func_0200b888((u32 *)file);
+            *(u8 **)(file + 8) = arc;
+            *(u32 **)(file + 0x10) = sp4;
+            sp4[0] = sp0;
+            sp4[1] = (u32)path;
+            sp4[3] = 1;
+            if (func_0200afb4(file, 4, 1) != 0) {
+                *(u16 *)((u8 *)&data_0215ed68 + 8) = sp4[2];
+                func_02012244(data_0215ee78, path, 0x104);
+            }
+        }
+        ret = 1;
+    }
+    return ret;
+}
+
 s32 func_0200b24c(char *dst, s32 dst_len, const char *src, s32 src_len, s32 *truncated) {
     s32 i;
     s32 max_len = (dst_len - 1 < src_len) ? (dst_len - 1) : src_len;
