@@ -13,3 +13,12 @@ extern void func_0210db10(void *, void *, u32);
 void func_0210b848(s32 arg0) {
     func_02116844(data_02162618, arg0);
 }
+
+void func_0210b860(void **arg0) {
+    func_021168f8(data_02162618, arg0);
+    func_0210b4cc(*arg0);
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
