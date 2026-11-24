@@ -113,3 +113,31 @@ s32 func_020ebd5c(u8 *arg0, s32 arg1) {
     return 0;
 }
 
+s32 func_020020bc(s32,s32);
+s32 func_02002080(s32,s32);
+void *func_020ec00c(u8 *obj) {
+ u8 *base;
+ s32 i;
+ s32 count;
+ u16 total=**(u16 **)(*(u8 **)(*(u8 **)(obj+8)+0x58)+12);
+ s32 extra=func_020020bc(total,2)!=0;
+ count=func_02002080(total,2);
+ count=(u16)(count+extra);
+ base=func_0210c594(count*4,data_02155c3c);
+ u8 *p=base;
+ for(i=0;i<count;i++,p+=4) {
+  s32 bit=0;
+  u16 index=i*2;
+  *(u16 *)(p+2)=index;
+  p[0]=0;
+  for(;bit<2;index++,bit++) {
+   if(total<=index) break;
+   {
+    s32 missing=func_021086d4(*(void **)(obj+8),index)==0;
+    if(!missing) p[0]|=(u8)(1<<bit);
+   }
+  }
+ }
+ return base;
+}
+
