@@ -27,6 +27,21 @@ s32 func_021185b8(s32 *arg0, s32 arg1) {
     return arg0[arg1];
 }
 
+s32 func_021185c0(s32 *arg0, s32 arg1) {
+    return arg0[arg1] == -1 ? 0 : 1;
+}
+
+void func_021185d4(s32 *arg0) {
+    s32 i;
+    for (i = 0; i < 3; i++) {
+        arg0[i + 2] = -1;
+    }
+}
+
+void func_021185f4(s32 *arg0, s32 arg1, s32 arg2) {
+    arg0[arg1 + 2] = arg2;
+}
+
 extern void func_02006dc4(void *, u32);
 extern void func_0200439c(void);
 extern void func_020043f8(void *, u32, u32);
