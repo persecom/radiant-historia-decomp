@@ -81,3 +81,6 @@ s32 func_0207708c(void *arg0, s32 arg1, s32 arg2) {
     return *(s32 *)arg0;
 }
 
+void func_02077684(void) {
+}
+
