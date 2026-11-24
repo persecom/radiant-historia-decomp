@@ -21,11 +21,7 @@ extern void func_020b7624(void);
 extern void func_020b8944(void);
 extern s32 func_020de3d8(void);
 extern void *func_020c9c10(void *, s32);
-static inline void set_obj_position(void *parent, s32 id, s16 x, s16 y) {
-u8 *obj=func_020c9c10(parent,id);
-((void (*)(u8 *,s32))(*(void **)(obj+0x10)))(obj,x);
-((void (*)(u8 *,s32))(*(void **)(obj+0x14)))(obj,y);
-}
+
 extern void func_020c8488(void *);
 extern s32 func_020b8dbc(void);
 extern void func_02111ccc(void *);
