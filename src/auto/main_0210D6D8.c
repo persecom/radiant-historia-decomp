@@ -206,13 +206,12 @@ void func_0210dc88(void) {
         return;
     }
     if ((val & 0x100) != 0) {
-        u8 *p = *(u8 **)data_02160204;
-        u8 b = p[0xd7];
+        u32 b = data_02160204[0xd7];
         if (b == 0xc || b == 0xd || b == 0x1d || b == 0x27) {
             return;
         }
+        func_02008250(*(u32 *)0x02fffc20 + 1);
     }
-    func_02008250(*(u32 *)0x02fffc20 + 1);
 }
 
 void func_0210e3dc(void) {
