@@ -105,6 +105,37 @@ void func_020c74fc(void *arg0) {
     }
 }
 
+extern s32 func_0201f8cc(u32);
+extern s32 func_02020888(s32, s32);
+extern s32 func_020201f4(s32, s32);
+extern s32 func_020203d4(s32, s32);
+extern s32 func_0201ff40(s32);
+void func_020c753c(void *arg0) {
+    u8 *p = arg0;
+    u8 *obj = *(u8 **)(p + 0x30);
+    switch (p[0x3a]) {
+    case 0: {
+        s32 a = func_0201f8cc(*(u16 *)(p + 0x36));
+        s32 b = func_0201f8cc(*(u16 *)(p + 0x38));
+        s32 product = func_02020888(a, b);
+        s32 v = func_020201f4(0x41800000, product);
+        s32 r = func_020203d4(0x41700000, v);
+        u8 value = (u8)func_0201ff40(r);
+        ((void (*)(u8 *, s32))(*(void **)(obj + 0x20)))(obj, value);
+        break;
+    }
+    case 1: {
+        s32 a = func_0201f8cc(*(u16 *)(p + 0x36));
+        s32 b = func_0201f8cc(*(u16 *)(p + 0x38));
+        s32 product = func_02020888(a, b);
+        s32 v = func_020201f4(0x41700000, product);
+        u8 value = (u8)(func_0201ff40(v) + 0x10);
+        ((void (*)(u8 *, s32))(*(void **)(obj + 0x20)))(obj, value);
+        break;
+    }
+    }
+}
+
 s32 func_020c7604(void) {
     return 0;
 }
