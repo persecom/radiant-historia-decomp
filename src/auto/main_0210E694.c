@@ -68,11 +68,8 @@ void func_0210e740(void) {
         data_021628f8[8] = data_021628f8[4];
         data_021628f8[9] = data_021628f8[5];
     } else {
-        u16 y = data_021628f8[9];
-        u16 x = data_021628f8[8];
         u16 v;
-        data_021628f8[4] = x;
-        data_021628f8[5] = y;
+        *(UnkPair *)&data_021628f8[4] = *(UnkPair *)&data_021628f8[8];
         v = data_021628f8[11];
         data_021628f8[6] = cur;
         data_021628f8[7] = v;
