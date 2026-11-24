@@ -51,6 +51,28 @@ void func_02137f1c(void) {
     func_02136980();
 }
 
+void func_02137f34(void) {
+    data_02176400--;
+    if (data_02176400 == 0) {
+        memset(data_02176404, 0, sizeof(data_02176404));
+    }
+}
+
+void func_02137f80(s32 *arg0, s32 arg1, s32 *arg2, s32 *arg3) {
+    s32 ptr = *(volatile s32 *)arg0;
+    s32 len = *(volatile s32 *)(arg0 + 1);
+    s32 rem;
+    *(volatile s32 *)arg2 = ptr;
+    *(volatile s32 *)(arg2 + 1) = len;
+    arg3[1] = len;
+    if (arg2[1] > arg1) {
+        arg2[1] = arg1;
+    }
+    rem = arg3[1] - arg2[1];
+    arg3[1] = rem;
+    arg3[0] = (rem == 0) ? 0 : (arg2[0] + arg2[1]);
+}
+
 void func_0213807c(void) {
     func_02137fc8(1);
 }
