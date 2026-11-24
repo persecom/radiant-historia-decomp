@@ -47,3 +47,17 @@ void func_02003ea8(void *arg0, u32 arg1, u32 arg2) {
     }
 }
 
+extern u32 func_02003558(void);
+extern u32 func_020035b0(void);
+extern s32 func_020053d0(void);
+extern void func_02008840(s32, void *, u32, u32, s32, s32, s32);
+extern u32 data_0215cd24[];
+void func_02003f18(void *arg0, u32 arg1, u32 arg2) {
+    u32 base = func_02003558();
+    if (data_02145ba4 != -1 && arg2 > 0x30) {
+        func_020085ec(data_02145ba4, arg0, base + arg1, arg2, 1);
+    } else {
+        func_02008e38(arg0, base + arg1, arg2);
+    }
+}
+
