@@ -443,6 +443,46 @@ void *func_02115048(s32 arg0) {
     return entryOff == 0 ? NULL : *(u8 * volatile *)(base + 0x98) + entryOff;
 }
 
+extern void *func_021171d8(void *, u32, u16);
+extern s32 func_021155fc(void *, void *);
+void *func_021150ac(s32 arg0) {
+    u8 *base = (u8 *)data_0216cad0[0];
+    u8 *hdr = *(u8 * volatile *)(base + 0x98);
+    u32 off = *(u32 *)(hdr + 0x14);
+    u8 *tbl = off == 0 ? NULL : hdr + off;
+    u32 entryOff;
+    if (tbl == NULL) {
+        return NULL;
+    }
+    if (arg0 < 0) {
+        return NULL;
+    }
+    if ((u32)arg0 >= *(u32 *)tbl) {
+        return NULL;
+    }
+    entryOff = *(u32 *)(tbl + arg0 * 4 + 4);
+    return entryOff == 0 ? NULL : *(u8 * volatile *)(base + 0x98) + entryOff;
+}
+
+void *func_02115110(s32 arg0) {
+    u8 *base = (u8 *)data_0216cad0[0];
+    u8 *hdr = *(u8 * volatile *)(base + 0x98);
+    u32 off = *(u32 *)(hdr + 0x18);
+    u8 *tbl = off == 0 ? NULL : hdr + off;
+    u32 entryOff;
+    if (tbl == NULL) {
+        return NULL;
+    }
+    if (arg0 < 0) {
+        return NULL;
+    }
+    if ((u32)arg0 >= *(u32 *)tbl) {
+        return NULL;
+    }
+    entryOff = *(u32 *)(tbl + arg0 * 4 + 4);
+    return entryOff == 0 ? NULL : *(u8 * volatile *)(base + 0x98) + entryOff;
+}
+
 u32 func_02115174(u32 arg0) {
     u8 *p = *(u8 **)(data_0216cad0[0] + 0x90);
     if (arg0 >= *(u32 *)(p + 8)) {
@@ -487,6 +527,29 @@ void func_021152dc(s32 a0, s32 a1, u8 *a2) {
 
 void func_021152e8(s32 a0, s32 a1, u8 *a2) {
     *(s32 *)(a2 + 0x94) = 0;
+}
+
+void *func_021152f4(u8 *arg0, u32 arg1) {
+    u8 *end = arg0 + arg1;
+    u8 *aligned = (u8 *)((u32)(arg0 + 3) & ~3);
+    u32 len;
+    void *p;
+    if (aligned > end) {
+        return NULL;
+    }
+    len = end - aligned;
+    if (len < 0x10) {
+        return NULL;
+    }
+    p = func_021171d8(aligned + 0x10, len - 0x10, 0);
+    if (p == NULL) {
+        return NULL;
+    }
+    if (func_021155fc(aligned, p) != 0) {
+        return aligned;
+    }
+    func_02117210(p);
+    return NULL;
 }
 
 void func_02115368(void **arg0) {
