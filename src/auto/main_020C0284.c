@@ -214,6 +214,57 @@ void func_020c0e08(void) {
     }
 }
 
+void func_020c0e64(void) {
+    Unk1144 table = data_02143e8c;
+    s32 i;
+    u8 *mgr = (u8 *)func_0210c594(0x10, data_02155c3c);
+
+    ((u8 **)&data_02160218)[1] = mgr;
+    func_021167ac(mgr + 4, 4);
+    data_02160a6c[0x11d] = 0;
+    *(u32 *)(((u8 **)&data_02160218)[1]) = 0;
+
+    for (i = 0; i < 0x8d; i++) {
+        u8 *node = *(u8 **)(data_02160a6c + 0xb8);
+        while (node != NULL) {
+            if (*(u16 *)(node + 0x8e) == table.data[i * 2]) {
+                u8 *list_mgr = ((u8 **)&data_02160218)[1];
+                if (*(u32 *)list_mgr == 0) {
+                    u8 *item = (u8 *)func_0210c594(0xc, data_02155c3c);
+                    *(u16 *)item = table.data[i * 2 + 1];
+                    func_021167f0(((u8 **)&data_02160218)[1] + 4, item);
+                    *(u32 *)(((u8 **)&data_02160218)[1]) += 1;
+                } else {
+                    u8 *it = *(u8 **)(list_mgr + 4);
+                    s32 add = 1;
+                    while (it != NULL) {
+                        if (*(u16 *)it == table.data[i * 2 + 1]) {
+                            add = 0;
+                        }
+                        it = *(u8 **)(it + 8);
+                    }
+                    if (add != 0) {
+                        u8 *item = (u8 *)func_0210c594(0xc, data_02155c3c);
+                        *(u16 *)item = table.data[i * 2 + 1];
+                        func_021167f0(((u8 **)&data_02160218)[1] + 4, item);
+                        *(u32 *)(((u8 **)&data_02160218)[1]) += 1;
+                    }
+                }
+                break;
+            }
+            node = *(u8 **)(node + 0x174);
+        }
+    }
+
+    data_02160a6c[0x11d] = *(u32 *)(((u8 **)&data_02160218)[1]);
+    func_020c0d98();
+    func_020c0e08();
+    if (((u8 **)&data_02160218)[1] != NULL) {
+        func_0210c5dc(((u8 **)&data_02160218)[1]);
+        ((u8 **)&data_02160218)[1] = NULL;
+    }
+}
+
 extern void func_021167ac(void *, s32);
 extern void func_021167f0(void *, void *);
 void func_020c1038(void) {
