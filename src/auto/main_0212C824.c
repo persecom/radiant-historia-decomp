@@ -82,3 +82,11 @@ void func_0212d590(void *arg0) {
     func_0212a1dc(*(void **)((u8 *)arg0 + 4));
 }
 
+extern u8 data_02173df4[20];
+extern u8 data_02173e08[720];
+extern void func_0212a4a4(void *, u32);
+extern void func_0212a1e4(void *);
+void func_0212d5a0(void *arg0) {
+    func_0212a1e4(*(void **)((u8 *)arg0 + 4));
+}
+
