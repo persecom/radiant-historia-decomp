@@ -1,5 +1,6 @@
 /* 36 functions from 0x0210D6D8 to 0x0210E694 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { u32 attr; u32 tile; } Sprite_0210e290;
 extern s32 data_02155c3c;
 extern void func_0210c5dc(void *);
 extern void *func_0210c518(s32, s32);
@@ -286,6 +287,41 @@ void func_0210dd1c(void) {
     *(volatile u32 *)0x40004c0 = 0x7fff7fff;
     *(volatile u32 *)0x40004c4 = 0x7fff7fff;
     *(volatile u32 *)0x4000484 = 0;
+}
+
+void func_0210e290(s32 arg0) {
+ s32 i,x,y; u32 *p;
+ *(s32 *)(data_0216280c+0x54)=0;
+ *(s32 *)(data_0216280c+0x50)=0;
+ if(*(void **)(data_0216280c+0x20)) {
+ func_0210c5dc(*(void **)(data_0216280c+0x20));
+ *(void **)(data_0216280c+0x20)=0;
+ }
+ if(!arg0) {
+ *(s32 *)(data_0216280c+0x58)=0;
+ *(s32 *)(data_0216280c+0x40)=0;
+ *(s32 *)(data_0216280c+0x3c)=0;
+ return;
+ }
+ *(s32 *)(data_0216280c+0x58)=1;
+ *(s32 *)(data_0216280c+0x24)=30;
+ *(s32 *)(data_0216280c+0x28)=1;
+ *(s32 *)(data_0216280c+0x10)=2;
+ *(s32 *)(data_0216280c+0x14)=2;
+ i=0;
+ p=func_0210c518(0x400,data_02155c3c);
+ *(void **)(data_0216280c+0x20)=p;
+ *(volatile u32 *)0x4001000=(*(volatile u32 *)0x4001000 & ~0x60)|0x20;
+ for(y=0;y<128;y++) {p[y*2]=0;p[y*2+1]=0;}
+ for(y=0;y<192;y+=64) {
+ for(x=0;x<256;x+=64) {
+ p[i*2]=0xc0000c00 | (y&255) | ((x&511)<<16);
+ *(u16 *)&p[i*2+1]=0xf000 | (x/8+(y/8)*32);
+ i++;
+ }
+ }
+ func_02006dc4(p,0x400);
+ func_020037d4(*(void **)(data_0216280c+0x20),0,0x400);
 }
 
 void func_0210e3dc(void) {
