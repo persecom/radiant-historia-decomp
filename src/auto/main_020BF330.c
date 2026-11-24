@@ -176,6 +176,36 @@ void func_020bf700(void) {
     func_02066f9c();
 }
 
+void func_020bfb44(void) {
+Unk_020bfb44 draw = data_02143de0;
+s32 zero=0;
+u8 *p=*(u8 **)(data_02160214+0x28);
+while(p) {
+if(*(s16 *)(p+0x40)<0) {
+switch(*(u32 *)(p+0xc)) {
+case 1: case 3: case 4: case 5: case 6:
+func_020c0018((s16)(*(s32 *)p+(*(s32 *)(p+0x1c)>>12)),(s16)(*(s32 *)(p+4)+(*(s32 *)(p+0x20)>>12)),*(s32 *)(p+0x14),1,1,zero); break;
+case 2:
+func_020c0018((s16)(*(s32 *)p+(*(s32 *)(p+0x1c)>>12)),(s16)(*(s32 *)(p+4)+(*(s32 *)(p+0x20)>>12)),*(s32 *)(p+0x14),5,1,zero); break;
+case 7: case 9:
+func_020c0018((s16)*(s32 *)p,(s16)*(s32 *)(p+4),*(s32 *)(p+0x14),2,1,zero);break;
+case 8:
+func_020c0018((s16)*(s32 *)p,(s16)((s16)*(s32 *)(p+4)+10),*(s32 *)(p+0x14),4,1,zero);break;
+case 10:
+*(volatile u32 *)0x40004a4=0x1f0080;
+func_020a3bbc(5);
+draw.v[1]=80;draw.v[3]=26;draw.v[4]=11;draw.v[8]=26;draw.v[9]=11;draw.v[2]=zero;
+draw.v[5]=*(s32 *)p+(*(s32 *)(p+0x1c)>>12)-14;
+draw.v[6]=*(s32 *)(p+4)+(*(s32 *)(p+0x20)>>12)-21;
+draw.v[7]=*(s16 *)(p+8);
+func_021098ac(&draw);break;
+case 0:case 11:case 12:case 13:case 14:case 15:case 16:case 17:case 18:case 19:case 20:case 21:break;
+}
+}
+p=*(u8 **)(p+0x48);
+}
+}
+
 extern void func_021167f0(void *,void *);
 void func_020bfd78(s32 a,s32 b,u16 c,s32 d,s32 e,u8 *owner,u16 g,u16 h) {
 Unk_020bfd78 *p=(Unk_020bfd78 *)func_0210c594(0x4c,data_02155c3c);
