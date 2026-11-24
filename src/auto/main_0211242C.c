@@ -16,6 +16,18 @@ extern const u16 data_02144cfc[2];
 extern const u16 data_02144cf8[2];
 extern u32 func_020c73b8(void *);
 extern void func_020c738c(void *, u32, s32);
+extern u32 data_02155c3c;
+extern u32 data_0216bf88;
+extern u32 func_0210c594(s32, u32);
+extern void func_021167ac(void *, s32);
+extern void func_021168f8(void *, void *);
+extern void func_02112ed8(void);
+extern void func_02112f14(void);
+extern void func_0210c5dc(void *);
+typedef struct UnkFuncTable20 {
+    void (*fn[5])(void);
+} UnkFuncTable20;
+extern UnkFuncTable20 data_02155d1c;
 
 extern void func_02112110(void);
 void func_02112554(u8 *arg0, s32 arg1) {
