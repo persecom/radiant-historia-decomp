@@ -1,6 +1,8 @@
 /* 37 functions from 0x020BE330 to 0x020BF330 (main), found by ds-decomp. */
 #include "common.h"
 
+typedef struct { s32 x, y, z; } VecBf118;
+
 extern u8 *func_020becfc(void);
 extern u8 *data_0216020c;
 extern void func_020be30c(s16 *, s16 *);
