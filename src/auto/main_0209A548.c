@@ -129,8 +129,7 @@ char buf[32];
 u8 *p=0;
 void *file;
 s32 character=0, characterIndex;
-u16 index=0, i;
-u32 skill;
+u16 index=0, i, skill;
 if(mode==0){
 if(func_020bd490(2,arg0[0])){p=func_02021f10(func_020bd490(1,arg0[0])-1);character=p[0x42];}
 else{characterIndex=func_020bd490(3,arg0[0]);character=func_020bd490(1,arg0[0]);p=func_02021f10(characterIndex);}
@@ -142,7 +141,7 @@ for(i=0;i<8;i++)*(s16 *)(arg0+0x1a+i*2)=index;
 while(*(s16 *)(arg0+0x10)!=p[0x43]){
 if(func_02092ab0(file,(u16)(p[0x43]+1))==-1)break;
 if(mode==1)func_0209b108(p[0x42],0);
-for(i=0;i<8;i++){skill=(u16)func_02092994(file,0);*(s16 *)(arg0+i*2+0x1a)+=(s16)skill;}
+for(i=0;i<8;i++){((StatUpdate_0209acdc *)arg0)->gain[i]+=(s16)(u16)func_02092994(file,0);}
 index=0;
 skill=(u16)func_02092994(file,0);
 if(skill){
@@ -151,8 +150,8 @@ do {if(p[0x4e + index]==0){p[0x4e + index]=skill;break;}index++;}while(index<30)
 }else if(skill>=101){
 do {if(p[0x6c+index]==0){p[0x6c+index]=skill;break;}index++;}while(index<15);
 }
-if(skill<=100){skill=(u16)(skill-11);*(u32 *)(p+0xc)|=1<<skill;*(u16 *)(arg0+0x18)=func_02065884(character,(u16)(skill+11));}
-else{skill=(u16)(skill-101);*(u16 *)(p+0x36)|=(u16)(1<<skill);*(u16 *)(arg0+0x18)=func_02065884(character,(u16)(skill+101));}
+if(skill<=100){skill-=11;*(u32 *)(p+0xc)|=1<<skill;*(u16 *)(arg0+0x18)=func_02065884(character,(u16)(skill+11));}
+else{skill-=101;*(u16 *)(p+0x36)|=(u16)(1<<skill);*(u16 *)(arg0+0x18)=func_02065884(character,(u16)(skill+101));}
 if(mode==1)func_0209b108(p[0x42],*(u16 *)(arg0+0x18));
 }
 func_02109444(file);p[0x43]++;
