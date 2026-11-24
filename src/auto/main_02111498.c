@@ -48,6 +48,10 @@ s32 func_02111da8(u8 *arg0) {
     return *(s32 *)(arg0 + 0x38);
 }
 
+void func_02111db0(u8 *arg0, u32 arg1, u32 arg2) {
+    *(u32 *)(arg0 + 0x78 + (arg2 << 2)) = arg1;
+}
+
 void func_02112038(MainSub_6C *arg0) {
     func_020c9490(arg0->field);
 }
