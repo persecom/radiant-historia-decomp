@@ -21,3 +21,8 @@ void func_020a8750(void *arg0) {
         func_0210c5dc(p);
     }
 }
+
+void func_020a8810(void *arg0, u32 arg1) {
+    *(u32 *)((u8 *)arg0 + 0x3C) = func_020a8828(arg1);
+}
+
