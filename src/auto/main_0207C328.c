@@ -17,6 +17,13 @@ extern void func_0210d27c(s32);
 extern void func_021168f8(void *, void *);
 extern void func_021168f8(void *, void *);
 extern void *func_02047820(u16);
+extern u8 *data_02155984;
+extern void func_0210d46c(void);
+extern void func_0207c9bc(void *);
+extern void func_02047490(void *);
+typedef struct {
+    s32 x, y, z;
+} Vec3_0207c640;
 extern void func_0210c5dc(void *);
 typedef void (*Fn_0207cc20)(u32);
 
