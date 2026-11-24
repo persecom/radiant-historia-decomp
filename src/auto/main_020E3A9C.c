@@ -14,6 +14,7 @@ typedef struct {
 } UnkBuf30_020e3f30;
 
 extern const UnkBuf10_020e3f30 data_021449e8;
+extern const UnkBuf10_020e3f30 data_021449fc;
 extern const UnkBuf30_020e3f30 data_02144a24;
 void func_020e3db4(u16 *arg0, s32 arg1, s32 arg2) {
     arg0[1] = 0;
