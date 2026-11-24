@@ -138,6 +138,38 @@ void func_020b45cc(void) {
     }
 }
 
+void func_020b4670(void) {
+u8 *p=func_020b3880();
+s32 result;
+func_020b3890();
+switch(*(s32 *)(p+0x3434)) {
+case 0: func_020aad6c(); *(s32 *)(p+0x3434)=1; break;
+case 1: if(func_020aad7c()==1) *(s32 *)(p+0x3434)=2; break;
+case 2:
+result=func_020ab024(p);
+if(result==0) result=func_020ac0b0(p);
+if(result==1) {func_020b45cc(); *(s32 *)(p+0x3434)=3;}
+else if(result==3) {*(s32 *)(p+0x3434)=5; *(s32 *)(p+0x343c)=8;}
+break;
+case 3: if(func_020aadf8()==1) *(s32 *)(p+0x3434)=4; break;
+case 4:
+result=func_020ab140(p,p+0x3442);
+if(func_020b3a28()==1) func_020af2c8(1); else func_020af2c8(0);
+if(result==4) *(s32 *)(p+0x3434)=5;
+else if(result==3) {func_020aeda0(); *(s32 *)(p+0x3434)=0;}
+if(func_020b3d88()!=0) {func_020aae98();func_020aaf08();}
+break;
+case 5:
+if(--*(s32 *)(p+0x343c)<0) *(s32 *)(p+0x343c)=0;
+data_02162884 = (*(s32 *)(p+0x343c)<<4)/8-16;
+data_02162814 = (*(s32 *)(p+0x343c)<<4)/8-16;
+if(*(s32 *)(p+0x343c)==0) {func_020aeda0();func_020b459c();*(s32 *)(p+0x3434)=6;}
+break;
+case 6: *(s32 *)(p+0x3444)=1;break;
+}
+if(*(s32 *)(p+0x3434)>=1 && *(s32 *)(p+0x3434)<=5) func_020aac90();
+}
+
 void func_020b485c(void) {
     data_021601e8 = func_0210c594(0x1c, data_02155c3c);
     *(void **)(data_021601e8 + 0xc) = func_0210c594(0xc, data_02155c3c);
