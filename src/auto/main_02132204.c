@@ -291,6 +291,97 @@ void func_0213278c(u8 *arg0) {
     *(u8 *)(arg0 + 9) = 2;
 }
 
+extern s32 func_02132ac8(void **);
+extern s32 func_02132ab8(void **);
+extern s32 func_0212fc44(void *);
+extern s32 func_0212fc58(void *, void *, s32, s32);
+extern s32 func_0212fd08(void *);
+extern void func_02132a24(s32 *, s32, s32 *, s32 *);
+extern s32 func_0212f468(void *);
+void func_021327cc(u8 *arg0) {
+    s32 buf1[2];
+    s32 buf0[2];
+    void *obj = *(void **)(arg0 + 0x0);
+    s32 bytesPerSample;
+    s32 nsamples;
+    void *stream;
+    s32 avail;
+    s32 decoded;
+    s32 outSamples;
+    s32 total;
+
+    nsamples = func_02132ac8((void **)arg0);
+    bytesPerSample = func_02132ab8((void **)arg0) / 8;
+
+    stream = *(void **)(arg0 + 0x14);
+    avail = ((s32 (*)(void *, s32))(*(void ***)stream)[9])(stream, 0);
+    if (avail / bytesPerSample < nsamples) {
+        return;
+    }
+
+    if (func_0212fc44(obj) != 0) {
+        s32 st = func_0212fb8c(obj);
+        if (st == 1) {
+            if (*(s32 *)(arg0 + 0x38) == 0) {
+                arg0[9] = 3;
+                return;
+            }
+            *(s32 *)(arg0 + 0x20) = 0;
+            *(s32 *)(arg0 + 0x2c) += *(s32 *)(arg0 + 0x28);
+            *(s32 *)(arg0 + 0x28) = 0;
+            return;
+        }
+        if (st == -1) {
+            return;
+        }
+    }
+
+    stream = *(void **)(arg0 + 0x14);
+    ((void (*)(void *, s32, s32, void *))(*(void ***)stream)[6])(stream, 0, nsamples * bytesPerSample, buf1);
+    if (nsamples != buf1[1] / bytesPerSample) {
+        stream = *(void **)(arg0 + 0x14);
+        ((void (*)(void *, s32, void *))(*(void ***)stream)[7])(stream, 0, buf1);
+        return;
+    }
+
+    decoded = func_0212fc58(obj, (void *)buf1[0], 0, nsamples);
+    outSamples = 0;
+    if (*(s32 *)(arg0 + 0x20) >= 0x1e0) {
+        outSamples = decoded;
+    }
+    total = func_0212fd08(*(void **)(arg0 + 0x0));
+    if (outSamples + *(s32 *)(arg0 + 0x28) > total) {
+        outSamples = total - *(s32 *)(arg0 + 0x28);
+    }
+
+    func_02132a24(buf1, outSamples * bytesPerSample, buf1, buf0);
+
+    if (*(void **)(arg0 + 0x54) != NULL && outSamples > 0) {
+        ((void (*)(void *, s32, s32, s32))(*(void **)(arg0 + 0x54)))(*(void **)(arg0 + 0x58), 0, buf1[0], buf1[1]);
+    }
+
+    stream = *(void **)(arg0 + 0x14);
+    ((void (*)(void *, s32, void *))(*(void ***)stream)[8])(stream, 1, buf1);
+    stream = *(void **)(arg0 + 0x14);
+    ((void (*)(void *, s32, void *))(*(void ***)stream)[7])(stream, 0, buf0);
+
+    *(s32 *)(arg0 + 0x20) += decoded;
+    *(s32 *)(arg0 + 0x24) = (func_0212f468(*(void **)(arg0 + 0x4)) + 7) / 8;
+    *(s32 *)(arg0 + 0x28) += outSamples;
+    *(s32 *)(arg0 + 0x30) += decoded;
+    *(s32 *)(arg0 + 0x40) += decoded;
+
+    if (*(s32 *)(arg0 + 0x3c) >= 0 && *(s32 *)(arg0 + 0x40) >= *(s32 *)(arg0 + 0x3c)) {
+        if (*(void **)(arg0 + 0x4c) != NULL) {
+            ((void (*)(void *))(*(void **)(arg0 + 0x4c)))(*(void **)(arg0 + 0x50));
+        }
+    }
+
+    if (*(s32 *)(arg0 + 0x38) == 0 && *(s32 *)(arg0 + 0x28) >= total) {
+        arg0[9] = 3;
+    }
+}
+
 void func_02132a24(s32 *arg0, s32 arg1, s32 *arg2, s32 *arg3) {
     s32 ptr = *(volatile s32 *)arg0;
     s32 len = *(volatile s32 *)(arg0 + 1);
