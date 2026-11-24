@@ -39,6 +39,10 @@ extern void func_020c9940(void *);
 extern void func_02111728(void *);
 extern u16 func_02111d10(u8 *);
 extern void func_020c98f8(void *);
+extern u32 func_02111dbc(u8 *, u32);
+extern void func_020c738c(u8 *, s32, s32);
+extern void func_020c83f4(void *, u32, u16, s32);
+extern void func_021115bc(u8 *, u16);
 void func_02111594(void) {
 }
 
