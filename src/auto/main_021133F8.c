@@ -401,13 +401,13 @@ void func_02113d10(void *arg0, u32 arg1, s32 arg2) {
     func_02116720((s32 *)(p + 0x1c), arg1 << 8, arg2);
 }
 
-void func_02113d3c(void *arg0) {
-    void *p = arg0;
-    void *q = *(void * volatile *)p;
-    if (q == NULL) {
-        return;
-    }
-    func_02009540(*(u8 *)((u8 *)*(void * volatile *)p + 0x3c));
+unsigned long long func_02113d3c(void *arg0)
+{
+  if ((*((void * volatile *) arg0)) == NULL)
+  {
+    return;
+  }
+  func_02009540(*((u8 *) (((u8 *) (*((void * volatile *) arg0))) + 0x3c)));
 }
 
 void func_02113d5c(void *arg0, u16 arg1) {
@@ -483,9 +483,9 @@ void func_0211405c(void) {
 
 extern void func_02114160(u8 *);
 void func_02114068(u8 *arg0) {
-    u8 *p = *(u8 **)(arg0 + 4);
+    s32 *p = *(s32 **)(arg0 + 4);
     func_020094e0(arg0[0x3c]);
-    if (*(s32 *)(p + 0x1c) != 0) {
+    if (p[7] != 0) {
         func_02009558(arg0[0x3c], 0xffff);
     }
     func_02114160(arg0);
