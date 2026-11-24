@@ -143,3 +143,14 @@ void *func_020c3d24(void *arg0) {
     return p;
 }
 
+void *func_020c3d64(u16 arg0) {
+    u8 *node = *(u8 **)(data_0216013c + 0x8c);
+    while (node != NULL) {
+        if (*(u16 *)(node + 0x16) == arg0) {
+            return node;
+        }
+        node = *(u8 **)(node + 0x30);
+    }
+    return NULL;
+}
+
