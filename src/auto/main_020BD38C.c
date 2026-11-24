@@ -99,6 +99,12 @@ void func_020bdd80(void) {
 void func_020bdd84(void) {
 }
 
+void func_020bdd88(void) {
+    if (data_02160200 != NULL) {
+        func_02008e68(0, data_02160200, 0x1a0);
+    }
+}
+
 void func_020bddb0(u8 *arg0) {
     u32 zero = 0;
     u16 one = 1;
