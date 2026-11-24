@@ -64,3 +64,11 @@ void func_020adf34(void **arg0) {
 void func_020adfe8(u16 arg0, u8 arg1) {
     *(u32 *)0x40004A4 = (arg1 << 24) | 0xC0 | (arg0 << 16);
 }
+
+void func_020aeda0(void) {
+    func_020aed5c(0);
+    func_020aed5c(1);
+    func_020aea1c();
+    func_020ae530();
+}
+
