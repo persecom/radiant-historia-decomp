@@ -1,7 +1,10 @@
 /* 13 functions from 0x02016018 to 0x02016FC4 (main), found by ds-decomp. */
 #include "common.h"
 
-extern void func_02016cfc(s32, const char *, char *);
+extern s32 func_02016cfc(s32, const char *, char *);
+extern s32 func_02016018(void *, void *, const char *, void *, s32);
+extern void (*data_02160038)(void);
+extern void func_02016da0(void);
 s32 func_02016c84(void *p, s32 ch, s32 act) {
     struct {
         u8 *str;
