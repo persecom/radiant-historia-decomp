@@ -150,21 +150,19 @@ void func_0203c1c0(u8 *arg0, void *arg1, s32 arg2) {
 }
 
 void func_0203c1f0(u8 *arg0, s32 arg1) {
-    Unk_0203c1f0 *s = (Unk_0203c1f0 *)arg0;
-    u32 v = s->f0;
-    s->f1c = arg1;
-    s->f20 = (u32)arg0;
-    s->f18 = v;
-    func_0210db70(&s->f18);
+    u32 v = *(u32 *)arg0;
+    *(u32 *)(arg0 + 0x1c) = arg1;
+    *(u32 *)(arg0 + 0x20) = (u32)arg0;
+    *(u32 *)(arg0 + 0x18) = v;
+    func_0210db70(arg0 + 0x18);
 }
 
 void func_0203c20c(void) {
     u8 *p = data_02162880;
-    u32 count = 0;
+    s32 count = 0;
     u8 *best;
     s32 i;
     s32 n;
-    u8 *elem;
     p[0x2c] = 0;
     *(void **)(p + 0x38) = NULL;
     if (p[0x2d] != 0) {
@@ -173,14 +171,19 @@ void func_0203c20c(void) {
     n = *(u16 *)(p + 0x3c);
     best = NULL;
     for (i = 0; i < n; i++) {
-        elem = ((u8 **)(*(void **)(p + 0x34)))[i];
-        if (elem[0xb] == 0 && *(void **)(elem + 0x10) != NULL) {
-            if (((s32 (*)(u8 *))(*(void **)(elem + 0x10)))(elem) != 0) {
-                count++;
-                if (best == NULL || *(s16 *)(best + 4) < *(s16 *)(elem + 4)) {
-                    best = elem;
-                }
-            }
+        u8 *elem = ((u8 **)(*(void **)(p + 0x34)))[i];
+        if (elem[0xb] != 0) {
+            continue;
+        }
+        if (*(void **)(elem + 0x10) == NULL) {
+            continue;
+        }
+        if (((s32 (*)(u8 *))(*(void **)(elem + 0x10)))(elem) == 0) {
+            continue;
+        }
+        count++;
+        if (best == NULL || *(s16 *)(best + 4) < *(s16 *)(elem + 4)) {
+            best = elem;
         }
     }
     if (count != 0) {
