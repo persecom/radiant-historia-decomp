@@ -223,3 +223,51 @@ void func_02112ed8(void) {
     data_0216bf88 = 0;
 }
 
+void func_02112f14(void) {
+    s32 i;
+    if (data_0216bf88 == 0) {
+        return;
+    }
+    for (i = 0; i < 5; i++) {
+        u8 *node = *(u8 **)((u8 *)data_0216bf88 + i * 0xc);
+        while (node != NULL) {
+            u8 *next = *(u8 **)(node + 0x28);
+            func_021168f8((u8 *)data_0216bf88 + i * 0xc, node);
+            if (node != NULL) {
+                func_0210c5dc(node);
+            }
+            node = next;
+        }
+    }
+}
+
+void *func_02112f88(u16 arg0) {
+    u8 *base = (u8 *)data_0216bf88;
+    s32 i;
+    if (base == NULL) {
+        return NULL;
+    }
+    for (i = 0; i < 5; i++) {
+        u8 *node = *(u8 **)(base + i * 0xc);
+        while (node != NULL) {
+            if (*(u16 *)node == arg0) {
+                return node;
+            }
+            node = *(u8 **)(node + 0x28);
+        }
+    }
+    return NULL;
+}
+
+void func_02112fec(u32 arg0) {
+    UnkFuncTable20 tbl;
+    s32 i;
+    func_02112f14();
+    tbl = data_02155d1c;
+    for (i = 0; i < 5; i++) {
+        if (arg0 & (1 << i)) {
+            tbl.fn[i]();
+        }
+    }
+}
+
