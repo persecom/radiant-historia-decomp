@@ -65,8 +65,9 @@ void func_0200b710(u32 *arg0, u32 arg1) {
         func_0200813c(bak);
     } else {
         func_0200a884(arc);
-        if (func_0200ad00(arg0, 1) != 0) {
-            func_0200aeac();
+        void *res = (void *)func_0200ad00(arg0, 1);
+        if (res != 0) {
+            func_0200aeac(res);
         }
     }
 }
