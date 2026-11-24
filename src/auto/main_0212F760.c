@@ -6,6 +6,10 @@ void func_0212f760(void) {
     func_0213235c();
 }
 
+s8 func_0212fcf0(u8 *a0) {
+    return *(s8 *)(a0 + 0x1ab);
+}
+
 extern s32 func_0212fd20(void);
 void func_0212fcfc(void) {
     func_0212fd20();
