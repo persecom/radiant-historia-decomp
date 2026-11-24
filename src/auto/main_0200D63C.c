@@ -19,7 +19,7 @@ extern void func_0200bc24(void);
 extern void func_0200a56c(void);
 extern s32 func_0200a6c0(s32, s32);
 extern void func_0200a674(s32, void *);
-extern void func_0200d868(void);
+extern void func_0200d868(s32, u32, s32);
 extern s32 func_0200df4c(s16 *, u16, u16, u16, u16, u16, u16, u16, u16);
 typedef struct {
     u16 x;
@@ -256,3 +256,67 @@ void func_0200df30(u32 arg0) {
     func_0200dddc((TPData0200dddc *)arg0);
     func_0200e138(arg0, arg0);
 }
+
+s32 func_0200df4c(s16 *calibrate, u16 raw_x1, u16 raw_y1, u16 dx1, u16 dy1, u16 raw_x2, u16 raw_y2, u16 dx2, u16 dy2) {
+    s32 xDotSize;
+    s32 yDotSize;
+    s32 x0;
+    s32 y0;
+    s32 dy;
+
+    if (raw_x1 >= 0x1000 || raw_y1 >= 0x1000 || raw_x2 >= 0x1000 || raw_y2 >= 0x1000) {
+        return 1;
+    }
+    if (dx1 >= 0x100 || dx2 >= 0x100 || dy1 >= 0xc0 || dy2 >= 0xc0) {
+        return 1;
+    }
+    if (dx1 == dx2 || dy1 == dy2 || raw_x1 == raw_x2 || raw_y1 == raw_y2) {
+        return 1;
+    }
+
+    func_02008128();
+
+    *(volatile u16 *)0x04000280 = 0;
+    *(volatile s32 *)0x04000290 = (raw_x1 - raw_x2) << 8;
+    *(volatile u64 *)0x04000298 = (u32)(dx1 - dx2);
+
+    dy = dy1 - dy2;
+
+    while (*(volatile u16 *)0x04000280 & 0x8000) {}
+    xDotSize = *(volatile s32 *)0x040002a0;
+
+    *(volatile u16 *)0x04000280 = 0;
+    *(volatile s32 *)0x04000290 = (raw_y1 - raw_y2) << 8;
+    *(volatile u64 *)0x04000298 = (u32)dy;
+
+    if (xDotSize >= 0x8000 || xDotSize < -0x8000) {
+        func_0200813c();
+        return 1;
+    }
+    calibrate[2] = (s16)xDotSize;
+
+    x0 = ((((raw_x1 + raw_x2) << 8) - (s32)calibrate[2] * (dx1 + dx2)) << 9) >> 16;
+    if (x0 >= 0x8000 || x0 < -0x8000) {
+        func_0200813c();
+        return 1;
+    }
+    calibrate[0] = (s16)x0;
+
+    while (*(volatile u16 *)0x04000280 & 0x8000) {}
+    yDotSize = *(volatile s32 *)0x040002a0;
+    func_0200813c();
+
+    if (yDotSize >= 0x8000 || yDotSize < -0x8000) {
+        return 1;
+    }
+    calibrate[3] = (s16)yDotSize;
+
+    y0 = ((((raw_y1 + raw_y2) << 8) - (s32)calibrate[3] * (dy1 + dy2)) << 9) >> 16;
+    if (y0 >= 0x8000 || y0 < -0x8000) {
+        return 1;
+    }
+    calibrate[1] = (s16)y0;
+
+    return 0;
+}
+
