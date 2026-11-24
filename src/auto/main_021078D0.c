@@ -70,6 +70,18 @@ void func_02107aec(s32 *arg0, s32 *arg1, s32 *arg2, s32 *arg3, s32 arg4, s32 arg
     }
 }
 
+void func_02107c70(u8 *arg0) {
+    u32 prev = data_02155984;
+    data_02155984 = (u32)arg0;
+    func_02008f74(arg0, 0, 0xcc);
+    *(s32 *)(arg0 + 0x1c) = 0x1000;
+    *(s32 *)(arg0 + 0x30) = 0x1000;
+    *(s32 *)(arg0 + 0x50) = -0x1000;
+    *(s32 *)(arg0 + 0x5c) = -0x1000;
+    func_02107cf4();
+    data_02155984 = prev;
+}
+
 extern u32 data_02155984;
 extern s32 func_02108258(u32);
 s32 func_02108240(void) {
