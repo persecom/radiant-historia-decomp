@@ -162,3 +162,15 @@ void func_0202bec8(void *arg0) {
     }
 }
 
+s32 func_0202bf08(void *arg0, u32 arg1) {
+    u8 *entry = *(u8 **)(data_02160244 + arg1 * 4 + 8);
+    u8 *node = *(u8 **)(entry + 0x10);
+    while (node != NULL) {
+        if (*(void **)(node + 0) == arg0) {
+            return 1;
+        }
+        node = *(u8 **)(node + 0xc);
+    }
+    return 0;
+}
+
