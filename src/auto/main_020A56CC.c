@@ -243,6 +243,7 @@ void func_020a6184(void *arg0, s32 arg1) {
     u8 *entry;
     u8 *node;
     u16 i;
+    s32 last;
     u16 count;
     u16 id;
 
@@ -266,16 +267,21 @@ void func_020a6184(void *arg0, s32 arg1) {
         *(u16 *)(entry + 0) = id;
         *(u32 *)(entry + 0x18) = 0;
         count = func_02092994(fp, 0);
-        for (i = 0; i < count; i++) {
-            node = (u8 *)func_020a6168();
-            func_02109444(fp);
-            *(u16 *)(node + 0) = func_02092994(fp, 0);
-            *(u16 *)(node + 6) = func_02092994(fp, 0);
-            *(u16 *)(node + 8) = func_02092994(fp, 0);
-            if (i == 0 || i == count - 1) {
-                *(u16 *)(node + 4) = func_02092994(fp, 0);
-            }
-            func_021167f0(entry + 4, node);
+        if (count != 0) {
+            last = count - 1;
+            i = 0;
+            do {
+                node = (u8 *)func_020a6168();
+                func_02109444(fp);
+                *(u16 *)(node + 0) = func_02092994(fp, 0);
+                *(u16 *)(node + 6) = func_02092994(fp, 0);
+                *(u16 *)(node + 8) = func_02092994(fp, 0);
+                if (i == 0 || i == last) {
+                    *(u16 *)(node + 4) = func_02092994(fp, 0);
+                }
+                func_021167f0(entry + 4, node);
+                i++;
+            } while (i < count);
         }
         func_021167f0(arg0, entry);
     } while (func_02109444(fp));
