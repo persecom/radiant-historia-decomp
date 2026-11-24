@@ -19,6 +19,11 @@ void func_02109c04(u32 arg0, u32 arg1) {
     func_0210a348(arg0, arg1);
 }
 
+void func_02109c24(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
+    func_0210a30c(arg0, arg2, 0);
+    func_0210a3d8(arg0, arg1, arg3);
+}
+
 void func_02109c54(void) {
     func_0210a38c();
 }
