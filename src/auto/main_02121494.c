@@ -1,5 +1,6 @@
 /* 6 functions from 0x02121494 to 0x021221E4 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { s32 left, right; } SamplePair_02121c60;
 
 void func_021217e8(s32 *out, s32 pos, u32 *desc, u8 *data) {
  u32 offset = desc[1];
@@ -80,5 +81,49 @@ interp:
 if(!(flags&0x20000000)){s32 *q=(s32 *)p+index; a=*q++; b=*q;}
 else {s16 *q=(s16 *)p+index;a=q[0];b=q[1];}
 *out=(a*scale+((pos*(b-a))>>12))>>shift;
+}
+
+void func_02121c60(s32 *out, s32 pos, u32 *desc, u8 *data) {
+ u8 *p = data + desc[1];
+ s32 index = pos >> 12;
+ u32 flags = desc[0];
+ s32 next, scale, shift;
+ s32 a, b, c, d;
+ u32 end;
+ if (*(u16 *)(data+4)-1 == index) {
+  if (flags & 0xc0000000) {
+   if (flags & 0x40000000) index = (index & 1) + ((u32)index >> 1);
+   else index = (index & 3) + ((u32)index >> 2);
+  }
+  if (*(u32 *)(data+8) & 2) {next=0; goto single;}
+  { s32 x, y;
+  if (flags & 0x20000000) {
+   y = ((s16 (*)[2])p)[index][1]; x = ((s16 (*)[2])p)[index][0];
+  } else {p += index * 8; x=*(s32 *)p; y=*(s32 *)(p+4);}
+  out[0]=x; out[1]=y; return;
+ }
+ }
+ if (flags & 0xc0000000) {
+  end = (flags & 0x1fff0000) >> 16;
+  if (flags & 0x40000000) {
+   if ((u32)index >= end) {index=end>>1; next=index+1; goto single;}
+   index = (u32)index >> 1; next=index+1; pos &= 0x1fff; scale=2; shift=1; goto interpolate;
+  }
+  if ((u32)index >= end) {index=(index&3)+((u32)index>>2); next=index+1; goto single;}
+  index=(u32)index>>2; next=index+1; pos &= 0x3fff; scale=4; shift=2; goto interpolate;
+ }
+ next=index+1;
+single:
+ pos &= 0xfff; scale=1; shift=0;
+interpolate:
+ if (!(flags & 0x20000000)) {
+  a=((s32 (*)[2])p)[index][0]; b=((s32 (*)[2])p)[index][1];
+  c=((s32 (*)[2])p)[next][0]; d=((s32 (*)[2])p)[next][1];
+ } else {
+  b=((s16 (*)[2])p)[index][1]; a=((s16 (*)[2])p)[index][0];
+  c=((s16 (*)[2])p)[next][0]; d=((s16 (*)[2])p)[next][1];
+ }
+ out[0]=(a*scale+((pos*(c-a))>>12))>>shift;
+ out[1]=(b*scale+((pos*(d-b))>>12))>>shift;
 }
 
