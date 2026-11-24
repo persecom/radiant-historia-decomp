@@ -173,6 +173,18 @@ void func_020c87f8(void *arg0) {
     }
 }
 
+void func_020c8818(void *arg0) {
+    if (*(void **)((u8 *)arg0 + 0x54) != NULL) {
+        func_020c9940(*(void **)((u8 *)arg0 + 0x54));
+        if (*(void **)((u8 *)arg0 + 0x54) != NULL) {
+            func_0210c5dc(*(void **)((u8 *)arg0 + 0x54));
+            *(void **)((u8 *)arg0 + 0x54) = NULL;
+        }
+        *(void **)((u8 *)arg0 + 0x54) = NULL;
+    }
+    func_020c7838(arg0);
+}
+
 s32 func_020c885c(u8 *arg0) {
     if (func_020c73c0(arg0) == 0) {
         return 2;
