@@ -6,5 +6,9 @@ extern s32 func_02017f74(s32, s32, void *, void *, s32 *, s32 *, s32 *);
 extern void func_02016c84(void);
 extern s32 data_02160034;
 
+void func_02018830(void *arg0) {
+    func_02018378(arg0, 0, 0xa);
+}
+
 void func_020188fc(void) {
 }
