@@ -10,6 +10,10 @@ extern u8 *data_02160a6c;
 extern u32 data_02155c3c;
 extern void *func_0210c594(s32, u32);
 extern void func_021167f0(void *, void *);
+void func_020df9c8(u32 arg0) {
+    *(u32 *)(data_02160a74 + 0xa0) = arg0;
+}
+
 void func_020df9dc(void *arg0, void *arg1) {
     func_021168f8(arg0, arg1);
     if (arg1 != NULL) {
