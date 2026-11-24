@@ -39,6 +39,16 @@ void func_021115bc(u8 *arg0, u16 arg1) {
     }
 }
 
+void func_021115f8(u8 *arg0, u32 arg1, u16 arg2) {
+    int result = 0;
+    void *p = func_020c9c10(*(void **)(arg0 + 0x30), arg1);
+    result |= (*(u16 *)((u8 *)p + 0x30) != arg2);
+    *(u16 *)((u8 *)p + 0x30) = arg2;
+    if (result) {
+        func_020c7930(p);
+    }
+}
+
 u32 func_02111630(u32 *arg) {
     return arg[0x10];
 }
@@ -46,6 +56,16 @@ u32 func_02111630(u32 *arg) {
 void func_02111638(u8 *arg0) {
     *(u32 *)(arg0 + 0x40) = 1;
     arg0[0x44] = 4;
+}
+
+void func_0211164c(u8 *arg0) {
+    if (*(u32 *)(arg0 + 0x40) == 0) {
+        return;
+    }
+    arg0[0x44] -= 1;
+    if (arg0[0x44] == 0) {
+        *(u32 *)(arg0 + 0x40) = 0;
+    }
 }
 
 void func_02111708(void *arg0) {
