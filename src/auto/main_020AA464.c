@@ -187,16 +187,19 @@ void func_020aa8e8(void) {
     u8 *p = data_021600e4;
     u8 *node = func_020aa7fc(*(void **)(p + 0x13f4));
     while (node != NULL) {
-        u32 scale = *(u32 *)(p + 0x70);
-        u32 a = *(u32 *)node * scale;
-        u32 b = *(u32 *)(node + 4) * scale;
-        *(u16 *)(node + 0x10) = *(u32 *)(p + 0x44) + a - 0x20;
-        *(u16 *)(node + 0x12) = *(u32 *)(p + 0x48) + b + 0xc;
+        s32 scale = *(s32 *)(p + 0x70);
+        s32 a = *(s32 *)(node + 4) * scale;
+        s32 b = *(s32 *)(node + 8) * scale;
+        a = a - 0x20;
+        b = b + 0xc;
+        *(u16 *)(node + 0x10) = *(s32 *)(p + 0x44) + a;
+        *(u16 *)(node + 0x12) = *(s32 *)(p + 0x48) + b;
         node = *(u8 **)(node + 0x18);
     }
 }
 
 s32 func_020aaa20(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 delta;
     if (arg2 == 0) {
         return arg1;
     }
@@ -206,7 +209,8 @@ s32 func_020aaa20(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     if (arg3 >= arg2) {
         return arg1;
     }
-    return func_0201fb1c((arg1 - arg0) * arg3, arg2) + arg0;
+    delta = arg1 - arg0;
+    return func_0201fb1c(delta * arg3, arg2) + arg0;
 }
 
 s32 func_020aaa60(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
