@@ -140,8 +140,8 @@ s32 func_02009f34(void) {
         return 1;
     }
     irq = func_02008128();
-    *(u32 *)0x4fff200 = 0x10;
-    val = *(u32 *)0x4fff200;
+    *(volatile u32 *)0x4fff200 = 0x10;
+    val = *(volatile u32 *)0x4fff200;
     func_0200813c(irq);
     return val != 0;
 }
@@ -203,9 +203,9 @@ void func_0200a08c(u8 *arg0) {
 
 extern s32 func_0200698c(void);
 void func_0200a328(u32 *arg0) {
-    u32 tmp[2] = {0, 0};
-    arg0[0] = tmp[0];
-    arg0[1] = tmp[1];
+    Unk_0200a328 tmp = {0, 0};
+    arg0[0] = tmp.field_0;
+    arg0[1] = tmp.field_4;
 }
 
 s32 func_0200a4f4(u8 *arg0) {
