@@ -7,3 +7,7 @@ extern void func_021167ac(void *, s32);
 extern void func_021167f0(void *, void *);
 extern void func_021168f8(void *, void *);
 extern void func_0210c5dc(void *);
+
+void *func_02023100(void **arg0) {
+    return *arg0;
+}
