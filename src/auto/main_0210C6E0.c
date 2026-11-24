@@ -83,7 +83,7 @@ void func_0210c970(void *arg0) {
 void func_0210c9cc(arg0)
 u8 *arg0;
 {
-    Data021626e8 saved = data_021626e8;
+    u64 saved = *(u64 *)&data_021626e8;
     data_021626e8.f0 = arg0;
     data_021626e8.f4 = *(void **)arg0;
     *(u32 *)(arg0 + 4) = 0;
@@ -99,7 +99,7 @@ u8 *arg0;
             break;
         }
     }
-    data_021626e8 = saved;
+    *(u64 *)&data_021626e8 = saved;
 }
 
 void func_0210ca6c(void) {
