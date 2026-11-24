@@ -40,7 +40,7 @@ extern void func_02002128(void *, void *, void *);
 extern s32 func_02002388(void *, void *);
 extern void func_02002274(void *, void *);
 extern void func_020020f8(void *, void *, void *);
-extern u16 func_020ddc8c(void *, void *);
+extern s32 func_020ddc8c(void *, void *);
 void func_02054118(void *arg0) {
     u8 *s = *(u8 **)((u8 *)arg0 + 0xd0);
     u8 i;
@@ -327,26 +327,18 @@ extern void func_0205196c(void *);
 s32 func_02054800(u8 *arg0) {
     u8 *s = *(u8 **)(arg0 + 0xd0);
     u16 val8e;
-    s32 idx;
-    s16 sinVal, cosVal;
+    s32 angle;
 
     *(u16 *)(arg0 + 0x92) = func_020ddc8c(arg0, *(u8 **)(data_021600ac + 0x68));
+    angle = *(u16 *)(arg0 + 0x92);
     val8e = *(u16 *)(arg0 + 0x8e);
-    idx = (((s32)*(u16 *)(arg0 + 0x92) % 0x10000) >> 4) * 2;
-    sinVal = data_0213a394[idx];
-    cosVal = data_0213a394[idx + 1];
-    *(s32 *)(arg0 + 0x30) = s[0x1a] * sinVal;
-    *(s32 *)(arg0 + 0x38) = s[0x1a] * cosVal;
+    angle = (angle % 65536) >> 4;
+    *(s32 *)(arg0 + 0x30) = (s16)s[0x1a] * data_0213a394[angle * 2];
+    *(s32 *)(arg0 + 0x38) = (s16)s[0x1a] * data_0213a394[angle * 2 + 1];
 
-    *(s32 *)(arg0 + 0xc) = *(s32 *)(arg0 + 0);
-    *(s32 *)(arg0 + 0x10) = *(s32 *)(arg0 + 4);
-    *(s32 *)(arg0 + 0x14) = *(s32 *)(arg0 + 8);
-    *(s32 *)(arg0 + 0xd4) = *(s32 *)(arg0 + 0);
-    *(s32 *)(arg0 + 0xd8) = *(s32 *)(arg0 + 4);
-    *(s32 *)(arg0 + 0xdc) = *(s32 *)(arg0 + 8);
-    *(s32 *)(arg0 + 0xe0) = *(s32 *)(arg0 + 0) + *(s32 *)(arg0 + 0x30);
-    *(s32 *)(arg0 + 0xe4) = *(s32 *)(arg0 + 4);
-    *(s32 *)(arg0 + 0xe8) = *(s32 *)(arg0 + 8) + *(s32 *)(arg0 + 0x38);
+    CopyVec_546c0((Vec_546c0 *)(arg0 + 0xc), (Vec_546c0 *)arg0);
+    CopyVec_546c0((Vec_546c0 *)(arg0 + 0xd4), (Vec_546c0 *)arg0);
+    SetVec_546c0((Vec_546c0 *)(arg0 + 0xe0), *(s32 *)arg0 + *(s32 *)(arg0 + 0x30), *(s32 *)(arg0 + 4), *(s32 *)(arg0 + 8) + *(s32 *)(arg0 + 0x38));
 
     if (val8e < 700) {
         func_020477dc(arg0, 1, 1);
@@ -362,13 +354,9 @@ s32 func_02054800(u8 *arg0) {
         func_02050b0c(arg0, 0x8000);
         func_0205103c(arg0);
 
-        *(s32 *)(arg0 + 0xd4) = *(s32 *)(arg0 + 0xc);
-        *(s32 *)(arg0 + 0xd8) = *(s32 *)(arg0 + 0x10);
-        *(s32 *)(arg0 + 0xdc) = *(s32 *)(arg0 + 0x14);
-        *(s32 *)(arg0 + 0xe0) = *(s32 *)(arg0 + 0);
-        *(s32 *)(arg0 + 0xe4) = *(s32 *)(arg0 + 4);
-        *(s32 *)(arg0 + 0xe8) = *(s32 *)(arg0 + 8);
-        *(s32 *)(arg0 + 0x30) = *(s32 *)(arg0 + 0) - *(s32 *)(arg0 + 0xc);
+        CopyVec_546c0((Vec_546c0 *)(arg0 + 0xd4), (Vec_546c0 *)(arg0 + 0xc));
+        CopyVec_546c0((Vec_546c0 *)(arg0 + 0xe0), (Vec_546c0 *)arg0);
+        *(s32 *)(arg0 + 0x30) = *(s32 *)arg0 - *(s32 *)(arg0 + 0xc);
         *(s32 *)(arg0 + 0x38) = *(s32 *)(arg0 + 8) - *(s32 *)(arg0 + 0x14);
         if (*(s32 *)(arg0 + 0x30) == 0 && *(s32 *)(arg0 + 0x38) == 0) {
             *(u8 *)(arg0 + 0xa4) |= 8;
@@ -389,13 +377,11 @@ s32 func_02054800(u8 *arg0) {
         func_0205196c(arg0);
         *(s32 *)(arg0 + 0x30) = 0;
         *(s32 *)(arg0 + 0x38) = 0;
-        if (*(s32 *)(arg0 + 0xec) != *(s32 *)(arg0 + 0) || *(s32 *)(arg0 + 0xf4) != *(s32 *)(arg0 + 8)) {
-            *(s32 *)(arg0 + 0xec) = *(s32 *)(arg0 + 0);
-            *(s32 *)(arg0 + 0xf0) = *(s32 *)(arg0 + 4);
-            *(s32 *)(arg0 + 0xf4) = *(s32 *)(arg0 + 8);
+        if (*(s32 *)(arg0 + 0xec) != *(s32 *)arg0 || *(s32 *)(arg0 + 0xf4) != *(s32 *)(arg0 + 8)) {
+            CopyVec_546c0((Vec_546c0 *)(arg0 + 0xec), (Vec_546c0 *)arg0);
         }
     } else {
-        *(s32 *)(arg0 + 0) += *(s32 *)(arg0 + 0x30);
+        *(s32 *)arg0 += *(s32 *)(arg0 + 0x30);
         *(s32 *)(arg0 + 8) += *(s32 *)(arg0 + 0x38);
     }
 
