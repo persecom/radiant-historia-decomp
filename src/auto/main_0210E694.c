@@ -227,3 +227,8 @@ s32 func_0210f20c(const char *arg0, s32 arg1, s32 arg2, s32 arg3) {
     return ret;
 }
 
+void func_0210f38c(void) {
+    data_02162b00[0] = '\0';
+    data_02162a54[0] = 0;
+}
+
