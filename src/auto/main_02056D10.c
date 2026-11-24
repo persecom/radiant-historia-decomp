@@ -2,7 +2,7 @@
 #include "common.h"
 
 extern u8 *data_021600ac;
-extern void func_02057764(u16, s32, s16, s16, s16, s8, u16, u8, s32);
+extern u8 *func_02057764(u16, s32, s16, s16, s16, s8, u16, u8, s32);
 extern void func_021168f8(void **, void *);
 extern void func_0210c5dc(void *);
 extern void func_020f4f04(void *);
