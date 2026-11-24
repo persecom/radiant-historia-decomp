@@ -81,9 +81,25 @@ void func_020c94dc(u8 *arg0) {
     func_020c9590(arg0);
 }
 
+void func_020c9590(u8 *arg0) {
+    s16 v = func_020c9808();
+    s16 diff = *(u16 *)(arg0 + 0x42) - *(u16 *)(arg0 + 0x40);
+    u8 *obj1 = func_020c9c10(*(void **)(arg0 + 0x30), 1);
+    s16 v1 = *(s16 *)(obj1 + 0x3e);
+    u8 *obj2 = func_020c9c10(*(void **)(arg0 + 0x30), 2);
+    if (diff > 0) {
+        s16 val = v - (diff + func_020c9924(obj2 + 0x30));
+        if (val < 0xc) {
+            val = 0xc;
+        }
+        *(u16 *)(obj2 + 0x40) = val;
+        *(u16 *)(obj2 + 0x3e) = v1;
+    }
+}
+
 void func_020c9610(u8 *arg0) {
-    s16 a = 0;
     s16 b = 0;
+    s16 a = 0;
     s32 v;
     s32 q;
     u8 *obj;
