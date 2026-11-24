@@ -43,8 +43,8 @@ extern void func_0210e67c(void);
 extern void func_0210cf10(void);
 extern void func_0210e7ac(void);
 extern void func_02011e20(u16 *, void *, u32, u32);
-extern void func_02002128(Vec *, Vec *, Vec *);
-extern void func_02002194(Vec *, Vec *, Vec *);
+extern void func_02002128(void *, void *, void *);
+extern void func_02002194(void *, void *, void *);
 extern u32 data_02162834[];
 extern u32 data_0216281c;
 
@@ -335,18 +335,20 @@ void func_0210c5dc(void *arg0) {
     extern void func_02006b4c(void *);
     extern void func_02117038(void *, void *);
     extern void func_021091b4(void);
+    extern u8 func_02117090(void);
+    extern void func_02109f24(void *);
 
-    u8 result = func_02117090();
     u32 irq;
+    u8 result = func_02117090();
 
     if (data_02162684 != 0) {
         irq = func_02008128();
         func_02006afc(&data_02162688);
     }
-    if ((result & 1) == 0) {
-        func_02117038(data_02162638, arg0);
-    } else {
+    if (result) {
         func_02109f24(arg0);
+    } else {
+        func_02117038(data_02162638, arg0);
     }
     if (data_02162684 != 0) {
         func_02006b4c(&data_02162688);
