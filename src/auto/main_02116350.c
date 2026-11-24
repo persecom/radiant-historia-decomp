@@ -187,6 +187,14 @@ s32 func_02116794(s32 *arg0) {
     return arg0[2] >= arg0[3];
 }
 
+void func_021167ac(void *arg0, u16 arg1) {
+    u8 *p = (u8 *)arg0;
+    *(u32 *)(p + 0x0) = 0;
+    *(u32 *)(p + 0x4) = 0;
+    *(u16 *)(p + 0x8) = 0;
+    *(u16 *)(p + 0xa) = arg1;
+}
+
 void* func_02116d7c(void* heap, u32 size, s32 alignment)
 {
     typedef struct Block {
