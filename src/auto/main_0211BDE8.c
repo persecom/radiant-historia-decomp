@@ -43,22 +43,27 @@ s32 func_0211c5d4(u8 *);
 s32 func_0211c5e8(u8 *);
 void func_0211c1f8(void *arg) {
     s32 shape;
-    s16 x,y;
+    s16 x;
+    u16 y;
     u32 *p=arg;
     func_02002bd8(data_021701f8+0x40);
     if (*(s32 *)(data_021701f8+0x24)) {
         shape=*p & 0xc000c000;
         u32 flipx,flipy;
-        if(func_0211c5d4(data_021701f8))
-            x=(u16)-(ObjX_0211c1f8((Obj_0211c1f8 *)p)+data_02144d84[(shape&0xc000)>>14][(shape&0xc0000000)>>30]);
+        if(func_0211c5d4(data_021701f8)) {
+            s16 tx=ObjX_0211c1f8((Obj_0211c1f8 *)p);
+            x=(u16)-(tx+data_02144d84[(shape&0xc000)>>14][(shape&0xc0000000)>>30]);
+        }
         else x=(u16)ObjX_0211c1f8((Obj_0211c1f8 *)p);
-        if(func_0211c5e8(data_021701f8))
-            y=(u16)-(ObjY_0211c1f8((Obj_0211c1f8 *)p)+data_02144d6c[(shape&0xc000)>>14][(shape&0xc0000000)>>30]);
+        if(func_0211c5e8(data_021701f8)) {
+            s16 ty=ObjY_0211c1f8((Obj_0211c1f8 *)p);
+            y=(u16)-(ty+data_02144d6c[(shape&0xc000)>>14][(shape&0xc0000000)>>30]);
+        }
         else y=(u16)ObjY_0211c1f8((Obj_0211c1f8 *)p);
-        flipx=(*p>>28)&1;
-        flipx ^= func_0211c5d4(data_021701f8);
-        flipy=(*p>>29)&1;
-        flipy ^= func_0211c5e8(data_021701f8);
+        flipx=((Obj_0211c1f8 *)p)->flipx;
+        flipx = func_0211c5d4(data_021701f8) ^ flipx;
+        flipy=((Obj_0211c1f8 *)p)->flipy;
+        flipy = func_0211c5e8(data_021701f8) ^ flipy;
         *p=(*p&~0x10000000)|(flipx<<28);
         *p=(*p&~0x20000000)|(flipy<<29);
         func_0211ab48((s16)x,(s16)y,-1,p,*(u8 **)(data_021701f8+8)+12,*(u32 *)(data_021701f8+0x14),*(u32 *)(data_021701f8+0x18));
@@ -455,4 +460,14 @@ void func_0211cdb4(u8 *arg0, s32 arg1, s32 arg2) {
         *(s32 *)(arg0 + 0x18) = arg2;
     }
 }
+s32 func_0211c5d4(u8 *);
+static inline u16 FlipX_0211c1f8(u32 *p, s32 shape) {
+    u16 x;
+        if(func_0211c5d4(data_021701f8)) {
+            s16 tx=ObjX_0211c1f8((Obj_0211c1f8 *)p);
+            x=(u16)-(tx+data_02144d84[(shape&0xc000)>>14][(shape&0xc0000000)>>30]);
+        }
+        else x=(u16)ObjX_0211c1f8((Obj_0211c1f8 *)p);
 
+    return x;
+}
