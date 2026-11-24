@@ -162,12 +162,10 @@ s32 func_0200808c(u8 *arg0, s32 arg1, s32 arg2) {
     s32 a = arg1 - *(s32 *)(arg0 + 0xc);
     s32 b = arg2 - *(s16 *)(arg0 + 0x10);
     if (a >= 0) {
-        if (a == 0) {
-            if (b < 0) {
-                return 0;
-            }
+        if (a != 0 || b >= 0) {
+            return 2;
         }
-        return 2;
+        return 0;
     }
     if (b < 0) {
         a = b + 7;
@@ -180,14 +178,17 @@ s32 func_0200808c(u8 *arg0, s32 arg1, s32 arg2) {
 }
 
 u32 func_020080d8(u32 arg0) {
-    u32 *p = (u32 *)data_0215d144;
     u32 irq = func_02008128();
+    u32 *p = (u32 *)data_0215d144;
     if (arg0 < p[1]) {
         p[2]++;
     }
-    p[1] = arg0;
-    func_0200813c(irq);
-    return p[2];
+    {
+        u32 *q = (u32 *)data_0215d144;
+        q[1] = arg0;
+        func_0200813c(irq);
+        return q[2];
+    }
 }
 
 u32 func_02008198(u32 x) {
@@ -284,6 +285,14 @@ void func_020082d4(u8 *arg0) {
 
 u32 func_02008354(u32 x) {
     return __builtin_clz(x);
+}
+
+void func_0200835c(void) {
+    s32 i;
+    data_0215d15c = 0;
+    for (i = 0; i < 9; i++) {
+        data_0215d160[i] = 0;
+    }
 }
 
 void func_02008444(void) {
