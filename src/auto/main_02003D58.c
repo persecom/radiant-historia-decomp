@@ -209,6 +209,7 @@ void func_0200439c(void) {
 }
 
 extern s32 func_0200542c(void);
+extern void func_02004d70(u32);
 extern u32 data_0215cd40[8];
 extern u16 data_0213e498[8];
 void func_02004588(void) {
