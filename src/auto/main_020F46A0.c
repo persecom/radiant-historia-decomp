@@ -73,6 +73,18 @@ void func_020f4870(void) {
     }
 }
 
+void func_020f48b8(u32 arg0) {
+    *(void **)data_02160c3c[4] = (void *)func_020f5150;
+    *(u32 *)((u8 *)data_02160c3c[4] + 4) = arg0;
+    func_0210d9e4((void *)data_02160c3c[4]);
+    data_02162840[0]++;
+}
+
+void func_020f48fc(void) {
+    func_0210da14((void *)data_02160c3c[4]);
+    data_02162840[0]--;
+}
+
 void *func_020f4bb4(void) {
     return func_0210c594(0x1c, data_02155c3c);
 }
