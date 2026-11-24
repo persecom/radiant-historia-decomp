@@ -34,11 +34,15 @@ extern s32 func_02109444(void *);
 extern void func_021093b0(void *);
 extern s32 func_02089b38(const void *, const void *);
 extern void func_02015a3c(void *, s32, s32, s32 (*)(const void *, const void *));
+#pragma optimization_level 0
 void func_0208038c(u8 arg) {
     u8 *p0 = *(u8 **)(data_0216010c + 0x44);
     void *csv = 0;
-    u8 *actor = 0;
+    s32 i;
+    u16 id;
+    s16 bits;
     s16 mask;
+    u8 *actor = 0;
 
     *(s16 *)(data_0216010c + 0x50d4) = 0;
     actor = func_02021f10(func_02085110(data_0216010c[0x50dc]));
@@ -56,21 +60,19 @@ void func_0208038c(u8 arg) {
 
     if (csv != 0) {
         do {
-            u16 id = func_020f685c(csv, 0);
+            id = func_020f685c(csv, 0);
             if (func_02022068(id) >= 1 && id >= 1) {
-                s16 bits;
                 func_021093f0(csv);
                 func_021093f0(csv);
                 bits = func_020f685c(csv, 0);
                 if (bits & mask) {
-                    s32 i;
                     func_021093f0(csv);
                     func_021093f0(csv);
                     for (i = 0; i < 0xf; i++) {
-                        *(s16 *)(data_0216010c + *(s16 *)(data_0216010c + 0x50d4) * 0x64 + i * 2 + 0x55b4) = func_020f685c(csv, 0);
+                        ((s16 *)(data_0216010c + *(s16 *)(data_0216010c + 0x50d4) * 0x64 + 0x55b4))[i] = func_020f685c(csv, 0);
                     }
                     *(u16 *)(data_0216010c + *(s16 *)(data_0216010c + 0x50d4) * 0x64 + 0x5570) = id;
-                    data_0216010c[*(s16 *)(data_0216010c + 0x50d4) * 0x64 + 0x5572] = func_02022068(id);
+                    *(u8 *)(data_0216010c + *(s16 *)(data_0216010c + 0x50d4) * 0x64 + 0x5572) = func_02022068(id);
                     *(s16 *)(data_0216010c + *(s16 *)(data_0216010c + 0x50d4) * 0x64 + 0x559a) = func_020f685c(csv, 0);
                     (*(s16 *)(data_0216010c + 0x50d4))++;
                 }
@@ -90,7 +92,6 @@ void func_0208038c(u8 arg) {
 
     func_02015a3c(data_0216010c + 0x5570, *(s16 *)(data_0216010c + 0x50d4), 0x64, func_02089b38);
 }
-
 s16 func_020806e8(u8 stat,s32 slot,u8 actor,u8 item) {
 u32 buf[25];
 Stats_020806e8 old;
