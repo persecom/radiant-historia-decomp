@@ -68,6 +68,32 @@ void func_02135558(u8 *arg0, u8 arg1) {
     }
 }
 
+extern u8 data_0215be8c[];
+extern s16 func_02135d94(u8 *);
+extern void func_02135c8c(void *);
+extern u16 func_02135e18(void *, s32);
+void func_02135564(u8 *arg0, s32 arg1) {
+    s32 i;
+    if (arg0 == NULL) {
+        return;
+    }
+    if (func_02135d94(*(u8 **)(arg0 + 0x20)) == 0) {
+        arg0[7] = 0;
+    } else if (arg1 == 0x7fd8) {
+        arg0[7] = 0;
+    } else if (arg1 == 0xffb || arg1 == 0x1ff6 || arg1 == 0x3fec || arg1 == 0x2ff1 || arg1 == 0x5fe2 || arg1 == 0x4fe7) {
+        arg0[7] = arg1 / 4091;
+    } else if (arg1 == 0x553a) {
+        arg0[7] = 9;
+    } else {
+        arg0[7] = 0;
+        func_02135c8c(data_0215be8c);
+    }
+    for (i = 0; i < *(s8 *)(arg0 + 2); i++) {
+        *(u16 *)(arg0 + 0xc) = func_02135e18(*(void **)(arg0 + 0x20 + i * 4), arg1);
+    }
+}
+
 void func_02135650(u8 *arg0) {
     s32 i;
     if (arg0 == NULL) {
@@ -195,11 +221,9 @@ void func_021359e4(u8 *arg0) {
 void func_02135a80(u8 *arg0) {
     s32 i = 0;
     while (i < *(s8 *)(arg0 + 2)) {
-        u32 val = i;
-        void **slot = (void **)(arg0 + i * 4 + 0x20);
-        i++;
-        *(u16 *)(*slot + 0x24) = (u16)val;
-        *(u32 *)(*slot + 0x14) = val;
+        s32 j = i++;
+        *(u16 *)(*(u8 **)(arg0 + j * 4 + 0x20) + 0x24) = j;
+        *(s32 *)(*(u8 **)(arg0 + j * 4 + 0x20) + 0x14) = j;
     }
 }
 
@@ -216,6 +240,27 @@ void func_02135abc(u8 *arg0, s16 *arg1, s32 arg2) {
             idx = 0;
         }
     }
+}
+
+void func_02135b1c(u8 *arg0, s16 *arg1, s32 count, s16 **out) {
+s32 i;
+s16 *left;
+s16 *right;
+u16 pos;
+out[0]=left=*(s16 **)((u8 *)data_021756d8+0x2b4);
+out[1]=right=*(s16 **)((u8 *)data_021756d8+0x2b4)+*(s32 *)(arg0+0xa4);
+pos=*(u16 *)(arg0+0xa8);
+for(i=0;i<count;i++){
+s32 v=(3*arg1[i]+2*(*(s16 **)(arg0+0x9c))[pos])>>2;
+if(v>32767) v=32767; else if(v < -32768) v=-32768;
+left[i]=v;
+v=(3*arg1[i]-2*(*(s16 **)(arg0+0x9c))[pos])>>2;
+if(v>32767) v=32767; else if(v < -32768) v=-32768;
+right[i]=v;
+pos++;
+if(*(s32 *)(arg0+0xa4)==pos) pos=0;
+}
+*(u16 *)(arg0+0xa8)=pos;
 }
 
 void func_02135c00(void) {
@@ -274,17 +319,18 @@ void func_02135d24(u16 arg0) {
 }
 
 void func_02135d4c(s32 arg0, u16 arg1) {
+    u16 eight = 8;
     s32 i;
     if (arg0 == 0) {
-        for (i = 0; i < 8; i++) {
+        for (i = 0; i < eight; i++) {
             u8 *entry = data_02175ab8 + i * 0x34;
             *(u16 *)(entry + 0x26) = arg1;
-            *(u16 *)(entry + 0x28) = 8;
+            *(u16 *)(entry + 0x28) = eight;
         }
         return;
     }
     *(u16 *)((u8 *)arg0 + 0x26) = arg1;
-    *(u16 *)((u8 *)arg0 + 0x28) = 8;
+    *(u16 *)((u8 *)arg0 + 0x28) = eight;
 }
 
 s16 func_02135d94(u8 *arg0) {
