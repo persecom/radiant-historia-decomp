@@ -50,6 +50,10 @@ void func_020e965c(void *arg0, void *arg1) {
     *(void **)((u8 *)arg1 + 8) = arg0;
 }
 
+void func_020e9684(void *arg0) {
+    func_021168f8((u8 *)*(void **)((u8 *)arg0 + 8) + 0x14, arg0);
+}
+
 void func_020e9714(u8 *arg0) {
     func_021168f8(*(u8 **)(arg0 + 8) + 0x4c, arg0);
 }
