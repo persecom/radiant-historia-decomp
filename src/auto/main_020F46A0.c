@@ -1,6 +1,6 @@
 /* 30 functions from 0x020F46A0 to 0x020F5574 (main), found by ds-decomp. */
 #include "common.h"
-static inline int check_f53_expected(s32 (*fn)(void *, int, int), void *cb, u32 expected) { int result = 0; s32 value = fn(cb,0,0); if ((s32)expected == value) result = 1; return result; }
+static inline int check_f53_expected(s32 (*fn)(void *, int, int), void *cb, u32 expected) { int result = 0; s32 value = fn(cb,0,0); switch (value) { case -1: result = 1; break; } return result; }
 extern u8 *data_021626e8[];
 extern void func_0200c1a8(int, const char *);
 extern void func_0200c1fc(int, const char *);
@@ -471,11 +471,10 @@ u32 func_020f53e4(void (*arg0)(void)) {
 #pragma scheduling off
 s32 func_020f53fc(void) {
 const char *name = "";
-s16 expected;
+const s32 expected = -1;
 u8 *p = *(u8 **)(data_021626e8[0] + 0x10);
 u8 i = 0;
 func_0200c1a8(0,name);
-expected = -1;
 do { *(u32 *)(p+0x18c+4*i)=func_0210cd50(); i++; } while(i<2);
 if (check_f53_expected(func_ov000_02176da0,(void *)func_020f53e4,expected)) func_0210cba0(*(u32 *)(p+0x14),*(u32 *)(p+0x18c));
 if (check_f53_expected(func_ov000_02176e18,(void *)func_020f53e4,expected)) func_0210cba0(*(u32 *)(p+0x14),*(u32 *)(p+0x18c));
