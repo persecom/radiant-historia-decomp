@@ -59,6 +59,30 @@ void func_02109f24(void) {
     }
 }
 
+void *func_02109f3c(void) {
+    void *node = NULL;
+    u8 *base = (u8 *)data_02162564;
+    u16 offset = *(u16 *)(base + 0x12);
+    void *head = *(void **)(base + 8);
+    for (;;) {
+        node = (node == NULL) ? head : *(void **)((u8 *)node + offset + 4);
+        if (node == NULL) {
+            return NULL;
+        }
+        if (*(s32 *)((u8 *)node + 8) == 0) {
+            return node;
+        }
+    }
+}
+
+s32 func_02109f84(void) {
+    u8 *p = func_02109f3c();
+    if (p == NULL) {
+        return 0;
+    }
+    return *(u16 *)(p + 0x14) >= 2;
+}
+
 void *func_02109fac(void *arg0) {
     u8 buf[0x48];
     u32 size;
@@ -70,6 +94,13 @@ void *func_02109fac(void *arg0) {
     func_0200bb3c(buf, p, size);
     func_0200baa4(buf);
     return p;
+}
+
+void func_0210a2f0(u8 *p) {
+    *(s32 *)p = -1;
+    *(s32 *)(p + 4) = 0;
+    *(s32 *)(p + 8) = 0;
+    p[0xc] = 0;
 }
 
 s32 func_0210a38c(u8 *arg0) {
