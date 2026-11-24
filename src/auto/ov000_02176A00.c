@@ -301,19 +301,12 @@ else {i=0;p2=buf;do {if(*p2!=0){result=0xfb;goto done;}i++;p2++;}while(i<6);resu
 done: return 0xc1*result;
 }
 
-u32 func_ov000_02177a3c(const u8 *p, u32 n) {
-u32 crc=~0U;
-while(n--) {
-crc ^= *p++;
-crc = (crc & 1) ? (crc >> 1) : ((crc >> 1)^0xedb88320);
-crc = (crc & 1) ? (crc >> 1) : ((crc >> 1)^0xedb88320);
-crc = (crc & 1) ? (crc >> 1) : ((crc >> 1)^0xedb88320);
-crc = (crc & 1) ? (crc >> 1) : ((crc >> 1)^0xedb88320);
-crc = (crc & 1) ? (crc >> 1) : ((crc >> 1)^0xedb88320);
-crc = (crc & 1) ? (crc >> 1) : ((crc >> 1)^0xedb88320);
-crc = (crc & 1) ? (crc >> 1) : ((crc >> 1)^0xedb88320);
-crc = (crc & 1) ? (crc >> 1) : ((crc >> 1)^0xedb88320);
-}
-return ~crc;
-}
+u32 func_ov000_02177a3c(const u8 *p, u32 n) {u32 crc=~0U; while(n--) { crc ^= *p++; if (crc & 1) crc >>= 1; else crc = 0xedb88320 ^ (crc >> 1);
+if (crc & 1) crc >>= 1; else crc = 0xedb88320 ^ (crc >> 1);
+if (crc & 1) crc >>= 1; else crc = 0xedb88320 ^ (crc >> 1);
+if (crc & 1) crc >>= 1; else crc = 0xedb88320 ^ (crc >> 1);
+if (crc & 1) crc >>= 1; else crc = 0xedb88320 ^ (crc >> 1);
+if (crc & 1) crc >>= 1; else crc = 0xedb88320 ^ (crc >> 1);
+if (crc & 1) crc >>= 1; else crc = 0xedb88320 ^ (crc >> 1);
+if (crc & 1) crc >>= 1; else crc = 0xedb88320 ^ (crc >> 1); } return ~crc;}
 
