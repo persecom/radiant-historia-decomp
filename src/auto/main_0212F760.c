@@ -126,6 +126,21 @@ s32 func_0212fc44(u8 *arg0) {
     return *(u32 *)(arg0 + 0x1ac) == 0xc;
 }
 
+s32 func_0212fc58(u8 *a0, u8 *a1) {
+    s32 count = *(s32 *)(a0 + 0x1ac);
+    s32 i;
+
+    if (count == 0xc) {
+        return 0;
+    }
+    func_02130300(*(void **)(a0 + 0x1b0), a0 + 0x1e8, a0 + 0x224, a0 + 0x424, count >> 2, *(s32 *)(a0 + 0x0), *(s32 *)(a0 + 0x1a4));
+    for (i = 0; i < 3; i++) {
+        func_02139b34(*(s32 *)(a0 + 0x1b4), *(s32 *)(a0 + 0x0) + i * 0x40, 0, a1 + i * 0x40);
+    }
+    *(s32 *)(a0 + 0x1ac) = *(s32 *)(a0 + 0x1ac) + 1;
+    return 0x60;
+}
+
 s8 func_0212fcf0(u8 *a0) {
     return *(s8 *)(a0 + 0x1ab);
 }
