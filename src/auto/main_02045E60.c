@@ -82,10 +82,10 @@ u16 func_0204680c(s32 arg0, u16 arg1) {
     if (ret == 0) {
         return 0;
     }
-    func_021167f0(*(u8 **)data_021600b8, (void *)ret);
+    func_021167f0(data_021600b8, (void *)ret);
     *(u16 *)(data_02160204 + 0x70) = arg1;
     {
-        u8 *node = *(u8 **)data_021600ac;
+        u8 *node = data_021600ac;
         if (node != NULL) {
             u8 *child = *(u8 **)(node + 0x68);
             if (child != NULL) {
