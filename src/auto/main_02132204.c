@@ -172,6 +172,37 @@ void func_02132598(void *arg0) {
     *(u32 *)((u8 *)arg0 + 0x44) = 0;
 }
 
+extern void *func_0212f038(void *,void *,u32);
+extern void *func_0212f7c0(void *,u32);
+void *func_021325d4(void *arg,s32 count,u32 *values,void *buffer,u32 size) {
+s32 i=0;
+u8 *end=(u8 *)buffer+size;
+u8 *p=(u8 *)(((u32)buffer+7)&~7);
+u8 *next;
+u8 *after;
+func_02013878(p,0,0x5c);
+next=(u8 *)(((u32)p+0x63)&~7);
+after=next+0x34;
+if(after>end) return NULL;
+*(void **)(p+4)=func_0212f038(arg,next,0x34);
+if(!*(void **)(p+4)) return NULL;
+next=(u8 *)(((u32)after+7)&~7);
+if(next+0x1250>end) {func_0212f0d4(*(void **)(p+4));return NULL;}
+*(void **)p=func_0212f7c0(next,0x1250);
+if(!*(void **)p) {func_0212f0d4(*(void **)(p+4));return NULL;}
+p[10]=count;
+*(void **)(p+0x10)=arg;
+for(;i<count;i++) *(u32 *)(p+0x14+i*4)=values[i];
+p[9]=0;
+func_02132598(p);
+*(u32 *)(p+0x4c)=0;
+*(u32 *)(p+0x50)=0;
+*(u32 *)(p+0x54)=0;
+*(u32 *)(p+0x58)=0;
+p[8]=1;
+return p;
+}
+
 extern void func_0212f0d4(void *);
 extern void func_0212f880(void *);
 void func_021326e4(void **arg0) {
