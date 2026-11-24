@@ -219,7 +219,7 @@ void func_020bed54(u16 arg0, s32 arg1) {
         return;
     }
     if ((*(u16 *)(p + 0xd8) & arg0) != 0) {
-        *(u16 *)(p + 0xd8) &= ~arg0;
+        *(u16 *)(p + 0xd8) &= (u16)~arg0;
     }
 }
 
