@@ -117,6 +117,21 @@ void func_020aea84(void) {
     }
 }
 
+void func_020aed5c(s32 arg0) {
+    u8 *ptr = func_020adda8();
+    if (arg0 == 0) {
+        u8 *sub = *(u8 **)(ptr + 0x57c);
+        if (sub != NULL) {
+            *(u32 *)(sub + 0x40) = 0;
+        }
+    } else if (arg0 == 1) {
+        u8 *sub = *(u8 **)(ptr + 0x5cc);
+        if (sub != NULL) {
+            *(u32 *)(sub + 0x40) = 0;
+        }
+    }
+}
+
 void func_020aeda0(void) {
     func_020aed5c(0);
     func_020aed5c(1);
