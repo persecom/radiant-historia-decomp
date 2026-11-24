@@ -43,6 +43,39 @@ void func_02001160(u8 *arg0, u8 *arg1, u32 arg2, u32 arg3, u32 arg4) {
     *(u32 *)(b + 0x2c) = c;
 }
 
+extern void func_02002274(const s32 *, s32 *);
+extern void func_02002194(const s32 *, const s32 *, s32 *);
+extern s32 func_02002158(const s32 *, const s32 *);
+void func_02001720(const s32 *camPos, const s32 *camUp, const s32 *target, s32 *mtx) {
+    s32 vLook[3];
+    s32 vRight[3];
+    s32 vUp[3];
+
+    vLook[0] = camPos[0] - target[0];
+    vLook[1] = camPos[1] - target[1];
+    vLook[2] = camPos[2] - target[2];
+    func_02002274(vLook, vLook);
+
+    func_02002194(camUp, vLook, vRight);
+    func_02002274(vRight, vRight);
+
+    func_02002194(vLook, vRight, vUp);
+
+    mtx[0] = vRight[0];
+    mtx[1] = vUp[0];
+    mtx[2] = vLook[0];
+    mtx[3] = vRight[1];
+    mtx[4] = vUp[1];
+    mtx[5] = vLook[1];
+    mtx[6] = vRight[2];
+    mtx[7] = vUp[2];
+    mtx[8] = vLook[2];
+
+    mtx[9] = -func_02002158(camPos, vRight);
+    mtx[10] = -func_02002158(camPos, vUp);
+    mtx[11] = -func_02002158(camPos, vLook);
+}
+
 void func_02001834(u32 *p) {
     u32 i;
     for (i = 0; i < 16; i++) p[i] = 0;
