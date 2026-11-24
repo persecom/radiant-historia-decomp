@@ -110,6 +110,17 @@ void func_02110464(void *arg0) {
     }
 }
 
+void func_02110484(void *arg0) {
+    if (*(void **)((u8 *)arg0 + 0x30) != NULL) {
+        func_020c9940(*(void **)((u8 *)arg0 + 0x30));
+        if (*(void **)((u8 *)arg0 + 0x30) != NULL) {
+            func_0210c5dc(*(void **)((u8 *)arg0 + 0x30));
+            *(void **)((u8 *)arg0 + 0x30) = NULL;
+        }
+        *(void **)((u8 *)arg0 + 0x30) = NULL;
+    }
+}
+
 s32 func_021104c0(void *arg0) {
     func_020c9b64(*(void **)((u8 *)arg0 + 0x30));
     return 0;
