@@ -99,6 +99,10 @@ void func_0212d56c(void *arg0, u32 arg1, u32 arg2) {
     *(u32 *)((u8 *)arg0 + 0x4c) = arg2;
 }
 
+void func_0212d578(void *arg0, u32 arg1) {
+    *(u32 *)((u8 *)arg0 + 0x3c) = arg1;
+}
+
 extern void func_0212a1dc(void *);
 extern s32 func_0212a584(void *);
 extern s32 func_0212a58c(void *);
