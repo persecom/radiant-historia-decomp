@@ -155,6 +155,32 @@ void func_02120800(void) {
     *(volatile u32 *)0x4000600 = (*(volatile u32 *)0x4000600 & ~0xc0000000) | 0x80000000;
 }
 
+void func_02120a68(u8 *arg0) {
+u8 *mdl;
+u8 *tex;
+u32 key;
+u32 key1,key2;
+switch(*(u32 *)arg0) {
+case 0x30415442: break;
+case 0x30414d42: break;
+case 0x30415642: break;
+case 0x30505442: break;
+case 0x30444d42:
+mdl=func_02120f94(arg0);
+if(func_02120fa4(arg0)!=NULL) func_0211d5d0(mdl);
+case 0x30585442:
+tex=func_02120fa4(arg0);
+if(tex!=NULL) {
+key=func_0211cf3c(tex);
+func_0211ce80(tex,&key1,&key2);
+if(key!=0) data_0215615c(key);
+if(key2!=0) data_02156154(key2);
+if(key1!=0) data_02156154(key1);
+}
+break;
+}
+}
+
 void func_02120b8c(void *arg0, void *arg1, void *arg2) {
     func_02117464(arg0, func_0211c9c8(arg1, arg2));
 }
