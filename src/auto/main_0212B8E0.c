@@ -4,9 +4,14 @@
 extern u8 data_021739ac[256];
 extern u32 data_02173984[2];
 extern u8 data_02156b60[8];
+extern u8 data_02156b68[8];
+extern s8 data_0217398c[32];
+extern u8 data_02156b70[4];
 extern void func_02013878(void *, s32, u32);
 extern void func_021380bc(void *);
 extern void func_02132c08(void *, s32, void *, s32);
+extern void func_02132c2c(void *, s32, void *, s32);
+extern s32 func_02016da4(void *);
 
 extern void func_0212a9f4(void);
 extern void func_0212a9f8(void);
