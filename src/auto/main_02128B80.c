@@ -27,6 +27,50 @@ extern void func_0212b3f8(s32, s32, void *, void *);
 extern void *memset(void *, int, unsigned long);
 extern u8 data_0217348c[240];
 extern u8 data_02156a54[];
+void func_0212926c(arg0)
+    u8 *arg0;
+{
+    u32 r4;
+    s32 r5;
+    s32 r6;
+    u32 r7;
+    s32 limit;
+    r4 = *(u32 *)(arg0 + 0xc);
+    r7 = *(u32 *)(arg0 + 4);
+    r5 = func_0212eb2c(r4);
+    r6 = func_0212eb38(r4);
+    limit = *(s32 *)(arg0 + 0x48);
+    if (limit >= 0x800) {
+        limit = 0x800;
+    }
+    if (r5 >= limit || r6 <= func_0212d5d0(r7) || func_0212c7b0(*(u32 *)(arg0 + 4)) == 3) {
+        if (*(s8 *)(arg0 + 0x70) == 0) {
+            if (*(s8 *)(arg0 + 0x72) == 0) {
+                func_0212eb1c(r4, 1);
+                *(u32 *)(arg0 + 0x9c) = 0;
+                *(u32 *)(arg0 + 0xa0) = data_02173ac0;
+            }
+            arg0[1] = 3;
+        }
+        arg0[0x71] = 1;
+    }
+    if (func_0212c7b0(*(u32 *)(arg0 + 4)) != 3) {
+        return;
+    }
+    {
+        s32 count = func_02128314(arg0);
+        s32 i;
+        s32 size = (*(s32 *)(arg0 + 0x48) * count) << 1;
+        u32 buf[2];
+        for (i = 0; i < count; i++) {
+            void *p = *(void **)(arg0 + 0x18 + i * 4);
+            (*(void (**)(void *, s32, s32, u32 *))(*(u8 **)p + 0x18))(p, 0, size, buf);
+            func_02013878((void *)buf[0], 0, buf[1]);
+            (*(void (**)(void *, s32, u32 *))(*(u8 **)p + 0x20))(p, 1, buf);
+        }
+    }
+}
+
 void func_021293c0(arg0)
 u8 *arg0;
 {
