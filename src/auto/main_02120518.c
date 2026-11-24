@@ -115,8 +115,8 @@ void func_02120bbc(u8 *arg0, u32 arg1, u32 arg2) {
     if (matInfo != NULL) {
         u8 *dict = matInfo + 4;
         u32 *entry;
-        if (dict != NULL && arg1 < *(u8 *)(dict + 1)) {
-            u16 off = *(u16 *)(dict + 6);
+        if (dict != NULL && arg1 < *(u8 *)(matInfo + 5)) {
+            u16 off = *(u16 *)(matInfo + 10);
             u16 size = *(u16 *)(dict + off);
             entry = (u32 *)(dict + off + 4 + size * arg1);
         } else {
