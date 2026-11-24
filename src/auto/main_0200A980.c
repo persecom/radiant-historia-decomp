@@ -248,7 +248,7 @@ u8 *func_0200b0ec(u8 *arg0, s8 *arg1) {
     return r7;
 }
 
-extern u8 data_0215ee78[0x104];
+extern s8 data_0215ee78[0x104];
 extern u8 *func_0200b2ac(const char *, u32 *, u8 *);
 extern void func_02012244(void *, void *, s32);
 extern s32 func_0200afb4(void *, s32, s32);
