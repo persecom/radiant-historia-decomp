@@ -67,3 +67,18 @@ void func_020c0d1c(void) {
     func_0210d9e4(data_02160218);
 }
 
+extern void func_0210da14(void *);
+extern void *func_020dce1c(u16, s32, s32);
+extern void func_020dde88(void *, s32, s32);
+extern void func_020dd810(void *, s32, s32);
+extern void func_020ddb54(u16);
+extern void func_020dd51c(void);
+extern void func_021168f8(void *, void *);
+void func_020c0d68(void) {
+    func_0210da14(data_02160218);
+    if (data_02160218 != NULL) {
+        func_0210c5dc(data_02160218);
+        data_02160218 = NULL;
+    }
+}
+
