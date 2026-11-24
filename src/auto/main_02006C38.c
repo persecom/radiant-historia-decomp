@@ -189,7 +189,8 @@ void *func_02007250(void *arg0, void *arg1) {
 void *func_02007278(void *arg0, void *arg1) {
     u8 *p = NULL;
     u8 *cur = (u8 *)arg0;
-    u32 x, y;
+    u32 x;
+    u32 *psz;
 
     if (arg0 != NULL) {
         while (1) {
@@ -209,20 +210,16 @@ void *func_02007278(void *arg0, void *arg1) {
             *(u32 *)((u8 *)arg1 + 8) = x;
             cur = *(u8 **)(cur + 4);
             *(u8 **)((u8 *)arg1 + 4) = cur;
-            if (cur != NULL) {
-                *(u8 **)cur = arg1;
-            }
+            if (cur != NULL) *(u8 **)cur = arg1;
         }
     }
     if (p == NULL) goto ret_new;
     *(u8 **)(p + 4) = arg1;
-    y = *(u32 *)(p + 8);
-    if ((u8 *)p + y != arg1) return arg0;
-    *(u32 *)(p + 8) = y + *(u32 *)((u8 *)arg1 + 8);
+    psz = (u32 *)(p + 8);
+    if ((u8 *)p + *psz != arg1) return arg0;
+    *psz = *psz + *(u32 *)((u8 *)arg1 + 8);
     *(u8 **)(p + 4) = cur;
-    if (cur != NULL) {
-        *(u8 **)cur = p;
-    }
+    if (cur != NULL) *(u8 **)cur = p;
     return arg0;
 ret_new:
     return arg1;
