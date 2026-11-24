@@ -217,6 +217,39 @@ void func_020a9058(void) {
     func_020a9068(0x1f);
 }
 
+void func_020a9068(u32 alpha) {
+u8 *p=data_02162880;
+s32 w,h;
+s16 s,t;
+*(volatile u32 *)0x40004a4=(alpha<<16)|0xc0;
+*(volatile u32 *)0x4000480=0x7fff;
+if(!*(s32 *)(p+0x40)) return;
+w=*(s32 *)(p+0x18)<<12;
+h=*(s32 *)(p+0x1c)<<12;
+*(volatile u32 *)0x4000444=0;
+*(volatile u32 *)0x40004a8=*(u32 *)(p+0x38);
+*(volatile u32 *)0x40004ac=*(u32 *)(p+0x3c);
+*(volatile u32 *)0x4000470=*(u32 *)(p+0x44);
+*(volatile u32 *)0x4000470=*(u32 *)(p+0x48);
+*(volatile u32 *)0x4000470=*(u32 *)(p+0x4c);
+*(volatile u32 *)0x400046c=w;
+*(volatile u32 *)0x400046c=h;
+*(volatile u32 *)0x400046c=0x1000;
+s=(s16)(w>>8);
+t=(s16)(h>>8);
+*(volatile u32 *)0x4000500=1;
+*(volatile u32 *)0x4000488=0;
+*(volatile u32 *)0x4000490=0;
+*(volatile u32 *)0x4000488=(u16)t<<16;
+*(volatile u32 *)0x4000490=0x10000;
+*(volatile u32 *)0x4000488=(u16)s|((u16)t<<16);
+*(volatile u32 *)0x4000490=0x10040;
+*(volatile u32 *)0x4000488=(u16)s;
+*(volatile u32 *)0x4000490=0x40;
+*(volatile u32 *)0x4000504=0;
+*(volatile u32 *)0x4000448=1;
+}
+
 extern s8 data_02150008[128];
 extern u32 data_02160144;
 s32 func_020a916c(s32 arg0) {
