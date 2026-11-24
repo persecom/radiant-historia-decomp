@@ -34,6 +34,10 @@ void func_02118e68(s32 *arg0) {
     }
 }
 
+void func_02118e84(s32 *arg0, s32 arg1, s32 arg2) {
+    arg0[arg1] = arg2;
+}
+
 extern void func_02117e4c(void *);
 extern void func_02118f24(void *);
 void func_021190bc(void *arg0) {
