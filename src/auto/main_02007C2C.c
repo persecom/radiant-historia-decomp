@@ -350,6 +350,33 @@ void func_02008460(u32 *arg0) {
     arg0[0] = 0;
 }
 
+u32 func_02008474(volatile u32 *event, u32 pattern, s32 mode, u32 clearBitPattern) {
+    u32 ret = 0;
+    u32 enabled = func_02008128();
+
+    switch (mode) {
+    case 0:
+        while ((*event & pattern) != pattern) {
+            func_02006510((void *)(event + 1));
+        }
+        ret = *event;
+        break;
+    case 1:
+        while ((*event & pattern) == 0) {
+            func_02006510((void *)(event + 1));
+        }
+        ret = *event;
+        break;
+    }
+
+    if (ret != 0) {
+        *event &= ~clearBitPattern;
+    }
+
+    func_0200813c(enabled);
+    return ret;
+}
+
 void func_02008558(u8 arg0) {
     data_04000247 = arg0;
 }
