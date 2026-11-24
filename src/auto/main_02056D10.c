@@ -134,6 +134,112 @@ while((p=a[0])!=0){func_021168f8(a,p);if(p)func_0210c5dc(p);}
 while((p=b[0])!=0){func_021168f8(b,p);if(p)func_0210c5dc(p);}
 }
 
+void func_02057244(void) {
+SpriteParams_02057244 params=data_0213f3c4;
+SpriteTable_02057244 table=data_0213f3d8;
+s32 zero=0;
+u8 *obj,*tex,*actor;
+u16 i;
+u32 j;
+f32 ratio,value;
+for(i=0;i<3;i++){
+u8 *e=func_020bd438((u8)i);
+if(!e)continue;
+if(!(*(u16 *)e&1))continue;
+for(j=0;j<23;j=(u16)(j+1)){
+u16 index=(j+i*23)*7;
+s32 bonus,maximum;
+obj=func_020f4ec4();
+*(s32 *)(obj+8)=table.v[index];
+*(s32 *)(obj+12)=table.v[index+1];
+*(u16 *)(obj+0x44)=table.v[index+4];
+*(s32 *)(obj+0x48)=table.v[index+6];
+params.v[1]=table.v[index+2];
+params.v[2]=table.v[index+3];
+params.v[3]=table.v[index+5];
+actor=func_02021f10(e[2]);
+switch(j){
+case 7:
+tex=func_020f4d40(i+1);
+if(!tex){tex=func_020f4c2c(i+1);*(s32 *)(tex+0x20)=0x1000;*(s32 *)(tex+0x24)=0x1000;}
+if(*(u16 *)(actor+0x10)==0){*(s32 *)(obj+0x20)=zero;break;}
+value=func_0201f8cc(*(u16 *)(actor+0x10));
+maximum=*(u16 *)(actor+0x12);bonus=*(s16 *)(actor+0x24);
+goto stat_ratio;
+case 8:
+tex=func_020f4d40(i+4);
+if(!tex){tex=func_020f4c2c(i+4);*(s32 *)(tex+0x20)=0x1000;*(s32 *)(tex+0x24)=0x1000;}
+if(*(u16 *)(actor+0x14)==0){*(s32 *)(obj+0x20)=zero;break;}
+value=func_0201f8cc(*(u16 *)(actor+0x14));
+maximum=*(u16 *)(actor+0x16);bonus=*(s16 *)(actor+0x26);
+stat_ratio:
+ratio=func_02020888(value,func_0201f884(maximum+bonus));
+*(s32 *)(tex+0x20)=func_0201ff0c(func_020201f4(4096.0f,ratio));
+value=func_0201f884(i*81+52);
+*(s32 *)(obj+8)=func_0201ff0c(func_02020604(value,func_02020888(func_02020604(32.0f,func_020201f4(32.0f,ratio)),2.0f)));
+break;
+case 20:{
+s32 needed,previous;
+tex=func_020f4d40(i+7);
+if(!tex){tex=func_020f4c2c(i+7);*(s32 *)(tex+0x20)=0x1000;*(s32 *)(tex+0x24)=0x1000;}
+needed=zero;previous=zero;
+func_0208c788(actor[0x42],actor[0x43],&needed,&previous);
+if(*(u32 *)(actor+4)!=0){
+value=func_0201f8cc(*(u32 *)(actor+4)-previous);
+ratio=func_02020888(value,func_0201f884(needed));
+if(actor[0x43]==99)ratio=1.0f;
+if(0.0f==ratio){*(s32 *)(obj+0x20)=zero;break;}
+*(s32 *)(tex+0x20)=func_0201ff0c(func_020201f4(4096.0f,ratio));
+value=func_0201f884(i*81+29);
+*(s32 *)(obj+8)=func_0201ff0c(func_02020604(value,func_02020888(func_02020604(64.0f,func_020201f4(64.0f,ratio)),2.0f)));
+}else *(s32 *)(obj+0x20)=zero;
+break;
+}
+default:
+tex=func_020f4d40(zero);
+if(!tex){tex=func_020f4c2c(zero);*(s32 *)(tex+0x20)=0x1000;*(s32 *)(tex+0x24)=0x1000;}
+break;
+}
+if(j>=9 && j<=19){
+if(*((u8 *)data_02160204+0x11c)){
+s32 n=*(u16 *)(actor+0x34);
+if(n==100)*(s32 *)(obj+0x20)=1;
+else if((s32)j-9<(n%100)/9)*(s32 *)(obj+0x20)=1;
+else *(s32 *)(obj+0x20)=zero;
+}else *(s32 *)(obj+0x20)=zero;
+}
+if(*((u8 *)data_02160204+0x11c)==0){
+if(j==21)*(s32 *)(obj+0x20)=1;
+if(j==22)*(s32 *)(obj+0x20)=1;
+}else{
+if(j==21)*(s32 *)(obj+0x20)=zero;
+if(j==22)*(s32 *)(obj+0x20)=zero;
+}
+if(!func_020f50bc(obj,&params,tex))return;
+func_020f5114(obj,*(s32 *)(obj+0x20));
+func_021167f0(data_021600ac+0x8c4,obj);
+}
+}
+{
+u8 *tex=func_020f4d40(0);
+u16 j;
+for(j=69;j<78;j=(u16)(j+1)){
+u16 index=j*7;
+u8 *obj=func_020f4ec4();
+*(s32 *)(obj+8)=table.v[index];
+*(s32 *)(obj+12)=table.v[index+1];
+*(u16 *)(obj+0x44)=table.v[index+4];
+*(s32 *)(obj+0x48)=table.v[index+6];
+params.v[1]=table.v[index+2];
+params.v[2]=table.v[index+3];
+params.v[3]=table.v[index+5];
+if(!func_020f50bc(obj,&params,tex))return;
+func_020f5114(obj,1);
+func_021167f0(data_021600ac+0x8c4,obj);
+}
+}
+}
+
 u8 *func_02057764(u16 a0, s32 a1, s16 a2, s16 a3, s16 a4, s8 a5, u16 a6, u8 a7, s32 a8) {
     s32 v = a1;
     u8 count;
