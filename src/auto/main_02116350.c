@@ -375,3 +375,31 @@ u32 func_0211727c(void *heap, s32 alignment)
   return tail - ((~alignment) & (alignment + head));
 }
 
+BOOL func_021172b4(void* heap, u32 tag)
+{
+    typedef struct State {
+        u32 tag;
+        u8* head;
+        u8* tail;
+        struct State* next;
+    } State;
+
+    u8* head = *(u8**)((u8*)heap + 0x24);
+    State* state;
+
+    state = (State*)func_021170e4((u8*)heap + 0x24, 0x10, 4);
+
+    if (state == NULL) {
+        return 0;
+    }
+
+    state->tag = tag;
+    state->head = head;
+    state->tail = *(u8**)((u8*)heap + 0x28);
+    state->next = *(State**)((u8*)heap + 0x2C);
+
+    *(State**)((u8*)heap + 0x2C) = state;
+
+    return 1;
+}
+
