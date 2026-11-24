@@ -1,5 +1,6 @@
 /* 6 functions from 0x020451FC to 0x02045E60 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { s32 x,y,z; } Vec_02045800;
 extern u32 data_02155c3c;
 extern u8 *data_0216020c;
 extern u8 *func_0210c594(s32,u32);
@@ -36,6 +37,62 @@ extern u8 *data_021600ac;
 extern void func_020a9544(void *arg0);
 extern void func_020a994c(void *arg0);
 extern void func_020a98a0(void *arg0);
+
+void func_02045800(void) {
+s32 priority;
+u8 *obj,*dest;
+s32 x,y,z;
+if(data_021600b0)return;
+data_021600b0=func_0210c594(0x4a1c,data_02155c3c);
+*(void (**)(void))data_021600b0=func_02045e60;
+*(s32 *)(data_021600b0+4)=0x3f3;
+func_0210d9e4(data_021600b0);
+*(u32 (**)(void))(data_021600b0+0x14)=func_02045e28;
+*(s32 *)(data_021600b0+0x18)=0x3ec;
+func_0210d9e4(data_021600b0+0x14);
+priority=0x3f8;
+*(void (**)(void))(data_021600b0+0x28)=func_020be6a0;
+*(s32 *)(data_021600b0+0x2c)=priority;
+func_0210d9e4(data_021600b0+0x28);
+*(void (**)(void))(data_021600b0+0x3c)=func_020be704;
+*(s32 *)(data_021600b0+0x40)=priority;
+func_0210dab0(data_021600b0+0x3c);
+priority=0x3e8;
+*(void (**)(void))(data_021600b0+0x50)=func_02046238;
+*(s32 *)(data_021600b0+0x54)=priority;
+func_0210db70(data_021600b0+0x50);
+*(void (**)(void))(data_021600b0+0x64)=func_02046370;
+*(s32 *)(data_021600b0+0x68)=priority;
+func_0210dbd0(data_021600b0+0x64);
+priority+=2;
+*(void (**)(void))(data_021600b0+0x78)=func_020be764;
+*(s32 *)(data_021600b0+0x7c)=priority;
+func_0210dae0(data_021600b0+0x78);
+*(void (**)(void))(data_021600b0+0x8c)=func_020be774;
+*(s32 *)(data_021600b0+0x90)=priority;
+func_0210db40(data_021600b0+0x8c);
+func_021167ac(data_021600b0+0xa8,16);
+func_021167ac(data_021600b0+0xb4,160);
+func_021167ac(data_021600b0+0x1d4,4);
+priority=1;
+func_020a5d68(data_021600b0+0xb4,priority);
+func_020a033c(data_021600b0+0x1d4);
+*(s16 *)(data_021600b0+0x1e2)=priority-11;
+priority=0;
+*(s16 *)(data_021600b0+0xc0)=priority;
+func_020a6cdc(data_021600b0+0xb4);
+*(s16 *)(data_021600b0+0xde)=priority;
+func_0209e78c();
+func_021167ac(data_021600b0+0x134,12);
+func_021167ac(data_021600b0+0x140,24);
+func_020a2850();func_020a28e0();func_020a2a08();func_020a2a98();
+obj=*(u8 **)(data_021600ac+0x68);dest=data_0216020c;
+x=*(s32 *)obj;y=*(s32 *)(obj+4);z=*(s32 *)(obj+8);
+x-=0xc8000;y-=0xa000;
+*(s32 *)(dest+0xa0)=x;*(s32 *)(dest+0xa4)=y;*(s32 *)(dest+0xa8)=z;
+*(void **)(data_021600b0+0x1c0)=func_0209decc();
+data_021600b0[0x1ba]=data_02160204[0xd6];
+}
 
 void func_02045a78(void) {
     u8 **g = &data_021600b0;
