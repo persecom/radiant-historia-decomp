@@ -91,6 +91,36 @@ check:
     (void)x;
 }
 
+void func_020cf3b4(void) {
+    u8 i;
+    u8 *src;
+    void **pp1;
+    void **pp2;
+    for (i = 0; i < 3; i++) {
+        src = func_020bd438(i);
+        func_020bd2fc(i, *(u16 *)src, *(u8 *)(src + 2), *(u8 *)(src + 3));
+    }
+    pp1 = &data_02160204;
+    pp2 = &data_02160078;
+    *(s16 *)((u8 *)*pp2 + 0x30) = *(s16 *)((u8 *)*pp1 + 0xf6);
+    *(u16 *)((u8 *)*pp2 + 0x20) = *(u16 *)((u8 *)*pp1 + 0x14a);
+    func_020bd8c8();
+}
+
+void func_020cf424(void) {
+    func_020cf3b4();
+    func_02021a28();
+    func_0210dc88();
+    if (func_02021a50() == 1) {
+        return;
+    }
+    if (func_02021a50() == 0) {
+        *(u32 *)&data_02160240 = 1;
+    } else {
+        *(u32 *)&data_02160240 = 2;
+    }
+}
+
 void *func_020cf5a0(void) {
     u32 x = data_02155c3c;
     u32 size = 0x20;
