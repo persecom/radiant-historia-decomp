@@ -221,10 +221,10 @@ s32 func_02124ba8(void) {
 }
 
 extern u32 data_02173174[];
-extern void (*data_02156158)(void);
+extern u32 (*data_02156158)(u32, s32, s32);
 extern s32 (*data_0215615c)(void);
 extern void func_02125038(void);
-extern void func_02124ef8(void);
+extern u32 func_02124ef8(u32, s32, s32);
 extern s32 func_02125014(void);
 void func_02124bb0(s32 a0, s32 a1, s32 a2, s32 a3, s32 a4) {
     data_02156160[2] = (u32)&data_0215617c[a0];
