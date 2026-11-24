@@ -227,6 +227,63 @@ s32 func_020f5948(void) {
     return 0;
 }
 
+extern const char data_02152010[], data_02152014[], data_02152018[], data_0215201c[];
+extern const char *func_0210cd60(const char *);
+s32 func_020f5bdc(void) {
+    char buf[0x40];
+    s32 index = 0;
+    u8 *r4;
+    s8 c;
+    s32 i;
+    void *tmp;
+
+    r4 = *(u8 **)((u8 *)data_021626e8.f0 + 0x10);
+    tmp = (void *)func_0210cd60(0);
+    *(u8 *)((u8 *)data_02160204 + 0x146) = 0;
+    func_02005e80(buf, data_02152010, tmp);
+    c = buf[0];
+    if ((c >= '0' && c <= '9') || c == '-') {
+        func_02012590(buf, data_02152014, &index);
+        *(u8 *)((u8 *)data_02160204 + 0x146) = 1;
+        return index;
+    }
+    for (i = 0; i < 0x3f; i++) {
+        buf[i] = buf[i + 1];
+    }
+    if (c != 'x') {
+        func_02012590(buf, data_02152018, &index);
+    }
+    switch (c) {
+    case 'f': {
+        f32 f = (f32)func_02017f64(buf);
+        return (s32)((f > 0.0f) ? (0.5f + 4096.0f * f) : (4096.0f * f - 0.5f));
+    }
+    case 'r': {
+        index %= 360;
+        index <<= 16;
+        return index / 360;
+    }
+    case 'x':
+        func_02012590(buf, data_0215201c, &index);
+        return index;
+    case 'b':
+        return *(u8 *)(r4 + index + 0x44);
+    case 'n':
+        return *(u32 *)(r4 + index * 4 + 0x64);
+    case 'l':
+        return *(u32 *)(r4 + index * 4 + 0xe4);
+    case 'a':
+        return *(u32 *)(r4 + 0x124);
+    case 'm':
+        *(u8 *)((u8 *)data_02160204 + 0x146) = 1;
+        return (index << 17) + 0x10000;
+    case 's':
+        *(u8 *)((u8 *)data_02160204 + 0x146) = 2;
+        return (index << 16) + 0x8000;
+    }
+    return 0;
+}
+
 s32 func_020f62f4(s32 arg0, s32 arg1) {
     switch (arg1) {
     case 0:
