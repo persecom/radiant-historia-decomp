@@ -214,6 +214,44 @@ void func_0212ed50(u8 *arg0, u8 *arg1) {
     *(u32 *)(arg1 + 0x10) = (arg0[0x10] << 24) | (arg0[0x11] << 16) | (arg0[0x12] << 8) | arg0[0x13];
 }
 
+void func_0212ee04(u8 *arg0, u8 *arg1) {
+    s8 *src = (s8 *)arg0;
+    s8 c;
+    *(u16 *)(arg1 + 0) = (arg0[0] << 8) | arg0[1];
+    if (*(s16 *)(arg1 + 0) > 0) {
+        *(u16 *)(arg1 + 2) = (arg0[2] << 8) | arg0[3];
+    }
+    c = src[4];
+    arg1[4] = c;
+    if (c > 0) {
+        arg1[5] = src[5];
+    }
+    c = src[6];
+    arg1[6] = c;
+    if (c > 0) {
+        arg1[7] = src[7];
+    }
+    c = src[8];
+    arg1[8] = c;
+    if (c > 0) {
+        arg1[9] = src[9];
+    }
+    c = src[10];
+    arg1[10] = c;
+    if (c > 0) {
+        arg1[11] = src[11];
+    }
+}
+
+void func_0212efe8(u32 *arg0, u32 *arg1) {
+    if (arg0 != NULL) {
+        *arg0 = data_02156f4c[2];
+    }
+    if (arg1 != NULL) {
+        *arg1 = data_02156f4c[0];
+    }
+}
+
 void func_0212f384(s32 *arg0, s32 arg1, s32 *arg2, s32 *arg3) {
     s32 ptr = *(volatile s32 *)arg0;
     s32 len = *(volatile s32 *)(arg0 + 1);
