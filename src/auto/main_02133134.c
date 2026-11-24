@@ -147,8 +147,8 @@ s32 func_021333e8(void *arg0) {
 }
 
 s32 func_02133440(void *arg0) {
-    s8 buf0[0x129];
     s8 buf1[0x129];
+    s8 buf0[0x129];
     void *p;
     s32 (*cb)(s8 *);
 
