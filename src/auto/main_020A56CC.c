@@ -1,5 +1,6 @@
 /* 24 functions from 0x020A56CC to 0x020A66B8 (main), found by ds-decomp. */
 #include "common.h"
+extern char data_0214feb0[], data_0214fed0[], data_0214fef0[], data_0214fef4[], data_0214fef8[], data_0214fefc[];
 
 extern void func_021168f8(void *, void *);
 extern void func_0210c5dc(void *);
@@ -205,9 +206,11 @@ extern void func_021093b0(void *);
 void func_020a6184(void *arg0, s32 arg1) {
     char buf[32];
     void *fp;
-    u16 id;
-    u16 count;
+    u8 *entry;
+    u8 *node;
     u16 i;
+    u16 count;
+    u16 id;
 
     if (arg1 == 0) {
         func_02005e80(buf, data_0214ff00);
@@ -225,24 +228,22 @@ void func_020a6184(void *arg0, s32 arg1) {
         if (id == 0) {
             break;
         }
-        {
-            u8 *entry = (u8 *)func_020a6138();
-            *(u16 *)(entry + 0) = id;
-            *(u32 *)(entry + 0x18) = 0;
-            count = func_02092994(fp, 0);
-            for (i = 0; i < count; i++) {
-                u8 *node = (u8 *)func_020a6168();
-                func_02109444(fp);
-                *(u16 *)(node + 0) = func_02092994(fp, 0);
-                *(u16 *)(node + 6) = func_02092994(fp, 0);
-                *(u16 *)(node + 8) = func_02092994(fp, 0);
-                if (i == 0 || i == count - 1) {
-                    *(u16 *)(node + 4) = func_02092994(fp, 0);
-                }
-                func_021167f0(entry + 4, node);
+        entry = (u8 *)func_020a6138();
+        *(u16 *)(entry + 0) = id;
+        *(u32 *)(entry + 0x18) = 0;
+        count = func_02092994(fp, 0);
+        for (i = 0; i < count; i++) {
+            node = (u8 *)func_020a6168();
+            func_02109444(fp);
+            *(u16 *)(node + 0) = func_02092994(fp, 0);
+            *(u16 *)(node + 6) = func_02092994(fp, 0);
+            *(u16 *)(node + 8) = func_02092994(fp, 0);
+            if (i == 0 || i == count - 1) {
+                *(u16 *)(node + 4) = func_02092994(fp, 0);
             }
-            func_021167f0(arg0, entry);
+            func_021167f0(entry + 4, node);
         }
+        func_021167f0(arg0, entry);
     } while (func_02109444(fp));
 
     if (fp != NULL) {
