@@ -129,8 +129,8 @@ fail:
     return 0;
 }
 
-void func_02054324(void) {
-    func_0205428c();
+s32 func_02054324(void *arg0) {
+    return func_0205428c(arg0);
 }
 
 s32 func_02054330(void *arg0) {
@@ -325,8 +325,8 @@ extern void func_020510e8(void *);
 extern void func_02051344(void *);
 extern void func_0205196c(void *);
 s32 func_02054800(u8 *arg0) {
-    u8 *s = *(u8 **)(arg0 + 0xd0);
     u16 val8e;
+    u8 *s = *(u8 **)(arg0 + 0xd0);
     s32 angle;
 
     *(u16 *)(arg0 + 0x92) = func_020ddc8c(arg0, *(u8 **)(data_021600ac + 0x68));
