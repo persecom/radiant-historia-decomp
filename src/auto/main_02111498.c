@@ -211,6 +211,18 @@ void func_02111ac0(u8 *arg0, u16 arg1, u16 arg2, u16 arg3, u16 arg4) {
     *(u16 *)(arg0 + 0x4c) = arg4;
 }
 
+void func_02111ccc(u8 *arg0) {
+    u8 *node = *(u8 **)(arg0 + 0x38);
+    while (node != NULL) {
+        u8 *next = *(u8 **)(node + 0x10);
+        func_021168f8(arg0 + 0x38, node);
+        if (node != NULL) {
+            func_0210c5dc(node);
+        }
+        node = next;
+    }
+}
+
 s32 func_02111da8(u8 *arg0) {
     return *(s32 *)(arg0 + 0x38);
 }
@@ -223,8 +235,21 @@ u32 func_02111dbc(u8 *arg0, u32 arg1) {
     return *(u32 *)(arg0 + 0x78 + (arg1 << 2));
 }
 
+void func_02111ff0(u8 *arg0) {
+    u16 i;
+    u32 count = func_020c9c34(*(void **)(arg0 + 0x34));
+    for (i = 0; i < count; i++) {
+        u8 *obj = func_020c9c10(*(void **)(arg0 + 0x34), i);
+        ((void (*)(u8 *))(*(void **)(obj + 0x4c)))(obj);
+    }
+}
+
 void func_02112038(MainSub_6C *arg0) {
     func_020c9490(arg0->field);
+}
+
+void func_02112048(u8 *arg0) {
+    func_02111d7c(*(void **)(arg0 + 0x6c), func_020c94a0(*(u8 **)(arg0 + 0x6c)));
 }
 
 extern void func_020c8ee4(void *);
