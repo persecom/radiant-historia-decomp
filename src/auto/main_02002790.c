@@ -141,6 +141,27 @@ void func_02002a28(const u32 *arg0) {
     reg[6] = arg0[15] << 4;
 }
 
+void func_02002ae0(const u32 *arg0) {
+    volatile u32 *reg = (volatile u32 *)0x04000440;
+    reg[0] = 3;
+    reg[6] = arg0[0] << 4;
+    reg[6] = arg0[1] << 4;
+    reg[6] = arg0[2] << 4;
+    reg[6] = arg0[3] << 4;
+    reg[6] = arg0[4] << 4;
+    reg[6] = arg0[5] << 4;
+    reg[6] = arg0[6] << 4;
+    reg[6] = arg0[7] << 4;
+    reg[6] = arg0[8] << 4;
+    reg[6] = arg0[9] << 4;
+    reg[6] = arg0[10] << 4;
+    reg[6] = arg0[11] << 4;
+    reg[6] = arg0[12];
+    reg[6] = arg0[13];
+    reg[6] = arg0[14];
+    reg[6] = arg0[15];
+}
+
 extern void func_020055d4();
 void func_02002bbc(void *arg0) {
     *(volatile u32 *)0x04000400 = 0x16;
