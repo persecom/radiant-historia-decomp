@@ -1,6 +1,23 @@
 /* 16 functions from 0x0209C2AC to 0x0209D0F0 (main), found by ds-decomp. */
 #include "common.h"
 
+typedef struct {
+    u16 unk[10];
+} Unk20;
+
+extern Unk20 data_02142bb4;
+extern u8 *data_02160204;
+extern void func_021168f8(void *, void *);
+extern void func_0210c5dc(void *);
+extern u8 *func_0209ac14(void);
+extern s32 func_020bd490(s32, u8);
+extern u8 *func_02021f10(s32);
+extern void func_02022100(void *);
+extern void func_0203bc34(u32, void *, u32, u32, u32, u32);
+extern void func_020a899c(void *);
+extern void func_020a30c4(u32);
+extern void func_021098ac(void *);
+
 extern u8 *data_02160120;
 extern u32 func_021136b0(void);
 extern void func_0209c94c(void *);
@@ -34,12 +51,11 @@ void *func_0209c8dc(u32 arg0) {
     return NULL;
 }
 
-void func_0209c920(u8 *arg0) {
-    u32 *p = (u32 *)(arg0 + 0x3c);
-    if (*p == 0) return;
+void func_0209c920(S_0209c920 *arg0) {
+    if (arg0->flag == 0) return;
     do {
         func_0209c94c(arg0);
-    } while (*p != 0);
+    } while (arg0->flag != 0);
 }
 
 u32 func_0209cb98(void) {
