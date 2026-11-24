@@ -26,6 +26,15 @@ void func_0211071c(u8 *arg0, u16 *arg1) {
     func_02110abc(arg0);
 }
 
+void func_02110754(u8 *arg0, u16 *arg1) {
+    u8 *sub = arg0 + 0x30;
+    u16 i;
+    for (i = 0; i < 5; i++) {
+        *(u16 *)(sub + i * 2 + 0x14) = arg1[i];
+    }
+    func_02110abc(arg0);
+}
+
 void func_02110868(u8 *arg0, s32 arg1) {
     func_021107cc(arg0, arg1, *(s16 *)(arg0 + 0x36));
 }
