@@ -28,8 +28,8 @@ void func_020a5858(u8 *arg0) {
     }
     if (*(u16 *)(arg0 + 0x5c) & 1) {
         func_020a994c(arg0 + 0xc);
+        func_020a98a0(arg0 + 0xc);
     }
-    func_020a98a0(arg0 + 0xc);
     func_020a9544(*(void **)(arg0 + 0));
     *(void **)(arg0 + 0) = NULL;
     if (*(u8 **)(arg0 + 4) != NULL) {
