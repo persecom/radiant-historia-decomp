@@ -37,6 +37,29 @@ void func_020e3db4(u16 *arg0, s32 arg1, s32 arg2) {
     func_021098ac(arg0);
 }
 
+void func_020e3f30(s32 arg0, s32 arg1, s32 arg2) {
+    UnkBuf10_020e3f30 other;
+    UnkBuf30_020e3f30 buf;
+    s16 i;
+
+    other = data_021449e8;
+    buf = data_02144a24;
+    func_020a3bbc(0x21);
+    other.data[7] = arg2;
+    for (i = 0; i < 3; i++) {
+        s16 idx = i * 10;
+        other.data[1] = buf.data[idx + 1];
+        other.data[2] = buf.data[idx + 2];
+        other.data[3] = buf.data[idx + 3];
+        other.data[4] = buf.data[idx + 4];
+        other.data[5] = arg0 + buf.data[idx + 5];
+        other.data[6] = arg1 + buf.data[idx + 6];
+        other.data[8] = buf.data[idx + 8];
+        other.data[9] = buf.data[idx + 9];
+        func_021098ac(other.data);
+    }
+}
+
 void func_020e4028(u16 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 offset = 0;
     if (arg1 == 1) {
