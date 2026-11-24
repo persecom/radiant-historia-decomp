@@ -19,9 +19,10 @@ void func_020d8e5c(s32 arg0) {
 }
 
 void func_020d8f50(void) {
-    if (data_02160258 != NULL) {
-        func_0210c5dc(data_02160258);
-        data_02160258 = NULL;
+    u8 **p = &data_02160258;
+    if (*p != NULL) {
+        func_0210c5dc(*p);
+        *p = NULL;
     }
 }
 
