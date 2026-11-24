@@ -306,6 +306,28 @@ void func_020ddf2c(u8 *arg0) {
     *(s32 *)(arg0 + 0x54) = v - 0x600;
 }
 
+void func_020ddfd0(u8 *arg0, u8 arg1) {
+    u16 v = *(u16 *)(arg0 + 0x8e);
+    if (v <= 0x63) {
+        UnkStruct_020ddfd0 *p = *(UnkStruct_020ddfd0 **)(*(u8 **)(arg0 + 0x108) + 0x8);
+        p->unk70_1 = arg1;
+    } else if (v >= 0x64 && v <= 0x31f) {
+        UnkStruct_020ddfd0 *p = *(UnkStruct_020ddfd0 **)(*(u8 **)(arg0 + 0x108) + 0x0);
+        p->unk70_1 = arg1;
+    } else if (v >= 0x3e8 && v <= 0x1003) {
+        UnkStruct_020ddfd0 *p = *(UnkStruct_020ddfd0 **)(*(u8 **)(arg0 + 0x108) + 0x0);
+        p->unk70_1 = arg1;
+    }
+}
+
+void func_020de078(void) {
+    u8 *node = *(u8 **)(data_02160a68.unk04 + 0x70);
+    while (node != NULL) {
+        *(u8 *)(node + 0x192) = 0;
+        node = *(u8 **)(node + 0x13c);
+    }
+}
+
 extern u32 data_02155c3c;
 extern void *func_0210c594(s32, u32);
 void *func_020de160(void) {
