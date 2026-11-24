@@ -17,6 +17,9 @@ typedef struct {
     u16 f6;
 } Struct0216f2c4;
 
+typedef struct { u32 words[6]; } Struct24_02119f1c;
+extern u32 data_0216f244[];
+extern u16 data_0216f2c8[];
 typedef struct {
     u32 a;
     u32 b;
@@ -191,7 +194,13 @@ else *(u32 *)(arg0+0x38)&=~0x1000;
 }
 p=(u8 *)data_0216f234.f8;
 if(*(u32 *)(p+0x84)&8) {
-attr_021194cc(arg0,palette_021194cc(arg0),*(u32 *)(p+0x8c));
+s32 palette=palette_021194cc(arg0);
+u32 word=*(u16 *)(arg0+0x3c);
+u32 attr=*(u32 *)(arg0+0x38);
+attr=(attr&~0xc00)|(*(u32 *)(p+0x8c)<<10);
+word=(word&~0xf000)|(palette<<12);
+*(u32 *)(arg0+0x38)=attr;
+*(u16 *)(arg0+0x3c)=word;
 }
 }
 p=(u8 *)data_0216f234.f8;
