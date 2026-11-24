@@ -151,20 +151,33 @@ s8 func_020bdba0(s32 arg0) {
     return -1;
 }
 
-void func_020bdbe8(s32 arg0, volatile s32 x, s32 unused, volatile s32 arg3, ...) {
-u32 index=data_02151118[2];
-u32 bits=((u32 *)data_02160200)[index];
-s32 y=arg3;
-u8 i;
-for(i=0;i<32;i++) { if(bits & (1<<i)) break; }
-*(u16 *)(data_02160200+arg0*2+0x17c)=*(u16 *)(data_02160204+0x72);
-*(u16 *)(data_02160200+arg0*4+0x170)=x>>12;
-*(u16 *)(data_02160200+arg0*4+0x172)=y>>12;
-*(u16 *)(data_02160204+0x74)=0;
-*(u16 *)(data_02160204+0x76)=0;
-(data_02160200+(arg0+1))[0x16c]=data_02160200[0x16c];
-*(u32 *)(data_02160200+arg0*4+0x184)=((u32 *)data_02160200)[index];
+void func_020bdbe8(s32 arg0, volatile s32 x, s32 unused, volatile s32 arg3, ...)
+{
+  u16 *new_var;
+  s32 y = arg3;
+  u8 index = data_02151118[2];
+  u32 bits;
+  u8 i;
+  for (i = 0; i < 32; i++)
+  {
+    bits = ((u32 *) data_02160200)[index];
+    if (!data_02160200)
+    {
+    }
+    if (bits & (1 << i))
+    {
+      break;
+    }
+  }
 
+  *((u16 *) ((data_02160200 + (arg0 * 2)) + 0x17c)) = *((u16 *) (data_02160204 + 0x72));
+  *((u16 *) ((data_02160200 + (arg0 * 4)) + 0x170)) = x >> 12;
+  new_var = (u16 *) ((data_02160200 + (arg0 * 4)) + 0x172);
+  *new_var = y >> 12;
+  *((u16 *) (data_02160204 + 0x74)) = 0;
+  *((u16 *) (data_02160204 + 0x76)) = 0;
+  (data_02160200 + (arg0 + 1))[0x16c] = data_02160200[0x16c];
+  *((u32 *) ((data_02160200 + (arg0 * 4)) + 0x184)) = ((u32 *) data_02160200)[index];
 }
 
 s32 func_020bdcc0(s32 arg0) {
