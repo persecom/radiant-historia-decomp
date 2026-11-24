@@ -2,6 +2,8 @@
 #include "common.h"
 
 extern void func_0210c5dc(void *);
+extern void *func_020c641c(void);
+extern void func_020c738c(void *, s32, s32);
 void func_020c6da0(void *arg0) {
     if (arg0 != NULL) {
         func_0210c5dc(arg0);
