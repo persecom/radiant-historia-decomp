@@ -324,11 +324,12 @@ void *func_021169cc(void *list, const void *memBlock) {
 }
 
 void *func_02116a34(void *memBlock) {
-    void *p = func_021169cc(data_0216e220, memBlock);
+    void *heap = data_0216e220;
+    void *p = func_021169cc(heap, memBlock);
     if (p != NULL) {
-        return (u8 *)p + 0xc;
+        heap = (u8 *)p + 0xc;
     }
-    return data_0216e220;
+    return heap;
 }
 
 void func_02116a5c(void *heap, u32 signature, void *start, void *end, u16 opt) {
