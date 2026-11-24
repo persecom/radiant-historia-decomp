@@ -348,22 +348,69 @@ s32 func_02009880(void) {
 }
 
 void func_02009894(void) {
-s32 i;u32 *p;u32 **state;u32 one=1;
+s32 i;u32 *p;
 func_02009e60();
 data_0215d1b8[0]=(u32 *)data_0215d480;
 i=0;
 goto test;
 loop: {s32 next=i+1; *(u32 **)(data_0215d480+i*24)=(u32 *)(data_0215d480+next*24);i=next;}
 test: if(i<255)goto loop;
-*(volatile u32 **)(data_0215e480+0x7e8)=0;
-state=data_0215d1b8;
-state[4]=data_0215ec68;
-state[2]=0;state[3]=0;state[7]=0;state[5]=0;state[6]=0;state[8]=(u32 *)one;state[1]=0;
+*(u32 **)(data_0215e480+0x7e8)=0;
+data_0215d1b8[4]=data_0215ec68;
+data_0215d1b8[2]=0;data_0215d1b8[3]=0;data_0215d1b8[7]=0;data_0215d1b8[5]=0;data_0215d1b8[6]=0;data_0215d1b8[8]=(u32 *)1;data_0215d1b8[1]=0;
 data_0215ece0=data_0215d200;
 func_0200a08c();
-p=func_02009a64(one);
+p=func_02009a64(1);
 if(!p)return;
-p[1]=0x1d;p[2]=(u32)data_0215ece0;func_02009aec(p);func_02009b24(one);
+p[1]=0x1d;p[2]=(u32)data_0215ece0;func_02009aec(p);func_02009b24(1);
+}
+
+extern void *data_0215d1dc[];
+extern void func_020081a4(u32);
+extern u32 func_0200a068(void);
+s32 func_02009964(s32 arg0) {
+    s32 intr = func_02008128();
+    u32 *r5;
+    u32 *r1;
+    s32 idx;
+
+    if (arg0 & 1) {
+        while ((u32)data_0215d1b8[1] == func_0200a068()) {
+            func_0200813c(intr);
+            func_020081a4(50);
+            intr = func_02008128();
+        }
+    } else {
+        if ((u32)data_0215d1b8[1] == func_0200a068()) {
+            func_0200813c(intr);
+            return 0;
+        }
+    }
+
+    idx = (s32)data_0215d1b8[5];
+    r5 = (u32 *)data_0215d1dc[idx];
+    idx++;
+    data_0215d1b8[5] = (u32 *)idx;
+    if (idx > 8) {
+        data_0215d1b8[5] = (u32 *)0;
+    }
+
+    r1 = r5;
+    while (*r1 != 0) {
+        r1 = (u32 *)*r1;
+    }
+
+    if (data_0215d1b8[4] != NULL) {
+        *data_0215d1b8[4] = (u32)r5;
+    } else {
+        data_0215d1b8[0] = r5;
+    }
+    data_0215d1b8[4] = r1;
+    data_0215d1b8[7] = (u32 *)((s32)data_0215d1b8[7] - 1);
+    data_0215d1b8[1] = (u32 *)((s32)data_0215d1b8[1] + 1);
+
+    func_0200813c(intr);
+    return (s32)r5;
 }
 
 u32 *func_02009a64(s32 arg0) {
