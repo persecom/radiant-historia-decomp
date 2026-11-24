@@ -316,6 +316,28 @@ void func_02111ac0(u8 *arg0, u16 arg1, u16 arg2, u16 arg3, u16 arg4) {
     *(u16 *)(arg0 + 0x4c) = arg4;
 }
 
+extern s32 func_020c73d8(void *);
+extern void func_020c93f4(void *, u32);
+extern s32 func_020c9488(void *);
+void func_02111ad8(u8 *p) {
+u32 count = func_020c9c34(*(void **)(p+0x34));
+s16 selected = func_020c94a0(*(void **)(p+0x6c));
+u16 i;
+for(i=0;i<count;i++) {
+u8 *item=func_020c9c10(*(void **)(p+0x34),i);
+if (((s32 (*)(void *))*(void **)(item+0x18))(item)==0 && func_020c73d8(item)) {
+if(selected==*(u16 *)(item+0x3a)) p[0x75]=1;
+else func_020c93f4(*(void **)(p+0x6c),*(u16 *)(item+0x3a));
+}
+}
+if(func_020c9488(*(void **)(p+0x6c))) {
+s16 index=func_020c94a0(*(void **)(p+0x6c))-func_020c94a8(*(void **)(p+0x6c));
+if((s32)count<=index) func_02111598(func_020c9c10(*(void **)(p+0x34),(u16)(count-1)));
+else if(index<0) func_02111598(func_020c9c10(*(void **)(p+0x34),0));
+else func_02111598(func_020c9c10(*(void **)(p+0x34),(u16)index));
+}
+}
+
 extern void func_0211164c(u8 *);
 extern void func_020c738c(u8 *, s32, s32);
 void func_02111bf0(u8 *arg0) {
