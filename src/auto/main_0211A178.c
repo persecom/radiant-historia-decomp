@@ -14,7 +14,7 @@ extern s32 data_0216f3d8[];
 extern s32 data_0216f244[];
 extern s32 data_0216f3c4[][6];
 extern s32 data_0216f6c4[][6];
-void func_0211a4e0();
+void func_0211a4e0(void *, void *, void *);
 extern u32 data_02144d9c[5];
 extern u32 data_021701d8[4];
 extern u32 data_021701cc[3];
@@ -58,7 +58,7 @@ void func_0211a3ac(s32 sine,s32 cosine) {
  u16 *entry;
  s32 active;
  m[1]=sine;m[0]=cosine;m[3]=cosine;m[2]=-sine;m[4]=0;m[5]=0;
- func_0211a4e0((void *)m,(u8 *)data_0216f3c4+index*stride,data_0216f3c4[data_0216f234[3]]);
+ func_0211a4e0((void *)m,(u8 *)data_0216f3c4+index*stride,(u8 *)data_0216f3c4+index*stride);
  func_0211a4e0((void *)m,(u8 *)data_0216f6c4+state[3]*stride,data_0216f6c4[data_0216f234[3]]);
  active=Active0211a3ac();
  if(!active) data_02155eb0[0]=data_0216f234[3];
