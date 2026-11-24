@@ -10,6 +10,15 @@ extern void func_020f40a4(void);
 extern void func_020f4144(void);
 extern void func_0210c5dc(void *);
 extern void func_020d9018(void);
+extern void func_020d9cc0(void *);
+extern void func_020f4668(void *);
+
+typedef struct {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+} Unk3Words;
+
 void func_020d8e5c(s32 arg0) {
     if (arg0 == 0) {
         func_020f40a4();
@@ -39,8 +48,25 @@ void func_020d8f78(void) {
     func_020d9018();
 }
 
+void func_020d9058(s32 *arg0) {
+    u8 *p = data_02160258;
+    *(s32 *)(p + 0xc) = arg0[0];
+    *(s32 *)(p + 0x10) = arg0[1];
+    *(s32 *)(p + 0x14) = arg0[2];
+}
+
 void func_020d907c(u32 arg0) {
     *(u32 *)(data_02160258 + 0x54) = arg0;
+}
+
+void func_020d9090(void) {
+    s32 *p = *(s32 **)(data_02160258 + 0x54);
+    if (p != NULL) {
+        u8 *q = data_02160258;
+        *(s32 *)(q + 0xc) = p[0];
+        *(s32 *)(q + 0x10) = p[1];
+        *(s32 *)(q + 0x14) = p[2];
+    }
 }
 
 extern void func_020d9cc0(void *);
