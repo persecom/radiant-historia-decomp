@@ -417,9 +417,6 @@ extern void func_0212d550(void *, s32);
 extern void func_0212d56c(void *, void *, void *);
 extern void func_02128944(void);
 extern s32 func_0212d540(void *);
-extern s32 func_0212d63c(void *);
-extern s32 func_0201fb1c(s32, s32);
-extern u8 data_0215698c[44];
 void func_021288c0(u8 *arg0) {
     void *p = *(void **)(arg0 + 4);
     s32 a = func_0212d600(p);
