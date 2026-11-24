@@ -10,33 +10,61 @@ extern void func_02122fa0(void *, u8, u8 *);
 extern u8 func_02121068(void *);
 void func_02008df0(u8, void *, u32);
 s32 func_02120e30(void *, void *);
-u16 func_021227e4(u8 *base, u32 flags, u32 frame) {
-u8 *p;
-u32 limit;
-if(flags & 0x20000000) return (u16)flags;
-p=base+(u16)flags;
-if(!(flags & 0xc0000000)) return p[frame];
-limit=(flags&0x1fff0000)>>16;
-if(flags & 0x40000000) {
-if(frame&1) {
-if(frame>limit) return (p+(limit>>1))[1];
-return (u16)((p[frame>>1]+(p+(frame>>1))[1])>>1);
+#pragma opt_propagation off
+u16 func_021227e4(u8 *base, u32 flags, u32 frame)
+{
+  u8 *p;
+  u32 limit;
+  u8 *new_var;
+  if (flags & 0x20000000)
+  {
+    return (u16) flags;
+  }
+  p = base + ((u16) flags);
+  if (!(flags & 0xc0000000))
+  {
+    return p[frame];
+  }
+  limit = (flags & 0x1fff0000) >> 16;
+  if (flags & 0x40000000)
+  {
+    if (frame & 1)
+    {
+      if (frame > limit)
+      {
+        return (p + (limit >> 1))[1];
+      }
+      return (u16) ((p[frame >> 1] + (p + (frame >> 1))[1]) >> 1);
+    }
+    return p[frame >> 1];
+  }
+  if (frame & 3)
+  {
+    if (frame > limit)
+    {
+      return (p + (limit >> 2))[frame & 3];
+    }
+    if (frame & 1)
+    {
+      u32 a;
+      if (frame & 2)
+      {
+        frame = frame >> 2;
+        a = frame + 1;
+      }
+      else
+      {
+        a = frame >> 2;
+        frame = a + 1;
+      }
+      new_var = &p[a];
+      return (u16) (((3 * (*new_var)) + p[frame]) >> 2);
+    }
+    return (u16) ((p[frame >> 2] + (p + (frame >> 2))[1]) >> 1);
+  }
+  return p[frame >> 2];
 }
-return p[frame>>1];
-}
-if(frame&3) {
-if(frame>limit) return (p+(limit>>2))[frame&3];
-if(frame&1) {
-u32 a,b;
-if(frame&2) {b=frame>>2;a=b+1;}
-else {a=frame>>2;b=a+1;}
-return (u16)((3*p[a]+p[b])>>2);
-}
-return (u16)((p[frame>>2]+(p+(frame>>2))[1])>>1);
-}
-return p[frame>>2];
-}
-
+#pragma opt_propagation on
 void func_021228d0(u8 *arg0, u8 *arg1, u8 *arg2) {
     u32 i;
     u8 *r8;
@@ -106,6 +134,54 @@ average:
 if (flags & 0x10000000) { x = ((s16 *)base)[frame]; y = ((s16 *)base)[frame+1]; }
 else { x = ((s32 *)base)[frame]; y = ((s32 *)base)[frame+1]; }
 return (x+y)>>1;
+}
+
+extern u32 func_02122b9c(u8 *, u32, u32, s32);
+void func_02122ca8(u8 *arg0, u16 arg1, s32 arg2, u32 *arg3) {
+    u32 *r4;
+    u32 flag;
+    s32 v1;
+    s32 v2;
+    u32 rot;
+
+    if ((arg0 + 8) != NULL && (u32)arg1 < arg0[9]) {
+        u8 *p = (arg0 + 8) + *(u16 *)((arg0 + 8) + 6);
+        r4 = (u32 *)(p + 4 + *(u16 *)p * (u32)arg1);
+    } else {
+        r4 = NULL;
+    }
+
+    flag = arg3[0];
+    v1 = func_02122aa8(arg0, r4[6], r4[7], arg2);
+    v2 = func_02122aa8(arg0, r4[8], r4[9], arg2);
+    if (v1 == 0 && v2 == 0) {
+        flag |= 4;
+    } else {
+        arg3[10] = v2;
+        arg3[9] = v1;
+        flag &= ~4;
+    }
+
+    rot = func_02122b9c(arg0, r4[4], r4[5], arg2);
+    if (rot == 0x10000000) {
+        flag |= 2;
+    } else {
+        *(u16 *)((u8 *)arg3 + 0x20) = (u16)rot;
+        *(u16 *)((u8 *)arg3 + 0x22) = (u16)(rot >> 16);
+        flag &= ~2;
+    }
+
+    v1 = func_02122aa8(arg0, r4[0], r4[1], arg2);
+    v2 = func_02122aa8(arg0, r4[2], r4[3], arg2);
+    if (v1 == 0x1000 && v2 == 0x1000) {
+        flag |= 1;
+    } else {
+        flag &= ~1;
+        arg3[6] = v1;
+        arg3[7] = v2;
+    }
+
+    arg3[0] = flag;
 }
 
 extern void *data_02155ee0;
