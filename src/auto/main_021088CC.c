@@ -23,6 +23,8 @@ void func_0210950c(u32);
 s32 func_021090f4(u32, s32);
 void func_02108ffc(void);
 void func_02109264(u32);
+void func_02125c38(u32);
+void func_021089e8(u32, s32, u32);
 
 void func_02108b54(u32 arg0) {
     u32 *ptr = NULL;
@@ -117,10 +119,10 @@ void func_02108e54(u32 arg0) {
     while (1) {
         if (func_021090f4(arg0, 0) == 2) {
             func_02108b54(arg0);
-            break;
+            return;
         }
         if (func_021090f4(arg0, 0) == 0) {
-            break;
+            return;
         }
         func_02108ffc();
     }
