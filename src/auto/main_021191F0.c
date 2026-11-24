@@ -51,6 +51,7 @@ void func_021191f0(void) {
     s32 i;
     s32 idx;
     s32 ok;
+    u8 *fill;
 
     entry = &data_0216f2c4[(u16)data_0216f234.fc];
     ok = (entry->f4 == 1 || entry->f4 == 2);
@@ -64,7 +65,8 @@ void func_021191f0(void) {
         data_0216f234.f0 = f0 + 1;
     }
     entry->f0 = f0;
-    func_02008e68(-1, data_0216f9c4[f0].f10, 0x10);
+    fill = (u8 *)&data_0216f9c4[f0];
+    func_02008e68(-1, fill + 0x10, 0x10);
 
     idx = data_0216f234.fc;
     if (data_0216f234.f4 == 0) {
@@ -77,12 +79,12 @@ void func_021191f0(void) {
 
     tbl = (u32 (*)[8])data_0216f9c4;
     k = data_0216f2c4[(u16)idx].f0;
-    tbl[k][0] = *src++;
-    tbl[k][1] = *src++;
-    tbl[k][2] = *src++;
-    tbl[k][3] = *src++;
-
+    tbl[k][0] = src[0];
+    tbl[k][1] = src[1];
     i = (u16)data_0216f234.fc;
+    tbl[k][2] = src[2];
+    tbl[k][3] = src[3];
+
     while (i >= 0) {
         if (f2 != data_0216f2c4[i].f2) {
             return;
@@ -92,3 +94,9 @@ void func_021191f0(void) {
         i--;
     }
 }
+
+void func_02119d38(void *arg0, void **arg1) {
+    arg1[0xc] = *(void **)((u8 *)arg0 + 0x70);
+    *(void **)((u8 *)arg0 + 0x70) = arg1;
+}
+
