@@ -275,12 +275,27 @@ void func_020063c8(void) {
     func_020063e8((void *)data_0215cde4[8], 0);
 }
 
+extern void func_02006440(void *);
+extern void func_0200661c(void);
+void func_020063e8(void *arg0, s32 arg1) {
+    u8 *p = (u8 *)arg0;
+    if (data_0215cde4[5] != 0) {
+        func_02006844(p, func_02006440);
+        *(u32 *)p = *(u32 *)p | 0x80;
+        *(u32 *)(p + 4) = (u32)arg1;
+        *(u32 *)(p + 0x64) = 1;
+        func_020068fc(p);
+    } else {
+        func_02006440((void *)(u32)arg1);
+    }
+}
+
 void func_02006440(void *arg0) {
-    u8 *p = (u8 *)data_0215cde4[2];
-    p = *(u8 **)p;
+    u8 **pp = (u8 **)data_0215cde4[2];
+    u8 *p = *pp;
     void (*fn)(void *) = *(void (**)(void *))(p + 0xb4);
     if (fn != NULL) {
-        *(void **)(p + 0xb4) = NULL;
+        *(void (**)(void *))(p + 0xb4) = NULL;
         fn(arg0);
         func_02008128();
         func_02006478();
