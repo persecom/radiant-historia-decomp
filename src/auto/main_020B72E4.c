@@ -53,3 +53,37 @@ for(i=0;i<5;i++) func_020c738c(func_020c9c10(*(void **)((u8 *)data_021601ec+0x48
 func_020b748c();
 }
 
+void func_020b748c(void) {
+ s32 active = 0;
+ AnimTable_020b748c table;
+ u16 i;
+ AnimObj_020b748c *obj;
+ s32 frame;
+ s32 next;
+ AnimEntry_020b748c *entry;
+ if (((u8 *)data_021601ec)[0x50] != 1) return;
+ frame = *(u16 *)((u8 *)data_021601ec+0x52);
+ table = data_02143a1c;
+ *(s32 *)((u8 *)data_021601ec+0x54) = (*(s32 *)((u8 *)data_021601ec+0x54)*30)/100;
+ next = frame+1;
+ for (i=0;i<6;i++) {
+  entry = &table.entries[i];
+  obj = func_020c9c10(*(void **)((u8 *)data_021601ec+0x48),entry->id);
+  if (frame < entry->end) {
+   s16 x = entry->x + frame*entry->dx;
+   if (entry->flag == 1 && entry->end > next)
+    x += (*(s32 *)((u8 *)data_021601ec+0x54)<<4)>>16;
+   obj->setX(obj,x);
+   obj->setY(obj,(s16)(entry->y + frame*entry->dy));
+   active = 1;
+  }
+ }
+ if (active) { ++*(u16 *)((u8 *)data_021601ec+0x52); }
+ else {
+ *(s32 *)((u8 *)data_021601ec+0x54)=0xb5000;
+ *(s32 *)((u8 *)data_021601ec+0x58)=0x3c000;
+ *(u16 *)((u8 *)data_021601ec+0x52)=0;
+ ((u8 *)data_021601ec)[0x50]=2;
+ }
+}
+
