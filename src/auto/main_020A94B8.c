@@ -323,3 +323,9 @@ void func_020aa39c(void *arg0) {
     }
 }
 
+void *func_020aa3b0(void) {
+    u8 *ptr = (u8 *)func_0210c594(0x18, data_02155c3c);
+    func_021167ac(ptr + 8, 0);
+    return ptr;
+}
+
