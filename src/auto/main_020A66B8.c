@@ -214,6 +214,25 @@ void *func_020a7154(u16 arg0) {
     return NULL;
 }
 
+void func_020a7194(u8 **arg) {
+Unk_020a7194 buf=data_021435a4;
+u8 *p;
+*(volatile u32 *)0x040004a4=0x1f0080;
+*(volatile u32 *)0x04000480=0x7fff;
+p=*arg;
+while(p){
+s16 x,y,size;
+if(*(u16 *)(p+0x30)&1)func_020a3c54(*(u16 *)(p+0x20));else func_020a3bbc(*(u16 *)(p+0x20));
+buf.data[1]=*(s16 *)(p+0x28);buf.data[2]=*(s16 *)(p+0x2a);buf.data[3]=*(s16 *)(p+0x2c);buf.data[4]=*(s16 *)(p+0x2e);
+x=*(s32 *)p; y=*(s32 *)(p+4);
+buf.data[5]=x;buf.data[6]=y;buf.data[7]=*(s32 *)(p+8);
+size=(*(s32 *)(p+0x18)*68)>>12;
+buf.data[8]=size;buf.data[9]=size;
+if(x>-100 && x+size<356 && y>-100 && y+size<292)func_021098ac(&buf);
+p=*(u8 **)(p+0x38);
+}
+}
+
 extern void func_020a745c(void);
 extern s32 func_020a2c5c(s32, s32, s32, s32, s32);
 s32 func_020a73e8(s32 arg0) {
