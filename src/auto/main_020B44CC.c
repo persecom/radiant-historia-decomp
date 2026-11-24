@@ -55,6 +55,14 @@ void func_020b459c(void) {
     func_02022160(*(void **)(func_020b3890() + 0x258));
 }
 
+void func_020b45b0(void) {
+    func_020a2e24();
+    func_020bd2cc();
+    func_020bc844();
+    func_020ade0c();
+    func_020b44cc();
+}
+
 void func_020b4af0(void *arg0) {
     if (arg0 != NULL) {
         func_020ec548(arg0);
