@@ -29,7 +29,10 @@ const char *func_020929f4(u8 *arg0, s32 arg1) {
     if (arg1 == 1 && !func_021093f0(arg0)) {
         return NULL;
     }
-    return *r4 == '\0' ? NULL : r4;
+    if (*r4 == '\0') {
+        return NULL;
+    }
+    return r4;
 }
 
 extern u8 data_02148750[4];
