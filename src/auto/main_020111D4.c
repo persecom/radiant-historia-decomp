@@ -34,6 +34,8 @@ extern void func_020115f0(u32, u32);
 extern void func_0201164c(void);
 extern void func_02011700(void *);
 extern void func_02011660(void);
+extern void *data_02145c24;
+extern void func_02009008(void *, void *, s32);
 extern void func_02008f74(void *, s32, s32);
 extern void func_020062d8(void *, void *, void *, void *, s32, s32);
 extern void func_020065c8(void *);
@@ -99,8 +101,8 @@ end:
 
 void func_02011334(void) {
     u32 *p = data_0215fa34;
-    s32 mode = 0xd;
     s32 val = 1;
+    s32 mode = 0xd;
     if (p[2] != 0) {
         return;
     }
@@ -179,14 +181,16 @@ void func_02011700(void *arg0) {
 }
 
 void func_02011804(u8 *a0) {
-    u32 a = *(u32 *)(a0 + 0x2c);
-    u32 zero = 0;
-    u32 b = *(u32 *)(a0 + 0x4c);
+    s32 a = *(s32 *)(a0 + 0x2c);
+    s32 b;
+    s32 zero;
 
-    *(u32 *)(a0 + 0x2c) = zero;
-    *(u32 *)(a0 + 0x4c) = zero;
+    zero = 0;
+    b = *(s32 *)(a0 + 0x4c);
+    *(s32 *)(a0 + 0x2c) = zero;
+    *(s32 *)(a0 + 0x4c) = zero;
     func_02011ef4(a0);
-    *(u32 *)(a0 + 0x2c) = a;
-    *(u32 *)(a0 + 0x4c) = b;
+    *(s32 *)(a0 + 0x2c) = a;
+    *(s32 *)(a0 + 0x4c) = b;
 }
 
