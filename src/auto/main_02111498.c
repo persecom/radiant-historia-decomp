@@ -6,6 +6,12 @@ typedef struct {
     void *field;
 } MainSub_6C;
 
+typedef struct {
+    u16 f0;
+    s16 f2;
+    s16 f4;
+} Unk_02144c84;
+
 extern void func_0210c5dc(void *);
 extern s32 func_020c9490(void *);
 extern void func_020c9940(void *);
