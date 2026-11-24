@@ -118,3 +118,19 @@ s32 func_02032294(u8 *arg0) {
     return a + b;
 }
 
+void func_020322ec(s16 arg0) {
+    u8 *p = (u8 *)data_02160090;
+    if (arg0 >= 10) {
+        return;
+    }
+    do {
+        func_020c2708((u8)*(u16 *)(p + 0x78));
+        func_020c2870((u8)*(u16 *)(p + 0x78));
+        *(volatile u16 *)(p + 0x78) += 1;
+        if (*(volatile u16 *)(p + 0x78) > 0x19) {
+            *(volatile u16 *)(p + 0x78) = 0x19;
+        }
+        arg0++;
+    } while (arg0 <= 10);
+}
+
