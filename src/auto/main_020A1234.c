@@ -26,6 +26,7 @@ typedef struct {
 } UnkSprite_020A1564;
 
 extern const UnkSprite_020A1564 data_02142c54;
+extern const UnkSprite_020A1564 data_02142cf4;
 extern void func_020a3bbc(s32);
 extern void func_021098ac(UnkSprite_020A1564 *);
 
