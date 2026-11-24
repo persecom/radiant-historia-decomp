@@ -424,6 +424,12 @@ s32 func_02115fe0(void *arg0) {
     return 1;
 }
 
+s32 func_02116078(u32 arg0, u32 arg1) {
+    u8 *p = func_02114f80((void *)arg1);
+    if (p == NULL) return 0;
+    return func_02116140(arg0, p[9], *(u16 *)(p + 4), p[8], p, arg1);
+}
+
 void func_0211630c(s32 arg0) {
     s32 i;
     for (i = 0; i < 4; i++) {
