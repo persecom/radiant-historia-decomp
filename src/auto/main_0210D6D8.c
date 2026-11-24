@@ -239,6 +239,15 @@ void func_0210e620(s32 arg0) {
     func_0200813c(tmp);
 }
 
+void func_0210e640(void) {
+    u16 ime;
+    func_020057e8(1, func_0210e404);
+    func_020059b4(1);
+    ime = *(volatile u16 *)0x04000208;
+    *(volatile u16 *)0x04000208 = 1;
+    func_02002708(1, ime);
+}
+
 void func_0210e67c(void) {
     func_021167ac(data_021628ec, 8);
 }
