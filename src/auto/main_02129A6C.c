@@ -240,6 +240,23 @@ s32 func_0212a4b8(s32 *arg0) {
     return arg0[1];
 }
 
+void func_0212a4c0(u8 *arg0, s32 arg1, s32 arg2) {
+    s32 val;
+    if (*(s16 *)(arg0 + 0x98) == 0) {
+        *(s32 *)(arg0 + 0x48) = arg1;
+        val = *(s8 *)(arg0 + 0xf);
+    } else {
+        *(s32 *)(arg0 + 0x48) = arg1;
+        val = (*(s8 *)(arg0 + 0xd) / 8) * *(s8 *)(arg0 + 0xe);
+    }
+    *(s32 *)(arg0 + 0x4c) = func_0201fb1c(arg2, val);
+    *(s32 *)(arg0 + 0x74) = 0;
+    *(s32 *)(arg0 + 0x90) = 0;
+    *(s32 *)(arg0 + 0x94) = 0;
+    *(s32 *)(arg0 + 0xe8) = 0;
+    *(s32 *)(arg0 + 0xe4) = 0;
+}
+
 extern s32 func_0201fb1c(s32, s32);
 extern void func_0212984c(void *);
 extern void func_02129878(void *);
@@ -247,6 +264,11 @@ void func_0212a528(u8 *arg0) {
     if (*(s32 *)(arg0 + 0x4) == 0) {
         *(s32 *)(arg0 + 0x4) = 1;
     }
+}
+
+void func_0212a53c(u8 *arg0) {
+    func_0212984c(*(void **)(arg0 + 0x8));
+    *(s32 *)(arg0 + 0x4) = 0;
 }
 
 s32 func_0212a584(s32 *arg0) {
