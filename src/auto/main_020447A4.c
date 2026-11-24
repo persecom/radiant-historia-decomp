@@ -14,7 +14,7 @@ extern void func_0203d970(void *);
 extern void func_0203df40(void *);
 static inline u16 random_4487c(u16 max) {
  u32 seed=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
- u16 value;
+ u32 value;
  data_0216263c[0]=seed;
  value=seed>>16;
  if(max) value=(value*max)>>16;
