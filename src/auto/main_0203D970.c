@@ -101,3 +101,34 @@ void func_0203e6bc(void) {
     g->field_4 = NULL;
 }
 
+void *func_0203e730(u32 a,u32 b,int mode,u32 d) {
+int x,y; u8 *obj; u8 *out; u8 *p; int zero=0;
+out=func_0210c594(0x28,data_02155c3c);
+if(mode==0) {x=0x4000;y=zero;} else if(mode==1) {x=0x4000;y=x;}
+out[0x18]=0x28;
+*(u32 *)(out+0x1c)=d;
+p=data_021600a0.field_4->field_28;
+while(p) {
+if(*(u16 *)(p+6)==b) {
+func_021168f8(&data_021600a0.field_4->field_28,p);
+func_020ec548(*(void **)p);
+if(p) func_0210c5dc(p);
+if(mode==0) data_021600a0.field_4->field_36=zero;
+else if(mode==1) data_021600a0.field_4->field_3c=zero;
+break;
+}
+p=*(u8 **)(p+0x24);
+}
+obj=func_020ec294(a,b,x,y);
+*(u16 *)(obj+0x10)=zero;
+if(mode==0) {
+*(u32 *)(out+0xc)=128;*(u32 *)(out+0x10)=64;
+(*(u8 **)(*(u8 **)obj+8))[0x70]|=2;
+} else if(mode==1) {*(u32 *)(out+0xc)=152;*(u32 *)(out+0x10)=64;}
+*(u32 *)(obj+0x18)=0x40000;*(u32 *)(obj+0x1c)=0x244000;
+func_020ec88c(obj,zero,zero);func_020ec8cc(obj,zero,1);
+*(u32 *)(out+8)=zero;*(u16 *)(out+4)=a;*(u16 *)(out+6)=b;*(void **)out=obj;
+func_021167f0(&data_021600a0.field_4->field_28,out);
+return out;
+}
+
