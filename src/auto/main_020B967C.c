@@ -17,8 +17,7 @@ void func_020b9930(void) {
 
 void func_020b9990(void) {
     u8 *p = data_021601ec;
-    u16 arr[1];
-    arr[0] = data_021438e0;
+    u16 arr[1] = { 0xe };
     func_020c738c(func_020c9c10(*(void **)(p + 0x4c), arr[0]), 0, 1);
     *(s32 *)(p + 0x5c) = 0xfa000;
 }
