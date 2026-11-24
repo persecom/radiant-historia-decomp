@@ -59,11 +59,11 @@ s32 func_02066bdc(void) {
 }
 
 void func_02066c28(void) {
+    u8 *ptr = data_021600e0[1];
     s16 i, j;
-    u8 (*arr)[11][0x20] = (u8 (*)[11][0x20])(data_021600e0[1] + 0x1b4);
     for (i = 0; i < 12; i++) {
         for (j = 0; j < 11; j++) {
-            func_020a9af0(arr[i][j], i, j);
+            func_020a9af0(ptr + 0x1b4 + i * 0x160 + j * 0x20, i, j);
         }
     }
 }
