@@ -158,6 +158,11 @@ void func_020bebc8(s32 arg0) {
     data_02151fc8 = (u16)((((s64)(arg0 << 12) * 0xb60b60b60bLL) + 0x80000000000LL) >> 44);
 }
 
+extern u16 data_02151fca;
+void func_020bec04(s32 arg0) {
+    data_02151fca = (u16)((((s64)(arg0 << 12) * 0xb60b60b60bLL) + 0x80000000000LL) >> 44);
+}
+
 void func_020bec40(u16 arg0) {
     if (arg0 < 0x20) {
         arg0 = 0x20;
