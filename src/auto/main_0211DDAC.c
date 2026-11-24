@@ -43,3 +43,12 @@ void func_0211e014(u32 *arg0, u8 *arg1) {
         arg1 = *(u8 **)(arg1 + 0x10);
     }
 }
+
+void func_0211e158(u8 *arg0) {
+    void (*fn)(void *) = *(void (**)(void *))(arg0 + 0xC);
+    if (fn != NULL) {
+        fn(arg0);
+    }
+    *(u8 **)arg0 += 1;
+}
+
