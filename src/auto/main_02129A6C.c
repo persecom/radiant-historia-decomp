@@ -263,6 +263,8 @@ void func_0212a4a4(u8 *arg0, s32 arg1) {
     }
 }
 
+extern u64 func_0201fb1c(s32, s32);
+
 s32 func_0212a4b8(s32 *arg0) {
     return arg0[1];
 }
@@ -283,7 +285,7 @@ void func_0212a4c0(u8 *arg0, s32 arg1, s32 arg2) {
     *(s32 *)(arg0 + 0xe4) = 0;
 }
 
-extern s32 func_0201fb1c(s32, s32);
+extern u64 func_0201fb1c(s32, s32);
 extern void func_0212984c(void *);
 extern void func_02129878(void *);
 void func_0212a528(u8 *arg0) {
@@ -330,6 +332,34 @@ void func_0212a5d4(u8 *arg0, u32 arg1) {
     func_02129830(p);
 }
 
+void func_0212a61c(u8 *p) {
+s32 remaining, end, format;
+format = *(s32 *)(p+0x50);
+s32 count = *(s32 *)(p+0x4c) / format;
+remaining = *(s32 *)(p+0x70);
+s32 unit = *(s32 *)(p+0x58);
+s32 start = *(s32 *)(p+0x68);
+s32 length = *(s32 *)(p+0x6c);
+s32 rounded = remaining + unit - 1;
+s32 limit = rounded / unit;
+s32 pad = unit - 1 - rounded % unit;
+end = *(s32 *)(p+0x60);
+s32 blocks = (unit + (end-start) - 1)/unit;
+s32 span = blocks * unit;
+s32 max;
+if (limit < blocks) {
+start += span;
+if (start-pad < end) blocks++;
+}
+if (remaining < length) length += pad;
+max = length/unit;
+count = count <= max ? count : max;
+count = count <= limit ? count : limit;
+count = count <= blocks ? count : blocks;
+if (format == 2) func_0212a5d4(p,count);
+else func_0212a594(p,count);
+}
+
 void func_0212a71c(u16 *arg0, s16 *arg1, s32 arg2) {
     if (arg2 > 0) {
         do {
@@ -352,6 +382,41 @@ void func_0212a73c(u16 *arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 void func_0212a774(u16 *arg0, u32 arg1, u32 arg2, s32 arg3) {
     func_0212a71c(arg0, arg0 + arg1, arg3);
+}
+
+extern void *func_0212988c(void *);
+extern void func_0212a73c(u16 *, s32, s32, s32);
+extern void func_0212a774(u16 *, u32, u32, s32);
+void func_0212a788(u8 *self) {
+    s32 f58 = *(s32 *)(self + 0x58);
+    s32 a = *(s32 *)(self + 0x70) + f58 - 1;
+    s32 b = *(s32 *)(self + 0x54);
+    s32 f68 = *(s32 *)(self + 0x68);
+    s32 f5c = *(s32 *)(self + 0x5c);
+    s32 f40 = *(s32 *)(self + 0x40);
+    s32 f44 = *(s32 *)(self + 0x44);
+    s32 c = *(s32 *)(self + 0x50);
+    s32 r4;
+    s32 n, q1, q2, pos;
+
+    r4 = (f58 - 1) - (a % f58);
+    n = (s32)func_0212988c(*(void **)(self + 0x8));
+    q1 = func_0201fb1c(n * f58, c);
+    q2 = func_0201fb1c(a, f58);
+    if (q2 * c <= n) {
+        q1 -= r4;
+    }
+    pos = f68 + q1;
+    *(s32 *)(self + 0x90) = q1;
+    *(s32 *)(self + 0x94) = n * b;
+    if (pos < f40) {
+        return;
+    }
+    if (c == 2) {
+        func_0212a73c((u16 *)f5c, f40, f44, pos - f40);
+    } else {
+        func_0212a774((u16 *)f5c, f40, f44, pos - f40);
+    }
 }
 
 void func_0212a864(u8 *arg0) {
