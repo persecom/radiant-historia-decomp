@@ -334,7 +334,7 @@ void func_021285c4(void) {
     }
 }
 
-extern void func_021286c0(void);
+extern void func_021286c0(Unk_02128030 *, s32);
 void func_0212869c(void *arg0, void *arg1) {
     func_0212a9f4();
     ((void (*)(void *, void *))func_021286c0)(arg0, arg1);
