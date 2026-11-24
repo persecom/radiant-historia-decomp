@@ -15,7 +15,17 @@ typedef struct {
 extern Unk021624F8 *data_021624f8;
 extern u32 data_02162504[];
 extern u32 data_02162870;
+typedef struct {
+    u8 *buf;
+    s32 size;
+    u8 *cur;
+} Unk02109444;
+
+extern u8 data_02162544[];
 extern u8 data_02162510[];
+
+void func_02008f74(void *, s32, s32);
+s32 func_02109f84(void *);
 
 void func_02125b78(u32);
 void func_02125d00();
