@@ -10,7 +10,7 @@ extern void func_0212a0e4(void *, s32);
 extern void *memset(void *, int, u32);
 extern u8 data_021735a4[976];
 extern u8 data_0217358c[12];
-extern u32 data_02173974[2];
+extern volatile u32 data_02173974[2];
 extern s32 func_02129db4(void *, void *, u32);
 void func_02129bb8(s32 arg0) {
     *(s32 *)(data_0217358c + 8) = arg0;
