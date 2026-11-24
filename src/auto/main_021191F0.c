@@ -38,6 +38,9 @@ extern u8 data_0216f3d8[];
 extern u32 data_02155eb8[];
 extern void func_02008e68(s32, void *, s32);
 extern void func_02008df0(u32, void *, u32);
+typedef void (*Cb4_02119448)(void *, void *, s32, void *);
+typedef void (*Cb5_02119694)(void *, void *, s32, s32, void *);
+
 extern void func_0211c4ec(void *);
 extern void func_02119150(void);
 extern void func_0211c738(void);
@@ -150,13 +153,12 @@ void func_02119d48(u8 *arg0) {
 }
 
 void func_02119da4(u32 arg0) {
-    u16 n;
-    u16 i;
+    s32 n;
+    s32 i;
     data_0216f234.f8 = arg0;
-    data_0216f234.fc = 0;
     *(u16 *)data_02155eb0 = 0xfffe;
-    n = data_0216f234.f0;
-    for (i = 0; i < n; i++) {
+    data_0216f234.fc = 0;
+    for (i = 0; i < (s32)data_0216f234.f0; i++) {
         MI_CpuFill32((u8 *)&data_0216f9c4[i] + 0x10, 0xffffffff, 0x10);
     }
     data_0216f234.f0 = 0;
@@ -174,8 +176,7 @@ void func_02119e4c(void) {
     p = (u8 *)data_0216f234.f8;
     flags = *(u32 *)(p + 0x7c);
     if (flags == 0) {
-        data_0216f234.f8 = 0;
-        return;
+        goto done;
     }
     if (flags & 1) {
         data_0216f234.f4 = 0;
@@ -185,6 +186,7 @@ void func_02119e4c(void) {
         func_0211c738();
     }
     *(u32 *)((u8 *)data_0216f234.f8 + 0x7c) = 0;
+done:
     data_0216f234.f8 = 0;
 }
 
@@ -204,7 +206,8 @@ void func_02119eb8(u32 arg0) {
 }
 
 void func_0211a128(void) {
-    if ((s32)data_0216f234.fc <= 0) {
+    BOOL empty = ((s32)data_0216f234.fc <= 0);
+    if (empty) {
         return;
     }
     data_0216f234.fc--;
