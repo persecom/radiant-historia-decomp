@@ -11,6 +11,10 @@ typedef struct { u16 data[2]; } Unk_020b9b78_2;
 extern const Unk_020b9b78_5 data_02143930;
 extern const Unk_020b9b78_2 data_02143900;
 extern const u16 data_02143914[4];
+typedef struct { u16 id; s16 flag, value; } Unk_020b9c84_entry;
+typedef struct { Unk_020b9c84_entry data[2]; } Unk_020b9c84_table;
+extern const Unk_020b9c84_table data_02143978;
+extern const Unk_020b9b78_2 data_021438f4;
 
 extern u8 *data_021601ec;
 extern u16 data_021438e0;
