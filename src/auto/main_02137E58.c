@@ -411,25 +411,21 @@ void func_021386f0(void *arg0) {
 
 void func_02138a60(u8 *arg0) {
     s32 i;
-    s32 count;
     if (*(s32 *)(arg0 + 0x58) != 1 && *(s32 *)(arg0 + 0x5c) != 1) {
         return;
     }
-    count = *(s32 *)(arg0 + 0xa8);
     *(s32 *)(arg0 + 0x58) = 0;
     *(s32 *)(arg0 + 0x5c) = 0;
-    if (count <= 0) {
+    if (*(s32 *)(arg0 + 0xa8) <= 0) {
         return;
     }
-    for (i = 0; i < count; i++) {
+    for (i = 0; i < *(s32 *)(arg0 + 0xa8); i++) {
         func_02126c74(*(void **)(arg0 + 0x20 + i * 0xc));
-        {
+        if (*(void **)(arg0 + i * 4) != NULL) {
             void *obj = *(void **)(arg0 + i * 4);
-            if (obj != NULL) {
-                ((void (*)(void *))(*(u32 **)obj)[1])(obj);
-                if (*(s32 *)(arg0 + 0x9c) == 0) {
-                    func_021273f0(obj);
-                }
+            ((void (*)(void *))(*(u32 **)obj)[1])(obj);
+            if (*(s32 *)(arg0 + 0x9c) == 0) {
+                func_021273f0(*(void **)(arg0 + i * 4));
             }
         }
     }
