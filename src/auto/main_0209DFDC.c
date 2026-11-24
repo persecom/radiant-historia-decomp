@@ -35,3 +35,24 @@ void func_0209ed34(u32 arg0, u32 arg1) {
     u8 *p = data_021600b0 + arg0 * 4;
     func_020a8810(*(void **)(*(void **)(p + 0xe4) + 4), arg1);
 }
+
+void func_0209ed58(s32 arg0, s32 arg1)
+{
+  Unk_02142c40 arr[5];
+  u32 count = 5;
+  u16 new_var;
+  Unk_02142c40 *dst = arr;
+  Unk_02142c40 *src = data_02142c40;
+  do
+  {
+    new_var = src->f0;
+    dst->f2 = src->f2;
+    dst->f0 = new_var;
+    src++;
+    dst++;
+  }
+  while ((--count) != 0);
+  func_0209f1c4(0, 0xa, arg0, arg1, arr, 0x1f);
+  func_020a0fd4(arg0, arg1);
+}
+
