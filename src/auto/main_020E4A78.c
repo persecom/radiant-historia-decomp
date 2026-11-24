@@ -48,25 +48,24 @@ void func_020e4a78(Node_020e4a78 *p) {
 }
 
 s16 func_020e4ad4(void) {
-    u8 *p = *(u8 **)((u8 *)data_02160a74[0] + 0xb8);
     s16 ret = -1;
+    u8 *p = *(u8 **)((u8 *)data_02160a74[0] + 0xb8);
     if (*p & 1) {
         return ret;
     }
     if (*(p + 9) == 0) {
-        return (s16)((2 - *(s8 *)(p + 3)) + 3 * (2 - *(s8 *)(p + 2)));
+        return (s16)(3 * (2 - *(s8 *)(p + 2)) + (2 - *(s8 *)(p + 3)));
     }
     if (*(p + 9) == 1) {
         return (s16)(*(s8 *)(p + 3) + 9);
     }
     if (*(p + 9) == 2) {
         s8 x = *(s8 *)(p + 2);
-        s8 y = *(s8 *)(p + 3);
         if (x <= 2) {
-            return (s16)((2 - y) + 3 * (2 - x));
+            return (s16)(3 * (2 - x) + (2 - *(s8 *)(p + 3)));
         }
         if (x == 3) {
-            return (s16)(y + 8);
+            ret = (s16)(*(s8 *)(p + 3) + 8);
         }
     }
     return ret;
