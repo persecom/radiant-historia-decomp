@@ -10,3 +10,11 @@ extern u8 *data_02160200;
 void func_02054324(void) {
     func_0205428c();
 }
+
+s32 func_020543e4(void *arg0) {
+    if (*(u32 *)((u8 *)arg0 + 0xac) & 0x4000) {
+        return 0;
+    }
+    return func_0207c578() != 1;
+}
+
