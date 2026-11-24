@@ -245,6 +245,24 @@ void func_020c99e4(u8 *arg0, void *arg1) {
     ((void (*)(void *))(*(void **)((u8 *)arg1 + 4)))(arg1);
 }
 
+extern u32 data_02155c3c;
+extern void *func_0210c594(u32, u32);
+void func_020c9a04(u8 *p,u16 count) {
+void **tmp=func_0210c594(count*4,data_02155c3c);
+u16 i;
+for(i=0;i<*(u16 *)(p+4);i++) {
+if(i>=count)break;
+tmp[i]=(*(void ***)p)[i];
+}
+for(;i<count;i++) tmp[i]=NULL;
+for(i=count;i<*(u16 *)(p+4);i++) func_020c99e4(p,(*(void ***)p)[i]);
+func_020c994c(p);
+*(u16 *)(p+4)=count;
+*(void ***)p=func_0210c594(count*4,data_02155c3c);
+for(i=0;i<count;i++) (*(void ***)p)[i]=tmp[i];
+if(tmp)func_0210c5dc(tmp);
+}
+
 extern u8 *func_020c641c(s32);
 extern void func_0210968c(s32, s32, s32);
 extern void func_02108eec(s32, s32);
