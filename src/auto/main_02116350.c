@@ -16,6 +16,10 @@ u16 func_02117088(void *arg0) {
     return *(u16 *)((u8 *)arg0 + 0x34);
 }
 
+u32 func_02117090(u8 *a0) {
+    return *(u16 *)(a0 - 0xe) & 0xff;
+}
+
 void func_02117210(void) {
     func_02116ad8();
 }
