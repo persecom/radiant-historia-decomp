@@ -33,3 +33,19 @@ s32 func_020b72e4(s32 arg) {
 void func_020b7350(u16 arg0) {
     data_02151024 = arg0;
 }
+
+extern void *func_020c9c10(void *,u32);
+extern void func_020c738c(void *,s32,s32);
+extern void func_020b748c(void);
+void func_020b7360(void) {
+u16 a[6]={1,9,2,3,5,8};
+u16 b[5]={4,10,6,7,11};
+u16 i;
+for(i=0;i<6;i++) func_020c738c(func_020c9c10(*(void **)((u8 *)data_021601ec+0x48),a[i]),0,1);
+for(i=0;i<5;i++) func_020c738c(func_020c9c10(*(void **)((u8 *)data_021601ec+0x48),b[i]),1,1);
+*((u8 *)data_021601ec+0x50)=1;
+*(u16 *)((u8 *)data_021601ec+0x52)=0;
+*(u32 *)((u8 *)data_021601ec+0x54)=0x50000;
+func_020b748c();
+}
+
