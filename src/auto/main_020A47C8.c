@@ -59,7 +59,7 @@ extern u8 *data_021600bc;
 extern s32 func_02109754(s32);
 extern void func_02109840(void),func_020a56cc(void);
 extern void func_02109884(s32,s32),func_02108cc8(s32);
-static inline void ResetFadeA5368(s32 channel,s32 value){data_02162814=value;func_02109884(channel,value);}
+
 extern const Unk18 data_02143374;
 extern const UnkStruct_020a48d0 data_02143350;
 extern void func_021098ac(void *);
