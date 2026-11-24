@@ -112,8 +112,30 @@ void func_0210bfec(void) {
     *(u32 *)0x04000540 = 0;
 }
 
+s32 func_0210c28c(s32 *arg0, s32 *arg1) {
+    s32 dx = arg0[0] - arg1[0];
+    s32 dy = arg0[1] - arg1[1];
+    s64 sum = (s64)dx * dx + (s64)dy * dy;
+    *(volatile u16 *)0x040002b0 = 1;
+    *(volatile u64 *)0x040002b8 = (u64)sum << 2;
+    while (*(volatile u16 *)0x040002b0 & 0x8000) {
+    }
+    return (*(volatile s32 *)0x040002b4 + 1) >> 1;
+}
+
+s32 func_0210c2f4(s32 *arg0, s32 *arg1) {
+    s32 dx = arg0[0] - arg1[0];
+    s32 dz = arg0[2] - arg1[2];
+    s64 sum = (s64)dz * dz;
+    sum += (s64)dx * dx;
+    *(volatile u16 *)0x040002b0 = 1;
+    *(volatile u64 *)0x040002b8 = (u64)sum << 2;
+    while (*(volatile u16 *)0x040002b0 & 0x8000) {
+    }
+    return (*(volatile s32 *)0x040002b4 + 1) >> 1;
+}
+
 extern s32 func_02002080(s32, s32);
-extern void func_0210c094(void *, void *, void *, void *);
 extern s32 func_02002158(void *, void *);
 void func_0210c35c(s32 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     arg0[1] = arg2;
