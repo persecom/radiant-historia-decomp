@@ -4,11 +4,6 @@
 extern const char data_021513a8[];
 extern u8 *data_02160204;
 
-typedef struct Arg1_020d655c {
-    u8 pad[0x18];
-    u16 field_18;
-} Arg1_020d655c;
-
 extern void func_02005e80(char *, const char *, ...);
 extern void *func_021092d8(char *);
 extern s32 func_02092994(void *, s32);
