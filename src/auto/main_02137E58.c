@@ -59,6 +59,10 @@ void func_021384b0(void) {
     func_0213841c(1);
 }
 
+void func_021384c0(void) {
+    func_0213841c(2);
+}
+
 void func_021384d0(void) {
     func_0213841c(3);
 }
