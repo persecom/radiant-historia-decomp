@@ -541,3 +541,11 @@ void *func_0210f3ec(void *arg0, s32 arg1) {
     return *(void **)((u8 *)ret + 0x10);
 }
 
+void func_0210f410(u16 arg0, u32 arg1) {
+    *(u16 *)data_02155c94 = arg0;
+    data_02155c94[1] = arg1;
+    func_02124bf8(arg0, 0);
+    func_02124eac(arg1, 0);
+    func_0210f138();
+}
+
