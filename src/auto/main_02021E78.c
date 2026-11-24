@@ -1,8 +1,9 @@
 /* 22 functions from 0x02021C48 to 0x02022A48 (main), found by ds-decomp. */
 #include "common.h"
 
-typedef struct {
-    u32 b0 : 8;
+typedef union {
+    u32 w;
+    u8 b;
 } Byte021f54;
 
 extern u32 data_02160078;
