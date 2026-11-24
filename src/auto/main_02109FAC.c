@@ -37,6 +37,12 @@ extern u8 data_02155bd0[];
 extern u8 data_02162578[];
 extern u8 data_02162580[];
 extern u8 data_021625c8[];
+extern void func_021185d4(void *);
+extern s32 func_0210a0f4(s32, void *, void *);
+extern u32 func_02007904(void);
+extern void func_0200bb10(void *, u32, u32);
+extern void func_021091b4(void);
+extern s32 func_0210a39c(u32 *, s32, u32 *);
 
 void *func_02109fac(void *arg0) {
     register u8 *buf asm("r5");
