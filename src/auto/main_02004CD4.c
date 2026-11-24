@@ -56,6 +56,65 @@ void func_02004cd4(s32 arg0) {
     func_02004810(data_0215cd60[0]);
 }
 
+void func_02004d70(s32 arg0) {
+    data_0215cd60[0] = (data_0215cd60[0] | data_0215cd60[4]) & ~arg0;
+    data_0215cd60[4] = arg0;
+    if (arg0 == 0) {
+        *(volatile u16 *)0x04000060 &= 0xcffe;
+    } else {
+        *(volatile u16 *)0x04000060 = (*(volatile u16 *)0x04000060 & ~0x3000) | 1;
+        switch (arg0) {
+        case 5:
+            *(volatile u8 *)0x04000240 = 0x83;
+            *(volatile u8 *)0x04000242 = 0x8b;
+            break;
+        case 9:
+            *(volatile u8 *)0x04000240 = 0x83;
+            *(volatile u8 *)0x04000243 = 0x8b;
+            break;
+        case 10:
+            *(volatile u8 *)0x04000241 = 0x83;
+            *(volatile u8 *)0x04000243 = 0x8b;
+            break;
+        case 11:
+            *(volatile u8 *)0x04000240 = 0x83;
+            *(volatile u8 *)0x04000241 = 0x8b;
+            *(volatile u8 *)0x04000243 = 0x93;
+            break;
+        case 13:
+            *(volatile u8 *)0x04000240 = 0x83;
+            *(volatile u8 *)0x04000242 = 0x8b;
+            *(volatile u8 *)0x04000243 = 0x93;
+            break;
+        case 8:
+            *(volatile u8 *)0x04000243 = 0x83;
+            break;
+        case 12:
+            *(volatile u8 *)0x04000243 = 0x8b;
+        case 4:
+            *(volatile u8 *)0x04000242 = 0x83;
+            break;
+        case 14:
+            *(volatile u8 *)0x04000243 = 0x93;
+        case 6:
+            *(volatile u8 *)0x04000242 = 0x8b;
+        case 2:
+            *(volatile u8 *)0x04000241 = 0x83;
+            break;
+        case 15:
+            *(volatile u8 *)0x04000243 = 0x9b;
+        case 7:
+            *(volatile u8 *)0x04000242 = 0x93;
+        case 3:
+            *(volatile u8 *)0x04000241 = 0x8b;
+        case 1:
+            *(volatile u8 *)0x04000240 = 0x83;
+            break;
+        }
+    }
+    func_02004810(data_0215cd60[0]);
+}
+
 #pragma opt_common_subs off
 void func_02004ee8(s32 arg0) {
 data_0215cd60[0]=(data_0215cd60[0]|data_0215cd60[5]) & ~arg0;
