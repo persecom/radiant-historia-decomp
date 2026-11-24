@@ -211,7 +211,7 @@ void *func_0212d6e4(void *arg0) {
 extern void func_0212a27c(void *);
 extern void func_0212a2ac(void *);
 extern s32 data_021740d8[];
-extern u8 data_021740f0[1000];
+extern u32 data_021740f0[250];
 void func_0212d6ec(void *arg0) {
     func_0212a27c(*(void **)((u8 *)arg0 + 4));
 }
