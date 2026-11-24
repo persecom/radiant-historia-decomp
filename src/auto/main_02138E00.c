@@ -20,7 +20,7 @@ extern void func_02126c98(void *, s32);
 extern void func_02126cb0(void *, u32, u32, u32, u32);
 extern void func_02126e50(void *, void *, void *, s32);
 extern void func_02126e60(void *, void *, void *, s32);
-extern void func_02139a9c(void *);
+extern void func_02139a9c();
 extern void func_02126c00(void);
 extern void func_02126c0c(void);
 extern void func_0213937c(void *, void *);
@@ -237,21 +237,17 @@ void func_02139784(u8 *arg0) {
 }
 
 void func_0213999c(u8 *arg0, u8 *arg1) {
+    s32 i;
     void *p = *(void **)(arg1 + 8);
     if (*(s32 *)(arg0 + 0x9c) == 1) {
-        s32 i;
         for (i = 0; i < *(s32 *)(arg0 + 0x8c); i++) {
             u32 v = func_02126c90(p);
-            s32 extra = (*(s32 **)(arg0 + 0xc8))[i] + v + *(s32 *)(arg0 + 0xcc);
-            void *obj = *(void **)arg1;
-            void (*fn)(void *, s32, u32) = *(void (**)(void *, s32, u32))(*(u8 **)obj + 0x38);
-            fn(obj, i, extra);
+            s32 extra = v + (*(s32 **)(arg0 + 0xc8))[i] + *(s32 *)(arg0 + 0xcc);
+            (*(void (**)(void *, s32, u32))(*(u8 **)arg1 + 0x38))(*(void **)arg1, i, extra);
         }
     } else {
         u32 v = func_02126c90(p);
-        void *obj = *(void **)arg1;
-        void (*fn)(void *, s32) = *(void (**)(void *, s32))(*(u8 **)obj + 0x30);
-        fn(obj, *(s32 *)(arg0 + 0xcc) + v);
+        (*(void (**)(void *, s32))(*(u8 **)arg1 + 0x30))(*(void **)arg1, *(s32 *)(arg0 + 0xcc) + v);
     }
 }
 
@@ -306,11 +302,10 @@ void func_02139b34(u8 *arg0, s32 arg1, s32 arg2, void *arg3) {
     s32 c;
     *(s32 *)(arg0 + arg2 * 4 + 4) = val;
     c = *(s32 *)(arg0 + 0xc);
-    if ((arg1 & 0x1f) == 0 && (c & 0x1f) == 0) {
-    } else {
+    if ((arg1 & 0x1f) != 0 || (c & 0x1f) != 0) {
         func_02130b48(arg1, c, dst);
     }
-    data_0215cc6c[*(s32 *)(arg0 + arg2 * 4 + 4) >> 6](p + *(s32 *)(arg0 + arg2 * 4 + 4) * 2, *(u32 *)(arg0 + 0x10), arg3);
+    data_0215cc6c[*(s32 *)((u8 *)arg0 + 4 + arg2 * 4) >> 6](p + *(s32 *)((u8 *)arg0 + 4 + arg2 * 4) * 2, *(u32 *)(arg0 + 0x10), arg3);
 }
 
 void func_02139bbc(u32 arg0, u32 arg1, u32 arg2) {
