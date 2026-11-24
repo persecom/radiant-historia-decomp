@@ -9,7 +9,7 @@ extern void WaitByLoop(s32);
 extern u8 data_0215f78c[148];
 extern void func_01ff8000(void);
 extern u32 func_02007490(void);
-extern void func_020108d8(u32, void *, u32, u32);
+extern u32 func_020108d8(u32, void *, u32, u32);
 extern s32 func_020081e0(void);
 extern u8 *func_0200f9a4(void);
 extern s32 func_02005df8(void);
