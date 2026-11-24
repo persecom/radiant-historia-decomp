@@ -217,6 +217,15 @@ void func_02004588(void) {
     data_0215cd40[2] = (u32)data_0213e498[val >> 4] << 12;
 }
 
+void func_020045bc(void *arg0, u32 arg1, u32 arg2) {
+    u32 dst = data_0215cd40[2] + arg1;
+    if (data_02145ba4 != -1) {
+        func_02008840(data_02145ba4, arg0, dst, arg2, 0, 0, 1);
+    } else {
+        func_02008e38(arg0, dst, arg2);
+    }
+}
+
 extern void func_02004ee8(u32);
 extern void func_02004d70(u32);
 extern s32 func_02005440(void);
