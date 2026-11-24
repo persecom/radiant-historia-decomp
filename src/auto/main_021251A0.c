@@ -154,16 +154,11 @@ void func_02125374(u8 *arg0) {
 }
 
 s32 func_0212538c(u8 *arg0) {
-    struct Q {
-        u8 pad[0xa];
-        u16 tail;
-        u16 count;
-    } *q = (struct Q *)arg0;
-    if (func_02125074(q) != 0) {
+    if (func_02125074(arg0) != 0) {
         return 0;
     }
-    q->tail = func_02125054(q, q->tail);
-    q->count++;
+    *(u16 *)(arg0 + 0xa) = func_02125054(arg0, *(u16 *)(arg0 + 0xa));
+    *(u16 *)(arg0 + 0xc) += 1;
     return 1;
 }
 
