@@ -78,3 +78,11 @@ void func_020a5338(void) {
     }
     data_02160134.unk04 = NULL;
 }
+
+void func_020a56b4(s32 arg0) {
+    u8 *p = data_02160134.unk04;
+    if (p != NULL) {
+        *(s32 *)(p + 0x10) = arg0;
+    }
+}
+
