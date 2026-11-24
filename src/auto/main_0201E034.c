@@ -2,6 +2,29 @@
 #include "common.h"
 
 extern void func_02019c4c(void);
+extern u64 func_0201edb0(u64, u64);
+double func_0201e1f8(double x, s32 *exp) {
+    union {
+        double d;
+        struct { u32 lo, hi; } w;
+    } u;
+    u.d = x;
+    *exp = 0;
+    if ((u.w.hi & 0x7fffffff) >= 0x7ff00000) {
+        return x;
+    }
+    if (((u.w.hi & 0x7fffffff) | u.w.lo) == 0) {
+        return x;
+    }
+    if ((u.w.hi & 0x7fffffff) < 0x100000) {
+        u.d = func_0201edb0(u.d, 0x1p54);
+        *exp = -54;
+    }
+    *exp += (s32)((u.w.hi & 0x7fffffff) >> 20) - 1022;
+    u.w.hi = (u.w.hi & 0x800fffff) | 0x3fe00000;
+    return u.d;
+}
+
 void func_0201e690(void) {
     func_02019c4c();
 }
