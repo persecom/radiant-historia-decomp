@@ -89,6 +89,21 @@ void func_02093444(u16 id) {
     }
 }
 
+void func_020934ac(u8 *ptr) {
+    if (ptr == NULL) {
+        return;
+    }
+    while (*(void **)(ptr + 0x20) != NULL) {
+        void *node = *(void **)(ptr + 0x20);
+        func_021168f8(ptr + 0x20, node);
+        func_020f4f04(node);
+    }
+    func_021168f8(data_02160110 + 0x90, ptr);
+    if (ptr != NULL) {
+        func_0210c5dc(ptr);
+    }
+}
+
 void func_0209353c(u16 id, s16 x, s16 y) {
     u8 *ptr = (u8 *)func_02093658(id);
     s16 oldX, oldY;
