@@ -19,6 +19,38 @@ extern void func_02057244(void);
 extern u32 data_02160204;
 extern u32 data_02160078;
 
+void func_02056d10(void) {
+    u8 i;
+    s32 n;
+    func_02056fbc();
+    i = 0;
+    if (func_020a2c5c(5, 0xe, i, 0x7d0, 7) == 0) {
+        return;
+    }
+    *(u32 *)(data_021600ac + 0x2e4) = func_020a8844(0x20, 0x1c0, 0x20, 2);
+    func_020a9830(data_021600ac + 0x300, data_021600ac + 0x2e8, i, i, i, i);
+    func_020a9610(data_021600ac + 0x2e8, *(u32 *)(data_021600ac + 0xa8), 1, *(u32 *)(data_021600ac + 0x2e4), i, i);
+    func_02044820(*(u16 *)((u8 *)data_02160204 + 0x72));
+    func_021167ac(data_021600ac + 0x8c4, 0x4c);
+    func_021167ac(data_021600ac + 0x8d0, 0x20);
+    for (; i < 3; i++) {
+        u8 *e = func_020bd438(i);
+        if (e == 0) {
+            continue;
+        }
+        if ((*(u16 *)e & 1) == 0) {
+            continue;
+        }
+        u8 *tbl = func_02021f10(*(u8 *)(e + 2));
+        func_02057764(i * 0x64 + 0xc9, tbl[0x43], i * 0x51 + 0x4f, 0x88, 1, 5, 0x160, 1, 1);
+        func_02057764(i * 0x64 + 0xca, *(u16 *)(tbl + 0x10), i * 0x51 + 0x4f, 0x91, 1, 5, 0x160, 1, 1);
+        func_02057764(i * 0x64 + 0xcb, *(u16 *)(tbl + 0x14), i * 0x51 + 0x4f, 0x9e, 1, 5, 0x160, 1, 1);
+    }
+    n = 1;
+    func_02057244();
+    func_02057764(0x3e8 - n, *(s32 *)((u8 *)data_02160078 + 0x28), 0xe2, 0x75, n, 8, 0x120, n, 0);
+}
+
 void func_02056f2c(void) {
     u8 *node = *(u8 **)(data_021600ac + 0x8d0);
     while (node != NULL) {
