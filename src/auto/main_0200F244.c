@@ -260,12 +260,14 @@ BOOL func_0200fba4(void) {
 }
 
 s32 func_0200fbc0(void) {
-    *(s32 *)(data_0215f120 + 0x14) = -3;
-    *(u32 *)(data_0215f120 + 0x18) = 0;
-    *(u32 *)(data_0215f120 + 0x24) = 0;
-    *(u32 *)(data_0215f120 + 0x20) = 0;
-    *(u32 *)(data_0215f120 + 0x1c) = 0;
-    return 0;
+    u32 *p = (u32 *)data_0215f120;
+    s32 zero = 0;
+    p[5] = -3;
+    p[6] = zero;
+    p[9] = zero;
+    p[8] = zero;
+    p[7] = zero;
+    return zero;
 }
 
 void func_0200fbe8(void) {
