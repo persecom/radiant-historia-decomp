@@ -1,5 +1,7 @@
 /* 20 functions from 0x021231B0 to 0x021241A4 (main), found by ds-decomp. */
 #include "common.h"
+extern s32 data_02171264[], data_02171268[], data_0217126c[];
+extern void func_02008e38(const void *, void *, u32);
 static inline void ScalePair_02123da4(s32 scale, u32 *a, u32 *b) {
  s32 x=((s64)scale*(s32)*a)>>12;
  s32 y=((s64)scale*(s32)*b)>>12;
