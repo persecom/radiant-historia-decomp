@@ -1,5 +1,10 @@
 /* 25 functions from 0x020BD38C to 0x020BE330 (main), found by ds-decomp. */
 #include "common.h"
+extern u8 *data_021600e4;
+extern s32 func_020be1b0(void);
+extern void func_020be330(void *);
+extern void func_020be3a8(void *);
+extern void func_020a9e38(s16 *, s16 *);
 
 extern u8 *data_02160204;
 extern void *data_02155c3c;
@@ -112,7 +117,7 @@ s8 func_020bdba0(s32 arg0) {
     return -1;
 }
 
-s32 func_020bdcc0(u32 arg0) {
+s32 func_020bdcc0(s32 arg0) {
     u8 *table = data_02160200;
     u16 v = *(u16 *)(table + arg0 * 2 + 0x17c);
     if (v == 0 || *(void **)(table + arg0 * 4 + 0x184) == NULL) {
