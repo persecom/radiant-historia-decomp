@@ -56,6 +56,14 @@ void func_0210fd94(u32 *arg0) {
     }
 }
 
+void func_0210fde8(void) {
+    s32 i;
+    for (i = 0; i < 0x100; i++) {
+        *(u32 *)(data_02162b84 + i * 0x94) = 0;
+        *(u32 *)(data_02162b84 + i * 0x94 + 4) = 0;
+    }
+}
+
 s32 func_021100c8(void) {
     func_020a8440();
     return func_020a47c8();
