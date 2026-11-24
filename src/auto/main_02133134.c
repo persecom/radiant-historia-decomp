@@ -336,6 +336,14 @@ void func_02133864(void *arg0) {
     func_02013878(arg0, 0, 0x38);
 }
 
+s32 func_02133a1c(u8 *arg0) {
+    if (arg0 != NULL) {
+        return *(s32 *)(arg0 + 0x10);
+    }
+    func_021336c0(0, data_0215bac0);
+    return 0;
+}
+
 s32 func_02133bf0(void *arg0) {
     if (arg0 != NULL) {
         return *(s8 *)((u8 *)arg0 + 1);
