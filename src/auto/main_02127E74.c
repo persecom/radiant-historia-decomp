@@ -144,6 +144,14 @@ void *func_021282cc(void *arg0) {
     return ret;
 }
 
+void *func_021282f0(void *arg0) {
+    if (arg0 != NULL) {
+        return (void *)(s32)*(s8 *)((u8 *)arg0 + 1);
+    }
+    func_0212bda8(data_02156854);
+    return (void *)-1;
+}
+
 extern void *func_02128338(void *);
 void *func_02128314(void *arg0) {
     void *ret;
