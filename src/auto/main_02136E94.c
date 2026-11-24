@@ -215,6 +215,19 @@ void func_02137454(void *arg0) {
     func_021369b4();
 }
 
+void func_02137470(void *arg0) {
+    if (arg0 == NULL) {
+        func_02137250(data_0215c220, data_0215c22c);
+        return;
+    }
+    if (*(void **)((u8 *)arg0 + 4) == NULL) {
+        func_02137250(data_0215c248, data_0215c254);
+        return;
+    }
+    func_02013878(arg0, 0, 0x48);
+    *(void **)((u8 *)arg0 + 4) = NULL;
+}
+
 extern void *func_021374f4(void *);
 void *func_021374d0(void *arg0) {
     void *ret;
