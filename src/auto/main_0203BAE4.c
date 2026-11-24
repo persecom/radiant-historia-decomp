@@ -175,30 +175,37 @@ return 1;
 }
 
 s32 func_0203bfdc(u8 *arg0, s32 arg1, s32 arg2) {
-char buf[0x64];
-u32 info[2];
-void *src;
-void *dst;
-u32 size;
-char *p;
-func_02108ffc();
-p = buf;
-func_02005e80(p, data_021462b0, arg1);
-src = func_02109b14(p, info);
-size = (info[1] & 0xff) | ((*(u32 *)src >> 8) << 8);
-dst = func_0210c594(size >> 8, data_02155c3c);
-func_02009354(src, dst);
-func_021091b4();
-if (src != NULL) func_0210c5dc(src);
-func_0210e8b4(dst, size >> 8, buf, arg0);
-func_0210e3dc();
-if (dst != NULL) func_0210c5dc(dst);
-func_021091b4();
-p = buf;
-func_02005e80(p, data_021462bc, arg2);
-if (func_0210e848(p, arg0 + 8) == 0) return 0;
-func_021091b4();
-return 1;
+    char buf[0x64];
+    ResourceHeader size;
+    u32 info;
+    void *src;
+    void *dst;
+    char *p;
+
+    func_02108ffc();
+    p = buf;
+    func_02005e80(p, data_021462b0, arg1);
+    src = func_02109b14(p, &info);
+    size.size = ((ResourceHeader *)src)->size;
+    dst = func_0210c594(size.size, data_02155c3c);
+    func_02009354(src, dst);
+    func_021091b4();
+    if (src != NULL) {
+        func_0210c5dc(src);
+    }
+    func_0210e8b4(dst, size.size, buf, arg0);
+    func_0210e3dc();
+    if (dst != NULL) {
+        func_0210c5dc(dst);
+    }
+    func_021091b4();
+    p = buf;
+    func_02005e80(p, data_021462bc, arg2);
+    if (func_0210e848(p, arg0 + 8) == 0) {
+        return 0;
+    }
+    func_021091b4();
+    return 1;
 }
 
 void *func_0203c0d8(void) {
@@ -327,6 +334,8 @@ extern void func_0203c780(void);
 extern void func_0210dc88(void);
 extern void func_02008250(s32);
 static void func_0203c780(void);
+extern void func_0203c780();
+#pragma dont_inline on
 s32 func_0203c3bc(void) {
 s32 one=1,zero=0;
 u8 *node,*next;
@@ -361,7 +370,6 @@ data_02162868[0]=z;
 return z-1;
 }
 }
-
 void func_0203c780(void) {
 void *p;
 func_020eaacc(); func_020f4144(); func_020a3b84(); func_020dcca4(); func_020eb344(0,0);
