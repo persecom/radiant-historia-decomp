@@ -166,3 +166,14 @@ u8 *func_02093624(s32 arg0) {
     return NULL;
 }
 
+void *func_02093658(u16 arg0) {
+    u8 *node = (u8 *)func_02092c38();
+    while (node != NULL) {
+        if (*(u16 *)node == arg0) {
+            return node;
+        }
+        node = *(u8 **)(node + 0x1c);
+    }
+    return NULL;
+}
+
