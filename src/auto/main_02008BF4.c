@@ -138,6 +138,20 @@ u32 func_02009148(u32 val, u32 *ptr) {
     return __swp(val, ptr);
 }
 
+void func_0200942c(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
+    func_02008a28(arg0, ~0u);
+    func_02008ab4(arg0, arg1, arg3, 0x1000000);
+    if (arg3 == 0) {
+        return;
+    }
+    {
+        volatile u32 *reg = (volatile u32 *)(0x04000000 + 0xb0 + ((arg0 * 3) + 2) * 4);
+        while (*reg & 0x80000000) {
+        }
+        func_01ff845c(arg0, arg1, arg2, 0xaf000001, 0);
+    }
+}
+
 void func_020094a8(void) {
     func_02008558(3);
     func_02008998(0);
