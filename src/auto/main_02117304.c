@@ -28,7 +28,7 @@ extern void func_021177b0(u8 *);
 extern void func_021174f0(void *);
 extern void func_0211782c(u8 *);
 extern void func_0211794c(void *);
-extern void func_021176d8(void *);
+extern void func_021176d8(u8 *);
 extern void func_02117df4(void *);
 extern void func_021178c4(u8 *);
 extern const u32 data_02144d44[];
