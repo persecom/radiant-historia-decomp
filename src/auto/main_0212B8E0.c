@@ -159,3 +159,20 @@ s32 func_0212c7b0(s8 *arg0) {
     return arg0[1];
 }
 
+extern void func_02129a2c(void *);
+extern void func_0212a9dc(void);
+extern void func_0212a9e8(void);
+extern void func_0212e514(void);
+extern void func_0212e4a0(void);
+extern void func_0212e5d0(void);
+extern void func_0212e534(void);
+extern s32 func_0212e604(u32, void *, s32, u32, u32);
+extern void func_021281b0(void);
+extern void func_02128030(void *, u32);
+extern void func_0212e608(u32, s32);
+extern void func_0212e5f8(u32);
+extern void func_02128880(void *, s32);
+void func_0212c7e0(void *arg0) {
+    func_02129a2c(*(void **)((u8 *)arg0 + 4));
+}
+
