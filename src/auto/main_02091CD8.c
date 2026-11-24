@@ -1,5 +1,12 @@
 /* 19 functions from 0x02091CD8 to 0x02092CA0 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct {
+ u8 pad[0xba];
+ s16 unk_ba, unk_bc, unk_be;
+ u8 pad_c0[0xf];
+ u8 unk_cf;
+ s16 unk_d0, unk_d2;
+} Unk_02092010;
 extern u8 *data_0216010c;
 typedef struct { s16 data[10]; } Unk_02092194;
 extern const Unk_02092194 data_02140f2c;
@@ -31,6 +38,38 @@ extern u8 data_0214874c[4];
 extern s32 func_021093f0(void *);
 
 extern void func_02012590(const char *, const char *, ...);
+void func_02092010(s32 arg0, s32 arg1) {
+switch(arg0) {
+case 1:
+if (!(*(s16 *)(data_0216010c + 0x53d0) & 8)) {
+*(s16 *)(data_0216010c + 0x53d0) |= 1;
+*(s16 *)(data_0216010c + 0x53d0) |= 8;
+*(s16 *)(data_0216010c + 0x53d0) |= 0x10;
+*(s16 *)(data_0216010c + 0x53d0) |= 0x40;
+*(s16 *)(data_0216010c+0x53d2)=0;
+*(s16 *)(data_0216010c+0x53bc)=0x104;
+*(s16 *)(data_0216010c+0x53ba)=arg1;
+*(s16 *)(data_0216010c + 0x53d0) &= ~0x20;
+} else {
+*(s16 *)(data_0216010c + 0x53d0) |= 0x20;
+data_0216010c[0x53cf]=arg1;
+}
+break;
+case 2:
+*(s16 *)(data_0216010c+0x53be)=*(s16 *)(data_0216010c+0x53bc);
+*(s16 *)(data_0216010c + 0x53d0) |= 1;
+*(s16 *)(data_0216010c + 0x53d0) |= 8;
+*(s16 *)(data_0216010c + 0x53d0) &= ~0x10;
+*(s16 *)(data_0216010c + 0x53d0) &= ~0x40;
+*(s16 *)(data_0216010c+0x53d2)=0;
+break;
+case 3:
+*(s16 *)(data_0216010c + 0x53d0) &= ~1;
+*(s16 *)(data_0216010c+0x53d2)=0;
+break;
+}
+}
+
 void func_02092190(void) {
 }
 
