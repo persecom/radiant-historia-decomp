@@ -332,8 +332,8 @@ s32 func_02132ba4(u8 *arg0, s32 *arg1) {
     return 0;
 }
 
-void func_02132be0(void) {
-    data_0215b618 = (u32)data_021459d8;
+u32 func_02132be0(void) {
+    return data_0215b618 = (u32)data_021459d8;
 }
 
 extern void func_02016dc0(s32, s32);
