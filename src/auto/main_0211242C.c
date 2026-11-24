@@ -134,6 +134,19 @@ s32 func_02112ce0(void *arg0) {
     return 0;
 }
 
+void func_02112cf4(u8 *arg0, u32 arg1, u32 arg2) {
+    u16 vals[2];
+    u16 *dst = vals;
+    u16 i;
+    u8 *obj;
+    vals[0] = data_02144cfc[0];
+    vals[1] = data_02144cfc[1];
+    for (i = 0; i < 2; i++) {
+        obj = func_020c9c10(*(void **)(arg0 + 0x30), dst[i]);
+        ((void (*)(u8 *, u32, u32))(*(void **)(obj + 0x24)))(obj, arg1, arg2);
+    }
+}
+
 void func_02112d64(u8 *arg0, s32 arg1) {
     func_02112dcc(arg0, arg1, *(s16 *)(arg0 + 0x36));
 }
