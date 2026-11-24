@@ -376,7 +376,7 @@ if (!arg0) {func_02125e68(data_021561f4[7],data_021561f4[5]); return;}
 p=func_02125dc4(arg0);
 if(arg1 < 0.01f) value=-960;
 else if(arg1 >= 1.0f) value=0;
-else value=(s32)(20.0f * (40.0f * (float)func_0201e6b4((double)arg1)));
+else value=(s32)(10.0f * (20.0f * (float)func_0201e6b4((double)arg1)));
 func_021269f8(*p,value);
 }
 
@@ -415,5 +415,39 @@ void func_02125e64(void) {
 void func_02125e68(u32 arg0, u32 arg1) {
     func_02015a10(data_02173354, data_02156388, arg0, arg1);
     (*(void (**)(void *))((u8 *)data_02173198 + 0x1fc))(data_02173354);
+}
+
+void *func_021386a8(void *, u32);
+s32 func_0212646c(void *);
+s32 func_02138704(void *, void *, void *, u32);
+void func_02126c20(void *);
+void func_021260ec(void *, void *);
+void *func_02126010(void **arg0, void *arg1, u8 *arg2, u32 arg3) {
+s32 i;
+void *p=NULL;
+if(func_0212646c(arg0)==0){
+func_02126c20(data_0215640c);
+return p;
+}
+for(i=0;i<4;i++){
+if(arg0[i]==NULL){
+p=func_021386a8(arg2,arg3);
+arg0[i]=p;
+arg2+=0xe4;
+arg3-=0xe4;
+break;
+}
+}
+if(i==4){
+func_02126c20(data_0215643c);
+func_021260ec(arg0,p);
+return NULL;
+}
+if(func_02138704(p,arg1,arg2,arg3)==0){
+func_02126c20(data_02156478);
+func_021260ec(arg0,p);
+return NULL;
+}
+return p;
 }
 
