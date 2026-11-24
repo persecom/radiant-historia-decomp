@@ -119,66 +119,83 @@ void func_020a48d0(u32 arg0, s32 arg1, s16 arg2, s16 arg3, s16 arg4, s32 arg5, s
     }
 }
 
-void func_020a4c98(s32 arg0) {
-    s16 *v;
-    Buf220_020a4c98 bufA;
-    Buf220_020a4c98 bufB;
-    s16 i, k;
-    u8 *node;
-    s16 *r;
-
-    if (data_02160134.unk00 != NULL) return;
-    data_02160134.unk00 = func_0210c594(0x58, data_02155c3c);
-    func_021167ac(&data_02160134.unk00->unk48, 0x18);
-
-    if (arg0 == 0) {
-        bufA = data_021434a0;
-        for (i = 0; i < 10; i++) {
-            node = func_0210c594(0x20, data_02155c3c);
-            v = bufA.rec[0].v;
-            k = i * 11;
-            r = &v[k];
-            *(s16 *)(node + 0x4) = r[0];
-            *(s16 *)(node + 0x6) = r[1];
-            *(s16 *)(node + 0x8) = r[2];
-            *(s16 *)(node + 0xa) = r[3];
-            *(s16 *)(node + 0x2) = r[4];
-            *(s16 *)(node + 0xc) = r[5];
-            *(s16 *)(node + 0x10) = r[6];
-            *(s16 *)(node + 0xe) = r[7];
-            *(s16 *)(node + 0x12) = r[8];
-            *(s16 *)(node + 0x14) = r[9];
-            *(u8 *)(node + 0x0) = r[10];
-            func_021167f0(&data_02160134.unk00->unk48, node);
-        }
-        *(s32 *)((u8 *)data_02160134.unk00 + 0x3c) = -180;
-        *(s16 *)((u8 *)data_02160134.unk00 + 0x2) = 0;
-        *(u16 *)data_02160134.unk00 = 0;
-        return;
+void func_020a4c98(s32 arg0)
+{
+  int new_var4;
+  Buf220_020a4c98 bufA;
+  u8 *new_var3;
+  Buf220_020a4c98 bufB;
+  s16 i;
+  int new_var2;
+  s16 k;
+  UnkStruct_020a4f04 **new_var;
+  u8 *node;
+  s16 *r;
+  if (data_02160134.unk00 != NULL)
+  {
+    return;
+  }
+  data_02160134.unk00 = func_0210c594(0x58, data_02155c3c);
+  func_021167ac(&data_02160134.unk00->unk48, 0x18);
+  if (arg0 == 0)
+  {
+    bufA = data_021434a0;
+    for (i = 0; i < 10; i++)
+    {
+      node = func_0210c594(0x20, data_02155c3c);
+      k = i;
+      k = k * 11;
+      ;
+      *((s16 *) (node + 0x4)) = (&bufA.rec[0].v[k])[0];
+      *((s16 *) (node + 0x6)) = (&bufA.rec[0].v[k])[1];
+      *((s16 *) (node + 0x8)) = (&bufA.rec[0].v[k])[2];
+      *((s16 *) (node + 0xa)) = (&bufA.rec[0].v[k])[3];
+      *((s16 *) (node + 0x2)) = (&bufA.rec[0].v[k])[4];
+      *((s16 *) (node + 0xc)) = (&bufA.rec[0].v[k])[5];
+      *((s16 *) (node + 0x10)) = (&bufA.rec[0].v[k])[6];
+      *((s16 *) (node + 0xe)) = (&bufA.rec[0].v[k])[7];
+      *((s16 *) (node + 0x12)) = (&bufA.rec[0].v[k])[8];
+      *((s16 *) (node + 0x14)) = (&bufA.rec[0].v[k])[9];
+      *((u8 *) (node + 0x0)) = (&bufA.rec[0].v[k])[10];
+      new_var = &data_02160134.unk00;
+      func_021167f0(&(*new_var)->unk48, node);
     }
-    if (arg0 != 1) return;
-    bufB = data_021433c4;
-    for (i = 0; i < 10; i++) {
-        node = func_0210c594(0x20, data_02155c3c);
-        v = bufB.rec[0].v;
-        k = i * 11;
-        r = &v[k];
-        *(s16 *)(node + 0x4) = r[0];
-        *(s16 *)(node + 0x6) = r[1];
-        *(s16 *)(node + 0x8) = r[2];
-        *(s16 *)(node + 0xa) = r[3];
-        *(s16 *)(node + 0x2) = r[4];
-        *(s16 *)(node + 0xc) = r[5];
-        *(s16 *)(node + 0x10) = r[6];
-        *(s16 *)(node + 0xe) = r[7];
-        *(s16 *)(node + 0x12) = r[8];
-        *(s16 *)(node + 0x14) = r[9];
-        *(u8 *)(node + 0x0) = r[10];
-        func_021167f0(&data_02160134.unk00->unk48, node);
-    }
-    *(s32 *)((u8 *)data_02160134.unk00 + 0x3c) = -260;
-    *(s16 *)((u8 *)data_02160134.unk00 + 0x2) = 0;
-    *(u16 *)data_02160134.unk00 = 3;
+
+    *((s32 *) (((u8 *) data_02160134.unk00) + 0x3c)) = -180;
+    *((s16 *) (((u8 *) data_02160134.unk00) + 0x2)) = 0;
+    *((u16 *) data_02160134.unk00) = 0;
+    return;
+  }
+  if (arg0 != 1)
+  {
+    return;
+  }
+  new_var4 = 0x3c;
+  bufB = data_021433c4;
+  for (i = 0; i < 10; i++)
+  {
+    node = func_0210c594(0x20, data_02155c3c);
+    k = i * 11;
+    ;
+    new_var3 = node + 0x8;
+    *((s16 *) (node + 0x4)) = (&bufB.rec[0].v[k])[0];
+    *((s16 *) (node + 0x6)) = (&bufB.rec[0].v[k])[1];
+    new_var2 = 2;
+    *((s16 *) new_var3) = (&bufB.rec[0].v[k])[new_var2];
+    *((s16 *) (node + 0xa)) = (&bufB.rec[0].v[k])[3];
+    *((s16 *) (node + 0x2)) = (&bufB.rec[0].v[k])[4];
+    *((s16 *) (node + 0xc)) = (&bufB.rec[0].v[k])[5];
+    *((s16 *) (node + 0x10)) = (&bufB.rec[0].v[k])[6];
+    *((s16 *) (node + 0xe)) = (&bufB.rec[0].v[k])[7];
+    *((s16 *) (node + 0x12)) = (&bufB.rec[0].v[k])[8];
+    *((s16 *) (node + 0x14)) = (&bufB.rec[0].v[k])[9];
+    *((u8 *) (node + 0x0)) = (&bufB.rec[0].v[k])[10];
+    func_021167f0(&data_02160134.unk00->unk48, node);
+  }
+
+  *((s32 *) (((u8 *) data_02160134.unk00) + new_var4)) = -260;
+  *((s16 *) (((u8 *) data_02160134.unk00) + 0x2)) = 0;
+  *((u16 *) data_02160134.unk00) = 3;
 }
 
 void func_020a4f04(void) {
