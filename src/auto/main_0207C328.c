@@ -10,6 +10,7 @@ extern void *data_021600ac;
 extern S_0207c328 data_021600f4;
 extern S_0207c328 data_02160100;
 extern s32 func_0210c2f4(void *, void *);
+extern void func_0207c528(void);
 extern u8 *data_02160200;
 extern void func_021167f0(void *, void *);
 extern void *func_02021f10(u32);
