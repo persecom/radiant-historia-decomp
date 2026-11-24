@@ -102,6 +102,22 @@ void func_02111708(void *arg0) {
     }
 }
 
+void func_02111828(u8 *arg0) {
+    u16 i;
+    u32 count;
+    func_020c9a04(*(void **)(arg0 + 0x34));
+    count = func_020c9c34(*(void **)(arg0 + 0x34));
+    for (i = 0; i < count; i++) {
+        if (func_020c9c10(*(void **)(arg0 + 0x34), i) == NULL) {
+            u8 *obj = func_020c9b24(*(void **)(arg0 + 0x34), i, arg0[0x72]);
+            *(u16 *)(obj + 0x3a) = i + func_020c94a8(*(void **)(arg0 + 0x6c));
+            func_02111374(obj, arg0);
+            ((void (*)(u8 *))*(void **)(obj + 0x50))(obj);
+        }
+    }
+    func_021118bc(arg0);
+}
+
 extern void func_0211192c(u8 *, s32, s32);
 void func_02111a18(u8 *arg0, s32 arg1) {
     func_0211192c(arg0, arg1, *(s16 *)(arg0 + 0x46));
@@ -111,6 +127,13 @@ extern void func_020c9940(void *);
 extern void func_02111ccc(u8 *);
 void func_02111a28(u8 *arg0, s32 arg1) {
     func_0211192c(arg0, *(s16 *)(arg0 + 0x44), arg1);
+}
+
+void func_02111ac0(u8 *arg0, u16 arg1, u16 arg2, u16 arg3, u16 arg4) {
+    *(u16 *)(arg0 + 0x4a) = arg2;
+    *(u16 *)(arg0 + 0x4c) = arg4;
+    *(u16 *)(arg0 + 0x4e) = arg1;
+    *(u16 *)(arg0 + 0x50) = arg3;
 }
 
 s32 func_02111da8(u8 *arg0) {
