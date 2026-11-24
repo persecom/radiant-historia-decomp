@@ -168,6 +168,35 @@ void func_02120800(void) {
     *(volatile u32 *)0x4000600 = (*(volatile u32 *)0x4000600 & ~0xc0000000) | 0x80000000;
 }
 
+s32 func_02120828(u8 *arg0) {
+u8 *tex;
+s32 ok1,ok2,ok3;
+u32 size1,size2,size3,key1,key2,key3;
+switch (*(u32 *)arg0) {
+case 0x30444d42: case 0x30585442:
+ok1=1; ok2=ok1; ok3=ok1;
+tex=func_02120fa4(arg0);
+if(tex) {
+size1=func_0211cd8c(tex); size2=func_0211cda0(tex); size3=func_0211ced0(tex);
+if(size1) {key1=data_02156150(size1,0,0); if(!key1) ok1=0;} else key1=0;
+if(size2) {key2=data_02156150(size2,1,0); if(!key2) ok2=0;} else key2=0;
+if(size3) {key3=data_02156158(size3,*(u16 *)(tex+0x20)&0x8000,0); if(!key3) ok3=0;} else key3=0;
+if(!ok1 || !ok2 || !ok3) {
+if(ok3) data_0215615c(key3);
+if(ok2) data_02156154(key2);
+if(ok1) data_02156154(key1);
+return 0;
+}
+func_0211cdb4(tex,key1,key2); func_0211cee4(tex,key3);
+func_0211cdc8(tex,1); func_0211ceec(tex,1);
+}
+if(*(u32 *)arg0==0x30444d42) {u8 *mdl=func_02120f94(arg0); if(tex) func_0211d520(mdl,tex);}
+return 1;
+case 0x30414342: case 0x30414d42: case 0x30415442: case 0x30415642: case 0x30505442: return 1;
+default:return 0;
+}
+}
+
 void func_02120a68(u8 *arg0) {
 u8 *mdl;
 u8 *tex;
