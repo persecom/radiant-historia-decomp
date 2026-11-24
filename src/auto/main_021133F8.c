@@ -210,14 +210,12 @@ void func_02113844(void) {
 }
 
 void func_021138c0(void) {
-    switch (func_02009964(0)) {
-    case 0:
-        func_02113e5c();
-        func_02114ac4();
-        func_02116350();
-        func_02009b24(0);
-        break;
+    while (func_02009964(0) != 0) {
     }
+    func_02113e5c();
+    func_02114ac4();
+    func_02116350();
+    func_02009b24(0);
 }
 
 void func_021138f0(void) {
