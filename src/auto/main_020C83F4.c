@@ -1,5 +1,6 @@
 /* 52 functions from 0x020C83F4 to 0x020C93F4 (main), found by ds-decomp. */
 #include "common.h"
+static inline u8 contains_020c8650(s32 x, s32 y, s32 right, s32 bottom, s32 tx, s32 ty) { if(tx>=x && tx<=right && ty>=y && ty<=bottom) return 1; return 0; }
 extern const u16 data_02144600[6];
 
 extern void func_020c6f14(void);
@@ -131,6 +132,21 @@ extern void func_020a8810(void *);
 extern void func_020a30c4(u16);
 void func_020c8640(u8 *arg0) {
     func_020a8810(*(void **)(arg0 + 0x30));
+}
+
+extern u16 data_021628fa[];
+extern u16 data_021628f8;
+extern s16 data_02162908[];
+extern s32 func_020c73d8(void *);
+extern void func_020c738c(void *, s32, s32);
+s32 func_020c8650(u8 *p) {
+u8 old=func_020c73d8(p); s32 x,y,right,bottom,tx,ty; u8 inside; u8 *v;
+if(func_020c73d8(p)) {if(data_021628fa[0]==0)return 1;func_020c738c(p,0,2);}
+else {if(data_021628f8==0)return 1;if((u16)data_02162908[2]==0)return 1;}
+v=*(u8 **)(p+0x30); y=*(s16 *)(p+0x3c);x=*(s16 *)(p+0x3a);
+bottom=y+*(s32 *)(v+0x1c); right=x+*(s32 *)(v+0x18);
+tx=data_02162908[0];ty=data_02162908[1]; if(tx>=x && tx<=right && ty>=y && ty<=bottom) inside=1; else inside=0;
+if(inside) {if(!old)func_020c738c(p,2,2);return 0;}return 2;
 }
 
 extern void func_020c6dbc(void *);
