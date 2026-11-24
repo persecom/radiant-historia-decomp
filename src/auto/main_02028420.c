@@ -15,7 +15,7 @@ s32 func_02028420(u8 *arg0, u8 *arg1) {
     s32 zero = 0;
     u8 *src = arg1;
     u8 *self = arg0;
-    u32 mask = zero;
+    u32 mask = 0;
     const char *s;
     s16 cmd, v1, v2;
     u8 *node;
