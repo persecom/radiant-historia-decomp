@@ -1,6 +1,23 @@
 /* 32 functions from 0x02135F40 to 0x02136E94 (main), found by ds-decomp. */
 #include "common.h"
 extern void func_02008f74(void *, s32, u32);
+extern void func_02013878(void *, s32, s32);
+extern u8 data_0215beec[];
+extern u8 data_0215bef8[];
+extern u8 data_0215bf14[];
+extern u8 data_0215bf20[];
+extern u8 data_0215bf40[];
+extern u8 data_0215bf4c[];
+extern u8 data_0215bf68[];
+extern u8 data_0215bf74[];
+extern u8 data_0215bf94[];
+extern u8 data_0215bfa0[];
+extern u8 data_0215bfbc[];
+extern u8 data_0215bfc8[];
+extern u8 data_0215bfe8[];
+extern u8 data_0215bff4[];
+extern u8 data_0215c010[];
+extern u8 data_0215c01c[];
 
 extern void func_02136958(void);
 extern void func_02136a3c(void);
