@@ -21,6 +21,14 @@ extern void *func_020a5f14(u8 *, u16);
 extern s32 func_0201fb1c(s32, s32);
 
 extern void func_0210c5dc(void *);
+extern u8 data_021500a8[32];
+extern void *func_021092d8(void *);
+extern s32 func_020f685c(void *, s32);
+extern u8 *func_020aa3b0(void);
+extern s32 func_02109444(void *);
+extern u8 *func_020aa380(void);
+extern void func_021167f0(void *, void *);
+extern void func_021093b0(void *);
 void func_020aa464(void) {
     void **list = data_021601d8;
     void *node;
