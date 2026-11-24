@@ -355,6 +355,42 @@ void func_02010bf4(u8 *arg0) {
     **(u32 **)data_0215f120 = 0;
 }
 
+void func_02010c40(u32 id, u32 src, u32 dst, u32 size, u32 a, u32 b, u32 async) {
+    u8 *p = data_0215f120;
+    u32 one = 1;
+    u32 addr;
+    u32 bak;
+    func_0200f95c();
+    if (!(func_0200fb6c() & 4)) func_02008414();
+    func_0200fd64(p, one, a, b);
+    *(void **)(p + 0x50c) = func_0200fe28(id);
+    *(u32 *)(p + 0x508) = *(void **)(p + 0x50c) ? (id & 3) : (one - 2);
+    if (*(u32 *)(p + 0x508) <= 3) {
+        ((void (**)(u32))*(void **)(p + 0x50c))[1](*(u32 *)(p + 0x508));
+    }
+    *(u32 *)(p + 0x500) = dst;
+    addr = src + *(u32 *)data_0215f760;
+    *(u32 *)(p + 0x4fc) = addr;
+    *(u32 *)(p + 0x504) = size;
+    *(void (**)(void))(data_0215f760 + 0x14) = func_02010b10;
+    *(u32 *)(data_0215f760 + 0x18) = 0;
+    *(u32 *)(data_0215f760 + 0x1c) = addr;
+    *(u32 *)(data_0215f760 + 0x20) = dst;
+    *(u32 *)(data_0215f760 + 0x24) = size;
+    *(u32 *)(data_0215f760 + 0x28) = 0;
+    if (*(u32 *)(data_0215f760 + 0xc) == (u32)func_020108d8 && func_02010b40(*(u32 *)(p + 0x508), dst, addr, size)) {
+        bak = func_02008128();
+        if (*(u32 *)(data_0215f760 + 4)) func_0200fe64(*(u32 *)(p + 0x500), *(u32 *)(p + 0x504), *(u32 *)(p + 0xc));
+        if (((u32 *)&data_02145c1c)[1]) func_0200fe80(*(u32 *)(p + 0x500), *(u32 *)(p + 0x504), *(u32 *)(p + 0x10));
+        func_0200813c(bak);
+        func_02010a94(data_0215f770);
+        if (!async) func_02010e40();
+    } else {
+        if (*(u32 *)(data_0215f760 + 4)) func_0200fe64(*(u32 *)(p + 0x500), *(u32 *)(p + 0x504), *(u32 *)(p + 0xc));
+        func_0200fca4((void (*)(void))func_02010bf4, async);
+    }
+}
+
 void func_02010dc8(void) {
     ((u32 *)data_0215f760)[3] = (u32)func_020108d8;
     if (func_020081e0() == 1) {
