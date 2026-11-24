@@ -13,6 +13,41 @@ void func_02052328(void) {
     data_02155984[1] = 0xff0;
 }
 
+void func_02052844(u8 *arg0, s32 arg1, s32 arg2) {
+    u8 *node;
+    u16 id;
+
+    func_020526f0(*(u64 *)(arg0 + 0xfc), (u16)(*(u16 *)(arg0 + 0x90) + 0xbb9), arg1, 1);
+    node = *(u8 **)(data_02160a80 + 0x3c);
+    id = *(u16 *)(arg0 + 0x90) + 0xbb9;
+    while (node != NULL) {
+        if (*(u32 *)(node + 8) == id) {
+            break;
+        }
+        node = *(u8 **)(node + 0x38);
+    }
+    if (node == NULL) {
+        return;
+    }
+    if (arg2 == 1) {
+        *(u32 *)(node + 0x18) &= ~8;
+    } else if (arg2 == 0) {
+        *(u32 *)(node + 0x18) |= 8;
+    } else if (arg2 == -1) {
+        *(u32 *)(node + 0x18) &= ~1;
+    }
+}
+
+void func_02052904(s32 arg0) {
+    u8 *node = *(u8 **)(data_021600bc + 0x40);
+    while (node != NULL) {
+        if (*(u16 *)(node + 0x8e) != 0x7d0 && *(s32 *)(node + 0xd0) != 0) {
+            func_020477dc(node, arg0, 0);
+        }
+        node = *(u8 **)(node + 0x13c);
+    }
+}
+
 u32 func_02052a54(void *arg0, s32 arg1) {
     s32 val;
     u32 ret = 0;
