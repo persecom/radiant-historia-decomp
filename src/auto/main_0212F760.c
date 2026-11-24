@@ -82,6 +82,29 @@ void func_0212f880(u8 *a0) {
     func_02013878(a0, 0, 0xa2c);
 }
 
+void func_0212f8b8(void *arg0) {
+    u8 *a0 = (u8 *)arg0;
+    void *saved = *(void **)(a0 + 0x1b4);
+    func_02013878(a0 + 0x1b8, 0, 0x30);
+    func_02013878(a0 + 0x1e8, 0, 0x3c);
+    func_02013878(a0 + 0x224, 0, 0x100);
+    func_02013878(a0 + 0x324, 0, 0x100);
+    func_02013878(a0 + 0x424, 0, 0x300);
+    func_02013878(*(void **)(a0 + 0x0), 0, 0x180);
+    func_02013878(a0 + 0x724, 0, 0x300);
+    {
+        void *p = *(void **)(a0 + 0x1b4);
+        *(u8 *)(a0 + 0x1a9) = 0;
+        *(u32 *)(a0 + 0x1ac) = 0;
+        if (p == NULL) {
+            return;
+        }
+        *(void **)(a0 + 0x1b4) = NULL;
+        func_0213246c(p);
+        *(void **)(a0 + 0x1b4) = func_02132424(saved, 0x81c);
+    }
+}
+
 void func_0212f97c(u8 *a0, u32 a1) {
     func_0212f8b8(a0);
     *(u32 *)(a0 + 0x1b0) = a1;
