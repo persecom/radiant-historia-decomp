@@ -1,5 +1,7 @@
 /* 31 functions from 0x020AA464 to 0x020AB250 (main), found by ds-decomp. */
 #include "common.h"
+extern u8 *func_020ade60(s32);
+extern s32 func_020aab60(void *, s32, s32, s32, s32, s32);
 
 extern void func_021168f8(void *, void *);
 extern void func_020aa3e0(void *);
@@ -331,7 +333,7 @@ s32 func_020aaf08(void) {
         }
     }
     *(u8 *)(p + 0xd) = 2;
-    *(u32 *)(p + 8) += 1;
+    ((s32 *)p)[2] += 1;
     return 0;
 }
 
