@@ -252,6 +252,49 @@ void func_020a994c(u8 *arg0) {
     *(u32 *)(arg0 + 0x14) = 0;
 }
 
+void func_020a9988(void) {
+    u8 *r4 = data_02162880;
+    u8 *r0;
+    u8 *r1;
+    s32 done;
+
+    if (*(s32 *)(r4 + 0x14) == 0 || *(void **)(*(u8 **)(r4 + 0x18) + 0x10) == NULL) {
+        return;
+    }
+
+    switch (func_020a96d4(*(u32 **)(r4 + 0x18))) {
+        case 0:
+            break;
+        case 1:
+            break;
+        case 2:
+            *(s32 *)(r4 + 0x30) -= 1;
+            break;
+        case 3:
+            *(u32 *)(*(u8 **)(r4 + 0x18) + 8) = *(u32 *)(r4 + 0x28);
+            *(s32 *)(*(u8 **)(r4 + 0x18) + 0xc) += *(s32 *)(r4 + 0x1c);
+            break;
+        case 4:
+            break;
+        case 5:
+            data_021601d4 = 1;
+            break;
+    }
+
+    r0 = *(u8 **)(r4 + 0x18);
+    r1 = *(u8 **)(r0 + 0x10);
+    if (r1 == NULL) {
+        done = 1;
+    } else if (*(s32 *)(r0 + 0x14) == 0 && *r1 == 0xff) {
+        done = 1;
+    } else {
+        done = 0;
+    }
+    if (done != 0) {
+        *(s32 *)(r4 + 0x14) = 0;
+    }
+}
+
 void func_020a9a58(void) {
     u8 *p = data_02162880;
     u8 *obj;
