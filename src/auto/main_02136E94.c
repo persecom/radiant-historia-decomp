@@ -164,7 +164,8 @@ s32 func_021373b0(s32 arg0, s32 arg1, s32 arg2) {
         }
     }
     if (i == 0x18) {
-        return 0;
+        p = NULL;
+        goto done;
     }
     p = (u32 *)data_02175d40[i];
     p[1] = 1;
@@ -178,6 +179,7 @@ s32 func_021373b0(s32 arg0, s32 arg1, s32 arg2) {
     p[16] = 0;
     p[17] = 0;
     func_021375e0(p);
+done:
     return (s32)p;
 }
 
