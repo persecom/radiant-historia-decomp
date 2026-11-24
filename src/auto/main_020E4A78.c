@@ -142,6 +142,23 @@ void func_020e4c80(void *arg0, s32 arg1) {
     }
 }
 
+u8 func_020e55d8(s32 arg0, s32 arg1) {
+    s32 id;
+    u8 *p;
+    u8 ret;
+    if (func_020bd490(2, arg0) != 0) {
+        id = func_020bd490(1, arg0) - 1;
+    } else {
+        id = func_020bd490(3, arg0);
+    }
+    p = func_02021f10(id);
+    ret = 0;
+    if (p != NULL) {
+        ret = (p + arg1)[0x6c];
+    }
+    return ret;
+}
+
 void func_020e57e8(void *arg0, s32 arg1) {
     s32 val = func_020e55d8((u8)*(u16 *)((u8 *)arg0 + 0x90), arg1);
     func_02064cb8(*(void **)((u8 *)arg0 + 0x11c), val);
@@ -149,28 +166,27 @@ void func_020e57e8(void *arg0, s32 arg1) {
 
 s32 func_020e580c(void *arg0, void *arg1, s32 arg2) {
     u8 *p = *(u8 **)arg0;
-    s16 cost = *(s16 *)((u8 *)arg1 + 0x1c);
     u8 *sub = *(u8 **)(p + 0x118);
-    s32 rem = *(s16 *)(sub + 0xc) - cost;
-    if (rem < 0) {
-        return 0;
+    s32 rem = *(s16 *)(sub + 0xc) - *(s16 *)((u8 *)arg1 + 0x1c);
+    if (rem >= 0) {
+        if (arg2 != 0) {
+            *(s16 *)(sub + 0xc) = rem;
+        }
+        *(void **)((u8 *)arg0 + 8) = arg1;
+        if (*((u8 *)arg1 + 0x14) == 1) {
+            *(u16 *)((u8 *)arg0 + 0xe) |= 2;
+        } else {
+            *(u16 *)((u8 *)arg0 + 0xe) &= ~2;
+        }
+        return func_02032c80(arg0, 6);
     }
-    if (arg2 != 0) {
-        *(s16 *)(sub + 0xc) = rem;
-    }
-    *(void **)((u8 *)arg0 + 8) = arg1;
-    if (*((u8 *)arg1 + 0x14) == 1) {
-        *(u16 *)((u8 *)arg0 + 0xe) |= 2;
-    } else {
-        *(u16 *)((u8 *)arg0 + 0xe) &= ~2;
-    }
-    return func_02032c80(arg0, 6);
+    return 0;
 }
 
 u8 func_020e586c(void *arg0, s32 arg1, u16 arg2) {
     s32 id;
     u8 *p;
-    u16 count = 0;
+    u16 count;
     u16 i;
     if (func_020bd490(2, arg1) != 0) {
         id = func_020bd490(1, arg1) - 1;
@@ -178,6 +194,7 @@ u8 func_020e586c(void *arg0, s32 arg1, u16 arg2) {
         id = func_020bd490(3, arg1);
     }
     p = func_02021f10(id);
+    count = 0;
     for (i = 1; i < 0x1e; i++) {
         if (p[i + 0x4e] != 0) {
             if (func_02064cb8(*(void **)((u8 *)arg0 + 0x11c), p[i + 0x4e]) != 0) {
