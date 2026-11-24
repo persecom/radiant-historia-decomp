@@ -79,7 +79,7 @@ s32 func_020eaacc(void) {
 }
 
 void func_020eb0f8(void) {
-    u8 *node = *(u8 **)data_02160a6c;
+    u8 *node = data_02160a6c;
     u8 *obj = *(u8 **)(node + 0x7c);
     s32 zero = 0;
     s32 one = 1;
