@@ -1,5 +1,7 @@
 /* 19 functions from 0x020EC12C to 0x020ED0BC (main), found by ds-decomp. */
 #include "common.h"
+extern s32 data_02162860[];
+extern u8 data_021612c8[];
 
 extern void func_02108594(void *);
 extern void func_0210c5dc(void *);
