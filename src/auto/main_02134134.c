@@ -132,15 +132,17 @@ s32 func_021346cc(u32 arg0) {
     u32 buf[18];
     s32 res;
     if (func_0213413c(arg0, &a, &b, &c) == 1) {
-        return c;
+        arg0 = c;
+    } else {
+        func_0200b888(buf);
+        if (func_0200bc08(buf, arg0) == 0) {
+            return 0;
+        }
+        res = func_0200bc18(buf);
+        func_0200baa4(buf);
+        arg0 = (u32)res;
     }
-    func_0200b888(buf);
-    if (func_0200bc08(buf, arg0) == 0) {
-        return 0;
-    }
-    res = func_0200bc18(buf);
-    func_0200baa4(buf);
-    return res;
+    return (s32)arg0;
 }
 
 void func_0213473c(void) {
