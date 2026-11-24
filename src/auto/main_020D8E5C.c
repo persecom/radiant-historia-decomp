@@ -12,6 +12,17 @@ extern void func_0210c5dc(void *);
 extern void func_020d9018(void);
 extern void func_020d9cc0(void *);
 extern void func_020f4668(void *);
+extern const s16 data_0213a394[];
+extern u32 data_0216263c[3];
+
+static inline u16 Rand16_020d9a08(u32 *ctx, u16 max) {
+    ctx[0] = ctx[1] * ctx[0] + ctx[2];
+    if (max == 0) {
+        return (u16)(ctx[0] >> 16);
+    } else {
+        return (u16)(((ctx[0] >> 16) * max) >> 16);
+    }
+}
 
 typedef struct {
     s32 unk0;
@@ -165,6 +176,96 @@ void func_020d914c(s32 arg0) {
             v.unk8 = 0x1e0000;
             func_020d9058(&v);
             break;
+    }
+}
+
+extern u32 data_0216263c[3];
+extern void func_020d9d8c(u32);
+extern void func_020d9da8(u32);
+extern void func_020d9ea8(u32, s32);
+extern void func_020d914c(s32);
+void func_020d91bc(s32 arg0) {
+    s32 zero = 0;
+    u8 **pp = &data_02160258;
+    u8 *p;
+
+    *(s32 *)(*pp + 0x5c) = arg0;
+    *(s32 *)(*pp + 0x60) = zero;
+    func_020d9d8c(0x40);
+
+    switch (arg0) {
+    case 2:
+        p = *pp;
+        *(s32 *)(p + 0x0) = 0x200000;
+        *(s32 *)(p + 0x4) = 0x30000;
+        *(s32 *)(p + 0x8) = 0x200000;
+        p = *pp;
+        *(s32 *)(p + 0xc) = 0x200000;
+        *(s32 *)(p + 0x10) = 0x30000;
+        *(s32 *)(p + 0x14) = 0x200000;
+        break;
+    case 3:
+        func_020d9ea8(8, 0x30);
+        *(s32 *)(*pp + 0x60) = zero;
+        func_020d914c(1);
+        break;
+    case 4:
+        *(s32 *)(*pp + 0x60) = zero;
+        *(s32 *)(*pp + 0x64) = zero;
+        p = *pp;
+        *(s32 *)(p + 0x18) = zero;
+        *(s32 *)(p + 0x1c) = zero;
+        *(s32 *)(p + 0x20) = zero;
+        {
+            u32 x = data_0216263c[0];
+            u32 mul = data_0216263c[1];
+            u32 add = data_0216263c[2];
+            x = mul * x + add;
+            data_0216263c[0] = x;
+            if ((u16)(((x >> 16) * 10) >> 16) > 5) {
+                *(u32 *)(*pp + 0x64) |= 1;
+            }
+        }
+        func_020d9da8(0x40);
+        break;
+    case 5:
+        func_020d9ea8(0x80000000, zero);
+        func_020d9ea8(1, 0x30);
+        break;
+    case 7:
+        func_020d914c(1);
+        break;
+    case 8:
+        p = *pp;
+        *(Unk3Words *)(p + 0x30) = *(Unk3Words *)(p + 0x0);
+        break;
+    case 12:
+        p = *pp;
+        *(s32 *)(p + 0xc) = 0x200000;
+        *(s32 *)(p + 0x10) = 0x30000;
+        *(s32 *)(p + 0x14) = 0x1e0000;
+        func_020d9ea8(8, 0x30);
+        break;
+    case 14:
+        p = *pp;
+        *(s32 *)(p + 0x0) = 0x1ae000;
+        *(s32 *)(p + 0x4) = 0x30000;
+        *(s32 *)(p + 0x8) = 0x200000;
+        p = *pp;
+        *(s32 *)(p + 0xc) = 0x1ae000;
+        *(s32 *)(p + 0x10) = 0x30000;
+        *(s32 *)(p + 0x14) = 0x200000;
+        break;
+    case 15:
+        p = *pp;
+        *(s32 *)(p + 0x0) = 0x294000;
+        *(s32 *)(p + 0x4) = 0x30000;
+        *(s32 *)(p + 0x8) = 0x200000;
+        p = *pp;
+        *(s32 *)(p + 0xc) = 0x294000;
+        *(s32 *)(p + 0x10) = 0x30000;
+        *(s32 *)(p + 0x14) = 0x200000;
+        break;
     }
 }
 
