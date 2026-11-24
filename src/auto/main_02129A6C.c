@@ -241,16 +241,15 @@ s32 func_0212a4b8(s32 *arg0) {
 }
 
 void func_0212a4c0(u8 *arg0, s32 arg1, s32 arg2) {
-    s32 val;
     if (*(s16 *)(arg0 + 0x98) == 0) {
         *(s32 *)(arg0 + 0x48) = arg1;
-        val = *(s8 *)(arg0 + 0xf);
+        *(s32 *)(arg0 + 0x4c) = func_0201fb1c(arg2, *(s8 *)(arg0 + 0xf));
+        *(s32 *)(arg0 + 0x74) = 0;
     } else {
         *(s32 *)(arg0 + 0x48) = arg1;
-        val = (*(s8 *)(arg0 + 0xd) / 8) * *(s8 *)(arg0 + 0xe);
+        *(s32 *)(arg0 + 0x4c) = func_0201fb1c(arg2, (*(s8 *)(arg0 + 0xd) / 8) * *(s8 *)(arg0 + 0xe));
+        *(s32 *)(arg0 + 0x74) = 0;
     }
-    *(s32 *)(arg0 + 0x4c) = func_0201fb1c(arg2, val);
-    *(s32 *)(arg0 + 0x74) = 0;
     *(s32 *)(arg0 + 0x90) = 0;
     *(s32 *)(arg0 + 0x94) = 0;
     *(s32 *)(arg0 + 0xe8) = 0;
