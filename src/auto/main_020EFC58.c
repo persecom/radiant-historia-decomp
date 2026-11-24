@@ -45,3 +45,37 @@ void func_020f0090(s32 arg0) {
         data_02160af0 = NULL;
     }
 }
+
+extern u8 *func_0210c594(s32, u32);
+extern void func_021167f0(void *, void *);
+void func_020f07b0(Unk_Vec3_020f07b0 arg0, u32 arg1, u16 arg2) {
+    u8 *r4 = NULL;
+    u8 *node = *(u8 **)(data_02160af0 + 0x64);
+    u8 *r3;
+
+    while (node != NULL) {
+        r4 = *(u8 **)node;
+        node = *(u8 **)(node + 0x4c);
+    }
+
+    if (r4 == NULL) {
+        return;
+    }
+
+    if (arg1 <= 0x2710 || arg1 >= 0x2b01) {
+        return;
+    }
+
+    r3 = func_0210c594(0x58, data_02155c3c);
+    *(Unk_Vec3_020f07b0 *)(r3 + 4) = arg0;
+    *(u32 *)(r3 + 0x2c) = arg2;
+    if (*(u32 *)(r4 + 0xfc) != 0) {
+        *(u32 *)(r3 + 0x18) = 1;
+    }
+    if (*(u32 *)(r4 + 0x100) != 0) {
+        *(u32 *)(r3 + 0x1c) = 1;
+    }
+    *(u8 **)r3 = r4;
+    func_021167f0(data_02160af0 + 0x70, r3);
+}
+
