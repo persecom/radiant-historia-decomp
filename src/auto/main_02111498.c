@@ -244,3 +244,13 @@ void func_02112198(void *arg0) {
     }
 }
 
+extern s32 func_021117b0(u8 *);
+extern u16 func_02111d10(u8 *);
+extern void func_020c98f8(void *);
+s32 func_02112214(u8 *arg0) {
+    func_021117b0(arg0);
+    func_020c9b64(*(void **)(arg0 + 0x8c));
+    (*(void (**)(void *))(*(u8 **)(arg0 + 0x90) + 8))(*(void **)(arg0 + 0x90));
+    return 0;
+}
+
