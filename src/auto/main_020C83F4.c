@@ -126,6 +126,10 @@ void func_020c8780(void *arg0) {
     }
 }
 
+void func_020c8794(u8 *arg0) {
+    func_020a30c4(*(u16 *)(arg0 + 0x4c));
+}
+
 extern void func_020c8818(void *);
 void func_020c87f8(void *arg0) {
     func_020c8818(arg0);
