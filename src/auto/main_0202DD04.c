@@ -59,17 +59,13 @@ void func_0202e4cc(void) {
     }
 }
 
-extern void func_0202bcd4(u8 *);
+extern void func_0202bcd4();
 extern void func_0202eac4(u32, u16);
 void func_0202e518(u8 *arg0) {
     u8 *p = *(u8 **)(*(u8 **)(arg0 + 0x128) + 0x54);
-    if (arg0 == NULL) {
-        return;
+    if (arg0 != NULL && **(u8 **)(arg0 + 0x118) == 0) {
+        func_0202bcd4(p + 0x18);
     }
-    if (**(u8 **)(arg0 + 0x118) != 0) {
-        return;
-    }
-    func_0202bcd4(p + 0x18);
 }
 
 u8 *func_0202e548(u32 arg0) {
