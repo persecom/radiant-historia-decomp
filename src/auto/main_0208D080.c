@@ -46,6 +46,31 @@ void func_0208da7c(s16 arg0, s32 arg1, s16 arg2, s16 arg3, s16 arg4, s16 arg5, s
     func_021098ac(&sp);
 }
 
+void func_0208db04(s16 arg0, s32 arg1, s16 arg2, s16 arg3, s16 arg4, s16 arg5, u8 arg6, s16 arg7) {
+    s32 pow10 = 1;
+    u8 digit = 0;
+    s32 done = 0;
+
+    if (arg1 < 0) {
+        arg1 = 0;
+    }
+
+    func_0208da7c(arg0, (u8)(arg1 % 10), arg2, arg3, arg4, arg5, arg7);
+
+    do {
+        s32 v;
+        pow10 *= 10;
+        v = arg1 - (arg1 % pow10);
+        digit++;
+        if (pow10 > arg1) {
+            done = 1;
+        } else {
+            s32 d = v / pow10;
+            func_0208da7c(arg0, (u8)(d % 10), arg2 - arg6 * digit, arg3, arg4, arg5, arg7);
+        }
+    } while (done != 1);
+}
+
 void func_0208dc14(s16 arg0, s16 arg1, s16 arg2, s16 arg3, s32 arg4) {
     Unk10 sp;
     sp = data_02141198;
