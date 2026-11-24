@@ -71,12 +71,11 @@ void func_020a5cd4(void *arg0) {
 }
 
 void func_020a5ce4(void *arg0) {
-    void *p = *(void **)((u8 *)arg0 + 4);
-    if (p == NULL) {
+    if (*(void **)((u8 *)arg0 + 4) == NULL) {
         return;
     }
-    ((void (*)(void))(*(void **)((u8 *)p + 4)))();
-    func_020a899c(p);
+    ((void (*)(void *))*(void **)((u8 *)*(void **)((u8 *)arg0 + 4) + 4))(*(void **)((u8 *)arg0 + 4));
+    func_020a899c(*(void **)((u8 *)arg0 + 4));
 }
 
 void func_020a5d0c(void *arg0) {
