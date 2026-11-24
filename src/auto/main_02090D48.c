@@ -7,6 +7,7 @@ typedef struct {
 
 extern const Unk20 data_02140f54;
 extern const Unk20 data_02141120;
+extern const Unk20 data_02140fb8;
 
 extern void func_020a3bbc(s32);
 extern void func_021098ac(void *);
