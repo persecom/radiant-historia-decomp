@@ -240,6 +240,15 @@ s32 func_0212a4b8(s32 *arg0) {
     return arg0[1];
 }
 
+extern s32 func_0201fb1c(s32, s32);
+extern void func_0212984c(void *);
+extern void func_02129878(void *);
+void func_0212a528(u8 *arg0) {
+    if (*(s32 *)(arg0 + 0x4) == 0) {
+        *(s32 *)(arg0 + 0x4) = 1;
+    }
+}
+
 s32 func_0212a584(s32 *arg0) {
     return arg0[0x25];
 }
