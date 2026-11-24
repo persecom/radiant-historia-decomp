@@ -12,3 +12,6 @@ extern void func_020f1e2c(void);
 extern void func_0210dae0(u8 *);
 extern void func_0210db10(u8 *);
 extern void func_020eeea4(void);
+
+void func_020eedc8(void) {
+}
