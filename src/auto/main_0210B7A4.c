@@ -49,7 +49,7 @@ extern u32 data_02162834[];
 extern u32 data_0216281c;
 
 static inline void *GetResDataByIdx(u8 *dict, u32 idx) {
-    if (dict != NULL && idx < dict[1]) {
+    if (dict && idx < dict[1]) {
         u8 *p = dict + *(u16 *)(dict + 6);
         return (p + 4) + *(u16 *)p * idx;
     }
@@ -57,9 +57,9 @@ static inline void *GetResDataByIdx(u8 *dict, u32 idx) {
 }
 
 static inline void *GetMdlByIdx(u8 *res, u32 idx) {
-    if (res != NULL) {
+    if (res) {
         u32 *entry = (u32 *)GetResDataByIdx(res + 8, idx);
-        if (entry != NULL) {
+        if (entry) {
             return res + *entry;
         }
     }
@@ -140,7 +140,6 @@ void func_0210b8f8(u8 *arg0, u32 arg1, u32 arg2, u32 arg3) {
     u32 sp0;
     void *r6 = NULL;
     void *r5 = NULL;
-    u8 *res;
 
     data_02155bac = 0;
     r5 = func_02109b14(arg2, &sp0);
@@ -156,24 +155,7 @@ void func_0210b8f8(u8 *arg0, u32 arg1, u32 arg2, u32 arg3) {
     func_0210e3dc();
     func_02108ffc();
 
-    res = func_02120f94(r6);
-    if (res != NULL) {
-        u8 *dict = res + 8;
-        u8 *entry;
-        if (dict != NULL && arg3 < res[9]) {
-            u8 *p = (res + 8) + *(u16 *)(res + 0xe);
-            entry = (p + 4) + *(u16 *)p * arg3;
-        } else {
-            entry = NULL;
-        }
-        if (entry != NULL) {
-            *(void **)(arg0 + 0x54) = res + *(u32 *)entry;
-        } else {
-            *(void **)(arg0 + 0x54) = NULL;
-        }
-    } else {
-        *(void **)(arg0 + 0x54) = NULL;
-    }
+    *(void **)(arg0 + 0x54) = GetMdlByIdx(func_02120f94(r6), arg3);
 
     *(void **)(arg0 + 0x58) = func_02120fa4(r5);
     if (*(void **)(arg0 + 0x58) != NULL) {
