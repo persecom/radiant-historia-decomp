@@ -503,3 +503,9 @@ void func_02126e50(void *arg0, u32 arg1, u32 arg2, u32 arg3) {
     *(u32 *)((u8 *)arg0 + 0x34) = arg3;
 }
 
+void func_02126e60(void *arg0, u32 arg1, u32 arg2, u32 arg3) {
+    *(u32 *)((u8 *)arg0 + 0x38) = arg1;
+    *(u32 *)((u8 *)arg0 + 0x3c) = arg2;
+    *(u32 *)((u8 *)arg0 + 0x40) = arg3;
+}
+
