@@ -24,16 +24,15 @@ extern void *func_0210c594(s32, void *);
 extern void *func_0210853c(void);
 void func_020ec548(u8 *arg0);
 void func_020ec218(void) {
-    u8 **p = &data_02160ab4;
-    while (*(u8 **)(*p + 0x50) != NULL) {
-        func_020ec548(*(u8 **)(*p + 0x50));
+    while (*(u8 **)(data_02160ab4 + 0x50) != NULL) {
+        func_020ec548(*(u8 **)(data_02160ab4 + 0x50));
     }
-    func_0210da14(*p);
-    func_0210dba0(*p + 0x14);
-    func_0210dbe8(*p + 0x28);
-    func_0210dc70(*p + 0x3c);
-    if (*p != NULL) {
-        func_0210c5dc(*p);
-        *p = NULL;
+    func_0210da14(data_02160ab4);
+    func_0210dba0(data_02160ab4 + 0x14);
+    func_0210dbe8(data_02160ab4 + 0x28);
+    func_0210dc70(data_02160ab4 + 0x3c);
+    if (data_02160ab4 != NULL) {
+        func_0210c5dc(data_02160ab4);
+        data_02160ab4 = NULL;
     }
 }
