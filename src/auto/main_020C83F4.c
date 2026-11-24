@@ -292,23 +292,31 @@ void func_020c8ba0(void *arg0) {
     }
 }
 
-BOOL func_020c8bb4(u8 *arg0) {
-    s32 *pos = (s32 *)(arg0 + 0x4c);
-    s32 delta = *(s32 *)(arg0 + 0x58);
-    s32 next = *pos + delta;
-    *pos = next;
-    if (delta > 0) {
-        if (next >= *(s32 *)(arg0 + 0x54)) {
-            *pos = *(s32 *)(arg0 + 0x54);
-            *(s32 *)(arg0 + 0x58) = 0;
-        }
-    } else if (delta < 0) {
-        if (next <= *(s32 *)(arg0 + 0x54)) {
-            *pos = *(s32 *)(arg0 + 0x54);
-            *(s32 *)(arg0 + 0x58) = 0;
-        }
+BOOL func_020c8bb4(u8 *arg0)
+{
+  s32 delta;
+  s32 cur = *((s32 *) (arg0 + 0x4c));
+  s32 next = cur + (*((s32 *) (arg0 + 0x58)));
+  *((s32 *) (arg0 + 0x4c)) = next;
+  cur = 0x54;
+  if ((*((s32 *) (arg0 + 0x58))) > 0)
+  {
+    if (next >= (*((s32 *) (arg0 + 0x54))))
+    {
+      *((s32 *) (arg0 + 0x4c)) = *((s32 *) (arg0 + cur));
+      *((s32 *) (arg0 + 0x58)) = 0x4c * 0;
     }
-    return FALSE;
+  }
+  else
+    if ((*((s32 *) (arg0 + 0x58))) < 0)
+  {
+    if (next <= (*((s32 *) (arg0 + cur))))
+    {
+      *((s32 *) (arg0 + 0x4c)) = *((s32 *) (arg0 + cur));
+      *((s32 *) (arg0 + 0x58)) = 0;
+    }
+  }
+  return FALSE;
 }
 
 void func_020c8d24(u8 *arg0) {
@@ -377,5 +385,16 @@ extern void *func_0210c594(s32, void *);
 extern void func_020a9830(void *, void *, s32, s32, s32, s32);
 void func_020c8ed0(u8 *arg0, s32 arg1) {
     func_020c8dc0(arg0, *(s16 *)(arg0 + 0x34), arg1);
+}
+
+extern void func_020c9610(u8 *);
+void func_020c8ee4(u8 *arg0, u16 *arg1) {
+    *(u16 *)(arg0 + 0x46) = arg1[0];
+    *(u16 *)(arg0 + 0x48) = arg1[1];
+    *(u16 *)(arg0 + 0x4a) = arg1[2];
+    *(u16 *)(arg0 + 0x4c) = arg1[3];
+    *(u16 *)(arg0 + 0x4e) = arg1[4];
+    *(u16 *)(arg0 + 0x50) = arg1[5];
+    func_020c8f20(arg0);
 }
 
