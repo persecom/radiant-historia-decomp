@@ -4,6 +4,17 @@
 extern u8 *data_02160a74;
 extern u8 *data_02160078;
 extern u8 *func_020e5910(s32);
+extern void func_020e26f0(s32, s32, s32);
+extern void func_020e25fc(s32, s32, s32);
+
+typedef struct {
+    s32 m0;
+    s32 m4;
+    s32 m8;
+    s32 mC;
+} Entry516c4;
+
+extern Entry516c4 data_021516c4[];
 
 s32 func_020e8358(u8 *arg0) {
     u8 *p = data_02160a74;
@@ -38,22 +49,34 @@ s32 func_020e8358(u8 *arg0) {
 
 s32 func_020e8410(s32 arg0, u32 arg1, s32 arg2) {
     u8 *flags;
-    if (arg0 != 0 && arg0 != 1) {
+    u8 mask;
+    if (arg0 == 0) {
+        if (arg1 < 1 || arg1 > 3) {
+            return 0;
+        }
+        flags = data_02160078 + 0x33;
+        arg1 -= 1;
+        if (*flags & (1 << arg1)) {
+            return 1;
+        }
+        return 0;
+    }
+    if (arg0 != 1) {
         return 0;
     }
     if (arg1 < 1 || arg1 > 3) {
         return 0;
     }
-    flags = data_02160078 + 0x33;
     arg1 -= 1;
-    if (arg0 == 0) {
-        return (*flags & (1 << arg1)) != 0;
-    }
     if (arg2 == 0) {
-        *flags |= (1 << arg1);
-    } else {
-        *flags &= ~(1 << arg1);
+        mask = (u8)(1 << arg1);
+        flags = data_02160078 + 0x33;
+        *flags |= mask;
+        return 0;
     }
+    mask = (u8)(1 << arg1);
+    flags = data_02160078 + 0x33;
+    *flags &= ~mask;
     return 0;
 }
 
