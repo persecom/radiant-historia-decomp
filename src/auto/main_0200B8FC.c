@@ -61,6 +61,10 @@ s32 func_0200b9c8(u8 *arg0, FSFileID arg1) {
     return ret;
 }
 
+s32 func_0200baa4(u8 *arg0) {
+    return func_0200afb4(arg0, 8, 1);
+}
+
 s32 func_0200bc08(void *arg0, void *arg1) {
     return func_0200ba20(arg0, arg1, 1);
 }
