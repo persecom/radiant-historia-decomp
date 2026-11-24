@@ -142,6 +142,15 @@ void func_02004180(void *arg0, u32 arg1, u32 arg2) {
     }
 }
 
+void func_020041f0(void) {
+    if (data_02145ba4 != -1) {
+        func_0200893c();
+    }
+    func_02004cd4(data_0215cd24[2]);
+    data_0215cd24[2] = 0;
+    data_0215cd24[1] = 0;
+}
+
 void func_0200422c(void) {
     data_0215cd24[0] = func_0200547c();
 }
