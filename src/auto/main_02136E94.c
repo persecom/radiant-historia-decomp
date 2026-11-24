@@ -110,6 +110,14 @@ void func_02137250(void *arg0, void *arg1) {
     func_021369c0(buf);
 }
 
+void func_02137294(void) {
+    data_0215c1e0 = data_02145b08;
+    func_02136958();
+    func_021369a8();
+    func_021372c0();
+    func_021369b4();
+}
+
 void func_02137318(void) {
     func_021369a8();
     func_02137330();
