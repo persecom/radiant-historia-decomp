@@ -15,6 +15,26 @@ typedef struct {
     s32 fc;
     s32 f10;
 } Unk738;
+extern void func_020a994c(void *);
+extern void func_020a9610(void *, s32, s32, s32, s32, s32);
+extern void func_020a98ac(void *);
+extern void func_020a98f4(void *);
+void func_020ce664(s32 arg0, s16 arg1, s16 arg2, s16 arg3, u8 arg4) {
+    u8 *p = data_02160238;
+    s32 idx = arg0 * 100;
+
+    func_020a994c(p + 0x164 + 0x400 + idx);
+    if (arg4 == 0) {
+        return;
+    }
+    *(u16 *)(p + idx + 0x5b0) = arg1;
+    *(u16 *)(p + idx + 0x5b2) = arg2;
+    *(u16 *)(p + idx + 0x5b4) = arg3;
+    func_020a9610(p + 0x198 + 0x400 + idx, *(u32 *)(p + 0x704), arg4, *(u32 *)(p + idx + 0x560), 0, 0);
+    func_020a98ac(p + 0x164 + 0x400 + idx);
+    func_020a98f4(p + 0x164 + 0x400 + idx);
+}
+
 void func_020ce738(void) {
     u8 i;
     for (i = 0; i < 3; i++) {
@@ -25,6 +45,26 @@ void func_020ce738(void) {
         (*(u32 **)(p + 0x560))[0x48 / 4] = (s->f2 + s->f10) << 12;
         (*(u32 **)(p + 0x560))[0x40 / 4] = s->f8;
     }
+}
+
+void func_020ce7d8(void) {
+u8 *p = data_02160238;
+s32 zero;
+s32 one;
+if((p + p[0x708]*16)[0x710]==0) return;
+one=1;
+func_020ccc30(one);
+p[0x70a]=one;
+func_020ccb10();
+zero=0;
+func_020cda64(0,0x12000,0x2d000,0x1e,zero,4,zero,zero,zero);
+func_020cda64(one,0x92000,0x86000,0x1e,zero,0x65,zero,zero,zero);
+func_020cda64(2,0x92000,0x9a000,0x1e,zero,0x66,zero,zero,zero);
+*(s32 *)(*(u8 **)(data_02160238+0x60)+0x40)=one;
+*(s32 *)(*(u8 **)(data_02160238+0xb0)+0x40)=one;
+*(s32 *)(*(u8 **)(data_02160238+0x100)+0x40)=one;
+p[0]=6;
+p[0x70b]=zero;
 }
 
 void func_020ce8d4(void) {
