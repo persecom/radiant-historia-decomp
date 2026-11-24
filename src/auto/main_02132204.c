@@ -93,6 +93,13 @@ void func_02132ab8(void **arg0, s32 arg1) {
     func_0212fcf0(*arg0, arg1);
 }
 
+extern void func_0212fcfc(void *, s32);
+extern void func_0212f79c(void);
+extern s32 data_021749c4;
+void func_02132ac8(void **arg0, s32 arg1) {
+    func_0212fcfc(*arg0, arg1);
+}
+
 void func_02132ae8(u8 *arg0, s32 arg1) {
     *(s32 *)(arg0 + 0x34) = arg1;
 }
