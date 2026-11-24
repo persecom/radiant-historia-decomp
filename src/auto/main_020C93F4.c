@@ -175,6 +175,13 @@ void func_020c9980(u8 *arg0) {
     func_020c994c(arg0);
 }
 
+void func_020c99e4(u8 *arg0, void *arg1) {
+    if (arg0 == NULL || arg1 == NULL) {
+        return;
+    }
+    ((void (*)(void *))(*(void **)((u8 *)arg1 + 4)))(arg1);
+}
+
 extern u8 *func_020c641c(s32);
 extern void func_0210968c(s32, s32, s32);
 extern void func_02108eec(s32, s32);
