@@ -137,6 +137,24 @@ void func_0210bfec(void) {
     *(u32 *)0x04000540 = 0;
 }
 
+void func_0210c010(void) {
+    func_0210be4c();
+    func_0210bf68();
+    func_0210bfec();
+    func_02109af8();
+    func_0210ebd4();
+    func_0210d86c();
+    func_021097f4();
+    func_0210f550();
+    func_0210fcd4(0x40);
+    func_0210e694();
+    func_02107d20();
+    func_0210b750(0x3ee);
+    func_0210e67c();
+    func_0210cf10();
+    func_0210e7ac();
+}
+
 extern void func_0210c094(void *, void *, void *, void *);
 s32 func_0210c1dc(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4) {
     s32 vec[3];
@@ -191,6 +209,23 @@ void func_0210c35c(s32 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     }
     arg0[0] = arg1;
     arg0[2] = func_02002080(arg2 - arg1, arg3);
+}
+
+void func_0210c3f8(s32 *arg0) {
+    s32 a;
+    s32 b;
+    a = arg0[1];
+    b = arg0[3];
+    if (a > b) {
+        arg0[1] = b;
+        arg0[3] = a;
+    }
+    a = arg0[0];
+    b = arg0[2];
+    if (a > b) {
+        arg0[0] = b;
+        arg0[2] = a;
+    }
 }
 
 extern u32 func_0200698c(void);
