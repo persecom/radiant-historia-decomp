@@ -206,10 +206,13 @@ s32 func_020ddcb0(u32 *arg0, u32 *arg1) {
 void func_020ddcd4(u8 *arg0) {
     s32 scale = *(s32 *)data_02160a68.unk00;
     s32 val = *(s32 *)(arg0 + 0x78);
-    s32 idx = *(u16 *)(arg0 + 0x92) >> 4;
     s32 angle = (s32)(((s64)(val << 12) * scale + 0x800) >> 12);
-    *(s32 *)(arg0 + 0x30) = (s32)(((s64)data_0213a394[idx * 4] * angle + 0x800) >> 12);
-    *(s32 *)(arg0 + 0x38) = (s32)(((s64)data_0213a394[idx * 4 + 2] * angle + 0x800) >> 12);
+    s32 idx = *(u16 *)(arg0 + 0x92) >> 4;
+    s32 j = idx << 1;
+    s32 o0 = j << 1;
+    s32 o1 = (j + 1) << 1;
+    *(s32 *)(arg0 + 0x30) = (s32)(((s64)data_0213a394[o0] * angle + 0x800) >> 12);
+    *(s32 *)(arg0 + 0x38) = (s32)(((s64)data_0213a394[o1] * angle + 0x800) >> 12);
 }
 
 void func_020ddd5c(u8 *arg0) {
@@ -267,7 +270,7 @@ void func_020dde88(u8 *arg0) {
     *(volatile u32 *)0x40002bc = (u32)(sq >> 32);
     while (*(volatile u16 *)0x40002b0 & 0x8000) {
     }
-    q = (dist + (*(volatile u32 *)0x40002b4 + 1 >> 1)) >> 12;
+    q = (dist + (*(volatile s32 *)0x40002b4 + 1 >> 1)) >> 12;
     v = (0xa00 - q) << 13;
     v = v / 0xa00;
     if (v < 0xc00) {
@@ -291,7 +294,7 @@ void func_020ddf2c(u8 *arg0) {
     *(volatile u32 *)0x40002bc = (u32)(sq >> 32);
     while (*(volatile u16 *)0x40002b0 & 0x8000) {
     }
-    q = (dist + (*(volatile u32 *)0x40002b4 + 1 >> 1)) >> 12;
+    q = (dist + (*(volatile s32 *)0x40002b4 + 1 >> 1)) >> 12;
     v = (0xa00 - q) << 13;
     v = v / 0xa00;
     if (v < 0x800) {
@@ -364,6 +367,14 @@ void **arg0;
     }
     if (arg0 != NULL) {
         func_0210c5dc(arg0);
+    }
+}
+
+void func_020de488(void) {
+    func_020de4ec();
+    if (data_02160a70 != NULL) {
+        func_0210c5dc(data_02160a70);
+        data_02160a70 = NULL;
     }
 }
 
