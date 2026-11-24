@@ -239,6 +239,31 @@ void func_02116844(void *list, void *object) {
     }
 }
 
+void func_02116894(void *list, void *target, void *object) {
+    u8 *l = (u8 *)list;
+    if (target == NULL) {
+        func_021167f0(list, object);
+    } else if (target == *(void **)(l + 0)) {
+        func_02116844(list, object);
+    } else {
+        u8 *objLink = (u8 *)object + *(u16 *)(l + 0xa);
+        void *prevObj = *(void **)((u8 *)target + *(u16 *)(l + 0xa));
+        *(void **)(objLink + 0) = prevObj;
+        *(void **)(objLink + 4) = target;
+        *(void **)((u8 *)prevObj + *(u16 *)(l + 0xa) + 4) = object;
+        *(void **)((u8 *)target + *(u16 *)(l + 0xa) + 0) = object;
+        *(u16 *)(l + 8) += 1;
+    }
+}
+
+void *func_02116958(void *list, void *object) {
+    u8 *l = (u8 *)list;
+    if (object == NULL) {
+        return *(void **)(l + 0);
+    }
+    return *(void **)((u8 *)object + *(u16 *)(l + 0xa) + 4);
+}
+
 void* func_02116d7c(void* heap, u32 size, s32 alignment)
 {
     typedef struct Block {
