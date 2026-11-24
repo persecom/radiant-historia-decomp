@@ -144,12 +144,12 @@ void func_0200dcd4(u32 arg0,u32 arg1,void *arg2,u32 arg3) {
  ok=Send0200dcd4(arg0,arg1);
  if(!ok) {
  func_0200813c(state);
- ((State0200dcd4 *)data_0215f000)->f38|=2;
+ ((State0200dcd4 *)data_0215f000)->f38 = 2 | ((State0200dcd4 *)data_0215f000)->f38;
  if(((State0200dcd4 *)data_0215f000)->callback)
  (((State0200dcd4 *)data_0215f000)->callback)(1,4,0);
  } else {
- ((State0200dcd4 *)data_0215f000)->f3a|=2;
- ((State0200dcd4 *)data_0215f000)->f38&=0xfffd;
+ ((State0200dcd4 *)data_0215f000)->f3a = 2 | ((State0200dcd4 *)data_0215f000)->f3a;
+ ((State0200dcd4 *)data_0215f000)->f38 = 0xfffd & ((State0200dcd4 *)data_0215f000)->f38;
  func_0200813c(state);
  }
 }
