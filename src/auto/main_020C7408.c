@@ -325,14 +325,14 @@ s32 func_020c8344(u8 *arg0, s32 arg1, s32 arg2) {
     func_020c8310((void **)(arg0 + 0x30));
     ptr = func_020a84b8(arg1, arg2);
     *(u8 **)(arg0 + 0x30) = ptr;
-    if (ptr == NULL) {
-        func_020c8310((void **)(arg0 + 0x30));
-        return 1;
+    if (ptr != NULL) {
+        *(u32 *)(ptr + 0x4c) = 0x2e000;
+        func_020c8640(arg0, 0);
+        func_0210dba0(*(u8 **)(arg0 + 0x30) + 0x20);
+        return 0;
     }
-    *(u32 *)(ptr + 0x4c) = 0x2e000;
-    func_020c8640(arg0, 0);
-    func_0210dba0(*(u8 **)(arg0 + 0x30) + 0x20);
-    return 0;
+    func_020c8310((void **)(arg0 + 0x30));
+    return 1;
 }
 
 void func_020c83b0(u8 *arg0, void *arg1) {
