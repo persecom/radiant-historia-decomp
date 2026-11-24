@@ -28,7 +28,7 @@ s32 func_021185b8(s32 *arg0, s32 arg1) {
 }
 
 s32 func_021185c0(s32 *arg0, s32 arg1) {
-    return arg0[arg1] == -1 ? 0 : 1;
+    return arg0[arg1] != -1;
 }
 
 void func_021185d4(s32 *arg0) {
@@ -42,8 +42,8 @@ void func_021185f4(u8 *arg0, s32 arg1, s32 arg2) {
     *(s32 *)(arg0 + 8 + arg1 * 4) = arg2;
 }
 
-s32 func_02118600(s32 *arg0, s32 arg1) {
-    return arg0[arg1 + 2];
+s32 func_02118600(u8 *arg0, s32 arg1) {
+    return *(s32 *)(arg0 + 8 + arg1 * 4);
 }
 
 extern void func_02006dc4(void *, u32);
