@@ -5,6 +5,20 @@ extern void *data_02155c3c;
 extern u8 *data_02162880;
 extern void *func_0210c594(u32, void *);
 extern void func_0210c5dc(void *);
+extern void func_0210db70(void *);
+extern void func_020a9830(void *, void *, s32, s32, s32, s32);
+extern void func_020a98ac(void *);
+extern void func_020a98f4(void *);
+extern void func_020a98a0(void *);
+extern void *func_0210c518(u32, void *);
+extern void func_02008e68(s32, void *, u32);
+extern void func_02005e80(char *, const char *, ...);
+extern void func_02108ffc(void);
+extern void *func_0210e7f0(s32, s32);
+extern s32 func_0210e848(void *, void *);
+extern void func_021091b4(void);
+extern char data_0214628c[8];
+extern char data_02146294[8];
 void func_0203bc74(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, u8 arg6);
 void func_0203c0f4(u8 *arg0);
 void func_0203c20c(void);
@@ -44,6 +58,14 @@ void func_0203be4c(void *arg0) {
 
 void *func_0203c0d8(void) {
     return ((void *(*)(u32, void *))func_0210c594)(0x40, data_02155c3c);
+}
+
+void func_0203c1c0(u8 *arg0, void *arg1, s32 arg2) {
+    func_0203c1f0(arg0, arg2);
+    *(void **)(arg0 + 4) = (void *)func_0203c20c;
+    *(void **)(arg0 + 8) = arg1;
+    *(void **)(arg0 + 0xc) = arg0;
+    func_0210d9e4(arg0 + 4);
 }
 
 void func_0203c820(void) {
