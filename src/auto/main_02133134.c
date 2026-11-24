@@ -648,6 +648,22 @@ void func_02134064(u32 arg0, u32 arg1) {
     data_02174f9c[0x1cb] = arg1;
 }
 
+s32 func_02134078(s8 *arg0) {
+    s8 buf[0x200];
+    if (arg0 == NULL) {
+        func_02133dd0(0, (u32)data_0215bc20);
+        return 0;
+    }
+    func_02133e54(buf, arg0);
+    {
+        s32 ret = func_021346cc((u32)buf);
+        if (ret < 0) {
+            return 0x7ffff800;
+        }
+        return ret;
+    }
+}
+
 extern s32 func_02134134(void *);
 extern s32 func_021346bc(void *);
 extern s32 func_021346c4(void *);
