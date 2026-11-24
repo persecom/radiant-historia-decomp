@@ -32,15 +32,14 @@ s32 func_02075c3c(s32 arg0) {
     return p[(arg0 >> 4) * 2 + 1];
 }
 
-u32 func_02075c5c(u32 *arg0, u32 arg1) {
+u16 func_02075c5c(u32 *arg0, u32 arg1) {
     u32 val = arg0[1] * arg0[0] + arg0[2];
-    u32 res = val >> 16;
     *arg0 = val;
-    if (arg1 != 0) {
-        arg1 = res * arg1;
-        res = arg1 >> 16;
+    if (arg1 == 0) {
+        return val >> 16;
+    } else {
+        return ((val >> 16) * arg1) >> 16;
     }
-    return (u16)res;
 }
 
 void func_02075c84(void) {
