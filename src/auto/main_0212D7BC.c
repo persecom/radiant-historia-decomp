@@ -376,6 +376,9 @@ void func_0212e5bc(void) {
 void func_0212e5c0(void) {
 }
 
+void func_0212e5c4(void) {
+}
+
 s32 func_0212e5d4(void) {
     return 0;
 }
