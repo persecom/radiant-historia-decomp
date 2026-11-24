@@ -74,6 +74,36 @@ break;
 }
 }
 
+extern u8 *func_020ddb90(u16);
+void func_020984e4(void) {
+u8 **q=&data_02160a74;
+s16 i;
+u8 *p=(u8 *)data_0216011c;
+switch(*(u16 *)(p+0x2c)) {
+case 0: break;
+case 1: *(u16 *)(*q+0x1b6)=4; *(u16 *)(p+0x38)=7; *(u16 *)(*q+0x1b8)=1; p[0x46]=1; (*q)[0x1ca]=1; break;
+case 2: *(u16 *)(p+0x38)=1; *(u16 *)(*q+0x1b6)=4; break;
+case 3: *(u16 *)(p+0x38)=7; p[0x46]=2; *(s8 *)(*q+0x1ca)=-1; break;
+case 4: *(u16 *)(p+0x38)=1; *(u16 *)(*q+0x1ba)=4; break;
+case 5: *(u16 *)(p+0x38)=4; *(u16 *)(p+0x42)=0; p[0x46]=0; *(u16 *)(*q+0x9c)=26; break;
+case 6:
+*(u16 *)(*q+0x9c)=2;
+*(u16 *)(*q+0x1b6)=0xffff;
+*(u16 *)(*q+0x1b0)=*(u16 *)(*q+0x1b6);
+func_020e9384(***(void ****)(*q+0xa0));
+*(u16 *)(*q+0x1b8)=255;
+*(u16 *)(*q+0x1ba)=7;
+(*q)[0x1c8]=0;
+(*q)[0x1ca]=0;
+*(u16 *)(p+0x38)=0;
+for(i=0;i<3;i++) {
+u8 *a=func_020ddb90((u16)i);
+if(a && (*(u32 *)(a+0x80)&0x800)) *(u32 *)(a+0x80)&=~0x800;
+}
+break;
+}
+}
+
 void func_02098694(u32 arg0) {
     u8 *out = (u8 *)data_0216011c;
     u16 buf[16];
