@@ -355,3 +355,23 @@ void func_02117250(void* heap, u32 mode)
     }
 }
 
+u32 func_0211727c(void *heap, s32 alignment)
+{
+  u32 head;
+  u32 tail;
+  u32 aligned;
+  alignment = func_02013630(alignment);
+  alignment -= 1;
+  if (alignment)
+  {
+  }
+  head = *((u32 *) (((u8 *) heap) + 0x24));
+  aligned = (~alignment) & (alignment + head);
+  tail = *((u32 *) (((u8 *) heap) + 0x28));
+  if (aligned > tail)
+  {
+    return 0;
+  }
+  return tail - ((~alignment) & (alignment + head));
+}
+
