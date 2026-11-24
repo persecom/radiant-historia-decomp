@@ -103,6 +103,13 @@ void func_02117478(void *arg0, void *arg1) {
     (*(void (**)(void *, void *))((u8 *)p + 4))(arg0, arg1);
 }
 
+void func_0211748c(u32 *arg0, u32 arg1, u32 arg2) {
+    arg0[0] = (u32)data_02144d44;
+    arg0[1] = arg1;
+    arg0[2] = arg2;
+    arg0[3] = 0;
+}
+
 void func_021174e4(void) {
     func_021174a8();
 }
