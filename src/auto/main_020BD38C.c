@@ -6,7 +6,7 @@ extern void *data_02155c3c;
 extern void *func_0210c594(s32, void *);
 extern void func_021167ac(void *, u32);
 extern void func_021167f0(void *, void *);
-extern void *func_020bd450(void);
+extern void *func_020bd450(u8);
 
 extern u8 *data_02160204;
 extern u8 *data_02160078;
@@ -44,15 +44,15 @@ void func_020bd608(void) {
         u8 *p = func_020bd438(i);
         if (*(u16 *)p & 8) {
             *(u16 *)p |= 1;
-            *(u16 *)p &= ~8;
+            *(u16 *)p &= 0xfff7;
         }
         if (*(u16 *)p & 2) {
-            *(u16 *)p &= ~2;
+            *(u16 *)p &= 0xfffd;
             p[3] = 0;
         }
         if (*(u16 *)p & 0x10) {
-            *(u16 *)p &= ~1;
-            *(u16 *)p &= ~0x10;
+            *(u16 *)p &= 0xfffe;
+            *(u16 *)p &= 0xffef;
         }
     }
 }
