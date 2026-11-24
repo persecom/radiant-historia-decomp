@@ -40,6 +40,13 @@ void func_020f1f28(u8 *arg0) {
     }
 }
 
+void func_020f1fa4(u8 *arg0) {
+    func_021168f8(data_02160c10 + 0x48 + arg0[0xc] * 0xc, arg0);
+    if (data_02160aec != 0) {
+        func_020efb74(arg0[0xd], arg0[0xe])[2] = 0;
+    }
+}
+
 BOOL func_020f24f4(s32 arg0) {
     return func_020f1ffc(arg0) != 0;
 }
@@ -47,6 +54,12 @@ BOOL func_020f24f4(s32 arg0) {
 extern s32 func_020f2104(s32);
 BOOL func_020f250c(s32 arg0) {
     return func_020f2104(arg0) != 0;
+}
+
+extern u8 data_02160c20[20];
+extern s32 func_0210dba0(void *);
+s32 func_020f25dc(void) {
+    return func_0210dba0(&data_02160c20);
 }
 
 extern void func_02108594(void *);
