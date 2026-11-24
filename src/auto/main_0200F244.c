@@ -46,8 +46,8 @@ u32 func_0200f94c(void) {
 extern void func_02008414(void);
 extern void func_02008460(void *);
 extern void func_02007e44(void *);
-extern void func_0200f83c(void);
-extern void func_0200f7e4(void *);
+extern s32 func_0200f83c(u16 *);
+extern void func_0200f7e4(u8 *);
 extern void func_02008474(void *, s32, s32, s32);
 extern void func_02005d88(void);
 extern void func_0200faec(u32, s32);
@@ -75,6 +75,17 @@ void *func_0200f998(void) {
 
 void *func_0200f9a4(void) {
     return (void *)0x02fffe00;
+}
+
+void func_0200f9b0(struct { u16 unk0; u16 unk2; u32 unk4[3]; } arg0) {
+    u8 buf[0x40];
+    func_0200fa74((void *)(u32)arg0.unk0, 1);
+    func_02008460(buf);
+    func_02007e44(buf + 0xc);
+    *(void **)(buf + 0x34) = (void *)func_0200f83c;
+    *(void **)(buf + 0x38) = &arg0;
+    func_0200f7e4(buf);
+    func_02008474(buf, 1, 0, 1);
 }
 
 void func_0200fa20(u32 arg0) {
