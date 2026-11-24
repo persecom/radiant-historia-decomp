@@ -120,12 +120,21 @@ void func_020029ec(u32 arg0, u32 arg1) {
     *(volatile u32 *)0x04000468 = 0x1000;
 }
 
+void func_02002a28(u8 *arg0) {
+    s32 i;
+    *(volatile u32 *)0x04000440 = 3;
+    for (i = 0; i < 8; i++) {
+        *(volatile u32 *)0x04000458 = *(u32 *)(arg0 + i * 4);
+    }
+    for (i = 8; i < 16; i++) {
+        *(volatile u32 *)0x04000458 = *(u32 *)(arg0 + i * 4) << 4;
+    }
+}
+
 extern void func_020055d4();
-void func_02002bbc(void)
-{
-  *((volatile u32 *) 0x4000400) = 0x16;
-  func_020055d4();
-  *((volatile u32 *) 0x4000400) = 0x16;
+void func_02002bbc(void *arg0) {
+    *(volatile u32 *)0x04000400 = 0x16;
+    func_020055d4(arg0);
 }
 
 extern void func_020055b0(void *arg0);
