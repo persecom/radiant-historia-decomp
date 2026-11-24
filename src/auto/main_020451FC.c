@@ -22,6 +22,34 @@ extern void func_020a9544(void *arg0);
 extern void func_020a994c(void *arg0);
 extern void func_020a98a0(void *arg0);
 
+void func_02045a78(void) {
+    u8 **g = &data_021600b0;
+
+    if (*g == NULL) {
+        return;
+    }
+    func_020a62d8(*g + 0xa8);
+    func_020a5ed4(*g + 0xb4);
+    func_020a0da8();
+    func_020a0dc8(*g + 0x1d4);
+    func_0210da14(*g);
+    func_0210da14(*g + 0x14);
+    func_0210da14(*g + 0x28);
+    func_0210dac8(*g + 0x3c);
+    func_0210dba0(*g + 0x50);
+    func_0210dbe8(*g + 0x64);
+    func_0210db10(*g + 0x78);
+    func_0210db58(*g + 0x8c);
+    func_0209e85c();
+    func_020a2898();
+    func_020a2a50();
+    func_0209df60(*(void **)(*g + 0x1c0));
+    if (*g != NULL) {
+        func_0210c5dc(*g);
+        *g = NULL;
+    }
+}
+
 void func_02045d84(void) {
     typedef struct G {
         u8 pad0[0x9c];
