@@ -88,6 +88,14 @@ s32 func_020b8d60(void) {
     return func_020de3d8() == 0;
 }
 
+void func_020b8d94(void) {
+    u8 *root = data_021601ec;
+    if (root[0x44] == 0) {
+        *(u32 *)(root + 0x5c) = 0x55000;
+    }
+    func_020b8dbc();
+}
+
 void func_020b9250(void) {
     func_020c8488(func_020c9c10(*(void **)(data_021601ec + 0x48), 10));
 }
