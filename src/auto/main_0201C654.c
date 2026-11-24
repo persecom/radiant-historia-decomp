@@ -1,7 +1,7 @@
 /* 2 functions from 0x0201C654 to 0x0201D04C (main), found by ds-decomp. */
 #include "common.h"
 
-double func_0201e9fc(double,double);
+double _dsub(double,double);
 int func_0201ff80(double);
 double func_0201cd34(double x, double y) {
  double a,hz,z,r,qx;
