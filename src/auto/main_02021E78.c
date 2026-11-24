@@ -102,6 +102,20 @@ void *func_02022494(u8 *arg0, u16 arg1) {
     return NULL;
 }
 
+void func_02022508(u8 *arg0) {
+    u8 *node = *(u8 **)(arg0 + 4);
+    while (node != NULL) {
+        func_021168f8(arg0 + 4, node);
+        if (node != NULL) {
+            func_0210c5dc(node);
+        }
+        node = *(u8 **)(arg0 + 4);
+    }
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
 extern void func_021167ac(void *, u32);
 void *func_02022558(u8 *arg0, u16 arg1) {
     u8 *node = *(u8 **)(arg0 + 4);
