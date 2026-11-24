@@ -1,6 +1,8 @@
 /* 20 functions from 0x021231B0 to 0x021241A4 (main), found by ds-decomp. */
 #include "common.h"
 
+typedef struct { s32 x, y, z; } Vec_02123a6c;
+
 extern void func_02002058(s32, s32);
 extern s32 func_02001ff4(void);
 extern void func_021205ec(s32, void *, s32);
@@ -252,6 +254,29 @@ void func_02123934(u8 *arg0) {
         data[15] = (s32)(((s64)scale * data[15]) >> 12);
     }
     func_021205ec(data[0], (s32 *)((u8 *)data + 4), 0x12);
+}
+
+void func_02123a6c(u8 *arg0) {
+s32 sendTrans=0;
+u32 flags=*(u32 *)arg0 & 0x18;
+if(!flags) func_021205ec(0x1b,arg0+0x1c,3);
+if(!(*(u32 *)arg0&4)) {
+if(flags) sendTrans=1;
+else {
+s32 v[3]; s32 x,y,z;
+x=((s64)*(s32 *)(arg0+0x4c)**(s32 *)(arg0+0x10))>>12;
+y=((s64)*(s32 *)(arg0+0x50)**(s32 *)(arg0+0x14))>>12;
+z=((s64)*(s32 *)(arg0+0x54)**(s32 *)(arg0+0x18))>>12;
+v[2]=z;v[1]=y;v[0]=x;
+func_021205ec(0x1c,v,3);
+}
+}
+if(!(*(u32 *)arg0&2)) {
+if(sendTrans) func_021205ec(0x19,arg0+0x28,12);
+else func_021205ec(0x1a,arg0+0x28,9);
+} else if(sendTrans) func_021205ec(0x1c,arg0+0x4c,3);
+if(!flags) func_021205ec(0x1b,arg0+0x10,3);
+if(!(*(u32 *)arg0&1)) func_021205ec(0x1b,arg0+4,3);
 }
 
 void func_02123f54(s32 *out,u8 *p) {
