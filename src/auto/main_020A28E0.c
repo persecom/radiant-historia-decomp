@@ -8,6 +8,7 @@ extern void func_021073d0(void *);
 extern void func_0211b96c(u32, u32, u32, u32, u32, u32, u32, u32);
 extern u8 data_02148ac8[];
 extern u8 data_02148ae4[];
+extern u8 data_02148aec[];
 extern s32 func_02092ab0(void *, u16);
 extern s32 func_02092994(void *, s32);
 extern s32 func_020bdba0(u16);
