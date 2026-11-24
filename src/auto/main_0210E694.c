@@ -284,9 +284,10 @@ void func_0210eb80(u8 *arg0) {
     func_0210eb4c(arg0 + 8);
 }
 
-void func_0210eb98(const char *arg0, ...) {
+void *func_0210eb98(void *arg0, ...) {
     char *vlist = (char *)((u32)&arg0 & ~3) + 4;
     func_02005ec0(data_02162954, 0x100, arg0, vlist);
+    return data_02162954;
 }
 
 void *func_0210ed58(u32 arg0, u8 arg1) {
