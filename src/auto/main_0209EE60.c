@@ -4,6 +4,8 @@ typedef struct { s16 data[10]; } Params_0209ee60;
 typedef struct { s16 data[27]; } Table_0209ee60;
 extern const Params_0209ee60 data_02142bdc;
 extern const Table_0209ee60 data_02142d8c;
+extern const Params_0209ee60 data_02142d08;
+extern const Table_0209ee60 data_02142dc4;
 void func_020a3bbc(s32);
 void func_021098ac(void *);
 
