@@ -12,3 +12,7 @@ extern void func_020057e8(u32, u32);
 extern void func_02008a28(u32, u32);
 extern void func_02008ab4(u32, u32, u32, u32);
 extern void func_0200893c(u32);
+
+s32 func_0200986c(void) {
+    return func_02006afc(&data_0215d1a0);
+}
