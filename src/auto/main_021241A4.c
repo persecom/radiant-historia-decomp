@@ -15,6 +15,32 @@ extern void func_02124c78(void);
 extern u32 func_02124cf8();
 extern Row24 data_02156194, data_021561ac;
 extern Row24 *data_02156168[];
+static inline int Alloc02124cf8(u32 size,u32 flag,u32 *out) {
+u32 addr=0;int i;int ok;Row24 *q,*p;
+if(flag) {
+for(i=0;i<2;i++){
+p=(Row24 *)data_02156160[i];
+if(p->f[2] && p->f[1]-p->f[0]>=size) {
+switch(*(u16 *)&p->f[4]) {case 0:q=&data_02156194;break;case 3:q=&data_021561ac;break;default:q=0;break;}
+if(q->f[2] && q->f[1]-q->f[0]>=size/2){
+u32 start=*(volatile u32 *)&p->f[0];p->f[0]=start+size;q->f[0]+=size/2;
+addr=start+p->f[5];ok=1;goto done;
+}
+}
+}
+} else {
+for(i=0;i<5;i++){
+p=data_02156168[i];
+if(p->f[2] && p->f[1]-p->f[0]>=size){
+u32 start=*(volatile u32 *)&p->f[1]-size;p->f[1]=start;
+addr=start+p->f[5];ok=1;goto done;
+}
+}
+}
+ok=0;
+done:
+*out=addr;return ok;
+}
 extern int func_02124e60(void);
 void func_021241a4(s32 *arg0, u8 *arg1) {
     s32 r2 = *(s32 *)(arg1 + 0x24);
@@ -94,11 +120,9 @@ void func_021243f4(s32 *arg0) {
 }
 
 void func_02124550(s32 *arg0, u8 *arg1) {
-    s32 cy, ss;
-    s32 sy, s;
     s32 w = *(u16 *)(arg1 + 0x2c) << 12;
     s32 h = *(u16 *)(arg1 + 0x2e) << 12;
-    s32 c, sx;
+    s32 c, s, sx, sy, ss, cy;
 
     func_02002058(h, w);
     c = *(s16 *)(arg1 + 0x22);
@@ -118,8 +142,10 @@ void func_02124550(s32 *arg0, u8 *arg1) {
         s32 ty = *(s32 *)(arg1 + 0x28);
         s64 a = ((s64)tx * s - (s64)ty * *(s16 *)(arg1 + 0x22)) >> 12;
         s64 b = ((s64)ty * s + (s64)tx * *(s16 *)(arg1 + 0x22)) >> 12;
-        arg0[13] = (-h2 * (cy + (s32)((a * sy) >> 12) - 0x1000)) << 4;
-        arg0[12] = (w2 * (ss - (s32)((b * *(s32 *)(arg1 + 0x18)) >> 12))) << 4;
+        s32 y = cy + (s32)((a * (s64)sy) >> 12) - 0x1000;
+        s32 x = ss - (s32)((b * (s64)*(s32 *)(arg1 + 0x18)) >> 12);
+        arg0[13] = (-h2 * y) << 4;
+        arg0[12] = (w2 * x) << 4;
     }
     arg0[4] = (-ss * func_02001ff4()) >> 12;
 }
@@ -300,20 +326,20 @@ void func_02124c78(void) {
     }
 }
 
-u32 func_02124cf8(u32 size,u32 flag,u32 addr) {
-int i;
- u32 n;
- n=size==0?16:(size+15)&~15;
+u32 func_02124cf8(u32 size,u32 flag) {
+u32 addr;
+ int i;
+ size=size==0?16:(size+15)&~15;
 int ok;
 Row24 *q,*p;
-if(n>=0x7fff0)return 0;
+if(size>=0x7fff0)return 0;
 if(flag) {
 for(i=0;i<2;i++){
 p=(Row24 *)data_02156160[i];
-if(p->f[2] && p->f[1]-p->f[0]>=n) {
+if(p->f[2] && p->f[1]-p->f[0]>=size) {
 switch(*(u16 *)&p->f[4]) {case 0:q=&data_02156194;break;case 3:q=&data_021561ac;break;default:q=0;break;}
-if(q->f[2] && q->f[1]-q->f[0]>=n/2){
-u32 start=*(volatile u32 *)&p->f[0];p->f[0]=start+n;q->f[0]+=n/2;
+if(q->f[2] && q->f[1]-q->f[0]>=size/2){
+u32 start=*(volatile u32 *)&p->f[0];p->f[0]=start+size;q->f[0]+=size/2;
 addr=start+p->f[5];ok=1;goto done;
 }
 }
@@ -321,8 +347,8 @@ addr=start+p->f[5];ok=1;goto done;
 } else {
 for(i=0;i<5;i++){
 p=data_02156168[i];
-if(p->f[2] && p->f[1]-p->f[0]>=n){
-u32 start=*(volatile u32 *)&p->f[1]-n;p->f[1]=start;
+if(p->f[2] && p->f[1]-p->f[0]>=size){
+u32 start=*(volatile u32 *)&p->f[1]-size;p->f[1]=start;
 addr=start+p->f[5];ok=1;goto done;
 }
 }
@@ -330,8 +356,7 @@ addr=start+p->f[5];ok=1;goto done;
 ok=0;
 done:
 if(!ok)return 0;
-n >>=4;
-return ((addr<<13)>>16)|(n<<16)|(flag<<31);
+return ((size>>4)<<16)|((addr>>3)&0xffff)|(flag<<31);
 }
 
 s32 func_02124e60(void) {
