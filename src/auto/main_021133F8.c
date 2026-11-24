@@ -377,7 +377,7 @@ s32 func_02113c88(u32 arg0, u32 arg1) {
     return count;
 }
 
-void func_02113ce8(u8 **arg0, u8 arg1) {
+void func_02113ce8(u8 * volatile *arg0, u8 arg1) {
     if (*arg0 != NULL) {
         (*arg0)[0x41] = arg1;
     }
@@ -567,6 +567,44 @@ void func_0211424c(u8 *arg0) {
     }
     func_020094c0(arg0[0x3c]);
     func_021142f0(arg0);
+}
+
+void *func_02114284(arg0)
+u8 arg0;
+{
+    void *obj = func_02116958(data_0216bfcc, NULL);
+    if (obj == NULL) {
+        obj = func_02116958(data_0216bfd8, NULL);
+        if (arg0 < ((u8 *)obj)[0x3d]) {
+            return NULL;
+        }
+        func_0211424c(obj);
+        func_021168f8(data_0216bfcc, obj);
+        ((u8 *)obj)[0x3d] = arg0;
+        func_021141f8(obj);
+    }
+    return obj;
+}
+
+void func_021142f0(arg0)
+u8 *arg0;
+{
+    u8 *base;
+    if (*(void **)arg0 != NULL) {
+        **(void ***)arg0 = NULL;
+        *(u32 *)arg0 = 0;
+    }
+    base = *(u8 **)(arg0 + 4);
+    func_021168f8(base, arg0);
+    *(u32 *)(arg0 + 4) = 0;
+    if (*(void **)(arg0 + 8) != NULL) {
+        func_021167f0(base + 0xc, *(void **)(arg0 + 8));
+        *(u32 *)((u8 *)*(void * volatile *)(arg0 + 8) + 0xc) = 0;
+        *(u32 *)(arg0 + 8) = 0;
+        func_021168f8(data_0216bfd8, arg0);
+        func_021167f0(data_0216bfcc, arg0);
+    }
+    arg0[0x2c] = 0;
 }
 
 void func_02114370(u8 *arg0) {
