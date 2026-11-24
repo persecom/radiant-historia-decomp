@@ -181,6 +181,29 @@ void *func_02005f5c(void **arg0) {
     return r2;
 }
 
+void *func_02005f90(void **arg0, void *arg1) {
+    void *r2 = arg0[0];
+    while (r2 != NULL) {
+        void *r3 = *(void **)((u8 *)r2 + 0x80);
+        if (r2 == arg1) {
+            void *r12 = *(void **)((u8 *)r2 + 0x7c);
+            if (arg0[0] == r2) {
+                arg0[0] = r3;
+            } else {
+                *(void **)((u8 *)r12 + 0x80) = r3;
+            }
+            if (arg0[1] == r2) {
+                arg0[1] = r12;
+            } else {
+                *(void **)((u8 *)r3 + 0x7c) = r12;
+            }
+            break;
+        }
+        r2 = r3;
+    }
+    return r2;
+}
+
 extern u32 data_0215cdf0[4];
 extern s32 func_02005c80(u16, void *, void *);
 extern void func_02005dd8(void);
