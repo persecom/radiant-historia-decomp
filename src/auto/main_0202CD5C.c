@@ -9,21 +9,21 @@ extern s32 func_0202c850(u8);
 extern void func_0202c328(void *, u8);
 s32 func_0202cd5c(u8 *arg0, u8 *arg1, s32 arg2) {
     u8 *p54 = *(u8 **)(*(u8 **)(arg0 + 0x128) + 0x54);
-    s32 origPos = func_0202c658(arg0);
+    s8 origPos = func_0202c658(arg0);
     s8 pos = origPos;
-    u32 input = *(u32 *)(arg1 + 8);
-    u32 dir = 0;
+    s32 dir = 0;
     s16 count;
+    s8 prevPos;
 
-    if (input & 0x4) {
+    if (*(u32 *)(arg1 + 8) & 0x4) {
         dir |= 0x2;
-    } else if (input & 0x8) {
+    } else if (*(u32 *)(arg1 + 8) & 0x8) {
         dir |= 0x1;
-    } else if (input & 0x10) {
+    } else if (*(u32 *)(arg1 + 8) & 0x10) {
         dir |= 0x4;
-    } else if (input & 0x20) {
+    } else if (*(u32 *)(arg1 + 8) & 0x20) {
         dir |= 0x8;
-    } else if (input & 0x40) {
+    } else if (*(u32 *)(arg1 + 8) & 0x40) {
         switch (origPos) {
             case 0: dir |= 0x6; break;
             case 1: dir |= 0x2; break;
@@ -36,7 +36,7 @@ s32 func_0202cd5c(u8 *arg0, u8 *arg1, s32 arg2) {
             case 8: dir |= 0x9; break;
         }
     }
-    if (input & 0x80) {
+    if (*(u32 *)(arg1 + 8) & 0x80) {
         dir |= 0x80;
     }
     if (dir == 0) {
@@ -45,8 +45,8 @@ s32 func_0202cd5c(u8 *arg0, u8 *arg1, s32 arg2) {
 
     count = 1;
     do {
-        s8 prevPos = pos;
         count--;
+        prevPos = pos;
         switch ((s8)p54[1]) {
             case 0:
                 if (dir & 0x2) {
@@ -113,12 +113,12 @@ s32 func_0202cd5c(u8 *arg0, u8 *arg1, s32 arg2) {
         if (prevPos == pos) {
             break;
         }
-        if (dir & 0x80) {
-            if (func_0202c898((u8)pos, arg2, arg0) != 0) {
+        if (!(dir & 0x80)) {
+            if (func_0202c820((u8)pos) != 0) {
                 break;
             }
         } else {
-            if (func_0202c820((u8)pos) != 0) {
+            if (func_0202c898((u8)pos, arg2, arg0) != 0) {
                 break;
             }
         }
@@ -131,41 +131,45 @@ s32 func_0202cd5c(u8 *arg0, u8 *arg1, s32 arg2) {
         {
             u8 found = 0;
             switch ((s8)p54[1]) {
+                case 0:
+                    break;
                 case 1:
-                    if (dir & 0x80) {
-                        if (func_0202c898((u8)(pos + 1), arg2, arg0) != 0) found++;
-                    } else {
+                    if (!(dir & 0x80)) {
                         if (func_0202c820((u8)(pos + 1)) != 0) found++;
+                    } else {
+                        if (func_0202c898((u8)(pos + 1), arg2, arg0) != 0) found++;
                     }
                     if (func_02030808((u8)(pos + 1)) != 0) found++;
                     break;
                 case 2:
-                    if (dir & 0x80) {
-                        if (func_0202c898((u8)(pos - 3), arg2, arg0) != 0) found++;
-                    } else {
+                    if (!(dir & 0x80)) {
                         if (func_0202c820((u8)(pos - 3)) != 0) found++;
+                    } else {
+                        if (func_0202c898((u8)(pos - 3), arg2, arg0) != 0) found++;
                     }
                     if (func_02030808((u8)(pos - 3)) != 0) found++;
                     break;
                 case 3:
-                    if (dir & 0x80) {
-                        if (func_0202c898((u8)(pos + 1), arg2, arg0) != 0) found++;
-                    } else {
+                    if (!(dir & 0x80)) {
                         if (func_0202c820((u8)(pos + 1)) != 0) found++;
+                    } else {
+                        if (func_0202c898((u8)(pos + 1), arg2, arg0) != 0) found++;
                     }
                     if (func_02030808((u8)(pos + 1)) != 0) found++;
-                    if (dir & 0x80) {
-                        if (func_0202c898((u8)(pos - 3), arg2, arg0) != 0) found++;
-                    } else {
+                    if (!(dir & 0x80)) {
                         if (func_0202c820((u8)(pos - 3)) != 0) found++;
+                    } else {
+                        if (func_0202c898((u8)(pos - 3), arg2, arg0) != 0) found++;
                     }
                     if (func_02030808((u8)(pos - 3)) != 0) found++;
-                    if (dir & 0x80) {
-                        if (func_0202c898((u8)(pos - 2), arg2, arg0) != 0) found++;
-                    } else {
+                    if (!(dir & 0x80)) {
                         if (func_0202c820((u8)(pos - 2)) != 0) found++;
+                    } else {
+                        if (func_0202c898((u8)(pos - 2), arg2, arg0) != 0) found++;
                     }
                     if (func_02030808((u8)(pos - 2)) != 0) found++;
+                    break;
+                case 4:
                     break;
             }
             if (found != 0) {
@@ -195,3 +199,31 @@ s32 func_0202cd5c(u8 *arg0, u8 *arg1, s32 arg2) {
     }
     return 0;
 }
+
+extern u8 *data_02160244;
+extern void func_021167f0(void *, void *);
+extern void func_02116844(void *, void *);
+extern void func_02116894(void *, void *, void *);
+void func_0202d3ac(u8 *arg0) {
+    u8 *cur = *(u8 **)(data_02160244 + 0x44);
+    u8 *base;
+    while (cur != NULL) {
+        if ((s8)cur[3] > (s8)arg0[3]) {
+            break;
+        }
+        cur = *(u8 **)(cur + 0xc);
+    }
+    if (cur == arg0) {
+        return;
+    }
+    arg0[4] |= 2;
+    base = data_02160244;
+    if (cur == NULL) {
+        func_021167f0(base + 0x44, arg0);
+    } else if (cur == *(u8 **)(base + 0x44)) {
+        func_02116844(base + 0x44, arg0);
+    } else {
+        func_02116894(base + 0x44, cur, arg0);
+    }
+}
+
