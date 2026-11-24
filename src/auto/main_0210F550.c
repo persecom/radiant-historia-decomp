@@ -23,6 +23,21 @@ extern void func_02110abc(void *);
 extern void func_020bdf38(void);
 extern void func_020a8440(void);
 s32 func_020a47c8(void);
+void func_0210f6d4(void) {
+ s32 one=1, zero=0;
+ func_0210f448(); func_0210e290(one); func_02005168(0x200-one);
+ func_02008e68(zero,0x6800000,0xa4000); func_0200558c();
+ func_02004d70(3); func_02004ee8(0x40); func_020048a8(0x10); func_02004aac(0x20);
+ func_020027d4(one,zero,one);
+ *(volatile u32 *)0x4000000=(*(volatile u32 *)0x4000000&~0x1f00)|0x100;
+ *(volatile u16 *)0x4000008=*(volatile u16 *)0x4000008&~3;
+ *(volatile u16 *)0x400000a=(*(volatile u16 *)0x400000a&~3)|1;
+ *(volatile u16 *)0x400000c=(*(volatile u16 *)0x400000c&~3)|2;
+ *(volatile u16 *)0x400000e=(*(volatile u16 *)0x400000e&~3)|3;
+ func_02002fb0(zero,zero,0x8000-one,zero,zero);
+ func_0210f410(2,0x4000);
+}
+
 void func_0210fcd4(u32 arg0) {
     if (data_02162b80 != NULL) {
         func_0210c5dc(data_02162b80);
