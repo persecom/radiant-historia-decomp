@@ -64,3 +64,21 @@ void func_020961f8(u8 *arg0) {
     func_02093510(p, 2);
 }
 
+extern void *func_020936f8(s32, s32, s32, s32, s32, s32, s32);
+extern void func_020938b0(void *, s32, s32);
+extern void func_020932a8(s32, s16);
+extern void func_02093444(s32);
+void func_02096670(s32 arg0, s16 arg1) {
+    if (arg0 == 0) {
+        void *p;
+        p = func_020936f8(0x61, 0x24, 0x56, 0, 0, 2, 0x7f);
+        func_020938b0(p, 5, 0x7f);
+        p = func_020936f8(0x62, 0x24, 0x56, 0, 0, 4, 0x80);
+        func_020938b0(p, 5, 0x80);
+    } else if (arg0 == 1) {
+        func_020932a8(0x24, (s16)(arg1 + 0x56));
+    } else if (arg0 == 2) {
+        func_02093444(0x24);
+    }
+}
+
