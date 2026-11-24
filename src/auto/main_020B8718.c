@@ -162,3 +162,19 @@ void func_020b92b0(void) {
     func_020c8488(func_020c9c10(*(void **)(data_021601ec + 0x48), 11));
 }
 
+void func_020b92d4(void) {
+    u16 vals[2];
+    u16 *dst = vals;
+    u16 i;
+    u8 *obj;
+    u8 *root = data_021601ec;
+    s32 flag = 0;
+    vals[0] = data_02143904[0];
+    vals[1] = data_02143904[1];
+    for (i = 0; i < 2; i++) {
+        obj = func_020c9c10(*(void **)(root + 0x4c), dst[i]);
+        func_020c738c(obj, flag, 1);
+    }
+    *(u32 *)(root + 0x5c) = 0xfa000;
+}
+
