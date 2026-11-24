@@ -280,6 +280,17 @@ u16 func_021086d4(u8 *arg0, s32 arg1) {
     return **(u16 **)(*(u8 **)(p + 0xc) + (idx << 3));
 }
 
+void *func_02108844(void) {
+    u8 *p = (u8 *)func_0210c518(0x88, data_02155c3c);
+    func_02008e68(0, p, 0x88);
+    *(u32 *)(p + 0x58) = 0;
+    *(u32 *)(p + 0x78) = 0;
+    *(u32 *)(p + 0x7c) = 0;
+    func_02108308(p + 0x5c);
+    *(void **)(p + 0x58) = func_0210835c();
+    return p;
+}
+
 extern u32 data_02155c3c;
 extern void *func_0210c594(u32, u32);
 extern void func_02008f74(void *, s32, u32);
