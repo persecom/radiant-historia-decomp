@@ -440,6 +440,20 @@ void func_02126c20(void) {
     func_0212bda8();
 }
 
+void func_02126e70(void *);
+void *func_02126c2c(void *arg0, u32 arg1) {
+    if (arg0 == NULL) {
+        ((void (*)(void *))func_02126c20)(data_02156588);
+        return NULL;
+    }
+    if (arg1 < 0x44) {
+        ((void (*)(void *))func_02126c20)(data_021565bc);
+        return NULL;
+    }
+    func_02126e70(arg0);
+    return arg0;
+}
+
 extern void func_02126e70(void *);
 void func_02126c74(void *arg0) {
     if (arg0 != NULL) {
