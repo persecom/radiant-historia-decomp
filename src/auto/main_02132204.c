@@ -285,13 +285,11 @@ void func_02132af0(u32 *arg0) {
 }
 
 void func_02132afc(u8 *arg0, s32 arg1) {
-    s32 v;
-    if (arg1 != 0) {
-        v = 1;
+    if (arg1 == 0) {
+        *(u32 *)(arg0 + 0x38) = 0;
     } else {
-        v = 0;
+        *(u32 *)(arg0 + 0x38) = 1;
     }
-    *(u32 *)(arg0 + 0x38) = v;
 }
 
 void func_02132b10(void **arg0, void **arg1) {
