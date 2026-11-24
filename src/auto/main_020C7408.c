@@ -24,6 +24,7 @@ extern u32 func_020c9c34(void *);
 extern u8 *func_020c9c10(void *, u32);
 extern void func_020c9b24(void *, u32, s32);
 extern void func_020c7930(void *);
+extern void func_020c83f4(void *, void *, s32, s32);
 BOOL func_020c7408(void) {
     return (func_020c73b8() & 4) != 0;
 }
@@ -113,6 +114,21 @@ void func_020c7630(void *arg0) {
 
 u32 func_020c7754(u32 **arg0) {
     return **arg0;
+}
+
+s32 func_020c7760(u8 *arg0, s32 arg1, s32 arg2) {
+    u8 *obj = *(u8 **)(arg0 + 0x30);
+    u8 *sub = *(u8 **)(obj + 4);
+    s32 q = func_0201fb1c(*(s32 *)(obj + 0x14) << 12, 0x2000 - *(s32 *)(sub + 0x20));
+    s16 x;
+    s32 q2;
+    q = (q + (q >> 31)) >> 1;
+    x = (s16)(arg1 - q);
+    q2 = func_0201fb1c(*(s32 *)(obj + 0x18) << 12, 0x2000 - *(s32 *)(sub + 0x24));
+    *(s32 *)(obj + 8) = x;
+    q2 = (q2 + (q2 >> 31)) >> 1;
+    *(s32 *)(obj + 0xc) = (s16)(arg2 - q2);
+    return 0;
 }
 
 extern void func_020c7838(void *);
