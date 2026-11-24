@@ -12,8 +12,8 @@ void func_020a6a20(void *arg0) {
     u8 *node = *(u8 **)arg0;
     s32 i = 0;
     while (node != NULL) {
-        *(u32 *)(node + 0x18) = func_020bdba0((u16)(i + 0x80));
-        *(u32 *)(node + 0x1c) = func_020bdba0((u16)(*(u32 *)(data_021600e4 + 0x184) + i));
+        *(u32 *)(node + 0x18) = (u8)func_020bdba0((u16)(i + 0x80));
+        *(u32 *)(node + 0x1c) = (u8)func_020bdba0((u16)(*(u32 *)(data_021600e4 + 0x184) + i));
         node = *(u8 **)(node + 0x14);
         i++;
     }
