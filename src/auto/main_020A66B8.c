@@ -13,6 +13,9 @@ void func_020a6e90(void **arg0) {
     }
 }
 
+void func_020a745c(void) {
+}
+
 void func_020a7494(void **arg0) {
     void *ptr;
     while ((ptr = *arg0) != NULL) {
