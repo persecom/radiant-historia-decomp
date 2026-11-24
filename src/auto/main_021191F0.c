@@ -50,9 +50,9 @@ extern void func_0211ab28(void *);
 extern void func_0211ab14(void);
 extern void func_02119b34(u32);
 extern void func_02119334(void);
-extern void func_02119448(void);
+extern void func_02119448();
 extern void func_021194cc(void);
-extern void func_02119694(void);
+extern void func_02119694();
 
 static inline void MI_CpuFill32(void *dest, u32 data, u32 size) {
     func_02008e68((s32)data, dest, (s32)size);
