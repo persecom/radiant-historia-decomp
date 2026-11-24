@@ -102,6 +102,28 @@ s32 func_0211b36c(s32 arg0, s32 *arg1, u16 *arg2, s32 arg3) {
     }
 }
 
+void func_0211c934(s32 *, s32 *, s32);
+void func_02006dc4(void *, u32);
+void func_0211b9e8(void *, void *, s32,s32,s32,s32,s32,s32,s32,s32);
+void func_0211b4b8(s32 arg0, s32 arg1) {
+u8 *p=(u8 *)arg1;
+s32 screen=(*data_02144ee8[arg0]&0x1f00)>>8;
+u8 *dst;
+u8 *base;
+s32 w,h;
+s32 bw,bh;
+if(arg0>3) base=(u8 *)0x6200000;
+else base=(u8 *)(0x6000000+(((*(volatile u32 *)0x4000000&0x38000000)>>27)<<16));
+dst=base+(screen<<11);
+w=(u32)*(u16 *)p>>3;
+h=(u32)*(u16 *)(p+2)>>3;
+func_0211c934(&bw,&bh,arg0);
+if(bw<=w) w=bw;
+if(bh<=h) h=bh;
+func_02006dc4(p+12,*(u32 *)(p+8));
+func_0211b9e8(dst,p,0,0,0,0,bw,bh,w,h);
+}
+
 void func_0211b584(s32 arg0, s32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u32 arg6) {
     switch (arg1) {
         case 0:
