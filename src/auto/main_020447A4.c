@@ -96,6 +96,29 @@ void *func_02044aec(void *arg0, u16 arg1) {
     return result;
 }
 
+void func_02044ba0(u16 arg0) {
+    u8 *p;
+    u8 *node;
+
+    p = data_021600a8[1];
+    if (p == NULL) return;
+    node = *(u8 **)(p + 0x8ac);
+    if (node == NULL) return;
+    for (;;) {
+        if (*(u16 *)(node + 4) == arg0) {
+            u8 *d = *(u8 **)node;
+            *(volatile u32 *)0x040004a8 = (*(u32 *)(d + 4) >> 3) | (*(u32 *)(d + 0x18) << 26) |
+                                          0x40000000 | (*(u32 *)(d + 0x10) << 20) |
+                                          (*(u32 *)(d + 0x14) << 23) | 0x20000000;
+            *(volatile u32 *)0x040004ac = *(u32 *)(d + 0xc) >> (4 - (*(u32 *)(d + 0x18) == 2));
+            *(volatile u32 *)0x04000480 = 0x7fff;
+            return;
+        }
+        node = *(u8 **)(node + 0xc);
+        if (node == NULL) return;
+    }
+}
+
 void func_02044f48(void) {
     if (data_021600b0[1] != 0) {
         func_0210c5dc((void *)data_021600b0[1]);
