@@ -220,10 +220,11 @@ void *func_02005fe4(void **arg0) {
 }
 
 void func_02006014(void *arg0) {
-    void *head = (void *)data_0215cde4[9];
-    void *cur = head;
+    void *cur;
     void *prev = NULL;
+    void *head = (void *)data_0215cde4[9];
 
+    cur = head;
     while (cur != NULL && *(u32 *)((u8 *)cur + 0x70) < *(u32 *)((u8 *)arg0 + 0x70)) {
         prev = cur;
         cur = *(void **)((u8 *)cur + 0x68);
