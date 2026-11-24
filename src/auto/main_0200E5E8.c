@@ -133,6 +133,28 @@ s32 func_0200e85c(void) {
     return result;
 }
 
+s32 func_0200e8e4(u16 arg0) {
+    if (func_0200ef5c() == 0) {
+        return 0;
+    }
+    return func_0200e6bc(0x10, arg0, NULL);
+}
+
+s32 func_0200e914(s32 *arg0, s32 *arg1) {
+    u16 val;
+    s32 ret = func_0200e6bc(0xf, 3, &val);
+    if (ret != 0) {
+        return ret;
+    }
+    if (arg0 != NULL) {
+        *arg0 = (val & 8) ? 1 : 0;
+    }
+    if (arg1 != NULL) {
+        *arg1 = (val & 4) ? 1 : 0;
+    }
+    return ret;
+}
+
 void func_0200f084(u32 arg0) {
     func_0200ef78(data_0215f04c, arg0, 0xff, 0);
 }
