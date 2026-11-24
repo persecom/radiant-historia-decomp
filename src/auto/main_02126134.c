@@ -509,3 +509,15 @@ void func_02126e60(void *arg0, u32 arg1, u32 arg2, u32 arg3) {
     *(u32 *)((u8 *)arg0 + 0x40) = arg3;
 }
 
+s32 func_0212716c(s32, s32);
+s32 func_02126f08(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 a;
+    s32 b;
+    if (arg3 <= 0) {
+        return 0x316938;
+    }
+    a = func_0212716c(arg0, arg2);
+    b = func_0212716c(arg0, arg1);
+    return (a - b) / arg3;
+}
+
