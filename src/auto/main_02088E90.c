@@ -35,6 +35,31 @@ void func_02089578(void) {
     *(volatile u32 *)0x04000000 = (*(volatile u32 *)0x04000000 & ~0x1f00) | 0x1f00;
 }
 
+void func_0203bc34(void *,void *,void *,int,int,int);
+void func_020a9610(void *,void *,void *,void *,int,int);
+int func_020a96f0(void *);
+void func_020a98ac(void *);
+void func_020a98f4(void *);
+int func_020895a0(int index, int x, int y, int z, u8 slot, void *arg, u8 mode, int a, int b) {
+u32 off=index*0x50;
+int ret=0;
+func_020a994c(data_0216010c+0x74+off);
+if(!arg)return ret;
+*(int *)(*(u8 **)(data_0216010c+off+0x70)+0x4c)=(z+140)<<12;
+*(int *)(*(u8 **)(data_0216010c+off+0x70)+0x44)=x;
+*(int *)(*(u8 **)(data_0216010c+off+0x70)+0x48)=y;
+switch(mode) {
+case 2: func_0203bc34(*(void **)(data_0216010c+0x48+slot*4),*(void **)(data_0216010c+off+0x70),arg,a,b,2);break;
+case 1: func_0203bc34(*(void **)(data_0216010c+0x48+slot*4),*(void **)(data_0216010c+off+0x70),arg,a,b,1);break;
+default:
+func_020a9610(data_0216010c+0xa8+off,*(void **)(data_0216010c+0x48+slot*4),arg,*(void **)(data_0216010c+off+0x70),0,0);
+ret=func_020a96f0(*(void **)(data_0216010c+off+0xb8));
+func_020a98ac(data_0216010c+0x74+off);
+func_020a98f4(data_0216010c+0x74+off);
+}
+return ret;
+}
+
 void func_02089878(void)
 {
     u8 **pp = &data_0216010c;
