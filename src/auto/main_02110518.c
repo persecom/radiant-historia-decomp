@@ -19,6 +19,39 @@ extern void func_0211379c(u32, u16 *, u16 *);
 
 extern void func_0210c5dc(void *);
 extern void func_0211106c(void *);
+extern s32 func_020c7408();
+extern void func_021103a8(void *);
+extern u8 *func_02113834(void);
+void func_02110518(u8 *p) {
+u8 old=p[0x39];
+s32 count=func_020c9c34(*(void **)(p+0x30));
+u16 i;
+u8 *obj;
+for(i=0;i<(u32)count;i++) {
+obj=func_020c9c10(*(void **)(p+0x30),i);
+if(!((s32 (*)(void *))(*(void **)(obj+0x18)))(obj) && func_020c73d8((u16 *)obj)) p[0x39]=i;
+}
+if(data_021626a6&16) {p[0x39]++;p[0x39]%=count;}
+if(data_021626a6&32) {
+if(p[0x39]) p[0x39]--;
+else {if(count==0)p[0x39]=0;else p[0x39]=count-1;}
+}
+obj=func_020c9c10(*(void **)(p+0x30),p[0x39]);
+if(obj && func_020c7408(obj))p[0x39]=old;
+p[0x76]=old!=p[0x39];
+if(p[0x76]) {
+obj=func_020c9c10(*(void **)(p+0x30),p[0x39]);
+if(obj) {func_021103a8(obj);func_0210d27c(1);}
+}
+obj=func_020c9c10(*(void **)(p+0x30),p[0x39]);
+if(!obj)return;
+switch(*(u16 *)(obj+0x3e)) {
+case 1:case 2:if(func_02113834())func_02113834()[0x90]=1;break;
+case 3:if(func_02113834())func_02113834()[0x90]=4;break;
+case 0:case 4:if(func_02113834())func_02113834()[0x90]=2;break;
+}
+}
+
 void func_021106cc(u8 *arg0, u8 *arg1) {
     typedef struct { u16 a, b, c, d; } S;
     S *src = (S *)arg1;
