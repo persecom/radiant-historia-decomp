@@ -1,5 +1,12 @@
 /* 4 functions from 0x02097358 to 0x02098268 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { u16 v[10]; } Draw_02097fb4;
+extern const Draw_02097fb4 data_02141fb0;
+extern u8 *data_02160a74;
+void func_020e1bc4(s32, s32);
+void func_020a3bbc(s32);
+void func_021098ac(void *);
+void func_020e3f30(s32, s32, s32);
 
 extern u8 *data_0216011c;
 s32 func_020981fc(u16 arg0) {
