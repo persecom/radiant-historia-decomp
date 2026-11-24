@@ -290,3 +290,30 @@ done:
     return 0xc5 * result;
 }
 
+u32 func_ov000_02177914(void) {
+u8 buf[0x5c]; u32 result; u8 *b; u8 *p2; const u8 *d; int i; int matched;
+func_020082b8(buf);
+d=data_ov000_021785b0; b=buf; matched=0;
+do {if(*d != (*b ^ 0xff)) break; matched++; b++; d++;}while(matched<6);
+func_020082d4(&buf[6]);
+if(matched==6 && buf[8]==1 && buf[9]==1 && *(u16 *)&buf[0x20]==0) result=0xf1;
+else {i=0;p2=buf;do {if(*p2!=0){result=0xfb;goto done;}i++;p2++;}while(i<6);result=0xf1;}
+done: return 0xc1*result;
+}
+
+u32 func_ov000_02177a3c(const u8 *p, u32 n) {
+u32 crc=~0U;
+while(n--) {
+crc ^= *p++;
+crc = (crc & 1) ? (crc >> 1) : ((crc >> 1)^0xedb88320);
+crc = (crc & 1) ? (crc >> 1) : ((crc >> 1)^0xedb88320);
+crc = (crc & 1) ? (crc >> 1) : ((crc >> 1)^0xedb88320);
+crc = (crc & 1) ? (crc >> 1) : ((crc >> 1)^0xedb88320);
+crc = (crc & 1) ? (crc >> 1) : ((crc >> 1)^0xedb88320);
+crc = (crc & 1) ? (crc >> 1) : ((crc >> 1)^0xedb88320);
+crc = (crc & 1) ? (crc >> 1) : ((crc >> 1)^0xedb88320);
+crc = (crc & 1) ? (crc >> 1) : ((crc >> 1)^0xedb88320);
+}
+return ~crc;
+}
+
