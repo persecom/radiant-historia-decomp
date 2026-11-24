@@ -51,16 +51,36 @@ void *func_0211543c(void *arg0, u32 arg1, void *arg2, u32 arg3, u32 arg4) {
 }
 
 s32 func_021154a4(void *arg0) {
+    s32 ret;
     if (!func_021172b4(*(void **)arg0, *(u16 *)((u8 *)arg0 + 0xc))) {
         return -1;
     }
-    if (!func_02115630(arg0)) {
-        func_02117304(*(void **)arg0, 0);
-        return -1;
+    ret = func_02115630(arg0);
+    if (ret != 0) {
+        return *(u16 *)((u8 *)arg0 + 0xc) - 1;
     }
-    return *(u16 *)((u8 *)arg0 + 0xc) - 1;
+    func_02117304(*(void **)arg0, ret);
+    return ret - 1;
 }
 
 void func_021155ec(void *arg0) {
     func_021167ac(arg0, NULL);
 }
+
+extern void *func_02115264(void *);
+extern void *func_02114f70(void);
+extern void *func_02115994(void *, void *, void *, void *, void *);
+extern void func_0211528c(void *, void *);
+extern void func_02115d68(void);
+extern u32 func_0211727c(void *, u32);
+void *func_02115a38(void *arg0, void *arg1, s32 arg2) {
+    void *r4 = func_02115264(arg0);
+    if (r4 == NULL) {
+        r4 = func_02115994(arg0, func_02115d68, arg2 != 0 ? func_02114f70() : NULL, arg0, arg1);
+        if (arg2 != 0 && r4 != NULL) {
+            func_0211528c(arg0, r4);
+        }
+    }
+    return r4;
+}
+
