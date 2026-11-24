@@ -4,7 +4,12 @@
 extern void func_0210cce4(s32);
 extern void *func_0210c924();
 extern void func_0210c970(void *);
-extern void func_0210c9cc(void);
+extern void func_0210c9cc();
+typedef struct {
+    void *f0;
+    void *f4;
+} Data021626e8;
+extern Data021626e8 data_021626e8;
 extern u8 data_0216273c[];
 extern u8 data_021626a0[];
 extern u8 data_021626b6[];
