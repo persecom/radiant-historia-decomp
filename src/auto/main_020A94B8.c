@@ -57,19 +57,22 @@ void func_020a957c(void ***arg0) {
 }
 
 void *func_020a95d0(void **arg0, u32 arg1) {
+    u32 *p;
+    u32 offset;
     u8 *base = *arg0;
-    u32 offset = *(u32 *)base;
-    u32 *p = (u32 *)(base + 4);
-    while (1) {
-        u32 key = p[0];
+    u32 key;
+    u32 val;
+    offset = *(u32 *)base;
+    p = (u32 *)(base + 4);
+    do {
+        key = p[0];
         if (key == 0) {
             return NULL;
         }
-        if (key == arg1) {
-            return base + 4 + offset + p[1];
-        }
+        val = p[1];
         p += 2;
-    }
+    } while (key != arg1);
+    return base + 4 + offset + val;
 }
 
 void func_020a9610(u32 *arg0, void **arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5) {
