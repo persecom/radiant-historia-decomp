@@ -7,6 +7,30 @@ extern const Unk_020bbb1c_18 data_02143cec;
 extern const Unk_020bbb1c_10 data_02143c68;
 extern const Unk_020bbb1c_18 data_02143d34;
 
+extern void func_020a3bbc(s32);
+extern void func_021098ac(void *);
+void func_020bbb1c(void) {
+Unk_020bbb1c_10 other=data_02143c90;
+Unk_020bbb1c_18 buf=data_02143cec;
+s16 i;
+*(volatile u32 *)0x040004a4=0x1f0080;
+func_020a3bbc(10);
+other.data[7]=700;
+for(i=0;i<3;i++) {
+s16 idx=i*6;
+other.data[1]=buf.data[idx];
+other.data[2]=buf.data[idx+1];
+other.data[3]=buf.data[idx+4];
+other.data[4]=buf.data[idx+5];
+other.data[5]=buf.data[idx+2];
+other.data[6]=buf.data[idx+3];
+other.data[8]=buf.data[idx+4];
+other.data[9]=buf.data[idx+5];
+if(i==1) other.data[8]=130;
+func_021098ac(&other);
+}
+}
+
 void func_020bbc24(void) {
  Unk_020bbb1c_10 other;
  Unk_020bbb1c_18 buf;
