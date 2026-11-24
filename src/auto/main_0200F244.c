@@ -39,6 +39,21 @@ s32 func_0200f6fc(s32 arg0) {
     return ret;
 }
 
+s32 func_0200f728(u8 *arg0) {
+    s32 month = *(s32 *)(arg0 + 4) - 2;
+    s32 year = *(s32 *)(arg0 + 0) + 2000;
+    s32 day = *(s32 *)(arg0 + 8);
+    s32 century = year / 100;
+    s32 yearInCentury = year % 100;
+    s32 monthTerm;
+    if (month < 1) {
+        month += 12;
+        year -= 1;
+    }
+    monthTerm = (month * 26 - 2) / 10;
+    return (day + monthTerm + yearInCentury + yearInCentury / 4 + century / 4 + 5 * century) % 7;
+}
+
 void func_0200f7e4(u8 *arg0) {
     if (((s32 (*)(void *))*(u32 *)(arg0 + 0x34))(*(void **)(arg0 + 0x38)) != 0) {
         func_0200851c(arg0, 1);
