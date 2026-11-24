@@ -27,6 +27,20 @@ void func_020ce738(void) {
     }
 }
 
+void func_020ce8d4(void) {
+u8 *p = data_02160238; s32 flag = 0; s32 enabled = 1; u8 *node;
+if (p[0x770] == 0) return;
+if (p[0x70d] != 0) { p[0x70d]--; flag = 1; if (p[0x70d] == 0) func_020ce7d8(); }
+if (p[0] == 1 || p[0] == 2 || (u8)(p[0]+252) <= 2) enabled = 0;
+{ u8 values[2] = { 0x17, 0x18 };
+node = func_020cda08(2,2); node[3] = values[flag]; node[2] = enabled;
+node = func_020cda08(2,3); node[2] = enabled;
+}
+{ u8 values[2] = { 0x1a, 0x1b };
+node = func_020cda08(2,4); node[3] = values[flag]; node[2] = enabled;
+}
+}
+
 u8 func_020ce9c0(u16 arg0) {
     u8 *node = func_020cda08(2, arg0);
     s16 *p;
