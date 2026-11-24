@@ -26,6 +26,40 @@ s32 func_02087754(s32 arg) {
     return 2;
 }
 
+s32 func_02087cf4(s32 arg, s16 input) {
+ 
+ s32 zero = 0;
+ s16 who = input;
+ s32 all = 1;
+ u8 *p = func_02021f10(func_02085110(((u8 *)data_0216010c)[0x50dc]));
+ s16 kind = *(s16 *)((u8 *)data_0216010c + (arg << 6) + 0x4878);
+ if (kind == 101) {
+  if (who == -1) {
+   for (who = 0; who < ((u8 *)data_0216010c)[0x614]; who++) {
+    p = func_02021f10(func_02085110((u8)who));
+    if (*(u16 *)(p+0x10) != *(u16 *)(p+0x12) + *(s16 *)(p+0x24)) all = zero;
+   }
+   if (all == 1) return 0; else return 1;
+  }
+  p = func_02021f10(func_02085110(((u8 *)data_0216010c)[0x50de]));
+  if (*(u16 *)(p+0x10) == *(u16 *)(p+0x12) + *(s16 *)(p+0x24)) all = zero;
+  return all;
+ }
+ if (kind == 102) {
+  if (who == -1) {
+   for (who = 0; who < ((u8 *)data_0216010c)[0x614]; who++) {
+    p = func_02021f10(func_02085110((u8)who));
+    if (*(u16 *)(p+0x14) != *(u16 *)(p+0x16) + *(s16 *)(p+0x26)) all = zero;
+   }
+   if (all == 1) return 0; else return 1;
+  }
+  p = func_02021f10(func_02085110(((u8 *)data_0216010c)[0x50de]));
+  if (*(u16 *)(p+0x14) == *(u16 *)(p+0x16) + *(s16 *)(p+0x26)) all = zero;
+  return all;
+ }
+ return zero;
+}
+
 void func_02087e84(void) {
     func_02087f70();
 }
