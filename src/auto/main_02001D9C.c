@@ -20,6 +20,32 @@ extern void func_0200f1bc(void);
 void func_02002058(s32 arg0, s32 arg1);
 void func_02002028(u32 arg0);
 s32 func_02001ff4(void);
+s64 func_02001fd0(void);
+void func_02001d9c(s32 top, s32 bottom, s32 left, s32 right, s32 near, s32 far, s32 scale, s32 *m) {
+    s64 x, y, z;
+    func_02002028(right-left);
+    m[1]=0; m[2]=0; m[3]=0;
+    m[4]=0; m[6]=0; m[7]=0;
+    m[8]=0; m[9]=0; m[11]=0;
+    m[15]=scale;
+    x = func_02001fd0();
+    *(volatile u64 *)0x04000290 = (u64)0x1000 << 32;
+    *(volatile u64 *)0x04000298 = (u32)(top-bottom);
+    if (scale != 0x1000) x = x*scale / 0x1000;
+    m[0] = ((x << 13) + 0x80000000LL) >> 32;
+    y = func_02001fd0();
+    *(volatile u64 *)0x04000290 = (u64)0x1000 << 32;
+    *(volatile u64 *)0x04000298 = (u32)(near-far);
+    if (scale != 0x1000) y = y*scale / 0x1000;
+    m[5] = ((y << 13) + 0x80000000LL) >> 32;
+    z = func_02001fd0();
+    if (scale != 0x1000) z = z*scale / 0x1000;
+    m[10] = ((z << 13) + 0x80000000LL) >> 32;
+    m[12] = (x * -(right+left) + 0x80000000LL) >> 32;
+    m[13] = (y * -(top+bottom) + 0x80000000LL) >> 32;
+    m[14] = (z * (far+near) + 0x80000000LL) >> 32;
+}
+
 s32 func_02001fb0(s32 arg0, s32 arg1) {
     func_02002058(arg0, arg1);
     return func_02001ff4();
