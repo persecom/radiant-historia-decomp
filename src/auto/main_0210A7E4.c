@@ -1,5 +1,6 @@
 /* 25 functions from 0x0210A7E4 to 0x0210B7A4 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { u32 flags; u8 pad4[0x30]; u32 field34, field38; } Header_0210b4cc;
 extern u8 data_02155c00[];
 extern void (*data_02156154)(u32);
 extern void func_02005e80(void *,void *,...);
@@ -477,21 +478,22 @@ u8 *func_0210b27c(u8 *arg0, s32 arg1) {
 
 void func_0210b300(u8 *p) {
 u32 zero=0; s32 *anim; u8 *model; u32 scale[3]; u32 attr;
-Unk_0210afcc *s=(Unk_0210afcc *)(p+0x100);
-if(!s->flags.bit0)return;
-anim=(*(s32 ***)(p+0x140))[s->unkA2];
-if(anim && s->flags.bit3) {
+
+if(!((Unk_0210b300 *)p)->sub.flags.bit0)return;
+anim=(*(s32 ***)(p+0x140))[((Unk_0210b300 *)p)->sub.unkA2];
+if(anim && ((Unk_0210b300 *)p)->sub.flags.bit3) {
 if(*(void **)(p+0x1b0)) {(*(void (**)(u32))(p+0x1b0))(*(u32 *)(p+0x1ac));*(u32 *)(p+0x1b0)=zero;}
-if(!s->flags.bit7) {
+if(!((Unk_0210b300 *)p)->sub.flags.bit7) {
+s32 end=(*(u16 *)((u8 *)anim[2]+4)<<12);
 anim[0]+=*(s32 *)(p+0x104);
-if(anim[0]>=(*(u16 *)((u8 *)anim[2]+4)<<12)) {
-if(s->flags.bit5)anim[0]=zero;
+if(anim[0]>=end) {
+if(((Unk_0210b300 *)p)->sub.flags.bit5)anim[0]=zero;
 else {func_0210b27c(p,zero);if(*(void **)(p+0x1b4)) {(*(void (**)(u32))(p+0x1b4))(*(u32 *)(p+0x1ac));*(u32 *)(p+0x1b4)=zero;}}
 }
 } else {
 anim[0]-=*(s32 *)(p+0x104);
 if(anim[0]<=0) {
-if(s->flags.bit5)anim[0]=*(u16 *)((u8 *)anim[2]+4)<<12;
+if(((Unk_0210b300 *)p)->sub.flags.bit5)anim[0]=*(u16 *)((u8 *)anim[2]+4)<<12;
 else {func_0210b27c(p,zero);if(*(void **)(p+0x1b4)) {(*(void (**)(u32))(p+0x1b4))(*(u32 *)(p+0x1ac));*(u32 *)(p+0x1b4)=zero;}}
 }
 }
@@ -499,13 +501,47 @@ else {func_0210b27c(p,zero);if(*(void **)(p+0x1b4)) {(*(void (**)(u32))(p+0x1b4)
 model=*(u8 **)(p+0x108);
 if(model) {
 func_02120754(model,0,0,*(u32 *)(p+0x10c));
-scale[0]=scale[1]=scale[2]=*(u32 *)(*(u8 **)(model+4)+0x1c);
+scale[2]=scale[1]=scale[0]=*(u32 *)(*(u8 **)(model+4)+0x1c);
 func_021205ec(0x1b,scale,3);
 }
 func_021205ec(0x17,data_02170248,12);
-attr=(*(s8 *)(p+0x128)|(*(u32 *)(p+0x12c)<<4)|(*(u32 *)(p+0x130)<<6)|*(u32 *)(p+0x138))|(*(s8 *)(p+0x134)<<24)|(*(s8 *)(p+0x135)<<16);
+zero=*(u32 *)(p+0x130);
+attr=((*(u32 *)(p+0x12c)<<4)|*(s8 *)(p+0x128)|(zero<<6)|*(u32 *)(p+0x138))|(*(s8 *)(p+0x134)<<24)|(*(s8 *)(p+0x135)<<16);
 func_021205ec(0x29,&attr,1);
 func_0211e078(p);
+}
+
+void func_0210b4cc(u8 *p) {
+s32 i, count;
+s32 zero=0;
+if(*(void **)(p+0x118) && !func_02109f84(*(void **)(p+0x118)))func_02120a68(*(void **)(p+0x118));
+*(u32 *)(p+0x34)=0;
+if(!*(u32 *)(p+0x38))*(u32 *)p &= ~1;
+*(u32 *)(p+0x38)=0;
+if(!*(u32 *)(p+0x34))*(u32 *)p &= ~1;
+if(*(void **)(p+0xfc)){func_0211cd24(p,*(void **)(p+0xfc));func_0211cd78(p);}
+if(*(void **)(p+0x100)){func_0211cd24(p,*(void **)(p+0x100));func_0211cd78(p);}
+count=p[0x13c];
+for(i=0;i<count;i++) {
+if((*(void ***)(p+0x140))[i]) {((void (*)(void *,void *))func_02120bb0)(data_02162648,(*(void ***)(p+0x140))[i]);(*(void ***)(p+0x140))[i]=0;}
+if((*(void ***)(p+0x144))[i]) {((void (*)(void *,void *))func_02120bb0)(data_02162648,(*(void ***)(p+0x144))[i]);(*(void ***)(p+0x144))[i]=0;}
+if((*(void ***)(p+0x148))[i]) {((void (*)(void *,void *))func_02120bb0)(data_02162648,(*(void ***)(p+0x148))[i]);(*(void ***)(p+0x148))[i]=0;}
+if((*(void ***)(p+0x14c))[i]) {((void (*)(void *,void *))func_02120bb0)(data_02162648,(*(void ***)(p+0x14c))[i]);(*(void ***)(p+0x14c))[i]=0;}
+if((*(void ***)(p+0x150))[i]) {((void (*)(void *,void *))func_02120bb0)(data_02162648,(*(void ***)(p+0x150))[i]);(*(void ***)(p+0x150))[i]=0;}
+if((*(void ***)(p+0x154))[i]) {func_0210c5dc((*(void ***)(p+0x154))[i]);(*(void ***)(p+0x154))[i]=0;}
+if((*(void ***)(p+0x158))[i]) {func_0210c5dc((*(void ***)(p+0x158))[i]);(*(void ***)(p+0x158))[i]=0;}
+if((*(void ***)(p+0x15c))[i]) {func_0210c5dc((*(void ***)(p+0x15c))[i]);(*(void ***)(p+0x15c))[i]=0;}
+if((*(void ***)(p+0x160))[i]) {func_0210c5dc((*(void ***)(p+0x160))[i]);(*(void ***)(p+0x160))[i]=0;}
+if((*(void ***)(p+0x164))[i]) {func_0210c5dc((*(void ***)(p+0x164))[i]);(*(void ***)(p+0x164))[i]=0;}
+}
+if(*(void **)(p+0x140)) {func_0210c5dc(*(void **)(p+0x140));*(void **)(p+0x140)=0;}
+if(*(void **)(p+0xfc)) {func_0210c5dc(*(void **)(p+0xfc));*(void **)(p+0xfc)=0;}
+if(*(void **)(p+0x100)) {func_0210c5dc(*(void **)(p+0x100));*(void **)(p+0x100)=0;}
+if(*(void **)(p+0x118)) {func_0210c5dc(*(void **)(p+0x118));*(void **)(p+0x118)=0;}
+if(*(void **)(p+0x11c)) {func_0210c5dc(*(void **)(p+0x11c));*(void **)(p+0x11c)=0;}
+if(*(void **)(p+0x120)) {func_0210c5dc(*(void **)(p+0x120));*(void **)(p+0x120)=0;}
+if(*(void **)(p+0x124)) {func_0210c5dc(*(void **)(p+0x124));*(void **)(p+0x124)=0;}
+if(p)func_0210c5dc(p);
 }
 
 extern void func_021167ac(void *, s32);
