@@ -17,6 +17,17 @@ static inline s32 Height_bb3c(u32 a) {
 a &= 0xc000c000;
 return data_02144d6c[(s32)(a&0xc000)>>14][(a&0xc0000000)>>30];
 }
+static inline s32 Double_bb3c(u32 a) { return Mode_bb3c(a)==0x300; }
+static inline void SetMode_bb3c(u32 *p,s32 mode) {
+if(mode==0x100) { *p=(*p&0xc1fffcff)|mode; }
+else { *p=(*p&0xc1fffcff)|mode; }
+}
+static inline void Offset_bb3c(Vec2_bb3c *p,const s32 *m,s32 w,s32 h) {
+s32 x=-(w<<12),y=-(h<<12);
+x+=m[0]*w; y+=m[1]*w;
+x+=m[2]*h; y+=m[3]*h;
+p->x+=x;p->y+=y;
+}
 static inline void Transform_bb3c(Vec2_bb3c *dst,const s32 *m,const Vec2_bb3c *src) {
 Vec2_bb3c temp;
 Vec2_bb3c *out=dst;
@@ -301,8 +312,9 @@ y=*sprite&255;
 if(y>127)y|=0xff00;
 pos.y=y<<12;
 if(Mode_bb3c(*sprite)==0x300) {
-pos.x+=Width_bb3c(*sprite)<<11;
-pos.y+=Height_bb3c(*sprite)<<11;
+w=Width_bb3c(*sprite);h=Height_bb3c(*sprite);
+pos.x+=w<<11;
+pos.y+=h<<11;
 }
 Transform_bb3c(&pos,m,&pos);
 mode=data_021701f8[1];
@@ -311,13 +323,13 @@ mode=mode==2?0x300:0x100;
 if(mode==0x100)*sprite=(*sprite&0xc1fffcff)|mode;
 else *sprite=(*sprite&0xc1fffcff)|mode;
 }
-mode=Mode_bb3c(*sprite);
+mode=Mode_bb3c(*sprite)==0x300;
 w=Width_bb3c(*sprite)>>1;
 h=Height_bb3c(*sprite)>>1;
-dx=m[0]*w-(w<<12)+m[2]*h;
-dy=m[1]*w-(h<<12)+m[3]*h;
+dx=-(w<<12)+m[0]*w+m[2]*h;
+dy=-(h<<12)+m[1]*w+m[3]*h;
 pos.x+=dx;pos.y+=dy;
-if(mode==0x300){pos.x-=w<<12;pos.y-=h<<12;}
+if(mode){pos.x-=w<<12;pos.y-=h<<12;}
 pos.x+=translation->x;pos.y+=translation->y;
 *sprite=(*sprite&0xfe00ff00)|((pos.y>>12)&255)|(((pos.x>>12)&511)<<16);
 }
