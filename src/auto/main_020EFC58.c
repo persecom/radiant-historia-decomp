@@ -23,6 +23,120 @@ extern void func_0210b4cc(void *);
 extern void func_0210c5dc(void *);
 extern void func_0210b860(void **);
 
+extern u8 *data_02160aec;
+void func_020efc58(u8 *arg0, s32 arg1, s32 arg2) {
+    u8 val = arg0[0];
+    if (val == 0xff || val == 0) {
+        arg0[0] = 0xff;
+    } else if ((s32)val + 0x40 > 0x45 && (s32)val + 0x40 != 0x48 && (s32)val + 0x40 != 0x49 && (s32)val + 0x40 != 0x4a) {
+        s32 arr[8];
+        s32 i;
+        s32 dx, dy;
+        s32 bit = 0;
+        u32 mask = 0;
+        for (i = 0; i < 8; i++) {
+            arr[i] = 0;
+        }
+        for (dy = -1; dy < 2; dy++) {
+            for (dx = -1; dx < 2; dx++) {
+                if (dx != 0 || dy != 0) {
+                    s32 idx = (arg1 + dx) + *(s16 *)(data_02160aec + 0x58d36) * (arg2 + dy);
+                    if (idx >= 0 && idx < 0x4000) {
+                        u8 tile = *(u8 *)(data_02160aec + idx * 0xc + 0xbc8);
+                        if ((s32)tile + 0x40 >= 0x42 && (s32)tile + 0x40 <= 0x45) {
+                            mask |= 1 << bit;
+                            arr[bit] = tile;
+                        }
+                    }
+                }
+                bit++;
+            }
+        }
+        if (((mask & 0x80) && (mask & 0x20)) ||
+            ((mask & 0x80) && (mask & 0x8)) ||
+            ((mask & 0x2) && (mask & 0x20)) ||
+            ((mask & 0x2) && (mask & 0x8))) {
+            s32 found = 0;
+            s32 prev = 0;
+            for (i = 0; i < 8; i++) {
+                if (arr[i] != 0) {
+                    if (prev != 0) {
+                        if (prev == arr[i]) {
+                            found = 1;
+                        }
+                    } else {
+                        prev = arr[i];
+                    }
+                }
+            }
+            if (found != 0) {
+                arg0[0] = 0x1a;
+            }
+        }
+    }
+
+    if (arg0[0] == 0xff || arg0[0] < 6) {
+        arg0[1] = 0xff;
+        return;
+    }
+
+    {
+        u8 *g = data_02160aec;
+        s32 y;
+        s32 bit = 0;
+        u32 mask = 0;
+        s32 dy, dx;
+        for (dy = -1; dy < 2; dy++) {
+            y = arg2 + dy;
+            for (dx = -1; dx < 2; dx++) {
+                if (dx != 0 || dy != 0) {
+                    s32 idx = (arg1 + dx) + *(s16 *)(g + 0x58d36) * y;
+                    if (idx >= 0 && idx < 0x4000) {
+                        u8 tile = *(u8 *)(g + idx * 0xc + 0xbc8);
+                        if (tile > 1 && tile < 6) {
+                            mask |= 1 << bit;
+                        }
+                    }
+                }
+                bit++;
+            }
+        }
+        if ((mask & 0x80) && (mask & 0x20)) {
+            arg0[1] = 1;
+            return;
+        }
+        if ((mask & 0x80) && (mask & 0x8)) {
+            arg0[1] = 2;
+            return;
+        }
+        if ((mask & 0x2) && (mask & 0x20)) {
+            arg0[1] = 3;
+            return;
+        }
+        if ((mask & 0x2) && (mask & 0x8)) {
+            arg0[1] = 4;
+            return;
+        }
+        if (mask & 0x2) {
+            arg0[1] = 5;
+            return;
+        }
+        if (mask & 0x80) {
+            arg0[1] = 6;
+            return;
+        }
+        if (mask & 0x20) {
+            arg0[1] = 7;
+            return;
+        }
+        if (mask & 0x8) {
+            arg0[1] = 8;
+        } else {
+            arg0[1] = 0xff;
+        }
+    }
+}
+
 void func_020eff58(void) {
 }
 
