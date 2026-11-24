@@ -58,3 +58,51 @@ s32 func_02066bdc(void) {
     return 0;
 }
 
+void func_02066c28(void) {
+    s16 i, j;
+    u8 (*arr)[11][0x20] = (u8 (*)[11][0x20])(data_021600e0[1] + 0x1b4);
+    for (i = 0; i < 12; i++) {
+        for (j = 0; j < 11; j++) {
+            func_020a9af0(arr[i][j], i, j);
+        }
+    }
+}
+
+void func_02066c8c(void) {
+    s16 i, j;
+    u8 (*arr)[11][0x20] = (u8 (*)[11][0x20])(data_021600e0[1] + 0x1b4);
+    for (i = 0; i < 12; i++) {
+        for (j = 0; j < 11; j++) {
+            func_020a9d60(arr[i][j]);
+        }
+    }
+}
+
+void func_02066ce8(void) {
+    u8 *ptr = data_021600e0[1];
+    u8 *node;
+    s32 flag;
+    if (ptr[0xe0] != 4) {
+        return;
+    }
+    node = *(u8 **)(*(u8 **)func_020aa19c());
+    flag = 0;
+    while (node != NULL) {
+        if (*(s8 *)(node + 8) > 0) {
+            *(s8 *)(node + 8) -= 7;
+            flag = 1;
+            if (*(s8 *)(node + 8) < 0) {
+                *(s8 *)(node + 8) = 0;
+            }
+            break;
+        }
+        node = *(u8 **)(node + 0x10);
+    }
+    if (flag == 0) {
+        func_020aa1b4();
+        if (func_020aa144() == 0) {
+            func_02066b7c(*(u32 *)(ptr + 0x50), *(u32 *)(ptr + 0x54), (u32)func_02066bc4);
+        }
+    }
+}
+
