@@ -1,5 +1,6 @@
 /* 10 functions from 0x020D3160 to 0x020D413C (main), found by ds-decomp. */
 #include "common.h"
+typedef struct ObjectList_020d3fe8 { void *object; u8 pad[0x14]; struct ObjectList_020d3fe8 *next; } ObjectList_020d3fe8;
 static inline s32 HasObject(u8 *entry, void *obj) {
 while(entry) { if (*(void **)entry == obj) return 1; entry=*(u8 **)(entry+8); }
 return 0;
@@ -167,24 +168,23 @@ void *func_020d3fac(u8 arg0) {
 void func_020d3fe8(u8 *p,u8 *list,u8 *arg2) {
 s32 found=0;
 u8 *node=list;
-u8 *mgr;
+Mgr_020d3160 *mgr;
 u16 count;
 func_020d3160(6,**(u8 **)(p+0x118),0,*(u16 *)(p+0x90)&255);
-mgr=(u8 *)data_02160244;
-count=*(u16 *)(mgr+0x168);
-while(node) {
-u8 *entry;
+mgr=data_02160244;
+count=mgr->unk_168;
+if (node) do {
 void *obj=*(void **)node;
 if(obj) {
-entry=*(u8 **)(mgr+0x160);
+u8 *entry=mgr->unk_160;
 while(entry) {
-if(obj==*(void **)entry) {found=1;break;}
+if(*(void **)entry==obj) {found=1;break;}
 entry=*(u8 **)(entry+8);
 }
 }
 if(found) break;
 node=*(u8 **)(node+0x18);
-}
+} while(node);
 if(arg2[7]!=8) {
 func_020d0884();
 while(list) {
@@ -197,13 +197,13 @@ func_021167f0((u8 *)data_02160244+0x160,entry);
 list=*(u8 **)(list+0x18);
 }
 }
-mgr=(u8 *)data_02160244;
-if(mgr[0x144]==4 && count==0) found=1;
-if(found) mgr[0x144]=*(s16 *)(arg2+0x16);
+mgr=data_02160244;
+if(mgr->unk_144==4 && count==0) found=1;
+if(found) mgr->unk_144=*(s16 *)(arg2+0x16);
 else {
 s32 value=*(s16 *)(arg2+0x16);
 s32 zero=0;
-mgr[0x144]=value;
+mgr->unk_144=value;
 func_020d3160(7,zero,zero,zero);
 func_020d3160(zero,zero,zero,zero);
 }
