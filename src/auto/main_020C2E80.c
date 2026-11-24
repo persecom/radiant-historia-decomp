@@ -158,6 +158,28 @@ void func_020c35c4(u32 *arg0, u32 arg1, u32 arg2, u32 arg3, u32 unused, u32 arg4
     *(volatile u32 *)0x4000448 = 1;
 }
 
+void func_020c3738(void *arg0) {
+    struct UnkB0 buf = data_02144318;
+    u16 i;
+
+    for (i = 0; i < 8; i++) {
+        u16 idx = i * 11;
+        u8 *p = (u8 *)func_020c3d24(arg0);
+        *(s16 *)(p + 0x22) = buf.data[idx + 0];
+        *(s16 *)(p + 0x24) = buf.data[idx + 1];
+        *(s16 *)(p + 0x26) = buf.data[idx + 2];
+        *(s16 *)(p + 0x28) = buf.data[idx + 3];
+        *(s32 *)(p + 0x00) = buf.data[idx + 4];
+        *(s32 *)(p + 0x04) = buf.data[idx + 5];
+        *(s32 *)(p + 0x08) = buf.data[idx + 6];
+        *(s16 *)(p + 0x1e) = buf.data[idx + 7];
+        *(s16 *)(p + 0x20) = buf.data[idx + 8];
+        *(s16 *)(p + 0x14) = buf.data[idx + 9];
+        *(s16 *)(p + 0x16) = buf.data[idx + 10];
+        p[0x18] = 0x1f;
+    }
+}
+
 void *func_020c3810(u16 arg0) {
     u8 **head = *(u8 ***)(data_02160140 + 0x3c);
     u8 *node = *head;
