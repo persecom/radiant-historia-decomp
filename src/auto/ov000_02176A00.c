@@ -168,19 +168,18 @@ extern u8 data_ov000_021785b0[];
 u32 func_ov000_02177864(void) {
     u8 buf[0x5c];
     u32 result;
-    int matched;
-    int i;
     u8 *b;
+    u8 *p2;
     const u8 *d;
+    int i;
+    int matched;
 
     func_020082b8(buf);
-    b = buf;
     d = data_ov000_021785b0;
+    b = buf;
     matched = 0;
     do {
-        if (*b != (u8)~*d) {
-            break;
-        }
+        if (*d != (*b ^ 0xff)) break;
         matched++;
         b++;
         d++;
@@ -191,20 +190,19 @@ u32 func_ov000_02177864(void) {
     if (matched == 6 && buf[8] == 1 && buf[9] == 1 && *(u16 *)&buf[0x20] == 0) {
         result = 0xfb;
     } else {
-        b = buf;
         i = 0;
+        p2 = buf;
         do {
-            if (*b != 0) {
+            if (*p2 != 0) {
                 result = 0xf1;
-                break;
+                goto done;
             }
             i++;
-            b++;
+            p2++;
         } while (i < 6);
-        if (i == 6) {
-            result = 0xfb;
-        }
+        result = 0xfb;
     }
+done:
     return 0xc5 * result;
 }
 
