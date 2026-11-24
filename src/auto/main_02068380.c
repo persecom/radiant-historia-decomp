@@ -385,7 +385,6 @@ void func_02068380(u8 *arg0)
         e->velocity -= 0x400;
     }
 }
-#pragma peephole on
     extern void *func_02067698(u8 *, u16);
     extern u8 data_0213a394[];
     extern u32 data_0216263c[3];
