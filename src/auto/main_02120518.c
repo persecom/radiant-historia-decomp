@@ -3,6 +3,10 @@
 
 extern void func_02117478(void);
 extern u8 data_02173164[12];
+void func_02120518(u32 *arg0) {
+    *arg0 = 0;
+}
+
 void func_02120524(s32 arg0) {
     *(s32 *)(data_02173164 + 8) = arg0;
 }
