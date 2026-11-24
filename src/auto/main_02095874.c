@@ -202,6 +202,51 @@ i++;node=*(u8 **)(node+0x1c);
 }
 }
 
+extern u8 *func_020935ec(void *, s32);
+void func_02096360(s32 arg0) {
+    u8 *node = *(u8 **)(data_02160090 + 8);
+
+    while (node != NULL) {
+        u8 *sub = *(u8 **)(node + 0x14);
+        if (sub != NULL) {
+            u8 *obj = *(u8 **)(sub + 8);
+            s16 x = *(s16 *)(obj + 0xc);
+            s16 y = *(s16 *)(obj + 0xe);
+            u16 id = *(u16 *)(obj + 0);
+
+            if (arg0 != 0) {
+                if (*(u32 *)(*(u8 **)node + 0x80) & 0x1000) {
+                    u8 *res = (u8 *)func_020936f8(0x60, id, x, y, 0, 4, 0x7e);
+                    func_020938b0(res, 1, 0x7e);
+                    if (func_020935ec(res, 0x77) != NULL) {
+                        *(u32 *)(func_020935ec(res, 0x77) + 0x20) = 0;
+                        *(u32 *)(func_020935ec(res, 0x78) + 0x20) = 0;
+                        *(u32 *)(func_020935ec(res, 0x79) + 0x20) = 0;
+                        *(u32 *)(func_020935ec(res, 0x7a) + 0x20) = 0;
+                        *(u32 *)(func_020935ec(res, 0x10) + 0x20) = 0;
+                        *(u32 *)(func_020935ec(res, 0x12) + 0x20) = 0;
+                    }
+                }
+            } else {
+                func_02093510(obj, 0x7e);
+                if (func_020935ec(obj, 0x77) != NULL) {
+                    u8 *p;
+                    *(u32 *)(func_020935ec(obj, 0x77) + 0x20) = 1;
+                    *(u32 *)(func_020935ec(obj, 0x78) + 0x20) = 1;
+                    *(u32 *)(func_020935ec(obj, 0x79) + 0x20) = 1;
+                    *(u32 *)(func_020935ec(obj, 0x7a) + 0x20) = 1;
+                    *(u32 *)(func_020935ec(obj, 0x10) + 0x20) = 1;
+                    p = func_020935ec(obj, 0x12);
+                    if (p != NULL) {
+                        *(u32 *)(p + 0x20) = 1;
+                    }
+                }
+            }
+        }
+        node = *(u8 **)(node + 0x1c);
+    }
+}
+
 #pragma opt_propagation on
 void func_02096504(u8 *arg, s32 unused, s32 index) {
  u8 *p; s32 id; u16 i; s32 x, y;
