@@ -9,6 +9,10 @@ void func_02075c08(u32 *arg0, u32 *arg1) {
     arg0[2] = arg1[2];
 }
 
+s32 func_02075c24(s32 arg0) {
+    return *(s16 *)(data_0213a394 + (arg0 >> 4) * 4);
+}
+
 void func_02075c84(void) {
     func_021168f8();
 }
