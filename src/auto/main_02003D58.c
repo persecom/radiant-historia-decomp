@@ -105,16 +105,13 @@ void func_02004084(void *arg0, u32 arg1, u32 arg2) {
 }
 
 void func_020040f8(void) {
-    if (data_02145ba4 == -1) {
-        goto end;
+    if (data_02145ba4 != -1) {
+        func_0200893c();
     }
-    func_0200893c();
     func_02004bdc(data_0215cd24[5]);
     data_0215cd24[5] = 0;
     data_0215cd24[4] = 0;
     data_0215cd24[3] = 0;
-end:
-    return;
 }
 
 void func_02004138(void) {
