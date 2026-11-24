@@ -1,5 +1,8 @@
 /* 13 functions from 0x0211DDAC to 0x0211EA84 (main), found by ds-decomp. */
 #include "common.h"
+extern void *data_02170460;
+extern void func_02008e24(u32, void *, u32);
+extern void func_0211de7c(void *, void *);
 
 extern void (*data_02156070[])(void *, u32);
 extern void (*data_02155f80[])(void *);
