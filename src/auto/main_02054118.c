@@ -14,6 +14,10 @@ static inline u16 RandomRange_546c0(u16 max) {
  return value;
 }
 
+static inline s32 RandomSigned_546c0(s32 max) {
+ if(max) return (s32)RandomRange_546c0(max*2)-max;
+ return 0;
+}
 extern s32 func_0205428c();
 extern s32 func_0207c578(void);
 extern s32 func_02044dd0(void);
@@ -212,26 +216,29 @@ void func_020544d8(void *arg0, s32 arg1) {
 }
 
 s32 func_020546c0(u8 *arg0,s32 arg1) {
- u16 range=arg1*2, tries=0;
+ u16 tries=0;
+ u16 range=arg1*2;
+ u32 *rng=data_0216263c;
+ const s16 *table=data_0213a394;
  for(;;) {
- u32 seed=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
+ u32 seed=rng[1]*rng[0]+rng[2];
  s32 angle=(u16)(((seed>>16)*0xfffe)>>16)-65535;
  s32 radius;
- data_0216263c[0]=seed;
+ rng[0]=seed;
  if(angle<0) angle=-angle;
  if(arg1!=0) {
- u16 val;
- seed=data_0216263c[1]*seed+data_0216263c[2];
- data_0216263c[0]=seed;
+ u32 val;
+ seed=rng[1]*seed+rng[2];
+ rng[0]=seed;
  val=seed>>16;
  if(range) val=(val*range)>>16;
- radius=(u16)val-arg1;
+ radius=-arg1+(u16)val;
  } else radius=0;
  angle >>=4;
  if(radius<0) radius=-radius;
  radius+=32;
- *(s32 *)(arg0+0x24)=*(s32 *)arg0+radius*data_0213a394[angle*2];
- *(s32 *)(arg0+0x2c)=*(s32 *)(arg0+8)+radius*data_0213a394[angle*2+1];
+ *(s32 *)(arg0+0x24)=*(s32 *)arg0+radius*table[angle*2];
+ *(s32 *)(arg0+0x2c)=*(s32 *)(arg0+8)+radius*table[angle*2+1];
  if(data_02160aec[0xbc8+12*((*(s32 *)(arg0+0x24)/65536)+(*(s32 *)(arg0+0x2c)/65536)* *(s16 *)(data_02160aec+0x58d36))]==255) return 1;
  if(tries>3) {
  *(Vec_546c0 *)(arg0+0x24)=*(Vec_546c0 *)arg0; return 0;
