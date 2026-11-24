@@ -383,6 +383,14 @@ void func_0200661c(void) {
     func_0200813c(r4);
 }
 
+s32 func_020067a0(s32 arg0) {
+    u32 irq = func_02008128();
+    s32 old = data_0215cde4[10];
+    data_0215cde4[10] = arg0;
+    func_0200813c(irq);
+    return old;
+}
+
 extern void func_02008114(void);
 extern void func_02008454(void);
 extern u32 data_0215cde4[];
