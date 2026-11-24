@@ -258,6 +258,24 @@ void func_02116894(void *list, void *target, void *object) {
     }
 }
 
+void func_021168f8(void *list, void *object) {
+    u8 *l = (u8 *)list;
+    u8 *link = (u8 *)object + *(u16 *)(l + 0xa);
+    if (*(void **)(link + 0) == NULL) {
+        *(void **)(l + 0) = *(void **)(link + 4);
+    } else {
+        *(void **)((u8 *)*(void **)(link + 0) + *(u16 *)(l + 0xa) + 4) = *(void **)(link + 4);
+    }
+    if (*(void **)(link + 4) == NULL) {
+        *(void **)(l + 4) = *(void **)(link + 0);
+    } else {
+        *(void **)((u8 *)*(void **)(link + 4) + *(u16 *)(l + 0xa) + 0) = *(void **)(link + 0);
+    }
+    *(void **)(link + 0) = NULL;
+    *(void **)(link + 4) = NULL;
+    *(u16 *)(l + 8) -= 1;
+}
+
 void *func_02116958(void *list, void *object) {
     u8 *l = (u8 *)list;
     if (object == NULL) {
