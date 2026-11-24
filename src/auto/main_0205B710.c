@@ -169,6 +169,66 @@ void func_0205bed4(u8 *arg0) {
     (*(u16 *)(*data_02160244 + 0x3e))++;
 }
 
+extern void func_02031498(void *);
+extern void func_020223f8(void *,s32);
+extern void func_020dd810(void *,s32,s32);
+extern Vec5C04C *func_0202c5a0(void *);
+extern u16 func_020ddcb0(void *,void *);
+extern void func_020ddd8c(void *);
+void func_0205c04c(u8 *arg0) {
+u8 *sub=*(u8 **)(arg0+0x128);
+s32 zero=0;
+func_02031498(arg0);
+(*(s8 *)(sub+0x50))--;
+if(*(volatile s8 *)(sub+0x50)<=0) {
+func_020223f8(sub,zero);
+if(*(s32 *)arg0==*(s32 *)(arg0+0x18) && *(s32 *)(arg0+8)==*(s32 *)(arg0+0x20) && *(s32 *)(arg0+4)==0x20000) {
+if(*(u16 *)(sub+0x1e)&0x100) func_0205aa34(arg0,20);
+*(s32 *)(sub+0x24)=zero;
+return;
+}
+*(s32 *)(arg0+0x78)=0xaf0;
+func_020ddd5c(arg0);
+func_020dd810(arg0,5,zero);
+{
+Vec5C04C *v=func_0202c5a0(arg0);
+*(s32 *)(arg0+0x18)=v->x;
+*(s32 *)(arg0+0x1c)=v->y;
+*(s32 *)(arg0+0x20)=v->z;
+*(s32 *)(arg0+0x24)=*(s32 *)(arg0+0x18);
+*(s32 *)(arg0+0x28)=*(s32 *)(arg0+0x1c);
+*(s32 *)(arg0+0x2c)=*(s32 *)(arg0+0x20);
+}
+*(u16 *)(arg0+0x92)=func_020ddcb0(arg0,arg0+0x24);
+*(s32 *)(arg0+0x30)=zero;
+*(s32 *)(arg0+0x34)=zero;
+*(s32 *)(arg0+0x38)=zero;
+func_020ddd8c(arg0);
+if(*(s32 *)(arg0+4)!=*(s32 *)(arg0+0x28)) func_0205baf8((s32 *)arg0);
+*(s32 *)(sub+0x24)=0x389;
+} else {
+func_020223f8(sub,zero);
+func_020d626c(arg0);
+if(*(u16 *)(*(u8 **)(sub+12)+14)&1) {*(s32 *)(sub+0x24)=0x390;return;}
+if(!(*(u32 *)(*(u8 **)(arg0+0x118)+0x78)&0x30)) func_020dd810(arg0,5,zero);
+{
+Vec5C04C *v=func_0202c5a0(arg0);
+*(s32 *)(arg0+0x18)=v->x;
+*(s32 *)(arg0+0x1c)=v->y;
+*(s32 *)(arg0+0x20)=v->z;
+*(s32 *)(arg0+0x24)=*(s32 *)(arg0+0x18);
+*(s32 *)(arg0+0x28)=*(s32 *)(arg0+0x1c);
+*(s32 *)(arg0+0x2c)=*(s32 *)(arg0+0x20);
+}
+*(u16 *)(arg0+0x92)=func_020ddcb0(arg0,arg0+0x24);
+*(s32 *)(arg0+0x30)=zero;
+*(s32 *)(arg0+0x34)=zero;
+*(s32 *)(arg0+0x38)=zero;
+func_020ddd8c(arg0);
+if(*(s32 *)(arg0+4)!=*(s32 *)(arg0+0x28)) func_0205baf8((s32 *)arg0);
+*(s32 *)(sub+0x24)=0x393;
+}}
+
 void func_0205c21c(s32 *arg0) {
 u8 *p = *(u8 **)((u8 *)arg0 + 0x128);
 u8 count = 0;
