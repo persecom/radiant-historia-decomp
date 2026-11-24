@@ -1,0 +1,87 @@
+/* 73 functions from 0x02006C38 to 0x02007C2C (main), found by ds-decomp. */
+#include "common.h"
+
+extern void func_02006e48(void);
+extern void func_0200a56c(void);
+extern void func_02006e90(void);
+extern void func_02005ae0(void);
+extern void func_02006fac(void);
+extern void func_020057d0(void);
+extern void func_02005a40(void);
+extern void func_020075fc(void);
+extern void func_020094a8(void);
+extern void func_02007d18(void);
+extern void func_0200835c(void);
+extern void func_0200617c(void);
+extern void func_020081fc(void);
+extern void func_02011334(void);
+extern void func_0200f858(void);
+extern void func_0200e384(void);
+extern void func_02006e1c(void);
+extern u32 func_02006940(void);
+extern u32 data_0215d058[2];
+extern void (*data_02145bc0[])(u32);
+extern u8 *data_0215d060[];
+extern u32 data_0215d084[3];
+extern u32 func_02008128(void);
+extern void func_0200813c(u32);
+extern void *func_02007250(void *, void *);
+extern void *func_02007278(void *, void *);
+extern void func_02007538(s32, u32);
+typedef struct UnkStruct_0215d128 {
+    u16 unk00;
+    u16 unk02;
+    u32 unk04;
+    u64 unk08;
+} UnkStruct_0215d128;
+
+extern u16 data_0215d124;
+extern u16 data_0215d128;
+extern u16 data_0215d138;
+extern void func_020077f8(s32);
+extern void func_0200789c(void);
+extern void func_020057e8(u32, void (*)(void));
+extern void func_020059b4(u32);
+extern void func_02005944(u32, void (*)(void), u32);
+extern void func_02007674(void);
+extern u32 func_0200701c(s32);
+extern void func_020071a0(s32, u32);
+extern u32 func_020070fc(s32);
+extern void func_020071b4(s32, u32);
+extern void func_020075d4(s32, u32, s32);
+
+extern u32 data_0215d084[3];
+
+extern void func_020076fc(s32);
+extern void func_0200777c(void);
+
+void func_0200781c(void) {
+    if (((UnkStruct_0215d128 *)&data_0215d128)->unk00 == 0) {
+        ((UnkStruct_0215d128 *)&data_0215d128)->unk00 = 1;
+        func_020077f8(0);
+        ((UnkStruct_0215d128 *)&data_0215d128)->unk08 = 0;
+        *(volatile u16 *)0x04000102 = 0;
+        *(volatile u16 *)0x04000100 = 0;
+        *(volatile u16 *)0x04000102 = 0xc1;
+        func_020057e8(8, func_0200789c);
+        func_020059b4(8);
+        ((UnkStruct_0215d128 *)&data_0215d128)->unk04 = 0;
+    }
+}
+
+extern u16 data_0215d128;
+u16 func_0200788c(void) {
+    return data_0215d128;
+}
+
+void func_0200789c(void) {
+    UnkStruct_0215d128 *s = (UnkStruct_0215d128 *)&data_0215d128;
+    s->unk08++;
+    if (s->unk04 != 0) {
+        *(volatile u16 *)0x04000102 = 0;
+        *(volatile u16 *)0x04000100 = 0;
+        *(volatile u16 *)0x04000102 = 0xc1;
+        s->unk04 = 0;
+    }
+    func_02005944(0, func_0200789c, 0);
+}
