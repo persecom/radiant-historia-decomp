@@ -310,14 +310,14 @@ void func_0200bfb8(u8 *arg0) {
     }
 }
 
-extern void func_0200c0a8(void);
+extern void func_0200c0a8(u8 *);
 extern s32 func_0200cb40(u8 *, s32, s32);
 extern s32 func_0200bd18(u8 *, void *, void *);
 extern s32 func_0200be78(u8 *);
 extern void func_0200bfb8(u8 *);
 extern s32 func_0200a928(void *, s32);
 s32 func_0200c198(void *arg0) {
-    func_0200c0a8();
+    func_0200c0a8(arg0);
     return 1;
 }
 
