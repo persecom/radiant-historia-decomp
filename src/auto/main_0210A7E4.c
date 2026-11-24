@@ -205,7 +205,7 @@ void *func_0210ad14(void *arg0, s32 arg1, s32 arg2) {
 
 s32 func_0210ad88(u32 arg0, u32 *arg1, s32 arg2) {
     u32 *vram;
-    if ((arg2 == 0 ? 1 : 0) == 0) {
+    if ((u32)(arg2 == 0) == 0) {
         func_02006dc4(arg1[5], arg1[4]);
         if (arg2 == 1) {
             vram = func_0210a4b4();
@@ -268,5 +268,26 @@ extern s32 func_021174e4(void *, void *);
 void func_0210b0ac(u8 *arg0) {
     func_0211cac0(arg0, *(u32 *)(arg0 + 0x54));
     func_0211cd78(arg0);
+}
+
+extern void func_021167ac(void *, s32);
+extern void func_0210dae0(void *);
+extern u32 data_02155c18[];
+extern u8 data_02162618[];
+extern u8 data_02162624[];
+extern u8 data_02162648[];
+extern u8 *func_02120fe4(s32, s32);
+extern u8 *func_02120b8c(void *, u8 *, u32);
+void func_0210b750(u32 arg0) {
+    u32 f;
+    func_021167ac(data_02162618, 4);
+    f = data_02155c18[0];
+    if (f == 0) {
+        f = (u32)func_0210af80;
+        data_02155c18[0] = f;
+    }
+    *(u32 *)(data_02162618 + 0xc) = f;
+    *(u32 *)(data_02162618 + 0x10) = arg0;
+    func_0210dae0(data_02162624);
 }
 
