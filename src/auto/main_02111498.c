@@ -121,6 +121,16 @@ void func_02111828(u8 *arg0) {
     func_021118bc(arg0);
 }
 
+void func_021118bc(u8 *arg0) {
+    u16 i;
+    u32 count = func_020c9c34(*(void **)(arg0 + 0x34));
+    for (i = 0; i < count; i++) {
+        u8 *obj = func_020c9c10(*(void **)(arg0 + 0x34), i);
+        ((void (*)(u8 *, s16))*(void **)(obj + 0x10))(obj, *(s16 *)(arg0 + 0x44));
+        ((void (*)(u8 *, s16))*(void **)(obj + 0x14))(obj, (s16)(i * 0x13 + *(s16 *)(arg0 + 0x46)));
+    }
+}
+
 extern void func_0211192c(u8 *, s32, s32);
 void func_02111a18(u8 *arg0, s32 arg1) {
     func_0211192c(arg0, arg1, *(s16 *)(arg0 + 0x46));
