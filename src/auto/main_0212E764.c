@@ -261,6 +261,15 @@ void func_0212efe8(u32 *arg0, u32 *arg1) {
     }
 }
 
+void func_0212f010(u32 *arg0, u32 *arg1) {
+    if (arg0 != NULL) {
+        *arg0 = data_02156f4c[3];
+    }
+    if (arg1 != NULL) {
+        *arg1 = data_02156f4c[1];
+    }
+}
+
 void func_0212f0d4(void *arg0) {
     if (arg0 == NULL) {
         return;
