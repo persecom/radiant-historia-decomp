@@ -83,10 +83,14 @@ void func_02012590(s32 arg0, const char *arg1, ...) {
 
 s32 func_020125b8(s32 c) {
     u32 d = c - 9;
+    s32 ret = 0;
     if (d > 0x17) {
-        return 0;
+        return ret;
     }
-    return (0x80001f & (1 << d)) != 0;
+    if (0x80001f & (1 << d)) {
+        ret = 1;
+    }
+    return ret;
 }
 
 void func_020125e0(u32 *bits, u32 start, u32 end) {
