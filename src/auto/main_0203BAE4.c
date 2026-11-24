@@ -326,6 +326,7 @@ extern void func_02108eec(s32,s32);
 extern void func_0203c780(void);
 extern void func_0210dc88(void);
 extern void func_02008250(s32);
+static void func_0203c780(void);
 s32 func_0203c3bc(void) {
 s32 one=1,zero=0;
 u8 *node,*next;
@@ -361,7 +362,7 @@ return z-1;
 }
 }
 
-static void func_0203c780(void) {
+void func_0203c780(void) {
 void *p;
 func_020eaacc(); func_020f4144(); func_020a3b84(); func_020dcca4(); func_020eb344(0,0);
 while ((p = *(void **)(data_02160094 + 0x2c)) != NULL) {
