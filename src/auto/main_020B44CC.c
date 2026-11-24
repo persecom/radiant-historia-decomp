@@ -46,6 +46,11 @@ extern void func_02002128(u32 *, u32, u8 *);
 extern u32 func_02002080(u32, u32);
 extern void func_02005e80(char *, const char *, ...);
 extern s32 func_020b4b40(char *, void *, u8);
+typedef struct Unk12_020b4d14 {
+    u32 unk00;
+    u32 unk04;
+    u32 unk08;
+} Unk12_020b4d14;
 extern void func_020b5364(void);
 extern void func_020b4f18(void);
 extern void func_0210d9e4(void *);
