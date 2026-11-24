@@ -70,6 +70,21 @@ u8 func_020ae05c(u32 arg0, u32 arg1) {
     return arg0 % 10;
 }
 
+s32 func_020ae9cc(u32 arg0, s32 arg1) {
+    u8 *base = func_020adda8();
+    u8 *p;
+    if (arg1 == 0) {
+        if (arg0 >= 5) {
+            return 0;
+        }
+    } else if (arg0 >= 5) {
+        return 0;
+    }
+    p = *(u8 **)(base + arg0 * 0x50 + 0x3ec);
+    *(u32 *)(p + 0x40) = 0;
+    return 1;
+}
+
 extern u8 *func_020adda8(void);
 extern void func_020a994c(void *);
 void func_020aea84(void) {
