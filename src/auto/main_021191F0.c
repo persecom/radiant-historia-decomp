@@ -31,11 +31,13 @@ extern Struct0216f234 data_0216f234;
 extern Struct0216f2c4 data_0216f2c4[];
 extern Struct0216f9c4 data_0216f9c4[];
 extern u8 data_0216f6c4[];
+extern u8 data_0216f3c4[];
 extern u8 data_0216f3d4[];
 extern u8 data_02155eb0[];
 extern u8 data_0216f3d8[];
 extern u32 data_02155eb8[];
 extern void func_02008e68(s32, void *, s32);
+extern void func_0211c4ec(void *);
 
 static inline void MI_CpuFill32(void *dest, u32 data, u32 size) {
     func_02008e68((s32)data, dest, (s32)size);
