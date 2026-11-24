@@ -426,6 +426,16 @@ u32 func_020059b4(u32 arg0) {
     return old;
 }
 
+u32 func_020059e4(u32 arg0) {
+    u16 ime = *(volatile u16 *)0x04000208;
+    *(volatile u16 *)0x04000208 = 0;
+    u32 old = *(volatile u32 *)(0x04000208 + 8);
+    *(volatile u32 *)(0x04000208 + 8) = old & ~arg0;
+    (void)*(volatile u16 *)0x04000208;
+    *(volatile u16 *)0x04000208 = ime;
+    return old;
+}
+
 u32 func_02005a14(u32 arg0) {
     u16 ime = *(volatile u16 *)0x04000208;
     *(volatile u16 *)0x04000208 = 0;
