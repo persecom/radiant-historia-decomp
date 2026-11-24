@@ -353,3 +353,16 @@ void *func_020aa3b0(void) {
     return ptr;
 }
 
+extern void *data_021601d8;
+extern void func_020aa464(void);
+extern void func_020aa65c(void);
+extern void func_02066b7c(s32, s32, void *);
+extern void func_02066bdc(void);
+void func_020aa430(void) {
+    void *p;
+    func_020aa464();
+    p = func_0210c594(0xc, data_02155c3c);
+    data_021601d8 = p;
+    func_021167ac(p, 0);
+}
+
