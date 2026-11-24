@@ -9,3 +9,9 @@ extern void func_020ec548(void *);
 void func_02080db8(void) {
     func_02080e00();
 }
+
+void func_02080dc4(void) {
+    *(void **)(data_0216010c + 0x44) = func_0210c594(0x38, data_02155c3c);
+    *(u8 *)(*(void **)(data_0216010c + 0x44) + 2) = 0;
+}
+
