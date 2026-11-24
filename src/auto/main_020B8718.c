@@ -144,6 +144,11 @@ void func_020b91a8(void) {
     }
 }
 
+void func_020b9214(void *arg0, u16 arg1, s32 arg2) {
+    u8 *obj = func_020c9c10(*(void **)(data_021601ec + 0x48), 10);
+    func_020c83f4(obj, (s32)arg0, arg1, arg2 & 0xff);
+}
+
 void func_020b9250(void) {
     func_020c8488(func_020c9c10(*(void **)(data_021601ec + 0x48), 10));
 }
