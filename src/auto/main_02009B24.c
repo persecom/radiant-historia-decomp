@@ -300,9 +300,48 @@ s32 func_0200a4f4(u8 *arg0) {
     return *(s32 *)(arg0 + 0x38);
 }
 
+void func_0200a4fc(u8 *arg0, s32 arg1, u32 arg2) {
+    func_0200986c();
+    *(u32 *)(arg0 + arg1 * 4 + 0x3c) = arg2;
+    func_02006da8(arg0 + arg1 * 4 + 0x3c, 4);
+    func_02009880();
+}
+
+s32 func_0200a530(u8 *arg0, s32 arg1) {
+    u32 off;
+    s32 ret;
+    func_0200986c();
+    off = *(u32 *)(arg0 + arg1 * 4 + 0x3c);
+    if (off == 0) {
+        ret = 0;
+    } else if (off < 0x2000000) {
+        ret = (s32)(arg0 + off);
+    } else {
+        ret = (s32)off;
+    }
+    func_02009880();
+    return ret;
+}
+
 void func_0200a56c(void) {
     func_0200a578();
 }
+
+void func_0200a674(s32 arg0, void *arg1) {
+    struct {
+        u8 pad[0x388];
+        u32 flags;
+    } *work = (void *)0x02fffc00;
+    s32 cookie = func_02008128();
+    data_0215ece8[arg0] = arg1;
+    if (arg1 != NULL) {
+        work->flags |= 1 << arg0;
+    } else {
+        work->flags &= ~(1 << arg0);
+    }
+    func_0200813c(cookie);
+}
+
 s32 func_0200a6c0(s32 arg0, s32 arg1) {
     struct {
         u8 pad[0x388];
