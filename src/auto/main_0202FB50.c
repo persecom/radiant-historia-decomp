@@ -181,7 +181,7 @@ void func_02030748(s32 arg0) {
 }
 
 s32 func_02030808(u32 arg0) {
-    if (arg0 < 9) {
+    if (arg0 <= 8) {
         u8 *p = *(u8 **)(data_02160244 + arg0 * 4 + 8);
         if ((p[0x1c] & 1) && !(p[0x1c] & 4)) {
             return 1;
