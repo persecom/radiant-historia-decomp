@@ -7,7 +7,7 @@ if(!p->field38)p->flags &= ~1;
 }
 static inline void Set38_0210b4cc(Header_0210b4cc *p, u32 value) {
 p->field38=value;
-if(!p->field34 && !p->field38)p->flags &= ~1;
+if(!value)p->flags &= ~1;
 }
 extern u8 data_02155c00[];
 extern void (*data_02156154)(u32);
