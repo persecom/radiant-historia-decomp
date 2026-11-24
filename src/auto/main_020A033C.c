@@ -37,3 +37,60 @@ s32 func_020a0e08(void *arg0, s32 arg1) {
     return 0;
 }
 
+extern s32 func_020123f0(const char *, const char *);
+extern char data_02148a18[];
+extern char data_02148a24[];
+extern char data_02148a2c[];
+extern char data_02148a34[];
+extern char data_02148a40[];
+extern char data_02148a48[];
+extern char data_02148a54[];
+extern char data_02148a60[];
+extern char data_02148a6c[];
+extern char data_02148a78[];
+extern char data_02148a84[];
+extern char data_02148a90[];
+extern char data_02148a9c[];
+s32 func_020a0e5c(const char *arg0) {
+    if (func_020123f0(data_02148a18, arg0) == 0) {
+        return 1;
+    }
+    if (func_020123f0(data_02148a24, arg0) == 0) {
+        return 2;
+    }
+    if (func_020123f0(data_02148a2c, arg0) == 0) {
+        return 3;
+    }
+    if (func_020123f0(data_02148a34, arg0) == 0) {
+        return 4;
+    }
+    if (func_020123f0(data_02148a40, arg0) == 0) {
+        return 5;
+    }
+    if (func_020123f0(data_02148a48, arg0) == 0) {
+        return 6;
+    }
+    if (func_020123f0(data_02148a54, arg0) == 0) {
+        return 7;
+    }
+    if (func_020123f0(data_02148a60, arg0) == 0) {
+        return 8;
+    }
+    if (func_020123f0(data_02148a6c, arg0) == 0) {
+        return 9;
+    }
+    if (func_020123f0(data_02148a78, arg0) == 0) {
+        return 10;
+    }
+    if (func_020123f0(data_02148a84, arg0) == 0) {
+        return 11;
+    }
+    if (func_020123f0(data_02148a90, arg0) == 0) {
+        return 12;
+    }
+    if (func_020123f0(data_02148a9c, arg0) != 0) {
+        return 0;
+    }
+    return 13;
+}
+
