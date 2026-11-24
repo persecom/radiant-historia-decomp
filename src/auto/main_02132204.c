@@ -34,7 +34,11 @@ extern char data_0215b640[];
 extern char data_0215b664[];
 extern void func_02132ca0(const char *);
 extern void func_02132c7c(void);
-extern void func_02132e0c(void);
+extern void func_02132e0c();
+extern void func_0213320c(void);
+extern void func_021335d4(void *, s32);
+extern char data_0215b688[];
+extern char data_0215b6b0[];
 extern u32 func_02016da4(const char *);
 extern void func_02013858(void *, const void *, u32);
 void *func_02132d2c(const char *arg0, void *(*arg1)(void));
@@ -364,8 +368,10 @@ void func_02132c68(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 }
 
 void func_02132c7c(void) {
-    if (data_021749d0[1] != 0) {
-        ((void (*)(u32))data_021749d0[1])(data_021749d0[2]);
+    void (*cb)(u32);
+    cb = (void (*)(u32))data_021749d0[1];
+    if (cb != 0) {
+        cb(data_021749d0[2]);
     }
 }
 
