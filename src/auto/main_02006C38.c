@@ -92,6 +92,31 @@ u32 func_02007008(s32 arg0) {
     return ((u32 *)0x02fffda0)[arg0];
 }
 
+u32 func_020070fc(s32 arg0) {
+    switch (arg0) {
+    case 0:
+        return 0x02178600;
+    case 2:
+        if (data_0215d058[1] == 0) {
+            return 0;
+        }
+        if ((func_02006940() & 0xf) == 1) {
+            return 0;
+        }
+        return 0x023e0000;
+    case 3:
+        return 0x01ff8540;
+    case 4:
+        return 0x027e0080;
+    case 5:
+        return 0x02fff000;
+    case 6:
+        return 0x037f8000;
+    default:
+        return 0;
+    }
+}
+
 void func_020071a0(s32 arg0, u32 arg1) {
     ((u32 *)0x02fffdc4)[arg0] = arg1;
 }
