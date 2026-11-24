@@ -32,7 +32,11 @@ void func_02010590(u32 arg0, u32 arg1, u32 arg2) {
 }
 
 void func_020105e0(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u32 arg6, u32 arg7, u32 arg8) {
-    func_02010590(arg8 != 0 ? 2 : 1, arg3, arg4);
+    u32 flags = 1;
+    if (arg8 != 0) {
+        flags = 2;
+    }
+    func_02010590(flags, arg3, arg4);
     *(u32 *)(data_0215f120 + 0x4fc) = arg0;
     *(u32 *)(data_0215f120 + 0x500) = arg1;
     *(u32 *)(data_0215f120 + 0x504) = arg2;
