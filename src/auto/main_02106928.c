@@ -176,6 +176,20 @@ void func_021070c4(void) {
     data_02161068[0] = 0;
 }
 
+void func_02107104(void) {
+    while (*(void **)(data_02161068 + 4) != NULL) {
+        void *node = *(void **)(data_02161068 + 4);
+        func_021168f8(data_02161068 + 4, node);
+        if (node != NULL) {
+            func_0210c5dc(node);
+        }
+    }
+    if (data_02161068 != NULL) {
+        func_0210c5dc(data_02161068);
+        data_02161068 = NULL;
+    }
+}
+
 void func_021071fc(void) {
     func_0200fa3c((u16)data_02155968);
 }
