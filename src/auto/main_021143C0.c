@@ -38,16 +38,9 @@ typedef struct {
     u8 unk_10[8];
     u32 unk_18;
     u32 unk_1c;
-    u8 unk_20[0x10];
-    u32 unk_30;
-    u32 unk_34;
-    u32 unk_38;
-    u32 unk_3c;
-    u32 unk_40;
-    u32 unk_44;
-    u32 unk_48;
+    u8 unk_20[0xc];
     u32 unk_2c;
-    u8 unk_30pad[0x1c];
+    u8 unk_30[0x1c];
     u32 unk_4c;
     u32 unk_50;
 } Unk_02114420;
