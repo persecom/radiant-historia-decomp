@@ -82,10 +82,32 @@ void func_02107c70(u8 *arg0) {
     data_02155984 = prev;
 }
 
+void func_02107cb8(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
+    *(u32 *)data_02155984 = arg0;
+    *(u32 *)(data_02155984 + 4) = arg1;
+    *(u32 *)(data_02155984 + 8) = arg2;
+    *(u32 *)(data_02155984 + 0xc) = arg3;
+    *(u32 *)(data_02155984 + 0x10) = arg4;
+}
+
 extern u32 data_02155984;
 extern s32 func_02108258(u32);
 s32 func_02108240(void) {
     return func_02108258(data_02155984);
+}
+
+extern u8 data_0215599c[];
+extern u8 data_02155988[];
+extern u8 data_0216242c[];
+extern u8 data_02162360[];
+extern void func_0210dae0(void *);
+extern void func_0210db40(void *);
+void *func_021082d0(void) {
+    u8 *p = (u8 *)data_02155984;
+    if (p == NULL) {
+        return NULL;
+    }
+    return p + 0x14;
 }
 
 extern u32 data_02155c3c;
