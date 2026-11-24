@@ -50,8 +50,8 @@ void func_02112628(u8 *arg0, u16 arg1, u16 arg2, u16 arg3) {
     *(u16 *)(obj + 0x40) = arg3;
     if (((s32 (*)(u8 *))(*(void **)(obj + 0x28)))(obj) == 5) {
         func_020c7930(obj);
-        func_020c94c8(*(void **)(arg0 + 0x6c), (u16)(arg2 - 8), (u16)(arg3 - 8));
     }
+    func_020c94c8(*(void **)(arg0 + 0x6c), (u16)(arg2 - 8), (u16)(arg3 - 8));
 }
 
 void *func_02112688(u8 *arg0) {
