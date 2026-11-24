@@ -31,12 +31,14 @@ extern s32 func_020dddfc(void *, void *, s32);
 extern void func_020020f8(void *, void *, void *);
 extern void func_020c1fec(void);
 extern void func_0210d9e4(void *);
+extern void func_021167ac(void *, s32);
+extern void func_021167f0(void *, void *);
 void func_020c0284(s32 x,s32 y,s32 arg2,s32 value,s16 size) {
-Unk20 buf=data_02143df4;
 s16 center,padding;
 s32 divisor;
 s16 index,width,height,digit;
 s32 growth;
+Unk20 buf=data_02143df4;
 *(volatile u32 *)0x40004a4=0x1f0080;
 if(value<=6)func_020a3bbc(0x70);
 else if(value<=12)func_020a3bbc(0x71);
@@ -44,9 +46,9 @@ else if(value<=18)func_020a3bbc(0x72);
 else if(value<=24)func_020a3bbc(0x73);
 else func_020a3bbc(0x74);
 growth=size*3; width=15+growth; height=16+growth;
-buf.unk[1]=0;buf.unk[2]=0;
-if(size==0){buf.unk[3]=width;buf.unk[4]=height;}
-else {buf.unk[3]=15;buf.unk[4]=16;}
+buf.unk[1]=0;
+if(size==0){buf.unk[2]=0;buf.unk[3]=width;buf.unk[4]=height;}
+else {buf.unk[2]=0;buf.unk[3]=15;buf.unk[4]=16;}
 buf.unk[7]=arg2+0x2bf;buf.unk[8]=width;buf.unk[9]=height;
 padding=growth;
 digit=value%10;
