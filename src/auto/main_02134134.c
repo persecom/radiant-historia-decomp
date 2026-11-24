@@ -70,8 +70,8 @@ s32 func_021343a0(u8 *arg0, s32 arg1, s32 arg2) {
     }
     *(s32 *)(arg0 + 0x64) = val;
     func_0213808c();
-    func_0200bb10(*(void **)(arg0 + 0x4c), *(s32 *)(arg0 + 0x58) * val + *(s32 *)(arg0 + 0x80), 0);
-    return val;
+    func_0200bb10(*(void **)(arg0 + 0x4c), *(s32 *)(arg0 + 0x80) + *(s32 *)(arg0 + 0x64) * *(s32 *)(arg0 + 0x58), 0);
+    return *(s32 *)(arg0 + 0x64);
 }
 
 s32 func_0213443c(u8 *arg0) {
