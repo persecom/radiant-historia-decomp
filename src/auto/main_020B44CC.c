@@ -142,3 +142,12 @@ void func_020b52e0(u32 arg0) {
     *(u32 *)(data_021601e8 + 0x14) = arg0;
 }
 
+void func_020b52f4(s32 arg0) {
+    u8 *p = *(u8 **)(data_021601e8 + 0x14);
+    if (arg0 != 0) {
+        *(u32 *)(p + 0x108) |= 0x10;
+    } else if (arg0 == 0) {
+        *(u32 *)(p + 0x108) &= ~0x10;
+    }
+}
+
