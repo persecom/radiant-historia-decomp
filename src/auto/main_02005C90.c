@@ -219,22 +219,22 @@ void *func_02005fe4(void **arg0) {
     return r2;
 }
 
-void func_02006014(u8 *arg0) {
-    u8 *prev = NULL;
-    u8 *head = (u8 *)data_0215cde4[9];
-    u8 *cur = head;
+void func_02006014(void *arg0) {
+    void *head = (void *)data_0215cde4[9];
+    void *cur = head;
+    void *prev = NULL;
 
-    while (cur != NULL && *(u32 *)(cur + 0x70) < *(u32 *)(arg0 + 0x70)) {
+    while (cur != NULL && *(u32 *)((u8 *)cur + 0x70) < *(u32 *)((u8 *)arg0 + 0x70)) {
         prev = cur;
-        cur = *(u8 **)(cur + 0x68);
+        cur = *(void **)((u8 *)cur + 0x68);
     }
 
     if (prev == NULL) {
-        *(u8 **)(arg0 + 0x68) = head;
+        *(void **)((u8 *)arg0 + 0x68) = head;
         data_0215cde4[9] = (u32)arg0;
     } else {
-        *(u8 **)(arg0 + 0x68) = *(u8 **)(prev + 0x68);
-        *(u8 **)(prev + 0x68) = arg0;
+        *(void **)((u8 *)arg0 + 0x68) = *(void **)((u8 *)prev + 0x68);
+        *(void **)((u8 *)prev + 0x68) = arg0;
     }
 }
 
@@ -247,12 +247,10 @@ void func_02006070(u8 *arg0) {
         cur = *(u8 **)(cur + 0x68);
     }
 
-    if (cur != NULL) {
-        if (prev == NULL) {
-            data_0215cde4[9] = (u32)*(u8 **)(arg0 + 0x68);
-        } else {
-            *(u8 **)(prev + 0x68) = *(u8 **)(arg0 + 0x68);
-        }
+    if (prev == NULL) {
+        data_0215cde4[9] = (u32)*(u8 **)(arg0 + 0x68);
+    } else {
+        *(u8 **)(prev + 0x68) = *(u8 **)(arg0 + 0x68);
     }
 }
 
