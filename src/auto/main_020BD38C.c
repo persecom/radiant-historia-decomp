@@ -10,6 +10,8 @@ extern void *func_020bd450(u8);
 
 extern u8 *data_02160204;
 extern u8 *data_02160078;
+extern u8 *data_02160200;
+extern void func_02008e68(s32, void *, s32);
 extern u8 *func_020bd438(u8);
 extern void func_020bd3b8(u8, u16, u8, u8);
 
