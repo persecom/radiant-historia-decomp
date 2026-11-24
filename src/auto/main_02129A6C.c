@@ -14,6 +14,10 @@ void func_02129bb8(s32 arg0) {
     *(s32 *)(data_0217358c + 8) = arg0;
 }
 
+u32 func_02129bc8(void) {
+    return *(u32 *)(data_0217358c + 8);
+}
+
 void func_02129bd8(void) {
     u32 *p;
     int i;
