@@ -86,6 +86,31 @@ void func_0211088c(u8 *arg0, u8 arg1) {
     arg0[0x38] = arg1;
 }
 
+void func_021108f0(u8 *arg0, u32 flags) {
+Unk10 table = data_02144bcc;
+u16 count=0;
+u16 i;
+u16 n;
+u8 *obj;
+u32 mask;
+u16 bit;
+for(i=0;i<5;i++) { if(flags & (1 << table.v[i])) count++; }
+func_020c9980(*(void **)(arg0+0x30));
+func_020c9a04(*(void **)(arg0+0x30),count);
+n=0;
+for(i=0;i<5;i++) {
+bit=table.v[i]; mask=1 << bit;
+if(flags & mask) {
+obj=func_020c9b24(*(void **)(arg0+0x30),n,14);
+*(u16 *)(obj+0x3e)=bit;
+((void (*)(u8 *, s32))(*(void **)(obj+0x10)))(obj,(s16)(*(s16 *)(arg0+0x34)+n*20));
+((void (*)(u8 *, s32))(*(void **)(obj+0x14)))(obj,*(s16 *)(arg0+0x36));
+if(!(mask & 31)) func_020c738c(obj,4,4);
+n++;
+}
+}
+}
+
 void func_02110a28(u8 *arg0) {
     u8 *obj;
     u32 count = func_020c9c34(*(void **)(arg0 + 0x30));
