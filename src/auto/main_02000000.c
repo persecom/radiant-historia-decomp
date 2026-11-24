@@ -6,6 +6,7 @@ extern u32 data_02160204;
 typedef struct { u32 v; } OneWord;
 typedef struct { u32 a, b, c, d; } FourWords;
 typedef struct { s32 v[4]; } Mat4;
+typedef struct { s32 v[4]; } MatA;
 typedef struct { u32 x, y; } Pair;
 
 void func_02110000(void);
@@ -43,18 +44,19 @@ void func_02000bec(FourWords *p) {
     p->d = 0x1000;
 }
 
-void func_02000c04(s32 *a, s32 *b, s32 *out) {
-    s32 tmp[4];
-    s32 *dst = (out == b) ? tmp : out;
-    dst[0] = (s32)(((s64)a[1] * b[2] + (s64)a[0] * b[0]) >> 12);
-    dst[1] = (s32)(((s64)a[1] * b[3] + (s64)a[0] * b[1]) >> 12);
-    dst[2] = (s32)(((s64)a[3] * b[2] + (s64)a[2] * b[0]) >> 12);
-    dst[3] = (s32)(((s64)a[3] * b[3] + (s64)a[2] * b[1]) >> 12);
-    if (dst == tmp) {
-        out[0] = tmp[0];
-        out[1] = tmp[1];
-        out[2] = tmp[2];
-        out[3] = tmp[3];
+void func_02000c04(const s32 *a, s32 *b, s32 *out) {
+    Mat4 tmp;
+    s32 val0;
+    s32 *dst;
+    val0 = (s32)(((s64)a[0] * b[0] + (s64)a[1] * b[2]) >> 12);
+    dst = (s32 *)&tmp;
+    if (out != b) dst = out;
+    dst[0] = val0;
+    dst[1] = (s32)(((s64)a[0] * b[1] + (s64)a[1] * b[3]) >> 12);
+    dst[2] = (s32)(((s64)a[2] * b[0] + (s64)a[3] * b[2]) >> 12);
+    dst[3] = (s32)(((s64)a[2] * b[1] + (s64)a[3] * b[3]) >> 12);
+    if (dst == (s32 *)&tmp) {
+        (*(Mat4 *)out) = tmp;
     }
 }
 
