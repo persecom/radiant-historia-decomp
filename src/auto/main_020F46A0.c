@@ -203,9 +203,9 @@ void func_020f5114(u8 *arg0, s32 arg1) {
     *(s32 *)(arg0 + 0x20) = arg1;
 }
 
-u16 func_020f52dc(void *arg0, u16 arg1, u16 arg2) {
+u16 func_020f52dc(void *arg0, s16 arg1, s16 arg2) {
     u16 val = *(u16 *)(data_02160204 + 0x72);
-    s16 a = (val - 1) / 10 + 1;
+    s16 a = (val - 1) / 20 + 1;
     s16 b = val;
     if (arg1 != 0) {
         a = arg1;
@@ -225,14 +225,12 @@ u16 func_020f52dc(void *arg0, u16 arg1, u16 arg2) {
 BOOL func_020f5364(void *arg0, void *arg1) {
     u8 *node;
     if (arg0 == NULL || arg1 == NULL) {
-        return FALSE;
+        goto fail;
     }
-    node = *(u8 **)arg0;
-    while (node != NULL && node != arg1) {
-        node = *(u8 **)(node + 0x1dc);
+    for (node = *(u8 **)arg0; node != NULL && node != arg1; node = *(u8 **)(node + 0x1dc)) {
     }
     if (node == NULL) {
-        return FALSE;
+        goto fail;
     }
     func_021168f8(arg0, node);
     if (*(void **)(node + 0x128) != NULL) {
@@ -242,6 +240,8 @@ BOOL func_020f5364(void *arg0, void *arg1) {
     }
     func_020f58c0(node);
     return TRUE;
+fail:
+    return FALSE;
 }
 
 u32 func_020f53e4(void (*arg0)(void)) {
