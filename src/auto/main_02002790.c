@@ -120,15 +120,25 @@ void func_020029ec(u32 arg0, u32 arg1) {
     *(volatile u32 *)0x04000468 = 0x1000;
 }
 
-void func_02002a28(u8 *arg0) {
-    s32 i;
-    *(volatile u32 *)0x04000440 = 3;
-    for (i = 0; i < 8; i++) {
-        *(volatile u32 *)0x04000458 = *(u32 *)(arg0 + i * 4);
-    }
-    for (i = 8; i < 16; i++) {
-        *(volatile u32 *)0x04000458 = *(u32 *)(arg0 + i * 4) << 4;
-    }
+void func_02002a28(const u32 *arg0) {
+    volatile u32 *reg = (volatile u32 *)0x04000440;
+    reg[0] = 3;
+    reg[6] = arg0[0];
+    reg[6] = arg0[1];
+    reg[6] = arg0[2];
+    reg[6] = arg0[3];
+    reg[6] = arg0[4];
+    reg[6] = arg0[5];
+    reg[6] = arg0[6];
+    reg[6] = arg0[7];
+    reg[6] = arg0[8] << 4;
+    reg[6] = arg0[9] << 4;
+    reg[6] = arg0[10] << 4;
+    reg[6] = arg0[11] << 4;
+    reg[6] = arg0[12] << 4;
+    reg[6] = arg0[13] << 4;
+    reg[6] = arg0[14] << 4;
+    reg[6] = arg0[15] << 4;
 }
 
 extern void func_020055d4();
