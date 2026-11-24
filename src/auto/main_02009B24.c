@@ -9,6 +9,10 @@ extern void func_02009ec4(void);
 s32 func_02009d58(u32);
 
 extern void func_0200a578(void);
+s32 func_0200a4f4(u8 *arg0) {
+    return *(s32 *)(arg0 + 0x38);
+}
+
 void func_0200a56c(void) {
     func_0200a578();
 }
