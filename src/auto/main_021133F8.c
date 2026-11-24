@@ -569,3 +569,19 @@ void func_0211424c(u8 *arg0) {
     func_021142f0(arg0);
 }
 
+void func_02114370(u8 *arg0) {
+    void *p = *(void **)(arg0 + 8);
+    if (p == NULL) {
+        return;
+    }
+    func_02115368(p);
+    {
+        u8 *q = *(u8 **)(arg0 + 0xc);
+        if (q != NULL) {
+            *(u32 *)(q + 8) = 0;
+            return;
+        }
+    }
+    func_021168f8(data_0216c424 + *(u32 *)(arg0 + 0x10) * 0x24 + 0xc, arg0);
+}
+
