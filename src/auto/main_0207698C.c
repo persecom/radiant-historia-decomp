@@ -64,6 +64,64 @@ void func_02076dcc(void) {
     *(volatile u32 *)0x04000000 = (*(volatile u32 *)0x04000000 & ~0x1f00) | 0x1f00;
 }
 
+s32 func_02076df4(s8 c, s32 x, s32 y, s32 color) {
+    u16 buf[10];
+    s32 u;
+    s32 v;
+    s32 w;
+
+    if (c >= 'A' && c <= 'Z') {
+        s32 idx = c - 'A';
+        u = (idx % 9) * 13;
+        v = (idx / 9) * 13;
+        w = data_021482b4[idx];
+    } else if (c >= 'a' && c <= 'z') {
+        s32 idx = c - 'a';
+        u = (idx % 9) * 13;
+        v = (idx / 9) * 13 + 39;
+        w = data_0214831c[idx];
+    } else if (c >= '0' && c <= '9') {
+        s32 idx = c - '0';
+        u = (idx % 9) * 13;
+        v = (idx / 9) * 13 + 78;
+        w = data_0214828c[idx];
+    } else if (c == ' ') {
+        return 5;
+    } else {
+        s32 i = 0;
+        while (1) {
+            if (data_02148384[i].ch == -1) {
+                return 8;
+            }
+            if (c == data_02148384[i].ch) {
+                u = data_02148384[i].u;
+                v = data_02148384[i].v;
+                w = data_02148384[i].w;
+                break;
+            }
+            i++;
+        }
+    }
+
+    if (color == 0) {
+        *(volatile u32 *)0x04000480 = 0x7fff;
+    } else {
+        *(volatile u32 *)0x04000480 = 0x4b7f;
+    }
+    buf[0] = 1;
+    buf[1] = u;
+    buf[2] = v;
+    buf[3] = 13;
+    buf[4] = 13;
+    buf[5] = x;
+    buf[6] = y;
+    buf[7] = 0x66;
+    buf[8] = 13;
+    buf[9] = 13;
+    func_021098ac(buf);
+    return w;
+}
+
 void func_02076fdc(s32 arg0, s32 arg1) {
     u16 buf[10];
     *(volatile u32 *)0x04000480 = 0x4b7f;
