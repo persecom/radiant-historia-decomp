@@ -14,6 +14,22 @@ typedef struct {
     u32 field_40;
 } Unk_020b72e4;
 
+s32 func_020b72e4(s32 arg) {
+    u8 v;
+    u16 val;
+    func_0210968c(3, 0, 0);
+    if (func_020b77d4() != 0) return arg;
+    val = data_02151024;
+    ((Unk_020b72e4 *)data_021601ec)->field_3c = val;
+    for (;;) {
+        if (((Unk_020b72e4 *)data_021601ec)->field_40 == 7) break;
+        func_0210dc88();
+    }
+    v = ((Unk_020b72e4 *)data_021601ec)->field_3c;
+    func_020b8718(((Unk_020b72e4 *)data_021601ec)->field_40);
+    return v;
+}
+
 void func_020b7350(u16 arg0) {
     data_02151024 = arg0;
 }
