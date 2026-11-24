@@ -123,6 +123,44 @@ u16 func_02043964(u16 arg0) {
     return 0;
 }
 
+extern u8 *data_0216009c;
+void func_02043b28(void) {
+    u32 val = 9;
+    u8 *pos = *(u8 **)(*(u8 **)(data_021600a8 + 4) + 0x68);
+    u8 *node = *(u8 **)(data_021600bc + 0x94);
+
+    if (node != NULL) {
+        s32 x, z;
+        z = *(s32 *)(pos + 8);
+        x = *(s32 *)(pos + 0);
+        while (node != NULL) {
+            s32 hit;
+            if (x >= *(s32 *)(node + 0) && x <= *(s32 *)(node + 8) &&
+                z >= *(s32 *)(node + 4) && z <= *(s32 *)(node + 0xc)) {
+                hit = 1;
+            } else {
+                hit = 0;
+            }
+            if (hit != 0) {
+                val = *(u8 *)(node + 0x10);
+            }
+            node = *(u8 **)(node + 0x18);
+        }
+    }
+
+    if (val == 9) {
+        *(u16 *)(data_0216009c + 0x60) = 0;
+        return;
+    }
+    if (val == 1 || val == 3) {
+        *(u16 *)(data_0216009c + 0x60) = 5;
+        return;
+    }
+    if (val == 2 || val == 4) {
+        *(u16 *)(data_0216009c + 0x60) = 6;
+    }
+}
+
 void *func_02044180(u16 arg0) {
     u8 *node = *(u8 **)(data_021600bc + 0xb8);
     while (node != NULL) {
