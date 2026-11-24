@@ -18,6 +18,20 @@ extern u8 data_021735a4[976];
 extern u8 data_0217358c[12];
 extern volatile u32 data_02173974[2];
 extern s32 func_02129db4(void *, void *, u32);
+s32 func_02129a6c(s8 *buf,s32 len,s16 *out1,s16 *out2,s16 *out3) {
+int i; s16 a,b,c;
+if(*(s32 *)(data_0217358c+12)==0)func_02129a50();
+*out1=0;*out2=0;*out3=0;
+if(!buf && len<=0)return 0;
+a=0x4a1d;
+for(i=0;i<len;i++)a=data_02145088[(a*data_02145088[buf[i]+128])%1024];
+b=0x53ff;
+for(i=0;i<len;i++)b=data_02145088[(b*data_02145088[buf[i]+128])%1024];
+c=0x5dc1;
+for(i=0;i<len;i++)c=data_02145088[(c*data_02145088[buf[i]+128])%1024];
+*out1=a;*out2=b;*out3=c;return 0;
+}
+
 void func_02129bb8(s32 arg0) {
     *(s32 *)(data_0217358c + 8) = arg0;
 }
