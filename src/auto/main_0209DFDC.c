@@ -2,6 +2,8 @@
 #include "common.h"
 
 extern u8 *data_021600b0;
+typedef struct { s16 field[10]; } Unk_0209e688;
+extern const Unk_0209e688 data_02142bc8;
 
 typedef struct {
     u16 f0;
