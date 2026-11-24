@@ -43,6 +43,11 @@ u32 func_02111630(u32 *arg) {
     return arg[0x10];
 }
 
+void func_02111638(u8 *arg0) {
+    *(u32 *)(arg0 + 0x40) = 1;
+    arg0[0x44] = 4;
+}
+
 void func_02111708(void *arg0) {
     func_02111728(arg0);
     if (arg0 != NULL) {
