@@ -243,13 +243,13 @@ void func_02112f14(void) {
 }
 
 void *func_02112f88(u16 arg0) {
-    u8 *base = (u8 *)data_0216bf88;
     s32 i;
-    if (base == NULL) {
+    u8 *node;
+    if (data_0216bf88 == 0) {
         return NULL;
     }
     for (i = 0; i < 5; i++) {
-        u8 *node = *(u8 **)(base + i * 0xc);
+        node = *(u8 **)((u8 *)data_0216bf88 + i * 0xc);
         while (node != NULL) {
             if (*(u16 *)node == arg0) {
                 return node;
