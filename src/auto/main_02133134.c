@@ -264,3 +264,8 @@ void *func_02133df8(void) {
     return data_0215bbb8;
 }
 
+void func_02134064(u32 arg0, u32 arg1) {
+    data_02174f9c[0x1ca] = arg0;
+    data_02174f9c[0x1cb] = arg1;
+}
+
