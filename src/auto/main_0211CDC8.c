@@ -116,27 +116,23 @@ u32 func_0211cf3c(u8 *arg0) {
 }
 
 s32 func_02001fb0(s32,s32);
-#pragma schedule on
+#pragma schedule off
 void func_0211cf5c(void *arg0,void *arg1,void *arg2,void *arg3){
  u8 *base=arg0,*desc=arg1,*tex=arg2;
  u32 *info=arg3;
  u32 i=0;
+ u32 addr;
  u8 *indices=base+*(u16 *)desc;
  u32 key;
- u32 addr;
  if((info[0]&0x1c000000)!=0x14000000)key=*(u32 *)(tex+8);
  else key=*(u32 *)(tex+0x18);
  addr=(u16)key;
  addr &=~0xe0000000;
  for(;i<desc[2];i++){
- u8 *mat;
  u32 h;
+ u8 *mat;
  u32 idx=indices[i];
- if(base){
- u32 *entry=get_res_data_by_idx(base+4,idx);
- if(entry)mat=base+*entry;
- else mat=0;
- }else mat=0;
+ mat=get_material_0211cf5c(base,idx);
  *(u32 *)(mat+0x14)|=info[0]+addr;
  {u32 wh=info[1];u32 w=wh&0x7ff;h=(wh&0x3ff800)>>11;
  *(u32 *)(mat+0x24)=w==*(u16 *)(mat+0x20)?0x1000:func_02001fb0(w<<12,*(u16 *)(mat+0x20)<<12);
@@ -145,7 +141,6 @@ void func_0211cf5c(void *arg0,void *arg1,void *arg2,void *arg3){
  }
  desc[3]|=1;
 }
-
 void func_0211d08c(u8 *arg0, u8 *arg1) {
     u16 ofs = *(u16 *)arg1;
     u8 *base = arg0 + ofs;
@@ -340,6 +335,53 @@ void func_0211d5d0(u8 *arg0) {
         func_0211d238(mdl);
         func_0211d49c(mdl);
     }
+}
+
+extern u8 data_02170204[];
+extern void func_020010d8(void *);
+extern void func_02001834(void *);
+extern void func_02000cb4(void *);
+void func_0211d664(void) {
+    u8 *p = data_021701fc;
+    *(u32 *)(p + 0x00) = 0x17101610;
+    *(u32 *)(p + 0x04) = 0;
+    *(u32 *)(p + 0x48) = 2;
+    *(u32 *)(p + 0x7c) = 0x32323232;
+    *(u32 *)(p + 0x90) = 0x60293130;
+    *(u32 *)(p + 0xa4) = 0x33333333;
+    *(u32 *)(p + 0xb8) = 0x002a1b19;
+    func_020010d8(data_02170248);
+    func_02001834(data_02170204);
+    *(u32 *)(p + 0x80) = 0x2d8b62d8;
+    *(u32 *)(p + 0x84) = 0x40000200;
+    *(u32 *)(p + 0x88) = 0x800001ff;
+    *(u32 *)(p + 0x8c) = 0xc0080000;
+    *(u32 *)(p + 0x94) = 0x4210c210;
+    *(u32 *)(p + 0x98) = 0x4210c210;
+    *(u32 *)(p + 0x9c) = 0x001f008f;
+    *(u32 *)(p + 0xa0) = 0xbfff0000;
+    *(u32 *)(p + 0xa8) = 0x00007fff;
+    *(u32 *)(p + 0xac) = 0x4000001f;
+    *(u32 *)(p + 0xb0) = 0x800003e0;
+    *(u32 *)(p + 0xb4) = 0xc0007c00;
+    *(u32 *)(p + 0xe0) = 0;
+    *(u32 *)(p + 0xe4) = 0;
+    *(u32 *)(p + 0xe8) = 0;
+    func_02000cb4(data_021702b8);
+    *(u32 *)(p + 0xec) = 0x1000;
+    *(u32 *)(p + 0xf0) = 0x1000;
+    *(u32 *)(p + 0xf4) = 0x1000;
+    *(u32 *)(p + 0xf8) = 0;
+    *(u32 *)(p + 0xfc) = 0;
+    *(u32 *)(p + 0x248) = 0;
+    *(u32 *)(p + 0x244) = 0;
+    *(u32 *)(p + 0x240) = 0;
+    *(u32 *)(p + 0x254) = 0;
+    *(u32 *)(p + 0x24c) = 0;
+    *(u32 *)(p + 0x250) = 0x1000;
+    *(u32 *)(p + 0x25c) = 0;
+    *(u32 *)(p + 0x258) = 0;
+    *(u32 *)(p + 0x260) = -0x1000;
 }
 
 void func_0211d7a4(void) {
