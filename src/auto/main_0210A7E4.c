@@ -1,6 +1,14 @@
 /* 25 functions from 0x0210A7E4 to 0x0210B7A4 (main), found by ds-decomp. */
 #include "common.h"
 typedef struct { u32 flags; u8 pad4[0x30]; u32 field34, field38; } Header_0210b4cc;
+static inline void Set34_0210b4cc(Header_0210b4cc *p, u32 value) {
+p->field34=value;
+if(!p->field34 && !p->field38)p->flags &= ~1;
+}
+static inline void Set38_0210b4cc(Header_0210b4cc *p, u32 value) {
+p->field38=value;
+if(!p->field34 && !p->field38)p->flags &= ~1;
+}
 extern u8 data_02155c00[];
 extern void (*data_02156154)(u32);
 extern void func_02005e80(void *,void *,...);
@@ -512,13 +520,14 @@ func_0211e078(p);
 }
 
 void func_0210b4cc(u8 *p) {
-s32 i, count;
+s32 i;
+u8 count;
 s32 zero=0;
 if(*(void **)(p+0x118) && !func_02109f84(*(void **)(p+0x118)))func_02120a68(*(void **)(p+0x118));
-*(u32 *)(p+0x34)=0;
-if(!*(u32 *)(p+0x38))*(u32 *)p &= ~1;
-*(u32 *)(p+0x38)=0;
-if(!*(u32 *)(p+0x34))*(u32 *)p &= ~1;
+*(void **)(p+0x34)=0;
+if(!*(void **)(p+0x38))*(u32 *)p &= ~1;
+*(void **)(p+0x38)=0;
+if(!*(void **)(p+0x34))*(u32 *)p &= ~1;
 if(*(void **)(p+0xfc)){func_0211cd24(p,*(void **)(p+0xfc));func_0211cd78(p);}
 if(*(void **)(p+0x100)){func_0211cd24(p,*(void **)(p+0x100));func_0211cd78(p);}
 count=p[0x13c];
