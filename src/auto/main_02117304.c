@@ -270,19 +270,15 @@ void func_0211794c(void *arg0) {
 }
 
 void func_02117994(void) {
-    Vec3_02117994 vec0;
-    Vec3_02117994 vec2;
-    Vec3_02117994 vec1;
-
     *(volatile u32 *)0x04000580 = 0xbfff0000;
     func_0200293c(0, 0xc0000, 0, 0x100000, -0x400000, 0x400000, 0x400000, 1, 0);
     *(volatile u32 *)0x0400044c = 0;
-    vec0.x = 0;
-    vec0.y = 0;
-    vec0.z = 0;
-    vec2 = data_02144d54;
-    vec1 = data_02144d60;
-    func_020029a0(&vec0, &vec2, &vec1, 1, 0);
+    {
+        Vec3_02117994 vec0 = {0, 0, 0};
+        Vec3_02117994 vec2 = data_02144d54;
+        Vec3_02117994 vec1 = data_02144d60;
+        func_020029a0(&vec0, &vec2, &vec1, 1, 0);
+    }
     *(volatile u32 *)0x04000440 = 1;
 }
 
