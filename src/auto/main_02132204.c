@@ -335,8 +335,7 @@ s32 func_02132ba4(u8 *arg0, s32 *arg1) {
 }
 
 void func_02132be0(void) {
-    u32 *dst = &data_0215b618;
-    *dst = (u32)data_021459d8;
+    data_0215b618 = (u32)data_021459d8;
 }
 
 extern void func_02016dc0(s32, s32);
@@ -369,9 +368,8 @@ void func_02132c68(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 }
 
 void func_02132c7c(void) {
-    u32 cb = data_021749d0[1];
-    if (cb != 0) {
-        ((void (*)(u32))cb)(data_021749d0[2]);
+    if (data_021749d0[1] != 0) {
+        ((void (*)(u32))data_021749d0[1])(data_021749d0[2]);
     }
 }
 
@@ -482,21 +480,23 @@ void *func_02132f14(void) {
 s32 func_02132f20(s8 *arg0, s32 arg1, s32 arg2) {
     void *p;
     if (*arg0 == 0) {
-        func_0213320c();
+        ((void (*)(char *))func_0213320c)((char *)arg0);
         if (*arg0 == 0) {
             return 0;
         }
     }
     func_021335d4(arg0, arg1);
     p = func_02132dbc((const char *)arg0);
+    if (p != NULL) {
+        goto done;
+    }
+    ((void (*)(char *))func_0213320c)((char *)arg0);
+    p = func_02132dbc((const char *)arg0);
     if (p == NULL) {
-        func_0213320c();
-        p = func_02132dbc((const char *)arg0);
-        if (p == NULL) {
-            return 0;
-        }
+        return 0;
     }
     func_02132bf8(arg1, 0x129, arg2);
+done:
     return (s32)p;
 }
 
