@@ -391,7 +391,10 @@ BOOL func_0212f470(u8 *arg0) {
     void *obj = *(void **)(arg0 + 4);
     Unk_0212f038 *vtbl = *(Unk_0212f038 **)obj;
     BOOL one = TRUE;
-    return (vtbl->method(obj, one) == 0 && *(u32 *)(arg0 + 0xc) == 0 && *(u32 *)(arg0 + 0x24) == 0) ? TRUE : FALSE;
+    if (vtbl->method(obj, one) == 0 && *(u32 *)(arg0 + 0xc) == 0 && *(u32 *)(arg0 + 0x24) == 0) {
+        return one;
+    }
+    return 0;
 }
 
 s32 func_0212f4b0(void *arg0) {
