@@ -31,6 +31,12 @@ void func_02011230(s32 arg0, u32 *arg1) {
     func_0200813c(arg1[1]);
 }
 
+void func_02011254(s32 arg0) {
+    while (func_0200a6e4(0xd, arg0, 0) != 0) {
+        WaitByLoop(1);
+    }
+}
+
 void func_02011660(void) {
     data_0215fa34[1] = 0;
 }
