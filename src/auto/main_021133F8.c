@@ -98,6 +98,30 @@ extern void func_02116894(void *, void *, void *);
 
 extern void func_02114c80(void);
 extern void func_02112f88(void);
+void func_021133f8(void) {
+ void *file=func_021092d8(data_02155d98);
+ if(file!=NULL) {
+ do {
+ u8 *entry=func_0210c594(0x2c,data_02155c3c);
+ *(u16 *)entry=func_020f685c(file,0);
+ *(s32 *)(entry+4)=func_020f685c(file,0);
+ *(u16 *)(entry+8)|=(u16)(func_020f685c(file,0)!=0?1:0);
+ *(s32 *)(entry+12)=func_020f685c(file,0);
+ func_021093f0(file); func_021093f0(file);
+*(u16 *)(entry+18)=func_020f685c(file,0);
+*(u16 *)(entry+20)=func_020f685c(file,0);
+*(u16 *)(entry+22)=func_020f685c(file,0);
+*(u16 *)(entry+24)=func_020f685c(file,0);
+*(u16 *)(entry+26)=func_020f685c(file,0);
+*(u16 *)(entry+28)=func_020f685c(file,0);
+*(u16 *)(entry+30)=func_020f685c(file,0);
+*(u16 *)(entry+32)=func_020f685c(file,0);
+func_021167f0(data_0216bf88+36,entry);
+ }while(func_02109444(file)!=0);
+ }
+ if(file!=NULL) func_021093b0(file);
+}
+
 void func_0211355c(void) {
     void *file = func_021092d8(data_02155dac);
     if (file != NULL) {
