@@ -70,3 +70,25 @@ void func_02003f88(void *arg0, u32 arg1, u32 arg2) {
     }
 }
 
+void func_02003ff8(void) {
+    s32 val = func_020053d0();
+    data_0215cd24[5] = val;
+    switch (val) {
+    case 0x10:
+        data_0215cd24[4] = 0x06880000;
+        data_0215cd24[3] = 0;
+        break;
+    case 0x20:
+    case 0x60:
+        data_0215cd24[4] = 0x06890000;
+        data_0215cd24[3] = 0;
+        break;
+    case 0x40:
+        data_0215cd24[4] = 0x06894000;
+        data_0215cd24[3] = 0x4000;
+        break;
+    case 0:
+        break;
+    }
+}
+
