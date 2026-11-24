@@ -342,6 +342,33 @@ void func_02117a58(Struct60_02117a58 *arg0) {
     data_0216e234 = *arg0;
 }
 
+void func_02117a8c(u32 *p) {
+u32 mode=p[6];
+u32 *data;
+u32 end,cur,start;
+if(mode==0) mode=((u32 *)p[7])[2];
+switch(mode) {
+case 3: case 4:
+p[2]^=1;
+data=(u32 *)p[7];
+if(p[0] > data[3]+((u16 *)data)[1]*8-8) break;
+if(p[8]==1) ((void (*)(u32,u32))p[10])(p[9],p[4]);
+mode=p[6];if(mode==0)mode=((u32 *)p[7])[2];
+if(mode!=2 && mode!=4) p[3]=0;
+else func_02117df4(p);
+break;
+default:
+if(p[8]==1) ((void (*)(u32,u32))p[10])(p[9],p[4]);
+mode=p[6];if(mode==0)mode=((u32 *)p[7])[2];
+if(mode!=2 && mode!=4) p[3]=0;
+else func_02117df4(p);
+break;
+}
+data=(u32 *)p[7];cur=p[0];start=data[3];end=start+((u16 *)data)[0]*8-8;
+if(cur>end) {p[0]=end;return;}
+if(cur<start)p[0]=start;
+}
+
 BOOL func_02117b9c(arg0, arg1)
 void *arg0;
 u32 arg1;
