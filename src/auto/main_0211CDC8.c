@@ -50,9 +50,10 @@ u32 func_0211ced0(u8 *arg0) {
 }
 
 void *func_0211d878(void) {
-    if ((*(u32 *)(data_021701fc + 0xfc) & 0x80) == 0) {
+    u8 *p = data_021701fc;
+    if ((*(u32 *)(p + 0xfc) & 0x80) == 0) {
         func_0211d814();
-        *(u32 *)(data_021701fc + 0xfc) |= 0x80;
+        *(u32 *)(p + 0xfc) |= 0x80;
     }
     return data_0217032c;
 }
