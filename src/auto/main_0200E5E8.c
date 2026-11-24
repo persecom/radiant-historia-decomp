@@ -14,6 +14,7 @@ extern void func_0200ef78(void *, u32, u32, u32);
 extern s32 func_0200e780(u32, u32, void *, void *);
 extern void func_0200f114(void);
 extern u32 data_02145c18;
+extern s32 func_0200ef5c(void);
 s32 func_0200e5e8(u32 arg0, u32 arg1) {
     u32 buf[2];
     buf[0] = 0x03006000;
@@ -122,7 +123,7 @@ s32 func_0200e830(u32 arg0, u32 arg1) {
 }
 
 s32 func_0200e85c(void) {
-    volatile s32 result;
+    u32 result;
     s32 ret = func_0200e830((u32)func_0200e314, (u32)&result);
     if (ret != 0) {
         return ret;
@@ -130,7 +131,7 @@ s32 func_0200e85c(void) {
     data_02145c18 = 0xc;
     func_0200e290();
     data_02145c18 = 2;
-    return result;
+    return (s32)result;
 }
 
 extern s32 func_0200e85c(void);
