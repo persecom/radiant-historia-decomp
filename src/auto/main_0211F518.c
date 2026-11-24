@@ -103,11 +103,12 @@ skip=*(u32 *)(p+8)&0x40;
 }else skip=0;
 if(skip==0){
 s32 scale[3];
-u16 height=*(u16 *)(*(u8 **)(p+0xb0)+0x2e);
-u16 width=*(u16 *)(*(u8 **)(p+0xb0)+0x2c);
+s32 width,height;
+height=*(u16 *)(*(u8 **)(p+0xb0)+0x2e);
+width=*(u16 *)(*(u8 **)(p+0xb0)+0x2c);
 scale[0]=width<<15;scale[1]=-height<<15;scale[2]=0x10000;
 func_021205ec(0x1b,scale,3);
-texcoord_0211fda4((s16)(width<<3),(s16)(height<<3));
+{u32 packed=texcoord_0211fda4((s16)(width<<3),(s16)(height<<3));func_021205ec(0x22,&packed,1);}
 }
 if(mode==2){
 *(u32 *)(p+8)&=~0x40;
