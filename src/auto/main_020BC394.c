@@ -59,6 +59,33 @@ void func_020bca10(u8 *arg0, void *arg1) {
     }
 }
 
+extern u8 data_02151090[];
+extern u8 data_021510a4[];
+extern u8 data_021510bc[];
+extern u8 data_021510d4[];
+extern u8 data_021510e8[];
+extern void func_020bcbf8(void *, s32, s32);
+void func_020bcf78(u8 arg0) {
+    u8 *p = *(u8 **)&data_021601f8;
+    u8 prev = *p;
+    *p |= arg0;
+    if ((arg0 & ~prev) & 1) {
+        func_020bcbf8(data_02151090, 1, 0x33);
+    }
+    if ((arg0 & 4) && !(prev & 4)) {
+        func_020bcbf8(data_021510a4, 0xc9, 0x10f);
+    }
+    if ((arg0 & 8) && !(prev & 8)) {
+        func_020bcbf8(data_021510bc, 0x12d, 0x1a9);
+    }
+    if ((arg0 & 0x10) && !(prev & 0x10)) {
+        func_020bcbf8(data_021510d4, 0x208, 0x26c);
+    }
+    if ((arg0 & 0x20) && !(prev & 0x20)) {
+        func_020bcbf8(data_021510e8, 0x2bd, 0x31e);
+    }
+}
+
 s32 func_020bd250(void) {
     u8 *p = (u8 *)&data_021601f8;
     volatile u32 buf;
