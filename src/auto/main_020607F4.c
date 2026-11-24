@@ -12,8 +12,9 @@ extern void func_020223f8(void *, s32);
 extern void func_0205aa34(void *, s32);
 
 void func_02060ec8(u8 *p) {
-    func_020d56d8(p, 0, 0, 1);
-    func_020d56d8(p, 0, 0, 2);
+    s32 zero = 0;
+    func_020d56d8(p, zero, zero, 1);
+    func_020d56d8(p, zero, zero, 2);
     func_020d5fd0(p);
     func_020d4eb8(p);
 }
