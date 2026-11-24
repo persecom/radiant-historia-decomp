@@ -229,3 +229,49 @@ void func_020322ec(s16 arg0) {
     } while (arg0 <= 10);
 }
 
+void func_020c2694(void);
+s16 func_020c2c7c(void);
+void func_020c31f0(void);
+void func_020c3244(s32);
+void func_02032354(s32 reset) {
+u8 *next;
+u8 kind;
+u8 *p=data_02160090;
+u8 *node;
+s32 zero=0;
+if(reset) {p[0x7d]=0;*(u16 *)(p+0x78)=0;
+func_020c2694();}
+if(((u8 *)data_02160090)[0x7e]==1) {
+
+((u8 *)data_02160090)[0x7e]=0;
+((u8 *)data_02160090)[0x80]=1;
+func_020c2694();
+node=*(u8 **)((u8 *)data_02160090+0x48);
+kind=node[0];
+while(node) {
+next=*(u8 **)(node+0x24);
+if(kind!=node[0] && !(*(u16 *)(node+0x18)&1)) {
+u8 *other=*(u8 **)((u8 *)data_02160090+8);
+while(other) {
+if(*(u8 **)(other+0x48)==node) *(u8 **)(other+0x48)=0;
+other=*(u8 **)(other+0x1c);
+}
+func_021168f8((u8 *)data_02160090+0x48,node);
+if(node)func_0210c5dc(node);
+}
+node=next;
+}
+*(u16 *)(p+0x78)=kind;
+if(*(u16 *)(p+0x78)==199) *(u16 *)(p+0x78)=0;
+else ++*(u16 *)(p+0x78);
+}
+func_020322ec(func_020c2c7c());
+func_020c31f0();
+s32 flag=0;
+if(**(u8 **)((u8 *)data_02160090+0x54)>1) {
+flag=1;--*(u16 *)(p+0x78);
+}
+func_020c3244(flag);
+((u8 *)data_02160090)[0x80]=zero;
+}
+
