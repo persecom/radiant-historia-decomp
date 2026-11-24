@@ -3,7 +3,17 @@
 
 extern u16 data_0215d1a0;
 extern s32 func_02006afc(u16 *);
-extern u8 data_0215d17c[];
+typedef struct {
+    u32 field_0;
+    u32 field_4;
+    u32 field_8;
+    u32 field_c;
+    u32 field_10;
+    u32 field_14;
+    u32 field_18;
+    u32 field_1c;
+} Data_215d17c;
+extern Data_215d17c data_0215d17c;
 extern void func_020058fc(void *, u32, u32);
 extern void func_01ff845c(void *, u32, u32, u32);
 extern void func_02005a14(u32);
