@@ -340,9 +340,9 @@ void func_02113c0c(u32 *arg0) {
     *arg0 = 0;
 }
 
-void func_02113c18(void ***arg0) {
-    if (*arg0 != NULL) {
-        **arg0 = NULL;
+void func_02113c18(void **arg0) {
+    if (*(void *volatile *)arg0 != NULL) {
+        **(void ***)arg0 = NULL;
         *arg0 = NULL;
     }
 }
