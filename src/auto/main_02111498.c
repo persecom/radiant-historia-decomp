@@ -236,6 +236,14 @@ u16 func_02111d10(u8 *arg0) {
     return count;
 }
 
+void *func_02111d3c(u8 *arg0) {
+    u16 count = func_02111d10(arg0);
+    u16 *node = func_0210c594(0x14, data_02155c3c);
+    *node = count;
+    func_021167f0(arg0 + 0x38, node);
+    return node;
+}
+
 s32 func_02111da8(u8 *arg0) {
     return *(s32 *)(arg0 + 0x38);
 }
