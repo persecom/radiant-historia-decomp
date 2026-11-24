@@ -84,6 +84,12 @@ u16 func_020c9924(u8 *arg0) {
     return *(u16 *)(arg0 + 8);
 }
 
+s32 func_020c992c(u8 *arg0) {
+    *(u32 *)arg0 = 0;
+    *(u16 *)(arg0 + 4) = 0;
+    return 0;
+}
+
 void func_020c9940(void) {
     func_020c9980();
 }
