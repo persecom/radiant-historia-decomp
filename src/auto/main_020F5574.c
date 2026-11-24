@@ -20,6 +20,7 @@ extern void func_02046760(void *);
 extern void func_0210da14(void *);
 extern void func_020a9544(void *);
 extern void func_0210c970(void *);
+extern void func_020a9830(void *, void *, s32, s32, s32, s32);
 
 typedef struct {
     void *f0;
