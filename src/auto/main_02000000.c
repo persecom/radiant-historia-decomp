@@ -12,3 +12,6 @@ void func_0200093c(u32 data, void *dest, u32 size) {
 void AutoloadCallback(void) {
 }
 
+void func_02000b60(void) {
+}
+
