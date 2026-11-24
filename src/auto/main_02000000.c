@@ -31,9 +31,9 @@ void func_02000b64(void) {
 void main(void) {
     if (data_02160204 == 0) {
         func_02110000();
-        func_021100d8();
-        func_02008414();
     }
+    func_021100d8();
+    func_02008414();
 }
 
 void func_02000bec(FourWords *p) {
