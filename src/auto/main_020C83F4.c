@@ -120,6 +120,18 @@ void func_020c8640(u8 *arg0) {
     func_020a8810(*(void **)(arg0 + 0x30));
 }
 
+extern void func_020c6dbc(void *);
+void func_020c8794(u8 *arg0);
+s32 func_020c874c(u8 *arg0) {
+    func_020c6dbc(arg0);
+    *(void **)(arg0 + 0x48) = (void *)func_020c8794;
+    *(u16 *)(arg0 + 0x36) = 0x10;
+    *(u16 *)(arg0 + 0x38) = 0x10;
+    *(u16 *)(arg0 + 0x3e) = 0x10;
+    *(u16 *)(arg0 + 0x40) = 0x10;
+    return 0;
+}
+
 void func_020c8780(void *arg0) {
     if (arg0 != NULL) {
         func_0210c5dc(arg0);
