@@ -93,6 +93,10 @@ void func_021128d4(void *arg0) {
     }
 }
 
+s32 func_021128f4(void) {
+    return 0x11;
+}
+
 extern void func_020c8818(void *);
 void func_02112ac0(void *arg0) {
     func_020c8818(arg0);
