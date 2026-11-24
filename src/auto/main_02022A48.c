@@ -69,3 +69,14 @@ u8 *func_02023108(u8 **arg0) {
     return NULL;
 }
 
+void func_02023148(u8 **arg0, u32 arg1, u32 arg2, u32 arg3) {
+    u8 *node;
+    if (arg0 != NULL) {
+        node = *arg0;
+        while (node != NULL) {
+            func_0202318c(arg3, node, arg1, arg2);
+            node = *(u8 **)(node + 0x1c);
+        }
+    }
+}
+
