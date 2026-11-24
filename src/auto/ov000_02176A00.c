@@ -6,6 +6,10 @@ extern u8 func_ov000_02177438[];
 extern u8 func_ov000_02177fc8[];
 extern u8 func_ov000_02177474[];
 extern u8 func_ov000_0217801c[];
+extern u8 func_ov000_02178058[];
+extern void func_020082b8(void *buf);
+extern void func_020082d4(void *buf);
+extern u8 data_ov000_021785b0[];
 u32 func_ov000_02176a00(u32 (*arg0)(void *), void *arg1) {
     u32 funcs[32];
     u32 *p;
@@ -121,3 +125,51 @@ u32 func_ov000_02176c80(u32 (*arg0)(void *), void *arg1) {
 
 void func_ov000_02176da0(void) {
 }
+
+extern u8 func_ov000_02178058[];
+extern void func_020082b8(void *buf);
+extern void func_020082d4(void *buf);
+extern u8 data_ov000_021785b0[];
+u32 func_ov000_02177864(void) {
+    u8 buf[0x5c];
+    u32 result;
+    int matched;
+    int i;
+    u8 *b;
+    const u8 *d;
+
+    func_020082b8(buf);
+    b = buf;
+    d = data_ov000_021785b0;
+    matched = 0;
+    do {
+        if (*b != (u8)~*d) {
+            break;
+        }
+        matched++;
+        b++;
+        d++;
+    } while (matched < 6);
+
+    func_020082d4(&buf[6]);
+
+    if (matched == 6 && buf[8] == 1 && buf[9] == 1 && *(u16 *)&buf[0x20] == 0) {
+        result = 0xfb;
+    } else {
+        b = buf;
+        i = 0;
+        do {
+            if (*b != 0) {
+                result = 0xf1;
+                break;
+            }
+            i++;
+            b++;
+        } while (i < 6);
+        if (i == 6) {
+            result = 0xfb;
+        }
+    }
+    return 0xc5 * result;
+}
+
