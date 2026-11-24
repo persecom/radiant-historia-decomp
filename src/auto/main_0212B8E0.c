@@ -61,6 +61,19 @@ void func_0212bda8(void *arg0) {
     func_021380bc(data_021739ac);
 }
 
+void func_0212be08(void *arg0, void *arg1) {
+    if (arg0 == NULL || arg1 == NULL) {
+        func_021380bc(data_02156b68);
+        return;
+    }
+    func_02132c08(data_021739ac, 0x100, arg0, 0xff);
+    func_02132c2c(data_021739ac, 0x100, arg1, 0xff);
+    if (data_02173984[0] != 0) {
+        ((void (*)(u32, void *))data_02173984[0])(data_02173984[1], data_021739ac);
+    }
+    func_021380bc(data_021739ac);
+}
+
 void func_0212bfa4(void) {
     func_0212a9f4();
     func_0212bfb8();
