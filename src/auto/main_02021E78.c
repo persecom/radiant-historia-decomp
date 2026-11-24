@@ -102,6 +102,14 @@ void *func_02022494(u8 *arg0, u16 arg1) {
     return NULL;
 }
 
+extern void func_021167ac(void *, u32);
+void *func_020224cc(void) {
+    u16 *node = func_0210c594(0x10, data_02155c3c);
+    func_021167ac((u8 *)node + 4, 0x10);
+    *node = 0;
+    return node;
+}
+
 void func_02022508(u8 *arg0) {
     u8 *node = *(u8 **)(arg0 + 4);
     while (node != NULL) {
