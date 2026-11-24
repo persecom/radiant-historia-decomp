@@ -18,6 +18,44 @@ void func_020d9e7c(void) {
     *(u32 *)(p + 0x88) &= ~8;
 }
 
+BOOL func_020da008(s32 arg0) {
+    s32 val = data_02151fcc;
+    if (val - arg0 < 0) {
+        val += 0x20000;
+        data_02151fcc = val;
+        if (val > (arg0 << 12)) {
+            val = arg0 << 12;
+            data_02151fcc = val;
+        }
+    } else {
+        val -= 0x20000;
+        data_02151fcc = val;
+        if (val < (arg0 << 12)) {
+            val = arg0 << 12;
+            data_02151fcc = val;
+        }
+    }
+    return val == (arg0 << 12);
+}
+
+BOOL func_020da060(s32 arg0) {
+    s32 *p = (s32 *)data_02160258;
+    s32 dx = p[0] - p[3];
+    s32 dy;
+    s32 dz;
+    if (dx < 0) dx = -dx;
+    dy = p[1] - p[4];
+    if (dy < 0) dy = -dy;
+    dz = p[2] - p[5];
+    if (dx < 0x5000 && dy <= (arg0 << 12)) {
+        if (dz < 0) dz = -dz;
+        if (dz < 0x5000) {
+            return TRUE;
+        }
+    }
+    return FALSE;
+}
+
 void func_020da0c8(s32 arg0) {
     data_02151fcc = arg0 << 12;
 }
