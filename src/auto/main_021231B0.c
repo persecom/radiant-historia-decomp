@@ -2,6 +2,7 @@
 #include "common.h"
 
 extern void func_021205ec(s32, void *, s32);
+extern void (*data_021560f0[8])(s32 *, u8 *);
 void func_021231b0(u32 *arg0, u8 *arg1, u32 arg2) {
     u8 *ptr = *(u8 **)(arg1 + 8);
     s32 frame = *(s32 *)(arg1 + 0);
