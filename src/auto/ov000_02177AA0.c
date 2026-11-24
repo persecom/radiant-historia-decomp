@@ -18,8 +18,38 @@ u32 func_ov000_02178010(void) {
     return 0xa99f;
 }
 
+void func_ov000_021780e0(Rc4State *state, u8 *key, u32 keylen) {
+    u32 i;
+    u32 j = 0;
+    u32 k = 0;
+    u32 v = 0x03020100;
+    state->field_0 = 0xaa;
+    state->field_4 = 0;
+    state->field_8 = 0;
+    for (i = 0; i < 0x100; i += 4) {
+        *(u32 *)&state->s[i] = v;
+        v += 0x04040404;
+    }
+    for (i = 0xff; i != 0xffffffff; i--) {
+        u8 tmp = state->s[i];
+        j = (j + tmp + key[k]) & 0xff;
+        k++;
+        if (k >= keylen) k = 0;
+        state->s[i] = state->s[j];
+        state->s[j] = tmp;
+    }
+}
+
 s32 func_ov000_0217849c(u8 *arg0, u8 *arg1, u32 arg2, u32 arg3) {
     Rc4State state;
     func_ov000_021780e0(&state, arg0, 0x10);
     return (func_ov000_021781fc(&state, arg1, arg2, arg3) == -1) ? -1 : 0;
 }
+
+extern s32 func_ov000_02178314(void *, void *, u32, u32);
+s32 func_ov000_021784f4(u8 *arg0, u8 *arg1, u32 arg2, u32 arg3) {
+    Rc4State state;
+    func_ov000_021780e0(&state, arg0, 0x10);
+    return (func_ov000_02178314(&state, arg1, arg2, arg3) == -1) ? -1 : 0;
+}
+
