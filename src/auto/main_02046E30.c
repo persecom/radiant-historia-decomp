@@ -46,6 +46,17 @@ void func_020471b8(Obj_02046e30 *obj, u32 arg1) {
     }
 }
 
+void func_02047778(Obj_02046e30 *obj) {
+    while (obj->unk_b8 != NULL) {
+        void *node = obj->unk_b8;
+        func_021168f8(&obj->unk_b8, node);
+        if (node != NULL) {
+            func_0210c5dc(node);
+        }
+    }
+    obj->unk_b4 = 0;
+}
+
 void func_020477c0(Obj_02046e30 *obj, void *arg1) {
     obj->unk_b4++;
     func_021167f0(&obj->unk_b8, arg1);
