@@ -197,12 +197,21 @@ void func_020095a8(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     func_020097f0(0xd, arg0, arg1, arg2, arg3);
 }
 
+void func_0200960c(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u32 arg6, u32 arg7) {
+    u32 ret = func_02009fcc(arg0, arg3, arg7);
+    func_020097f0(0x12, arg0, arg1, arg2, ret);
+}
+
 void func_0200964c(u32 arg0, u32 arg1) {
     func_020097f0(0x1a, arg0, arg1, 0, 0);
 }
 
 void func_0200966c(u32 arg0, u32 arg1) {
     func_020097f0(0x1b, arg0, arg1, 0, 0);
+}
+
+void func_0200968c(u32 arg0, u32 arg1, u32 arg2) {
+    func_020097f0(0x14, arg0, arg1, arg2, 0);
 }
 
 s32 func_0200986c(void) {
