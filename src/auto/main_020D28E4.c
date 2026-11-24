@@ -39,3 +39,34 @@ extern const s16 data_0213a394[];
 extern void func_021099f8(void *);
 extern s16 func_020ddcb0(void *, void *);
 extern void func_020ddd8c(void *);
+
+void func_020d2a44(u8 arg0, s8 arg1, s16 arg2) {
+    Unk14 buf = data_02144910;
+    if (arg1 == 0) {
+        buf.unk[6] = 0x7fff;
+    } else if (arg1 == 1) {
+        buf.unk[6] = 0;
+    }
+    *(volatile u32 *)0x040004A4 = (arg0 << 16) | 0xc0;
+    buf.unk[3] = arg2;
+    func_021099f8(&buf);
+}
+
+void func_020d2ac4(Unk3 *arg) {
+    if (arg == NULL) return;
+    if (arg->unk1 < 1 || arg->unk1 > 0x1f) return;
+    func_020d2a44(arg->unk0, arg->unk1, arg->unk2);
+}
+
+void func_020d2b78(UnkA *a, UnkB *b, s32 c, s32 d) {
+    s32 idx = c >> 4;
+    a->unk18 = a->unk0;
+    a->unk1c = a->unk4;
+    a->unk20 = a->unk8;
+    a->unk24 = b->unk1a8 + d * data_0213a394[idx * 2 + 1];
+    a->unk28 = b->unk1ac;
+    a->unk2c = b->unk1b0 + d * data_0213a394[idx * 2];
+    a->unk92 = func_020ddcb0(a, &a->unk24);
+    func_020ddd8c(a);
+}
+
