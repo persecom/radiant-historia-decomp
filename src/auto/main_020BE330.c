@@ -2,6 +2,9 @@
 #include "common.h"
 
 typedef struct { s32 x, y, z; } VecBf118;
+static inline void SetVecBf118(VecBf118 *p, s32 x, s32 y, s32 z) {
+p->x=x; p->y=y; p->z=z;
+}
 
 extern u8 *func_020becfc(void);
 extern u8 *data_0216020c;
@@ -190,6 +193,35 @@ sn=data_0213a394[idx];
 func_020f4668(data_0216020c+0xc);
 }
 
+s32 func_020dddf0(void *, void *);
+s32 func_020ddc8c(void *, void *);
+void func_020020f8(void *, void *, void *);
+void func_020f46a0(s32);
+void func_020be9b8(s32 unused) {
+VecBf118 a,b;
+s32 dist,angle,idx;
+s16 sn,cs;
+u8 *p=data_0216020c;
+if(!p) return;
+a.x=*(s32 *)(p+0xa0);a.y=*(s32 *)(p+0xa4);a.z=*(s32 *)(p+0xa8);
+b.x=data_02155984[8]; b.y=a.y-0x4000; b.z=data_02155984[10];
+dist=func_020dddf0(&b,&a);
+angle=func_020ddc8c(&a,&b);
+if(dist>0xa000) {
+idx=(angle%65536)>>4;
+sn=data_0213a394[idx*2];cs=data_0213a394[idx*2+1];
+b.x=b.x-((b.x-a.x)-sn*10);
+b.z=b.z-((b.z-a.z)-cs*10);
+}
+func_020020f8(&b,data_0216020c,&b);
+if(data_0216020c[0xd8]==0) {
+if(*(s32 *)(data_0216020c+0xd4)==0) *(s32 *)(data_0216020c+0xd4)=data_02151fc8;
+data_02151fc8=*(s32 *)(data_0216020c+0xd4);
+func_020f46a0(0);
+}
+func_020f4668(&b);
+}
+
 void func_020beb14(void) {
     data_02155984 = data_0216242c;
     data_0216242c[9] += *(s32 *)(data_0216020c + 0x98);
@@ -318,9 +350,8 @@ out[2] = func_0201ff0c(func_020203d4(func_020201f4(func_02020604(0x3f800000,t),f
 }
 
 s32 func_020bf118(void *out, VecBf118 *input, s32 count, f32 t) {
-s32 j,i;
-u32 k;
 s32 factorial;
+s32 i,j;
 s32 n=0, consumed=0;
 VecBf118 *work;
 s32 base=0;
@@ -328,7 +359,7 @@ factorial=1;
 if(t>1.0f) return 0;
 for(i=count-1;i>0;i--) factorial *= i;
 work=(VecBf118 *)func_0210c594((factorial+count)*0x90,data_02155c3c);
-for(k=0;(s32)k<count;k++) {work[k]=input[k];n++;}
+for(i=0;i<count;i++) {work[i]=input[i];n++;}
 for(i=count-1;i>0;i--) {
 for(j=0;j<i;j++) {((void (*)(void *,void *,void *,f32))func_020bf00c)(&work[n],&work[base+j],&work[base+j+1],t);n++;consumed++;}
 consumed++;base=consumed;
