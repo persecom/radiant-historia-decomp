@@ -146,3 +146,7 @@ void func_0200422c(void) {
     data_0215cd24[0] = func_0200547c();
 }
 
+void func_020042e4(void) {
+    data_0215cd24[6] = func_020054a4();
+}
+
