@@ -148,6 +148,10 @@ u32 func_02138ae8(u8 *arg0) {
     return *(u32 *)(arg0 + 0x58);
 }
 
+s8 func_02138d60(u8 *arg0) {
+    return *(s8 *)(arg0 + 0x94);
+}
+
 void func_02138de0(u8 *arg0, u32 arg1) {
     *(u32 *)(arg0 + 0xb4) = arg1;
 }
