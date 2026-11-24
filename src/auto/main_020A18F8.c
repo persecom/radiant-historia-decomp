@@ -18,6 +18,19 @@ void func_020a2534(void) {
     }
 }
 
+void func_020a2574(void) {
+    u8 *r4 = data_021600b0;
+    if (*(u16 *)(r4 + 0xe0) & 1) {
+        func_0209f010(0xa);
+    }
+    if (*(u16 *)(r4 + 0xe0) & 2) {
+        func_0209edc8(0, 0);
+    }
+    if (*(u16 *)(r4 + 0xe0) & 4) {
+        func_0209f010(0x74);
+    }
+}
+
 u8 func_020a2814(void) {
     return data_02160124;
 }
