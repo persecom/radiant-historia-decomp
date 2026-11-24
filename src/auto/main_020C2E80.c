@@ -95,17 +95,13 @@ void func_020c319c(u8 *arg0, u8 *arg1) {
 void func_020c31f0(void) {
     u8 *node;
     u8 zero = 0;
-    for (;;) {
+    do {
         node = func_020c2dd8(zero);
         if (node != NULL) {
             func_021168f8((void **)(data_02160090 + 0x48), node);
             func_021167f0((void **)(data_02160090 + 0x54), node);
-            if (*(u16 *)(data_02160090 + 0x50) != 0) {
-                continue;
-            }
         }
-        break;
-    }
+    } while (*(u16 *)(data_02160090 + 0x50) != 0);
 }
 
 void func_020c3244(u8 arg0) {
