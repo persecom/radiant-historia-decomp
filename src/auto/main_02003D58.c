@@ -104,3 +104,7 @@ void func_02004084(void *arg0, u32 arg1, u32 arg2) {
     }
 }
 
+void func_0200422c(void) {
+    data_0215cd24[0] = func_0200547c();
+}
+
