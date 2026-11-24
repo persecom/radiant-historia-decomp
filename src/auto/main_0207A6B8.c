@@ -22,6 +22,71 @@ extern s32 func_02079720(s32);
 extern void func_020ea5d4(void *, s32);
 extern u16 data_021626a8;
 extern s32 func_02052520(void);
+extern void *func_0210c594(s32, void *);
+extern s32 func_020ef4c8(void *);
+extern u8 *func_02046f90(s32, u16);
+extern void func_020ed2d0(void *, s32);
+u8 *func_0207a6b8(u8 *arg0) {
+    u8 *r5;
+    u8 *r4;
+    u8 *r1;
+
+    r1 = *(u8 **)((u8 *)data_021600ac + 0x384);
+    while (r1 != NULL) {
+        if (*(u16 *)(r1 + 4) == *(u16 *)(arg0 + 0x10)) {
+            return NULL;
+        }
+        r1 = *(u8 **)(r1 + 0x38);
+    }
+
+    r5 = (u8 *)func_0210c594(0x3c, data_02155c3c);
+    *(u16 *)(r5 + 4) = *(u16 *)(arg0 + 0x10);
+    *(u8 *)(r5 + 6) = *(u8 *)(arg0 + 0x12);
+    *(u16 *)(r5 + 8) = *(u16 *)(arg0 + 0x14);
+    *(u16 *)(r5 + 0xa) = *(u16 *)(arg0 + 0x16);
+    *(u8 *)(r5 + 0xc) = *(u8 *)(arg0 + 0x18);
+
+    if (*(s32 *)(arg0 + 0x20) != 0) {
+        *(Vec3_0207adbc *)(r5 + 0x20) = *(Vec3_0207adbc *)(arg0 + 0x20);
+    } else {
+        *(Vec3_0207adbc *)(r5 + 0x20) = **(Vec3_0207adbc **)((u8 *)data_021600ac + 0x68);
+    }
+    *(Vec3_0207adbc *)(r5 + 0x10) = *(Vec3_0207adbc *)(r5 + 0x20);
+
+    if (*(u8 *)(arg0 + 0x12) == 3 || *(u8 *)(arg0 + 0x12) == 4) {
+        *(s32 *)(r5 + 0x10) += 0x80000;
+    }
+    *(s32 *)(r5 + 0x14) = func_020ef4c8(r5 + 0x20) + 0x80000;
+
+    switch (*(u8 *)(arg0 + 0x12)) {
+    case 3:
+    case 4:
+        *(u8 **)(r5 + 0) = func_02046f90(0x157e, *(u16 *)(r5 + 4));
+        func_020ed2d0(*(void **)(*(u8 **)(r5 + 0) + 0x108), 0xb);
+        *(u32 *)(*(u8 **)(r5 + 0) + 0x80) &= ~0x400;
+        *(u8 *)(*(u8 **)(r5 + 0) + 0x9d) = 8;
+        *(u32 *)(*(u8 **)(r5 + 0) + 0xac) &= ~1;
+        break;
+    case 2:
+        r4 = func_02046f90(0x14ab, (u16)(*(u16 *)(arg0 + 0x10) + 0x2ee1));
+        *(u32 *)(r4 + 0xac) &= ~1;
+        *(u32 *)(r4 + 0x80) &= ~0x400;
+        *(u8 *)(r4 + 0x9d) = 1;
+        *(Vec3_0207adbc *)(r4 + 0) = *(Vec3_0207adbc *)(r5 + 0x10);
+        *(s32 *)(r5 + 0x30) = func_020ef4c8(r4);
+        func_020477dc(r4, 0, 0);
+        *(u8 *)(r5 + 0x2c) |= 2;
+        *(u8 **)(r5 + 0) = r4;
+        break;
+    }
+
+    func_021167f0((u8 *)data_021600ac + 0x384, (s32)r5);
+    if (*(u8 *)(arg0 + 0x12) == 3 || *(u8 *)(arg0 + 0x12) == 4) {
+        func_021167f0((u8 *)data_021600bc + 0x40, *(s32 *)(r5 + 0));
+    }
+    return r5;
+}
+
 s32 func_0207ab34(s32 arg0) {
 u8 *node;
 u8 *obj;
