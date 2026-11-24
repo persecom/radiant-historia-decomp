@@ -27,6 +27,14 @@ extern void func_020de374(void *,void *);
 extern void func_020de404(void *);
 extern u8 *data_02160110;
 extern u8 *data_02160a74;
+extern s32 func_020e84c0(s32);
+extern void func_020df3f4(s32, s32);
+extern s32 func_020e8410(s32, s32, s32);
+extern void func_020e8504(s32);
+extern void func_020a9544(void *);
+extern void func_020e1ec8(void *, s32);
+extern void func_020e24bc(void *, s32, s32, s32);
+extern void func_0209cbac(void);
 u8 **func_02032254(u16);
 void func_020a8810(u32, s32);
 
