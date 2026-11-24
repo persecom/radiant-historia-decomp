@@ -377,6 +377,28 @@ void func_021288c0(u8 *arg0) {
     func_0212d56c(p, (void *)func_02128944, arg0);
 }
 
+void func_02128ab0(Unk_02128030 *arg0) {
+    void *a = arg0->f4;
+    void *b = arg0->f8;
+    s32 val;
+    if (b == NULL || a == NULL) {
+        return;
+    }
+    val = func_0212d610(a);
+    if (arg0->f2 == 4) {
+        func_0212ddf0(arg0->f8, (void *)0x7fffffff);
+        return;
+    }
+    if (*(s8 *)((u8 *)arg0 + 0x6c) == 0) {
+        if (func_0212d540(arg0->f4) >= (s32)arg0->fc0) {
+            func_0212d578(arg0->f4, -1);
+        }
+        func_0212ddf0(arg0->f8, (void *)0x7fffffff);
+        return;
+    }
+    func_0212dc14(b, (void *)(val / 2048));
+}
+
 void func_02128b3c(void *arg0) {
     if (func_0212d5b0(*(void **)((u8 *)arg0 + 4)) == 1) {
         func_02128374((u32)arg0, 0, *(s16 *)((u8 *)arg0 + 0x42));
