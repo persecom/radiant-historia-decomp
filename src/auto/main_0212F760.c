@@ -13,7 +13,7 @@ extern void func_0212ff10(void *, void *, void *);
 extern void func_02130018(void *, void *, void *, void *, void *);
 
 extern void func_0213235c(void);
-extern u8 data_021747a0[12];
+extern u32 data_021747a0[3];
 extern void func_0213236c(void);
 extern void func_0213240c(void);
 extern void *func_02132424(void *, u32);
