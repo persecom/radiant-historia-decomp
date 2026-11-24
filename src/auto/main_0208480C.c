@@ -56,10 +56,12 @@ s32 func_02085158(u32 arg0) {
 
 s32 func_020851bc(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u8 arg4) {
     s32 sum = arg0 + arg1;
+    s32 ret;
     if (arg4 == 0) return (s16)sum;
     if (arg2 < sum) {
-        if (arg4 != 1) return arg3;
-        return arg2;
+        ret = arg2;
+        if (arg4 != 1) ret = arg3;
+        return ret;
     } else {
         return (s16)sum;
     }
