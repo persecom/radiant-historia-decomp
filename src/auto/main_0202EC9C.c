@@ -119,10 +119,8 @@ void func_0202f594(void) {
 
 void *func_0202f5fc(u32 arg0) {
     void **p = &data_02160088;
-    Node_0202f5fc *node = *(Node_0202f5fc **)p;
-    if (node == NULL) {
-        return NULL;
-    }
+    Node_0202f5fc *base = *(Node_0202f5fc **)p;
+    Node_0202f5fc *node = *(Node_0202f5fc **)base;
     while (node != NULL) {
         if (arg0 == 0 && node->unk10 == NULL) {
             return node;
