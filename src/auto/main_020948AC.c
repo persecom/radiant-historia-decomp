@@ -61,3 +61,10 @@ u32 func_02095198(void) {
     }
     return 0;
 }
+
+void func_020951b4(void) {
+    while (*(u32 *)(data_02160110 + 0x9c) != 0) {
+        func_020951e8();
+    }
+}
+
