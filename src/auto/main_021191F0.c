@@ -1,7 +1,7 @@
 /* 15 functions from 0x021191F0 to 0x0211A178 (main), found by ds-decomp. */
 #include "common.h"
 static inline s32 palette_021194cc(u8 *p) { return (*(volatile u16 *)(p+0x3c)&0xf000)>>12; }
-static inline void attr_021194cc(u8 *p,u32 mode,s32 palette) { u16 word=*(u16 *)(p+0x3c); u32 attr=*(u32 *)(p+0x38); attr=(attr&~0xc00)|(mode<<10); word=(word&~0xf000)|(palette<<12); *(u32 *)(p+0x38)=attr; *(u16 *)(p+0x3c)=word; }
+static inline void attr_021194cc(u8 *p,u32 mode,s32 palette) { u32 attr; u16 word; word=*(u16 *)(p+0x3c); attr=*(u32 *)(p+0x38); attr=(attr&~0xc00)|(mode<<10); word=(word&~0xf000)|(palette<<12); *(u32 *)(p+0x38)=attr; *(u16 *)(p+0x3c)=word; }
 typedef struct {
     u16 f0;
     u16 f2;
@@ -178,7 +178,7 @@ u8 *p,*sub;
 void *ctx;
 if(v) ((Bits021194cc *)(arg0+0x3c))->palette=func_02118588(v,(u16)((*(u16 *)(arg0+0x3c)&0xf000)>>12));
 p=(u8 *)data_0216f234.f8;
-if(*(u32 *)(p+0x84)){
+if(*(volatile u32 *)(p+0x84)){
 if(*(u32 *)(p+0x84)&1) ((Bits021194cc *)(arg0+0x3c))->mode=*(u16 *)(p+0x88);
 p=(u8 *)data_0216f234.f8;
 if(*(u32 *)(p+0x84)&2) ((Bits021194cc *)(arg0+0x3c))->palette=*(u16 *)(p+0x8a);
@@ -191,14 +191,7 @@ else *(u32 *)(arg0+0x38)&=~0x1000;
 }
 p=(u8 *)data_0216f234.f8;
 if(*(u32 *)(p+0x84)&8) {
-s32 pal=*(u16 *)(arg0+0x3c)&0xf000;
-u16 word=*(u16 *)(arg0+0x3c);
-u32 attr=*(u32 *)(arg0+0x38);
-attr=(attr&~0xc00)|(*(u32 *)(p+0x8c)<<10);
-pal>>=12;
-word=(word&~0xf000)|(pal<<12);
-*(u32 *)(arg0+0x38)=attr;
-*(u16 *)(arg0+0x3c)=word;
+attr_021194cc(arg0,*(u32 *)(p+0x8c),palette_021194cc(arg0));
 }
 }
 p=(u8 *)data_0216f234.f8;
