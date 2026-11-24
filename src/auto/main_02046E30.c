@@ -87,3 +87,23 @@ void *func_02047820(u16 arg0) {
     return NULL;
 }
 
+void *func_0204785c(u32 type,u32 id) {
+ u8 *node=NULL;
+ if(type!=0 && type<700) node=*(u8 **)((u8 *)data_021600bc+0x40);
+ else if(type>5000 && type<6000) {
+  if(type>5500) node=*(u8 **)((u8 *)data_021600bc+0x4c);
+  else node=*(u8 **)((u8 *)data_021600bc+0x70);
+ } else if(type>1000 && type<5000) node=*(u8 **)((u8 *)data_021600bc+0x40);
+ else if(type>10000 && type<11000) node=*(u8 **)((u8 *)data_021600bc+0x70);
+ while(node) {
+  if(*(u16 *)(node+0x90)==id) return node;
+  if(type!=0 && type<700) node=*(u8 **)(node+0x13c);
+  else if(type>5000 && type<6000) {
+   if(type>5500) node=*(u8 **)(node+0x14c);
+   else node=*(u8 **)(node+0x17c);
+  } else if(type>1000 && type<5000) node=*(u8 **)(node+0x13c);
+  else if(type>10000 && type<11000) node=*(u8 **)(node+0x17c);
+ }
+ return NULL;
+}
+
