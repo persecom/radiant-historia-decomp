@@ -121,9 +121,7 @@ void func_020cf424(void) {
 }
 
 void *func_020cf5a0(void) {
-    u32 x = data_02155c3c;
-    u32 size = 0x20;
-    return func_0210c594(size, x);
+    return func_0210c594(0x20, data_02155c3c);
 }
 
 void func_020cf5bc(void *arg0) {
