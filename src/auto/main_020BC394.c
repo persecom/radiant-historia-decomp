@@ -15,6 +15,41 @@ extern void *func_0210c594(u32, u32);
 extern void func_021167ac(void *, u32);
 extern void func_021091b4(void);
 extern void *func_02109b14(void *, void *);
+void func_020bc794(void) {
+    data_021601f8.unk00 = func_0210c594(0x64, data_02155c3c);
+    func_021167ac((u8 *)data_021601f8.unk00 + 4, 0xc);
+    func_021167ac((u8 *)data_021601f8.unk00 + 0x10, 0x18);
+    func_021167ac((u8 *)data_021601f8.unk00 + 0x1c, 0x38);
+    func_021167ac((u8 *)data_021601f8.unk00 + 0x28, 0x14);
+    func_021167ac((u8 *)data_021601f8.unk00 + 0x34, 0x38);
+    func_021167ac((u8 *)data_021601f8.unk00 + 0x40, 0x38);
+    func_021167ac((u8 *)data_021601f8.unk00 + 0x4c, 0x38);
+    func_021167ac((u8 *)data_021601f8.unk00 + 0x58, 0x14);
+    func_021091b4();
+}
+
+u32 func_020bc954(u32 arg0) {
+    if (arg0 >= 1 && arg0 <= 0x33) return 0;
+    if (arg0 >= 0x65 && arg0 <= 0xc8) return 1;
+    if (arg0 >= 0xc9 && arg0 <= 0x10f) return 2;
+    if (arg0 >= 0x12d && arg0 <= 0x1a9) return 3;
+    if (arg0 >= 0x208 && arg0 <= 0x26c) return 4;
+    if (arg0 >= 0x2bd && arg0 <= 0x31e) return 5;
+    if (arg0 >= 0x321 && arg0 <= 0x384) return 6;
+    return 0xff;
+}
+
+s32 func_020bd294(u32 arg0) {
+    s32 ret = -1;
+    if (arg0 >= 0x385) {
+        return ret;
+    }
+    if (*(u16 *)((u8 *)data_021601f8.unk04 + arg0 * 4) == arg0) {
+        ret = *(s16 *)((u8 *)data_021601f8.unk04 + arg0 * 4 + 2);
+    }
+    return ret;
+}
+
 void func_020bd2cc(void) {
     if (data_021601f8.unk04 == NULL) {
         return;
