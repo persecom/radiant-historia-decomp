@@ -5,6 +5,9 @@ typedef struct { s16 x,y,z; } Pos_0208bda0;
 extern const Draw_0208bda0 data_02140e3c, data_02140d88;
 extern void func_020a3bbc(s32);
 extern void func_021098ac(void *);
+extern const Draw_0208bda0 data_02140d74;
+extern u8 *data_021600b0;
+extern void func_020922bc(s32,s32,s32,s32,s32,s32,s32,s32);
 
 void func_0208bda0(s32 mode, s16 x, s16 y, Pos_0208bda0 pos, s16 arg5) {
 s16 py=pos.y;
