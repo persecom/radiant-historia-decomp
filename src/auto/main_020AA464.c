@@ -38,7 +38,7 @@ extern u16 data_021626a6;
 extern u16 data_021626a8;
 extern void func_0210d27c(s32);
 extern void func_020ade8c(s32);
-extern void func_020ade30(void);
+extern void func_020ade30();
 extern s32 *func_020b442c(void);
 extern void func_020aed5c(s32);
 void func_020aa464(void) {
@@ -476,5 +476,63 @@ BOOL func_020aaf88(s32 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     return TRUE;
 fail:
     return FALSE;
+}
+
+s32 func_020ab024(u8 *arg0) {
+    s32 dir = 0;
+    if (data_021626a6 & 0x80) {
+        dir = 1;
+    } else if (data_021626a6 & 0x40) {
+        dir = -1;
+    } else if (data_021626a8 & 1) {
+        if (*(s32 *)(arg0 + 0x3438) == 2) {
+            func_0210d27c(5);
+            return 3;
+        }
+        func_0210d27c(0xb);
+        func_020ade8c(0);
+        return 1;
+    } else if (data_021626a8 & 2) {
+        func_0210d27c(5);
+        *(s32 *)(arg0 + 0x3438) = 2;
+        func_020ade30();
+        return 3;
+    }
+    if (dir != 0) {
+        func_0210d27c(2);
+        *func_020b442c() = -1;
+        func_020aaf88((s32 *)(arg0 + 0x3438), dir, 0, 3, 1);
+        if (*(s32 *)(arg0 + 0x3438) == 2) {
+            func_020aed5c(0);
+        }
+    }
+    return 0;
+}
+
+s32 func_020ab140(u8 *p, u8 *state) {
+ u8 next = *state;
+ s32 result;
+ if (*(s32 *)(p+0x343c) == 0) {
+  if (*(s32 *)(p+0x3438) == 0) {
+   result = data_02143898[next](&next);
+   if (result == 0) result = data_021438b0[next](&next);
+  } else {
+   result = data_0214388c[next](&next);
+   if (result == 0) result = data_02143880[next](&next);
+  }
+  { u8 value = next;
+  u8 old = *state;
+  if (value != old) {
+   func_020abf3c(old);
+   *state = next;
+  }
+  }
+ }
+ if (result == 4) return 4;
+ if (result == 3) {func_020ade8c(0); return 3;}
+ if (result == 2) *(s32 *)(p+0x343c) = 6;
+ if (*(s32 *)(p+0x343c) > 0) --*(s32 *)(p+0x343c);
+ else *(s32 *)(p+0x343c)=0;
+ return 0;
 }
 
