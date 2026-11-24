@@ -37,6 +37,10 @@ void func_02026578(void *arg0) {
     }
 }
 
+s16 func_020265cc(s16 *arg0) {
+    return arg0[1];
+}
+
 void *func_02026c58(void **arg0) {
     return *arg0;
 }
