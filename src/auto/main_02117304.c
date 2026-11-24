@@ -210,7 +210,6 @@ void func_021177b0(u8 *arg0) {
 
 extern void func_0211782c(u8 *);
 extern void func_0211794c(void *);
-extern void func_021176d8(void *);
 s32 func_021177c0(void *arg0, void **arg1) {
     u8 *r4 = func_02117904(arg0, 0x43484152);
     if (r4 != NULL) {
