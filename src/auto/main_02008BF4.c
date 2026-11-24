@@ -221,6 +221,10 @@ void func_020096b4(u32 arg0, u32 arg1) {
     func_020097f0(0x15, arg0, arg1, 0, 0);
 }
 
+void func_02009720(u32 arg0, u32 arg1) {
+    func_020097f0(0x1e, arg0, arg1, 0, 0);
+}
+
 s32 func_0200986c(void) {
     return func_02006afc(&data_0215d1a0);
 }
