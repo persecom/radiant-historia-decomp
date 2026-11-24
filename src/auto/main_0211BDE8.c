@@ -3,7 +3,7 @@
 extern const u16 data_02144d84[3][4], data_02144d6c[3][4];
 extern void func_02002bd8(void *);
 extern void func_0211ab48(s32, s32, s32, void *, void *, u32, u32);
-typedef struct { u32 y:8; u32 flags:8; u32 x:9; u32 rest:7; } Obj_0211c1f8;
+typedef struct { u32 y:8; u32 flags:8; u32 x:9; u32 rest:3; u32 flipx:1; u32 flipy:1; u32 size:2; } Obj_0211c1f8;
 static inline s16 ObjX_0211c1f8(const Obj_0211c1f8 *a) { s16 x=a->x; if(x>255)x |= 0xff00; return x; }
 static inline s16 ObjY_0211c1f8(const Obj_0211c1f8 *a) { s16 y=a->y; if(y>127)y |= 0xff00; return y; }
 typedef struct Unk_0211c424 { u16 x, y, z; } Unk_0211c424;
@@ -42,18 +42,19 @@ extern void func_0211c1f8(void *);
 s32 func_0211c5d4(u8 *);
 s32 func_0211c5e8(u8 *);
 void func_0211c1f8(void *arg) {
+    s32 shape;
+    s16 x,y;
     u32 *p=arg;
     func_02002bd8(data_021701f8+0x40);
     if (*(s32 *)(data_021701f8+0x24)) {
-        u32 shape=*p & 0xc000c000;
-        u16 x,y;
+        shape=*p & 0xc000c000;
         u32 flipx,flipy;
         if(func_0211c5d4(data_021701f8))
-            x=-(ObjX_0211c1f8(*p)+data_02144d84[(shape&0xc000)>>14][(shape&0xc0000000)>>30]);
-        else x=ObjX_0211c1f8(*p);
+            x=(u16)-(ObjX_0211c1f8((Obj_0211c1f8 *)p)+data_02144d84[(shape&0xc000)>>14][(shape&0xc0000000)>>30]);
+        else x=(u16)ObjX_0211c1f8((Obj_0211c1f8 *)p);
         if(func_0211c5e8(data_021701f8))
-            y=-(ObjY_0211c1f8(*p)+data_02144d6c[(shape&0xc000)>>14][(shape&0xc0000000)>>30]);
-        else y=ObjY_0211c1f8(*p);
+            y=(u16)-(ObjY_0211c1f8((Obj_0211c1f8 *)p)+data_02144d6c[(shape&0xc000)>>14][(shape&0xc0000000)>>30]);
+        else y=(u16)ObjY_0211c1f8((Obj_0211c1f8 *)p);
         flipx=(*p>>28)&1;
         flipx ^= func_0211c5d4(data_021701f8);
         flipy=(*p>>29)&1;
@@ -62,7 +63,7 @@ void func_0211c1f8(void *arg) {
         *p=(*p&~0x20000000)|(flipy<<29);
         func_0211ab48((s16)x,(s16)y,-1,p,*(u8 **)(data_021701f8+8)+12,*(u32 *)(data_021701f8+0x14),*(u32 *)(data_021701f8+0x18));
     } else {
-        func_0211ab48(ObjX_0211c1f8(*p),ObjY_0211c1f8(*p),-1,p,*(u8 **)(data_021701f8+8)+12,*(u32 *)(data_021701f8+0x14),*(u32 *)(data_021701f8+0x18));
+        func_0211ab48(ObjX_0211c1f8((Obj_0211c1f8 *)p),ObjY_0211c1f8((Obj_0211c1f8 *)p),-1,p,*(u8 **)(data_021701f8+8)+12,*(u32 *)(data_021701f8+0x14),*(u32 *)(data_021701f8+0x18));
     }
 }
 
