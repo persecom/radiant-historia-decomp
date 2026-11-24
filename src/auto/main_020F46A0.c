@@ -227,7 +227,12 @@ BOOL func_020f5364(void *arg0, void *arg1) {
     if (arg0 == NULL || arg1 == NULL) {
         goto fail;
     }
-    for (node = *(u8 **)arg0; node != NULL && node != arg1; node = *(u8 **)(node + 0x1dc)) {
+    node = *(u8 **)arg0;
+    while (node != NULL) {
+        if (node == arg1) {
+            break;
+        }
+        node = *(u8 **)(node + 0x1dc);
     }
     if (node == NULL) {
         goto fail;
