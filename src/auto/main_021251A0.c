@@ -25,6 +25,9 @@ extern char data_02156388[];
 extern void func_0200baa4(void *);
 extern void func_02126998(void *, s32);
 extern void func_02015a10(void *, const char *, u32, u32);
+static inline s32 func_02125e20_check(u8 *p) {
+    return (*(u32 *)(p + 0x28) & 0x10) != 0;
+}
 
 extern void func_02003ab8(void);
 void func_021251a0(void) {
@@ -241,6 +244,11 @@ void func_021256b4(void) {
     if (data_02173194 != 0) {
         func_0212e610();
     }
+}
+
+void func_021256d4(u32 arg0, u32 arg1, u32 arg2) {
+    u32 args[5] = {arg0, 0, arg1, arg2, 1};
+    func_02125708(args);
 }
 
 s32 func_02125a5c(void *arg0) {
