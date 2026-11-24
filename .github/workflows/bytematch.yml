@@ -1,0 +1,58 @@
+name: ByteMatch Progress
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  progress:
+    name: BRJE Progress Report
+    if: github.repository == 'persecom/radiant-historia-decomp' && github.ref == 'refs/heads/main'
+    runs-on: [self-hosted, Linux, X64, radiant-historia]
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+
+      - name: Configure DS build
+        shell: bash
+        run: |
+          tools="$HOME/.local/share/decompnet/toolchains"
+          rom="$HOME/Decomp/historia-brje/extract/baserom.nds"
+          test -r "$rom"
+          test -x "$tools/dsd/dsd"
+          test -x "$tools/wibo/wibo"
+          test -x "$tools/objdiff-cli/objdiff-cli"
+          test -d "$tools/mwccarm/mwccarm"
+          mkdir -p extract
+          ln -sfn "$rom" extract/baserom.nds
+          python3 tools/configure.py brje \
+            --dsd "$tools/dsd/dsd" \
+            --compilers "$tools/mwccarm/mwccarm" \
+            --wibo "$tools/wibo/wibo"
+
+      - name: Build target and source objects
+        shell: bash
+        run: ninja -j 4 prepare
+
+      - name: Generate objdiff progress report
+        shell: bash
+        run: |
+          "$HOME/.local/share/decompnet/toolchains/objdiff-cli/objdiff-cli" \
+            report generate -p "$GITHUB_WORKSPACE" \
+            -o build/brje/report.json
+          test -s build/brje/report.json
+
+      - name: Upload ByteMatch report
+        uses: actions/upload-artifact@v6
+        with:
+          name: BRJE_report
+          path: build/brje/report.json
+          if-no-files-found: error
