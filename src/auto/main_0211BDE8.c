@@ -98,6 +98,33 @@ void func_0211c738(void) {
     data_021701f8 = NULL;
 }
 
+void func_0211c79c(void *arg0) {
+    u8 *r4 = *(u8 **)data_021701f8;
+    if (*(s32 *)(r4 + 0x10) == 0) {
+        return;
+    }
+    *(s32 *)(data_021701f8 + 0x30) = 1;
+    if (*(void (**)(void *, void *))(r4 + 0x18) != NULL) {
+        (*(void (**)(void *, void *))(r4 + 0x18))(data_021701f8, arg0);
+    }
+    if (*(s32 *)(data_021701f8 + 0x30) != 0) {
+        switch (*(u32 *)(r4 + 0x14)) {
+            case 0:
+                func_0211c424(r4, arg0);
+                break;
+            case 1:
+            case 2:
+                func_0211bde8(r4, arg0);
+                break;
+            case 3:
+                break;
+        }
+    }
+    if (*(void (**)(void *, void *))(r4 + 0x1c) != NULL) {
+        (*(void (**)(void *, void *))(r4 + 0x1c))(data_021701f8, arg0);
+    }
+}
+
 void func_0211cac0(u8 *arg0, u32 arg1) {
     func_02008e24(0, arg0, 0x54);
     *(u32 *)(arg0 + 0xc) = data_02155ef4;
