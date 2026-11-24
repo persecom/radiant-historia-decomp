@@ -1,7 +1,7 @@
 /* 33 functions from 0x02118234 to 0x021191F0 (main), found by ds-decomp. */
 #include "common.h"
-static inline s32 has_02118f24_data(u8 *p) { if (*(void **)(p + 12)) return 1; return 0; }
-static inline s32 has_02118f24_handle(u8 *p) { if (*(s32 *)(p + 0x38) != -1) return 1; return 0; }
+static inline s32 has_02118f24_data(u8 *p) { s32 r = 1; if (!*(void **)(p + 12)) r = 0; return r; }
+static inline s32 has_02118f24_handle(u8 *p) { s32 r; if (*(s32 *)(p + 0x38) != -1) r = 1; else r = 0; return r; }
 
 extern void func_02117df4(void *);
 extern s32 func_02117d80(void *);
@@ -162,7 +162,7 @@ if(kind==2) ((void (*)(u8 *, s32, s32))func_02118e94)(p+0x3c,*(s16 *)(v+4),*(s16
 else {func_02118ed0(p+0x3c,*(u32 *)(v+4),*(u32 *)(v+8));func_02118eb4(p+0x3c,*(u16 *)(v+2));((void (*)(u8 *, s32, s32))func_02118e94)(p+0x3c,*(s16 *)(v+12),*(s16 *)(v+14));}
 }
 tbl=*(u8 **)(res+12);
-if(has_02118f24_data(res)) {if(has_02118f24_handle(p)) {u32 *a=(u32 *)(*(u8 **)(tbl+4)+*(u16 *)v*8);func_0211a7ec(*(s32 *)(p+0x38),a[0],a[1]);}}
+if((u8)has_02118f24_data(res)) {if((u8)has_02118f24_handle(p)) {u32 *a=(u32 *)(*(u8 **)(tbl+4)+*(u16 *)v*8);func_0211a7ec(*(s32 *)(p+0x38),a[0],a[1]);}}
 }
 
 void func_02119000(u8 *arg0, void *arg1, void *arg2) {
