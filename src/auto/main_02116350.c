@@ -213,11 +213,13 @@ void func_021167f0(void *list, void *object) {
         func_021167c4(list, object);
     } else {
         u8 *link = (u8 *)object + *(u16 *)(l + 0xa);
+        u16 n;
         *(void **)(link + 0) = *(void **)(l + 4);
         *(void **)(link + 4) = NULL;
         *(void **)((u8 *)*(void **)(l + 4) + *(u16 *)(l + 0xa) + 4) = object;
+        n = *(u16 *)(l + 8);
         *(void **)(l + 4) = object;
-        *(u16 *)(l + 8) += 1;
+        *(u16 *)(l + 8) = n + 1;
     }
 }
 
