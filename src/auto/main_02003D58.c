@@ -92,3 +92,12 @@ void func_02003ff8(void) {
     }
 }
 
+void func_02004084(void *arg0, u32 arg1, u32 arg2) {
+    u32 dst = data_0215cd24[4] + arg1 - data_0215cd24[3];
+    if (data_02145ba4 != -1) {
+        func_02008840(data_02145ba4, arg0, dst, arg2, 0, 0, 1);
+    } else {
+        func_02008e38(arg0, dst, arg2);
+    }
+}
+
