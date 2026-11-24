@@ -18,6 +18,43 @@ typedef struct {
 
 extern Unk_02160244 *data_02160244;
 
+extern u8 *func_0202e548(u8);
+s32 func_0202aec4(s32 arg0, s32 arg1, s32 arg2, u8 *arg3) {
+    u8 *p = *(u8 **)(arg3 + 0x12c);
+    u8 *r1 = *(u8 **)(p + 0x18);
+    switch (arg0) {
+    case 1:
+        if (r1 != NULL) {
+            return 1;
+        }
+        break;
+    case 2:
+        if (r1 != NULL && r1[0] == 1) {
+            return 1;
+        }
+        break;
+    case 3:
+        if (r1 != NULL && r1[0] == 7) {
+            return 1;
+        }
+        break;
+    case 4:
+        if (r1 != NULL && r1[0] == 8) {
+            return 1;
+        }
+        break;
+    case 5:
+        if (r1 != NULL && r1[7] == 8) {
+            u8 *info = func_0202e548(*(u8 *)(*(u8 **)(p + 0x1c) + 0x43));
+            if (info[0x1c] == 0) {
+                return 1;
+            }
+        }
+        break;
+    }
+    return 0;
+}
+
 void func_0202b398(void) {
     data_02160244->field_70 = 0;
 }
