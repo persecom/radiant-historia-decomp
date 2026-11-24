@@ -353,6 +353,11 @@ void func_02132c2c(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     func_02016f08(arg0, arg2, arg3);
 }
 
+void func_02132c40(s32 arg0, s32 arg1, const char *arg2, ...) {
+    char *vlist = (char *)((u32)&arg2 & ~3) + 4;
+    func_020159f8(arg0, arg2, vlist);
+}
+
 extern void func_020159f8(s32, s32, s32);
 void func_02132c68(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     func_020159f8(arg0, arg2, arg3);
