@@ -137,12 +137,13 @@ void func_02119694(void *arg0, s32 arg1, s32 arg2) {
     if (*(Cb5_02119694 *)(sub + 0x44) == NULL) {
         return;
     }
-    if (data_0216f234.f4 == 0) {
-        ctx = data_0216f3c4 + data_0216f234.fc * 0x18;
-    } else {
-        *(volatile u32 *)(data_02155eb0 + 0x18) = *(volatile u32 *)(data_0216f3d4 + data_0216f234.fc * 0x18);
-        *(volatile u32 *)(data_02155eb0 + 0x1c) = *(volatile u32 *)(data_0216f3d8 + data_0216f234.fc * 0x18);
+    if (data_0216f234.f4 != 0) {
+        s32 idx = *(volatile u32 *)&data_0216f234.fc;
+        *(volatile u32 *)(data_02155eb0 + 0x18) = *(volatile u32 *)(data_0216f3d4 + idx * 0x18);
+        *(volatile u32 *)(data_02155eb0 + 0x1c) = *(volatile u32 *)(data_0216f3d8 + idx * 0x18);
         ctx = data_02155eb8;
+    } else {
+        ctx = data_0216f3c4 + *(volatile u32 *)&data_0216f234.fc * 0x18;
     }
     (*(Cb5_02119694 *)(sub + 0x44))(p, sub, arg1, arg2, ctx);
 }
