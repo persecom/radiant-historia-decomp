@@ -185,6 +185,29 @@ void func_020a8a84(void *arg0) {
     func_02008e68(-1, (u8 *)*(void **)(p + 0x38) + 8, *(u32 *)((u8 *)*(void **)(p + 0x38) + 4));
 }
 
+void func_020a8ab8(u8 *p) {
+ s32 base;
+ s32 height;
+ height=*(s32 *)(p+0x2c);
+ base=*(s32 *)(p+0x24);
+ u32 ctx[4];
+ u32 n=0;
+ s32 x,y;
+ s32 shift=*(s32 *)(p+0x34);
+ s32 width=*(s32 *)(p+0x28);
+ func_0210fd24(ctx,0x23);
+ for(y=0;y<height;y++) {
+ for(x=0;x<width;x++,n++) {
+ u32 word=n>>5, bit=n&31;
+ if((*(u32 **)(p+0x38))[word+2]&(1<<bit)) {
+ func_0210fd38(ctx,(base+x+(y<<shift))<<5,*(u8 **)(p+0x10)+(x<<5)+(y<<(*(s32 *)(p+0x30)+5)),32);
+ (*(u32 **)(p+0x38))[word+2]&=~(1<<bit);
+ }
+ }
+ }
+ func_0210fd94(ctx);
+}
+
 extern void func_0210fd24(u32 *, u32);
 extern void func_0210fd38(u32 *, u32, u32, u32);
 extern void func_0210fd94(u32 *);
