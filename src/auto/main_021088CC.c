@@ -370,3 +370,5 @@ s32 func_021090f4(u32 arg0, s32 arg1) {
             return -1;
     }
 }
+void func_0210950c(u32 arg0) {
+}
