@@ -2,6 +2,10 @@
 #include "common.h"
 extern void *data_02170460;
 extern void func_02008e24(u32, void *, u32);
+extern void func_02008e68(void *, u32, u32);
+extern u32 data_02155f54[];
+extern u32 data_02155f48[];
+extern u32 data_02155f60[];
 extern void func_0211de7c(void *, void *);
 
 extern void (*data_02156070[])(void *, u32);
