@@ -58,6 +58,7 @@ extern u8 *data_021600bc;
 extern s32 func_02109754(s32);
 extern void func_02109840(void),func_020a56cc(void);
 extern void func_02109884(s32,s32),func_02108cc8(s32);
+static inline void ResetFadeA5368(s32 channel,s32 value){data_02162814=value;func_02109884(channel,value);}
 extern const Unk18 data_02143374;
 extern const UnkStruct_020a48d0 data_02143350;
 extern void func_021098ac(void *);
@@ -336,6 +337,60 @@ void func_020a5338(void) {
         func_0210c5dc(data_02160134.unk04);
     }
     data_02160134.unk04 = NULL;
+}
+
+void func_020a5368(void){
+Unk20 buf=data_0214339c;
+switch(*(u16 *)data_02160134.unk04){
+case 0:
+*(u16 *)data_02160134.unk04=1;
+if(func_02109754(3)==1)func_02109840();
+*(s32 *)((u8 *)data_02160134.unk04+0x10)=0;
+if(data_02162884<0)*(s32 *)((u8 *)data_02160134.unk04+0x10)=1;
+break;
+case 1:
+data_02162814-=4;
+if(data_02162814>=-16)return;
+data_02162884=-16;
+data_02162814=0;
+data_02160200->unk160|=4;
+data_02160200->unk160&=~0x20;
+func_020a3bbc(0x26);func_021098ac(&buf);
+*(u16 *)data_02160134.unk04=2;
+*(s16 *)((u8 *)data_02160134.unk04+0xa)|=0x10;
+*(s16 *)((u8 *)data_02160134.unk04+0xa)|=8;
+*(s16 *)((u8 *)data_02160134.unk04+0xc)=0;
+*((u8 *)data_02160134.unk04+4)=0;
+*((u8 *)data_02160134.unk04+5)=0;
+{
+u8 *node=*(u8 **)(data_021600bc+0x40);
+if(!node)return;
+do{
+if(*(u32 *)(node+0xac)&0x2000000){node[0x104]=2;*(u32 *)(node+0xac)&=~0x2000000;}
+node=*(u8 **)(node+0x13c);
+}while(node);
+}
+break;
+case 2:func_020a3bbc(0x26);func_021098ac(&buf);func_020a56cc();break;
+case 7:func_020a3bbc(0x26);func_021098ac(&buf);break;
+case 3:case 5:
+func_020a3bbc(0x26);func_021098ac(&buf);
+*(u16 *)data_02160134.unk04=4;
+data_02162814=-16;data_02162884=-16;
+data_02160200->unk160&=~0x20;
+break;
+case 4:case 6:
+data_02162814=4+data_02162814;
+if(data_02162814<=0)return;
+*(volatile s32 *)&data_02162814=0;func_02109884(1,0);
+if(*(s32 *)((u8 *)data_02160134.unk04+0x10)==0){data_02162884=0;func_02109884(2,0);}
+func_02108cc8(0);func_02108cc8(1);
+data_02160200->unk160&=~0x20;
+data_02160200->unk160&=~4;
+*(u16 *)data_02160134.unk04=8;
+break;
+case 8:break;
+}
 }
 
 void func_020a5644(u16 arg0) {
