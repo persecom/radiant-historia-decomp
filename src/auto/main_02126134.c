@@ -172,6 +172,10 @@ u32 func_021265c4(void *arg0) {
     return func_02126c90(*(void **)((u8 *)arg0 + 4));
 }
 
+void func_021265d4(s32 *arg0, s32 arg1) {
+    *arg0 = arg1;
+}
+
 void func_02126778(void *arg0) {
     *(void **)((u8 *)arg0 + 0x00) = NULL;
     *(void **)((u8 *)arg0 + 0x04) = NULL;
