@@ -76,3 +76,26 @@ void func_0202b950(u32 arg0) {
     *(u16 *)data_02160080 |= 1;
 }
 
+void func_0202ba04(u32 arg0) {
+    u16 mask = 0xfffe;
+    s32 zero = 0;
+    *(u16 *)data_02160080 &= mask;
+    *(u16 *)data_02160080 |= 2;
+    *(u16 *)data_02160080 |= 0x10;
+    *(u16 *)(data_02160244 + 0xf8) = zero;
+    *(u16 *)(data_02160244 + 0xf6) = zero;
+    func_02027004(arg0, zero);
+    *(u16 *)(data_02160244 + 0xf8) = zero;
+    *(u16 *)(data_02160244 + 0xf6) = zero;
+    *(u16 *)data_02160080 &= mask - 1;
+    *(u16 *)data_02160080 &= mask - 0xf;
+    *(u16 *)data_02160080 |= 1;
+}
+
+void func_0202bcd4(u32 *arg0, s32 arg1) {
+    s32 idx = arg1 * 2;
+    arg0[0] = data_0214618c[idx] << 12;
+    arg0[1] = 0x20000;
+    arg0[2] = data_0214618c[idx + 1] << 12;
+}
+
