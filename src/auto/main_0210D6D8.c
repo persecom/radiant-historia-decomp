@@ -160,6 +160,12 @@ void func_0210dc00(void *arg0) {
     func_0200813c(irq);
 }
 
+void func_0210dc2c(void *arg0) {
+    s32 irq = func_02008128();
+    func_021168f8(data_021628c8, arg0);
+    func_0200813c(irq);
+}
+
 void func_0210dc58(s32 arg0) {
     func_0210d92c(data_021628bc, arg0);
 }
