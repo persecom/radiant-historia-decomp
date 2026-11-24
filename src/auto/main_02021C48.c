@@ -18,6 +18,23 @@ u8 *func_02021c48(void) {
     return p;
 }
 
+void func_02021e78(void) {
+    char buf[0x14];
+    void *p;
+    u32 res, a, b;
+    func_02005e80(buf, data_02145fdc);
+    p = func_0210c594(0x60, data_02155c3c);
+    res = func_021092d8(buf);
+    *(u32 *)p = res;
+    if (res == 0) return;
+    a = func_02092994(*(u32 *)p, 0);
+    b = func_02092994(*(u32 *)p, 0);
+    func_02022088(a, b);
+    if (func_02109444(*(void **)p) == 0) {
+        func_0210c970(p);
+    }
+}
+
 void *func_02021f10(s32 arg0) {
     if (arg0 == 0x3e7) goto fail;
     if (arg0 < 0) goto fail;
