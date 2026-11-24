@@ -40,8 +40,8 @@ void func_020b38c0(s32 arg0) {
     func_02009008(p2, p1 + 0x128, 0x128);
 }
 
-void func_020b3908(void) {
-    func_020b3890();
+u8 *func_020b3908(void) {
+    return func_020b3890();
 }
 
 u8 *func_020b3914(void) {
