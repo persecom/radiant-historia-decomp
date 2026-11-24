@@ -14,6 +14,38 @@ extern s32 func_0202bd60(u8, u8);
 extern void func_0202bfa8(void *, u8);
 extern void func_02030b7c(void *, s32, s32);
 extern void func_020dd810(void *, s32, s32);
+extern void func_0202bd08(void *);
+extern void func_0210da14(void *);
+extern void func_0210dba0(void *);
+extern void func_020cf5bc(void *);
+extern void func_02031d2c(void);
+void func_020d069c(void) {
+ extern void func_020d0838(void);
+ extern void func_020d0884(void);
+ extern void func_020d0824(void *);
+ s32 i;
+ if(!data_02160244)return;
+#define FIELD(off) (*(void **)(data_02160244+(off)))
+ if(FIELD(0)){func_0210c5dc(FIELD(0));FIELD(0)=NULL;}
+ if(FIELD(4)){func_0210c5dc(FIELD(4));FIELD(4)=NULL;}
+ for(i=0;i<3;i++){if((*(void **)(data_02160244+i*4+0x60))){func_0210c5dc((*(void **)(data_02160244+i*4+0x60)));(*(void **)(data_02160244+i*4+0x60))=NULL;}}
+ for(i=0;i<12;i++)func_0202bd08((*(void **)(data_02160244+i*4+8)));
+ func_020d0838();func_020d0884();
+ func_020d0824(FIELD(0xfc));func_020d0824(FIELD(0x100));
+ func_0210da14(data_02160244+0x84);
+ func_0210da14(data_02160244+0x98);
+ func_0210da14(data_02160244+0xd4);
+ func_0210dba0(data_02160244+0xac);
+ if(FIELD(0x104)){func_020cf5bc(FIELD(0x104));FIELD(0x104)=NULL;}
+ if(FIELD(0x13c))func_0210c5dc(FIELD(0x13c));
+ FIELD(0x13c)=NULL;
+ if(FIELD(0x148)){func_0210c5dc(FIELD(0x148));FIELD(0x148)=NULL;}
+ FIELD(0x148)=NULL;
+ if(data_02160244){func_0210c5dc(data_02160244);data_02160244=NULL;}
+ func_02031d2c();
+#undef FIELD
+}
+
 void *func_020d0808(void) {
     return func_0210c594(4, data_02155c3c);
 }
