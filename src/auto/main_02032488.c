@@ -62,23 +62,24 @@ u16 func_020329d8(void *arg0) {
 }
 
 void *func_02032b98(u8 *arg0, u8 *arg1, s32 arg2) {
-    u8 *node;
-    if (func_02032c14(arg0, arg1) == 0) {
-        return NULL;
-    }
-    node = func_0210c594(0x1c, data_02155c3c);
-    *(u8 **)node = arg1;
-    if (arg2 == 1) {
-        *(u16 *)(node + 4) |= 0x20;
-    }
-    {
-        u8 *sub = *(u8 **)(arg1 + 0x118);
-        if (*(u32 *)(sub + 0x8c) & 8) {
-            *(u32 *)(sub + 0x8c) |= 0x800;
+    if (func_02032c14(arg0, arg1) != 0) {
+        u8 *node = func_0210c594(0x1c, data_02155c3c);
+        *(u8 **)node = arg1;
+        switch (arg2) {
+        case 1:
+            *(u16 *)(node + 4) |= 0x20;
+            break;
         }
+        {
+            u8 *sub = *(u8 **)(arg1 + 0x118);
+            if (*(u32 *)(sub + 0x8c) & 8) {
+                *(u32 *)(sub + 0x8c) |= 0x800;
+            }
+        }
+        func_021167f0(arg0 + 0x28, node);
+        return node;
     }
-    func_021167f0(arg0 + 0x28, node);
-    return node;
+    return NULL;
 }
 
 s32 func_02032c14(u8 *arg0, void *arg1) {
