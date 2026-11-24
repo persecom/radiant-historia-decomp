@@ -177,6 +177,10 @@ void func_02009540(u32 arg0, u32 arg1) {
     func_020097a8(arg0, 4, arg1, 1);
 }
 
+void func_02009558(u32 arg0, u32 arg1, u32 arg2) {
+    func_020097f0(9, arg0, arg1, arg2, 0);
+}
+
 extern void func_02009fac(s32);
 void func_0200964c(u32 arg0, u32 arg1) {
     func_020097f0(0x1a, arg0, arg1, 0, 0);
