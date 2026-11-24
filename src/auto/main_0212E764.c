@@ -14,6 +14,8 @@ extern void func_0212c4b8(s32);
 extern void func_0212e860(void *);
 extern u32 func_0212ea54(void);
 extern void func_02013878(void *, s32, u32);
+extern void func_0212f178(void);
+extern u32 data_02145914[];
 
 typedef struct {
     u8 pad[0x24];
