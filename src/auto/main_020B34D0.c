@@ -82,6 +82,44 @@ s32 func_020b3a28(void)
   return 0;
 }
 
+void func_020b3cfc(void) {
+    s32 count = 0;
+    u8 *base = func_020b3890();
+    func_02008f74(base, 0, 0x264);
+    {
+        u8 i;
+        for (i = 0; i < 7; i++) {
+            u8 *node = func_020bd438(i);
+            if (node != NULL && (*(u16 *)node & 1) != 0) {
+                if (func_02021f10(node[2]) != NULL) {
+                    base[0x25c + count] = node[2];
+                    count++;
+                }
+            }
+        }
+    }
+    *(u32 *)(base + 0x254) = count;
+    *(u32 *)(base + 0x250) = 0;
+    *(u32 *)(base + 0x258) = (u32)func_0202214c();
+    func_020b38c0(*(u32 *)(base + 0x250) & 0xff);
+}
+
+s32 func_020b3d88(void) {
+    s32 r = 0;
+    u8 *base1 = func_020b3880();
+    func_020b3890();
+    u8 *base3 = func_020b3fd8();
+    u8 *p = base1 + 0x3000;
+    if (*(u32 *)(p + 0x438) == 0) {
+        if (*(u8 *)(p + 0x440) != 0) {
+            if (*(u32 *)(base3 + 0x2aa4) != 3) {
+                r = 1;
+            }
+        }
+    }
+    return r;
+}
+
 s32 func_020b3ef4(s32 arg0) {
     s32 r = 0;
     if ((u32)(func_020b3f14(arg0) - 1) <= 2) {
