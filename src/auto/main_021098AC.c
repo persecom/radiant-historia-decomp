@@ -43,6 +43,13 @@ s32 func_02109cf0(s8 *arg0) {
     return *arg0 != '-';
 }
 
+void func_02109f24(void) {
+    void *p = func_02109f3c();
+    if (p != NULL) {
+        func_02109ea8(p);
+    }
+}
+
 s32 func_0210a38c(u8 *arg0) {
     *(s32 *)arg0 = -1;
     return 1;
