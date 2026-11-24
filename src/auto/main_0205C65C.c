@@ -48,18 +48,22 @@ extern void func_020d9da8(s32);
 extern void func_020d9ea8(s32, s32);
 extern void func_020d5fd0(void *);
 void func_0205c780(u8 *arg0) {
-    u8 *r7 = *(u8 **)(arg0 + 0x128);
-    s32 flags = func_0205bcb0(arg0, (u16)*(s32 *)(r7 + 0x34));
+    u8 *sp14;
+    s32 base;
+    s32 flags;
+    u8 *target;
+    u8 *r5;
+    u8 *eff;
+    u8 *r7;
+    u8 *node;
+    u16 count;
+    s32 r9_val;
+    u16 ret;
+
+    r7 = *(u8 **)(arg0 + 0x128);
+    flags = func_0205bcb0(arg0, (u16)*(s32 *)(r7 + 0x34));
 
     if ((flags & 1) && *(s16 *)(r7 + 0x1c) == 0) {
-        u8 *node;
-        u8 *sp14;
-        s32 r9_val;
-        u8 *r5;
-        u16 count;
-        s32 base;
-        u16 ret;
-
         *(s16 *)(r7 + 0x1c) = 1;
         node = (u8 *)func_0205bad4(r7);
         sp14 = *(u8 **)(r7 + 0x8);
@@ -77,8 +81,7 @@ void func_0205c780(u8 *arg0) {
         base = *(u16 *)(arg0 + 0x90) * 10;
         count = 0;
         while (node != NULL) {
-            u8 *target = *(u8 **)(node + 0x0);
-            u8 *eff;
+            target = *(u8 **)(node + 0x0);
             if (r5 == NULL) {
                 r5 = target;
             }
@@ -109,9 +112,9 @@ void func_0205c780(u8 *arg0) {
                     func_020d9ea8(8, 0);
                 }
                 func_020d56d8(arg0, target, eff, 2);
-                if (target != NULL) {
-                    (*(u8 **)(target + 0x128))[0x7c] = 0;
-                }
+            }
+            if (target != NULL) {
+                (*(u8 **)(target + 0x128))[0x7c] = 0;
             }
             count++;
             node = *(u8 **)(node + 0x18);
