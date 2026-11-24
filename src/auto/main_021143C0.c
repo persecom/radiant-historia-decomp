@@ -80,6 +80,14 @@ extern u8 data_0216c9bc[84];
 extern u32 func_02008128(void);
 extern void func_0200813c(u32);
 extern void func_02114b44(void);
+extern void *data_0216c974;
+extern u8 data_0216c97c[];
+extern u8 data_0216ca10[];
+extern void func_020069a4(void *, void *, s32);
+extern void func_020064d4(void *);
+extern s32 func_02116748(s32 *);
+extern void func_0211677c(s32 *);
+extern s32 func_02116794(s32 *);
 
 typedef struct {
     u8 unk_00[8];
@@ -337,6 +345,75 @@ u32 func_02114f58(u32 arg0) {
 
 u32 func_02114f70(void) {
     return data_0216cad0[0];
+}
+
+void *func_02114f80(s32 arg0) {
+    u8 *base = (u8 *)data_0216cad0[0];
+    u8 *tbl = *(u8 **)(base + 0x98);
+    u32 off = *(u32 *)(tbl + 8);
+    u32 entryOff;
+    if (off == 0) {
+        tbl = NULL;
+    } else {
+        tbl += off;
+    }
+    if (tbl == NULL) {
+        return NULL;
+    }
+    if (arg0 < 0) {
+        return NULL;
+    }
+    if ((u32)arg0 >= *(u32 *)tbl) {
+        return NULL;
+    }
+    entryOff = *(u32 *)(tbl + arg0 * 4 + 4);
+    return entryOff == 0 ? NULL : *(u8 **)(base + 0x98) + entryOff;
+}
+
+void *func_02114fe4(s32 arg0) {
+    u8 *base = (u8 *)data_0216cad0[0];
+    u8 *tbl = *(u8 **)(base + 0x98);
+    u32 off = *(u32 *)(tbl + 0xc);
+    u32 entryOff;
+    if (off == 0) {
+        tbl = NULL;
+    } else {
+        tbl += off;
+    }
+    if (tbl == NULL) {
+        return NULL;
+    }
+    if (arg0 < 0) {
+        return NULL;
+    }
+    if ((u32)arg0 >= *(u32 *)tbl) {
+        return NULL;
+    }
+    entryOff = *(u32 *)(tbl + arg0 * 4 + 4);
+    return entryOff == 0 ? NULL : *(u8 **)(base + 0x98) + entryOff;
+}
+
+void *func_02115048(s32 arg0) {
+    u8 *base = (u8 *)data_0216cad0[0];
+    u8 *tbl = *(u8 **)(base + 0x98);
+    u32 off = *(u32 *)(tbl + 0x10);
+    u32 entryOff;
+    if (off == 0) {
+        tbl = NULL;
+    } else {
+        tbl += off;
+    }
+    if (tbl == NULL) {
+        return NULL;
+    }
+    if (arg0 < 0) {
+        return NULL;
+    }
+    if ((u32)arg0 >= *(u32 *)tbl) {
+        return NULL;
+    }
+    entryOff = *(u32 *)(tbl + arg0 * 4 + 4);
+    return entryOff == 0 ? NULL : *(u8 **)(base + 0x98) + entryOff;
 }
 
 u32 func_02115174(u32 arg0) {
