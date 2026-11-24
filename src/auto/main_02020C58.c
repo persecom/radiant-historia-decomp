@@ -10,7 +10,7 @@ extern void func_020106a0(void);
 extern u32 func_0200f984(void);
 extern void func_0210d220(void);
 s32 func_02021284(void);
-extern u16 func_02021618;
+void func_02021618(void);
 extern s32 func_02021428(u16 *);
 extern void (*ARM9_CTOR_START[])(void);
 extern u32 *data_02162730;
