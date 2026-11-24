@@ -1,6 +1,6 @@
 /* 30 functions from 0x020F46A0 to 0x020F5574 (main), found by ds-decomp. */
 #include "common.h"
-static inline int check_f53_expected(s32 (*fn)(void *, int, int), void *cb, u32 expected) { int result = 0; if ((s32)fn(cb,0,0) != (s32)expected) result = 0; else result = 1; return result; }
+static inline int check_f53_expected(s32 (*fn)(void *, int, int), void *cb, u32 expected) { int result; s32 value = fn(cb,0,0); result = value == (s32)expected; return result; }
 extern u8 *data_021626e8[];
 extern void func_0200c1a8(int, const char *);
 extern void func_0200c1fc(int, const char *);
@@ -468,7 +468,7 @@ u32 func_020f53e4(void (*arg0)(void)) {
     return ~(u32)arg0;
 }
 
-#pragma peephole off
+#pragma scheduling off
 s32 func_020f53fc(void) {
 const char *name = "";
 s16 expected;
@@ -483,4 +483,4 @@ if (check_f53_expected(func_ov000_02176e90,(void *)func_020f53e4,expected)) func
 if (check_f53_expected(func_ov000_02176ddc,(void *)func_020f53e4,expected) && check_f53_expected(func_ov000_02176e54,(void *)func_020f53e4,expected) && check_f53_expected(func_ov000_02176ecc,(void *)func_020f53e4,expected)) func_0210cba0(*(u32 *)(p+0x14),*(u32 *)(p+0x190));
 else func_0210cba0(*(u32 *)(p+0x14),*(u32 *)(p+0x18c));
 func_0200c1fc(0,name); return 1; }
-#pragma peephole on
+#pragma scheduling on
