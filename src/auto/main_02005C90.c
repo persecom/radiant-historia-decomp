@@ -48,7 +48,7 @@ s32 func_02005d0c(u16 arg0) {
 extern void func_020063e8(void *, s32);
 extern void func_02006844(void *, void *);
 extern void func_020068fc(void *);
-extern void func_020067d8(void);
+extern s32 func_020067d8(void);
 extern void func_02006b5c(void *);
 extern void func_02006560(void *, u32);
 extern void func_02006808(void);
