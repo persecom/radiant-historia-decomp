@@ -10,3 +10,7 @@ void func_021152d0(u32 arg0, u32 arg1, u8 *arg2) {
     *(u32 *)(arg2 + 0x98) = 0;
 }
 
+void func_021152dc(s32 a0, s32 a1, u8 *a2) {
+    *(s32 *)(a2 + 0x90) = 0;
+}
+
