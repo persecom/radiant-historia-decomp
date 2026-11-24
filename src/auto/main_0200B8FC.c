@@ -275,6 +275,14 @@ s32 func_0200c1a8(void *arg0, void *arg1) {
     return ret;
 }
 
+s32 func_0200c1fc(void *arg0, void *arg1) {
+    u8 buf[0x2c];
+    if (func_0200bd18(buf, arg0, arg1) != 0 && func_0200c198(buf) != 0) {
+        return 1;
+    }
+    return 0;
+}
+
 s32 func_0200c2a8(u8 *arg0, u16 arg1) {
     *(u32 *)(arg0 + 0x30) = *(u32 *)(arg0 + 8);
     *(u16 *)(arg0 + 0x34) = arg1;
