@@ -1,6 +1,21 @@
 /* 36 functions from 0x0210D6D8 to 0x0210E694 (main), found by ds-decomp. */
 #include "common.h"
 
+typedef struct {
+    s32 x;
+    s32 y;
+    s32 z;
+} Vec3_0210dd1c;
+
+extern const Vec3_0210dd1c data_02144bac;
+extern Vec3_0210dd1c data_02155c30;
+extern Vec3_0210dd1c data_02162670;
+extern void func_020029a0(Vec3_0210dd1c *, Vec3_0210dd1c *, Vec3_0210dd1c *, s32, s32);
+extern void func_02001834(u32 *);
+extern void func_02002ae0(u32 *);
+extern void func_02002a28(u32 *);
+extern void func_02117994(void);
+
 extern u8 data_02162730[12];
 extern s32 data_02162834[3];
 extern u8 data_0216280c[];
