@@ -225,6 +225,10 @@ void func_02005760(void) {
     func_020056c8(1);
 }
 
+void func_02005770(void) {
+    func_020056c8(2);
+}
+
 void func_02005780(void) {
     func_020056c8(3);
 }
