@@ -2,8 +2,32 @@
 #include "common.h"
 
 extern void func_0210c5dc(void *);
+extern s32 data_02155c3c;
+extern u8 *data_02160244;
+extern u8 *data_02160a74;
+extern void *func_0210c594(s32, s32);
+extern void func_021168f8(void *, void *);
+extern s32 func_0202bd60(u8, u8);
+extern void func_0202bfa8(void *, u8);
+extern void func_02030b7c(void *, s32, s32);
+extern void func_020dd810(void *, s32, s32);
+void *func_020d0808(void) {
+    return func_0210c594(4, data_02155c3c);
+}
+
 void func_020d0824(void *arg0) {
     if (arg0 != NULL) {
         func_0210c5dc(arg0);
     }
 }
+
+void func_020d0838(void) {
+    void *node;
+    while ((node = *(void **)(data_02160244 + 0x150)) != NULL) {
+        func_021168f8(data_02160244 + 0x150, node);
+        if (node != NULL) {
+            func_0210c5dc(node);
+        }
+    }
+}
+
