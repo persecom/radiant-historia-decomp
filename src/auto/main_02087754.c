@@ -14,6 +14,18 @@ extern u32 func_02085110(u32);
 extern void *func_02021f10(u32);
 
 extern void func_02087f70(void);
+s32 func_02087754(s32 arg) {
+    G_02085f50 **gp = &data_0216010c;
+    void *p = func_02021f10(func_02085110(*(u8 *)((u8 *)*gp + 0x50dc)));
+    u8 *elem = (u8 *)*gp + (arg << 6);
+    if (elem[0x487b] == 5) {
+        s16 a = *(s16 *)(elem + 0x4890);
+        u16 b = *(u16 *)((u8 *)p + 0x14);
+        return a > b ? 2 : 0;
+    }
+    return 2;
+}
+
 void func_02087e84(void) {
     func_02087f70();
 }
