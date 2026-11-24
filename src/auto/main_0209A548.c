@@ -39,6 +39,11 @@ typedef struct Mgr_0209a548 {
 
 extern Mgr_0209a548 *data_02160120;
 extern const char data_021488e0[];
+extern const char data_021488f8[];
+extern u8 *func_02021f10(s32);
+extern u16 func_02065884(s32, u16);
+void func_0209b108(u8, u16);
+void func_02109444(void *);
 extern s32 data_02155c3c;
 
 s32 func_020bd490(s32, u8);
