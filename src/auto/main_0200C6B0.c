@@ -247,6 +247,12 @@ s32 func_0200d140(void *arg0, void *arg1, void *arg2) {
     return 0;
 }
 
+s32 func_0200d15c(void *arg0, void *arg1, void *arg2) {
+    u32 *p = *(u32 **)((u8 *)arg1 + 4);
+    *(u32 *)arg2 = p[3] - p[1];
+    return 0;
+}
+
 void func_0200d1a8(u32 arg0, u32 *ptr) {
     *ptr = 0;
 }
