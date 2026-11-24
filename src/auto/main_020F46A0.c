@@ -179,6 +179,20 @@ s32 func_020f50bc(u8 *arg0, u32 *arg1, u32 arg2) {
     return func_020f5068(arg0, obj, arg2);
 }
 
+void func_020f5114(u8 *arg0, s32 arg1) {
+    if (*(s32 *)(arg0 + 0x20) == arg1) {
+        return;
+    }
+    if (*(s32 *)(arg0 + 0x1c) != 0) {
+        if (arg1 != 0) {
+            (*(u16 *)(*(u8 **)(arg0 + 0x34) + 0xc))--;
+        } else {
+            (*(u16 *)(*(u8 **)(arg0 + 0x34) + 0xc))++;
+        }
+    }
+    *(s32 *)(arg0 + 0x20) = arg1;
+}
+
 u32 func_020f53e4(void (*arg0)(void)) {
     if (arg0 != NULL) {
         arg0();
