@@ -403,6 +403,17 @@ u32 func_02003518(void) {
     return 0;
 }
 
+u32 func_02003558(void) {
+    s32 mode = *(volatile u32 *)0x04000000 & 7;
+    u16 cnt = *(volatile u16 *)0x0400000e;
+    if (mode < 3 || (mode < 6 && !(cnt & 0x80))) {
+        u32 base = ((*(volatile u32 *)0x04000000 & 0x07000000) >> 24) << 16;
+        u32 offset = (u32)(cnt & 0x3c) >> 2;
+        return 0x06000000 + base + (offset << 14);
+    }
+    return 0;
+}
+
 u32 func_020035b0(void) {
     volatile u8 *reg = (volatile u8 *)0x04001000;
     s32 mode = *(volatile u32 *)reg & 7;
