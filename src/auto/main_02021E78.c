@@ -77,3 +77,13 @@ void func_020223f8(u8 *arg0, u16 arg1) {
     }
 }
 
+void func_02022454(u8 *arg0) {
+    void *ptr;
+    while ((ptr = *(void **)(arg0 + 0x64)) != NULL) {
+        func_021168f8(arg0 + 0x64, ptr);
+        if (ptr != NULL) {
+            func_0210c5dc(ptr);
+        }
+    }
+}
+
