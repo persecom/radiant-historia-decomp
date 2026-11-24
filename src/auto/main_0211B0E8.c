@@ -1,5 +1,14 @@
 /* 18 functions from 0x0211B0E8 to 0x0211BDE8 (main), found by ds-decomp. */
 #include "common.h"
+static inline s32 tile_offset(s32 x, s32 y, s32 width, s32 height) {
+    s32 bx = x / 32;
+    s32 by = y / 32;
+    s32 rx = x % 32;
+    s32 ry = y % 32;
+    s32 bw = bx == width / 32 ? width % 32 : 32;
+    s32 bh = by == height / 32 ? height % 32 : 32;
+    return rx + (bw * ry + (bx * (bh * 32) + by * (width * 32)));
+}
 extern void func_02006dc4(void *, u32);
 extern u32 data_02145ba4;
 extern void func_02008690(u32, void *, void *, u32, u32);
@@ -166,6 +175,26 @@ void func_0211b584(s32 arg0, s32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u
             func_0211b2f4(arg0, arg3, arg4, arg5, arg6);
             break;
     }
+}
+
+void func_0211b614(void *dst0, void *src0, s32 sx, s32 sy, s32 dx, s32 dy, s32 dw, s32 dh, s32 w, s32 h) {
+ u16 *dst=dst0,*src=src0;
+ s32 sw=(u32)src[0]>>3, sh=(u32)src[1]>>3;
+ u16 *p=src+6;
+ s32 ex=sx+w, ey=sy+h;
+ s32 x,xx;
+ for(;sy<ey;sy++,dy++) {
+ for(x=sx,xx=dx;x<ex;x++,xx++) {
+ s32 bx=x/32, by=sy/32, rx=x%32, ry=sy%32;
+ s32 bw=bx==sw/32?sw%32:32;
+ s32 bh=by==sh/32?sh%32:32;
+ u16 v=p[by*sw*32+bx*bh*32+ry*bw+rx];
+ s32 dbx=xx/32,dby=dy/32,drx=xx%32,dry=dy%32;
+ s32 dbw=dbx==dw/32?dw%32:32;
+ s32 dbh=dby==dh/32?dh%32:32;
+ dst[dby*dw*32+dbx*dbh*32+dry*dbw+drx]=v;
+ }
+ }
 }
 
 void func_0211b83c(u8 *dst, u8 *src, s32 srcX, s32 srcY, s32 dstX, s32 dstY, s32 dstStride, s32 width, s32 height) {
