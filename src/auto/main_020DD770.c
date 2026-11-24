@@ -52,17 +52,22 @@ void func_020dd808(void) {
 void func_020dd80c(void) {
 }
 
-void func_020dd9b4(u8 *arg0, void *arg1) {
+void *func_020dd9b4(u8 *arg0, void **arg1) {
     u16 v;
-    *(void **)arg1 = NULL;
+    *arg1 = NULL;
     v = *(u16 *)(arg0 + 0x8e);
     if (v <= 99 || (v >= 5000 && v <= 5000 + 99)) {
         u8 *p = *(u8 **)(arg0 + 0x108);
-        *(void **)arg1 = *(void **)(p + 0x20);
+        void *ret = *(void **)(p + 8);
+        *arg1 = *(void **)(p + 0x20);
+        return ret;
     } else if (v < 900 || v > 999) {
         u8 *p = *(u8 **)(arg0 + 0x108);
-        *(void **)arg1 = *(void **)(p + 0x14);
+        void *ret = *(void **)(p + 0);
+        *arg1 = *(void **)(p + 0x14);
+        return ret;
     }
+    return NULL;
 }
 
 void *func_020ddb54(u16 arg0) {
