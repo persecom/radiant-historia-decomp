@@ -166,20 +166,15 @@ void func_02116708(s32 *arg0) {
 void func_02116720(s32 *arg0, s32 arg1, s32 arg2) {
     arg0[0] = func_02116748(arg0);
     arg0[1] = arg1;
-    arg0[3] = arg2;
     arg0[2] = 0;
+    arg0[3] = arg2;
 }
 
 s32 func_02116748(s32 *arg0) {
-    s32 value;
     if (arg0[2] >= arg0[3]) {
         return arg0[1];
     }
-    value = arg0[1] - arg0[0];
-    value *= arg0[2];
-    value /= arg0[3];
-    value += arg0[0];
-    return value;
+    return arg0[0] + (arg0[2] * (arg0[1] - arg0[0])) / arg0[3];
 }
 
 void func_0211677c(s32 *arg0) {
