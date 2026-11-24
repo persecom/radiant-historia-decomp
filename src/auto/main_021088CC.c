@@ -21,7 +21,7 @@ void func_02125b78(u32);
 void func_02125d00();
 void func_02125bd4(u32, s32);
 void func_0210950c(u32);
-s32 func_021090f4(u32, s32);
+extern s32 func_021090f4(u32, s32);
 void func_02108ffc(void);
 void func_02109264(u32);
 extern u64 func_02007904(void);
@@ -205,6 +205,25 @@ void func_02108eec(u32 arg0, u32 arg1) {
     data_021624f8->unk_1a[arg0] = -1;
     data_021624f8->unk_24[arg0] = 0;
     func_02109264(arg0);
+}
+
+void func_02109040(void) {
+    u32 i;
+    Unk021624F8 *p;
+    for (i = 0; i < 2; i++) {
+        if (func_021090f4(i, 1) == 3) {
+            p = data_021624f8;
+            if (p->unk_18[i] & 2) {
+                func_021089e8(i, p->unk_1a[i], 3);
+            }
+        }
+    }
+    p = data_021624f8;
+    if (!(p->unk_18[0] & 1) && !(p->unk_18[1] & 1)) {
+        return;
+    }
+    *(u64 *)((u8 *)&data_021624f8 + 4) = func_02007904();
+    func_021256b4();
 }
 
 void func_021091b0(void) {
