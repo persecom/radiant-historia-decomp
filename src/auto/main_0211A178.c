@@ -3,6 +3,12 @@
 extern u32 data_021701d8[4];
 extern u32 data_021701cc[3];
 
+typedef struct {
+    u32 a;
+    u32 b;
+    u32 c;
+} U32x3;
+
 extern u32 data_02155ed0[4];
 
 
@@ -45,7 +51,7 @@ void func_0211a5fc(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u32 arg4, u32 arg5, u
 }
 
 void func_0211a698(u8 *arg0, u32 count, u32 arg2) {
-    u32 i;
+    u32 i = 0;
 
     data_021701cc[0] = arg2;
     data_021701cc[1] = count;
@@ -53,7 +59,7 @@ void func_0211a698(u8 *arg0, u32 count, u32 arg2) {
     if (count == 0) {
         return;
     }
-    for (i = 0; i < count; i++) {
+    do {
         u8 *p = arg0 + i * 0x30;
         func_02118e68(p);
         *(u32 *)(p + 0xc) = 0;
@@ -65,7 +71,8 @@ void func_0211a698(u8 *arg0, u32 count, u32 arg2) {
         *(u32 *)(p + 0x24) = 0;
         *(u32 *)(p + 0x28) = 0;
         *(u32 *)(p + 0x2c) = 0;
-    }
+        i++;
+    } while (i < count);
 }
 
 void func_0211a7ec(s32 arg0, u32 arg1, u32 arg2) {
@@ -73,6 +80,23 @@ void func_0211a7ec(s32 arg0, u32 arg1, u32 arg2) {
     *(u32 *)(p + 0x24) = -1;
     *(u32 *)(p + 0x28) = arg1;
     *(u32 *)(p + 0x2c) = arg2;
+}
+
+s32 func_0211a810(void) {
+    u32 i = 0;
+    u32 count = data_021701cc[1];
+
+    if (count == 0) {
+        return -1;
+    }
+    for (; i < count; i++) {
+        u8 *p = (u8 *)data_021701cc[2] + i * 0x30;
+        if (*(u32 *)(p + 0x1c) != 1) {
+            *(u32 *)(p + 0x1c) = 1;
+            return i;
+        }
+    }
+    return -1;
 }
 
 void func_0211ab04(u32 arg0) {
