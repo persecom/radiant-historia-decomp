@@ -504,14 +504,14 @@ void func_020de4ec(void) {
     }
 }
 
-void *func_020de534(u32 arg0) {
+u32 func_020de534(u32 arg0) {
     u8 *node = *(u8 **)data_02160a70;
     while (node != NULL) {
         if (*(u32 *)(node + 0x0) == arg0) {
-            return node;
+            return arg0;
         }
         node = *(u8 **)(node + 0x8);
     }
-    return NULL;
+    return 0;
 }
 
