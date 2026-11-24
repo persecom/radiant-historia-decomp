@@ -155,6 +155,12 @@ void func_0210c010(void) {
     func_0210e7ac();
 }
 
+u16 func_0210c060(void *arg0, u32 arg1) {
+    u16 sum = 0;
+    func_02011e20(&sum, arg0, arg1, 0);
+    return ~sum;
+}
+
 extern void func_0210c094(void *, void *, void *, void *);
 s32 func_0210c1dc(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4) {
     s32 vec[3];
