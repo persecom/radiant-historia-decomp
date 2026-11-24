@@ -80,6 +80,34 @@ s32 func_020f402c(u8 *arg0, s32 arg1) {
     }
 }
 
+void func_020f40a4(void) {
+    void *p;
+
+    if (data_02160c34.field_4 != NULL) {
+        return;
+    }
+    p = func_0210c518(0x50, (void *)data_02155c3c);
+    data_02160c34.field_4 = p;
+    func_02008e68(0, p, 0x50);
+    data_02151fc8.field_4 = 0x226000;
+    data_02151fc8.field_2 = 0x1555;
+    data_02151fc8.field_0 = 0x2000;
+    data_02160c34.field_0 = 0;
+    func_02107d58(data_02151fc8.field_4, data_02151fc8.field_2, data_02151fc8.field_0);
+    p = data_02160c34.field_4;
+    *(void **)p = func_020f4210;
+    *(u32 *)((u8 *)p + 4) = 0x3f8;
+    func_0210d9e4(p);
+}
+
+void func_020f4144(void) {
+    func_0210da14(data_02160c34.field_4);
+    if (data_02160c34.field_4 != NULL) {
+        func_0210c5dc(data_02160c34.field_4);
+        data_02160c34.field_4 = NULL;
+    }
+}
+
 void func_020f4640(void) {
     u32 buf[3];
     buf[0] = 0;
