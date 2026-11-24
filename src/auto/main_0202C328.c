@@ -76,3 +76,12 @@ u8 *func_0202c820(u32 arg0) {
     return sub ? *(u8 **)sub : NULL;
 }
 
+u8 *func_0202c920(u32 arg0) {
+    u8 *sub = NULL;
+    if (arg0 <= 0xb) {
+        u8 *entry = *(u8 **)((u8 *)data_02160244 + arg0 * 4 + 8);
+        sub = *(u8 **)(entry + 0x10);
+    }
+    return sub ? *(u8 **)sub : NULL;
+}
+
