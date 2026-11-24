@@ -336,6 +336,30 @@ s32 func_02109264(u32 arg0) {
     return 1;
 }
 
+u32 func_021092d8(u32 arg0) {
+ Unk02109444 *p=func_0210c518(12,data_02155c3c);
+ u8 *s;
+ p->buf=func_02109b14(arg0,&p->size);
+ if(p->buf==NULL) {
+ if(p->buf) {func_0210c5dc((u32)p->buf);
+ p->buf=NULL;}
+ if(p) func_0210c5dc((u32)p);
+ return 0;
+ }
+ p->cur=p->buf;
+ s=p->buf;
+ func_02007904();
+ if(!func_02109f84(s)) {
+ while(*s) {
+ if(*s==',' || *s=='\r') *s=0;
+ else if((*s>=0x81 && *s<=0x9f)||(*s>=0xe0 && *s<=0xfc)) s++;
+ s++;
+ }
+ }
+ func_02108ffc();
+ return (u32)p;
+}
+
 void func_021093b0(u32 arg0) {
     if (func_021095d0(arg0) != 0) {
         return;
