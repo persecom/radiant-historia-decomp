@@ -1,5 +1,8 @@
 /* 31 functions from 0x02134134 to 0x02134F44 (main), found by ds-decomp. */
 #include "common.h"
+void func_02134cb4(u8 *, s32, s32);
+void func_02134c00(u8 *, s32);
+BOOL func_02134edc(u8 *);
 
 extern void func_02135c78(void);
 extern s32 func_02136930(void *);
@@ -300,6 +303,20 @@ BOOL func_02134c94(u8 *arg0) {
         return -1;
     }
     return (arg0[1] & 1) != 0;
+}
+
+void func_02134cb4(u8 *p,s32 flag,s32 sync){
+if(!p)return;
+if(sync)func_02135a80(p);
+if(flag==func_02134edc(p))return;
+if(flag==1){
+if((p[1]&8)==8)return;
+func_02134bf0(p);p[1]=(p[1]|2)&0xfb;
+}else if(flag==0){
+func_021359e4(p);func_02134d50(p);
+if(sync)func_02135a80(p);
+p[1]^=2;
+}
 }
 
 BOOL func_02134edc(u8 *arg0) {
