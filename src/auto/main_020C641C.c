@@ -130,9 +130,10 @@ s32 func_020c6fe4(u8 *arg0) {
 s32 func_020c7048(u8 *arg0) {
     if (arg0[0x46] != 0) {
         arg0[0x46]--;
-        return 0;
+    } else {
+        return 1;
     }
-    return 1;
+    return 0;
 }
 
 void func_020c706c(u8 *arg0, u8 arg1) {
