@@ -48,6 +48,27 @@ void *func_0205bad4(void *arg0) {
     return NULL;
 }
 
+void func_0205baf8(s32 *arg0) {
+s32 distance = func_0210c2f4(arg0, arg0 + 9);
+s32 dy = arg0[10] - arg0[1];
+s32 a,b,t,aa,bb;
+if (distance <= 0xa000) {
+s32 angle = func_02002404(distance, dy);
+s32 cosine = data_0213a394[((angle >> 4) * 2) + 1];
+s32 scale = arg0[19];
+arg0[13] = ((long long)cosine * scale + 0x800) >> 12;
+return;
+}
+a = arg0[12]; b = arg0[14];
+aa = a; if (a < 0) aa = -a;
+bb = b; if (b < 0) bb = -b;
+if (bb < aa) t = func_0201fb1c(arg0[9] - arg0[0], a);
+else t = func_0201fb1c(arg0[11] - arg0[2], b);
+if (t < 0) t = -t;
+arg0[13] = func_0201fb1c(dy, t);
+if (t <= 8) arg0[13] = dy / 8;
+}
+
 void func_0205bbd8(void *arg0) {
     u8 *p = *(u8 **)(data_02160a6c + 0xb8);
     while (p != NULL) {
