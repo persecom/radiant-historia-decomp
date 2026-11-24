@@ -101,6 +101,21 @@ void func_02106bec(s16 *arg0) {
     func_021167f0(&data_02161064->unk34, node);
 }
 
+UnkNode_02106aa0 *func_02106c9c(u16 arg0) {
+    UnkNode_02106aa0 *node;
+    if (data_02161064 == NULL) {
+        return NULL;
+    }
+    node = data_02161064->unk34;
+    while (node != NULL) {
+        if (*(u16 *)node == arg0) {
+            return node;
+        }
+        node = node->next;
+    }
+    return NULL;
+}
+
 void func_021071fc(void) {
     func_0200fa3c((u16)data_02155968);
 }
