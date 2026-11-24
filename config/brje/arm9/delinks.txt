@@ -815,7 +815,10 @@ src/auto/main_020F5574.c:
     .text start:0x020f5574 end:0x020f6458
 
 src/auto/main_020F6458.c:
-    .text start:0x020f6458 end:0x020f6990
+    .text start:0x020f6458 end:0x020f67a8
+
+src/auto/main_020F67A8.c:
+    .text start:0x020f67a8 end:0x020f6990
 
 src/auto/main_020F6990.c:
     .text start:0x020f6990 end:0x020fc50c
