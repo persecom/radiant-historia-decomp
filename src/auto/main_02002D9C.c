@@ -279,7 +279,7 @@ u32 func_020032b4(void) {
     volatile u8 *reg = (volatile u8 *)0x04001000;
     u32 mode = *(volatile u32 *)reg & 7;
     u16 cnt = *(volatile u16 *)(reg + 0xc);
-    u32 offset = (cnt & 0x1f00) >> 8;
+    u32 offset = (u32)(cnt & 0x1f00) >> 8;
     switch (mode) {
     case 0:
     case 1:
