@@ -54,11 +54,12 @@ void func_020d8f78(void) {
 }
 
 void func_020d9018(void) {
-    *(u32 *)(data_02160258 + 0xc) = 0x200000;
-    *(u32 *)(data_02160258 + 0x10) = 0x30000;
-    *(u32 *)(data_02160258 + 0x14) = 0x200000;
-    func_020d9cc0(data_02160258 + 0xc);
-    func_020f4668(data_02160258 + 0xc);
+    u8 **p = &data_02160258;
+    *(u32 *)(*p + 0xc) = 0x200000;
+    *(u32 *)(*p + 0x10) = 0x30000;
+    *(u32 *)(*p + 0x14) = 0x200000;
+    func_020d9cc0(*p + 0xc);
+    func_020f4668(*p + 0xc);
 }
 
 void func_020d9058(Unk3Words *arg0) {
@@ -164,9 +165,9 @@ void func_020d9d10(u32 arg0, s16 arg1, s16 arg2) {
             break;
         case 3:
             *(s16 *)(p + 0x76) = -1;
+            *(s16 *)(p + 0x78) = arg2;
             break;
     }
-    *(s16 *)(p + 0x78) = arg2;
     if (arg2 == 0) {
         *(s16 *)(p + 0x78) = *(s16 *)(p + 0x76);
     }
