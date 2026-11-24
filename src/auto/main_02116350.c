@@ -301,6 +301,18 @@ void func_02117198(void* heap)
     *(void**)((u8*)heap + 0x2C) = NULL;
 }
 
+void func_021171ac(void* heap)
+{
+    u8* state = *(u8**)((u8*)heap + 0x2C);
+
+    while (state != NULL) {
+        *(u8**)(state + 0x8) = *(u8**)((u8*)heap + 0x1C);
+        state = *(u8**)(state + 0xC);
+    }
+
+    *(u8**)((u8*)heap + 0x28) = *(u8**)((u8*)heap + 0x1C);
+}
+
 void func_02117210(void) {
     func_02116ad8();
 }
