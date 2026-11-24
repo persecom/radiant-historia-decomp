@@ -10,7 +10,7 @@ extern void func_020c7930(void *);
 extern void func_020c94c8(void *, u16, u16);
 extern void func_02110b94(void *);
 extern void func_02112724(void);
-extern void func_021127fc(void);
+extern void func_021127fc(u8 *);
 extern u8 *func_020c9b24(void *, s32, s32);
 extern const u16 data_02144cfc[2];
 extern const u16 data_02144cf8[2];
