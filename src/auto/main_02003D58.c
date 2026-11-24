@@ -211,6 +211,40 @@ void func_0200439c(void) {
     data_0215cd40[7] = (u32)c << 12;
 }
 
+void func_020043f8(void *arg0,u32 offset,u32 size) {
+ u32 second=data_0215cd40[6];
+ u32 dst;
+ if(second==0) {
+  dst=data_0215cd40[1]+offset;
+ } else {
+  u32 boundary=data_0215cd40[7];
+  if(offset+size<boundary) {
+   dst=data_0215cd40[1]+offset;
+  } else if(offset>=boundary) {
+   dst=second+offset-boundary;
+  } else {
+   u32 firstSize=boundary-offset;
+   u32 first=data_0215cd40[1];
+   if(data_02145ba4!=-1 && firstSize>0x30) {
+    func_020085ec(data_02145ba4,arg0,first+offset,firstSize,1);
+   } else {
+    func_02008e38(arg0,first+offset,firstSize);
+   }
+   if(data_02145ba4!=-1) {
+    func_02008840(data_02145ba4,(u8 *)arg0+firstSize,second,size-firstSize,0,0,1);
+   } else {
+    func_02008e38((u8 *)arg0+firstSize,second,size-firstSize);
+   }
+   return;
+  }
+ }
+ if(data_02145ba4!=-1) {
+  func_02008840(data_02145ba4,arg0,dst,size,0,0,1);
+ } else {
+  func_02008e38(arg0,dst,size);
+ }
+}
+
 void func_02004544(void) {
     if (data_02145ba4 != -1) {
         func_0200893c();
