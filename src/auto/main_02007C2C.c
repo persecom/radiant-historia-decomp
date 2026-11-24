@@ -421,20 +421,21 @@ void func_02008568(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
 }
 
 void func_020085ec(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
-    u32 cnt;
     if (arg3 == 0) {
         return;
     }
     func_02008ab4(arg0, arg1, arg3, 0);
     {
         volatile u32 *reg = (volatile u32 *)(0x04000000 + 0xb0 + ((arg0 * 3) + 2) * 4);
-        cnt = arg3 >> 2;
         while (*reg & 0x80000000) {
         }
-        if (arg4 != 0) {
-            func_01ff845c(arg0, (const void *)arg1, (void *)arg2, 0x84000000 | cnt, 2);
-        } else {
-            func_01ff845c(arg0, (const void *)arg1, (void *)arg2, 0x04000000 | cnt, 6);
+        {
+            u32 cnt = arg3 >> 2;
+            if (arg4 != 0) {
+                func_01ff845c(arg0, (const void *)arg1, (void *)arg2, 0x84000000 | cnt, 2);
+            } else {
+                func_01ff845c(arg0, (const void *)arg1, (void *)arg2, 0x04000000 | cnt, 6);
+            }
         }
         while (*reg & 0x80000000) {
         }
