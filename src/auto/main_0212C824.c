@@ -94,6 +94,11 @@ void func_0212d558(void *arg0, u32 arg1) {
     func_0212a4a4(*(void **)((u8 *)arg0 + 4), arg1);
 }
 
+void func_0212d56c(void *arg0, u32 arg1, u32 arg2) {
+    *(u32 *)((u8 *)arg0 + 0x48) = arg1;
+    *(u32 *)((u8 *)arg0 + 0x4c) = arg2;
+}
+
 extern void func_0212a1dc(void *);
 extern s32 func_0212a584(void *);
 extern s32 func_0212a58c(void *);
