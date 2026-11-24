@@ -411,8 +411,8 @@ void func_0200a884(u8 *arg0, u32 arg1) {
     func_0200813c(irq);
 }
 
-s32 func_0200a6e4(s32 arg0, s32 arg1, s32 arg2) {
-    return 0;
+s32 func_0200a6e4(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    return arg3;
 }
 
 s32 func_0200a85c(s32 c) {
