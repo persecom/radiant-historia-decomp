@@ -43,14 +43,14 @@ fail:
 }
 
 s32 func_02022068(s32 arg0, ...) {
-    s32 *args = &arg0;
-    return *(u8 *)func_02021f54(args[0]);
+    return *(u8 *)func_02021f54(((s32 *)&arg0)[0]);
 }
 
 void func_02022088(s32 arg0, s32 arg1, ...) {
     s32 *args = &arg0;
     u8 *p = func_02021f54(args[0]);
-    *(u8 *)p = args[1];
+    u8 val = args[1];
+    *(u8 *)p = val;
 }
 
 void func_020220b0(s32 arg0, s32 arg1, ...) {
@@ -59,11 +59,11 @@ void func_020220b0(s32 arg0, s32 arg1, ...) {
     s32 r4 = p[0] + args[1];
     if (r4 > 99) {
         r4 = 99;
-    }
-    if (r4 < 0) {
+    } else if (r4 < 0) {
         r4 = 0;
     }
-    *(u8 *)p = r4;
+    u8 val = r4;
+    *(u8 *)p = val;
 }
 
 void func_02022100(s32 arg0) {
