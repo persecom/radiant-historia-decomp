@@ -87,6 +87,10 @@ u32 func_02006ff4(s32 arg0) {
     return ((u32 *)0x02fffdc4)[arg0];
 }
 
+u32 func_02007008(s32 arg0) {
+    return ((u32 *)0x02fffda0)[arg0];
+}
+
 extern u32 data_0215d084[3];
 u32 func_02007664(void) {
     return data_0215d084[2];
