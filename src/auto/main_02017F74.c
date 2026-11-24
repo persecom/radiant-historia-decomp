@@ -113,6 +113,33 @@ void func_02018900(u8 *arg0, s32 arg1) {
     func_020188b0((void *)arg0, arg1);
 }
 
+void func_02018940(UnkNum_02018844 *p, unsigned long long n)
+{
+  u8 *a;
+  u8 *b;
+  p->unk00[0] = 0;
+  p->unk04 = 0;
+  while (n)
+  {
+    p->digits[p->unk04++] = n % 10;
+    n /= 10;
+  }
+
+  a = p->digits;
+  b = (a + p->unk04) - 1;
+  while (a < b)
+  {
+    u8 x = *a;
+    u8 y = *b;
+    *a = y;
+    *b = x;
+    a++;
+    b--;
+  }
+
+  p->unk02 = p->unk04 - 1;
+}
+
 void func_02018b84(u8 *arg0, u8 *arg1, u16 arg2) {
     s32 i = 0;
     u8 c;
