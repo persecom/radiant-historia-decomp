@@ -125,6 +125,37 @@ void func_02005ec0(void) {
     func_02012e3c();
 }
 
+void func_02005ee4(void **arg0, u8 *arg1) {
+    u8 *node = (u8 *)arg0[0];
+    while (node != NULL && *(u32 *)(node + 0x70) <= *(u32 *)(arg1 + 0x70)) {
+        if (node == arg1) {
+            return;
+        }
+        node = *(u8 **)(node + 0x80);
+    }
+    if (node == NULL) {
+        u8 *tail = (u8 *)arg0[1];
+        if (tail == NULL) {
+            arg0[0] = arg1;
+        } else {
+            *(u8 **)(tail + 0x80) = arg1;
+        }
+        *(u8 **)(arg1 + 0x7c) = tail;
+        *(u8 **)(arg1 + 0x80) = NULL;
+        arg0[1] = arg1;
+    } else {
+        u8 *prev = *(u8 **)(node + 0x7c);
+        if (prev == NULL) {
+            arg0[0] = arg1;
+        } else {
+            *(u8 **)(prev + 0x80) = arg1;
+        }
+        *(u8 **)(arg1 + 0x7c) = prev;
+        *(u8 **)(arg1 + 0x80) = node;
+        *(u8 **)(node + 0x7c) = arg1;
+    }
+}
+
 extern u32 data_0215cdf0[4];
 extern s32 func_02005c80(u16, void *, void *);
 extern void func_02005dd8(void);
