@@ -201,20 +201,13 @@ void func_021103c0(u8 *arg0, s32 arg1) {
     u8 *base = *(u8 **)(arg0 + 0x34) + 0x30;
     u8 *obj;
     u8 *entry;
-    u16 b, a, d, c;
     arg0[0x3d] = arg1;
     u16 *table = (arg1 & 0xff) ? (u16 *)(base + 0x14) : (u16 *)(base + 0xa);
     obj = func_020c9c10(*(void **)(arg0 + 0x30), 0);
     *(u16 *)(obj + 0x30) = table[*(u16 *)(arg0 + 0x3e)];
     entry = base + *(u16 *)(arg0 + 0x3e) * 8;
-    a = *(u16 *)(entry + 0x1e);
-    b = *(u16 *)(entry + 0x20);
-    *(u16 *)(obj + 0x32) = a;
-    *(u16 *)(obj + 0x34) = b;
-    c = *(u16 *)(entry + 0x22);
-    d = *(u16 *)(entry + 0x24);
-    *(u16 *)(obj + 0x36) = c;
-    *(u16 *)(obj + 0x38) = d;
+    *(Pair_021103c0 *)(obj + 0x32) = *(Pair_021103c0 *)(entry + 0x1e);
+    *(Pair_021103c0 *)(obj + 0x36) = *(Pair_021103c0 *)(entry + 0x22);
 }
 
 extern void func_02110484(void *);
