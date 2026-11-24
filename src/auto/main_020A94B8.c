@@ -72,6 +72,10 @@ void func_020a9b28(void *arg0) {
     func_020a9b40(arg0);
 }
 
+void *func_020aa318(void) {
+    return func_0210c594(0xc, data_02155c3c);
+}
+
 void func_020aa334(void *arg0) {
     if (arg0 != NULL) {
         func_0210c5dc(arg0);
