@@ -468,7 +468,7 @@ void func_0212c808(u8 *arg0) {
 void func_0212c5cc(void) {
     extern u32 data_02173df4[5];
     extern u8 data_02173e08[720];
-    extern void *memset(void *, int, unsigned long);
+    extern void *memset(void *, int, u32);
     u32 volatile *p = (u32 volatile *)((u8 *)data_02173df4 + 0x10);
     *p = *p - 1;
     if (*p != 0) {
