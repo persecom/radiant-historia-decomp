@@ -85,6 +85,16 @@ s32 func_020a2e64(void) {
     return 1;
 }
 
+extern s32 func_020a2fa0(void);
+s32 func_020a2e8c(void) {
+    if (func_020a2fa0() == 0) {
+        if (func_020a2fe4() == 0) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
 s32 func_020a30c4(void) {
     func_020a30d4();
     return func_020a3128();
