@@ -190,6 +190,16 @@ void func_02107104(void) {
     }
 }
 
+void func_02107168(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    s32 *node = (s32 *)func_0210c594(0x1c, data_02155c3c);
+    node[0] = arg0;
+    node[2] = arg0 + arg2;
+    node[1] = arg1;
+    node[3] = arg1 + arg3;
+    node[4] = arg4;
+    func_021167f0(data_02161068 + 4, node);
+}
+
 void func_021071fc(void) {
     func_0200fa3c((u16)data_02155968);
 }
