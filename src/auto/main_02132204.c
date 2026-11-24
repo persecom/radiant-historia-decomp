@@ -433,6 +433,17 @@ void *func_02132dbc(const char *arg0) {
     return NULL;
 }
 
+void func_02132e0c(char *str) {
+    u32 len = func_02016da4(str);
+    u32 i;
+    for (i = 0; i < len + 1; i++) {
+        s8 c = str[i];
+        if (c >= 'a' && c <= 'z') {
+            str[i] = c - 0x20;
+        }
+    }
+}
+
 extern u8 data_021749dc[64];
 void *func_02132f14(void) {
     return data_021749dc;
