@@ -173,6 +173,18 @@ void func_020e9d44(void) {
     }
 }
 
+void func_020e9d64(s32 arg0) {
+    u8 *p = data_02160a7c;
+    if (arg0 == 1) {
+        func_02002ee8(1, 0, 2, 0x5800);
+        func_020e9dc0();
+        *(u32 *)(p + 0x14) |= 1;
+    } else {
+        func_02002ee8(0, 0, 2, 0x5800);
+        *(u32 *)(p + 0x14) &= ~1;
+    }
+}
+
 void func_020e9e0c(void) {
     u8 *p = data_02160a7c;
     if (p == NULL) {
