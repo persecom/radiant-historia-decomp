@@ -408,8 +408,8 @@ void *func_02132d2c(const char *arg0, void *(*arg1)(void)) {
 }
 
 void *func_02132dbc(const char *arg0) {
-    u32 len = func_02016da4(arg0);
     u32 i;
+    u32 len = func_02016da4(arg0);
     for (i = 0; i < 32; i++) {
         if (func_02016f58(arg0, data_02174b64[i].name, len) == 0) {
             return data_02174b64[i].ptr;
