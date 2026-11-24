@@ -82,6 +82,37 @@ void *func_02064be8(void) {
     return ptr;
 }
 
+void func_02064c18(u8 **arg0) {
+    u8 *node = *(u8 **)(arg0 + 4);
+    while (node != NULL) {
+        if (*(u8 **)(node + 0x2c) != NULL) {
+            func_02022f60((void **)*(u32 *)(node + 0x2c));
+            *(u32 *)(node + 0x2c) = 0;
+        }
+        func_021168f8(arg0 + 4, node);
+        if (node != NULL) {
+            func_0210c5dc(node);
+        }
+        node = *(u8 **)(arg0 + 4);
+    }
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
+void func_02064c80(u8 *arg0) {
+    if (arg0 == NULL) {
+        return;
+    }
+    if (*(u8 **)(arg0 + 0x2c) != NULL) {
+        func_02022f60((void **)*(u32 *)(arg0 + 0x2c));
+        *(u32 *)(arg0 + 0x2c) = 0;
+    }
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
 void *func_02064cb8(u8 *arg0, s32 arg1) {
     u8 *node = *(u8 **)(arg0 + 4);
     while (node != NULL) {
