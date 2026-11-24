@@ -1,18 +1,5 @@
 /* 11 functions from 0x020EB180 to 0x020EC12C (main), found by ds-decomp. */
 #include "common.h"
-static inline s32 animation_end_020ebddc(u8 *p) {
-u8 *cur=*(u8 **)p;
-u8 *seq;
-s32 end;
-if((*(s32 *)(p+20)>0)^*(u32 *)(p+8)){
-seq=*(u8 **)(p+28);
-if(cur>=*(u8 **)(seq+12)+*(u16 *)seq*8)end=1;else end=0;
-}else{
-seq=*(u8 **)(p+28);
-if(cur<=*(u8 **)(seq+12)+*(u16 *)(seq+2)*8-8)end=1;else end=0;
-}
-return end;
-}
 static inline s32 has_02118f24_data(u8 *p) { s32 r = 1; if (!*(void **)(p + 12)) r = 0; return r; }
 static inline s32 has_02118f24_handle(u8 *p) { s32 r = 1; if (*(s32 *)(p + 0x38) == -1) r = 0; return r; }
 extern s32 data_02162834[3];
@@ -195,12 +182,12 @@ s32 step=(s32)(((long long)*(s32 *)(p+20)*delta+0x800)>>12);
 if(step<0)step=-step;
 *(s32 *)(p+16)+=step;
 while(*(s32 *)(p+12) && *(s32 *)(p+16)>=(*(u16 *)(*(u8 **)p+4)<<12)){
-u8 *seq;u8 *cur;s32 end; s32 mode;
+s32 end; s32 mode; u8 *seq;u8 *cur;
 *(s32 *)(p+16)-=*(u16 *)(*(u8 **)p+4)<<12;
 changed=one;
 *(u8 **)p=(u8 *)(*(u32 *)p+8);
 cur=(u8 *)*(volatile u32 *)p;
-if((*(s32 *)(p+20)>0)^*(u32 *)(p+8)){
+if((*(s32 *)(p+20)>zero)^*(u32 *)(p+8)){
 seq=*(u8 **)(p+28);
 if(cur>=*(u8 **)(seq+12)+*(u16 *)seq*8)end=one;else end=zero;
 }else{
