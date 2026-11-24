@@ -56,6 +56,15 @@ void func_02075c98(void) {
     func_0207630c();
 }
 
+void func_02075f6c(s32 arg0, u8 *arg1) {
+    u8 *r5 = (u8 *)func_020764e4();
+    s32 sp0;
+    void *p = func_02109b14(arg0, &sp0);
+    func_02006dc4(p, sp0);
+    *(u32 *)(r5 + 0x88) = (*(u32 *)(arg1 + 8) & 0xffff) << 3;
+    *(void **)(r5 + 0x80) = p;
+}
+
 extern u32 func_020764e4(void);
 void func_0207630c(void) {
     u8 *r4 = (u8 *)func_020764e4();
