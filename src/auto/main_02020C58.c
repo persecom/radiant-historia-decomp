@@ -87,6 +87,14 @@ void func_02021340(s32 arg0) {
     (void)arg0;
 }
 
+s32 func_02021344(u32 arg0) {
+    s32 ret = func_0210723c();
+    if (ret == 0) {
+        func_02021340((s32)arg0);
+    }
+    return ret;
+}
+
 extern s32 func_0210723c(void);
 extern void func_0210d9e4(u8 *);
 s32 func_02021428(u16 *arg) {
