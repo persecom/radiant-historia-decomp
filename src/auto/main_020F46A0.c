@@ -158,6 +158,17 @@ void func_020f4f04(u8 *arg0) {
     }
 }
 
+s32 func_020f5068(u8 *arg0, void *arg1, u32 arg2) {
+    *(void **)arg0 = arg1;
+    *(u32 *)(arg0 + 4) = arg2;
+    if (*(void **)(arg0 + 0x34) == NULL) {
+        func_021167f0((void *)data_02160c3c[3], arg0);
+        *(u32 *)(arg0 + 0x34) = data_02160c3c[3];
+    }
+    *(u16 *)(*(u8 **)arg0 + 4) = (*(u16 *)(*(u8 **)arg0 + 4) & ~0xc00) | (arg0[0x10] << 10);
+    return 1;
+}
+
 u32 func_020f53e4(void (*arg0)(void)) {
     if (arg0 != NULL) {
         arg0();
