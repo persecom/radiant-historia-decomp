@@ -208,12 +208,15 @@ s32 func_021253e8(u8 *arg0) {
     return 1;
 }
 
+#pragma opt_common_subs off
+#pragma opt_propagation off
 void func_02125424(u32 arg0, u32 arg1) {
-    data_02173180[0] = arg0;
-    data_02173180[1] = arg1;
-    func_02125374(&data_02173180[0]);
+    *(u32 *)((u8 *)data_02173180 + 0) = arg0;
+    *(u32 *)((u8 *)data_02173180 + 4) = arg1;
+    func_02125374(data_02173180);
 }
-
+#pragma opt_propagation on
+#pragma opt_common_subs on
 void func_02125448(void) {
     u8 *p = func_021253c8((u8 *)data_02173180);
     if (!func_021253e8((u8 *)data_02173180)) {
@@ -221,7 +224,7 @@ void func_02125448(void) {
     }
     func_02125340((u32 *)p);
     do {
-        data_02173180[4] -= *(u32 *)(p + 0xc);
+        *(u32 *)((u8 *)data_02173180 + 0x10) -= *(u32 *)(p + 0xc);
         p = func_021253c8((u8 *)data_02173180);
     } while (func_021253e8((u8 *)data_02173180));
 }
@@ -330,13 +333,15 @@ void func_02125bd4(void *arg0, s32 arg1) {
     func_02126998(*func_02125dc4(arg0), arg1);
 }
 
+#pragma opt_propagation off
 void func_02125e20(void *arg0) {
     u8 *p = (u8 *)arg0;
-    if (func_02125e20_check(p)) {
+    s32 flag = (*(u32 *)(p + 0x28) & 0x10) != 0;
+    if (flag != 0) {
         func_0200baa4(p + 0x1c);
     }
 }
-
+#pragma opt_propagation on
 void func_02125e48(void *arg0, void *arg1) {
     (*(void (**)(void *))((u8 *)data_02173198 + 0x1fc))(arg1);
 }
