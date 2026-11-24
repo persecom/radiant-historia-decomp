@@ -328,6 +328,11 @@ s32 func_021095d0(u32 arg0) {
     return 0;
 }
 
+void func_021097f4(void) {
+    func_02008f74(data_02162544, 0, 0x20);
+    func_02008f74(data_02162510, 0, 0x14);
+}
+
 void func_02109828(void) {
     *(u32 *)(data_02162510 + 0x34) = 0x8000;
     *(u32 *)(data_02162510 + 0x44) = 0x8000;
