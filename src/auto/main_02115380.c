@@ -64,6 +64,14 @@ s32 func_021154a4(void *arg0) {
     return ret - 1;
 }
 
+u32 func_021155c8(void *arg0) {
+    u32 val = func_0211727c(*(void **)arg0, 0x20);
+    if (val < 0x20) {
+        return 0;
+    }
+    return (val - 0x20) & ~0x1f;
+}
+
 void func_021155ec(void *arg0) {
     func_021167ac(arg0, NULL);
 }
