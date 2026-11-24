@@ -49,6 +49,17 @@ void func_020211f0(void *arg0, s32 arg1) {
     func_021160c0(arg0, 0, arg1);
 }
 
+s32 func_02021284(void) {
+    s32 res;
+    func_0210d114(0x40000, data_02145fc8);
+    data_02155c80 = (void *)func_020211f0;
+    func_0211568c(0, data_02162730[0]);
+    res = func_021154a4(data_02162730[0]);
+    data_02160050 = res;
+    data_02162730[4] = 0;
+    return res;
+}
+
 s32 func_020212ec(void) {
     func_0210d220();
     return func_02021284();
