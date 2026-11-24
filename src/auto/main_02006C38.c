@@ -121,6 +121,10 @@ void func_020071a0(s32 arg0, u32 arg1) {
     ((u32 *)0x02fffdc4)[arg0] = arg1;
 }
 
+void func_020071b4(s32 arg0, u32 arg1) {
+    ((u32 *)0x02fffda0)[arg0] = arg1;
+}
+
 extern u32 data_0215d084[3];
 u32 func_02007664(void) {
     return data_0215d084[2];
