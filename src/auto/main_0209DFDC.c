@@ -28,6 +28,27 @@ extern void func_020a0fd4(s32, s32);
 
 extern void *func_020a583c(void);
 extern void func_0209e8a4(void *, u32);
+extern void func_020a3bbc(s32);
+extern void func_021098ac(void *);
+void func_0209e688(void) {
+u8 *p=*(u8 **)(data_021600b0+0x1c0);
+Unk_0209e688 buf=data_02142bc8;
+u16 i=0, count=0;
+*(volatile u32 *)0x040004a4=0x1f00c0;
+for(;i<7;i++) {
+if(p[0x21+i]) {
+if(p[0x8f]==i) {
+if(p[0x20]==3) func_020a3bbc(3);
+else func_020a3bbc(2);
+} else func_020a3bbc(1);
+buf.field[5]=*(s32 *)(p+0x28+i*4)>>12;
+buf.field[6]=194-(p[0x90]-count)*25;
+func_021098ac(&buf);
+count++;
+}
+}
+}
+
 void func_0209e78c(void) {
     u16 i;
     u8 *base = data_021600b0;
@@ -54,6 +75,32 @@ void func_0209e85c(void) {
         func_020a5858(*(void **)(data_021600b0 + i * 4 + 0xe4));
         *(u32 *)(data_021600b0 + i * 4 + 0xe4) = 0;
     }
+}
+
+extern void func_0203bc34(void *, void *, void *, s32, s32, s32);
+extern void func_0203bcf8(void *, void *, void *, s32, s32, s32, s32, s32);
+extern void func_020a899c(void *);
+void func_0209eae0(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 mode) {
+    u8 *self = (u8 *)arg0;
+    u8 *obj = *(u8 **)(self + 4);
+    u8 *f0 = *(u8 **)(self + 0);
+
+    ((void (*)(void *))*(void **)(obj + 4))(obj);
+
+    if (mode == 0) {
+        func_0203bc34(f0, obj, (void *)arg4, 0, 0, 0);
+    } else if (mode == 1) {
+        func_0203bc34(f0, obj, (void *)arg4, 0x40, 0, 1);
+    } else if (mode == 2) {
+        func_0203bc34(f0, obj, (void *)arg4, 0x71, 0, 2);
+    } else if (mode == 3) {
+        func_0203bcf8(f0, obj, (void *)arg4, 0, 0, 0x100, 0x40, 0xe);
+    }
+
+    func_020a899c(obj);
+    *(u32 *)(obj + 0x44) = arg1 << 12;
+    *(u32 *)(obj + 0x48) = arg2 << 12;
+    *(u32 *)(obj + 0x4c) = arg3 << 12;
 }
 
 void func_0209ed00(void) {
