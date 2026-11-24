@@ -48,3 +48,25 @@ void func_020bf414(s32 arg0) {
     }
 }
 
+extern u8 *data_02160214;
+extern void func_0210da14(void *);
+extern void func_0210dba0(void *);
+extern void func_0210c5dc(void *);
+extern void func_02066f9c(void);
+extern void func_021168f8(void *, void *);
+void func_020bff30(void *arg0);
+void func_020bffb8(u32 arg0) {
+    u8 *p = data_02160214;
+    u8 *node;
+    if (p == NULL) {
+        return;
+    }
+    node = *(u8 **)(p + 0x28);
+    while (node != NULL) {
+        if (*(u32 *)(node + 0x3c) == arg0) {
+            *(u32 *)(node + 0x3c) = 0;
+        }
+        node = *(u8 **)(node + 0x48);
+    }
+}
+
