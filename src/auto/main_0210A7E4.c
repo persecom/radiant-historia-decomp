@@ -250,6 +250,33 @@ s32 func_0210ad88(u32 arg0, u32 *arg1, s32 arg2) {
     return 1;
 }
 
+extern u32 func_0210f170(void *, u32, s32, s32);
+extern void func_0210e3dc(void);
+extern s32 func_021185c0(void *, s32);
+extern u32 func_021185b8(void *, s32);
+s32 func_0210ae0c(u32 *arg0, u32 *arg1, void *arg2) {
+    u32 val;
+    func_02006dc4(arg1[5], arg1[4]);
+    val = func_0210f170(arg2, arg1[4], 0, 0);
+    arg0[9] = val;
+    if (val == 0) {
+        return 0;
+    }
+    arg0[10] = (u16)val << 3;
+    func_0210e3dc();
+    if (arg1[2] == 0) {
+        u32 addr = 0;
+        func_0211883c(arg1, arg0[10], 0, (u32)arg0);
+        if (func_021185c0(arg0, 0) != 0) {
+            addr = func_021185b8(arg0, 0);
+        }
+        arg0[11] = (addr >> 3) | (arg0[5] << 26) | 0x40000000 | (arg0[3] << 20) | (arg0[4] << 23) | (arg0[7] << 29);
+    } else {
+        func_02118624(arg1, arg0[10], 0, (u32)arg0);
+    }
+    return 1;
+}
+
 s32 func_0210aee0(u32 arg0, u32 *arg1, s32 arg2, void *arg3) {
     if ((u32)(arg2 == 0) == 0) {
         u32 sp4 = 0;
