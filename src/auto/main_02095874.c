@@ -36,6 +36,46 @@ void func_02095874(void) {
     }
 }
 
+void func_0209368c(u16,s32,s32);
+void func_020958f8(void) {
+ u8 *node;
+ u16 id=0;
+ node=*(u8 **)(data_02160090+8);
+ s32 lowY=-32,lowX=-64,zero=0,two=2,normal=0,one=1;
+ while(node){
+ u8 *entry=*(u8 **)(node+20);
+ u8 *actor;
+ s32 visible=0;
+ actor=*(u8 **)node;
+ if(entry){
+ u8 *p=*(u8 **)(entry+8);
+ if(p){
+ s32 x=*(s16 *)(p+12),y=*(s16 *)(p+14);
+ id=*(u16 *)p;
+ if(x>lowX && x<256 && y>lowY && y<192)visible=1;
+ }
+ }
+ if((node[0x41]&4)||(node[0x41]&2)){
+ ++*(volatile s8 *)(node+0x42);
+ *(volatile s8 *)(node+0x42)=*(volatile s8 *)(node+0x42)%20;
+ }else node[0x42]=zero;
+ if((node[0x41]&4)&&*(volatile s8 *)(node+0x42)>10){
+ if(visible){
+ func_0209368c(id,one,one);func_0209368c(id,one,2);func_0209368c(id,one,3);
+ }
+ }else if(!(node[0x41]&2)||*(volatile s8 *)(node+0x42)<=10){
+ if(visible){
+ if(**(u8 **)(actor+0x118)==0){
+ func_0209368c(id,normal,1);func_0209368c(id,normal,2);func_0209368c(id,normal,3);
+ }else{
+ func_0209368c(id,two,1);func_0209368c(id,two,two);func_0209368c(id,two,3);
+ }
+ }
+ }
+ node=*(u8 **)(node+0x1c);
+ }
+}
+
 #pragma opt_propagation off
 void func_02095cb8(u8 *arg,s32 a,s32 b) {
 s32 id; u16 i; s32 x,y; u8 *p;
@@ -162,8 +202,7 @@ i++;node=*(u8 **)(node+0x1c);
 }
 }
 
-#pragma opt_propagation off
-#pragma opt_common_subs off
+#pragma opt_propagation on
 void func_02096504(u8 *arg, s32 unused, s32 index) {
  u8 *p; s32 id; u16 i; s32 x, y;
  if(!arg) return;
@@ -178,13 +217,12 @@ void func_02096504(u8 *arg, s32 unused, s32 index) {
  func_02094990(index,0);
  func_0209491c(index,8,1);
  do {
- s32 tag=i+0x77;
- void *obj=func_020936f8((u16)(i+(index*4+0x2b)),id,x,y,3,4,(u16)tag);
+ u32 tag=i+0x77;
+ void *obj=func_020936f8((u16)(i+(index*4+0x2b)),id,x,y,3,4,(u16)(tag & 0xffff));
  func_020938b0(obj,1,(u16)tag);
  i++;
  }while(i<4);
 }
-#pragma opt_common_subs on
 #pragma opt_propagation on
 extern void *func_020936f8(s32, s32, s32, s32, s32, s32, s32);
 extern void func_020938b0(void *, s32, s32);
