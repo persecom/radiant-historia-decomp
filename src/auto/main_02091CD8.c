@@ -120,6 +120,38 @@ a.data[1]=0;a.data[2]=ch;a.data[3]=cw;a.data[4]=ch;a.data[8]=bx;a.data[9]=h-by*2
 }
 }
 
+void func_0209250c(s32 id, s32 mode, s16 x, s16 y, s16 w, s16 h, s16 tw, s16 th, s16 bx, s16 cw, s16 by, s16 ch, s16 z) {
+Unk_02092194 b=data_02140f18;
+s16 i; s16 px;
+func_020a3bbc(id);
+b.data[7]=z;
+for(i=0;i<2;i++){
+b.data[1]=0;b.data[2]=i*(th-bx);
+b.data[3]=b.data[8]=bx;b.data[4]=b.data[9]=by;
+b.data[5]=x;b.data[6]=y+i*(h-by);func_021098ac(&b);
+b.data[1]=tw-bx;b.data[2]=i*(th-bx);
+b.data[3]=b.data[8]=bx;b.data[4]=b.data[9]=by;
+b.data[5]=x+w-bx;b.data[6]=y+i*(h-by);func_021098ac(&b);
+b.data[1]=i*(tw-bx);b.data[2]=ch;
+b.data[3]=bx;b.data[4]=by;b.data[8]=bx;b.data[9]=h-by*2;
+b.data[5]=x+i*(w-bx);b.data[6]=y+by;func_021098ac(&b);
+}
+px=x+bx;
+if(mode==0){
+b.data[1]=bx;b.data[2]=0;b.data[3]=cw;b.data[4]=th;
+b.data[5]=px;b.data[6]=y;b.data[8]=w-bx*2;b.data[9]=h;func_021098ac(&b);
+}else{
+b.data[1]=cw;b.data[2]=0;b.data[3]=bx;b.data[4]=by;
+b.data[5]=px;b.data[6]=y;b.data[8]=w-bx*2;b.data[9]=by;func_021098ac(&b);
+if(w>bx*2&&h>by*2){
+b.data[1]=b.data[3]=cw;b.data[2]=b.data[4]=ch;
+b.data[5]=px;b.data[6]=y+by;b.data[8]=w-bx*2;b.data[9]=h-by*2;func_021098ac(&b);
+}
+b.data[1]=cw;b.data[2]=th-by;b.data[3]=bx;b.data[4]=by;
+b.data[5]=px;b.data[6]=y+h-by;b.data[8]=w-bx*2;b.data[9]=by;func_021098ac(&b);
+}
+}
+
 void func_02092814(s32 arg0, s32 arg1, s16 x, s16 y, s16 w, s16 h, s16 z) {
     Unk_02092194 s1 = data_021412ec;
     Unk_02092194 s0 = data_021413dc;
