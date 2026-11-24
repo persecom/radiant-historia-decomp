@@ -177,7 +177,7 @@ s32 func_0210e93c(void *arg0, u32 arg1, const char *arg2, u32 *arg3) {
         return 0;
     }
     arg3[1] = (u16)arg3[0] << 3;
-    if (!func_0210f314()) {
+    if (!func_0210f314(arg3[0])) {
         func_02004588();
         func_020045bc(arg0, arg3[1], size);
         func_0200462c();
