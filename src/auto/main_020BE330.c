@@ -183,6 +183,10 @@ void func_020bec5c(s32 arg0) {
     }
 }
 
+u8 *func_020bed24(void) {
+    return func_020becfc() + 0xdc;
+}
+
 void func_020bed94(void) {
     func_020becfc();
 }
