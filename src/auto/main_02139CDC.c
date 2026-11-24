@@ -25,7 +25,8 @@ s32 func_02139fc4(void) {
     func_02139cdc();
     func_0210968c(3, 0, 30);
     func_02109790(3);
-    while (data_021769fc->field_3c == 0) {
+    for (;;) {
+        if (data_021769fc->field_3c != 0) break;
         func_0210dc88();
     }
     func_0210968c(3, -16, 20);
