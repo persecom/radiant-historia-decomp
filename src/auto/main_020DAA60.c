@@ -59,18 +59,14 @@ s32 func_020db630(void) {
     u8 *node = *(u8 **)(data_02160a6c + 0xb8);
     while (node != NULL) {
         if (*(s32 *)(*(u8 **)(node + 0x118) + 4) >= 1) {
-            if (node[0x104] != 0 && node[0x104] != 0x13) {
+            u8 val = node[0x104];
+            if (val != 0 && val != 0x13) {
                 return 0;
             }
-            node = *(u8 **)(node + 0x174);
-            if (node == NULL) {
-                return 1;
-            }
-        } else {
-            node = *(u8 **)(node + 0x174);
         }
+        node = *(u8 **)(node + 0x174);
     }
-    return 0;
+    return 1;
 }
 
 s32 func_020db680(void) {
