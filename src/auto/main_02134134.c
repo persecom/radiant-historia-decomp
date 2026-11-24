@@ -75,7 +75,7 @@ void func_02134bf0(u8 *arg0) {
 
 BOOL func_02134c94(u8 *arg0) {
     if (arg0 == NULL) {
-        return FALSE;
+        return -1;
     }
     return (arg0[1] & 1) != 0;
 }
