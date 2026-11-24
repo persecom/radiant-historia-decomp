@@ -224,8 +224,8 @@ void func_020096b4(u32 arg0, u32 arg1) {
 }
 
 void func_020096d4(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u32 arg6, u32 arg7, u32 arg8, u32 arg9) {
-    u32 v4 = (arg1 << 24) | (arg3 << 26) | (arg9 << 16) | arg4;
-    u32 v3 = (arg7 << 22) | (arg6 << 24) | arg5;
+    u32 v4 = (arg3 << 26) | (arg1 << 24) | (arg9 << 16) | arg4;
+    u32 v3 = (arg6 << 24) | (arg7 << 22) | arg5;
     u32 v1 = arg0 | (arg8 << 16);
     func_020097f0(0xe, v1, arg2, v3, v4);
 }
@@ -324,5 +324,19 @@ u32 *func_02009a64(s32 arg0) {
         cmd = func_02009eec();
     } while (cmd == NULL);
     return cmd;
+}
+
+void func_02009aec(u32 *arg0) {
+    s32 irq = func_02008128();
+    u32 **q = data_0215d1b8;
+    u32 *tail = q[3];
+    if (tail == NULL) {
+        q[2] = arg0;
+    } else {
+        tail[0] = (u32)arg0;
+    }
+    q[3] = arg0;
+    arg0[0] = 0;
+    func_0200813c(irq);
 }
 
