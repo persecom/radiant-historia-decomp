@@ -160,12 +160,10 @@ void func_02110288(void *arg0, u32 arg1, u32 arg2) {
 }
 
 void func_021102bc(u8 *arg0, u32 arg1, u32 arg2) {
-    u16 i;
+    volatile u16 i = 0;
     s16 x;
     s16 y;
-    u8 *obj;
-    i = 0;
-    obj = func_020c9c10(*(void **)(arg0 + 0x30), i);
+    u8 *obj = func_020c9c10(*(void **)(arg0 + 0x30), i);
     x = arg1 + (*(s16 *)(obj + 0x3a) - *(s16 *)(arg0 + 0x38));
     y = arg2 + (*(s16 *)(obj + 0x3c) - *(s16 *)(arg0 + 0x3a));
     ((void (*)(u8 *, s32))(*(void **)(obj + 0x10)))(obj, x);
