@@ -13,6 +13,9 @@ extern void func_020c2b98(void);
 extern void func_020c2be4(void);
 extern void func_020c2c30(void);
 extern void func_0210c5dc(void *);
+extern u8 *func_02030698(void *, s32);
+extern void func_020c2708(u8);
+extern void func_020c2870(u8);
 void *func_02031c24(u32 arg0) {
     void *node = *(void **)((u8 *)data_0216008c + 0x2c);
     while (node != NULL) {
