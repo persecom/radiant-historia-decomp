@@ -220,6 +220,37 @@ s32 func_021128f4(void) {
     return 0x11;
 }
 
+s32 func_021128fc(u8 *p) {
+ InitPositions_021128fc table;
+ u16 i;
+ u8 *obj;
+ InitPosition_021128fc *entry;
+ func_020c87a4(p);
+ func_020c9b24(*(void **)(p+0x54),2,5);
+ func_020c9b24(*(void **)(p+0x54),3,4);
+ func_020c9b24(*(void **)(p+0x54),4,2);
+ func_020c9b24(*(void **)(p+0x54),5,1);
+ func_020c9b24(*(void **)(p+0x54),6,2);
+ func_020c9b24(*(void **)(p+0x54),7,1);
+ func_020c9b24(*(void **)(p+0x54),8,5);
+ func_020c9b24(*(void **)(p+0x54),9,5);
+ func_020c9b24(*(void **)(p+0x54),10,25);
+ func_020c9b24(*(void **)(p+0x54),11,1);
+ table=data_02144cc0;
+ for(i=0;i<9;i++) {
+  entry=&table.entries[i];
+  obj=func_020c9c10(*(void **)(p+0x54),entry->id);
+  ((void (*)(u8 *,s32))(*(void **)(obj+0x10)))(obj,entry->x);
+  ((void (*)(u8 *,s32))(*(void **)(obj+0x14)))(obj,entry->y);
+ }
+ obj=func_020c9c10(*(void **)(p+0x54),6); obj[0x43]++;
+ obj=func_020c9c10(*(void **)(p+0x54),7); obj[0x43]++;
+ obj=func_020c9c10(*(void **)(p+0x54),4); obj[0x43]++;
+ func_020c7894(func_020c9c10(*(void **)(p+0x54),8),3);
+ func_020c7894(func_020c9c10(*(void **)(p+0x54),9),3);
+ return 0;
+}
+
 extern void func_020c8818(void *);
 void func_02112ac0(void *arg0) {
     func_020c8818(arg0);
