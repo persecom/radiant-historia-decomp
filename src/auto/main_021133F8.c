@@ -284,6 +284,10 @@ void func_02113a80(void) {
     data_0216bfc0[1] = 0;
 }
 
+void func_02113a9c(s32 arg0, u16 arg1) {
+    *(u32 *)(data_0216c43c + arg0 * 0x24) = arg1;
+}
+
 void func_02113abc(s32 arg0, u32 arg1) {
     *(u32 *)(data_0216c440 + arg0 * 0x24) = arg1;
 }
@@ -296,6 +300,13 @@ void func_02113c0c(u32 *arg0) {
     *arg0 = 0;
 }
 
+void func_02113c18(void ***arg0) {
+    if (*arg0 != NULL) {
+        **arg0 = NULL;
+        *arg0 = NULL;
+    }
+}
+
 void func_02113ce8(u8 **arg0, u8 arg1) {
     if (*arg0 != NULL) {
         (*arg0)[0x41] = arg1;
@@ -306,6 +317,14 @@ void func_02113cfc(u8 * volatile *arg0, u8 arg1) {
     if (*arg0 != NULL) {
         (*arg0)[0x40] = arg1;
     }
+}
+
+void func_02113d10(void *arg0, u32 arg1, s32 arg2) {
+    u8 *p = *(u8 **)arg0;
+    if (p == NULL || p[0x2c] == 2) {
+        return;
+    }
+    func_02116720((s32 *)(p + 0x1c), arg1 << 8, arg2);
 }
 
 void func_02113d3c(void *arg0) {
