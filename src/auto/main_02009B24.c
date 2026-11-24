@@ -371,9 +371,57 @@ u32 func_0200a928(u8 *arg0, u32 arg1) {
     }
     return ret;
 }
-void func_0200a884(void) {
+void func_0200a884(u8 *arg0, u32 arg1) {
+    s32 irq = func_02008128();
+    u8 *p = *(u8 **)(arg0 + 8);
+    u8 **link;
+    u8 *cur;
+    u8 id;
+    u32 flags;
+
+    if (p != NULL) {
+        link = (u8 **)(p + 8);
+        cur = *link;
+        if (cur != NULL) {
+            while (1) {
+                if (cur == arg0) {
+                    *link = *(u8 **)arg0;
+                    break;
+                }
+                link = (u8 **)cur;
+                cur = *(u8 **)cur;
+                if (cur == NULL) break;
+            }
+        }
+        *(u8 **)arg0 = NULL;
+    }
+    id = (u8)((*(u32 *)(arg0 + 0xc) >> 8) & 0xff);
+    if (func_0200a85c(id) == 0) {
+        if (p != NULL) {
+            *(u32 *)(p + 0x18) = id;
+            *(u32 *)(p + 0x1c) = id;
+        }
+    }
+    flags = *(u32 *)(arg0 + 0xc) & ~0xcf;
+    *(u32 *)(arg0 + 0x14) = arg1;
+    *(u32 *)(arg0 + 0xc) = flags;
+    func_02006560(arg0 + 0x18, flags);
+    func_0200813c(irq);
 }
 
 s32 func_0200a6e4(s32 arg0, s32 arg1, s32 arg2) {
     return 0;
 }
+
+s32 func_0200a85c(s32 c) {
+    u32 d = c - 9;
+    s32 ret = 0;
+    if (d > 0x1a) {
+        return ret;
+    }
+    if (0x400030f & (1 << d)) {
+        ret = 1;
+    }
+    return ret;
+}
+
