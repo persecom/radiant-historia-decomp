@@ -1,6 +1,8 @@
 /* 20 functions from 0x021231B0 to 0x021241A4 (main), found by ds-decomp. */
 #include "common.h"
 
+extern void func_02002058(s32, s32);
+extern s32 func_02001ff4(void);
 extern void func_021205ec(s32, void *, s32);
 extern void (*data_021560f0[8])(s32 *, u8 *);
 void func_021231b0(u32 *arg0, u8 *arg1, u32 arg2) {
@@ -163,5 +165,25 @@ void func_02123934(u8 *arg0) {
         data[15] = (s32)(((s64)scale * data[15]) >> 12);
     }
     func_021205ec(data[0], (s32 *)((u8 *)data + 4), 0x12);
+}
+
+extern void func_02002058(s32, s32);
+extern s32 func_02001ff4(void);
+void func_02124130(s32 *arg0, u8 *arg1) {
+    u16 w = *(u16 *)(arg1 + 0x2c);
+    u16 h = *(u16 *)(arg1 + 0x2e);
+    s32 x = *(s32 *)(arg1 + 0x24);
+    s32 y = *(s32 *)(arg1 + 0x28);
+    s32 a = *(s32 *)(arg1 + 0x18);
+    s32 b = *(s32 *)(arg1 + 0x1c);
+    s32 v1 = (s32)(((s64)b * (h * (y - 0x800))) >> 8) + (h << 15);
+    s32 v2 = (s32)(((s64)a * (-w * (x + 0x800))) >> 8) + (w << 15);
+
+    arg0[0] = a;
+    arg0[5] = b;
+    arg0[1] = 0;
+    arg0[12] = v2;
+    arg0[13] = v1;
+    arg0[4] = 0;
 }
 
