@@ -55,6 +55,42 @@ typedef struct {
     u32 flag;
 } S_0209c920;
 
+void func_0209c2ac(s32 arg0) {
+Unk258 table=data_021420ec;
+u8 *base=data_02160120;
+void *list;
+s16 offset;
+u16 i;
+if(!base)return;
+list=*(void **)(base+0x704);
+offset=arg0*56;
+for(i=0;i<25;i++){
+u16 k=i*12;
+u8 *p=func_0210c594(44,data_02155c3c);
+*(s16 *)(p+6)=table.data[k];
+*(s16 *)(p+8)=table.data[k+1];
+*(s16 *)(p+10)=table.data[k+2];
+*(s16 *)(p+12)=table.data[k+3];
+*(s32 *)(p+16)=table.data[k+4];
+*(s32 *)(p+20)=table.data[k+5];
+*(s32 *)(p+24)=table.data[k+6];
+*(s16 *)(p+28)=table.data[k+7];
+*(s16 *)(p+30)=table.data[k+8];
+*(s16 *)(p+4)=table.data[k+9];
+*(s16 *)(p+0)=table.data[k+10];
+*(s16 *)(p+2)=table.data[k+11];
+p[32]=31;
+switch(*(u16 *)p) {
+case 2: break;
+case 4:case 7:case 10:case 13:case 16:case 19:case 22:case 25:case 28:case 31:case 34:case 37:case 40:case 43:case 46:case 49:case 52:case 55:case 58:case 61:case 64:case 67:
+*(s32 *)(p+20)+=offset;
+break;
+}
+*(u16 *)p+=arg0;
+func_021167f0(list,p);
+}
+}
+
 void func_0209c510(s32 arg0,s32 arg1){
 char buf[32];
 void *fp;
