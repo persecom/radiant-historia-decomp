@@ -19,6 +19,10 @@ extern void func_0212fb8c(void *);
 extern u32 data_021749c8[2];
 extern void func_021327cc(u8 *);
 extern s32 func_02016f58(const char *, const char *, u32);
+extern u8 data_021459d8[];
+extern u32 data_0215b618;
+extern u32 data_021749d0[3];
+extern u32 data_021749d8;
 
 extern void func_0212f738(void);
 extern u32 data_021749ac[4];
@@ -257,10 +261,10 @@ void func_02132af0(u32 *arg0) {
 
 void func_02132afc(u8 *arg0, s32 arg1) {
     s32 v;
-    if (arg1 == 0) {
-        v = 0;
-    } else {
+    if (arg1 != 0) {
         v = 1;
+    } else {
+        v = 0;
     }
     *(u32 *)(arg0 + 0x38) = v;
 }
