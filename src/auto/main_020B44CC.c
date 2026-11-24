@@ -22,9 +22,33 @@ extern void func_020ade0c(void);
 extern void *data_021601e0[];
 extern void *data_02162858;
 extern void *data_02162854;
+void func_020b44cc(void) {
+    u8 *p = func_020b3880();
+    func_0210dba0(p + 0x14);
+    func_0210dbe8(p + 0x28);
+    func_0210dac8(p);
+    if (data_021601e0[1] != NULL) {
+        func_0210c5dc(data_021601e0[1]);
+    }
+    data_021601e0[1] = NULL;
+    func_0210e290(0);
+    data_02162858 = NULL;
+    data_02162854 = NULL;
+    func_0210f138();
+}
+
 void func_020b453c(void) {
     *(volatile u32 *)0x0400001c = 0;
     *(volatile u32 *)0x04000000 = (*(volatile u32 *)0x04000000 & ~0x1f00) | 0x1f00;
+}
+
+void func_020b4564(void) {
+    func_020a2c20();
+    func_0210f6d4();
+    data_02162858 = (void *)func_020b453c;
+    data_02162854 = (void *)func_020b453c;
+    func_020b4440();
+    func_02108ffc();
 }
 
 void func_020b459c(void) {
