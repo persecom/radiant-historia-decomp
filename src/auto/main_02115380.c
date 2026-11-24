@@ -6,6 +6,16 @@ extern void *func_02116970(void *, void *);
 extern void func_021168f8(void *, void *);
 extern void func_02117250(void *, s32);
 extern void func_0211566c(void);
+extern u32 func_02009d2c(void);
+extern void func_02009b24(s32);
+extern void func_02009cc0(u32);
+extern u8 *func_02114f80(void *);
+extern u8 *func_02114fe4(void *);
+extern s32 func_021157d0(u16, u32, void *, s32, void *);
+extern void *func_02115a38(void *, void *, s32);
+extern void *func_02115aa4(void *, void *, s32);
+extern void *func_02115264(void *);
+extern s32 func_02115770(void *, u32, void *, s32, void **);
 extern s32 func_02115630(void *);
 extern void *func_0211721c(void *, u32, u32);
 extern void func_021167f0(void *, void *);
@@ -90,6 +100,19 @@ s32 func_02115630(void *arg0) {
     func_021155ec(r4);
     func_021167f0((u8 *)arg0 + 4, r4);
     return 1;
+}
+
+extern u32 func_02009d2c(void);
+extern void func_02009b24(s32);
+extern void func_02009cc0(u32);
+extern u8 *func_02114f80(void *);
+extern u8 *func_02114fe4(void *);
+extern s32 func_021157d0(u16, u32, void *, s32, void *);
+extern void *func_02115a38(void *, void *, s32);
+extern void *func_02115aa4(void *, void *, s32);
+extern s32 func_02115770(void *, u32, void *, s32, void **);
+BOOL func_0211568c(void *arg0, void *arg1) {
+    return func_02115770(arg0, 0xff, arg1, 1, NULL) == 0;
 }
 
 extern void *func_02115264(void *);
