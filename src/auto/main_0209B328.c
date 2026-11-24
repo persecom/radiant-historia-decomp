@@ -3,6 +3,7 @@
 typedef struct { u16 unk[10]; } Unk20;
 typedef struct { s16 data[1080]; } Unk870;
 extern const Unk20 data_0214209c;
+extern const Unk20 data_021420d8;
 extern const Unk870 data_02142344;
 extern void func_021167f0(void *, void *);
 extern void func_020a3bbc(s32);
