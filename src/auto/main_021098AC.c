@@ -14,6 +14,11 @@ void func_02109af8(void) {
     func_021167ac(data_0216256c, 0);
 }
 
+void func_02109c04(u32 arg0, u32 arg1) {
+    func_0210a2f0();
+    func_0210a348(arg0, arg1);
+}
+
 void func_02109c54(void) {
     func_0210a38c();
 }
