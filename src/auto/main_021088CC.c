@@ -285,5 +285,31 @@ void func_02109884(u32 arg0, u32 arg1) {
     }
 }
 s32 func_021090f4(u32 arg0, s32 arg1) {
-    return 0;
+    u32 *ptr = NULL;
+    if (arg0 == 0) {
+        ptr = &data_021624f8->unk_08;
+    } else if (arg0 == 1) {
+        ptr = &data_021624f8->unk_0c;
+    }
+    if (arg0 >= 2 || ptr == NULL) {
+        return -1;
+    }
+    if (data_021624f8->unk_18[arg0] & 8) {
+        return 0;
+    }
+    switch (func_02125a5c(*ptr)) {
+        case 0:
+            return 0;
+        case 1:
+            return 1;
+        case 2:
+            return 2;
+        case 3:
+            if (arg1 == 0) {
+                return 0;
+            }
+            return 3;
+        default:
+            return -1;
+    }
 }
