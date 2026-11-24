@@ -50,6 +50,36 @@ void func_0207af60(void) {
     }
 }
 
+void func_0207b148(void) {
+    if (data_021600f0 == NULL) {
+        return;
+    }
+    *(u8 *)data_021600f0 = 0;
+    if (*(u8 *)data_021600f0 == 0) {
+        if ((*(u32 *)((u8 *)data_02160200 + 0x34) & 0x20) != 0) {
+            return;
+        }
+    }
+    (*(u8 *)data_021600f0)++;
+    if (*(u8 *)data_021600f0 == 1) {
+        if ((*(u32 *)((u8 *)data_02160200 + 0x34) & 0x10) != 0) {
+            return;
+        }
+    }
+    (*(u8 *)data_021600f0)++;
+    if (*(u8 *)data_021600f0 == 2) {
+        if ((*(u32 *)((u8 *)data_02160200 + 0x34) & 0x40) != 0) {
+            return;
+        }
+    }
+    (*(u8 *)data_021600f0)++;
+    if (*(u8 *)data_021600f0 == 3) {
+        if (data_02160200 != NULL) {
+            return;
+        }
+    }
+}
+
 void func_0207b214(void) {
 }
 
