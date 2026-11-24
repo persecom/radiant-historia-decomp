@@ -286,6 +286,29 @@ s32 func_020f5bdc(void) {
     return 0;
 }
 
+s32 func_020f6118(s32 a,s32 b) {
+char buf[64];
+s32 index=0;
+s8 c;
+s32 i;
+func_02005e80(buf,data_02152030,func_0210cd20(a,b));
+c=buf[0];
+if((c>='0'&&c<='9')||c=='-'){func_02012590(buf,data_02152034,&index);return index;}
+for(i=0;i<63;i++)buf[i]=buf[i+1];
+if(c!='x')func_02012590(buf,data_02152038,&index);
+switch(c){
+case 'f':{
+f32 f=(f32)func_02017f64(buf);
+return (s32)(f>0.0f?0.5f+4096.0f*f:4096.0f*f-0.5f);
+}
+case 'r':index%=360;index<<=16;return index/360;
+case 'x':func_02012590(buf,data_0215203c,&index);return index;
+case 'm':return (index<<17)+0x8000;
+case 's':*((u8 *)data_02160204+0x146)=2;return (index<<16)+0x8000;
+}
+return 0;
+}
+
 s32 func_020f62f4(s32 arg0, s32 arg1) {
     switch (arg1) {
     case 0:
