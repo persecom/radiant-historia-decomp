@@ -1,6 +1,10 @@
 /* 35 functions from 0x02115380 to 0x02116350 (main), found by ds-decomp. */
 #include "common.h"
 
+extern s32 func_02116140(u32, u8, u16, u8, void *, u32);
+extern void *func_021166c8(void *, u32);
+extern s32 func_02116244(u32, u8, u16, u8, void *, void *, u32, u32);
+
 typedef union UnkBits24 {
     u32 all;
     u32 bits : 24;
@@ -360,6 +364,64 @@ void func_02115dc0(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
 void func_02115df0(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     func_02115d10(arg0, arg2, arg3);
     func_0200a2e0(arg0);
+}
+
+void func_02115e10(s32 arg0, s32 arg1, void *arg2, s32 arg3) {
+    if (func_0200a530(arg2, arg3) != arg0) {
+        goto done;
+    }
+    func_0200a4fc(arg2, arg3, 0);
+    func_02009760((void *)arg0, (void *)(arg0 + arg1));
+done:
+    return;
+}
+
+s32 func_02115f20(s32 arg0, void *arg1, u16 arg2, s32 arg3, s32 arg4) {
+    u8 a[8];
+    u8 b[8];
+    u8 c[0xc];
+    if (arg1 == NULL) {
+        return 0;
+    }
+    func_0200a328(a);
+    *(u32 *)b = *(u32 *)(a + 4);
+    *(u32 *)(b + 4) = *(u32 *)a;
+    for (;;) {
+        if (func_0200a348(arg1, c, b) == 0) {
+            return 0;
+        }
+        if (c[0] == 1 && *(u16 *)(c + 4) == arg2) {
+            if (func_02115e58(arg0, *(u16 *)(c + 2), arg3, arg4) == 0) {
+                return 0;
+            }
+        }
+        if (func_0200a348(arg1, c, b) == 0) {
+            return 1;
+        }
+    }
+}
+
+s32 func_02115fe0(void *arg0) {
+    s32 i;
+    s32 j;
+    func_02114f70();
+    for (i = 0; i < 0x20; i++) {
+        u8 *p = (u8 *)func_02115110(i);
+        if (p == NULL) {
+            return 0;
+        }
+        func_02113a9c(i, p[0]);
+        func_02113abc(i, *(u16 *)(p + 2));
+        if (*(u32 *)(p + 4) == 0 || arg0 == NULL || p[0] == 0) {
+            return 0;
+        }
+        for (j = 0; j < p[0]; j++) {
+            if (func_02113ad4(i, arg0, *(void **)(p + 4)) == 0) {
+                return 0;
+            }
+        }
+    }
+    return 1;
 }
 
 void func_0211630c(s32 arg0) {
