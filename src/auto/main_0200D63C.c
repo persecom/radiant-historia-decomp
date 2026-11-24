@@ -20,7 +20,7 @@ extern void func_0200a56c(void);
 extern s32 func_0200a6c0(s32, s32);
 extern void func_0200a674(s32, void *);
 extern void func_0200d868(void);
-extern s32 func_0200df4c(void *, u16, u16, u8, u8, u16, u16, u8, u8);
+extern s32 func_0200df4c(s16 *, u16, u16, u16, u16, u16, u16, u16, u16);
 typedef struct {
     u16 x;
     u16 y;
