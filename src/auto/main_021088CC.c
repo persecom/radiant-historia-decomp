@@ -12,6 +12,13 @@ typedef struct {
     u32 unk_24[2];
 } Unk021624F8;
 
+typedef struct {
+    u32 unk00;
+    u32 unk04;
+    u32 unk08;
+    u32 unk0c;
+} Unk02162544;
+
 extern Unk021624F8 *data_021624f8;
 extern u32 data_02162504[];
 extern u32 data_02162870;
@@ -442,6 +449,34 @@ void func_02109600(void) {
     if (active == 0) {
         func_0210da14(data_02162510);
         *(volatile s32 *)data_02162510 = 0;
+    }
+}
+
+void func_0210968c(u32 arg0, s32 arg1, u32 arg2) {
+    s32 sz = arg1;
+    s32 i;
+    if (sz > 0x10) {
+        sz = 0x10;
+    } else if (sz < -0x10) {
+        sz = -0x10;
+    }
+    for (i = 0; i < 2; i++) {
+        if (arg0 & (1 << i)) {
+            func_0210c35c((s32 *)(data_02162544 + i * 0x10), *(s32 *)(data_02162544 + i * 0x10), sz << 12, arg2);
+            if (arg2 != 0) {
+                if (*(s32 *)data_02162510 == 0) {
+                    *(u32 *)data_02162510 = (u32)func_02109600;
+                    *(u32 *)((u8 *)data_02162510 + 4) = 0x15f90;
+                    func_0210d9e4(&data_02162814);
+                }
+            } else {
+                if (i == 0) {
+                    *(s32 *)data_02162510 = sz;
+                } else {
+                    data_02162884 = sz;
+                }
+            }
+        }
     }
 }
 
