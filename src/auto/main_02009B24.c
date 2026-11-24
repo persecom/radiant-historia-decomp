@@ -95,6 +95,16 @@ void func_02009e3c(u32 arg0, u32 arg1) {
     func_0200813c(irq);
 }
 
+void func_02009e60(void) {
+    func_0200a674(7, func_02009e3c);
+    if (func_02009f34() == 0) {
+        return;
+    }
+    while (func_0200a6c0(7, 1) == 0) {
+        func_020081a4(50);
+    }
+}
+
 void func_02009ec4(void) {
     while (func_0200a6e4(7, 0, 0) < 0) {
     }
@@ -124,6 +134,22 @@ extern s32 func_0200a6e4(s32, s32, s32);
 void func_02009fac(s32 arg0) {
     u8 *p = data_0215ec80 + arg0 * 12;
     p[8]++;
+}
+
+u32 func_02009fcc(s32 arg0, u32 arg1, u32 arg2) {
+    u8 *p = data_0215ec80 + arg0 * 12;
+    *(u32 *)p = arg1;
+    *(u32 *)(p + 4) = arg2;
+    return ++p[8];
+}
+
+extern s32 func_0200698c(void);
+void func_0200a328(u32 *arg0) {
+    u32 tmp[2];
+    tmp[0] = 0;
+    tmp[1] = 0;
+    arg0[0] = tmp[0];
+    arg0[1] = tmp[1];
 }
 
 s32 func_0200a4f4(u8 *arg0) {
