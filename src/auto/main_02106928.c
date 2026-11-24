@@ -249,6 +249,22 @@ void func_021072d0(u32 arg0, u32 arg1, u32 arg2) {
     func_020105e0(arg1, arg0, arg2, 0, 0, 1, 8, 10, 2);
 }
 
+extern char data_0215596c[];
+extern void func_02005e80(char *, char *, ...);
+extern void *func_0210aa5c(u32 *, char *, u32 *);
+void *func_02107390(void) {
+    u32 *p = (u32 *)func_0210c594(0x20, data_02155c3c);
+    p[0] = 0;
+    p[1] = 0;
+    p[2] = 0;
+    p[3] = 0;
+    p[4] = 0;
+    p[5] = 0;
+    p[6] = 0;
+    p[7] = 0;
+    return p;
+}
+
 void func_021077f0(u32 arg0, u32 arg1) {
     func_02117f54(arg0, 0, 0x7f, arg1);
     func_02118008(arg0, 0, 0x1f, arg1);
