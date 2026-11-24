@@ -26,6 +26,40 @@ void func_020e3db4(u16 *arg0, s32 arg1, s32 arg2) {
     func_021098ac(arg0);
 }
 
+void func_020e4028(u16 *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 offset = 0;
+    if (arg1 == 1) {
+        func_020a3bbc(0x15);
+        offset = 1;
+    } else if (arg1 == 0) {
+        func_020a3bbc(0x14);
+    }
+    arg0[1] = 0;
+    arg0[2] = 0;
+    arg0[3] = 0x14;
+    arg0[4] = 0x14;
+    if (arg3 == 0) {
+        arg0[5] = offset + 0x47;
+        arg0[6] = offset + 1;
+    } else if (arg3 == 1) {
+        arg0[5] = offset + 4;
+        arg0[6] = offset + 0x82;
+    } else if (arg3 == 2) {
+        arg0[5] = offset + 4;
+        arg0[6] = offset + 0x83;
+    } else if (arg3 == 3) {
+        arg0[5] = offset + 4;
+        arg0[6] = offset + 0x17;
+    } else if (arg3 == 4) {
+        arg0[5] = offset + 4;
+        arg0[6] = offset + 0x80;
+    }
+    arg0[7] = arg2;
+    arg0[8] = 0x14;
+    arg0[9] = 0x14;
+    func_021098ac(arg0);
+}
+
 void func_020e410c(u16 *arg0, s32 arg1, s32 arg2) {
     s32 offset = 0;
     if (arg2 == 0) {
