@@ -52,6 +52,13 @@ void func_020e1c3c(void) {
     }
 }
 
+void *func_020e1c88(void *arg0) {
+    void **node = func_0210c594(0x14, data_02155c3c);
+    *node = arg0;
+    func_021167f0(data_02160a74 + 0x1a4, node);
+    return node;
+}
+
 void *func_020e1ccc(u32 arg0) {
     u8 *root = data_02160a74;
     u8 *node = *(u8 **)(root + 0x1a4);
