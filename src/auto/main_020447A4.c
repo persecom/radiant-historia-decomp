@@ -44,9 +44,11 @@ void func_020447a4(u8 *arg0) {
     }
 }
 
+extern u8 data_02146334[];
 void func_02044820(u32 arg0) {
+    u32 r4;
     u8 *p = data_021600a8[1];
-    u32 r4 = *(u32 *)(p + 0x2e4);
+    r4 = *(u32 *)(p + 0x2e4);
     func_020a994c(p + 0x300);
     func_020a9610(p + 0x2e8, *(u32 *)(p + 0xa8), arg0, r4, 0, 0);
     func_020a98ac(p + 0x300);
