@@ -223,6 +223,21 @@ void func_0210721c(void) {
     func_0200fa4c((u16)data_02155968);
 }
 
+s32 func_0210723c(void) {
+    u8 var = 0;
+    s32 result;
+    func_021071fc();
+    func_020105e0(0, (u32)&var, 1, 0, 0, 1, 6, 1, 0);
+    result = func_020106a0();
+    func_0210721c();
+    return result;
+}
+
+void func_021077f0(u32 arg0, u32 arg1) {
+    func_02117f54(arg0, 0, 0x7f, arg1);
+    func_02118008(arg0, 0, 0x1f, arg1);
+}
+
 void func_02107820(void) {
     func_02118234(data_02161088);
     func_02118570(data_02161088);
