@@ -46,6 +46,14 @@ s32 func_02005d0c(u16 arg0) {
 }
 
 extern void func_020063e8(void *, s32);
+extern void func_02006844(void *, void *);
+extern void func_020068fc(void *);
+extern void func_020067d8(void);
+extern void func_02006b5c(void *);
+extern void func_02006560(void *, u32);
+extern void func_02006808(void);
+extern void func_02008414(void);
+extern void func_02006478();
 s32 func_02005d2c(u16 arg0) {
     return func_02005d0c(arg0);
 }
@@ -265,6 +273,18 @@ u32 func_020062c8(void) {
 void func_020063c8(void) {
     func_02008128();
     func_020063e8((void *)data_0215cde4[8], 0);
+}
+
+void func_02006440(void *arg0) {
+    u8 *p = (u8 *)data_0215cde4[2];
+    p = *(u8 **)p;
+    void (*fn)(void *) = *(void (**)(void *))(p + 0xb4);
+    if (fn != NULL) {
+        *(void **)(p + 0xb4) = NULL;
+        fn(arg0);
+        func_02008128();
+        func_02006478((void *)0);
+    }
 }
 
 extern void func_020060b8(void);
