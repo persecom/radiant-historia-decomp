@@ -230,6 +230,30 @@ void func_020bac70(u8 arg0) {
     data_021601f0 = arg0;
 }
 
+s32 func_020bac80(void) {
+    data_02162868 = 1;
+    data_0216bf84 = 0;
+    func_0210968c(3, 16, 1);
+    func_02108e54(0);
+    func_02108e54(1);
+    func_020bad3c();
+    func_0210968c(3, 0, 30);
+    func_02109790(3);
+    for (;;) {
+        u8 *obj = *(u8 **)((u8 *)&data_021601f0 + 4);
+        if (*(u32 *)(obj + 0x48) != 0) {
+            break;
+        }
+        func_0210dc88();
+    }
+    func_0210968c(3, -16, 30);
+    func_02109790(3);
+    func_020baeb0();
+    func_0210dc88();
+    data_02162868 = 0;
+    return 2;
+}
+
 void func_020bafb4(void) {
     *(volatile u32 *)0x0400001c = 0;
     *(volatile u32 *)0x04000000 = (*(volatile u32 *)0x04000000 & ~0x1f00) | 0x1f00;
