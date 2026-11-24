@@ -1,5 +1,12 @@
 /* 22 functions from 0x02021C48 to 0x02022A48 (main), found by ds-decomp. */
 #include "common.h"
+extern u8 **data_02160244;
+extern u8 *data_02160a74, *data_02160a6c, *data_02160110, *data_02160090, *data_02160260;
+extern void func_020d0a40(s32);
+extern void func_020dd810(void *, s32, s32);
+extern u8 *func_020c2d80(void);
+extern void func_020e26f0(s32, s32, s32);
+extern void func_020d91bc(s32);
 
 typedef union {
     u32 w;
