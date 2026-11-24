@@ -7,6 +7,10 @@ extern u8 *func_020c9c10(void *, u16);
 extern void func_02111a3c(void *, u8);
 
 extern void func_02112110(void);
+void *func_02112688(u8 *arg0) {
+    return *(void **)(arg0 + 0x90);
+}
+
 s32 func_021128c4(void) {
     func_02112110();
     return 0;
