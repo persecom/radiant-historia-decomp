@@ -92,36 +92,35 @@ extern void func_02013878(void *, s32, s32);
 void func_0212d288(void *arg0) {
     Unk0212D3B4 *p = (Unk0212D3B4 *)arg0;
     s32 buf[2];
-    s32 minBytes = p->remaining * 2;
+    s32 n = p->unkA8 * 2;
     s32 i;
-    s32 samples;
-    s32 bytes;
+    s32 half;
+    s32 count;
 
     for (i = 0; i < p->count; i++) {
         void *obj = p->objs[i];
         (*(void (**)(void *, s32, s32, void *))(*(u8 **)obj + 0x18))(obj, 0, 0x7fffffff, buf);
-        if (minBytes >= buf[1]) {
-            minBytes = buf[1];
-        }
+        n = n < buf[1] ? n : buf[1];
         obj = p->objs[i];
         (*(void (**)(void *, s32, void *))(*(u8 **)obj + 0x1c))(obj, 0, buf);
     }
 
-    samples = minBytes / 2;
-    bytes = samples * 2;
-    if (bytes <= 0) {
+    half = n / 2;
+    count = half * 2;
+    if (count <= 0) {
         return;
     }
 
     for (i = 0; i < p->count; i++) {
+        s32 zero = 0;
         void *obj = p->objs[i];
-        (*(void (**)(void *, s32, s32, void *))(*(u8 **)obj + 0x18))(obj, 0, bytes, buf);
-        func_02013878((void *)buf[0], 0, bytes);
+        (*(void (**)(void *, s32, s32, void *))(*(u8 **)obj + 0x18))(obj, zero, count, buf);
+        func_02013878((void *)buf[0], zero, count);
         obj = p->objs[i];
         (*(void (**)(void *, s32, void *))(*(u8 **)obj + 0x20))(obj, 1, buf);
     }
 
-    p->remaining -= samples;
+    p->unkA8 -= half;
 }
 
 static void func_0212d3b4(void *arg) {
@@ -199,7 +198,7 @@ void func_0212d588(void *arg0, u32 arg1) {
     *(u32 *)((u8 *)arg0 + 0x44) = arg1;
 }
 
-extern void func_0212a1dc(void *);
+extern s32 func_0212a1dc(void *);
 extern s32 func_0212a584(void *);
 extern s32 func_0212a58c(void *);
 extern s32 func_0212a4b8(void *);
