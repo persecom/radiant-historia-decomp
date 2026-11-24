@@ -62,16 +62,16 @@ s32 func_020020bc(s32 arg0, u32 arg1) {
     return *(volatile s32 *)0x040002a8;
 }
 
-void func_020020f8(s32 *arg0, s32 *arg1, s32 *arg2) {
-    arg2[0] = arg0[0] + arg1[0];
-    arg2[1] = arg0[1] + arg1[1];
-    arg2[2] = arg0[2] + arg1[2];
+void func_020020f8(Vec3 *arg0, Vec3 *arg1, Vec3 *arg2) {
+    arg2->x = arg0->x + arg1->x;
+    arg2->y = arg0->y + arg1->y;
+    arg2->z = arg0->z + arg1->z;
 }
 
-void func_02002128(s32 *arg0, s32 *arg1, s32 *arg2) {
-    arg2[0] = arg0[0] - arg1[0];
-    arg2[1] = arg0[1] - arg1[1];
-    arg2[2] = arg0[2] - arg1[2];
+void func_02002128(Vec3 *arg0, Vec3 *arg1, Vec3 *arg2) {
+    arg2->x = arg0->x - arg1->x;
+    arg2->y = arg0->y - arg1->y;
+    arg2->z = arg0->z - arg1->z;
 }
 
 s32 func_02002158(const s32 *a, const s32 *b) {
@@ -88,8 +88,8 @@ void func_02002194(const s32 *a, const s32 *b, s32 *ab) {
 }
 
 s32 func_02002214(const s32 *v) {
-    s64 sum = (s64)v[1] * v[1];
-    sum += (s64)v[0] * v[0];
+    s64 sum = (s64)v[0] * v[0];
+    sum += (s64)v[1] * v[1];
     sum += (s64)v[2] * v[2];
     *(volatile u16 *)0x040002b0 = 1;
     *(volatile u64 *)0x040002b8 = (u64)sum << 2;
@@ -99,11 +99,15 @@ s32 func_02002214(const s32 *v) {
 }
 
 s32 func_02002388(s32 *arg0, s32 *arg1) {
-    s32 dy = arg0[1] - arg1[1];
-    s32 dx = arg0[0] - arg1[0];
-    s32 dz = arg0[2] - arg1[2];
-    s64 sum = (s64)dy * dy;
+    s64 sum;
+    s32 dy;
+    s32 dx;
+    s32 dz;
+    dy = arg0[1] - arg1[1];
+    sum = (s64)dy * dy;
+    dx = arg0[0] - arg1[0];
     sum += (s64)dx * dx;
+    dz = arg0[2] - arg1[2];
     sum += (s64)dz * dz;
     *(volatile u16 *)0x40002b0 = 1;
     *(volatile u64 *)0x40002b8 = (u64)sum << 2;
@@ -224,11 +228,7 @@ void func_020026e0(s32 arg0) {
 
 void func_02002708(s32 arg0) {
     volatile u16 *reg = (volatile u16 *)0x4000004;
-    if (arg0 != 0) {
-        *reg |= 8;
-    } else {
-        *reg &= 0xfff7;
-    }
+    *reg = arg0 != 0 ? *reg | 8 : *reg & 0xfff7;
 }
 
 extern u16 data_02145ba0;
@@ -248,7 +248,8 @@ void func_02002920(u32 *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
 
 extern void func_020055d4(void);
 void func_02002bbc(void) {
-    *(volatile u32 *)0x4000400 = 0x16;
+    volatile u32 *reg = (volatile u32 *)0x4000400;
+    *reg = 0x16;
     func_020055d4();
 }
 
