@@ -16,6 +16,12 @@ void func_0211a4d4(void) {
     func_0211c52c();
 }
 
+extern void func_02118e68(void *);
+extern void func_02118e84(void *, s32, s32);
+void func_0211ab04(u32 arg0) {
+    data_021701d8[2] = arg0;
+}
+
 void func_0211ab14(void) {
     data_021701d8[1] = 0;
 }
