@@ -200,8 +200,8 @@ void func_020095a8(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     func_020097f0(0xd, arg0, arg1, arg2, arg3);
 }
 
-void func_0200960c(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u32 arg6, u32 arg7) {
-    u32 ret = func_02009fcc(arg0, arg3, arg7);
+void func_0200960c(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
+    u32 ret = func_02009fcc(arg0, arg3, arg4);
     func_020097f0(0x12, arg0, arg1, arg2, ret);
 }
 
