@@ -138,3 +138,21 @@ void func_02112d74(u8 *arg0, s32 arg1) {
     func_02112dcc(arg0, *(s16 *)(arg0 + 0x34), arg1);
 }
 
+extern u32 data_0216bf88;
+extern const u16 data_02144cfc[2];
+extern const u16 data_02144cf8[2];
+extern void func_02112f14(void);
+extern u32 func_020c73b8(void *);
+extern void func_020c738c(void *, u32, s32);
+void func_02112ed8(void) {
+    u32 *p = &data_0216bf88;
+    if (*p == 0) {
+        return;
+    }
+    func_02112f14();
+    if (*p != 0) {
+        func_0210c5dc((void *)*p);
+    }
+    data_0216bf88 = 0;
+}
+
