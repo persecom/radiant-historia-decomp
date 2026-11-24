@@ -76,9 +76,9 @@ void func_02076380(u8 *arg0) {
     *(volatile u32 *)0x04000480 = 0x7fff;
 }
 
-extern u32 data_021600ec[4];
+extern u8 *data_021600ec;
 u32 func_020764e4(void) {
-    return data_021600ec[0];
+    return (u32)data_021600ec;
 }
 
 void func_020766ec(void) {
