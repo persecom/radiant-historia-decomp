@@ -25,6 +25,29 @@ void *func_0205bad4(void *arg0) {
     return NULL;
 }
 
+void func_0205bbd8(void *arg0) {
+    u8 *p = *(u8 **)(data_02160a6c + 0xb8);
+    while (p != NULL) {
+        u16 *ptr = *(u16 **)(p + 0x124);
+        if (*ptr != 0) {
+            *ptr = 7;
+        }
+        p = *(u8 **)(p + 0x174);
+    }
+    p = func_0205bad4(arg0);
+    while (p != NULL) {
+        u8 *obj = *(u8 **)p;
+        u8 *a = *(u8 **)(obj + 0x118);
+        u16 *b = *(u16 **)(obj + 0x124);
+        if (*a == 1) {
+            if (*(s16 *)(b + 1) != 0 && *b != 0) {
+                *b = 3;
+            }
+        }
+        p = *(u8 **)(p + 0x18);
+    }
+}
+
 void func_0205c314(void) {
     func_020d4eb8();
 }
