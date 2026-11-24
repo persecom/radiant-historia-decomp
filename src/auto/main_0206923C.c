@@ -385,10 +385,9 @@ void func_020698e0(u8 *arg0)
 {
     Effect *e = (Effect *)arg0;
     Particle *p;
-    s32 posY = e->y;
-    u16 state = e->state;
-
-    e->y = posY + 0x18000;
+    u16 state;
+    e->y += 0x18000;
+    state=e->state;
 
     if (state == 0) {
         u16 i;
@@ -406,35 +405,19 @@ void func_020698e0(u8 *arg0)
         e->timer = 0x1000;
         e->state = active;
     } else if (state == 1) {
-        Pair directions[4];
-        const u8 *src = data_0213fcf4;
-        u8 *dst = (u8 *)directions;
-        u32 count = 4;
+        Directions_020698e0 table = *(const Directions_020698e0 *)data_0213fcf4;
         u16 i;
-
-        do {
-            u8 y = src[1];
-            u8 x = src[0];
-
-            src += 2;
-            dst[1] = y;
-            dst[0] = x;
-            dst += 2;
-        } while (--count != 0);
 
         for (i = 0; i < 4; i++) {
             s32 sx;
             s32 sy;
-            const Pair *dir;
 
             p = (Particle *)func_02067698(arg0, i);
 
-            dir = &directions[i];
-
-            sx = (0x1000 - e->timer) * directions[i].x;
+            sx = (0x1000 - e->timer) * ((s8 *)&table)[i*2];
             p->fxScaleX = sx;
 
-            sy = (0x1000 - e->timer) * dir->y;
+            sy = (0x1000 - e->timer) * ((s8 *)&table)[i*2+1];
             p->fxScaleY = sy;
 
             p->scaleX = sx >> 12;
@@ -465,7 +448,6 @@ void func_020698e0(u8 *arg0)
     }
 
     {
-        u32 *rng = data_0216263c;
         u16 i;
         s32 active = 1;
         s32 inactive = 0;
@@ -482,11 +464,11 @@ void func_020698e0(u8 *arg0)
                 x = (p->x * p->speed) / 100;
                 p->x = x;
 
+                p->y = (p->y * p->speed) / 100;
+
                 if (x < 0) {
                     x = -x;
                 }
-
-                p->y = (p->y * p->speed) / 100;
 
                 if (x < 0x4000) {
                     y = p->y;
@@ -505,41 +487,41 @@ void func_020698e0(u8 *arg0)
                 s32 offset;
                 s32 spawn;
 
-                seed = rng[1] * rng[0] + rng[2];
+                seed = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
 
                 random = (u16)(((seed >> 16) * 4) >> 16);
-                rng[0] = seed;
+                data_0216263c[0] = seed;
 
                 spawn = random - 2;
 
                 if (spawn == 0 && e->frame < 0x20) {
                     p->active = active;
 
-                    seed = rng[1] * rng[0] + rng[2];
+                    seed = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
 
                     random = (u16)(((seed >> 16) * 48) >> 16);
                     offset = random - 24;
 
-                    rng[0] = seed;
+                    data_0216263c[0] = seed;
 
                     p->x = offset * 0x1000;
 
-                    seed = rng[1] * rng[0] + rng[2];
+                    seed = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
 
                     random = (u16)(
                         ((seed >> 16) * positionRange) >> 16);
                     offset = random - 24;
 
-                    rng[0] = seed;
+                    data_0216263c[0] = seed;
 
                     p->y = offset * 0x1000;
 
-                    seed = rng[1] * rng[0] + rng[2];
+                    seed = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
 
                     random = (u16)(
                         ((seed >> 16) * speedRange) >> 16);
 
-                    rng[0] = seed;
+                    data_0216263c[0] = seed;
 
                     p->speed = random + 86;
                 }
@@ -586,176 +568,84 @@ void func_02069c00(u8 *arg0)
 
     Effect *e = (Effect *)arg0;
     Particle *p;
-    s32 active = 1;
 
-#define RH_DOUBLE_DRAW(range, center, result)                  \
-    do {                                                       \
-        u32 seed = rng[0];                                     \
-        u32 multiplier = rng[1];                               \
-        u32 increment = rng[2];                                \
-        u32 next;                                              \
-        s32 first;                                             \
-                                                               \
-        seed = multiplier * seed + increment;                 \
-        ((volatile u32 *)rng)[0] = seed;                       \
-                                                               \
-        next = multiplier * seed + increment;                 \
-                                                               \
-        first = (u16)(((seed >> 16) * (range)) >> 16)          \
-            - (center);                                        \
-                                                               \
-        rng[0] = next;                                         \
-                                                               \
-        result = first >= 0                                    \
-            ? (s32)(u16)(((next >> 16) * (range)) >> 16)        \
-                - (center)                                     \
-            : -((s32)(u16)(((next >> 16) * (range)) >> 16)      \
-                - (center));                                   \
-    } while (0)
+#define RH_RANDOM(n) \
+    ((u16)((((data_0216263c[0] = data_0216263c[1] * data_0216263c[0] + data_0216263c[2]) >> 16) * (n)) >> 16))
+
+#define RH_ABS(x) ((x) >= 0 ? (x) : -(x))
 
     e->y += 0x18000;
 
     switch (e->state) {
     case 0: {
         u16 i;
-
         for (i = 0; i < 4; i++) {
             s32 sx;
-            s32 x;
-
             p = (Particle *)func_02067698(arg0, i);
-
-            p->active = active;
-
-            sx = p->scaleX * 0x1000;
+            p->active = 1;
+            sx = p->scaleX << 12;
             p->fxScaleX = sx;
-
-            x = sx / 2;
-
             p->fxScaleY = (p->scaleY * 0x8000) / 10;
-
-            p->x = x;
-
+            p->x = sx / 2;
             if (i == 0 || i == 2) {
                 p->x -= 0x1000;
             }
-
             p->y = p->fxScaleY / 2;
         }
-
-        e->state = active;
+        e->state = 1;
         break;
     }
 
     case 1: {
         u16 i;
-        s32 movement = 10;
-
         for (i = 0; i < 4; i++) {
             p = (Particle *)func_02067698(arg0, i);
-
-            p->x = e->timer * movement * 0x1000
-                + p->fxScaleX / 2;
-
+            p->x = ((e->timer * 10) << 12) + p->fxScaleX / 2;
             p->y = p->fxScaleY / 2;
-
             if (i == 0 || i == 2) {
                 p->x -= 0x1000;
             }
         }
 
-        {
-            u32 *rng = data_0216263c;
-            s32 inactive = 0;
-            u16 j;
-
-            for (j = 4; j < 10; j++) {
-                p = (Particle *)func_02067698(arg0, j);
-
-                if (p->active != 0) {
-                    s32 sx;
-
-                    p->x += p->speed * 0x1000;
-                    p->speed--;
-
-                    if (j >= 8) {
-                        sx = (p->fxScaleX * 70) / 100;
-
-                        p->fxScaleX = sx;
-                        p->scaleX = sx >> 12;
-                    }
-
-                    if (p->speed == 0 ||
-                        p->fxScaleX < 0x1000) {
-                        p->active = inactive;
-                    }
-                } else {
-                    u32 seed;
-                    u16 random;
-                    s32 result;
+        for (i = 4; i < 10; i++) {
+            p = (Particle *)func_02067698(arg0, i);
+            if (p->active != 0) {
+                p->x += p->speed << 12;
+                p->speed--;
+                if (i >= 8) {
+                    p->fxScaleX = (p->fxScaleX * 70) / 100;
+                    p->scaleX = p->fxScaleX >> 12;
+                }
+                if (p->speed == 0 || p->fxScaleX < 0x1000) {
+                    p->active = 0;
+                }
+            } else {
+                if (RH_RANDOM(4) - 2 == 0) {
+                    u16 r;
                     Particle *anchor;
-
-                    seed = rng[1] * rng[0] + rng[2];
-
-                    random = (u16)(
-                        ((seed >> 16) * 4) >> 16);
-
-                    rng[0] = seed;
-
-                    if (random - 2 != 0) {
-                        continue;
-                    }
-
-                    p->active = active;
-
-                    seed = rng[1] * rng[0] + rng[2];
-                    rng[0] = seed;
-
-                    random = (u16)(
-                        ((seed >> 16) * 64) >> 16);
-
-                    anchor = (Particle *)
-                        func_02067698(arg0, 0);
-
-                    p->x = anchor->x
-                        + (random - 64) * 0x1000;
-
-                    seed = rng[1] * rng[0] + rng[2];
-
-                    random = (u16)(
-                        ((seed >> 16) * 32) >> 16);
-
-                    result = random - 16;
-
-                    rng[0] = seed;
-
-                    p->y = result * 0x1000;
-
-                    RH_DOUBLE_DRAW(20, 10, result);
-
-                    p->speed = result;
-
-                    if (j >= 8) {
-                        RH_DOUBLE_DRAW(32, 16, result);
-
-                        p->fxScaleX =
-                            (result + 8) * 0x1000;
+                    p->active = 1;
+                    r = RH_RANDOM(64);
+                    anchor = (Particle *)func_02067698(arg0, 0);
+                    p->x = ((r - 64) << 12) + anchor->x;
+                    p->y = (RH_RANDOM(32) - 16) << 12;
+                    p->speed = RH_ABS(RH_RANDOM(20) - 10);
+                    if (i >= 8) {
+                        p->fxScaleX = (RH_ABS(RH_RANDOM(32) - 16) + 8) << 12;
                     }
                 }
             }
         }
 
         e->timer++;
-
-        if (e->timer > 0x20) {
+        if (((volatile Effect *)e)->timer > 0x20) {
             e->finished = 1;
         }
-
         break;
     }
     }
 
-#undef RH_DOUBLE_DRAW
+#undef RH_ABS
+#undef RH_RANDOM
 
     if (e->frame > 0x3c) {
         e->finished = 1;
