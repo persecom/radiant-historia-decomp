@@ -1,5 +1,8 @@
 /* 48 functions from 0x02007C2C to 0x02008BF4 (main), found by ds-decomp. */
 #include "common.h"
+extern volatile u32 data_0215d17c[8];
+extern u32 func_02005870(u32);
+extern void func_02008bf4(void);
 extern u8 data_027e0000[];
 extern u16 data_0215d138;
 extern u64 func_02007904(void);
