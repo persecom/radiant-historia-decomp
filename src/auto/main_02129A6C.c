@@ -45,13 +45,19 @@ void func_02129c50(u8 *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_02129c6c(u8 *arg0) {
+    u8 *p;
     s32 i;
     *(u32 *)(arg0 + 0xc4) = 0;
     *(s16 *)(arg0 + 0xd8) = 0;
     *(s16 *)(arg0 + 0xda) = -0x80;
     *(s16 *)(arg0 + 0xdc) = -0x80;
-    for (i = 0; i < 16; i++) {
-        arg0[0xc8 + i] = 0;
+    p = arg0 + 0xc8;
+    for (i = 0; i < 4; i++) {
+        p[0] = 0;
+        p[1] = 0;
+        p[2] = 0;
+        p[3] = 0;
+        p += 4;
     }
 }
 
