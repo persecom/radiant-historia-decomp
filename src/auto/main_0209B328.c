@@ -39,7 +39,7 @@ void func_0209b328(void) {
         }
 
         if (*(s32 *)(r10 + 0x14) >= *(s32 *)(r10 + 8)) {
-            *(s32 *)(r10 + 4) += *(s32 *)(r10 + 8);
+            *(u32 *)(r10 + 4) += *(u32 *)(r10 + 8);
             *(s32 *)(r10 + 8) = 0;
             *(s32 *)(r10 + 0x14) = 0;
             if (*(s32 *)(r10 + 0xc) == 0) {
@@ -238,6 +238,38 @@ func_021099f8(p);
 p[4]=value; p[5]=4; p[6]=0x33f7; p[1]=x+1; p[2]=y+1; p[3]=24;
 func_021099f8(p);
 }
+}
+
+void func_0209ba4c(u16 arg0, u16 arg1, u16 arg2, s32 arg3, s32 arg4, u8 arg5) {
+ Unk20 s = data_021420c4;
+ s32 nine=9;
+ s16 width;
+ *(volatile u32 *)0x040004a4 = (arg5 << 16) | 0x80;
+ func_020a3bbc(nine);
+ s.unk[7] = arg2;
+ width = 0;
+ if(arg4==0) {
+ s.unk[1]=width; s.unk[2]=width; width=12; s.unk[3]=width; s.unk[4]=17; s.unk[8]=width; s.unk[9]=17; 
+ } else if(arg4==1) {
+ s.unk[1]=width; s.unk[2]=17; width=7; s.unk[3]=width; s.unk[4]=nine; s.unk[8]=width; s.unk[9]=nine;
+ } else if(arg4==2) {
+ func_020a3bbc(26);
+ s.unk[1]=width; s.unk[2]=17; width=7; s.unk[3]=width; s.unk[4]=nine; s.unk[8]=width; s.unk[9]=nine;
+ }
+ if(arg4==0) {
+ s.unk[5]=arg0-width*2; s.unk[6]=arg1; s.unk[1]=width*(s16)((arg3/10)%10); func_021098ac(&s);
+ s.unk[5]=arg0-width; s.unk[6]=arg1; s.unk[1]=width*(s16)(arg3%10); func_021098ac(&s);
+ } else {
+ s16 div=1;
+ s16 i=0;
+ do {
+ s.unk[5]=arg0-(i+1)*width; s.unk[6]=arg1; s.unk[1]=(s16)((arg3/div)%10)*width; func_021098ac(&s);
+ div*=10; i++;
+ }while((s16)(arg3/div)!=0);
+ if(arg4==2) {
+ s.unk[1]=70; s.unk[2]=18; s.unk[3]=7; s.unk[4]=7; s.unk[8]=7; s.unk[9]=7; s.unk[5]=arg0-(i*7+6); s.unk[6]=arg1+1; func_021098ac(&s);
+ }
+ }
 }
 
 extern const Unk20 data_021420b0;
