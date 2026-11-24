@@ -21,6 +21,7 @@
   "src/auto/main_0200D63C.c": "dsi/1.1",
   "src/auto/main_0200E5E8.c": "dsi/1.1",
   "src/auto/main_0200F244.c": "dsi/1.2",
+  "src/auto/main_0200FEDC.c": "dsi/1.2",
   "src/auto/main_020101F8.c": "dsi/1.1",
   "src/auto/main_020111D4.c": "dsi/1.1",
   "src/auto/main_02011EF4.c": "dsi/1.1",
@@ -215,5 +216,5 @@
   "src/auto/main_02137E58.c": "dsi/1.1",
   "src/auto/main_02138E00.c": "dsi/1.1",
   "src/auto/main_02139CDC.c": "dsi/1.1",
-  "src/auto/main_0200FEDC.c": "dsi/1.2"
+  "src/auto/main_020766EC.c": "dsi/1.1"
 }

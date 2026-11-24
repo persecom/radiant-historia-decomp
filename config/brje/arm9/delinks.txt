@@ -383,7 +383,10 @@ src/auto/main_0206ED38.c:
     .text start:0x0206ed38 end:0x02075c08
 
 src/auto/main_02075C08.c:
-    .text start:0x02075c08 end:0x0207698c
+    .text start:0x02075c08 end:0x020766ec
+
+src/auto/main_020766EC.c:
+    .text start:0x020766ec end:0x0207698c
 
 src/auto/main_0207698C.c:
     .text start:0x0207698c end:0x02077688
