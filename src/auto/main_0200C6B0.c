@@ -290,10 +290,8 @@ s32 func_0200d350(void *arg0, u32 *arg1) {
     arg1[9] = 0;
     arg1[10] = 0;
     arg1[11] = 0;
-    arg1[0] = *(u32 *)((u8 *)p + 0x80);
-    arg1[1] = 0;
-    arg1[2] = 0;
-    arg1[3] = 0;
+    *(u64 *)(arg1 + 0) = *(u32 *)((u8 *)p + 0x80);
+    *(u64 *)(arg1 + 2) = 0;
     arg1[4] = 0x7fffffff;
     arg1[5] = 0;
     arg1[6] = 0x7fffffff;
