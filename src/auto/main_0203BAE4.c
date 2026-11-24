@@ -62,13 +62,12 @@ void func_0203bcf8(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s
 
 void func_0203bd68(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8) {
     u32 local[13] = { 0 };
-    u32 *p = local;
     func_020a9610(arg0, arg1, arg3, arg2, 0, 0);
-    func_020a9830(p, arg0, arg6, arg7, arg4, arg5);
-    p[7] = arg8;
-    func_020a98ac(p);
-    func_020a98f4(p);
-    func_020a98a0(p);
+    func_020a9830(local, arg0, arg6, arg7, arg4, arg5);
+    local[7] = arg8;
+    func_020a98ac(local);
+    func_020a98f4(local);
+    func_020a98a0(local);
 }
 
 void *func_0203be10(s32 arg0) {
