@@ -12,3 +12,15 @@ void func_02067674(void) {
     u8 *p = func_0210c594(0x3c, data_02155c3c);
     p[0x26] = 0x1f;
 }
+
+void *func_02067698(u8 *arg0, u16 arg1) {
+    u8 *node = *(u8 **)(arg0 + 0x54);
+    while (node != NULL) {
+        if (*(u16 *)(node + 0x2a) == arg1) {
+            return node;
+        }
+        node = *(u8 **)(node + 0x38);
+    }
+    return NULL;
+}
+
