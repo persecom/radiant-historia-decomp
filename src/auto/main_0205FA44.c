@@ -1,5 +1,9 @@
 /* 7 functions from 0x0205FA44 to 0x020607F4 (main), found by ds-decomp. */
 #include "common.h"
+static inline s32 movement_speed(s32 state) {
+ if(state==0x13ee) return 1200;
+ return 2400;
+}
 extern u8 *data_02160244;
 extern s32 *func_0202c5a0(u8 *);
 extern s32 func_0202c5d8(u8 *);
@@ -88,5 +92,33 @@ void func_02060604(void) {
     *(s32 *)(node + 0x1f0) = func_0201fb1c(z, n);
     func_020d907c((u32)(data_02160a74 + 0x1e8));
     func_020d9090();
+}
+
+void func_020606bc(u8 *arg0) {
+ u8 *p=*(u8 **)(arg0+0x128);
+ s32 pos[3]; s32 *src; s32 dir; s32 y;
+ if(data_02160244[0x10d]==1) return;
+ src=func_0202c5a0(arg0);
+ pos[0]=src[0]; pos[1]=src[1]; pos[2]=src[2];
+ switch(*(s32 *)(p+0x24)) {case 0x13ee: y=1200; break; default: y=2400; break;}
+ *(s32 *)(arg0+0x78)=y;
+ func_020ddd5c(arg0);
+ dir=func_0202c5d8(arg0);
+ if(dir==0) dir=1;
+ y=(dir*8192)%65536;
+ if(dir==0) func_020d2bf0(arg0,pos,0,0);
+ else func_020d2bf0(arg0,pos,y,16);
+ y=(func_020265cc(*(void **)(arg0+0x124))*88+32)<<12;
+ pos[1]=y;
+ if(*(s32 *)(arg0+4)!=y) {
+ if(*(s32 *)(arg0+4)<y) {
+ func_0206ea84(107,*(u16 *)(arg0+0x90),0);
+ func_020265d4(*(void **)(arg0+0x124),(*(s32 *)(arg0+4)>>12)-32);
+ } else {
+ func_0206ea84(107,*(u16 *)(arg0+0x90),1);
+ func_02026608(*(void **)(arg0+0x124));
+ }
+ }
+ *(s32 *)(p+0x24)=0x13ed;
 }
 
