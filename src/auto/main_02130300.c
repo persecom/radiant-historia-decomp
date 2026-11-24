@@ -112,3 +112,57 @@ if(func_02132734(v)==3){func_02132770(v);*(s32 *)(p+4)=zero;}
 }
 }
 
+void func_02130ecc(s16 *samples, s16 *coeff, s16 *out) {
+ int n = 32;
+ do {
+  s16 *base = samples;
+  s32 sum = 0;
+  sum += *coeff++ * *samples++;
+  sum += *coeff++ * base[96];
+  sum += *coeff++ * base[128];
+  sum += *coeff++ * base[224];
+  sum += *coeff++ * base[256];
+  sum += *coeff++ * base[352];
+  sum += *coeff++ * base[384];
+  sum += *coeff++ * base[480];
+  sum += *coeff++ * base[512];
+  sum += *coeff++ * base[608];
+  sum += *coeff++ * base[640];
+  sum += *coeff++ * base[736];
+  sum += *coeff++ * base[768];
+  sum += *coeff++ * base[864];
+  sum += *coeff++ * base[896];
+  sum += *coeff++ * base[992];
+  if (sum > 0x3fff800) *out++ = 32767;
+  else if (sum < -0x4000000) *out++ = -32768;
+  else *out++ = sum >> 11;
+ } while (--n > 0);
+}
+
+void func_02131014(s16 *p, s16 *coef, s16 *out) {
+int count=32; int sum; s16 *base; int lo=-32768, hi=32767;
+do {
+base=p; sum=0;
+sum+=coef[0]* *p++;
+sum+=coef[1]*base[96];
+sum+=coef[2]*base[128];
+sum+=coef[3]*base[224];
+sum+=coef[4]*base[256];
+sum+=coef[5]*base[352];
+sum+=coef[6]*base[384];
+sum+=coef[7]*base[480];
+sum+=coef[8]*base[512];
+sum+=coef[9]*base[608];
+sum+=coef[10]*base[640];
+sum+=coef[11]*base[736];
+sum+=coef[12]*base[768];
+sum+=coef[13]*base[864];
+sum+=coef[14]*base[896];
+sum+=coef[15]*base[-32];
+coef+=16;
+if(sum>0x3fff800)*out++=hi;
+else if(sum< -0x4000000)*out++=lo;
+else *out++=sum>>11;
+}while(--count>0);
+}
+
