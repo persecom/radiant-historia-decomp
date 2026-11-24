@@ -34,6 +34,14 @@ void func_020bd3b8(u8 arg0, u16 arg1, u8 arg2, u8 arg3) {
     func_021167f0(list, q);
 }
 
+u8 *func_020bd438(u8 arg0) {
+    void *p = func_020bd450(arg0);
+    if (p != NULL) {
+        return *(u8 **)p;
+    }
+    return NULL;
+}
+
 void *func_020bd450(u8 arg0) {
     u8 *node = *(u8 **)(*(u8 **)(data_02160204 + 0x90));
     while (node != NULL) {
