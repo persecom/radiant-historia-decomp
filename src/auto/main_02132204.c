@@ -375,6 +375,10 @@ void func_02132c7c(void) {
     }
 }
 
+void func_02132ca0(const char *arg0) {
+    ((void (*)(void *, const char *, s32))func_02132c7c)(&data_021749d8, arg0, 0);
+}
+
 void func_02132cbc(const char *arg0, void *(*arg1)(void)) {
     u32 *res;
     void (*fn)(void *, s32);
