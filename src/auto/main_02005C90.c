@@ -55,6 +55,7 @@ extern void func_02006808(void);
 extern void func_02008414(void);
 extern void func_02006478();
 extern void func_02006510(void *);
+extern void func_020060b8(void);
 s32 func_02005d2c(u16 arg0) {
     return func_02005d0c(arg0);
 }
