@@ -55,6 +55,19 @@ void func_020bf414(s32 arg0) {
     }
 }
 
+void func_020bf700(void) {
+    while (*(void **)(data_02160214 + 0x28) != NULL) {
+        func_020bff30(*(void **)(data_02160214 + 0x28));
+    }
+    func_0210da14(data_02160214);
+    func_0210dba0(data_02160214 + 0x14);
+    if (data_02160214 != NULL) {
+        func_0210c5dc(data_02160214);
+        data_02160214 = NULL;
+    }
+    func_02066f9c();
+}
+
 extern u8 *data_02160214;
 extern void func_0210da14(void *);
 extern void func_0210dba0(void *);
