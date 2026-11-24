@@ -79,6 +79,18 @@ s32 func_020a2dd0(void) {
     return 0;
 }
 
+void func_020a2e24(void) {
+    if (data_02160128 == 0) {
+        return;
+    }
+    func_020a2eb4();
+    func_020a2ee4();
+    if (data_02160128 != 0) {
+        func_0210c5dc((void *)data_02160128);
+    }
+    data_02160128 = 0;
+}
+
 s32 func_020a2e64(void) {
     if (func_020a2f34() == 0) {
         if (func_020a2fe4() == 0) {
@@ -96,6 +108,14 @@ s32 func_020a2e8c(void) {
         }
     }
     return 1;
+}
+
+void func_020a2eb4(void) {
+    void **p = (void **)data_02160128;
+    if (p != NULL && *p != NULL) {
+        func_0203be4c(*p);
+        *p = NULL;
+    }
 }
 
 void func_020a2ee4(void) {
