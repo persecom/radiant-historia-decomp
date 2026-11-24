@@ -1,5 +1,7 @@
 /* 52 functions from 0x020C83F4 to 0x020C93F4 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { s16 data[24]; } Unk_020c8c08;
+extern const Unk_020c8c08 data_02144618;
 static inline s32 contains_020c8650(s32 x, s32 y, s32 right, s32 bottom, s32 tx, s32 ty) { if(tx>=x && tx<=right && ty>=y && ty<=bottom) return 1; return 0; }
 extern const u16 data_02144600[6];
 
