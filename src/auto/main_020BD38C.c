@@ -68,8 +68,8 @@ void func_020bddb0(u8 *arg0) {
     *(u16 *)(arg0 + 4) = 1;
 }
 
-s32 func_020bdf24(void *arg0, ...) {
-    arg0 = NULL;
+s32 func_020bdf24(volatile s32 arg0, ...) {
+    arg0 = 0;
     return 0;
 }
 
