@@ -189,6 +189,14 @@ void func_020042fc(void *arg0, u32 arg1, u32 arg2) {
     }
 }
 
+void func_02004364(void) {
+    if (data_02145ba4 != -1) {
+        func_0200893c();
+    }
+    func_02005318(data_0215cd24[6]);
+    data_0215cd24[6] = 0;
+}
+
 extern s32 func_0200542c(void);
 extern u32 data_0215cd40[8];
 extern u16 data_0213e498[8];
