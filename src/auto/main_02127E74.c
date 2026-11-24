@@ -350,6 +350,13 @@ void func_02128880(void *arg0, void *arg1) {
     func_0212a9f8();
 }
 
+void func_021288a4(u8 *arg0, u8 arg1) {
+    arg0[0x98] = arg1;
+    if (*(void **)(arg0 + 4) != NULL) {
+        func_0212d558(*(void **)(arg0 + 4));
+    }
+}
+
 extern void func_0212d558(void *);
 extern u8 data_021569b8[];
 extern s32 func_0212eba4(void *);
