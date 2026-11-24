@@ -218,3 +218,44 @@ end:
     return 0;
 }
 
+extern u8 *func_020ddb90(u16);
+void func_020df3f4(u8 *arg0, s32 arg1) {
+    u8 *node;
+    u8 *other;
+
+    if (arg1 == 0) {
+        for (node = *(u8 **)(data_02160a6c + 0xac); node != NULL; node = *(u8 **)(node + 0x16c)) {
+            *(u32 *)(node + 0x80) |= 2;
+            other = func_020ddb90((u16)(*(u16 *)(node + 0x90) + 0x190));
+            if (other != NULL) {
+                *(u32 *)(other + 0x80) &= ~0x2000;
+            }
+        }
+    } else if (arg1 == 1) {
+        for (node = *(u8 **)(data_02160a6c + 0xac); node != NULL; node = *(u8 **)(node + 0x16c)) {
+            if (arg0 != node) {
+                *(u32 *)(node + 0x80) &= ~2;
+                other = func_020ddb90((u16)(*(u16 *)(node + 0x90) + 0x190));
+                if (other != NULL) {
+                    *(u32 *)(other + 0x80) |= 0x2000;
+                }
+            }
+        }
+    } else if (arg1 == 2) {
+        for (node = *(u8 **)(data_02160a6c + 0xac); node != NULL; node = *(u8 **)(node + 0x16c)) {
+            *(u32 *)(node + 0x80) &= ~2;
+            other = func_020ddb90((u16)(*(u16 *)(node + 0x90) + 0x190));
+            if (other != NULL) {
+                *(u32 *)(other + 0x80) |= 0x2000;
+            }
+        }
+    } else if (arg1 == 3) {
+        for (node = *(u8 **)(data_02160a6c + 0xac); node != NULL; node = *(u8 **)(node + 0x16c)) {
+            other = func_020ddb90((u16)(*(u16 *)(node + 0x90) + 0x190));
+            if (other != NULL) {
+                *(u32 *)(other + 0x80) |= 0x2000;
+            }
+        }
+    }
+}
+
