@@ -7,5 +7,9 @@ extern void func_02116844(void *, s32);
 extern void func_021168f8(void *, void *);
 extern void func_0210b4cc(void *);
 extern void func_0210c5dc(void *);
-extern void func_0210b860(void *);
+extern void func_0210b860(void **);
 extern void func_0210db10(void *, void *, u32);
+
+void func_0210b848(s32 arg0) {
+    func_02116844(data_02162618, arg0);
+}
