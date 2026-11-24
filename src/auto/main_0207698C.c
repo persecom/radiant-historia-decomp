@@ -118,6 +118,27 @@ void func_02077440(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, u32 arg4, u16 arg5) {
     func_020a9610(arg0 + 0x38, arg4, arg5, *(void **)arg0, 0, 0);
 }
 
+extern void func_020a994c(void *);
+extern void func_020a98a0(void *);
+extern void func_020a9544(void *);
+void func_020775e8(void) {
+    s32 i;
+    s32 offset;
+    void *obj;
+    void (*fn)(void *);
+    u8 *ptr = func_020764e4();
+
+    for (i = 0; i < 3; i++) {
+        offset = i * 0x50;
+        func_020a994c(ptr + 0xbc + offset);
+        func_020a98a0(ptr + 0xbc + offset);
+        obj = *(void **)(ptr + offset + 0xb8);
+        fn = *(void (**)(void *))((u8 *)obj + 0xc);
+        fn(obj);
+    }
+    func_020a9544(*(void **)(ptr + 0x1a8));
+}
+
 extern void func_020a98ac(void *);
 extern void func_020a98f4(void *);
 extern void func_02076380(void *);
