@@ -31,6 +31,12 @@ void func_02093224(s32 arg0) {
     }
 }
 
+void *func_02093278(void) {
+    u8 *ptr = (u8 *)func_0210c594(0x2c, data_02155c3c);
+    func_021167ac(ptr + 0x20, 0x4c);
+    return ptr;
+}
+
 void func_020932a8(u16 id, s16 x, s16 y) {
     u8 *ptr = (u8 *)func_02093658(id);
     s16 oldX, oldY;
