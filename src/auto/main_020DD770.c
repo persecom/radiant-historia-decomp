@@ -14,8 +14,18 @@ typedef struct UnkStruct_020dd770 {
     void *unk24;
 } UnkStruct_020dd770;
 
+typedef struct UnkStruct_020ddfd0 {
+    u8 unk00[0x70];
+    u8 unk70_0 : 1;
+    u8 unk70_1 : 1;
+} UnkStruct_020ddfd0;
+
 extern UnkStruct_02160a68 data_02160a68;
+extern void *data_02160a70;
 extern const s16 data_0213a394[];
+extern void func_020de4ec(void);
+extern s32 func_0201fb1c(s32, s32);
+extern void func_020dd810(void *, s32, s32);
 extern s32 func_02002404(s32, s32);
 extern void func_021168f8(void *, void *);
 extern void func_020ec548(void *);
@@ -243,6 +253,54 @@ void *func_020dde4c(u16 arg0) {
         node = *(u8 **)(node + 0x154);
     }
     return NULL;
+}
+
+void func_020dde88(u8 *arg0) {
+    s32 dist = ((s32 (*)(void *, void *))func_0210c2f4)(data_02162440, arg0);
+    s32 diff = data_0216242c[6] - *(s32 *)(arg0 + 4);
+    s64 sq = (s64)diff * diff;
+    s32 q;
+    s32 v;
+
+    *(volatile u16 *)0x40002b0 = 1;
+    *(volatile u32 *)0x40002b8 = (u32)sq;
+    *(volatile u32 *)0x40002bc = (u32)(sq >> 32);
+    while (*(volatile u16 *)0x40002b0 & 0x8000) {
+    }
+    q = (dist + (*(volatile u32 *)0x40002b4 + 1 >> 1)) >> 12;
+    v = (0xa00 - q) << 13;
+    v = v / 0xa00;
+    if (v < 0xc00) {
+        v = 0xc00;
+    }
+    if (v > 0x2000) {
+        v = 0x2000;
+    }
+    *(s32 *)(arg0 + 0x54) = v - 0x600;
+}
+
+void func_020ddf2c(u8 *arg0) {
+    s32 dist = ((s32 (*)(void *, void *))func_0210c2f4)(data_02162440, arg0);
+    s32 diff = data_0216242c[6] - *(s32 *)(arg0 + 4);
+    s64 sq = (s64)diff * diff;
+    s32 q;
+    s32 v;
+
+    *(volatile u16 *)0x40002b0 = 1;
+    *(volatile u32 *)0x40002b8 = (u32)sq;
+    *(volatile u32 *)0x40002bc = (u32)(sq >> 32);
+    while (*(volatile u16 *)0x40002b0 & 0x8000) {
+    }
+    q = (dist + (*(volatile u32 *)0x40002b4 + 1 >> 1)) >> 12;
+    v = (0xa00 - q) << 13;
+    v = v / 0xa00;
+    if (v < 0x800) {
+        v = 0x800;
+    }
+    if (v > 0x2000) {
+        v = 0x2000;
+    }
+    *(s32 *)(arg0 + 0x54) = v - 0x600;
 }
 
 extern u32 data_02155c3c;
