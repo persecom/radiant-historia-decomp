@@ -295,12 +295,13 @@ void *func_0210eb98(void *arg0, ...) {
 void *func_0210ec9c(const char *arg0, s32 arg1, s32 arg2) {
     const char *name = arg0;
     u16 id;
-    u8 *node = NULL;
+    u8 *node;
 
     if (*(s8 *)data_02162a80 != 0) {
         name = data_02162a80;
     }
     id = func_0210c060((void *)name, func_02012348(name));
+    node = NULL;
     goto advance;
 body:
     if (*(u16 *)(node + 0x18) == id) {
