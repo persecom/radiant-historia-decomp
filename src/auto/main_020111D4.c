@@ -197,25 +197,23 @@ void func_02011804(u8 *a0) {
 }
 
 void func_02011830(u8 *ctx, u8 *src, u32 len) {
-    u32 offset;
+    u32 zero = 0;
 
     if (len == 0) {
         return;
     }
     do {
-        u32 chunk;
-        offset = *(u32 *)(ctx + 0x54);
-        chunk = 0x40 - offset;
+        u32 off = *(u32 *)(ctx + 0x54);
+        u32 chunk = 0x40 - off;
         if (chunk > len) {
             chunk = len;
         }
-        func_02008f74(ctx + 0x14 + offset, src, chunk);
-        offset += chunk;
+        func_02008f74(ctx + 0x14 + off, src, chunk);
         len -= chunk;
-        *(u32 *)(ctx + 0x54) = offset;
-        if (offset >= 0x40) {
+        *(u32 *)(ctx + 0x54) = *(u32 *)(ctx + 0x54) + chunk;
+        if (*(u32 *)(ctx + 0x54) >= 0x40) {
             ((void (*)(u8 *))data_02145c24)(ctx);
-            *(u32 *)(ctx + 0x54) = 0;
+            *(u32 *)(ctx + 0x54) = zero;
             if (++*(u32 *)(ctx + 0x58) == 0) {
                 ++*(u32 *)(ctx + 0x5c);
             }
