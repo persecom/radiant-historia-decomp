@@ -354,3 +354,76 @@ if(sync)func_02135a80(p);
 p[1]^=2;
 }
 }
+
+extern void func_02008e68(s32, void *, u32);
+extern void func_021357e8(void);
+extern s32 func_02114518(void *, s32, void *, u32, u32, s32, void *, void *);
+extern void func_021147e8(void *, s32, u32);
+extern void func_02114728(void *, s32);
+extern void func_02114794(void *, s32, s32);
+s32 func_02134d50(u8 *arg0) {
+    struct {
+        u8 pad0[2];
+        s8 f2;
+        s8 f3;
+        s8 f4;
+        u8 pad5[0x13];
+        s16 f18;
+        u8 pad1a[6];
+        u8 *ch[4];
+        u8 pad30[4];
+        u8 f34[1];
+    } *s = (void *)arg0;
+    s32 i;
+    s32 count;
+    s32 ret;
+
+    if (s->f4 >= 1 && s->f3 == 1 && s->f2 == 2) {
+        count = 2;
+    } else {
+        count = s->f3;
+    }
+
+    for (i = 0; i < count; i++) {
+        u16 ime;
+        if (*(u16 *)s->ch[i] & 8) {
+            return 0;
+        }
+        func_02008e68(0, *(void **)(s->ch[i] + 4), *(u16 *)(s->ch[i] + 0x18));
+        ime = *(volatile u16 *)0x04000208;
+        *(volatile u16 *)0x04000208 = 0;
+        *(u16 *)(s->ch[i] + 0x1a) = 0;
+        *(u16 *)(s->ch[i] + 0x1e) = 0x1800;
+        *(u16 *)(s->ch[i] + 0x1c) = 0;
+        *(u32 *)(s->ch[i] + 0xc) = 0;
+        *(u32 *)(s->ch[i] + 0x10) = 0;
+        *(u16 *)(s->ch[i]) &= 0xfffd;
+        (void)*(volatile u16 *)0x04000208;
+        *(volatile u16 *)0x04000208 = ime;
+    }
+
+    {
+        u8 *ch0 = s->ch[0];
+        ret = func_02114518(
+            s->f34,
+            1,
+            *(void **)(ch0 + 4),
+            *(u16 *)(ch0 + 0x18) * s->f2,
+            *(u32 *)(ch0 + 8),
+            *(s16 *)(ch0 + 0x2c),
+            (void *)func_021357e8,
+            s
+        );
+    }
+
+    for (i = 0; i < count; i++) {
+        func_021147e8(s->f34, i, *(u16 *)(s->ch[i] + 0x20));
+        func_02114728(s->f34, s->f18);
+        func_02114794(s->f34, i, 0);
+        *(u16 *)(s->ch[i] + 0x2a) = 0;
+        *(u16 *)(s->ch[i]) |= 8;
+    }
+
+    return ret;
+}
+
