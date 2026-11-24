@@ -175,7 +175,7 @@ s32 func_020054a4(void) {
 }
 
 u16 func_020054cc(u16 *arg0) {
-    u16 val = *arg0;
+    u32 val = *arg0;
     *arg0 = 0;
     if (val & 0x1) {
         *(volatile u8 *)0x04000240 = 0;
@@ -204,11 +204,11 @@ u16 func_020054cc(u16 *arg0) {
     if (val & 0x100) {
         *(volatile u8 *)0x04000249 = 0;
     }
-    func_02008390(val, data_0215cd22);
+    func_02008390((u16)val, data_0215cd22);
     return val;
 }
 
-u16 func_0200558c(void) {
+u32 func_0200558c(void) {
     return func_020054cc(data_0215cd60);
 }
 
