@@ -116,6 +116,11 @@ void func_02005e50(s32 id) {
     *p |= (0x80000000U >> id);
 }
 
+void func_02005e80(s32 arg0, const char *arg1, ...) {
+    char *vlist = (char *)((u32)&arg1 & ~3) + 4;
+    func_02005ea8(arg0, arg1, vlist);
+}
+
 void func_02005ec0(void) {
     func_02012e3c();
 }
