@@ -13,6 +13,37 @@ extern u8 func_02121068(void *);
 void func_02008df0(u8, void *, u32);
 s32 func_02120e30(void *, void *);
 #pragma opt_propagation off
+s32 func_0212251c(s32 *out, s16 *a, s16 *b, u32 flags) {
+ if (flags & 0x8000) {
+  s16 *p = a + (flags & 0x7fff)*3;
+  s32 v = p[0];
+  s32 idx = v & 15;
+  s32 x, y;
+  out[8]=out[7]=out[6]=out[5]=out[4]=out[3]=out[2]=out[1]=out[0]=0;
+  out[idx] = (v & 16) ? -4096 : 4096;
+  x=p[1]; y=p[2];
+  out[data_02144f4c[idx*4]]=x;
+  out[data_02144f4d[idx*4]]=y;
+  if(p[0]&32) y=-y;
+  if(p[0]&64) x=-x;
+  out[data_02144f4e[idx*4]]=y;
+  out[data_02144f4f[idx*4]]=x;
+  return 0;
+ } else {
+  s16 *p=b+(flags&0x7fff)*5;
+  s32 e=p[4], a0=p[0], a1=p[1], a2=p[2], a3=p[3];
+  s16 bits=e&7;
+  bits=(bits<<3)|(a0&7);
+  bits=(bits<<3)|(a1&7);
+  bits=(bits<<3)|(a2&7);
+  bits=(bits<<3)|(a3&7);
+  out[4]=e>>3;
+  out[0]=a0>>3;out[1]=a1>>3;out[2]=a2>>3;out[3]=a3>>3;
+  out[5]=(bits<<19)>>19;
+  return 1;
+ }
+}
+
 u16 func_02122684(u8 *base, u32 flags, u32 frame) {
 u16 *p; u32 limit,a,b,x,y;
 if(flags&0x20000000) return (u16)flags;
@@ -28,7 +59,7 @@ if(frame>limit) return (p+(limit>>2))[frame&3];
 if(frame&1) {
 if(frame&2) {b=frame>>2;a=b+1;} else {a=frame>>2;b=a+1;}
 x=p[a]; y=p[b];
-return (u16)((((3*(x&0x7c1f)+(y&0x7c1f))>>2)&0x7c1f)|(((3*(x&0x3e0)+(y&0x3e0))>>2)&0x3e0));
+{u32 rb=x&0x7c1f; u32 g=x&0x3e0; g*=3; g+=y&0x3e0; rb*=3; rb+=y&0x7c1f; return (u16)(((rb>>2)&0x7c1f)|((g>>2)&0x3e0));}
 }
 a=frame>>2;goto average;
 }
