@@ -13,6 +13,10 @@ extern void func_0211ae38(void *);
 extern u32 func_020055a0(void);
 extern void func_0211b0e8(s32, u32, u32, u32, u32);
 extern void func_0211b17c(s32, u32, u32, u32, u32);
+extern s32 func_0211b0bc(s32);
+extern s32 func_0211ae60(s32, s32, s32);
+extern s32 func_0211af90(s32, s32, s32);
+extern void func_02009008(void *, void *, s32);
 
 void func_0211b0e8(s32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
     u32 flag;
