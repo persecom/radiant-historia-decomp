@@ -19,11 +19,11 @@ void func_021115b0(u8 *arg0, u32 arg1) {
 }
 
 void func_021115bc(u8 *arg0, u16 arg1) {
+    int result = 0;
     void *p = func_020c9c10(*(void **)(arg0 + 0x30), 0);
-    u16 old = *(u16 *)((u8 *)p + 0x30);
-    int changed = (old != arg1);
+    result |= (*(u16 *)((u8 *)p + 0x30) != arg1);
     *(u16 *)((u8 *)p + 0x30) = arg1;
-    if (changed) {
+    if (result) {
         func_020c7930(p);
     }
 }
@@ -39,8 +39,8 @@ s32 func_02111da8(u8 *arg0) {
     return *(s32 *)(arg0 + 0x38);
 }
 
-void func_02112038(u8 *arg0) {
-    func_020c9490(*(void **)(arg0 + 0x6c));
+void func_02112038(MainSub_6C *arg0) {
+    func_020c9490(arg0->field);
 }
 
 extern void func_021121b8(void *);
