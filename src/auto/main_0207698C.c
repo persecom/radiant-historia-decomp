@@ -23,6 +23,18 @@ extern void func_0207763c(void);
 extern void func_0207698c(void);
 extern void func_021098ac(void *);
 extern s32 func_02076df4(s8, s32, s32, s32);
+
+typedef struct FontGlyph {
+    s32 ch;
+    s32 u;
+    s32 v;
+    s32 w;
+} FontGlyph;
+
+extern s32 data_0214828c[];
+extern s32 data_021482b4[];
+extern s32 data_0214831c[];
+extern FontGlyph data_02148384[];
 extern void func_02076380(void *);
 extern void func_021099f8(void *);
 extern void func_020a9610(void *, u32, u16, void *, u32, u32);
