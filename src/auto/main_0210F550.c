@@ -154,10 +154,8 @@ s32 func_0211023c(void *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
 }
 
 void func_02110288(void *arg0, u32 arg1, u32 arg2) {
-    u16 i;
-    u8 *obj;
-    i = 0;
-    obj = func_020c9c10(*(void **)((u8 *)arg0 + 0x30), i);
+    volatile u16 i = 0;
+    u8 *obj = func_020c9c10(*(void **)((u8 *)arg0 + 0x30), i);
     ((void (*)(u8 *, u32, u32))(*(void **)(obj + 0x24)))(obj, arg1, arg2);
 }
 
