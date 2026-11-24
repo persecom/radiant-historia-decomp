@@ -150,3 +150,7 @@ void func_020c71d8(void *arg0) {
     }
 }
 
+s32 func_020c7384(void) {
+    return 2;
+}
+
