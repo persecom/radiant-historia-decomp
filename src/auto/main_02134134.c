@@ -34,6 +34,16 @@ void func_02134368(u8 *arg0) {
     func_02013878(arg0, 0, 0x84);
 }
 
+extern void func_02133dd0(s32, void *);
+extern u8 data_0215bde8[24];
+s32 func_02134590(void *arg0) {
+    if (arg0 != NULL) {
+        return *(s8 *)((u8 *)arg0 + 1);
+    }
+    func_02133dd0(0, data_0215bde8);
+    return 0;
+}
+
 s32 func_021346bc(void) {
     return 0;
 }
