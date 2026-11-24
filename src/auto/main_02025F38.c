@@ -41,8 +41,53 @@ void func_02026578(void *arg0) {
     }
 }
 
+void func_0202659c(u8 *arg0, s16 arg1) {
+    *(s16 *)(arg0 + 2) += arg1;
+    if (*(s16 *)(arg0 + 2) > 2) {
+        *(s16 *)(arg0 + 2) = 2;
+    }
+    if (*(s16 *)(arg0 + 2) < 0) {
+        *(s16 *)(arg0 + 2) = 0;
+    }
+}
+
 s16 func_020265cc(s16 *arg0) {
     return arg0[1];
+}
+
+void func_020265d4(u8 *arg0, s32 arg1) {
+    if (arg1 >= *(s16 *)(arg0 + 2) * 0x58) {
+        return;
+    }
+    *(s32 *)(arg0 + 0xc) = -0x2000;
+    *(u16 *)(arg0 + 0) = 1;
+    *(u32 *)(arg0 + 8) |= 0x20;
+}
+
+void func_02026608(u8 *arg0) {
+    *(u16 *)(arg0 + 0) = 1;
+    *(u32 *)(arg0 + 8) |= 0x40;
+    *(s32 *)(arg0 + 0xc) = -0x1000;
+}
+
+void func_02026c00(void **arg0) {
+    void *ptr;
+    void *next;
+    if (arg0 == NULL) {
+        return;
+    }
+    ptr = *arg0;
+    while (ptr != NULL) {
+        next = *(void **)((u8 *)ptr + 0x20);
+        func_021168f8(arg0, ptr);
+        if (ptr != NULL) {
+            func_0210c5dc(ptr);
+        }
+        ptr = next;
+    }
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
 }
 
 void *func_02026c58(void **arg0) {
