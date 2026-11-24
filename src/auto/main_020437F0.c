@@ -133,3 +133,36 @@ void *func_02044180(u16 arg0) {
     }
     return NULL;
 }
+
+BOOL func_020443a8(void *arg0) {
+    u8 *node = *(u8 **)(data_021600bc + 0xdc);
+    if (arg0 == NULL) {
+        return FALSE;
+    }
+    while (node != NULL) {
+        s32 vec[3];
+        vec[0] = *(s32 *)(node + 0);
+        vec[1] = 0;
+        vec[2] = *(s32 *)(node + 4);
+        if (func_0210c2f4(arg0, vec) < (*(u8 *)(node + 8) << 12)) {
+            return TRUE;
+        }
+        node = *(u8 **)(node + 0x10);
+    }
+    return FALSE;
+}
+
+void func_02044428(u16 arg0) {
+    u8 *r6 = *(u8 **)(*(u8 **)(data_021600a8 + 4) + 0x68);
+    func_02047820(arg0);
+    *(u32 *)(*(u8 **)(data_021600a8 + 4) + 0x10) = 3;
+    func_020522d4(r6, 0, 0);
+    func_020468b0(1);
+    func_02052904(2);
+    func_0205443c(1);
+    if (*(u8 **)(data_021600a8 + 4) != NULL && *(u8 **)(*(u8 **)(data_021600a8 + 4) + 0x68) != NULL) {
+        u8 *p = *(u8 **)(*(u8 **)(data_021600a8 + 4) + 0x68);
+        *(u32 *)(p + 0xac) &= ~0x44a;
+    }
+}
+
