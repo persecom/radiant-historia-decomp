@@ -60,6 +60,37 @@ u16 func_02065884(u8 *arg0, s32 arg1) {
     return (u16)ret;
 }
 
+extern char data_021466ac[];
+u16 func_02065958(u8 *arg0, s32 arg1) {
+    char buf[0x40];
+    void *r6;
+    s32 i;
+    s32 ret;
+    s32 v;
+
+    func_02005e80(buf, data_021466ac);
+    r6 = func_021092d8(buf);
+    if (func_02092ab0(r6, (s32)arg0) != -1) {
+        v = func_02092994(r6, 0);
+        if (v != arg1) {
+            do {
+                func_02109444(r6);
+                if (func_02092ab0(r6, (s32)arg0) == -1) {
+                    return 0;
+                }
+                v = func_02092994(r6, 0);
+            } while (v != arg1);
+        }
+        for (i = 0; i < 0x16; i++) {
+            ret = (u16)func_02092994(r6, 0);
+        }
+    }
+    if (r6 != NULL) {
+        func_021093b0(r6);
+    }
+    return (u16)ret;
+}
+
 void func_02065b80(void) {
     if (data_021600c8[0] != NULL) {
         func_02064c18(*data_021600c8[0]);
