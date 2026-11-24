@@ -170,6 +170,87 @@ void func_0202e5d8(u32 arg0) {
     }
 }
 
+extern s32 func_0202b3b0(u8);
+s32 func_0202e63c(u8 *arg0, u32 arg1) {
+    u8 *r3 = *(u8 **)(*(u8 **)(arg0 + 0x128) + 0x54);
+    u8 count;
+    u32 mask;
+
+    if (arg0 == NULL) {
+        return 0;
+    }
+    switch (*(s8 *)(r3 + 1)) {
+    case 0:
+        return func_0202b3b0((u8)arg1);
+    case 1:
+        mask = *(u32 *)((u8 *)data_02160244 + 0x70);
+        count = 0;
+        mask &= ~(1 << *(s8 *)(r3 + 0));
+        mask &= ~(1 << (*(s8 *)(r3 + 0) + 1));
+        if (!(mask & (1 << arg1))) {
+            count++;
+        }
+        if ((arg1 % 3) <= 1) {
+            if (!(mask & (1 << (arg1 + 1)))) {
+                count++;
+            }
+        }
+        if (count == 2) {
+            return 1;
+        }
+        break;
+    case 2:
+        mask = *(u32 *)((u8 *)data_02160244 + 0x70);
+        count = 0;
+        mask &= ~(1 << *(s8 *)(r3 + 0));
+        mask &= ~(1 << (*(s8 *)(r3 + 0) - 3));
+        if (!(mask & (1 << arg1))) {
+            count++;
+        }
+        if ((arg1 / 3) >= 1) {
+            if (!(mask & (1 << (arg1 - 3)))) {
+                count++;
+            }
+        }
+        if (count == 2) {
+            return 1;
+        }
+        break;
+    case 3:
+        mask = *(u32 *)((u8 *)data_02160244 + 0x70);
+        count = 0;
+        mask &= ~(1 << *(s8 *)(r3 + 0));
+        mask &= ~(1 << (*(s8 *)(r3 + 0) - 3));
+        mask &= ~(1 << (*(s8 *)(r3 + 0) + 1));
+        mask &= ~(1 << (*(s8 *)(r3 + 0) - 2));
+        if (!(mask & (1 << arg1))) {
+            count++;
+        }
+        if ((arg1 % 3) <= 1) {
+            if (!(mask & (1 << (arg1 + 1)))) {
+                count++;
+            }
+        }
+        if ((arg1 / 3) >= 1) {
+            if (!(mask & (1 << (arg1 - 3)))) {
+                count++;
+            }
+        }
+        if ((arg1 / 3) >= 1 && (arg1 % 3) <= 1) {
+            if (!(mask & (1 << (arg1 - 2)))) {
+                count++;
+            }
+        }
+        if (count == 4) {
+            return 1;
+        }
+        break;
+    case 4:
+        return 0;
+    }
+    return 0;
+}
+
 s32 func_0202e84c(u8 *arg0) {
     u8 *p = *(u8 **)(*(u8 **)(arg0 + 0x128) + 0x54);
     if (arg0 == NULL) {
