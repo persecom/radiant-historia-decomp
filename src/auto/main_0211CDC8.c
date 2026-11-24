@@ -224,10 +224,10 @@ void func_0211d5d0(u8 *arg0) {
 }
 
 void func_0211d7a4(void) {
-    u8 *p = data_021701fc;
-    func_021205ec(*(u32 *)p, p + 4, 0x3e);
-    *(u32 *)(p + 0xfc) &= ~1;
-    *(u32 *)(p + 0xfc) &= ~2;
+    u32 *p = (u32 *)data_021701fc;
+    func_021205ec(p[0], p + 1, 0x3e);
+    p[0x3f] &= ~1;
+    p[0x3f] &= ~2;
 }
 
 void *func_0211d7d4(void) {
