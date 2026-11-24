@@ -70,6 +70,10 @@ void func_02002128(s32 *arg0, s32 *arg1, s32 *arg2) {
     arg2[2] = arg0[2] - arg1[2];
 }
 
+s32 func_02002158(const s32 *a, const s32 *b) {
+    return (s32)(((s64)a[0] * b[0] + (s64)a[1] * b[1] + (s64)a[2] * b[2] + 0x800) >> 12);
+}
+
 u16 func_02002404(s32 y, s32 x)
 {
     extern s32 func_02001fb0(s32, s32);
