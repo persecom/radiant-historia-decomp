@@ -133,7 +133,7 @@ void func_02110000(void) {
  func_021152a8(); func_021152bc(0x1000); func_020bddc4(); func_02021c48();
  func_020bd690(); *(u32 *)(data_02160204+0x90)=func_020bd38c();
  func_02021ac4();
- if (((u32)data_02160204[0x68]<<31)>>31 == 0) func_02021c7c();
+ if (((Flags_02110000 *)(data_02160204+0x68))->bit0 == 0) func_02021c7c();
  func_020bd574(); func_0207afc8(); func_0210fde8();
  data_02162a70=func_021100c4; data_02162a6c=func_021100c8;
  func_0210959c(0); func_0210959c(1); func_0210959c(2);
