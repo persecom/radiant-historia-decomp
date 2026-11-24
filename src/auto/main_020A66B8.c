@@ -2,6 +2,7 @@
 #include "common.h"
 typedef struct { s16 data[10]; } Unk_020a7194;
 extern const Unk_020a7194 data_021435a4;
+extern const Unk_020a7194 data_021435b8;
 extern void func_020a3bbc(s32), func_020a3c54(s32);
 extern void func_021098ac(void *);
 extern char data_0214ff8c[], data_0214ffa4[];
