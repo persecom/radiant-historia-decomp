@@ -38,3 +38,22 @@ void func_0208a4ac(void) {
     *(s16 *)(data_0216010c + 0x50f8) |= 8;
 }
 
+void func_0208a5e0(void) {
+    s16 i;
+    func_020a3b84();
+    func_020a0da8();
+    func_020a0dc8(data_021600b0 + 0x1d4);
+    if (data_021600b0 != NULL) {
+        func_0210c5dc(data_021600b0);
+    }
+    data_021600b0 = NULL;
+    data_0216010c[0x3f] = 7;
+    for (i = 0; i < 3; i++) {
+        void **p = *(void ***)(data_0216010c + 0x64 + i * 4);
+        if (p != NULL && *p != NULL) {
+            func_020a9544(p);
+            *(void **)(data_0216010c + 0x64 + i * 4) = NULL;
+        }
+    }
+}
+
