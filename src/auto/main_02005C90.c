@@ -54,6 +54,7 @@ extern void func_02006560(void *, u32);
 extern void func_02006808(void);
 extern void func_02008414(void);
 extern void func_02006478();
+extern void func_02006510(void *);
 s32 func_02005d2c(u16 arg0) {
     return func_02005d0c(arg0);
 }
@@ -300,6 +301,32 @@ void func_02006440(void *arg0) {
         func_02008128();
     }
     func_02006478();
+}
+
+void func_02006478(void) {
+    u8 *p = *(u8 **)data_0215cde4[2];
+    func_020067d8();
+    func_02006b5c(p);
+    {
+        void *head = *(void **)(p + 0x78);
+        if (head != NULL) {
+            func_02005f90(head, p);
+        }
+    }
+    func_02006070(p);
+    *(u32 *)(p + 0x64) = 2;
+    func_02006560(p + 0x9c, 2);
+    func_02006808();
+    func_0200661c();
+    func_02008414();
+}
+
+void func_020064d4(u8 *arg0) {
+    u32 cookie = func_02008128();
+    while (*(u32 *)(arg0 + 0x64) != 2) {
+        func_02006510(arg0 + 0x9c);
+    }
+    func_0200813c(cookie);
 }
 
 extern void func_020060b8(void);
