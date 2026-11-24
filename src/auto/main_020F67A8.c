@@ -19,34 +19,26 @@ extern s32 func_021093f0(void *);
 extern void func_02012590(const char *, const char *, ...);
 
 void func_020f67a8(u8 *arg0) {
-    u8 **p;
-    s32 zero = 0;
-    u32 v18, v38;
     if (func_02109754(3) != 0) {
         return;
     }
     func_020f4174();
-    p = &data_021600a4;
-    if (*p != NULL) {
+    if (data_021600a4 != NULL) {
         func_0203fcc0(0);
-        *(u16 *)(*p + 0x34) = 0xff;
-        *(u16 *)(*p + 0x3a) = 0xff;
+        *(u16 *)(data_021600a4 + 0x34) = 0xff;
+        *(u16 *)(data_021600a4 + 0x3a) = 0xff;
     }
     if (*(void **)(arg0 + 0x158) != NULL) {
         func_020a994c(arg0 + 0x144);
     }
-    v18 = *(u32 *)(arg0 + 0x18);
-    v38 = *(u32 *)(arg0 + 0x38);
-    v18 &= ~1;
-    v18 &= ~0x100;
-    v38 &= ~8;
-    v18 &= ~0x400;
-    v38 &= ~0x1000;
-    v18 &= ~0x800;
-    *(u32 *)(arg0 + 0x2c) = zero;
-    *(u32 *)(arg0 + 0x38) = v38;
-    *(u32 *)(arg0 + 0x18) = v18;
+    *(u32 *)(arg0 + 0x2c) = 0;
+    *(u32 *)(arg0 + 0x38) &= ~8;
+    *(u32 *)(arg0 + 0x38) &= ~0x1000;
+    *(u32 *)(arg0 + 0x18) &= ~1;
+    *(u32 *)(arg0 + 0x18) &= ~0x100;
+    *(u32 *)(arg0 + 0x18) &= ~0x400;
+    *(u32 *)(arg0 + 0x18) &= ~0x800;
     func_0210d6f4(*(void **)data_02160c74);
     func_0210d828();
-    func_0210d648(zero - 1, zero);
+    func_0210d648(-1, 0);
 }
