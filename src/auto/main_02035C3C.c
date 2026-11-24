@@ -20,3 +20,17 @@ void func_020362e8(s32 arg0, s32 arg1) {
     u8 *p = func_020ddc08(arg0);
     *(s32 *)(p + 0xf8) = arg1;
 }
+
+void func_020362fc(s32 arg0, s32 arg1) {
+    u8 *p = func_020ddc08(arg0);
+    if (arg1 != 0) {
+        *(u32 *)(p + 0x80) |= 2;
+        p[0xa1] |= 0x08;
+        p[0xa1] |= 0x20;
+        return;
+    }
+    *(u32 *)(p + 0x80) &= ~2;
+    p[0xa1] &= 0xf7;
+    p[0xa1] &= 0xdf;
+}
+
