@@ -10,6 +10,51 @@ extern void func_0210c5dc(void *);
 extern void func_021168f8(void *, void *);
 extern void func_021167f0(void *, void *);
 extern void *func_02030630(u8 *, u16);
+extern void *func_0203053c(void);
+extern u8 *func_02021f10(s32);
+extern u8 *func_0202fa9c(void);
+extern void func_0203017c(s32,void *,u16,s32);
+void *func_0202ffb0(s32 id) {
+ u8 *dst;
+ u8 *src;
+ s32 zero=0;
+ u16 i;
+ src=func_02021f10(id);
+ if(src) {
+ dst=func_0202fa9c();
+ dst[0]=0;
+ *(u16 *)(dst+0x34)=src[0x43];
+ *(s32 *)(dst+4)=*(s16 *)(src+0x10);
+ *(s32 *)(dst+8)=(s16)(*(u16 *)(src+0x12)+*(s16 *)(src+0x24));
+ *(u16 *)(dst+0xc)=*(u16 *)(src+0x14);
+ *(u16 *)(dst+0xe)=*(u16 *)(src+0x16)+*(s16 *)(src+0x26);
+*(u16 *)(dst+16)=*(u16 *)(src+24);
+*(u16 *)(dst+18)=*(u16 *)(src+26);
+*(u16 *)(dst+20)=*(u16 *)(src+28);
+*(u16 *)(dst+22)=*(u16 *)(src+30);
+*(u16 *)(dst+24)=*(u16 *)(src+32);
+*(u16 *)(dst+26)=*(u16 *)(src+34);
+*(s8 *)(dst+0x36)=*(s8 *)(src+0x45);
+ for(i=0;i<8;i++) *(s8 *)(dst+0x37+i)=*(s8 *)(src+0x46+i);
+ func_0203017c(zero,dst,*(u16 *)(src+0x38),zero);
+ func_0203017c(zero,dst,*(u16 *)(src+0x3a),zero);
+ if(*(u16 *)(src+0x3c)) func_0203017c(zero,dst,*(u16 *)(src+0x3c),zero);
+ if(*(u16 *)(src+0x3e)) func_0203017c(0,dst,*(u16 *)(src+0x3e),0);
+ if(*(u16 *)(src+0x40)) func_0203017c(0,dst,*(u16 *)(src+0x40),0);
+*(s16 *)(dst+40)=*(s16 *)(dst+16)+*(s16 *)(dst+28);
+*(s16 *)(dst+42)=*(s16 *)(dst+18)+*(s16 *)(dst+30);
+*(s16 *)(dst+44)=*(s16 *)(dst+20)+*(s16 *)(dst+32);
+*(s16 *)(dst+46)=*(s16 *)(dst+22)+*(s16 *)(dst+34);
+*(s32 *)(dst+0x30)=(s16)(*(s16 *)(dst+0x18)+*(s16 *)(dst+0xa6));
+*(s16 *)(dst+0xba)=*(s16 *)(dst+0x1a)+*(s16 *)(dst+0xa8);
+*(s32 *)(dst+0x70)=1;
+*(u16 *)(dst+0x5a)=*(u16 *)(src+0x34);
+*(void **)(dst+0xa0)=func_0203053c();
+return dst;
+}
+return 0;
+}
+
 void func_02030468(u8 *arg0, u32 arg1) {
     if (arg0 == NULL) {
         return;
