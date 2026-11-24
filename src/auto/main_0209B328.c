@@ -9,6 +9,12 @@ extern void func_0209b194(s32);
 
 extern void func_021168f8(void *, void *);
 extern void func_0210c5dc(void *);
+void *func_0209c0d0(void) {
+    void *ptr = func_0210c594(0xc, data_02155c3c);
+    func_021167ac(ptr, 0x24);
+    return ptr;
+}
+
 void func_0209c0fc(void **arg0) {
     void *ptr;
     while ((ptr = *arg0) != NULL) {
