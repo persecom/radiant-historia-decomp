@@ -8,6 +8,10 @@ extern void func_02012590(const char *, const char *, ...);
 void func_02092190(void) {
 }
 
+void func_020922bc(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s16 arg4, s16 arg5, s16 arg6, s16 arg7) {
+    func_02092194(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, 5, 5);
+}
+
 const char *func_02092a40(u8 *arg0, const char *arg1) {
     const char *r4 = *(const char **)(arg0 + 8);
     if (!func_021093f0(arg0)) {
