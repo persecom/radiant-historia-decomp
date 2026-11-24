@@ -3,6 +3,8 @@
 
 extern u8 *data_02160238;
 extern void func_020ce170(u32, u32, u32);
+extern u8 *func_020cda08(u32, u32);
+extern void func_020a8810(void *, s32);
 
 void func_020ccadc(void) {
     u8 *p = data_02160238;
