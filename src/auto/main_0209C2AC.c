@@ -69,6 +69,13 @@ unsigned int func_0209c920(u8 *arg0)
   while ((*((u32 *) new_var)) != 0);
 }
 
+void func_0209c94c(u8 *arg0, void *arg1) {
+    func_021168f8(arg0 + 0x3c, arg1);
+    if (arg1 != NULL) {
+        func_0210c5dc(arg1);
+    }
+}
+
 void func_0209c970(void) {
     u8 *r9 = func_0209ac14();
     while (r9 != NULL) {
