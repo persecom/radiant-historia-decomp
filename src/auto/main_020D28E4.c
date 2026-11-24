@@ -61,6 +61,7 @@ extern const s16 data_0213a394[];
 extern void func_021099f8(void *);
 extern s16 func_020ddcb0(void *, void *);
 extern void func_020ddd8c(void *);
+extern void func_02026578(void *);
 
 void func_020d2a44(s8 arg0, u8 arg1, s16 arg2) {
     Unk14 buf = data_02144910;
