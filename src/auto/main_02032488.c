@@ -175,6 +175,13 @@ void func_02032e70(void *arg0) {
     }
 }
 
+void func_02032eb8(void *arg0, u16 arg1) {
+    u8 *node = func_0210c594(0x10, data_02155c3c);
+    *(void **)node = arg0;
+    *(u16 *)(node + 4) = arg1;
+    func_021167f0(data_02160090 + 0x30, node);
+}
+
 void func_02032ff8(void) {
     data_02160090[0x7e] = 1;
 }
