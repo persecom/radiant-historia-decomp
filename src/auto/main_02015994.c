@@ -10,3 +10,7 @@ typedef struct {
 extern s32 func_020150a4(s32 (*)(Unk_02015950 *, void *, u32), Unk_02015950 *, const char *, char *);
 extern s32 func_02015950(Unk_02015950 *, void *, u32);
 extern s32 func_02015994(u8 *, s32, const char *, char *);
+
+void func_020159f8(s32 arg0, const char *arg1, char *arg2) {
+    ((void (*)(s32, s32, const char *, char *))func_02015994)(arg0, -1, arg1, arg2);
+}
