@@ -7,7 +7,7 @@ if(!p->field38)p->flags &= ~1;
 }
 static inline void Set38_0210b4cc(Header_0210b4cc *p, u32 value) {
 p->field38=value;
-if(!value)p->flags &= ~1;
+if(!p->field38)p->flags &= ~1;
 }
 extern u8 data_02155c00[];
 extern void (*data_02156154)(u32);
@@ -520,18 +520,17 @@ func_0211e078(p);
 }
 
 void func_0210b4cc(u8 *p) {
+s32 count;
 s32 i;
-u8 count;
 s32 zero=0;
 if(*(void **)(p+0x118) && !func_02109f84(*(void **)(p+0x118)))func_02120a68(*(void **)(p+0x118));
-*(void **)(p+0x34)=0;
-if(!*(void **)(p+0x38))*(u32 *)p &= ~1;
-*(void **)(p+0x38)=0;
-if(!*(void **)(p+0x34))*(u32 *)p &= ~1;
+Set34_0210b4cc((Header_0210b4cc *)p,0);
+Set38_0210b4cc((Header_0210b4cc *)p,0);
 if(*(void **)(p+0xfc)){func_0211cd24(p,*(void **)(p+0xfc));func_0211cd78(p);}
 if(*(void **)(p+0x100)){func_0211cd24(p,*(void **)(p+0x100));func_0211cd78(p);}
+i=0;
 count=p[0x13c];
-for(i=0;i<count;i++) {
+for(;i<count;i++) {
 if((*(void ***)(p+0x140))[i]) {((void (*)(void *,void *))func_02120bb0)(data_02162648,(*(void ***)(p+0x140))[i]);(*(void ***)(p+0x140))[i]=0;}
 if((*(void ***)(p+0x144))[i]) {((void (*)(void *,void *))func_02120bb0)(data_02162648,(*(void ***)(p+0x144))[i]);(*(void ***)(p+0x144))[i]=0;}
 if((*(void ***)(p+0x148))[i]) {((void (*)(void *,void *))func_02120bb0)(data_02162648,(*(void ***)(p+0x148))[i]);(*(void ***)(p+0x148))[i]=0;}
