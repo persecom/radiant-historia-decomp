@@ -20,7 +20,7 @@ extern void func_021098ac(void *);
 
 extern u8 *data_02160120;
 extern u32 func_021136b0(void);
-extern void func_0209c94c(void *);
+extern void func_0209c94c();
 typedef struct {
     u8 pad[0x3c];
     u32 flag;
