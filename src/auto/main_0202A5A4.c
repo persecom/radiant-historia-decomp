@@ -41,12 +41,12 @@ void func_0202b3fc(u8 arg0) {
 extern u8 *func_0202c7d8(s32);
 extern u8 *data_02160a6c;
 void func_0202b41c(void) {
-    u8 i;
+    s32 i;
     if (data_02160a6c == NULL) {
         return;
     }
     for (i = 0; i < 9; i++) {
-        u8 *res = func_0202c7d8((s8)i);
+        u8 *res = func_0202c7d8((s8)(u8)i);
         if (res != NULL) {
             switch (*(u8 *)(*(u8 **)(res + 0x118) + 0x54)) {
             case 0:
