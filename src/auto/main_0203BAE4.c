@@ -327,6 +327,32 @@ func_0210f138();
 void func_0203c820(void) {
 }
 
+void func_0203c824(void) {
+ u8 *p=data_02160094;
+ Unk20_0203c824 buf=data_0213eedc;
+ u8 *node;
+ *(volatile u32 *)0x40004a4=0x1f00c0;
+ func_020a3bbc(0);
+ buf.unk[1]=0;buf.unk[2]=0;buf.unk[3]=256;buf.unk[4]=32;
+ buf.unk[5]=0;buf.unk[6]=48;buf.unk[7]+=2;buf.unk[8]=256;buf.unk[9]=32;
+ func_021098ac(&buf);
+ *(volatile u32 *)0x40004a4=0x1f00c0;
+ func_020a3bbc(1);
+ node=*(u8 **)(p+0x2c);
+ while(node) {
+ u8 i;
+ buf.unk[1]=0;buf.unk[2]=0;buf.unk[3]=64;buf.unk[4]=32;
+ for(i=0;i<4;i++) {
+ if(i%2==0) {buf.unk[8]=64;buf.unk[5]=*(s16 *)node-64;}
+ else if(i%2==1) {buf.unk[8]=-64;buf.unk[5]=*(s16 *)node+64;}
+ if((u32)i>>1==0) {buf.unk[9]=32;buf.unk[6]=*(s16 *)(node+2);}
+ else if(((u32)i>>1)==1) {buf.unk[9]=-32;buf.unk[6]=*(s16 *)(node+2)+64;}
+ func_021098ac(&buf);
+ }
+ node=*(u8 **)(node+8);
+ }
+}
+
 void func_0203c994(void) {
 }
 
