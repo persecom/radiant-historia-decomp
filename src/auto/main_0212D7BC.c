@@ -13,6 +13,8 @@ extern void func_02013878(void *, s32, u32);
 extern s32 func_0212d9f8(void *, void *);
 extern void func_0212d7bc(void *, s32, s32, s32, s32);
 extern void func_0212dce4(void *);
+extern void func_0212dd00(void *);
+extern s32 func_0212dc40(void *, s32);
 extern void func_0212e57c(void);
 extern void func_0212e588(void);
 extern void func_0212db90(void *);
