@@ -14,10 +14,10 @@ extern s32 func_0201fb1c(s32, s32);
 s32 func_02028420(u8 *arg0, u8 *arg1) {
     u8 *src = arg1;
     u8 *self = arg0;
+    u32 mask = 0;
     const char *s;
     s16 v1, cmd, v2;
     s32 is32 = 0;
-    u32 mask = 0;
     u8 *node;
     s = func_020929f4(src, 0);
     if (func_02026e9c(2, s, data_02146164) != 0) {
