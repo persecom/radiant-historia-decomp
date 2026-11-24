@@ -54,14 +54,65 @@ void func_0211e158(u8 *arg0) {
     *(u8 **)arg0 += 1;
 }
 
-void func_0211e180(u8 *arg0) {
-    void (*fn)(void *) = *(void (**)(void *))(arg0 + 0x10);
-    do {
-        if (fn == NULL) {
-            break;
-        }
-        fn(arg0);
-        *(u32 *)(arg0 + 8) |= 0x20;
-    } while (0);
+void func_0211e180(u8 *arg0)
+{
+  void (*fn)(void *) = *((void (**)(void *)) (arg0 + 0x10));
+  if (fn != NULL)
+  {
+    fn(arg0);
+  }
+  *((u32 *) (arg0 + 8)) |= 0x20;
+}
+
+void func_0211e860(u8 *arg0) {
+    u32 flags = *(u32 *)(arg0 + 8);
+    u8 *p;
+    u8 idx;
+    u8 *tbl;
+    u16 cmd;
+    if (flags & 0x200) goto advance;
+    p = *(u8 **)arg0;
+    idx = p[1];
+    if (flags & 1) goto parse;
+    if (!(flags & 8)) goto parse;
+    if (idx == *(u8 *)(arg0 + 0xad)) goto advance;
+parse:
+    tbl = *(u8 **)(arg0 + 0xd8);
+    if (tbl == NULL) goto advance;
+    if (idx >= tbl[5]) goto advance;
+    {
+        u16 off = *(u16 *)(tbl + 0xa);
+        u16 size = *(u16 *)(tbl + 4 + off);
+        u32 *ptr = (u32 *)(tbl + 8 + off + size * idx);
+        cmd = *(u16 *)(tbl + *ptr);
+        data_02155f80[cmd](arg0);
+    }
+advance:
+    *(u8 **)arg0 += 2;
+}
+
+void func_0211e9e4(u8 *arg0) {
+    u32 flags = *(u32 *)(arg0 + 8);
+    u8 *p;
+    u8 idx;
+    u8 *tbl;
+    u16 cmd;
+    if (flags & 0x200) goto advance;
+    if (!(flags & 1)) goto advance;
+    if (flags & 2) goto advance;
+    p = *(u8 **)arg0;
+    idx = p[1];
+    tbl = *(u8 **)(arg0 + 0xdc);
+    if (tbl == NULL) goto advance;
+    if (idx >= tbl[1]) goto advance;
+    {
+        u16 off = *(u16 *)(tbl + 6);
+        u16 size = *(u16 *)(tbl + 4 + off);
+        u32 *ptr = (u32 *)(tbl + 8 + off + size * idx);
+        cmd = *(u16 *)(tbl + *ptr);
+        data_02155f90[cmd](arg0);
+    }
+advance:
+    *(u8 **)arg0 += 2;
 }
 
