@@ -1,6 +1,19 @@
 /* 5 functions from 0x0208A678 to 0x0208B398 (main), found by ds-decomp. */
 #include "common.h"
 
+extern u8 *data_021600b0;
+extern void func_0208c420(s32, s32);
+
+typedef struct {
+    u16 x;
+    u16 y;
+    u16 z;
+} UnkVec3_0208b144;
+
+extern void func_0208b398(UnkVec3_0208b144, s16);
+void func_0208b198(void);
+void func_0208b298(void);
+
 typedef struct {
     s16 data[10];
 } UnkBuf10_0208b198;
