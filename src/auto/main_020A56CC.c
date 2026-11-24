@@ -17,6 +17,11 @@ extern void *func_020a6360(void *, u8);
 extern void func_021167ac(void *, s32);
 extern void func_020a6320(void **);
 
+typedef struct { u16 unk[10]; } Unk20;
+extern const Unk20 data_0214357c;
+extern void func_020a3bbc(s32);
+extern void func_021098ac(void *);
+
 typedef struct {
     s32 x;
     s32 y;
