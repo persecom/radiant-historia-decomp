@@ -33,6 +33,7 @@ extern void *func_02112048(void *);
 extern void func_020b9214(void *, u16, s32);
 extern void func_020b9274(void *, u16, s32);
 extern void func_020b92b0(void);
+extern void func_020b9250(void);
 
 void func_020b8844(void) {
     *(volatile u32 *)0x0400001c = 0;
@@ -94,6 +95,32 @@ void func_020b8d94(void) {
         *(u32 *)(root + 0x5c) = 0x55000;
     }
     func_020b8dbc();
+}
+
+void func_020b90f0(void) {
+    void *obj = func_020c9c10(*(void **)(data_021601ec + 0x4c), 2);
+    u8 *item;
+    void *node;
+    func_02111ccc(obj);
+    item = *(u8 **)(*(u8 **)(data_02160204 + 0) + 0x10c);
+    if (item == NULL) {
+        return;
+    }
+    item = *(u8 **)item;
+    while (item != NULL) {
+        u16 v = *(u16 *)(item + 8);
+        node = func_02111d3c(obj);
+        *(u16 *)((u8 *)node + 2) = v;
+        *(u16 *)((u8 *)node + 4) = func_02110b38(v);
+        *(u32 *)((u8 *)node + 8) = *(u16 *)(item + 0xa);
+        *((u8 *)node + 6) |= 4;
+        item = *(u8 **)(item + 4);
+    }
+    func_02112688(obj);
+    func_021108f0(obj, 0);
+    func_02112068(obj);
+    func_02111bf0(obj);
+    func_02111ff0(obj);
 }
 
 void func_020b9250(void) {
