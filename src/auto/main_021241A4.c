@@ -167,6 +167,13 @@ void func_021250f8(void *arg0, void *arg1, void *arg2) {
     func_020047d4();
 }
 
+extern void func_02004764(void *, void *);
+void func_0212511c(void *arg0, void *arg1, void *arg2) {
+    func_02004668();
+    ((void (*)(void *, void *))func_02004764)(arg0, arg2);
+    func_020047d4();
+}
+
 void func_02125140(void) {
     func_02003c78();
 }
