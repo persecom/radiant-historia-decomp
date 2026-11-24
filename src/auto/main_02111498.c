@@ -10,6 +10,10 @@ void func_02111708(void *arg0) {
     }
 }
 
+s32 func_02111da8(u8 *arg0) {
+    return *(s32 *)(arg0 + 0x38);
+}
+
 extern void func_021121b8(void *);
 void func_02112198(void *arg0) {
     func_021121b8(arg0);
