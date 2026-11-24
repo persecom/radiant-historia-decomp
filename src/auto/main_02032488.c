@@ -92,6 +92,14 @@ s32 func_02032c14(u8 *arg0, void *arg1) {
     return 1;
 }
 
+void *func_02032c44(void) {
+    u8 *ptr = func_0210c594(0x54, data_02155c3c);
+    func_021167ac(ptr + 0x28, 0x14);
+    ptr[0x12] = 0;
+    *(u32 *)(ptr + 0x14) = 0;
+    return ptr;
+}
+
 void func_02032ff8(void) {
     data_02160090[0x7e] = 1;
 }
