@@ -58,6 +58,17 @@ void func_020d85f4(u16 *arg) {
     func_021167f0(data_02160248.unk08, dst);
 }
 
+u16 *func_020d865c(u16 *arg) {
+    u16 *dst = func_0210c594(0x10, data_02155c3c);
+    u16 i;
+    for (i = 0; i < 2; i++) {
+        dst[i] = arg[i];
+        dst[i + 2] = arg[i + 2];
+    }
+    func_021167f0(&data_02160248.unk08->unk0c, dst);
+    return dst;
+}
+
 s32 func_020d8c30(void) {
     s32 v = --data_02162814;
     if (v >= 0) {
