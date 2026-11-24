@@ -33,6 +33,22 @@ void *func_02031c24(u32 arg0) {
 void func_02031c60(void) {
 }
 
+void func_02031c64(void) {
+    if (data_02160090 != NULL) {
+        return;
+    }
+    data_02160090 = func_0210c594(0x84, data_02155c3c);
+    func_021167ac((u8 *)data_02160090 + 8, 0x18);
+    func_021167ac((u8 *)data_02160090 + 0x14, 0x20);
+    func_021167ac((u8 *)data_02160090 + 0x24, 0x10);
+    func_021167ac((u8 *)data_02160090 + 0x30, 8);
+    func_021167ac((u8 *)data_02160090 + 0x3c, 8);
+    func_021167ac((u8 *)data_02160090 + 0x48, 0x20);
+    func_021167ac((u8 *)data_02160090 + 0x54, 0x20);
+    func_021167ac((u8 *)data_02160090 + 0x60, 8);
+    func_021167ac((u8 *)data_02160090 + 0x6c, 0x20);
+}
+
 void func_02031d2c(void) {
     void *node = *(void **)((u8 *)data_02160090 + 0x14);
     while (node != NULL) {
