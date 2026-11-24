@@ -54,6 +54,16 @@ void func_020c27b4(u8 arg0, s8 arg1, u32 arg2) {
     }
 }
 
+void func_020c2824(u8 arg0, u8 arg1, u32 arg2, u16 arg3) {
+    u8 *node = func_020ddb90(arg3);
+    if (node != NULL) {
+        u8 *res = func_020c2584(node, arg2);
+        res[0] = arg0;
+        res[0x14] = arg1;
+        func_021167f0(data_02160090 + 0x48, res);
+    }
+}
+
 void *func_020c2a98(u8 arg0, u8 arg1) {
     u8 *node = *(u8 **)(data_02160090 + 0x48);
     while (node != NULL) {
