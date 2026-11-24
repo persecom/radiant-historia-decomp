@@ -47,15 +47,22 @@ s32 func_020a25fc(s32 arg0, u32 arg1) {
     u8 *base = data_021600b0;
     if (arg0 == 0) {
         *(u32 *)(base + 0x1a0) = 0;
-    } else if (arg0 == 1) {
+        goto end;
+    }
+    if (arg0 == 1) {
         *(u32 *)(base + 0x1a0) |= arg1;
-    } else if (arg0 == 2) {
+        goto end;
+    }
+    if (arg0 == 2) {
         *(u32 *)(base + 0x1a0) &= ~arg1;
-    } else if (arg0 == 3) {
+        goto end;
+    }
+    if (arg0 == 3) {
         if (*(u32 *)(base + 0x1a0) & arg1) {
             return 1;
         }
     }
+end:
     return 0;
 }
 
@@ -99,6 +106,19 @@ void func_020a2850(void) {
     u8 *base = data_021600b0;
     for (i = 0; i < 0x20; i++) {
         func_021167f0(base + 0x134, ((void *(*)(u16))func_020a2824)((u16)(i + 1)));
+    }
+}
+
+extern void func_021168f8(void *, void *);
+extern void func_0210c5dc(void *);
+void func_020a2898(void) {
+    u8 *r4 = data_021600b0;
+    void *r5;
+    while ((r5 = *(void **)(r4 + 0x134)) != NULL) {
+        func_021168f8(r4 + 0x134, r5);
+        if (r5 != NULL) {
+            func_0210c5dc(r5);
+        }
     }
 }
 
