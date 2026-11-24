@@ -1067,7 +1067,10 @@ src/auto/main_02133134.c:
     .text start:0x02133134 end:0x02134134
 
 src/auto/main_02134134.c:
-    .text start:0x02134134 end:0x02134f44
+    .text start:0x02134134 end:0x02134edc
+
+src/auto/main_02134EDC.c:
+    .text start:0x02134edc end:0x02134f44
 
 src/auto/main_02134F44.c:
     .text start:0x02134f44 end:0x02135f40

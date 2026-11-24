@@ -335,33 +335,3 @@ if(sync)func_02135a80(p);
 p[1]^=2;
 }
 }
-
-BOOL func_02134edc(u8 *arg0) {
-    if (arg0 == NULL) {
-        return -1;
-    }
-    return (arg0[1] & 2) != 0;
-}
-
-s32 func_02134efc(void *arg0) {
-    if (arg0 == NULL) {
-        return -1;
-    }
-    return func_02136930(*(void **)((u8 *)arg0 + 0x20));
-}
-
-extern s32 func_02136944(void *);
-s32 func_02134f18(void *arg0) {
-    if (arg0 == NULL) {
-        return -1;
-    }
-    return func_02136944(*(void **)((u8 *)arg0 + 0x20));
-}
-
-s32 func_02134f34(u8 *arg0) {
-    if (arg0 == NULL) {
-        return -1;
-    }
-    return arg0[6];
-}
-
