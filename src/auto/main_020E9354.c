@@ -90,6 +90,37 @@ void func_020e9714(u8 *arg0) {
     func_021168f8(*(u8 **)(arg0 + 8) + 0x4c, arg0);
 }
 
+void func_020e972c(u8 *arg0) {
+    u8 *p = arg0;
+    if (*(void **)(p + 0x28) != NULL) {
+        s32 i, count = *(s32 *)(p + 0x24);
+        for (i = 0; i < count; i++) {
+            u8 *elem = *(u8 **)(p + 0x28) + i * 0x2c;
+            func_0210eb80(*(void **)(elem + 0xc));
+            if (*(void **)(elem + 0xc) != NULL) {
+                func_0210c5dc(*(void **)(elem + 0xc));
+                *(void **)(elem + 0xc) = NULL;
+            }
+            func_020e969c(elem);
+        }
+        if (*(void **)(p + 0x28) != NULL) {
+            func_0210c5dc(*(void **)(p + 0x28));
+            *(void **)(p + 0x28) = NULL;
+        }
+    }
+    if (*(void **)(p + 0x20) != NULL) {
+        func_020e9684(*(void **)(p + 0x20));
+        if (*(void **)(p + 0x20) != NULL) {
+            func_0210c5dc(*(void **)(p + 0x20));
+            *(void **)(p + 0x20) = NULL;
+        }
+    }
+    func_020e9620(p);
+    if (p != NULL) {
+        func_0210c5dc(p);
+    }
+}
+
 void func_020e9d44(void) {
     void *p = data_02160a7c;
     if (p != NULL) {
