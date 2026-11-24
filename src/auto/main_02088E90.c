@@ -35,6 +35,28 @@ void func_02089578(void) {
     *(volatile u32 *)0x04000000 = (*(volatile u32 *)0x04000000 & ~0x1f00) | 0x1f00;
 }
 
+void func_02089878(void)
+{
+    u8 **pp = &data_0216010c;
+    s32 zero = 0;
+    s32 n = 50;
+    s32 v;
+    u8 *base = *pp;
+    u8 idx = *(u8 *)(base + 0x50d7);
+
+    v = *(s16 *)(base + idx * 100 + 0x5570);
+    if (v >= 1) {
+        func_020a8810(*(void **)(*pp + 0x340), 0x18);
+        v = (u16)v;
+        func_020895a0(9, 0x12000, 0x86000, n, zero, v, zero, zero, zero);
+        func_020a8810(*(void **)(*pp + 0x2f0), 0x16);
+        func_020895a0(8, 0x14000, 0x98000, n, 1, v, zero, zero, zero);
+    } else {
+        func_020a994c(base + 0x2f4);
+        func_020a994c(*pp + 0x344);
+    }
+}
+
 void func_0208994c(s32 arg0) {
     u8 **pp = &data_0216010c;
     s32 zero = 0;
