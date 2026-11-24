@@ -7,6 +7,10 @@ typedef struct {
     u32 field_8;
 } Triple0215;
 
+typedef struct {
+    u32 field_0[9];
+} Nine0215;
+
 extern u16 data_0215d1a0;
 extern s32 data_0215d19c;
 extern u32 *data_0215d1b8[9];
