@@ -20,6 +20,20 @@ void func_0202f388(void) {
     func_021167ac(*p, 0x14);
 }
 
+void func_0202f3c4(void) {
+    void **p = &data_02160084;
+    if (*p == NULL) {
+        return;
+    }
+    while (*(void **)*p != NULL) {
+        func_0202f4d8(*(void **)*p);
+    }
+    if (*p != NULL) {
+        func_0210c5dc(*p);
+        data_02160084 = NULL;
+    }
+}
+
 void func_0202f41c(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, u8 arg5, u8 arg6) {
     u8 *node = func_0210c594(0x20, data_02155c3c);
     *(s32 *)(node + 0x0) = arg0;
