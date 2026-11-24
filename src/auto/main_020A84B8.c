@@ -147,6 +147,32 @@ void func_020a8958(void *arg0) {
     }
 }
 
+void func_020a899c(void *arg0) {
+    u8 *p = arg0;
+    u32 unk[4];
+    u32 tex = *(u32 *)(p + 0x34);
+    s32 w = *(s32 *)(p + 0x18);
+    u32 h = *(u32 *)(p + 0x1c);
+    u32 off = (u16)tex << 3;
+    u32 src = *(u32 *)(p + 0x10);
+    s32 len = w >> 2;
+    u32 i;
+    u32 idx;
+
+    func_0210fd24(unk, 0);
+    for (i = 0; i < h; i++) {
+        u32 mask = 1 << (i & 0x1f);
+        idx = i >> 5;
+        if (*(u32 *)((u8 *)*(void **)(p + 0x50) + (idx << 2) + 8) & mask) {
+            func_0210fd38(unk, off, src, len);
+            *(u32 *)((u8 *)*(void **)(p + 0x50) + (idx << 2) + 8) &= ~mask;
+        }
+        off += len;
+        src += len;
+    }
+    func_0210fd94(unk);
+}
+
 void func_020a8a50(void *arg0) {
     u8 *p = arg0;
     func_02008e68(0, *(void **)(p + 0x10), *(u32 *)(p + 0x14));
@@ -165,5 +191,12 @@ extern void func_0210fd94(u32 *);
 extern void func_020a9068(u32);
 void func_020a9058(void) {
     func_020a9068(0x1f);
+}
+
+extern s8 data_02150008[128];
+extern u32 data_02160144;
+s32 func_020a916c(s32 arg0) {
+    s32 v = arg0 >= 0x80 ? 0xc : data_02150008[arg0];
+    return v + data_02160144;
 }
 
