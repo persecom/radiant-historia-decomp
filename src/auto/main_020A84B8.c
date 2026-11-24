@@ -30,3 +30,17 @@ u32 func_020a8828(u32 arg0) {
     return (u16)data_02160148[arg0] & ~0xE0000000;
 }
 
+void func_020a8958(void *arg0) {
+    u8 *p = (u8 *)arg0;
+    if (*(void **)(p + 0x38) != NULL) {
+        func_0210c5dc(*(void **)(p + 0x38));
+    }
+    if (*(void **)(p + 0x10) != NULL) {
+        func_0210c5dc(*(void **)(p + 0x10));
+        *(void **)(p + 0x10) = NULL;
+    }
+    if (p != NULL) {
+        func_0210c5dc(p);
+    }
+}
+
