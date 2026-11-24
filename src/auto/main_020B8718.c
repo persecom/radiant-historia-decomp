@@ -197,8 +197,7 @@ for(i=0;i<2;i++)func_020c738c(func_020c9c10(*(void **)(p+0x48),q[i]),1,1);
 arr[0]=data_021438dc[0];
 func_020c738c(func_020c9c10(*(void **)(p+0x4c),arr[0]),0,1);
 ids=data_021439a4;
-q=ids.values;
-for(i=0;i<8;i++)func_020c738c(func_020c9c10(*(void **)(p+0x4c),q[i]),1,1);
+for(i=0;i<8;i++)func_020c738c(func_020c9c10(*(void **)(p+0x4c),ids.values[i]),1,1);
 switch(*(u32 *)(p+0x40)){
 case 0:func_020b8c44();break;
 case 1:func_020b92d4();break;
