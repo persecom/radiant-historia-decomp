@@ -12,17 +12,18 @@ s32 func_02013630(s32 x) {
     return x < 0 ? -x : x;
 }
 
-u8 func_0201363c(u64 x) {
-    u64 a, b;
-    x = x - ((x >> 1) & 0x5555555555555555ull);
-    a = x & 0x3333333333333333ull;
-    b = (x >> 2) & 0x3333333333333333ull;
-    x = a + b;
-    x = (x + (x >> 4)) & 0x0f0f0f0f0f0f0f0full;
-    x += x >> 8;
-    x += x >> 16;
-    x += x >> 32;
-    return x & 0xff;
+unsigned int func_0201363c(u64 x)
+{
+  x = x - ((x >> 1) & 0x5555555555555555ull);
+  x = (x & 0x3333333333333333ull) + ((x >> 2) & 0x3333333333333333ull);
+  x = (x + (x >> 4)) & 0x0f0f0f0f0f0f0f0full;
+  x += x >> 8;
+  x += x >> 16;
+  x += x >> 32;
+  if (x)
+  {
+  }
+  return x & 0xff;
 }
 
 s32 func_020136d0(s32 arg0, ...) {
