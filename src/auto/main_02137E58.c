@@ -105,9 +105,10 @@ void func_02137f80(s32 *arg0, s32 arg1, s32 *arg2, s32 *arg3) {
 }
 
 void func_02137fc8(s32 arg0) {
-    if (data_02176644[0xc] != 0) {
-        ((void (*)(u32))data_02176644[0xc])(data_02176644[0xd]);
+    if (data_02176644[0xc] == 0) {
+        return;
     }
+    ((void (*)(u32))data_02176644[0xc])(data_02176644[0xd]);
     if (data_02176644[3] == 0) {
         data_02176644[1] = (u32)arg0;
     }
@@ -340,8 +341,7 @@ void func_02138618(void) {
     *(volatile u32 *)data_02176644 = *(volatile u32 *)data_02176644 - 1;
     if (*(volatile u32 *)data_02176644 == 0) {
         func_02138520();
-        data_0217666c[0] = 0;
-        data_0217666c[1] = 0;
+        data_0217666c[1] = data_0217666c[0] = 0;
     }
 }
 
