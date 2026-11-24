@@ -74,6 +74,28 @@ void *func_020ec908(u32 arg0) {
     return NULL;
 }
 
+extern u8 data_02160ad8[];
+extern u8 data_02160ac4[];
+extern u8 data_02160ab8[];
+extern void *data_02155c3c;
+extern void func_0210db10(void *);
+extern void func_0210db58(void *);
+extern void func_0210dae0(void *);
+extern void func_0210db40(void *);
+extern void func_020ed0bc(void);
+extern void *func_0210c594(s32, void *);
+extern void *func_0210853c(void);
+void *func_020ec950(u32 arg0) {
+    u8 *node = *(u8 **)(data_02160ab4 + 0x50);
+    while (node != NULL) {
+        if (*(u32 *)(node + 0xc) == arg0) {
+            return node;
+        }
+        node = *(u8 **)(node + 0x48);
+    }
+    return NULL;
+}
+
 void func_020ec98c(u32 arg0) {
     *(u32 *)(data_02160ab4 + 0x64) = arg0;
 }
