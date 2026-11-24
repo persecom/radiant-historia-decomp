@@ -143,6 +143,10 @@ void func_020094a8(void) {
     func_02008998(0);
 }
 
+void func_02009528(u32 arg0, s32 arg1) {
+    func_020097a8(arg0, 6, arg1, 2);
+}
+
 s32 func_0200986c(void) {
     return func_02006afc(&data_0215d1a0);
 }
