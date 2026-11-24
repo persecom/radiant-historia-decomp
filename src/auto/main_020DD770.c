@@ -196,12 +196,10 @@ s32 func_020ddcb0(u32 *arg0, u32 *arg1) {
 void func_020ddcd4(u8 *arg0) {
     s32 scale = *(s32 *)data_02160a68.unk00;
     s32 val = *(s32 *)(arg0 + 0x78);
-    s32 angle = (s32)(((s64)(val << 12) * scale + 0x800) >> 12);
     s32 idx = *(u16 *)(arg0 + 0x92) >> 4;
-    s32 j = idx * 2;
-    s32 k = j + 1;
-    *(s32 *)(arg0 + 0x30) = (s32)(((s64)data_0213a394[j * 2] * angle + 0x800) >> 12);
-    *(s32 *)(arg0 + 0x38) = (s32)(((s64)data_0213a394[k * 2] * angle + 0x800) >> 12);
+    s32 angle = (s32)(((s64)(val << 12) * scale + 0x800) >> 12);
+    *(s32 *)(arg0 + 0x30) = (s32)(((s64)data_0213a394[idx * 4] * angle + 0x800) >> 12);
+    *(s32 *)(arg0 + 0x38) = (s32)(((s64)data_0213a394[idx * 4 + 2] * angle + 0x800) >> 12);
 }
 
 void func_020ddd5c(u8 *arg0) {
@@ -267,6 +265,19 @@ void func_020de374(void *arg0, void *arg1) {
     if (arg1 != NULL) {
         func_0210c5dc(arg1);
     }
+}
+
+u16 func_020de3d8(u8 *arg0) {
+    u16 count = 0;
+    u8 *node = *(u8 **)arg0;
+    if (node == NULL) {
+        return 0;
+    }
+    do {
+        count++;
+        node = *(u8 **)(node + 4);
+    } while (node != NULL);
+    return count;
 }
 
 void func_020de404(arg0)
