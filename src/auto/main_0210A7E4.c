@@ -284,7 +284,7 @@ void func_0210afcc(void *arg) {
     s32 i;
     s->flags.bit3 = 0;
     s->flags.bit1 = 0;
-    s->flags.bit2 = s->flags.bit0;
+    s->flags.bit2 = s->flags.bit1;
     *(u32 *)(arg0 + 0x104) = 0x1000;
     *(u8 *)(arg0 + 0x128) = 0;
     s->flags.bit0 = 1;
@@ -293,11 +293,11 @@ void func_0210afcc(void *arg) {
     *(u8 *)(arg0 + 0x134) = 0;
     *(u8 *)(arg0 + 0x135) = 0x1f;
     *(u32 *)(arg0 + 0x138) = 0;
-    s->flags.bit8 = 0;
+    *(volatile u16 *)((u8 *)s + 0xa4) &= ~0x100;
     *(void **)(arg0 + 0x1a8) = func_0210af80;
     s->unkA2 = 0x3e7;
     for (i = 0; i < 0x10; i++) {
-        s->arr[i] = 0x3e7;
+        *(u16 *)(arg0 + 0x180 + i * 2) = 0x3e7;
     }
 }
 
@@ -361,7 +361,7 @@ extern u8 *func_02120fe4(s32, s32);
 extern u8 *func_02120b8c(void *, u8 *, u32);
 void func_0210b750(u32 arg0) {
     u32 f;
-    func_021167ac(&data_02162618, 4);
+    func_021167ac(data_02162624 - 0xc, 4);
     f = data_02155c18[0];
     if (f == 0) {
         f = (u32)func_0210af80;
