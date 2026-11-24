@@ -203,8 +203,55 @@ void *func_0210ad14(void *arg0, s32 arg1, s32 arg2) {
     return p;
 }
 
+s32 func_0210ad88(u32 arg0, u32 *arg1, s32 arg2) {
+    u32 *vram;
+    s32 is_zero = (arg2 == 0);
+    if (!is_zero) {
+        func_02006dc4(arg1[5], arg1[4]);
+        if (arg2 == 1) {
+            vram = func_0210a4b4();
+        } else {
+            vram = func_0210a4c0();
+        }
+        if (arg1[2] != 0) {
+            func_02118624(arg1, *vram, arg2, arg0);
+        } else {
+            func_0211883c(arg1, *vram, arg2, arg0);
+        }
+        *vram += arg1[4];
+    }
+    return 1;
+}
+
+s32 func_0210aee0(u32 arg0, u32 *arg1, s32 arg2, void *arg3) {
+    s32 is_zero = (arg2 == 0);
+    if (!is_zero) {
+        u32 sp4 = 0;
+        if (func_02117878(arg3, &sp4) == 0) {
+            sp4 = 0;
+        }
+        func_02006dc4(arg1[3], arg1[2]);
+        if (sp4 != 0) {
+            func_02118d0c(arg1, sp4, 0, arg2, arg0);
+        } else {
+            func_02118c14(arg1, 0, arg2, arg0);
+        }
+    }
+    if (arg3 != NULL) {
+        func_0210c5dc(arg3);
+    }
+    return 1;
+}
+
 void func_0210af80(void) {
     func_0210b300();
+}
+
+void *func_0210af8c(void) {
+    void *p = func_0210c518(0x1bc, data_02155c3c);
+    func_02008e68(0, p, 0x1bc);
+    func_0210afcc(p);
+    return p;
 }
 
 void func_0210b080(u8 *arg0) {
