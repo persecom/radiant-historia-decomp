@@ -120,6 +120,20 @@ void *func_0212f468(void *arg0) {
     return *(void **)((u8 *)arg0 + 0x10);
 }
 
+extern u32 data_0217479c;
+extern u32 data_02174524[0x100];
+extern u32 data_021744ec[5];
+extern s32 func_02138500(void);
+extern void func_0213807c(void);
+extern void func_0212eaa4(void);
+extern void func_0213808c(void);
+extern void func_02006510(s32);
+extern void func_0212c4b8(s32);
+extern void func_0212e860(void *);
+void func_0212f548(u32 arg0) {
+    data_0217479c = arg0;
+}
+
 extern void func_0212f548(u32);
 void func_0212f738(u32 arg0) {
     func_0212f548(arg0);
