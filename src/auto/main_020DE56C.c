@@ -9,6 +9,34 @@ data_0216263c[0]=value;
 return result;
 }
 extern u8 *func_02032240(void);
+static inline s32 accept_020de888(u8 *base,u8 *node) {
+u8 expected;
+u8 *info2,*obj2,*state2;
+s32 valid,i;
+u8 kind;
+obj2=*(u8 **)node;
+expected=base[0x38];
+info2=*(u8 **)(node+8);
+kind=**(u8 **)(obj2+0x118);
+if(kind!=expected)return 0;
+if(kind==1 && info2[0x14]==1)return 0;
+if(*(u16 *)(node+0xe)&2)return 0;
+valid=1;
+if(kind==1) {
+for(i=0;i<*(s8 *)(base+0x39);i++) {
+if(obj2==**(u8 ***)(base+0x10+i*4))valid=0;
+}
+}
+if(!valid)return 0;
+if(kind==expected) {
+state2=*(u8 **)(obj2+0x128);
+(*(s8 *)(state2+0x50))++;
+*(u32 *)(state2+0x18)|=1;
+*(u32 *)(state2+0x18)&=~0x10;
+if(info2[0]==3)*(u32 *)(state2+0x18)|=0x10;
+}
+return 1;
+}
 static inline s32 unique_020de888(u8 *base,u8 *actor) {
 s32 valid=1,i;
 for(i=0;i<*(s8 *)(base+0x39);i++) {
@@ -64,7 +92,7 @@ obj=*(u8 **)node;
 base[0x38]=**(u8 **)(obj+0x118);
 info=*(u8 **)(node+8);
 if(info[0]==4 && *(s32 *)(data_02160260+0x88)==0) {
-s32 sum=0,other,threshold;
+s32 sum=0,other;
 u16 random;
 u8 *root=data_02160a6c;
 u8 *p=*(u8 **)(root+0xac);
@@ -73,9 +101,8 @@ other=0;
 p=*(u8 **)(root+0xb8);
 while(p) {other+=*(s16 *)(*(u8 **)(p+0x118)+0xba);p=*(u8 **)(p+0x174);}
 other/=*(u16 *)(root+0xc0);
-threshold=sum/3-other*5+60;
 random=(u16)((((data_0216263c[0]=data_0216263c[1]*data_0216263c[0]+data_0216263c[2])>>16)*100)>>16);
-if(threshold >= random) {
+if(sum/3-other*5+60 >= random) {
 *(u32 *)(*(u8 **)(obj+0x128)+0x18)|=4;
 }
 }
@@ -86,10 +113,9 @@ state=*(u8 **)(obj+0x128);
 *(u32 *)(state+0x18)&=~0x10;
 if(info[0]==3)*(u32 *)(state+0x18)|=0x10;
 }else if(index>=1) {
-u8 expected;
-u8 *info2,*obj2,*state2;
+u8 *obj2,*info2,*state2;
 s32 valid,i;
-u8 kind;
+u8 kind,expected;
 obj2=*(u8 **)node;
 expected=base[0x38];
 info2=*(u8 **)(node+8);
