@@ -316,7 +316,6 @@ extern void func_0200a674(s32, void (*)(void));
 extern void func_02010e80();
 extern void func_01ff8000(void);
 extern u32 func_02007490(void);
-extern void func_020108d8(u32, void *, u32, u32);
 extern s32 func_020081e0(void);
 extern u8 *func_0200f9a4(void);
 extern s32 func_02005df8(void);
