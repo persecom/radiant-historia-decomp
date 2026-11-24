@@ -108,6 +108,51 @@ done:
     return;
 }
 
+void *func_02109b14(u32, u32 *);
+u8 *func_02120f94(void *);
+void *func_02120fa4(void *);
+void func_0210bbc8(u8 *p,u32 a,u32 b,u32 index){
+u32 x,y; void *first,*second,*res; u8 *base,*dict,*entry,*value;
+first=func_02109b14(a,&x);
+second=func_02109b14(b,&y);
+func_02120828(first);func_0210e3dc();
+if(!func_02109f84(second)) func_0210f2a8(b,second);
+base=func_02120f94(first);
+if(base){
+dict=base+8;
+if(dict && index<base[9]){
+entry=dict+*(u16 *)(base+14);
+entry=entry+4+*(u16 *)entry*index;
+}else entry=0;
+if(entry) {value=base+*(u32 *)entry; goto found;}
+}
+value=0;
+found:
+*(void **)(p+0x54)=value;
+res=func_02120fa4(second);
+*(void **)(p+0x58)=res;
+if(res) func_0211d520(func_02120f94(first),res);
+*(void **)(p+0x118)=first;
+*(u32 *)(p+0x11c)=0;
+if(second) func_0210c5dc(second);
+}
+
+void func_02008e68(u32, void *, u32);
+void func_0210be4c(void) {
+u32 *p; u64 seed;
+func_02006e3c(); func_02002594(); func_02002598(); func_0210e7d0();
+func_0200d7c0(-1); func_0210c6e0(); func_02005168(0x1ff);
+func_02008e68(0,(void *)0x6800000,0xa4000); func_0200558c();
+func_02008e68(0xc0,(void *)0x7000000,0x400);func_02008e68(0xc0,(void *)0x7000400,0x400);
+func_02008e68(0,(void *)0x5000000,0x400);func_02008e68(0,(void *)0x5000400,0x400);
+func_0200781c();func_02007a2c();func_0200617c();func_0200f1d8();
+seed=1; p=(u32 *)&data_02162638;
+p[1]=(u32)seed;p[2]=0x5d588b65;p[3]=0x269ec3;
+*(u64 *)(p+8)=seed;
+*(u64 *)(p+10)=0x5d588b656c078965ULL;
+*(u64 *)(p+12)=0x269ec3;
+}
+
 void func_0210bf38(void *arg0, u32 arg1) {
     func_0210c518(arg1, *(s32 *)((u8 *)arg0 + 8));
 }
@@ -167,6 +212,32 @@ void func_0210c094(void *arg0, void *arg1, void *arg2, void *arg3) {
     func_02002128(arg1, arg0, &a);
     func_02002128(arg2, arg0, &b);
     func_02002194(&a, &b, arg3);
+}
+
+extern s32 func_02001fb0(s32, s32);
+s32 func_0210c0e8(Vec *arg0, Vec *arg1, Vec *arg2, Vec *arg3, Vec *arg4) {
+    Vec v;
+    s32 d1;
+    s32 d2;
+    s32 t;
+    s32 x;
+    s32 y;
+    s32 z;
+
+    func_02002128(arg2, arg0, &v);
+    d1 = func_02002158(&v, arg3);
+    d2 = func_02002158(arg1, arg3);
+    if (0.0 == (double)d2) {
+        return 0;
+    }
+    t = func_02001fb0(d1, d2);
+    x = (s32)(((s64)arg1->x * t + 0x800) >> 12);
+    y = (s32)(((s64)arg1->y * t + 0x800) >> 12);
+    z = (s32)(((s64)arg1->z * t + 0x800) >> 12);
+    arg4->x = arg0->x + x;
+    arg4->y = arg0->y + y;
+    arg4->z = arg0->z + z;
+    return 1;
 }
 
 extern void func_0210c094(void *, void *, void *, void *);
