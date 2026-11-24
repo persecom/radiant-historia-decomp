@@ -158,6 +158,17 @@ void *func_020a6168(void) {
     return func_0210c594(0x14, data_02155c3c);
 }
 
+void func_020a62d8(void **arg0) {
+    void *ptr;
+    while ((ptr = *arg0) != NULL) {
+        func_020a6320((void **)((u8 *)ptr + 4));
+        func_021168f8(arg0, ptr);
+        if (ptr != NULL) {
+            func_0210c5dc(ptr);
+        }
+    }
+}
+
 void func_020a6320(void **arg0) {
     void *ptr;
     while ((ptr = *arg0) != NULL) {
