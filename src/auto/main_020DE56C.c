@@ -6,6 +6,13 @@ extern s32 func_0202c658(void *);
 extern u8 *func_0202c920(u8);
 extern u8 *data_02160244,*data_02160260;
 extern u32 data_0216263c[3];
+static inline u16 RandomRange_020de56c(u16 max) {
+ u32 *state=data_0216263c;
+ u32 value=state[1]*state[0]+state[2];
+ state[0]=value;
+ if(max==0)return (u16)(value>>16);
+ else return (u16)(((value>>16)*max)>>16);
+}
 extern u8 *func_02032240(void);
 
 extern u8 *func_0202c7d8(s32);
@@ -18,6 +25,76 @@ s32 func_02065c44(void *);
 void *func_020de56c(void *);
 void func_020df224(void *, u8 *);
 void func_020e2788(u32);
+void *func_020de56c(void *arg) {
+u8 *obj=arg;
+u8 *result=*(u8 **)(*(u8 **)(obj+0x128)+4);
+if(result && *(u32 *)(*(u8 **)(result+0x118)+0x70))return result;
+switch(**(u8 **)(obj+0x118)){
+case 0:
+switch(func_0202c658(obj)){
+default:goto finish;
+case 9:{
+TargetOrder a=data_02144948;
+s32 i;
+for(i=0;i<9;i++){
+u8 *p=func_0202c920(a.ids[i]);
+if(p && *(u32 *)(*(u8 **)(p+0x118)+0x70))return p;
+}
+break;
+}
+case 10:{
+TargetOrder b=data_02144934;
+s32 i;
+for(i=0;i<9;i++){
+u8 *p=func_0202c920(b.ids[i]);
+if(p && *(u32 *)(*(u8 **)(p+0x118)+0x70))return p;
+}
+break;
+}
+case 11:{
+TargetOrder c=data_0214495c;
+s32 i;
+for(i=0;i<9;i++){
+u8 *p=func_0202c920(c.ids[i]);
+if(p && *(u32 *)(*(u8 **)(p+0x118)+0x70))return p;
+}
+break;
+}
+}
+result=0;
+finish:return result;
+case 1:{
+u8 *root=data_02160a6c;
+s32 count=0;
+u8 *p=*(u8 **)(root+0xac);
+s32 i;
+u16 chosen;
+while(p){
+if(*(u32 *)(*(u8 **)(p+0x118)+0x70))count++;
+p=*(u8 **)(p+0x16c);
+}
+if(count==0)return 0;
+chosen=0;
+if(count!=1){
+u16 limit=count;
+u32 random=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
+data_0216263c[0]=random;
+if(limit==0)chosen=(u16)(random>>16);
+else chosen=(u16)(((random>>16)*limit)>>16);
+}
+p=*(u8 **)(root+0xac);
+for(i=0;p;p=*(u8 **)(p+0x16c)){
+if(*(u32 *)(*(u8 **)(p+0x118)+0x70)){
+if(chosen==i)return p;
+i++;
+}
+}
+break;
+}
+}
+return 0;
+}
+
 u8 *func_020de810(void) {
     u8 i;
     for (i = 0; i < 9; i++) {
