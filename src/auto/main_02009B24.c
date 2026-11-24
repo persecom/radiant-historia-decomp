@@ -316,12 +316,14 @@ s32 func_0200a530(u8 *arg0, s32 arg1) {
     s32 ret;
     func_0200986c();
     off = *(u32 *)(arg0 + arg1 * 4 + 0x3c);
-    if (off == 0) {
-        ret = 0;
-    } else if (off < 0x2000000) {
-        ret = (s32)(arg0 + off);
+    if (off != 0) {
+        if (off < 0x2000000) {
+            ret = (s32)(arg0 + off);
+        } else {
+            ret = (s32)off;
+        }
     } else {
-        ret = (s32)off;
+        ret = 0;
     }
     func_02009880();
     return ret;
