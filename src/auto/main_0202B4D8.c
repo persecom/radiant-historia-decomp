@@ -1,9 +1,9 @@
 /* 20 functions from 0x0202B4D8 to 0x0202C328 (main), found by ds-decomp. */
 #include "common.h"
 
-extern u8 *volatile data_02160080;
-extern u8 * data_02160a6c;
-extern u8 *volatile data_02160244;
+extern u8 *data_02160080;
+extern u8 *data_02160a6c;
+extern u8 *data_02160244;
 extern void func_02026fbc(void);
 extern void func_02027004(void *, void *);
 extern u8 *func_0203222c(void);
@@ -54,10 +54,10 @@ void func_0202b928(void) {
 }
 
 void func_0202b950(u32 arg0) {
-    register u8 **pf = &data_02160080;
-    register u8 **pb = &data_02160244;
-    register u16 mask = 0xfffe;
     register s32 zero = 0;
+    register u16 mask = 0xfffe;
+    register u8 **pb = &data_02160244;
+    register u8 **pf = &data_02160080;
     *(u16 *)*pf &= mask;
     *(u16 *)*pf |= 2;
     *(u16 *)*pf |= 8;
