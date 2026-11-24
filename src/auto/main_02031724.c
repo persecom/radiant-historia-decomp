@@ -89,3 +89,16 @@ void *func_02032240(void) {
     return *(void **)((u8 *)data_02160090 + 0x14);
 }
 
+void *func_02032254(u16 arg0) {
+    u16 i = 0;
+    u8 *node = (u8 *)func_0203222c();
+    while (node != NULL) {
+        if (i == arg0) {
+            return node;
+        }
+        i++;
+        node = *(u8 **)(node + 0x1c);
+    }
+    return NULL;
+}
+
