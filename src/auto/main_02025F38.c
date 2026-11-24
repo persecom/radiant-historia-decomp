@@ -154,6 +154,17 @@ void func_02026d20(void) {
     }
 }
 
+void *func_02026d70(u32 arg0, u32 arg1, u32 arg2) {
+    u32 *node = func_0210c594(0x1c, data_02155c3c);
+    node[0] = arg0;
+    node[1] = arg1;
+    node[2] = arg2;
+    node[3] = (u32)func_02032c44();
+    func_021167f0((u8 *)data_0216007c[1] + 0x18, node);
+    *(u16 *)((u8 *)data_0216007c[1] + 0x16) += 1;
+    return node;
+}
+
 void func_02026e40(u16 arg0) {
     void *p = func_0210c594(0x28, data_02155c3c);
     *(u16 *)p = arg0;
