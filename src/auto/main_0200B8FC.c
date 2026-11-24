@@ -231,8 +231,36 @@ s32 func_0200be78(u8 *arg0) {
     return ret;
 }
 
+s32 func_0200bef8(u32 *arg0, void *arg1, u32 arg2, s32 arg3) {
+    s32 ret = 0;
+    u8 buf[0x14];
+    u32 tmp = 0;
+    func_02008f74(buf, 0, 0x14);
+    func_02009008((void *)data_0215ef7c[5], &tmp, data_0215ef7c[6]);
+    if (arg3 != 0) {
+        ret = func_020118c0(1);
+        func_02011bdc(buf, arg1, arg2, &tmp);
+    }
+    if (arg3 != 0) {
+        func_020118c0(ret);
+        s32 i;
+        for (i = 0; i < 0x14; i += 4) {
+            if (*(u32 *)(buf + i) != arg0[i / 4]) {
+                break;
+            }
+        }
+        ret = (i == 0x14) ? 1 : 0;
+    }
+    return ret;
+}
+
 extern void func_0200c0a8(void);
-s32 func_0200c198(void) {
+extern s32 func_0200cb40(u8 *, s32, s32);
+extern s32 func_0200bd18(u8 *, void *, void *);
+extern s32 func_0200be78(u8 *);
+extern void func_0200bfb8(u8 *);
+extern s32 func_0200a928(void *, s32);
+s32 func_0200c198(void *arg0) {
     func_0200c0a8();
     return 1;
 }
