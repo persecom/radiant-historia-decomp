@@ -76,3 +76,10 @@ s32 func_02134f18(void *arg0) {
     return func_02136944(*(void **)((u8 *)arg0 + 0x20));
 }
 
+s32 func_02134f34(u8 *arg0) {
+    if (arg0 == NULL) {
+        return -1;
+    }
+    return arg0[6];
+}
+
