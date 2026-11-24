@@ -149,3 +149,15 @@ void func_02026e40(u16 arg0) {
     *(u16 *)p = arg0;
 }
 
+void func_02026e64(u8 *arg0) {
+    if (arg0 != NULL) {
+        if (*(void **)(arg0 + 4) != NULL) {
+            func_021093b0(*(void **)(arg0 + 4));
+            *(void **)(arg0 + 4) = NULL;
+        }
+        if (arg0 != NULL) {
+            func_0210c5dc(arg0);
+        }
+    }
+}
+
