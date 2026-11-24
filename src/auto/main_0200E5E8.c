@@ -15,6 +15,10 @@ extern s32 func_0200e780(u32, u32, void *, void *);
 extern void func_0200f114(void);
 extern u32 data_02145c18;
 extern s32 func_0200ef5c(void);
+extern void func_02008128(void);
+extern void func_0200813c(void);
+extern void func_020081a4(u32);
+extern s32 func_0200e808(u32, u32);
 s32 func_0200ef5c(void) {
     return (*(volatile u16 *)0x4000304 & 1) ? 1 : 0;
 }
