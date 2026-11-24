@@ -109,6 +109,11 @@ void func_020c862c(u8 *arg0, u8 arg1) {
     arg0[0x38] = arg1;
 }
 
+void func_020c8634(u8 *arg0, u8 arg1, u8 arg2) {
+    arg0[0x3e] = arg1;
+    arg0[0x3f] = arg2;
+}
+
 void func_020c8780(void *arg0) {
     if (arg0 != NULL) {
         func_0210c5dc(arg0);
