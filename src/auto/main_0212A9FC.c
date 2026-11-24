@@ -20,12 +20,12 @@ s32 func_0212b354(s32 a0, s32 a1, s32 a2, s32 a3, s32 a4, s32 a5, s16 a6, s16 a7
 
 void func_0212b3f8(s32 a,s32 b,s16 *out1,s16 *out2){
 f64 root=func_02020058(2.0);
-f64 trig=func_0201dea0((f64)(6.2831855f*(f32)a/(f32)b));
-f32 x=(f32)root-(f32)trig;
-f32 y=(f32)func_02020058(2.0)-1.0f;
-f32 value=(x-(f32)func_02020058((f64)((x+y)*(x-y))))/y;
-*out1=(s32)(4096.0f*(2.0f*value));
-*out2=(s32)(4096.0f*((0.0f-value)*value));
+f64 trig=func_0201dea0(func_0201f800(func_02020888(func_020201f4(6.2831855f,func_0201f884(a)),func_0201f884(b))));
+f32 x=func_02020604(func_0201f114(root),func_0201f114(trig));
+f32 y=func_02020604(func_0201f114(func_02020058(2.0)),1.0f);
+f32 value=func_02020888(func_02020604(x,func_0201f114(func_02020058(func_0201f800(func_020201f4(func_020203d4(x,y),func_02020604(x,y)))))),y);
+*out1=func_0201ff0c(func_020201f4(4096.0f,func_020201f4(2.0f,value)));
+*out2=func_0201ff0c(func_020201f4(4096.0f,func_020201f4(func_02020604(0.0f,value),value)));
 }
 
 s32 func_0212b550(u8 *arg0, s32 arg1, u16 *arg2) {
