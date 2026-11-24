@@ -61,6 +61,10 @@ s32 func_0211c5d4(u8 *arg0) {
     return (*(s32 *)(arg0 + 0x24) & 1) ? 1 : 0;
 }
 
+s32 func_0211c5e8(u8 *arg0) {
+    return (*(s32 *)(arg0 + 0x24) & 2) ? 1 : 0;
+}
+
 void func_0211cbcc(u32 *arg0, u8 *arg1) {
     while (arg1 != NULL) {
         s32 i;
