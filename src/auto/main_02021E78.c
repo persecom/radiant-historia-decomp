@@ -16,24 +16,20 @@ extern void func_021168f8(void *, void *);
 extern void func_0210c5dc(void *);
 
 void func_02021e78(void) {
-    register char *bp asm("r4");
-    register void *p asm("r6");
-    register u32 zero asm("r5");
     char buf[0x14];
+    void *p;
     u32 res, a, b;
-    bp = buf;
-    func_02005e80(bp, data_02145fdc);
+    func_02005e80(buf, data_02145fdc);
     p = func_0210c594(0x60, data_02155c3c);
-    res = func_021092d8(bp);
+    res = func_021092d8(buf);
     *(u32 *)p = res;
     if (res == 0) return;
-    zero = 0;
-    a = func_02092994(*(u32 *)p, zero);
-    b = func_02092994(*(u32 *)p, zero);
+    a = func_02092994(*(u32 *)p, 0);
+    b = func_02092994(*(u32 *)p, 0);
     func_02022088(a, b);
-    if (func_02109444(*(void **)p) != 0) goto done;
-    func_0210c970(p);
-done:;
+    if (func_02109444(*(void **)p) == 0) {
+        func_0210c970(p);
+    }
 }
 
 void *func_02021f10(s32 arg0) {
@@ -48,3 +44,11 @@ fail:
 void *func_0202214c(void) {
     return *(void **)((u8 *)data_02160078 + 0x28);
 }
+
+void func_02022160(u32 arg0) {
+    *(u32 *)((u8 *)data_02160078 + 0x28) = arg0;
+    if (*(u32 *)((u8 *)data_02160078 + 0x28) > 0x98967f) {
+        *(u32 *)((u8 *)data_02160078 + 0x28) = 0x98967f;
+    }
+}
+
