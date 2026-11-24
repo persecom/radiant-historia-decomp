@@ -95,25 +95,28 @@ u16 func_020824e0(void) {
 }
 
 void func_02082b34(void) {
-switch(data_0216010c[0x3f]) {
-case 0: if(data_0216010c[0x50b4] != 1) func_02082c70(); break;
+u8 **p=&data_0216010c;
+s32 n;
+switch((*p)[0x3f]) {
+case 0: if((*p)[0x50b4] != 1) func_02082c70(); break;
 case 1: func_02080db8(); break;
 case 3: func_02085f44(); break;
 case 2: func_0207d3cc(); break;
 case 4: func_02085234(); break;
 case 5: func_02087e84(); break;
 case 6: func_0208a678(); break;
-case 7: case 8: case 9: data_0216010c[0x3f]++; break;
+case 7: case 8: case 9: (*p)[0x3f]++; break;
 case 10:
-*(void **)(data_0216010c+0x68)=func_020a94b8(data_02148570);
-*(void **)(data_0216010c+0x6c)=func_020a94b8(data_0214857c);
-data_0216010c[0x3f]++; break;
+*(void **)(*p+0x68)=func_020a94b8(data_02148570);
+*(void **)(*p+0x6c)=func_020a94b8(data_0214857c);
+(*p)[0x3f]++; break;
 case 11:
 func_020a31c8(4);
-func_021167ac(data_0216010c+0x5f0,44);
-func_021167ac(data_0216010c+0x5fc,44);
-data_0216010c[0x3f]++; break;
-case 12: func_02084828(); data_0216010c[0x3f]=0; break;
+n=44;
+func_021167ac(*p+0x5f0,n);
+func_021167ac(*p+0x5fc,n);
+(*p)[0x3f]++; break;
+case 12: func_02084828(); (*p)[0x3f]=0; break;
 }
 }
 
