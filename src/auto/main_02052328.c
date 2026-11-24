@@ -327,3 +327,81 @@ void func_02052b68(void) {
     }
 }
 
+void func_02052d30(void *arg0) {
+    u8 *r6 = (u8 *)arg0;
+    u8 *r5 = *(u8 **)(r6 + 0xd0);
+
+    if (r5[0x24] == 0 && *(u16 *)(r5 + 0x26) != 0x16) {
+        if (func_02054330(r6) != 0 && (u32)*(u16 *)(r5 + 0x26) >= 0x14 && r5[0xd] == 0) {
+            r5[1] = 3;
+            *(u16 *)(r5 + 4) = 0;
+            r5[0] = r5[0x1b];
+            r5[0xd] = 1;
+            return;
+        }
+        if (func_020541d8(r6) != 0 && r5[0xd] == 0) {
+            r5[1] = 2;
+            *(u16 *)(r5 + 4) = 0;
+            r5[0] = r5[0x1b];
+            r5[0xd] = 1;
+            func_02054d5c(r6);
+            return;
+        }
+    }
+
+    func_02053fdc(r5);
+    func_02054118(r6);
+
+    switch (r5[0x25]) {
+    case 0x15:
+    case 0x16:
+        func_02052844(r6, 3, 0);
+        return;
+    case 0x1f:
+        goto done;
+    case 0x29:
+    case 0x2a:
+        *(u32 *)(r6 + 0xac) |= 0x4000;
+        *(u32 *)(r6 + 0x80) &= ~0x2;
+        if (r5[0x25] == 0x29) return;
+        goto done;
+    case 0x34:
+        if (*(u16 *)(r5 + 4) == 0 && r5[0] == r5[0x1b] - 1 && *(u16 *)(r5 + 6) == 0) {
+            s32 t = (s8)((u16)((((data_0216263c[0] = data_0216263c[1] * data_0216263c[0]
+                         + data_0216263c[2]) >> 16) * 0xc8) >> 16) - 0x64);
+            s8 v;
+            if (t < 0) t = -t;
+            v = (s8)t;
+            if (v < 0x19) {
+                if (func_0204785c(0x14a1, (u16)(*(u16 *)(r6 + 0x90) + 0xfa1)) == NULL) {
+                    u8 *obj = func_02046f90(0x14a1, (u16)(*(u16 *)(r6 + 0x90) + 0xfa1));
+                    if (obj != NULL) {
+                        s32 scale = 0x18;
+                        *(Vec3_02052d30 *)obj = *(Vec3_02052d30 *)r6;
+                        *(s32 *)(obj + 0) = data_0213a394[((*(u16 *)(r6 + 0x92) % 0x10000) >> 4) * 2] * scale
+                                          + *(s32 *)(obj + 0);
+                        *(s32 *)(obj + 8) = data_0213a394[((*(u16 *)(r6 + 0x92) % 0x10000) >> 4) * 2 + 1] * scale
+                                          + *(s32 *)(obj + 8);
+                        func_02052240(obj);
+                        func_020477dc(obj, 0, 0);
+                        *(u32 *)(obj + 0xac) &= ~1;
+                        *(u16 *)(obj + 0x96) = 1;
+                        *(u32 *)(obj + 0x80) |= 2;
+                        *(u16 *)(r5 + 6) = 1;
+                    }
+                }
+            }
+        }
+        goto done;
+    case 0x3e:
+        goto done;
+    case 0x47:
+    case 0x51:
+        if (*(u16 *)(r5 + 6) == 0) {
+            func_0205440c(r6, 0);
+            func_02054018(r6);
+        }
+    }
+done:
+    return;
+}
