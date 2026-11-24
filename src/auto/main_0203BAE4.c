@@ -60,6 +60,24 @@ void *func_0203c0d8(void) {
     return ((void *(*)(u32, void *))func_0210c594)(0x40, data_02155c3c);
 }
 
+void func_0203c0f4(u8 *arg0) {
+    s32 i;
+    if (*(void **)(arg0 + 0x34) == NULL) {
+        return;
+    }
+    for (i = 0; i < *(u16 *)(arg0 + 0x3c); i++) {
+        u8 *elem = ((u8 **)(*(void **)(arg0 + 0x34)))[i];
+        if (elem != NULL && *(void **)(elem + 0x14) != NULL) {
+            ((void (*)(u8 *))(*(void **)(elem + 0x14)))(elem);
+        }
+    }
+    if (*(void **)(arg0 + 0x34) != NULL) {
+        func_0210c5dc(*(void **)(arg0 + 0x34));
+        *(void **)(arg0 + 0x34) = NULL;
+    }
+    *(u16 *)(arg0 + 0x3c) = 0;
+}
+
 void func_0203c1c0(u8 *arg0, void *arg1, s32 arg2) {
     func_0203c1f0(arg0, arg2);
     *(void **)(arg0 + 4) = (void *)func_0203c20c;
