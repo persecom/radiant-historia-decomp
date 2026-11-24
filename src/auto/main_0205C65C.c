@@ -108,11 +108,13 @@ if(*(s8 *)(q+0xa6)>5) q[0xa6]=0;
 
 extern s32 func_020dddfc(void *, void *, s32);
 void func_0205cd64(u8 *p) {
+    u8 *r;
     u8 *q = *(u8 **)(p + 0x128);
-    u8 *r = *(u8 **)q;
     u8 *obj;
     u16 i;
     s32 zero = 0;
+
+    r = *(u8 **)q;
 
     if (*(u16 *)(p + 0x8e) == 91) {
         (*(volatile s8 *)(q + 0xa6))++;
@@ -131,7 +133,7 @@ void func_0205cd64(u8 *p) {
         }
     }
 
-    obj = (u8 *)func_020dde4c((u16)(*(u16 *)(p + 0x90) + 600));
+    obj = (u8 *)func_020dde4c(*(u16 *)(p + 0x90) + 600);
     if (!obj) return;
 
     *(u32 *)(obj + 0x80) |= 2;
@@ -154,16 +156,18 @@ void func_0205cd64(u8 *p) {
         pos[2] = *(s32 *)(p + 8);
         if (*(s16 *)(q + 0x1c) < 7) {
             u8 *obj2;
+            u16 *sub;
             if ((*(s16 *)(q + 0x1c) % 2) == 0) {
                 obj2 = func_020c17bc(pos, (u16)*(u32 *)(q + 0x34), (u16)(*(s16 *)(q + 0x1c) + 1100), 12, zero);
             } else {
                 obj2 = func_020c17bc(pos, (u16)*(u32 *)(q + 0x34), (u16)(*(s16 *)(q + 0x1c) + 1100), 13, zero);
             }
-            *(u32 *)(obj2 + 0x78) = 64;
-            *(u16 *)*(u8 **)(obj2 + 0x19c) = 0;
+            sub = *(u16 **)(obj2 + 0x19c);
             pos[0] = *(s32 *)(r + 0x1a8);
             pos[1] = *(s32 *)(r + 0x1ac) + 0x10000;
             pos[2] = *(s32 *)(r + 0x1b0);
+            *(u32 *)(obj2 + 0x78) = 64;
+            *sub = 0;
             func_020d2bf0(obj2, pos, 0, 0);
             func_0205baf8(obj2);
             (*(s16 *)(q + 0x1c))++;
@@ -171,7 +175,7 @@ void func_0205cd64(u8 *p) {
     }
 
     for (i = 0; i < 7; i++) {
-        u8 *e = (u8 *)func_020dde4c((u16)(i + 1100));
+        u8 *e = (u8 *)func_020dde4c(i + 1100);
         if (e) {
             (*(u16 *)*(u8 **)(e + 0x19c))++;
             func_020020f8(e, e + 0x30, e);
