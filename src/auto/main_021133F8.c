@@ -85,6 +85,12 @@ typedef struct {
 } UnkEntry_0216bfe4;
 extern u8 data_0216bfd8[12];
 extern void *func_02116958(void *, void *);
+extern void func_02116708(u8 *);
+extern void func_0211424c(void);
+extern void func_021143c0(u8 *, s32);
+extern void func_021168f8(void *, void *);
+extern void func_02115380(u32);
+extern void func_02116894(void *, void *, void *);
 
 extern void func_02114c80(void);
 extern void func_02112f88(void);
