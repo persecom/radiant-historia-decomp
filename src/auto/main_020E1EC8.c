@@ -10,6 +10,32 @@ extern void func_020a98f4(void *);
 extern void func_020e24bc(u32, u32, u32, u32, u32);
 extern void func_020b52f4(u32);
 
+extern void func_0203bc34(void *, void *, void *, s32, s32, s32);
+extern void func_0203bcf8(void *, void *, void *, s32, s32, s32, s32, s32);
+extern void func_020a899c(void *);
+void func_020e24bc(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 mode) {
+    u8 *self = (u8 *)arg0;
+    u8 *obj = *(u8 **)(self + 4);
+    u8 *f0 = *(u8 **)(self + 0);
+
+    ((void (*)(void *))*(void **)(obj + 4))(obj);
+
+    if (mode == 0) {
+        func_0203bc34(f0, obj, (void *)arg3, 0, 0, 0);
+    } else if (mode == 1) {
+        func_0203bc34(f0, obj, (void *)arg3, 0x80, 0, 1);
+    } else if (mode == 2) {
+        func_0203bc34(f0, obj, (void *)arg3, 0x70, 0, 2);
+    } else if (mode == 3) {
+        func_0203bcf8(f0, obj, (void *)arg3, 0, 0, 0x100, 0x40, 0xe);
+    }
+
+    func_020a899c(obj);
+    *(u32 *)(obj + 0x44) = arg1 << 12;
+    *(u32 *)(obj + 0x48) = arg2 << 12;
+    *(u32 *)(obj + 0x4c) = 0x2d0000;
+}
+
 void func_020e25c4(void) {
     s32 i;
     for (i = 0; i < 0xe; i++) {
