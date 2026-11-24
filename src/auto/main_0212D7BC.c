@@ -9,6 +9,8 @@ extern void func_0212e528(void);
 extern void func_0212da40(void *);
 extern void func_0212dd4c(void *);
 extern void func_0212db74(void *);
+extern void func_0212dabc(void *, u32, u32, u32, u64);
+extern void func_0212db44(s8 *);
 extern void func_02013878(void *, s32, u32);
 extern s32 func_0212d9f8(void *, void *);
 extern void func_0212d7bc(void *, s32, s32, s32, s32);
