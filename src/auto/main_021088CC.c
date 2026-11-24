@@ -99,6 +99,35 @@ data_021624f8->unk_24[0]=0;
 data_021624f8->unk_24[1]=0;
 }
 
+void func_02108d34(u32,u32);
+void func_021089e8(u32 arg0, s32 arg1, u32 arg2) {
+u32 *ptr = NULL;
+Unk02155AE0 table = data_02155ae0;
+char name[64];
+if(arg0 == 0) ptr=&data_021624f8->unk_08;
+else if(arg0 == 1) ptr=&data_021624f8->unk_0c;
+if(arg0>=2) return;
+func_02005e80(name,data_02155b40,arg1+1);
+if(!func_02109cf0(name)) return;
+func_02108d34(arg0,0x3f800000);
+if(data_021624f8->unk_18[arg0]&8) {
+if(arg0 == 0) {
+data_021624f8->unk_08=func_021256d4(data_021624f8,2,0);
+ptr=&data_021624f8->unk_08;
+} else {
+data_021624f8->unk_0c=func_021256d4(data_021624f8,2,0);
+ptr=&data_021624f8->unk_0c;
+}
+data_021624f8->unk_18[arg0]&=0xf7;
+}
+func_02125af0(*ptr,table.v[arg1]);
+data_021624f8->unk_1a[arg0]=arg1;
+data_021624f8->unk_18[arg0]=0;
+data_021624f8->unk_18[arg0]|=arg2;
+data_021624f8->unk_24[arg0]=0x3f800000;
+func_02125bd4(*ptr,0);
+}
+
 void func_02108b54(u32 arg0) {
     u32 *ptr = NULL;
     if (arg0 == 0) {
