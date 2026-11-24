@@ -230,12 +230,9 @@ void func_0212ed50(u8 *arg0, u8 *arg1) {
 void func_0212ee04(u8 *arg0, u8 *arg1) {
     s8 *src = (s8 *)arg0;
     s8 c;
-    u8 hi, lo;
     *(u16 *)(arg1 + 0) = (arg0[0] << 8) | arg0[1];
     if (*(s16 *)(arg1 + 0) > 0) {
-        hi = arg0[2];
-        lo = arg0[3];
-        *(u16 *)(arg1 + 2) = (hi << 8) | lo;
+        *(u16 *)(arg1 + 2) = (arg0[2] << 8) | arg0[3];
     }
     c = src[4];
     arg1[4] = c;
@@ -279,6 +276,7 @@ void func_0212f010(u32 *arg0, u32 *arg1) {
 
 u32 *func_0212f038(void *arg0, u8 *arg1, s32 arg2) {
     u32 *p;
+    s32 zero;
     s32 a;
     s32 b;
     s32 sum;
@@ -286,18 +284,19 @@ u32 *func_0212f038(void *arg0, u8 *arg1, s32 arg2) {
         return NULL;
     }
     p = (u32 *)(((u32)arg1 + 7) & ~7);
-    func_02013878(p, 0, 0x2c);
+    zero = 0;
+    func_02013878(p, zero, 0x2c);
     p[1] = (u32)arg0;
-    p[4] = 0;
-    a = ((Unk_0212f038 *)arg0)->method(arg0, 1);
-    b = ((Unk_0212f038 *)arg0)->method(arg0, 0);
+    p[4] = zero;
+    a = ((Vtable_0212f038 *)*(void **)arg0)->method(arg0, 1);
+    b = ((Vtable_0212f038 *)*(void **)arg0)->method(arg0, 0);
     sum = a + b;
     p[5] = sum;
     p[6] = sum / 4;
-    p[9] = 0;
-    p[7] = 0;
-    p[8] = 0;
-    p[10] = 0;
+    p[9] = zero;
+    p[7] = zero;
+    p[8] = zero;
+    p[10] = zero;
     p[0] = 1;
     return p;
 }
@@ -310,25 +309,29 @@ void func_0212f0d4(void *arg0) {
 }
 
 u32 *func_0212f0f0(u32 *arg0, void *arg1) {
+    s32 zero;
+    s32 one;
     s32 a;
     s32 b;
     s32 sum;
     if (arg0 == NULL) {
         return arg0;
     }
-    func_02013878(arg0, 0, 0x2c);
+    zero = 0;
+    one = 1;
+    func_02013878(arg0, zero, 0x2c);
     arg0[1] = (u32)arg1;
-    arg0[4] = 0;
-    a = ((Unk_0212f038 *)arg1)->method(arg1, 1);
-    b = ((Unk_0212f038 *)arg1)->method(arg1, 0);
+    arg0[4] = zero;
+    a = ((Vtable_0212f038 *)*(void **)arg1)->method(arg1, one);
+    b = ((Vtable_0212f038 *)*(void **)arg1)->method(arg1, zero);
     sum = a + b;
     arg0[5] = sum;
     arg0[6] = sum / 4;
-    arg0[9] = 0;
-    arg0[7] = 0;
-    arg0[8] = 0;
-    arg0[10] = 0;
-    arg0[0] = 1;
+    arg0[9] = zero;
+    arg0[7] = zero;
+    arg0[8] = zero;
+    arg0[10] = zero;
+    arg0[0] = one;
     return arg0;
 }
 
@@ -345,6 +348,13 @@ void func_0212f384(s32 *arg0, s32 arg1, s32 *arg2, s32 *arg3) {
     rem = arg3[1] - arg2[1];
     arg3[1] = rem;
     arg3[0] = (rem == 0) ? 0 : (arg2[0] + arg2[1]);
+}
+
+BOOL func_0212f3cc(u8 *arg0, s32 arg1) {
+    if (*(s32 *)(arg0 + 0xc) < arg1) {
+        func_0212f178();
+    }
+    return *(s32 *)(arg0 + 0xc) >= arg1;
 }
 
 extern void func_0212f178(void);
