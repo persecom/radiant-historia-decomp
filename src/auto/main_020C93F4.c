@@ -3,6 +3,10 @@
 
 extern void func_020c9980(void);
 extern void func_020c9404(u8 *, u16);
+extern void func_020c94dc(u8 *);
+extern void func_020c9348(u8 *, s32);
+extern u8 *func_020c9c10(void *, s32);
+extern void func_020c9590(u8 *);
 void func_020c93f4(u8 *arg0, u16 arg1) {
     *(u16 *)(arg0 + 0x3a) = arg1;
     func_020c9404(arg0, arg1);
