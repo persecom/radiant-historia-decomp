@@ -128,3 +128,11 @@ void *func_02022558(u8 *arg0, u16 arg1) {
     return NULL;
 }
 
+void func_020226c0(u8 *arg0, void *arg1) {
+    (*(u16 *)arg0)--;
+    func_021168f8(arg0 + 4, arg1);
+    if (arg1 != NULL) {
+        func_0210c5dc(arg1);
+    }
+}
+
