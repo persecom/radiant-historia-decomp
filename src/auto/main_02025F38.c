@@ -14,6 +14,9 @@ extern void *func_02032c44(void);
 extern void func_021167f0(void *, void *);
 extern void func_0203218c(void *);
 extern void func_02026ddc(void *);
+extern char data_021460e8[];
+extern char data_021460ec[];
+extern void func_02005e80(char *, const char *, ...);
 void func_02025f38(void *arg0, void *arg1, s32 arg2) {
     func_02022584(
         *(void **)((u8 *)(*(void **)((u8 *)arg0 + 0x118)) + 0x60),
