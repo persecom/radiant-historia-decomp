@@ -11,6 +11,14 @@ void func_020bf330(void *arg0) {
     func_02008f74(arg0, 0, 0x2c);
 }
 
+void func_020bf344(u8 *arg0, void *arg1, void *arg2, s32 arg3) {
+    *(f32 *)arg0 = (f32)arg3;
+    *(f32 *)(arg0 + 4) = 0.0f;
+    func_02009008(arg1, arg0 + 8, 0xc);
+    func_02009008(arg2, arg0 + 0x14, 0xc);
+    func_02009008(arg0 + 8, arg0 + 0x20, 0xc);
+}
+
 void func_020bf3fc(void) {
     func_021082d0();
 }
