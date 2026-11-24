@@ -44,6 +44,35 @@ void func_020be678(void) {
     *(volatile u32 *)0x04000000 = (*(volatile u32 *)0x04000000 & ~0x1f00) | 0x1f00;
 }
 
+void func_020be6a0(void) {
+    u8 *p = func_020becfc();
+    u16 val;
+    func_020bec40(*(u16 *)(data_0216020c + 0x8e));
+    func_020beb64(0);
+    func_020bec5c(0);
+    func_020be9b8(0);
+    func_020beb14();
+    val = *(u16 *)(p + 0xd8);
+    if (val == 0 || (val & 1) != 0) {
+        return;
+    }
+    func_020bf24c(0, (u8)val);
+}
+
+void func_020be704(void) {
+    u8 *p = func_020becfc();
+    u16 val;
+    func_020bec40(*(u16 *)(data_0216020c + 0x8e));
+    func_020beb64(1);
+    func_020bec5c(1);
+    func_020be9b8(1);
+    val = *(u16 *)(p + 0xd8);
+    if (val == 0 || (val & 1) != 0) {
+        return;
+    }
+    func_020bf24c(1, (u8)val);
+}
+
 void func_020be764(void) {
     func_020c33d4(0);
 }
