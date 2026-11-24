@@ -164,3 +164,7 @@ void func_02138de8(u8 *arg0, u32 arg1) {
     *(u32 *)(arg0 + 0xb8) = arg1;
 }
 
+void func_02138df0(u8 *arg0, s32 arg1) {
+    *(s32 *)(arg0 + 0xbc) = arg1;
+}
+
