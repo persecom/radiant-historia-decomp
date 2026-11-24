@@ -20,6 +20,9 @@ extern void func_0210c5dc(void *);
 extern s32 data_0216242c[10];
 extern s32 *data_02155984;
 extern s32 data_02151fcc;
+extern u16 data_02151fc8;
+extern const s16 data_0213a394[];
+extern s32 data_02162360[];
 extern void func_02108240(void);
 void func_020be330(u8 *arg0) {
     u16 flags = *(u16 *)(arg0 + 0x18);
@@ -135,10 +138,9 @@ void func_020be844(void) {
 }
 
 void func_020beb14(void) {
-    u8 *p = data_0216020c;
     data_02155984 = data_0216242c;
-    data_0216242c[9] += *(s32 *)(p + 0x98);
-    data_02151fcc = *(s16 *)(p + 0x8e) + 0x80;
+    data_0216242c[9] += *(s32 *)(data_0216020c + 0x98);
+    data_02151fcc = *(s16 *)(data_0216020c + 0x8e) + 0x80;
     func_02108240();
 }
 
