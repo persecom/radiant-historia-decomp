@@ -178,6 +178,44 @@ void func_0210ce5c(void) {
     func_0210cd90(0);
 }
 
+extern s16 data_0216274c[];
+extern u8 data_02155c7c[];
+extern char data_02155c4c[];
+extern char data_02155c50[];
+extern char data_02155c54[];
+extern u8 *data_02160204;
+void func_02113ce8(void *, u8);
+s32 func_0210cc54(const char *);
+void func_0210cef8(void);
+s32 func_020123f0(const char *, const char *);
+s32 func_021093f0(void *);
+void func_0210d27c(s32 arg0) {
+    s16 *slot;
+    s32 i;
+    if (arg0 < 0) {
+        return;
+    }
+    slot = NULL;
+    for (i = 0; i < 8; i++) {
+        if (arg0 == data_0216274c[i * 2]) {
+            slot = NULL;
+            break;
+        }
+        if (slot == NULL && data_0216274c[i * 2] == -1) {
+            slot = &data_0216274c[i * 2];
+        }
+    }
+    if (slot == NULL) {
+        return;
+    }
+    if (!(*(s32 (**)(void *, s32))(data_02155c7c + 4))(data_0216273c, arg0)) {
+        return;
+    }
+    func_02113ce8(data_0216273c, data_02155c7c[0]);
+    slot[0] = (s16)arg0;
+    slot[1] = 6;
+}
+
 extern void func_02113b58(void *, s32);
 extern void func_02113c18(void *);
 extern void func_02008f74(void *, s32, u32);
