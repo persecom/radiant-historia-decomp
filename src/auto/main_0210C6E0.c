@@ -13,6 +13,12 @@ typedef struct {
 } Data021626e8;
 extern Data021626e8 data_021626e8;
 extern u8 data_0216273c[];
+extern char data_02155c4c[];
+extern char data_02155c50[];
+extern char data_02155c54[];
+extern u8 *data_02160204;
+extern s32 func_0210cc54(const char *);
+extern void func_0210cef8(void);
 extern u8 data_021626a0[];
 extern u8 data_021626b6[];
 extern u16 data_021626ce[];
