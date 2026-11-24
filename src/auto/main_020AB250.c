@@ -15,3 +15,12 @@ s32 func_020ab9c8(u8 *arg0) {
     }
     return 0;
 }
+
+void *func_020abf3c(void) {
+    void *p = func_020b442c();
+    *(s32 *)p = -1;
+    *(s32 *)((u8 *)p + 0x8) = 0;
+    *(s32 *)((u8 *)p + 0x4) = 0;
+    return p;
+}
+
