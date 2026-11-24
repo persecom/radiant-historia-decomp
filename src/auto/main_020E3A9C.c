@@ -24,6 +24,8 @@ typedef struct {
 } UnkBuf30_020e3f30;
 
 extern const UnkBuf10_020e3f30 data_021449e8;
+extern const UnkBuf10_020e3f30 data_02144a10;
+extern u8 *data_02160204;
 extern const UnkBuf10_020e3f30 data_021449d4;
 extern u8 *data_02160a74;
 extern const UnkBuf10_020e3f30 data_021449fc;
