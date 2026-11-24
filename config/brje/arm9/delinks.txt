@@ -26,7 +26,10 @@ src/auto/main_02005C90.c:
     .text start:0x02005c90 end:0x02006c38
 
 src/auto/main_02006C38.c:
-    .text start:0x02006c38 end:0x02007904
+    .text start:0x02006c38 end:0x020076e8
+
+src/auto/main_020076E8.c:
+    .text start:0x020076e8 end:0x02007904
 
 src/auto/main_02007904.c:
     .text start:0x02007904 end:0x02007c2c
