@@ -230,6 +230,76 @@ void func_0209532c(void) {
     }
 }
 
+extern s32 func_02093658(u16);
+extern u8 *func_020936f8(u16, u16, s16, s16, s32, s32, s32);
+extern void func_020938b0(void *, s32, s32);
+extern s32 func_020329d8(void *);
+void func_02095374(u32 arg0_raw, void *arg1_raw, s32 arg2, s32 arg3) {
+    u8 *arg0 = (u8 *)arg0_raw;
+    u8 *arg1 = (u8 *)arg1_raw;
+    s16 x = 0;
+    s16 y = (arg2 + *(s16 *)(data_02160110 + 0xb6)) * 19;
+    u16 id;
+    u8 *obj;
+    s32 val;
+
+    if (arg3 == 1) {
+        y -= 14;
+        x = 0x4e;
+    } else if (arg3 == 3) {
+        y += 10;
+    }
+
+    for (;;) {
+        if (func_02093658((u16)(*(s32 *)(data_02160110 + 0xc8) + 500)) == 0) {
+            id = (u16)(*(s32 *)(data_02160110 + 0xc8) + 500);
+            break;
+        }
+        *(s32 *)(data_02160110 + 0xc8) += 1;
+        if (*(s32 *)(data_02160110 + 0xc8) > 100) {
+            *(s32 *)(data_02160110 + 0xc8) = 0;
+        }
+    }
+
+    if (**(u8 **)(arg0 + 0x118) == 0) {
+        obj = func_020936f8(0xe, id, x, y, 3, 2, 0xd);
+        func_020938b0(obj, 1, 0xd);
+        obj = func_020936f8(0x10, id, x, y, 4, 4, 2);
+        func_020938b0(obj, 1, 2);
+    } else if (**(u8 **)(arg0 + 0x118) == 1) {
+        obj = func_020936f8(0xf, id, x, y, 3, 2, 0xd);
+        func_020938b0(obj, 1, 0xd);
+        obj = func_020936f8(0x11, id, x, y, 4, 4, 2);
+        func_020938b0(obj, 1, 2);
+        obj = func_020936f8(0x28, id, x, y, 2, 4, 4);
+        func_020938b0(obj, 1, 4);
+        obj = func_020936f8(0x29, id, x, y, 2, 4, 5);
+        func_020938b0(obj, 1, 5);
+    }
+
+    if (arg0[0x114] <= 2) {
+        obj = func_020936f8((u16)(arg0[0x114] + 1), id, x, y, 2, 4, 6);
+        func_020938b0(obj, 1, 6);
+    }
+
+    val = func_020329d8(arg1) + 1;
+    if (val <= 9) {
+        obj = func_020936f8((u16)(val % 10 + 0x55), id, x, y, 0, 4, 0x7c);
+        func_020938b0(obj, 1, 0x7c);
+    } else {
+        obj = func_020936f8(0x5f, id, x, y, 0, 4, 0x7d);
+        func_020938b0(obj, 1, 0x7d);
+    }
+
+    *(u8 **)(obj + 8) = arg0;
+    *(void **)(arg1 + 0x14) = func_02095228((u32)obj, (u16)arg2, (u32)arg1);
+
+    *(s32 *)(data_02160110 + 0xc8) += 1;
+    if (*(s32 *)(data_02160110 + 0xc8) > 100) {
+        *(s32 *)(data_02160110 + 0xc8) = 0;
+    }
+}
+
 extern void *func_02032254(u16);
 void func_0209568c(u32 arg0, u16 arg1) {
     u8 *node;
