@@ -106,6 +106,32 @@ s32 func_0211b36c(s32 arg0, s32 *arg1, u16 *arg2, s32 arg3) {
     }
 }
 
+void func_0211b3dc(s32 arg0, s32 arg1, u32 arg2) {
+u8 *p=(u8 *)arg1;
+u16 *q=(u16 *)arg2;
+s32 offset=0;
+s32 screen;
+u32 size,channel;
+void *src;
+u8 *base,*dst;
+if(q) {
+s32 count=q[1]*q[2];
+s32 unit=(*(u32 *)(p+4)==4)?64:32;
+offset=count*unit;
+}
+func_02006dc4(*(void **)(p+20),*(u32 *)(p+16));
+screen=(*data_02144ee8[arg0]&0x3c)>>2;
+size=*(u32 *)(p+16);
+src=*(void **)(p+20);
+if(arg0>3) base=(u8 *)0x6200000;
+else base=(u8 *)(0x6000000+(((*(volatile u32 *)0x4000000&0x7000000)>>24)<<16));
+dst=base+(screen<<14);
+channel=data_02145ba4;
+if(channel>3) channel=-1;
+if(channel!=-1) func_02008690(channel,src,dst+offset,size,1);
+else func_02008e08(src,dst+offset,size);
+}
+
 void func_0211c934(s32 *, s32 *, s32);
 void func_02006dc4(void *, u32);
 void func_0211b9e8(void *, void *, s32,s32,s32,s32,s32,s32,s32,s32);
