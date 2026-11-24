@@ -67,6 +67,13 @@ s32 func_020c7604(void) {
     return 0;
 }
 
+void func_020c760c(u8 *arg0) {
+    func_020c7630(arg0 + 0x30);
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
 u32 func_020c7754(u32 **arg0) {
     return **arg0;
 }
@@ -85,6 +92,10 @@ void func_020c7818(void *arg0) {
 extern void func_020c7f6c(void *, s32, s16);
 void func_020c7fe4(u8 *arg0, s32 arg1) {
     func_020c7f6c(arg0, arg1, *(s16 *)(arg0 + 0x3c));
+}
+
+void func_020c7ff4(u8 *arg0, s32 arg1) {
+    func_020c7f6c(arg0, arg1, *(s16 *)(arg0 + 0x3a));
 }
 
 s32 func_020c8124(void) {
