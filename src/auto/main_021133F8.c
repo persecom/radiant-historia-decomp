@@ -382,14 +382,18 @@ void func_02113cfc(u8 * volatile *arg0, u8 arg1) {
 }
 
 void func_02113d10(void *arg0, u32 arg1, s32 arg2) {
-    u8 *p = *(u8 **)arg0;
-    if (p == NULL || p[0x2c] == 2) {
+    u8 *p;
+    if (*(void * volatile *)arg0 == NULL) {
+        return;
+    }
+    p = *(u8 **)arg0;
+    if (p[0x2c] == 2) {
         return;
     }
     func_02116720((s32 *)(p + 0x1c), arg1 << 8, arg2);
 }
 
-void func_02113d3c(void *arg0) {
+void func_02113d3c(void *arg0, u32 arg1) {
     if (*(void * volatile *)arg0 == NULL) {
         return;
     }
