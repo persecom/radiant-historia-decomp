@@ -300,3 +300,54 @@ u32 func_0202ea28(u32 arg0, u32 arg1) {
     }
 }
 
+extern u8 *func_020ddc08(s32);
+void func_0202eac4(u32 arg0,u16 arg1) {
+u8 *p;
+switch(arg1) {
+case 801:
+p=func_020ddc08(802);
+if(arg0==0) *(u32 *)(p+0x80)|=0x1000;
+else *(u32 *)(p+0x80)&=~0x1000;
+p=func_020ddc08(803);
+if(arg0==0) *(u32 *)(p+0x80)|=0x1000;
+else *(u32 *)(p+0x80)&=~0x1000;
+break;
+case 811:
+p=func_020ddc08(813);
+if(arg0==0) *(u32 *)(p+0x80)|=0x1000;
+else *(u32 *)(p+0x80)&=~0x1000;
+break;
+case 821:
+p=func_020ddc08(823);
+if(arg0==0) *(u32 *)(p+0x80)|=0x1000;
+else *(u32 *)(p+0x80)&=~0x1000;
+break;
+case 831:
+p=func_020ddc08(832);
+if(arg0==0) *(u32 *)(p+0x80)|=0x1000;
+else *(u32 *)(p+0x80)&=~0x1000;
+p=func_020ddc08(833);
+if(arg0==0) *(u32 *)(p+0x80)|=0x1000;
+else *(u32 *)(p+0x80)&=~0x1000;
+break;
+case 841:
+p=func_020ddc08(843);
+if(arg0==0) *(u32 *)(p+0x80)|=0x1000;
+else *(u32 *)(p+0x80)&=~0x1000;
+break;
+case 851:
+p=func_020ddc08(852);
+if(arg0==0) *(u32 *)(p+0x80)|=0x1000;
+else *(u32 *)(p+0x80)&=~0x1000;
+p=func_020ddc08(853);
+if(arg0==0) *(u32 *)(p+0x80)|=0x1000;
+else *(u32 *)(p+0x80)&=~0x1000;
+break;
+case 861:
+p=func_020ddc08(863);
+if(arg0==0) *(u32 *)(p+0x80)|=0x1000;
+else *(u32 *)(p+0x80)&=~0x1000;
+break;
+}
+}
+
