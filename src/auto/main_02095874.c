@@ -76,6 +76,34 @@ void func_020958f8(void) {
  }
 }
 
+void func_02095a9c(u8 *arg,u8 *a,s32 b,s32 c) {
+s32 id; u16 i; s32 x,y; u8 *p; s32 type; s32 base;
+if(!arg)return;
+p=*(u8 **)(arg+8);id=*(u16 *)p;
+if(arg[0x16]&1)return;
+arg[0x16]|=1;
+y=*(s16 *)(p+14);x=*(s16 *)(p+12);
+func_020938b0(func_020936f8(0x53,id,x,(s16)(y-16),4,4,16),1,16);
+func_020938b0(func_020936f8(0x54,id,x,y,4,4,18),1,18);
+if(a[0]==2){if(c==1)type=0x21;else type=0x20;}
+else if(a[0]==5)type=0x22;
+else if(a[0]==3)type=0x23;
+else if(a[0]==4||a[0]==1)type=0x25;
+else if(a[0]==6)type=0x24;
+else if(a[0]==0)type=0x24;
+else if(a[0]==9)type=0x20;
+func_020938b0(func_020936f8(type,id,x,y,3,4,7),1,7);
+if(a[0]==2||a[0]==3||a[0]==4||a[0]==6){func_02094990(b,0);func_0209491c(b,*(u16 *)(a+32),1);}
+else if(a[0]==5){func_02094990(b,1);func_0209491c(b,*(u16 *)(a+32),1);}
+base=b*4+0x2b;
+i=0;
+do {s32 tag=i+0x77;void *obj;
+obj=func_020936f8((u16)(i+base),id,x,y,3,4,(u16)tag);
+func_020938b0(obj,1,(u32)tag & 0xffff);
+i++;
+}while(i<4);
+}
+
 #pragma opt_propagation off
 void func_02095cb8(u8 *arg,s32 a,s32 b) {
 s32 id; u16 i; s32 x,y; u8 *p;
