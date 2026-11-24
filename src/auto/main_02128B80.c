@@ -9,7 +9,7 @@ extern void func_0212a9f4(void);
 extern void func_021295a4(void *);
 extern void func_0212a9f8(void);
 extern void func_0212bda8(void *);
-extern void func_021293c0(void);
+extern void func_021293c0();
 extern void func_02128eb4(void);
 extern void func_0212926c(void);
 extern void func_02129490();
@@ -80,25 +80,25 @@ void func_02129588(void *arg0) {
 
 void func_021295a4(void *arg0) {
     u8 *p = arg0;
-    s8 code;
     if (p == NULL) {
         func_0212bda8(data_02156a54);
         return;
+    } else {
+        s8 code = *(s8 *)(p + 1);
+        if (code == 3) {
+            func_021293c0();
+        } else if (code == 1) {
+            func_02128eb4();
+        } else if (code == 2) {
+            func_0212926c();
+        } else if (code == 4) {
+            func_02129490();
+        } else if (code == 5) {
+            func_021294c4();
+        }
+        func_0212951c(p);
+        func_021294c8(p);
     }
-    code = *(s8 *)(p + 1);
-    if (code == 3) {
-        func_021293c0();
-    } else if (code == 1) {
-        func_02128eb4();
-    } else if (code == 2) {
-        func_0212926c();
-    } else if (code == 4) {
-        func_02129490();
-    } else if (code == 5) {
-        func_021294c4();
-    }
-    func_0212951c(p);
-    func_021294c8(p);
 }
 
 void func_02129624(void) {
