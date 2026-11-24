@@ -124,6 +124,32 @@ void func_0212d288(void *arg0) {
     *(s32 *)(p + 0xa8) -= samples;
 }
 
+static void func_0212d3b4(void *arg) {
+Unk0212D3B4 *arg0=arg;
+s32 buf[2];
+s32 n=arg0->remaining*2;
+s32 i;
+s32 half;
+s32 count;
+for(i=0;i<arg0->count;i++) {
+void *obj=arg0->objs[i];
+(*(void (**)(void *,s32,s32,void *))(*(u8 **)obj+0x18))(obj,1,0x7fffffff,buf);
+n = n < buf[1] ? n : buf[1];
+obj=arg0->objs[i];
+(*(void (**)(void *,s32,void *))(*(u8 **)obj+0x1c))(obj,1,buf);
+}
+half=n/2;
+count=half*2;
+if(count<=0) return;
+for(i=0;i<arg0->count;i++) {
+void *obj=arg0->objs[i];
+(*(void (**)(void *,s32,s32,void *))(*(u8 **)obj+0x18))(obj,1,count,buf);
+obj=arg0->objs[i];
+(*(void (**)(void *,s32,void *))(*(u8 **)obj+0x20))(obj,0,buf);
+}
+arg0->remaining-=half;
+}
+
 void func_0212d4d0(void) {
     s32 i;
     if (*(void (**)(void *))(data_02173df4 + 0xc) != NULL) {
