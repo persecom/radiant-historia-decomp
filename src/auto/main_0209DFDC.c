@@ -9,6 +9,15 @@ typedef struct {
 } Unk_02142c40;
 
 extern Unk_02142c40 data_02142c40[5];
+extern Unk_02142c40 data_02142bf0[5];
+
+typedef struct {
+    u16 x;
+    u16 y;
+    u16 z;
+} Unk_0209edc8_vec;
+
+extern void func_0209f684(s32, Unk_0209edc8_vec, s16);
 extern void func_020a8810(void *, u32);
 extern void func_020a5858(void *);
 extern void func_020a5ce4(void *);
