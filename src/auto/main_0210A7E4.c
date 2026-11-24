@@ -3,7 +3,7 @@
 typedef struct { u32 flags; u8 pad4[0x30]; u32 field34, field38; } Header_0210b4cc;
 static inline void Set34_0210b4cc(Header_0210b4cc *p, u32 value) {
 p->field34=value;
-if(!p->field34 && !p->field38)p->flags &= ~1;
+if(!p->field38)p->flags &= ~1;
 }
 static inline void Set38_0210b4cc(Header_0210b4cc *p, u32 value) {
 p->field38=value;
