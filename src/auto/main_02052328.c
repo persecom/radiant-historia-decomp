@@ -32,25 +32,21 @@ void func_02052328(void) {
 
 void func_02052844(u8 *arg0, s32 arg1, s32 arg2) {
     u8 *node;
-    u16 id;
 
-    func_020526f0(*(u64 *)(arg0 + 0xfc), (u16)(*(u16 *)(arg0 + 0x90) + 0xbb9), arg1, 1);
-    node = *(u8 **)(data_02160a80 + 0x3c);
-    id = *(u16 *)(arg0 + 0x90) + 0xbb9;
-    while (node != NULL) {
-        if (*(u32 *)(node + 8) == id) {
-            break;
-        }
-        node = *(u8 **)(node + 0x38);
-    }
+    func_020526f0(*(Vec2_02052844 *)(arg0 + 0xfc), (u16)(*(u16 *)(arg0 + 0x90) + 0xbb9), arg1, 1);
+    node = find_node_02052844(*(u16 *)(arg0 + 0x90) + 0xbb9);
     if (node == NULL) {
         return;
     }
     if (arg2 == 1) {
         *(u32 *)(node + 0x18) &= ~8;
-    } else if (arg2 == 0) {
+        return;
+    }
+    if (arg2 == 0) {
         *(u32 *)(node + 0x18) |= 8;
-    } else if (arg2 == -1) {
+        return;
+    }
+    if (arg2 == -1) {
         *(u32 *)(node + 0x18) &= ~1;
     }
 }
@@ -66,8 +62,8 @@ void func_02052904(s32 arg0) {
 }
 
 u32 func_02052a54(void *arg0, s32 arg1) {
-    s32 val;
     u32 ret = 0;
+    s32 val;
     func_020dd9b4(arg0, &val);
     if (val != 0) {
         ret |= 2;
