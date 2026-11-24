@@ -61,3 +61,30 @@ void func_020f36b0(u8 *arg0, s32 arg1, s32 arg2) {
         }
     }
 }
+
+s32 func_020f402c(u8 *arg0, s32 arg1) {
+    u8 *r2 = *(u8 **)arg0;
+    u8 *r3 = *(u8 **)(arg0 + 0x10);
+    if (*(u16 *)(*(u8 **)(*(u8 **)(r2 + 0x58) + 0xc)) <= arg1 * 2) {
+        return 0;
+    }
+    switch (r3[arg1 * 4]) {
+    case 0:
+        return 0;
+    case 1:
+        return func_020f3fcc(arg0, *(u16 *)(r3 + arg1 * 4 + 2), 1);
+    case 3:
+        return func_020f3fcc(arg0, *(u16 *)(r3 + arg1 * 4 + 2), 1);
+    default:
+        return 0;
+    }
+}
+
+void func_020f4640(void) {
+    u32 buf[3];
+    buf[0] = 0;
+    buf[1] = 0;
+    buf[2] = 0;
+    func_020f4668(buf);
+}
+
