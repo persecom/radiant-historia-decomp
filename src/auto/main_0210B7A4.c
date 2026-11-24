@@ -94,6 +94,17 @@ void func_0210bf50(void *arg0, void *arg1) {
     func_0210c5dc(arg1);
 }
 
+void func_0210bf68(void) {
+    u32 zero = 0;
+    u32 r4 = func_02007008(zero);
+    u32 size = (func_02006ff4(zero) & ~0xf) - ((r4 + 0xf) & ~0xf);
+    u32 r1 = func_02116fd0(func_020071c8(zero, size, 0x10), size, zero);
+    data_02162638 = (void *)r1;
+    data_02155c2c = size;
+    func_0211748c(data_02162648, r1, 0x4);
+    *(u32 *)((u8 *)&data_02162638 + 0x10) = (u32)data_02144b94;
+}
+
 void* func_0210c518(u32 size, s32 arg1)
 {
     extern u8 data_02162684;
