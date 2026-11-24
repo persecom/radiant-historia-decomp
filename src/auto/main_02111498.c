@@ -508,6 +508,32 @@ s32 func_0211223c(u8 *arg0) {
     return 0;
 }
 
+extern void func_020c7894(void *, u8);
+void func_02112278(u8 *arg0) {
+    Unk_02144c90 buf = data_02144c90;
+    u16 i;
+
+    ((void (*)(void *, s32))func_020c9a04)(*(void **)(arg0 + 0x8c), 6);
+    for (i = 0; i < 2; i++) {
+        Unk_02144c90_Item *item = &buf.items[i];
+        s16 type = item->f02;
+        u8 *r5 = func_020c9b24(*(void **)(arg0 + 0x8c), item->f00, (u8)type);
+        *(s16 *)(r5 + 0x32) = item->f04;
+        *(s16 *)(r5 + 0x34) = item->f06;
+        *(s16 *)(r5 + 0x36) = item->f08;
+        *(s16 *)(r5 + 0x38) = item->f0a;
+        *(s16 *)(r5 + 0x3e) = item->f10;
+        *(s16 *)(r5 + 0x40) = item->f12;
+        r5[0x43] += (u8)item->f16;
+        ((void (*)(void *, s16))(*(void **)(r5 + 0x10)))(r5, item->f0c);
+        ((void (*)(void *, s16))(*(void **)(r5 + 0x14)))(r5, item->f0e);
+        if (type == 5) {
+            func_020c7894(r5, (u8)item->f14);
+        }
+    }
+    func_0211192c(arg0, 0xb, 0x1d);
+}
+
 void func_02112388(u8 *arg0, u16 *arg1) {
     Unk_02144c84 tbl[2] = {
         { 0, 0, 1 },
