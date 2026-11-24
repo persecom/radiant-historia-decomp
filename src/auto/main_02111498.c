@@ -21,6 +21,7 @@ extern u32 func_020c9c34(void *);
 extern u8 *func_020c9b24(void *, u16, u8);
 extern u16 func_020c94a8(void *);
 extern void func_02111374(u8 *, u8 *);
+extern void func_021118bc(u8 *);
 extern void func_02111728(void *);
 void func_02111594(void) {
 }
@@ -127,6 +128,18 @@ extern void func_020c9940(void *);
 extern void func_02111ccc(u8 *);
 void func_02111a28(u8 *arg0, s32 arg1) {
     func_0211192c(arg0, *(s16 *)(arg0 + 0x44), arg1);
+}
+
+void func_02111a3c(u8 *arg0, u8 arg1) {
+    u16 i;
+    u32 count = func_020c9c34(*(void **)(arg0 + 0x34));
+    for (i = 0; i < count; i++) {
+        u8 *obj = func_020c9c10(*(void **)(arg0 + 0x34), i);
+        ((void (*)(u8 *, u8))*(void **)(obj + 0x1c))(obj, (u8)(arg1 + (obj[0x38] - arg0[0x48])));
+    }
+    u8 *obj = *(u8 **)(arg0 + 0x6c);
+    ((void (*)(u8 *, u8))*(void **)(obj + 0x1c))(obj, (u8)(arg1 + (obj[0x38] - arg0[0x48])));
+    arg0[0x48] = arg1;
 }
 
 void func_02111ac0(u8 *arg0, u16 arg1, u16 arg2, u16 arg3, u16 arg4) {
