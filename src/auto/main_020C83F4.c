@@ -55,6 +55,10 @@ void func_020c8558(u8 *arg0, s32 arg1) {
     *(s32 *)(*(u8 **)(arg0 + 0x30) + 0x48) = arg1 << 12;
 }
 
+s32 func_020c8624(void) {
+    return 4;
+}
+
 void func_020c8780(void *arg0) {
     if (arg0 != NULL) {
         func_0210c5dc(arg0);
