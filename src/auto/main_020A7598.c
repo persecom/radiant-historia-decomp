@@ -268,3 +268,34 @@ s32 func_020a80dc(void) {
     data_0216bf84 = 0;
     return 0x27;
 }
+
+void func_020a81a8(void){
+s32 one;
+if(data_02160140)return;
+func_020a2c20();
+func_0210f6d4();
+one=1;
+data_02162858[0]=(u32)func_020a7fe8;
+data_02162854=(u32)func_020a7fe8;
+func_02120524(one);
+func_020a31c8(18);
+data_02160140=func_0210c594(0x54,data_02155c3c);
+*(u32 *)data_02160140=(u32)func_020a83a8;
+*(u32 *)(data_02160140+4)=1011;
+func_0210d9e4(data_02160140);
+*(u32 *)(data_02160140+0x14)=(u32)func_020a83c4;
+*(u32 *)(data_02160140+0x18)=1000;
+func_0210db70(data_02160140+0x14);
+*(u32 *)(data_02160140+0x28)=(u32)func_020a83e4;
+*(u32 *)(data_02160140+0x2c)=1000;
+func_0210dbd0(data_02160140+0x28);
+*(void **)(data_02160140+0x3c)=func_020c3ca8();
+*(void **)(data_02160140+0x40)=func_020c3c78();
+func_020c3738(*(void **)(data_02160140+0x3c));
+data_02162830=30;
+data_02162834[0]=one;
+data_0216281c=2;
+data_02162820[0]=2;
+data_0216bf84=0;
+}
+
