@@ -177,20 +177,21 @@ void func_020b90f0(void);
 void func_020b91a8(void);
 void func_020b8c44(void) {
     u8 *p = data_021601ec;
-    u16 a;
-    u16 arr[2];
+    u16 arr[3];
+    u16 *q;
     u16 i;
     u8 *obj;
 
-    a = *(u16 *)data_021438f0;
-    func_020c738c(func_020c9c10(*(void **)(p + 0x4c), a), 0, 4);
-    arr[0] = *(u16 *)data_02143908;
-    arr[1] = *(u16 *)((u8 *)data_02143908 + 2);
+    arr[0] = *(u16 *)data_021438f0;
+    func_020c738c(func_020c9c10(*(void **)(p + 0x4c), arr[0]), 0, 4);
+    q = arr + 1;
+    arr[1] = *(u16 *)data_02143908;
+    arr[2] = *(u16 *)((u8 *)data_02143908 + 2);
     for (i = 0; i < 2; i++) {
-        func_020c738c(func_020c9c10(*(void **)(p + 0x4c), arr[i]), 0, 1);
+        func_020c738c(func_020c9c10(*(void **)(p + 0x4c), q[i]), 0, 1);
     }
     func_020ba63c(1);
-    obj = func_020c8adc(func_020c9c10(*(void **)(p + 0x4c), 13));
+    obj = func_020c8adc(func_020c9c10(*(void **)(data_021601ec + 0x4c), 13));
     func_020c83f4(obj, *(void **)(data_021601ec + 0x88), 2, 0);
     func_020b8d94();
     func_020b90f0();
