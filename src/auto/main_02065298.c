@@ -22,6 +22,72 @@ extern void **func_0210c594(s32, s32);
 extern void *func_02064be8(void);
 extern void func_02064ce4(void *, s32, s32, s32);
 
+void *func_02065298(u8 *a,s32 id,s32 variant,s32 special,u8 *owner) {
+char buf[64];
+s32 found;
+void *stream;
+u8 *context=0;
+u8 *p=0;
+s32 value;
+if(owner)context=owner;
+func_02005e80(buf,data_02146670);
+if(!special){
+stream=func_021092d8(buf);
+found=func_02092ab0(stream,id);
+if(found!=-1){
+value=(u16)func_02092994(stream,0);
+while(value!=variant){
+func_02109444(stream);
+found=func_02092ab0(stream,id);
+if(found==-1)break;
+value=(u16)func_02092994(stream,0);
+}
+}
+if(found==id && value==variant){
+s32 effect, amount, extra;
+p=(u8 *)func_0210c594(64,data_02155c3c);
+p[0]=func_02092994(stream,0);
+*(u16 *)(p+2)=func_02092994(stream,0);
+p[6]=func_02092994(stream,0);
+p[7]=func_02092994(stream,0);
+*(u16 *)(p+24)=func_02092994(stream,0);
+p[26]=func_02092994(stream,0);
+*(u16 *)(p+28)=func_02092994(stream,0);
+p[20]=func_02092994(stream,0);
+*(u16 *)(p+22)=0;
+p[30]=func_02092994(stream,0);
+p[36]=func_02092994(stream,0);
+effect=(u16)func_02092994(stream,0);
+amount=(s16)func_02092994(stream,0);
+extra=(u16)func_02092994(stream,0);
+*(u16 *)(p+56)=func_02092994(stream,0);
+p[58]=func_02092994(stream,0);
+*(u16 *)(p+32)=func_02092994(stream,0);
+func_02092994(stream,0);
+*(u16 *)(p+34)=1;
+*(u16 *)(p+4)=100;
+p[1]=variant;
+if(effect){
+void *v=func_02022ee0();*(void **)(p+44)=v;
+func_02022f0c(v,(u16)effect,amount,0);
+if(extra)func_02022f0c(*(void **)(p+44),(u16)((u8)(extra/10)+210),(u8)(extra%10),5);
+if(func_020230c8(*(void **)(p+44),216) && context) *(u32 *)(context+140)|=4;
+if(func_020230c8(*(void **)(p+44),217) && context) *(u32 *)(context+140)|=8;
+}
+if(a)func_021167f0(a+4,p);
+}
+if(stream)func_021093b0(stream);
+return p;
+}
+p=(u8 *)func_0210c594(64,data_02155c3c);
+p[0]=1;*(u16 *)(p+2)=0;*(u32 *)(p+8)=0;*(u16 *)(p+18)=11;
+p[6]=0;*(u16 *)(p+24)=91;p[26]=0;*(u16 *)(p+28)=0;
+p[20]=1;*(u16 *)(p+22)=0;p[36]=1;*(u16 *)(p+32)=5;
+*(u16 *)(p+4)=100;p[1]=variant;*(u16 *)(p+56)=0;p[58]=0;
+func_021167f0(a+4,p);
+return p;
+}
+
 void *func_02065624(u16 arg0, s32 arg1, void *arg2) {
 u8 *p = 0;
 s32 id, value;
