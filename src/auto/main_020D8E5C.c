@@ -48,11 +48,22 @@ void func_020d8f78(void) {
     func_020d9018();
 }
 
-void func_020d9058(s32 *arg0) {
+void func_020d9018(void) {
+    *(u32 *)(data_02160258 + 0xc) = 0x200000;
+    *(u32 *)(data_02160258 + 0x10) = 0x30000;
+    *(u32 *)(data_02160258 + 0x14) = 0x200000;
+    func_020d9cc0(data_02160258 + 0xc);
+    func_020f4668(data_02160258 + 0xc);
+}
+
+void func_020d9058(Unk3Words *arg0) {
+    s32 a = arg0->unk0;
+    s32 b = arg0->unk4;
+    s32 c = arg0->unk8;
     u8 *p = data_02160258;
-    *(s32 *)(p + 0xc) = arg0[0];
-    *(s32 *)(p + 0x10) = arg0[1];
-    *(s32 *)(p + 0x14) = arg0[2];
+    *(s32 *)(p + 0xc) = a;
+    *(s32 *)(p + 0x10) = b;
+    *(s32 *)(p + 0x14) = c;
 }
 
 void func_020d907c(u32 arg0) {
@@ -60,17 +71,25 @@ void func_020d907c(u32 arg0) {
 }
 
 void func_020d9090(void) {
-    s32 *p = *(s32 **)(data_02160258 + 0x54);
+    u8 *q = data_02160258;
+    Unk3Words *p = *(Unk3Words **)(q + 0x54);
     if (p != NULL) {
-        u8 *q = data_02160258;
-        *(s32 *)(q + 0xc) = p[0];
-        *(s32 *)(q + 0x10) = p[1];
-        *(s32 *)(q + 0x14) = p[2];
+        s32 a = p->unk0;
+        s32 b = p->unk4;
+        s32 c = p->unk8;
+        *(s32 *)(q + 0xc) = a;
+        *(s32 *)(q + 0x10) = b;
+        *(s32 *)(q + 0x14) = c;
     }
 }
 
 void *func_020d9df4(void) {
     return *(void **)(data_02160258 + 0x80);
+}
+
+extern s32 func_020e27ec(void);
+void func_020d9e08(u32 arg0) {
+    *(u32 *)(data_02160258 + 0x80) = arg0;
 }
 
 u16 func_020d9e38(void) {
