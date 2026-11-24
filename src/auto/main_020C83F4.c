@@ -179,12 +179,9 @@ void func_020c888c(u8 *arg0, s32 arg1, s32 arg2) {
     for (i = 0; i < count; i++) {
         obj = func_020c9c10(*(void **)(arg0 + 0x54), i);
         if (obj != NULL) {
-            s32 dx, dy;
             ((void (*)(u8 *))(*(void **)(obj + 0x28)))(obj);
-            dx = *(s16 *)(obj + 0x3a) - *(s16 *)(arg0 + 0x58);
-            dy = *(s16 *)(obj + 0x3c) - *(s16 *)(arg0 + 0x5a);
-            x = arg1 + dx;
-            y = arg2 + dy;
+            x = (*(s16 *)(obj + 0x3a) - *(s16 *)(arg0 + 0x58)) + arg1;
+            y = (*(s16 *)(obj + 0x3c) - *(s16 *)(arg0 + 0x5a)) + arg2;
             ((void (*)(u8 *, s32))(*(void **)(obj + 0x10)))(obj, x);
             ((void (*)(u8 *, s32))(*(void **)(obj + 0x14)))(obj, y);
         }
@@ -301,6 +298,13 @@ s32 func_020c8d70(u8 *arg0) {
         return 1;
     }
     func_020c9b64(*(void **)(arg0 + 0x30));
+    return 0;
+}
+
+s32 func_020c8d98(u8 *arg0) {
+    func_020c9bb8(*(void **)(arg0 + 0x30));
+    func_020c9000(arg0);
+    func_020c8f20(arg0);
     return 0;
 }
 
