@@ -85,6 +85,10 @@ void func_0212749c(void *arg0) {
     func_0212c3b0(*(void **)((u8 *)arg0 + 4));
 }
 
+void func_021274ac(void *arg0) {
+    func_021277f4(*(void **)((u8 *)arg0 + 4));
+}
+
 s32 func_021275f8(s32 *arg0) {
     return arg0[1];
 }
