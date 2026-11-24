@@ -93,7 +93,7 @@ u32 func_02136944(u8 *arg0) {
     if (arg0 == NULL) {
         return 0;
     }
-    return *(u16 *)(arg0 + 0x1e) >> 1;
+    return (u32)*(u16 *)(arg0 + 0x1e) >> 1;
 }
 
 void func_021369a8(void) {
