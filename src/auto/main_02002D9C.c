@@ -9,6 +9,12 @@ extern void func_020030f4(void *);
 extern s32 func_0200308c(s32 *);
 extern s32 func_020030b8(s32 *);
 
+void func_02002d9c(void) {
+    func_020030f4((void *)0x04000400);
+    while (*(volatile u32 *)0x04000600 & 0x08000000) {
+    }
+}
+
 void func_020038f8(void *arg0, u32 arg1, u32 arg2) {
     u32 base = func_02003188();
     if (data_02145ba4 != -1 && arg2 > 0x1c) {
