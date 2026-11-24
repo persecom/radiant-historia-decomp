@@ -548,10 +548,12 @@ void func_02006ad8(Unk6AD8 *arg0) {
 void func_02006afc(u8 *arg0) {
     u32 cookie = func_02008128();
     u8 *p = (u8 *)data_0215ce00[1];
-    if (func_02006ba4(arg0) == 0) {
+    void *zero = NULL;
+    while (1) {
+        if (func_02006ba4(arg0) != 0) break;
         *(void **)(p + 0x84) = arg0;
         func_02006510(arg0);
-        *(void **)(p + 0x84) = NULL;
+        *(void **)(p + 0x84) = zero;
     }
     func_0200813c(cookie);
 }
@@ -559,6 +561,16 @@ void func_02006afc(u8 *arg0) {
 extern void func_02006c38(void *, u32);
 void func_02006b4c(void *arg0) {
     func_02006c38(arg0, 0x10000000);
+}
+
+void func_02006b5c(void *arg0) {
+    while (*(void **)((u8 *)arg0 + 0x88) != NULL) {
+        Unk6AD8 *p = func_02005fe4((void **)((u8 *)arg0 + 0x88));
+        p->unkC_0 = 0;
+        p->unk8 = 0;
+        p->unkC_24 = 0;
+        func_02006560(p, 0);
+    }
 }
 
 BOOL func_02006ba4(u8 *arg0) {
