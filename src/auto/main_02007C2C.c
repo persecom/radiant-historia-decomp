@@ -3,6 +3,21 @@
 
 extern u32 func_02008128(void);
 extern void func_02008454(void);
+u32 func_02008198(u32 x) {
+    do {
+        x -= 4;
+    } while (x >= 4);
+    return x;
+}
+
+u32 func_020081f0(void) {
+    return 0x2fffc40;
+}
+
+u32 func_02008354(u32 x) {
+    return __builtin_clz(x);
+}
+
 void func_02008444(void) {
     func_02008128();
     while (1) {
