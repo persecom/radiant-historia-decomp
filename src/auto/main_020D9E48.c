@@ -3,3 +3,9 @@
 
 extern u8 *data_02160258;
 extern s32 func_02002404(s32, s32);
+
+void func_020d9e48(u32 *arg0, u32 *arg1) {
+    s32 dx = (s32)arg1[0] - (s32)arg0[0];
+    s32 dy = (s32)arg1[2] - (s32)arg0[2];
+    *(u16 *)(data_02160258 + 0x48) = func_02002404(dy, dx);
+}
