@@ -1,5 +1,6 @@
 /* 7 functions from 0x02018C20 to 0x02019C20 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct {u8 sign,pad;s16 exponent;u8 length;u8 digits[32];} Decimal19160;
 
 extern void func_02019400();
 extern void func_02018900(u8 *, s32);
