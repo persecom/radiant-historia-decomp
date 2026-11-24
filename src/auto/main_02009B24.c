@@ -166,7 +166,7 @@ extern void func_0200a674(s32, void *);
 extern s32 func_02009f34(void);
 extern s32 func_0200a6c0(s32, s32);
 extern void func_020081a4(s32);
-extern s32 func_0200a6e4(s32, s32, s32);
+extern s32 func_0200a6e4();
 void func_02009fac(s32 arg0) {
     u8 *p = data_0215ec80 + arg0 * 12;
     p[8]++;
