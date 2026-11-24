@@ -75,6 +75,87 @@ void func_020a6c74(void *arg0, u16 arg1, u16 arg2) {
     }
 }
 
+void *func_020a6ca0(u16 arg0) {
+    u8 *node = *(u8 **)(*(u8 **)data_021600e4 + 0x118);
+    while (node != NULL) {
+        if (*(u16 *)node == arg0) {
+            return node;
+        }
+        node = *(u8 **)(node + 0x14);
+    }
+    return NULL;
+}
+
+void func_020a6cdc(void *arg0) {
+    u8 *node = *(u8 **)arg0;
+    u32 one = 1;
+    while (node != NULL) {
+        u16 v = *(u16 *)node;
+        if (v >= 1 && v <= 0x14) {
+            if (func_020bdba0((u16)(v + 0xbf)) == 1) {
+                *(u32 *)(node + 0xa8) = one;
+            }
+            if (*(u32 *)(node + 0xa8) != 0) {
+                *(u8 *)(node + 0xb0) |= 2;
+            } else {
+                *(u32 *)(node + 0xa8) = one;
+                *(u8 *)(node + 0xb0) |= 1;
+            }
+        }
+        node = *(u8 **)(node + 0xa4);
+    }
+}
+
+u8 func_020a6d54(u8 *arg0) {
+    s32 left, right, bottom, top;
+    s16 x, y;
+    if (arg0 == NULL) {
+        return 0;
+    }
+    if (data_02162908[2] == 0) {
+        return 0;
+    }
+    left = *(u32 *)(arg0 + 0xc) + *(u32 *)(arg0 + 0);
+    right = left + *(s16 *)(arg0 + 0x2c);
+    bottom = *(u32 *)(arg0 + 0x10) + *(u32 *)(arg0 + 4);
+    top = bottom + *(s16 *)(arg0 + 0x2e);
+    x = data_02162908[0];
+    y = data_02162908[1];
+    if (x < left || x > right || y < bottom || y > top) {
+        return 0;
+    }
+    return 1;
+}
+
+s32 func_020a6dd8(u32 arg0, u32 arg1) {
+    u8 *g = data_021600e4;
+    switch (arg0) {
+    case 0:
+        *(u32 *)(g + 0x13ec) = 0;
+        break;
+    case 1:
+        *(u32 *)(g + 0x13ec) |= arg1;
+        break;
+    case 2:
+        *(u32 *)(g + 0x13ec) &= ~arg1;
+        break;
+    case 3:
+        if (*(u32 *)(g + 0x13ec) & arg1) {
+            return 1;
+        }
+        break;
+    }
+    return 0;
+}
+
+void *func_020a6e50(void *arg0) {
+    u8 *p = func_0210c594(0x3c, data_02155c3c);
+    *(u32 *)(p + 0x18) = 0x1000;
+    *(u32 *)(p + 0x1c) = 0x1000;
+    func_021167f0(arg0, p);
+    return p;
+}
+
 void func_020a6e90(void **arg0) {
     void *ptr;
     while ((ptr = *arg0) != NULL) {
@@ -86,6 +167,12 @@ void func_020a6e90(void **arg0) {
 }
 
 void func_020a745c(void) {
+}
+
+void *func_020a7460(void) {
+    u8 *p = func_0210c594(0x18, data_02155c3c);
+    *(void **)(p + 4) = func_0210c594(0x54, data_02155c3c);
+    return p;
 }
 
 void func_020a7494(void **arg0) {
