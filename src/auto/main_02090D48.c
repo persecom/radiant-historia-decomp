@@ -5,6 +5,10 @@ typedef struct {
     u16 unk[10];
 } Unk20;
 
+typedef struct {
+    s16 f0, f1, f2, f3, f4, f5, f6, f7, f8, f9;
+} Unk20s;
+
 extern const Unk20 data_02140f54;
 extern const Unk20 data_02140f68;
 extern const Unk20 data_02141120;
@@ -30,6 +34,93 @@ if(kind==1) {
 s32 end=extra+(px+w);
 ((s16 *)b.unk)[1]=1;((s16 *)b.unk)[2]=0;((s16 *)b.unk)[3]=2;((s16 *)b.unk)[5]=end;((s16 *)b.unk)[6]=y;((s16 *)b.unk)[8]=w2;func_021098ac(&b);
 ((s16 *)b.unk)[1]=2;((s16 *)b.unk)[2]=0;((s16 *)b.unk)[8]=2;((s16 *)b.unk)[3]=2;((s16 *)b.unk)[5]=w2+end;((s16 *)b.unk)[6]=y;func_021098ac(&b);
+}
+
+void func_02091814(s32 mode, s16 x, s16 y, s16 w, s16 h, s16 arg5, s16 arg6, s16 z, s32 arg8, s16 arg9, s32 arg10, s32 arg11) {
+    Unk20 b = data_02140f68;
+    s16 i;
+
+    *(volatile u32 *)0x040004A4 = 0x000C00C0;
+    func_020a3bbc(0x4d);
+    ((s16 *)b.unk)[7] = z;
+
+    for (i = 0; i < 2; i++) {
+        ((s16 *)b.unk)[1] = 0x12;
+        ((s16 *)b.unk)[2] = i * (arg6 - arg8);
+        ((s16 *)b.unk)[8] = arg8;
+        ((s16 *)b.unk)[9] = arg10;
+        ((s16 *)b.unk)[3] = ((s16 *)b.unk)[8];
+        ((s16 *)b.unk)[4] = ((s16 *)b.unk)[9];
+        ((s16 *)b.unk)[5] = x;
+        ((s16 *)b.unk)[6] = y + i * (h - arg10);
+        func_021098ac(&b);
+
+        ((s16 *)b.unk)[1] = arg5 + 0x12 - arg8;
+        ((s16 *)b.unk)[2] = i * (arg6 - arg8);
+        ((s16 *)b.unk)[8] = arg8;
+        ((s16 *)b.unk)[9] = arg10;
+        ((s16 *)b.unk)[3] = ((s16 *)b.unk)[8];
+        ((s16 *)b.unk)[4] = ((s16 *)b.unk)[9];
+        ((s16 *)b.unk)[5] = x + w - arg8;
+        ((s16 *)b.unk)[6] = y + i * (h - arg10);
+        func_021098ac(&b);
+
+        ((s16 *)b.unk)[1] = i * (arg5 - arg8) + 0x12;
+        ((s16 *)b.unk)[2] = arg11;
+        ((s16 *)b.unk)[3] = arg8;
+        ((s16 *)b.unk)[4] = arg10;
+        ((s16 *)b.unk)[5] = x + i * (w - arg8);
+        ((s16 *)b.unk)[6] = y + arg10;
+        ((s16 *)b.unk)[8] = arg8;
+        ((s16 *)b.unk)[9] = h - arg10 * 2;
+        func_021098ac(&b);
+    }
+
+    if (mode == 0) {
+        ((s16 *)b.unk)[1] = arg8 + 0x12;
+        ((s16 *)b.unk)[2] = 0;
+        ((s16 *)b.unk)[3] = arg9;
+        ((s16 *)b.unk)[4] = arg6;
+        ((s16 *)b.unk)[5] = x + arg8;
+        ((s16 *)b.unk)[6] = y;
+        ((s16 *)b.unk)[8] = w - arg8 * 2;
+        ((s16 *)b.unk)[9] = h;
+        func_021098ac(&b);
+    } else {
+        ((s16 *)b.unk)[1] = arg9 + 0x12;
+        ((s16 *)b.unk)[2] = 0;
+        ((s16 *)b.unk)[3] = arg8;
+        ((s16 *)b.unk)[4] = arg10;
+        ((s16 *)b.unk)[5] = x + arg8;
+        ((s16 *)b.unk)[6] = y;
+        ((s16 *)b.unk)[8] = w - arg8 * 2;
+        ((s16 *)b.unk)[9] = arg10;
+        func_021098ac(&b);
+
+        if (w > arg8 * 2 && h > arg10 * 2) {
+            ((s16 *)b.unk)[1] = arg9 + 0x12;
+            ((s16 *)b.unk)[4] = arg11;
+            ((s16 *)b.unk)[2] = ((s16 *)b.unk)[4];
+            ((s16 *)b.unk)[3] = arg9;
+            ((s16 *)b.unk)[5] = x + arg8;
+            ((s16 *)b.unk)[6] = y + arg10;
+            ((s16 *)b.unk)[8] = w - arg8 * 2;
+            ((s16 *)b.unk)[9] = h - arg10 * 2;
+            func_021098ac(&b);
+        }
+
+        ((s16 *)b.unk)[1] = arg9 + 0x12;
+        ((s16 *)b.unk)[2] = arg6 - arg10;
+        ((s16 *)b.unk)[3] = arg8;
+        ((s16 *)b.unk)[4] = arg10;
+        ((s16 *)b.unk)[5] = x + arg8;
+        ((s16 *)b.unk)[6] = y + h - arg10;
+        ((s16 *)b.unk)[8] = w - arg8 * 2;
+        ((s16 *)b.unk)[9] = arg10;
+        func_021098ac(&b);
+    }
+
+    *(volatile u32 *)0x040004A4 = 0x001F00C0;
 }
 
 void func_02091b38(s32 kind, s16 x, s16 y, s16 dx, s16 dy, s16 z) {
