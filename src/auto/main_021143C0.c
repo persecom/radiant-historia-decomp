@@ -264,6 +264,63 @@ void func_02114a38(void) {
     }
 }
 
+void func_02114c28(void) {
+    s32 tag;
+    if (*(s32 *)(data_0216c9bc + 0) == 0) {
+        return;
+    }
+    func_020095a8(
+        *(void **)(data_0216c9bc + 0x24),
+        *(s32 *)(data_0216c9bc + 0x28),
+        *(s32 *)(data_0216c9bc + 0x2c) >= 0 ? (1u << *(s32 *)(data_0216c9bc + 0x2c)) : 0,
+        0);
+    tag = func_02009d2c();
+    func_02009b24(1);
+    func_02009cc0(tag);
+}
+
+void func_02114c80(void) {
+    if (*(s32 *)(data_0216c9bc + 0) == 0) {
+        return;
+    }
+    *(s32 *)(data_0216c9bc + 0x1c) = 0;
+    func_02008e24(0, *(void **)(data_0216c9bc + 0xc), *(u32 *)(data_0216c9bc + 0x14));
+    func_02008e24(0, *(void **)(data_0216c9bc + 0x10), *(u32 *)(data_0216c9bc + 0x14));
+    func_02006dc4(*(void **)(data_0216c9bc + 0xc), *(u32 *)(data_0216c9bc + 0x14));
+    func_02006dc4(*(void **)(data_0216c9bc + 0x10), *(u32 *)(data_0216c9bc + 0x14));
+    func_02009580(
+        *(void **)(data_0216c9bc + 0x24),
+        *(s32 *)(data_0216c9bc + 0x28),
+        *(s32 *)(data_0216c9bc + 0x2c) >= 0 ? (1u << *(s32 *)(data_0216c9bc + 0x2c)) : 0,
+        0);
+}
+
+void func_02114d00(u8 *arg0, void *arg1, s32 arg2, s32 arg3) {
+    *(s32 *)(arg0 + 0x98) = 0;
+    *(s32 *)(arg0 + 0x90) = 0;
+    *(s32 *)(arg0 + 0x94) = 0;
+    *(s32 *)(arg0 + 0x9c) = 0;
+    *(s32 *)(arg0 + 0x84) = 0;
+    *(s32 *)(arg0 + 0x88) = 0;
+    *(s32 *)(arg0 + 0x8c) = 0;
+    if (func_0200b8fc(arg0 + 0x7c, arg1) != 0) {
+        func_0200b888(arg0 + 0x34);
+        if (func_0200b9c8(arg0 + 0x34, *(UnkPair8 *)(arg0 + 0x7c)) == 0) {
+            return;
+        }
+    } else {
+        *(s32 *)(arg0 + 0x7c) = 0;
+        *(s32 *)(arg0 + 0x80) = -1;
+        if (func_0200ba20(arg0 + 0x34, arg1, 1, -1) == 0) {
+            return;
+        }
+    }
+    *(s32 *)(arg0 + 0x30) = 1;
+    if (func_02114db8(arg0, arg2, arg3) != 0) {
+        data_0216cad0[0] = (u32)arg0;
+    }
+}
+
 u32 func_02114f58(u32 arg0) {
     u32 old = data_0216cad0[0];
     data_0216cad0[0] = arg0;
