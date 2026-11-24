@@ -30,6 +30,88 @@ extern const UnkBuf10_020e3f30 data_021449d4;
 extern u8 *data_02160a74;
 extern const UnkBuf10_020e3f30 data_021449fc;
 extern const UnkBuf30_020e3f30 data_02144a24;
+void func_020e3a9c(void) {
+UnkBuf10_020e3f30 buf;
+s16 selected;
+int offset;
+u16 i;
+buf=data_02144a10;
+offset=0;
+func_020a3bbc(0x49);
+buf.data[1]=0;
+buf.data[3]=0x4f;
+buf.data[4]=0x11;
+buf.data[8]=0x4f;
+buf.data[9]=0x11;
+buf.data[5]=4;
+buf.data[7]=0x2c6;
+if(data_02160204[0x11c]==1) {for(i=0;i<7;i++) {
+if(*(s16*)(data_02160a74+0xbc)!=i) {
+buf.data[2]=i*17;
+buf.data[6]=i*17+4;
+func_021098ac(buf.data);
+}
+}
+} else if(data_02160204[0x11c]==0) {for(i=0;i<6;i++) {
+if(*(s16*)(data_02160a74+0xbc)!=i) {
+buf.data[2]=i*17;
+buf.data[6]=i*17+4;
+func_021098ac(buf.data);
+}
+}
+}
+selected=*(s16*)(data_02160a74+0xbc)*17;
+func_020a3bbc(0x4b);
+buf.data[1]=0;
+buf.data[3]=0x4f;
+buf.data[4]=0x11;
+buf.data[8]=0x4f;
+buf.data[9]=0x11;
+buf.data[5]=4;
+buf.data[7]=0x2c7;
+if(data_02160204[0x11c]==1) {for(i=0;i<7;i++) {
+if(!(*(u16*)(data_02160a74+0x1b0)&(1<<i))) {
+buf.data[2]=i*17;
+buf.data[6]=i*17+4;
+func_021098ac(buf.data);
+}
+}
+} else if(data_02160204[0x11c]==0) {for(i=0;i<6;i++) {
+if(!(*(u16*)(data_02160a74+0x1b0)&(1<<i))) {
+buf.data[2]=i*17;
+buf.data[6]=i*17+4;
+func_021098ac(buf.data);
+}
+}
+}
+if(func_020df38c(3,0x20000)) offset=1;
+if(!(*(u16*)(data_02160a74+0x1b0)&(1<<*(s16*)(data_02160a74+0xbc)))) {
+func_020a3bbc(0x4c);
+buf.data[1]=0;
+buf.data[2]=selected;
+buf.data[3]=0x4f;
+buf.data[4]=0x11;
+buf.data[8]=0x4f;
+buf.data[9]=0x11;
+buf.data[5]=offset+4;
+buf.data[6]=offset+(*(s16*)(data_02160a74+0xbc)*17+4);
+buf.data[7]=0x2c8;
+func_021098ac(buf.data);
+} else {
+func_020a3bbc(0x4a);
+buf.data[1]=0;
+buf.data[2]=selected;
+buf.data[3]=0x4f;
+buf.data[4]=0x11;
+buf.data[8]=0x4f;
+buf.data[9]=0x11;
+buf.data[5]=offset+4;
+buf.data[6]=offset+(*(s16*)(data_02160a74+0xbc)*17+4);
+buf.data[7]=0x2c8;
+func_021098ac(buf.data);
+}
+}
+
 void func_020e3db4(u16 *arg0, s32 arg1, s32 arg2) {
     arg0[1] = 0;
     arg0[2] = 0;
