@@ -68,6 +68,7 @@ typedef struct {
     u16 unkA2;
     Flags_0210afcc flags;
 } Unk_0210afcc;
+typedef struct { u8 pad[0x100]; Unk_0210afcc sub; } Unk_0210b300;
 
 extern void func_0210b300();
 extern u8 data_02170248[];
@@ -472,6 +473,39 @@ u8 *func_0210b27c(u8 *arg0, s32 arg1) {
         *(volatile u16 *)(p + 0xa4) &= ~0x10;
         return p;
     }
+}
+
+void func_0210b300(u8 *p) {
+u32 zero=0; s32 *anim; u8 *model; u32 scale[3]; u32 attr;
+Unk_0210afcc *s=(Unk_0210afcc *)(p+0x100);
+if(!s->flags.bit0)return;
+anim=(*(s32 ***)(p+0x140))[s->unkA2];
+if(anim && s->flags.bit3) {
+if(*(void **)(p+0x1b0)) {(*(void (**)(u32))(p+0x1b0))(*(u32 *)(p+0x1ac));*(u32 *)(p+0x1b0)=zero;}
+if(!s->flags.bit7) {
+anim[0]+=*(s32 *)(p+0x104);
+if(anim[0]>=(*(u16 *)((u8 *)anim[2]+4)<<12)) {
+if(s->flags.bit5)anim[0]=zero;
+else {func_0210b27c(p,zero);if(*(void **)(p+0x1b4)) {(*(void (**)(u32))(p+0x1b4))(*(u32 *)(p+0x1ac));*(u32 *)(p+0x1b4)=zero;}}
+}
+} else {
+anim[0]-=*(s32 *)(p+0x104);
+if(anim[0]<=0) {
+if(s->flags.bit5)anim[0]=*(u16 *)((u8 *)anim[2]+4)<<12;
+else {func_0210b27c(p,zero);if(*(void **)(p+0x1b4)) {(*(void (**)(u32))(p+0x1b4))(*(u32 *)(p+0x1ac));*(u32 *)(p+0x1b4)=zero;}}
+}
+}
+}
+model=*(u8 **)(p+0x108);
+if(model) {
+func_02120754(model,0,0,*(u32 *)(p+0x10c));
+scale[0]=scale[1]=scale[2]=*(u32 *)(*(u8 **)(model+4)+0x1c);
+func_021205ec(0x1b,scale,3);
+}
+func_021205ec(0x17,data_02170248,12);
+attr=(*(s8 *)(p+0x128)|(*(u32 *)(p+0x12c)<<4)|(*(u32 *)(p+0x130)<<6)|*(u32 *)(p+0x138))|(*(s8 *)(p+0x134)<<24)|(*(s8 *)(p+0x135)<<16);
+func_021205ec(0x29,&attr,1);
+func_0211e078(p);
 }
 
 extern void func_021167ac(void *, s32);
