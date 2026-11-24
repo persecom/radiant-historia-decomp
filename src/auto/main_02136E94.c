@@ -60,6 +60,23 @@ extern u8 data_0215c398[12];
 extern u8 data_0215c3a4[32];
 extern void func_021369b4(void);
 extern void func_02136f8c(u32, u32, u32);
+void func_02136e94(u8 *arg0, s32 arg1, s32 arg2, u32 *arg3) {
+ if(arg0==NULL) {func_021369e0(data_0215c090,data_0215c09c); return;}
+ if(*(u32 *)(arg0+4)==0) {func_021369e0(data_0215c0b8,data_0215c0c4); return;}
+ if(arg1==0) {arg3[1]=0; arg3[0]=0;}
+ else if(arg1==1) {
+ s32 count=*(s32 *)(arg0+0xc);
+ if(count>=arg2) count=arg2;
+ arg3[1]=count;
+ arg3[0]=*(u32 *)(arg0+0x14)+*(u32 *)(arg0+0x10);
+ *(u32 *)(arg0+0x10)+=count;
+ *(u32 *)(arg0+0xc)-=arg3[1];
+ } else {
+ arg3[1]=0; arg3[0]=0;
+ if(*(u32 *)(arg0+0x1c)!=0) ((void (*)(u32,s32))(*(u32 *)(arg0+0x1c)))(*(u32 *)(arg0+0x20),-3);
+ }
+}
+
 void func_02136f60(u32 arg0, u32 arg1, u32 arg2) {
     func_021369a8();
     func_02136f8c(arg0, arg1, arg2);
