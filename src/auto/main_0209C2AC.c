@@ -1,5 +1,9 @@
 /* 16 functions from 0x0209C2AC to 0x0209D0F0 (main), found by ds-decomp. */
 #include "common.h"
+extern u8 *data_02160110;
+extern u8 *data_02160a74;
+u8 **func_02032254(u16);
+void func_020a8810(u32, s32);
 
 typedef struct {
     u16 unk[10];
@@ -126,6 +130,24 @@ void func_0209ca84(u32 arg0, u16 arg1, u16 arg2, u16 arg3) {
     buf.unk[6] = arg2;
     buf.unk[7] = arg3;
     func_021098ac(&buf);
+}
+
+u32 func_0209cb14(s32 cmd, u32 mask) {
+    u8 *base = data_02160120;
+    u32 ret;
+    if (cmd == 0) {
+        ret = 0;
+        *(u16 *)(base + 0x738) = 0;
+    } else if (cmd == 1) {
+        ret = *(u16 *)(base + 0x738) | (u16)mask;
+        *(u16 *)(base + 0x738) = (u16)ret;
+    } else if (cmd == 2) {
+        ret = *(u16 *)(base + 0x738) & (u16)~mask;
+        *(u16 *)(base + 0x738) = (u16)ret;
+    } else if (cmd == 3) {
+        return (*(u16 *)(base + 0x738) & mask) != 0;
+    }
+    return ret;
 }
 
 u32 func_0209cb98(void) {
