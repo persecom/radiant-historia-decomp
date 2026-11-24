@@ -393,6 +393,23 @@ void func_02117ddc(u32 *arg0) {
     *(u16 *)(arg0 + 3) = 0;
 }
 
+void func_02117df4(void *arg0) {
+    u8 *a = arg0;
+    u8 *p = *(u8 **)(a + 0x1c);
+    s32 cond = *(s32 *)(a + 0x14) > 0;
+    u32 field8 = *(u32 *)(a + 8);
+    u32 addr;
+    if (cond != field8) {
+        addr = *(u32 *)(p + 0xc) + (*(u16 *)(p + 2) << 3);
+    } else {
+        addr = *(u32 *)(p + 0xc) + (*(u16 *)(p + 0) << 3) - 8;
+    }
+    *(u32 *)(a + 0) = addr;
+    *(u32 *)(a + 4) = addr;
+    *(u32 *)(a + 0x10) = 0;
+    func_02117be0(arg0);
+}
+
 void func_02117e4c(void *arg0, void *arg1) {
     *(void **)((u8 *)arg0 + 0x1c) = arg1;
     func_02117df4(arg0);
@@ -406,5 +423,103 @@ extern void func_02008e08(void *, u32, u32);
 extern void func_021178b4(u8 *);
 void func_02117e70(void *arg0, u32 arg1, u32 arg2) {
     func_02008e08(arg0, arg1 + 0x07000000, arg2);
+}
+
+extern u8 data_0216e374[];
+extern u8 data_0216e8b4[];
+extern u8 data_0216edf4[];
+extern u8 data_0216e7b4[];
+extern u8 data_0216ecf4[];
+extern u8 data_0216e774[];
+extern u8 data_0216ecb4[];
+extern u8 data_0216f1f4[];
+void func_02117e80(void) {
+    func_02008df0(0xc0, data_0216e374, 0x400);
+    func_02008df0(0xc0, data_0216e8b4, 0x400);
+    func_02008df0(0xc0, data_0216edf4, 0x400);
+    func_02008df0(0xffff, data_0216e274, 0x100);
+    func_02008df0(0xffff, data_0216e7b4, 0x100);
+    func_02008df0(0xffff, data_0216ecf4, 0x100);
+    func_02008df0(0xffff, data_0216e774, 0x40);
+    func_02008df0(0xffff, data_0216ecb4, 0x40);
+    func_02008df0(0xffff, data_0216f1f4, 0x40);
+}
+
+s32 func_02117f54(u8 *arg0, u16 arg1, u16 arg2, s32 arg3) {
+    u8 *row = data_0216e274 + arg3 * 0x540;
+    u16 *p = (u16 *)(row + arg1 * 2);
+    u16 *end = (u16 *)(row + arg2 * 2);
+    s32 ok = 1;
+    for (; p <= end; p++) {
+        if (*p != 0xffff) {
+            ok = 0;
+            break;
+        }
+    }
+    if (!ok) {
+        return 0;
+    }
+    {
+        u16 id = data_0216e270;
+        data_0216e270 = id + 1;
+        *(u16 *)(arg0 + 6) = arg2;
+        *(u16 *)(arg0 + 0x10) = id;
+        *(u16 *)(arg0 + 4) = arg1;
+        *(u16 *)(arg0 + 8) = arg1;
+        *(u16 *)(arg0 + 0xa) = 0x20;
+        *(u16 *)(arg0 + 0xc) = 0;
+        *(u32 *)(arg0 + 0) = arg3;
+        *(u32 *)(arg0 + 0x14) = 0;
+        func_02008df0(id, row + arg1 * 2, (arg2 - arg1 + 1) * 2);
+    }
+    return 1;
+}
+
+s32 func_02118008(u8 *arg0, u16 arg1, u16 arg2) {
+    u8 *row = data_0216e274 + *(u32 *)(arg0 + 0) * 0x540 + 0x500;
+    u16 *p = (u16 *)(row + arg1 * 2);
+    u16 *end = (u16 *)(row + arg2 * 2);
+    s32 ok = 1;
+    for (; p <= end; p++) {
+        if (*p != 0xffff) {
+            ok = 0;
+            break;
+        }
+    }
+    if (!ok) {
+        return 0;
+    }
+    {
+        s32 count = arg2 - arg1 + 1;
+        *(u16 *)(arg0 + 0xc) = arg2;
+        *(u16 *)(arg0 + 0xa) = arg1;
+        *(u16 *)(arg0 + 0xe) = arg1;
+        *(u32 *)(arg0 + 0x14) = 0;
+        func_02008df0(*(u16 *)(arg0 + 0x10), row + arg1 * 2, count * 2);
+    }
+    return 1;
+}
+
+s32 func_02118178(u8 *arg0, s32 *arg1) {
+    u16 count = *(u16 *)(arg0 + 0xc);
+    u16 idx = *(u16 *)(arg0 + 0xe);
+    s32 room;
+    if (idx > count + 1 || *(u16 *)(arg0 + 0xa) > count) {
+        return 0xfffe;
+    }
+    room = (u16)(count - idx + 1);
+    if (room < 1) {
+        return 0xfffe;
+    }
+    {
+        u32 bank = *(u32 *)(arg0 + 0);
+        u8 *entry = data_0216e274 + bank * 0x540 + 0x100 + idx * 0x20;
+        *(u16 *)(entry + 6) = arg1[0] >> 4;
+        *(u16 *)(entry + 0xe) = arg1[1] >> 4;
+        *(u16 *)(entry + 0x16) = arg1[2] >> 4;
+        *(u16 *)(entry + 0x1e) = arg1[3] >> 4;
+        *(u16 *)(arg0 + 0xe) = idx + 1;
+        return idx;
+    }
 }
 
