@@ -110,9 +110,10 @@ void func_02010738(u32 arg0) {
 
 void func_0201088c(void) {
     u32 zero = 0;
+    u32 mask = zero - 0x2000;
     func_020106b8(0xb5, zero);
     do {
-        *(volatile u32 *)0x40001a4 = (*(volatile u32 *)0x2fffae0 & ~0x07000000 | 0xa0000000) & (zero - 0x2000);
+        *(volatile u32 *)0x40001a4 = ((*(volatile u32 *)0x2fffae0 & ~0x07000000) | 0xa0000000) & mask;
     } while (*(volatile u32 *)0x40001a4 & 0x80000000);
 }
 
@@ -168,10 +169,33 @@ void func_02010b10(void) {
 }
 
 s32 func_02010b40(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
-    return (arg0 <= 3) && (arg3 != 0) && ((arg1 & 0x1f) == 0) &&
-           (((arg1 + arg3) <= (u32)func_01ff8000) || (arg1 >= 0x02000000)) &&
-           (((arg1 + arg3) <= func_02007490()) || (arg1 >= func_02007490() + 0x4000)) &&
-           (((arg2 | arg3) & 0x1ff) == 0);
+    s32 ret = 0;
+    s32 ok2 = 0;
+    s32 ok1 = 0;
+    if ((arg0 <= 3) && (arg3 != 0) && ((arg1 & 0x1f) == 0)) {
+        s32 in_itcm = 1;
+        if ((arg1 + arg3 > (u32)func_01ff8000) && (arg1 < 0x02000000)) {
+            in_itcm = 0;
+        }
+        if (in_itcm) {
+            ok1 = 1;
+        }
+    }
+    if (ok1) {
+        s32 in_dtcm = 1;
+        if ((arg1 + arg3 > func_02007490()) && (arg1 < func_02007490() + 0x4000)) {
+            in_dtcm = 0;
+        }
+        if (in_dtcm) {
+            ok2 = 1;
+        }
+    }
+    if (ok2) {
+        if (((arg2 | arg3) & 0x1ff) == 0) {
+            ret = 1;
+        }
+    }
+    return ret;
 }
 
 void func_02010bf4(u8 *arg0) {
