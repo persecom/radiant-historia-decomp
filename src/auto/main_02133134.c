@@ -261,6 +261,25 @@ void func_021336e8(void) {
     func_020182e4();
 }
 
+u32 func_02133750(void *arg0, void *arg1) {
+    s8 *ptr;
+    u32 ret;
+
+    if ((u32)func_02016da4(arg0) >= 0x12) {
+        func_021336c0(0, NULL);
+    }
+
+    ptr = (s8 *)arg0;
+    ret = func_021336f4(arg0, &ptr, 0x10);
+    if (*ptr != 0) {
+        ptr++;
+    }
+    if (arg1 != NULL) {
+        *(u32 *)arg1 = ((u32 (*)(s8 *, s8 **, s32))func_021336e8)(ptr, &ptr, 0x10);
+    }
+    return ret;
+}
+
 void func_021337c4(void) {
 }
 
