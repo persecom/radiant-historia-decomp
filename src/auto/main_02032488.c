@@ -1,5 +1,10 @@
 /* 38 functions from 0x02032488 to 0x020333B8 (main), found by ds-decomp. */
 #include "common.h"
+static inline u16 count_020327b4(u8 *p) {
+u16 n=0;
+while(p) { n++; p=*(u8 **)(p+0x24); }
+return n;
+}
 extern u8 *data_02160244;
 extern u8 *data_02160204;
 extern void func_020321cc(s32);
@@ -31,6 +36,39 @@ extern void func_0205bc60(void *, u8 *, s32);
 extern void func_020020f8(void *, void *, void *);
 
 extern void func_020c2e80(void);
+void func_020327b4(void) {
+u16 i, count;
+u8 *p;
+func_020321cc(4);
+if (*(u16 *)(data_02160090+0x50)==0) {
+u16 n=0;
+data_02160090[0x7f]=0;
+if (*(u32 *)(data_02160244+0x7c)&0x20) {
+if (*(u16 *)(data_02160244+0xf4)==3) func_02032488(3);
+else if (*(u16 *)(data_02160244+0xf4)==4) func_02032488(4);
+else if (*(u16 *)(data_02160244+0xf4)==5) func_02032488(5);
+} else {
+if(data_02160204[0x8d]==1) func_02032488(1);
+else if(data_02160204[0x8d]==2) func_02032488(2);
+else {
+func_02032354(1);
+p=*(u8 **)(data_02160090+0x48);
+while(p) { n++; p=*(u8 **)(p+0x24); }
+}
+}
+} else func_02032354(0);
+i=0; count=0;
+for (;;) {
+p=func_020c2dd8(i);
+if(p) {
+func_02031da0(*(u8 **)(p+4),*(s32 *)(p+12),*(u8 **)(p+8),(s32)p,i);
+count++;
+if(count==11) return;
+}
+i++;
+}
+}
+
 void func_020328fc(void) {
     u8 *node = *(u8 **)(data_02160090 + 0x14);
     s32 count;
