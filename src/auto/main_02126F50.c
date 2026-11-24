@@ -23,6 +23,37 @@ extern double func_0201dea0(double);
 extern double func_0201e69c(double);
 extern double func_0201e6b4(double);
 extern double func_0201e6c0(double, double);
+s32 func_02126f50(u8 *arg0,s32 arg1) {
+f32 val;
+if(arg1==0)return -960;
+if(arg1==3238200)return 0;
+switch(*(s8 *)(arg0+0x18)){
+default: case 0:
+val=200.0*func_0201e6b4((f64)((f32)arg1/3238200.0f));
+break;
+case 1:
+val=-960.0f+960.0f*((f32)arg1/3238200.0f);
+break;
+case 2:
+val=3238200.0f*(f32)func_0201e518((f64)(1.57079637f*(f32)arg1/3238200.0f));
+val=200.0*func_0201e6b4((f64)(val/3238200.0f));
+break;
+case 3:
+val=3238200.0f*(1.0f-(f32)func_0201dea0((f64)(1.57079637f*(f32)arg1/3238200.0f)));
+val=200.0*func_0201e6b4((f64)(val/3238200.0f));
+break;
+case 4:
+{
+f32 scale=(f32)func_0201e6b4(960.0);
+val=0.0f-(f32)func_0201e6c0(10.0,(f64)(scale*(f32)(3238200-arg1)/3238200.0f));
+}
+break;
+}
+if(val<=-960.0f)val=-960.0f;
+if(val>=0.0f)val=0.0f;
+return (s32)val;
+}
+
 s32 func_0212716c(u8 *arg0, s32 arg1) {
     f32 val;
 
