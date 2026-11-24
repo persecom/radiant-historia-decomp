@@ -64,13 +64,15 @@ extern void func_02001d9c(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 
 extern void func_02002bbc();
 extern void func_02002e58(void);
 void func_02002880(volatile u32 *reg, const s32 *mtx, s32 centerX, s32 centerY, s32 x1, s32 y1) {
-    s32 dx = mtx[0] * (x1 - centerX) + mtx[1] * (y1 - centerY);
-    s32 dy = mtx[2] * (x1 - centerX) + mtx[3] * (y1 - centerY);
-    s32 x2 = dx + (centerX << 12);
-    s32 y2 = dy + (centerY << 12);
+    s32 x2;
+    s32 y2;
 
     reg[0] = (u16)((mtx[0] << 12) >> 16) | ((u16)((mtx[1] << 12) >> 16) << 16);
     reg[1] = (u16)((mtx[2] << 12) >> 16) | ((u16)((mtx[3] << 12) >> 16) << 16);
+
+    x2 = mtx[0] * (x1 - centerX) + mtx[1] * (y1 - centerY) + (centerX << 12);
+    y2 = mtx[2] * (x1 - centerX) + mtx[3] * (y1 - centerY) + (centerY << 12);
+
     reg[2] = (u32)(x2 >> 4);
     reg[3] = (u32)(y2 >> 4);
 }
@@ -110,6 +112,12 @@ void func_02002bd8(void *arg0) {
 void func_02002bf4(void *arg0) {
     *(volatile u32 *)0x04000400 = 0x19;
     func_020055b0(arg0);
+}
+
+extern void func_02008f08(void *);
+void func_02002c10(void *arg0) {
+    *(volatile u32 *)0x04000400 = 0x1a;
+    func_02008f08(arg0);
 }
 
 void func_02002d30(void) {
