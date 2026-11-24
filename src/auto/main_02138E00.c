@@ -159,6 +159,18 @@ void func_0213905c(u8 *arg0) {
     func_02126c0c();
 }
 
+void func_0213937c(void *arg0, void *arg1) {
+ u32 *p=arg1; void *obj;
+ switch(p[0]) {
+ case 0: obj=*(void **)((u8 *)arg0+8); (*(void (**)(void *,u32))(*(u8 **)obj+8))(obj,p[1]); break;
+ case 1: obj=*(void **)((u8 *)arg0+8); (*(void (**)(void *,u32))(*(u8 **)obj+12))(obj,p[1]); break;
+ case 2: obj=*(void **)((u8 *)arg0+8); (*(void (**)(void *,u32,u32,u32))(*(u8 **)obj+16))(obj,p[1],p[8],p[9]); break;
+ case 3: obj=*(void **)((u8 *)arg0+8); (*(void (**)(void *,u32,u32))(*(u8 **)obj+20))(obj,p[2],p[3]); break;
+ case 4: obj=*(void **)((u8 *)arg0+8); (*(void (**)(void *,u32,u32))(*(u8 **)obj+24))(obj,p[4],p[5]); break;
+ case 5: obj=*(void **)((u8 *)arg0+8); (*(void (**)(void *,u32,u32))(*(u8 **)obj+28))(obj,p[6],p[7]); break;
+ }
+}
+
 void func_02139450(u8 *arg0, u8 *arg1, s32 arg2, u8 arg3) {
     void *r5 = *(void **)(arg1 + 8);
     void *obj;
