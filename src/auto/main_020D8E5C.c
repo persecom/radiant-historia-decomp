@@ -175,6 +175,15 @@ void func_020d9da8(u32 arg0) {
     *(u32 *)(data_02160258 + 0x7c) &= ~arg0;
 }
 
+void func_020d9dc8(u32 arg0, u32 arg1, u16 arg2, u16 arg3) {
+    u8 *p = data_02160258;
+    *(u32 *)(p + 0x4c) = arg0;
+    *(u32 *)(p + 0x80) = arg1;
+    *(u16 *)(p + 0x50) = arg2;
+    *(u16 *)(p + 0x74) = arg3;
+    *(u32 *)(p + 0x58) = 0;
+}
+
 void *func_020d9df4(void) {
     return *(void **)(data_02160258 + 0x80);
 }
