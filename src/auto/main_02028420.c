@@ -16,7 +16,7 @@ static inline u16 Random_02028420(u32 max) {
  return (u16)(((x>>16)*max)>>16);
 }
 extern char data_02146164[];
-static inline u16 RandomA_02028420(u16 max) {
+static inline u16 RandomA_02028420(u32 max) {
  u32 x=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
  data_0216263c[0]=x;
  if(max!=0)x=(x>>16)*max;
@@ -27,12 +27,14 @@ s32 func_02028420(u8 *arg0, u8 *arg1)
 {
   u8 *src = arg1;
   u8 *self = arg0;
-  u32 mask = 0;
+  u32 mask;
+  u8 *obj = NULL;
   const char *s;
   s16 v1;
   s16 cmd;
   s16 v2;
   s32 is32 = 0;
+  mask = 0;
   u8 *node;
   s = func_020929f4(src, 0);
   if (func_02026e9c(2, s, data_02146164) != 0)
@@ -110,7 +112,7 @@ s32 func_02028420(u8 *arg0, u8 *arg1)
       case 11:
       {
         u8 *list = *((u8 **) ((*((u8 **) (self + 0x12c))) + 0x1c));
-        u8 *obj = NULL;
+        obj = NULL;
         s32 found = 0;
         u8 *n = NULL;
         if (list == NULL)
@@ -150,7 +152,7 @@ s32 func_02028420(u8 *arg0, u8 *arg1)
       case 13:
       {
         u8 *list = *((u8 **) ((*((u8 **) (self + 0x12c))) + 0x1c));
-        u8 *obj = NULL;
+        obj = NULL;
         u8 *n = NULL;
         s32 found = 0;
         if (list == NULL)
@@ -190,7 +192,7 @@ s32 func_02028420(u8 *arg0, u8 *arg1)
       case 23:
       {
         u8 *list = *((u8 **) ((*((u8 **) (self + 0x12c))) + 0x1c));
-        u8 *obj = NULL;
+        obj = NULL;
         u8 *n = NULL;
         s32 found = 0;
         if (list == NULL)
@@ -204,8 +206,7 @@ s32 func_02028420(u8 *arg0, u8 *arg1)
           if ((*((u8 *) (*((u8 **) (obj + 0x118))))) == 0)
           {
             found = 1;
-            mask = cmd != 21;
-            if (!mask)
+            if (cmd == 21)
             {
               *((u8 **) ((*((u8 **) (((u8 *) (&data_0216007c)) + 4))) + 0x3c)) = obj;
               return (s32) obj;
@@ -232,11 +233,12 @@ s32 func_02028420(u8 *arg0, u8 *arg1)
       case 28:
       {
         u8 *arr[9] = {NULL};
-        u8 cnt = is32;
+        u32 cnt = 0;
         u32 x;
         u32 idx;
-        node = *((u8 **) (data_02160a6c + 0xb8));
+        u8 **items = arr;
         mask |= 1U << v1;
+        node = *((u8 **) (data_02160a6c + 0xb8));
         while (node != NULL)
         {
           u8 *info = *((u8 **) (node + 0x118));
@@ -246,7 +248,8 @@ s32 func_02028420(u8 *arg0, u8 *arg1)
             {
               if ((*((u32 *) (info + 0x78))) & mask)
               {
-                arr[cnt++] = node;
+                arr[cnt] = node;
+                  cnt = (u8)(cnt + 1);
               }
             }
             else
@@ -254,7 +257,8 @@ s32 func_02028420(u8 *arg0, u8 *arg1)
             {
               if (!((*((u32 *) (info + 0x78))) & mask))
               {
-                arr[cnt++] = node;
+                arr[cnt] = node;
+                  cnt = (u8)(cnt + 1);
               }
             }
           }
@@ -282,7 +286,7 @@ s32 func_02028420(u8 *arg0, u8 *arg1)
           x = (x >> 16) * cnt;
         }
         idx = (u16) (x >> 16);
-        node = arr[idx];
+        node = items[idx];
         *((u8 **) ((*((u8 **) (((u8 *) (&data_0216007c)) + 4))) + 0x38)) = node;
         return (s32) node;
       }
@@ -292,7 +296,7 @@ s32 func_02028420(u8 *arg0, u8 *arg1)
       case 29:
       {
         u8 *arr[3] = {NULL};
-        u8 cnt;
+        u32 cnt;
         u32 x;
         u32 idx;
         if (v1 == 32)
@@ -316,13 +320,15 @@ s32 func_02028420(u8 *arg0, u8 *arg1)
               {
                 if ((*((u32 *) (info + 0x78))) & mask)
                 {
-                  arr[cnt++] = node;
+                  arr[cnt] = node;
+                  cnt = (u8)(cnt + 1);
                 }
               }
               else
                 if ((*((u32 *) (node + 0x80))) & 0x20000)
               {
-                arr[cnt++] = node;
+                arr[cnt] = node;
+                  cnt = (u8)(cnt + 1);
               }
             }
             else
@@ -332,13 +338,15 @@ s32 func_02028420(u8 *arg0, u8 *arg1)
               {
                 if (!((*((u32 *) (info + 0x78))) & mask))
                 {
-                  arr[cnt++] = node;
+                  arr[cnt] = node;
+                  cnt = (u8)(cnt + 1);
                 }
               }
               else
                 if (!((*((u32 *) (node + 0x80))) & 0x20000))
               {
-                arr[cnt++] = node;
+                arr[cnt] = node;
+                  cnt = (u8)(cnt + 1);
               }
             }
           }
