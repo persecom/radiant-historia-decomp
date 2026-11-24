@@ -23,6 +23,11 @@ void func_020a9aa8(void *arg0) {
     }
 }
 
+void func_020a9b28(void *arg0) {
+    func_020a9d60(arg0);
+    func_020a9b40(arg0);
+}
+
 void func_020aa334(void *arg0) {
     if (arg0 != NULL) {
         func_0210c5dc(arg0);
