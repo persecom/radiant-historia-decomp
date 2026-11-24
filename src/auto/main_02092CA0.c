@@ -62,3 +62,30 @@ void func_020932a8(u16 id, s16 x, s16 y) {
         node = *(u8 **)(node + 0x50);
     }
 }
+
+void func_0209353c(u16 id, s16 x, s16 y) {
+    u8 *ptr = (u8 *)func_02093658(id);
+    s16 oldX, oldY;
+    u8 *node;
+    if (ptr == NULL) {
+        return;
+    }
+    oldX = *(s16 *)(ptr + 0xc);
+    oldY = *(s16 *)(ptr + 0xe);
+    *(s16 *)(ptr + 0xc) = x;
+    *(s16 *)(ptr + 0xe) = y;
+    node = *(u8 **)(ptr + 0x20);
+    while (node != NULL) {
+        s16 dx = (s16)(oldX - *(s32 *)(node + 8));
+        s16 dy = (s16)(oldY - *(s32 *)(node + 0xc));
+        *(s32 *)(node + 8) = x - dx;
+        *(s32 *)(node + 0xc) = y - dy;
+        if (x > -64 && x < 256 && y > -32 && y < 192) {
+            func_020f5114(node, 1);
+        } else {
+            func_020f5114(node, 0);
+        }
+        node = *(u8 **)(node + 0x50);
+    }
+}
+
