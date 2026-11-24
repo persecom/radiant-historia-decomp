@@ -100,6 +100,13 @@ void func_02107cf4(void) {
     func_02107cb8(0x165, 0xff0, 0x1555, 0x64000, 0x800000);
 }
 
+void func_02107d20(void) {
+    func_0210dae0(data_0215599c);
+    func_0210db40(data_02155988);
+    func_02107c70(data_0216242c);
+    func_02107c70(data_02162360);
+}
+
 extern u32 data_02155984;
 extern s32 func_02108258(u32);
 s32 func_02108240(void) {
