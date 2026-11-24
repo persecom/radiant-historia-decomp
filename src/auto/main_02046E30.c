@@ -61,3 +61,17 @@ void func_020477c0(Obj_02046e30 *obj, void *arg1) {
     obj->unk_b4++;
     func_021167f0(&obj->unk_b8, arg1);
 }
+
+void func_020477dc(Obj_02046e30 *obj, u8 arg1, s32 arg2) {
+    void *r0 = obj->unk_108;
+    if (r0 == NULL || obj->unk_104 == arg1) {
+        return;
+    }
+    if (arg2 == 0) {
+        arg2 = 1;
+    }
+    if (arg2 != 0 && func_020ed2d0(r0, arg1, arg2) != 0) {
+        obj->unk_104 = arg1;
+    }
+}
+
