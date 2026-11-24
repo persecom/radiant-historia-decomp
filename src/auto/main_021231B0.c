@@ -4,6 +4,7 @@ extern u8 *data_02170460;
 extern s32 data_02171270[],data_02171274[],data_02171278[];
 
 typedef struct { s32 x, y, z; } Vec_02123a6c;
+static inline s32 mul_02123a6c(s32 a, s32 b) { return ((s64)a*b)>>12; }
 
 extern void func_02002058(s32, s32);
 extern s32 func_02001ff4(void);
@@ -78,6 +79,36 @@ void func_021232b4(u8 *arg0) {
     if (!(*(u32 *)arg0 & 1)) {
         func_021205ec(0x1b, arg0 + 4, 3);
     }
+}
+
+void func_02123370(u32 *out,u32 *in,u8 *p,u32 flags) {
+u8 bits=p[3];
+if(flags&4){
+out[0]|=1;
+if(bits&2){
+u32 index=p[1];
+u32 *map=(u32 *)(data_02170460+0xc4);
+map[index>>5]|=1<<(index&31);
+}
+}else{
+u32 x=((volatile u32 *)in)[0],y=((volatile u32 *)in)[1],z=((volatile u32 *)in)[2];
+out[1]=x;out[2]=y;out[3]=z;
+if(bits&2){
+u32 index=p[1];
+u32 *map=(u32 *)(data_02170460+0xc4);
+map[index>>5]&=~(1<<(index&31));
+*(u32 *)((u8 *)data_02171270+(s16)index*24)=in[3];
+*(u32 *)((u8 *)data_02171274+(s16)index*24)=in[4];
+*(u32 *)((u8 *)data_02171278+(s16)index*24)=in[5];
+}
+}
+if(bits&1){
+out[0]|=0x20;
+{u32 index=p[2];
+if(((u32 *)(data_02170460+0xc4))[index>>5]&(1<<(index&31)))out[0]|=8;
+else *(Vec_02123a6c *)(out+4)=*(Vec_02123a6c *)((u8 *)data_02171270+index*24);
+}}
+out[0]|=0x10;
 }
 
 void func_021234b8(s32 *out,u8 *p) {
@@ -268,7 +299,7 @@ else {
 s32 v[3]; s32 x,y;
 x=((s64)*(s32 *)(arg0+0x4c)**(s32 *)(arg0+0x10))>>12;
 y=((s64)*(s32 *)(arg0+0x50)**(s32 *)(arg0+0x14))>>12;
-v[0]=x;v[1]=y;
+v[1]=y;v[0]=x;
 v[2]=((s64)*(s32 *)(arg0+0x54)**(s32 *)(arg0+0x18))>>12;
 func_021205ec(0x1c,v,3);
 }
