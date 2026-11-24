@@ -90,6 +90,10 @@ got_node:
     return 0;
 }
 
+void func_02120b8c(void *arg0, void *arg1, void *arg2) {
+    func_02117464(arg0, func_0211c9c8(arg1, arg2));
+}
+
 void func_02120bb0(void) {
     func_02117478();
 }
