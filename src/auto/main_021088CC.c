@@ -92,13 +92,16 @@ void func_02108e54(u32 arg0) {
     if (arg0 >= 2) {
         return;
     }
-    while (func_021090f4(arg0, 0) != 2) {
+    while (1) {
+        if (func_021090f4(arg0, 0) == 2) {
+            func_02108b54(arg0);
+            break;
+        }
         if (func_021090f4(arg0, 0) == 0) {
             return;
         }
         func_02108ffc();
     }
-    func_02108b54(arg0);
 }
 
 void func_02108ea4(u32 arg0, u32 arg1) {
@@ -108,6 +111,22 @@ void func_02108ea4(u32 arg0, u32 arg1) {
     func_02108bb8(arg0, 0, arg1);
     data_021624f8->unk_1a[arg0] = -1;
     data_021624f8->unk_24[arg0] = 0;
+}
+
+void func_02108eec(u32 arg0, u32 arg1) {
+    if (arg0 >= 2) {
+        return;
+    }
+    func_02108bb8(arg0, 0, arg1);
+    while (1) {
+        if (func_021090f4(arg0, 0) == 0) {
+            break;
+        }
+        func_02108ffc();
+    }
+    data_021624f8->unk_1a[arg0] = -1;
+    data_021624f8->unk_24[arg0] = 0;
+    func_02109264(arg0);
 }
 
 void func_021091b0(void) {
