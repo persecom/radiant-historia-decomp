@@ -13,6 +13,16 @@ s32 func_0212b354(s32 a0, s32 a1, s32 a2, s32 a3, s32 a4, s32 a5, s16 a6, s16 a7
     return func_0212abac(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
 }
 
+void func_0212b3f8(s32 a,s32 b,s16 *out1,s16 *out2){
+f64 root=func_02020058(2.0);
+f64 trig=func_0201dea0((f64)(6.2831855f*(f32)a/(f32)b));
+f32 x=(f32)root-(f32)trig;
+f32 y=(f32)func_02020058(2.0)-1.0f;
+f32 value=(x-(f32)func_02020058((f64)((x+y)*(x-y))))/y;
+*out1=(s32)(4096.0f*(2.0f*value));
+*out2=(s32)(4096.0f*((0.0f-value)*value));
+}
+
 s32 func_0212b550(u8 *arg0, s32 arg1, u16 *arg2) {
     s32 i;
     s32 found = 0x7fffffff;
