@@ -38,3 +38,13 @@ void func_020bf408(void) {
     func_021082ec();
 }
 
+void func_020bf414(s32 arg0) {
+    if (arg0 != 0) {
+        func_020ec9d0(0x3ee, 0);
+        func_020ec9d0(0x3ee, 1);
+    } else {
+        func_020eca2c(0);
+        func_020eca2c(1);
+    }
+}
+
