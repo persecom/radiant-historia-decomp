@@ -54,20 +54,18 @@ void func_0202b928(void) {
 }
 
 void func_0202b950(u32 arg0) {
-    register s32 zero = 0;
-    register u16 mask = 0xfffe;
-    register u8 **pb = &data_02160244;
-    register u8 **pf = &data_02160080;
-    *(u16 *)*pf &= mask;
-    *(u16 *)*pf |= 2;
-    *(u16 *)*pf |= 8;
-    *(u16 *)(*pb + 0xf8) = zero;
-    *(u16 *)(*pb + 0xf6) = zero;
+    u16 mask = 0xfffe;
+    s32 zero = 0;
+    *(u16 *)data_02160080 &= mask;
+    *(u16 *)data_02160080 |= 2;
+    *(u16 *)data_02160080 |= 8;
+    *(u16 *)(data_02160244 + 0xf8) = zero;
+    *(u16 *)(data_02160244 + 0xf6) = zero;
     func_02027004(arg0, zero);
-    *(u16 *)(*pb + 0xf8) = zero;
-    *(u16 *)(*pb + 0xf6) = zero;
-    *(u16 *)*pf &= mask - 1;
-    *(u16 *)*pf &= mask - 7;
-    *(u16 *)*pf |= 1;
+    *(u16 *)(data_02160244 + 0xf8) = zero;
+    *(u16 *)(data_02160244 + 0xf6) = zero;
+    *(u16 *)data_02160080 &= mask - 1;
+    *(u16 *)data_02160080 &= mask - 7;
+    *(u16 *)data_02160080 |= 1;
 }
 
