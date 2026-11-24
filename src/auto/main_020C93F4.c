@@ -12,6 +12,10 @@ u8 func_020c9488(u8 *arg0) {
     return *(u8 *)(arg0 + 0x44);
 }
 
+u32 func_020c9490(u8 *arg0) {
+    return arg0[0x44] | arg0[0x45];
+}
+
 u16 func_020c94a0(u8 *arg0) {
     return *(u16 *)(arg0 + 0x3a);
 }
