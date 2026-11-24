@@ -3,7 +3,9 @@
 typedef struct { s32 a,b; } Unk_020c11f4;
 extern const Unk_020c11f4 data_02143e44;
 extern u32 data_02155c3c;
-extern u8 *data_02160218[2];
+typedef struct Entry_020c11f4 { u16 id; u16 pad; struct Entry_020c11f4 *prev,*next; } Entry_020c11f4;
+typedef struct { u32 count; Entry_020c11f4 *head,*tail; u32 offset; } List_020c11f4;
+extern List_020c11f4 *data_02160218[2];
 extern u8 *data_02160a6c;
 extern void *func_0210c594(u32,u32);
 extern void func_021167ac(void *,int);
@@ -22,9 +24,8 @@ data_02160a6c[0x121]=0;
 node=*(u8 **)(data_02160a6c+0x70);
 while(node) {
 if(*(u16 *)(node+0x8e)==buf.a) {
-u8 *entry;
 if(*(u32 *)data_02160218[1]==0) {
-entry=func_0210c594(12,data_02155c3c);
+u8 *entry=func_0210c594(12,data_02155c3c);
 *(u16 *)entry=buf.b;
 func_021167f0(data_02160218[1]+4,entry);
 ++*(u32 *)data_02160218[1];
@@ -36,7 +37,7 @@ if(*(u16 *)cur==buf.b) absent=0;
 cur=*(u8 **)(cur+8);
 }
 if(absent) {
-entry=func_0210c594(12,data_02155c3c);
+u8 *entry=func_0210c594(12,data_02155c3c);
 *(u16 *)entry=buf.b;
 func_021167f0(data_02160218[1]+4,entry);
 ++*(u32 *)data_02160218[1];
