@@ -199,6 +199,14 @@ void func_020bed94(void) {
     func_020becfc();
 }
 
+extern void func_02009008(void *, void *, s32);
+extern s32 func_0201f884(s32);
+extern u8 *func_020bf3fc(void);
+extern u8 *func_020bf408(void);
+void func_020beda0(void *arg0) {
+    func_02008f74(arg0, 0, 0x1c);
+}
+
 u8 *func_020befb4(void) {
     return func_020becfc() + 0x1c;
 }
