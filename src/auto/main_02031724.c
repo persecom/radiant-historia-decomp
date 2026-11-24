@@ -51,6 +51,19 @@ void func_02031fbc(s32 arg0, s32 arg1, s32 arg2) {
     func_02031fcc(arg0, arg2);
 }
 
+void func_0203218c(u8 *arg0) {
+    void *node;
+    if (arg0 == NULL) {
+        return;
+    }
+    while ((node = *(void **)(arg0 + 0x28)) != NULL) {
+        func_021168f8(arg0 + 0x28, node);
+        if (node != NULL) {
+            func_0210c5dc(node);
+        }
+    }
+}
+
 void *func_0203222c(void) {
     return *(void **)((u8 *)data_02160090 + 8);
 }
