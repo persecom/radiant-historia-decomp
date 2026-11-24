@@ -20,6 +20,24 @@ extern void func_0212b3f8(s32, s32, void *, void *);
 extern void *memset(void *, int, unsigned long);
 extern u8 data_0217348c[240];
 extern u8 data_02156a54[];
+void func_021293c0(arg0)
+u8 *arg0;
+{
+s32 i, count;
+if (*(s8 *)(arg0+0x6c)==0 && *(s32 *)(arg0+0xc0)!=0 && func_0212d540(*(u32 *)(arg0+4)) >= *(s32 *)(arg0+0xc0))
+func_0212d578(*(u32 *)(arg0+4), -1);
+if(func_0212c7b0(*(u32 *)(arg0+4)) != 3) return;
+count=func_0212d5b0(*(u32 *)(arg0+4));
+data_02173478[3]=count;
+func_0212eb98(*(u32 *)(arg0+0xc));
+for(i=0;i<count;i++){
+void *p=*(void **)(arg0+0x18+i*4);
+data_02173478[0]=(*(s32 (**)(void *,s32))(*(u8 **)p+0x24))(p,1);
+if((s32)data_02173478[0]>=64) break;
+}
+if(i==count){func_0212eb10(*(u32 *)(arg0+0xc),0);arg0[1]=4;}
+}
+
 void func_02129490(arg0)
     u8 *arg0;
 {
