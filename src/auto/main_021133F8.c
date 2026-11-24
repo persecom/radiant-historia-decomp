@@ -314,6 +314,16 @@ void func_02113b58(void **arg0, s32 arg1) {
     func_021140b8(*arg0, arg1);
 }
 
+void func_02113bcc(s32 arg0) {
+    s32 i;
+    for (i = 0; i < 16; i++) {
+        UnkEntry_0216bfe4 *entry = (UnkEntry_0216bfe4 *)&data_0216bfe4[i * 0x44];
+        if (entry->flag_2c != 0) {
+            func_021140b8(entry, arg0);
+        }
+    }
+}
+
 void func_02113c0c(u32 *arg0) {
     *arg0 = 0;
 }
