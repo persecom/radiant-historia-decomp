@@ -15,6 +15,11 @@ extern void func_021309c8(void *);
 extern void func_0212a9f4(void);
 extern void func_02139be8(u32, u32, u32);
 extern void func_0212a9f8(void);
+void func_02139034(u32 *arg0, u32 arg1) {
+    arg0[0x33] += arg1;
+    arg0[0x34] = 1;
+}
+
 void func_0213904c(u32 *arg0) {
     arg0[0x33] = 0;
     arg0[0x34] = 0;
