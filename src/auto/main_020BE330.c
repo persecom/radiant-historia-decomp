@@ -156,6 +156,40 @@ void func_020be844(void) {
     data_0216020c = NULL;
 }
 
+void func_020be874(void) {
+u8 *p;
+s32 idx;
+s16 cs,sn;
+data_02151fc8=0x8000;
+data_02151fca=0xccc;
+data_02151fcc=0x200000;
+data_02155984=data_02162360;
+data_02155984[0]=0x165;
+data_02155984[1]=0xff0;
+data_02155984=data_0216242c;
+data_02155984[0]=0x165;
+data_02155984[1]=0xff0;
+p=data_0216020c;
+*(s32 *)(p+0xc)=0x200000;
+*(s32 *)(p+0x10)=0;
+*(s32 *)(p+0x14)=0x200000;
+*(s32 *)(data_0216020c+0x84)=32;
+*(s32 *)(data_0216020c+0x80)=180;
+*(s16 *)(data_0216020c+0x8e)=1024;
+idx=(data_02151fc8>>4)*2;
+cs=data_0213a394[idx+1];
+sn=data_0213a394[idx];
+*(s32 *)(data_0216020c+0xc)=*(s16 *)(data_0216020c+0x8e)*cs;
+*(s32 *)(data_0216020c+0x14)=*(s16 *)(data_0216020c+0x8e)*sn;
+*(s32 *)(data_0216020c+0)=0xc4000;
+*(s32 *)(data_0216020c+4)=0;
+*(s32 *)(data_0216020c+8)=0x90000;
+*(s32 *)(data_0216020c+0x94)=0;
+*(s32 *)(data_0216020c+0x98)=0xb8000;
+*(s32 *)(data_0216020c+0x9c)=0;
+func_020f4668(data_0216020c+0xc);
+}
+
 void func_020beb14(void) {
     data_02155984 = data_0216242c;
     data_0216242c[9] += *(s32 *)(data_0216020c + 0x98);
@@ -284,17 +318,19 @@ out[2] = func_0201ff0c(func_020203d4(func_020201f4(func_02020604(0x3f800000,t),f
 }
 
 s32 func_020bf118(void *out, VecBf118 *input, s32 count, f32 t) {
-s32 n=0, consumed=0, base=0, factorial=1;
+s32 j,i;
+u32 k;
+s32 factorial;
+s32 n=0, consumed=0;
 VecBf118 *work;
-s32 i,j;
-union {f32 f; s32 i;} bits;
-bits.f=t;
+s32 base=0;
+factorial=1;
 if(t>1.0f) return 0;
 for(i=count-1;i>0;i--) factorial *= i;
 work=(VecBf118 *)func_0210c594((factorial+count)*0x90,data_02155c3c);
-for(i=0;i<count;i++) {work[i]=input[i];n++;}
+for(k=0;(s32)k<count;k++) {work[k]=input[k];n++;}
 for(i=count-1;i>0;i--) {
-for(j=0;j<i;j++) {func_020bf00c((s32 *)&work[n],(s32 *)&work[base+j],(s32 *)&work[base+j+1],bits.i);n++;consumed++;}
+for(j=0;j<i;j++) {((void (*)(void *,void *,void *,f32))func_020bf00c)(&work[n],&work[base+j],&work[base+j+1],t);n++;consumed++;}
 consumed++;base=consumed;
 }
 func_02009008(&work[base],out,12);
