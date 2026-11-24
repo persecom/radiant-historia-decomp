@@ -31,3 +31,13 @@ void func_020d0838(void) {
     }
 }
 
+void func_020d0884(void) {
+    void *node;
+    while ((node = *(void **)(data_02160244 + 0x160)) != NULL) {
+        func_021168f8(data_02160244 + 0x160, node);
+        if (node != NULL) {
+            func_0210c5dc(node);
+        }
+    }
+}
+
