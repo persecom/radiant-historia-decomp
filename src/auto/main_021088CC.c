@@ -261,6 +261,13 @@ u32 func_0210957c(s32 arg0) {
     return data_02162504[arg0];
 }
 
+extern void func_0210c5dc(u32);
+void func_0210959c(u32 arg0) {
+    if (data_02162504[arg0] == 0) {
+        data_02162504[arg0] = func_021092d8(data_02155b50[arg0]);
+    }
+}
+
 s32 func_021095d0(u32 arg0) {
     s32 i;
     for (i = 0; i < 3; i++) {
