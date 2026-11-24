@@ -25,13 +25,13 @@ void func_02120534(u32 *arg0, u32 arg1) {
     if (arg1 < 0x100 || data_02145ba4 == (u32)-1) {
         func_021205ec(*arg0, arg0 + 1, (arg1 >> 2) - 1);
     } else {
+        u32 dma;
         func_021204a8();
         *(u32 *)(data_02173164 + 4) = 1;
+        dma = data_02145ba4;
         if (*(s32 *)(data_02173164 + 8) != 0) {
-            u32 dma = data_02145ba4;
             func_02008d08(dma <= 3 ? dma : (u32)-1, arg0, arg1, func_02120518, &data_02173168);
         } else {
-            u32 dma = data_02145ba4;
             func_02008b08(dma <= 3 ? dma : (u32)-1, arg0, arg1, func_02120518, &data_02173168);
         }
     }
@@ -63,7 +63,8 @@ s32 func_02120754(u8 *arg0, void *arg1, void *arg2, u32 arg3) {
         u32 *entry;
         if (dict != NULL && arg3 < *(u8 *)(dict + 1)) {
             u16 off = *(u16 *)(dict + 6);
-            entry = (u32 *)(dict + off + 4 + *(u16 *)(dict + off) * arg3);
+            u16 size = *(u16 *)(dict + off);
+            entry = (u32 *)(dict + off + 4 + size * arg3);
         } else {
             entry = NULL;
         }
@@ -74,15 +75,16 @@ s32 func_02120754(u8 *arg0, void *arg1, void *arg2, u32 arg3) {
     }
     node = NULL;
 got_node:
-    val = (*(u16 *)node & 0xf800) >> 11;
-    if (val == 0x1f) {
-        return 0;
+    val = ((u32)(*(u16 *)node & 0xf800)) >> 11;
+    if (val != 0x1f) {
+        u32 cmd = val;
+        func_021205ec(0x14, &cmd, 1);
+        if (arg1 != NULL || arg2 != NULL) {
+            func_021206c8(arg1, arg2);
+        }
+        return 1;
     }
-    func_021205ec(0x14, &val, 1);
-    if (arg1 != NULL || arg2 != NULL) {
-        func_021206c8(arg1, arg2);
-    }
-    return 1;
+    return 0;
 }
 
 void func_02120bb0(void) {
