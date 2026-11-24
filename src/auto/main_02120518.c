@@ -104,6 +104,41 @@ void func_02120bb0(void) {
     func_02117478();
 }
 
+void func_02120bbc(u8 *arg0, u32 arg1, u32 arg2) {
+    u8 *matInfo;
+    u8 *mat;
+    if (arg0 != NULL && *(u32 *)(arg0 + 8) != 0) {
+        matInfo = arg0 + *(u32 *)(arg0 + 8);
+    } else {
+        matInfo = NULL;
+    }
+    if (matInfo != NULL) {
+        u8 *dict = matInfo + 4;
+        u32 *entry;
+        if (dict != NULL && arg1 < *(u8 *)(dict + 1)) {
+            u16 off = *(u16 *)(dict + 6);
+            u16 size = *(u16 *)(dict + off);
+            entry = (u32 *)(dict + off + 4 + size * arg1);
+        } else {
+            entry = NULL;
+        }
+        if (entry != NULL) {
+            mat = matInfo + *entry;
+            goto got_mat;
+        }
+    }
+    mat = NULL;
+got_mat:
+    *(u32 *)(mat + 0xc) = (*(u32 *)(mat + 0xc) & ~0x3f000000) | (arg2 << 24);
+}
+
+void func_02120c34(u8 *arg0, u32 arg1) {
+    u32 i;
+    for (i = 0; i < *(u8 *)(arg0 + 0x18); i++) {
+        func_02120bbc(arg0, i, arg1);
+    }
+}
+
 extern u32 data_02145ba4;
 extern u32 data_02173168;
 extern void func_021205ec(u32, void *, u32);
