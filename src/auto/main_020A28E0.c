@@ -180,6 +180,28 @@ s32 func_020a2fa0(void) {
     return 0;
 }
 
+s32 func_020a2fe4(void) {
+ void *file;
+ func_020a2ee4();
+ file=func_021092d8(data_02149188);
+ if(file) {
+ do {
+ u16 a=func_020f685c(file,0);
+ u16 b=func_020f685c(file,0);
+ u16 c=func_020f685c(file,0);
+ if(a!=0 && b!=0) {
+ u16 *entry=func_0210c594(16,data_02155c3c);
+ entry[0]=a;entry[1]=b;entry[2]=c;
+ func_021167f0((u8 *)data_02160128+4,entry);
+ }
+ } while(func_02109444(file));
+ if(file) func_021093b0(file);
+ return 0;
+ }
+ if(file) func_021093b0(file);
+ return 1;
+}
+
 void func_020a30c4(u16 arg0) {
     func_020a3128(func_020a30d4(arg0));
 }
