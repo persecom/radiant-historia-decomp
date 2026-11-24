@@ -4,6 +4,8 @@ typedef struct { s16 data[10]; } Unk_020bbb1c_10;
 typedef struct { s16 data[18]; } Unk_020bbb1c_18;
 extern const Unk_020bbb1c_10 data_02143c90;
 extern const Unk_020bbb1c_18 data_02143cec;
+extern const Unk_020bbb1c_10 data_02143c68;
+extern const Unk_020bbb1c_18 data_02143d34;
 
 void func_020bbd2c(u8 *arg0) {
     u16 i;
