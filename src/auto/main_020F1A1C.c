@@ -2,6 +2,7 @@
 #include "common.h"
 typedef struct { u32 type:8; u32 size:24; } Header_020f1b70;
 typedef struct { u32 unknown; Header_020f1b70 header; } Info_020f1b70;
+static inline u32 Size_020f1b70(Header_020f1b70 header, u32 size) { header.size = size; return header.size; }
 static inline void Extension_020f1b70(char *path, char *ext, u16 n) {
     u16 i;
     for(i=0;i<32;i++) {
@@ -88,7 +89,7 @@ s32 func_020f1b70(void *obj, s32 mode) {
     char path[32];
     char ext3[8];
     char ext5[8];
-    s32 info[2];
+    Info_020f1b70 info;
     s32 ret = 0;
     void *compressed = NULL, *buffer = NULL;
     u16 i;
@@ -107,11 +108,10 @@ s32 func_020f1b70(void *obj, s32 mode) {
     if (func_020123f0(data_02151dbc, ext3)==0) {
         u32 header;
         data_02155bac=0;
-        compressed=func_02109b14(path,(s32)info);
+        compressed=func_02109b14(path,(s32)&info);
         data_02155bac=1;
-        header=*(u32 *)compressed;
-        header=((info[1]&255) | ((header>>8)<<8));
-        buffer=func_0210c594(header>>8,data_02155c3c);
+        info.header.size=*(u32 *)compressed >> 8;
+        buffer=func_0210c594(info.header.size,data_02155c3c);
         func_02009230(compressed,buffer);
         if(compressed)func_0210c5dc(compressed);
         if(!mode)func_0210b0c8(obj,buffer);
