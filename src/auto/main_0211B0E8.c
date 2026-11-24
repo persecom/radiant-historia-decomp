@@ -34,7 +34,7 @@ Vec2_bb3c *out=dst;
 if(dst==src)out=&temp;
 out->x=((s64)m[2]*src->y+0x1000+(s64)m[0]*src->x)>>12;
 out->y=((s64)m[3]*src->y+0x1000+(s64)m[1]*src->x)>>12;
-if(out==&temp) {dst->y=temp.y;dst->x=temp.x;}
+if(out==&temp) {dst->x=temp.x;dst->y=temp.y;}
 }
 static inline s32 tile_offset(s32 x, s32 y, s32 width, s32 height) {
     s32 by = y / 32;
@@ -320,15 +320,12 @@ Transform_bb3c(&pos,m,&pos);
 mode=data_021701f8[1];
 if(mode) {
 mode=mode==2?0x300:0x100;
-if(mode==0x100)*sprite=(*sprite&0xc1fffcff)|mode;
-else *sprite=(*sprite&0xc1fffcff)|mode;
+SetMode_bb3c(sprite,mode);
 }
-mode=Mode_bb3c(*sprite)==0x300;
+mode=Double_bb3c(*sprite);
 w=Width_bb3c(*sprite)>>1;
 h=Height_bb3c(*sprite)>>1;
-dx=-(w<<12)+m[0]*w+m[2]*h;
-dy=-(h<<12)+m[1]*w+m[3]*h;
-pos.x+=dx;pos.y+=dy;
+Offset_bb3c(&pos,m,w,h);
 if(mode){pos.x-=w<<12;pos.y-=h<<12;}
 pos.x+=translation->x;pos.y+=translation->y;
 *sprite=(*sprite&0xfe00ff00)|((pos.y>>12)&255)|(((pos.x>>12)&511)<<16);
