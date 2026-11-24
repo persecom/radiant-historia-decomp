@@ -12,6 +12,12 @@ void func_02116674(void *arg0) {
     func_0200813c(irq);
 }
 
+u16 func_02117078(void *arg0, u16 arg1) {
+    u16 old = *(u16 *)((u8 *)arg0 + 0x34);
+    *(u16 *)((u8 *)arg0 + 0x34) = arg1;
+    return old;
+}
+
 u16 func_02117088(void *arg0) {
     return *(u16 *)((u8 *)arg0 + 0x34);
 }
