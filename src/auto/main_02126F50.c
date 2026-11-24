@@ -119,6 +119,27 @@ void func_0212750c(void *arg0) {
     func_021287d0(*(void **)((u8 *)arg0 + 4));
 }
 
+extern s32 func_021282cc(void *);
+extern void func_021284bc(void *, s32);
+s32 func_0212751c(void *arg0) {
+    switch (func_021282cc(*(void **)((u8 *)arg0 + 4))) {
+    case 0:
+        return 0;
+    case 1:
+    case 2:
+        return 1;
+    case 3:
+    case 4:
+        return 2;
+    case 5:
+        return 3;
+    case 6:
+        return 4;
+    default:
+        return 4;
+    }
+}
+
 s32 func_021275f8(s32 *arg0) {
     return arg0[1];
 }
