@@ -98,6 +98,21 @@ void func_02009ec4(void) {
     }
 }
 
+void *func_02009eec(void) {
+    s32 irq = func_02008128();
+    void **node = (void **)data_0215d1b8[0];
+    if (node == NULL) {
+        func_0200813c(irq);
+        return NULL;
+    }
+    data_0215d1b8[0] = (u32)*node;
+    if (data_0215d1b8[0] == 0) {
+        data_0215d1b8[4] = 0;
+    }
+    func_0200813c(irq);
+    return node;
+}
+
 extern u8 data_0215ec80[0x60];
 extern void func_0200a674(s32, void *);
 extern s32 func_02009f34(void);
