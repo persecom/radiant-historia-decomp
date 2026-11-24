@@ -20,7 +20,7 @@ extern s32 func_0200818c(void);
 extern s32 func_02008180(void);
 extern void func_0200a75c(void);
 extern u8 data_0215f03c[];
-extern void func_0200e320(void);
+extern void func_0200e320();
 extern void func_0200e418(u32, u32, u32);
 
 void func_0200d790(void *arg0, u32 arg1, u32 arg2) {
@@ -55,13 +55,22 @@ void func_0200dadc(void) {
 
 s32 func_0200db50(u16 *arg0) {
     volatile u8 *g = (volatile u8 *)0x02fffc80;
-    if (*(u16 *)(g + 0x58) != 0 && *(u16 *)(g + 0x5e) != 0 && *(u16 *)(g + 0x5a) != 0 && *(u16 *)(g + 0x60) != 0) {
-        if (func_0200df4c(arg0, *(u16 *)(g + 0x58), *(u16 *)(g + 0x5a), g[0x5c], g[0x5d], *(u16 *)(g + 0x5e), *(u16 *)(g + 0x60), g[0x62], g[0x63]) == 0) {
-            arg0[0] = 0;
-            arg0[1] = 0;
-            arg0[2] = 0;
-            arg0[3] = 0;
-        }
+    u16 v58 = *(u16 *)(g + 0x58);
+    u16 v5a = *(u16 *)(g + 0x5a);
+    u16 v5e = *(u16 *)(g + 0x5e);
+    u16 v60 = *(u16 *)(g + 0x60);
+    u8 b5c = g[0x5c];
+    u8 b5d = g[0x5d];
+    u8 b62 = g[0x62];
+    u8 b63 = g[0x63];
+    if (v58 == 0 || v5e == 0 || v5a == 0 || v60 == 0) {
+        return 1;
+    }
+    if (func_0200df4c(arg0, v58, v5a, b5c, b5d, v5e, v60, b62, b63) == 0) {
+        arg0[0] = 0;
+        arg0[1] = 0;
+        arg0[2] = 0;
+        arg0[3] = 0;
     }
     return 1;
 }
@@ -71,7 +80,7 @@ void func_0200df30(u32 arg0) {
     func_0200e138(arg0, arg0);
 }
 
-void func_0200e254(u16 arg0) {
+void func_0200e254(u32 arg0) {
     while (*(u16 *)(data_0215f000 + 0x3a) & arg0) {
     }
 }
