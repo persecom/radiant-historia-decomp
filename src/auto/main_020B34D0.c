@@ -24,6 +24,10 @@ u8 *func_020b3890(void) {
     return func_020b3880() + 0x708;
 }
 
+void func_020b38a4(s32 arg0) {
+    func_02021f10((func_020b3890() + arg0)[0x25c]);
+}
+
 void func_020b3908(void) {
     func_020b3890();
 }
