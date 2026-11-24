@@ -1,5 +1,7 @@
 /* 46 functions from 0x0210C6E0 to 0x0210D6D8 (main), found by ds-decomp. */
 #include "common.h"
+extern const u8 data_02144b9c[];
+extern u32 func_0210c8e8(u32);
 typedef struct { char *name; u16 hash; u16 pad; } SectionEntry;
 extern char data_02155c40[4], data_02155c44[8];
 extern s32 func_02012348(const char *);
