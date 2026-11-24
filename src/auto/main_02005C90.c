@@ -283,7 +283,7 @@ void func_02006440(void *arg0) {
         *(void **)(p + 0xb4) = NULL;
         fn(arg0);
         func_02008128();
-        func_02006478((void *)0);
+        func_02006478();
     }
 }
 
