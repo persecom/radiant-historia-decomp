@@ -78,14 +78,13 @@ u8 *func_0202c820(u32 arg0) {
 
 u8 *func_0202c850(u32 arg0) {
     u8 *sub = NULL;
-    u8 *obj;
     if (arg0 <= 8) {
         u8 *entry = *(u8 **)((u8 *)data_02160244 + arg0 * 4 + 8);
         sub = *(u8 **)(entry + 0x10);
     }
-    obj = sub ? *(u8 **)sub : NULL;
-    if (obj != NULL && (*(u8 *)(*(u8 **)(obj + 0x118) + 0x64) & 2) != 0) {
-        return obj;
+    if (sub != NULL && *(u8 **)sub != NULL &&
+        (*(u8 *)(*(u8 **)(*(u8 **)sub + 0x118) + 0x64) & 2)) {
+        return *(u8 **)sub;
     }
     return NULL;
 }
