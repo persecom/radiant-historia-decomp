@@ -43,6 +43,10 @@ void func_02062530(void) {
     *(u16 *)(ptr + 0x3e) = 0;
 }
 
+void *func_02062568(void **arg0) {
+    return *arg0;
+}
+
 s32 func_02062570(s32 *arg0) {
     return arg0[1];
 }
