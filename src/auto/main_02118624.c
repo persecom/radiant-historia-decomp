@@ -128,3 +128,13 @@ void func_021190bc(void *arg0) {
     func_02118f24(arg0);
 }
 
+extern s32 func_02117be0(void *);
+extern void func_02008df0(s32, void *, s32);
+extern void func_02117d9c(void *);
+extern void func_0211a5fc(void *, s32, s32, s32, u32, s32, s32, s32);
+void func_02119110(void *arg0) {
+    if (func_02117be0(arg0) != 0) {
+        func_02118f24(arg0);
+    }
+}
+
