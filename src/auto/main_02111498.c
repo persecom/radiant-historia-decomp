@@ -68,6 +68,28 @@ void func_0211164c(u8 *arg0) {
     }
 }
 
+s32 func_02111674(u8 *arg0) {
+    func_020c6d78(arg0);
+    if (*(void **)(arg0 + 0x30) == NULL) {
+        void *p = func_0210c594(8, data_02155c3c);
+        *(void **)(arg0 + 0x30) = p;
+        func_020c992c(p);
+    }
+    if (*(void **)(arg0 + 0x6c) == NULL) {
+        void *p = func_020c641c(0x14);
+        *(void **)(arg0 + 0x6c) = p;
+        ((void (*)(void *))*(void **)p)(p);
+    }
+    if (*(void **)(arg0 + 0x34) == NULL) {
+        void *p = func_0210c594(8, data_02155c3c);
+        *(void **)(arg0 + 0x34) = p;
+        func_020c992c(p);
+    }
+    arg0[0x72] = 0xb;
+    func_021167ac(arg0 + 0x38, 0xc);
+    return 0;
+}
+
 void func_02111708(void *arg0) {
     func_02111728(arg0);
     if (arg0 != NULL) {
