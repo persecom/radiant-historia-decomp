@@ -112,6 +112,41 @@ void func_021191f0(void) {
     }
 }
 
+void func_02119448(void *arg0, s32 arg1) {
+    u8 *p = (u8 *)data_0216f234.f8;
+    u8 *sub = *(u8 **)(p + 0x74);
+    void *ctx;
+    if (*(Cb4_02119448 *)(sub + 0x3c) == NULL) {
+        return;
+    }
+    if (data_0216f234.f4 != 0) {
+        s32 idx = data_0216f234.fc;
+        *(volatile u32 *)(data_02155eb0 + 0x18) = *(volatile u32 *)(data_0216f3d4 + idx * 0x18);
+        *(volatile u32 *)(data_02155eb0 + 0x1c) = *(volatile u32 *)(data_0216f3d8 + idx * 0x18);
+        ctx = data_02155eb8;
+    } else {
+        ctx = data_0216f3c4 + data_0216f234.fc * 0x18;
+    }
+    (*(Cb4_02119448 *)(sub + 0x3c))(p, sub, arg1, ctx);
+}
+
+void func_02119694(void *arg0, s32 arg1, s32 arg2) {
+    u8 *p = (u8 *)data_0216f234.f8;
+    u8 *sub = *(u8 **)(p + 0x74);
+    void *ctx;
+    if (*(Cb5_02119694 *)(sub + 0x44) == NULL) {
+        return;
+    }
+    if (data_0216f234.f4 == 0) {
+        ctx = data_0216f3c4 + data_0216f234.fc * 0x18;
+    } else {
+        *(volatile u32 *)(data_02155eb0 + 0x18) = *(volatile u32 *)(data_0216f3d4 + data_0216f234.fc * 0x18);
+        *(volatile u32 *)(data_02155eb0 + 0x1c) = *(volatile u32 *)(data_0216f3d8 + data_0216f234.fc * 0x18);
+        ctx = data_02155eb8;
+    }
+    (*(Cb5_02119694 *)(sub + 0x44))(p, sub, arg1, arg2, ctx);
+}
+
 void func_02119c80(u8 *arg0) {
     s32 i;
     func_0211c4ec(arg0);
@@ -153,19 +188,18 @@ void func_02119d48(u8 *arg0) {
 }
 
 void func_02119da4(u32 arg0) {
-    s32 n;
     s32 i;
     data_0216f234.f8 = arg0;
     *(u16 *)data_02155eb0 = 0xfffe;
     data_0216f234.fc = 0;
     for (i = 0; i < (s32)data_0216f234.f0; i++) {
-        MI_CpuFill32((u8 *)&data_0216f9c4[i] + 0x10, 0xffffffff, 0x10);
+        MI_CpuFill32(data_0216f9c4[i].f10, 0xffffffff, 0x10);
     }
     data_0216f234.f0 = 0;
     data_0216f234.f2 = 0;
-    MI_CpuFill32(data_0216f2c4, 0, 0x100);
-    *(u32 *)data_0216f2c4 = 0;
-    *(u32 *)((u8 *)data_0216f2c4 + 0x10) = 0;
+    MI_CpuFill32(&data_0216f2c4[0], 0, 0x100);
+    *(u32 *)&data_0216f2c4[0] = 0;
+    *(u32 *)&data_0216f2c4[2] = 0;
     func_02119150();
 }
 
