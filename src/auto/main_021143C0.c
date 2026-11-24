@@ -21,7 +21,14 @@ extern u8 data_0216c8a8[];
 extern u32 data_0216c8b4[];
 extern u32 func_0201fd28(u32, u32);
 typedef struct {
-    u8 unk_00[0x44];
+    u8 unk_00[0x28];
+    u32 unk_28;
+    u32 unk_2c;
+    u32 unk_30;
+    s32 unk_34;
+    void (*unk_38)(s32, s32, u32 *, u32, u32, u32);
+    u32 unk_3c;
+    s32 unk_40;
     s32 unk_44;
     u8 unk_48[0x8];
     s32 unk_50;
