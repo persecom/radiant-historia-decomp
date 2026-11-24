@@ -19,6 +19,8 @@ extern void func_020aea1c(void);
 extern void func_020ae530(void);
 extern void func_0203be4c(void *);
 extern void func_021098ac(void *);
+extern u8 *func_020adda8(void);
+extern void func_020a994c(void *);
 
 void func_020adf34(void **arg0) {
     s32 i;
