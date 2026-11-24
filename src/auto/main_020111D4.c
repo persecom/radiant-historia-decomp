@@ -135,3 +135,8 @@ void func_0201164c(void) {
 void func_02011660(void) {
     data_0215fa34[1] = 0;
 }
+
+void func_02011700(void *arg0) {
+    func_02008f74(arg0, 0, 0x24);
+}
+
