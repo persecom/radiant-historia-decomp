@@ -97,6 +97,15 @@ void func_0207cbfc(u32 arg0, u32 arg1) {
     func_021167f0(p + 4, (void *)arg1);
 }
 
+void func_0207cc20(u32 arg0) {
+    u8 i;
+    if (data_021600f0 == NULL) return;
+    for (i = 0; i < 5; i++) {
+        Fn_0207cc20 fn = *(Fn_0207cc20 *)(*(u8 **)((u8 *)data_021600f0 + i * 4 + 4) + 0x10);
+        fn(arg0);
+    }
+}
+
 void func_0207cc6c(u32 arg0) {
     u8 *p = *(u8 **)((u8 *)data_021600f0 + 4);
     u8 *node = *(u8 **)(p + 4);
