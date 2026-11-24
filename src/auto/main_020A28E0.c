@@ -153,6 +153,18 @@ void func_020a2ee4(void) {
     }
 }
 
+s32 func_020a2f34(void) {
+    UnkStruct_02142e34 buf;
+    void **p = (void **)data_02160128;
+    if (p == NULL) {
+        return 1;
+    }
+    func_020a2eb4();
+    buf = data_02142e34;
+    *p = func_020a36ac(&buf, 0x21);
+    return 0;
+}
+
 s32 func_020a2fa0(void) {
     void **p = (void **)data_02160128;
     if (p == NULL) {
