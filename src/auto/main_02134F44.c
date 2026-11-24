@@ -140,10 +140,6 @@ void func_02135c48(void) {
     data_021759ac[0] = 0;
 }
 
-extern void func_0212a9dc(void);
-extern void func_0212a9e8(void);
-extern void func_02114728(u8 *, s16);
-extern void func_02114794(u8 *, s32, s16);
 void func_02135c78(u32 arg0, u32 arg1) {
     data_021759ac[1] = arg0;
     data_021759ac[0] = arg1;
