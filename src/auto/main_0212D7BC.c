@@ -128,6 +128,14 @@ s32 func_0212dc0c(s8 *arg0) {
     return arg0[1];
 }
 
+s32 func_0212dc14(void *arg0, void *arg1) {
+    s32 ret;
+    func_0212e5a0();
+    ret = func_0212dc40(arg0, (s32)arg1);
+    func_0212e5ac();
+    return ret;
+}
+
 void func_0212dce4(void *arg0) {
     func_0212e5a0();
     func_0212dd00(arg0);
