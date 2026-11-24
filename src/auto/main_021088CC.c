@@ -23,9 +23,15 @@ typedef struct {
 
 extern u8 data_02162544[];
 extern u8 data_02162510[];
+extern s32 data_02162884;
+extern s32 data_02162814;
+extern s32 data_02162878;
 
 void func_02008f74(void *, s32, s32);
 s32 func_02109f84(void *);
+s32 func_0210c398(void *);
+void func_0210da14(void *);
+void func_0210dc88(void);
 
 void func_02125b78(u32);
 void func_02125d00();
@@ -222,8 +228,8 @@ void func_02108eec(u32 arg0, u32 arg1) {
 }
 
 void func_02108f58(u32 arg0) {
-    u16 i;
     u16 j;
+    u16 i;
     if (arg0 >= 2) {
         return;
     }
@@ -232,8 +238,7 @@ void func_02108f58(u32 arg0) {
         func_02108ffc();
     }
     for (j = 0; j < 5; j++) {
-        u32 k = j;
-        func_02108c24(arg0, k);
+        func_02108c24(arg0, j);
         func_02108ffc();
     }
 }
