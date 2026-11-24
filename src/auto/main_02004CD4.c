@@ -12,6 +12,9 @@ extern u8 data_0215cd84[];
 extern u8 data_0215cd80[];
 extern void func_020059e4(u32);
 extern u32 func_020059b4(u32);
+extern u32 data_0215cdac[3];
+extern u32 data_0215cdb0[3];
+extern u32 data_0215cdb4[3];
 
 extern u16 data_0215cd68;
 extern u16 data_0215cd70;
