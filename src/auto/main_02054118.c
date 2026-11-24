@@ -100,10 +100,48 @@ void func_02054324(void) {
     func_0205428c();
 }
 
+s32 func_02054330(void *arg0) {
+    u8 *s;
+    u8 *obj;
+    s32 r;
+    if (data_021600ac == NULL) return 0;
+    obj = *(u8 **)(data_021600ac + 0x68);
+    if (obj == NULL) return 0;
+    s = *(u8 **)((u8 *)arg0 + 0xd0);
+    if (s == NULL) return 0;
+    if (*(u32 *)(data_02160200 + 0x160) & 0x400) return 0;
+    r = func_0210c2f4(obj, arg0);
+    if (r >= (*(u16 *)(s + 0x22) << 12)) goto fail;
+    if (*(u32 *)(obj + 0xac) & 0x2000) goto fail;
+    if (func_020543e4(arg0) == 0) goto fail;
+    if (func_02044dd0() != 1) goto fail;
+    if ((*(u32 *)(obj + 0xac) & 0x80000) == 0) {
+        return 1;
+    }
+fail:
+    return 0;
+}
+
 s32 func_020543e4(void *arg0) {
     if (*(u32 *)((u8 *)arg0 + 0xac) & 0x4000) {
         return 0;
     }
     return func_0207c578() != 1;
+}
+
+void func_0205440c(u8 *arg0, s32 arg1) {
+    u32 v0 = *(u32 *)(arg0 + 0x80);
+    u32 v1 = *(u32 *)(arg0 + 0xac);
+    if (arg1 != 0) {
+        v0 |= 2;
+        v0 &= ~0x400;
+        v1 |= 1;
+    } else {
+        v0 &= ~2;
+        v0 |= 0x400;
+        v1 &= ~1;
+    }
+    *(u32 *)(arg0 + 0x80) = v0;
+    *(u32 *)(arg0 + 0xac) = v1;
 }
 
