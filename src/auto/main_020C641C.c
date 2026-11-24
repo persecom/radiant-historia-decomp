@@ -117,6 +117,38 @@ void func_020c6f0c(u8 *arg0, u16 arg1) {
     *(u16 *)(arg0 + 0x3c) = arg1;
 }
 
+extern s32 func_020c73d8();
+extern s32 func_020c6fe4(u8 *);
+extern s32 func_020c7048(u8 *);
+extern void func_020c7090(u8 *);
+s32 func_020c6f14(u8 *arg0) {
+    u8 val = func_020c73d8(arg0);
+    if (func_020c73d8(arg0) != 0) {
+        if (func_020c7048(arg0) == 0) {
+            return 1;
+        }
+        func_020c738c(arg0, 0, 2);
+        func_020c738c(arg0, 0, 0x10);
+        return 0;
+    }
+    if (data_021628f8 == 0) {
+        return 1;
+    }
+    if (((u16 *)data_02162908)[2] == 0) {
+        return 1;
+    }
+    if (func_020c6fe4(arg0) != 0) {
+        goto two;
+    }
+    if (val == 0) {
+        func_020c7090(arg0);
+        func_020c738c(arg0, 0x10, 0x10);
+    }
+    return 0;
+two:
+    return 2;
+}
+
 s32 func_020c6fe4(u8 *arg0) {
     s32 y = *(s16 *)(arg0 + 0x3c);
     s32 y2 = y + *(s16 *)(arg0 + 0x40);
