@@ -350,7 +350,7 @@ s32 func_0210f2e4(u32 arg0) {
     if (p == NULL) {
         return 0;
     }
-    return *(u16 *)(p + 0x14) >= 2;
+    return (*(u16 *)(p + 0x14) >= 2) ? 1 : 0;
 }
 
 void func_0210f38c(void) {
