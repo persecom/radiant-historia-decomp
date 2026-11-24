@@ -36,6 +36,20 @@ u8 *func_020b3914(void) {
     return func_020b3890() + 0x128;
 }
 
+u16 func_020b39f4(u8 *arg0, u32 arg1) {
+    u16 res = 0;
+    if (arg1 < 5) {
+        if (arg1 == 0) {
+            res = *(u16 *)(arg0 + 0x38);
+        } else if (arg1 == 1) {
+            res = *(u16 *)(arg0 + 0x3a);
+        } else {
+            res = *(u16 *)(arg0 + 0x3c + (arg1 - 2) * 2);
+        }
+    }
+    return res;
+}
+
 extern void func_020b3a9c(void);
 extern void func_02009008(void *, void *, s32);
 extern u8 *func_020b4044(void);
