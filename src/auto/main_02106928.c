@@ -58,6 +58,7 @@ extern void func_0200f858(void);
 extern u32 func_02005df8(void);
 extern void func_021071fc(void);
 extern void func_021098ac(void *);
+extern void func_0210701c(u16);
 extern void func_0201064c(void *);
 extern void func_0210721c(void);
 extern u32 data_0216106c;
