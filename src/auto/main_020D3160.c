@@ -62,3 +62,14 @@ void func_020d3dd8(void) {
     }
 }
 
+void *func_020d3e60(u32 arg0) {
+    Node120_020d3160 *node = data_02160244->unk_120;
+    while (node != NULL) {
+        if (node->unk_0 == arg0) {
+            return node;
+        }
+        node = node->next;
+    }
+    return NULL;
+}
+
