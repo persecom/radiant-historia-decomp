@@ -13,7 +13,7 @@ extern u32 (*data_02156150)(s32, s32, s32);
 void *func_0210c594(s32, u32);
 void func_02008e68(s32, void *, u32);
 void func_020a8ba4(void);
-void func_020a8a50(void);
+void func_020a8a50();
 void func_020a899c(void *);
 void func_020a8750(void *);
 void func_020a9058(void);
