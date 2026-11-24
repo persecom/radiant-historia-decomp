@@ -156,6 +156,27 @@ u32 func_02113834(void) {
     return data_0216bf8c[0];
 }
 
+void func_021138c0(void) {
+    if (func_02009964(0) == 0) {
+        func_02113e5c();
+        func_02114ac4();
+        func_02116350();
+        func_02009b24(0);
+    }
+}
+
+void func_021138f0(void) {
+    s32 ret;
+    func_02113bcc(0);
+    func_0211630c(0);
+    func_02114b44();
+    func_020097d0(0);
+    func_020095a8(0xffff, 0xffff, 0xffff, 0);
+    ret = func_02009d2c();
+    func_02009b24(1);
+    func_02009cc0(ret);
+}
+
 void func_02113980(void) {
     func_02114c80();
 }
@@ -166,6 +187,12 @@ void func_02113b58(void **arg0, s32 arg1) {
 
 void func_02113c0c(u32 *arg0) {
     *arg0 = 0;
+}
+
+void func_02113ce8(void **arg0, u8 arg1) {
+    if (*arg0 != NULL) {
+        *(u8 *)(*arg0 + 0x41) = arg1;
+    }
 }
 
 extern void func_021142f0(void);
