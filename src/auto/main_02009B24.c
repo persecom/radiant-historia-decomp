@@ -126,6 +126,29 @@ void *func_02009eec(void) {
     return node;
 }
 
+s32 func_02009f34(void) {
+    s32 irq;
+    u32 val;
+    if (func_0200698c() == 0) {
+        return 1;
+    }
+    irq = func_02008128();
+    *(u32 *)0x4fff200 = 0x10;
+    val = *(u32 *)0x4fff200;
+    func_0200813c(irq);
+    return val != 0;
+}
+
+void func_02009f74(void) {
+    s32 i;
+    for (i = 0; i < 8; i++) {
+        u8 *p = data_0215ec80 + i * 12;
+        *(u32 *)p = 0;
+        *(u32 *)(p + 4) = 0;
+        *(u8 *)(p + 8) = 0;
+    }
+}
+
 extern u8 data_0215ec80[0x60];
 extern void func_0200a674(s32, void *);
 extern s32 func_02009f34(void);
@@ -173,9 +196,7 @@ void func_0200a08c(u8 *arg0) {
 
 extern s32 func_0200698c(void);
 void func_0200a328(u32 *arg0) {
-    u32 tmp[2];
-    tmp[0] = 0;
-    tmp[1] = 0;
+    u32 tmp[2] = {0, 0};
     arg0[0] = tmp[0];
     arg0[1] = tmp[1];
 }
