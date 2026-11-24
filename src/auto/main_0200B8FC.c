@@ -319,21 +319,22 @@ s32 func_0200c2d4(u8 *arg0) {
     u32 sp0[4];
     u8 *file = *(u8 **)(arg0 + 8);
     u32 *vtbl = *(u32 **)(file + 0x20);
+    FSFilePos *pos = (FSFilePos *)(arg0 + 0x30);
     s32 ret;
 
     sp0[0] = (u32)file;
-    sp0[1] = vtbl[3] + (*(u16 *)(arg0 + 0x34) << 3);
+    sp0[1] = vtbl[3] + (pos->unk4 << 3);
     ret = func_0200c248(sp0, &sp0[2], 8);
-    if (ret == 0) {
-        *(u32 *)(arg0 + 0x20) = *(u32 *)(arg0 + 0x30);
-        *(u32 *)(arg0 + 0x24) = *(u32 *)(arg0 + 0x34);
-        *(u32 *)(arg0 + 0x28) = *(u32 *)(arg0 + 0x38);
-        if (*(u16 *)(arg0 + 0x36) == 0 && *(u32 *)(arg0 + 0x38) == 0) {
-            *(u16 *)(arg0 + 0x26) = *(u16 *)((u8 *)sp0 + 0xc);
-            *(u32 *)(arg0 + 0x28) = vtbl[3] + sp0[2];
-        }
-        *(u32 *)(arg0 + 0x2c) = *(u16 *)((u8 *)sp0 + 0xe) & 0xfff;
+    if (ret != 0) {
+        goto quit;
     }
+    *(FSFilePos *)(arg0 + 0x20) = *pos;
+    if (pos->unk6 == 0 && pos->unk8 == 0) {
+        *(u16 *)(arg0 + 0x26) = *(u16 *)((u8 *)sp0 + 0xc);
+        *(u32 *)(arg0 + 0x28) = vtbl[3] + sp0[2];
+    }
+    *(u32 *)(arg0 + 0x2c) = *(u16 *)((u8 *)sp0 + 0xe) & 0xfff;
+quit:
     return ret;
 }
 
