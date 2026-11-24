@@ -45,6 +45,19 @@ func_021099f8(p);
 }
 }
 
+void func_0209beb8(s32 x,s32 y,s32 h,s32 arg3) {
+Unk20 buf=data_0214209c;
+*(volatile u32 *)0x40004a4=0x1f0080;
+func_020a3bbc(arg3);
+buf.unk[1]=0; buf.unk[2]=0; buf.unk[3]=14; buf.unk[4]=3;
+buf.unk[8]=14; buf.unk[9]=3; buf.unk[5]=x; buf.unk[6]=y;
+func_021098ac(&buf);
+buf.unk[1]=0; buf.unk[2]=2; buf.unk[4]=1; buf.unk[9]=h; buf.unk[6]=y+3;
+func_021098ac(&buf);
+buf.unk[1]=0; buf.unk[2]=13; buf.unk[4]=3; buf.unk[9]=3; buf.unk[6]=y+h+3;
+func_021098ac(&buf);
+}
+
 void *func_0209c0d0(void) {
     void *ptr = func_0210c594(0xc, data_02155c3c);
     func_021167ac(ptr, 0x24);
