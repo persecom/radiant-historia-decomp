@@ -39,6 +39,16 @@ void func_02065bbc(void) {
     func_02064ce4(*data_021600c8[1], 0x63, 0x63, -1);
 }
 
+void func_02065c08(void) {
+    if (data_021600c8[1] != NULL) {
+        func_02064c18(*data_021600c8[1]);
+        if (data_021600c8[1] != NULL) {
+            func_0210c5dc(data_021600c8[1]);
+            data_021600c8[1] = NULL;
+        }
+    }
+}
+
 void func_02065cb8(u8 arg0) {
     data_021600e0 = arg0;
 }
