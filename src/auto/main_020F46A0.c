@@ -50,3 +50,11 @@ void func_020f4bd0(void *arg0) {
         func_0210c5dc(arg0);
     }
 }
+
+u32 func_020f53e4(void (*arg0)(void)) {
+    if (arg0 != NULL) {
+        arg0();
+    }
+    return ~(u32)arg0;
+}
+
