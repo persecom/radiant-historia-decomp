@@ -217,6 +217,21 @@ void func_0210c35c(s32 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     arg0[2] = func_02002080(arg2 - arg1, arg3);
 }
 
+s32 func_0210c398(u32 *arg0) {
+    s32 remain = arg0[3];
+    if (remain == 0) {
+        return 0;
+    }
+    arg0[0] += arg0[2] << data_02162834[0];
+    remain -= data_0216281c;
+    arg0[3] = remain;
+    if (remain <= 0) {
+        arg0[0] = arg0[1];
+        arg0[3] = 0;
+    }
+    return 1;
+}
+
 void func_0210c3f8(s32 *arg0) {
     s32 a;
     s32 b;
