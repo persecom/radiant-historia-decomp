@@ -233,6 +233,49 @@ void func_0200bcec(FSFileID *arg0, u8 *arg1) {
     *arg0 = file;
 }
 
+u8 *func_0200f9a4(void);
+s32 func_0200d790(u8 *,u32,u32);
+u32 func_0200d524(u8 *);
+s32 func_0200bd18(u8 *out,void *arg1,void *arg2) {
+s32 kind=(s32)arg1;
+u32 index=(u32)arg2;
+u32 *table=kind==0?data_0215ef80:data_0215ef88;
+s32 ret=0;
+u32 offset=index<<5;
+if(table[0]) {
+u8 file[0x48]; FSFileID id;
+if(offset>=table[1])goto quit;
+func_0200b888(file);
+func_02009008((void *)(table[0]+offset),out,32);
+*(s32 *)(out+0x20)=kind;
+func_0200bcec(&id,out);
+if(!func_0200b9c8(file,id))goto quit;
+*(u32 *)(out+0x24)=func_0200d524(file);
+*(u32 *)(out+0x28)=func_0200bab8(file);
+func_0200baa4(file);
+ret=1;
+} else {
+u8 file[0x48];FSFileID id;
+if(kind==0)table=(u32 *)(func_0200f9a4()+0x50);
+else table=(u32 *)(func_0200f9a4()+0x58);
+if(offset>=table[1])goto quit;
+func_0200b888(file);
+if(!func_0200d790(file,table[0]+offset,table[0]+table[1]))goto quit;
+if(func_0200bb3c(file,out,32)!=32) {
+func_0200baa4(file);goto quit;
+}
+func_0200baa4(file);
+*(s32 *)(out+0x20)=kind;
+func_0200bcec(&id,out);
+if(!func_0200b9c8(file,id))goto quit;
+*(u32 *)(out+0x24)=func_0200d524(file);
+*(u32 *)(out+0x28)=func_0200bab8(file);
+func_0200baa4(file);
+ret=1;
+}
+quit:return ret;
+}
+
 s32 func_0200be78(u8 *arg0) {
     u8 file[0x48];
     FSFileID id;
