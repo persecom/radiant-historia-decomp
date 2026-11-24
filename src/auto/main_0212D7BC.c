@@ -446,3 +446,17 @@ void func_0212e628(void) {
     func_0213808c();
 }
 
+extern u32 data_02174524[0x100];
+extern void func_020065c8(u32);
+extern void func_021384e0(void);
+extern void func_02006510(s32);
+void func_0212e70c(void) {
+    while (data_02174524[4] == 1) {
+        func_020065c8(data_02174524[0x264 / 4]);
+        func_021384e0();
+        data_02174524[0x26c / 4]++;
+        func_02006510(0);
+    }
+    data_02174524[5] = 1;
+}
+
