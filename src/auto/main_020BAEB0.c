@@ -1,5 +1,10 @@
 /* 28 functions from 0x020BA63C to 0x020BB558 (main), found by ds-decomp. */
 #include "common.h"
+extern u8 *data_02160204;
+extern u16 data_021626a8,data_021628f8,data_021626aa;
+extern s32 func_02064b3c(s32,s32,s32,s32);
+extern void func_020a98f4(void *),func_020a994c(void *),func_020a98ac(void *);
+extern void func_0210d27c(s32);
 
 extern void func_02110b94(void *);
 extern void func_02110d94(void *);
@@ -134,50 +139,50 @@ extern void *func_020a94b8(void *);
 extern void func_020a9830(void *, void *, s32, s32, s32, s32);
 extern void func_020bb294(u8 *, int);
 void *func_020bb034(s32 arg0) {
-    u8 **p = func_0210c594(0x114, data_02155c3c);
+    UnkCtx_020bb034 *p = func_0210c594(0x114, data_02155c3c);
     u16 i;
 
     for (i = 0; i < 3; i++) {
         if (i == 1) {
             if (arg0 == 0) {
-                p[i] = func_020a84b8(5, 3);
+                p->unk_00[i] = (UnkObj_020bb034 *)func_020a84b8(5, 3);
             } else if (arg0 == 1) {
-                p[i] = func_020a8604(5, 3);
+                p->unk_00[i] = (UnkObj_020bb034 *)func_020a8604(5, 3);
             }
-            *(s32 *)(p[i] + 0x4c) = 0x2bd000;
-            *(s32 *)(p[i] + 0x44) = 0x1a000;
-            *(s32 *)(p[i] + 0x48) = 0x14000;
+            p->unk_00[i]->unk_4c = 0x2bd000;
+            p->unk_00[i]->unk_44 = 0x1a000;
+            p->unk_00[i]->unk_48 = 0x14000;
         } else if (i == 0) {
             if (arg0 == 0) {
-                p[i] = func_020a84b8(4, 1);
+                p->unk_00[i] = (UnkObj_020bb034 *)func_020a84b8(4, 1);
             } else if (arg0 == 1) {
-                p[i] = func_020a8604(4, 1);
+                p->unk_00[i] = (UnkObj_020bb034 *)func_020a8604(4, 1);
             }
-            *(s32 *)(p[i] + 0x4c) = 0x2bd000;
-            *(s32 *)(p[i] + 0x44) = 0x18000;
-            *(s32 *)(p[i] + 0x48) = 0x2000;
-            func_020a8810(p[i], 7);
+            p->unk_00[i]->unk_4c = 0x2bd000;
+            p->unk_00[i]->unk_44 = 0x18000;
+            p->unk_00[i]->unk_48 = 0x2000;
+            func_020a8810(p->unk_00[i], 7);
         } else if (i == 2) {
-            p[i] = func_020a84b8(4, 1);
-            *(s32 *)(p[i] + 0x4c) = 0x2bd000;
-            *(s32 *)(p[i] + 0x44) = 0x18000;
-            *(s32 *)(p[i] + 0x48) = 0x2000;
-            func_020a8810(p[i], 7);
+            p->unk_00[i] = (UnkObj_020bb034 *)func_020a84b8(4, 1);
+            p->unk_00[i]->unk_4c = 0x2bd000;
+            p->unk_00[i]->unk_44 = 0x18000;
+            p->unk_00[i]->unk_48 = 0x2000;
+            func_020a8810(p->unk_00[i], 7);
         }
 
         if (i == 1) {
-            p[3 + i] = func_020a94b8(data_02151034);
-            func_020a9830((u8 *)p + 0x18 + i * 0x34, (u8 *)p + 0xb4 + i * 0x18, 0xf0, 0x40, 0, 0);
+            p->unk_0c[i] = func_020a94b8(data_02151034);
+            func_020a9830(p->unk_18[i], p->unk_b4[i], 0xf0, 0x40, 0, 0);
         } else if (i == 0) {
-            p[3 + i] = func_020a94b8(data_0215103c);
-            func_020a8810(p[i], 0x11);
-            func_020a9830((u8 *)p + 0x18 + i * 0x34, (u8 *)p + 0xb4 + i * 0x18, 0x80, 0x10, 0, 0);
+            p->unk_0c[i] = func_020a94b8(data_0215103c);
+            func_020a8810(p->unk_00[i], 0x11);
+            func_020a9830(p->unk_18[i], p->unk_b4[i], 0x80, 0x10, 0, 0);
         } else if (i == 2) {
-            p[3 + i] = func_020a94b8(data_02151044);
-            func_020a9830((u8 *)p + 0x18 + i * 0x34, (u8 *)p + 0xb4 + i * 0x18, 0x80, 0x10, 0, 0);
+            p->unk_0c[i] = func_020a94b8(data_02151044);
+            func_020a9830(p->unk_18[i], p->unk_b4[i], 0x80, 0x10, 0, 0);
         }
 
-        *(s32 *)((u8 *)p + 0xfc + i * 4) = 1;
+        p->unk_fc[i] = 1;
         func_020bb294((u8 *)p, (u8)i);
     }
 
