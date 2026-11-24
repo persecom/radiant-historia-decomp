@@ -31,6 +31,10 @@ extern void *data_0215be64;
 extern u8 data_0215bd14[];
 extern u8 data_0215bd2c[];
 extern u8 data_0215bdd0[];
+extern u8 data_0215be00[];
+extern u8 data_0215be18[];
+extern u8 data_0215be30[];
+extern u8 data_0215be4c[];
 BOOL func_02134c94(u8 *arg0);
 s32 func_021343a0(u8 *, s32, s32);
 s32 func_0213443c(u8 *);
@@ -151,6 +155,39 @@ s32 func_021346cc(u32 arg0) {
 
 void func_0213473c(void) {
     func_02135c78();
+}
+
+void func_02134748(void) {
+    u32 *p;
+    s32 i;
+    data_0215be64 = data_02145aa4;
+    if (data_021756d4 != 0) {
+        return;
+    }
+    func_02135c18();
+    p = (u32 *)data_021756d8;
+    for (i = 0; i < 0x16; i++) {
+        p[0] = 0;
+        p[1] = 0;
+        p[2] = 0;
+        p[3] = 0;
+        p[4] = 0;
+        p[5] = 0;
+        p[6] = 0;
+        p[7] = 0;
+        p += 8;
+    }
+    p[0] = 0;
+    p[1] = 0;
+    p[2] = 0;
+    p[3] = 0;
+    p[4] = 0;
+    func_02135ccc();
+    *(u32 *)(data_021756d8 + 0x2bc) = 2;
+    data_021756d8[0x2c0] = 4;
+    data_021756d8[0x2c1] = 5;
+    *(u32 *)(data_021756d8 + 0x2b4) = 0;
+    data_021756d4++;
 }
 
 void func_021347e8(void) {
