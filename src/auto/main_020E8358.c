@@ -132,11 +132,11 @@ s32 func_020e861c(s32 arg0, s32 arg1) {
     u8 i;
 
     for (i = 9; i < 12; i++) {
-        Entry516c4 *e = &data_021516c4[i];
-        s16 a = (s16)e->m0;
-        s16 b = (s16)e->m4;
-        s16 c = (s16)(e->m0 + e->m8);
-        s16 d = (s16)(e->m4 + e->mC);
+        s32 *e = (s32 *)data_021516c4 + i * 4;
+        s16 a = (s16)e[0];
+        s16 b = (s16)e[1];
+        s16 c = (s16)(e[0] + e[2]);
+        s16 d = (s16)(e[1] + e[3]);
 
         if (arg0 >= a && arg0 <= c && b <= arg1 && arg1 <= d) {
             return (s8)i;
