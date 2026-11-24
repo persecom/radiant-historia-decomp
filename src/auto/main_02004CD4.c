@@ -268,6 +268,20 @@ void func_02005780(void) {
     func_020056c8(3);
 }
 
+extern u32 func_02008128(void);
+extern void func_0200813c(u32);
+extern void func_02006510(void *);
+extern u8 data_027e0000[];
+extern u8 data_027e0060[];
+extern u8 data_0215cd7c[];
+extern u16 data_02145ba8[];
+extern u8 data_0215cd84[];
+extern u8 data_0215cd80[];
+extern void func_020059e4(u32);
+void func_02005790(void) {
+    func_020056c8(4);
+}
+
 extern u16 data_0215cddc;
 u16 func_02005a74(void) {
     return data_0215cddc;
