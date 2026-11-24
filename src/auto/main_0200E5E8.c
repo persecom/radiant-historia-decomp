@@ -70,6 +70,36 @@ s32 func_0200e758(u32 arg0) {
     return result;
 }
 
+s32 func_0200e780(u32 arg0, u32 arg1, void *arg2, void *arg3) {
+    u32 val = 0;
+    if (arg0 == 0) {
+        if (arg1 == 1) {
+            val = 6;
+        }
+        if (arg1 == 0) {
+            val = 7;
+        }
+    } else if (arg0 == 1) {
+        if (arg1 == 1) {
+            val = 4;
+        }
+        if (arg1 == 0) {
+            val = 5;
+        }
+    } else if (arg0 == 2) {
+        if (arg1 == 1) {
+            val = 8;
+        }
+        if (arg1 == 0) {
+            val = 9;
+        }
+    }
+    if (val == 0) {
+        return 0xffff;
+    }
+    return func_0200e674(val, 0, NULL, arg2, arg3);
+}
+
 void func_0200f0e4(s32 arg0) {
     func_0200f004(data_0215f04c, arg0);
 }
