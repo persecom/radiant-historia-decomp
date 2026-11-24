@@ -47,6 +47,7 @@ typedef struct Unk_0210a39c {
     u32 field_4;
     u32 field_8;
 } Unk_0210a39c;
+extern s32 func_0210a39c(u32 *, s32, u32 *);
 
 void *func_02109fac(void *arg0) {
     register u8 *buf asm("r5");
