@@ -21,6 +21,59 @@ extern void func_0210c5dc(void *);
 extern void func_021167f0(void *, void *);
 extern void func_0206e7a0(u8, void *, void *, u16);
 
+void func_0206e7a0(u8 arg0, void *arg1_, void *arg2_, u16 arg3) {
+    typedef struct { u32 a, b, c; } Vec3;
+    u8 *arg1 = (u8 *)arg1_;
+    u8 *arg2 = (u8 *)arg2_;
+    u8 *r4 = (u8 *)func_020675e4(arg0, *(u16 *)(data_021600e8 + 0x50));
+    *(u16 *)(r4 + 0x50) = arg3;
+    r4[0x18] = arg0;
+    r4[0x40] = arg2[0x10];
+    *(s16 *)(r4 + 0x22) = *(s16 *)(arg2 + 0xe);
+    r4[0x20] = arg2[0xc];
+    *(Vec3 *)(r4 + 0xc) = *(Vec3 *)arg2;
+    *(s16 *)(r4 + 0x1e) = *(s16 *)(arg2 + 0x12);
+    r4[0x28] = arg2[0x14];
+
+    switch (arg2[0xc]) {
+    case 0:
+        *(void **)(r4 + 0x4c) = arg1;
+        *(u16 *)(r4 + 0x24) = *(u16 *)(arg1 + 0x90);
+        if (arg0 == 0x68 || arg0 == 0x69 || arg0 == 0x6a || arg0 == 0x87) {
+            r4[0x40] = (arg2[0x10] ^ 2) & 2;
+        } else {
+            r4[0x40] = arg2[0x10];
+        }
+        if (arg2[0x10] & 4) {
+            r4[0x40] |= 4;
+        }
+        func_0206b3c0(r4);
+        break;
+    case 1:
+        *(void **)(r4 + 0x4c) = arg1;
+        func_0206b3c0(r4);
+        break;
+    case 2: {
+        u32 *p = (u32 *)func_0210c594(0xc, data_02155c3c);
+        *(u32 **)(r4 + 0x4c) = p;
+        p[0] = ((u32 *)arg1)[0];
+        p[1] = ((u32 *)arg1)[1];
+        p[2] = ((u32 *)arg1)[2];
+        func_0206b3c0(r4);
+        break;
+    }
+    case 4:
+        *(void **)(r4 + 0x4c) = arg1;
+        func_0206b3c0(r4);
+        break;
+    default:
+        if (r4 != NULL) {
+            func_0210c5dc(r4);
+        }
+        break;
+    }
+}
+
 void func_0206e8f0(u32 arg0, UnkVec12 *arg1, u8 arg2) {
     u8 *p = func_020675e4(arg0, *(u16 *)(data_021600e8 + 0x50));
     *(u8 *)(p + 0x20) = arg2;
