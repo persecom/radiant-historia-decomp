@@ -51,6 +51,54 @@ extern void func_020071a0(s32, u32);
 extern u32 func_020070fc(s32);
 extern void func_020071b4(s32, u32);
 extern void func_020075d4(s32, u32, s32);
+void func_02006d34(u8 *, u8 *);
+void func_02006c38(u8 *arg0, u32 arg1) {
+    u32 cookie = func_02008128();
+    u32 flag = 0;
+    u32 list = data_0215ce00[1];
+    if (arg1 != 0 && arg1 != (*(u32 *)(arg0 + 0xc) & 0xff000000)) {
+        func_0200813c(cookie);
+        return;
+    }
+    {
+        u32 cnt = *(u32 *)(arg0 + 0xc);
+        switch (cnt & 0xff000000) {
+        case 0x10000000:
+        case 0x30000000:
+            if (*(u32 *)(arg0 + 8) != list) {
+                goto tail;
+            }
+            cnt = *(u32 *)(arg0 + 0xc);
+            cnt = ((cnt - 1) & ~0xff000000u) | (cnt & 0xff000000);
+            *(u32 *)(arg0 + 0xc) = cnt;
+            if ((cnt & ~0xff000000u) == 0) {
+                flag = 1;
+            }
+            break;
+        case 0x20000000:
+            cnt = ((cnt - 1) & ~0xff000000u) | (cnt & 0xff000000);
+            *(u32 *)(arg0 + 0xc) = cnt;
+            if ((cnt & ~0xff000000u) == 0) {
+                flag = 1;
+            }
+            break;
+        default:
+            func_0200813c(cookie);
+            return;
+        }
+    }
+tail:
+    if (flag == 0) {
+        func_0200813c(cookie);
+        return;
+    }
+    func_02006d34((u8 *)list, arg0);
+    *(u32 *)(arg0 + 8) = 0;
+    *(u32 *)(arg0 + 0xc) &= ~0xff000000u;
+    func_02006560(arg0, *(u32 *)(arg0 + 0xc));
+    func_0200813c(cookie);
+}
+
 void func_02006d10(u8 *arg0, u8 *arg1) {
     u8 *tail = *(u8 **)(arg0 + 0x8c);
     if (tail == NULL) {
@@ -116,6 +164,43 @@ u32 func_02006ff4(s32 arg0) {
 
 u32 func_02007008(s32 arg0) {
     return ((u32 *)0x02fffda0)[arg0];
+}
+
+extern u8 data_027e0000[];
+extern u8 SDK_SYS_STACKSIZE[];
+extern u8 SDK_IRQ_STACKSIZE[];
+u32 func_0200701c(s32 arg0) {
+    switch (arg0) {
+    case 0:
+        return 0x023e0000;
+    case 2:
+        if (data_0215d058[1] == 0) {
+            return 0;
+        }
+        if ((func_02006940() & 0xf) == 1) {
+            return 0;
+        }
+        return 0x02700000;
+    case 3:
+        return 0x02000000;
+    case 4: {
+        u32 base = (u32)data_027e0000;
+        u32 hi = base + 0x3f80 - (u32)SDK_IRQ_STACKSIZE;
+        if ((s32)SDK_SYS_STACKSIZE == 0) {
+            return (base < 0x027e0080) ? 0x027e0080 : base;
+        } else if ((s32)SDK_SYS_STACKSIZE < 0) {
+            return 0x027e0080 - (s32)SDK_SYS_STACKSIZE;
+        } else {
+            return hi - (s32)SDK_SYS_STACKSIZE;
+        }
+    }
+    case 5:
+        return 0x02fff680;
+    case 6:
+        return 0x037f8000;
+    default:
+        return 0;
+    }
 }
 
 u32 func_020070fc(s32 arg0) {
