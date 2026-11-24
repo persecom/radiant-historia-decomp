@@ -12,6 +12,12 @@ extern void *func_0200b2ac(const char *, u32 *, u8 *);
 extern void func_0200b888(u8 *);
 extern s32 func_0200afb4(u8 *, s32, s32);
 extern s32 func_0200d460(u8 *, u32 *);
+extern s32 func_0200d4a0(u8 *, u32 *);
+extern s32 func_020081e0(void);
+extern u32 func_0200b0ec(void *, s32, s32);
+extern u32 data_0215ef7c[];
+extern u8 data_0213e8f0[];
+extern u8 data_02145c04[];
 s32 func_0200b8fc(u32 *arg0, const char *arg1) {
     s32 ret = 0;
     u8 path[0x118];
@@ -111,12 +117,52 @@ s32 func_0200bb10(u8 *arg0, u32 arg1, u32 arg2) {
     return func_0200afb4(arg0, 0xe, 1);
 }
 
+s32 func_0200bb3c(u8 *arg0, void *arg1, s32 arg2) {
+    u32 sp0[2];
+    *(u32 **)(arg0 + 0x10) = sp0;
+    sp0[0] = (u32)arg1;
+    sp0[1] = arg2;
+    if (func_0200afb4(arg0, 0, 1) == 0 && *(u32 *)(arg0 + 0x14) == 6) {
+        return -1;
+    }
+    return sp0[1];
+}
+
+u32 func_0200bb90(u8 *arg0, void *arg1, u32 arg2) {
+    u32 sp4;
+    u32 sp0;
+    if (func_0200d4a0(arg0, &sp0) != 0 && func_0200d460(arg0, &sp4) != 0) {
+        if (sp0 + arg2 > sp4) {
+            arg2 = sp4 - sp0;
+        }
+    }
+    *(u32 **)(arg0 + 0x10) = (u32 *)(arg0 + 0x30);
+    *(void **)(arg0 + 0x30) = arg1;
+    *(u32 *)(arg0 + 0x34) = arg2;
+    func_0200afb4(arg0, 0, 0);
+    return arg2;
+}
+
 s32 func_0200bc08(void *arg0, void *arg1) {
     return func_0200ba20(arg0, arg1, 1);
 }
 
 u32 func_0200bc18(u8 *arg0) {
     return func_0200bab8(arg0);
+}
+
+extern s32 func_0200d4a0(u8 *, u32 *);
+extern s32 func_020081e0(void);
+extern u32 func_0200b0ec(void *, s32, s32);
+extern u32 data_0215ef7c[];
+extern u8 data_0213e8f0[];
+extern u8 data_02145c04[];
+u32 func_0200bc94(u8 *arg0) {
+    u32 val = *(u32 *)(arg0 + 0x1c);
+    if ((val >> 24) & 1) {
+        return val & 0xffffff;
+    }
+    return *(u32 *)(arg0 + 8);
 }
 
 extern void func_0200c0a8(void);
