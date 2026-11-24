@@ -11,6 +11,11 @@ extern u8 *data_0216013c;
 extern void func_021167ac(void *, u32);
 extern void func_021167f0(void *, void *);
 extern void *func_020c2dd8(u32);
+struct UnkB0 {
+    s16 data[88];
+};
+extern const struct UnkB0 data_02144318;
+extern void *func_020c3d24(void *);
 void func_020c3020(void *arg0) {
     u8 *node = *(u8 **)(data_02160090 + 0x48);
     u8 *next;
