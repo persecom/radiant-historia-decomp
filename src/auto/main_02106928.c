@@ -147,6 +147,29 @@ void *func_02106f6c(void *arg0, u16 arg1) {
     return result;
 }
 
+void func_0210701c(u16 arg0) {
+    UnkStruct_02106928 *p;
+    u8 *node;
+
+    p = data_02161064;
+    if (p == NULL) return;
+    node = *(u8 **)p->unk28;
+    if (node == NULL) return;
+    for (;;) {
+        if (*(u16 *)(node + 4) == arg0) {
+            u8 *d = *(u8 **)node;
+            *(volatile u32 *)0x040004a8 = (*(u32 *)(d + 4) >> 3) | (*(u32 *)(d + 0x18) << 26) |
+                                          0x40000000 | (*(u32 *)(d + 0x10) << 20) |
+                                          (*(u32 *)(d + 0x14) << 23) | 0x20000000;
+            *(volatile u32 *)0x040004ac = *(u32 *)(d + 0xc) >> (4 - (*(u32 *)(d + 0x18) == 2));
+            *(volatile u32 *)0x04000480 = 0x7fff;
+            return;
+        }
+        node = *(u8 **)(node + 0xc);
+        if (node == NULL) return;
+    }
+}
+
 void func_021070c4(void) {
     data_02161068 = func_0210c594(0x10, data_02155c3c);
     func_021167ac(data_02161068 + 4, 0x14);
