@@ -41,30 +41,30 @@ extern void func_02012590(const char *, const char *, ...);
 void func_02092010(s32 arg0, s32 arg1) {
 switch(arg0) {
 case 1:
-if (!(*(s16 *)(data_0216010c + 0x53d0) & 8)) {
-*(s16 *)(data_0216010c + 0x53d0) |= 1;
-*(s16 *)(data_0216010c + 0x53d0) |= 8;
-*(s16 *)(data_0216010c + 0x53d0) |= 0x10;
-*(s16 *)(data_0216010c + 0x53d0) |= 0x40;
+if (!(((Unk_02092010 *)data_0216010c)->unk_d0 & 8)) {
+((Unk_02092010 *)data_0216010c)->unk_d0 |= 1;
+((Unk_02092010 *)data_0216010c)->unk_d0 |= 8;
+((Unk_02092010 *)data_0216010c)->unk_d0 |= 0x10;
+((Unk_02092010 *)data_0216010c)->unk_d0 |= 0x40;
 *(s16 *)(data_0216010c+0x53d2)=0;
 *(s16 *)(data_0216010c+0x53bc)=0x104;
 *(s16 *)(data_0216010c+0x53ba)=arg1;
-*(s16 *)(data_0216010c + 0x53d0) &= ~0x20;
+((Unk_02092010 *)data_0216010c)->unk_d0 &= ~0x20;
 } else {
-*(s16 *)(data_0216010c + 0x53d0) |= 0x20;
+((Unk_02092010 *)data_0216010c)->unk_d0 |= 0x20;
 data_0216010c[0x53cf]=arg1;
 }
 break;
 case 2:
 *(s16 *)(data_0216010c+0x53be)=*(s16 *)(data_0216010c+0x53bc);
-*(s16 *)(data_0216010c + 0x53d0) |= 1;
-*(s16 *)(data_0216010c + 0x53d0) |= 8;
-*(s16 *)(data_0216010c + 0x53d0) &= ~0x10;
-*(s16 *)(data_0216010c + 0x53d0) &= ~0x40;
+((Unk_02092010 *)data_0216010c)->unk_d0 |= 1;
+((Unk_02092010 *)data_0216010c)->unk_d0 |= 8;
+((Unk_02092010 *)data_0216010c)->unk_d0 &= ~0x10;
+((Unk_02092010 *)data_0216010c)->unk_d0 &= ~0x40;
 *(s16 *)(data_0216010c+0x53d2)=0;
 break;
 case 3:
-*(s16 *)(data_0216010c + 0x53d0) &= ~1;
+((Unk_02092010 *)data_0216010c)->unk_d0 &= ~1;
 *(s16 *)(data_0216010c+0x53d2)=0;
 break;
 }
