@@ -121,6 +121,73 @@ u32 func_0205bcb0(void *arg0, s32 arg1) {
     return ret;
 }
 
+extern u32 func_0202e84c(void *);
+extern void func_020daefc(void *,void *,void *,s32,void *,s32,s32);
+extern void func_0206e990(s32,u16);
+void func_0205bce4(u8 *arg0) {
+u8 *sub=*(u8 **)(arg0+0x128);
+s32 zero=0;
+u32 mask=zero;
+u8 *info=*(u8 **)(sub+8);
+if(*(u16 *)(sub+0x1e)&0x200) return;
+if(*(u32 *)(info+8)&0x40) {
+u8 *p=*(u8 **)(data_02160a6c+0xb8);
+if(p) {
+do {
+if(p && *(u8 **)(p+0x118)) {
+if(*(u16 *)(*(u8 **)(p+0x128)+0x1e)&0x400) return;
+}
+p=*(u8 **)(p+0x174);
+} while(p);
+}
+}
+if(*(s16 *)(sub+0x1c)==0) {
+*(s16 *)(sub+0x1c)=1;
+if(info[0]!=4) {
+u8 *node=func_0205bad4(sub);
+while(node) {
+u8 *p=*(u8 **)node;
+if(p) {
+if((*(u32 *)(*(u8 **)(p+0x118)+0x8c)&4) && (*(u16 *)(node+4)&0x20)) mask|=func_0202e84c(p);
+if(p && *(u32 *)(p+0x1c0)==1) {
+if(!(*(u32 *)(*(u8 **)(p+0x118)+0x8c)&0x20)) {
+*(u32 *)(p+0x1c0)=zero;
+*(u32 *)p=*(u32 *)(p+0xec);
+*(u32 *)(p+8)=*(u32 *)(p+0xf4);
+}
+}
+}
+node=*(u8 **)(node+0x18);
+}
+{
+u8 *p; u8 *node; u8 *info2=*(u8 **)(sub+8);
+node=func_0205bad4(sub);
+while(node) {
+p=*(u8 **)node;
+if(p && (mask&func_0202e84c(p)) && (*(u16 *)(node+4)&0x20)) {
+func_020daefc(arg0,p,info2,zero,node,zero,zero);
+if(*(u32 *)(*(u8 **)(p+0x118)+0x8c)&4) {
+func_0206e990(18,*(u16 *)(p+0x90));
+*(u32 *)(*(u8 **)(p+0x118)+4)=zero;
+}
+}
+node=*(u8 **)(node+0x18);
+}
+}
+}
+if(mask==0) {
+*(u32 *)(sub+0x24)=300;
+*(s16 *)(sub+0x1c)=0;
+}
+} else {
+(*(s16 *)(sub+0x1c))++;
+if(*(volatile s16 *)(sub+0x1c)>10) {
+*(u32 *)(sub+0x24)=300;
+*(s16 *)(sub+0x1c)=zero;
+}
+}
+}
+
 extern u8 **data_02160244;
 extern void func_02032208(void *, u32);
 extern void func_020d626c(void *);
