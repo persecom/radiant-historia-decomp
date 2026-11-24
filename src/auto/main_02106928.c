@@ -38,6 +38,8 @@ typedef struct UnkStruct_02106928 {
 extern u32 data_02155968;
 extern u32 data_02155c3c;
 extern UnkStruct_02106928 *data_02161064;
+extern u8 *data_02161068;
+extern u8 data_02161088[28];
 
 extern void func_0200fa3c(u16);
 extern void *func_0210c594(s32, u32);
@@ -46,6 +48,10 @@ extern void func_021167ac(void *, s32);
 extern void func_021167f0(void *, void *);
 extern void func_02106aa0(void);
 extern void func_02106b18(void);
+extern void func_02118234(void *);
+extern void func_02118570(void *);
+extern void *func_0203be60(void *, void *, void *);
+extern void func_0210c5dc(void *);
 
 void func_02106928(void) {
     if (data_02161064 != NULL) {
