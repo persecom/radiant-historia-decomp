@@ -179,6 +179,16 @@ s32 func_02117674(void *arg0, void **arg1) {
     return 0;
 }
 
+void *func_021176b0(u8 *arg0, u32 arg1) {
+    if (arg1 >= *(u16 *)arg0) {
+        return NULL;
+    }
+    if (*(u16 *)(arg0 + 2) & 1) {
+        return *(u8 **)(arg0 + 4) + (arg1 << 4);
+    }
+    return *(u8 **)(arg0 + 4) + (arg1 << 3);
+}
+
 s32 func_02117774(void *arg0, void **arg1) {
     u8 *r4 = func_02117904(arg0, 0x43484152);
     if (r4 != NULL) {
