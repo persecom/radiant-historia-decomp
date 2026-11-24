@@ -337,3 +337,47 @@ void func_0212c808(u8 *arg0) {
     arg0[1] = 0;
 }
 
+void func_0212c5cc(void) {
+    extern u32 data_02173df4[5];
+    extern u8 data_02173e08[720];
+    s32 i;
+    u32 *p = &data_02173df4[4];
+    *p -= 1;
+    if (*p != 0) {
+        return;
+    }
+    for (i = 0; i < 180; i++) {
+        ((u32 *)data_02173e08)[i] = 0;
+    }
+}
+
+void func_0212c624(void *arg0) {
+    u8 *p = (u8 *)arg0;
+    *(u32 *)(p + 0xa0) = 0;
+    *(u32 *)(p + 0x2c) = 0;
+    *(u32 *)(p + 0x30) = 0;
+    *(u32 *)(p + 0x34) = 0;
+    *(s32 *)(p + 0x38) = 0x7fffffff;
+    *(s32 *)(p + 0x3c) = -1;
+    *(u32 *)(p + 0x40) = 0;
+    *(u32 *)(p + 0x44) = 0;
+    *(u8 *)(p + 0x3) = 0;
+    *(u32 *)(p + 0xa8) = 0;
+    *(u32 *)(p + 0xac) = 0;
+}
+
+void func_0212c770(u8 *arg0) {
+    u8 *p;
+    if (arg0 == NULL) {
+        return;
+    }
+    p = *(u8 **)(arg0 + 4);
+    if (p != NULL) {
+        *(u32 *)(arg0 + 4) = 0;
+        func_02129d80(p);
+    }
+    func_0212a9dc();
+    func_02013878(arg0, 0, 0xb4);
+    func_0212a9e8();
+}
+
