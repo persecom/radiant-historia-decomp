@@ -1,7 +1,7 @@
 /* 10 functions from 0x020EA188 to 0x020EB180 (main), found by ds-decomp. */
 #include "common.h"
 
-extern u8 data_02160a90[20];
+extern u32 data_02160a90[5];
 extern u8 data_021518c0[8];
 extern s32 func_0210dba0(void *);
 extern s32 func_021086d4(void *);
