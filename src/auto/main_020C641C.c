@@ -9,6 +9,7 @@ extern void func_021098ac(void *);
 extern void func_020a3bbc(u16);
 extern s16 data_02160220[10];
 extern s16 data_02162908[4];
+extern u16 data_021628f8;
 void func_020c6ef4(u8 *arg0);
 s32 func_020c6e40(void *arg0, u8 *arg1, s32 arg2, s32 arg3);
 void func_020c6e2c(void *, void *);
