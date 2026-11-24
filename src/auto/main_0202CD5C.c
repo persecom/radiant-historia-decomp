@@ -227,3 +227,34 @@ void func_0202d3ac(u8 *arg0) {
     }
 }
 
+extern void func_0202d998(void *, void *, u16);
+void func_0202dacc(void *arg0, u8 *arg1, u16 arg2, s32 *arg3) {
+    s32 col;
+    s32 row;
+    if ((s8)arg1[3] == -1) {
+        return;
+    }
+    if (arg2 > 8) {
+        return;
+    }
+    if (arg3[arg2] != 0) {
+        return;
+    }
+    func_0202d998(arg0, arg1, arg2);
+    col = arg2 % 3;
+    arg3[arg2] = 1;
+    if (col < 2) {
+        func_0202dacc(arg0, arg1, arg2 + 1, arg3);
+    }
+    if (col > 0) {
+        func_0202dacc(arg0, arg1, arg2 - 1, arg3);
+    }
+    row = arg2 / 3;
+    if (row > 0) {
+        func_0202dacc(arg0, arg1, arg2 - 3, arg3);
+    }
+    if (row < 2) {
+        func_0202dacc(arg0, arg1, arg2 + 3, arg3);
+    }
+}
+
