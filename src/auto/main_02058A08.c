@@ -81,6 +81,56 @@ case 6:func_02044f80();*(u32*)(state+16)=1;break;
 }
 }
 
+void func_02059128(void){
+Vec3_02059888 points[4];
+u8 *obj,*p;
+s32 one=1;
+switch(*(u16 *)(data_0216020c+0xbe)){
+case 0:
+*(s32*)(data_0216020c+148)=0;
+*(s32*)(*(u8* volatile*)&data_0216020c+152)=0x15a000;
+*(s32*)(*(u8* volatile*)&data_0216020c+0)=0xbe000;
+*(s32*)(*(u8* volatile*)&data_0216020c+16)=0;
+*(s32*)(*(u8* volatile*)&data_0216020c+8)=0x17c000;
+*(u16*)(*(u8* volatile*)&data_0216020c+142)=1495;
+*(s32*)(*(u8* volatile*)&data_0216020c+128)=160;
+*(s32*)(*(u8* volatile*)&data_0216020c+132)=29;
+*(s32*)(*(u8* volatile*)&data_0216020c+172)=0;
+*(s32*)(*(u8* volatile*)&data_0216020c+180)=0;
+*(s32*)(*(u8* volatile*)&data_0216020c+176)=0;
+data_0216020c[0xd8]=one;
+points[0].x=211;points[0].y=10;points[0].z=193;points[1].x=247;points[1].y=252;points[1].z=612;
+func_020bf344(func_020bf308(0),&points[0],&points[1],150);
+points[0].x=-126;points[0].y=354;points[0].z=-931;points[1].x=-126;points[1].y=488;points[1].z=-931;
+func_020bf344(func_020bf308(one),&points[0],&points[1],60);
+func_020bed24()[0]=-0x7e000;
+func_020bed24()[1]=0x162000;
+func_020bed24()[2]=-0x3a3000;
+obj=func_020f0a5c(0x3e4);func_020f0154(0x2764);func_020f0898(*(Vec3_02059888*)(obj+4),0x2764,0x1f5);
+obj=func_020f0aa4(0x1f5);*(u32*)(obj+20)|=0x11;
+p=*(u8 **)(*(u8 **)obj+0x100);if(p) *(s32 *)p=0x320000;
+data_02162884[0]=0;data_02162814[0]=0;
+*(s32 *)(func_020becfc()+0x100)=200;
+*(u16 *)(data_0216020c+0xbe)=one;
+break;
+case 2:
+func_020f0a5c(0x3e4)[0x45]=one;
+*(s32 *)(data_021600ac+0x10)=0;func_020468e0(0);
+*(u16 *)(data_0216020c+0xbe)=3;break;
+case 3:*(s16 *)(data_0216020c+0xba)=60;break;
+case 4:func_020468e0(one);*(u16 *)(data_0216020c+0xbe)=5;break;
+case 5:
+--*(s16 *)(data_0216020c+0xba);
+p=*(u8* volatile*)&data_0216020c;
+if(*(s16 *)(p+0xba)<0)*(s16 *)(p+0xba)=0;
+p=data_0216020c;
+data_02162884[0]=(*(s16 *)(p+0xba)*16)/60-16;
+data_02162814[0]=(*(s16 *)(p+0xba)*16)/60-16;
+if(*(s16 *)(p+0xba)==0)*(u16 *)(p+0xbe)=6;
+break;
+case 6:data_02160204[0x11f]=data_0216020c[0xc1];*(s32 *)(data_021600ac+0xc)=one;data_02160204[0xd8]=18;break;
+}}
+
 s32 func_02059460(u8 *arg0) {
     if (*(f32 *)(arg0 + 4) < 1.0f) {
         *(f32 *)(arg0 + 4) += 1.0f / *(f32 *)(arg0 + 0);
