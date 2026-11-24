@@ -140,3 +140,17 @@ void func_020306c4(u8 *arg0, u16 arg1) {
     }
 }
 
+void func_020306f8(u8 *arg0, u16 arg1, s16 arg2, s16 arg3, s16 arg4) {
+    u8 *node = (u8 *)func_02030698(arg0, arg1);
+    if (node != NULL) {
+        *(s16 *)(node + 2) = arg2;
+        *(s16 *)(node + 4) = arg3;
+        *(s16 *)(node + 6) = arg4;
+        return;
+    }
+    node = (u8 *)func_0203065c(arg0, arg1);
+    *(s16 *)(node + 2) = arg2;
+    *(s16 *)(node + 4) = arg3;
+    *(s16 *)(node + 6) = arg4;
+}
+
