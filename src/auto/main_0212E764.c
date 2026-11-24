@@ -394,6 +394,26 @@ BOOL func_0212f470(u8 *arg0) {
     return (vtbl->method(obj, one) == 0 && *(u32 *)(arg0 + 0xc) == 0 && *(u32 *)(arg0 + 0x24) == 0) ? TRUE : FALSE;
 }
 
+s32 func_0212f4b0(void *arg0) {
+    u32 a;
+    u32 v;
+    a = (u32)func_0212f468(arg0) & 7;
+    if (a != 0) {
+        func_0212f3fc(arg0, 8 - a);
+    }
+    v = func_0212f3fc(arg0, 12);
+    while (func_0212f470(arg0) == 0) {
+        if ((v & 0xfff) == 0xfff) {
+            return 1;
+        }
+        if (v == 0x8001000c) {
+            return 2;
+        }
+        v = func_0212f3fc(arg0, 4) | (v << 4);
+    }
+    return -1;
+}
+
 extern u32 data_0217479c;
 extern u32 data_02174524[0x100];
 extern u32 data_021744ec[5];
