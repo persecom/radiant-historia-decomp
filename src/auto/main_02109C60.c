@@ -22,6 +22,7 @@ extern void *data_02155c3c;
 extern u32 data_02162564[];
 extern u32 func_0210a498(u32 *);
 
+extern void func_02109c54(u8 *);
 void *func_02109c60(u8 *arg0, u32 *arg1) {
     u8 stack[0x10];
     u8 *buf = stack;
@@ -33,7 +34,7 @@ void *func_02109c60(u8 *arg0, u32 *arg1) {
         size = func_0210a498((u32 *)buf);
         p = func_0210c518(size, data_02155c3c);
         func_02109c24((u32)buf, (u32)p, zero, size);
-        func_02109c54();
+        func_02109c54(buf);
         if (arg1 != NULL) {
             *arg1 = size;
         }
@@ -46,56 +47,3 @@ void *func_02109c60(u8 *arg0, u32 *arg1) {
 s32 func_02109cf0(s8 *arg0) {
     return *arg0 != '-';
 }
-
-void func_02109ea8(void *arg0) {
-    u8 *p = arg0;
-    u16 count = *(u16 *)(p + 0x14);
-    *(u16 *)(p + 0x14) = count - 1;
-    if (*(u16 *)(p + 0x14) != 0) {
-        return;
-    }
-    if (data_02162564[1] != 0) {
-        return;
-    }
-    if (((*(u32 *)(p + 0xc) << 7) >> 31) != 0) {
-        return;
-    }
-    func_021168f8(data_0216256c, p);
-    func_0210c674(*(void **)(p + 8));
-    if (*(void **)(p + 0x10) != NULL) {
-        func_0210c5dc(*(void **)(p + 0x10));
-        *(void **)(p + 0x10) = NULL;
-    }
-    func_0210c674(p);
-}
-
-void func_02109f24(void) {
-    void *p = func_02109f3c();
-    if (p != NULL) {
-        func_02109ea8(p);
-    }
-}
-
-s32 func_0210a38c(u8 *arg0) {
-    *(s32 *)arg0 = -1;
-    return 1;
-}
-
-u32 func_0210a498(u32 *arg) {
-    return arg[2];
-}
-
-void func_0210a4a0(void) {
-    *(u32 *)(data_02162610 + 4) = 0;
-}
-
-extern u8 data_02162610[64];
-void *func_0210a4b4(void) {
-    return data_02162610;
-}
-
-extern u8 data_02162614[64];
-void *func_0210a4c0(void) {
-    return data_02162614;
-}
-
