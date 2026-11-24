@@ -13,6 +13,11 @@ extern s32 func_02002f3c(void *);
 extern void func_02001860(void *, void *);
 extern s32 func_02002f6c(void *);
 extern void func_021206c8(void *, void *);
+extern void *func_0211c9c8(void *, void *);
+extern void func_02117464(void *, void *);
+extern void func_02002c2c(void);
+extern void func_0211d664(void);
+extern void func_02120bbc(u8 *, u32, u32);
 void func_02120518(u32 *arg0) {
     *arg0 = 0;
 }
