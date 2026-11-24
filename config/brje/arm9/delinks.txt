@@ -560,7 +560,10 @@ src/auto/main_020A84B8.c:
     .text start:0x020a84b8 end:0x020a94b8
 
 src/auto/main_020A94B8.c:
-    .text start:0x020a94b8 end:0x020aa464
+    .text start:0x020a94b8 end:0x020a9d60
+
+src/auto/main_020A9D60.c:
+    .text start:0x020a9d60 end:0x020aa464
 
 src/auto/main_020AA464.c:
     .text start:0x020aa464 end:0x020ab250
