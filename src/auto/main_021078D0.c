@@ -197,6 +197,25 @@ void *func_0210835c(void) {
     return func_0210c594(0x18, data_02155c3c);
 }
 
+void func_02108378(void **arg0) {
+    if (arg0 == NULL) {
+        return;
+    }
+    func_0210a76c(arg0[4]);
+    func_0210aa14(arg0[5]);
+    if (arg0[0] != NULL) {
+        func_0210c5dc(arg0[0]);
+        arg0[0] = NULL;
+    }
+    if (arg0[2] != NULL) {
+        func_0210c5dc(arg0[2]);
+        arg0[2] = NULL;
+    }
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
 extern u32 data_02155c3c;
 extern void *func_0210c594(u32, u32);
 extern void func_02008f74(void *, s32, u32);
