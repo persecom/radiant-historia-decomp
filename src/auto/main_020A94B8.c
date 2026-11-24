@@ -267,6 +267,14 @@ void func_020a9abc(u8 *arg0) {
     arg0[8] = 0x1f;
 }
 
+void func_020a9ac8(u8 **arg0) {
+    u8 *cur = *arg0;
+    while (cur != NULL) {
+        func_020a9abc(cur);
+        cur = *(u8 **)(cur + 0x10);
+    }
+}
+
 void func_020a9b28(void *arg0) {
     func_020a9d60(arg0);
     func_020a9b40(arg0);
