@@ -215,6 +215,39 @@ void func_021390fc(u8 *arg0) {
     *(u32 *)(arg0 + 0xdc) = 0;
 }
 
+void func_02139200(u8 *p,void *arg1) {
+s32 zero=0, done=zero;
+s32 positive,negative;
+void *obj;
+if(!*(u32 *)(p+0x58)) {func_02126c20(data_0215cc38);return;}
+func_02126c00();
+if(*(s32 *)(p+0xbc)<0) {positive=0;negative=-*(s32 *)(p+0xbc);}
+else {positive=*(s32 *)(p+0xbc);negative=0;}
+if(*(s32 *)(p+0xd8)==1) {
+*(s32 *)(p+0xc4)=*(s32 *)(p+0xd4);
+*(s32 *)(p+0xd8)=zero;
+*(s32 *)(p+0xd4)=zero;
+}
+if(*(s32 *)(p+0x64)) {
+if(!*(s32 *)(p+0x6c)) func_02139784(p);
+obj=*(void **)(p+*(s32 *)(p+0x14)*12+0x18);
+if((*(s32 (**)(void *))(*(u8 **)obj+0x2c))(obj)!=0)
+func_021394f8(p,p+0x18+*(s32 *)(p+0x14)*12,negative,2);
+obj=*(void **)(p+*(s32 *)(p+0x14)*12+0x18);
+if((*(s32 (**)(void *))(*(u8 **)obj+0x2c))(obj)==2)
+func_02139450(p,p+0x18+*(s32 *)(p+0x10)*12,positive,0);
+else func_02139450(p,p+0x18+*(s32 *)(p+0x10)*12,0,0);
+done=1;
+} else {
+obj=*(void **)(p+8);
+if((*(s32 (**)(void *))(*(u8 **)obj+0x2c))(obj)!=0)
+func_021394f8(p,p+0x18+*(s32 *)(p+0x10)*12,0,1);
+else {func_02139450(p,p+0x18+*(s32 *)(p+0x10)*12,0,0);done=1;}
+}
+func_02126c0c();
+if(done==1) func_0213937c(p,arg1);
+}
+
 void func_0213937c(void *arg0, void *arg1) {
     u32 *p = arg1;
     void *obj;
