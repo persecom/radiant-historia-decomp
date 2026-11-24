@@ -80,6 +80,23 @@ void func_020e26f0(u32 arg0, s32 arg1, s32 arg2) {
     }
 }
 
+void func_020e2788(u32 arg0, s32 arg1) {
+    u8 *node = *(u8 **)((u8 *)data_02160a74[0] + 0x40);
+    while (node != NULL) {
+        if (*(u8 *)(node + 0x28) & arg0) {
+            u8 *sub = *(u8 **)(node + 0x1c);
+            if (arg1 == 0) {
+                *(u8 *)(sub + 0x28) = 0;
+                *(u8 *)(sub + 0x29) = 0;
+            } else if (arg1 == 1) {
+                *(u8 *)(sub + 0x28) = 0;
+                *(u8 *)(sub + 0x29) = 1;
+            }
+        }
+        node = *(u8 **)(node + 0x24);
+    }
+}
+
 s32 func_020e27ec(void) {
     u8 *base = (u8 *)data_02160a74[0];
     u8 *node;
