@@ -174,7 +174,7 @@ s32 func_020054a4(void) {
     return func_02005398(&data_0215cd78);
 }
 
-u16 func_020054cc(u16 *arg0) {
+s32 func_020054cc(u16 *arg0) {
     u32 val = *arg0;
     *arg0 = 0;
     if (val & 0x1) {
