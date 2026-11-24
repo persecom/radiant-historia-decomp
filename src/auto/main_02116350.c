@@ -247,11 +247,12 @@ void func_02116894(void *list, void *target, void *object) {
     } else if (target == *(void **)(l + 0)) {
         func_02116844(list, object);
     } else {
-        u8 *objLink = (u8 *)object + *(u16 *)(l + 0xa);
-        void *prevObj = *(void **)((u8 *)target + *(u16 *)(l + 0xa));
+        u16 offset = *(u16 *)(l + 0xa);
+        u8 *objLink = (u8 *)object + offset;
+        void *prevObj = *(void **)((u8 *)target + offset);
         *(void **)(objLink + 0) = prevObj;
         *(void **)(objLink + 4) = target;
-        *(void **)((u8 *)prevObj + *(u16 *)(l + 0xa) + 4) = object;
+        *(void **)((u8 *)prevObj + offset + 4) = object;
         *(void **)((u8 *)target + *(u16 *)(l + 0xa) + 0) = object;
         *(u16 *)(l + 8) += 1;
     }
