@@ -11,11 +11,8 @@ extern s32 func_0200ad00(void *, s32);
 extern void func_0200aeac(void);
 
 s32 func_0200b24c(char *dst, s32 dst_len, const char *src, s32 src_len, s32 *truncated) {
-    s32 max_len = dst_len - 1;
     s32 i;
-    if (max_len >= src_len) {
-        max_len = src_len;
-    }
+    s32 max_len = (dst_len - 1 < src_len) ? (dst_len - 1) : src_len;
     for (i = 0; i < max_len && src[i] != '\0'; i++) {
         dst[i] = src[i];
     }
