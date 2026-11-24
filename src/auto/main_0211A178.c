@@ -2,6 +2,8 @@
 #include "common.h"
 typedef struct { s32 v[6]; } Mtx23;
 extern s32 data_0216f234[4];
+extern u16 data_02155eb0[];
+extern u16 data_0216f2c4[][4];
 extern s32 data_0216f3d4[];
 extern s32 data_0216f3d8[];
 extern s32 data_0216f244[];
@@ -53,6 +55,25 @@ u32 func_0211a4cc(u8 *arg0) {
 extern void func_0211c52c(void);
 void func_0211a4d4(void) {
     func_0211c52c();
+}
+
+void func_0211a4e0(void *arg0, void *arg1, void *arg2) {
+s32 *a=arg0,*b=arg1;
+Mtx23 tmp;
+void *out=arg2;
+s32 x,y,x2,y2,x3,y3;
+s64 t0,t1;
+if(arg2==arg1) arg2=&tmp;
+x=a[0];y=a[1];
+((s32 *)arg2)[0]=((s64)b[0]*x+(s64)b[2]*y)>>12;
+((s32 *)arg2)[1]=((s64)b[1]*x+(s64)b[3]*y)>>12;
+x2=a[2];y2=a[3];
+((s32 *)arg2)[2]=((s64)b[0]*x2+(s64)b[2]*y2)>>12;
+((s32 *)arg2)[3]=((s64)b[1]*x2+(s64)b[3]*y2)>>12;
+x3=a[4];y3=a[5];
+((s32 *)arg2)[4]=b[4]+(s32)(((s64)b[0]*x3+(s64)b[2]*y3)>>12);
+((s32 *)arg2)[5]=b[5]+(s32)(((s64)b[1]*x3+(s64)b[3]*y3)>>12);
+if(arg2==&tmp) *(Mtx23 *)out=tmp;
 }
 
 u8 *func_0211a5e4(s32 arg0) {
