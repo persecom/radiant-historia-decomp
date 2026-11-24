@@ -21,7 +21,8 @@ import ninja_syntax
 
 # Settings (decompdecomp wrote these for this game; change them if the game was built differently)
 GAME = "brje"
-MWCC_VERSION = "2.0/sp1p5"  # every file's, unless config/<version>/arm9/file_compilers.json names another for it
+MWCC_VERSION = "dsi/1.1"  # every file's, unless config/<version>/arm9/file_compilers.json names another for it
+MWLD_VERSION = "2.0/sp1p5"  # Keep the existing linker
 CC_FLAGS = ["-O4,p", "-enum", "int", "-char", "signed", "-str", "noreuse", "-proc", "arm946e", "-gccext,on", "-fp",
             "soft", "-inline", "noauto", "-Cpp_exceptions", "off", "-RTTI", "off", "-interworking", "-w", "off",
             "-sym", "on", "-gccinc", "-nolink", "-msgstyle", "gcc"]
@@ -44,7 +45,7 @@ BUILD = Path("build") / VERSION
 BASEROM = Path("extract") / "baserom.nds"
 EXTRACT = Path("extract") / VERSION
 FILE_COMPILERS = CONFIG.parent / "file_compilers.json"  # {"src/...c": "1.2/sp4"}: files a game built with another
-LD = str(Path(args.compilers) / MWCC_VERSION / "mwldarm.exe")
+LD = str(Path(args.compilers) / MWLD_VERSION / "mwldarm.exe")
 WRAP = f'"{args.wibo}" ' if args.wibo and sys.platform != "win32" else ""
 # Windows: ninja starts commands without a shell, so a rule with && runs through cmd; and CodeWarrior's license check
 # only looks in C:\flexlm unless LM_LICENSE_FILE points at the license.dat next to the compilers

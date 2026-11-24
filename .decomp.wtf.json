@@ -2,7 +2,7 @@
   "created": "from scratch",
   "platform": "nds",
   "version": "brje",
-  "compiler": "DS/2.0/sp1p5",
+  "compiler": "DS/dsi/1.1",
   "analysis": 9,
   "game": {
     "what": "your copy of the game (.nds)",
