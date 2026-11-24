@@ -147,6 +147,10 @@ s8 func_0212a210(s8 *a0) {
     return a0[0xd];
 }
 
+s32 func_0212a218(void) {
+    return 0x10;
+}
+
 void *func_0212a220(void *arg0) {
     return *(void **)((u8 *)arg0 + 0x10);
 }
