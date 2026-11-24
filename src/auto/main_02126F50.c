@@ -17,6 +17,53 @@ extern u8 data_021565f0[52];
 extern u8 data_02156624[56];
 
 extern void func_02127600(void *);
+extern double func_0201e690(double);
+extern double func_0201e69c(double);
+extern double func_0201e6b4(double);
+extern double func_0201e6c0(double, double);
+s32 func_0212716c(u8 *arg0, s32 arg1) {
+    f32 val;
+
+    if (arg1 == 0) {
+        return 0x316938;
+    }
+    if (arg1 == -0x3c0) {
+        return 0;
+    }
+
+    switch (*(s8 *)(arg0 + 0x18)) {
+    case 0:
+    default:
+        val = 3238200.0f * (f32)func_0201e6c0(10.0, (f64)((f32)arg1 / 200.0f));
+        break;
+    case 1:
+        val = 3238200.0f * ((f32)(arg1 + 0x3c0) / 960.0f);
+        break;
+    case 2:
+        val = 3238200.0f * (f32)func_0201e6c0(10.0, (f64)((f32)arg1 / 200.0f));
+        val = 3238200.0f * ((f32)func_0201e69c((f64)(val / 3238200.0f)) / 1.57079637f);
+        break;
+    case 3:
+        val = 3238200.0f * (f32)func_0201e6c0(10.0, (f64)((f32)arg1 / 200.0f));
+        val = 3238200.0f * ((f32)func_0201e690((f64)(1.0f - val / 3238200.0f)) / 1.57079637f);
+        break;
+    case 4:
+        {
+            f32 denom = (f32)func_0201e6b4(960.0);
+            val = 3238200.0f * (f32)func_0201e6b4((f64)(-arg1)) / denom;
+        }
+        break;
+    }
+
+    if (val <= 0.0f) {
+        val = 0.0f;
+    }
+    if (val >= 3238200.0f) {
+        val = 3238200.0f;
+    }
+    return (s32)val;
+}
+
 BOOL func_02127350(void *arg0) {
     void (*cb)(void *, void *) = *(void (**)(void *, void *))((u8 *)arg0 + 0x2c);
     if (cb == NULL) {
