@@ -238,3 +238,8 @@ void func_02005bfc(s32 arg0, s32 arg1, s32 arg2) {
     func_02005bb0(arg0, arg1, arg2, 0);
 }
 
+extern void func_02005c0c(s32, s32, s32, s32);
+void func_02005c80(s32 arg0, s32 arg1, s32 arg2) {
+    func_02005c0c(arg0, arg1, arg2, 0);
+}
+
