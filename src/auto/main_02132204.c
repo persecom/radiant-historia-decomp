@@ -534,6 +534,32 @@ done:
     return (s32)p;
 }
 
+void *func_02132fa4(const char *name,s32 a,s32 b) {
+s8 prefix[0x12a];
+s8 path[0x12a];
+u32 *handle;
+u8 *ops;
+s32 (*open)(s8 *,s32,s32);
+if(!name) {func_02132ca0(data_0215b6d8);return NULL;}
+func_02133134(prefix,path,name);
+if(!path[0]) {func_02132ca0(data_0215b6f8);return NULL;}
+handle=func_021330e8();
+if(!handle) {func_02132ca0(data_0215b718);return NULL;}
+handle[0]=func_02132f20(prefix,(s32)path,(s32)name);
+if(!handle[0]) {func_02133124(handle);func_02132ca0(data_0215b73c);return NULL;}
+ops=(u8 *)handle[0];
+open=*(s32 (**)(s8 *,s32,s32))(ops+0x10);
+if(open) {
+handle[1]=open(path,a,b);
+} else {
+func_02133124(handle);func_02132ca0(data_0215b75c);return NULL;
+}
+if(!handle[1]) {
+func_02133124(handle);func_02132ca0(data_0215b774);return NULL;
+}
+return handle;
+}
+
 void *func_021330e8(void) {
     s32 i;
     for (i = 0; i < 10; i++) {
