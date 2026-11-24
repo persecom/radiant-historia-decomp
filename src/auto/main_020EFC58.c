@@ -3,6 +3,14 @@
 
 extern u8 *data_02160af0;
 extern u32 data_02155c3c;
+extern u8 *func_0210c594(s32, u32);
+extern void func_021167ac(void *, s32);
+extern void func_0210d9e4(void *);
+extern void func_0210dae0(void *);
+extern void func_0210db40(void *);
+extern void func_020f0a58(void);
+extern void func_020f0aec(void);
+extern void func_020f0fd0(void);
 
 typedef struct {
     u32 x;
