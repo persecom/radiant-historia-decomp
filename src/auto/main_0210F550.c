@@ -59,7 +59,7 @@ typedef struct {
 } Entry_94;
 
 extern void func_020c9940(void *);
-extern u8 data_02162b84[];
+extern Entry_94 data_02162b84[];
 extern u8 data_02162b88[];
 extern u8 data_02162c0c[];
 extern u8 data_02162c10[];
