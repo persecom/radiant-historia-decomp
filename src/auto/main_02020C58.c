@@ -82,7 +82,8 @@ s32 func_020212fc(void) {
     return 1;
 }
 
-void func_02021340(void) {
+void func_02021340(s32 arg0) {
+    (void)arg0;
 }
 
 s32 func_02021a28(void) {
