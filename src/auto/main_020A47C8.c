@@ -24,3 +24,13 @@ extern UnkStruct_02160200 *data_02160200;
 extern void func_0210c5dc(void *);
 extern void *func_0210c594(s32, u32);
 extern void func_021168f8(void *, void *);
+
+void func_020a5338(void) {
+    if (data_02160134.unk04 == NULL) {
+        return;
+    }
+    if (data_02160134.unk04 != NULL) {
+        func_0210c5dc(data_02160134.unk04);
+    }
+    data_02160134.unk04 = NULL;
+}
