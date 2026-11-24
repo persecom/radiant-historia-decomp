@@ -101,6 +101,122 @@ void func_0200d7c0(s32 arg0) {
     func_0200bc24();
 }
 
+extern void func_02008414(void);
+void func_0200d868(s32 tag, u32 data, s32 err) {
+    typedef struct {
+        u8 pad0[4];
+        void (*callback)(s32, s32, s32);
+        TPData0200dddc latest;
+        u16 f10, f12;
+        TPData0200dddc *entries;
+        u16 count;
+        u8 pad1a[0x1a];
+        u16 f34, f36;
+        volatile u16 f38, f3a;
+    } TPState;
+    u16 data16 = (u16)data;
+    u16 cmd = (u16)((data16 & 0x7f00) >> 8);
+    s32 res;
+
+    if (err != 0) {
+        ((TPState *)data_0215f000)->f38 |= (u16)(1 << cmd);
+        if (((TPState *)data_0215f000)->callback) {
+            ((TPState *)data_0215f000)->callback(cmd, 4, 0);
+        }
+        return;
+    }
+
+    if (cmd == 0x10) {
+        union {
+            struct {
+                u32 x : 12;
+                u32 y : 12;
+                u32 touch : 1;
+                u32 validity : 2;
+            } e;
+            u32 raw;
+            u16 half[2];
+        } raw;
+        TPData0200dddc *dst;
+
+        ((TPState *)data_0215f000)->f10++;
+        if (((TPState *)data_0215f000)->f10 >= ((TPState *)data_0215f000)->count) {
+            ((TPState *)data_0215f000)->f10 = 0;
+        }
+        raw.half[0] = *(u16 *)0x02ffffaa;
+        raw.half[1] = *(u16 *)0x02ffffac;
+        dst = &((TPState *)data_0215f000)->entries[((TPState *)data_0215f000)->f10];
+        dst->x = raw.e.x;
+        dst->y = raw.e.y;
+        dst->touch = (u8)raw.e.touch;
+        dst->validity = (u8)raw.e.validity;
+        if (((TPState *)data_0215f000)->callback) {
+            ((TPState *)data_0215f000)->callback(cmd, 0, (u8)((TPState *)data_0215f000)->f10);
+        }
+        return;
+    }
+
+    if (!(data & 0x01000000)) {
+        return;
+    }
+
+    switch (data16 & 0xff) {
+    case 0:
+        switch (cmd) {
+        case 0:
+            {
+                union {
+                    struct {
+                        u32 x : 12;
+                        u32 y : 12;
+                        u32 touch : 1;
+                        u32 validity : 2;
+                    } e;
+                    u32 raw;
+                    u16 half[2];
+                } raw;
+                raw.half[0] = *(u16 *)0x02ffffaa;
+                raw.half[1] = *(u16 *)0x02ffffac;
+                ((TPState *)data_0215f000)->latest.x = raw.e.x;
+                ((TPState *)data_0215f000)->latest.y = raw.e.y;
+                ((TPState *)data_0215f000)->latest.touch = (u8)raw.e.touch;
+                ((TPState *)data_0215f000)->latest.validity = (u8)raw.e.validity;
+                ((TPState *)data_0215f000)->f36 = 0;
+            }
+            break;
+        case 1:
+            ((TPState *)data_0215f000)->f36 = 2;
+            break;
+        case 2:
+            ((TPState *)data_0215f000)->f36 = 0;
+            break;
+        }
+        ((TPState *)data_0215f000)->f3a &= (u16)~(1 << cmd);
+        if (((TPState *)data_0215f000)->callback) {
+            ((TPState *)data_0215f000)->callback(cmd, 0, 0);
+        }
+        break;
+    case 4:
+        res = 3;
+        goto err_cb;
+    case 2:
+        res = 1;
+        goto err_cb;
+    case 3:
+        res = 2;
+    err_cb:
+        ((TPState *)data_0215f000)->f38 |= (u16)(1 << cmd);
+        ((TPState *)data_0215f000)->f3a &= (u16)~(1 << cmd);
+        if (((TPState *)data_0215f000)->callback) {
+            ((TPState *)data_0215f000)->callback(cmd, (u8)res, 0);
+        }
+        break;
+    default:
+        func_02008414();
+        break;
+    }
+}
+
 void func_0200dadc(void) {
     if (*(u16 *)(data_0215f000 + 0) != 0) {
         return;
