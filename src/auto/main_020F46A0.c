@@ -10,6 +10,12 @@ typedef struct {
 extern void func_0210c5dc(void *);
 extern void func_0210a76c(void *);
 extern void func_0210aa14(void *);
+extern u32 data_02155c3c;
+extern u32 data_02162840[];
+extern void *func_0210c594(u32, u32);
+extern void func_020f5150(void);
+extern void func_0210d9e4(void *);
+extern void func_0210da14(void *);
 extern u32 data_02160c3c[];
 extern u8 data_02151fc8[];
 extern s32 func_02107d58(u32, u16, u16);
