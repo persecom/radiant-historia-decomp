@@ -2,6 +2,7 @@
 #include "common.h"
 extern void *data_02155c3c;
 extern const struct Unk_02110b94Table { s16 v[2][10]; } data_02144c34;
+typedef struct { u16 v[4]; } Unk_02110b94Small;
 extern const u16 data_02144c00[4];
 extern void func_0211137c(u8 *);
 extern void func_02111594(u8 *);
@@ -205,6 +206,57 @@ u8 func_02110b38(u16 arg0) {
         return i;
     }
     return 5;
+}
+
+extern void func_020c6d78(void *);
+extern void *func_0210c594(u32,void *);
+extern void func_020c992c(void *);
+extern void func_020c7894(void *,u8);
+extern void func_020c8344(void *,s32,s32);
+extern void func_020c8640(void *,s32);
+extern void func_020c8598(void *,s32);
+s32 func_02110b94(u8 *p) {
+struct Unk_02110b94Table table;
+u16 vals[4];
+u8 *obj;
+u16 i;
+func_020c6d78(p);
+if(!*(void **)(p+0x30)) {
+*(void **)(p+0x30)=func_0210c594(8,data_02155c3c);
+func_020c992c(*(void **)(p+0x30));
+}
+*(u32 *)(p+0x40)=0;p[0x44]=0;
+*(void (**)(u8 *))(p+0x4c)=func_0211137c;
+*(void (**)(u8 *))(p+0x50)=func_02111594;
+func_020c9a04(*(void **)(p+0x30),6);
+table=data_02144c34;
+for(i=0;i<2;i++) {
+s16 *row=table.v[i];
+s16 kind=row[1];
+obj=func_020c9b24(*(void **)(p+0x30),(u16)row[0],(u8)kind);
+*(s16 *)(obj+0x32)=row[2];
+*(s16 *)(obj+0x34)=row[3];
+*(s16 *)(obj+0x36)=row[4];
+*(s16 *)(obj+0x38)=row[5];
+*(s16 *)(obj+0x3e)=row[6];
+*(s16 *)(obj+0x40)=row[7];
+obj[0x43]+=(u8)row[9];
+if(kind==5)func_020c7894(obj,(u8)row[8]);
+}
+{ s32 one=1,kind=25,four=4;
+obj=func_020c9b24(*(void **)(p+0x30),one,kind);
+((void (*)(void *,u8))(*(void **)(obj+0x1c)))(obj,obj[0x43]+2);
+((void (*)(void *,s32))(*(void **)(obj+0x10)))(obj,one);
+((void (*)(void *,s32))(*(void **)(obj+0x14)))(obj,-1);
+vals[0]=data_02144c00[0];vals[1]=data_02144c00[1];vals[2]=data_02144c00[2];vals[3]=data_02144c00[3];
+obj=func_020c9b24(*(void **)(p+0x30),vals[0],four);
+((void (*)(void *,s32))(*(void **)(obj+0x10)))(obj,(s16)vals[1]);
+((void (*)(void *,s32))(*(void **)(obj+0x14)))(obj,(s16)vals[2]);
+func_020c8344(obj,four,one);
+func_020c8640(obj,(s16)vals[3]);
+func_020c8598(obj,one);
+}
+return 0;
 }
 
 void func_0211104c(void *arg0) {
