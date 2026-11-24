@@ -147,6 +147,17 @@ void *func_020f4ec4(void) {
     return p;
 }
 
+void func_020f4f04(u8 *arg0) {
+    if (arg0 == NULL) {
+        return;
+    }
+    func_020f4bd0(*(void **)arg0);
+    func_021168f8(*(void **)(arg0 + 0x34), arg0);
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
 u32 func_020f53e4(void (*arg0)(void)) {
     if (arg0 != NULL) {
         arg0();
