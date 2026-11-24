@@ -5,7 +5,21 @@ extern s32 data_02155c94[];
 extern char data_02162a80[];
 extern char data_02162b00[];
 extern u16 data_02162a54[];
-extern void (*data_02156150)(s32, s32, s32);
+extern s32 (*data_02156150)(s32, s32, s32);
+typedef struct {
+    u16 x;
+    u16 y;
+    u16 touch;
+    u16 validity;
+} UnkTPData;
+typedef struct {
+    u16 trg;
+    u16 rel;
+    u16 pad4;
+    u16 pad6;
+    UnkTPData prev;
+    UnkTPData cur;
+} UnkTouchState;
 extern u8 data_02162910[];
 extern u8 data_02162908[];
 extern u16 data_021628f8[];
@@ -41,7 +55,8 @@ void func_0210e6f0(void) {
 
 void func_0210e740(void) {
     u16 prev = data_021628f8[10];
-    u16 cur, diff;
+    u16 cur;
+    u32 diff;
     func_0200df30(data_02162908);
     cur = data_021628f8[10];
     diff = cur ^ prev;
