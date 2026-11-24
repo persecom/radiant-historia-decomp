@@ -436,3 +436,9 @@ void func_020de488(void) {
     }
 }
 
+void func_020de4b4(void *arg0) {
+    void **node = func_0210c594(0xc, data_02155c3c);
+    *node = arg0;
+    func_021167f0(data_02160a70, node);
+}
+
