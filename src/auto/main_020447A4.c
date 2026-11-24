@@ -44,6 +44,21 @@ void func_020447a4(u8 *arg0) {
     }
 }
 
+void func_02044820(u32 arg0) {
+    u8 *p = data_021600a8[1];
+    u32 r4 = *(u32 *)(p + 0x2e4);
+    func_020a994c(p + 0x300);
+    func_020a9610(p + 0x2e8, *(u32 *)(p + 0xa8), arg0, r4, 0, 0);
+    func_020a98ac(p + 0x300);
+    func_020a98f4(p + 0x300);
+}
+
+void func_02044a98(s32 arg0) {
+    S_02044a98 local[1];
+    local[0] = data_0213f2d0;
+    func_02044aec(&local[arg0], *(u16 *)(data_021600a8[1] + 0x8b4));
+}
+
 void func_02044f48(void) {
     if (data_021600b0[1] != 0) {
         func_0210c5dc((void *)data_021600b0[1]);
