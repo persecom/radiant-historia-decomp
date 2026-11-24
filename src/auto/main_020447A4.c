@@ -119,6 +119,19 @@ void func_02044ba0(u16 arg0) {
     }
 }
 
+void func_02044c48(u32 arg0) {
+    u8 *p = data_021600a8[1];
+    u8 *r5;
+    if (p == NULL) return;
+    r5 = *(u8 **)(p + 0x68);
+    if (r5 == NULL) return;
+    if (*(void **)(r5 + 0x108) == NULL) return;
+    func_020ecaa4(*(void **)(r5 + 0x108));
+    *(void **)(r5 + 0x108) = NULL;
+    *(void **)(r5 + 0x108) = func_020eca60();
+    func_020ecd10(*(void **)(r5 + 0x108), arg0, 0);
+}
+
 void func_02044f48(void) {
     if (data_021600b0[1] != 0) {
         func_0210c5dc((void *)data_021600b0[1]);
