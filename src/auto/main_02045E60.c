@@ -27,6 +27,42 @@ extern void func_02051ef4(void);
 extern void func_0210d9e4(void *);
 extern void func_0210dae0(void *);
 
+extern u8 *data_021600b0;
+extern const Unk20 data_0213f2f4;
+extern void func_0209dfdc(void);
+extern void func_020a3bbc(s32);
+extern void func_020a2574(void);
+void func_02046370(void)
+{
+    Unk20 buf;
+    u32 val;
+
+    if (*(u32 *)(data_021600b0 + 0xa0) & 1) {
+        func_0209dfdc();
+    }
+    buf = data_0213f2f4;
+    val = *(u8 *)(data_02160204 + 0x121);
+    if (val & 1) {
+        if ((val & 2) == 0) {
+            func_020a3bbc(0xa);
+        } else {
+            func_020a3bbc(0xb);
+        }
+        buf.unk[1] = 0;
+        buf.unk[2] = 0;
+        buf.unk[3] = 0x28;
+        buf.unk[4] = 0xe;
+        buf.unk[7] = 0x2bc;
+        buf.unk[8] = 0x28;
+        buf.unk[9] = 0xe;
+        buf.unk[5] = 0xd8;
+        buf.unk[6] = 4;
+        func_021098ac(&buf);
+        *(u8 *)(data_02160204 + 0x121) = 0;
+    }
+    func_020a2574();
+}
+
 void func_02046594(void) {
     data_021600b8 = func_0210c594(0x2c, data_02155c3c);
     func_021167ac(data_021600b8, 0x1d8);
