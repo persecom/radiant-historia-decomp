@@ -114,7 +114,7 @@ void func_020df260(u8 *arg0, u8 *arg1) {
         func_020220b0(arg1[1], 1);
         return;
     }
-    v = (u8)((s8)(arg1[0x1a] - 2));
+    v = (u8)((s8)(*(s8 *)(arg1 + 0x1a) - 2));
     if (v > 1) {
         return;
     }
