@@ -282,7 +282,7 @@ void *func_02115b10(void *arg0, void *arg1, s32 arg2) {
     return r4;
 }
 
-extern void func_02115dc0(void);
+extern void func_02115dc0(void *, s32, s32, s32);
 void *func_02115b7c(void *arg0, void *arg1, s32 arg2) {
     void *r4 = func_02115264(arg0);
     if (r4 == NULL) {
