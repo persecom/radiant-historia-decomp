@@ -30,6 +30,47 @@ void func_0208c680(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u16 arg4) {
     }
 }
 
+extern char data_02148734[];
+extern void func_02005e80(char *, const char *, ...);
+extern void *func_021092d8(char *);
+extern s32 func_02092994(void *, s32);
+extern s32 func_02109444(void *);
+extern void func_021093b0(void *);
+void func_0208c788(s32 arg0, s32 arg1, s32 *arg2, s32 *arg3) {
+    char buf[0x20];
+    void *fp;
+    u16 i;
+    s32 limit;
+    func_02005e80(buf, data_02148734, arg0);
+    fp = func_021092d8(buf);
+    if (fp == NULL) return;
+    limit = arg1 - 1;
+    for (i = 0; i <= limit; i++) {
+        s32 val;
+        func_02092994(fp, 0);
+        func_02092994(fp, 0);
+        func_02092994(fp, 0);
+        func_02092994(fp, 0);
+        func_02092994(fp, 0);
+        func_02092994(fp, 0);
+        func_02092994(fp, 0);
+        func_02092994(fp, 0);
+        func_02092994(fp, 0);
+        func_02092994(fp, 0);
+        val = func_02092994(fp, 0);
+        if (i < limit) {
+            *arg3 += val;
+        }
+        if (i == limit) {
+            *arg2 = val;
+        }
+        if (func_02109444(fp) == 0) break;
+    }
+    if (fp != NULL) {
+        func_021093b0(fp);
+    }
+}
+
 void func_0208cb1c(void) {
     Unk14 buf = data_02141378;
     func_02092814(6, 0, 0, 0x38, 0xef, 0x2d, 0x8d);
