@@ -135,6 +135,13 @@ void *func_02117630(u8 *arg0, u32 arg1) {
     return NULL;
 }
 
+void *func_02117648(u8 *arg0) {
+    if (*(u16 *)(arg0 + 2) & 1) {
+        return *(u8 **)(arg0 + 4) + (*(u16 *)arg0 << 4);
+    }
+    return *(u8 **)(arg0 + 4) + (*(u16 *)arg0 << 3);
+}
+
 s32 func_02117774(void *arg0, void **arg1) {
     u8 *r4 = func_02117904(arg0, 0x43484152);
     if (r4 != NULL) {
@@ -148,6 +155,20 @@ s32 func_02117774(void *arg0, void **arg1) {
 
 void func_021177b0(u8 *arg0) {
     *(u32 *)(arg0 + 0x14) += (u32)arg0;
+}
+
+extern void func_0211782c(u8 *);
+extern void func_0211794c(void *);
+extern void func_021176d8(void *);
+s32 func_021177c0(void *arg0, void **arg1) {
+    u8 *r4 = func_02117904(arg0, 0x43484152);
+    if (r4 != NULL) {
+        func_0211782c(r4 + 8);
+        *arg1 = r4 + 8;
+        return 1;
+    }
+    *arg1 = NULL;
+    return 0;
 }
 
 void func_0211782c(u8 *arg0) {
