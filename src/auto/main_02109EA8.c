@@ -7,7 +7,7 @@ extern s32 func_0210a38c();
 extern void func_0210a014(void);
 extern u32 data_0216256c[];
 extern void func_021167ac(void *, s32);
-extern void func_0210a2f0(void);
+extern void func_0210a2f0(u8 *);
 extern void func_0210a348(u32, u32);
 extern void func_0210a30c(u32, u32, s32);
 extern void func_0210a3d8(u32, u32, u32);
@@ -57,6 +57,19 @@ void func_02109f24(void) {
     if (p != NULL) {
         func_02109ea8(p);
     }
+}
+
+void *func_02109fac(void *arg0) {
+    u8 buf[0x48];
+    u32 size;
+    void *p;
+    func_0200b888(buf);
+    func_0200bc08(buf, arg0);
+    size = func_0200bc18(buf);
+    p = func_0210c594(size, data_02155c3c);
+    func_0200bb3c(buf, p, size);
+    func_0200baa4(buf);
+    return p;
 }
 
 s32 func_0210a38c(u8 *arg0) {
