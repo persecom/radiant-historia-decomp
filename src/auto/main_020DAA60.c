@@ -79,8 +79,11 @@ void func_020daa60(u8 *arg0, u8 *arg1, u32 arg2, u8 *arg3, u32 arg4) {
             val = 1000;
         }
         dmg = (val * (baseDmg * mult) / 100000) * critMult / 100;
-        data_0216263c[0] = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
-        dmg = dmg * ((u16)(((data_0216263c[0] >> 16) * 5) >> 16) + 98) / 100;
+        {
+            s32 rng = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
+            dmg = dmg * ((u16)(((rng >> 16) * 5) >> 16) + 98) / 100;
+            data_0216263c[0] = rng;
+        }
     }
 
     if (dmg <= 0) {
