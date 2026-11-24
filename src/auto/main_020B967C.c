@@ -79,12 +79,13 @@ void func_020b9f6c(void) {
 void func_020c8640(s32, s32);
 void func_020ba034(void) {
 u16 vals[4];
+u16 *table=vals;
 u8 *p=data_021601ec;
-u16 i;
 u8 *obj;
+u16 i;
 s32 v;
 s32 mode;
-u16 *table=vals;
+
 u16 prev;
 vals[0]=data_02143914[0]; vals[1]=data_02143914[1]; vals[2]=data_02143914[2]; vals[3]=data_02143914[3];
 
