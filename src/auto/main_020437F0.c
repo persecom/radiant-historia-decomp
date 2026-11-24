@@ -236,8 +236,8 @@ void func_02043b28(void) {
 
 s32 func_02043c10(void) {
  s32 ret=0;
- u8 *pos=*(u8 **)(*(u8 **)(data_021600a8+4)+0x68);
  u8 *node;
+ u8 *pos=*(u8 **)(*(u8 **)(data_021600a8+4)+0x68);
  s32 one=1,three=3,two=2;
  if(*(u32 *)(pos+0xac)&0x400)return ret;
  node=*(u8 **)(data_021600bc+0xac);
@@ -261,8 +261,8 @@ s32 func_02043c10(void) {
  func_020522d4(pos,0,0);
  func_020468b0(one);func_02052904(two);func_0205443c(one);
  func_0210eb98(data_02146410,((s32)*(u16 *)(data_02160204+0x72)-1)/20+1,*(u16 *)(data_02160204+0x72),*(u16 *)(node+0x12));
- func_020f57e8()[0x1c1]=two;
- func_021167f0(data_021600b8);
+ {u8 *p=func_020f57e8(); p[0x1c1]=two;
+ func_021167f0(data_021600b8,p);}
  if(*(u8 **)(data_021600a8+4)){
  u8 *p=*(u8 **)(*(u8 **)(data_021600a8+4)+0x68);
  if(p){func_0207af60();*(u32 *)(p+0xac)&=~0x44a;}
