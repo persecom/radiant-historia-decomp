@@ -11,6 +11,11 @@ u8 func_020b3754(void) {
     return data_021601e0;
 }
 
+extern void func_02021f10(u8);
+u8 *func_020b3880(void) {
+    return ((u8 **)&data_021601e0)[1];
+}
+
 void func_020b3908(void) {
     func_020b3890();
 }
