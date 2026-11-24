@@ -177,3 +177,22 @@ void *func_02093658(u16 arg0) {
     return NULL;
 }
 
+void func_0209368c(u16 arg0, s32 arg1, s32 arg2) {
+    u8 *ptr = (u8 *)func_02093658(arg0);
+    u8 *node;
+    if (ptr == NULL) {
+        return;
+    }
+    node = *(u8 **)(ptr + 0x20);
+    while (node != NULL) {
+        if (*(s32 *)(node + 0x48) == arg2) {
+            u8 *sub = *(u8 **)node;
+            *(s32 *)(sub + 0x14) = arg1;
+            *(u32 *)sub = (*(u32 *)(sub + 8) << 10) | (*(u32 *)sub & ~0xc00);
+            *(u16 *)(sub + 4) = (*(u16 *)(sub + 4) & ~0xf000) | (arg1 << 12);
+            return;
+        }
+        node = *(u8 **)(node + 0x50);
+    }
+}
+
