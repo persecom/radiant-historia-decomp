@@ -310,6 +310,17 @@ u32 func_02138ae8(u8 *arg0) {
     return *(u32 *)(arg0 + 0x58);
 }
 
+s32 func_02138c1c(u8 *arg0) {
+    if (*(u32 *)(arg0 + 0x58) == 0) {
+        func_02126c20(data_0215c9ec);
+        return 4;
+    }
+    {
+        void *obj = *(void **)(arg0 + 0x8);
+        return ((s32 (*)(void *))(*(u32 **)obj)[10])(obj);
+    }
+}
+
 s8 func_02138d60(u8 *arg0) {
     return *(s8 *)(arg0 + 0x94);
 }
