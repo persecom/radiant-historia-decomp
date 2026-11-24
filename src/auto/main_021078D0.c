@@ -15,6 +15,19 @@ extern void *func_0210c594(u32, u32);
 extern void func_0210c5dc(void *);
 extern u32 data_02162860;
 extern s16 data_0213a394[];
+
+static inline s16 FX_SinIdx(s32 idx) {
+    return data_0213a394[(idx >> 4) * 2];
+}
+
+static inline s16 FX_CosIdx(s32 idx) {
+    return data_0213a394[(idx >> 4) * 2 + 1];
+}
+
+static inline s32 FX_Mul12(s32 a, s32 b) {
+    return (s32)(((s64)a * b + 0x800) >> 12);
+}
+
 extern void func_02107d84(u32, u32, u32, u32);
 extern void func_02107e4c(void *);
 extern void func_02002128(void *, void *, void *);
