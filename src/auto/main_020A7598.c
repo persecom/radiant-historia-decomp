@@ -100,24 +100,25 @@ void func_020a7598(void *arg0) {
     for (i = 0; i < 3; i++) {
         u8 *p5 = func_020a7460();
         u8 *p6 = *(u8 **)(p5 + 4);
-        u32 id = s1.entries[i].unk_10;
+        u32 *e = &((u32 *)&s1)[i * 9];
+        u32 id = e[4];
         u8 *p2 = func_020f4d40(id);
         if (p2 == NULL) {
             p2 = func_020f4c2c(id);
         }
         *(u16 *)(p5 + 8) = 0;
         *(u16 *)(p5 + 0xa) = 0;
-        *(u8 *)(p5 + 0) = (u8)s1.entries[i].unk_20;
+        *(u8 *)(p5 + 0) = (u8)e[8];
         *(u32 *)(p2 + 0x20) = 0x1000;
         *(u32 *)(p2 + 0x24) = 0x1000;
-        *(u32 *)(p6 + 0x48) = s1.entries[i].unk_14;
-        *(u32 *)(p6 + 0x8) = s1.entries[i].unk_00;
-        *(u32 *)(p6 + 0xc) = s1.entries[i].unk_04;
+        *(u32 *)(p6 + 0x48) = e[5];
+        *(u32 *)(p6 + 0x8) = e[0];
+        *(u32 *)(p6 + 0xc) = e[1];
         *(u8 *)(p6 + 0x10) = 0;
         *(u16 *)(p6 + 0x44) = 3;
-        s0.unk_04 = s1.entries[i].unk_08;
-        s0.unk_08 = s1.entries[i].unk_0c;
-        s0.unk_0c = s1.entries[i].unk_1c;
+        s0.unk_04 = e[2];
+        s0.unk_08 = e[3];
+        s0.unk_0c = e[7];
         if (func_020f50bc(p6, &s0) == 0) {
             return;
         }
@@ -230,7 +231,27 @@ volatile char func_020a795c(u32 arg0, u32 *arg1, u32 *arg2)
   *arg2 = *((u32 *) (result + 8));
 }
 
-void func_020a7ec8(void){
+s32 func_020a79a4(void) {
+s32 result;
+s32 three=3, zero=0;
+data_02162868=1; data_0216bf84=zero;
+func_0210968c(three,16,1);
+func_02108e54(zero); func_020a7b18(); func_02109264(zero);
+func_021089e8(zero,zero,three); func_0210968c(three,zero,30); func_02109790(three);
+for (;;) { if (*(u32 *)(data_0216013c+0x238)!=0) break; func_0210dc88(); }
+if(data_0216013c[0x23c]==0){
+*(u16 *)(data_02160204+0x72)=331; *(u16 *)(data_02160204+0xdc)=231;
+*(u16 *)(data_02160204+0x74)=0; *(u16 *)(data_02160204+0x76)=0;
+*(u16 *)(data_02160204+0xd4)=1; *(u16 *)(data_02160204+0xda)=999;
+data_02160204[0x138]=1; func_02021c7c(); func_020bd690(); result=2;
+} else if(data_0216013c[0x23c]==1) result=(u16)func_020f5574();
+data_02160204[0x116]=1;
+func_0210968c(3,-16,30); func_02109790(3);
+func_02108eec(0,1000); func_020a7ec8(); func_0210dc88();
+data_02162868=0; data_0216bf84=0; return result;
+}
+
+static void func_020a7ec8(void){
 s32 zero,one;
 if(data_0216013c==NULL)return;
 zero=0;
