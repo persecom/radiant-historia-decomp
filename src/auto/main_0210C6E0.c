@@ -224,6 +224,9 @@ void func_0210ce5c(void) {
 void func_0210cfc4(void) {
 }
 
+void func_0210cfc8(void) {
+}
+
 extern s16 data_0216274c[];
 extern u8 data_02155c7c[];
 extern char data_02155c4c[];
