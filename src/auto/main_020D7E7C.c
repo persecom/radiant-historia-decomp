@@ -12,6 +12,11 @@ typedef struct UnkStruct_020d60248 {
     UnkNode_020d60248 *unk08;
 } UnkStruct_020d60248;
 
+typedef struct UnkNode6_020d85f4 {
+    u16 unk0[3];
+    u16 unk6[3];
+} UnkNode6_020d85f4;
+
 extern UnkStruct_020d60248 data_02160248;
 extern u32 data_02155c3c;
 extern s32 data_02162814;
@@ -49,11 +54,12 @@ void func_020d8558(void) {
 }
 
 void func_020d85f4(u16 *arg) {
-    u16 i;
     u16 *dst = func_0210c594(0x14, data_02155c3c);
-    for (i = 0; i < 3; i++) {
+    u16 i = 0;
+    while (i < 3) {
         dst[i] = arg[i];
         dst[i + 3] = arg[i + 3];
+        i++;
     }
     func_021167f0(data_02160248.unk08);
 }
