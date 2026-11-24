@@ -60,6 +60,29 @@ func_020a98f4(data_0216010c+0x74+off);
 return ret;
 }
 
+void func_0203bcf8(void *, void *, void *, s32, s32, s32, s32, s32);
+s32 func_020a899c(void *);
+s32 func_020896f4(s32 index, s32 x, s32 y, s32 z, u8 slot, void *arg, u8 mode) {
+    u32 off = index * 0x50;
+    u8 *node = *(u8 **)(data_0216010c + off + 0x70);
+    s32 ret;
+    ((void (*)(void *))*(u32 *)(node + 4))(node);
+    if (mode == 0) {
+        func_0203bc34(*(void **)(data_0216010c + slot * 4 + 0x48), *(void **)(data_0216010c + off + 0x70), arg, 0, 0, 0);
+    } else if (mode == 1) {
+        func_0203bc34(*(void **)(data_0216010c + slot * 4 + 0x48), *(void **)(data_0216010c + off + 0x70), arg, 0x40, 0, 1);
+    } else if (mode == 2) {
+        func_0203bc34(*(void **)(data_0216010c + slot * 4 + 0x48), *(void **)(data_0216010c + off + 0x70), arg, 0x71, 0, 2);
+    } else if (mode == 3) {
+        func_0203bcf8(*(void **)(data_0216010c + slot * 4 + 0x48), *(void **)(data_0216010c + off + 0x70), arg, 0, 0, 0x100, 0x40, 14);
+    }
+    ret = func_020a899c(*(void **)(data_0216010c + off + 0x70));
+    *(s32 *)(*(u8 **)(data_0216010c + off + 0x70) + 0x4c) = z << 12;
+    *(s32 *)(*(u8 **)(data_0216010c + off + 0x70) + 0x44) = x << 12;
+    *(s32 *)(*(u8 **)(data_0216010c + off + 0x70) + 0x48) = y << 12;
+    return ret;
+}
+
 void func_02089878(void)
 {
     u8 **pp = &data_0216010c;
