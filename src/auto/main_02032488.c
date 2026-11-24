@@ -183,6 +183,16 @@ void func_02032eb8(void *arg0, u16 arg1) {
     func_021167f0(data_02160090 + 0x30, node);
 }
 
+void func_02032efc(void *arg0) {
+    if (arg0 == NULL) {
+        return;
+    }
+    func_021168f8(data_02160090 + 0x30, arg0);
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
 void func_02032ff8(void) {
     data_02160090[0x7e] = 1;
 }
