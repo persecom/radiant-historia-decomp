@@ -104,6 +104,31 @@ s32 func_0200cc98(void *arg0, u8 *arg1, u32 arg2, u32 arg3) {
     return res;
 }
 
+s32 func_0200ce18(void *arg0, u16 arg1, void *arg2, u32 *arg3, s32 arg4) {
+    u8 file[0x48];
+    u32 sp0[3];
+    s32 res;
+
+    func_0200b888(file);
+    *(void **)(file + 0x8) = arg0;
+    *(void **)(file + 0x30) = arg0;
+    *(u16 *)(file + 0x34) = arg1;
+    *(u16 *)(file + 0x36) = 0;
+    *(u32 *)(file + 0x38) = 0;
+    *(void **)(file + 0x3c) = arg2;
+    *(s32 *)(file + 0x40) = arg4;
+    *(void **)(file + 0x44) = sp0;
+    res = func_0200cb40(file, 4, 1);
+    if (res == 0) {
+        if (arg4 != 0) {
+            *arg3 = *(u16 *)((u8 *)sp0 + 4);
+        } else {
+            *arg3 = sp0[1];
+        }
+    }
+    return res;
+}
+
 u32 func_0200d524(u8 *arg0) {
     return *(u32 *)(arg0 + 0x24);
 }
