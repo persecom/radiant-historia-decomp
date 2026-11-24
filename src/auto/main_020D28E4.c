@@ -69,7 +69,7 @@ typedef struct {
 
 extern UnkD *data_02160a6c;
 extern UnkE *data_02160110[3];
-extern void func_020d2f44(void);
+extern void func_020d2f44();
 extern const s16 data_0213a394[];
 extern void func_021099f8(void *);
 extern s16 func_020ddcb0(void *, void *);
