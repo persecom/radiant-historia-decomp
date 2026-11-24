@@ -453,7 +453,7 @@ BOOL func_0212f3cc(u8 *arg0, s32 arg1) {
     return TRUE;
 }
 
-extern void func_0212f178(void);
+extern void func_0212f178();
 extern u32 data_02145914[];
 s32 func_0212f3fc(u8 *arg0, s32 arg1) {
     s32 value = *(s32 *)(arg0 + 0xc);
