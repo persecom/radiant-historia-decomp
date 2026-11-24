@@ -195,6 +195,46 @@ void func_021167ac(void *arg0, u16 arg1) {
     *(u16 *)(p + 0xa) = arg1;
 }
 
+void func_021167c4(void *list, void *object) {
+    u8 *l = (u8 *)list;
+    u8 *link = (u8 *)object + *(u16 *)(l + 0xa);
+    u16 n;
+    *(void **)(link + 4) = NULL;
+    *(void **)(link + 0) = NULL;
+    n = *(u16 *)(l + 8);
+    *(void **)(l + 0) = object;
+    *(void **)(l + 4) = object;
+    *(u16 *)(l + 8) = n + 1;
+}
+
+void func_021167f0(void *list, void *object) {
+    u8 *l = (u8 *)list;
+    if (*(void **)(l + 0) == NULL) {
+        func_021167c4(list, object);
+    } else {
+        u8 *link = (u8 *)object + *(u16 *)(l + 0xa);
+        *(void **)(link + 0) = *(void **)(l + 4);
+        *(void **)(link + 4) = NULL;
+        *(void **)((u8 *)*(void **)(l + 4) + *(u16 *)(l + 0xa) + 4) = object;
+        *(void **)(l + 4) = object;
+        *(u16 *)(l + 8) += 1;
+    }
+}
+
+void func_02116844(void *list, void *object) {
+    u8 *l = (u8 *)list;
+    if (*(void **)(l + 0) == NULL) {
+        func_021167c4(list, object);
+    } else {
+        u8 *link = (u8 *)object + *(u16 *)(l + 0xa);
+        *(void **)(link + 0) = NULL;
+        *(void **)(link + 4) = *(void **)(l + 0);
+        *(void **)((u8 *)*(void **)(l + 0) + *(u16 *)(l + 0xa) + 0) = object;
+        *(void **)(l + 0) = object;
+        *(u16 *)(l + 8) += 1;
+    }
+}
+
 void* func_02116d7c(void* heap, u32 size, s32 alignment)
 {
     typedef struct Block {
