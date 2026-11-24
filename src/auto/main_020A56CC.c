@@ -122,7 +122,7 @@ s32 func_020a5f6c(u8 *arg0, u8 *arg1, u16 arg2, u16 arg3) {
     u8 *g;
     u16 v0 = *(u16 *)(arg1 + 0);
     s32 i;
-    g = *(u8 **)data_021600e4;
+    g = *data_021600e4;
     if (v0 == arg2) {
         for (i = 0; i < 4; i++) {
             u8 v;
@@ -158,5 +158,18 @@ void func_020a6320(void **arg0) {
             func_0210c5dc(ptr);
         }
     }
+}
+
+void *func_020a6360(void *arg0, u8 arg1) {
+    u8 *node = *(u8 **)arg0;
+    if (node != NULL) {
+        do {
+            if (*(u16 *)node == arg1) {
+                return node;
+            }
+            node = *(u8 **)(node + 0x14);
+        } while (node != NULL);
+    }
+    return NULL;
 }
 
