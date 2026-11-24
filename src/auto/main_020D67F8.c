@@ -58,6 +58,83 @@ void func_020d6c9c(void) {
     }
 }
 
+void func_020d6d88(void) {
+    s32 pos = 0;
+    s32 count = 0;
+    s32 i = 0;
+    s32 zero = 0;
+    s32 c96 = 0x96;
+    s32 c2bc = 0x2bc;
+    u8 *node;
+    u8 *p;
+
+    for (i = 0; i < 3; i++) {
+        if (func_020bd490(zero, (u8)i) != 0) {
+            count++;
+        }
+    }
+    {
+        s32 j;
+        for (j = 0; j < 3; j++) {
+            if (func_020bd490(zero, (u8)j) == 0) {
+                continue;
+            }
+            *(u16 *)((u8 *)&data_02160248 + 0) = j;
+            *(u32 *)((u8 *)&data_02160248 + 0xc) = zero;
+            func_020d6f58(func_020bd490(1, (u8)j));
+            node = *(u8 **)((u8 *)&data_02160248 + 4);
+            *(u16 *)(node + 0x92) = zero;
+            *(u32 *)(node + 0) = zero;
+            *(u32 *)(node + 4) = c96;
+            *(u32 *)(node + 8) = zero;
+            *(u32 *)(node + 0) += (0x180 / (count + 1)) * (pos + 1) - 0x40;
+            switch (*(u16 *)(node + 0x8e)) {
+            case 1:
+                *(u32 *)(node + 4) += 0xc;
+                break;
+            case 21: 
+                *(u32 *)(node + 4) += 0x10;
+                break;
+            case 31: case 32:
+                *(u32 *)(node + 4) += 0x10;
+                break;
+            case 61: 
+                *(u32 *)(node + 4) += 0x10;
+                break;
+            case 81: 
+                *(u32 *)(node + 4) += 0x10;
+                break;
+            case 91: 
+                *(u32 *)(node + 4) += 0x10;
+                break;
+            case 11:
+                *(u32 *)(node + 4) += 0x10;
+                break;
+            case 71:
+                *(u32 *)(node + 4) += 0x10;
+                break;
+            case 41:
+                *(u32 *)(node + 4) += 0x10;
+                break;
+            case 51:
+                *(u32 *)(node + 0) -= 2;
+adjust_y:
+                *(u32 *)(node + 4) += 0x10;
+                break;
+            }
+            *(u32 *)(node + 0x64) = c2bc;
+            *(u8 *)(node + 0xa1) |= 1;
+            *(u16 *)(node + 0x9a) = 0x1f;
+            func_020dd810(node, 6, zero);
+            p = func_0202fb50(func_020bd490(1, (u8)j), zero);
+            *(u8 **)(node + 0x118) = p;
+            *(u8 *)p = zero;
+            func_021167f0(*(u8 **)&data_02160a6c + 0xac, node);
+            pos++;
+        }
+    }
+}
+
 void func_020d6f58(s32 arg0) {
  char path[32]; void *file; s32 i,a,b,c,d; u8 *p; s32 zero=0;
  if((u32)arg0>0 && (u32)arg0<9) func_02005e80(path,data_021513dc);
