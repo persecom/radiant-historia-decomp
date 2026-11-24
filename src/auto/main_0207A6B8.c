@@ -5,6 +5,7 @@ extern void *data_021600ac;
 extern void *data_021600f0;
 extern void *data_02160200;
 
+void func_020477dc(void *, s32, s32);
 void func_0206e8f0(s32, void *, s32);
 void func_0210d27c(s32);
 
