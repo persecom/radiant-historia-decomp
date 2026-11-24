@@ -6,6 +6,7 @@ typedef struct {
 } Unk20;
 
 extern const Unk20 data_02143dcc;
+extern const Unk20 data_02143e30;
 extern const Unk20 data_02143df4;
 extern const Unk20 data_02143e1c;
 typedef struct {
@@ -46,13 +47,13 @@ else if(value<=18)func_020a3bbc(0x72);
 else if(value<=24)func_020a3bbc(0x73);
 else func_020a3bbc(0x74);
 growth=size*3; width=15+growth; height=16+growth;
-buf.unk[1]=0;
-if(size==0){buf.unk[2]=0;buf.unk[3]=width;buf.unk[4]=height;}
-else {buf.unk[2]=0;buf.unk[3]=15;buf.unk[4]=16;}
-buf.unk[7]=arg2+0x2bf;buf.unk[8]=width;buf.unk[9]=height;
-padding=growth;
+buf.unk[1]=0;buf.unk[2]=0;
+if(size==0){buf.unk[3]=width;buf.unk[4]=height;}
+else {buf.unk[3]=15;buf.unk[4]=16;}
 digit=value%10;
+padding=growth;
 center=y-(padding>>1);
+buf.unk[9]=height;buf.unk[7]=arg2+0x2bf;buf.unk[8]=width;
 divisor=1;index=0;
 do {
 s16 current;
