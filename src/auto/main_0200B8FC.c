@@ -90,6 +90,26 @@ s32 func_0200baa4(u8 *arg0) {
     return func_0200afb4(arg0, 8, 1);
 }
 
+u32 func_0200bab8(u8 *arg0) {
+    u32 ret = 0;
+    if (func_0200d460(arg0, &ret) == 0) {
+        u32 sp0 = 0;
+        *(u32 **)(arg0 + 0x10) = &sp0;
+        if (func_0200afb4(arg0, 0xf, 1) != 0) {
+            ret = sp0;
+        }
+    }
+    return ret;
+}
+
+s32 func_0200bb10(u8 *arg0, u32 arg1, u32 arg2) {
+    u32 sp0[2];
+    *(u32 **)(arg0 + 0x10) = sp0;
+    sp0[0] = arg1;
+    sp0[1] = arg2;
+    return func_0200afb4(arg0, 0xe, 1);
+}
+
 s32 func_0200bc08(void *arg0, void *arg1) {
     return func_0200ba20(arg0, arg1, 1);
 }
