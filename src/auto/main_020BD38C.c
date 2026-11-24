@@ -165,6 +165,29 @@ s32 func_020bdf24(volatile s32 arg0, ...) {
     return 0;
 }
 
+void func_020be30c(s16 *, s16 *);
+void func_020be0ec(void) {
+u8 **list;
+s16 i;
+s32 n;
+u8 *p = data_021600e4;
+n = func_020be1b0();
+s16 x,y;
+i=0;
+if(n<=0) return;
+list=(u8 **)(p+0x1234);
+do {
+func_020be330(list[i]);
+x=*(s16 *)(list[i]+0x1a);
+y=*(s16 *)(list[i]+0x1c);
+func_020be30c(&x,&y);
+func_020a9e38(&x,&y);
+y/=8; x/=4;
+if(p[0x13c4]&1) func_020be3a8(list[i]);
+i++;
+}while(i<n);
+}
+
 void func_020be2d8(s16 *arg0, s16 *arg1) {
     *arg0 = (*arg0 - 0x38) / 32;
     *arg1 = (*arg1 - 0x28) / 32;
