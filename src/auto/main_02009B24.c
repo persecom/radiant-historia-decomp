@@ -22,6 +22,12 @@ typedef union ChanCmd {
     u32 raw;
     ChanBits bits;
 } ChanCmd;
+
+static inline u32 chan_of(u32 cmd) {
+    ChanCmd c;
+    c.raw = cmd;
+    return c.bits.ch;
+}
 extern s32 func_02008128(void);
 extern void func_0200813c(s32);
 extern s32 func_02009964(s32);
@@ -696,7 +702,7 @@ void func_0200a75c(void) {
         if (ret == -3) {
             continue;
         }
-        ch = (val << 27) / 0x08000000;
+        ch = (ChanCmd){val}.bits.ch;
         if (ch == 0) {
             continue;
         }
