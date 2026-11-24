@@ -35,7 +35,7 @@ void func_02133258(void *arg0) {
     p = *(void **)arg0;
     cb = *(void (**)(void *))((u8 *)p + 0x14);
     if (cb != NULL) {
-        cb((u8 *)arg0 + 4);
+        cb(*(void **)((u8 *)arg0 + 4));
         func_02133124(arg0);
         return;
     }
