@@ -70,3 +70,12 @@ void func_020469ac(void) {
     }
 }
 
+void func_02046b6c(void) {
+    *(void **)data_021600bc = (void *)func_0204798c;
+    *(u32 *)(data_021600bc + 4) = 0x3ed;
+    func_0210d9e4(data_021600bc);
+    *(void **)(data_021600bc + 0x14) = (void *)func_02051ef4;
+    *(u32 *)(data_021600bc + 0x18) = 0x3eb;
+    func_0210dae0(data_021600bc + 0x14);
+}
+
