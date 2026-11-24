@@ -14,7 +14,7 @@ extern s32 data_0216f3d8[];
 extern s32 data_0216f244[];
 extern s32 data_0216f3c4[][6];
 extern s32 data_0216f6c4[][6];
-void func_0211a4e0(void *, void *, void *);
+void func_0211a4e0();
 extern u32 data_02144d9c[5];
 extern u32 data_021701d8[4];
 extern u32 data_021701cc[3];
@@ -50,18 +50,23 @@ data_0216f244[data_0216f234[3]]+=z;
 }
 
 void func_0211a3ac(s32 sine,s32 cosine) {
- s32 m[6];
+ s32 storage[6];
+ volatile s32 *m=storage;
+ s32 stride=24;
+ s32 *state=data_0216f234;
+ s32 index=*(volatile s32 *)&state[3];
  u16 *entry;
  s32 active;
- m[0]=cosine;m[1]=sine;m[2]=-sine;m[3]=cosine;m[4]=0;m[5]=0;
- func_0211a4e0(m,data_0216f3c4[data_0216f234[3]],data_0216f3c4[data_0216f234[3]]);
- func_0211a4e0(m,data_0216f6c4[data_0216f234[3]],data_0216f6c4[data_0216f234[3]]);
- active=(data_0216f234[1]==0 && data_02155eb0[0]!=0xfffe);
+ m[1]=sine;m[0]=cosine;m[3]=cosine;m[2]=-sine;m[4]=0;m[5]=0;
+ func_0211a4e0((void *)m,(u8 *)data_0216f3c4+index*stride,data_0216f3c4[data_0216f234[3]]);
+ func_0211a4e0((void *)m,(u8 *)data_0216f6c4+state[3]*stride,data_0216f6c4[data_0216f234[3]]);
+ active=Active0211a3ac();
  if(!active) data_02155eb0[0]=data_0216f234[3];
  entry=data_0216f2c4[(u16)data_0216f234[3]];
  switch(entry[2]) {
+ case 1: break;
  case 0: case 2: case 3:
- entry[1]=((u16 *)data_0216f234)[1]++;
+ { u16 n=((u16 *)data_0216f234)[1]; ((u16 *)data_0216f234)[1]=n+1; entry[1]=n; }
  entry[2]=1;
  break;
  }
