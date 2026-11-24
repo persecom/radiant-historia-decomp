@@ -95,7 +95,11 @@ void func_02002f9c(void *arg0) {
 }
 
 void func_02002fb0(u32 arg0, u32 arg1, u16 arg2, u32 arg3, s32 arg4) {
-    *(volatile u32 *)0x04000350 = arg0 | (arg1 << 16) | (arg3 << 24) | (arg4 ? 0x8000 : 0);
+    u32 val = arg0 | (arg1 << 16) | (arg3 << 24);
+    if (arg4) {
+        val |= 0x8000;
+    }
+    *(volatile u32 *)0x04000350 = val;
     *(volatile u16 *)0x04000354 = arg2;
 }
 
