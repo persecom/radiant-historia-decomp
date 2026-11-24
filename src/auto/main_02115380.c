@@ -254,25 +254,25 @@ s32 func_02115f20(s32,void *,u16,s32,s32);
 void func_0200a178(void *,s32,void *);
 s32 func_021157d0(u16 id, u32 flags, void *arg2, s32 arg3, void *out) {
  u8 *entry;
- u8 *p;
+ Entry021157d0 *p;
  void *val;
  s32 i;
- p=func_02115048(id);
+ p=(Entry021157d0 *)func_02115048(id);
  if(!p) return 4;
  if(flags&2) {
- val=func_02115b10(*(void **)p,arg2,arg3);
+ val=func_02115b10(p->base,arg2,arg3);
  if(!val) return 8;
- } else val=func_02115264(*(void **)p);
+ } else val=func_02115264(p->base);
  for(i=0;i<4;i++) {
  void *child;
  s32 result;
- if(*(u16 *)(p+4+i*2)==0xffff) continue;
- entry=func_021150ac((void *)(u32)*(u16 *)(p+4+i*2));
+ if(p->ids[i]==0xffff) continue;
+ entry=func_021150ac((void *)(u32)p->ids[i]);
  if(!entry) return 5;
- result=func_02115910((void *)(u32)*(u16 *)(p+4+i*2),flags,arg2,arg3,&child);
+ result=func_02115910((void *)(u32)p->ids[i],flags,arg2,arg3,&child);
  if(result) return result;
  if(((*(u32 *)entry>>24)&1) && (flags&4)) {
- if(!func_02115f20((s32)child,val,i,(*(u32 *)entry<<8)>>8,(s32)arg2)) return 9;
+ if(!((s32 (*)(s32,void *,s32,s32,s32))func_02115f20)((s32)child,val,i,(*(volatile u32 *)entry<<8)>>8,(s32)arg2)) return 9;
  }
  if(val && child) func_0200a178(val,i,child);
  }
