@@ -45,3 +45,20 @@ void *func_020d3cb0(s32 arg0) {
     return NULL;
 }
 
+void func_020d3dd8(void) {
+    while (data_02160244->unk_120 != NULL) {
+        Node120_020d3160 *node = data_02160244->unk_120;
+        func_021168f8(&data_02160244->unk_120, node);
+        if (node != NULL) {
+            func_0210c5dc(node);
+        }
+    }
+    while (data_02160244->unk_12c != NULL) {
+        Node12c_020d3160 *node = data_02160244->unk_12c;
+        func_021168f8(&data_02160244->unk_12c, node);
+        if (node != NULL) {
+            func_0210c5dc(node);
+        }
+    }
+}
+
