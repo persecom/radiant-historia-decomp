@@ -1,5 +1,11 @@
 /* 9 functions from 0x020783E8 to 0x02079374 (main), found by ds-decomp. */
 #include "common.h"
+extern const s16 data_0213a394[];
+extern u32 data_02155c3c;
+extern void *func_0210c594(u32, u32);
+extern void *func_02046f90(u32, u16);
+extern void func_020477dc(void *, u32, u32);
+extern void func_021167f0(void *, void *);
 extern u64 data_02162658[3];
 static inline u32 random_02078e1c(u32 limit) {
     u64 value = data_02162658[1] * data_02162658[0] + data_02162658[2];
