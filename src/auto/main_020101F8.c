@@ -150,14 +150,36 @@ void func_02010b10(void) {
     func_02010f58();
     func_0201082c(8);
     {
+        u32 zero = 0;
         u32 *p = *(u32 **)data_0215f120;
-        p[0] = 0;
+        *p = zero;
     }
     func_0200fddc();
 }
 
 void func_02010e40(void) {
     func_0200fb84();
+}
+
+extern u8 data_0215f78c[148];
+extern void func_0200a56c(void);
+extern void func_0200a674(s32, void (*)(void));
+extern void func_02010e80(void);
+extern void func_01ff8000(void);
+extern u32 func_02007490(void);
+extern void func_020108d8(u32, void *, u32, u32);
+extern s32 func_020081e0(void);
+extern u8 *func_0200f9a4(void);
+extern s32 func_02005df8(void);
+extern void func_0200f9b0(u16);
+extern void func_0200fa20(u16);
+extern void func_02005e50(u16);
+void func_02010e4c(void) {
+    func_0200a56c();
+    data_0215fa20[0] = 0;
+    data_0215fa20[1] = 0;
+    func_0200a674(0xe, func_02010e80);
+    data_0215fa20[2] = 0;
 }
 
 extern u32 data_0215fa20[3];
