@@ -90,6 +90,83 @@ void func_020471b8(Obj_02046e30 *obj, u32 arg1) {
     }
 }
 
+extern void *data_02155c3c;
+extern void *func_0210c594(s32, void *);
+extern void func_02108ffc(void);
+extern void *func_0210957c(s32);
+extern s32 func_020f685c(void *, s32);
+extern void func_0207cbfc(s32, void *);
+extern void func_0205440c(void *, s32);
+extern s32 func_02109444(void *);
+void func_02047278(u8 *arg0) {
+    s32 zero = 0;
+    u8 *r5 = (u8 *)func_0210c594(0x58, data_02155c3c);
+    void *r6;
+    s32 i;
+
+    func_02108ffc();
+    for (i = zero; i < 10; i++) {
+        *(u16 *)(r5 + 0xe + i * 2) = zero;
+    }
+    r5[0x24] = zero;
+    *(u8 **)(r5 + 0x2c) = arg0;
+
+    r6 = func_0210957c(1);
+    if (r6 != NULL) {
+        do {
+            if (*(u16 *)(arg0 + 0x8e) == func_020f685c(r6, zero)) {
+                s32 v = func_020f685c(r6, zero);
+                if (v != 0) {
+                    *(s32 *)(r5 + 0) = v << 12;
+                }
+                v = func_020f685c(r6, 0);
+                if (v != 0) {
+                    arg0[0x9d] = v;
+                }
+                {
+                    s32 v2 = func_020f685c(r6, zero);
+                    if (v2 != 0) {
+                        func_0207cbfc(zero, r5);
+                        r5[0x25] = v2;
+                    }
+                }
+                if (func_020f685c(r6, 0) != 0) {
+                    r5[0x26] |= 1;
+                    func_0207cbfc(1, r5);
+                }
+                if (func_020f685c(r6, zero) != 0) {
+                    func_0205440c(arg0, zero);
+                    func_0207cbfc(3, r5);
+                }
+                if (func_020f685c(r6, 0) != 0) {
+                    r5[0x26] |= 0x40;
+                    func_0207cbfc(4, r5);
+                }
+                break;
+            }
+        } while (func_02109444(r6) != 0);
+    }
+
+    if ((r5[0x26] & 1) || (r5[0x26] & 2)) {
+        switch (*(u16 *)(arg0 + 0x8e)) {
+        case 0x148d:
+        case 0x2712:
+        case 0x2713:
+        case 0x2714:
+        case 0x2727:
+        case 0x2728:
+            *(u16 *)(r5 + 0x28) = 0xf;
+            break;
+        case 0x141f:
+        case 0x1483:
+        case 0x271c:
+            *(u16 *)(r5 + 0x28) = 0xd;
+            break;
+        }
+    }
+    *(u8 **)(arg0 + 0xb0) = r5;
+}
+
 void func_02047778(Obj_02046e30 *obj) {
     while (obj->unk_b8 != NULL) {
         void *node = obj->unk_b8;
