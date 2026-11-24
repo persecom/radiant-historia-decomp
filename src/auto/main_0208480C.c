@@ -1,5 +1,7 @@
 /* 17 functions from 0x0208480C to 0x02085328 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { s16 v[36]; } Init_02084828;
+extern const Init_02084828 data_02140ca0;
 void func_0210d27c(s32);
 void func_020a994c(void *);
 void func_02080dc4(void);
