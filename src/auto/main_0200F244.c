@@ -39,6 +39,14 @@ s32 func_0200f6fc(s32 arg0) {
     return ret;
 }
 
+void func_0200f7e4(u8 *arg0) {
+    if (((s32 (*)(void *))*(u32 *)(arg0 + 0x34))(*(void **)(arg0 + 0x38)) != 0) {
+        func_0200851c(arg0, 1);
+    } else {
+        func_02007e58(arg0 + 0xc, 0xc0, 0xc0 + 0x47, (void *)func_0200f7e4, arg0);
+    }
+}
+
 u32 func_0200f94c(void) {
     return data_0215f0a0[0];
 }
