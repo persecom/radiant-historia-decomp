@@ -72,6 +72,11 @@ void *func_0200f9a4(void) {
     return (void *)0x02fffe00;
 }
 
+void func_0200fa20(u32 arg0) {
+    func_02005d88();
+    func_0200faec(arg0, 1);
+}
+
 extern void func_0200fa74(void *, s32);
 void func_0200fa3c(void *arg0) {
     func_0200fa74(arg0, 2);
