@@ -220,6 +220,18 @@ void func_02125af0(void *arg0, void *arg1) {
     func_02126940(*p, arg1);
 }
 
+void func_02125b78(void *arg0) {
+    if (!data_02173194) {
+        func_02125e68(data_021561f4[2], data_021561f4[1]);
+        return;
+    }
+    if (arg0 == NULL) {
+        func_02125e68(data_021561f4[2], data_021561f4[5]);
+        return;
+    }
+    func_02126970(*func_02125dc4(arg0));
+}
+
 void func_02125e48(void *arg0, void *arg1) {
     (*(void (**)(void *))((u8 *)data_02173198 + 0x1fc))(arg1);
 }
