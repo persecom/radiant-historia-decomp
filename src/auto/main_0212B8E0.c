@@ -79,7 +79,6 @@ extern void func_0212e5ec(void *, s32);
 extern void func_021382fc(s32, s32, void *, s32, void *);
 extern s32 func_02138190(s32, void *, s32, void *);
 extern void func_02128580(s32);
-extern void *memset(void *, int, unsigned long);
 extern s32 data_02173ac0[];
 extern s8 data_02173ad4[4][196];
 s32 func_0212bcd0(s16 *arg0, s32 arg1, s16 *arg2) {
@@ -230,6 +229,8 @@ void func_0212c0b8(void) {
     data_02156b74 = data_021458c8;
     func_02132be0();
     if (data_02173ac0[4] == 0) {
+        typedef struct { u32 x[196]; } Zero784;
+        static const Zero784 z = {0};
         func_0212a98c();
         func_0212a9dc();
         func_02137eac();
@@ -244,7 +245,7 @@ void func_0212c0b8(void) {
         func_021385d4();
         func_0212eae0(func_0212c068, 0);
         func_0212e5ec(func_0212c078, 0);
-        memset((u32 *)data_02173ad4, 0, sizeof(data_02173ad4));
+        *(Zero784 *)data_02173ad4 = (Zero784){0};
         func_021382fc(2, 1, func_0212c098, 0, data_02156b7c);
         data_02173ac0[1] = func_02138190(4, func_0212c0a8, 0, data_02156b8c);
         data_02173ac0[3] = func_02138190(5, func_0212c088, 0, data_02156b9c);
