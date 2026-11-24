@@ -158,6 +158,25 @@ u32 func_02113834(void) {
     return data_0216bf8c[0];
 }
 
+void func_02113844(void) {
+    if (data_0216bf90.unk_0c != 0) {
+        return;
+    }
+    data_0216bf90.unk_0c = 1;
+    func_02009834();
+    data_0216bf90.unk_10 = (u32)func_02113948;
+    data_0216bf90.unk_14 = 0;
+    data_0216bf90.unk_20 = (u32)func_02113980;
+    data_0216bf90.unk_24 = 0;
+    func_0200f0a4((u32)data_0216bfa0);
+    func_0200f0c4((u32)data_0216bfb0);
+    func_02113a80();
+    func_02114aa4();
+    func_02113da8();
+    data_0216bf90.unk_00 = -1;
+    data_0216bf90.unk_04 = 1;
+}
+
 void func_021138c0(void) {
     if (func_02009964(0) == 0) {
         func_02113e5c();
@@ -192,7 +211,8 @@ void func_02113c0c(u32 *arg0) {
 }
 
 void func_02113ce8(void **arg0, u8 arg1) {
-    if (*arg0 != NULL) {
+    void *p = *arg0;
+    if (p != NULL) {
         *(u8 *)(*arg0 + 0x41) = arg1;
     }
 }
