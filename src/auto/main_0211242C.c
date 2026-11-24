@@ -7,6 +7,35 @@ extern u8 *func_020c9c10(void *, u16);
 extern void func_02111a3c(void *, u8);
 
 extern void func_02112110(void);
+void func_02112554(u8 *arg0, s32 arg1) {
+    func_0211242c(arg0, arg1, *(s16 *)(arg0 + 0x96));
+}
+
+void func_02112564(u8 *arg0, s32 arg1) {
+    func_0211242c(arg0, *(s16 *)(arg0 + 0x94), arg1);
+}
+
+void func_02112578(u8 *arg0, u8 arg1) {
+    u32 count = func_020c9c34(*(void **)(arg0 + 0x8c));
+    u16 i;
+    u8 *obj;
+
+    for (i = 0; i < count; i++) {
+        obj = func_020c9c10(*(void **)(arg0 + 0x8c), i);
+        if (obj != NULL) {
+            ((void (*)(u8 *, u8))(*(void **)(obj + 0x1c)))(obj, arg1 + (obj[0x43] - arg0[0x98]));
+        }
+    }
+    obj = *(u8 **)(arg0 + 0x90);
+    ((void (*)(u8 *, u8))(*(void **)(obj + 0x1c)))(obj, arg1 + (obj[0x38] - arg0[0x98]));
+    {
+        u8 old = arg0[0x98];
+        u8 cur = arg0[0x48];
+        arg0[0x98] = arg1;
+        func_02111a3c(arg0, arg1 + (cur - old));
+    }
+}
+
 void *func_02112688(u8 *arg0) {
     return *(void **)(arg0 + 0x90);
 }
