@@ -40,11 +40,9 @@ void main(void) {
     func_02008414();
 }
 
-void func_02000bec(FourWords *p) {
-    p->a = 0x1000;
-    p->b = 0;
-    p->c = 0;
-    p->d = 0x1000;
+void func_02000bec(u64 *p) {
+    p[0] = 0x1000ULL;
+    p[1] = 0x100000000000ULL;
 }
 
 void func_02000c04(const MatA *a, Mat4 *b, Mat4 *out) {
@@ -72,6 +70,18 @@ void func_02000cb4(u64 *p) {
     p[1] = 0;
     p[2] = 0x0000000000001000ULL;
     p[3] = 0;
+}
+
+void func_02000cd8(const MtxFields *src, MtxFields *dst, s32 x, s32 y, s32 z) {
+dst->a0=(s64)x*src->a0>>12;
+dst->a1=(s64)x*src->a1>>12;
+dst->a2=(s64)x*src->a2>>12;
+dst->a3=(s64)y*src->a3>>12;
+dst->a4=(s64)y*src->a4>>12;
+dst->a5=(s64)y*src->a5>>12;
+dst->a6=(s64)z*src->a6>>12;
+dst->a7=(s64)z*src->a7>>12;
+dst->a8=(s64)z*src->a8>>12;
 }
 
 void func_02000da0(s32 *p, s32 a, s32 b) {
