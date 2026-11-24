@@ -1,5 +1,6 @@
 /* 19 functions from 0x020EC12C to 0x020ED0BC (main), found by ds-decomp. */
 #include "common.h"
+typedef struct ECModelFlags { u8 pad[0x70]; u8 unused:1; u8 flip:1; u8 rest:6; } ECModelFlags;
 extern s32 data_02162860[];
 extern u8 data_021612c8[];
 
@@ -73,6 +74,64 @@ void func_020ec6ac(void) {
         obj = *(u8 **)(obj + 0x48);
     }
 }
+
+extern void func_0211a4d4(void *,s32,s32);
+extern void func_02119da4(void *);
+extern void func_02119f1c(void);
+extern void func_0211a178(s32,s32,s32);
+extern void func_0211a26c(s32,s32,s32);
+extern void func_02119eb8(void *);
+extern void func_0211a128(void);
+extern void func_02119e4c(void);
+#pragma optimization_level 0
+void func_020ec6f8(void) {
+ u8 *node=0;
+ u8 *obj;
+ s32 scale;
+ s32 visible;
+ s32 cull;
+ s32 flip=0;
+ if(!data_02160ab4) goto done;
+ if(data_02162860[0]==0) {
+  if(*(s32 *)(data_02160ab4+0x64)==0) goto done;
+ } else {
+  if(*(s32 *)(data_02160ab4+0x64)!=0) goto done;
+ }
+ node=*(u8 **)(data_02160ab4+0x50);
+ while(node) {
+  obj=*(u8 **)(*(u8 **)node+8);
+  if((*(u32 *)(node+4)&1)==0) {
+   *(u32 *)(node+4)&=~2;
+   visible=0;
+  } else {
+   *(u32 *)(node+4)|=2;
+   visible=1;
+  }
+  if(visible) {
+   cull=2;
+   scale=*(s32 *)(node+0x20);
+   flip=0;
+   if((obj[0x70]>>1)&1) {
+    scale=scale*-1;
+    cull=1;
+    flip=1;
+   }
+   *(volatile u32 *)0x40004a4=(obj[0x71]<<16)|((cull<<6)|0|0|0);
+   *(volatile u32 *)0x4000480=*(u16 *)(node+0x3c);
+   func_0211a4d4(data_021612c8,*(s32 *)(*(u8 **)(obj+0x58)+0x10),*(s32 *)(*(u8 **)(obj+0x58)+0x14));
+   func_02119da4(data_021612c8);
+   func_02119f1c();
+   func_0211a178(*(s32 *)(node+0x14),*(s32 *)(node+0x18),*(s32 *)(node+0x1c));
+   func_0211a26c(scale,*(s32 *)(node+0x24),0x1000);
+   func_02119eb8(obj);
+   func_0211a128();
+   func_02119e4c();
+  }
+  node=*(u8 **)(node+0x48);
+ }
+done:;
+}
+#pragma optimization_level 4
 
 void func_020ec88c(u8 *arg0, s32 arg1, s32 arg2) {
     if (*(s32 *)(arg0 + 0x40) == arg1) {
