@@ -46,3 +46,20 @@ void func_020789ec(void) {
         }
     }
 }
+
+s32 func_02078d8c(Obj_02078d8c *obj, s32 arg1) {
+    Obj_02078d8c *target = data_021600ac->unk_68;
+    Vec3_02078d8c pos = obj->pos;
+    pos.z -= ((u32)obj->unk_9d >> 1) << 12;
+
+    if (obj != NULL && target != NULL) {
+        if (func_0210c2f4(target, &pos) <= ((target->unk_9d + arg1) << 12) &&
+            obj->pos.y <= target->pos.y + 0x10000) {
+            if (obj->pos.y >= target->pos.y) {
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+
