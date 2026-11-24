@@ -15,6 +15,29 @@ extern u8 data_021512a0[];
 extern u8 *func_0203be10(s32);
 extern void func_0203be60(void *, void *, void *);
 extern void func_0203be4c(void *);
+void func_020c4454(void) {
+data_02155984=data_0216242c;
+func_02107c70(data_0216242c);
+func_02107cb8(0x165,0xff0,0x1555,0x64000,0x800000);
+*(s32 *)(data_02155984+0x20)=0;
+*(s32 *)(data_02155984+0x24)=0x15a000;
+*(s32 *)(data_02155984+0x28)=0;
+*(s32 *)(data_02155984+0x14)=0;
+*(s32 *)(data_02155984+0x18)=0x15a000;
+*(s32 *)(data_02155984+0x1c)=-0x3e8000;
+func_02009008(data_02162360,data_0216013c+0x94,0xcc);
+data_02155984=data_02162360;
+func_02107c70(data_02162360);
+func_02107cb8(0x165,0xff0,0x1555,0x64000,0x800000);
+*(s32 *)(data_02155984+0x20)=0;
+*(s32 *)(data_02155984+0x24)=0;
+*(s32 *)(data_02155984+0x28)=0;
+*(s32 *)(data_02155984+0x14)=0;
+*(s32 *)(data_02155984+0x18)=0x190000;
+*(s32 *)(data_02155984+0x1c)=0x3e8000;
+func_02009008(data_02162360,data_0216013c+0x160,0xcc);
+}
+
 u8 *func_020c46ac(void) {
     return *(u8 **)(data_0216013c + 0x90) + 8;
 }
