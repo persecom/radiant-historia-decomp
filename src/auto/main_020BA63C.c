@@ -283,3 +283,53 @@ s32 func_020bac80(void) {
     data_02162868 = 0;
     return 2;
 }
+
+extern void func_020a2c20(void);
+extern void func_0210f6d4(void);
+extern void func_020a31c8(s32);
+extern void func_020eb180(s32,s32);
+extern void func_020ec12c(void);
+extern u8 *func_0210c594(u32,u32);
+extern void func_0210d9e4(void *);
+extern void func_0210db70(void *);
+extern void func_0210dbd0(void *);
+extern void func_020bafb4(void);
+extern void func_020bafdc(void);
+extern void func_020bafe8(void);
+extern void func_020bb008(void);
+extern u8 *func_020c4bd0(void);
+extern u8 *func_020c4c00(void);
+extern u8 *func_020c4c30(void);
+extern u32 data_02155c3c;
+extern u32 data_02162858, data_02162854;
+extern u32 data_02162830,data_02162834,data_0216281c,data_02162820;
+void func_020bad3c(void) {
+ u16 value;
+ u8 *base=&data_021601f0;
+#define OBJ (*(u8 **)(base+4))
+ if(OBJ)return;
+ func_020a2c20();func_0210f6d4();
+ data_02162858=(u32)func_020bafb4;data_02162854=(u32)func_020bafb4;
+ func_020a31c8(20);func_020eb180(3,1);func_020ec12c();
+ OBJ=func_0210c594(0x50,data_02155c3c);
+ *(u32 *)(OBJ)=(u32)func_020bafdc;
+ *(u32 *)(OBJ+4)=1011;
+ func_0210d9e4(OBJ);
+ *(u32 *)(OBJ+0x14)=(u32)func_020bafe8;
+ *(u32 *)(OBJ+0x18)=1000;
+ func_0210db70(OBJ+0x14);
+ *(u32 *)(OBJ+0x28)=(u32)func_020bb008;
+ *(u32 *)(OBJ+0x2c)=1000;
+ func_0210dbd0(OBJ+0x28);
+ *(u8 **)(OBJ+0x40)=func_020c4bd0();
+ value=*base;
+ *(u16 *)(*(u8 **)(OBJ+0x40)+0xc)=value;
+ *(u16 *)(*(u8 **)(OBJ+0x40)+6)=value;
+ *(u8 **)(OBJ+0x3c)=func_020c4c00();
+ *(u8 **)(OBJ+0x44)=func_020c4c30();
+ *(u8 **)(OBJ+0x4c)=func_020c4c30();
+ *(u32 *)(OBJ+0x48)=0;
+ data_02162830=30;data_02162834=1;data_0216281c=2;data_02162820=2;
+#undef OBJ
+}
+
