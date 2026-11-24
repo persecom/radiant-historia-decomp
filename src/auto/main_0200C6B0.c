@@ -88,6 +88,22 @@ s32 func_0200cc54(void *arg0, void *arg1, void *arg2, u32 *arg3) {
     return func_0200cb40(arg1, 1, 0);
 }
 
+s32 func_0200cc98(void *arg0, u8 *arg1, u32 arg2, u32 arg3) {
+    s32 res;
+    *(void **)(arg1 + 0x8) = arg0;
+    *(void **)(arg1 + 0x30) = arg0;
+    *(u16 *)(arg1 + 0x34) = (u16)arg2;
+    *(u16 *)(arg1 + 0x36) = (u16)(arg2 >> 16);
+    *(u32 *)(arg1 + 0x38) = arg3;
+    res = func_0200cb40(arg1, 2, 1);
+    if (res == 0) {
+        *(u32 *)(arg1 + 0xc) = (*(u32 *)(arg1 + 0xc) | 0x20) & ~0x10;
+        *(void **)(arg1 + 0x4) = arg1 + 0x20;
+        *(void **)(arg1 + 0x8) = arg0;
+    }
+    return res;
+}
+
 u32 func_0200d524(u8 *arg0) {
     return *(u32 *)(arg0 + 0x24);
 }
