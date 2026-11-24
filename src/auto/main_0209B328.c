@@ -152,6 +152,69 @@ func_021099f8(p);
 }
 }
 
+extern const Unk20 data_021420b0;
+void func_0209bca0(u16 arg0, u16 arg1, u16 arg2, s32 arg3, u8 arg4, u8 arg5) {
+    Unk20 s = data_021420b0;
+    *(volatile u32 *)0x040004a4 = (arg5 << 16) | 0x80;
+    func_020a3bbc(0x14);
+    s.unk[7] = arg2;
+    if (arg4 == 0) {
+        s32 div;
+        s32 i;
+        s.unk[1] = 0;
+        s.unk[2] = 1;
+        s.unk[3] = 8;
+        s.unk[4] = 9;
+        s.unk[8] = 8;
+        s.unk[9] = 9;
+        i = 0;
+        div = 1;
+        do {
+            s.unk[5] = arg0 - (i + 1) * 8;
+            s.unk[6] = arg1;
+            s.unk[1] = ((arg3 / div) % 10) * 8;
+            func_021098ac(&s);
+            div *= 10;
+            i++;
+            if (arg3 < div) {
+                return;
+            }
+        } while (div < 1000000);
+    } else if (arg4 == 1) {
+        s32 div;
+        s32 i;
+        func_020a3bbc(0x1a);
+        s.unk[1] = 0;
+        s.unk[2] = 0x11;
+        s.unk[3] = 7;
+        s.unk[4] = 9;
+        s.unk[8] = 7;
+        s.unk[9] = 9;
+        i = 0;
+        div = 1;
+        do {
+            s.unk[5] = arg0 - (i + 1) * 7;
+            s.unk[6] = arg1;
+            s.unk[1] = ((arg3 / div) % 10) * 7;
+            func_021098ac(&s);
+            div *= 10;
+            i++;
+            if (arg3 < div) {
+                break;
+            }
+        } while (div < 1000000);
+        s.unk[1] = 0x46;
+        s.unk[2] = 0x12;
+        s.unk[3] = 7;
+        s.unk[4] = 7;
+        s.unk[8] = 7;
+        s.unk[9] = 7;
+        s.unk[5] = arg0 - (i * 7 + 6);
+        s.unk[6] = arg1 + 1;
+        func_021098ac(&s);
+    }
+}
+
 void func_0209beb8(s32 x,s32 y,s32 h,s32 arg3) {
 Unk20 buf=data_0214209c;
 *(volatile u32 *)0x40004a4=0x1f0080;
