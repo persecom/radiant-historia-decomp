@@ -27,6 +27,49 @@ void func_021241a4(s32 *arg0, u8 *arg1) {
     arg0[4] = 0;
 }
 
+void func_021241f0(s32 *out,u8 *p) {
+s32 w=*(u16 *)(p+0x2c)<<12,h=*(u16 *)(p+0x2e)<<12;
+s32 c,s,sx,sy,cx,ss,cy,ys;
+func_02002058(h,w);
+c=*(s16 *)(p+0x22);sx=*(s32 *)(p+0x18);s=*(s16 *)(p+0x20);sy=*(s32 *)(p+0x1c);
+cx=((s64)sx*c)>>12;ss=((s64)sx*s)>>12;
+cy=((s64)sy*c)>>12;ys=((s64)sy*s)>>12;
+out[0]=cx;out[5]=cy;
+out[1]=(ys*func_02001ff4())>>12;
+func_02002058(w,h);
+{
+u16 w2=*(u16 *)(p+0x2c),h2=*(u16 *)(p+0x2e);
+s32 x=(-w2)<<11;
+s64 a=(s64)cx*x;
+s32 y=(-h2)<<11;
+out[13]=(s32)(((s64)ys*x+(s64)cy*y)>>8)+(h2<<15);
+out[12]=(s32)((a-(s64)ss*y)>>8)+(w2<<15);
+}
+out[4]=(-ss*func_02001ff4())>>12;
+}
+
+void func_021242e4(s32 *arg0, u8 *arg1) {
+s32 w=*(u16 *)(arg1+0x2c)<<12; s32 h=*(u16 *)(arg1+0x2e)<<12; s32 val;
+func_02002058(h,w);
+val=*(s16 *)(arg1+0x22); arg0[0]=val;arg0[5]=val;
+arg0[1]=(*(s16 *)(arg1+0x20)*func_02001ff4())>>12;
+func_02002058(w,h);
+{
+s32 h2=*(u16 *)(arg1+0x2e);
+s32 w2=*(u16 *)(arg1+0x2c);
+s16 c=*(s16 *)(arg1+0x22);
+s32 y=-h2<<11;
+s16 s=*(s16 *)(arg1+0x20);
+s32 x=-w2<<11;
+s64 a=(s64)c*x-(s64)s*y;
+s64 b=(s64)s*x+(s64)c*y;
+w2=(s32)(a>>8)+(w2<<15);
+h2=(s32)(b>>8)+(h2<<15);
+arg0[12]=w2; arg0[13]=h2;
+}
+arg0[4]=(-*(s16 *)(arg1+0x20)*func_02001ff4())>>12;
+}
+
 void func_021243ac(s32 *arg0, u8 *arg1) {
     s32 lr = *(s32 *)(arg1 + 0x1c);
     s32 r4 = *(s32 *)(arg1 + 0x18);
@@ -47,6 +90,28 @@ void func_021243f4(s32 *arg0) {
     arg0[5] = 0x1000;
     arg0[12] = 0;
     arg0[13] = 0;
+}
+
+void func_021246b0(s32 *arg0, u8 *arg1) {
+    s32 w = *(u16 *)(arg1 + 0x2c) << 12;
+    s32 h = *(u16 *)(arg1 + 0x2e) << 12;
+    s32 val;
+
+    func_02002058(h, w);
+    val = *(s16 *)(arg1 + 0x22);
+    arg0[0] = val;
+    arg0[5] = val;
+    arg0[1] = (*(s16 *)(arg1 + 0x20) * func_02001ff4()) >> 12;
+    func_02002058(w, h);
+    {
+        s32 a = *(s16 *)(arg1 + 0x20) - (s32)(((s64)*(s32 *)(arg1 + 0x24) * *(s16 *)(arg1 + 0x22) + (s64)*(s32 *)(arg1 + 0x28) * *(s16 *)(arg1 + 0x20)) >> 12);
+        s32 b = *(s16 *)(arg1 + 0x22) + (s32)(((s64)*(s32 *)(arg1 + 0x24) * *(s16 *)(arg1 + 0x20) - (s64)*(s32 *)(arg1 + 0x28) * *(s16 *)(arg1 + 0x22)) >> 12) - 0x1000;
+        u16 h2 = *(u16 *)(arg1 + 0x2e);
+        u16 w2 = *(u16 *)(arg1 + 0x2c);
+        arg0[12] = (w2 * a) << 4;
+        arg0[13] = (-h2 * b) << 4;
+    }
+    arg0[4] = (-*(s16 *)(arg1 + 0x20) * func_02001ff4()) >> 12;
 }
 
 void func_02124788(s32 *arg0, u8 *arg1) {
@@ -79,6 +144,22 @@ void func_02124800(s32 *arg0, u8 *arg1) {
     arg0[12] = s << 4;
     arg0[13] = t << 4;
     arg0[4] = 0;
+}
+
+void func_02124850(s32 *out,u8 *p) {
+s32 w=*(u16 *)(p+0x2c)<<12,h=*(u16 *)(p+0x2e)<<12;
+s32 cy,sy,sx,s,c;
+func_02002058(h,w);
+c=*(s16 *)(p+0x22);sx=*(s32 *)(p+0x18);s=*(s16 *)(p+0x20);sy=*(s32 *)(p+0x1c);
+out[0]=((s64)sx*c)>>12;
+sx=((s64)sx*s)>>12;
+cy=((s64)sy*c)>>12;
+out[5]=cy;
+out[1]=(func_02001ff4()*(s32)(((s64)sy*s)>>12))>>12;
+func_02002058(w,h);
+out[12]=(*(u16 *)(p+0x2c)*sx)<<4;
+out[13]=(-*(u16 *)(p+0x2e)*(cy-0x1000))<<4;
+out[4]=(-sx*func_02001ff4())>>12;
 }
 
 void func_0212491c(s32 *arg0, u8 *arg1) {
