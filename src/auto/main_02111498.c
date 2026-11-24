@@ -14,6 +14,11 @@ extern void func_02111728(void *);
 void func_02111594(void) {
 }
 
+extern void func_020c7090(void *);
+void func_02111598(void *arg0) {
+    func_020c7090(func_020c9c10(*(void **)((u8 *)arg0 + 0x30), 0));
+}
+
 void func_021115b0(u8 *arg0, u32 arg1) {
     *(u16 *)(arg0 + 0x3c) = (u8)arg1;
 }
