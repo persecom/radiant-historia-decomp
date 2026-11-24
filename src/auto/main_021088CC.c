@@ -136,6 +136,34 @@ void func_02108d34(u32 arg0, u32 arg1) {
     func_02125c38(*ptr);
 }
 
+void func_02108da0(u32 arg0, u32 arg1) {
+    s32 v;
+    if (arg0 >= 2) {
+        return;
+    }
+    if (data_021624f8 == NULL) {
+        return;
+    }
+    v = data_021624f8->unk_1a[arg0];
+    if (arg1 == (u32)v || arg1 == 0xff) {
+        func_02108c24(arg0, 1);
+        return;
+    }
+    if (arg1 == (u32)v) {
+        return;
+    }
+    while (1) {
+        if (func_021090f4(arg0, 0) == 2) {
+            func_02108b54(arg0);
+        } else if (func_021090f4(arg0, 0) == 0) {
+            func_02109264(arg0);
+            break;
+        }
+        func_02108ffc();
+    }
+    func_021089e8(arg0, (s8)arg1, 3);
+}
+
 void func_02108e54(u32 arg0) {
     if (arg0 >= 2) {
         return;
