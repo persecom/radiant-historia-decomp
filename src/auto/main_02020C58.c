@@ -28,6 +28,9 @@ s32 func_020212ec(void) {
     return func_02021284();
 }
 
+void func_02021340(void) {
+}
+
 s32 func_02021a28(void) {
     return func_02021428(&func_02021618);
 }
