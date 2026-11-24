@@ -2,7 +2,9 @@
 #include "common.h"
 
 extern u8 *data_02160aec;
-extern s32 func_020ef4c8(void);
+extern s32 func_020ef4c8();
+extern u8 *data_021600bc, *data_021600ac;
+extern u8 *func_02047820(u16);
 extern void func_020477dc(void *, s32, s32);
 void func_02052240(u8 *arg0) {
     s32 val = func_020ef4c8();
