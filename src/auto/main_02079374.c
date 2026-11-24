@@ -31,3 +31,18 @@ void func_0207963c(void) {
     v[2] -= 0x110000;
     func_0206e8f0(0x7f, v, 2);
 }
+
+int func_02079720(void *arg) {
+u8 *obj = *(u8 **)(data_021600ac + 0x68);
+u32 angle = func_020ddc8c(obj,arg);
+if ((angle < 0x2aaa || angle > 0xd556) && (*(u16 *)(obj+0x92) < 0x2000 || *(u16 *)(obj+0x92) > 0xe000)) return 0;
+if (angle > 0x1556 && angle < 0x6aaa && *(u16 *)(obj+0x92) >= 0x2000 && *(u16 *)(obj+0x92) <= 0x6000) return 1;
+if (angle > 0x5556 && angle < 0xaaaa && *(u16 *)(obj+0x92) >= 0x6000 && *(u16 *)(obj+0x92) <= 0xa000) return 2;
+if (angle > 0x9556 && angle < 0xeaaa && *(u16 *)(obj+0x92) >= 0xa000 && *(u16 *)(obj+0x92) <= 0xe000) return 3;
+if (*(u16 *)(obj+0x92) < 0x2000 || *(u16 *)(obj+0x92) > 0xe000) return 0;
+if (*(u16 *)(obj+0x92) >= 0x2000 && *(u16 *)(obj+0x92) <= 0x6000) return 1;
+if (*(u16 *)(obj+0x92) >= 0x6000 && *(u16 *)(obj+0x92) <= 0xa000) return 2;
+if (*(u16 *)(obj+0x92) >= 0xa000 && *(u16 *)(obj+0x92) <= 0xe000) return 3;
+return 4;
+}
+
