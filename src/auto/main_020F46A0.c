@@ -6,6 +6,7 @@ extern void func_0200c1a8(int, const char *);
 extern void func_0200c1fc(int, const char *);
 static inline int check_f53(s32 (*fn)(void *, int, int), void *cb) { int result = 0; if (-1 == fn(cb,0,0)) result = 1; return result; }
 extern u32 func_0210cd50(void);
+static inline void init_f53_handles(u8 *p) { u8 i=0; do { *(u32 *)(p+0x18c+4*i)=func_0210cd50(); i++; } while(i<2); }
 extern void func_0210cba0(u32, u32);
 extern s32 func_ov000_02176da0(void *, int, int);
 extern s32 func_ov000_02176e18(void *, int, int);
@@ -472,9 +473,9 @@ u32 func_020f53e4(void (*arg0)(void)) {
 s32 func_020f53fc(void) {
 u8 *p = *(u8 **)(data_021626e8[0] + 0x10);
 const char *name = "";
-u32 i = 0;
+u8 i = 0;
 func_0200c1a8(0,name);
-do { *(u32 *)(p+0x18c+4*i)=func_0210cd50(); i=(u8)(i+1); } while(i<2);
+do { *(u32 *)(p+0x18c+4*i)=func_0210cd50(); i++; } while(i<2);
 { s32 expected = -1;
 if (check_f53_expected(func_ov000_02176da0,(void *)func_020f53e4,expected)) func_0210cba0(*(u32 *)(p+0x14),*(u32 *)(p+0x18c));
 if (check_f53_expected(func_ov000_02176e18,(void *)func_020f53e4,expected)) func_0210cba0(*(u32 *)(p+0x14),*(u32 *)(p+0x18c));
