@@ -109,9 +109,8 @@ s32 func_020b3d88(void) {
     u8 *base1 = func_020b3880();
     func_020b3890();
     u8 *base3 = func_020b3fd8();
-    u8 *p = base1 + 0x3000;
-    if (*(u32 *)(p + 0x438) == 0) {
-        if (*(u8 *)(p + 0x440) != 0) {
+    if (*(u32 *)(base1 + 0x3438) == 0) {
+        if (*(u8 *)(base1 + 0x3440) != 0) {
             if (*(u32 *)(base3 + 0x2aa4) != 3) {
                 r = 1;
             }
