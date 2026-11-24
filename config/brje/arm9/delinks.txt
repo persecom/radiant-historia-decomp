@@ -227,7 +227,10 @@ src/auto/main_0203BAE4.c:
     .text start:0x0203bae4 end:0x0203c998
 
 src/auto/main_0203C998.c:
-    .text start:0x0203c998 end:0x0203d970
+    .text start:0x0203c998 end:0x0203d1d4
+
+src/auto/main_0203D1D4.c:
+    .text start:0x0203d1d4 end:0x0203d970
 
 src/auto/main_0203D970.c:
     .text start:0x0203d970 end:0x0203e8c0
