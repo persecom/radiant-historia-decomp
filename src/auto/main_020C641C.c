@@ -38,6 +38,13 @@ void func_020c6de0(void *arg0) {
     }
 }
 
+extern void func_020c6ef4(void);
+extern void func_020c6e40(void *, void *, s32, s32);
+void func_020c6e2c(void *arg0, void *arg1);
+void func_020c6f04(u8 *arg0, u16 arg1) {
+    *(u16 *)(arg0 + 0x3a) = arg1;
+}
+
 s32 func_020c7080(void) {
     return 1;
 }
