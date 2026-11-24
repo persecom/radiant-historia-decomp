@@ -19,6 +19,17 @@ void *func_020bd38c(void) {
     return ptr;
 }
 
+void *func_020bd450(u8 arg0) {
+    u8 *node = *(u8 **)(*(u8 **)(data_02160204 + 0x90));
+    while (node != NULL) {
+        if (node[4] == arg0) {
+            return node;
+        }
+        node = *(u8 **)(node + 0xc);
+    }
+    return NULL;
+}
+
 void func_020bd574(void) {
     u8 i;
     for (i = 0; i < 7; i++) {
