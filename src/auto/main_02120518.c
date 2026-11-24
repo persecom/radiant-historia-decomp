@@ -1,5 +1,12 @@
 /* 27 functions from 0x02120518 to 0x02121494 (main), found by ds-decomp. */
 #include "common.h"
+static u32 *get_name_02120e30(u8 *dict, u32 i) {
+    if (dict != NULL && i < dict[1]) {
+        u8 *p = dict + *(u16 *)(dict + 6);
+        return (u32 *)(p + *(u16 *)(p + 2) + i * 16);
+    }
+    return NULL;
+}
 extern void (*data_0215615c)(u32);
 extern void (*data_02156154)(u32);
 extern void func_0211d5d0(void *);
@@ -222,6 +229,46 @@ void func_02120c34(u8 *arg0, u32 arg1) {
     for (i = 0; i < *(u8 *)(arg0 + 0x18); i++) {
         func_02120bbc(arg0, i, arg1);
     }
+}
+
+s32 func_02120e30(u8 *dict, u32 *name) {
+u32 i;
+u32 *entry;
+if(name==NULL) return -1;
+if(dict[1]<16) {
+u32 a=name[0], b=name[1], c=name[2], d=name[3];
+for(i=0;i<dict[1];i++) {
+if(dict!=NULL && i<dict[1]) {
+u8 *p=dict+*(u16 *)(dict+6);
+entry=(u32 *)(p+*(u16 *)(p+2)+i*16);
+} else entry=NULL;
+if(entry[0]==a && entry[1]==b && entry[2]==c && entry[3]==d) return i;
+}
+} else {
+u8 *nodes=dict+8;
+u32 idx=nodes[1];
+u8 *node;
+u32 bit;
+u32 prev;
+if(idx!=0) {
+node=nodes+idx*4;
+bit=node[0];
+prev=nodes[0];
+while(prev>bit) {
+idx=node[1+((name[bit>>5]>>(bit&31))&1)];
+prev=node[0];
+node=nodes+idx*4;
+bit=node[0];
+}
+i=node[3];
+if(dict!=NULL && i<dict[1]) {
+u8 *p=dict+*(u16 *)(dict+6);
+entry=(u32 *)(p+*(u16 *)(p+2)+i*16);
+} else entry=NULL;
+if(entry[0]==name[0] && entry[1]==name[1] && entry[2]==name[2] && entry[3]==name[3]) return i;
+}
+}
+return -1;
 }
 
 extern u32 data_02145ba4;
