@@ -294,6 +294,10 @@ void func_020bb234(u8 *arg0) {
     }
 }
 
+void func_020bb294(u8 *arg0, s32 arg1) {
+    func_020a9610(arg0 + 0xb4 + arg1 * 0x18, ((void **)(arg0 + 0xc))[arg1], ((void **)(arg0 + 0xfc))[arg1], ((void **)arg0)[arg1], 0, 0);
+}
+
 void func_020bb508(u8 *arg0) {
     if (arg0 == NULL) {
         return;
