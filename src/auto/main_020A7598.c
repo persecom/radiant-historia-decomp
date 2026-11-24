@@ -147,6 +147,13 @@ void func_020a8064(void) {
     func_020c3df4(*(void **)(p + 0x8c), 1);
 }
 
+void func_020a809c(void) {
+    u8 *p = data_0216013c;
+    if (*(s32 *)(*(u8 **)(p + 0x90) + 4) != 0) {
+        func_020c3df4(*(void **)(p + 0x8c), 0);
+    }
+}
+
 void func_020a80cc(void) {
 }
 
