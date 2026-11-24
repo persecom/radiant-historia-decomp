@@ -21,9 +21,9 @@ void func_0213236c(void) {
 }
 
 void func_0213239c(void) {
+    s32 i;
     s8 *src;
     s8 *dst;
-    s32 i;
 
     if (data_021749ac[1] != 0) {
         return;
