@@ -175,3 +175,17 @@ void func_020042e4(void) {
     data_0215cd24[6] = func_020054a4();
 }
 
+extern s32 func_0200542c(void);
+extern s32 func_02005418(void);
+extern void func_02005318(u32);
+extern u32 data_0215cd40[8];
+extern u16 data_0213e498[8];
+extern u8 data_0213e4a8[];
+extern u8 data_0213e4aa[];
+extern u8 data_0213e4ac[];
+void func_02004588(void) {
+    s32 val = func_0200542c();
+    data_0215cd40[3] = val;
+    data_0215cd40[2] = (u32)data_0213e498[val >> 4] << 12;
+}
+
