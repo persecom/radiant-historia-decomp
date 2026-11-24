@@ -51,3 +51,15 @@ void *func_020c2a98(u8 arg0, u8 arg1) {
     }
     return NULL;
 }
+
+void *func_020c2d94(u8 arg0, u8 arg1) {
+    u8 *node = *(u8 **)(data_02160090 + 0x48);
+    while (node != NULL) {
+        if (node[0] == arg0 && node[1] == arg1) {
+            return node;
+        }
+        node = *(u8 **)(node + 0x24);
+    }
+    return NULL;
+}
+
