@@ -1,12 +1,13 @@
 /* 20 functions from 0x0202B4D8 to 0x0202C328 (main), found by ds-decomp. */
 #include "common.h"
 extern u32 data_0216263c[3];
+typedef struct { u32 seed, multiplier, increment; } RandomState_0202b4d8;
 static inline u16 RandomRange_0202b4d8(u16 max) {
- u32 value;
- data_0216263c[0]=data_0216263c[0]*data_0216263c[1]+data_0216263c[2];
- value=data_0216263c[0]>>16;
- if(max) value=(value*max)>>16;
- return value;
+ RandomState_0202b4d8 *state=(RandomState_0202b4d8 *)data_0216263c;
+ u32 value=state->multiplier*state->seed+state->increment;
+ state->seed=value;
+ if(max==0) return (u16)(value>>16);
+ else return (u16)(((value>>16)*max)>>16);
 }
 extern u8 data_021461ec[];
 extern void func_02005e80(void *,void *,...);
@@ -29,6 +30,35 @@ extern void func_021167f0(void *, void *);
 extern void func_021168f8(void *, void *);
 extern void func_0210c5dc(void *);
 extern void func_0202e874(void *);
+
+u8 *func_0202b4d8(s32 type) {
+u16 count=0;
+switch(type) {
+case 1: {
+u8 *p=*(u8 **)(data_02160a6c+0xb8); u16 index;
+while(p) {count++;p=*(u8 **)(p+0x174);}
+if(!count) break;
+index=0;
+if(count>=2) index=RandomRange_0202b4d8(count);
+p=*(u8 **)(data_02160a6c+0xb8);
+count=0;
+while(p) { if(count==index)break;count++;p=*(u8 **)(p+0x174); }
+*(u8 **)(data_02160080+0x38)=p; return p;
+}
+case 2: {
+u8 *p=*(u8 **)(data_02160a6c+0xac); u16 index;
+while(p) {if(*(u32 *)(*(u8 **)(p+0x118)+0x70))count++;p=*(u8 **)(p+0x16c);}
+if(!count) break;
+index=0;
+if(count>=2) index=RandomRange_0202b4d8(count);
+p=*(u8 **)(data_02160a6c+0xac);
+count=0;
+while(p) { if(*(u32 *)(*(u8 **)(p+0x118)+0x70)) {if(count==index)break;count++;}p=*(u8 **)(p+0x16c); }
+*(u8 **)(data_02160080+0x3c)=p; return p;
+}
+}
+return 0;
+}
 
 void func_0202b694(void) {
     u8 *node;
