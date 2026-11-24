@@ -72,10 +72,11 @@ u8 *func_0202e548(u32 arg0) {
 }
 
 void func_0202e568(u32 arg0) {
+    u8 *node;
     u32 i;
     for (i = 0; i < 9; i++) {
         if (arg0 & (1 << i)) {
-            u8 *node = *(u8 **)(data_02160244[2 + i] + 0x10);
+            node = *(u8 **)(data_02160244[2 + i] + 0x10);
             while (node != NULL) {
                 u8 *obj = *(u8 **)(node + 0);
                 *(u32 *)(obj + 0x80) |= 0x1000;
