@@ -147,6 +147,12 @@ s32 func_020a5f6c(u8 *arg0, u8 *arg1, u16 arg2, u16 arg3) {
     return -1;
 }
 
+void *func_020a6138(void) {
+    u8 *ptr = (u8 *)func_0210c594(0x24, data_02155c3c);
+    func_021167ac(ptr + 4, 0xc);
+    return ptr;
+}
+
 void *func_020a6168(void) {
     return func_0210c594(0x14, data_02155c3c);
 }
