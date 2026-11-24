@@ -139,8 +139,8 @@ void func_0211ada0(void) {
     data_021701d8[0] = 0;
 }
 
-u8 *func_0211adb4(u8 *arg0, u32 arg1, u32 arg2) {
-    u32 i;
+u8 *func_0211adb4(u8 *arg0, s32 arg1, s32 arg2) {
+    s32 i;
     for (i = 0; i < 4; i++) {
         u8 *p = arg0 + i * 6;
         if (arg1 <= *(u16 *)p && arg2 <= *(u16 *)(p + 2)) {
@@ -148,6 +148,19 @@ u8 *func_0211adb4(u8 *arg0, u32 arg1, u32 arg2) {
         }
     }
     return arg0 + 0x12;
+}
+
+s32 func_0211adf4(u8 *arg0) {
+    u32 v1 = *(volatile u32 *)0x04000000;
+    u32 v2 = *(volatile u32 *)0x04000000;
+    u32 idx = v1 & 7;
+    s32 flag = (v2 & 8) != 0;
+    s32 val = arg0[idx];
+
+    if (val >= 8) {
+        val -= 8;
+    }
+    return func_020027d4(1, val, flag);
 }
 
 s32 func_0211ae38(u8 *arg0) {
