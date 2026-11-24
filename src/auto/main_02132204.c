@@ -365,13 +365,10 @@ void func_02132c68(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     func_020159f8(arg0, arg2, arg3);
 }
 
-void func_02132c7c(void) {
-    u32 *p = data_021749d0;
-    void (*fn)(u32) = (void (*)(u32))p[1];
-    if (fn == NULL) {
-        return;
+void func_02132c7c(void *arg0, const char *arg1, s32 arg2) {
+    if (data_021749d0[1] != 0) {
+        ((void (*)(u32, const char *, s32))data_021749d0[1])(data_021749d0[2], arg1, arg2);
     }
-    fn(p[2]);
 }
 
 void func_02132ca0(const char *arg0) {
