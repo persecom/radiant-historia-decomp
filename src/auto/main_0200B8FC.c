@@ -6,6 +6,13 @@ typedef struct {
     u32 file_id;
 } FSFileID;
 
+typedef struct {
+    void *file;
+    u16 unk4;
+    u16 unk6;
+    u32 unk8;
+} FSFilePos;
+
 extern u32 func_0200bab8(u8 *);
 extern s32 func_0200ba20(void *, void *, s32);
 extern void *func_0200b2ac(const char *, u32 *, u8 *);
@@ -231,21 +238,23 @@ s32 func_0200be78(u8 *arg0) {
     return ret;
 }
 
-s32 func_0200bef8(u32 *arg0, void *arg1, u32 arg2, s32 arg3) {
-    s32 ret = 0;
+s32 func_0200bef8(u8 *arg0, void *arg1, u32 arg2, s32 arg3) {
+    u32 len;
+    u8 work[0x40];
     u8 buf[0x14];
-    u32 tmp = 0;
+    s32 ret = 0;
     func_02008f74(buf, 0, 0x14);
-    func_02009008((void *)data_0215ef7c[5], &tmp, data_0215ef7c[6]);
+    func_02009008((void *)data_0215ef7c[5], work, data_0215ef7c[6]);
     if (arg3 != 0) {
         ret = func_020118c0(1);
-        func_02011bdc(buf, arg1, arg2, &tmp);
+        len = data_0215ef7c[6];
+        func_02011bdc(buf, arg1, arg2, work);
     }
     if (arg3 != 0) {
         func_020118c0(ret);
         s32 i;
         for (i = 0; i < 0x14; i += 4) {
-            if (*(u32 *)(buf + i) != arg0[i / 4]) {
+            if (*(u32 *)(buf + i) != *(u32 *)(arg0 + i)) {
                 break;
             }
         }
@@ -304,5 +313,27 @@ s32 func_0200c2a8(u8 *arg0, u16 arg1) {
     *(u16 *)(arg0 + 0x36) = 0;
     *(u32 *)(arg0 + 0x38) = 0;
     return func_0200cb40(arg0, 2, 1);
+}
+
+s32 func_0200c2d4(u8 *arg0) {
+    u32 sp0[4];
+    u8 *file = *(u8 **)(arg0 + 8);
+    u32 *vtbl = *(u32 **)(file + 0x20);
+    s32 ret;
+
+    sp0[0] = (u32)file;
+    sp0[1] = vtbl[3] + (*(u16 *)(arg0 + 0x34) << 3);
+    ret = func_0200c248(sp0, &sp0[2], 8);
+    if (ret == 0) {
+        *(u32 *)(arg0 + 0x20) = *(u32 *)(arg0 + 0x30);
+        *(u32 *)(arg0 + 0x24) = *(u32 *)(arg0 + 0x34);
+        *(u32 *)(arg0 + 0x28) = *(u32 *)(arg0 + 0x38);
+        if (*(u16 *)(arg0 + 0x36) == 0 && *(u32 *)(arg0 + 0x38) == 0) {
+            *(u16 *)(arg0 + 0x26) = *(u16 *)((u8 *)sp0 + 0xc);
+            *(u32 *)(arg0 + 0x28) = vtbl[3] + sp0[2];
+        }
+        *(u32 *)(arg0 + 0x2c) = *(u16 *)((u8 *)sp0 + 0xe) & 0xfff;
+    }
+    return ret;
 }
 
