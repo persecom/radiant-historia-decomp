@@ -32,6 +32,24 @@ s32 func_0212bcd0(s16 *arg0, s32 arg1, s16 *arg2) {
     return 0;
 }
 
+void func_0212bd48(void) {
+    func_02013878(data_021739ac, 0, 0x100);
+    data_02173984[0] = 0;
+    data_02173984[1] = 0;
+}
+
+void func_0212bda8(void *arg0) {
+    if (arg0 == NULL) {
+        func_021380bc(data_02156b60);
+        return;
+    }
+    func_02132c08(data_021739ac, 0x100, arg0, 0xff);
+    if (data_02173984[0] != 0) {
+        ((void (*)(u32, void *))data_02173984[0])(data_02173984[1], data_021739ac);
+    }
+    func_021380bc(data_021739ac);
+}
+
 void func_0212bfa4(void) {
     func_0212a9f4();
     func_0212bfb8();
@@ -39,6 +57,10 @@ void func_0212bfa4(void) {
 }
 
 void func_0212c068(void *arg0, void *arg1) {
+    func_0212bda8(arg1);
+}
+
+void func_0212c078(void *arg0, void *arg1) {
     func_0212bda8(arg1);
 }
 
