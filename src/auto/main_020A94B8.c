@@ -114,9 +114,11 @@ void func_020a96d4(u32 *arg0) {
 }
 
 u32 func_020a96f0(u32 arg0) {
-    u32 state[2] = { arg0, 0 };
     u32 total = 0;
+    u32 state[2];
     s32 val;
+    state[0] = arg0;
+    state[1] = 0;
     while (1) {
         val = func_020a9194(state);
         if (val < 0x500) {
