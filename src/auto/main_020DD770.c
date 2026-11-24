@@ -234,6 +234,17 @@ s32 func_020dddfc(s32 *arg0, s32 *arg1, s32 arg2) {
     return 0;
 }
 
+void *func_020dde4c(u16 arg0) {
+    u8 *node = *(u8 **)(data_02160a68.unk04 + 0xa0);
+    while (node != NULL) {
+        if (*(u16 *)(node + 0x90) == arg0) {
+            return node;
+        }
+        node = *(u8 **)(node + 0x154);
+    }
+    return NULL;
+}
+
 extern u32 data_02155c3c;
 extern void *func_0210c594(s32, u32);
 void *func_020de160(void) {
