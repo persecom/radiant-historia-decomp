@@ -6,9 +6,12 @@ extern void func_0200a980(void *, s32);
 extern u32 func_02008128(void);
 extern void func_02006560(void *);
 extern void func_0200813c(u32);
-extern void func_0200a884(void *);
+extern void func_0200a884();
 extern s32 func_0200ad00(void *, s32);
-extern void func_0200aeac(void);
+extern void func_0200aeac();
+extern void func_02008f74(void *, s32, s32);
+extern s32 func_020124a8(s32, u8 *, s8 *);
+extern u8 *data_0215ed68;
 extern s32 func_02012348(const char *);
 s32 func_0200b77c(const char *str, s32 pos);
 
@@ -107,5 +110,16 @@ void func_0200b888(u32 *arg0) {
     arg0[3] |= 0x2300;
     arg0[4] = 0;
     arg0[5] = 0;
+}
+
+void func_0200b8b4(u32 *arg0) {
+    u32 bak = func_02008128();
+    u32 flag = (u8)((arg0[3] & 1) != 0);
+    if (flag) {
+        u32 *arc = (u32 *)arg0[2];
+        arg0[3] |= 2;
+        arc[5] |= 0x20;
+        func_0200813c(bak);
+    }
 }
 
