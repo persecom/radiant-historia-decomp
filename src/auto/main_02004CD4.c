@@ -251,6 +251,9 @@ void func_020055f0(void) {
     *(volatile u16 *)0x04000248 = 0;
 }
 
+void func_020056c4(void) {
+}
+
 void func_02005750(void) {
     func_020056c8(0);
 }
