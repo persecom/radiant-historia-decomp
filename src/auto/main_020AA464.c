@@ -59,6 +59,43 @@ void *func_020aa4d0(s32 arg0) {
     return NULL;
 }
 
+s32 func_020aa50c(void) {
+    void *list = data_021601d8;
+    void *file;
+    if (list == NULL) {
+        return 1;
+    }
+    file = func_021092d8(data_021500a8);
+    if (file != NULL) {
+        do {
+            s16 a = func_020f685c(file, 0);
+            s16 count = func_020f685c(file, 0);
+            if (a != 0 && count != 0) {
+                u8 *node = func_020aa3b0();
+                s16 i;
+                *(s16 *)(node + 0x14) = a;
+                for (i = 0; i < count; i++) {
+                    s32 v1;
+                    s32 v2;
+                    u8 *item;
+                    func_02109444(file);
+                    v1 = func_020f685c(file, 0);
+                    v2 = func_020f685c(file, 1);
+                    item = func_020aa380();
+                    *(s16 *)(item + 8) = v1;
+                    *(s16 *)(item + 0xa) = v2;
+                    func_021167f0(node + 8, item);
+                }
+                func_021167f0(list, node);
+            }
+        } while (func_02109444(file) != 0);
+    }
+    if (file != NULL) {
+        func_021093b0(file);
+    }
+    return 0;
+}
+
 void *func_020aa61c(void) {
     void **p = &data_021601dc;
     if (*p != NULL) {
