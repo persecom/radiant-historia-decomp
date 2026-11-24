@@ -8,7 +8,7 @@ typedef struct {
 } Unk_02015950;
 extern void func_02013858(u8 *, void *, s32);
 
-s32 func_02015950(Unk_02015950 *arg0, void *arg1, s32 arg2) {
+s32 func_02015950(Unk_02015950 *arg0, void *arg1, u32 arg2) {
     if (arg0->field_8 + arg2 > arg0->field_4) {
         arg2 = arg0->field_4 - arg0->field_8;
     }
