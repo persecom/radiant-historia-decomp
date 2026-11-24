@@ -261,20 +261,16 @@ void func_02134844(u8 *arg0, s32 arg1) {
 }
 
 u8 func_02134884(void) {
+    Mgr_02134884 *mgr = (Mgr_02134884 *)data_021756d8;
     u8 result = 0xff;
-    void (*cb)(u8 *) = *(void **)(data_021756d8 + 0x2d0);
-    u8 *base = data_021756d8;
-    if (cb != NULL) {
-        cb(&result);
+    if (mgr->cb != NULL) {
+        mgr->cb(&result);
     } else {
-        s32 count = *(s32 *)(base + 0x2bc);
         s32 i;
-        for (i = 0; i < count; i++) {
-            if (*(u8 *)(base + i + 0x2c8) == 0) {
-                u8 *flags = data_021759a0;
-                u8 *vals = data_02175998;
-                flags[i] = 1;
-                result = vals[i];
+        for (i = 0; i < mgr->count; i++) {
+            if (mgr->flags[i] == 0) {
+                data_021759a0[i] = 1;
+                result = data_02175998[i];
                 break;
             }
         }
@@ -285,6 +281,18 @@ u8 func_02134884(void) {
 extern void func_021146b8(void *);
 void func_02134bf0(u8 *arg0) {
     func_021146b8(arg0 + 0x34);
+}
+
+void func_02134cb4(u8 *,s32,s32);
+void func_02134c00(u8 *p,s32 flag){
+if(!p)return;
+if(flag==func_02134c94(p))return;
+if(flag==1){
+func_02135c00();func_021359e4(p);func_02134d50(p);
+p[6]=2;p[1]|=1;func_02135c0c();
+*(u16 *)(p+0x2e)=0;*(u16 *)(p+0x30)=0;*(u16 *)(p+0x2c)=0;*(u16 *)(p+0xa8)=0;
+if(*(void **)(p+0x9c))func_02013878(*(void **)(p+0x9c),0,*(u16 *)(p+0x98)*2);
+}else if(flag==0) p[1]^=1;
 }
 
 BOOL func_02134c94(u8 *arg0) {
