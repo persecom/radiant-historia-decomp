@@ -26,3 +26,10 @@ extern Mgr_020d3160 *data_02160244;
 
 void func_021168f8(void *, void *);
 void func_0210c5dc(void *);
+
+void func_020d3c98(s32 arg0) {
+    Mgr_020d3160 *mgr = data_02160244;
+    if (mgr != NULL) {
+        mgr->unk_ec = arg0;
+    }
+}
