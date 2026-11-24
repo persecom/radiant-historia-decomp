@@ -399,11 +399,13 @@ void func_02113d10(void *arg0, u32 arg1, s32 arg2) {
     func_02116720((s32 *)(p + 0x1c), arg1 << 8, arg2);
 }
 
-void func_02113d3c(void *arg0, u32 arg1) {
-    if (*(void * volatile *)arg0 == NULL) {
+void func_02113d3c(void *arg0) {
+    void *p = arg0;
+    void *q = *(void * volatile *)p;
+    if (q == NULL) {
         return;
     }
-    func_02009540(*(u8 *)((u8 *)*(void * volatile *)arg0 + 0x3c));
+    func_02009540(*(u8 *)((u8 *)*(void * volatile *)p + 0x3c));
 }
 
 void func_02113d5c(void *arg0, u16 arg1) {
@@ -422,9 +424,48 @@ void func_02113d7c(void *arg0, u16 arg1, u16 arg2) {
     *(u16 *)((u8 *)*(void * volatile *)arg0 + 0x3a) = arg2;
 }
 
+extern void func_021167ac(void *, s32);
+extern u8 data_0216bfcc[];
+extern void func_020094e0(u8);
+extern void func_02009558(u8, s32);
+void func_02113da8(void) {
+    s32 i;
+    func_021167ac(data_0216bfd8, 0x14);
+    func_021167ac(data_0216bfcc, 0x14);
+    for (i = 0; i < 0x10; i++) {
+        u8 *entry = data_0216bfe4 + i * 0x44;
+        entry[0x2c] = 0;
+        entry[0x3c] = i;
+        func_021167f0(data_0216bfcc, entry);
+    }
+    for (i = 0; i < 0x20; i++) {
+        u8 *entry = data_0216c424 + i * 0x24;
+        func_021167ac(entry, 0xc);
+        func_021167ac(entry + 0xc, 0);
+        entry[0x20] = 0x7f;
+        *(s32 *)(entry + 0x18) = 1;
+        *(s32 *)(entry + 0x1c) = 0;
+    }
+}
+
 extern void func_021142f0(void);
 void func_0211405c(void) {
     func_021142f0();
+}
+
+void func_021140b8(void *arg0p, s32 arg1) {
+    u8 *arg0 = (u8 *)arg0p;
+    s32 mode = arg1;
+    if (arg0 == NULL || arg0[0x2c] == 0) {
+        return;
+    }
+    if (mode == 0) {
+        func_0211424c();
+        return;
+    }
+    func_02116720((s32 *)(arg0 + 0x1c), 0, mode);
+    func_021143c0(arg0, 0);
+    arg0[0x2c] = 2;
 }
 
 void *func_02114108(u32 arg0, u8 *arg1) {
@@ -450,5 +491,17 @@ void func_02114160(u8 *arg0) {
     *(u8 *)(arg0 + 0x41) = 0x7f;
     func_02116708(arg0 + 0x1c);
     func_02116720((s32 *)(arg0 + 0x1c), 0x7f00, 1);
+}
+
+void func_021141a8(void *arg0, u8 *arg1) {
+    void *obj = func_02116958(arg0, NULL);
+    while (obj != NULL) {
+        if (arg1[0x3d] < ((u8 *)obj)[0x3d]) {
+            return;
+        }
+        obj = func_02116958(arg0, obj);
+    }
+    func_02116894(arg0, obj, arg1);
+    *(u32 *)(arg1 + 4) = (u32)arg0;
 }
 
