@@ -57,6 +57,29 @@ extern void func_02128030(void *, u32);
 extern void func_0212e608(u32, s32);
 extern void func_0212e5f8(u32);
 extern void func_02128880(void *, s32);
+extern u8 data_021458c8[68];
+extern void *data_02156b74;
+extern u8 data_02156b7c[16];
+extern u8 data_02156b8c[16];
+extern u8 data_02156b9c[20];
+extern void func_02132be0(void);
+extern void func_0212a98c(void);
+extern void func_02137eac(void);
+extern void func_02137294(void);
+extern void func_02136a24(void);
+extern void func_0212bd48(void);
+extern void func_0212d714(void);
+extern void func_0212c56c(void);
+extern void func_0212e5c8(void);
+extern void func_0212eac8(void);
+extern void func_0212e5dc(void);
+extern void func_021385d4(void);
+extern void func_0212eae0(void *, s32);
+extern void func_0212e5ec(void *, s32);
+extern void func_021382fc(s32, s32, void *, s32, void *);
+extern s32 func_02138190(s32, void *, s32, void *);
+extern void func_02128580(s32);
+extern void *memset(void *, int, unsigned long);
 s32 func_0212bcd0(s16 *arg0, s32 arg1, s16 *arg2) {
     u16 v0;
     s16 swapped;
@@ -438,12 +461,12 @@ void func_0212c624(void *arg0) {
 
 u8 *func_0212c660(u32 arg0,s32 count,void **items) {
  s32 width;
- u8 *p=NULL;
+ u8 *p;
  s32 half;
  s32 zero=0;
  void *first=items[0];
  s32 i;
- for(i=0;i<4;i++)if(*(s8 *)(data_02173e08+i*0xb4)==0)break;
+ for(i=0;i<4;i++)if(*(volatile s8 *)(i*0xb4+(u32)data_02173e08)==0)break;
  if(i==4)return NULL;
  p=data_02173e08+i*0xb4;
  width=func_02137d44(first);
