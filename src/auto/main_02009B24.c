@@ -371,3 +371,9 @@ u32 func_0200a928(u8 *arg0, u32 arg1) {
     }
     return ret;
 }
+void func_0200a884(void) {
+}
+
+s32 func_0200a6e4(s32 arg0, s32 arg1, s32 arg2) {
+    return 0;
+}
