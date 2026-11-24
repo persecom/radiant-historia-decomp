@@ -79,6 +79,25 @@ void func_020a5338(void) {
     data_02160134.unk04 = NULL;
 }
 
+void func_020a5644(u16 arg0) {
+    u8 *p = data_02160134.unk04;
+    if (p == NULL) {
+        return;
+    }
+    *(u16 *)p = arg0;
+    if (arg0 == 0) {
+        data_02160200->unk160 |= 0x20;
+    }
+}
+
+u16 func_020a567c(void) {
+    u8 *p = data_02160134.unk04;
+    if (p == NULL) {
+        return 8;
+    }
+    return *(u16 *)p;
+}
+
 void func_020a56b4(s32 arg0) {
     u8 *p = data_02160134.unk04;
     if (p != NULL) {
