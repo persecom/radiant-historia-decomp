@@ -328,3 +328,30 @@ void func_02112fec(u32 arg0) {
     }
 }
 
+extern u8 data_02155d58[20];
+extern void *func_021092d8(void *);
+extern s32 func_020f685c(void *, s32);
+extern void func_021093f0(void *);
+extern void func_021167f0(u32, void *);
+extern s32 func_02109444(void *);
+extern void func_021093b0(void *);
+void func_02113048(void) {
+    void *file = func_021092d8(data_02155d58);
+    if (file != NULL) {
+        do {
+            u8 *entry = (u8 *)func_0210c594(0x2c, data_02155c3c);
+            *(u16 *)(entry + 0) = func_020f685c(file, 0);
+            *(s32 *)(entry + 4) = func_020f685c(file, 0);
+            *(u16 *)(entry + 8) |= (u16)(func_020f685c(file, 0) != 0 ? 1 : 0);
+            func_021093f0(file);
+            func_021093f0(file);
+            func_021093f0(file);
+            *(u16 *)(entry + 0x10) = func_020f685c(file, 0);
+            func_021167f0(data_0216bf88, entry);
+        } while (func_02109444(file) != 0);
+    }
+    if (file != NULL) {
+        func_021093b0(file);
+    }
+}
+
