@@ -54,23 +54,30 @@ extern void func_0210d6f4(void *);
 extern void func_0210d828(void);
 extern void func_0210d648(s32, s32);
 s32 func_020f68ec(void) {
+    void **tbl = data_02160c74;
+    u8 *base = (u8 *)tbl[0];
     char *s;
     s32 ret = 0;
     s8 c;
-    s = func_0210cd50(data_02160c74);
+    s = func_0210cd50(tbl);
     c = *s;
     if (c >= '0' && c <= '9') {
         return func_02018830(s);
     }
-    if (c == 'a') {
-        ret = *(s32 *)((u8 *)data_02160c74[0] + func_02018830(s + 1) * 4 + 4);
-    } else if (c == 'p') {
+    switch (c) {
+    case 'a':
+        ret = *(s32 *)(base + func_02018830(s + 1) * 4 + 4);
+        break;
+    case 'p':
         ret = *(u8 *)(data_02160200 + 0x16c);
-    } else if (c == 't') {
-        u8 *p = data_021600ac;
-        if (p != NULL) {
-            ret = *(u16 *)(p + 0x396);
+        break;
+    case 't':
+        if (data_021600ac != NULL) {
+            ret = *(u16 *)(data_021600ac + 0x396);
         }
+        break;
+    default:
+        return 0;
     }
     return ret;
 }
