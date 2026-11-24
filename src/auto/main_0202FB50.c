@@ -154,3 +154,29 @@ void func_020306f8(u8 *arg0, u16 arg1, s16 arg2, s16 arg3, s16 arg4) {
     *(s16 *)(node + 6) = arg4;
 }
 
+void func_02030748(s32 arg0) {
+    u16 i;
+    if (arg0 == 0) {
+        for (i = 0; i < 9; i++) {
+            u8 *p = *(u8 **)(data_02160244 + i * 4 + 8);
+            if ((p[0x1c] & 1) && !(p[0x1c] & 2)) {
+                *(s16 *)(p + 0x1e) -= 1;
+                if (*(s16 *)(p + 0x1e) < 0) {
+                    func_0202e874(p);
+                }
+            }
+        }
+    } else if (arg0 == 1) {
+        for (i = 0; i < 9; i++) {
+            u8 *p = *(u8 **)(data_02160244 + i * 4 + 8);
+            u8 *q = *(u8 **)(p + 0x20);
+            if (q != NULL) {
+                u8 *r = *(u8 **)(q + 0x118);
+                if (*(u32 *)(r + 0x70) == 0) {
+                    func_0202e874(p);
+                }
+            }
+        }
+    }
+}
+
