@@ -21,16 +21,17 @@ s32 func_02059460(u8 *arg0) {
             func_020bed24()[1] <<= 0xc;
             func_020bed24()[2] <<= 0xc;
         }
-        return 1;
+    } else {
+        func_020befc4(arg0);
+        func_020bed54(4, 0);
+        return 0;
     }
-    func_020befc4(arg0);
-    func_020bed54(4, 0);
-    return 0;
+    return 1;
 }
 
 s32 func_0205951c(void) {
-    u8 *p = func_020bed94();
-    if (*(s32 *)(p + 0x18) > 0) {
+    u8 *p;
+    if (*(s32 *)((p = func_020bed94()) + 0x18) > 0) {
         if (func_020bedf8() == 1) {
             s32 x, y;
             if (*(u16 *)(func_020becfc() + 0xd8) & 4) {
@@ -43,9 +44,8 @@ s32 func_0205951c(void) {
             func_020bed24()[0] = x;
             func_020bed24()[1] = y;
         } else {
-            s32 zero = 0;
-            func_020bed54(2, zero);
-            return zero;
+            func_020bed54(2, 0);
+            return 0;
         }
     }
     return 1;
