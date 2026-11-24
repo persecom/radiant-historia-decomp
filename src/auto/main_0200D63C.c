@@ -131,13 +131,13 @@ void func_0200e314(u32 val, u32 *ptr) {
     }
 }
 
-void func_0200e320(u32 unused) {
-    void (*cb)(u32) = (void (*)(u32))*(u32 *)(data_0215f03c + 0x30);
-    u32 arg = *(u32 *)(data_0215f03c + 0x34);
+void func_0200e320(u32 arg0) {
+    void (*cb)(u32, u32) = (void (*)(u32, u32))*(u32 *)(data_0215f03c + 0x30);
+    u32 arg1 = *(u32 *)(data_0215f03c + 0x34);
     *(u32 *)(data_0215f03c + 0x2c) = 0;
     if (cb != NULL) {
         *(u32 *)(data_0215f03c + 0x30) = 0;
-        cb(arg);
+        cb(arg0, arg1);
     }
 }
 
