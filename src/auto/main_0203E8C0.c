@@ -7,6 +7,39 @@ extern void func_0210c5dc(void *);
 extern void func_0210da14(u8 *);
 extern void func_0210dba0(u8 *);
 extern void func_0210dbe8(s32);
+extern void *data_02155c3c;
+extern void func_0203efc4(void);
+extern void func_0203f038(void);
+extern void *func_0210c594(s32, void *);
+extern void func_021167ac(void *, s32);
+extern void func_0210d9e4(void *);
+extern void func_0210db70(void *);
+extern void func_0210dbd0(void *);
+extern void func_0203faf4(void);
+void func_0203ee20(s32 arg0) {
+    s32 val = 0x3f6;
+    if (data_021600a0 != NULL) {
+        return;
+    }
+    data_021600a0 = func_0210c594(0x40, data_02155c3c);
+    func_021167ac(data_021600a0 + 0x28, 8);
+    *(void (**)(void))data_021600a0 = func_0203efc4;
+    *(s32 *)(data_021600a0 + 4) = val;
+    func_0210d9e4(data_021600a0);
+    if (arg0 == 0) {
+        *(void (**)(void))(data_021600a0 + 0x14) = func_0203f038;
+        *(s32 *)(data_021600a0 + 0x18) = val - 0xc;
+        func_0210db70(data_021600a0 + 0x14);
+    } else if (arg0 == 1) {
+        *(void (**)(void))(data_021600a0 + 0x14) = func_0203f038;
+        *(s32 *)(data_021600a0 + 0x18) = val - 0xc;
+        func_0210dbd0(data_021600a0 + 0x14);
+    }
+    func_0203faf4();
+    *(u16 *)(data_021600a0 + 0x34) = 0;
+    *(u8 *)(data_021600a0 + 0x3c) = 1;
+}
+
 void func_0203ef0c(s32 arg0) {
     u8 **pp = &data_021600a0;
     u8 *node;
