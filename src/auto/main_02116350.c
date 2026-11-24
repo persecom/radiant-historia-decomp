@@ -304,6 +304,21 @@ void *func_02116984(void *list, u16 index) {
     return NULL;
 }
 
+void *func_021169cc(void *list, const void *memBlock) {
+    void *heap = NULL;
+    while ((heap = func_02116958(list, heap)) != NULL) {
+        u8 *h = (u8 *)heap;
+        if (*(void **)(h + 0x18) <= memBlock && memBlock < *(void **)(h + 0x1c)) {
+            void *child = func_021169cc(h + 0xc, memBlock);
+            if (child != NULL) {
+                return child;
+            }
+            return heap;
+        }
+    }
+    return NULL;
+}
+
 void* func_02116d7c(void* heap, u32 size, s32 alignment)
 {
     typedef struct Block {
