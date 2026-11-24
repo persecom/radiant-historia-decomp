@@ -179,6 +179,14 @@ void func_020de17c(void *arg0) {
     }
 }
 
+extern void func_021167ac(void *, s32);
+extern const s16 data_0213a394[];
+void *func_020de270(void) {
+    void *ptr = func_0210c594(0x10, data_02155c3c);
+    func_021167ac(ptr, 0);
+    return ptr;
+}
+
 extern void func_020de404();
 void func_020de29c(void) {
     func_020de404();
