@@ -7,3 +7,7 @@ void func_0203be4c(void *arg0) {
         func_0210c5dc(arg0);
     }
 }
+
+void func_0203c820(void) {
+}
+
