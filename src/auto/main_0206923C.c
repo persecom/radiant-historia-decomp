@@ -379,6 +379,8 @@ void func_0206923c(u8 *arg0)
     } Effect;
 
 
+typedef struct { Pair values[4]; } Directions_020698e0;
+
 void func_020698e0(u8 *arg0)
 {
     Effect *e = (Effect *)arg0;
