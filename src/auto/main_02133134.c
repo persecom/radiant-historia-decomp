@@ -70,6 +70,54 @@ void *func_021332a8(void *arg0) {
     return ret;
 }
 
+void *func_02133300(void *arg0) {
+    void *p;
+    void *(*cb)(void *);
+    void *ret;
+    if (arg0 == NULL) {
+        func_02132ca0(data_0215b7fc);
+        return NULL;
+    }
+    p = *(void **)arg0;
+    cb = *(void *(**)(void *))((u8 *)p + 0x18);
+    if (cb != NULL) {
+        ret = cb(*(void **)((u8 *)arg0 + 4));
+    } else {
+        ret = NULL;
+        func_02132ca0(data_0215b818);
+    }
+    return ret;
+}
+
+void *func_02133358(void *arg0) {
+    void *p;
+    void *(*cb)(void *);
+    void *ret;
+    if (arg0 == NULL) {
+        func_02132ca0(data_0215b830);
+        return NULL;
+    }
+    p = *(void **)arg0;
+    cb = *(void *(**)(void *))((u8 *)p + 0x20);
+    if (cb != NULL) {
+        ret = cb(*(void **)((u8 *)arg0 + 4));
+    } else {
+        ret = NULL;
+        func_02132ca0(data_0215b84c);
+    }
+    return ret;
+}
+
+void func_021333b0(void) {
+    s32 i;
+    for (i = 0; i < 0x20; i++) {
+        void (**p)(void) = data_02174b64[i].fn;
+        if (p != NULL && *p != NULL) {
+            (*p)();
+        }
+    }
+}
+
 void func_02133688(void) {
     func_0213807c();
 }
