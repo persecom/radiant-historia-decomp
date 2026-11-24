@@ -143,15 +143,9 @@ void func_0211c79c(void *arg0) {
 }
 
 void func_0211c934(s32 *arg0, s32 *arg1, s32 arg2) {
-    s32 size = (*(volatile u16 *)data_02144ee8[arg2] & 0xc000) >> 14;
     s32 bg = arg2 & 3;
-    s32 mode;
-    if (arg2 <= 3) {
-        mode = *(volatile u32 *)0x04000000;
-    } else {
-        mode = *(volatile u32 *)0x04001000;
-    }
-    mode &= 7;
+    s32 size = (*(volatile u16 *)data_02144ee8[arg2] & 0xc000) >> 14;
+    s32 mode = (arg2 <= 3 ? *(volatile u32 *)0x04000000 : *(volatile u32 *)0x04001000) & 7;
     if ((bg == 2 && (mode == 2 || mode >= 4)) || (bg == 3 && mode >= 1)) {
         s32 v = 0x10 << size;
         *arg0 = v;
@@ -177,12 +171,74 @@ s32 func_0211c9c8(u8 *arg0, u8 *arg1) {
     }
 }
 
+void func_0211ca28(u8 *arg0, u8 *arg1, u32 arg2, s32 arg3) {
+    u32 i;
+    *(u32 *)(arg0 + 0x0) = 0;
+    *(u32 *)(arg0 + 0x8) = (u32)arg1;
+    *(u32 *)(arg0 + 0x10) = 0;
+    arg0[0x18] = 0x7f;
+    *(u32 *)(arg0 + 0x4) = 0x1000;
+    *(u32 *)(arg0 + 0x14) = arg3;
+    arg0[0x19] = 0;
+    *(u32 *)(arg0 + 0xc) = 0;
+    if ((s32)data_02155ed4 <= 0) {
+        return;
+    }
+    for (i = 0; i < (u32)data_02155ed4; i++) {
+        if (arg1[0] == data_02155ef8[i].code && *(u16 *)(arg1 + 2) == data_02155ef8[i].id) {
+            if (data_02155efc[i].func != NULL) {
+                data_02155efc[i].func();
+            }
+            return;
+        }
+    }
+}
+
 void func_0211cac0(u8 *arg0, u32 arg1) {
     func_02008e24(0, arg0, 0x54);
     *(u32 *)(arg0 + 0xc) = data_02155ef4;
     *(u32 *)(arg0 + 0x14) = data_02155ef0;
     *(u32 *)(arg0 + 0x1c) = data_02155eec;
     *(u32 *)(arg0 + 0x4) = arg1;
+}
+
+void func_0211cb14(u8 **arg0, u8 *arg1) {
+    u8 *head = *arg0;
+    u8 *prev, *cur, *tail;
+    if (head == NULL) {
+        *arg0 = arg1;
+        return;
+    }
+    cur = *(u8 **)(head + 0x10);
+    if (cur == NULL) {
+        if (head[0x18] <= arg1[0x18]) {
+            *(u8 **)(head + 0x10) = arg1;
+        } else {
+            tail = arg1;
+            while (*(u8 **)(tail + 0x10) != NULL) {
+                tail = *(u8 **)(tail + 0x10);
+            }
+            *(u8 **)(tail + 0x10) = head;
+            *arg0 = arg1;
+        }
+        return;
+    }
+    prev = head;
+    while (cur != NULL) {
+        if (cur[0x18] < arg1[0x18]) {
+            prev = cur;
+            cur = *(u8 **)(cur + 0x10);
+            continue;
+        }
+        tail = arg1;
+        while (*(u8 **)(tail + 0x10) != NULL) {
+            tail = *(u8 **)(tail + 0x10);
+        }
+        *(u8 **)(prev + 0x10) = arg1;
+        *(u8 **)(tail + 0x10) = cur;
+        return;
+    }
+    *(u8 **)(prev + 0x10) = arg1;
 }
 
 void func_0211cbcc(u32 *arg0, u8 *arg1) {
@@ -194,6 +250,37 @@ void func_0211cbcc(u32 *arg0, u8 *arg1) {
             }
         }
         arg1 = *(u8 **)(arg1 + 0x10);
+    }
+}
+
+void func_0211cc30(u8 *arg0, u8 *arg1) {
+    u8 *p;
+    if (arg1 == NULL) {
+        return;
+    }
+    p = *(u8 **)(arg1 + 8);
+    if (p == NULL) {
+        return;
+    }
+    switch (*p) {
+    case 0x4a:
+        func_0211cbcc((u32 *)(arg0 + 0x3c), arg1);
+        func_0211cb14((u8 **)(arg0 + 8), arg1);
+        break;
+    case 0x4d:
+        func_0211cbcc((u32 *)(arg0 + 0x44), arg1);
+        func_0211cb14((u8 **)(arg0 + 0x10), arg1);
+        break;
+    case 0x56:
+        func_0211cbcc((u32 *)(arg0 + 0x4c), arg1);
+        func_0211cb14((u8 **)(arg0 + 0x18), arg1);
+        break;
+    }
+}
+
+void func_0211cd24(u8 *arg0, u8 *arg1) {
+    if (func_0211ccb0(arg0 + 8, arg1) == 0 && func_0211ccb0(arg0 + 0x10, arg1) == 0 && func_0211ccb0(arg0 + 0x18, arg1) == 0) {
+        *(u32 *)arg0 |= 0x10;
     }
 }
 
