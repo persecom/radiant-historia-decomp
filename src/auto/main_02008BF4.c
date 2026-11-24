@@ -26,6 +26,17 @@ extern void func_0200893c(u32);
 extern void func_02008ca8(void);
 typedef void (*Fn_U32)(u32);
 
+void func_02008dc4(void) {
+    void (*cb)(u32);
+    u32 arg;
+    data_0215d17c.field_0 = 0;
+    cb = (void (*)(u32))data_0215d17c.field_10;
+    arg = data_0215d17c.field_14;
+    if (cb != NULL) {
+        cb(arg);
+    }
+}
+
 s32 func_0200986c(void) {
     return func_02006afc(&data_0215d1a0);
 }
