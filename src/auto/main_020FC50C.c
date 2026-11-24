@@ -20,5 +20,17 @@ typedef struct Unk020FC50C {
 
 extern Unk020FC50C data_02160c74;
 
+void func_020fce30(s32 arg0, s32 arg1, u8 arg2, u8 arg3) {
+    if (data_02160c74.unk_04 == NULL) {
+        return;
+    }
+    data_02160c74.unk_04->unk_2f4 = arg0;
+    data_02160c74.unk_04->unk_2fc = arg1;
+    data_02160c74.unk_04->unk_2f8 = arg2;
+    data_02160c74.unk_04->unk_301 = arg3;
+    data_02160c74.unk_04->unk_300 = 0;
+    data_02160c74.unk_04->unk_2f0 = 1;
+}
+
 void func_020fce9c(void) {
 }
