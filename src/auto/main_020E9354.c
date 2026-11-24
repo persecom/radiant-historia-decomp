@@ -80,6 +80,22 @@ void func_020e9714(u8 *arg0) {
     func_021168f8(*(u8 **)(arg0 + 8) + 0x4c, arg0);
 }
 
+u32 *func_020ea0b8(s32 arg0) {
+    u8 *base = data_02160a80;
+    u32 *node;
+    if (base == NULL) {
+        return NULL;
+    }
+    node = *(u32 **)(base + 0x48);
+    while (node != NULL) {
+        if (*(s32 *)((u8 *)node + 0x8) == arg0) {
+            return node;
+        }
+        node = *(u32 **)((u8 *)node + 0x40);
+    }
+    return NULL;
+}
+
 void func_020ea164(void **arg0) {
     func_02108594(*arg0);
     if (arg0 != NULL) {
