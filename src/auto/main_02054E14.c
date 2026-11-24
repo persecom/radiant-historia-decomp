@@ -1,6 +1,9 @@
 /* 12 functions from 0x02054E14 to 0x02055E14 (main), found by ds-decomp. */
 #include "common.h"
 
+typedef struct { s32 x, y, z; } Vec_0205530c;
+extern s16 data_0213a394[];
+
 typedef struct {
     void *f0;
     u32 f4[4];
@@ -94,6 +97,34 @@ if (entry != NULL) func_0210c5dc(entry);
 func_0210da14(data_021600c0 + 0xc);
 func_0210da14(data_021600c0 + 0x20);
 if (data_021600c0 != NULL) {func_0210c5dc(data_021600c0); data_021600c0 = NULL;}
+}
+
+void *func_02055dd8(u16);
+void func_02055994(void) {
+u8 *p = data_021600c0;
+u8 i, j, k;
+u8 *n;
+s32 active;
+if (!p[0]) return;
+switch (p[1]) {
+case 0:
+for(i=0;i<2;i++){n=func_02055dd8(i); *(s16 *)(n+10)=0; n[2]=1;}
+n=func_02055dd8(2); *(s16 *)(n+16)=4; *(s16 *)(n+12)=125;
+*(u16 *)(p+2)=0; p[1]=1; break;
+case 1:
+for(j=0;j<2;j++){n=func_02055dd8(j); (*(s16 *)(n+10))++;}
+if(*(u16 *)(p+2)>=18){n=func_02055dd8(2); n[2]=1; *(u16 *)(p+2)=0; p[1]=2;} break;
+case 2:
+n=func_02055dd8(2); *(s16 *)(n+16)+=4; *(s16 *)(n+12)-=2;
+if(*(s16 *)(n+16)>=84){p[1]=3; *(u16 *)(p+2)=0;} break;
+case 3: if(*(u16 *)(p+2)>6)p[1]=4; break;
+case 4: n=func_02055dd8(3); n[2]=1; *(s16 *)(n+6)=14; *(s32 *)(n+24)=0xe000; p[1]=5; break;
+case 5: n=func_02055dd8(3); --*(s16 *)(n+6); *(s32 *)(n+24)-=0x1000; if(!*(s32 *)(n+24)){p[1]=6; *(u16 *)(p+2)=0;} break;
+case 6: if(*(u16 *)(p+2)>=64)p[1]=7; break;
+case 7: active=0; for(k=0;k<4;k++){n=func_02055dd8(k); if(n[2]){active=1; if(*(s16 *)(n+18)>=2)*(s16 *)(n+18)-=2; else n[2]=0;}} if(!active)p[1]=8; break;
+case 8: func_020558b4(); return;
+}
+++*(u16 *)(p+2);
 }
 
 void func_02055bac(void) {
