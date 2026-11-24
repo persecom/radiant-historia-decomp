@@ -459,6 +459,17 @@ s32 func_0210f20c(const char *arg0, s32 arg1, s32 arg2, s32 arg3) {
     return ret;
 }
 
+s32 func_0210f2a8(const char *arg0, s32 arg1) {
+    s32 ret;
+    if (data_02155c94[2] != 0) {
+        func_0210f344(arg0);
+    }
+    func_0210e3dc();
+    ret = func_02120828(arg1);
+    func_0210f38c();
+    return ret;
+}
+
 s32 func_0210f2e4(u32 arg0) {
     u8 *p = func_0210ed58(arg0, 0);
     if (p == NULL) {
