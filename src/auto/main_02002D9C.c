@@ -1,6 +1,10 @@
 /* 47 functions from 0x02002D9C to 0x02003D58 (main), found by ds-decomp. */
 #include "common.h"
 
+typedef struct Unk_020030f4 {
+    u32 data[0x80];
+} Unk_020030f4;
+
 extern s32 data_02145ba4;
 extern u32 func_02003188(void);
 extern void func_02008690(s32, void *, u32, u32, s32);
