@@ -1,6 +1,8 @@
 /* 30 functions from 0x0211BDE8 to 0x0211CDC8 (main), found by ds-decomp. */
 #include "common.h"
 typedef struct Unk_0211c424 { u16 x, y, z; } Unk_0211c424;
+typedef struct List_0211c424 { u16 count; u16 pad; Unk_0211c424 *entries; } List_0211c424;
+typedef struct Callbacks_0211c424 { u8 pad[0x20]; void (*before)(void *, void *, u16); void (*after)(void *, void *, u16); } Callbacks_0211c424;
 
 extern void func_02008df0(s32, void *, s32);
 extern u8 *data_021701f8;
