@@ -4,6 +4,12 @@
 extern u32 data_0215f0a0[4];
 extern void func_0200fa74(void *, s32);
 extern u8 data_0215f120[1312];
+extern void func_02006df4(void);
+extern void func_02006e00(u32, u32);
+extern s32 func_02006638(void *, s32);
+extern void func_020065c8(void *);
+extern void func_0200fddc(void);
+extern s32 func_0200fca4(void (*)(void *), s32);
 extern u16 func_020081e0(void);
 extern u32 func_02008128(void);
 extern void func_0200813c(u32);
@@ -45,10 +51,10 @@ s32 func_0200f6fc(s32 arg0) {
     return ret;
 }
 
-s32 func_0200f728(u8 *arg0) {
-    s32 month = *(s32 *)(arg0 + 4) - 2;
-    s32 year = *(s32 *)(arg0 + 0) + 2000;
-    s32 day = *(s32 *)(arg0 + 8);
+s32 func_0200f728(s32 *arg0) {
+    s32 month = arg0[1] - 2;
+    s32 year = arg0[0] + 2000;
+    s32 day = arg0[2];
     s32 century;
     s32 yearInCentury;
     s32 monthTerm;
@@ -143,37 +149,54 @@ void func_0200fa4c(u32 arg0) {
 }
 
 void func_0200fa74(void *arg0, s32 arg1) {
+    u8 *p = data_0215f120;
     u32 state = func_02008128();
-    if (*(u32 *)(data_0215f120 + 0x14) == (u32)arg0 && *(u32 *)(data_0215f120 + 0x24) == (u32)arg1) {
-        func_02008414();
-    } else {
-        while (*(u32 *)(data_0215f120 + 0x14) != (u32)-3) {
-            func_02006510(data_0215f120 + 0x1c);
-        }
-        *(u32 *)(data_0215f120 + 0x14) = (u32)arg0;
-        *(u32 *)(data_0215f120 + 0x24) = (u32)arg1;
-        *(u32 *)(data_0215f120 + 0x18) += 1;
+    u32 sentinel;
+    if (*(u32 *)(p + 0x14) != (u32)arg0) {
+        goto update;
     }
+    if (*(u32 *)(p + 0x24) == (u32)arg1) {
+        goto restore;
+    }
+    func_02008414();
+    goto restore;
+update:
+    sentinel = (u32)-3;
+    while (*(volatile u32 *)(p + 0x14) != sentinel) {
+        func_02006510(p + 0x1c);
+    }
+    *(u32 *)(p + 0x14) = (u32)arg0;
+    *(u32 *)(p + 0x24) = (u32)arg1;
+    {
+        u32 *cnt = (u32 *)(p + 0x18);
+        *cnt = *cnt + 1;
+    }
+restore:
     func_0200813c(state);
 }
 
 void func_0200faec(u32 arg0, s32 arg1) {
+    u8 *p = data_0215f120;
     u32 state = func_02008128();
-    if (*(u32 *)(data_0215f120 + 0x14) == arg0) {
-        if (*(u32 *)(data_0215f120 + 0x18) == 0) {
-            func_02008414();
-            func_0200813c(state);
-            return;
+    if (*(u32 *)(p + 0x14) == arg0) {
+        if (*(u32 *)(p + 0x18) != 0) {
+            goto check;
         }
+    } else {
+        goto check;
     }
-    if (*(u32 *)(data_0215f120 + 0x24) != (u32)arg1) {
+    func_02008414();
+    goto restore;
+check:
+    if (*(u32 *)(p + 0x24) != (u32)arg1) {
         func_02008414();
     }
-    if (--*(u32 *)(data_0215f120 + 0x18) == 0) {
-        *(u32 *)(data_0215f120 + 0x14) = (u32)-3;
-        *(u32 *)(data_0215f120 + 0x24) = 0;
-        func_02006560(data_0215f120 + 0x1c);
+    if (--*(u32 *)(p + 0x18) == 0) {
+        *(u32 *)(p + 0x14) = (u32)-3;
+        *(u32 *)(p + 0x24) = 0;
+        func_02006560(p + 0x1c);
     }
+restore:
     func_0200813c(state);
 }
 
@@ -195,12 +218,14 @@ BOOL func_0200fba4(void) {
     return (*(u32 *)(data_0215f120 + 4) & 4) == 0;
 }
 
-void func_0200fbc0(void) {
+s32 func_0200fbc0(void) {
+    s32 zero = 0;
     *(s32 *)(data_0215f120 + 0x14) = -3;
-    *(u32 *)(data_0215f120 + 0x18) = 0;
-    *(u32 *)(data_0215f120 + 0x24) = 0;
-    *(u32 *)(data_0215f120 + 0x20) = 0;
-    *(u32 *)(data_0215f120 + 0x1c) = 0;
+    *(s32 *)(data_0215f120 + 0x18) = zero;
+    *(s32 *)(data_0215f120 + 0x24) = zero;
+    *(s32 *)(data_0215f120 + 0x20) = zero;
+    *(s32 *)(data_0215f120 + 0x1c) = zero;
+    return zero;
 }
 
 void func_0200fbe8(void) {
@@ -208,5 +233,25 @@ void func_0200fbe8(void) {
     func_02008e68(0, data_0215f0c0, 0x60);
     func_02006dc4(data_0215f0c0, 0x60);
     func_0200a674(0xb, (void *)func_0200fedc);
+}
+
+void func_0200fc34(u32 arg0, u32 arg1) {
+    u32 irq = func_02008128();
+    void **node = (void **)data_0215f640[0];
+    void **volatile *prev = (void **volatile *)&data_0215f640[0];
+    while (node != NULL) {
+        void (*cb)(void *, u32, u32) = (void (*)(void *, u32, u32))node[2];
+        if (cb != NULL) {
+            cb(node[1], arg0, arg1);
+        }
+        {
+            void **cur = *prev;
+            if (cur == node) {
+                prev = (void **volatile *)cur;
+            }
+        }
+        node = *prev;
+    }
+    func_0200813c(irq);
 }
 
