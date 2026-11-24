@@ -1,5 +1,11 @@
 /* 5 functions from 0x0209EE60 to 0x0209F684 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { s16 data[10]; } Params_0209ee60;
+typedef struct { s16 data[27]; } Table_0209ee60;
+extern const Params_0209ee60 data_02142bdc;
+extern const Table_0209ee60 data_02142d8c;
+void func_020a3bbc(s32);
+void func_021098ac(void *);
 
 extern u8 *data_021600b0;
 void func_0209f3a0(s32 mode) {
