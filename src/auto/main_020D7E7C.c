@@ -15,3 +15,13 @@ extern UnkStruct_020d60248 data_02160248;
 extern u32 data_02155c3c;
 extern s32 data_02162814;
 extern u8 *data_02160244;
+
+s32 func_020d8c30(void) {
+    s32 v = --data_02162814;
+    if (v >= 0) {
+        return v;
+    }
+    data_02162814 = 0;
+    data_02160244[0xe8] = 0;
+    return func_020d0a40(3);
+}
