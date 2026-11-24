@@ -35,6 +35,10 @@ extern void (*data_0215cc6c[])(void *, s32, void *);
 extern s32 func_020138b8(const void *, const void *, u32);
 extern u32 func_02126c90(void *);
 extern void func_02130b48(s32, s32, void *);
+typedef void (*Fn3)(void *, s32, u32);
+typedef void (*Fn2)(void *, s32);
+typedef struct { u8 pad[0x38]; Fn3 f38; } Vt3;
+typedef struct { u8 pad[0x30]; Fn2 f30; } Vt2;
 
 extern void func_0212a9f4(void);
 extern void func_02139be8(u32, u32, u32);
@@ -233,17 +237,21 @@ void func_02139784(u8 *arg0) {
 }
 
 void func_0213999c(u8 *arg0, u8 *arg1) {
+    void *p = *(void **)(arg1 + 8);
     if (*(s32 *)(arg0 + 0x9c) == 1) {
         s32 i;
         for (i = 0; i < *(s32 *)(arg0 + 0x8c); i++) {
-            u32 v = func_02126c90(*(void **)(arg1 + 8));
+            u32 v = func_02126c90(p);
+            s32 extra = (*(s32 **)(arg0 + 0xc8))[i] + v + *(s32 *)(arg0 + 0xcc);
             void *obj = *(void **)arg1;
-            (*(void (**)(void *, s32, u32))(*(u8 **)obj + 0x38))(obj, i, *(s32 *)(arg0 + 0xcc) + ((s32 *)(arg0 + 0xc8))[i] + v);
+            void (*fn)(void *, s32, u32) = *(void (**)(void *, s32, u32))(*(u8 **)obj + 0x38);
+            fn(obj, i, extra);
         }
     } else {
-        u32 v = func_02126c90(*(void **)(arg1 + 8));
+        u32 v = func_02126c90(p);
         void *obj = *(void **)arg1;
-        (*(void (**)(void *, s32))(*(u8 **)obj + 0x30))(obj, *(s32 *)(arg0 + 0xcc) + v);
+        void (*fn)(void *, s32) = *(void (**)(void *, s32))(*(u8 **)obj + 0x30);
+        fn(obj, *(s32 *)(arg0 + 0xcc) + v);
     }
 }
 
@@ -293,17 +301,16 @@ s32 func_02139ab8(u8 *arg0, s32 arg1, u16 *arg2) {
 
 void func_02139b34(u8 *arg0, s32 arg1, s32 arg2, void *arg3) {
     s32 val = (*(s32 *)(arg0 + arg2 * 4 + 4) - 0x40) & 0x3ff;
-    u8 *p;
-    u8 *dst;
+    u8 *p = arg0 + 0x14 + (arg2 << 11);
+    u8 *dst = p + val * 2;
     s32 c;
     *(s32 *)(arg0 + arg2 * 4 + 4) = val;
-    p = arg0 + 0x14 + (arg2 << 11);
-    dst = p + val * 2;
     c = *(s32 *)(arg0 + 0xc);
-    if ((arg1 & 0x1f) != 0 || (c & 0x1f) != 0) {
+    if ((arg1 & 0x1f) == 0 && (c & 0x1f) == 0) {
+    } else {
         func_02130b48(arg1, c, dst);
     }
-    (*(void (**)(void *, s32, void *))data_0215cc6c[*(s32 *)(arg0 + arg2 * 4 + 4) >> 6])(p + *(s32 *)(arg0 + arg2 * 4 + 4) * 2, *(u32 *)(arg0 + 0x10), arg3);
+    data_0215cc6c[*(s32 *)(arg0 + arg2 * 4 + 4) >> 6](p + *(s32 *)(arg0 + arg2 * 4 + 4) * 2, *(u32 *)(arg0 + 0x10), arg3);
 }
 
 void func_02139bbc(u32 arg0, u32 arg1, u32 arg2) {
