@@ -42,6 +42,20 @@ void func_020a9544(void **arg0) {
     }
 }
 
+void func_020a957c(void ***arg0) {
+    if (*arg0 != NULL) {
+        if (**arg0 != NULL) {
+            func_0210c5dc(**arg0);
+            **arg0 = NULL;
+        }
+        if (*arg0 != NULL) {
+            func_0210c5dc(*arg0);
+            *arg0 = NULL;
+        }
+        *arg0 = NULL;
+    }
+}
+
 void func_020a98a0(void) {
     func_0210da44();
 }
