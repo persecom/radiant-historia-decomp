@@ -231,6 +231,17 @@ void func_020a98f4(u8 *arg0) {
     (*(void (**)(void *))(obj + 8))(obj);
 }
 
+void func_020a994c(u8 *arg0) {
+    u8 *p = *(u8 **)(arg0 + 0x18);
+    if (p != NULL) {
+        u8 *obj = *(u8 **)(p + 4);
+        (*(void (**)(void *))(obj + 4))(obj);
+        obj = *(u8 **)(*(u8 **)(arg0 + 0x18) + 4);
+        (*(void (**)(void *))(obj + 8))(obj);
+    }
+    *(u32 *)(arg0 + 0x14) = 0;
+}
+
 void func_020a9a58(void) {
     u8 *p = data_02162880;
     u8 *obj;
