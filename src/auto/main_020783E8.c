@@ -35,3 +35,14 @@ void func_021168f8(Node_020789ec **, Node_020789ec *);
 void func_02047490(void *);
 void func_0210c5dc(void *);
 s32 func_0210c2f4(Obj_02078d8c *, Vec3_02078d8c *);
+
+void func_020789ec(void) {
+    while (data_021600bc->unk_7c != NULL) {
+        Node_020789ec *node = data_021600bc->unk_7c;
+        func_021168f8(&data_021600bc->unk_7c, node);
+        func_02047490(node->unk_28);
+        if (node != NULL) {
+            func_0210c5dc(node);
+        }
+    }
+}
