@@ -9,6 +9,24 @@ extern void func_02009ec4(void);
 s32 func_02009d58(u32);
 
 extern void func_0200a578(void);
+void func_02009cc0(u32 arg0) {
+    if (func_02009d58(arg0)) {
+        return;
+    }
+    while (func_02009964(0) != 0) {
+    }
+    if (func_02009d58(arg0)) {
+        return;
+    }
+    func_02009ec4();
+    if (func_02009d58(arg0)) {
+        return;
+    }
+    do {
+        func_02009964(1);
+    } while (!func_02009d58(arg0));
+}
+
 s32 func_0200a4f4(u8 *arg0) {
     return *(s32 *)(arg0 + 0x38);
 }
