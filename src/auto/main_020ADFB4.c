@@ -322,6 +322,66 @@ void func_020aea84(void) {
     }
 }
 
+extern u8 *func_020b4044(void);
+s32 func_020aeab0(u8 *state,u8 *p,s32 mode) {
+ s32 one=1,zero=0;
+ s16 y=*(s32 *)((u8 *)func_020ade60(one)+4)+135;
+ u8 *item=func_020b4044();
+ u32 resource;
+ if(mode==0) {
+ if(*(u16 *)(item+4)) {
+ s32 type=func_020b3f14(*(u16 *)(item+4));
+ if(type==-1)return zero;
+ func_020a994c(p+0x580);
+ *(u32 *)(*(u8 **)(p+0x57c)+0x40)=one;
+ func_020a8810(*(u32 *)(p+0x57c),24);
+ *(s32 *)(*(u8 **)(p+0x57c)+0x4c)=0x6b000;
+ *(s32 *)(*(u8 **)(p+0x57c)+0x44)=0xf000;
+ *(s32 *)(*(u8 **)(p+0x57c)+0x48)=(y+1)<<12;
+ if((u32)(type-1)<=2)resource=*(u32 *)(p+0x160);else resource=*(u32 *)(p+0x15c);
+ func_020a9610(p+0x5b4,resource,*(u16 *)(item+4),*(u32 *)(p+0x57c),zero,zero);
+ func_020a98ac(p+0x580);
+ func_020a98f4(p+0x580);
+ func_020a994c(p+0x5d0);
+ *(u32 *)(*(u8 **)(p+0x5cc)+0x40)=1;
+ func_020a8810(*(u32 *)(p+0x5cc),22);
+ *(s32 *)(*(u8 **)(p+0x5cc)+0x4c)=0x6b000;
+ *(s32 *)(*(u8 **)(p+0x5cc)+0x44)=0xf000;
+ *(s32 *)(*(u8 **)(p+0x5cc)+0x48)=(y+18)<<12;
+ if((u32)(type-1)<=2)resource=*(u32 *)(p+0x168);else resource=*(u32 *)(p+0x164);
+ func_020a9610(p+0x604,resource,*(u16 *)(item+4),*(u32 *)(p+0x5cc),zero,zero);
+ func_020a98ac(p+0x5d0);
+ func_020a98f4(p+0x5d0);
+ return 1;
+ }
+ *(u32 *)(*(u8 **)(p+0x57c)+0x40)=zero;
+ *(u32 *)(*(u8 **)(p+0x5cc)+0x40)=zero;
+ }else{
+ if(*(s32 *)(state+0x3438)!=2) {
+ func_020a994c(p+0x580);
+ *(u32 *)(*(u8 **)(p+0x57c)+0x40)=one;
+ func_020a8810(*(u32 *)(p+0x57c),24);
+ *(s32 *)(*(u8 **)(p+0x57c)+0x4c)=0x6b000;
+ *(s32 *)(*(u8 **)(p+0x57c)+0x44)=0xf000;
+ *(s32 *)(*(u8 **)(p+0x57c)+0x48)=(y+1)<<12;
+ func_020a9610(p+0x5b4,*(u32 *)(p+0x13c),9,*(u32 *)(p+0x57c),zero,zero);
+ func_020a98ac(p+0x580);
+ func_020a98f4(p+0x580);
+ }
+ func_020a994c(p+0x5d0);
+ *(u32 *)(*(u8 **)(p+0x5cc)+0x40)=1;
+ func_020a8810(*(u32 *)(p+0x5cc),22);
+ *(s32 *)(*(u8 **)(p+0x5cc)+0x4c)=0x6b000;
+ *(s32 *)(*(u8 **)(p+0x5cc)+0x44)=0xf000;
+ *(s32 *)(*(u8 **)(p+0x5cc)+0x48)=(y+18)<<12;
+ if(state[0x3440]==0)resource=*(u32 *)(p+0x140);else resource=*(u32 *)(p+0x144);
+ func_020a9610(p+0x604,resource,*(s32 *)(state+0x3438)+1,*(u32 *)(p+0x5cc),zero,zero);
+ func_020a98ac(p+0x5d0);
+ func_020a98f4(p+0x5d0);
+ }
+ return 0;
+}
+
 void func_020aed5c(s32 arg0) {
     u8 *ptr = func_020adda8();
     if (arg0 == 0) {
