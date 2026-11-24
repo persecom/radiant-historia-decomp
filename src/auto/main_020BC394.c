@@ -18,3 +18,8 @@ void func_020bd2cc(void) {
     }
     data_021601f8.unk04 = NULL;
 }
+
+void func_020bd35c(u32 arg0, u16 arg1) {
+    *(u16 *)(data_02160078 + 0x14d0 + arg0 * 4) &= (u16)~arg1;
+}
+
