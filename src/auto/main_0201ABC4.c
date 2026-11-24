@@ -6,7 +6,7 @@ extern double func_0201e6a8(double);
 extern double func_02020c58(double,double);
 extern double func_0201e9fc(double,double);
 extern double _dmul(double,double);
-extern double func_0201e6cc(double,double);
+extern double _dadd(double,double);
 extern double _dflt(s32);
 
 double func_0201b2f4(double x) {
@@ -28,7 +28,7 @@ k-=54;
 x=_dmul(x,18014398509481984.0);
 hx=((s32 *)&x)[1];
 }
-if(hx>=0x7ff00000) return func_0201e6cc(x,x);
+if(hx>=0x7ff00000) return _dadd(x,x);
 k+=(hx>>20)-1023;
 i=(k&0x80000000)>>31;
 hx=(hx&0x000fffff)|((1023-i)<<20);
