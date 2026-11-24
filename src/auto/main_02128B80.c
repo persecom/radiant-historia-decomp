@@ -32,6 +32,46 @@ void func_02129490(arg0)
 void func_021294c4(void) {
 }
 
+void func_021294c8(void *arg0) {
+    u8 *p = arg0;
+    u32 p1 = *(u32 *)(p + 8);
+    if (p1 != 0) {
+        if (func_0212dbe8(p1) == 4) {
+            *(u16 *)(p + 0x60) = 0xffff;
+            p[1] = 6;
+        }
+    }
+    {
+        u32 p2 = *(u32 *)(p + 0x94);
+        if (p2 != 0) {
+            if (func_0212e5f0(p2) == 3) {
+                *(u16 *)(p + 0x60) = 0xffff;
+                p[1] = 6;
+            }
+        }
+    }
+}
+
+void func_0212951c(void *arg0) {
+    u8 *p = arg0;
+    if (*(u32 *)(p + 8) == 0) return;
+    if (func_021282cc(p) == 0) return;
+    switch (*(s8 *)(p + 2)) {
+    case 0:
+    case 1:
+        if (func_0212dbe8(*(u32 *)(p + 8)) == 3) {
+            func_0212c7e0(*(u32 *)(p + 4));
+        }
+        break;
+    case 2:
+        func_0212c7e0(*(u32 *)(p + 4));
+        break;
+    case 3:
+    case 4:
+        break;
+    }
+}
+
 void func_02129588(void *arg0) {
     func_0212a9f4();
     func_021295a4(arg0);
