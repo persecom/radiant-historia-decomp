@@ -18,7 +18,6 @@ typedef struct {
     void *f8;
     u8 padc[4];
     void *f10;
-    u8 pad14[4];
     u32 f14;
     void *arr[4];
     u8 pad28[0x14];
@@ -63,6 +62,27 @@ void func_02127fe0(void) {
     func_0212a9f4();
     func_02127ff4();
     func_0212a9f8();
+}
+
+void func_02127ff4(void) {
+    s32 i;
+    for (i = 0; i < 4; i++) {
+        if (data_02173ad4[i].field_0 == 1) {
+            func_02127e74((u8 *)&data_02173ad4[i]);
+        }
+    }
+}
+
+void func_021280f0(Unk_02128030 *arg0, u32 arg1, u32 arg2, u32 arg3, s32 arg4) {
+    func_0212e538(arg0->f8, (s16)arg0->f3e << 11, (s16)arg0->f3c << 11);
+    func_0212ddf0(arg0->f8, data_0215677c);
+    func_0212ddb8(arg0->f8, 0, 0);
+    func_0212dc14(arg0->f8, 0);
+    func_0212dce4(arg0->f8);
+    func_0212db28(arg0->f8);
+    func_0212da70(arg0->f8, arg1, arg2, arg3, (u64)((s64)arg4 << 11));
+    func_0212dc94(arg0->f8);
+    func_02128030(arg0, arg0->f10);
 }
 
 void func_021281b0(void *arg0) {
