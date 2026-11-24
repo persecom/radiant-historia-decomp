@@ -74,16 +74,16 @@ s32 func_020020bc(s32 arg0, u32 arg1) {
     return *(volatile s32 *)0x040002a8;
 }
 
-void func_020020f8(Vec3 *arg0, Vec3 *arg1, Vec3 *arg2) {
-    arg2->x = arg0->x + arg1->x;
-    arg2->y = arg0->y + arg1->y;
-    arg2->z = arg0->z + arg1->z;
+void func_020020f8(s32 *arg0, s32 *arg1, s32 *arg2) {
+    arg2[0] = arg0[0] + arg1[0];
+    arg2[1] = arg0[1] + arg1[1];
+    arg2[2] = arg0[2] + arg1[2];
 }
 
-void func_02002128(Vec3 *arg0, Vec3 *arg1, Vec3 *arg2) {
-    arg2->x = arg0->x - arg1->x;
-    arg2->y = arg0->y - arg1->y;
-    arg2->z = arg0->z - arg1->z;
+void func_02002128(s32 *arg0, s32 *arg1, s32 *arg2) {
+    arg2[0] = arg0[0] - arg1[0];
+    arg2[1] = arg0[1] - arg1[1];
+    arg2[2] = arg0[2] - arg1[2];
 }
 
 s32 func_02002158(const s32 *a, const s32 *b) {
@@ -112,15 +112,19 @@ s32 func_02002214(const s32 *v) {
 
 s32 func_02002388(s32 *arg0, s32 *arg1) {
     s64 sum;
-    s32 dy;
-    s32 dx;
-    s32 dz;
-    dy = *(s32 *)((u8 *)arg0 + 4) - *(s32 *)((u8 *)arg1 + 4);
-    sum = (s64)dy * dy;
-    dx = *arg0 - *arg1;
-    sum += (s64)dx * dx;
-    dz = *(s32 *)((u8 *)arg0 + 8) - *(s32 *)((u8 *)arg1 + 8);
-    sum += (s64)dz * dz;
+    s32 a;
+    s32 b;
+    s32 c;
+    s32 d;
+    a = arg0[1];
+    b = arg1[1];
+    c = arg0[0];
+    d = a - b;
+    sum = (s64)d * d;
+    d = c - arg1[0];
+    sum += (s64)d * d;
+    d = arg0[2] - arg1[2];
+    sum += (s64)d * d;
     *(volatile u16 *)0x40002b0 = 1;
     *(volatile u64 *)0x40002b8 = (u64)sum << 2;
     while (*(volatile u16 *)0x40002b0 & 0x8000) {
@@ -239,11 +243,12 @@ void func_020026e0(s32 arg0) {
 }
 
 void func_02002708(s32 arg0) {
-    u32 addr = 0x4000004;
+    volatile u16 *reg = (volatile u16 *)0x4000004;
+    u16 v = *reg;
     if (arg0 != 0) {
-        *(volatile u16 *)addr |= 8;
+        *reg = v | 8;
     } else {
-        *(volatile u16 *)addr &= 0xfff7;
+        *reg = v & 0xfff7;
     }
 }
 
@@ -293,8 +298,8 @@ void func_02002920(u32 *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
 
 extern void func_020055d4(void);
 void func_02002bbc(void) {
-    u32 v = 0x16;
-    *(volatile u32 *)0x4000400 = v;
+    s32 v = 0x16;
+    *(u32 *)0x4000400 = v;
     func_020055d4();
 }
 
@@ -303,6 +308,12 @@ extern void func_0200f1bc(void);
 extern u16 data_0215cd20;
 void func_02002bd8(void *arg0) {
     *(volatile u32 *)0x04000400 = 0x17;
+    func_020055b0(arg0);
+}
+
+extern void func_02001d9c(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 *arg7);
+void func_02002bf4(void *arg0) {
+    *(volatile u32 *)0x04000400 = 0x19;
     func_020055b0(arg0);
 }
 
