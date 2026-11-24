@@ -271,6 +271,27 @@ void *func_02107390(void) {
     return p;
 }
 
+void func_021073d0(void **arg0) {
+    if (arg0 == NULL) {
+        return;
+    }
+    if (arg0[0] != NULL) {
+        func_0210c5dc(arg0[0]);
+        arg0[0] = NULL;
+    }
+    if (arg0[1] != NULL) {
+        func_0210c5dc(arg0[1]);
+        arg0[1] = NULL;
+    }
+    if (arg0[2] != NULL) {
+        func_0210c5dc(arg0[2]);
+        arg0[2] = NULL;
+    }
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
 void func_021077f0(u32 arg0, u32 arg1) {
     func_02117f54(arg0, 0, 0x7f, arg1);
     func_02118008(arg0, 0, 0x1f, arg1);
