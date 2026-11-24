@@ -47,6 +47,10 @@ void func_0200f7e4(u8 *arg0) {
     }
 }
 
+BOOL func_0200f83c(u16 *arg0) {
+    return func_02005da4(*arg0) == 0;
+}
+
 u32 func_0200f94c(void) {
     return data_0215f0a0[0];
 }
