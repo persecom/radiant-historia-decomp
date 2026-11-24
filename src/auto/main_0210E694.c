@@ -110,6 +110,27 @@ void *func_0210e7f0(s32 arg0, s32 arg1) {
     return result;
 }
 
+extern void (*data_02156154)(u32);
+extern s32 data_02162950;
+extern void func_0210eb14(void *);
+extern void func_0210eb4c(void *);
+extern s32 func_0210f170(const char *, s32, s32, s32);
+extern s32 func_0210f20c(const char *, s32, s32, s32);
+extern s32 func_0210f2e4(void);
+extern s32 func_0210f314(void);
+extern void func_0200439c(void);
+extern void func_020043f8(void *, u32, s32);
+extern void func_02004544(void);
+extern void func_02004588(void);
+extern void func_020045bc(void *, u32, u32);
+extern void func_0200462c(void);
+extern void func_021091b4(void);
+extern s32 func_0210e93c(void *, u32, const char *, u32 *);
+void func_0210eb80(u8 *arg0) {
+    func_0210eb14(arg0);
+    func_0210eb4c(arg0 + 8);
+}
+
 s32 func_0210f170(const char *arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 ret;
     if (data_02155c94[2] != 0 && arg0 != NULL) {
