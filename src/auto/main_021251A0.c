@@ -247,7 +247,12 @@ void func_021256b4(void) {
 }
 
 void func_021256d4(u32 arg0, u32 arg1, u32 arg2) {
-    u32 args[5] = {arg0, 0, arg1, arg2, 1};
+    u32 args[5];
+    args[0] = arg0;
+    args[1] = 0;
+    args[2] = arg1;
+    args[3] = arg2;
+    args[4] = 1;
     func_02125708(args);
 }
 
@@ -322,8 +327,7 @@ void func_02125bd4(void *arg0, s32 arg1) {
 
 void func_02125e20(void *arg0) {
     u8 *p = (u8 *)arg0;
-    s32 flag = (*(u32 *)(p + 0x28) & 0x10) != 0;
-    if (flag != 0) {
+    if (func_02125e20_check(p)) {
         func_0200baa4(p + 0x1c);
     }
 }
