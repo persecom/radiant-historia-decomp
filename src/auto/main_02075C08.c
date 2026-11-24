@@ -112,3 +112,23 @@ void func_020767a0(void) {
     }
 }
 
+void func_020767fc(void) {
+    u8 *r4 = (u8 *)func_020764e4();
+    switch (*(u8 *)(r4 + 0x54)) {
+    case 0:
+        func_020772b8();
+        if (*(s32 *)(r4 + 0x6c) <= 0x1cd4) {
+            func_02077180(1, *(s32 *)(r4 + 0x70));
+        }
+        func_02077110(*(s32 *)(r4 + 0x6c) + 0xf2);
+        break;
+    case 1:
+        break;
+    case 2:
+        func_020763ec(*(u32 *)(r4 + 0xa8));
+        break;
+    case 3:
+        break;
+    }
+}
+
