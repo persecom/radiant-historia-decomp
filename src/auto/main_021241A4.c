@@ -154,6 +154,20 @@ void func_02124bb0(s32 a0, s32 a1, s32 a2, s32 a3, s32 a4) {
     data_02156160[6] = (u32)&data_0215617c[a4];
 }
 
+void func_02124bf8(u32 arg0, s32 arg1) {
+    if (arg0 <= 2) {
+        func_02124bb0(4, 3, 2, 0, 1);
+    } else {
+        func_02124bb0(4, 3, 0, 2, 1);
+    }
+    data_02173170 = arg0;
+    func_02124c78();
+    if (arg1 != 0) {
+        data_02156150 = (u32)func_02124cf8;
+        data_02156154 = (u32)func_02124e60;
+    }
+}
+
 void func_02124c78(void) {
     s32 n = (data_02173170 > 1) ? data_02173170 + 1 : data_02173170;
     s32 i;
