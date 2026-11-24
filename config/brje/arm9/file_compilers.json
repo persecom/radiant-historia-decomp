@@ -142,6 +142,7 @@
   "src/auto/main_020B967C.c": "dsi/1.1",
   "src/auto/main_020B9F6C.c": "dsi/1.1",
   "src/auto/main_020BA63C.c": "dsi/1.1",
+  "src/auto/main_020BAEB0.c": "dsi/1.1",
   "src/auto/main_020BB558.c": "dsi/1.1",
   "src/auto/main_020BC394.c": "dsi/1.1",
   "src/auto/main_020BD38C.c": "dsi/1.1p1",
@@ -159,6 +160,7 @@
   "src/auto/main_020C83F4.c": "dsi/1.1",
   "src/auto/main_020C93F4.c": "dsi/1.1",
   "src/auto/main_020CB1F4.c": "dsi/1.1p1",
+  "src/auto/main_020CC09C.c": "dsi/1.1",
   "src/auto/main_020CCD34.c": "dsi/1.1",
   "src/auto/main_020CDCE8.c": "dsi/1.1",
   "src/auto/main_020CEC8C.c": "dsi/1.1",
@@ -258,6 +260,5 @@
   "src/auto/main_02137E58.c": "dsi/1.1",
   "src/auto/main_02138E00.c": "dsi/1.1",
   "src/auto/main_0213999C.c": "dsi/1.1",
-  "src/auto/main_02139CDC.c": "dsi/1.1",
-  "src/auto/main_020BAEB0.c": "dsi/1.1"
+  "src/auto/main_02139CDC.c": "dsi/1.1"
 }
