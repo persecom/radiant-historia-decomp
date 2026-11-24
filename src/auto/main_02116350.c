@@ -4,8 +4,13 @@
 extern void func_02116ad8(void);
 extern u8 data_0216cb1c[12];
 extern u8 data_0216e1f8[24];
+extern u8 data_0216e210[12];
 extern u8 *data_0216cb10[3];
+extern void *func_02116958(void *, void *);
+void func_0211645c(u8 *arg0);
 void func_021164e0(u8 *arg0);
+void func_021165e0(u8 *arg0);
+void func_02116604(void *arg0, void *arg1);
 extern void func_021167f0(void *, void *);
 extern s32 func_02008128(void);
 extern void func_0200813c(s32);
@@ -47,8 +52,8 @@ void func_02116488(u8 *arg0, s32 arg1) {
         return;
     }
     func_02116720(arg0 + 0xf0, 0, arg1);
-    *(s32 *)(arg0 + 0x158) = 0;
     p->b3 = 1;
+    *(void **)(arg0 + 0x158) = NULL;
 }
 
 void func_021164e0(u8 *arg0) {
@@ -289,6 +294,7 @@ u32 func_02117090(u8 *a0) {
 void *func_0211709c(void *heap, void *end, u16 opt)
 {
   u8 *new_var2;
+  u8 *new_var4;
   void **new_var3;
   u8 *start;
   u8 *new_var;
@@ -297,14 +303,17 @@ void *func_0211709c(void *heap, void *end, u16 opt)
   new_var = new_var + 0x30;
   func_02116a5c(heap, 0x46524D48, new_var, end, opt);
   heap = (u8 *) heap;
-  if (heap)
+  if (1)
   {
+    if (heap)
+    {
+    }
+    start = *((u8 **) (heap + 0x18));
+    new_var3 = (void **) (heap + 0x2C);
+    new_var4 = (new_var2 = (u8 *) heap);
+    *((u8 **) (new_var2 + 0x28)) = (heap = *((u8 **) (((u8 *) heap) + 0x1C)));
+    *((u8 **) (new_var4 + 0x24)) = start;
   }
-  start = *((u8 **) (heap + 0x18));
-  new_var3 = (void **) (heap + 0x2C);
-  new_var2 = (u8 *) heap;
-  *((u8 **) (new_var2 + 0x28)) = (heap = *((u8 **) (((u8 *) heap) + 0x1C)));
-  *((u8 **) (((u8 *) heap) + 0x24)) = start;
   *new_var3 = NULL;
   return heap;
 }
