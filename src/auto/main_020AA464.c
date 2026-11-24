@@ -173,3 +173,11 @@ void func_020aad6c(void) {
     func_020ade8c(1);
 }
 
+extern void *func_020a5f14(u8 *, u16);
+extern s32 func_0201fb1c(s32, s32);
+void func_020aadd8(void) {
+    func_020ade8c(1);
+    func_020ade8c(2);
+    func_020ade8c(3);
+}
+
