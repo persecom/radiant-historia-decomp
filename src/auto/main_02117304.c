@@ -110,6 +110,20 @@ void func_0211748c(u32 *arg0, u32 arg1, u32 arg2) {
     arg0[3] = 0;
 }
 
+s32 func_021174a8(arg0, arg1)
+void *arg0;
+void **arg1;
+{
+    u8 *r4 = func_02117904(arg0, 0x41424e4b);
+    if (r4 != NULL) {
+        func_021174f0(r4 + 8);
+        *arg1 = r4 + 8;
+        return 1;
+    }
+    *arg1 = NULL;
+    return 0;
+}
+
 void func_021174e4(void) {
     func_021174a8();
 }
