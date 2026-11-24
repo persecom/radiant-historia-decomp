@@ -1,5 +1,10 @@
 /* 30 functions from 0x020F46A0 to 0x020F5574 (main), found by ds-decomp. */
 #include "common.h"
+extern const s16 data_0213a394[];
+extern u8 data_021610a4[];
+extern s32 func_02001fc0(s32);
+extern void func_02000c04(void *,void *,void *);
+extern u16 func_02118178(void *,void *);
 extern void *func_0210c518(u32, void *);
 extern void *func_020f4d40(u32);
 extern void func_02008e68(u32, void *, u32);
@@ -100,6 +105,37 @@ void func_020f48b8(u32 arg0) {
 void func_020f48fc(void) {
     func_0210da14((void *)data_02160c3c[4]);
     data_02162840[0]--;
+}
+
+void func_020f4928(void) {
+    u8 *p;
+    s32 i;
+
+    ((u8 **)data_02160c3c)[4] = func_0210c594(0x14, data_02155c3c);
+    p = func_0210c594(0xc, data_02155c3c);
+    ((u8 **)data_02160c3c)[0] = p;
+    func_021167ac(p, 0x4c);
+    p = func_0210c594(0xc, data_02155c3c);
+    ((u8 **)data_02160c3c)[2] = p;
+    func_021167ac(p, 0x38);
+
+    for (i = 0; i < 5; i++) {
+        p = func_0210c594(0x10, data_02155c3c);
+        data_02160c60[i] = p;
+        func_021167ac(p, 0x38);
+    }
+
+    for (i = 0; i < 3; i++) {
+        p = func_0210c594(0xc, data_02155c3c);
+        data_02160c54[i] = p;
+        func_021167ac(p, 0x38);
+    }
+
+    p = func_0210c594(0xc, data_02155c3c);
+    ((u8 **)data_02160c3c)[3] = p;
+    func_021167ac(p, 0x38);
+
+    func_020f48b8(0x3fb);
 }
 
 void *func_020f4bb4(void) {
