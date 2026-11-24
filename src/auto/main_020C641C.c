@@ -14,6 +14,14 @@ void *func_020c6d5c(void) {
     return ptr;
 }
 
+s32 func_020c6d78(void *arg0) {
+    if (arg0 == NULL) {
+        return 1;
+    }
+    func_020c738c(arg0, 0, 0);
+    return 0;
+}
+
 void func_020c6da0(void *arg0) {
     if (arg0 != NULL) {
         func_0210c5dc(arg0);
@@ -28,6 +36,10 @@ void func_020c6de0(void *arg0) {
     if (arg0 != NULL) {
         func_0210c5dc(arg0);
     }
+}
+
+s32 func_020c7080(void) {
+    return 1;
 }
 
 void func_020c71d8(void *arg0) {
