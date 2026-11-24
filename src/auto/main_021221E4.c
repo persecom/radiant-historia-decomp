@@ -122,13 +122,12 @@ void func_0212299c(u8 *pResult, u8 *anmObj, u32 dataIdx) {
     iFrame = frame >> 12;
 
     dict = res + 8;
-    if (dict != NULL && (u16)dataIdx < res[9]) {
+    if (dict != NULL && (u32)(u16)dataIdx < (u32)res[9]) {
         u8 *p = dict + *(u16 *)(res + 0xe);
         data = (p + 4) + *(u16 *)p * (u16)dataIdx;
-        goto got_data;
+    } else {
+        data = NULL;
     }
-    data = NULL;
-got_data:
 
     diff = func_02122684(res, *(u32 *)(data + 0), iFrame);
     amb = func_02122684(res, *(u32 *)(data + 4), iFrame);
