@@ -430,6 +430,21 @@ void func_020c8ee4(u8 *arg0, u16 *arg1)
   func_020c8f20(arg0);
 }
 
+void func_020c8f20(u8 *arg0) {
+u16 vals[6];
+u16 *ptrs[3];
+u16 *ids = vals;
+u16 i;
+vals[0]=data_02144600[0]; vals[1]=data_02144600[1]; vals[2]=data_02144600[2]; vals[3]=data_02144600[3]; vals[4]=data_02144600[4]; vals[5]=data_02144600[5];
+ptrs[0]=(u16 *)(arg0+0x46); ptrs[1]=(u16 *)(arg0+0x4a); ptrs[2]=(u16 *)(arg0+0x4e);
+for(i=0;i<3;i++) {
+u8 *obj=func_020c9c10(*(void **)(arg0+0x30),ids[i*2]);
+u16 *p=ptrs[i];
+if ((func_020c73d8(obj) != 0 || func_020c7420(obj) != 0) && (i==2 || func_020c73f0(obj) != 0)) *(u16 *)(obj+0x30)=p[1];
+else *(u16 *)(obj+0x30)=p[0];
+}
+}
+
 void func_020c9348(u8 *arg0, s32 arg1) {
     u16 cur = *(u16 *)(arg0 + 0x3e);
     s16 val = (s16)cur;
