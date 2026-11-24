@@ -1,5 +1,13 @@
 /* 20 functions from 0x0202B4D8 to 0x0202C328 (main), found by ds-decomp. */
 #include "common.h"
+extern u32 data_0216263c[3];
+static inline u16 RandomRange_0202b4d8(u16 max) {
+ u32 value;
+ data_0216263c[0]=data_0216263c[0]*data_0216263c[1]+data_0216263c[2];
+ value=data_0216263c[0]>>16;
+ if(max) value=(value*max)>>16;
+ return value;
+}
 extern u8 data_021461ec[];
 extern void func_02005e80(void *,void *,...);
 extern void *func_021092d8(void *);
