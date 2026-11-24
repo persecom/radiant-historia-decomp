@@ -80,6 +80,18 @@ void func_0207b218(void) {
     }
 }
 
+void func_0207b2c0(void) {
+    u8 *node = *(u8 **)((u8 *)data_021600f0 + 4);
+    u8 *obj = *(u8 **)((u8 *)data_021600ac + 0x68);
+    func_020477dc(obj, 5, 1);
+    *(u16 *)(node + 2) = 0x15;
+    node[0] = 1;
+    *(u32 *)(obj + 0xac) |= 0x800;
+    *(u32 *)(obj + 0xac) &= ~0x40;
+    *(Vec3_0207adbc *)(obj + 0x24) = *(Vec3_0207adbc *)obj;
+    func_0210d27c(0x62);
+}
+
 void func_020477dc(void *, s32, s32);
 BOOL func_0207b32c(void) {
     if (data_021600f0 == NULL) {
