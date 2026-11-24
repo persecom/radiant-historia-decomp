@@ -10,6 +10,14 @@ extern void func_020f40a4(void);
 extern void func_020f4144(void);
 extern void func_0210c5dc(void *);
 extern void func_020d9018(void);
+void func_020d8e5c(s32 arg0) {
+    if (arg0 == 0) {
+        func_020f40a4();
+    } else if (arg0 == 1) {
+        func_020f4144();
+    }
+}
+
 void func_020d907c(u32 arg0) {
     *(u32 *)(data_02160258 + 0x54) = arg0;
 }
