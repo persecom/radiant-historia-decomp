@@ -1,6 +1,6 @@
 /* 30 functions from 0x020F46A0 to 0x020F5574 (main), found by ds-decomp. */
 #include "common.h"
-static inline int check_f53_expected(s32 (*fn)(void *, int, int), void *cb, u32 expected) { int result = 0; if ((s32)expected == fn(cb,0,0)) result = 1; return result; }
+static inline int check_f53_expected(s32 (*fn)(void *, int, int), void *cb, u32 expected) { int result; s32 value; result = 0; value = fn(cb,0,0); if ((s32)expected == value) result = 1; return result; }
 extern u8 *data_021626e8[];
 extern void func_0200c1a8(int, const char *);
 extern void func_0200c1fc(int, const char *);
@@ -470,17 +470,16 @@ u32 func_020f53e4(void (*arg0)(void)) {
 
 #pragma opt_propagation off
 s32 func_020f53fc(void) {
-const char *name = "";
 u8 *p = *(u8 **)(data_021626e8[0] + 0x10);
-s32 expected;
-u8 i = 0;
+const char *name = "";
+u32 i = 0;
 func_0200c1a8(0,name);
-do { *(u32 *)(p+0x18c+4*i)=func_0210cd50(); i++; } while(i<2);
-expected = -1;
+do { *(u32 *)(p+0x18c+4*i)=func_0210cd50(); i=(u8)(i+1); } while(i<2);
+{ s32 expected = -1;
 if (check_f53_expected(func_ov000_02176da0,(void *)func_020f53e4,expected)) func_0210cba0(*(u32 *)(p+0x14),*(u32 *)(p+0x18c));
 if (check_f53_expected(func_ov000_02176e18,(void *)func_020f53e4,expected)) func_0210cba0(*(u32 *)(p+0x14),*(u32 *)(p+0x18c));
 if (check_f53_expected(func_ov000_02176e90,(void *)func_020f53e4,expected)) func_0210cba0(*(u32 *)(p+0x14),*(u32 *)(p+0x18c));
 if (check_f53_expected(func_ov000_02176ddc,(void *)func_020f53e4,expected) && check_f53_expected(func_ov000_02176e54,(void *)func_020f53e4,expected) && check_f53_expected(func_ov000_02176ecc,(void *)func_020f53e4,expected)) func_0210cba0(*(u32 *)(p+0x14),*(u32 *)(p+0x190));
 else func_0210cba0(*(u32 *)(p+0x14),*(u32 *)(p+0x18c));
-func_0200c1fc(0,name); return 1; }
+func_0200c1fc(0,name); return 1; } }
 #pragma opt_propagation on
