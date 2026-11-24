@@ -1,6 +1,6 @@
 /* 37 functions from 0x0212C824 to 0x0212D7BC (main), found by ds-decomp. */
 #include "common.h"
-typedef struct { s8 unk00[2]; s8 count; u8 unk03[9]; void *objs[4]; u8 unk1c[0x90]; s32 remaining; } Unk0212D3B4;
+typedef struct { s8 unk00[2]; s8 count; u8 unk03[9]; void *objs[4]; u8 unk1c[0x8c]; s32 unkA8; s32 remaining; } Unk0212D3B4;
 
 extern u8 data_02173df4[20];
 extern u8 data_02173e08[720];
@@ -90,20 +90,20 @@ void func_0212d21c(u8 *arg0) {
 
 extern void func_02013878(void *, s32, s32);
 void func_0212d288(void *arg0) {
-    u8 *p = (u8 *)arg0;
+    Unk0212D3B4 *p = (Unk0212D3B4 *)arg0;
     s32 buf[2];
-    s32 minBytes = *(s32 *)(p + 0xa8) * 2;
+    s32 minBytes = p->remaining * 2;
     s32 i;
     s32 samples;
     s32 bytes;
 
-    for (i = 0; i < *(s8 *)(p + 2); i++) {
-        void *obj = *(void **)(p + 0xc + i * 4);
+    for (i = 0; i < p->count; i++) {
+        void *obj = p->objs[i];
         (*(void (**)(void *, s32, s32, void *))(*(u8 **)obj + 0x18))(obj, 0, 0x7fffffff, buf);
         if (minBytes >= buf[1]) {
             minBytes = buf[1];
         }
-        obj = *(void **)(p + 0xc + i * 4);
+        obj = p->objs[i];
         (*(void (**)(void *, s32, void *))(*(u8 **)obj + 0x1c))(obj, 0, buf);
     }
 
@@ -113,15 +113,15 @@ void func_0212d288(void *arg0) {
         return;
     }
 
-    for (i = 0; i < *(s8 *)(p + 2); i++) {
-        void *obj = *(void **)(p + 0xc + i * 4);
+    for (i = 0; i < p->count; i++) {
+        void *obj = p->objs[i];
         (*(void (**)(void *, s32, s32, void *))(*(u8 **)obj + 0x18))(obj, 0, bytes, buf);
         func_02013878((void *)buf[0], 0, bytes);
-        obj = *(void **)(p + 0xc + i * 4);
+        obj = p->objs[i];
         (*(void (**)(void *, s32, void *))(*(u8 **)obj + 0x20))(obj, 1, buf);
     }
 
-    *(s32 *)(p + 0xa8) -= samples;
+    p->remaining -= samples;
 }
 
 static void func_0212d3b4(void *arg) {
