@@ -62,11 +62,11 @@ void func_02002e58(void) {
 }
 
 void func_02002ee8(s32 arg0, u32 arg1, u32 arg2, u16 arg3) {
-    if (arg0 == 0) {
-        *(volatile u16 *)0x04000060 &= ~0x3080;
-    } else {
+    if (arg0) {
         *(volatile u16 *)0x0400035c = arg3;
-        *(volatile u16 *)0x04000060 = (*(volatile u16 *)0x04000060 & ~0x3f40) | (arg1 << 6) | (arg2 << 8) | 0x80;
+        *(volatile u16 *)0x04000060 = (*(volatile u16 *)0x04000060 & ~0x3f40) | ((arg2 << 8) | (arg1 << 6) | 0x80);
+    } else {
+        *(volatile u16 *)0x04000060 &= 0xcf7f;
     }
 }
 
