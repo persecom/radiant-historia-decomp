@@ -297,3 +297,8 @@ void func_02125e48(void *arg0, void *arg1) {
 void func_02125e64(void) {
 }
 
+void func_02125e68(u32 arg0, u32 arg1) {
+    func_02015a10(data_02173354, data_02156388, arg0, arg1);
+    (*(void (**)(void *))((u8 *)data_02173198 + 0x1fc))(data_02173354);
+}
+
