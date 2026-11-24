@@ -183,3 +183,93 @@ void func_0205cd64(u8 *p) {
     }
 }
 
+extern u8 **data_02160244;
+extern void func_020d9d10(s32, s32, s32);
+extern void func_020d907c(void *);
+extern void func_020dd9b4(void *, s32 *);
+void func_0205cfa8(u8 *p) {
+    u8 *r;
+    u8 *q = *(u8 **)(p + 0x128);
+    s32 zero = 0;
+
+    r = *(u8 **)q;
+
+    if (*(s16 *)(q + 0x1c) == 0) {
+        u8 *obj;
+        u16 i;
+        s32 neg1 = -1;
+
+        *(s16 *)(q + 0x1c) = 1;
+        func_020d9d10(zero, 2, zero);
+        func_020dd810(r, 9, zero);
+
+        if (*(u16 *)(p + 0x8e) == 32) {
+            func_0210d27c(108);
+        } else if (*(u16 *)(p + 0x8e) == 81) {
+            func_0210d27c(108);
+        } else if (*(u16 *)(p + 0x8e) == 91) {
+            func_0210d27c(112);
+        }
+
+        obj = (u8 *)func_020dde4c(*(u16 *)(p + 0x90) + 600);
+        *(s32 *)(obj + 0x30) *= neg1;
+        *(s32 *)(obj + 0x38) *= neg1;
+        *(s32 *)(obj + 0x34) *= neg1;
+
+        for (i = 0; i < 7; i++) {
+            u8 *e = (u8 *)func_020dde4c(i + 1100);
+            if (e) {
+                *(s32 *)(e + 0x30) *= neg1;
+                *(s32 *)(e + 0x38) *= neg1;
+                *(s32 *)(e + 0x34) *= neg1;
+            }
+        }
+    } else if (*(s16 *)(q + 0x1c) == 1) {
+        s32 sp0;
+        u16 *sub;
+        u16 i;
+        u8 *obj;
+        s32 one = 1;
+
+        (*data_02160244)[0x6c] = 1;
+        func_020d907c(r);
+        func_020dd9b4(p, &sp0);
+        if (sp0 && p[0x104] == 0x16) {
+            func_020dd810(p, 0x17, zero);
+        }
+
+        for (i = 0; i < 7; i++) {
+            u8 *e = (u8 *)func_020dde4c(i + 1100);
+            if (e) {
+                sub = *(u16 **)(e + 0x19c);
+                func_020020f8(e, e + 0x30, e);
+                (*(volatile u16 *)sub)--;
+                if (*sub == 0) {
+                    e[0xa5] = one;
+                }
+            }
+        }
+
+        obj = (u8 *)func_020dde4c(*(u16 *)(p + 0x90) + 600);
+        if (obj) {
+            s32 vec[3];
+            sub = *(u16 **)(obj + 0x19c);
+            func_020020f8(obj, obj + 0x30, obj);
+            vec[0] = *(s32 *)(obj + 0x30);
+            vec[1] = *(s32 *)(obj + 0x34);
+            vec[2] = *(s32 *)(obj + 0x38);
+            vec[1] = zero;
+            if (*sub > 1) {
+                func_020020f8(r, vec, r);
+            }
+            (*(volatile u16 *)sub)--;
+            if (*sub == 0) {
+                obj[0xa5] = 1;
+            }
+        } else {
+            *(u16 *)(q + 0x1e) |= 0x100;
+            func_020d4eb8(p);
+        }
+    }
+}
+
