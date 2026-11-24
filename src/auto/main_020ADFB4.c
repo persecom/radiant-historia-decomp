@@ -1,6 +1,7 @@
 /* 23 functions from 0x020ADE8C to 0x020AEDC0 (main), found by ds-decomp. */
 #include "common.h"
 extern u8 *func_020adda8(void);
+extern void func_020a994c(void *);
 
 typedef struct Unk_02150788 {
     u32 field_0;
@@ -68,6 +69,17 @@ u8 func_020ae05c(u32 arg0, u32 arg1) {
         arg0 /= 10;
     }
     return arg0 % 10;
+}
+
+void func_020ae0f0(u32 arg0, s16 arg1, s32 arg2, s16 arg3, s32 arg4, s32 arg5) {
+    u8 i;
+    u8 d;
+    for (i = 1; i < 10; i++) {
+        d = func_020ae05c(arg0, i);
+        if (d == 10) break;
+        if (i != 1) arg2 -= arg4;
+        func_020ae004(arg1, (s16)(arg4 * d), 0, arg4, arg5, (s16)arg2, arg3, arg4, arg5);
+    }
 }
 
 void func_020ae50c(s32 arg0) {
