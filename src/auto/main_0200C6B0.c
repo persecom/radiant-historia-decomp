@@ -358,6 +358,21 @@ s32 func_0200d52c(void) {
     return 0;
 }
 
+u32 func_0200d5a0(void *arg0, s32 arg1) {
+    switch (arg1) {
+    case 9:
+        func_0200f9b0((u16)data_0215ef98[1]);
+        return 0;
+    case 10:
+        func_0200fa20((u16)data_0215ef98[1]);
+        return 0;
+    case 1:
+        return 4;
+    default:
+        return 0x102;
+    }
+}
+
 u32 func_0200d610(void *arg0, s32 arg1) {
     return (arg1 == 1) ? 4 : 0x102;
 }
