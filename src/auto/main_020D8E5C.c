@@ -43,6 +43,12 @@ void func_020d907c(u32 arg0) {
     *(u32 *)(data_02160258 + 0x54) = arg0;
 }
 
+extern void func_020d9cc0(void *);
+extern void func_020f4668(void *);
+void *func_020d9df4(void) {
+    return *(void **)(data_02160258 + 0x80);
+}
+
 u16 func_020d9e38(void) {
     return data_02151fc8;
 }
