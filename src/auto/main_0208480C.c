@@ -1,5 +1,7 @@
 /* 17 functions from 0x0208480C to 0x02085328 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { u8 a,b; u32 value; } Entry_02084fd0;
+extern const u8 data_02140c70[7];
 
 extern void func_02085328(void);
 extern u8 *data_0216010c;
