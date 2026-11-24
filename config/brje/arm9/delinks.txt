@@ -716,7 +716,10 @@ src/auto/main_020D655C.c:
     .text start:0x020d655c end:0x020d6724
 
 src/auto/main_020D6724.c:
-    .text start:0x020d6724 end:0x020d708c
+    .text start:0x020d6724 end:0x020d67f8
+
+src/auto/main_020D67F8.c:
+    .text start:0x020d67f8 end:0x020d708c
 
 src/auto/main_020D708C.c:
     .text start:0x020d708c end:0x020d7e7c
