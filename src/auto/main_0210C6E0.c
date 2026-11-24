@@ -33,6 +33,15 @@ extern void func_021166a0(void *);
 extern void func_02114a64(void);
 extern void func_02113ce8(void *, u8);
 extern s32 func_02113c88(s32, s32);
+extern u8 data_02162744[];
+extern s32 data_02162834;
+extern void func_02113b68(s32, s32, s32);
+extern void func_02113b58(void *, s32);
+extern void func_02113c18(void *);
+extern void func_02116078(void *, s32);
+extern void func_02113d10(void *, u8, s32);
+extern void func_0210d5a0(void);
+extern void func_0210d5dc(s32);
 extern u8 data_02162740[];
 
 
