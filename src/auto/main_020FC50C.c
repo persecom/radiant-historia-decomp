@@ -20,6 +20,43 @@ typedef struct Unk020FC50C {
 
 extern Unk020FC50C data_02160c74;
 
+extern void func_020a9544(void *);
+extern void func_020c6d4c(void *);
+extern void func_0210da14(void *);
+extern void func_0210dba0(void *);
+extern void func_0210dbe8(void *);
+extern void func_0210c5dc(void *);
+void func_020fcd54(void) {
+    s32 i;
+    if (data_02160c74.unk_04 == NULL) {
+        return;
+    }
+    for (i = 0; i < 8; i++) {
+        if (*(void **)((u8 *)data_02160c74.unk_04 + i * 4 + 0x28) != NULL) {
+            func_020a9544(*(void **)((u8 *)data_02160c74.unk_04 + i * 4 + 0x28));
+            *(void **)((u8 *)data_02160c74.unk_04 + i * 4 + 0x28) = NULL;
+        }
+    }
+    for (i = 0; i < 8; i++) {
+        void *obj = *(void **)((u8 *)data_02160c74.unk_04 + i * 0x50 + 0x48);
+        ((void (*)(void *))(*(void **)((u8 *)obj + 0xc)))(obj);
+        if (*(void **)((u8 *)data_02160c74.unk_04 + i * 4 + 0x2c8) != NULL) {
+            func_020c6d4c(*(void **)((u8 *)data_02160c74.unk_04 + i * 4 + 0x2c8));
+            *(void **)((u8 *)data_02160c74.unk_04 + i * 4 + 0x2c8) = NULL;
+        }
+    }
+    func_0210da14(data_02160c74.unk_04);
+    if (*((u8 *)data_02160c74.unk_04 + 0x302) == 0) {
+        func_0210dba0((u8 *)data_02160c74.unk_04 + 0x14);
+    } else {
+        func_0210dbe8((u8 *)data_02160c74.unk_04 + 0x14);
+    }
+    if (data_02160c74.unk_04 != NULL) {
+        func_0210c5dc(data_02160c74.unk_04);
+    }
+    data_02160c74.unk_04 = NULL;
+}
+
 void func_020fce30(s32 arg0, s32 arg1, u8 arg2, u8 arg3) {
     if (data_02160c74.unk_04 == NULL) {
         return;
