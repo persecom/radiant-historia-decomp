@@ -15,13 +15,13 @@ u8 *func_020c46ac(void) {
 }
 
 void func_020c46c4(void) {
-    u8 *r6 = func_020c46ac();
-    u8 *r4 = func_0203be10(1);
-    func_0203be60(r4, data_02151288, data_021512a0);
-    *(s32 *)(r4 + 0x10) = 5;
-    *(s32 *)(r4 + 0x14) = 5;
-    *(s32 *)(r4 + 0x18) = 1;
-    *(u8 **)(r6 + 0x10) = r4;
+    u8 *base = func_020c46ac();
+    u8 *obj = func_0203be10(1);
+    func_0203be60(obj, data_02151288, data_021512a0);
+    *(s32 *)(obj + 0x10) = 5;
+    *(s32 *)(obj + 0x14) = 5;
+    *(s32 *)(obj + 0x18) = 1;
+    *(u8 **)(base + 0x10) = obj;
 }
 
 void func_020c470c(void) {
