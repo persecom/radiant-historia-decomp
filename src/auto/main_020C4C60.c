@@ -13,6 +13,59 @@ extern const Unk_020c4fa4_36 data_021445b0;
 
 extern void func_020a3bbc(s32);
 extern void func_021098ac(void *);
+void func_020c4c60(s16 *arg0, s16 arg1) {
+    Unk_020c4fa4_10 other = data_02144504;
+    Unk_020c4c60_27 buf = data_02144578;
+    u16 i;
+    s16 xOff = 0;
+
+    *(volatile u32 *)0x040004a4 = 0x1f00c0;
+    func_020a3bbc(0);
+    *(volatile u32 *)0x04000480 = (u16)(arg0[3] | (arg0[3] << 5) | (arg0[3] << 10));
+
+    for (i = 0; i < 3; i++) {
+        u16 idx = i * 9;
+        s16 w;
+        other.data[1] = buf.data[idx + 0];
+        other.data[2] = buf.data[idx + 1];
+        other.data[3] = buf.data[idx + 2];
+        other.data[4] = buf.data[idx + 3];
+        if (i == 0) {
+            other.data[5] = arg0[6] + (256 - arg0[1]) + buf.data[idx + 4];
+        } else if (i == 1 || i == 2) {
+            other.data[5] = xOff + (arg0[6] + (256 - arg0[1]));
+        }
+        other.data[6] = arg0[5];
+        other.data[7] = arg1;
+        w = (arg0[0] * buf.data[idx + 2]) / 100;
+        other.data[8] = w;
+        other.data[9] = arg0[4];
+        xOff += w;
+        func_021098ac(other.data);
+    }
+}
+
+void func_020c4e00(s16 *p,s16 val) {
+Unk_020c4fa4_10 other=data_0214452c;
+Unk_020c4e00_27 buf=data_02144540;
+u16 i;
+s16 total=0;
+*(volatile u32*)0x40004a4=0x1f00c0;
+func_020a3bbc(0);
+*(volatile u32*)0x4000480=(u16)(p[3]|(p[3]<<5)|(p[3]<<10));
+for(i=0;i<3;i++){
+u16 idx=i*9;
+other.data[1]=buf.data[idx];other.data[2]=buf.data[idx+1];
+other.data[3]=buf.data[idx+2];other.data[4]=buf.data[idx+3];
+if(i==0){other.data[5]=p[6]+(256-p[1]+buf.data[idx+4]);} else if((u16)(i-1)<=1){other.data[5]=p[6]+(total+(256-p[1]));}
+other.data[6]=buf.data[idx+5];other.data[7]=val;
+other.data[8]=p[0]*other.data[3]/100;
+other.data[9]=p[4];
+total+=other.data[8];
+func_021098ac(&other);
+}
+}
+
 void func_020c4fa4(u8 *p) {
     Unk_020c4fa4_10 other = data_02144518;
     Unk_020c4fa4_36 buf = data_021445b0;
