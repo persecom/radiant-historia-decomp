@@ -101,3 +101,42 @@ s32 func_020a0e5c(const char *arg0) {
     return 13;
 }
 
+void func_020a0fd4(s32 x,s32 y) {
+Unk14 a=data_02142c04;
+s8 *p=data_021600b0;
+if(!(*(s16 *)(p+*(s16 *)(p+0x1e8)*40+0x24e)&0x40))return;
+*(volatile u32 *)0x40004a4=0x1f00c0;
+func_020a3bbc(21);
+a.data[1]=0;a.data[2]=0;a.data[3]=128;a.data[4]=18;a.data[5]=64;a.data[6]=8;a.data[8]=128;a.data[9]=18;
+func_021098ac(&a);
+*(volatile u32 *)0x40004a4=0x1f00c0;
+switch(*(s8 *)(p+*(s16 *)(p+0x1e8)*40+0x23a)) {
+case 1:func_020a3bbc(36);break;
+case 2:func_020a3bbc(36);break;
+case 3:func_020a3bbc(5);break;
+case 4:func_020a3bbc(35);break;
+case 5:func_020a3bbc(34);break;
+case 6:func_020a3bbc(36);break;
+case 7:func_020a3bbc(36);break;
+case 8:func_020a3bbc(34);break;
+}
+{
+Unk24 table=data_02142d30;
+u16 i;
+for(i=0;i<2;i++) {
+u16 k=i*9;
+a.data[1]=table.data[k];a.data[2]=table.data[k+1];
+a.data[3]=table.data[k+2];a.data[4]=table.data[k+3];
+a.data[5]=x+table.data[k+4];a.data[6]=y+table.data[k+5];
+a.data[7]=table.data[k+6];a.data[8]=table.data[k+7];a.data[9]=table.data[k+8];
+func_021098ac(&a);
+}
+}
+{
+Unk14 b=data_02142c2c;
+if((*(s16 *)(p+*(s16 *)(p+0x1e8)*40+0x24e)&0x80) && *(s8 *)(p+*(s16 *)(p+0x1e8)*40+0x23a)==8) {
+func_020a3bbc(29);func_021098ac(&b);
+}
+}
+}
+
