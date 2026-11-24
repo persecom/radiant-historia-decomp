@@ -12,7 +12,9 @@ extern void func_02003c78(void);
 extern void func_02002058(s32, s32);
 extern s32 func_02001ff4(void);
 extern void func_02124c78(void);
-extern void func_02124cf8(void);
+extern u32 func_02124cf8(u32, u32, u32);
+extern Row24 data_02156194, data_021561ac;
+extern Row24 *data_02156168[];
 extern int func_02124e60(void);
 void func_021241a4(s32 *arg0, u8 *arg1) {
     s32 r2 = *(s32 *)(arg1 + 0x24);
