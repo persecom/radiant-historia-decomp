@@ -35,3 +35,31 @@ void func_020362fc(s32 arg0, s32 arg1) {
     p[0xa1] &= 0xdf;
 }
 
+void func_02036348(s32 arg) {
+u8 *node;
+u8 *found=NULL;
+node=*(u8 **)(data_02160a6c+0xb8);
+while(node) {
+switch(*(u16 *)(node+0x8e)) {
+case 0x321: case 0x32b: case 0x335: case 0x33f: case 0x349: case 0x35d:
+found=node; break;
+}
+node=*(u8 **)(node+0x174);
+}
+if(!found) return;
+switch(*(u16 *)(found+0x8e)) {
+case 0x321:
+func_020362fc(0x321,arg); func_020362fc(0x322,arg); func_020362fc(0x323,arg); break;
+case 0x32b:
+func_020362fc(0x32b,arg); func_020362fc(0x32d,arg); break;
+case 0x335:
+func_020362fc(0x335,arg); func_020362fc(0x337,arg); break;
+case 0x33f:
+func_020362fc(0x33f,arg); func_020362fc(0x340,arg); func_020362fc(0x341,arg); break;
+case 0x349:
+func_020362fc(0x349,arg); func_020362fc(0x34b,arg); break;
+case 0x35d:
+func_020362fc(0x35d,arg); func_020362fc(0x35f,arg); break;
+}
+}
+
