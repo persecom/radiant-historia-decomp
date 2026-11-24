@@ -489,6 +489,24 @@ s32 func_02138c1c(u8 *arg0) {
     }
 }
 
+s32 func_02138c54(u8 *arg0) {
+StatusOrder order = data_02145b88;
+s32 i;
+s32 result = 0;
+s32 maximum = 0;
+if (*(s32 *)(arg0+0x58)==0) { func_02126c20(data_0215ca20); return 4; }
+for(i=0;i<*(s32 *)(arg0+0xa8);i++){
+void *obj=((void **)arg0)[i];
+s32 status=((s32 (*)(void *))(*(u32 **)obj)[11])(obj);
+if(status>=5) func_02126c20(data_0215ca50);
+if(maximum<=order.v[status]) maximum=order.v[status];
+}
+for(i=0;i<5;i++) { if(maximum==order.v[i]) { result=i; break; } }
+if(i==5) result=4;
+if(result==3) { if(func_02126c88(*(void **)(arg0+*(s32 *)(arg0+0x10)*12+0x20))) result=2; }
+return result;
+}
+
 s8 func_02138d60(u8 *arg0) {
     return *(s8 *)(arg0 + 0x94);
 }
