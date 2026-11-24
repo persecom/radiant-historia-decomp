@@ -206,9 +206,9 @@ s32 func_02021570(u32 *arg0, u32 arg1, u32 arg2) {
 }
 
 s32 func_020215bc(void) {
-    u32 *p = data_02160078;
-    u32 size = 0x1698;
     s32 res = 0;
+    u32 size = 0x1698;
+    u32 *p = data_02160078;
     if (func_02021570(p, 0, size) == 0) {
         return res;
     }
@@ -233,6 +233,20 @@ u32 func_02021a50(void) {
     return data_02160054[3];
 }
 
+s32 func_02021a60(u32 arg0) {
+    u32 buf[4];
+    func_02107334(arg0, (u32)buf, 0x10);
+    func_020106a0();
+    func_02107294();
+    if (func_0200f984() != 0) {
+        return 0;
+    }
+    if (buf[0] != 0x6d63) {
+        return 0;
+    }
+    return buf[1] == 0;
+}
+
 extern void func_021072d0(u32, u32, u32);
 extern u32 func_02107294(void);
 extern void func_02107334(u32, u32, u32);
@@ -240,14 +254,16 @@ extern void func_020106a0(void);
 extern u32 func_0200f984(void);
 void func_02021bd0(s32 arg0) {
     u32 buf[4];
+    u32 *p;
     if (func_02021344(1) == 0) {
         return;
     }
-    buf[0] = 0;
-    buf[1] = 0;
-    buf[2] = 0;
-    buf[3] = 0;
-    func_021072d0(arg0, (u32)buf, 0x10);
+    p = buf;
+    p[0] = 0;
+    p[1] = 0;
+    p[2] = 0;
+    p[3] = 0;
+    func_021072d0(arg0, (u32)p, 0x10);
     while (func_02107294() != 0) {
     }
 }
