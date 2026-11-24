@@ -237,6 +237,20 @@ void func_0212dd4c(void *arg0) {
     func_0212e5ac();
 }
 
+void func_0212dd68(void *arg0) {
+    s8 *r6 = (s8 *)arg0;
+    func_0212dce4(r6);
+    for (;;) {
+        if (r6[1] == 1 && *(u32 *)(r6 + 0x28) == 0) {
+            break;
+        }
+        func_0212bfa4();
+        if (data_02173ab8[0] != 0) {
+            func_020066e0(1);
+        }
+    }
+}
+
 void func_0212ddf0(void *arg0, void *arg1) {
     func_0212e5a0();
     func_0212de14(arg0, arg1);
