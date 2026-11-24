@@ -450,6 +450,34 @@ void func_0210d46c(void) {
     func_02113c18(data_02162740);
 }
 
+s32 func_0210d490(s32 arg0) {
+    s16 *slot;
+    s32 i;
+    if (arg0 >= 0) {
+        slot = NULL;
+        for (i = 0; i < 8; i++) {
+            if (arg0 == data_0216274c[i * 2]) {
+                slot = NULL;
+                break;
+            }
+            if (slot == NULL && data_0216274c[i * 2] == -1) {
+                slot = &data_0216274c[i * 2];
+            }
+        }
+        if (slot != NULL) {
+            if (func_02113c88(0, arg0) > 0) {
+                return 0;
+            }
+            if ((*(s32 (**)(void *, s32))(data_02155c7c + 4))(data_0216273c, arg0)) {
+                func_02113ce8(data_0216273c, data_02155c7c[0]);
+                slot[0] = (s16)arg0;
+                slot[1] = 6;
+            }
+        }
+    }
+    return 1;
+}
+
 s32 func_0210d548(void) {
     s32 ret = 0;
     if (func_02113c34(0) >= 6) {
