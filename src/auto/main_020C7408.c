@@ -310,6 +310,15 @@ s32 func_020c82a8(u8 *arg0) {
     return 0;
 }
 
+void func_020c8310(void **arg0) {
+    if (*arg0 == NULL) {
+        return;
+    }
+    func_0210db70((u8 *)(*arg0) + 0x20);
+    ((void (*)(void *))(*(void **)((u8 *)(*arg0) + 0xc)))(*arg0);
+    *arg0 = NULL;
+}
+
 void func_020c83b0(u8 *arg0, void *arg1) {
     func_020c85e8(arg0);
     *(void **)(arg0 + 0x34) = func_020a94b8(arg1);
