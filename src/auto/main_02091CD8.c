@@ -10,6 +10,7 @@ typedef struct {
 extern u8 *data_0216010c;
 typedef struct { s16 data[10]; } Unk_02092194;
 extern const Unk_02092194 data_02140f2c;
+extern const Unk_02092194 data_02140f18;
 extern const Unk_02092194 data_02141224;
 extern const Unk_02092194 data_021412ec;
 extern const Unk_02092194 data_021413dc;
@@ -95,6 +96,28 @@ func_021098ac(&buf);
 
 void func_020922bc(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s16 arg4, s16 arg5, s16 arg6, s16 arg7) {
     func_02092194(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, 5, 5);
+}
+
+void func_020922f8(s32 id,s32 mode,s32 x,s32 y,s16 w,s16 h,s16 tw,s16 th,s16 bx,s16 cw,s16 by,s16 ch,s16 z) {
+Unk_02092194 a=data_02141224;
+func_020a3bbc(id);
+a.data[7]=z;
+if(mode!=1){
+a.data[8]=bx;a.data[9]=by;
+a.data[1]=a.data[2]=0;a.data[3]=a.data[8];a.data[4]=a.data[9];a.data[5]=x;a.data[6]=y;func_021098ac(&a);
+a.data[9]=h-by*2;a.data[8]=bx;a.data[1]=0;a.data[2]=ch;a.data[3]=cw;a.data[4]=ch;a.data[5]=x;a.data[6]=y+by;func_021098ac(&a);
+a.data[8]=bx;a.data[9]=by;a.data[1]=0;a.data[2]=th-by;a.data[3]=a.data[8];a.data[4]=a.data[9];a.data[5]=x;a.data[6]=y+h-by;func_021098ac(&a);
+}
+a.data[1]=cw;a.data[2]=ch;a.data[3]=cw;a.data[4]=ch;a.data[8]=w-bx*2;a.data[9]=h;a.data[5]=x+bx;
+if(mode==1)a.data[5]=x;
+a.data[6]=y;func_021098ac(&a);
+if(mode!=2){
+mode=x+w-bx;
+x=-bx;
+a.data[1]=0;a.data[2]=0;a.data[3]=x;a.data[8]=bx;a.data[4]=th;a.data[9]=by;a.data[5]=mode;a.data[6]=y;func_021098ac(&a);
+a.data[3]=x;a.data[1]=0;a.data[2]=th-by;a.data[8]=bx;a.data[4]=by;a.data[9]=by;a.data[5]=mode;a.data[6]=y+h-by;func_021098ac(&a);
+a.data[1]=0;a.data[2]=ch;a.data[3]=cw;a.data[4]=ch;a.data[8]=bx;a.data[9]=h-by*2;a.data[5]=mode;a.data[6]=y+by;func_021098ac(&a);
+}
 }
 
 void func_02092814(s32 arg0, s32 arg1, s16 x, s16 y, s16 w, s16 h, s16 z) {
