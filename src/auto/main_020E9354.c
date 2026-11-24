@@ -140,6 +140,18 @@ void func_020e97ec(u8 *arg0) {
     }
 }
 
+void func_020e9c90(void) {
+    u16 i;
+    data_02160a7c = (u8 *)func_0210c594(0x3c, data_02155c3c);
+    *(u32 *)(data_02160a7c + 0x14) = 0;
+    *(u16 *)(data_02160a7c + 0x18) = 0;
+    *(u8 *)(data_02160a7c + 0x1a) = 0;
+    for (i = 0; i < 8; i++) {
+        *(u32 *)(data_02160a7c + 0x1c + i * 4) =
+            (i * 16) | ((i * 16 + 4) << 8) | ((i * 16 + 8) << 16) | ((i * 16 + 12) << 24);
+    }
+}
+
 extern void func_0210d9e4(void *);
 extern void func_02002ee8(s32, u32, u32, u16);
 extern void func_02002f9c(void *);
