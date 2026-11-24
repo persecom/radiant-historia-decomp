@@ -204,6 +204,15 @@ s32 func_0200d050(void *arg0) {
     return func_0200cb40(buf, 0xc, 0);
 }
 
+s32 func_0200d084(void *arg0, u8 *arg1, u16 arg2, void *arg3, void *arg4) {
+    u32 val;
+    s32 res = func_0200ce18(arg0, arg2, arg3, &val, 0);
+    if (res != 0) {
+        return res;
+    }
+    return func_0200cee8(arg0, arg1, val, arg4);
+}
+
 s32 func_0200d0d4(void *arg0, void *arg1, s32 *arg2, s32 arg3) {
     s32 *p = *(s32 **)((u8 *)arg1 + 4);
     s32 offset = *arg2;
