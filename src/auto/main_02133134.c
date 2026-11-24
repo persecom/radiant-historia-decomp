@@ -530,6 +530,77 @@ s32 func_02133a1c(u8 *arg0) {
     return 0;
 }
 
+extern u8 data_0215badc[28];
+extern u8 data_0215baf8[32];
+extern u8 data_0215bb18[36];
+extern void func_02133688(void);
+extern void func_02133694(void);
+s32 func_02133a48(u8 *arg0, s32 arg1, u8 *arg2) {
+    s32 off;
+    s32 sz;
+    s32 buf_size;
+    u8 *buf;
+    s32 copy_len;
+    s32 pad;
+
+    if (arg0 == NULL) {
+        func_021336c0(0, data_0215badc);
+        return 0;
+    }
+    if (arg1 < 0) {
+        func_021336c0((s32)arg0, data_0215baf8);
+        return 0;
+    }
+    if (arg2 == NULL) {
+        func_021336c0((s32)arg0, data_0215bb18);
+        return 0;
+    }
+    if (arg1 == 0) {
+        *(s8 *)(arg0 + 1) = 1;
+        return 0;
+    }
+    if (*(s8 *)(arg0 + 1) == 2) {
+        return 0;
+    }
+
+    func_02133688();
+    *(s32 *)(arg0 + 0x14) = 0;
+    if (arg1 >= *(s32 *)(arg0 + 0xc) - *(s32 *)(arg0 + 0x10)) {
+        arg1 = *(s32 *)(arg0 + 0xc) - *(s32 *)(arg0 + 0x10);
+    }
+    *(s32 *)(arg0 + 0x18) = arg1;
+    off = *(s32 *)(arg0 + 0x10) * *(s32 *)(arg0 + 4);
+    sz = arg1 * *(s32 *)(arg0 + 4);
+    if (sz == 0) {
+        *(s8 *)(arg0 + 1) = 1;
+        func_02133694();
+        return 0;
+    }
+
+    *(s8 *)(arg0 + 1) = 2;
+    *(s32 *)(arg0 + 0x30) = off;
+    *(s32 *)(arg0 + 0x34) = sz;
+    buf = (u8 *)func_02133750(arg0 + 0x1c, &buf_size);
+    copy_len = buf_size - *(s32 *)(arg0 + 0x30);
+    if (*(s32 *)(arg0 + 0x34) <= copy_len) {
+        copy_len = *(s32 *)(arg0 + 0x34);
+    }
+    func_02133694();
+
+    func_02013858(arg2, buf + *(s32 *)(arg0 + 0x30), copy_len);
+    pad = *(s32 *)(arg0 + 0x34) - copy_len;
+    if (pad > 0) {
+        func_02013878(arg2 + copy_len, 0, pad);
+    }
+
+    func_02133688();
+    *(s32 *)(arg0 + 0x14) = *(s32 *)(arg0 + 0x18) * *(s32 *)(arg0 + 4);
+    *(s32 *)(arg0 + 0x10) += *(s32 *)(arg0 + 0x18);
+    *(s8 *)(arg0 + 1) = 1;
+    func_02133694();
+    return *(s32 *)(arg0 + 0x18);
+}
+
 void func_02133bbc(void *arg0) {
     if (arg0 == NULL) {
         func_021336c0(0, data_0215bb3c);
