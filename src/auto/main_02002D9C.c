@@ -68,3 +68,13 @@ void func_02003b28(void *arg0, u32 arg1, u32 arg2) {
     }
 }
 
+extern u32 func_02003328(void);
+void func_02003b98(void *arg0, u32 arg1, u32 arg2) {
+    u32 base = func_02003328();
+    if (data_02145ba4 != -1 && arg2 > 0x1c) {
+        func_02008690(data_02145ba4, arg0, base + arg1, arg2, 1);
+    } else {
+        func_02008e08(arg0, base + arg1, arg2);
+    }
+}
+
