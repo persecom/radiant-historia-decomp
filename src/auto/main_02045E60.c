@@ -62,13 +62,13 @@ void func_02046760(u8 *arg0) {
 
 void func_02046794(void) {
     u8 *node;
-    while ((node = *(u8 **)(*(u8 **)data_021600b8 + 0xc)) != NULL) {
+    while ((node = *(u8 **)(data_021600b8 + 0xc)) != NULL) {
         if (*(u8 **)(node + 0x128) != NULL && *(u32 *)*(u8 **)(node + 0x128) != 0) {
             *(u32 *)(node + 0x178) += 1;
             func_020a994c(node + 0x144);
             func_020a98a0(node + 0x144);
         }
-        func_021168f8(*(u8 **)data_021600b8 + 0xc, node);
+        func_021168f8(data_021600b8 + 0xc, node);
         func_020f58c0(node);
     }
 }
