@@ -17,6 +17,24 @@ extern void func_0212d7bc(void *, s32, s32, s32, s32);
 extern void func_0212dce4(void *);
 extern void func_0212dd00(void *);
 extern s32 func_0212dc40(void *, s32);
+
+typedef struct UnkStruct_0212dc58 {
+    u8 unk00;
+    u8 unk01;
+    u8 unk02;
+    u8 unk03;
+    u8 unk04[0x14];
+    s32 unk18;
+    u8 unk1c[0xc];
+    s32 unk28;
+    s32 unk2c;
+    u8 unk30[8];
+    s32 unk38;
+    u8 unk3c[0xf];
+    u8 unk4b;
+    u8 unk4c[4];
+    s32 unk50;
+} UnkStruct_0212dc58;
 extern void func_0212e57c(void);
 extern void func_0212e588(void);
 extern void func_0212db90(void *);
