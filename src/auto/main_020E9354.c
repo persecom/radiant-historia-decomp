@@ -82,6 +82,13 @@ void func_020e9714(u8 *arg0) {
     func_021168f8(*(u8 **)(arg0 + 8) + 0x4c, arg0);
 }
 
+void func_020e9d44(void) {
+    void *p = data_02160a7c;
+    if (p != NULL) {
+        func_0210da14(p);
+    }
+}
+
 void func_020e9e0c(void) {
     u8 *p = data_02160a7c;
     if (p == NULL) {
