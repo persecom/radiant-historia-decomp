@@ -1,5 +1,9 @@
 /* 4 functions from 0x020DB864 to 0x020DC7EC (main), found by ds-decomp. */
 #include "common.h"
+extern u32 data_02155c3c, data_02162830, data_02162834[], data_0216281c, data_02162820[], data_0216bf84;
+extern void func_020dc994(void), func_020dc998(void), func_020dc99c(void);
+extern u8 *func_0210c594(s32, u32);
+extern u8 *func_020bb034(s32);
 extern u8 *data_02160204, *data_02160258, *data_02160a6c, *data_02160244;
 extern volatile u32 data_0216025c[];
 extern u8 *func_020f0a5c(u16);
