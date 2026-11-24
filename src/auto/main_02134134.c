@@ -1,5 +1,6 @@
 /* 31 functions from 0x02134134 to 0x02134F44 (main), found by ds-decomp. */
 #include "common.h"
+extern u8 data_0215bd44[], data_0215bd5c[], data_0215bd80[], data_0215bda4[];
 void func_02134cb4(u8 *, s32, s32);
 void func_02134c00(u8 *, s32);
 BOOL func_02134edc(u8 *);
