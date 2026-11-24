@@ -161,13 +161,12 @@ void func_0201082c(u32 arg0) {
     }
     {
         u32 one = 1;
-        while (1) {
+        do {
             if (data_0215cdf0[0] == 0) break;
             if (func_02007a68() == 0) break;
             func_020066e0(one);
             status = func_020107c4();
-            if (status & 0x20) break;
-        }
+        } while ((status & 0x20) == 0);
     }
 }
 
@@ -324,14 +323,12 @@ void func_02010e80(u32 arg0, u32 arg1, u32 arg2) {
             return;
         }
         func_02010f20();
-    } else {
-        if (code != 0x2) {
-            func_02008414();
-            return;
-        }
+    } else if (code == 0x2) {
         data_0215fa20[0] += 1;
         data_0215fa20[1] = 0;
         func_0200fc34(2, 0);
+    } else {
+        func_02008414();
     }
 }
 
@@ -391,7 +388,8 @@ void func_02011158(s32 *arg0) {
 }
 
 void func_020111a0(u32 *arg0) {
-    *(volatile u16 *)0x4000204 = (*(volatile u16 *)0x4000204 & ~0xc) | (arg0[0] << 2);
+    u16 reg = *(volatile u16 *)0x4000204;
+    *(volatile u16 *)0x4000204 = (reg & ~0xc) | (arg0[0] << 2);
     *(volatile u16 *)0x4000204 = (*(volatile u16 *)0x4000204 & ~0x10) | (arg0[1] << 4);
 }
 
