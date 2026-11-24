@@ -40,6 +40,7 @@ extern u32 data_02155c3c;
 extern UnkStruct_02106928 *data_02161064;
 extern u8 *data_02161068;
 extern u8 data_02161088[28];
+extern u32 *data_02161070[];
 
 extern void func_0200fa3c(u16);
 extern void *func_0210c594(s32, u32);
@@ -325,11 +326,14 @@ void func_02107840(void) {
 
 extern u32 *data_02161070[];
 s32 func_02107860(u8 *arg0, u8 *arg1, s32 *arg2) {
-    u8 r4 = (u8)((*(u16 *)(arg0 + 2) & 0x3f) * 4);
+    u32 r4 = ((*(u16 *)(arg0 + 2) & 0x3f) << 2) & 0xff;
     s32 dy = *(s32 *)(arg1 + 0x14) - arg2[1];
     s32 dx = *(s32 *)(arg1 + 0x10) - arg2[0];
-    s32 r = r4 << 12;
-    if (dy + r > 0 && dy - r < arg2[3] && dx + r > 0 && dx - r < arg2[2]) {
+    s32 y0 = dy + (r4 << 12);
+    s32 y1 = dy - (r4 << 12);
+    s32 x0 = dx - (r4 << 12);
+    s32 x1 = dx + (r4 << 12);
+    if (y0 > 0 && y1 < arg2[3] && x1 > 0 && x0 < arg2[2]) {
         return 1;
     }
     return 0;
