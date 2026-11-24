@@ -41,6 +41,14 @@ void func_020d4184(u8 *arg0) {
     }
 }
 
+void func_020d4e54(u8 *arg0, void *arg1, void *arg2) {
+    u8 *base = *(u8 **)(arg0 + 0x128);
+    u8 *p = func_0210c594(0x14, data_02155c3c);
+    *(void **)p = arg1;
+    *(void **)(p + 0x8) = arg2;
+    func_021167f0(base + 0x58, p);
+}
+
 void func_020d4e90(u8 *arg0, void *arg1) {
     func_021168f8(*(u8 **)(arg0 + 0x128) + 0x58, arg1);
     if (arg1 != NULL) {
