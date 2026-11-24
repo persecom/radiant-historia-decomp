@@ -36,6 +36,34 @@ void func_020e1850(void) {
     }
 }
 
+extern void func_020c33d8(u32 *, u32, u32, u32, u32, u32, u32);
+void func_020e18b4(void) {
+    u16 i;
+    if (data_02160244 == NULL) {
+        return;
+    }
+    if (*(u8 *)((u8 *)data_02160244 + 0x10c) != 0) {
+        return;
+    }
+    if (*(u32 *)((u8 *)data_02160244 + 0xf0) == 0) {
+        return;
+    }
+    *(volatile u32 *)0x040004a4 = 0x1f00c0;
+    func_020a3bbc(0x28);
+    for (i = 0; i < 9; i++) {
+        if (*(u32 *)((u8 *)data_02160244 + 0xf0) & (1 << i)) {
+            u8 *node = *(u8 **)((u8 *)data_02160244 + i * 4 + 8);
+            if (node != NULL) {
+                u32 args[3];
+                args[0] = *(u32 *)(node + 4);
+                args[1] = 0x23000;
+                args[2] = *(u32 *)(node + 0xc);
+                func_020c33d8(args, 0, 0, 0x3f, 0x3f, 0x11, 0x18);
+            }
+        }
+    }
+}
+
 extern u8 **data_02160244;
 extern void func_020c34c8(u32 *, u32, u32, u32, u32, u32, u32, u32);
 void func_020e1b00(void) {
