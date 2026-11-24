@@ -64,10 +64,6 @@ void func_0203d864(u32 *arg0) {
 
 extern u16 data_02151fc8;
 extern void func_02052328(void);
-typedef struct Position_0203d8a8 { u32 x, y, z; } Position_0203d8a8;
-static inline void MakePosition_0203d8a8(Position_0203d8a8 *v, u32 *src) {
- u32 x=src[0], z=src[2]; v->x=x; v->y=0; v->z=z;
-}
 #pragma scheduling off
 void func_0203d8a8(u32 *arg0) {
  u16 val=*(u16 *)data_02160098;
@@ -80,6 +76,7 @@ void func_0203d8a8(u32 *arg0) {
  do_call: func_02052328();
  {
  u32 x,value,*p,args[3],zero=0;
+ u32 z;
  value=0xa000;
  ((u32 *)((u8 *volatile *)data_02160098)[1])[6]=value;
  p=(u32 *)((u8 *volatile *)data_02160098)[1];
@@ -87,8 +84,8 @@ void func_0203d8a8(u32 *arg0) {
  p=(u32 *)((u8 *volatile *)data_02160098)[1];
  p[4]=value; x=arg0[0];
  p=(u32 *)((u8 *volatile *)data_02160098)[1];
- p[5]=zero; value=arg0[2];
- args[0]=x; args[1]=zero; args[2]=value;
+ p[5]=zero; z=arg0[2];
+ args[0]=x; args[1]=zero; args[2]=z;
  func_0203d864(&args[zero]);
  *(u16 *)(((u8 *volatile *)data_02160098)[1]+0x60)=zero;
  }
