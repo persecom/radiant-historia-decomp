@@ -11,6 +11,7 @@ extern u16 data_02145ba8[];
 extern u8 data_0215cd84[];
 extern u8 data_0215cd80[];
 extern void func_020059e4(u32);
+extern u32 func_020059b4(u32);
 
 extern u16 data_0215cd68;
 extern u16 data_0215cd70;
@@ -345,6 +346,14 @@ u32 func_020059b4(u32 arg0) {
     (void)*(volatile u16 *)0x04000208;
     *(volatile u16 *)0x04000208 = ime;
     return old;
+}
+
+void func_020059e4(u32 arg0) {
+    u16 ime = *(volatile u16 *)0x04000208;
+    *(volatile u16 *)0x04000208 = 0;
+    *(volatile u32 *)(0x04000208 + 8) &= ~arg0;
+    (void)*(volatile u16 *)0x04000208;
+    *(volatile u16 *)0x04000208 = ime;
 }
 
 extern u32 data_0215cdac[];
