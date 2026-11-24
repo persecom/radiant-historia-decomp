@@ -68,7 +68,7 @@ void func_0203fc18(u16 arg0) {
     for (;;) {
         if (node->unk04 == arg0) {
             UnkStruct_0203fb58 *d = node->unk00;
-            *(volatile u32 *)0x040004a8 = (d->unk18 << 26) | (d->unk04 >> 3) |
+            *(volatile u32 *)0x040004a8 = (d->unk04 >> 3) | (d->unk18 << 26) |
                                           0x40000000 | (d->unk10 << 20) |
                                           (d->unk14 << 23) | 0x20000000;
             *(volatile u32 *)0x040004ac = d->unk0c >> (4 - (d->unk18 == 2));
