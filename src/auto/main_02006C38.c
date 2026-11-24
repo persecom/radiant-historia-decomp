@@ -33,8 +33,8 @@ void func_02006e1c(void) {
     volatile u8 *io = (volatile u8 *)0x04000000;
     u32 ime = *(volatile u32 *)(io + 0x208);
     *(volatile u32 *)(io + 0x208) = (u32)io;
-    while (*(volatile u16 *)(io + 0x6) != 0) {
-    }
+    do {
+    } while (*(volatile u16 *)(io + 0x6) != 0);
     *(volatile u32 *)(io + 0x208) = ime;
 }
 
@@ -55,5 +55,10 @@ u16 func_0200788c(void) {
 extern u16 data_0215d138;
 u16 func_02007a68(void) {
     return data_0215d138;
+}
+
+void func_02007a78(u32 *arg0) {
+    arg0[0] = 0;
+    arg0[2] = 0;
 }
 
