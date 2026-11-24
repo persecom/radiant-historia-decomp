@@ -46,7 +46,24 @@ s32 func_02005d0c(u16 arg0) {
 }
 
 extern void func_020063e8(void *, s32);
-extern void func_02006844(void *, void *);
+extern void func_02006844();
+
+typedef struct {
+    u32 unk0;
+    u32 unk4;
+    u32 unk8;
+    u32 unkC_0 : 24;
+    u32 unkC_24 : 8;
+} Unk6AD8;
+
+typedef struct {
+    u32 unk0[2];
+    u32 unk8[2];
+    void **msgArray;
+    s32 msgCount;
+    s32 firstIndex;
+    s32 usedCount;
+} Unk69A4;
 extern void func_020068fc(void *);
 extern s32 func_020067d8(void);
 extern void func_02006b5c(void *);
