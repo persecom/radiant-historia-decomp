@@ -87,6 +87,23 @@ s32 func_020db680(void) {
     return result;
 }
 
+void func_020db7ec(u8 *arg0) {
+    u8 sp[0x18];
+    if (*(u32 *)(*(u8 **)(arg0 + 0x128) + 0x18) & 2) {
+        return;
+    }
+    *(u8 *)(sp + 0xc) = 0;
+    *(u16 *)(sp + 0xe) = 0;
+    *(u8 *)(sp + 0x10) = 0;
+    *(u16 *)(sp + 0x12) = 0;
+    *(u8 *)(sp + 0x14) = 1;
+    *(u32 *)(sp + 0x0) = 0;
+    *(u32 *)(sp + 0x4) = 0;
+    *(u32 *)(sp + 0x8) = 0;
+    func_0206e7a0(6, arg0, sp, 0);
+    func_0210d27c(0x13);
+}
+
 void func_020db850(void) {
     func_020321cc(0);
     func_020951b4();
