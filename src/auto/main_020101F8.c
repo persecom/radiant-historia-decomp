@@ -406,9 +406,12 @@ void func_02011158(s32 *arg0) {
     *(volatile u16 *)0x4000204 = *(volatile u16 *)0x4000204 & ~0x10;
 }
 
-void func_020111a0(u32 *arg0) {
-    u16 reg = (*(volatile u16 *)0x4000204 & ~0xc) | (arg0[0] << 2);
-    *(volatile u16 *)0x4000204 = reg;
-    *(volatile u16 *)0x4000204 = (*(volatile u16 *)0x4000204 & ~0x10) | (arg0[1] << 4);
+s32 func_020111a0(u32 *arg0) {
+    s32 out;
+    volatile u16 *p = (volatile u16 *)0x4000204;
+    *p = (arg0[0] << 2) | (*p & ~0xc);
+    out = (arg0[1] << 4) | (*p & ~0x10);
+    *p = out;
+    return out;
 }
 
