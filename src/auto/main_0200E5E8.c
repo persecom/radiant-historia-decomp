@@ -121,6 +121,18 @@ s32 func_0200e830(u32 arg0, u32 arg1) {
     return func_0200e674(0xe, 0, NULL, (void *)arg0, (void *)arg1);
 }
 
+s32 func_0200e85c(void) {
+    s32 result;
+    s32 ret = func_0200e830((u32)func_0200e314, (u32)&result);
+    if (ret != 0) {
+        return ret;
+    }
+    data_02145c18 = 0xc;
+    func_0200e290();
+    data_02145c18 = 2;
+    return result;
+}
+
 void func_0200f084(u32 arg0) {
     func_0200ef78(data_0215f04c, arg0, 0xff, 0);
 }
@@ -136,5 +148,16 @@ void func_0200f0e4(s32 arg0) {
 extern u8 data_0215f054[8];
 void func_0200f0fc(s32 arg0) {
     func_0200f004(data_0215f054, arg0);
+}
+
+extern u32 data_0215f03c[4];
+extern s32 func_0200e85c(void);
+extern void func_020081a4(u32);
+extern void func_02008128(void);
+extern void func_02008a00(void);
+extern void func_02008454(void);
+extern s32 func_0200ef5c(void);
+void func_0200f1bc(void) {
+    data_0215f03c[2] = *(volatile u32 *)0x02fffc3c;
 }
 
