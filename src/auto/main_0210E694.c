@@ -339,6 +339,26 @@ void func_0210eef8(u32 arg0) {
     (*(void (**)(u32))((u8 *)data_02162a54 + 8))(arg0);
 }
 
+u32 func_0210ef84(s32 arg0, s32 arg1, s32 arg2) {
+    u8 *p;
+    u32 ret;
+
+    if (data_02162b00[0] == '\0') {
+        return (*(u32 (**)(s32, s32, s32))((u8 *)data_02162a54 + 4))(arg0, arg1, arg2);
+    }
+    data_02162a54[0]++;
+    p = func_0210ec9c(data_02162b00, *(volatile u16 *)&data_02162a54[0], 1);
+    if (p != NULL) {
+        *(u16 *)(p + 0x14) += 1;
+        return *(u32 *)(p + 8);
+    }
+    ret = (*(u32 (**)(s32, s32, s32))((u8 *)data_02162a54 + 4))(arg0, arg1, arg2);
+    if (ret != 0) {
+        func_0210edac(ret, 1);
+    }
+    return ret;
+}
+
 s32 func_0210f170(const char *arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 ret;
     if (data_02155c94[2] != 0 && arg0 != NULL) {
