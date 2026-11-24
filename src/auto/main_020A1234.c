@@ -12,6 +12,23 @@ extern void func_02046448(void);
 extern u8 *data_021600b0;
 extern void func_020a1750(u32 arg0);
 
+typedef struct {
+    u16 unk_00;
+    u16 unk_02;
+    u16 unk_04;
+    u16 unk_06;
+    u16 unk_08;
+    u16 unk_0a;
+    u16 unk_0c;
+    u16 unk_0e;
+    u16 unk_10;
+    u16 unk_12;
+} UnkSprite_020A1564;
+
+extern const UnkSprite_020A1564 data_02142c54;
+extern void func_020a3bbc(s32);
+extern void func_021098ac(UnkSprite_020A1564 *);
+
 u32 func_020a1734(u32 arg0) {
     return (arg0 >= 1 && arg0 <= 8) ? 1 : 0;
 }
