@@ -30,6 +30,10 @@ void func_02109c54(void) {
     func_0210a38c();
 }
 
+void func_0210a4a0(void) {
+    *(u32 *)(data_02162610 + 4) = 0;
+}
+
 extern u8 data_02162610[64];
 void *func_0210a4b4(void) {
     return data_02162610;
