@@ -390,6 +390,24 @@ void *func_020aa3b0(void) {
     return ptr;
 }
 
+extern void func_020aa39c(void *);
+void func_020aa3e0(u8 *arg0) {
+    u8 *node;
+    if (arg0 == NULL) {
+        return;
+    }
+    node = *(u8 **)(arg0 + 8);
+    while (node != NULL) {
+        u8 *next = *(u8 **)(node + 4);
+        func_021168f8(arg0 + 8, node);
+        func_020aa39c(node);
+        node = next;
+    }
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
 extern void *data_021601d8;
 extern void func_020aa464(void);
 extern void func_020aa65c(void);
