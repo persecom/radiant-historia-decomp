@@ -222,9 +222,10 @@ void func_020b4cd8(u32 arg0, s32 arg1) {
 }
 
 void func_020b4d14(u8 *arg0, u32 *arg1, u32 arg2) {
-    u32 shift = data_02162834;
-    u32 v = arg2 >> shift;
-    func_02002128(arg1, *(u32 *)(arg0 + 0x30), arg0 + 0x40);
+    u32 field = *(u32 *)(arg0 + 0x30);
+    u32 v = arg2;
+    v >>= data_02162834;
+    func_02002128(arg1, field, arg0 + 0x40);
     *(u32 *)(arg0 + 0x40) = func_02002080(*(u32 *)(arg0 + 0x40), v);
     *(u32 *)(arg0 + 0x44) = func_02002080(*(u32 *)(arg0 + 0x44), v);
     *(u32 *)(arg0 + 0x48) = func_02002080(*(u32 *)(arg0 + 0x48), v);
