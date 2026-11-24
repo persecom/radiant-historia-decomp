@@ -16,6 +16,11 @@ extern void func_020f4668(void *);
 typedef struct {
     s32 unk0;
     s32 unk4;
+} Unk2Words;
+
+typedef struct {
+    s32 unk0;
+    s32 unk4;
     s32 unk8;
 } Unk3Words;
 
