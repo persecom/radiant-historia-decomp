@@ -28,6 +28,67 @@ s32 func_0202e260(u32 arg0) {
     return 0;
 }
 
+u8 *func_0202e2e8(void) {
+{
+u8 *node;
+u8 *result = NULL;
+s32 best = 999999999;
+u32 i;
+for (i = 0; i < 3; i++) {
+node = *(u8 **)(data_02160244[2+i]+0x10);
+while(node != NULL) {
+u8 *obj = *(u8 **)node;
+if(obj != NULL && *(u8 **)(obj+0x118) != NULL) {
+u8 *p = *(u8 **)(obj+0x118);
+s32 value = *(s32 *)(p+4);
+if(value <= best && value >= 1 && *(u32 *)(p+0x70) != 0) { best=value; result=obj; }
+}
+node = *(u8 **)(node+0xc);
+}
+}
+if(result != NULL) return result;
+}
+{
+u8 *node;
+u8 *result = NULL;
+s32 best = 999999999;
+u32 i;
+for (i = 3; i < 6; i++) {
+node = *(u8 **)(data_02160244[2+i]+0x10);
+while(node != NULL) {
+u8 *obj = *(u8 **)node;
+if(obj != NULL && *(u8 **)(obj+0x118) != NULL) {
+u8 *p = *(u8 **)(obj+0x118);
+s32 value = *(s32 *)(p+4);
+if(value <= best && value >= 1 && *(u32 *)(p+0x70) != 0) { best=value; result=obj; }
+}
+node = *(u8 **)(node+0xc);
+}
+}
+if(result != NULL) return result;
+}
+{
+u8 *node;
+u8 *result = NULL;
+s32 best = 999999999;
+u32 i;
+for (i = 6; i < 9; i++) {
+node = *(u8 **)(data_02160244[2+i]+0x10);
+while(node != NULL) {
+u8 *obj = *(u8 **)node;
+if(obj != NULL && *(u8 **)(obj+0x118) != NULL) {
+u8 *p = *(u8 **)(obj+0x118);
+s32 value = *(s32 *)(p+4);
+if(value <= best && value >= 1 && *(u32 *)(p+0x70) != 0) { best=value; result=obj; }
+}
+node = *(u8 **)(node+0xc);
+}
+}
+if(result != NULL) return result;
+}
+return NULL;
+}
+
 s32 func_0202e468(void) {
     u32 i;
     for (i = 0; i < 9; i++) {
