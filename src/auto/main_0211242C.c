@@ -105,6 +105,10 @@ void func_02112ac0(void *arg0) {
     }
 }
 
+s32 func_02112ae0(void) {
+    return 0x13;
+}
+
 extern void func_020c9b64(void *);
 s32 func_02112ce0(void *arg0) {
     func_020c9b64(*(void **)((u8 *)arg0 + 0x30));
