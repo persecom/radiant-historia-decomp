@@ -52,6 +52,9 @@ extern u32 func_020035b0(void);
 extern s32 func_020053d0(void);
 extern void func_02008840(s32, void *, u32, u32, s32, s32, s32);
 extern u32 data_0215cd24[];
+extern u32 func_0200547c(void);
+extern void func_0200893c(void);
+extern void func_02004bdc(u32);
 void func_02003f18(void *arg0, u32 arg1, u32 arg2) {
     u32 base = func_02003558();
     if (data_02145ba4 != -1 && arg2 > 0x30) {
