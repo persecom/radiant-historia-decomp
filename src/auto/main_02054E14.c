@@ -31,6 +31,9 @@ extern void func_02005e80(void *, const char *, ...);
 extern void *func_02055d28(void *, u16);
 extern void func_02124e68(void *);
 extern void func_0212501c(void *);
+extern void *func_0203be60(void *, void *, void *);
+extern void func_021167f0(void *, void *);
+extern void func_0210c5dc(void *);
 
 void func_02055240(u8 *arg0) {
     u8 *p = *(u8 **)(data_021600ac + 0x68);
