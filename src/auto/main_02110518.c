@@ -68,6 +68,14 @@ void func_02110878(u8 *arg0, s32 arg1) {
     func_021107cc(arg0, *(s16 *)(arg0 + 0x34), arg1);
 }
 
+extern s32 func_020c73d8(u16 *);
+extern BOOL func_020c7408(void);
+extern void func_021103c0(u8 *, s32);
+u16 func_02110b20(u8 *arg0) {
+    u8 *obj = func_020c9c10(*(void **)(arg0 + 0x30), arg0[0x39]);
+    return *(u16 *)(obj + 0x3e);
+}
+
 void func_0211104c(void *arg0) {
     func_0211106c(arg0);
     if (arg0 != NULL) {
