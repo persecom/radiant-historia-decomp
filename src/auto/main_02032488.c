@@ -187,3 +187,11 @@ void func_020331d0(u8 *arg0, u16 arg1, s32 arg2) {
     }
 }
 
+extern s32 func_02117d80(void *);
+s32 func_020332c8(void *arg0) {
+    if (arg0 == NULL) {
+        return 0;
+    }
+    return func_02117d80(*(void **)(*(void **)arg0 + 8));
+}
+
