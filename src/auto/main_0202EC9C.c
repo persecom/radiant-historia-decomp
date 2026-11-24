@@ -10,8 +10,8 @@ void func_02022508(void *);
 void func_02030574(void *);
 
 typedef struct Node_0202f5fc {
+    u8 pad0[4];
     struct Node_0202f5fc *next;
-    u8 pad4[4];
     s32 unk8;
     u8 unkc;
     u8 padD[3];
