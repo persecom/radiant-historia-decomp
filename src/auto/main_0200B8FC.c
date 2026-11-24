@@ -61,6 +61,31 @@ s32 func_0200b9c8(u8 *arg0, FSFileID arg1) {
     return ret;
 }
 
+s32 func_0200ba20(void *arg0, void *arg1, s32 arg2) {
+    u8 *file = (u8 *)arg0;
+    s32 ret = 0;
+    u8 path[0x118];
+    u32 sp4[3];
+    u32 sp0 = 0;
+    void *arc;
+
+    arc = func_0200b2ac((const char *)arg1, &sp0, path);
+    if (arc != NULL) {
+        func_0200b888(file);
+        *(void **)(file + 0x10) = sp4;
+        *(void **)(file + 8) = arc;
+        sp4[0] = sp0;
+        sp4[1] = (u32)path;
+        sp4[2] = arg2;
+        if (func_0200afb4(file, 0xd, 1) != 0) {
+            ret = 1;
+        } else {
+            *(void **)(file + 8) = NULL;
+        }
+    }
+    return ret;
+}
+
 s32 func_0200baa4(u8 *arg0) {
     return func_0200afb4(arg0, 8, 1);
 }
