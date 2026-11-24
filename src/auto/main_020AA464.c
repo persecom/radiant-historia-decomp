@@ -29,6 +29,17 @@ void func_020aa464(void) {
     data_021601d8 = NULL;
 }
 
+void *func_020aa4d0(s32 arg0) {
+    u8 *node = (u8 *)*data_021601d8;
+    while (node != NULL) {
+        if (*(s16 *)(node + 0x14) == arg0) {
+            return node;
+        }
+        node = *(u8 **)(node + 4);
+    }
+    return NULL;
+}
+
 void func_020aa710(void *arg0) {
     if (arg0 != NULL) {
         func_0210c5dc(arg0);
