@@ -67,6 +67,30 @@ void func_02129c6c(u8 *arg0) {
     } while (--i != 0);
 }
 
+void *func_0212965c(void);
+void func_02129d80(u8 *);
+u8 *func_02129cac(u32 arg0,u32 arg1,u32 arg2,u32 arg3) {
+s32 i;
+u8 *p;
+for (i=0;i<4;i++) { if (*(s16 *)(data_021735a4+i*0xf4)==0) break; }
+if (i==4) return NULL;
+p = data_021735a4+i*0xf4;
+func_02013878(p,0,0xf4);
+*(s16 *)p=1;
+*(void **)(p+8)=func_0212965c();
+if (*(void **)(p+8)==NULL) { func_02129d80(p); return NULL; }
+*(u32 *)(p+0x38)=arg0;
+*(u32 *)(p+0x3c)=arg1;
+*(u32 *)(p+0x40)=arg2;
+*(u32 *)(p+0x44)=arg3;
+*(void **)(p+0x78)=(void *)func_02129c20;
+*(void **)(p+0x7c)=p;
+*(void **)(p+0x80)=(void *)func_02129c50;
+*(void **)(p+0x84)=p;
+func_02129c6c(p);
+return p;
+}
+
 void func_02129d80(u8 *arg0) {
     if (arg0 == NULL) {
         return;
