@@ -116,7 +116,10 @@ src/auto/main_02020C58.c:
     .text start:0x02020c58 end:0x02021c48
 
 src/auto/main_02021C48.c:
-    .text start:0x02021c48 end:0x02022a48
+    .text start:0x02021c48 end:0x02021e78
+
+src/auto/main_02021E78.c:
+    .text start:0x02021e78 end:0x02022a48
 
 src/auto/main_02022A48.c:
     .text start:0x02022a48 end:0x0202318c
