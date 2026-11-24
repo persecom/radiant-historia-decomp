@@ -190,6 +190,55 @@ void *func_02022558(u8 *arg0, u16 arg1) {
     return NULL;
 }
 
+void func_02022584(u8 *list,u16 id,u8 kind,s16 a,s16 b,s16 c,s16 duration){
+s8 *node=func_0210c594(0x18,data_02155c3c);
+*(u16 *)node=id;
+node[2]=kind;
+*(s16 *)(node+4)=a;
+*(s16 *)(node+6)=b;
+*(s16 *)(node+8)=c;
+node[10]=0;
+switch(id){
+case 140:
+case 141:
+case 142:
+case 143:
+case 144:
+case 145:
+case 146:
+case 147:
+case 148:
+case 149:
+case 150:
+case 151:
+case 152:
+case 153:
+case 154:
+case 155:
+case 156:
+case 157:
+case 158:
+case 162:
+case 163:
+case 164:
+case 165:
+case 167:
+case 168:
+case 169:
+case 173:
+case 174:
+if(duration!=-1)node[10]=duration;
+else {node[10]=-1;((u8 *)node)[14]|=1;}
+break;
+case 159:case 160:case 161:
+if(duration!=-1)node[10]=*(s16 *)(node+8);
+else {node[10]=-1;((u8 *)node)[14]|=1;}
+break;
+}
+++*(u16 *)list;
+func_021167f0(list+4,node);
+}
+
 void func_020226c0(u8 *arg0, void *arg1) {
     (*(u16 *)arg0)--;
     func_021168f8(arg0 + 4, arg1);
