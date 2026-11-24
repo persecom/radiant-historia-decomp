@@ -32,7 +32,8 @@ void func_0210fd38(u32 *arg0, u32 arg1, u32 arg2, u32 arg3) {
     u32 len = arg0[3];
     if (len != 0) {
         u32 off = arg0[2];
-        if (off + len == arg2 && arg1 == arg0[1] + len) {
+        u32 end = off + len;
+        if (end == arg2 && arg1 == arg0[1] + len) {
             arg0[3] = len + arg3;
             return;
         }
