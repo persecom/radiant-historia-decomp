@@ -309,11 +309,12 @@ void func_0212e4a0(void) {
 
 void func_0212e4b4(void) {
     s32 i;
-    if (func_0212e594(data_021740e4) != 0) {
-        for (i = 0; i < 10; i++) {
-            if ((s8)data_021740f0[i][0] == 1) {
-                func_0212e204(&data_021740f0[i][0]);
-            }
+    if (func_0212e594(data_021740e4) == 0) {
+        return;
+    }
+    for (i = 0; i < 10; i++) {
+        if ((s8)data_021740f0[i][0] == 1) {
+            func_0212e204(&data_021740f0[i][0]);
         }
     }
     data_021740d8[3] = 0;
