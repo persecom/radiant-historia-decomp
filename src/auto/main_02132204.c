@@ -133,6 +133,10 @@ void func_02132598(void *arg0) {
     *(u32 *)((u8 *)arg0 + 0x44) = 0;
 }
 
+s8 func_02132734(void *arg0) {
+    return *((s8 *)arg0 + 9);
+}
+
 u32 func_02132a94(u8 *arg0) {
     return *(u32 *)(arg0 + 0x24);
 }
