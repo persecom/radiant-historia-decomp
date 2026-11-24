@@ -24,6 +24,10 @@ extern void func_021372c0(void);
 extern void func_02137330(void);
 extern void func_021375e0(void *);
 
+typedef struct {
+    u8 data[1728];
+} Block_02175d40;
+
 extern void func_021378d8(void);
 extern void func_021369a8(void);
 extern void func_02137470(void *);
@@ -121,11 +125,25 @@ void func_02137294(void) {
     func_021369b4();
 }
 
+void func_021372c0(void) {
+    if (data_02175d3c == 0) {
+        memset(data_02175d40, 0, sizeof(data_02175d40));
+    }
+    data_02175d3c++;
+}
+
 void func_02137318(void) {
     func_021369a8();
     func_02137330();
     func_021369b4();
     func_02136980();
+}
+
+void func_02137330(void) {
+    data_02175d3c--;
+    if (data_02175d3c == 0) {
+        memset(data_02175d40, 0, sizeof(data_02175d40));
+    }
 }
 
 extern s32 func_021373b0(s32, s32, s32);
@@ -135,6 +153,32 @@ s32 func_0213737c(s32 arg0, s32 arg1, s32 arg2) {
     ret = func_021373b0(arg0, arg1, arg2);
     func_021369b4();
     return ret;
+}
+
+s32 func_021373b0(s32 arg0, s32 arg1, s32 arg2) {
+    s32 i;
+    u32 *p;
+    for (i = 0; i < 0x18; i++) {
+        if (data_02175d40[i][1] == 0) {
+            break;
+        }
+    }
+    if (i == 0x18) {
+        return 0;
+    }
+    p = (u32 *)data_02175d40[i];
+    p[1] = 1;
+    p[0] = (u32)data_0215c1e4;
+    p[7] = (u32)arg0;
+    p[8] = (u32)arg1;
+    p[9] = (u32)arg2;
+    p[2] = (u32)data_02145af8;
+    p[14] = (u32)func_0213723c;
+    p[15] = (u32)p;
+    p[16] = 0;
+    p[17] = 0;
+    func_021375e0(p);
+    return (s32)p;
 }
 
 void func_02137454(void *arg0) {
