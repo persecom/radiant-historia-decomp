@@ -181,7 +181,7 @@ void func_020042e4(void) {
 
 extern s32 func_02005418(void);
 extern void func_02005318(u32);
-extern u8 data_0213e4a8[];
+extern u16 data_0213e4a8[][3];
 extern u8 data_0213e4aa[];
 extern u8 data_0213e4ac[];
 void func_020042fc(void *arg0, u32 arg1, u32 arg2) {
@@ -201,14 +201,15 @@ void func_02004364(void) {
 }
 
 void func_0200439c(void) {
-    s32 val = func_02005418();
-    u16 a = *(u16 *)(data_0213e4a8 + val * 6);
-    u16 b = *(u16 *)(data_0213e4aa + val * 6);
-    u16 c = *(u16 *)(data_0213e4ac + val * 6);
-    data_0215cd40[5] = val;
-    data_0215cd40[1] = (u32)a << 12;
-    data_0215cd40[6] = (u32)b << 12;
-    data_0215cd40[7] = (u32)c << 12;
+s32 val=func_02005418(), off=val*6;
+u32 a=*(volatile u16 *)(data_0213e4a8+off)<<12;
+u32 b=*(volatile u16 *)(data_0213e4aa+off)<<12;
+u32 c=*(u16 *)(data_0213e4ac+off)<<12;
+u32 *dst=data_0215cd40;
+((volatile u32 *)dst)[5]=val;
+dst[1]=a;
+dst[6]=b;
+dst[7]=c;
 }
 
 void func_020043f8(void *arg0,u32 offset,u32 size) {
