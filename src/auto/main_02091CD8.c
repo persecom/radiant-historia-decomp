@@ -10,6 +10,8 @@ typedef struct {
 extern u8 *data_0216010c;
 typedef struct { s16 data[10]; } Unk_02092194;
 extern const Unk_02092194 data_02140f2c;
+extern const Unk_02092194 data_021412ec;
+extern const Unk_02092194 data_021413dc;
 extern void func_020a3bbc(s32);
 extern void func_021098ac(void *);
 
