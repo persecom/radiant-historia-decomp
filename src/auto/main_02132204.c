@@ -256,7 +256,13 @@ void func_02132af0(u32 *arg0) {
 }
 
 void func_02132afc(u8 *arg0, s32 arg1) {
-    *(u32 *)(arg0 + 0x38) = (arg1 == 0) ? 0 : 1;
+    s32 v;
+    if (arg1 == 0) {
+        v = 0;
+    } else {
+        v = 1;
+    }
+    *(u32 *)(arg0 + 0x38) = v;
 }
 
 void func_02132b10(void **arg0, void **arg1) {
@@ -270,8 +276,8 @@ void func_02132b10(void **arg0, void **arg1) {
 
 u8 *func_02132b38(u8 *arg0) {
     s32 i;
-    s32 count;
     u8 *p;
+    s32 count;
     if (*(s8 *)arg0 == 0) {
         return NULL;
     }
