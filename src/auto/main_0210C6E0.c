@@ -214,6 +214,19 @@ const char *func_0210cd60(const char *arg0) {
     return r4;
 }
 
+s32 func_0210cd90(s32 arg0) {
+    void *r0 = data_021626e8.f4;
+    const char *r4 = *(const char **)((u8 *)r0 + 8);
+    if (!func_021093f0(r0)) {
+        return arg0;
+    }
+    if (*r4 == '\0') {
+        return arg0;
+    }
+    func_02012590(r4, (const char *)data_02155c58, &arg0);
+    return arg0;
+}
+
 extern u8 data_02155c5c[4];
 extern s32 func_021093f0(void *);
 extern void func_02012590(const char *, const char *, ...);
