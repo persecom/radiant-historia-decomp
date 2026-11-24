@@ -39,6 +39,15 @@ void func_021380ac(void) {
     func_0213800c(3);
 }
 
+extern s32 func_021381cc(u8 *, s32, s32, s32 *);
+s32 func_02138190(u8 *arg0, s32 arg1, s32 arg2, s32 *arg3) {
+    s32 ret;
+    func_0213807c();
+    ret = func_021381cc(arg0, arg1, arg2, arg3);
+    func_0213808c();
+    return ret;
+}
+
 void func_0213825c(void *arg0, void *arg1) {
     func_0213807c();
     ((void (*)(void *, void *))func_02138280)(arg0, arg1);
