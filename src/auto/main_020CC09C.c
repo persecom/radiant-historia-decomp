@@ -13,6 +13,35 @@ extern u8 *func_020cda08(u32, u32);
 extern void func_020a8810(void *, s32);
 
 extern void func_020cefe4(void);
+void func_020cc814(void) {
+ s32 changed=0;
+ u8 *p=data_02160238;
+ u8 old;
+ s32 one=1;
+ if(p[0x772])return;
+ if(data_021626a8&0x40) {
+ if(p[0x70a])p[0x70a]--; else p[0x70a]=one;
+ changed=1;
+ func_0210d27c(2);
+ }
+ if(data_021626a8&0x80) {
+ changed=1;
+ p[0x70a]++;
+ p[0x70a]=p[0x70a]%2;
+ func_0210d27c(2);
+ }
+ if(data_021628f8) {
+ old=p[0x70a];
+ if(func_020ce9c0(7)){p[0x70a]=0;changed=1;}
+ if(func_020ce9c0(8)){changed=1;p[0x70a]=changed;}
+ if(changed){if(p[0x70a]==old)func_020cef00();else func_0210d27c(2);}
+ if(func_020ce9c0(1)&&!p[0x772]){p[0x772]=4;func_0210d27c(5);}
+ }
+ if((data_021626a8&2)&&!p[0x772]){p[0x772]=4;func_0210d27c(5);}
+ if(data_021626a8&1)func_020cef00();
+ if(changed)func_020ccb10();
+}
+
 void func_020cc988(void) {
  s32 changed=0;
  u8 *p=data_02160238;
