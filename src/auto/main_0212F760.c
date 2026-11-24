@@ -11,3 +11,7 @@ void func_0212fcfc(void) {
     func_0212fd20();
 }
 
+s32 func_0212fd20(void) {
+    return 0x60;
+}
+
