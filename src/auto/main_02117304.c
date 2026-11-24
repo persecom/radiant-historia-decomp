@@ -221,6 +221,19 @@ s32 func_021178d4(void *arg0, void **arg1) {
     return 0;
 }
 
+void *func_02117904(void *arg0, u32 arg1) {
+    u8 *p = (u8 *)arg0 + *(u16 *)((u8 *)arg0 + 0xc);
+    u16 count = *(u16 *)((u8 *)arg0 + 0xe);
+    u16 i;
+    for (i = 0; i < count; i++) {
+        if (*(u32 *)p == arg1) {
+            return p;
+        }
+        p += *(u32 *)(p + 4);
+    }
+    return NULL;
+}
+
 extern u32 data_0216e22c[];
 void func_02117a48(u32 arg0) {
     data_0216e22c[1] = arg0;
