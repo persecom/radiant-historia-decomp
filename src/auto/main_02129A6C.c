@@ -83,14 +83,46 @@ void func_0212a0d0(u8 *arg0) {
     func_0212a0e4(arg0, v);
 }
 
-void func_0212a180(void *arg0, u8 *arg1, u32 arg2) {
+void func_0212a0e4(void *arg0, s32 arg1) {
+    u8 *p = (u8 *)arg0;
+    u32 a = *(u32 *)(p + 0x3c);
+    u32 b = *(u32 *)(p + 0x40);
+    u32 c = *(u32 *)(p + 0x44);
+    *(u16 *)(p + 0x2) = 1;
+    *(u32 *)(p + 0x14) = 0xbb80;
+    *(u8 *)(p + 0xe) = 2;
+    *(u8 *)(p + 0xd) = 0x10;
+    *(u32 *)(p + 0x18) = 0x7fffffff;
+    *(u8 *)(p + 0xf) = 0x7f;
+    *(u32 *)(p + 0x10) = 0x400;
+    *(u32 *)(p + 0x50) = 2;
+    *(u32 *)(p + 0x54) = 0x7f;
+    *(u32 *)(p + 0x58) = 0x400;
+    *(u32 *)(p + 0x5c) = a;
+    *(u32 *)(p + 0x60) = b;
+    *(u32 *)(p + 0x64) = c;
+    *(u32 *)(p + 0x8c) = 0;
+    *(u16 *)(p + 0x1c) = 0;
+    *(u16 *)(p + 0x24) = 0;
+    *(u16 *)(p + 0x26) = 0;
+    *(u32 *)(p + 0x20) = 0;
+    *(u32 *)(p + 0x28) = 0;
+    *(u32 *)(p + 0x2c) = 0;
+    *(u32 *)(p + 0x30) = 0;
+    *(u32 *)(p + 0x34) = 0;
+    *(u32 *)(p + 0x88) = 0;
+    *(u8 *)(p + 0xde) = 0;
+    *(u8 *)(p + 0xdf) = 0;
+}
+
+s32 func_0212a180(void *arg0, u8 *arg1, u32 arg2) {
     u16 v;
     func_02129c6c(arg0);
-    v = arg1[0] | (arg1[1] << 8);
+    v = (arg1[0] << 8) | arg1[1];
     if (v != 0x8000) {
-        return;
+        return -1;
     }
-    func_02129db4(arg0, arg1, arg2);
+    return func_02129db4(arg0, arg1, arg2);
 }
 
 void func_0212a1c8(u8 *arg0, u32 arg1, u32 arg2) {
@@ -119,9 +151,10 @@ void *func_0212a58c(u8 *arg0) {
 }
 
 void func_0212a98c(void) {
-    data_02173974[1]++;
-    if (data_02173974[1] == 1) {
-        data_02173974[0] = 0;
+    volatile u32 *p = data_02173974;
+    p[1]++;
+    if (p[1] == 1) {
+        p[0] = 0;
     }
 }
 
