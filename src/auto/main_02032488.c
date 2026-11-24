@@ -2,6 +2,9 @@
 #include "common.h"
 
 extern void func_020c2e80(void);
+void func_0203305c(void) {
+}
+
 void func_0203312c(void) {
     func_020c2e80();
 }
