@@ -79,6 +79,11 @@ void func_020c7818(void *arg0) {
     }
 }
 
+extern void func_020c7f6c(void *, s32, s16);
+void func_020c7fe4(u8 *arg0, s32 arg1) {
+    func_020c7f6c(arg0, arg1, *(s16 *)(arg0 + 0x3c));
+}
+
 s32 func_020c8124(void) {
     return 5;
 }
