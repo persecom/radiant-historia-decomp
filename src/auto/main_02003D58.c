@@ -156,11 +156,10 @@ void func_0200422c(void) {
 }
 
 void func_02004244(void *arg0, u32 arg1, u32 arg2) {
-    u32 dst = arg1 + 0x98000 + 0x6800000;
     if (data_02145ba4 != -1) {
-        func_02008840(data_02145ba4, arg0, dst, arg2, 0, 0, 1);
+        func_02008840(data_02145ba4, arg0, arg1 + 0x98000 + 0x6800000, arg2, 0, 0, 1);
     } else {
-        func_02008e38(arg0, dst, arg2);
+        func_02008e38(arg0, arg1 + 0x98000 + 0x6800000, arg2);
     }
 }
 
