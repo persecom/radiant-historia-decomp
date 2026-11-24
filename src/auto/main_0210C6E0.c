@@ -175,15 +175,15 @@ void *func_0210ca88(void *arg0, s32 arg1) {
  char name[64];
  u8 *p=arg0;
  s32 hash,i,count;
- void *saved,*result;
+ void *result,*saved;
  func_02005e80(name,data_02155c40,(const char *)arg1);
  if(name[0]!='[') func_02005e80(name,data_02155c44,(const char *)arg1);
  hash=func_0210c060(name,func_02012348(name));
  if(*(void **)(p+0x18)) {
  count=*(s32 *)(p+0x14);
  for(i=0;i<count;i++) {
- u8 *entries=*(u8 **)(p+0x18);
- if(hash==*(u16 *)(entries+i*8+4) && func_020123f0(*(char **)(entries+i*8),name)==0)
+ SectionEntry *entries=*(SectionEntry **)(p+0x18);
+ if(hash==entries[i].hash && func_020123f0(entries[i].name,name)==0)
  return *(void **)(*(u8 **)(p+0x18)+i*8);
  }
  }
