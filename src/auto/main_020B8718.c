@@ -34,6 +34,9 @@ extern void func_020b9214(void *, u16, s32);
 extern void func_020b9274(void *, u16, s32);
 extern void func_020b92b0(void);
 extern void func_020b9250(void);
+extern void func_020c83f4(u8 *, s32, s32, s32);
+extern void func_020c738c(void *, s32, s32);
+extern u16 data_02143904[];
 
 void func_020b8844(void) {
     *(volatile u32 *)0x0400001c = 0;
@@ -98,29 +101,47 @@ void func_020b8d94(void) {
 }
 
 void func_020b90f0(void) {
-    void *obj = func_020c9c10(*(void **)(data_021601ec + 0x4c), 2);
-    u8 *item;
+    void *obj;
+    u8 *item = NULL;
+    u8 *p;
     void *node;
-    func_02111ccc(obj);
-    item = *(u8 **)(*(u8 **)(data_02160204 + 0) + 0x10c);
-    if (item == NULL) {
-        return;
+    obj = func_020c9c10(*(void **)(data_021601ec + 0x4c), 2);
+    p = *(u8 **)(data_02160204 + 0x10c);
+    if (p != NULL) {
+        item = *(u8 **)p;
     }
-    item = *(u8 **)item;
-    while (item != NULL) {
-        u16 v = *(u16 *)(item + 8);
-        node = func_02111d3c(obj);
-        *(u16 *)((u8 *)node + 2) = v;
-        *(u16 *)((u8 *)node + 4) = func_02110b38(v);
-        *(u32 *)((u8 *)node + 8) = *(u16 *)(item + 0xa);
-        *((u8 *)node + 6) |= 4;
-        item = *(u8 **)(item + 4);
+    func_02111ccc(obj);
+    if (item != NULL) {
+        do {
+            s32 v;
+            node = func_02111d3c(obj);
+            v = *(u16 *)(item + 8);
+            *(u16 *)((u8 *)node + 2) = v;
+            *(u16 *)((u8 *)node + 4) = func_02110b38(v);
+            *(u32 *)((u8 *)node + 8) = *(u16 *)(item + 0xa);
+            *((u8 *)node + 6) |= 4;
+            item = *(u8 **)(item + 4);
+        } while (item != NULL);
     }
     func_02112688(obj);
     func_021108f0(obj, 0);
     func_02112068(obj);
     func_02111bf0(obj);
     func_02111ff0(obj);
+}
+
+void func_020b91a8(void) {
+    s32 zero = 0;
+    u8 *root = data_021601ec;
+    void *obj = func_020c9c10(*(void **)(root + 0x4c), 2);
+    u8 *p = func_02112048(obj);
+    if (p != NULL) {
+        func_020b9214(*(void **)(root + *(u16 *)(p + 4) * 4 + 0x60), *(u16 *)(p + 2), zero);
+        func_020b9274(*(void **)(root + *(u16 *)(p + 4) * 4 + 0x74), *(u16 *)(p + 2), zero);
+    } else {
+        func_020b9250();
+        func_020b92b0();
+    }
 }
 
 void func_020b9250(void) {
