@@ -13,6 +13,12 @@ extern void func_02006510(s32);
 extern void func_0212c4b8(s32);
 extern void func_0212e860(void *);
 extern u32 func_0212ea54(void);
+extern void func_02013878(void *, s32, u32);
+
+typedef struct {
+    u8 pad[0x24];
+    s32 (*method)(void *, s32);
+} Unk_0212f038;
 
 extern void func_021383cc(void);
 void func_0212e764(void) {
@@ -217,9 +223,12 @@ void func_0212ed50(u8 *arg0, u8 *arg1) {
 void func_0212ee04(u8 *arg0, u8 *arg1) {
     s8 *src = (s8 *)arg0;
     s8 c;
+    u8 hi, lo;
     *(u16 *)(arg1 + 0) = (arg0[0] << 8) | arg0[1];
     if (*(s16 *)(arg1 + 0) > 0) {
-        *(u16 *)(arg1 + 2) = (arg0[2] << 8) | arg0[3];
+        hi = arg0[2];
+        lo = arg0[3];
+        *(u16 *)(arg1 + 2) = (hi << 8) | lo;
     }
     c = src[4];
     arg1[4] = c;
