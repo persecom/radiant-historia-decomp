@@ -147,6 +147,27 @@ u32 func_ov000_02176d10(u32 (*arg0)(void *), void *arg1) {
 void func_ov000_02176da0(void) {
 }
 
+u32 func_ov000_02176f50(void) {
+    u8 *p = (u8 *)((u32)(func_ov000_021779c4 + 0x1000) - 0x2000) + 0x1000;
+    if (p[0] != 0x0f) return 0xb177;
+    if (p[1] != 0xc0) return 0xb177;
+    if (p[2] != 0x8f) return 0xb177;
+    if (p[3] != 0xe1) return 0xb177;
+    if (p[4] != 0x0c) return 0xb177;
+    if (p[5] != 0xc0) return 0xb177;
+    if (p[6] != 0x1c) return 0xb177;
+    if (p[7] != 0xe0) return 0xb177;
+    if (p[8] != 0x00) return 0xb177;
+    if (p[9] != 0xc0) return 0xb177;
+    if (p[10] != 0xa0) return 0xb177;
+    if (p[11] != 0x03) return 0xb177;
+    if (p[12] != 0x1c) return 0xb177;
+    if (p[13] != 0xc0) return 0xb177;
+    if (p[14] != 0x8c) return 0xb177;
+    if (p[15] != 0x12) return 0xb177;
+    return 0xaa65;
+}
+
 u32 func_ov000_021774e4(u32 arg0) {
     u32 v = (arg0 >> 24) & 0xff;
     if ((v & 0xe) == 0xa) {
