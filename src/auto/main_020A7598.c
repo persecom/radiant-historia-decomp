@@ -5,3 +5,7 @@ void func_020a7fe8(void) {
     *(volatile u32 *)0x0400001c = 0;
     *(volatile u32 *)0x04000000 = (*(volatile u32 *)0x04000000 & ~0x1f00) | 0x1f00;
 }
+
+void func_020a80cc(void) {
+}
+
