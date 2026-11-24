@@ -177,6 +177,12 @@ void func_02138280(u32 arg0, u32 arg1) {
     ((u32 *)(data_021767c4 + arg0 * 0x48 + arg1 * 0xc))[0] = 0;
 }
 
+void func_021382fc(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
+    func_0213807c();
+    func_02138338(arg0, arg1, arg2, arg3, arg4);
+    func_0213808c();
+}
+
 extern void func_02138338(u32, u32, u32, u32, u32);
 extern void func_02138130(void *);
 extern u8 data_0215c74c[];
