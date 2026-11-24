@@ -2,6 +2,13 @@
 #include "common.h"
 
 extern u8 *data_02160af0;
+extern u32 data_02155c3c;
+
+typedef struct {
+    u32 x;
+    u32 y;
+    u32 z;
+} Unk_Vec3_020f07b0;
 extern u8 data_02162618[];
 extern void func_021168f8(void *, void *);
 extern void func_0210b4cc(void *);
