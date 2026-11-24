@@ -76,6 +76,15 @@ void func_020ae50c(s32 arg0) {
     *(u32 *)(obj + 0x40) = 0;
 }
 
+void func_020ae530(void) {
+    u8 *base = (u8 *)func_020adda8();
+    s32 i;
+    for (i = 0; i < 8; i++) {
+        u8 *obj = *(u8 **)(base + i * 0x50 + 0x16c);
+        *(u32 *)(obj + 0x40) = 0;
+    }
+}
+
 s32 func_020ae9cc(u32 arg0, s32 arg1) {
     u8 *base = func_020adda8();
     u8 *p;
