@@ -73,6 +73,38 @@ void func_02046594(void) {
     *(u16 *)(data_021600b8 + 0x1c) = 0;
 }
 
+extern void func_020466f4(void);
+extern void func_0210c5dc(void *);
+void func_02046600(void) {
+    u8 *node;
+    if (data_021600b8 == NULL) {
+        return;
+    }
+    while ((node = *(u8 **)data_021600b8) != NULL) {
+        if (*(u32 *)(node + 0x128) != 0) {
+            *(u32 *)(node + 0x178) += 1;
+            func_020a994c(node + 0x144);
+            func_020a98a0(node + 0x144);
+        }
+        func_021168f8(data_021600b8, node);
+        func_020f58c0(node);
+    }
+    while ((node = *(u8 **)(data_021600b8 + 0xc)) != NULL) {
+        if (*(u32 *)(node + 0x128) != 0) {
+            *(u32 *)(node + 0x178) += 1;
+            func_020a994c(node + 0x144);
+            func_020a98a0(node + 0x144);
+        }
+        func_021168f8(data_021600b8 + 0xc, node);
+        func_020f58c0(node);
+    }
+    func_020466f4();
+    if (data_021600b8 != NULL) {
+        func_0210c5dc(data_021600b8);
+        data_021600b8 = NULL;
+    }
+}
+
 void func_020466f4(void) {
     if (data_021600b8 == NULL) {
         return;
