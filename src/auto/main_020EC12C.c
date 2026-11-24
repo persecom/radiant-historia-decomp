@@ -50,6 +50,18 @@ void func_020ec6ac(void) {
     }
 }
 
+void func_020ec88c(u8 *arg0, s32 arg1, s32 arg2) {
+    if (*(s32 *)(arg0 + 0x40) == arg1) {
+        return;
+    }
+    if (arg2 == 0) {
+        arg2 = 1;
+    }
+    if (arg2 != 0 && func_020ebd5c(*(void **)arg0, arg1, arg2) != 0) {
+        *(s32 *)(arg0 + 0x40) = arg1;
+    }
+}
+
 void func_020ec98c(u32 arg0) {
     *(u32 *)(data_02160ab4 + 0x64) = arg0;
 }
