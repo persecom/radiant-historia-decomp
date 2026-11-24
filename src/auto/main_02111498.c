@@ -346,6 +346,25 @@ void func_02112198(void *arg0) {
     }
 }
 
+s32 func_021121b8(u8 *arg0) {
+    func_02111728(arg0);
+    if (*(void **)(arg0 + 0x8c) != NULL) {
+        func_020c9940(*(void **)(arg0 + 0x8c));
+        if (*(void **)(arg0 + 0x8c) != NULL) {
+            func_0210c5dc(*(void **)(arg0 + 0x8c));
+            *(void **)(arg0 + 0x8c) = NULL;
+        }
+        *(void **)(arg0 + 0x8c) = NULL;
+    }
+    void *p = *(void **)(arg0 + 0x90);
+    if (p == NULL) {
+        return (s32)p;
+    }
+    ((void (*)(void *))*(void **)(p + 4))(p);
+    *(void **)(arg0 + 0x90) = NULL;
+    return 0;
+}
+
 extern s32 func_021117b0(u8 *);
 extern u16 func_02111d10(u8 *);
 extern void func_020c98f8(void *);
