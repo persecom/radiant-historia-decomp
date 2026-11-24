@@ -472,6 +472,43 @@ void func_02137a58(u32 arg0, u32 arg1, u32 arg2) {
     func_021369b4();
 }
 
+void func_02137a84(u32 arg0,u32 mode,u32 arg2) {
+ s32 start;
+ s32 size;
+ s32 *buf=(s32 *)arg2;
+ u8 *p=(u8 *)arg0;
+ s32 previous;
+ if(!p){func_02137250(data_0215c490,data_0215c49c);return;}
+ if(!*(s32 *)(p+4)){func_02137250(data_0215c4b8,data_0215c4c4);return;}
+ size=*(s32 *)(p+0x20);
+ if(!size){func_02137250(data_0215c4e4,data_0215c4f0);return;}
+ if(buf[1]<=0)return;
+ start=buf[0];
+ if(!start)return;
+ if(mode==0) {
+ previous=(*(s32 *)(p+0x14)+size-buf[1])%size;
+ if(previous==(start-*(s32 *)(p+0x1c))%size) {
+ *(s32 *)(p+0x14)=previous;
+ *(s32 *)(p+0x10)+=buf[1];
+ } else {
+ if(*(u32 *)(p+0x38))((void (*)(u32,s32))*(u32 *)(p+0x38))(*(u32 *)(p+0x3c),-3);
+ }
+ *(s32 *)(p+0x28)-=buf[1];
+ } else if(mode==1) {
+ previous=(*(s32 *)(p+0x18)+size-buf[1])%size;
+ if(previous==(start-*(s32 *)(p+0x1c))%size) {
+ *(s32 *)(p+0x18)=previous;
+ *(s32 *)(p+0xc)+=buf[1];
+ } else {
+ if(*(u32 *)(p+0x38))((void (*)(u32,s32))*(u32 *)(p+0x38))(*(u32 *)(p+0x3c),-3);
+ }
+ *(s32 *)(p+0x30)-=buf[1];
+ } else {
+ buf[1]=0;buf[0]=0;
+ if(*(u32 *)(p+0x38))((void (*)(u32,s32))*(u32 *)(p+0x38))(*(u32 *)(p+0x3c),-3);
+ }
+}
+
 extern s32 func_02137c68(u8 *, s32, s32, s32 *);
 s32 func_02137c2c(u8 *arg0, s32 arg1, s32 arg2, s32 *arg3) {
     s32 ret;
