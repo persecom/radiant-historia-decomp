@@ -44,6 +44,36 @@ void func_02129c50(u8 *arg0, s32 arg1, s32 arg2) {
     *(s32 *)(arg0 + 0x88) = b;
 }
 
+void func_02129c6c(u8 *arg0) {
+    s32 i;
+    *(u32 *)(arg0 + 0xc4) = 0;
+    *(s16 *)(arg0 + 0xd8) = 0;
+    *(s16 *)(arg0 + 0xda) = -0x80;
+    *(s16 *)(arg0 + 0xdc) = -0x80;
+    for (i = 0; i < 16; i++) {
+        arg0[0xc8 + i] = 0;
+    }
+}
+
+void func_02129d80(u8 *arg0) {
+    if (arg0 == NULL) {
+        return;
+    }
+    {
+        void *p = *(void **)(arg0 + 8);
+        *(void **)(arg0 + 8) = NULL;
+        func_02129798(p);
+    }
+    func_02013878(arg0, 0, 0xf4);
+    *(u16 *)(arg0 + 0) = 0;
+}
+
+void func_0212a0d0(u8 *arg0) {
+    s16 v = *(s16 *)(arg0 + 0x9a);
+    *(s16 *)(arg0 + 0x98) = v;
+    func_0212a0e4(arg0, v);
+}
+
 void *func_0212a220(void *arg0) {
     return *(void **)((u8 *)arg0 + 0x10);
 }
