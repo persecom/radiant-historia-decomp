@@ -13,9 +13,72 @@ extern void func_0200aeac();
 extern void func_02008f74(void *, s32, s32);
 extern s32 func_020124a8(s32, u8 *, s8 *);
 extern u8 *data_0215ed68;
+extern char data_02145c00[];
+s32 func_0200b810(const char *str, s32 pos);
+s32 func_0200b844(char *str);
 extern s8 data_0215ed78[0x100];
 extern s32 func_02012348(const char *);
 s32 func_0200b77c(const char *str, s32 pos);
+
+s32 func_0200ad00(void *arg0, s32 arg1) {
+    u8 *arc = arg0;
+    u8 *ret = NULL;
+    u32 irq;
+
+    irq = func_02008128();
+    if (*(u32 *)(arc + 0x14) & 0x20) {
+        u8 *cur;
+        *(u32 *)(arc + 0x14) &= ~0x20;
+        cur = *(u8 **)(arc + 8);
+        while (cur != NULL) {
+            u8 *next = *(u8 **)cur;
+            s32 flag = (*(volatile u32 *)(cur + 0xc) & 2) ? 1 : 0;
+            if (flag && !(*(volatile u32 *)(cur + 0xc) & 0x40)) {
+                func_0200a884(cur, 3);
+                if (next == NULL) {
+                    next = *(u8 **)(arc + 8);
+                }
+            }
+            cur = next;
+        }
+    }
+    func_0200813c(irq);
+
+    irq = func_02008128();
+    if (!(*(u32 *)(arc + 0x14) & 0x40) && !(*(u32 *)(arc + 0x14) & 8) && *(u8 **)(arc + 8) != NULL) {
+        s32 do_activate = (arg1 != 0 && !(*(u32 *)(arc + 0x14) & 0x10));
+        if (do_activate) {
+            *(u32 *)(arc + 0x14) |= 0x10;
+        }
+        func_0200813c(irq);
+        if (do_activate) {
+            func_0200a980(*(u8 **)(arc + 8), 9);
+        }
+        irq = func_02008128();
+        if (arg1 != 0 || do_activate != 0) {
+            ret = *(u8 **)(arc + 8);
+            *(u32 *)(ret + 0xc) |= 0x40;
+        }
+        if (arg1 != 0 && (*(volatile u32 *)(ret + 0xc) & 4)) {
+            func_02006560(ret + 0x18);
+            ret = NULL;
+        }
+    } else if (arg1 != 0) {
+        if (*(u32 *)(arc + 0x14) & 0x10) {
+            u32 tmp[0x48 / 4];
+            func_0200b888(tmp);
+            tmp[2] = (u32)arc;
+            *(u32 *)(arc + 0x14) &= ~0x10;
+            func_0200a980(tmp, 10);
+        }
+        if (*(u32 *)(arc + 0x14) & 0x40) {
+            *(u32 *)(arc + 0x14) = (*(u32 *)(arc + 0x14) & ~0x40) | 8;
+            func_02006560(arc + 0xc);
+        }
+    }
+    func_0200813c(irq);
+    return (s32)ret;
+}
 
 void func_0200aeac(u8 *arg0) {
     u8 *r4;
@@ -176,6 +239,61 @@ s32 func_0200b24c(char *dst, s32 dst_len, const char *src, s32 src_len, s32 *tru
     }
     dst[i] = '\0';
     return i;
+}
+
+u8 *func_0200b2ac(const char *str, u32 *arg1, u8 *arg2) {
+    s32 zero = 0;
+    s32 one = 1;
+    u32 *argp = arg1;
+    u8 *buf = arg2;
+    const char *p = str;
+    s32 pos = 0;
+    s32 zero2 = 0;
+    s32 truncated = 0;
+    u32 sp4;
+    s32 c;
+    s32 step;
+
+    if (*(u32 *)((u8 *)data_0215ed68 + 4) == 0) {
+        *(u32 *)((u8 *)data_0215ed68 + 4) = *(u32 *)data_0215ed68;
+        *(u16 *)((u8 *)data_0215ed68 + 8) = 0;
+        *(u32 *)((u8 *)data_0215ed68 + 0xc) = 0;
+        *(u16 *)((u8 *)data_0215ed68 + 0xa) = 0;
+        *(u8 *)data_0215ee78 = 0;
+    }
+    c = *(u8 *)p;
+    if (c == '/' || c == '\\') {
+        sp4 = *(u32 *)((u8 *)data_0215ed68 + 4);
+        p++;
+    } else {
+        pos = 0;
+        for (;;) {
+            c = p[pos];
+            if (c == 0 || c == '/' || c == '\\') {
+                sp4 = *(u32 *)((u8 *)data_0215ed68 + 4);
+                if (argp != 0) {
+                    *argp = *(u32 *)((u8 *)data_0215ed68 + 8);
+                }
+                break;
+            }
+            if (c == ':') {
+                sp4 = (u32)func_0200b0ec((u8 *)p, pos);
+                pos++;
+                c = p[pos];
+                if (c == '/' || c == '\\') {
+                    p++;
+                }
+                if (argp != 0) {
+                    *argp = zero2;
+                }
+                break;
+            }
+            step = ((u32)(((u8)c ^ 0x20) - 0xa1) < 0x3c) ? one : zero2;
+            pos += 1;
+            pos += step;
+        }
+    }
+    return (u8 *)sp4;
 }
 
 void func_0200b594(u8 *arg0) {
