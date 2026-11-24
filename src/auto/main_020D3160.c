@@ -33,3 +33,15 @@ void func_020d3c98(s32 arg0) {
         mgr->unk_ec = arg0;
     }
 }
+
+void *func_020d3cb0(s32 arg0) {
+    Node12c_020d3160 *node = data_02160244->unk_12c;
+    while (node != NULL) {
+        if (node->unk_0 == arg0) {
+            return node;
+        }
+        node = node->next;
+    }
+    return NULL;
+}
+
