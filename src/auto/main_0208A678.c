@@ -28,6 +28,25 @@ extern UnkBuf27_0208b198 data_02140ec0;
 extern void func_020a3bbc(u16);
 extern void func_021098ac(void *);
 
+void func_0208b110(void) {
+    u16 state = *(u16 *)(data_021600b0 + 0xde);
+    if (state != 5 && state != 6) {
+        return;
+    }
+    func_0208c420(0, 0);
+    func_0208b198();
+}
+
+void func_0208b144(void) {
+    u8 *p = data_021600b0;
+    u16 state = *(u16 *)(p + 0xde);
+    if (state != 5 && state != 6) {
+        return;
+    }
+    func_0208b298();
+    func_0208b398(*(UnkVec3_0208b144 *)(p + 0x1e0), *(s16 *)(p + 0x1ea));
+}
+
 void func_0208b198(void) {
     UnkBuf10_0208b198 other;
     UnkBuf27_0208b198 buf;
