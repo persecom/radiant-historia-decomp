@@ -7,10 +7,9 @@ extern void func_020a3bbc(s32);
 extern void func_021098ac(void *);
 extern u32 data_0216263c[3];
 static inline u16 RandomRange_bedf8(u16 max) {
-u32 seed=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
 u32 value;
-data_0216263c[0]=seed;
-value=seed>>16;
+data_0216263c[0]=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
+value=data_0216263c[0]>>16;
 if(max) value=(value*max)>>16;
 return value;
 }
