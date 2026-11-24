@@ -38,6 +38,22 @@ void func_02022f60(void **arg0) {
     }
 }
 
+extern void func_0202318c(u32, u8 *, u32, u32);
+u8 *func_020230c8(u8 **arg0, u16 arg1) {
+    u8 *node;
+    if (arg0 == NULL) {
+        return NULL;
+    }
+    node = *arg0;
+    while (node != NULL) {
+        if (*(u16 *)node == arg1) {
+            return node;
+        }
+        node = *(u8 **)(node + 0x1c);
+    }
+    return NULL;
+}
+
 void *func_02023100(void **arg0) {
     return *arg0;
 }
