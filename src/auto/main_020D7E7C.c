@@ -12,11 +12,6 @@ typedef struct UnkStruct_020d60248 {
     UnkNode_020d60248 *unk08;
 } UnkStruct_020d60248;
 
-typedef struct UnkNode6_020d85f4 {
-    u16 unk0[3];
-    u16 unk6[3];
-} UnkNode6_020d85f4;
-
 extern UnkStruct_020d60248 data_02160248;
 extern u32 data_02155c3c;
 extern s32 data_02162814;
