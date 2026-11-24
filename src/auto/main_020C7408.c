@@ -100,3 +100,8 @@ void func_020c813c(void *arg0) {
     }
 }
 
+s32 func_020c8268(u8 *arg0) {
+    arg0[0x38] = 0x1f;
+    return 0;
+}
+
