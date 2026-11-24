@@ -71,9 +71,9 @@ void func_02089a98(void) {
 
 BOOL func_02089ae4(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 x1 = arg0 + arg2;
-    s32 y1 = arg1 + arg3;
     u16 x = data_02162908[0];
     u16 y = data_02162908[1];
+    s32 y1 = arg1 + arg3;
     s32 ret;
     if (x >= arg0 && x <= x1 && y >= arg1 && y <= y1) {
         ret = 1;
@@ -83,17 +83,24 @@ BOOL func_02089ae4(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     return !!ret;
 }
 
-s32 func_02089b38(Unk_02089b38 *arg0, Unk_02089b38 *arg1) {
-    Unk_02089b38 b;
-    Unk_02089b38 a;
-    a = *arg0;
-    b = *arg1;
-    if (a.field_2a < b.field_2a) {
-        return -1;
-    }
-    if (a.field_2a > b.field_2a) {
-        return 1;
-    }
-    return 0;
+s32 func_02089b38(Unk_02089b38 *arg0, Unk_02089b38 *arg1)
+{
+  Unk_02089b38 a;
+  int new_var;
+  s16 new_var2;
+  Unk_02089b38 b;
+  a = *arg0;
+  b = *arg1;
+  new_var2 = a.field_2a;
+  if (a.field_2a < b.field_2a)
+  {
+    return -1;
+  }
+  new_var = new_var2 > b.field_2a;
+  if (new_var)
+  {
+    return 1;
+  }
+  return 0;
 }
 
