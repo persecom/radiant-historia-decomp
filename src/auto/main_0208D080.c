@@ -28,11 +28,13 @@ void func_0208d84c(s16 arg0, s16 arg1, s16 arg2, s16 arg3) {
     func_021098ac(&b);
 }
 
-void func_0208da7c(s16 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s16 arg5, s16 arg6) {
+void func_0208da7c(s16 arg0, s32 arg1, s16 arg2, s16 arg3, s16 arg4, s16 arg5, s16 arg6) {
     Unk10 sp;
+    s32 v;
     sp = data_021411ac;
     func_020a3bbc(arg0);
-    sp.f1 = (u32)arg4 * (u32)arg1;
+    v = arg4 * arg1;
+    sp.f1 = v;
     sp.f2 = 0;
     sp.f8 = arg4;
     sp.f3 = arg4;
