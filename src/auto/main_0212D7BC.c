@@ -57,6 +57,13 @@ s32 func_0212d9cc(void *arg0, void *arg1) {
     return ret;
 }
 
+s32 func_0212d9f8(void *arg0, void *arg1) {
+    if ((s32)arg1 < 0x100) {
+        return (s32)func_0212d89c(0, 0, 0, (s32)arg0);
+    }
+    return (s32)func_0212d938(0, 0, 0, (s32)arg0);
+}
+
 s32 func_0212dc0c(s8 *arg0) {
     return arg0[1];
 }
