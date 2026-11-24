@@ -26,7 +26,8 @@ extern u32 data_02176644[16];
 extern u8 data_021766bc[256];
 extern char data_0215c65c[];
 extern void func_02013878(void *, s32, u32);
-extern void func_02132c68(s32, s32, s32, s32);
+extern void func_02132c68(void *, u32, const char *, char *);
+extern void func_021380bc(const char *, ...);
 extern u8 data_0215c6a4[40];
 extern u8 data_021767bc[576];
 extern u8 data_0215c6cc[8];
@@ -298,6 +299,41 @@ void func_02138500(void) {
 
 void func_02138510(void) {
     func_0213841c(7);
+}
+
+void func_02138520(void) {
+    s32 i;
+    memset(data_0217667c, 0, 0x20);
+    data_02176654[0] = 0;
+    data_02176654[1] = 0;
+    data_02176674[0] = 0;
+    data_02176674[1] = 0;
+    data_0217665c[0] = 0;
+    data_0217665c[1] = 0;
+    data_02176664[0] = 0;
+    data_02176664[1] = 0;
+    for (i = 0; i < 6; i++) {
+        data_0217669c[i] = 0;
+    }
+    data_02176644[2] = 0;
+    memset(data_021767bc, 0, 0x240);
+}
+
+void func_021385d4(void) {
+    data_0215c658 = (u32)data_02145b48;
+    if (data_02176644[0] == 0) {
+        func_02138520();
+    }
+    data_02176644[0]++;
+}
+
+void func_02138618(void) {
+    data_02176644[0]--;
+    if (data_02176644[0] == 0) {
+        func_02138520();
+        data_0217666c[0] = 0;
+        data_0217666c[1] = 0;
+    }
 }
 
 void func_021386f0(void *arg0) {
