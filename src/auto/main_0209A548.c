@@ -35,3 +35,7 @@ u16 func_02092994(void *, s32);
 void func_021093b0(void *);
 Node_0209b108 *func_0210c594(s32, s32);
 void func_021167f0(Node_0209b108 **, Node_0209b108 *);
+
+void *func_0209ac14(void) {
+    return data_02160120->unk_6d4;
+}
