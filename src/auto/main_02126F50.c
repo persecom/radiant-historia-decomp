@@ -147,6 +147,11 @@ void func_02127580(void *arg0, s32 arg1) {
     func_021284bc(*(void **)((u8 *)arg0 + 4), arg1);
 }
 
+extern s32 func_02128530(void *);
+s32 func_021275a0(void *arg0) {
+    return func_02128530(*(void **)((u8 *)arg0 + 4));
+}
+
 s32 func_021275f8(s32 *arg0) {
     return arg0[1];
 }
