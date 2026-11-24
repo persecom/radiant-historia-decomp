@@ -142,7 +142,7 @@ s32 func_0200cea4(void *arg0, u8 *arg1, u32 arg2, u32 arg3, u32 *arg4) {
     return res;
 }
 
-s32 func_0200cee8(void *arg0, u8 *arg1, u32 arg2) {
+s32 func_0200cee8(void *arg0, u8 *arg1, u32 arg2, void *arg3) {
     s32 res;
     *(u32 *)(arg1 + 0x34) = arg2;
     *(void **)(arg1 + 0x30) = arg0;
@@ -202,6 +202,31 @@ s32 func_0200d050(void *arg0) {
     func_0200b888(buf);
     buf[2] = (u32)arg0;
     return func_0200cb40(buf, 0xc, 0);
+}
+
+s32 func_0200d0d4(void *arg0, void *arg1, s32 *arg2, s32 arg3) {
+    s32 *p = *(s32 **)((u8 *)arg1 + 4);
+    s32 offset = *arg2;
+    s32 base;
+    switch (arg3) {
+    case 0:
+        base = p[1];
+        break;
+    case 1:
+    default:
+        base = p[3];
+        break;
+    case 2:
+        base = p[2];
+        break;
+    }
+    offset += base;
+    if (offset < p[1] || offset > p[2]) {
+        return 6;
+    }
+    p[3] = offset;
+    *arg2 = offset;
+    return 0;
 }
 
 void func_0200d1a8(u32 arg0, u32 *ptr) {
