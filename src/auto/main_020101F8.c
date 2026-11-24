@@ -14,6 +14,23 @@ extern void func_02010060(void);
 extern void func_0200fca4(void (*)(void), u32);
 
 extern void func_0200fb84(void);
+void func_02010540(u32 **arg0) {
+    func_0200ff10(arg0, 2, 1);
+    (*arg0)[3] = 0;
+    (*arg0)[4] = (u32)data_0215f660;
+    (*arg0)[5] = 1;
+    func_0200ff10(arg0, 6, 1);
+}
+
+void func_02010590(u32 arg0, u32 arg1, u32 arg2) {
+    func_02000b64((void *)0x02000bac);
+    func_0200f95c();
+    if ((arg0 & func_0200fb6c()) != arg0) {
+        func_02008414();
+    }
+    func_0200fd64(data_0215f120, 1, arg1, arg2);
+}
+
 void func_020106a0(void) {
     func_0200fb84();
 }
