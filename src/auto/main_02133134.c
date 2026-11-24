@@ -128,6 +128,24 @@ void func_021333b0(void) {
     }
 }
 
+s32 func_021333e8(void *arg0) {
+    s32 ret = 3;
+    void *p;
+    s32 (*cb)(void *);
+    if (arg0 == NULL) {
+        func_02132ca0(data_0215b864);
+        return ret;
+    }
+    p = *(void **)arg0;
+    cb = *(s32 (**)(void *))((u8 *)p + 0x2c);
+    if (cb != NULL) {
+        ret = cb(*(void **)((u8 *)arg0 + 4));
+    } else {
+        func_02132ca0(data_0215b880);
+    }
+    return ret;
+}
+
 void func_02133688(void) {
     func_0213807c();
 }
