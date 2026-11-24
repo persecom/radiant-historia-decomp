@@ -137,12 +137,18 @@ s32 func_02124ba8(void) {
     return -1;
 }
 
-void func_02124bb0(u32 a0, u32 a1, u32 a2, u32 a3, u32 a4) {
-    *(u32 *)((u8 *)data_02156160 + 0x8) = *(u32 *)((u8 *)data_0215617c + a0 * 0x18);
-    *(u32 *)((u8 *)data_02156160 + 0xc) = *(u32 *)((u8 *)data_0215617c + a1 * 0x18);
-    *(u32 *)((u8 *)data_02156160 + 0x10) = *(u32 *)((u8 *)data_0215617c + a2 * 0x18);
-    *(u32 *)((u8 *)data_02156160 + 0x14) = *(u32 *)((u8 *)data_0215617c + a3 * 0x18);
-    *(u32 *)((u8 *)data_02156160 + 0x18) = *(u32 *)((u8 *)data_0215617c + a4 * 0x18);
+extern u32 data_02173174[];
+extern void (*data_02156158)(void);
+extern s32 (*data_0215615c)(void);
+extern void func_02125038(void);
+extern void func_02124ef8(void);
+extern s32 func_02125014(void);
+void func_02124bb0(s32 a0, s32 a1, s32 a2, s32 a3, s32 a4) {
+    data_02156160[2] = (u32)&data_0215617c[a0];
+    data_02156160[3] = (u32)&data_0215617c[a1];
+    data_02156160[4] = (u32)&data_0215617c[a2];
+    data_02156160[5] = (u32)&data_0215617c[a3];
+    data_02156160[6] = (u32)&data_0215617c[a4];
 }
 
 s32 func_02124e60(void) {
