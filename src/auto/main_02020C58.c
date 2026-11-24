@@ -11,6 +11,14 @@ extern u32 func_021155c8(u32);
 void func_0202119c(void) {
 }
 
+void func_020211a0(void) {
+    void (**p)(void) = ARM9_CTOR_START;
+    while (p != 0 && *p != 0) {
+        (*p)();
+        p++;
+    }
+}
+
 u32 func_020211d0(void) {
     return func_021155c8(*data_02162730) >> 10;
 }
