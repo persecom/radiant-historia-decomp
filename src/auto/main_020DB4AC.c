@@ -39,6 +39,31 @@ void func_020db4fc(void) {
     }
 }
 
+extern void func_020dd810(void *, s32, s32);
+void func_020db56c(void) {
+    u8 *node = *(u8 **)(data_02160a6c + 0xb8);
+    while (node != NULL) {
+        u8 *sub = *(u8 **)(node + 0x118);
+        if (*(s32 *)(sub + 0x70) != 0 && *(s32 *)(sub + 4) <= 0) {
+            func_020db35c(node, 0);
+        } else {
+            u8 state = node[0x104];
+            if (state != 0 && state != 0x13 && (*(u32 *)(sub + 0x78) & 0x10) == 0) {
+                if (*(s32 *)(node + 0x1c0) == 1) {
+                    *(u32 *)(node + 0x0) = *(u32 *)(node + 0xec);
+                    *(u32 *)(node + 0x8) = *(u32 *)(node + 0xf4);
+                    *(s32 *)(node + 0x1c0) = 0;
+                }
+                if (*(s16 *)(node + 0x98) == 0) {
+                    node[0xa2] &= ~4;
+                    func_020dd810(node, 0, 0);
+                }
+            }
+        }
+        node = *(u8 **)(node + 0x174);
+    }
+}
+
 extern void func_0206e7a0(u8, void *, void *, u16);
 extern void func_0210d27c(s32);
 s32 func_020db630(void) {
