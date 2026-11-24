@@ -3,7 +3,7 @@
 
 extern u32 data_0216263c[3];
 extern u32 data_0216244c[43];
-extern u32 data_02162658[6];
+extern u64 data_02162658[3];
 extern void func_0206e8f0(u32, void *, u32);
 void func_0207963c(void) {
     u32 x = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
