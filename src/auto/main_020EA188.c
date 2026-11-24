@@ -11,7 +11,7 @@ extern s32 func_020f1ffc(void *, s32, s32, s32);
 extern void func_0210c5dc(void *);
 extern void *func_0210eb98(void *, s32);
 extern void func_0210f3ac(void *, void *, s32);
-extern s32 func_0210db70(u32 *);
+extern s32 func_0210db70(void *);
 extern s32 func_020eaae0(void);
 extern s32 func_020ebddc(void *, s32);
 extern void func_020dd810(void *, s32, s32);
@@ -71,7 +71,7 @@ void *func_020eaa24(s32 arg0, s32 arg1) {
 void func_020eaaa0(u32 arg0) {
     data_02160a90[0] = (u32)func_020eaae0;
     data_02160a90[1] = arg0;
-    func_0210db70(data_02160a90);
+    func_0210db70((u32 *)&data_02160a90);
 }
 
 s32 func_020eaacc(void) {
