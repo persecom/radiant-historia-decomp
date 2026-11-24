@@ -2,6 +2,7 @@
 #include "common.h"
 typedef struct Draw20 { s16 v[10]; } Draw20;
 typedef struct Draw14 { s16 v[7]; } Draw14;
+typedef struct StatUpdate_0209acdc { u8 pad_00[0x1a]; s16 gain[8]; } StatUpdate_0209acdc;
 extern const Draw20 data_02142074;
 extern const Draw14 data_02142054;
 u8 *func_0209c8dc(u8);
@@ -121,6 +122,54 @@ u16 func_0209ac28(u8 *arg0, s32 arg1) {
         func_021093b0(r5);
     }
     return ret;
+}
+
+void func_0209acdc(u8 *arg0,s32 mode){
+char buf[32];
+u8 *p=0;
+void *file;
+s32 character=0, characterIndex;
+u16 index=0, i;
+u32 skill;
+if(mode==0){
+if(func_020bd490(2,arg0[0])){p=func_02021f10(func_020bd490(1,arg0[0])-1);character=p[0x42];}
+else{characterIndex=func_020bd490(3,arg0[0]);character=func_020bd490(1,arg0[0]);p=func_02021f10(characterIndex);}
+}else if(mode==1){p=func_02021f10(arg0[0]);character=p[0x42];}
+func_02005e80(buf,data_021488f8,p[0x42]);
+file=func_021092d8(buf);
+if(!file)return;
+for(i=0;i<8;i++)*(s16 *)(arg0+0x1a+i*2)=index;
+while(*(s16 *)(arg0+0x10)!=p[0x43]){
+if(func_02092ab0(file,(u16)(p[0x43]+1))==-1)break;
+if(mode==1)func_0209b108(p[0x42],0);
+for(i=0;i<8;i++){skill=(u16)func_02092994(file,0);*(s16 *)(arg0+i*2+0x1a)+=(s16)skill;}
+index=0;
+skill=(u16)func_02092994(file,0);
+if(skill){
+if(skill<=100){
+do {if(p[0x4e + index]==0){p[0x4e + index]=skill;break;}index++;}while(index<30);
+}else if(skill>=101){
+do {if(p[0x6c+index]==0){p[0x6c+index]=skill;break;}index++;}while(index<15);
+}
+if(skill<=100){skill=(u16)(skill-11);*(u32 *)(p+0xc)|=1<<skill;*(u16 *)(arg0+0x18)=func_02065884(character,(u16)(skill+11));}
+else{skill=(u16)(skill-101);*(u16 *)(p+0x36)|=(u16)(1<<skill);*(u16 *)(arg0+0x18)=func_02065884(character,(u16)(skill+101));}
+if(mode==1)func_0209b108(p[0x42],*(u16 *)(arg0+0x18));
+}
+func_02109444(file);p[0x43]++;
+}
+*(u16 *)(p+0x10)+=*(u16 *)(arg0+0x1a);
+*(u16 *)(p+0x12)+=*(u16 *)(arg0+0x1a);
+if(*(u16 *)(p+0x10)>*(u16 *)(p+0x12))*(u16 *)(p+0x10)=*(u16 *)(p+0x12);
+*(u16 *)(p+0x14)+=*(u16 *)(arg0+0x1c);
+*(u16 *)(p+0x16)+=*(u16 *)(arg0+0x1c);
+if(*(u16 *)(p+0x14)>*(u16 *)(p+0x16))*(u16 *)(p+0x14)=*(u16 *)(p+0x16);
+*(u16 *)(p+24)+=*(u16 *)(arg0+30);
+*(u16 *)(p+26)+=*(u16 *)(arg0+32);
+*(u16 *)(p+28)+=*(u16 *)(arg0+34);
+*(u16 *)(p+30)+=*(u16 *)(arg0+36);
+*(u16 *)(p+32)+=*(u16 *)(arg0+38);
+*(u16 *)(p+34)+=*(u16 *)(arg0+40);
+if(file)func_021093b0(file);
 }
 
 extern const char data_02148910[];
