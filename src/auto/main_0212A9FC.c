@@ -53,3 +53,29 @@ s32 func_0212b69c(s16 *arg0, s32 arg1, u16 *arg2) {
     return 0;
 }
 
+s32 func_0212b72c(u8 *arg0, s32 arg1, u8 *arg2, u8 *arg3) {
+    u16 v0;
+    s16 swapped;
+    s16 v1;
+    s32 ret;
+
+    if (arg1 < 0x14) {
+        return -1;
+    }
+    v0 = *(u16 *)arg0;
+    swapped = ((v0 >> 8) & 0xff) | ((v0 << 8) & 0xff00);
+    if ((u16)swapped != 0x8000) {
+        return -2;
+    }
+    v1 = *(s16 *)(arg0 + 2);
+    swapped = ((v1 >> 8) & 0xff) | ((v1 << 8) & 0xff00);
+    if (swapped < 0x10) {
+        ret = -1;
+    } else {
+        *arg2 = arg0[0x12];
+        *arg3 = arg0[0x13];
+        ret = 0;
+    }
+    return ret;
+}
+
