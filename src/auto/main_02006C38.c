@@ -29,6 +29,15 @@ void func_02006d34(u8 *arg0, u8 *arg1) {
     }
 }
 
+void func_02006e1c(void) {
+    volatile u8 *io = (volatile u8 *)0x04000000;
+    u32 ime = *(volatile u32 *)(io + 0x208);
+    *(volatile u32 *)(io + 0x208) = (u32)io;
+    while (*(volatile u16 *)(io + 0x6) != 0) {
+    }
+    *(volatile u32 *)(io + 0x208) = ime;
+}
+
 void func_02006e3c(void) {
     func_02006e48();
 }
