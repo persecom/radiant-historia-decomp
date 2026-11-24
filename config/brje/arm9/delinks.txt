@@ -203,7 +203,10 @@ src/auto/main_0202FB50.c:
     .text start:0x0202fb50 end:0x02030878
 
 src/auto/main_02030878.c:
-    .text start:0x02030878 end:0x02031724
+    .text start:0x02030878 end:0x02031384
+
+src/auto/main_02031384.c:
+    .text start:0x02031384 end:0x02031724
 
 src/auto/main_02031724.c:
     .text start:0x02031724 end:0x02032488

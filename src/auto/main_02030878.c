@@ -28,158 +28,111 @@ extern void func_021167ac(void *, s32);
 extern void func_02031724(void);
 extern void func_02031658(void);
 
-s32 func_02031384(u8 *arg0, u32 arg1, s32 arg2) {
-    s16 table[36] = {
-        0, 1, 4, 5,
-        4, 5, 8, 9,
-        8, 9, 12, 13,
-        1, 2, 5, 6,
-        5, 6, 9, 10,
-        9, 10, 13, 14,
-        2, 3, 6, 7,
-        6, 7, 10, 11,
-        10, 11, 14, 15,
-    };
-    u16 idx;
-    s32 x, y, z;
-    u8 *res;
-    u16 val;
+extern void func_02022fb0(void *);
+extern s32 func_02031384(u8 *, u32, s32);
+extern u8 *func_020314dc(void *, s32);
+s32 func_02030878(u8 *arg0, u8 *arg1, u8 *arg2, u32 arg3, u32 arg4, u8 arg5) {
+    u8 *node = NULL;
 
-    idx = (u16)(*arg0 * 4 + arg1);
-    if (arg2 == -1) {
-        res = func_02031c24((u8)table[idx]);
-        if (res != NULL) {
-            res[0x18] |= 2;
+    if (arg1 != NULL) {
+        node = **(u8 ***)(arg1 + 0x2c);
+        while (node != NULL) {
+            u16 id = *(u16 *)node;
+            if (id >= 0x190 && id <= 0x1f3) {
+                break;
+            }
+            node = *(u8 **)(node + 0x1c);
         }
+    }
+
+    if (arg2 == NULL) {
         return 0;
     }
-    x = *(s32 *)(arg0 + 4);
-    y = *(s32 *)(arg0 + 8);
-    z = *(s32 *)(arg0 + 0xc);
-    switch (arg1) {
-        case 0:
-            x -= 0x11000;
-            z -= 0x18000;
-            y += 0x10000;
-            break;
-        case 1:
-            x += 0x11000;
-            z -= 0x18000;
-            y += 0x10000;
-            break;
-        case 2:
-            x -= 0x11000;
-            z += 0x18000;
-            y += 0x10000;
-            break;
-        case 3:
-            x += 0x11000;
-            z += 0x18000;
-            y += 0x10000;
-            break;
+
+    if (arg0 != NULL && **(u8 **)(arg0 + 0x118) == 0 && arg5 == 0) {
+        if (arg2[2] != 0) {
+            return 0;
+        }
     }
-    val = (u16)arg2;
-    res = func_0203165c((u8)table[idx], 0, 0, 0, val);
-    res[0x18] = 0;
-    *(u16 *)(res + 0x20) = val;
-    *(s32 *)(res + 0xc) = x;
-    *(s32 *)(res + 0x10) = y;
-    *(s32 *)(res + 0x14) = z;
+
+    if ((arg2[0x1c] & 1) != 0) {
+        return 0;
+    }
+
+    if (node != NULL) {
+        func_02022fb0(node);
+        arg2[0x1c] |= 1;
+        *(u16 *)(arg2 + 0x28) = *(u16 *)node;
+        *(u32 *)(arg2 + 0x2c) = arg3;
+        *(u8 **)(arg2 + 0x20) = arg0;
+        *(u8 **)(arg2 + 0x24) = arg1;
+        *(u32 *)(arg2 + 0x34) = *(u32 *)(node + 0x14);
+        *(u16 *)(arg2 + 0x1e) = 0;
+
+        if (arg0 != NULL && **(u8 **)(arg0 + 0x118) == 1) {
+            arg2[0x1c] |= 4;
+        }
+
+        if (*(s16 *)(node + 0x10) != 0) {
+            *(s16 *)(arg2 + 0x1e) = *(s16 *)(node + 0x10);
+        }
+
+        switch (*(u16 *)node) {
+            case 0x191:
+            case 0x192:
+            case 0x193:
+            case 0x194:
+            case 0x195:
+            case 0x196:
+            case 0x197:
+            case 0x198:
+            case 0x199:
+            case 0x19b:
+            case 0x1a2:
+            case 0x1a3:
+                if (*(s16 *)(arg2 + 0x1e) == 0) {
+                    *(s16 *)(arg2 + 0x1e) = 15;
+                }
+                break;
+            case 0x19a:
+            case 0x19c:
+            case 0x19d:
+            case 0x19e:
+            case 0x19f:
+            case 0x1a0:
+            case 0x1a1:
+                arg2[0x1c] |= 2;
+                break;
+        }
+
+        if (*(u16 *)node != 0x19a) {
+            if (*(u32 *)(node + 0x14) < 10000) {
+                func_02031384(arg2, 0, (s16)*(u32 *)(node + 0x14));
+                func_02031384(arg2, 1, (s16)*(u32 *)(node + 0x14));
+                func_02031384(arg2, 2, (s16)*(u32 *)(node + 0x14));
+                func_02031384(arg2, 3, (s16)*(u32 *)(node + 0x14));
+            } else {
+                u8 *res = func_020314dc(arg2, (s16)(*(u32 *)(node + 0x14) / 100));
+                *(u8 **)(res + 0x24) = arg2;
+                switch ((s16)(*(u32 *)(node + 0x14) % 100)) {
+                    case 1: res[0x28] = 1; break;
+                    case 2: res[0x28] = 2; break;
+                    case 3: res[0x28] = 3; break;
+                    case 4: res[0x28] = 4; break;
+                    case 5: res[0x28] = 5; break;
+                    case 6: res[0x28] = 6; break;
+                    case 7: res[0x28] = 7; break;
+                    case 8: res[0x28] = 8; break;
+                    case 9: res[0x28] = 9; break;
+                    case 10: res[0x28] = 10; break;
+                    case 11: res[0x28] = 11; break;
+                    case 12: res[0x28] = 12; break;
+                }
+            }
+        }
+
+        return 1;
+    }
+
     return 0;
 }
-
-void func_02031498(void) {
-    s32 i;
-    for (i = 0; i < 9; i++) {
-        u8 *entry = data_02160244[2 + i];
-        if (entry != NULL && (entry[0x1c] & 8) != 0) {
-            func_0202e874(entry);
-        }
-    }
-}
-
-u8 *func_020314dc(void *arg0, s32 arg1) {
-    u32 v4 = *(u32 *)((u8 *)arg0 + 4);
-    u32 v8 = *(u32 *)((u8 *)arg0 + 8);
-    u32 vc = *(u32 *)((u8 *)arg0 + 0xc);
-    u16 val = (u16)arg1;
-    u8 *node = func_0203165c((u8)(*(u8 *)arg0 + 0xc), 0, 0, 0, val);
-    node[0x18] |= 9;
-    *(u16 *)(node + 0x20) = val;
-    *(u32 *)(node + 0xc) = v4;
-    *(u32 *)(node + 0x10) = v8 + 0x40000;
-    *(u32 *)(node + 0x14) = vc;
-    return node;
-}
-
-void func_02031534(u8 *arg0) {
-    void *node = func_02031c24((u8)(arg0[0] + 0xc));
-    if (node == NULL) {
-        return;
-    }
-    func_021168f8((u8 *)data_0216008c + 0x2c, node);
-    if (node != NULL) {
-        func_0210c5dc(node);
-    }
-}
-
-void func_0203157c(void) {
-    if (data_0216008c != NULL) {
-        return;
-    }
-    data_0216008c = func_0210c594(0x38, data_02155c3c);
-    data_0216008c->unk00 = func_02031724;
-    data_0216008c->unk04 = 0x3ea;
-    func_0210d9e4(data_0216008c);
-    data_0216008c->unk14 = func_02031658;
-    data_0216008c->unk18 = 0x3ea - 1;
-    func_0210db70(&data_0216008c->unk14);
-    func_021167ac(&data_0216008c->unk2c, 0);
-}
-
-extern void func_020316d8(void);
-extern void func_0210da14(void *);
-extern void func_0210dba0(void *);
-extern void func_021167f0(void *, void *);
-void func_0203160c(void) {
-    UnkStruct_0203157c **ptr = &data_0216008c;
-    if (*ptr == NULL) {
-        return;
-    }
-    func_020316d8();
-    func_0210da14(*ptr);
-    func_0210dba0(&(*ptr)->unk14);
-    if (*ptr != NULL) {
-        func_0210c5dc(*ptr);
-        *ptr = NULL;
-    }
-}
-
-void func_02031658(void) {
-}
-
-void *func_0203165c(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u16 arg4) {
-    u8 *node = func_02031c24(arg0);
-    if (node != NULL) {
-        return node;
-    }
-    node = func_0210c594(0x2c, data_02155c3c);
-    node[8] = arg0;
-    *(u16 *)(node + 0x20) = arg4;
-    *(u32 *)(node + 0xc) = arg1 << 12;
-    *(u32 *)(node + 0x10) = arg2 << 12;
-    *(u32 *)(node + 0x14) = arg3 << 12;
-    func_021167f0(&data_0216008c->unk2c, node);
-    return node;
-}
-
-void func_020316d8(void) {
-    void *node;
-    while ((node = *(void **)&data_0216008c->unk2c) != NULL) {
-        func_021168f8(&data_0216008c->unk2c, node);
-        if (node != NULL) {
-            func_0210c5dc(node);
-        }
-    }
-}
-
