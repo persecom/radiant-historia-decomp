@@ -18,3 +18,9 @@ void func_02125bd4(u32, s32);
 
 void func_021091b0(void) {
 }
+
+void func_02109828(void) {
+    *(u32 *)(data_02162510 + 0x34) = 0x8000;
+    *(u32 *)(data_02162510 + 0x44) = 0x8000;
+}
+
