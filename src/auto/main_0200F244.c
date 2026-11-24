@@ -4,6 +4,12 @@
 extern u32 data_0215f0a0[4];
 extern void func_0200fa74(void *, s32);
 extern u8 data_0215f120[1312];
+extern u16 func_020081e0(void);
+extern u32 func_02008128(void);
+extern void func_0200813c(u32);
+extern void func_02006510(void *);
+extern void func_02006560(void *);
+extern void func_0200fd64(void *, s32, u32, u32);
 extern s32 func_02005da4(u16);
 extern void func_0200851c(void *, s32);
 extern void func_02007e58(void *, s32, s32, void *, void *);
