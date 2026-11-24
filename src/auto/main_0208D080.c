@@ -32,7 +32,7 @@ void func_0208da7c(s16 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s16 arg5, s
     Unk10 sp;
     sp = data_021411ac;
     func_020a3bbc(arg0);
-    sp.f1 = (s32)arg4 * (s32)arg1;
+    sp.f1 = (u32)arg4 * (u32)arg1;
     sp.f2 = 0;
     sp.f8 = arg4;
     sp.f3 = arg4;
@@ -47,7 +47,11 @@ void func_0208da7c(s16 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s16 arg5, s
 void func_0208dc14(s16 arg0, s16 arg1, s16 arg2, s16 arg3, s32 arg4) {
     Unk10 sp;
     sp = data_02141198;
-    func_020a3bbc(arg4 == 1 ? 0x2e : 0x2d);
+    if (arg4 == 1) {
+        func_020a3bbc(0x2e);
+    } else {
+        func_020a3bbc(0x2d);
+    }
     sp.f1 = (arg0 % 3) * 18;
     sp.f2 = (arg0 / 3) * 19;
     sp.f5 = arg1;
