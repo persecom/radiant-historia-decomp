@@ -5,13 +5,7 @@ extern u8 *data_021600b0;
 extern void func_020a1750(u32 arg0);
 
 u32 func_020a1734(u32 arg0) {
-    if (arg0 < 1) {
-        return 0;
-    }
-    if (arg0 <= 8) {
-        return 1;
-    }
-    return 0;
+    return (arg0 >= 1 && arg0 <= 8) ? 1 : 0;
 }
 
 void func_020a18c8(u16 arg0) {
