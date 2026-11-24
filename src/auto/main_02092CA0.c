@@ -63,6 +63,32 @@ void func_020932a8(u16 id, s16 x, s16 y) {
     }
 }
 
+void func_02093358(u16 id, s16 x, s16 y) {
+    u8 *ptr = (u8 *)func_02093658(id);
+    u8 *node;
+    if (ptr == NULL) {
+        return;
+    }
+    *(s16 *)(ptr + 0xc) += x;
+    *(s16 *)(ptr + 0xe) += y;
+    node = *(u8 **)(ptr + 0x20);
+    if (node == NULL) {
+        return;
+    }
+    do {
+        *(s32 *)(node + 8) += x;
+        *(s32 *)(node + 0xc) += y;
+        func_020f5114(node, 0);
+        if (*(s32 *)(node + 8) + *(u16 *)(node + 0x40) > 0 && *(s32 *)(node + 8) < 256 &&
+            *(s32 *)(node + 0xc) + *(u16 *)(node + 0x42) > 0 && *(s32 *)(node + 0xc) < 192) {
+            func_020f5114(node, 1);
+        } else {
+            func_020f5114(node, 0);
+        }
+        node = *(u8 **)(node + 0x50);
+    } while (node != NULL);
+}
+
 void func_020f4f04(void *);
 void *func_020935ec(void *, s32);
 void func_02093424(u8 *arg0, s32 arg1) {
