@@ -144,6 +144,12 @@ void func_020a8958(void *arg0) {
     }
 }
 
+void func_020a8a50(void *arg0) {
+    u8 *p = arg0;
+    func_02008e68(0, *(void **)(p + 0x10), *(u32 *)(p + 0x14));
+    func_02008e68(-1, (u8 *)*(void **)(p + 0x50) + 8, *(u32 *)((u8 *)*(void **)(p + 0x50) + 4));
+}
+
 void func_020a8a84(void *arg0) {
     u8 *p = arg0;
     func_02008e68(0, *(void **)(p + 0x10), *(u32 *)(p + 0x14));
