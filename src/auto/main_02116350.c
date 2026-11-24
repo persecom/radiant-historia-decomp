@@ -337,6 +337,28 @@ void *func_02116b1c(void *list, void *block) {
     return prev;
 }
 
+void *func_02116b44(void *list, void *target, void *prev) {
+    u8 *l = (u8 *)list;
+    u8 *t = (u8 *)target;
+    u8 *p = (u8 *)prev;
+    u8 *next;
+    *(u8 **)(t + 8) = p;
+    if (p != NULL) {
+        next = *(u8 **)(p + 0xc);
+        *(u8 **)(p + 0xc) = t;
+    } else {
+        next = *(u8 **)(l + 0);
+        *(u8 **)(l + 0) = t;
+    }
+    *(u8 **)(t + 0xc) = next;
+    if (next != NULL) {
+        *(u8 **)(next + 8) = t;
+    } else {
+        *(u8 **)(l + 4) = t;
+    }
+    return t;
+}
+
 void* func_02116d7c(void* heap, u32 size, s32 alignment)
 {
     typedef struct Block {
