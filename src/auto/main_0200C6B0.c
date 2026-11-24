@@ -269,6 +269,15 @@ void func_0200d1a8(u32 arg0, u32 *ptr) {
     *ptr = 0;
 }
 
+s32 func_0200d1b4(void *arg0, u8 *arg1, u16 arg2, void *arg3) {
+    u32 val = 0;
+    s32 res = func_0200ce18(arg0, arg2, arg3, &val, 1);
+    if (res != 0) {
+        return res;
+    }
+    return func_0200cc98(arg0, arg1, val, 0);
+}
+
 s32 func_0200d20c(u32 arg0, void *arg1) {
     *(u32 *)((u8 *)arg1 + 4) = 0;
     *(u32 *)((u8 *)arg1 + 0xc) &= ~0x30;
