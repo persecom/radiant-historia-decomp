@@ -217,6 +217,22 @@ void func_02004588(void) {
     data_0215cd40[2] = (u32)data_0213e498[val >> 4] << 12;
 }
 
+void func_020046f8(void *arg0, u32 arg1) {
+    if (data_02145ba4 != -1) {
+        func_02008840(data_02145ba4, arg0, data_0215cd40[4], arg1, 0, 0, 1);
+    } else {
+        func_02008e38(arg0, data_0215cd40[4], arg1);
+    }
+}
+
+void func_02004764(void *arg0, u32 arg1) {
+    if (data_02145ba4 != -1) {
+        func_02008840(data_02145ba4, arg0, data_0215cd40[4] + 0x20000, arg1, 0, 0, 1);
+    } else {
+        func_02008e38(arg0, data_0215cd40[4] + 0x20000, arg1);
+    }
+}
+
 extern void func_02004fc4(u32);
 void func_020047d4(void) {
     if (data_02145ba4 != -1) {
@@ -225,5 +241,35 @@ void func_020047d4(void) {
     func_02004fc4(data_0215cd40[0]);
     data_0215cd40[0] = 0;
     data_0215cd40[4] = 0;
+}
+
+void func_02004810(u32 arg0) {
+    if (arg0 & 0x1) {
+        *(volatile u8 *)0x04000240 = 0x80;
+    }
+    if (arg0 & 0x2) {
+        *(volatile u8 *)0x04000241 = 0x80;
+    }
+    if (arg0 & 0x4) {
+        *(volatile u8 *)0x04000242 = 0x80;
+    }
+    if (arg0 & 0x8) {
+        *(volatile u8 *)0x04000243 = 0x80;
+    }
+    if (arg0 & 0x10) {
+        *(volatile u8 *)0x04000244 = 0x80;
+    }
+    if (arg0 & 0x20) {
+        *(volatile u8 *)0x04000245 = 0x80;
+    }
+    if (arg0 & 0x40) {
+        *(volatile u8 *)0x04000246 = 0x80;
+    }
+    if (arg0 & 0x80) {
+        *(volatile u8 *)0x04000248 = 0x80;
+    }
+    if (arg0 & 0x100) {
+        *(volatile u8 *)0x04000249 = 0x80;
+    }
 }
 
