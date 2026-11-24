@@ -197,6 +197,46 @@ void func_020c70a0(u8 *arg0, u8 arg1) {
     arg0[0x46] = arg1;
 }
 
+s32 func_020c70c0(u8 *arg0, u32 arg1) {
+    if (((u16 *)data_02162908)[2] == 0) {
+        goto block_c;
+    }
+    if (data_021628f8 == 0) {
+        goto block_a;
+    }
+    if (func_020c6fe4(arg0) != 0) {
+        goto block_a;
+    }
+    func_020c7090(arg0);
+    func_020c738c(arg0, 0x10, 0x10);
+    arg0[0x47] = 0xc;
+    return 1;
+block_a:
+    if (func_020c6fe4(arg0) != 0) {
+        goto block_b;
+    }
+    if (arg0[0x47] != 0) {
+        goto decrement;
+    }
+    if (func_020c73d8(arg0) == 0) {
+        goto block_b;
+    }
+    return 1;
+decrement:
+    arg0[0x47]--;
+    return 0;
+block_c:
+    if ((data_021626aa & arg1) != 0) {
+        return 0;
+    }
+block_b:
+    if (func_020c7048(arg0) != 0) {
+        func_020c738c(arg0, 0, 2);
+        func_020c738c(arg0, 0, 0x10);
+    }
+    return 0;
+}
+
 s32 func_020c71bc(u8 *arg0) {
     func_020c6dbc(arg0);
     *(s32 *)(arg0 + 0x4c) = 1;
