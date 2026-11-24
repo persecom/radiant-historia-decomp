@@ -67,6 +67,15 @@ s32 func_02064b3c(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     return func_02064aac(rect);
 }
 
+s32 func_02064b84(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 rect[4] = { 0, 0, 0, 0 };
+    rect[0] = arg0;
+    rect[1] = arg1;
+    rect[2] = arg0 + arg2;
+    rect[3] = arg1 + arg3;
+    return (func_02064aac(rect) != 0 && data_021628f8 != 0) ? 1 : 0;
+}
+
 void *func_02064be8(void) {
     u8 *ptr = (u8 *)func_0210c594(0x10, data_02155c3c);
     func_021167ac(ptr + 0x4, 0x30);
