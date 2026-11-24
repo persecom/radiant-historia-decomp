@@ -120,6 +120,24 @@ void func_020ba8c4(u8 *arg0, u32 arg1) {
     func_020c738c(obj, !flag, 1);
 }
 
+void func_020ba948(u8 *arg0) {
+    u8 *p = *(u8 **)(arg0 + 0x48);
+    u8 *r6 = p + 0x30;
+    s32 r7 = 0;
+    u8 *r4;
+    u8 *obj;
+    func_0211137c(arg0, p);
+    r4 = func_02111d7c(*(void **)(arg0 + 0x48), *(u16 *)(arg0 + 0x3a));
+    if (r4 != NULL && (*(u8 *)(r4 + 6) & 1)) {
+        r7 = 1;
+    }
+    obj = func_020c9c10(*(void **)(arg0 + 0x30), 4);
+    *(u16 *)(obj + 0x30) = (*(u16 *)(arg0 + 0x3c) != 0) ? *(u16 *)(r6 + r7 * 2 + 0x26) : *(u16 *)(r6 + r7 * 2 + 0x22);
+    if (r4 != NULL) {
+        func_020ba878(arg0, func_02022068(*(u16 *)(r4 + 2)));
+    }
+}
+
 s32 func_020baba8(u8 *arg0) {
     func_02110b94(arg0);
     *(void **)(arg0 + 0x4c) = (void *)func_020babe8;
