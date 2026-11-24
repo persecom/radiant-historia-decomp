@@ -1,5 +1,7 @@
 /* 56 functions from 0x02117304 to 0x02118234 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { u32 offset, value; } RelocPair174;
+typedef struct { u16 count, pad; u32 unk4, unk8; RelocPair174 *pairs; } RelocEntry174;
 extern u8 data_0216e274[];
 extern u16 data_0216e270;
 extern void func_02008df0(s32, void *, s32);
@@ -152,6 +154,40 @@ void **arg1;
 
 void func_021174e4(void) {
     func_021174a8();
+}
+
+void func_021174f0(void *arg) {
+u8 *p=arg;
+u8 *a=(u8 *)(*(u32 *)(p+4)+(u32)p);
+u8 *b=(u8 *)(*(u32 *)(p+8)+(u32)p);
+u8 *c=(u8 *)(*(u32 *)(p+12)+(u32)p);
+u16 i,j;
+*(u8 **)(p+4)=a;*(u8 **)(p+8)=b;*(u8 **)(p+12)=c;
+for(i=0;i<*(u16 *)p;i++){
+u8 *entry=a+i*16;
+*(u8 **)(entry+12)=b+*(u32 *)(entry+12);
+for(j=0;j<*(u16 *)entry;j++){
+u32 *v=(u32 *)(*(u8 **)(entry+12)+j*8);
+*v=(u32)c+*v;
+}
+}
+if(*(u32 *)(p+20)) {
+u8 *extra=(u8 *)(*(u32 *)(p+20)+(u32)p);
+u8 *root;
+u32 k,l;
+*(u8 **)(p+20)=extra;
+root=extra+8;
+*(u32 *)(root+4)+=(u32)root;
+for(k=0;k<*(u16 *)root;k++){
+u8 *entry=*(u8 **)(root+4)+k*12;
+*(u32 *)(entry+4)+=(u32)root;
+*(u32 *)(entry+8)+=(u32)root;
+for(l=0;l<*(u16 *)entry;l++){
+u32 *v=*(u32 **)(entry+8);
+v[l]+=(u32)root;
+}
+}
+}
 }
 
 void *func_02117630(u8 *arg0, u32 arg1) {
