@@ -62,12 +62,13 @@ void func_0203bcf8(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s
 
 void func_0203bd68(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8) {
     u32 local[13] = { 0 };
+    u32 *p = local;
     func_020a9610(arg0, arg1, arg3, arg2, 0, 0);
-    func_020a9830(local, arg0, arg6, arg7, arg4, arg5);
-    local[7] = arg8;
-    func_020a98ac(local);
-    func_020a98f4(local);
-    func_020a98a0(local);
+    func_020a9830(p, arg0, arg6, arg7, arg4, arg5);
+    p[7] = arg8;
+    func_020a98ac(p);
+    func_020a98f4(p);
+    func_020a98a0(p);
 }
 
 void *func_0203be10(s32 arg0) {
@@ -85,8 +86,9 @@ void func_0203be4c(void *arg0) {
 
 s32 func_0203be60(u8 *arg0, s32 arg1, s32 arg2) {
     char buf[0x64];
-    char *p = buf;
+    char *p;
     func_02108ffc();
+    p = buf;
     func_02005e80(p, data_0214628c, arg1);
     if (func_0210e7f0((s32)p, (s32)arg0) == 0) {
         return 0;
@@ -143,35 +145,35 @@ void func_0203c1c0(u8 *arg0, void *arg1, s32 arg2) {
     func_0203c1f0(arg0, arg2);
     *(void **)(arg0 + 4) = (void *)func_0203c20c;
     *(void **)(arg0 + 8) = arg1;
-    *(u32 *)(arg0 + 0xc) = (u32)arg0;
+    *(void **)(arg0 + 0xc) = arg0;
     func_0210d9e4(arg0 + 4);
 }
 
 void func_0203c1f0(u8 *arg0, s32 arg1) {
-    u32 v = *(u32 *)arg0;
-    u8 *p = arg0;
-    *(u32 *)(arg0 + 0x1c) = arg1;
-    *(u32 *)(arg0 + 0x20) = (u32)arg0;
-    *(u32 *)(p += 0x18) = v;
-    func_0210db70(p);
+    Unk_0203c1f0 *s = (Unk_0203c1f0 *)arg0;
+    u32 v = s->f0;
+    s->f1c = arg1;
+    s->f20 = (u32)arg0;
+    s->f18 = v;
+    func_0210db70(&s->f18);
 }
 
 void func_0203c20c(void) {
     u8 *p = data_02162880;
-    s32 count;
+    u32 count = 0;
     u8 *best;
     s32 i;
     s32 n;
+    u8 *elem;
     p[0x2c] = 0;
     *(void **)(p + 0x38) = NULL;
     if (p[0x2d] != 0) {
         return;
     }
     n = *(u16 *)(p + 0x3c);
-    count = 0;
     best = NULL;
     for (i = 0; i < n; i++) {
-        u8 *elem = ((u8 **)(*(void **)(p + 0x34)))[i];
+        elem = ((u8 **)(*(void **)(p + 0x34)))[i];
         if (elem[0xb] == 0 && *(void **)(elem + 0x10) != NULL) {
             if (((s32 (*)(u8 *))(*(void **)(elem + 0x10)))(elem) != 0) {
                 count++;
