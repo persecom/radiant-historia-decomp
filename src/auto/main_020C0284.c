@@ -11,8 +11,59 @@ extern s32 func_020dddfc(void *, void *, s32);
 extern void func_020020f8(void *, void *, void *);
 extern void func_020c1fec(void);
 extern void func_0210d9e4(void *);
+void *func_020c0924(void) {
+    return func_0210c594(0x10, data_02155c3c);
+}
+
 void func_020c0940(void *arg0) {
     if (arg0 != NULL) {
         func_0210c5dc(arg0);
     }
 }
+
+s16 func_020c0954(u8 *arg0) {
+    u32 sp0;
+    func_020dd9b4(arg0, &sp0);
+    if (*(s32 *)(*(u8 **)(arg0 + 0x108) + 0x14) != 0) {
+        *(u32 *)(arg0 + 0x80) &= ~2;
+        *(s32 *)(arg0 + 0xf8) = 1;
+        arg0[0xa5] = 1;
+        return -1;
+    }
+    return func_02117d80();
+}
+
+s32 func_020c09b0(u8 *arg0, s32 arg1, s32 arg2) {
+    u16 count = 0;
+    s32 diff;
+    if (func_020dddfc(arg0, arg0 + 0x24, arg1 << 12) != 0) {
+        *(s32 *)(arg0 + 0x30) = 0;
+        *(s32 *)(arg0 + 0x38) = 0;
+        count++;
+        if (*(s32 *)(arg0 + 0x34) == 0) {
+            count++;
+        }
+    }
+    diff = (*(s32 *)(arg0 + 0x28) - *(s32 *)(arg0 + 4)) >> 12;
+    if (diff < 0) {
+        diff = -diff;
+    }
+    if (diff < arg2) {
+        *(s32 *)(arg0 + 4) = *(s32 *)(arg0 + 0x28);
+        *(s32 *)(arg0 + 0x34) = 0;
+        count++;
+    }
+    if (count >= 2) {
+        return 1;
+    }
+    func_020020f8(arg0, arg0 + 0x30, arg0);
+    return 0;
+}
+
+void func_020c0d1c(void) {
+    data_02160218 = func_0210c594(0x14, data_02155c3c);
+    *(void (**)(void))data_02160218 = func_020c1fec;
+    *(u32 *)((u8 *)data_02160218 + 4) = 0x3ed;
+    func_0210d9e4(data_02160218);
+}
+
