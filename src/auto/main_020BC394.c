@@ -124,6 +124,93 @@ void func_020bcae4(u8 *arg0, void *arg1) {
     arg0[0x20] = func_02092994(arg1, 0);
 }
 
+extern void *func_021092d8(void *);
+extern void func_021167f0(void *, void *);
+extern int func_02109444(void *);
+extern void func_0210c970(void *);
+void func_020bcbf8(void *path, s32 first, s32 last) {
+u32 type;
+void **reader;
+u8 *node;
+u32 id,a,b,c,d;
+s32 value;
+reader=func_0210c594(0x60,data_02155c3c);
+reader[0]=func_021092d8(path);
+do {
+node=0;
+id=(u16)func_02092994(reader[0],0);
+if((u32)first<=id && id<=(u32)last) {
+type=func_020bc954(id);
+value=func_02092994(reader[0],0);
+a=(u8)func_02092994(reader[0],0);
+b=(u8)func_02092994(reader[0],0);
+c=(u8)func_02092994(reader[0],0);
+d=(u8)func_02092994(reader[0],0);
+func_021091b4();
+switch(type) {
+case 0:
+node=func_0210c594(32,data_02155c3c);
+*(u16*)(node+4)=id;
+node[6]=type;
+*(s32*)node=value;
+node[7]=a; node[8]=b; node[9]=c; node[10]=d;
+node[0x14]=func_02092994(reader[0],0);
+node[0x15]=func_02092994(reader[0],0);
+func_021167f0((u8*)data_021601f8.unk00+16,node); break;
+case 1:
+node=func_0210c594(64,data_02155c3c);
+*(u16*)(node+4)=id;
+node[6]=type;
+*(s32*)node=value;
+node[7]=a; node[8]=b; node[9]=c; node[10]=d;
+func_020bca10(node+0x14,reader[0]);
+func_021167f0((u8*)data_021601f8.unk00+28,node); break;
+case 2:
+node=func_0210c594(28,data_02155c3c);
+*(u16*)(node+4)=id;
+node[6]=type;
+*(s32*)node=value;
+node[7]=a; node[8]=b; node[9]=c; node[10]=d;
+func_021167f0((u8*)data_021601f8.unk00+40,node); break;
+case 3:
+node=func_0210c594(64,data_02155c3c);
+*(u16*)(node+4)=id;
+node[6]=type;
+*(s32*)node=value;
+node[7]=a; node[8]=b; node[9]=c; node[10]=d;
+func_020bcae4(node+0x14,reader[0]);
+func_021167f0((u8*)data_021601f8.unk00+52,node); break;
+case 4:
+node=func_0210c594(64,data_02155c3c);
+*(u16*)(node+4)=id;
+node[6]=type;
+*(s32*)node=value;
+node[7]=a; node[8]=b; node[9]=c; node[10]=d;
+func_020bcae4(node+0x14,reader[0]);
+func_021167f0((u8*)data_021601f8.unk00+64,node); break;
+case 5:
+node=func_0210c594(64,data_02155c3c);
+*(u16*)(node+4)=id;
+node[6]=type;
+*(s32*)node=value;
+node[7]=a; node[8]=b; node[9]=c; node[10]=d;
+func_020bcae4(node+0x14,reader[0]);
+func_021167f0((u8*)data_021601f8.unk00+76,node); break;
+case 6:
+node=func_0210c594(28,data_02155c3c);
+*(u16*)(node+4)=id;
+node[6]=type;
+*(s32*)node=value;
+node[7]=a; node[8]=b; node[9]=c; node[10]=d;
+func_021167f0((u8*)data_021601f8.unk00+88,node); break;
+}
+}
+if(node) func_021167f0((u8*)data_021601f8.unk00+4,node);
+if((u32)last<=id) break;
+} while(func_02109444(reader[0]));
+func_0210c970(reader);
+}
+
 extern u8 data_02151090[];
 extern u8 data_021510a4[];
 extern u8 data_021510bc[];
