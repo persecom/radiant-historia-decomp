@@ -1,9 +1,9 @@
 /* 20 functions from 0x0202B4D8 to 0x0202C328 (main), found by ds-decomp. */
 #include "common.h"
 
-extern u8 *data_02160080;
-extern u8 *data_02160a6c;
-extern u8 *data_02160244;
+extern u8 *volatile data_02160080;
+extern u8 * data_02160a6c;
+extern u8 *volatile data_02160244;
 extern void func_02026fbc(void);
 extern void func_02027004(void *, void *);
 extern u8 *func_0203222c(void);
@@ -54,16 +54,20 @@ void func_0202b928(void) {
 }
 
 void func_0202b950(u32 arg0) {
-    *(u16 *)data_02160080 &= 0xfffe;
-    *(u16 *)data_02160080 |= 2;
-    *(u16 *)data_02160080 |= 8;
-    *(u16 *)(data_02160244 + 0xf8) = 0;
-    *(u16 *)(data_02160244 + 0xf6) = 0;
-    func_02027004(arg0, 0);
-    *(u16 *)(data_02160244 + 0xf8) = 0;
-    *(u16 *)(data_02160244 + 0xf6) = 0;
-    *(u16 *)data_02160080 &= 0xfffd;
-    *(u16 *)data_02160080 &= 0xfff7;
-    *(u16 *)data_02160080 |= 1;
+    u8 **pf = &data_02160080;
+    u8 **pb = &data_02160244;
+    u16 mask = 0xfffe;
+    s32 zero = 0;
+    *(u16 *)*pf &= mask;
+    *(u16 *)*pf |= 2;
+    *(u16 *)*pf |= 8;
+    *(u16 *)(*pb + 0xf8) = zero;
+    *(u16 *)(*pb + 0xf6) = zero;
+    func_02027004(arg0, zero);
+    *(u16 *)(*pb + 0xf8) = zero;
+    *(u16 *)(*pb + 0xf6) = zero;
+    *(u16 *)*pf &= mask - 1;
+    *(u16 *)*pf &= mask - 7;
+    *(u16 *)*pf |= 1;
 }
 
