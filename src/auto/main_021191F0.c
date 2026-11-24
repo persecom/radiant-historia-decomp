@@ -58,6 +58,10 @@ static inline void MI_CpuFill32(void *dest, u32 data, u32 size) {
     func_02008e68((s32)data, dest, (s32)size);
 }
 
+static inline s32 is_valid_id(s32 id) {
+    return id != -1;
+}
+
 void func_021191f0(void) {
     Struct0216f2c4 *entry;
     u16 f2;
@@ -176,6 +180,70 @@ void func_02119694(void *arg0, s32 arg1, s32 arg2) {
         ctx = data_0216f3c4 + *(volatile u32 *)&data_0216f234.fc * 0x18;
     }
     (*(Cb5_02119694 *)(sub + 0x44))(p, sub, arg1, arg2, ctx);
+}
+
+extern s16 data_0213a394[];
+extern void func_02119728(u32);
+extern void func_02119f1c(void);
+extern s32 func_0211c5d4(u32);
+extern s32 func_0211c5e8(u32);
+extern void func_0211a178(s32, s32, s32);
+extern void func_0211a3ac(s32, s32);
+extern void func_0211a26c(s32, s32, s32);
+extern void func_0211a128();
+void func_02119b34(u32 arg0) {
+    u8 *p = (u8 *)arg0;
+    u32 f30 = *(u32 *)(p + 0x30);
+
+    if (*(u16 *)(p + 0x4e) == 0) {
+        s32 f38 = *(s32 *)(p + 0x38);
+        s32 flag = (f38 != -1) ? 1 : 0;
+        if (flag != 0) {
+            *(s32 *)(data_02155eb0 + 4) = f38;
+            func_02119728(f30);
+            *(s32 *)(data_02155eb0 + 4) = -1;
+            return;
+        }
+        func_02119728(f30);
+        return;
+    }
+
+    func_02119f1c();
+
+    if (*(u16 *)(p + 0x4e) & 8) {
+        s32 y = *(s16 *)(p + 0x4a);
+        s32 x = *(s16 *)(p + 0x48);
+        if (func_0211c5d4(data_0216f234.f8) != 0) {
+            x = -x;
+        }
+        if (func_0211c5e8(data_0216f234.f8) != 0) {
+            y = -y;
+        }
+        func_0211a178(x << 12, y << 12, 0);
+    }
+
+    if (*(u16 *)(p + 0x4e) & 4) {
+        s32 idx = ((s32)*(u16 *)(p + 0x4c) >> 4) * 2;
+        func_0211a3ac(data_0213a394[idx], data_0213a394[idx + 1]);
+    }
+
+    if (*(u16 *)(p + 0x4e) & 2) {
+        func_0211a26c(*(s32 *)(p + 0x40), *(s32 *)(p + 0x44), 0x1000);
+    }
+
+    {
+        s32 f38 = *(s32 *)(p + 0x38);
+        s32 flag = (f38 != -1) ? 1 : 0;
+        if (flag != 0) {
+            *(s32 *)(data_02155eb0 + 4) = f38;
+            func_02119728(f30);
+            *(s32 *)(data_02155eb0 + 4) = -1;
+        } else {
+            func_02119728(f30);
+        }
+    }
+
+    func_0211a128(1);
 }
 
 void func_02119c80(void *arg0) {
