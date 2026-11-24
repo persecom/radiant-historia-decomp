@@ -65,3 +65,27 @@ void func_0209ed58(s32 arg0, s32 arg1)
   func_020a0fd4(arg0, arg1);
 }
 
+void func_0209edc8(s32 arg0, s32 arg1)
+{
+  u8 *base = data_021600b0;
+  Unk_02142c40 arr[5];
+  u32 count = 5;
+  u16 new_var;
+  Unk_02142c40 *dst = arr;
+  Unk_02142c40 *src = data_02142bf0;
+  if ((base && base) && base)
+  {
+  }
+  do
+  {
+    new_var = src->f0;
+    dst->f2 = src->f2;
+    dst->f0 = new_var;
+    src++;
+    dst++;
+  }
+  while ((--count) != 0);
+  func_0209f1c4(1, 0xa, arg0, arg1, arr, 0x1f);
+  func_0209f684(0, *((Unk_0209edc8_vec *) (base + 0x1e0)), *((s16 *) (base + 0x1ea)));
+}
+
