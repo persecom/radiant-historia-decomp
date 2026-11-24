@@ -548,12 +548,9 @@ s32 func_020ab140(u8 *p, u8 *state) {
    result = data_0214388c[next](&next);
    if (result == 0) result = data_02143880[next](&next);
   }
-  { u8 value = next;
-  u8 old = *state;
-  if (value != old) {
-   func_020abf3c(old);
+  if (next != *state) {
+   func_020abf3c();
    *state = next;
-  }
   }
  }
  if (result == 4) return 4;
