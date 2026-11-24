@@ -61,11 +61,27 @@ void func_020a2c38(u16 arg0, u32 arg1) {
     }
 }
 
-s32 func_020a2e64(void) {
-    if (func_020a2f34() != 0) {
+s32 func_020a2dd0(void) {
+    void *p;
+    if (data_02160128 != 0) {
         return 1;
     }
-    return func_020a2fe4() != 0;
+    p = func_0210c594(0x10, data_02155c3c);
+    data_02160128 = (u32)p;
+    if (p == NULL) {
+        return 2;
+    }
+    func_021167ac((u8 *)p + 4, 8);
+    return 0;
+}
+
+s32 func_020a2e64(void) {
+    if (func_020a2f34() == 0) {
+        if (func_020a2fe4() == 0) {
+            return 0;
+        }
+    }
+    return 1;
 }
 
 s32 func_020a30c4(void) {
