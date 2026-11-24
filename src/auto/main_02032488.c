@@ -48,6 +48,104 @@ extern void func_0205bc60(void *, u8 *, s32);
 extern void func_020020f8(void *, void *, void *);
 
 extern void func_020c2e80(void);
+void func_02032488(s32 type) {
+u8 *p=data_02160090;
+u8 *node;
+s32 zero=0,one=1;
+p[0x7d]=zero;
+*(u16*)(p+0x78)=zero;
+func_020c2694(type);
+if(type==1) {
+func_020c2734(zero,zero,one);
+func_020c2870(zero);
+node=func_020c2584(*(void**)(func_020c2a98(zero,one)+4),one);
+node[0]=zero; node[0x14]=3;
+node[1]=*(u16*)(data_02160090+0x50)+1;
+func_021167f0(data_02160090+0x48,node);
+func_020c31f0();
+func_020c27b4(zero,4,one);
+func_020c2870(zero);
+func_020c31f0();
+*(u16*)(p+0x78)=one;
+func_020322ec(one);
+func_020c31f0();
+func_020c3244(zero);
+node=*(u8**)(data_02160090+0x48);
+while(node) node=*(u8**)(node+0x24);
+} else if(type==2) {
+func_020c27b4(zero,zero,one);
+func_020c2870(zero);
+func_020c31f0();
+*(u16*)(p+0x78)=one;
+func_020322ec(one);
+func_020c31f0();
+func_020c3244(zero);
+func_020c30f8(zero);
+node=*(u8**)(data_02160090+0x48);
+while(node) node=*(u8**)(node+0x24);
+} else if(type==3) {
+func_020c2824(zero,zero,one,102);
+func_020c2870(zero);
+func_020c31f0();
+
+func_020c2824(zero,one,one,zero);
+func_020c2870(zero);
+func_020c31f0();
+
+func_020c2824(zero,2,one,102);
+func_020c2870(zero);
+func_020c31f0();
+
+*(u16*)(p+0x78)=one;
+func_020322ec(one);
+func_020c31f0();
+func_020c3244(zero);
+func_020c30f8(zero);
+} else if(type==4) {
+func_020c2734(zero,zero,one);
+func_020c2870(zero);
+func_020c31f0();
+func_020c27b4(zero,4,one);
+func_020c2870(zero);
+func_020c31f0();
+*(u16*)(p+0x78)=one;
+func_020322ec(one);
+func_020c31f0();
+func_020c3244(zero);
+func_020c30f8(zero);
+} else if(type==5) {
+func_020c2824(zero,zero,one,zero);
+func_020c2870(zero);
+func_020c31f0();
+
+func_020c2824(zero,one,one,103);
+func_020c2870(zero);
+func_020c31f0();
+
+func_020c2824(zero,2,one,one);
+func_020c2870(zero);
+func_020c31f0();
+
+func_020c2824(zero,3,one,105);
+func_020c2870(zero);
+func_020c31f0();
+
+func_020c2824(zero,4,one,2);
+func_020c2870(zero);
+func_020c31f0();
+
+func_020c2824(zero,5,one,107);
+func_020c2870(zero);
+func_020c31f0();
+
+*(u16*)(p+0x78)=one;
+func_020322ec(one);
+func_020c31f0();
+func_020c3244(zero);
+func_020c30f8(zero);
+}
+}
+
 void func_020327b4(void) {
 u16 i, count;
 u8 *p;
