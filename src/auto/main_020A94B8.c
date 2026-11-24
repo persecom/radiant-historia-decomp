@@ -239,6 +239,12 @@ void func_020a9a58(void) {
     (*(void (**)(void *))(obj + 8))(obj);
 }
 
+void *func_020a9a80(void) {
+    void *ptr = func_0210c594(0x14, data_02155c3c);
+    func_020a9abc(ptr);
+    return ptr;
+}
+
 extern void func_0210c5dc(void *);
 void func_020a9aa8(void *arg0) {
     if (arg0 != NULL) {
