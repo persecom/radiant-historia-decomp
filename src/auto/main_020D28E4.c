@@ -228,7 +228,7 @@ void func_020d2e98(void) {
 
 void func_020d30a0(void) {
     while (data_02160a6c->unk64 != 0) {
-        func_020d2f44();
+        func_020d2f44((u8 *)data_02160a6c->unk64);
     }
 }
 
