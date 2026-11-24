@@ -13,6 +13,15 @@ typedef struct Unk_0200a328 {
     u32 field_0;
     u32 field_4;
 } Unk_0200a328;
+
+typedef struct ChanBits {
+    u32 ch : 5;
+    u32 pad : 27;
+} ChanBits;
+typedef union ChanCmd {
+    u32 raw;
+    ChanBits bits;
+} ChanCmd;
 extern s32 func_02008128(void);
 extern void func_0200813c(s32);
 extern s32 func_02009964(s32);
@@ -404,6 +413,75 @@ void func_0200a328(u32 *arg0) {
     arg0[1] = 0;
 }
 
+s32 func_0200a348(u8 *arg0, u8 *arg1, u32 *arg2) {
+    while (arg2[0] < *(u32 *)(arg0 + 0x38)) {
+        u32 entry = *(u32 *)(arg0 + 0x3c + arg2[0] * 4);
+        u8 type = (u8)(entry & 0xff);
+        u32 offset = entry >> 8;
+        arg1[0] = type;
+        switch (type) {
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5: {
+            u16 *src = (u16 *)(arg0 + offset);
+            u16 *dst = (u16 *)(arg1 + 2);
+            u16 a = src[0], b = src[1], c = src[2], d = src[3], e = src[4];
+            dst[0] = a;
+            dst[1] = b;
+            dst[4] = e;
+            dst[2] = c;
+            dst[3] = d;
+            arg2[0]++;
+            return 1;
+        }
+        case 0x10: {
+            u8 *drum = arg0 + offset;
+            while (arg2[1] < (u32)(drum[1] - drum[0] + 1)) {
+                u16 *src = (u16 *)(drum + 2 + arg2[1] * 12);
+                u16 *dst = (u16 *)arg1;
+                u16 a = src[0], b = src[1], c = src[2], d = src[3], e = src[4], f = src[5];
+                dst[0] = a;
+                dst[1] = b;
+                dst[5] = f;
+                dst[2] = c;
+                dst[3] = d;
+                dst[4] = e;
+                arg2[1]++;
+                return 1;
+            }
+            break;
+        }
+        case 0x11: {
+            u8 *key = arg0 + offset;
+            while (arg2[1] < 8) {
+                if (key[arg2[1]] == 0) {
+                    break;
+                }
+                {
+                    u16 *src = (u16 *)(key + 8 + arg2[1] * 12);
+                    u16 *dst = (u16 *)arg1;
+                    u16 a = src[0], b = src[1], c = src[2], d = src[3], e = src[4], f = src[5];
+                    dst[0] = a;
+                    dst[1] = b;
+                    dst[5] = f;
+                    dst[2] = c;
+                    dst[3] = d;
+                    dst[4] = e;
+                }
+                arg2[1]++;
+                return 1;
+            }
+            break;
+        }
+        }
+        arg2[0]++;
+        arg2[1] = 0;
+    }
+    return 0;
+}
+
 s32 func_0200a4f4(u8 *arg0) {
     return *(s32 *)(arg0 + 0x38);
 }
@@ -588,12 +666,14 @@ s32 func_0200a6e4(s32 arg0, u32 arg1, s32 arg2) {
     return 0;
 }
 
-void func_0200a75c(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 val) {
-    volatile u16 *reg = (volatile u16 *)0x04000184;
-    s32 ret;
-    u32 ch;
-    s32 irq;
+void func_0200a75c(void) {
     void (**table)(u32, u32, u32) = (void (**)(u32, u32, u32))data_0215ece8;
+    volatile u16 *reg = (volatile u16 *)0x04000184;
+    volatile u32 uninit;
+    s32 ret;
+    s32 irq;
+    u32 val = uninit;
+    u32 ch;
 
     while (1) {
         if ((*reg & 0x4000) != 0) {
@@ -616,7 +696,7 @@ void func_0200a75c(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 val) {
         if (ret == -3) {
             continue;
         }
-        ch = (val << 27) >> 27;
+        ch = (val << 27) / 0x08000000;
         if (ch == 0) {
             continue;
         }
