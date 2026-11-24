@@ -359,6 +359,14 @@ s32 func_0210f2e4(u32 arg0) {
     return (*(u16 *)(p + 0x14) >= 2) ? 1 : 0;
 }
 
+s32 func_0210f314(u32 arg0) {
+    u8 *p = func_0210ed58(arg0, 1);
+    if (p == NULL) {
+        return 0;
+    }
+    return (*(u16 *)(p + 0x14) >= 2) ? 1 : 0;
+}
+
 void func_0210f38c(void) {
     data_02162b00[0] = '\0';
     data_02162a54[0] = 0;
