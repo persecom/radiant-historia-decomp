@@ -133,6 +133,8 @@ void func_02007e44(u32 *arg0) {
     arg0[8] = 0;
 }
 
+extern void func_02008ab4(int, u32, u32, u32);
+extern void func_01ff845c(u32, const void *, void *, u32, u32);
 void func_02007e58(u8 *alarm, s16 count, s16 delay, void *handler, void *arg) {
     u32 enabled = func_02008128();
     u32 vcount;
@@ -144,17 +146,17 @@ void func_02007e58(u8 *alarm, s16 count, s16 delay, void *handler, void *arg) {
 
     vcount = *(volatile u16 *)0x04000006;
     frame = func_020080d8(vcount);
+    *(u32 *)(alarm + 0x1c) = 0;
     if (count <= (s32)vcount) {
         frame++;
     }
 
-    *(u32 *)(alarm + 0x1c) = 0;
     *(u32 *)(alarm + 0x0c) = frame;
     *(s16 *)(alarm + 0x10) = count;
     *(s16 *)(alarm + 0x12) = delay;
     *(void **)(alarm + 0x00) = handler;
     *(void **)(alarm + 0x04) = arg;
-    *(volatile u32 *)(alarm + 0x24) = 0;
+    *(u32 *)(alarm + 0x24) = 0;
 
     func_02007d58(alarm);
     func_0200813c(enabled);
