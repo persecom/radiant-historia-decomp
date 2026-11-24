@@ -215,6 +215,56 @@ u32 func_02117090(u8 *a0) {
     return *(u16 *)(a0 - 0xe) & 0xff;
 }
 
+void* func_0211709c(void* heap, void* end, u16 opt)
+{
+    void* result;
+    u32 limit;
+    u32 start;
+
+    func_02116a5c(heap, 0x46524D48, (u8*)heap + 0x30, end, opt);
+
+    limit = *(u32*)((u8*)heap + 0x1C);
+    start = *(u32*)((u8*)heap + 0x18);
+
+    result = heap;
+
+    *(u32*)((u8*)heap + 0x24) = start;
+    *(u32*)((u8*)heap + 0x28) = limit;
+    *(void**)((u8*)heap + 0x2C) = NULL;
+
+    return result;
+}
+
+void* func_021170e4(void* heap, u32 size, s32 alignment)
+{
+    u8* frame = (u8*)heap;
+    u32 head = *(u32*)(frame + 0x0);
+    u32 aligned;
+    u32 newHead;
+    u32 flags;
+    u32 clearSize;
+
+    alignment -= 1;
+
+    aligned = ~alignment & (alignment + head);
+    newHead = size + aligned;
+
+    if (newHead > *(u32*)(frame + 0x4)) {
+        return NULL;
+    }
+
+    flags = *(u32*)(frame - 0x4);
+    clearSize = newHead - head;
+
+    if ((u8)flags & 1) {
+        func_02008e24(0, (void*)head, clearSize);
+    }
+
+    *(u32*)(frame + 0x0) = newHead;
+
+    return (void*)aligned;
+}
+
 void func_02117210(void) {
     func_02116ad8();
 }
