@@ -30,6 +30,11 @@ extern void func_02126c0c(void);
 extern void func_02139804(void *);
 extern void func_021398d0(void *);
 extern void func_0213999c(void *, void *);
+extern char data_0215cc64[];
+extern void *data_0215cc6c[];
+extern s32 func_020138b8(const void *, const void *, u32);
+extern u32 func_02126c90(void *);
+extern void func_02130b48(void *, void *, void *);
 
 extern void func_0212a9f4(void);
 extern void func_02139be8(u32, u32, u32);
