@@ -93,8 +93,8 @@ void func_0202ba04(u32 arg0) {
 }
 
 u8 *func_0202bc44(s32 arg0) {
+    s16 idx = arg0 * 2;
     u8 *p = func_0210c594(0x3c, data_02155c3c);
-    s32 idx = arg0 * 2;
     p[0] = arg0;
     p[1] = 0;
     if ((u32)arg0 <= 8) {
@@ -108,10 +108,12 @@ u8 *func_0202bc44(s32 arg0) {
 }
 
 void func_0202bcd4(u32 *arg0, s32 arg1) {
-    s32 idx = arg1 * 2;
-    arg0[0] = data_0214618c[idx] << 12;
+    s16 idx = arg1 * 2;
+    u32 b = data_0214618c[idx + 1];
+    u32 a = data_0214618c[idx];
+    arg0[0] = a << 12;
     arg0[1] = 0x20000;
-    arg0[2] = data_0214618c[idx + 1] << 12;
+    arg0[2] = b << 12;
 }
 
 void func_0202bd08(u8 *arg0) {
@@ -126,6 +128,16 @@ void func_0202bd08(u8 *arg0) {
     func_0202e874(arg0);
     if (arg0 != NULL) {
         func_0210c5dc(arg0);
+    }
+}
+
+extern void func_021167f0(void *, void *);
+void func_0202bec8(void *arg0) {
+    u8 i;
+    for (i = 0; i < 0xc; i++) {
+        if (func_0202bf08(arg0, i)) {
+            func_0202be58(arg0, i);
+        }
     }
 }
 
