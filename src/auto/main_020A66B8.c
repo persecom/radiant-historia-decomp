@@ -53,6 +53,17 @@ void func_020a6c04(void *arg0, u16 arg1, u8 arg2) {
     }
 }
 
+void func_020a6c44(void *arg0, u16 arg1) {
+    u8 *node = *(u8 **)arg0;
+    while (node != NULL) {
+        if (*(u16 *)node == arg1) {
+            *(u32 *)(node + 0xac) = 1;
+            return;
+        }
+        node = *(u8 **)(node + 0xa4);
+    }
+}
+
 void func_020a6c74(void *arg0, u16 arg1, u16 arg2) {
     u8 *node = *(u8 **)arg0;
     while (node != NULL) {
