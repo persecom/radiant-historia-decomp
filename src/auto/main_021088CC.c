@@ -91,6 +91,11 @@ void func_02108c24(u32 arg0, s32 arg1) {
 void func_021091b0(void) {
 }
 
+u32 func_0210957c(s32 arg0) {
+    func_0210950c(data_02162504[arg0]);
+    return data_02162504[arg0];
+}
+
 void func_02109828(void) {
     *(u32 *)(data_02162510 + 0x34) = 0x8000;
     *(u32 *)(data_02162510 + 0x44) = 0x8000;
