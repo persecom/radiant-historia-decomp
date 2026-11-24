@@ -131,6 +131,10 @@ void func_0212a1c8(u8 *arg0, u32 arg1, u32 arg2) {
     *(u32 *)(arg0 + 0x7c) = arg2;
 }
 
+u32 func_0212a1d4(u8 *arg0) {
+    return *(u32 *)(arg0 + 0x3c);
+}
+
 void *func_0212a220(void *arg0) {
     return *(void **)((u8 *)arg0 + 0x10);
 }
