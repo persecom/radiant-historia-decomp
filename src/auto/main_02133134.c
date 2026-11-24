@@ -318,10 +318,9 @@ void func_021336e8(void) {
 
 u32 func_021336f4(void *arg0, s8 **arg1, s32 arg2) {
     s8 *p = arg0;
-    s32 c;
     u32 ret = 0;
     while (1) {
-        c = *p;
+        s32 c = *p;
         if (c < '0') {
             break;
         }
@@ -603,6 +602,19 @@ u32 func_02133ee0(u8 *arg0) {
         }
     }
     return ((u32)readSize + *(u32 *)(arg0 + 0x58) - 1) / *(u32 *)(arg0 + 0x58);
+}
+
+extern s32 func_0201fb1c(s32, s32);
+extern void func_02133f78(u8 *);
+extern s32 func_021346cc(u32);
+extern u8 data_0215bc20[44];
+void func_02133ff8(u8 *arg0) {
+    if (*(u32 *)(arg0 + 0x50) == 1) {
+        func_02133ee0(arg0);
+    }
+    if (*(u32 *)(arg0 + 0x50) == 2) {
+        func_02133f78(arg0);
+    }
 }
 
 void func_02134064(u32 arg0, u32 arg1) {
