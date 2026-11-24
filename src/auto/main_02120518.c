@@ -201,29 +201,58 @@ u8 *func_02121068(u8 *arg0, u32 arg1) {
     return NULL;
 }
 
+void *func_02121090(u8 *arg0, u16 arg1, u16 arg2) {
+    u8 *p = func_02121104(arg0, arg1);
+    s16 scale = *(s16 *)(p + 4);
+    u16 n = *(u16 *)(p + 6);
+    u8 *arr = arg0 + n;
+    u32 v = (u32)(scale * (s32)arg2) >> 12;
+    u16 count;
+
+    for (;;) {
+        if (v == 0) {
+            break;
+        }
+        if (*(u16 *)(arr + v * 4) < arg2) {
+            break;
+        }
+        v--;
+    }
+    count = *(u16 *)(p + 0);
+    for (; v + 1 < count && *(u16 *)(arr + v * 4 + 4) <= arg2; v++) {
+    }
+    return arr + v * 4;
+}
+
 u8 *func_02121104(u8 *arg0, u32 arg1) {
     u8 *p = arg0 + 0xc;
     if (p == NULL) {
-        return NULL;
+        goto fail;
     }
     if (arg1 >= *(u8 *)(arg0 + 0xd)) {
-        return NULL;
+        goto fail;
     }
     {
-        u16 off = *(u16 *)(arg0 + 0x12);
-        return p + off + 4 + *(u16 *)(p + off) * arg1;
+        u32 off = *(u16 *)(arg0 + 0x12);
+        u32 entry = *(u16 *)(p + off);
+        return (u8 *)(p + off + 4) + entry * arg1;
     }
+fail:
+    return NULL;
 }
 
 void func_02121138(u8 *arg0, u8 *arg1, u8 *arg2) {
     u32 i;
-    u8 val = *(u8 *)(arg2 + 0x17);
+    u8 val;
+    u8 *table;
     *(u32 *)(arg0 + 8) = (u32)arg1;
     *(u32 *)(arg0 + 0xc) = data_02155edc;
+    val = *(u8 *)(arg2 + 0x17);
     arg0[0x19] = val;
     func_02008df0(0, arg0 + 0x1a, (u32)val * 2);
+    table = arg1 + 0x14;
     for (i = 0; i < *(u16 *)(arg1 + 6); i++) {
-        u16 idx = *(u16 *)(arg1 + 0x14 + i * 2);
+        u16 idx = *(u16 *)(table + i * 2);
         *(u16 *)(arg0 + 0x1a + i * 2) = (*(u32 *)(arg1 + idx) >> 24) | 0x100;
     }
 }
