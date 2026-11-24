@@ -433,23 +433,14 @@ s32 func_0212f558(void *arg0, u32 *arg1) {
     return 0x1e;
 }
 
-extern u8 data_021747a0[];
-s32 func_0212f570(void)
-{
-  struct S
-  {
-    u32 a;
-    u32 b;
-  };
-  if (data_021747a0)
-  {
-  }
-  ((struct S *) data_021747a0)->b++;
-  return 0;
+extern u32 data_021747a0[3];
+s32 func_0212f570(void) {
+    data_021747a0[1]++;
+    return 0;
 }
 
 s32 func_0212f6e4(void *arg0, void *arg1, void *arg2) {
-    if (*(u32 *)(data_021747a0 + 4) == 0) {
+    if (*(u32 *)((u8 *)data_021747a0 + 4) == 0) {
         func_0212f570();
     }
     func_0212f58c(data_0215a0d0, 6, arg0, arg1, arg2);
@@ -461,9 +452,9 @@ void func_0212f738(u32 arg0) {
     func_0212f548(arg0);
 }
 
-extern u8 data_021747a0[12];
+extern u32 data_021747a0[3];
 void func_0212f744(s32 arg0) {
-    *(s32 *)(data_021747a0 + 8) = arg0;
+    *(s32 *)((u8 *)data_021747a0 + 8) = arg0;
 }
 
 extern void func_0213234c(void);
