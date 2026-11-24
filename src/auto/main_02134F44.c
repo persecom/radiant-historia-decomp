@@ -244,6 +244,17 @@ void func_02135c78(u32 arg0, u32 arg1) {
     data_021759ac[0] = arg1;
 }
 
+extern void func_02016e88(void *, void *, s32);
+extern void func_02135d4c(s32, s32);
+extern void func_02135d24(u16);
+extern s32 data_02175ab4;
+void func_02135c8c(void *arg0) {
+    func_02016e88(data_021759b4, arg0, 0xff);
+    if (data_021759ac[1] != 0) {
+        ((void (*)(u32, void *))data_021759ac[1])(data_021759ac[0], data_021759b4);
+    }
+}
+
 void func_02135d20(void) {
 }
 
