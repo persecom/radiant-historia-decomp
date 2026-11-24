@@ -228,8 +228,9 @@ void func_02108eec(u32 arg0, u32 arg1) {
 }
 
 void func_02108f58(u32 arg0) {
-    u16 j;
     u16 i;
+    u16 j;
+    s32 v;
     if (arg0 >= 2) {
         return;
     }
@@ -238,7 +239,8 @@ void func_02108f58(u32 arg0) {
         func_02108ffc();
     }
     for (j = 0; j < 5; j++) {
-        func_02108c24(arg0, j);
+        v = j;
+        func_02108c24(arg0, v);
         func_02108ffc();
     }
 }
@@ -399,6 +401,16 @@ s32 func_021095d0(u32 arg0) {
     s32 i;
     for (i = 0; i < 3; i++) {
         if (arg0 == data_02162504[i]) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+s32 func_02109754(u32 arg0) {
+    s32 i;
+    for (i = 0; i < 2; i++) {
+        if ((arg0 & (1 << i)) && *(s32 *)(data_02162544 + i * 0x10 + 0xc) > 0) {
             return 1;
         }
     }
