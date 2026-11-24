@@ -68,6 +68,18 @@ void func_02030574(u8 *arg0) {
     }
 }
 
+void func_020305b0(void *arg0, void *arg1) {
+    u8 *p = (u8 *)arg0;
+    if (arg1 == NULL) {
+        return;
+    }
+    p[4]--;
+    func_021168f8(p + 8, arg1);
+    if (arg1 != NULL) {
+        func_0210c5dc(arg1);
+    }
+}
+
 extern void func_021168f8(void *, void *);
 extern void func_021167f0(void *, void *);
 extern void *func_02030630(u8 *, u16);
