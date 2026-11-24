@@ -154,6 +154,13 @@ void *func_021166c8(u8 *arg0, s32 arg1) {
     return entry;
 }
 
+void func_02116708(s32 *arg0) {
+    arg0[1] = 0;
+    arg0[0] = 0;
+    arg0[3] = 0;
+    arg0[2] = 0;
+}
+
 void* func_02116d7c(void* heap, u32 size, s32 alignment)
 {
     typedef struct Block {
