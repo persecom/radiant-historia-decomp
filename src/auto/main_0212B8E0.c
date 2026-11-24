@@ -19,6 +19,10 @@ void func_0212bfa4(void) {
     func_0212a9f8();
 }
 
+void func_0212c068(void *arg0, void *arg1) {
+    func_0212bda8(arg1);
+}
+
 s32 func_0212c088(void) {
     func_0212c464();
     return 0;
