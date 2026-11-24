@@ -1,5 +1,6 @@
 /* 32 functions from 0x02128B80 to 0x02129A6C (main), found by ds-decomp. */
 #include "common.h"
+extern u32 data_02173478[4];
 
 extern void func_0212a9f4(void);
 extern void func_021295a4(void *);
@@ -22,6 +23,70 @@ void func_02129588(void *arg0) {
     func_0212a9f4();
     func_021295a4(arg0);
     func_0212a9f8();
+}
+
+void func_021295a4(void *arg0) {
+    u8 *p = arg0;
+    if (p == NULL) {
+        func_0212bda8(data_02156a54);
+        return;
+    }
+    switch (*(s8 *)(p + 1)) {
+    case 3:
+        func_021293c0();
+        break;
+    case 1:
+        func_02128eb4();
+        break;
+    case 2:
+        func_0212926c();
+        break;
+    case 4:
+        func_02129490();
+        break;
+    case 5:
+        func_021294c4();
+        break;
+    }
+    func_0212951c(p);
+    func_021294c8(p);
+}
+
+void func_02129624(void) {
+    u32 i;
+    for (i = 0; i < 60; i++) {
+        data_0217348c[i] = 0;
+    }
+}
+
+u8 *func_0212965c(void) {
+    s32 i;
+    for (i = 0; i < 4; i++) {
+        if (*(u32 *)((u8 *)data_0217348c + i * 0x3c) == 0) {
+            break;
+        }
+    }
+    if (i == 4) {
+        return 0;
+    }
+    {
+        u8 *e = (u8 *)data_0217348c + i * 0x3c;
+        func_02013878(e, 0, 0x3c);
+        *(u32 *)((u8 *)data_0217348c + i * 0x3c) = 1;
+        *(u32 *)(e + 4) = i;
+        *(u32 *)(e + 8) = 0;
+        *(u32 *)(e + 0xc) = 0;
+        func_0212b3f8(0x1f4, 0xac44, e + 0x30, e + 0x32);
+        *(u8 *)(e + 0x28) = 0;
+        *(u8 *)(e + 0x29) = 0;
+        *(u8 *)(e + 0x2a) = 0;
+        *(u8 *)(e + 0x2b) = 0;
+        *(u8 *)(e + 0x2c) = 0;
+        *(u8 *)(e + 0x2d) = 0;
+        *(u8 *)(e + 0x2e) = 0;
+        *(u8 *)(e + 0x2f) = 0;
+        return e;
+    }
 }
 
 u32 func_021297b8(void *arg0) {
