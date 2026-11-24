@@ -90,6 +90,17 @@ u8 func_020c85cc(u8 *arg0) {
     return *(s32 *)(p + 0x4c) >> 12;
 }
 
+extern void func_020c9940(void *);
+extern void func_020a9544(void *);
+void func_020c85e8(u8 *arg0) {
+    (*(void (**)(void *))(*(u8 **)(arg0 + 0x30) + 4))(*(void **)(arg0 + 0x30));
+    (*(void (**)(void *))(*(u8 **)(arg0 + 0x30) + 8))(*(void **)(arg0 + 0x30));
+    if (*(void **)(arg0 + 0x34) != NULL) {
+        func_020a9544(*(void **)(arg0 + 0x34));
+        *(void **)(arg0 + 0x34) = NULL;
+    }
+}
+
 s32 func_020c8624(void) {
     return 4;
 }
