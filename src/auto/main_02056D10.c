@@ -5,6 +5,18 @@ extern u8 *data_021600ac;
 extern void func_021168f8(void **, void *);
 extern void func_0210c5dc(void *);
 extern void func_020f4f04(void *);
+extern void func_02056fbc(void);
+extern s32 func_020a2c5c(s32, s32, s32, s32, s32);
+extern s32 func_020a8844(s32, s32, s32, s32);
+extern void func_020a9830(void *, void *, s32, s32, s32, s32);
+extern void func_020a9610(void *, s32, s32, s32, s32, s32);
+extern void func_02044820(u32);
+extern void func_021167ac(void *, s32);
+extern u8 *func_020bd438(s32);
+extern u8 *func_02021f10(s32);
+extern void func_02057244(void);
+extern u32 data_02160204;
+extern u32 data_02160078;
 
 void func_02056f2c(void) {
     u8 *node = *(u8 **)(data_021600ac + 0x8d0);
