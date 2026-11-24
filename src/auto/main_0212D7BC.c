@@ -94,6 +94,12 @@ void func_0212da40(void *arg0) {
     func_02013878(arg0, 0, 0x64);
 }
 
+void func_0212da70(void *arg0, u32 arg1, u32 arg2, u32 arg3, u64 arg4) {
+    func_0212e5a0();
+    func_0212dabc(arg0, arg1, arg2, arg3, arg4);
+    func_0212e5ac();
+}
+
 void func_0212db44(s8 *arg0) {
     func_0212dce4(arg0);
     func_0212e57c();
