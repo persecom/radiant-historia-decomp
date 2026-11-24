@@ -208,6 +208,15 @@ void func_021138f0(void) {
     func_02009cc0(ret);
 }
 
+void func_02113948(void) {
+    s32 tmp;
+    func_02114c28();
+    func_020095a8(0, 0, 0, 0);
+    tmp = func_02009d2c();
+    func_02009b24(1);
+    func_02009cc0(tmp);
+}
+
 void func_02113980(void) {
     func_02114c80();
 }
@@ -224,6 +233,12 @@ void func_02113ce8(void **arg0, u8 arg1) {
     void *p = *arg0;
     if (p != NULL) {
         *(u8 *)(*arg0 + 0x41) = arg1;
+    }
+}
+
+void func_02113cfc(u8 **arg0, u8 arg1) {
+    if (*arg0 != NULL) {
+        (*arg0)[0x40] = arg1;
     }
 }
 
