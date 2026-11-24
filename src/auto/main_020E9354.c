@@ -37,6 +37,34 @@ void func_020e9354(u16 arg0) {
     *(u16 *)(ptr + 0x14a) = arg0;
 }
 
+void func_020e9384(u8 *obj) {
+u8 *p=data_02160a74;
+*(u16 *)(p+0x1b0)=*(u16 *)(p+0x1b6);
+if(*(u16 *)(p+0x1b6)&2) {
+s32 found=0; u16 i;
+for(i=0;i<15;i++) if(func_020e586c(obj,(u8)*(u16 *)(obj+0x90),(u8)i)) found=1;
+if(!found) *(u16 *)(p+0x1b0)&=0xfffd;
+}
+if(*(u32 *)(*(u8 **)(obj+0x118)+0x78)&4) *(u16 *)(p+0x1b0)&=0xfffd;
+if(*(u16 *)(p+0x1b6)&8) {
+s32 found=0; u16 i;
+for(i=1;i<61;i++) if(func_02022068(i)) {found=1;break;}
+if(!found) *(u16 *)(p+0x1b0)&=0xfff7;
+}
+if(*(u16 *)(p+0x1b6)&0x40) {
+s32 found=0;
+if(func_020e55d8((u8)*(u16 *)(obj+0x90),0)) found=1;
+if(found) *(u16 *)(p+0x1b0)|=0x40;
+else *(u16 *)(p+0x1b0)&=0xffbf;
+}
+if(!data_02160204[0x11c]) *(u16 *)(p+0x1b0)&=0xffbf;
+if((*(u32 *)(*(u8 **)(obj+0x118)+0x78)&8) || (*(u32 *)(*(u8 **)(obj+0x118)+0x78)&0x10000000)) *(u16 *)(p+0x1b0)&=0xfff7;
+if(*(u32 *)(*(u8 **)(obj+0x118)+0x78)&0x4000000) *(u16 *)(p+0x1b0)&=0xfffe;
+if(*(u32 *)(*(u8 **)(obj+0x118)+0x78)&0x8000000) *(u16 *)(p+0x1b0)&=0xfffd;
+if((*data_02160244)[0x8c]==1) *(u16 *)(p+0x1b0)&=0xff7f;
+if(*(s16 *)(data_02160a74+0xc8)>=9) *(u16 *)(p+0x1b0)&=0xfffb;
+}
+
 void func_020e95d0(void) {
     *(u16 *)(data_02160a74 + 0x1b0) = 0;
 }
