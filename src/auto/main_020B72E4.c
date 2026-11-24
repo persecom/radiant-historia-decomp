@@ -48,4 +48,7 @@ for(i=0;i<5;i++) func_020c738c(func_020c9c10(*(void **)((u8 *)data_021601ec+0x48
 *(u32 *)((u8 *)data_021601ec+0x54)=0x50000;
 func_020b748c();
 }
-
+typedef struct { u16 id; s16 end, x, dx, y, dy, flag; } AnimEntry_020b748c;
+typedef struct { AnimEntry_020b748c entries[6]; } AnimTable_020b748c;
+extern AnimTable_020b748c data_02143a1c;
+typedef struct AnimObj_020b748c { u8 pad[16]; void (*setX)(struct AnimObj_020b748c *, s32); void (*setY)(struct AnimObj_020b748c *, s32); } AnimObj_020b748c;
