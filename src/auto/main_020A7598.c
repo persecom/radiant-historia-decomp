@@ -6,7 +6,7 @@ extern void func_02108e54(s32);
 extern void func_0210968c(s32,s32,s32);
 extern void func_02109790(s32);
 extern void func_0210dc88(void);
-static void func_020a7ec8(void);
+extern void func_020a7ec8(void);
 
 extern u8 *data_02160140;
 extern u32 data_02155c3c;
@@ -100,25 +100,24 @@ void func_020a7598(void *arg0) {
     for (i = 0; i < 3; i++) {
         u8 *p5 = func_020a7460();
         u8 *p6 = *(u8 **)(p5 + 4);
-        u32 *e = &((u32 *)&s1)[i * 9];
-        u32 id = e[4];
+        u32 id = ((u32 *)&s1)[i * 9 + 4];
         u8 *p2 = func_020f4d40(id);
         if (p2 == NULL) {
             p2 = func_020f4c2c(id);
         }
         *(u16 *)(p5 + 8) = 0;
         *(u16 *)(p5 + 0xa) = 0;
-        *(u8 *)(p5 + 0) = (u8)e[8];
+        *(u8 *)(p5 + 0) = (u8)((u32 *)&s1)[i * 9 + 8];
         *(u32 *)(p2 + 0x20) = 0x1000;
         *(u32 *)(p2 + 0x24) = 0x1000;
-        *(u32 *)(p6 + 0x48) = e[5];
-        *(u32 *)(p6 + 0x8) = e[0];
-        *(u32 *)(p6 + 0xc) = e[1];
+        *(u32 *)(p6 + 0x48) = ((u32 *)&s1)[i * 9 + 5];
+        *(u32 *)(p6 + 0x8) = ((u32 *)&s1)[i * 9 + 0];
+        *(u32 *)(p6 + 0xc) = ((u32 *)&s1)[i * 9 + 1];
         *(u8 *)(p6 + 0x10) = 0;
         *(u16 *)(p6 + 0x44) = 3;
-        s0.unk_04 = e[2];
-        s0.unk_08 = e[3];
-        s0.unk_0c = e[7];
+        s0.unk_04 = ((u32 *)&s1)[i * 9 + 2];
+        s0.unk_08 = ((u32 *)&s1)[i * 9 + 3];
+        s0.unk_0c = ((u32 *)&s1)[i * 9 + 7];
         if (func_020f50bc(p6, &s0) == 0) {
             return;
         }
@@ -231,7 +230,7 @@ volatile char func_020a795c(u32 arg0, u32 *arg1, u32 *arg2)
   *arg2 = *((u32 *) (result + 8));
 }
 
-s32 func_020a79a4(void) {
+static s32 func_020a79a4(void) {
 s32 result;
 s32 three=3, zero=0;
 data_02162868=1; data_0216bf84=zero;
