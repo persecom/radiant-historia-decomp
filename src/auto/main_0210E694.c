@@ -267,8 +267,8 @@ void func_0210eb80(u8 *arg0) {
 
 void *func_0210ed58(u32 arg0, u8 arg1) {
     u8 *node = NULL;
-    while ((node = (node == NULL) ? *(u8 **)((u8 *)data_02162a54 + 0x20)
-                                  : *(u8 **)(node + *(u16 *)((u8 *)data_02162a54 + 0x2a) + 4)) != NULL) {
+    while ((node = (node != NULL) ? *(u8 **)(node + *(u16 *)((u8 *)data_02162a54 + 0x2a) + 4)
+                                  : *(u8 **)((u8 *)data_02162a54 + 0x20)) != NULL) {
         if (*(u32 *)(node + 8) == arg0 && *(u8 *)(node + 0xc) == arg1) {
             return node;
         }
