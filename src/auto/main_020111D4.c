@@ -191,6 +191,56 @@ void func_02011700(void *arg0) {
     func_02008f74(arg0, 0, 0x24);
 }
 
+extern void func_02006510(void *);
+extern void func_020063c8(void);
+void func_02011714(void *arg0)
+{
+    typedef struct {
+        u32 func0;
+        u32 func1;
+        u32 result;
+        u32 rest[6];
+    } Work;
+
+    u8 *ctx = arg0;
+    s32 z0 = 0;
+    s32 z1 = 0;
+    s32 z2 = 0;
+    s32 z3 = 0;
+    Work buf;
+    u32 saved;
+    u32 saved2;
+    u32 cb;
+
+    for (;;) {
+        func_02008f74(&buf, z3, 0x24);
+        saved = func_02008128();
+        if (*(u32 *)(ctx + 0xc0) == 0) {
+            do {
+                func_02006510(z0);
+            } while (*(u32 *)(ctx + 0xc0) == 0);
+        }
+        buf = *(Work *)*(u32 **)(ctx + 0xc0);
+        func_0200813c(saved);
+        if (buf.func0 != 0) {
+            buf.result = ((u32 (*)(Work *))buf.func0)(&buf);
+        }
+        saved2 = func_02008128();
+        cb = buf.func1;
+        *(u8 *)((u8 *)&data_0215fc08 + 0x26) = z2;
+        if (cb != 0) {
+            ((void (*)(Work *))cb)(&buf);
+        }
+        if (data_0215fc08 != 0) {
+            *(u32 *)(ctx + 0xc0) = z1;
+            func_0200813c(saved2);
+        } else {
+            break;
+        }
+    }
+    func_020063c8();
+}
+
 void func_02011804(u8 *a0) {
     s32 a = *(s32 *)(a0 + 0x2c);
     s32 b;
