@@ -218,10 +218,11 @@ void func_02004588(void) {
 }
 
 void func_020046f8(void *arg0, u32 arg1) {
+    u32 dst = data_0215cd40[4];
     if (data_02145ba4 != -1) {
-        func_02008840(data_02145ba4, arg0, data_0215cd40[4], arg1, 0, 0, 1);
+        func_02008840(data_02145ba4, arg0, dst, arg1, 0, 0, 1);
     } else {
-        func_02008e38(arg0, data_0215cd40[4], arg1);
+        func_02008e38(arg0, dst, arg1);
     }
 }
 
