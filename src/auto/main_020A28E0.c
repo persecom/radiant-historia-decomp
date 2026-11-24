@@ -30,11 +30,11 @@ extern void *func_0210c594(u32, u32);
 extern void func_021167f0(void *, void *);
 extern void func_021168f8(void *, void *);
 extern void func_0210c5dc(void *);
-extern u16 func_020a30d4();
+extern u16 func_020a30d4(u16);
 extern void func_020a2eb4(void);
 extern void func_020a2ee4(void);
 extern void func_0203be4c(void *);
-extern s32 func_020a3128();
+extern void func_020a3128(u16);
 void func_020a29dc(u16 arg0) {
     void *p = func_0210c594(0x20, data_02155c3c);
     *(u16 *)p = arg0;
