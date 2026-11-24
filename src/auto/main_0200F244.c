@@ -195,3 +195,18 @@ BOOL func_0200fba4(void) {
     return (*(u32 *)(data_0215f120 + 4) & 4) == 0;
 }
 
+void func_0200fbc0(void) {
+    *(s32 *)(data_0215f120 + 0x14) = -3;
+    *(u32 *)(data_0215f120 + 0x18) = 0;
+    *(u32 *)(data_0215f120 + 0x24) = 0;
+    *(u32 *)(data_0215f120 + 0x20) = 0;
+    *(u32 *)(data_0215f120 + 0x1c) = 0;
+}
+
+void func_0200fbe8(void) {
+    *(void **)data_0215f120 = data_0215f0c0;
+    func_02008e68(0, data_0215f0c0, 0x60);
+    func_02006dc4(data_0215f0c0, 0x60);
+    func_0200a674(0xb, (void *)func_0200fedc);
+}
+
