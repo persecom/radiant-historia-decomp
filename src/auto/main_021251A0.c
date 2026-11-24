@@ -5,6 +5,8 @@ extern void (*const data_02144f70[])(u32, u32, u32);
 extern void func_02006dc4(u32, u32);
 extern s32 func_02125074(void *);
 extern u16 func_02125054(void *, u16);
+extern u32 data_02173180[5];
+extern s32 func_0212508c(u8 *);
 extern u8 data_02173198[];
 extern u8 data_02173194;
 extern u32 data_021561f4[];
