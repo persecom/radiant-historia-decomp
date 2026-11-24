@@ -502,11 +502,11 @@ BOOL func_020069a4(Unk69A4 *arg0, void *arg1, s32 arg2) {
 extern u32 data_02145bb8[2];
 extern u32 func_02006974(void);
 void func_02006ad8(Unk6AD8 *arg0) {
-    arg0->unkC_0 = 0;
-    arg0->unkC_24 = 0;
     arg0->unk4 = 0;
     arg0->unk0 = 0;
     arg0->unk8 = 0;
+    arg0->unkC_0 = 0;
+    arg0->unkC_24 = 0;
 }
 
 extern void func_02006c38(void *, u32);
