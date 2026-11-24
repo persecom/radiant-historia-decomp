@@ -1,6 +1,7 @@
 /* 58 functions from 0x0212E764 to 0x0212F760 (main), found by ds-decomp. */
 #include "common.h"
 typedef struct { u32 words[9]; } Config_0212e860;
+typedef struct { s32 ptr, len; } Buffer_0212f178;
 static inline u32 stack_top_0212e860(u32 size,u32 base) { return ((size+3)&~3)+base; }
 extern const u32 data_0214590c;
 extern u8 data_02156e0c[], data_02156e4c[];
@@ -426,6 +427,71 @@ void func_0212f0f0(u32 *arg0, void *arg1) {
     arg0[8] = zero;
     arg0[10] = zero;
     arg0[0] = one;
+}
+
+void func_0212f384(s32 *, s32, s32 *, s32 *);
+void func_0212f178(u8 *p) {
+    s32 count = (32 - *(s32 *)(p+0xc)) / 8;
+    s32 a[2], b[2];
+    void *obj;
+    if (*(s32 *)(p+0x24) < 4) {
+        a[0] = *(s32 *)(p+0x1c);
+        a[1] = *(s32 *)(p+0x20);
+        if (a[1]) {
+            func_0212f384(a, a[1]-*(s32 *)(p+0x24), a, b);
+            obj = *(void **)(p+4);
+            ((void (*)(void *,s32,s32 *))(*(u32 **)obj)[8])(obj,0,a);
+            obj = *(void **)(p+4);
+            ((void (*)(void *,s32,s32 *))(*(u32 **)obj)[7])(obj,1,b);
+        }
+        obj = *(void **)(p+4);
+        ((void (*)(void *,s32,s32,s32 *))(*(u32 **)obj)[6])(obj,1,*(s32 *)(p+0x18),(s32 *)(p+0x1c));
+        *(s32 *)(p+0x28) = *(s32 *)(p+0x1c);
+        *(s32 *)(p+0x24) = *(s32 *)(p+0x20);
+    }
+    if (count >= *(s32 *)(p+0x24)) count = *(s32 *)(p+0x24);
+    if (count == 3) {
+        u8 *src = *(u8 **)(p+0x28);
+        u32 bits = *(u32 *)(p+8);
+        bits = src[0] | (bits << 8);
+        bits = src[1] | (bits << 8);
+        bits = src[2] | (bits << 8);
+        *(u8 **)(p+0x28) = src + 3;
+        *(u32 *)(p+8) = bits;
+        *(s32 *)(p+0xc) += 24;
+        *(s32 *)(p+0x24) -= 3;
+    }
+    else if (count == 2) {
+        u8 *src = *(u8 **)(p+0x28);
+        u32 bits = *(u32 *)(p+8);
+        bits = src[0] | (bits << 8);
+        bits = src[1] | (bits << 8);
+        *(u8 **)(p+0x28) = src + 2;
+        *(u32 *)(p+8) = bits;
+        *(s32 *)(p+0xc) += 16;
+        *(s32 *)(p+0x24) -= 2;
+    }
+    else if (count == 1) {
+        u8 *src = *(u8 **)(p+0x28);
+        u32 bits = *(u32 *)(p+8);
+        bits = src[0] | (bits << 8);
+        *(u8 **)(p+0x28) = src + 1;
+        *(u32 *)(p+8) = bits;
+        *(s32 *)(p+0xc) += 8;
+        *(s32 *)(p+0x24) -= 1;
+    }
+    else if (count == 4) {
+        u8 *src = *(u8 **)(p+0x28);
+        u32 bits = *(u32 *)(p+8);
+        bits = src[0] | (bits << 8);
+        bits = src[1] | (bits << 8);
+        bits = src[2] | (bits << 8);
+        bits = src[3] | (bits << 8);
+        *(u8 **)(p+0x28) = src + 4;
+        *(u32 *)(p+8) = bits;
+        *(s32 *)(p+0xc) += 32;
+        *(s32 *)(p+0x24) -= 4;
+    }
 }
 
 void func_0212f384(s32 *arg0, s32 arg1, s32 *arg2, s32 *arg3) {
