@@ -109,7 +109,6 @@ u32 func_02052a54(void *arg0, s32 arg1) {
     }
     return ret;
 }
-
 extern void func_02053824(void *);
 extern void func_02052d30(void *);
 extern void func_02053038(void *);
