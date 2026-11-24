@@ -259,6 +259,14 @@ void *func_02128530(void *arg0) {
     return ret;
 }
 
+void *func_02128554(void *arg0) {
+    if (arg0 != NULL) {
+        return (void *)(s32)*(s16 *)((u8 *)arg0 + 0x40);
+    }
+    func_0212bda8(data_02156960);
+    return NULL;
+}
+
 void func_02128578(u8 *arg0, u8 arg1) {
     arg0[0xa9] = arg1;
 }
