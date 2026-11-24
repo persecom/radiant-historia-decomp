@@ -28,3 +28,21 @@ void func_02052284(void *arg0, s32 arg1) {
     }
 }
 
+void func_020522d4(u8 *arg0, s32 arg1, s32 arg2) {
+    if (arg1 != 0) {
+        if (arg2 != 0) {
+            if (arg0[0x9e] == 0) {
+                *(s32 *)(arg0 + 0x78) = 6;
+            }
+            func_02052284(arg0, 2);
+        } else {
+            if (arg0[0x9e] == 0) {
+                *(s32 *)(arg0 + 0x78) = 3;
+            }
+            func_02052284(arg0, 1);
+        }
+    } else {
+        func_02052284(arg0, 0);
+    }
+}
+
