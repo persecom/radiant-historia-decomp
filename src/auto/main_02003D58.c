@@ -61,3 +61,12 @@ void func_02003f18(void *arg0, u32 arg1, u32 arg2) {
     }
 }
 
+void func_02003f88(void *arg0, u32 arg1, u32 arg2) {
+    u32 base = func_020035b0();
+    if (data_02145ba4 != -1 && arg2 > 0x30) {
+        func_020085ec(data_02145ba4, arg0, base + arg1, arg2, 1);
+    } else {
+        func_02008e38(arg0, base + arg1, arg2);
+    }
+}
+
