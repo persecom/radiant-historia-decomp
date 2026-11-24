@@ -7,6 +7,13 @@ extern void func_02009008(void *, void *, u32);
 extern void func_020bf00c(void *, void *, void *, f32);
 extern void func_020ec9d0(s32, s32);
 extern void func_020eca2c(s32);
+extern u8 *data_02160214;
+extern void func_0210da14(void *);
+extern void func_0210dba0(void *);
+extern void func_0210c5dc(void *);
+extern void func_02066f9c(void);
+extern void func_021168f8(void *, void *);
+extern void func_020bff30(void *arg0);
 void func_020bf330(void *arg0) {
     func_02008f74(arg0, 0, 0x2c);
 }
