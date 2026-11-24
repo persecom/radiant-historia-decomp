@@ -309,7 +309,7 @@ s32 func_02107438(u8 *arg0, char *arg1) {
 
 void func_021077f0(u32 arg0, u32 arg1) {
     func_02117f54(arg0, 0, 0x7f, arg1);
-    func_02118008(arg0, 0, 0x1f, arg1);
+    ((void (*)(u32, u32, u32))func_02118008)(arg0, 0, 0x1f);
 }
 
 void func_02107820(void) {
@@ -321,5 +321,17 @@ extern u8 data_021610a4[28];
 void func_02107840(void) {
     func_02118234(data_021610a4);
     func_02118570(data_021610a4);
+}
+
+extern u32 *data_02161070[];
+s32 func_02107860(u8 *arg0, u8 *arg1, s32 *arg2) {
+    u8 r4 = (u8)((*(u16 *)(arg0 + 2) & 0x3f) * 4);
+    s32 dy = *(s32 *)(arg1 + 0x14) - arg2[1];
+    s32 dx = *(s32 *)(arg1 + 0x10) - arg2[0];
+    s32 r = r4 << 12;
+    if (dy + r > 0 && dy - r < arg2[3] && dx + r > 0 && dx - r < arg2[2]) {
+        return 1;
+    }
+    return 0;
 }
 
