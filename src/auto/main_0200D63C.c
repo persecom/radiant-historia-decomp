@@ -208,6 +208,49 @@ void func_0200dcd4(u32 arg0,u32 arg1,void *arg2,u32 arg3) {
  func_0200813c(state);
  }
 }
+
+void func_0200dddc(TPData0200dddc *result) {
+    s32 i;
+    s32 curr;
+    TPData0200dddc *tp;
+
+    result->validity = 3;
+    curr = ((State0200dcd4 *)data_0215f000)->f10;
+    if (((State0200dcd4 *)data_0215f000)->f12 == 1 || ((State0200dcd4 *)data_0215f000)->count == 1) {
+        *result = ((TPData0200dddc *)((State0200dcd4 *)data_0215f000)->entries)[curr];
+        return;
+    }
+
+    for (i = 0; i < ((State0200dcd4 *)data_0215f000)->f12 && i < ((State0200dcd4 *)data_0215f000)->count - 1; i++) {
+        s32 idx = curr - i;
+        if (idx < 0) {
+            idx += ((State0200dcd4 *)data_0215f000)->count;
+        }
+        tp = &((TPData0200dddc *)((State0200dcd4 *)data_0215f000)->entries)[idx];
+        if (tp->touch == 0) {
+            *result = *tp;
+            return;
+        }
+        if ((result->validity & 1) && !(tp->validity & 1)) {
+            result->x = tp->x;
+            if (i != 0) {
+                result->validity &= 0xfffe;
+            }
+        }
+        if ((result->validity & 2) && !(tp->validity & 2)) {
+            result->y = tp->y;
+            if (i != 0) {
+                result->validity &= 0xfffd;
+            }
+        }
+        if (result->validity == 0) {
+            result->touch = 1;
+            return;
+        }
+    }
+    result->touch = 1;
+}
+
 #pragma opt_propagation on
 void func_0200df30(u32 arg0) {
     func_0200dddc((TPData0200dddc *)arg0);
