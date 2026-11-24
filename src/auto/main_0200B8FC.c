@@ -125,10 +125,11 @@ s32 func_0200bb3c(u8 *arg0, void *arg1, s32 arg2) {
     sp0[1] = arg2;
     if (func_0200afb4(arg0, 0, 1) != 0) {
         ret = sp0[1];
-    } else if (*(u32 *)(arg0 + 0x14) == 6) {
-        ret = -1;
     } else {
-        ret = sp0[1];
+        ret = -1;
+        if (*(u32 *)(arg0 + 0x14) != 6) {
+            ret = sp0[1];
+        }
     }
     return ret;
 }
@@ -168,6 +169,7 @@ void func_0200bc24(void) {
         data_0215ef7c[1] = 0;
         data_0215ef7c[2] = 0;
         data_0215ef7c[3] = 0;
+        data_0215ef7c[4] = 0;
     }
     data_0215ef7c[5] = (u32)data_0213e8f0;
     data_0215ef7c[6] = 0x40;
