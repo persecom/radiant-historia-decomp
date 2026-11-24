@@ -2,6 +2,11 @@
 #include "common.h"
 
 extern void func_021390fc(void *);
+extern void func_02138338(u32, u32, u32, u32, u32);
+extern u8 data_0215c74c[];
+extern u8 data_0215c770[];
+extern u8 data_0215c798[];
+extern u8 data_0215c7d0[];
 extern void func_0213807c(void);
 extern void func_0213808c(void);
 extern void func_02138280(u32, u32);
