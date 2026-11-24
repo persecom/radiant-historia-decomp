@@ -152,6 +152,13 @@ void func_02135c78(u32 arg0, u32 arg1) {
 void func_02135d20(void) {
 }
 
+void func_02135d24(u16 arg0) {
+    s32 i;
+    for (i = 0; i < 8; i++) {
+        *(u16 *)(data_02175ab8 + i * 0x34 + 0x2c) = arg0;
+    }
+}
+
 s16 func_02135d94(u8 *arg0) {
     return *(s16 *)(arg0 + 0x26);
 }
