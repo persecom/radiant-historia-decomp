@@ -145,10 +145,10 @@ void func_02111a3c(u8 *arg0, u8 arg1) {
 }
 
 void func_02111ac0(u8 *arg0, u16 arg1, u16 arg2, u16 arg3, u16 arg4) {
-    *(u16 *)(arg0 + 0x4a) = arg2;
-    *(u16 *)(arg0 + 0x4c) = arg4;
     *(u16 *)(arg0 + 0x4e) = arg1;
     *(u16 *)(arg0 + 0x50) = arg3;
+    *(u16 *)(arg0 + 0x4a) = arg2;
+    *(u16 *)(arg0 + 0x4c) = arg4;
 }
 
 s32 func_02111da8(u8 *arg0) {
