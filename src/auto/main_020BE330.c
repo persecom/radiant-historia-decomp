@@ -199,6 +199,10 @@ void func_020bed94(void) {
     func_020becfc();
 }
 
+u8 *func_020befb4(void) {
+    return func_020becfc() + 0x1c;
+}
+
 void func_020befc4(void *arg0) {
     func_02008f74(arg0, 0, 0x38);
 }
