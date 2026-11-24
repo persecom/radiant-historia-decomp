@@ -32,6 +32,13 @@ typedef struct {
 } Unk_02170460;
 
 extern Unk_02170460 *data_02170460;
+
+static u8 *get_node_021211f0(u8 *dict, u32 *entry) {
+    if (entry == NULL) {
+        return NULL;
+    }
+    return dict + *entry;
+}
 void func_02120518(u32 *arg0) {
     *arg0 = 0;
 }
@@ -273,5 +280,73 @@ void func_021211b4(u32 *arg0, u8 *arg1, u32 arg2) {
         frame = 0;
     }
     func_02121494(ptr, arg2, frame, arg0);
+}
+
+void func_021211f0(u8 *arg0) {
+    Unk_02170460 *p = data_02170460;
+    u8 *dict = p->unkd4;
+    u8 *node;
+    u8 index = *(u8 *)(p->unk00 + 1);
+    u32 *entry;
+    u16 flags;
+    if (dict != NULL && index < *(u8 *)(dict + 1)) {
+        u16 off = *(u16 *)(dict + 6);
+        u16 size = *(u16 *)(dict + off);
+        entry = (u32 *)(dict + off + 4 + size * index);
+    } else {
+        entry = NULL;
+    }
+    if (entry != NULL) {
+        node = dict + *entry;
+        goto got_node;
+    }
+    node = NULL;
+got_node:
+    flags = *(u16 *)node;
+    if (flags & 1) {
+        *(u32 *)arg0 |= 4;
+        return;
+    }
+    *(u32 *)(arg0 + 0x4c) = *(u32 *)(node + 4);
+    *(u32 *)(arg0 + 0x50) = *(u32 *)(node + 8);
+    *(u32 *)(arg0 + 0x54) = *(u32 *)(node + 0xc);
+}
+
+void func_02121284(void) {
+    Unk_02170460 *p = data_02170460;
+    u8 *dict = p->unkd4;
+    u8 *node;
+    u8 index = *(u8 *)(p->unk00 + 1);
+    u32 *entry;
+    u16 *wp;
+    u16 flags;
+    u8 *v;
+    if (dict != NULL && index < *(u8 *)(dict + 1)) {
+        u16 off = *(u16 *)(dict + 6);
+        u16 size = *(u16 *)(dict + off);
+        entry = (u32 *)(dict + off + 4 + size * index);
+    } else {
+        entry = NULL;
+    }
+    if (entry != NULL) {
+        node = dict + *entry;
+        goto got_node;
+    }
+    node = NULL;
+got_node:
+    wp = (u16 *)node;
+    flags = *wp++;
+    v = (u8 *)wp;
+    if (!(flags & 1)) {
+        v += 0xc;
+    }
+    if (!(flags & 2)) {
+        if (flags & 8) {
+            v += 4;
+        } else {
+            v += 0x10;
+        }
+    }
+    p->unke8(v);
 }
 
