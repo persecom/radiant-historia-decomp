@@ -4,6 +4,15 @@ extern const s16 data_0213a394[];
 extern u32 data_0216263c[3];
 extern u8 *data_02160aec;
 typedef struct { s32 x,y,z; } Vec_546c0;
+typedef struct { u32 seed, multiplier, increment; } RandomState_546c0;
+static inline u16 RandomRange_546c0(u16 max) {
+ RandomState_546c0 *state=(RandomState_546c0 *)data_0216263c;
+ u32 value;
+ state->seed=state->seed*state->multiplier+state->increment;
+ value=state->seed>>16;
+ if(max) value=(value*max)>>16;
+ return value;
+}
 
 extern s32 func_0205428c();
 extern s32 func_0207c578(void);
@@ -200,6 +209,35 @@ void func_020544d8(void *arg0, s32 arg1) {
             (*(u8 **)((u8 *)arg0 + 0xd0))[0xc] = 0;
         }
     }
+}
+
+s32 func_020546c0(u8 *arg0,s32 arg1) {
+ u16 range=arg1*2, tries=0;
+ for(;;) {
+ u32 seed=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
+ s32 angle=(u16)(((seed>>16)*0xfffe)>>16)-65535;
+ s32 radius;
+ data_0216263c[0]=seed;
+ if(angle<0) angle=-angle;
+ if(arg1!=0) {
+ u16 val;
+ seed=data_0216263c[1]*seed+data_0216263c[2];
+ data_0216263c[0]=seed;
+ val=seed>>16;
+ if(range) val=(val*range)>>16;
+ radius=(u16)val-arg1;
+ } else radius=0;
+ angle >>=4;
+ if(radius<0) radius=-radius;
+ radius+=32;
+ *(s32 *)(arg0+0x24)=*(s32 *)arg0+radius*data_0213a394[angle*2];
+ *(s32 *)(arg0+0x2c)=*(s32 *)(arg0+8)+radius*data_0213a394[angle*2+1];
+ if(data_02160aec[0xbc8+12*((*(s32 *)(arg0+0x24)/65536)+(*(s32 *)(arg0+0x2c)/65536)* *(s16 *)(data_02160aec+0x58d36))]==255) return 1;
+ if(tries>3) {
+ *(Vec_546c0 *)(arg0+0x24)=*(Vec_546c0 *)arg0; return 0;
+ }
+ tries++;
+ }
 }
 
 void func_02054d5c(u8 *arg0) {
