@@ -25,14 +25,12 @@ void func_02120534(u32 *arg0, u32 arg1) {
     if (arg1 < 0x100 || data_02145ba4 == (u32)-1) {
         func_021205ec(*arg0, arg0 + 1, (arg1 >> 2) - 1);
     } else {
-        u32 dma;
         func_021204a8();
         *(u32 *)(data_02173164 + 4) = 1;
-        dma = data_02145ba4;
         if (*(s32 *)(data_02173164 + 8) != 0) {
-            func_02008d08(dma <= 3 ? dma : (u32)-1, arg0, arg1, func_02120518, &data_02173168);
+            func_02008d08(data_02145ba4 <= 3 ? data_02145ba4 : (u32)-1, arg0, arg1, func_02120518, &data_02173168);
         } else {
-            func_02008b08(dma <= 3 ? dma : (u32)-1, arg0, arg1, func_02120518, &data_02173168);
+            func_02008b08(data_02145ba4 <= 3 ? data_02145ba4 : (u32)-1, arg0, arg1, func_02120518, &data_02173168);
         }
     }
 }
