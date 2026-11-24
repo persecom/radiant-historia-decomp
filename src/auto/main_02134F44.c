@@ -144,6 +144,14 @@ void func_021357dc(u8 **arg0, u8 arg1) {
     arg0[3][4] = arg1;
 }
 
+s32 func_02135920(u8 *arg0, s32 arg1) {
+    s16 val = (arg1 >= 0) ? 0 : arg1;
+    val = (-999 >= val) ? -999 : val;
+    *(s16 *)(arg0 + 0x18) = val;
+    func_02114728(arg0 + 0x34, val);
+    return arg1;
+}
+
 extern void func_02114794(u8 *, s32, s32);
 s32 func_02135960(u8 *arg0, s32 arg1, s32 arg2) {
     u8 *p = *(u8 **)(arg0 + 0x20 + arg1 * 4);
@@ -153,6 +161,7 @@ s32 func_02135960(u8 *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_02135984(u8 *arg0, s32 arg1, s32 arg2) {
+    void **slot;
     if (arg2 == 0) {
         arg2 = 0x40;
     } else if (arg2 == -15) {
@@ -162,7 +171,8 @@ void func_02135984(u8 *arg0, s32 arg1, s32 arg2) {
     } else {
         arg2 = (arg2 + 15) * 128 / 30;
     }
-    *(u16 *)(*(void **)(arg0 + arg1 * 4 + 0x20) + 0x20) = (u16)arg2;
+    slot = (void **)(arg0 + arg1 * 4 + 0x20);
+    *(u16 *)(*slot + 0x20) = (u16)arg2;
     func_021147e8(arg0 + 0x34);
 }
 
@@ -187,11 +197,11 @@ void func_021359e4(u8 *arg0) {
 void func_02135a80(u8 *arg0) {
     s32 i = 0;
     while (i < *(s8 *)(arg0 + 2)) {
-        u32 val = i;
+        s32 val = i;
         void **slot = (void **)(arg0 + i * 4 + 0x20);
         i++;
         *(u16 *)(*slot + 0x24) = (u16)val;
-        *(u32 *)(*slot + 0x14) = val;
+        *(u32 *)(*slot + 0x14) = (u32)val;
     }
 }
 
