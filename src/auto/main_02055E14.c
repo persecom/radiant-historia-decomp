@@ -64,3 +64,20 @@ func_020a98f4(data_021600ac+0xb8+off);
 *(s32 *)(*(u8 **)(data_021600ac+off+0xb4)+0x48)=(0xc5-(4-n)*25)<<12;
 }
 
+void func_02056ac0(void) {
+Unk20 buf=data_0213f3b0;u8 i;
+*(volatile u32 *)0x040004a4=0x1f00c0;
+for(i=0;i<7;i++){
+u8 *p=data_021600ac+0x3b0+i*0xa4;
+if(!p[0])continue;
+func_020a3bbc(p[8]);
+buf.unk[1]=*(s16 *)(p+0x94);buf.unk[2]=*(s16 *)(p+0x96);
+buf.unk[3]=*(s16 *)(p+0x98)-*(s16 *)(p+0x94);
+buf.unk[8]=*(volatile s16 *)&buf.unk[3];
+buf.unk[4]=*(s16 *)(p+0x9a)-*(s16 *)(p+0x96);
+buf.unk[9]=*(volatile s16 *)&buf.unk[4];
+buf.unk[5]=*(s32 *)(p+0x9c)>>12;buf.unk[6]=*(s32 *)(p+0xa0)>>12;
+func_021098ac(&buf);
+}
+}
+
