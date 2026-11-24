@@ -44,3 +44,39 @@ void func_02015a10(s32 arg0, const char *arg1, ...) {
     func_02015994((u8 *)arg0, -1, arg1, vlist);
 }
 
+void func_02015a3c(void *base, u32 count, u32 size, s32 (*compare)(const void *,const void *)) {
+ u8 *array=base;
+ u32 root;
+ u8 *first,*last;
+ if(count<2) return;
+ root=(count>>1)+1;
+ first=array+size*(root-1);
+ last=array+size*(count-1);
+ for(;;) {
+ u32 child;
+ u8 *p,*parent;
+ if(root>1) { --root; first-=size; }
+ else {
+ u32 n=size;
+ u8 *a=last,*b=first;
+ while(n) { u8 x=*a,y=*b; --n; *b++=x; *a++=y; }
+ if(--count==1) return;
+ last-=size;
+ }
+ p=array+size*(root-1);
+ child=root;
+ while(count>=child*2) {
+ child*=2;
+ parent=p;
+ p=array+size*(child-1);
+ if(count>child && compare(p,p+size)<0) {++child;p+=size;}
+ if(compare(parent,p)>=0) break;
+ {
+ u32 n=size;
+ u8 *a=p,*b=parent;
+ while(n) {u8 x=*a,y=*b;--n;*b++=x;*a++=y;}
+ }
+ }
+ }
+}
+
