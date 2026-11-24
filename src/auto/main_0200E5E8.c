@@ -172,6 +172,10 @@ s32 func_0200e914(s32 *arg0, s32 *arg1) {
     return ret;
 }
 
+void func_0200e974(u32 arg0) {
+    while (func_0200a6e4(8, arg0, 0) != 0) {}
+}
+
 void func_0200f084(u32 arg0) {
     func_0200ef78(data_0215f04c, arg0, 0xff, 0);
 }
