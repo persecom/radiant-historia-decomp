@@ -24,25 +24,35 @@ void func_020f0984(u32 *arg0) {
     }
 }
 
-void func_020f09d4(void *arg0) {
-    void *head;
-    void *p;
-    register void *q;
-    func_021168f8(data_02160af0 + 0x70, arg0);
-    head = *(void **)data_02162618;
-    p = head;
-    while (p != NULL) {
-        u16 off = *(u16 *)(data_02162618 + 0xa);
-        q = (p != NULL) ? *(void **)((u8 *)p + off + 4) : head;
-        if (*(void **)p == *(void **)arg0) {
-            func_0210b860((void **)q);
-            break;
-        }
-        p = q;
+void func_020f09d4(void *arg0)
+{
+  void *head;
+  void *p;
+  register void *q;
+  func_021168f8(data_02160af0 + 0x70, arg0);
+  head = *((void **) data_02162618);
+  p = head;
+  if (head != NULL)
+  {
+    do
+    {
+      u16 off = *((u16 *) (data_02162618 + 0xa));
+      void *key = *((void **) arg0);
+      head = *((void **) data_02162618);
+      q = (p != NULL) ? (*((void **) ((((u8 *) p) + off) + 4))) : (head);
+      if ((*((void **) p)) == (*((void **) arg0)))
+      {
+        func_0210b860((void **) p);
+        break;
+      }
+      p = q;
     }
-    if (arg0 != NULL) {
-        func_0210c5dc(arg0);
-    }
+    while (p != NULL);
+  }
+  if (arg0 != NULL)
+  {
+    func_0210c5dc(arg0);
+  }
 }
 
 void func_020f0a58(void) {
