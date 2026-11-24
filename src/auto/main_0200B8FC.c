@@ -93,8 +93,9 @@ s32 func_0200baa4(u8 *arg0) {
 u32 func_0200bab8(u8 *arg0) {
     u32 ret = 0;
     if (func_0200d460(arg0, &ret) == 0) {
-        u32 sp0 = 0;
+        u32 sp0;
         *(u32 **)(arg0 + 0x10) = &sp0;
+        sp0 = 0;
         if (func_0200afb4(arg0, 0xf, 1) != 0) {
             ret = sp0;
         }
