@@ -48,6 +48,16 @@ void func_020c6de0(void *arg0) {
     }
 }
 
+s32 func_020c6df4(u8 *arg0) {
+    u8 val = arg0[0x42];
+    if (val == 0) {
+        return 0;
+    }
+    *(volatile u32 *)0x040004a4 = (val << 16) | 0xc0;
+    func_020c6e2c(arg0, arg0 + 0x30);
+    return 0;
+}
+
 extern void func_020c6ef4(void);
 extern void func_020c6e40(void *, void *, s32, s32);
 void func_020c6e2c(void *arg0, void *arg1);
