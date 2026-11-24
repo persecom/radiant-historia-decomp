@@ -398,6 +398,25 @@ void func_0210f024(u32 arg0) {
     (*(void (**)(u32))((u8 *)data_02162a54 + 0x14))(arg0);
 }
 
+void func_0210f0b0(void) {
+    if (data_02162b80 != NULL) {
+        func_02125448(data_02162b80);
+    }
+    while (*(u16 *)((u8 *)data_02162a54 + 0x28) != 0) {
+        u8 *p = *(u8 **)((u8 *)data_02162a54 + 0x20);
+        func_021168f8(data_02162a74, p);
+        if (*(void **)(p + 0x10) != NULL) {
+            func_0210c5dc(*(void **)(p + 0x10));
+            *(void **)(p + 0x10) = NULL;
+        }
+        if (p != NULL) {
+            func_0210c5dc(p);
+        }
+    }
+    func_02124c78();
+    func_02125038();
+}
+
 void func_0210f138(void) {
     if (*(void (**)(void))((u8 *)data_02162a54 + 0x1c) != NULL) {
         (*(void (**)(void))((u8 *)data_02162a54 + 0x1c))();
