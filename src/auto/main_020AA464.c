@@ -170,6 +170,19 @@ void func_020aa850(void) {
     }
 }
 
+void func_020aa894(void *arg0) {
+    u8 *p = data_021600e4;
+    u8 *node = func_020aa7fc(*(void **)(p + 0x13f4));
+    while (node != NULL) {
+        u8 *src = func_020a5f14(p + 0x124, *(u16 *)node);
+        if (src != NULL) {
+            *(s32 *)(node + 4) = *(s16 *)(src + 6);
+            *(s32 *)(node + 8) = *(s16 *)(src + 8);
+        }
+        node = *(u8 **)(node + 0x18);
+    }
+}
+
 void func_020aa8e8(void) {
     u8 *p = data_021600e4;
     u8 *node = func_020aa7fc(*(void **)(p + 0x13f4));
