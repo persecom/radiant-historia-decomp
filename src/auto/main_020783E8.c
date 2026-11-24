@@ -4,6 +4,10 @@ extern u32 data_0216263c[3];
 extern u32 data_0216244c[43];
 extern u64 data_02162658[3];
 extern void func_0206e8f0(u32, void *, u32);
+extern u32 data_0216263c[3];
+extern u32 data_0216244c[43];
+extern u64 data_02162658[3];
+extern void func_0206e8f0(u32, void *, u32);
 
 typedef struct Vec3_02078d8c {
     s32 x;
@@ -65,6 +69,27 @@ s32 func_02078d8c(Obj_02078d8c *obj, s32 arg1) {
         }
     }
     return 0;
+}
+
+void func_02078f58(void) {
+u8 i;
+for(i=0;i<8;i++) {
+u32 x=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
+u16 r;
+Vec3_02078d8c v;
+data_0216263c[0]=x;
+r=((x>>16)*4)>>16;
+if(r==2) {
+v=*(Vec3_02078d8c *)data_0216244c;
+v.y=0;
+data_02162658[0]=data_02162658[1]*data_02162658[0]+data_02162658[2];
+v.x+=(s32)(((u64)(u32)(data_02162658[0]>>32)*0x1c0000)>>32)-0x120000;
+data_02162658[0]=data_02162658[1]*data_02162658[0]+data_02162658[2];
+v.z+=(s32)(((u64)(u32)(data_02162658[0]>>32)*0x200000)>>32)-0x100000;
+v.z-=0x40000;
+func_0206e8f0(0x78,&v,2);
+}
+}
 }
 
 extern u32 data_0216263c[3];
