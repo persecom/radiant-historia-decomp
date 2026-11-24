@@ -343,6 +343,18 @@ void func_020aa0f0(void) {
     }
 }
 
+s32 func_020aa144(void) {
+    u8 *node = *(u8 **)(data_021600e4 + 0x13c8);
+    u8 *p;
+    if (node == NULL) {
+        return 0;
+    }
+    func_020aa65c();
+    p = *(u8 **)(*(u8 **)(*(u8 **)node + 0xc));
+    func_02066b7c(-*(s16 *)(p + 6), -*(s16 *)(p + 8), func_02066bdc);
+    return 1;
+}
+
 extern u8 *data_021600e4;
 extern s32 func_020a9194(void *);
 extern s32 func_020a916c(s32);
