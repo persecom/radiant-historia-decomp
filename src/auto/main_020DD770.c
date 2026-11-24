@@ -34,6 +34,13 @@ extern void func_020ec548(void *);
 extern void func_0210c5dc(void *);
 
 extern void func_0210c2f4(void);
+typedef union {
+    s64 q;
+    struct {
+        u32 lo;
+        u32 hi;
+    } w;
+} SqUnion;
 extern s32 data_02162440[];
 extern s32 data_0216242c[];
 void func_020dd770(UnkStruct_020dd770 *arg0) {
