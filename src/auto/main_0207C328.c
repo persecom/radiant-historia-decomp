@@ -66,16 +66,17 @@ u32 func_0207c578(void) {
 void func_0207c5d8(void) {
     u8 *node = *(u8 **)((u8 *)data_021600f0 + 8);
     u8 *result = func_02047820(*(u16 *)(node + 0x14));
+    u32 v;
     if (result == NULL) {
         *(u8 *)node = 0;
         return;
     }
     if (*(u8 *)node == 0) return;
-    if (*(u16 *)(node + 2) == 0) {
-        *(u16 *)(node + 2) = 0x18;
-        func_0206e8f0(0x11, result, 2);
-        (*(u16 *)(node + 2))--;
-    }
+    if (*(u16 *)(node + 2) != 0) return;
+    v = 0x18;
+    *(u16 *)(node + 2) = v;
+    func_0206e8f0(0x11, result, 2);
+    (*(u16 *)(node + 2))--;
 }
 
 void func_0207cbac(void) {
@@ -107,7 +108,8 @@ void func_0207cc20(u32 arg0) {
 }
 
 void func_0207cc6c(u32 arg0) {
-    u8 *p = *(u8 **)((u8 *)data_021600f0 + 4);
+    u8 *base = (u8 *)data_021600f0;
+    u8 *p = *(u8 **)(base + 4);
     u8 *node = *(u8 **)(p + 4);
     while (node != NULL) {
         if (node == (u8 *)arg0) {
@@ -116,5 +118,85 @@ void func_0207cc6c(u32 arg0) {
         }
         node = *(u8 **)(node + 0x3c);
     }
+}
+
+void func_0207ccb4(s32 arg0) {
+    u8 *p = *(u8 **)((u8 *)data_021600f0 + 8);
+    u8 *node = *(u8 **)(p + 4);
+    if (node == NULL) {
+        return;
+    }
+check:
+    if ((s32)arg0 != (s32)node) {
+        goto advance;
+    }
+    func_021168f8(p + 4, (void *)arg0);
+    return;
+advance:
+    node = *(u8 **)(node + 0x44);
+    if (node != NULL) {
+        goto check;
+    }
+    return;
+}
+
+void func_0207ccfc(s32 arg0) {
+    u8 *p = *(u8 **)((u8 *)data_021600f0 + 0xc);
+    u8 *node = *(u8 **)(p + 4);
+    if (node == NULL) {
+        return;
+    }
+    goto check;
+advance:
+    node = *(u8 **)(node + 0x4c);
+    if (node != NULL) {
+        goto check;
+    }
+    return;
+check:
+    if ((s32)arg0 != (s32)node) {
+        goto advance;
+    }
+    func_021168f8(p + 4, (void *)arg0);
+}
+
+void func_0207cd44(s32 arg0) {
+    u8 *p = *(u8 **)((u8 *)data_021600f0 + 0x10);
+    u8 *node = *(u8 **)(p + 4);
+    if (node == NULL) {
+        return;
+    }
+    goto check;
+advance:
+    node = *(u8 **)(node + 0x54);
+    if (node != NULL) {
+        goto check;
+    }
+    return;
+check:
+    if ((s32)arg0 != (s32)node) {
+        goto advance;
+    }
+    func_021168f8(p + 4, (void *)arg0);
+}
+
+void func_0207cd8c(s32 arg0) {
+    u8 *p = *(u8 **)((u8 *)data_021600f0 + 0x14);
+    u8 *node = *(u8 **)(p + 4);
+    if (node == NULL) {
+        return;
+    }
+    goto check;
+advance:
+    node = *(u8 **)(node + 0x34);
+    if (node != NULL) {
+        goto check;
+    }
+    return;
+check:
+    if ((s32)arg0 != (s32)node) {
+        goto advance;
+    }
+    func_021168f8(p + 4, (void *)arg0);
 }
 
