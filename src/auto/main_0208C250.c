@@ -13,3 +13,14 @@ extern void func_020a3bbc(s32);
 extern void func_021098ac(void *);
 extern void func_02092814(s32, s32, s32, s32, s32, s32, s32);
 extern void func_020895a0(s32, s32, s32, s32, s32, s32, s32, s32, s32);
+
+void func_0208ce74(void) {
+    Unk14 buf = data_02141300;
+    if (*(s16 *)(data_0216010c + 0x51ae) & 4) {
+        func_020a3bbc(0x1a);
+        *(s16 *)(data_0216010c + 0x51ae) &= ~4;
+    } else {
+        func_020a3bbc(0x19);
+    }
+    func_021098ac(&buf);
+}
