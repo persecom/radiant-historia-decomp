@@ -50,6 +50,23 @@ void *func_020aa61c(void) {
     return *p;
 }
 
+extern void func_020aa710(void *);
+void func_020aa65c(void) {
+    void *node;
+    if (data_021601dc == NULL) {
+        return;
+    }
+    while ((node = *(void **)data_021601dc) != NULL) {
+        func_021168f8(data_021601dc, node);
+        func_020aa710(node);
+    }
+    if (data_021601dc == NULL) {
+        return;
+    }
+    func_0210c5dc(data_021601dc);
+    data_021601dc = NULL;
+}
+
 void *func_020aa6bc(void *arg0) {
     void **node;
     if (data_021601dc == NULL) {
