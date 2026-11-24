@@ -1,5 +1,14 @@
 /* 37 functions from 0x020BE330 to 0x020BF330 (main), found by ds-decomp. */
 #include "common.h"
+extern u32 data_0216263c[3];
+static inline u16 RandomRange_bedf8(u16 max) {
+u32 seed=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
+u32 value;
+data_0216263c[0]=seed;
+value=seed>>16;
+if(max) value=(value*max)>>16;
+return value;
+}
 
 typedef struct { s32 x, y, z; } VecBf118;
 static inline void SetVecBf118(VecBf118 *p, s32 x, s32 y, s32 z) {
