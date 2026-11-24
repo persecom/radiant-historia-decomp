@@ -105,6 +105,17 @@ void *func_02067698(u8 *arg0, u16 arg1) {
     return NULL;
 }
 
+void func_020676c4(u8 arg0, u16 arg1) {
+    u8 *node = *(u8 **)(data_021600e8 + 0x48);
+    while (node != NULL) {
+        if (*(u16 *)(node + 0x24) == arg1 && *(u8 *)(node + 0x18) == arg0) {
+            *(u32 *)(node + 0x48) = 1;
+            return;
+        }
+        node = *(u8 **)(node + 0x64);
+    }
+}
+
 void func_02067708(u32 arg0) {
     u8 *p = data_021600e8;
     u8 *node;
