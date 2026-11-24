@@ -52,6 +52,14 @@ s32 func_02108240(void) {
     return func_02108258(data_02155984);
 }
 
+extern u32 data_02155c3c;
+extern void *func_0210c594(u32, u32);
+extern void func_02008f74(void *, s32, u32);
+extern void func_02107cf4(void);
+void *func_0210889c(u32 arg0) {
+    return func_0210c594(arg0, data_02155c3c);
+}
+
 extern void func_0210c5dc(void *);
 void func_021088b4(void *arg0) {
     if (arg0 != NULL) {
