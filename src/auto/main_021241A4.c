@@ -207,6 +207,10 @@ void func_02125038(void) {
     data_02173174[1] = data_02173174[2];
 }
 
+u16 func_02125054(u32 *arg0, u32 arg1) {
+    return (arg1 + 1) % arg0[1];
+}
+
 extern void func_0200439c(void);
 extern void func_020043f8(u32, u32, u32);
 extern void func_02004544(void);
