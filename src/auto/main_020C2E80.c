@@ -7,3 +7,18 @@ void func_020c3c94(void *arg0) {
         func_0210c5dc(arg0);
     }
 }
+
+extern void func_021168f8(void *, void *);
+void func_020c3cd4(void **arg0) {
+    void *ptr;
+    while ((ptr = *arg0) != NULL) {
+        func_021168f8(arg0, ptr);
+        if (ptr != NULL) {
+            func_0210c5dc(ptr);
+        }
+    }
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
