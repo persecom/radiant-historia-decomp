@@ -50,6 +50,17 @@ void *func_020aa61c(void) {
     return *p;
 }
 
+void *func_020aa6bc(void *arg0) {
+    void **node;
+    if (data_021601dc == NULL) {
+        func_020aa61c();
+    }
+    node = func_0210c594(0xC, data_02155c3c);
+    *node = arg0;
+    func_021167f0(data_021601dc, node);
+    return node;
+}
+
 void func_020aa710(void *arg0) {
     if (arg0 != NULL) {
         func_0210c5dc(arg0);
