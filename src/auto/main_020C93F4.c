@@ -1,7 +1,7 @@
 /* 32 functions from 0x020C93F4 to 0x020CA10C (main), found by ds-decomp. */
 #include "common.h"
 
-extern void func_020c9980(void);
+extern void func_020c9980();
 extern void func_020c9404(u8 *, u16);
 extern void func_020c94dc(u8 *);
 extern void func_020c9348(u8 *, s32);
@@ -83,12 +83,15 @@ void func_020c94dc(u8 *arg0) {
 
 void func_020c9590(u8 *arg0) {
     s16 v = func_020c9808();
-    s16 diff = *(u16 *)(arg0 + 0x42) - *(u16 *)(arg0 + 0x40);
+    s16 diff = (s16)(*(u16 *)(arg0 + 0x42) - *(u16 *)(arg0 + 0x40));
     u8 *obj1 = func_020c9c10(*(void **)(arg0 + 0x30), 1);
     s16 v1 = *(s16 *)(obj1 + 0x3e);
     u8 *obj2 = func_020c9c10(*(void **)(arg0 + 0x30), 2);
-    if (diff > 0) {
-        s16 val = v - (diff + func_020c9924(obj2 + 0x30));
+    if (diff <= 0) {
+        return;
+    }
+    {
+        s16 val = v - (s16)(diff + func_020c9924(obj2 + 0x30));
         if (val < 0xc) {
             val = 0xc;
         }
