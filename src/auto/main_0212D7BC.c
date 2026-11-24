@@ -155,6 +155,7 @@ s32 func_0212dc40(void *arg0, s32 arg1) {
 }
 
 void func_0212dc58(void *arg0) {
+    u8 zero;
     if (*(s32 *)((u8 *)arg0 + 0x18) == 0) {
         *(u8 *)((u8 *)arg0 + 0x1) = 3;
     } else {
@@ -162,7 +163,8 @@ void func_0212dc58(void *arg0) {
     }
     *(s32 *)((u8 *)arg0 + 0x38) = 0;
     *(s32 *)((u8 *)arg0 + 0x50) = 0;
-    *(u8 *)((u8 *)arg0 + 0x2) = 0;
+    zero = 0;
+    *(u8 *)((u8 *)arg0 + 0x2) = zero;
     *(s32 *)((u8 *)arg0 + 0x28) = 0;
     *(s32 *)((u8 *)arg0 + 0x2c) = 0;
     *(u8 *)((u8 *)arg0 + 0x4b) = 1;
@@ -172,6 +174,10 @@ void func_0212dce4(void *arg0) {
     func_0212e5a0();
     func_0212dd00(arg0);
     func_0212e5ac();
+}
+
+void func_0212de24(void) {
+    data_021740d8[0]++;
 }
 
 void func_0212e4a0(void) {
