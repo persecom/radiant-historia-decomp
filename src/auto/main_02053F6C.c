@@ -7,12 +7,10 @@ extern s32 func_020552e4(void *);
 void func_02053f6c(void *arg0) {
     u8 *p = *(u8 **)((u8 *)arg0 + 0xd0);
 
-    switch (func_02054e14(arg0)) {
-    case 1:
+    if (func_02054e14(arg0) == 1) {
         *(u16 *)(p + 4) = 0;
         *(u16 *)(p + 6) = 0;
         *(u8 *)(p + 1) = 5;
-        break;
     }
 }
 
