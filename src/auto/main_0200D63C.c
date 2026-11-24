@@ -80,8 +80,8 @@ void func_0200df30(u32 arg0) {
     func_0200e138(arg0, arg0);
 }
 
-void func_0200e254(u32 arg0) {
-    while (*(u16 *)(data_0215f000 + 0x3a) & arg0) {
+void func_0200e254(u16 arg0) {
+    while (*(volatile u16 *)(data_0215f000 + 0x3a) & arg0) {
     }
 }
 
@@ -132,10 +132,11 @@ void func_0200e320(void) {
 }
 
 void func_0200e350(void) {
+    volatile u32 *p = (volatile u32 *)0x02fffc3c;
     u32 v;
     do {
-        v = *(u32 *)0x02fffc3c;
-    } while (v != *(u32 *)0x02fffc3c);
+        v = *p;
+    } while (v == *p);
 }
 
 void func_0200e384(void) {
