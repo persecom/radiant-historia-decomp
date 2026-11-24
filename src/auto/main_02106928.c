@@ -233,6 +233,16 @@ s32 func_0210723c(void) {
     return result;
 }
 
+u32 func_02107294(void) {
+    if (data_0216106c != 0) {
+        if (func_020106ac() != 0) {
+            data_0216106c = 0;
+            func_0210721c();
+        }
+    }
+    return data_0216106c;
+}
+
 void func_021077f0(u32 arg0, u32 arg1) {
     func_02117f54(arg0, 0, 0x7f, arg1);
     func_02118008(arg0, 0, 0x1f, arg1);
