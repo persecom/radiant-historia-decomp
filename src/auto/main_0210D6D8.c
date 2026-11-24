@@ -143,6 +143,10 @@ void func_0210dba0(u8 *arg0) {
     func_0210d9ac(list, arg0);
 }
 
+void func_0210dbd0(s32 arg0) {
+    func_0210d92c(data_0216288c, arg0);
+}
+
 extern s32 func_02008128(void);
 extern void func_0200813c(s32);
 extern void func_021168f8(void *, void *);
