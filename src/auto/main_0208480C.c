@@ -1,6 +1,7 @@
 /* 17 functions from 0x0208480C to 0x02085328 (main), found by ds-decomp. */
 #include "common.h"
 typedef struct { u8 a,b; u32 value; } Entry_02084fd0;
+typedef struct { u8 bytes[7]; } Order_02084fd0;
 extern const u8 data_02140c70[7];
 
 extern void func_02085328(void);
@@ -85,6 +86,31 @@ u8 func_02084f80(u16 arg0) {
 
 u8 func_02084fa8(u16 arg0) {
     return ((u8 *)func_02116984(data_0216010c + 0x608, arg0))[1];
+}
+
+void func_02084fd0(void) {
+ u8 order[7]; Entry_02084fd0 entries[7];
+ s16 n=0,i,j;
+ u8 *base;
+ for(i=0;i<7;i++) order[i]=data_02140c70[i];
+ base=data_0216010c;
+ for(i=0;i<7;i++) {
+  for(j=0;j<7;j++) {
+   u8 *p=base+j*8;
+   if(order[i]==p[0x618]+1) {
+    entries[n].a=p[0x618]; entries[n].b=p[0x619]; entries[n].value=*(u32 *)(p+0x61c); n++;
+   }
+  }
+ }
+ n=0;
+ for(i=0;i<7;i++) {
+  if(entries[i].a || entries[i].b) {
+   data_0216010c[n*8+0x618]=entries[i].a;
+   data_0216010c[n*8+0x619]=entries[i].b;
+   *(u32 *)(data_0216010c+n*8+0x61c)=entries[i].value;
+   n++;
+  }
+ }
 }
 
 u8 func_02085110(u32 arg0) {
