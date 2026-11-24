@@ -76,7 +76,7 @@ void func_020a6c74(void *arg0, u16 arg1, u16 arg2) {
 }
 
 void *func_020a6ca0(u16 arg0) {
-    u8 *node = *(u8 **)(*(u8 **)data_021600e4 + 0x118);
+    u8 *node = *(u8 **)(data_021600e4 + 0x118);
     while (node != NULL) {
         if (*(u16 *)node == arg0) {
             return node;
