@@ -219,13 +219,12 @@ BOOL func_0200fba4(void) {
 }
 
 s32 func_0200fbc0(void) {
-    s32 zero = 0;
     *(s32 *)(data_0215f120 + 0x14) = -3;
-    *(s32 *)(data_0215f120 + 0x18) = zero;
-    *(s32 *)(data_0215f120 + 0x24) = zero;
-    *(s32 *)(data_0215f120 + 0x20) = zero;
-    *(s32 *)(data_0215f120 + 0x1c) = zero;
-    return zero;
+    *(u32 *)(data_0215f120 + 0x18) = 0;
+    *(u32 *)(data_0215f120 + 0x24) = 0;
+    *(u32 *)(data_0215f120 + 0x20) = 0;
+    *(u32 *)(data_0215f120 + 0x1c) = 0;
+    return 0;
 }
 
 void func_0200fbe8(void) {
@@ -253,5 +252,13 @@ void func_0200fc34(u32 arg0, u32 arg1) {
         node = *prev;
     }
     func_0200813c(irq);
+}
+
+void func_0200fe64(u32 arg0, u32 arg1, u32 arg2) {
+    if (arg1 >= arg2) {
+        func_02006df4();
+    } else {
+        func_02006e00(arg0, arg1);
+    }
 }
 
