@@ -195,6 +195,16 @@ void func_02112dcc(void *arg0, s32 arg1, s32 arg2) {
     *(s16 *)(p + 0x36) = arg2;
 }
 
+s32 func_02112e80(void) {
+    s32 i;
+    func_02112ed8();
+    data_0216bf88 = func_0210c594(0x3c, data_02155c3c);
+    for (i = 0; i < 5; i++) {
+        func_021167ac((u8 *)data_0216bf88 + i * 0xc, 0x24);
+    }
+    return 0;
+}
+
 extern u32 data_0216bf88;
 extern const u16 data_02144cfc[2];
 extern const u16 data_02144cf8[2];
