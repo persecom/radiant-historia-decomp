@@ -117,7 +117,6 @@ void func_02134544(u8 *arg0) {
     func_0200b8b4(*(void **)(arg0 + 0x4c));
 }
 
-extern void func_02133dd0(s32, void *);
 extern u8 data_0215bde8[24];
 s32 func_02134590(void *arg0) {
     if (arg0 != NULL) {
@@ -133,6 +132,27 @@ s32 func_021345bc(u8 *arg0) {
     }
     func_02133dd0(0, data_0215be00);
     return 0;
+}
+
+s32 func_021345e8(u8 *arg0, s32 arg1) {
+    if (arg0 == NULL) {
+        func_02133dd0(0, data_0215be18);
+        return 0;
+    }
+    if (arg1 % 32 != 0) {
+        func_02133dd0(0, data_0215be30);
+        return 0;
+    }
+    s32 old = *(s32 *)(arg0 + 0x58);
+    s32 cur = *(s32 *)(arg0 + 0x64);
+    s32 total = *(s32 *)(arg0 + 0x5c);
+    s32 off = cur * old;
+    *(s32 *)(arg0 + 0x58) = arg1;
+    *(s32 *)(arg0 + 0x60) = total / arg1 + (total % arg1 > 0);
+    *(s32 *)(arg0 + 0x64) = off / *(s32 *)(arg0 + 0x58);
+    s32 v = *(s32 *)(arg0 + 0x6c) * *(s32 *)(arg0 + 0x58);
+    *(s32 *)(arg0 + 0x68) = v;
+    return v;
 }
 
 s32 func_02134690(u8 *arg0) {
