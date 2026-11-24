@@ -16,6 +16,12 @@ extern void func_0209625c(void);
 extern void func_02031fcc(void *, s32);
 extern void *func_020de56c(void *);
 extern void func_0210c5dc(void *);
+extern void func_0203218c(void *);
+extern s32 func_020bd490(s32, u8);
+extern u8 *func_02021f10(s32);
+extern void *func_02064cb8(void *, s32);
+extern void func_0205bc60(void *, u8 *, s32);
+extern void func_020020f8(void *, void *, void *);
 
 extern void func_020c2e80(void);
 void func_020328fc(void) {
