@@ -33,6 +33,8 @@ u8 *func_0211a5e4(s32 arg0) {
 
 extern void func_02118e68(void *);
 extern void func_02118e84(void *, s32, s32);
+extern s32 func_0200283c(s32);
+extern s32 func_020027d4(s32, s32, s32);
 void func_0211a5fc(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u32 arg4, u32 arg5, u32 arg6, u32 arg7) {
     u8 *ptr = (u8 *)data_021701cc[2] + arg0 * 0x30;
     func_02118e68(ptr);
