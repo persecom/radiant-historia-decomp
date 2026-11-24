@@ -268,21 +268,16 @@ void func_0211497c(u8 *arg0) {
 }
 
 void func_021149c8(u8 *arg0) {
-    s32 one;
     s32 v = *(s32 *)(arg0 + 0x2c);
     if (((v << 30) >> 31) == 0) {
         return;
     }
-    if (*(u32 *)(arg0 + 0x40) != 0) {
-        u32 irq;
-        one = 1;
-        irq = func_02008128();
-        func_021148cc(arg0, one);
+    while (*(u32 *)(arg0 + 0x40) != 0) {
+        u32 irq = func_02008128();
+        func_021148cc(arg0, 1);
         func_0200813c(irq);
     }
-    if (*(u32 *)(arg0 + 0x40) == 0) {
-        func_02009580(*(void **)(arg0 + 0x4c), 0, 1u << *(u32 *)(arg0 + 0x48), 0);
-    }
+    func_02009580(*(void **)(arg0 + 0x4c), 0, 1u << *(u32 *)(arg0 + 0x48), 0);
 }
 
 void func_02114a38(void) {
