@@ -16,6 +16,16 @@ s32 func_020ab9c8(u8 *arg0) {
     return 0;
 }
 
+s32 func_020aba08(u8 *arg0) {
+    u16 flags = data_021626a8;
+    if ((flags & 1) || (flags & 2)) {
+        *arg0 = 0;
+        func_020ae50c(6);
+        return 2;
+    }
+    return 0;
+}
+
 void *func_020abf3c(void) {
     void *p = func_020b442c();
     *(s32 *)p = -1;
