@@ -355,6 +355,26 @@ void func_0210d03c(void) {
     }
 }
 
+void func_0210d07c(void) {
+    struct {
+        u32 unk0[3];
+        void *ptr;
+        u32 unk10, unk14;
+        u16 unk18, unk1a;
+        u32 unk1c, unk20, unk24, unk28, unk2c;
+        u8 unk30[4];
+        u16 unk34, unk36, unk38, unk3a;
+        u8 unk3b;
+    } unk = {0};
+    unk.ptr = &data_02155c64;
+    func_02117a58(&unk);
+}
+
+void func_0210d0dc(u32 arg0, u16 arg1) {
+    func_021156bc(arg1, *(void **)data_02162730);
+    func_021160c0(arg0, 0, arg1);
+}
+
 void func_0210d220(void) {
     if (data_02162730 == NULL) {
         return;
