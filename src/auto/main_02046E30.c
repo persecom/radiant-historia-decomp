@@ -26,3 +26,8 @@ void *func_020eca60(void);
 void func_020ecd10(void *, u32, void *);
 void func_020ecac8(void *, u32);
 s32 func_020ed2d0(void *, u8, s32);
+
+void func_020477c0(Obj_02046e30 *obj, void *arg1) {
+    obj->unk_b4++;
+    func_021167f0(&obj->unk_b8, arg1);
+}
