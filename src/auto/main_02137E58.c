@@ -59,3 +59,8 @@ void func_021386f0(void *arg0) {
         func_021390fc(arg0);
     }
 }
+
+void func_02138de0(u8 *arg0, u32 arg1) {
+    *(u32 *)(arg0 + 0xb4) = arg1;
+}
+
