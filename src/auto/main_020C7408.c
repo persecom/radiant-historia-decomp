@@ -27,6 +27,15 @@ extern u8 *func_020c9c10(void *, u32);
 extern void func_020c9b24(void *, u32, s32);
 extern void func_020c7930(void *);
 extern void func_020c83f4(void *, void *, s32, s32);
+extern void func_020c8310(void **);
+extern void func_020c84ac(void *);
+extern u32 data_02162880;
+extern void func_020c8568(void *, s32, s32);
+extern void func_020a9068(u8);
+extern void func_0210db70(void *);
+extern u8 *func_020a84b8(s32, s32);
+extern void func_020c8640(void *, s32);
+extern void func_0210dba0(void *);
 BOOL func_020c7408(void) {
     return (func_020c73b8() & 4) != 0;
 }
@@ -126,15 +135,29 @@ u32 func_020c7754(u32 **arg0) {
 s32 func_020c7760(u8 *arg0, s32 arg1, s32 arg2) {
     u8 *obj = *(u8 **)(arg0 + 0x30);
     u8 *sub = *(u8 **)(obj + 4);
-    s32 q = func_0201fb1c(*(s32 *)(obj + 0x14) << 12, 0x2000 - *(s32 *)(sub + 0x20));
+    s32 a = *(s32 *)(obj + 0x14) << 12;
+    s32 b = 0x2000 - *(s32 *)(sub + 0x20);
+    s32 c = 0x2000 - *(s32 *)(sub + 0x24);
+    s32 q = func_0201fb1c(a, b);
     s16 x;
     s32 q2;
-    q = (q + (q >> 31)) >> 1;
+    q = (q + ((u32)q >> 31)) >> 1;
     x = (s16)(arg1 - q);
-    q2 = func_0201fb1c(*(s32 *)(obj + 0x18) << 12, 0x2000 - *(s32 *)(sub + 0x24));
+    q2 = func_0201fb1c(*(s32 *)(obj + 0x18) << 12, c);
     *(s32 *)(obj + 8) = x;
-    q2 = (q2 + (q2 >> 31)) >> 1;
-    *(s32 *)(obj + 0xc) = (s16)(arg2 - q2);
+    q2 = (q2 + ((u32)q2 >> 31)) >> 1;
+    *(s32 *)(*(u8 **)(arg0 + 0x30) + 0xc) = (s16)(arg2 - q2);
+    return 0;
+}
+
+s32 func_020c77d8(u8 *arg0) {
+    if (arg0 == NULL) {
+        func_020c7818(arg0);
+        return 1;
+    }
+    func_020c6dbc();
+    *(void **)(arg0 + 0x4c) = func_0210c594(8, data_02155c3c);
+    func_020c992c();
     return 0;
 }
 
@@ -146,6 +169,18 @@ void func_020c7818(void *arg0) {
     func_020c7838(arg0);
     if (arg0 != NULL) {
         func_0210c5dc(arg0);
+    }
+}
+
+void func_020c7838(void *arg0) {
+    u8 *p = arg0;
+    if (*(void **)(p + 0x4c) != NULL) {
+        func_020c9940(*(void **)(p + 0x4c));
+        if (*(void **)(p + 0x4c) != NULL) {
+            func_0210c5dc(*(void **)(p + 0x4c));
+            *(void **)(p + 0x4c) = NULL;
+        }
+        *(void **)(p + 0x4c) = NULL;
     }
 }
 
