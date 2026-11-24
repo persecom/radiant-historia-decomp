@@ -82,6 +82,24 @@ s32 func_020b3a28(void)
   return 0;
 }
 
+s32 func_020b3f14(u32 arg0) {
+    s32 res = -1;
+    if (arg0 != 0 && arg0 < 0x385) {
+        if (arg0 >= 1 && arg0 < 0x33) {
+            res = 0;
+        } else if (arg0 >= 0xc9 && arg0 < 0x10f) {
+            res = 4;
+        } else if (arg0 >= 0x12d && arg0 < 0x1a9) {
+            res = 1;
+        } else if (arg0 >= 0x208 && arg0 < 0x26c) {
+            res = 2;
+        } else if (arg0 >= 0x2bd && arg0 < 0x31e) {
+            res = 3;
+        }
+    }
+    return res;
+}
+
 extern void func_020b3a9c(void);
 extern void func_02009008(void *, void *, s32);
 extern u8 *func_020b4044(void);
