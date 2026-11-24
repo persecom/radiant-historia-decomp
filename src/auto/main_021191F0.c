@@ -23,10 +23,7 @@ typedef struct {
 } Struct16;
 
 typedef struct {
-    u32 f0;
-    u32 f4;
-    u32 f8;
-    u32 fc;
+    u32 f0[4];
     u8 f10[0x10];
 } Struct0216f9c4;
 
@@ -44,8 +41,9 @@ void func_021191f0(void) {
     Struct0216f2c4 *entry;
     u16 f2;
     u16 f0;
-    u32 *src;
-    Struct0216f9c4 *dst;
+    f32 *src;
+    f32 (*tbl)[8];
+    u16 k;
     s32 i;
     s32 idx;
     s32 ok;
@@ -66,18 +64,19 @@ void func_021191f0(void) {
 
     idx = data_0216f234.fc;
     if (data_0216f234.f4 == 0) {
-        src = (u32 *)(data_0216f6c4 + idx * 0x18);
+        src = (f32 *)(data_0216f6c4 + idx * 0x18);
     } else {
-        *(u32 *)(data_02155eb0 + 0x18) = *(u32 *)(data_0216f3d4 + idx * 0x18);
-        *(u32 *)(data_02155eb0 + 0x1c) = *(u32 *)(data_0216f3d8 + idx * 0x18);
-        src = data_02155eb8;
+        *(volatile u32 *)(data_02155eb0 + 0x18) = *(volatile u32 *)(data_0216f3d4 + idx * 0x18);
+        *(volatile u32 *)(data_02155eb0 + 0x1c) = *(volatile u32 *)(data_0216f3d8 + idx * 0x18);
+        src = (f32 *)data_02155eb8;
     }
 
-    dst = &data_0216f9c4[data_0216f2c4[(u16)idx].f0];
-    dst->f0 = src[0];
-    dst->f4 = src[1];
-    dst->f8 = src[2];
-    dst->fc = src[3];
+    tbl = (f32 (*)[8])data_0216f9c4;
+    k = data_0216f2c4[(u16)idx].f0;
+    tbl[k][0] = src[0];
+    tbl[k][1] = src[1];
+    tbl[k][2] = src[2];
+    tbl[k][3] = src[3];
 
     i = (u16)data_0216f234.fc;
     while (i >= 0) {
