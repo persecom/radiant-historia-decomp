@@ -203,6 +203,21 @@ void func_02135a80(u8 *arg0) {
     }
 }
 
+void func_02135abc(u8 *arg0, s16 *arg1, s32 arg2) {
+    s32 idx = *(u16 *)(arg0 + 0xa8) + *(u16 *)(arg0 + 0x98);
+    s32 i;
+    if (idx >= *(s32 *)(arg0 + 0xa4)) {
+        idx -= *(s32 *)(arg0 + 0xa4);
+    }
+    for (i = 0; i < arg2; i++) {
+        (*(s16 **)(arg0 + 0x9c))[idx] = arg1[i];
+        idx++;
+        if (idx == *(s32 *)(arg0 + 0xa4)) {
+            idx = 0;
+        }
+    }
+}
+
 void func_02135c00(void) {
     func_0213807c();
 }
