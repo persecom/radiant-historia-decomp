@@ -157,6 +157,10 @@ void func_020094a8(void) {
     func_02008998(0);
 }
 
+void func_020094c0(u32 arg0) {
+    func_020097f0(1, arg0, 0, 0, 0);
+}
+
 void func_02009528(u32 arg0, s32 arg1) {
     func_020097a8(arg0, 6, arg1, 2);
 }
