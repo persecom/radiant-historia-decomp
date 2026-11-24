@@ -3,6 +3,8 @@
 
 typedef struct { s32 x, y, z; } Vec_0205530c;
 extern s16 data_0213a394[];
+static inline s16 Sin_0205530c(s32 a) { return data_0213a394[((a % 65536) >> 4)*2]; }
+static inline s16 Cos_0205530c(s32 a) { return data_0213a394[((a % 65536) >> 4)*2+1]; }
 static inline void SetVec_0205530c(Vec_0205530c *dst, s32 x, s32 y, s32 z) { dst->x=x; dst->y=y; dst->z=z; }
 static inline void AddVec_0205530c(Vec_0205530c *dst, const Vec_0205530c *a, const Vec_0205530c *b) { dst->x = a->x+b->x; dst->y = a->y+b->y; dst->z = a->z+b->z; }
 static inline void CopyVec_0205530c(Vec_0205530c *dst, const Vec_0205530c *src) { dst->x = src->x; dst->y = src->y; dst->z = src->z; }
@@ -79,10 +81,7 @@ void func_0205530c(u8 *p) {
     *(s32 *)(p + 0x38) = (s16)config[0x1a] * data_0213a394[angle * 2 + 1];
     CopyVec_0205530c((Vec_0205530c *)(p+0xc), (Vec_0205530c *)p);
     CopyVec_0205530c((Vec_0205530c *)(p+0xd4), (Vec_0205530c *)p);
-    next.x = *(s32 *)p + *(s32 *)(p+0x30);
-    next.y = *(s32 *)(p+4);
-    next.z = *(s32 *)(p+8) + *(s32 *)(p+0x38);
-    CopyVec_0205530c((Vec_0205530c *)(p+0xe0), &next);
+    SetVec_0205530c((Vec_0205530c *)(p+0xe0), *(s32 *)p+*(s32 *)(p+0x30), *(s32 *)(p+4), *(s32 *)(p+8)+*(s32 *)(p+0x38));
     if (id < 700) func_020477dc(p, 1, 1);
     else func_020477dc(p, 0, 1);
     if (*(u32 *)(p + 0xac) & 1) {
