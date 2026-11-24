@@ -303,12 +303,13 @@ char *func_021336a0(void) {
     return data_0215b9c4;
 }
 
-void func_021336c0(s32 arg0, void *arg1) {
-    u32 *p = (u32 *)&data_02174d64;
-    void (*cb)(u32, void *, s32) = (void (*)(u32, void *, s32))p[0];
-    if (cb != NULL) {
-        cb(p[1], arg1, arg0);
-    }
+void func_021336c0(s32 arg0, void *arg1)
+{
+  u32 *p = (u32 *) (&data_02174d64);
+  if (p[0] != 0)
+  {
+    ((void (*)(u32, void *, s32)) p[0])(((u32 *) (&data_02174d64))[1], arg1, arg0);
+  }
 }
 
 extern void func_020182e4(void);
@@ -326,6 +327,7 @@ u32 func_021336f4(void *arg0, s8 **arg1, s32 arg2) {
         }
         if (c <= '9') {
             c -= '0';
+            goto accum;
         } else if (c < 'a') {
             goto upper;
         } else if (c <= 'f') {
