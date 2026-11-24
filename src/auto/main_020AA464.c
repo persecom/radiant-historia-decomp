@@ -40,6 +40,16 @@ void *func_020aa4d0(s32 arg0) {
     return NULL;
 }
 
+void *func_020aa61c(void) {
+    void **p = &data_021601dc;
+    if (*p != NULL) {
+        return *p;
+    }
+    *p = func_0210c594(0xC, data_02155c3c);
+    func_021167ac(*p, 4);
+    return *p;
+}
+
 void func_020aa710(void *arg0) {
     if (arg0 != NULL) {
         func_0210c5dc(arg0);
