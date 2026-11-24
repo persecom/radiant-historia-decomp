@@ -13,7 +13,7 @@ typedef struct Mgr_0209a548 {
     u8 pad_00[0x60];
     u16 unk_60;
     u8 pad_62[0x636];
-    u16 unk_698;
+    s16 unk_698;
     u8 unk_69a;
     u8 pad_69b;
     u16 unk_69c;
