@@ -150,7 +150,7 @@ void func_02032d74(void *arg0) {
     }
     node = *(u8 **)(data_02160090 + 8);
     while (node != NULL) {
-        node[0x41] &= ~4;
+        node[0x41] &= 0xfb;
         node = *(u8 **)(node + 0x1c);
     }
 }
