@@ -128,6 +128,9 @@ s32 func_020babc8(u8 *arg0) {
     return 0;
 }
 
+void func_020babe8(void) {
+}
+
 void func_020bac70(u8 arg0) {
     data_021601f0 = arg0;
 }
