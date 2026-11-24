@@ -199,6 +199,13 @@ void func_020d9e08(u32 arg0) {
     *(u32 *)(data_02160258 + 0x80) = arg0;
 }
 
+void func_020d9e1c(u32 arg0) {
+    u8 *p = data_02160258;
+    if (*(u32 *)(p + 0x58) == 0) {
+        *(u32 *)(p + 0x58) = arg0;
+    }
+}
+
 u16 func_020d9e38(void) {
     return data_02151fc8;
 }
