@@ -136,18 +136,18 @@ func_020c30b4(id,254);
 node=*(u8 **)(data_02160090+0x6c);
 while(node) {
 s16 insert;
-u32 range;
+u16 range;
 u32 random,seed;
 next=*(u8 **)(node+36);
 func_021168f8(data_02160090+0x6c,node);
 i=0;
 p=*(u8 **)(data_02160090+0x48);
 while(p) {if(p[0]==node[0])i++;p=*(u8 **)(p+36);}
-range=(u16)(i+1);
+range=i+1;
 seed=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
 data_0216263c[0]=seed;
-random=seed>>16;
-if(range) {range=random*range;random=range>>16;}
+if(range)random=((seed>>16)*range)>>16;
+else random=seed>>16;
 insert=(u16)random+1;
 p=*(u8 **)(data_02160090+0x48);
 while(p) {
