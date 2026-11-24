@@ -230,6 +230,15 @@ void func_0211d7a4(void) {
     *(u32 *)(p + 0xfc) &= ~2;
 }
 
+void *func_0211d7d4(void) {
+    u8 *p = data_021701fc;
+    if ((*(u32 *)(p + 0xfc) & 0x8) == 0) {
+        func_02001194(data_02170248, data_021702fc);
+        *(u32 *)(p + 0xfc) |= 0x8;
+    }
+    return data_021702fc;
+}
+
 void *func_0211d878(void) {
     u8 *p = data_021701fc;
     if ((*(u32 *)(p + 0xfc) & 0x80) == 0) {
