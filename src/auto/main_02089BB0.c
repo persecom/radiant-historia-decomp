@@ -38,6 +38,21 @@ s32 func_0208a318(s32 arg0) {
     }
 }
 
+void func_020a8810(void *, s32);
+void func_020895a0(s32,s32,s32,s32,s32,u16,s32,s32,s32);
+void func_0208a3a4(u16 arg0) {
+if((s8)data_0216010c[0x556d]==-1) {
+func_020a994c(data_0216010c+0x3e4); return;
+}
+func_020a8810(*(void **)(data_0216010c+0x3e0),0x18);
+func_020895a0(11,*(s16 *)(data_0216010c+0x50e4)<<12,0x23000,20,4,(u16)(arg0+1),0,0,0);
+if(*(s16 *)(data_0216010c+0x50f8)&8) {
+*(s16 *)(data_0216010c+0x50e4)=0x100+(*(s16 *)(data_0216010c+0x50fa)*-166)/10;
+*(s16 *)(data_0216010c+0x50fa)+=1;
+if(*(s16 *)(data_0216010c+0x50fa)>10) *(s16 *)(data_0216010c+0x50f8)&=~8;
+}
+}
+
 void func_0208a4ac(void) {
     *(s16 *)(data_0216010c + 0x50e4) = 0x100;
     *(s16 *)(data_0216010c + 0x50fa) = 0;
