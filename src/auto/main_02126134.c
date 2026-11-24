@@ -505,6 +505,25 @@ void func_02126c98(void *arg0, s32 arg1) {
     *(s32 *)((u8 *)arg0 + 0x20) = func_0212716c((s32)arg0, arg1);
 }
 
+void func_02126cb0(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    s32 prev = *(s32 *)((u8 *)arg0 + 0x24);
+    s32 ret;
+    *(s32 *)((u8 *)arg0 + 0x28) = prev;
+    *(s32 *)((u8 *)arg0 + 0x24) = arg1;
+    ret = func_02126f08((s32)arg0, *(s32 *)((u8 *)arg0 + 0x1c), arg1, arg2);
+    *(s32 *)((u8 *)arg0 + 0x10) = arg3;
+    *(s32 *)((u8 *)arg0 + 0x14) = arg4;
+    *(s32 *)((u8 *)arg0 + 4) = ret;
+    *(s32 *)((u8 *)arg0 + 8) = 0;
+    *(s32 *)((u8 *)arg0 + 0xc) = 0;
+    if (arg3 > 0) {
+        *(u8 *)arg0 = 1;
+        return;
+    }
+    *(u8 *)arg0 = 2;
+    func_02127350(arg0);
+}
+
 void func_02126e50(void *arg0, u32 arg1, u32 arg2, u32 arg3) {
     *(u32 *)((u8 *)arg0 + 0x2c) = arg1;
     *(u32 *)((u8 *)arg0 + 0x30) = arg2;
