@@ -36,6 +36,37 @@ extern const Unk20 data_0213f2f4;
 extern void func_0209dfdc(void);
 extern void func_020a3bbc(s32);
 extern void func_020a2574(void);
+extern void func_021099f8(void *);
+extern void func_020469ac(void);
+extern void func_0204690c(u32, s32);
+extern void func_020a2534(void);
+void func_02046238(void) {
+    if (data_021600ac[0x334] == 1 || data_021600ac[0x335] != 0) {
+        Unk14 buf = data_0213f2e4;
+        if (data_021600ac[0x334] != 0) {
+            data_021600ac[0x335]++;
+            if (data_021600ac[0x335] > 8) {
+                data_021600ac[0x335] = 8;
+            }
+        } else {
+            data_021600ac[0x335]--;
+        }
+        *(volatile u32 *)0x040004a4 = 0x1f0080;
+        buf.unk[4] = 0x100;
+        buf.unk[6] = 0;
+        buf.unk[1] = 0;
+        buf.unk[5] = 0x10;
+        buf.unk[2] = data_021600ac[0x335] * 2 - 0x10;
+        func_021099f8(&buf);
+        buf.unk[1] = 0;
+        buf.unk[2] = 0xc0 - data_021600ac[0x335] * 2;
+        func_021099f8(&buf);
+    }
+    func_020469ac();
+    func_0204690c(*(u16 *)(data_021600b8 + 0x1a), data_021600b8[0x18]);
+    func_020a2534();
+}
+
 void func_02046370(void)
 {
     Unk20 buf;
