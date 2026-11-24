@@ -351,13 +351,12 @@ void func_020057e8(u32 arg0, u32 arg1) {
     for (i = 0; i < 0x16; i++) {
         if (arg0 & 1) {
             u8 *rec = NULL;
-            *(u32 *)(data_027e0000 + i * 4) = arg1;
             if (i >= 8 && i <= 0xb) {
                 rec = data_0215cd7c + (i - 8) * 12;
-            }
-            if (i >= 3 && i <= 6) {
+            } else if (i >= 3 && i <= 6) {
                 rec = data_0215cd7c + (i + 1) * 12;
             }
+            *(u32 *)(data_027e0000 + i * 4) = arg1;
             if (rec != NULL) {
                 *(u32 *)(rec + 0) = arg1;
                 *(u32 *)(rec + 4) = 1;
@@ -369,8 +368,8 @@ void func_020057e8(u32 arg0, u32 arg1) {
 }
 
 u32 func_02005870(u32 arg0) {
-    u32 *p = (u32 *)data_027e0000;
     s32 i;
+    u32 *p = (u32 *)data_027e0000;
     for (i = 0; i < 0x16; i++) {
         if (arg0 & 1) {
             if (i >= 8 && i <= 0xb) {
