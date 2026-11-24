@@ -8,6 +8,61 @@ extern void func_0210c5dc(void *);
 extern void func_021167ac(void *, s32);
 extern u32 data_02155c3c;
 extern u8 *data_021600e8;
+void *func_02067294(void *arg0, u16 arg1) {
+    void *result;
+    u8 *p1;
+    u8 *p2;
+    void *second;
+
+    p1 = func_0210c594(0x1c, data_02155c3c);
+    p2 = func_0210c594(0x10, data_02155c3c);
+    second = *(void **)((u8 *)arg0 + 4);
+    if (second == NULL) {
+        result = func_0203be60(p1, *(void **)arg0, *(void **)arg0);
+    } else {
+        result = func_0203be60(p1, *(void **)arg0, second);
+    }
+    if (result != NULL) {
+        *(s32 *)(p1 + 0x10) = *(s32 *)((u8 *)arg0 + 0x8);
+        *(s32 *)(p1 + 0x14) = *(s32 *)((u8 *)arg0 + 0xc);
+        *(s32 *)(p1 + 0x18) = *(s32 *)((u8 *)arg0 + 0x10);
+        *(void **)p2 = p1;
+        *(u16 *)(p2 + 0x4) = arg1;
+        func_021167f0(data_021600e8 + 0x3c, p2);
+    } else {
+        if (p1 != NULL) {
+            func_0210c5dc(p1);
+        }
+        if (p2 != NULL) {
+            func_0210c5dc(p2);
+        }
+    }
+    return result;
+}
+
+void func_0206753c(u16 arg0) {
+    u8 *p;
+    u8 *node;
+
+    p = data_021600e8;
+    if (p == NULL) return;
+    node = *(u8 **)(p + 0x3c);
+    if (node == NULL) return;
+    for (;;) {
+        if (*(u16 *)(node + 4) == arg0) {
+            u8 *d = *(u8 **)node;
+            *(volatile u32 *)0x040004a8 = (*(u32 *)(d + 4) >> 3) | (*(u32 *)(d + 0x18) << 26) |
+                                          0x40000000 | (*(u32 *)(d + 0x10) << 20) |
+                                          (*(u32 *)(d + 0x14) << 23) | 0x20000000;
+            *(volatile u32 *)0x040004ac = *(u32 *)(d + 0xc) >> (4 - (*(u32 *)(d + 0x18) == 2));
+            *(volatile u32 *)0x04000480 = 0x7fff;
+            return;
+        }
+        node = *(u8 **)(node + 0xc);
+        if (node == NULL) return;
+    }
+}
+
 void func_02067674(void) {
     u8 *p = func_0210c594(0x3c, data_02155c3c);
     p[0x26] = 0x1f;
