@@ -5,6 +5,10 @@ typedef struct { s32 m00,m01,m10,m11,m20,m21; } Mtx23Fields;
 extern s32 data_0216f234[4];
 extern u16 data_02155eb0[];
 extern u16 data_0216f2c4[][4];
+static inline s32 Active0211a3ac(void) {
+ if(data_0216f234[1]==0 && data_02155eb0[0]!=0xfffe) return 1;
+ return 0;
+}
 extern s32 data_0216f3d4[];
 extern s32 data_0216f3d8[];
 extern s32 data_0216f244[];
