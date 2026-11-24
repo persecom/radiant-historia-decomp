@@ -18,6 +18,21 @@ extern void func_020b748c(void);
 extern void func_020b7624(void);
 extern void func_020b8944(void);
 extern s32 func_020de3d8(void);
+extern void *func_020c9c10(void *, s32);
+extern void func_020c8488(void *);
+extern void func_020b8dbc(void);
+extern void func_02111ccc(void *);
+extern void *func_02111d3c(void *);
+extern u16 func_02110b38(u16);
+extern void func_02112688(void *);
+extern void func_021108f0(void *, s32);
+extern void func_02112068(void *);
+extern void func_02111bf0(void *);
+extern void func_02111ff0(void *);
+extern void *func_02112048(void *);
+extern void func_020b9214(void *, u16, s32);
+extern void func_020b9274(void *, u16, s32);
+extern void func_020b92b0(void);
 
 void func_020b8844(void) {
     *(volatile u32 *)0x0400001c = 0;
