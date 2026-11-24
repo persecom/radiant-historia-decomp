@@ -143,6 +143,16 @@ u16 func_020c9808(u8 *arg0) {
     return r5;
 }
 
+s32 func_020c9888(u8 *arg0) {
+    s16 v = (s16)(*(u16 *)(arg0 + 0x42) - *(u16 *)(arg0 + 0x40));
+    s32 r4 = func_0201f8cc(func_020c9808(arg0));
+    if (v <= 0) {
+        return 0;
+    }
+    r4 = func_02020604(r4, func_0201f884(*(s16 *)((u8 *)func_020c9c10(*(void **)(arg0 + 0x30), 2) + 0x40)));
+    return func_02020888(r4, func_0201f884(v));
+}
+
 void func_020c98f8(u8 *arg0) {
     func_020c9590(arg0);
     func_020c9610(arg0);
