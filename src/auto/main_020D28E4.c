@@ -41,6 +41,21 @@ typedef struct {
 } UnkC;
 
 extern UnkC *data_02160244;
+
+typedef struct {
+    u8 pad[0x64];
+    s32 unk64;
+} UnkD;
+
+typedef struct {
+    u8 pad[0x68];
+    s32 unk68;
+    u16 unk70;
+} UnkE;
+
+extern UnkD *data_02160a6c;
+extern UnkE *data_02160110[3];
+extern void func_020d2f44(void);
 extern const s16 data_0213a394[];
 extern void func_021099f8(void *);
 extern s16 func_020ddcb0(void *, void *);
