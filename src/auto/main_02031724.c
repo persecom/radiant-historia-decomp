@@ -27,6 +27,26 @@ void *func_02031c24(u32 arg0) {
 void func_02031c60(void) {
 }
 
+void func_02031d2c(void) {
+    void *node = *(void **)((u8 *)data_02160090 + 0x14);
+    while (node != NULL) {
+        void *next = *(void **)((u8 *)node + 0x24);
+        func_021168f8((u8 *)data_02160090 + 0x14, node);
+        node = next;
+    }
+    func_02033060();
+    func_02032de8();
+    func_02033010();
+    func_02032f34();
+    func_020c2b98();
+    func_020c2be4();
+    func_020c2c30();
+    if (data_02160090 != NULL) {
+        func_0210c5dc(data_02160090);
+        data_02160090 = NULL;
+    }
+}
+
 void func_02031fbc(s32 arg0, s32 arg1, s32 arg2) {
     func_02031fcc(arg0, arg2);
 }
