@@ -49,6 +49,9 @@ void func_020dd804(void) {
 void func_020dd808(void) {
 }
 
+void func_020dd80c(void) {
+}
+
 void *func_020ddb54(u16 arg0) {
     u8 *node = *(u8 **)(data_02160a68.unk04 + 0x64);
     while (node != NULL) {
