@@ -22,6 +22,23 @@ void func_020a8750(void *arg0) {
     }
 }
 
+extern void func_0210dbe8(void *);
+void func_020a87b0(void *arg0) {
+    u8 *p = (u8 *)arg0;
+    if (*(void **)(p + 0x50) != NULL) {
+        func_0210c5dc(*(void **)(p + 0x50));
+    }
+    func_0210dbe8(p + 0x20);
+    data_02156154(*(void **)(p + 0x34));
+    if (*(void **)(p + 0x10) != NULL) {
+        func_0210c5dc(*(void **)(p + 0x10));
+        *(void **)(p + 0x10) = NULL;
+    }
+    if (p != NULL) {
+        func_0210c5dc(p);
+    }
+}
+
 void func_020a8810(void *arg0, u32 arg1) {
     *(u32 *)((u8 *)arg0 + 0x3C) = func_020a8828(arg1);
 }
