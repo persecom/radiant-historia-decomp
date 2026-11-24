@@ -1,5 +1,15 @@
 /* 4 functions from 0x020FCEA0 to 0x020FDC0C (main), found by ds-decomp. */
 #include "common.h"
+extern u8 data_02152ae0[];
+extern u8 data_02152ae8[];
+extern u8 data_02152af0[];
+extern u8 data_02152af8[];
+extern u8 data_02152b00[];
+extern u8 data_02152b08[];
+extern u8 data_02152b10[];
+extern u8 data_02152b18[];
+extern u8 data_02152b28[];
+extern u8 data_02152b44[];
 extern u8 *data_02160c74[2];
 
 extern u8 *data_02160200;
