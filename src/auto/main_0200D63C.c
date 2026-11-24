@@ -16,6 +16,32 @@ void func_0200d790(void *arg0, u32 arg1, u32 arg2) {
     func_0200b988(arg0, data_0215efa0, arg1, arg1 + arg2, 0xffff);
 }
 
+void func_0200d7c0(void) {
+    if (data_0215effc != 0) {
+        return;
+    }
+    data_0215effc = 1;
+    func_0200d63c();
+    func_0200bc24();
+}
+
+void func_0200dadc(void) {
+    if (*(u16 *)(data_0215f000 + 0) != 0) {
+        return;
+    }
+    *(u16 *)(data_0215f000 + 0) = 1;
+    func_0200a56c();
+    *(u16 *)(data_0215f000 + 0x10) = 0;
+    *(u32 *)(data_0215f000 + 4) = 0;
+    *(u32 *)(data_0215f000 + 0x14) = 0;
+    *(u16 *)(data_0215f000 + 0x36) = 0;
+    *(u16 *)(data_0215f000 + 0x34) = 0;
+    *(u16 *)(data_0215f000 + 0x3a) = 0;
+    *(u16 *)(data_0215f000 + 0x38) = 0;
+    while (func_0200a6c0(6, 1) == 0) {}
+    func_0200a674(6, (void *)func_0200d868);
+}
+
 u32 func_0200e26c(u32 arg0) {
     return *(u16 *)(data_0215f000 + 0x38) & arg0;
 }
