@@ -25,7 +25,7 @@ extern void func_0200e8a8(void);
 extern void func_02010fa8(s32, s32);
 extern void func_0201082c(u32);
 extern void func_0200fddc(void);
-static inline void set_zero(u32 *p) { *p = 0; }
+typedef struct { u32 field_0; } ZeroTarget_0215f120;
 extern void func_020059e4(u32);
 extern void func_02005a14(u32);
 extern void func_020059b4(u32);
@@ -234,7 +234,7 @@ void func_02010b10(void) {
     func_0201076c();
     func_02010f58();
     func_0201082c(8);
-    *(u32 *volatile)*(u32 **volatile)data_0215f120 = 0;
+    set_zero(*(u32 **)data_0215f120);
     func_0200fddc();
 }
 
