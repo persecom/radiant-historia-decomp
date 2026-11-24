@@ -118,3 +118,21 @@ char *func_02016f08(char *dst, const char *src, u32 n) {
     return dst;
 }
 
+s32 func_02016f58(const char *str1, const char *str2, u32 n) {
+    const u8 *p1 = (const u8 *)str1;
+    const u8 *p2 = (const u8 *)str2;
+    u8 c1, c2;
+    while (n) {
+        c2 = *p2++;
+        c1 = *p1++;
+        if (c1 != c2) {
+            return c1 - c2;
+        }
+        if (c1 == 0) {
+            break;
+        }
+        n--;
+    }
+    return 0;
+}
+
