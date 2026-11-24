@@ -78,6 +78,19 @@ void func_0211c5fc(u8 *arg0, s32 arg1, s32 arg2) {
     }
 }
 
+void func_0211c738(void) {
+    if (*(s32 *)(*(u8 **)data_021701f8 + 0x14) == 0) {
+        *(volatile u32 *)0x04000440 = 0;
+        *(volatile u32 *)0x04000448 = 1;
+        *(volatile u32 *)0x04000440 = 1;
+    } else {
+        *(u32 *)(data_021701f8 + 0x10) = 0;
+        *(u32 *)(data_021701f8 + 0x2C) = 0;
+        *(u32 *)(data_021701f8 + 0x28) = 0;
+    }
+    data_021701f8 = NULL;
+}
+
 void func_0211cbcc(u32 *arg0, u8 *arg1) {
     while (arg1 != NULL) {
         s32 i;
