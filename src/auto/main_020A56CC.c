@@ -66,6 +66,10 @@ void func_020a5c40(u8 *arg0, void *arg1) {
     *(s32 *)(arg0 + 0x74) = 0;
 }
 
+void func_020a5cd4(void *arg0) {
+    *(s32 *)((u8 *)arg0 + 0x6c) = -0x5000;
+}
+
 void func_020a5ed4(void **arg0) {
     void *ptr;
     while ((ptr = *arg0) != NULL) {
