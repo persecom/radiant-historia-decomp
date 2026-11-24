@@ -16,8 +16,8 @@ s32 func_02028420(u8 *arg0, u8 *arg1) {
     u8 *self = arg0;
     const char *s;
     s16 v1, cmd, v2;
-    u32 mask = 0;
     s32 is32 = 0;
+    u32 mask = 0;
     u8 *node;
     s = func_020929f4(src, 0);
     if (func_02026e9c(2, s, data_02146164) != 0) {
@@ -78,6 +78,8 @@ s32 func_02028420(u8 *arg0, u8 *arg1) {
                         *(u8 **)(*((u8 **)((u8 *)&data_0216007c + 4)) + 0x38) = obj;
                         return (s32)obj;
                     }
+                } else {
+                    break;
                 }
                 n = *(u8 **)(n + 0x18);
             }
@@ -103,6 +105,8 @@ s32 func_02028420(u8 *arg0, u8 *arg1) {
                         *(u8 **)(*((u8 **)((u8 *)&data_0216007c + 4)) + 0x38) = obj;
                         return (s32)obj;
                     }
+                } else {
+                    break;
                 }
                 n = *(u8 **)(n + 0x1c);
             }
@@ -217,9 +221,10 @@ s32 func_02028420(u8 *arg0, u8 *arg1) {
             x = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
             data_0216263c[0] = x;
             if (cnt != 0) {
-                x = (x >> 16) * cnt;
+                idx = (u16)(((x >> 16) * cnt) >> 16);
+            } else {
+                idx = (u16)(x >> 16);
             }
-            idx = (u16)(x >> 16);
             node = arr[idx];
             *(u8 **)(*((u8 **)((u8 *)&data_0216007c + 4)) + 0x38) = node;
             return (s32)node;
