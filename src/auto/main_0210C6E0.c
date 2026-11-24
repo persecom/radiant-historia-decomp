@@ -1,5 +1,7 @@
 /* 46 functions from 0x0210C6E0 to 0x0210D6D8 (main), found by ds-decomp. */
 #include "common.h"
+extern u8 data_02162740[];
+
 
 extern const char *func_0210cce4(const char *);
 extern void *func_0210c924();
@@ -228,6 +230,33 @@ void func_0210d27c(s32 arg0) {
         return;
     }
     func_02113ce8(data_0216273c, data_02155c7c[0]);
+    slot[0] = (s16)arg0;
+    slot[1] = 6;
+}
+
+void func_0210d3b0(s32 arg0) {
+    s16 *slot;
+    s32 i;
+    if (arg0 < 0) {
+        return;
+    }
+    slot = NULL;
+    for (i = 0; i < 8; i++) {
+        if (arg0 == data_0216274c[i * 2]) {
+            slot = NULL;
+            break;
+        }
+        if (slot == NULL && data_0216274c[i * 2] == -1) {
+            slot = &data_0216274c[i * 2];
+        }
+    }
+    if (slot == NULL) {
+        return;
+    }
+    if (!(*(s32 (**)(void *, s32))(data_02155c7c + 4))(data_02162740, arg0)) {
+        return;
+    }
+    func_02113ce8(data_02162740, data_02155c7c[0]);
     slot[0] = (s16)arg0;
     slot[1] = 6;
 }
