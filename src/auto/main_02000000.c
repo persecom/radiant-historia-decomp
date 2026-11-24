@@ -8,6 +8,7 @@ typedef struct { u32 a, b, c, d; } FourWords;
 typedef struct { s32 v[4]; } Mat4;
 typedef struct { s32 v[4]; } MatA;
 typedef struct { s32 v[9]; } Mtx9;
+typedef struct { s32 a0; s32 a1, a2; s32 a3, a4; s32 a5, a6, a7, a8; } MtxFields;
 typedef struct { u32 x, y; } Pair;
 typedef union { u32 u; struct { u32 pad : 12; u32 val : 20; } b; } FX;
 
