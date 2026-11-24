@@ -23,6 +23,7 @@ extern s32 func_0211d3a0(void *, void *);
 void func_0211d238(u8 *);
 void func_0211d49c(u8 *arg0);
 
+static inline u8 *get_material_0211cf5c(u8 *base, u32 idx);
 static inline void *get_res_data_by_idx(const u8 *dict, u32 idx) {
     if (dict != NULL && idx < *(const u8 *)(dict + 1)) {
         u16 ofs = *(const u16 *)(dict + 6);
@@ -109,6 +110,38 @@ u32 func_0211cf3c(u8 *arg0) {
     *(u32 *)(arg0 + 0x2c) = 0;
     return key;
 }
+
+s32 func_02001fb0(s32,s32);
+#pragma schedule on
+void func_0211cf5c(void *arg0,void *arg1,void *arg2,void *arg3){
+ u8 *base=arg0,*desc=arg1,*tex=arg2;
+ u32 *info=arg3;
+ u32 i=0;
+ u8 *indices=base+*(u16 *)desc;
+ u32 key;
+ u32 addr;
+ if((info[0]&0x1c000000)!=0x14000000)key=*(u32 *)(tex+8);
+ else key=*(u32 *)(tex+0x18);
+ addr=(u16)key;
+ addr &=~0xe0000000;
+ for(;i<desc[2];i++){
+ u8 *mat;
+ u32 h;
+ u32 idx=indices[i];
+ if(base){
+ u32 *entry=get_res_data_by_idx(base+4,idx);
+ if(entry)mat=base+*entry;
+ else mat=0;
+ }else mat=0;
+ *(u32 *)(mat+0x14)|=info[0]+addr;
+ {u32 wh=info[1];u32 w=wh&0x7ff;h=(wh&0x3ff800)>>11;
+ *(u32 *)(mat+0x24)=w==*(u16 *)(mat+0x20)?0x1000:func_02001fb0(w<<12,*(u16 *)(mat+0x20)<<12);
+ }
+ *(u32 *)(mat+0x28)=h==*(u16 *)(mat+0x22)?0x1000:func_02001fb0(h<<12,*(u16 *)(mat+0x22)<<12);
+ }
+ desc[3]|=1;
+}
+
 void func_0211d08c(u8 *arg0, u8 *arg1) {
     u16 ofs = *(u16 *)arg1;
     u8 *base = arg0 + ofs;
