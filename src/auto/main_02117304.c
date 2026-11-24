@@ -107,6 +107,17 @@ void func_021174e4(void) {
     func_021174a8();
 }
 
+s32 func_02117774(void *arg0, void **arg1) {
+    u8 *r4 = func_02117904(arg0, 0x43484152);
+    if (r4 != NULL) {
+        func_021177b0(r4 + 8);
+        *arg1 = r4 + 8;
+        return 1;
+    }
+    *arg1 = NULL;
+    return 0;
+}
+
 void func_021177b0(u8 *arg0) {
     *(u32 *)(arg0 + 0x14) += (u32)arg0;
 }
