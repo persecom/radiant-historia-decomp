@@ -56,6 +56,38 @@ void func_02004cd4(s32 arg0) {
     func_02004810(data_0215cd60[0]);
 }
 
+#pragma opt_common_subs off
+void func_02004ee8(s32 arg0) {
+data_0215cd60[0]=(data_0215cd60[0]|data_0215cd60[5]) & ~arg0;
+data_0215cd60[5]=arg0;
+switch(arg0) {
+case 0: break;
+case 0x40: *(volatile u8 *)0x04000246=0x83; break;
+case 0x60: *(volatile u8 *)0x04000246=0x8b;
+case 0x20: *(volatile u8 *)0x04000245=0x83; break;
+case 0x70: *(volatile u8 *)0x04000246=0x9b;
+case 0x30: *(volatile u8 *)0x04000245=0x93;
+case 0x10: *(volatile s8 *)0x04000244=0x83; break;
+}
+func_02004810(data_0215cd60[0]);
+}
+
+void func_02004fc4(s32 arg0) {
+data_0215cd60[0] = (data_0215cd60[0] | data_0215cd60[6]) & ~arg0;
+data_0215cd60[6] = arg0;
+switch (arg0) {
+case 3: *(volatile u8 *)0x04000240 = 0x93;
+case 2: *(volatile u8 *)0x04000241 = 0x9b; *(volatile u16 *)0x04000060 |= 0x4000; break;
+case 12: *(volatile u8 *)0x04000242 = 0x93;
+case 8: *(volatile u8 *)0x04000243 = 0x9b; *(volatile u16 *)0x04000060 |= 0x4000; break;
+case 0: *(volatile u16 *)0x04000060 &= 0xbfff; break;
+case 1: *(volatile u8 *)0x04000240 = 0x9b; *(volatile u16 *)0x04000060 |= 0x4000; break;
+case 4: *(volatile u8 *)0x04000242 = 0x9b; *(volatile u16 *)0x04000060 |= 0x4000; break;
+}
+func_02004810(data_0215cd60[0]);
+}
+
+#pragma opt_common_subs on
 void func_020050c4(s32 arg0) {
     data_0215cd60[0] = (data_0215cd60[0] | data_0215cd60[3]) & ~arg0;
     data_0215cd60[3] = arg0;
@@ -467,6 +499,32 @@ void func_02005a84(u32 arg0, s32 arg1) {
 
 void func_02005ab4(u32 arg0) {
     while (func_0200a6e4(0xc, arg0 << 8, 0) != 0) {}
+}
+
+extern s32 data_0215cde0;
+extern void func_02005bfc(s32, s32, s32);
+extern void func_02008e24(s32, void *, s32);
+extern void func_02005c80(s32, s32, s32);
+void func_02005ae0(void) {
+    u8 *p;
+    if (data_0215cde0 != 0) {
+        return;
+    }
+    p = (u8 *)0x02fffff0;
+    *(u32 *)p = 0;
+    *(volatile s32 *)&data_0215cde0 = 1;
+    func_02005bfc(0x7e, (s32)p, 0);
+    while (*(volatile u16 *)(p + 6) != 0) {
+        WaitByLoop(0x400);
+    }
+    p = (u8 *)0x02ffffb0;
+    *(u32 *)p = 0xffffffff;
+    *(u32 *)(p + 4) = 0xffff0000;
+    func_02008e24(0, p + 0x10, 0x28);
+    *(volatile u16 *)0x04000204 |= 0x800;
+    *(volatile u16 *)0x04000204 |= 0x80;
+    func_02005c80(0x7e, (s32)(p + 0x40), 0);
+    func_02005bfc(0x7f, (s32)(p + 0x40), 0);
 }
 
 void func_02005bb0(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
