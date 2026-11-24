@@ -56,6 +56,47 @@ void func_02047490(void *);
 void func_0210c5dc(void *);
 s32 func_0210c2f4(Obj_02078d8c *, Vec3_02078d8c *);
 
+void func_0207884c(s32 arg0) {
+s16 z,x;
+u8 *p;
+u8 *obj=0;
+s32 i;
+u32 v;
+u16 r;
+if(*(u16 *)((u8 *)data_021600bc+0x84)!=0) return;
+x=data_0213a394[1];z=data_0213a394[0];
+for(i=0;i<24;i++) {
+p=func_0210c594(0x34,data_02155c3c);
+v=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
+data_0216263c[0]=v;
+r=((v>>16)*29)>>16;
+*(s32 *)(p)=((r*32)+16)<<12;
+*(s32 *)(p+4)=4096;
+v=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
+data_0216263c[0]=v;
+r=((v>>16)*69)>>16;
+*(s32 *)(p+8)=((r*32)+16)<<12;
+p[0x1c]|=1;
+*(s32 *)(p+0x18)=0xa000;
+*(s32 *)(p+0x20)=0;
+if(arg0==0) obj=func_02046f90(0x157e,(u16)(i+0x1b58));
+else if(arg0==1) obj=func_02046f90(0x1587,(u16)(i+0x1b58));
+{ s32 px=*(s32 *)p, py=*(s32 *)(p+4), pz=*(s32 *)(p+8);
+px+=x<<7; py+=0x80000;
+*(s32 *)obj=px;
+*(s32 *)(obj+4)=py;
+pz+=z<<7;
+*(s32 *)(obj+8)=pz;
+}
+*(s32 *)(obj+0x58)=4096;
+*(u32 *)(obj+0x80)&=~2;
+if(arg0==0) func_020477dc(obj,11,0);
+else func_020477dc(obj,0,0);
+*(void **)(p+0x28)=obj;
+func_021167f0((u8 *)data_021600bc+0x7c,p);
+}
+}
+
 void func_020789ec(void) {
     while (data_021600bc->unk_7c != NULL) {
         Node_020789ec *node = data_021600bc->unk_7c;
