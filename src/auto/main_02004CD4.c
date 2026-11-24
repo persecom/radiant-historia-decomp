@@ -332,6 +332,11 @@ void func_020057c0(void) {
     func_020056c8(7);
 }
 
+void func_020057d0(void) {
+    *(u32 *)(data_027e0060 + 4) = 0;
+    *(u32 *)data_027e0060 = 0;
+}
+
 extern u16 data_0215cddc;
 u16 func_02005a74(void) {
     return data_0215cddc;
