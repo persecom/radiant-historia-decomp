@@ -145,12 +145,17 @@ void func_020beb14(void) {
 }
 
 void func_020beb64(s32 arg0) {
-    if (arg0 == 1) {
+    switch (arg0) {
+    case 1: {
+        u16 idx = data_02151fc8;
+        *(s32 *)(data_0216020c + 0xc) = data_0213a394[((idx >> 4) * 2) + 1];
+        *(s32 *)(data_0216020c + 0x14) = data_0213a394[(idx >> 4) * 2];
+        break;
+    }
+    default:
         *(s32 *)(data_0216020c + 0xc) = data_0213a394[((data_02151fc8 >> 4) * 2) + 1];
         *(s32 *)(data_0216020c + 0x14) = data_0213a394[(data_02151fc8 >> 4) * 2];
-    } else {
-        *(s32 *)(data_0216020c + 0xc) = data_0213a394[((data_02151fc8 >> 4) * 2) + 1];
-        *(s32 *)(data_0216020c + 0x14) = data_0213a394[(data_02151fc8 >> 4) * 2];
+        break;
     }
 }
 
