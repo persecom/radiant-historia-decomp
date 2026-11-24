@@ -31,7 +31,15 @@ extern u8 *func_0210c594(s32, s32);
 extern u8 *func_020f4d40(s32);
 extern u8 *func_020f4c2c(s32);
 extern u8 *func_020f4ec4(void);
-extern s32 func_020f50bc(void *, void *, void *, s32);
+extern s32 func_020f50bc(void *, void *, void *, ...);
+typedef struct { s32 v[5]; } SpriteParams_02057244;
+typedef struct { s32 v[546]; } SpriteTable_02057244;
+extern const SpriteParams_02057244 data_0213f3c4;
+extern const SpriteTable_02057244 data_0213f3d8;
+extern f32 func_0201f8cc(u32),func_0201f884(s32);
+extern f32 func_02020888(f32,f32),func_020201f4(f32,f32),func_02020604(f32,f32);
+extern s32 func_0201ff0c(f32);
+extern void func_0208c788(s32,s32,s32 *,s32 *);
 extern void func_020f5114(void *, s32);
 extern void func_021167f0(void *, void *);
 
