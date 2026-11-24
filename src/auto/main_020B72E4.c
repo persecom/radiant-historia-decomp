@@ -1,5 +1,9 @@
 /* 5 functions from 0x020B72E4 to 0x020B77D4 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { u16 id; s16 end, x, dx, y, dy, flag; } AnimEntry_020b748c;
+typedef struct { AnimEntry_020b748c entries[6]; } AnimTable_020b748c;
+extern AnimTable_020b748c data_02143a1c;
+typedef struct AnimObj_020b748c { u8 pad[16]; void (*setX)(struct AnimObj_020b748c *, s32); void (*setY)(struct AnimObj_020b748c *, s32); } AnimObj_020b748c;
 
 extern u16 data_02151024;
 extern void *data_021601ec;
