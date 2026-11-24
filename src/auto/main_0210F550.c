@@ -73,6 +73,16 @@ void func_0210fd94(u32 *arg0) {
     }
 }
 
+void func_0210fdc4(void *dst, u32 src, u32 size) {
+    u8 *p = dst;
+    const s8 *s = (const s8 *)src;
+    s32 n = size;
+    while (n > 0) {
+        *p++ = *s++;
+        n--;
+    }
+}
+
 void func_0210fde8(void) {
     s32 i;
     for (i = 0; i < 0x100; i++) {
@@ -141,6 +151,33 @@ s32 func_0211023c(void *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
     s32 result = ((s32 (*)(void *))(*(void **)((u8 *)p + 0x18)))(p);
     func_020c738c(arg0, func_020c73b8(p), 2);
     return result;
+}
+
+void func_02110288(void *arg0, u32 arg1, u32 arg2) {
+    u16 i;
+    u8 *obj;
+    i = 0;
+    obj = func_020c9c10(*(void **)((u8 *)arg0 + 0x30), i);
+    ((void (*)(u8 *, u32, u32))(*(void **)(obj + 0x24)))(obj, arg1, arg2);
+}
+
+void func_021102bc(u8 *arg0, u32 arg1, u32 arg2) {
+    u16 i;
+    s16 x;
+    s16 y;
+    u8 *obj;
+    i = 0;
+    obj = func_020c9c10(*(void **)(arg0 + 0x30), i);
+    x = arg1 + (*(s16 *)(obj + 0x3a) - *(s16 *)(arg0 + 0x38));
+    y = arg2 + (*(s16 *)(obj + 0x3c) - *(s16 *)(arg0 + 0x3a));
+    ((void (*)(u8 *, s32))(*(void **)(obj + 0x10)))(obj, x);
+    ((void (*)(u8 *, s32))(*(void **)(obj + 0x14)))(obj, y);
+    *(s16 *)(arg0 + 0x38) = arg1;
+    *(s16 *)(arg0 + 0x3a) = arg2;
+}
+
+void func_02110340(u8 *arg0, u32 arg1) {
+    func_021102bc(arg0, arg1, *(s16 *)(arg0 + 0x3a));
 }
 
 void func_021103a8(void *arg0) {
