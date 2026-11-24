@@ -371,6 +371,19 @@ void func_02007a78(u32 *arg0) {
     arg0[2] = 0;
 }
 
+void func_02007bb0(u8 *arg0, u64 arg1, void *arg2, void *arg3) {
+    u32 cookie;
+    if (arg0 == NULL || *(void **)arg0 != NULL) {
+        func_02008414();
+    }
+    cookie = func_02008128();
+    *(u64 *)(arg0 + 0x1c) = 0;
+    *(void **)arg0 = arg2;
+    *(void **)(arg0 + 4) = arg3;
+    func_02007a88(arg0, arg1 + func_02007904());
+    func_0200813c(cookie);
+}
+
 void func_02007c2c(void);
 void func_02007c1c(void) {
     func_02007c2c();
