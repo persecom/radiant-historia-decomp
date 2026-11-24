@@ -199,10 +199,8 @@ s32 func_0212d64c(void *arg0) {
 
 s32 func_0212d694(void *arg0, s32 arg1) {
     if (func_0212a260(*(void **)((u8 *)arg0 + 4)) > 0) {
-        switch (*(s8 *)((u8 *)arg0 + 1)) {
-            case 2:
-            case 3:
-                return func_0212a270(*(void **)((u8 *)arg0 + 4), arg1);
+        if ((u8)(s8)(*(s8 *)((u8 *)arg0 + 1) - 2) <= 1) {
+            return func_0212a270(*(void **)((u8 *)arg0 + 4), arg1);
         }
     }
     return -0x80;
