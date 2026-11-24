@@ -127,6 +127,14 @@ s32 func_02134590(void *arg0) {
     return 0;
 }
 
+s32 func_021345bc(u8 *arg0) {
+    if (arg0 != NULL) {
+        return *(s32 *)(arg0 + 0x58);
+    }
+    func_02133dd0(0, data_0215be00);
+    return 0;
+}
+
 s32 func_021346bc(void) {
     return 0;
 }
