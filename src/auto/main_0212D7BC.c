@@ -269,6 +269,12 @@ void func_0212dd68(void *arg0) {
     }
 }
 
+void func_0212ddb8(void *arg0, u32 arg1, u32 arg2) {
+    func_0212e5a0();
+    func_0212dde4(arg0, arg1, arg2);
+    func_0212e5ac();
+}
+
 void func_0212ddf0(void *arg0, void *arg1) {
     func_0212e5a0();
     func_0212de14(arg0, arg1);
