@@ -9,6 +9,74 @@ void func_021164e0(u8 *arg0);
 extern void func_021167f0(void *, void *);
 extern s32 func_02008128(void);
 extern void func_0200813c(s32);
+void func_0211645c(u8 *arg0) {
+    typedef struct {
+        u8 pad[0x118];
+        s32 b0 : 1;
+        s32 b1 : 1;
+        s32 b2 : 1;
+        s32 b3 : 1;
+        u8 pad2[0x38];
+        void **unk154;
+    } SndStrmPlayer;
+    SndStrmPlayer *p = (SndStrmPlayer *)arg0;
+    if (p->unk154 != NULL) {
+        *p->unk154 = NULL;
+        p->unk154 = NULL;
+    }
+    p->b0 = 0;
+    p->b2 = 0;
+    p->b1 = 0;
+}
+
+void func_02116488(u8 *arg0, s32 arg1) {
+    typedef struct {
+        u8 pad[0x118];
+        s32 b0 : 1;
+        s32 b1 : 1;
+        s32 b2 : 1;
+        s32 b3 : 1;
+    } SndStrmPlayer;
+    SndStrmPlayer *p = (SndStrmPlayer *)arg0;
+    if (!p->b1) {
+        func_021164e0(arg0);
+        return;
+    }
+    if (arg1 == 0) {
+        func_021164e0(arg0);
+        return;
+    }
+    func_02116720(arg0 + 0xf0, 0, arg1);
+    *(s32 *)(arg0 + 0x158) = 0;
+    p->b3 = 1;
+}
+
+void func_021164e0(u8 *arg0) {
+    typedef struct {
+        u8 pad[0x118];
+        s32 b0 : 1;
+        s32 b1 : 1;
+        s32 b2 : 1;
+        s32 b3 : 1;
+    } SndStrmPlayer;
+    SndStrmPlayer *p = (SndStrmPlayer *)arg0;
+    func_02006afc(data_0216e1f8);
+    if (data_0216cb10[1] != NULL) {
+        func_02006afc(data_0216cb10[1] + 0x10c8);
+    }
+    if (p->b1) {
+        func_0211470c(arg0);
+    }
+    if (p->b0) {
+        ((void (*)(u8 *))(*(void **)(arg0 + 0x178)))(arg0);
+    }
+    func_02116578(arg0);
+    func_02006b4c(data_0216e1f8);
+    if (data_0216cb10[1] != NULL) {
+        func_02006b4c(data_0216cb10[1] + 0x10c8);
+    }
+}
+
 void func_02116674(void *arg0) {
     s32 irq = func_02008128();
     func_021167f0(data_0216cb1c, arg0);
