@@ -12,13 +12,13 @@ void func_020948ac(void) {
     u8 *p = data_02160110;
     u16 i;
     for (i = 0; i < 10; i++) {
-        if (*(void **)(p + i * 4 + 0x18) != NULL) {
-            func_020a9544(*(void **)(p + i * 4 + 0x18));
-            *(void **)(p + i * 4 + 0x18) = NULL;
+        if (((void **)(p + 0x18))[i] != NULL) {
+            func_020a9544(((void **)(p + 0x18))[i]);
+            ((void **)(p + 0x18))[i] = NULL;
         }
-        if (*(void **)(p + i * 4 + 0x40) != NULL) {
-            (*(void (**)(void *))(*(u8 **)(p + i * 4 + 0x40) + 0xc))(*(void **)(p + i * 4 + 0x40));
-            *(void **)(p + i * 4 + 0x40) = NULL;
+        if (((void **)(p + 0x40))[i] != NULL) {
+            (*(void (**)(void *))((u8 *)((void **)(p + 0x40))[i] + 0xc))(((void **)(p + 0x40))[i]);
+            ((void **)(p + 0x40))[i] = NULL;
         }
     }
 }
