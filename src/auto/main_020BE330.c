@@ -7,9 +7,10 @@ extern void func_020a3bbc(s32);
 extern void func_021098ac(void *);
 extern u32 data_0216263c[3];
 static inline u16 RandomRange_bedf8(u16 max) {
-u32 value=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
-data_0216263c[0]=value;
-value>>=16;
+u32 seed=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
+u32 value;
+data_0216263c[0]=seed;
+value=seed>>16;
 if(max) value=(value*max)>>16;
 return value;
 }
@@ -79,6 +80,34 @@ void func_020be3a8(u8 *arg0) {
     func_020a9d9c((s16)(a + ((w << 4) >> 16)), b, (s16)(a + ((w << 4) >> 16)), (s16)(b + ((w << 4) >> 16)));
     func_020a9d9c(a, (s16)(b + ((w << 4) >> 16)), (s16)(a + ((w << 4) >> 16)), (s16)(b + ((w << 4) >> 16)));
     func_020a9d9c(a, b, a, (s16)(b + ((w << 4) >> 16)));
+}
+
+void func_020be490(u8 *p,s16 x,s16 y) {
+Unk_020be490 desc=data_02143db8;
+s16 width=30,height=15;
+s32 visible=1,alpha;
+x+=*(s16 *)p;y+=*(s16 *)(p+2);
+func_020a9e38(&x,&y);
+if(*(s8 *)(p+8)<=0)visible=0;
+if(!visible)return;
+func_020a9ebc(&width,&height);
+alpha=*(s8 *)(p+8);
+if(alpha<0 || alpha>31)alpha=0;
+*(volatile u32 *)0x040004a4=(alpha<<16)|0xc0;
+switch(p[4]) {
+case 0:
+func_020a3bbc(11);
+desc.v[0]=1;desc.v[1]=0;desc.v[2]=0;desc.v[3]=64;desc.v[4]=32;
+desc.v[5]=x-width/2;desc.v[6]=y-height/2;desc.v[8]=width;desc.v[9]=height;
+break;
+case 1:
+func_020a3bbc(11);
+desc.v[0]=1;desc.v[1]=0;desc.v[2]=32;desc.v[3]=64;desc.v[4]=32;
+desc.v[5]=x-width/2;desc.v[6]=y-height/2;desc.v[8]=width;desc.v[9]=height;
+break;
+}
+desc.v[7]=*(s16 *)(p+6);
+func_021098ac(&desc);
 }
 
 void func_020be650(void) {
