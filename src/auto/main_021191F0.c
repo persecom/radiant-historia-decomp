@@ -17,6 +17,7 @@ typedef struct {
     u16 f6;
 } Struct0216f2c4;
 
+static inline s32 valid_02119f1c(s32 n) { if(n < 32) return 1; return 0; }
 typedef struct { u32 words[6]; } Struct24_02119f1c;
 extern u32 data_0216f244[];
 extern u16 data_0216f2c8[];
@@ -407,6 +408,47 @@ void func_02119eb8(u32 arg0) {
         return;
     }
     func_02119b34(arg0);
+}
+
+void func_02119f1c(void) {
+    if (!(*(u32 *)((u8 *)data_0216f234.f8 + 0x7c) & 1)) {
+        u16 old = data_0216f234.fc;
+        s32 next = (s32)data_0216f234.fc + 1;
+        s32 valid = next < 32;
+        if (valid) {
+            s32 current = data_0216f234.fc;
+            if (data_0216f234.f4) {
+                *(u32 *)(data_0216f3d4 + next * 24) = *(u32 *)(data_0216f3d4 + current * 24);
+                data_0216f244[next] = data_0216f244[current];
+                *(u32 *)(data_0216f3d8 + next * 24) = *(u32 *)(data_0216f3d8 + current * 24);
+            } else {
+                ((Struct24_02119f1c *)data_0216f3c4)[next] = ((Struct24_02119f1c *)data_0216f3c4)[current];
+                ((Struct24_02119f1c *)data_0216f6c4)[next] = ((Struct24_02119f1c *)data_0216f6c4)[current];
+                data_0216f244[next] = data_0216f244[current];
+            }
+            data_0216f234.fc = next;
+        }
+        {
+            u16 now = data_0216f234.fc;
+            data_0216f2c4[now] = data_0216f2c4[old];
+            if (data_0216f2c8[old * 4] == 1) data_0216f2c8[now * 4] = 2;
+            else data_0216f2c8[now * 4] = data_0216f2c8[old * 4];
+        }
+    } else { s32 next = (s32)data_0216f234.fc + 1;
+        s32 valid = next < 32;
+        if (valid) {
+            s32 current = data_0216f234.fc;
+            if (data_0216f234.f4) {
+                *(u32 *)(data_0216f3d4 + next * 24) = *(u32 *)(data_0216f3d4 + current * 24);
+                data_0216f244[next] = data_0216f244[current];
+                *(u32 *)(data_0216f3d8 + next * 24) = *(u32 *)(data_0216f3d8 + current * 24);
+            } else {
+                ((Struct24_02119f1c *)data_0216f3c4)[next] = ((Struct24_02119f1c *)data_0216f3c4)[current];
+                ((Struct24_02119f1c *)data_0216f6c4)[next] = ((Struct24_02119f1c *)data_0216f6c4)[current];
+                data_0216f244[next] = data_0216f244[current];
+            }
+            data_0216f234.fc = next;
+        } }
 }
 
 void func_0211a128(void) {
