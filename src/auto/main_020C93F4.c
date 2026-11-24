@@ -15,6 +15,7 @@ extern s32 func_0201ff0c(void);
 extern void func_020c7930(void *);
 extern void func_020c9680(u8 *, s16 *, s16 *);
 extern s32 func_020c992c(u8 *);
+extern u16 func_020c9924(u8 *);
 void func_020c93f4(u8 *arg0, u16 arg1) {
     *(u16 *)(arg0 + 0x3a) = arg1;
     func_020c9404(arg0, arg1);
