@@ -186,10 +186,12 @@ void func_0211b614(void *dst, void *src, s32 sx, s32 sy, s32 dx, s32 dy, s32 dw,
  s32 yy=dy;
  s32 x,xx;
  for(;sy<ey;sy++,yy++) {
- for(x=sx,xx=dx;x<ex;x++,xx++) {
+ x=sx; xx=dx;
+ if(x<ex) { for(;x<ex;x++,xx++) {
  u16 *q=p+tile_offset(x,sy,sw,sh);
  u16 v=*q;
  ((u16 *)dst)[tile_offset(xx,yy,dw,dh)]=v;
+ }
  }
  }
 }
