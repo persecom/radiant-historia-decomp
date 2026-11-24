@@ -116,6 +116,24 @@ void *func_0210ab44(void *arg0, s32 arg1, s32 arg2) {
     return p;
 }
 
+void *func_0210abb8(void *arg0, s32 arg1, s32 arg2) {
+    void *p;
+    p = func_02109b14(arg1, arg2);
+    if (p != NULL) {
+        if (func_02109f84(p) == 0) {
+            if (func_02117674(p, arg0) == 0) {
+                if (p != NULL) {
+                    func_0210c5dc(p);
+                    p = NULL;
+                }
+            }
+        } else {
+            *(void **)arg0 = (u8 *)func_02117904(p, 0x4345424b) + 8;
+        }
+    }
+    return p;
+}
+
 void *func_0210aca0(void *arg0, s32 arg1, s32 arg2) {
     void *p;
     p = func_02109b14(arg1, arg2);
