@@ -3,3 +3,7 @@
 
 void func_020cb1f4(void) {
 }
+
+void func_020cb1f8(void) {
+}
+
