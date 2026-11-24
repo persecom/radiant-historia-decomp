@@ -29,6 +29,35 @@ s32 func_0212b550(u8 *arg0, s32 arg1, u16 *arg2) {
     return -1;
 }
 
+extern s32 func_0201fb1c(s32);
+s32 func_0212b5ac(u8 *arg0, s32 arg1, u16 *arg2, s8 *arg3, s8 *arg4, s8 *arg5, s8 *arg6, s32 *arg7, s32 *arg8, s32 *arg9) {
+    u16 v0;
+    u32 v2;
+    u32 v3;
+
+    if (arg1 < 0x10) {
+        return -1;
+    }
+    v0 = (arg0[0] << 8) | arg0[1];
+    if (v0 != 0x8000) {
+        return -2;
+    }
+    *arg2 = (u16)(((arg0[2] << 8) | arg0[3]) + 4);
+    *arg3 = *(s8 *)(arg0 + 4);
+    *arg5 = *(s8 *)(arg0 + 5);
+    *arg4 = *(s8 *)(arg0 + 6);
+    *arg6 = *(s8 *)(arg0 + 7);
+    v2 = ((u32)arg0[8] << 24) | ((u32)arg0[9] << 16) | ((u32)arg0[10] << 8) | arg0[11];
+    *arg7 = v2;
+    v3 = ((u32)arg0[0xc] << 24) | ((u32)arg0[0xd] << 16) | ((u32)arg0[0xe] << 8) | arg0[0xf];
+    *arg8 = v3;
+    if (*arg4 == 0) {
+        return 0;
+    }
+    *arg9 = func_0201fb1c((*arg5 - 2) << 3);
+    return 0;
+}
+
 s32 func_0212b69c(s16 *arg0, s32 arg1, u16 *arg2) {
     u16 v0;
     s16 swapped;
@@ -77,5 +106,23 @@ s32 func_0212b72c(u8 *arg0, s32 arg1, u8 *arg2, u8 *arg3) {
         ret = 0;
     }
     return ret;
+}
+
+s32 func_0212b7ac(u8 *p,s32 len,u16 *a,u16 *b){
+u8 type,other;
+u16 v; s16 swapped,sv;
+if(func_0212b72c(p,len,&type,&other)!=0)return -1;
+if(type>=4){
+if(len<32)return -1;
+v=*(u16 *)p; swapped=((v>>8)&255)|((v<<8)&0xff00);
+if((u16)swapped!=0x8000)return -2;
+sv=*(s16 *)(p+2);swapped=((sv>>8)&255)|((sv<<8)&0xff00);
+if(swapped<28)return -1;
+v=*(u16 *)(p+24);a[0]=((v>>8)&255)|((v<<8)&0xff00);
+v=*(u16 *)(p+26);b[0]=((v>>8)&255)|((v<<8)&0xff00);
+v=*(u16 *)(p+28);a[1]=((v>>8)&255)|((v<<8)&0xff00);
+v=*(u16 *)(p+30);b[1]=((v>>8)&255)|((v<<8)&0xff00);
+}else{a[0]=b[0]=a[1]=b[1]=0;}
+return 0;
 }
 
