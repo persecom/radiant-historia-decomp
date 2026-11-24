@@ -36,6 +36,7 @@ extern s16 data_02162908[2];
 extern u8 *data_021600f0;
 extern u32 data_0216bf84;
 extern u8 *data_02160204;
+extern u8 *data_021600bc;
 extern u32 func_02109754(u32);
 extern void func_02059888(void);
 void func_020447a4(u8 *arg0) {
