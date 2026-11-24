@@ -53,6 +53,19 @@ void func_020a5bf4(u8 *arg0, void *arg1) {
     func_020a899c(*(void **)(arg0 + 4));
 }
 
+void func_020a5c40(u8 *arg0, void *arg1) {
+    func_020a9610(arg0 + 0x40, *(void **)(arg0 + 0), arg1, *(void **)(arg0 + 4), 0, 0);
+    func_020a5bf4(arg0, arg1);
+    *(u32 *)(arg0 + 0x78) = func_020a96f0(*(void **)(arg0 + 0x50));
+    *(s32 *)(*(u8 **)(arg0 + 4) + 0x44) = 0x5000;
+    *(s32 *)(*(u8 **)(arg0 + 4) + 0x48) = 0x4000;
+    *(s32 *)(*(u8 **)(arg0 + 4) + 0x4c) = 0x2bc000;
+    *(Vec3s32_020A56CC *)(arg0 + 0x60) = *(Vec3s32_020A56CC *)(*(u8 **)(arg0 + 4) + 0x44);
+    *(s32 *)(arg0 + 0x6c) = -0x96000;
+    *(s32 *)(arg0 + 0x70) = 0;
+    *(s32 *)(arg0 + 0x74) = 0;
+}
+
 void func_020a5ed4(void **arg0) {
     void *ptr;
     while ((ptr = *arg0) != NULL) {
