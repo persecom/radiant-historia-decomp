@@ -116,3 +116,10 @@ u32 func_0211cd8c(u8 *arg0) {
     return 0;
 }
 
+u32 func_0211cda0(u8 *arg0) {
+    if (arg0 != NULL) {
+        return (u32)*(u16 *)(arg0 + 0x1c) << 3;
+    }
+    return 0;
+}
+
