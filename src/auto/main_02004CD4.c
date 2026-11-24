@@ -10,7 +10,7 @@ extern u8 data_0215cd7c[];
 extern u16 data_02145ba8[];
 extern u8 data_0215cd84[];
 extern u8 data_0215cd80[];
-extern void func_020059e4(u32);
+extern u32 func_020059e4(u32);
 extern u32 func_020059b4(u32);
 typedef struct {
     u32 unk0;
