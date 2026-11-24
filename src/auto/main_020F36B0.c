@@ -108,11 +108,7 @@ void func_020f4144(void) {
 }
 
 void func_020f4640(void) {
-    u32 buf[3];
-    u32 *p = buf;
-    p[0] = 0;
-    p[1] = 0;
-    p[2] = 0;
-    func_020f4668(p);
+    u32 buf[3] = {0, 0, 0};
+    func_020f4668(buf);
 }
 
