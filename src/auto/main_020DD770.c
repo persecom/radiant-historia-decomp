@@ -20,6 +20,25 @@ extern void func_020ec548(void *);
 extern void func_0210c5dc(void *);
 
 extern void func_0210c2f4(void);
+void func_020dd770(UnkStruct_020dd770 *arg0) {
+    if (arg0->unk00 != NULL) {
+        func_020ec548(arg0->unk00);
+    }
+    if (arg0->unk20 != 0 && arg0->unk24 != NULL) {
+        while (arg0->unk24 != NULL) {
+            void *node = arg0->unk24;
+            func_021168f8(&arg0->unk24, node);
+            if (node != NULL) {
+                func_0210c5dc(node);
+            }
+        }
+    }
+    func_021168f8(data_02160a68.unk04 + 0xf4, arg0);
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
 void *func_020dd7f0(void) {
     return *(void **)(data_02160a68.unk04 + 0x70);
 }
