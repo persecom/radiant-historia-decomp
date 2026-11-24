@@ -191,6 +191,31 @@ void func_020a80d4(void) {
 void func_020a80d8(void) {
 }
 
+void func_020a82f0(void) {
+    if (data_02160140 == NULL) {
+        return;
+    }
+    data_0216bf84 = 0;
+    func_020a3b84();
+    func_0210e290(0);
+    data_02162858[0] = 0;
+    data_02162854 = 0;
+    if (data_02160140 != NULL) {
+        func_020c3cd4(*(void **)(data_02160140 + 0x3c));
+        *(void **)(data_02160140 + 0x3c) = NULL;
+        func_020c3c94(*(void **)(data_02160140 + 0x40));
+        *(void **)(data_02160140 + 0x40) = NULL;
+        func_0210da14(data_02160140);
+        func_0210dba0(data_02160140 + 0x14);
+        func_0210dbe8(data_02160140 + 0x28);
+        if (data_02160140 != NULL) {
+            func_0210c5dc(data_02160140);
+            data_02160140 = NULL;
+        }
+    }
+    func_0210f138();
+}
+
 void func_020a83a8(void) {
     func_020c3850(*(void **)(data_02160140 + 0x40));
 }
