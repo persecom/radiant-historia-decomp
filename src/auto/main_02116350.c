@@ -55,6 +55,53 @@ void* func_02116d7c(void* heap, u32 size, s32 alignment)
     return func_02116c10(expHeap, found, foundMem, size, 0);
 }
 
+void *func_02116e30(void *heap, u32 size, s32 alignment)
+{
+  typedef struct Block
+  {
+    u16 signature;
+    u16 attribute;
+    u32 blockSize;
+    struct Block *prev;
+    struct Block *next;
+  } Block;
+  u8 *expHeap = ((u8 *) heap) + 0x24;
+  const BOOL allocFirst = ((u16) ((*((u16 *) (expHeap + 0x12))) & 1)) == 0;
+  Block *block = *((Block **) (expHeap + 4));
+  Block *found = NULL;
+  u32 foundSize = 0xFFFFFFFF;
+  void *foundMem = NULL;
+  if (block != NULL)
+  {
+    alignment -= 1;
+    alignment = ~alignment;
+    do
+    {
+      int blockSize = block->blockSize;
+      void * const mem = (void *) (block + 1);
+      void * const aligned = (void *) (((blockSize + ((u32) mem)) - size) & alignment);
+      const s32 offset = (s32) (((u32) aligned) - ((u32) mem));
+      if ((offset >= 0) && (foundSize > blockSize))
+      {
+        found = block;
+        foundSize = blockSize;
+        foundMem = aligned;
+        if (allocFirst || (foundSize == size))
+        {
+          break;
+        }
+      }
+      block = block->prev;
+    }
+    while (block != NULL);
+  }
+  if (found == NULL)
+  {
+    return NULL;
+  }
+  return func_02116c10(expHeap, found, foundMem, size, 1);
+}
+
 void* func_02117008(void* heap, u32 size, s32 alignment)
 {
     extern void* func_02116d7c(void*, u32, s32);
