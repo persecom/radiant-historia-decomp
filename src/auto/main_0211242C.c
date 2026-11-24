@@ -19,6 +19,7 @@ void func_02112578(u8 *arg0, u8 arg1) {
     u32 count = func_020c9c34(*(void **)(arg0 + 0x8c));
     u16 i;
     u8 *obj;
+    u8 val;
 
     for (i = 0; i < count; i++) {
         obj = func_020c9c10(*(void **)(arg0 + 0x8c), i);
@@ -28,12 +29,9 @@ void func_02112578(u8 *arg0, u8 arg1) {
     }
     obj = *(u8 **)(arg0 + 0x90);
     ((void (*)(u8 *, u8))(*(void **)(obj + 0x1c)))(obj, arg1 + (obj[0x38] - arg0[0x98]));
-    {
-        u8 old = arg0[0x98];
-        u8 cur = arg0[0x48];
-        arg0[0x98] = arg1;
-        func_02111a3c(arg0, arg1 + (cur - old));
-    }
+    val = arg1 + (arg0[0x48] - arg0[0x98]);
+    arg0[0x98] = arg1;
+    func_02111a3c(arg0, val);
 }
 
 void *func_02112688(u8 *arg0) {
