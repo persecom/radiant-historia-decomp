@@ -1,5 +1,11 @@
 /* 16 functions from 0x0207C328 to 0x0207CDD4 (main), found by ds-decomp. */
 #include "common.h"
+extern u8 *data_02160204;
+extern s32 data_02155c3c;
+void *func_0210c594(s32,s32);
+void func_0207ae48(s32,s32);
+void *func_020f0aa4(u32);
+void func_020f09d4(void *);
 
 typedef struct {
     u32 w[3];
