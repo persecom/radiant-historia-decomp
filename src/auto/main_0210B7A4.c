@@ -235,14 +235,14 @@ s32 func_0210c398(u32 *arg0) {
 void func_0210c3f8(s32 *arg0) {
     s32 a;
     s32 b;
-    a = arg0[1];
     b = arg0[3];
+    a = arg0[1];
     if (a > b) {
         arg0[1] = b;
         arg0[3] = a;
     }
-    a = arg0[0];
     b = arg0[2];
+    a = arg0[0];
     if (a > b) {
         arg0[0] = b;
         arg0[2] = a;
@@ -335,17 +335,16 @@ void func_0210c5dc(void *arg0) {
     extern void func_02006b4c(void *);
     extern void func_02117038(void *, void *);
     extern void func_021091b4(void);
-    extern u8 func_02117090(void);
     extern void func_02109f24(void *);
 
     u32 irq;
-    u8 result = func_02117090();
+    u32 result = func_02117090();
 
     if (data_02162684 != 0) {
         irq = func_02008128();
         func_02006afc(&data_02162688);
     }
-    if (result) {
+    if ((u8)result & 1) {
         func_02109f24(arg0);
     } else {
         func_02117038(data_02162638, arg0);
