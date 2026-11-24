@@ -245,3 +245,29 @@ void func_0209568c(u32 arg0, u16 arg1) {
     }
 }
 
+void func_0209353c(u16, s16, s16);
+void func_02093424(void *, int);
+void func_02095770(void) {
+u8 *p=data_02160110;
+u8 *obj;
+u16 i;
+s32 y;
+u16 count=0;
+y=(*(s16 *)(p+0x78)+*(s16 *)(p+0xc2))*19;
+if (*(s32 *)(p+0x6c)==y && !(*(u16 *)(p+0x72)&0x200) && *(u16 *)(p+0xb4)==0) return;
+*(u16 *)(p+0xb4)=0;
+*(s32 *)(p+0x6c)=y;
+for(i=0;i<24;i++) {
+u8 *node;
+count++;
+node=func_020952f8(i);
+if(node) {
+obj=*(u8 **)(node+8);
+u8 kind=**(u8 **)(**(u8 ***)(node+12)+0x118);
+if(kind==0) func_0209353c(*(u16 *)obj,*(s16 *)(p+0xd4),(s16)(y+i*19+3));
+else if(kind==1) func_0209353c(*(u16 *)obj,*(s16 *)(p+0xd6),(s16)(y+i*19+3));
+if(count>11) func_02093424(obj,0);
+}
+}
+}
+
