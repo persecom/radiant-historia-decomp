@@ -174,6 +174,44 @@ s32 func_020054a4(void) {
     return func_02005398(&data_0215cd78);
 }
 
+u16 func_020054cc(u16 *arg0) {
+    u16 val = *arg0;
+    *arg0 = 0;
+    if (val & 0x1) {
+        *(volatile u8 *)0x04000240 = 0;
+    }
+    if (val & 0x2) {
+        *(volatile u8 *)0x04000241 = 0;
+    }
+    if (val & 0x4) {
+        *(volatile u8 *)0x04000242 = 0;
+    }
+    if (val & 0x8) {
+        *(volatile u8 *)0x04000243 = 0;
+    }
+    if (val & 0x10) {
+        *(volatile u8 *)0x04000244 = 0;
+    }
+    if (val & 0x20) {
+        *(volatile u8 *)0x04000245 = 0;
+    }
+    if (val & 0x40) {
+        *(volatile u8 *)0x04000246 = 0;
+    }
+    if (val & 0x80) {
+        *(volatile u8 *)0x04000248 = 0;
+    }
+    if (val & 0x100) {
+        *(volatile u8 *)0x04000249 = 0;
+    }
+    func_02008390(val, data_0215cd22);
+    return val;
+}
+
+u16 func_0200558c(void) {
+    return func_020054cc(data_0215cd60);
+}
+
 void func_02005750(void) {
     func_020056c8(0);
 }
