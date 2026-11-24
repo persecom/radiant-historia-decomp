@@ -111,7 +111,7 @@ u32 func_02052a54(void *arg0, s32 arg1) {
 }
 extern void func_02053824(void *);
 extern void func_02052d30(void *);
-extern void func_02053038(void *);
+static void func_02053038(void *);
 extern void func_0205317c(void *);
 extern void func_0205366c(void *);
 extern void func_02053d90(void *);
