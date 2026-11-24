@@ -151,10 +151,9 @@ void *func_0212a58c(u8 *arg0) {
 }
 
 void func_0212a98c(void) {
-    volatile u32 *p = data_02173974;
-    p[1]++;
-    if (p[1] == 1) {
-        p[0] = 0;
+    data_02173974[1]++;
+    if (data_02173974[1] == 1) {
+        data_02173974[0] = 0;
     }
 }
 
