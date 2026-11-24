@@ -2,6 +2,9 @@
 #include "common.h"
 
 extern void func_0210c5dc(void *);
+extern void func_020c9490(void *);
+extern void *func_020c9c10(void *, u32);
+extern void func_020c7930(void *);
 extern void func_02111728(void *);
 void func_02111708(void *arg0) {
     func_02111728(arg0);
