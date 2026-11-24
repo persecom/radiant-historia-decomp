@@ -24,6 +24,17 @@ s32 func_02092994(u8 *arg0, s32 arg1) {
     return arg1;
 }
 
+const char *func_020929f4(u8 *arg0, s32 arg1) {
+    const char *r4 = *(const char **)(arg0 + 8);
+    if (arg1 == 1 && !func_021093f0(arg0)) {
+        return NULL;
+    }
+    if (*r4 == '\0') {
+        r4 = NULL;
+    }
+    return r4;
+}
+
 extern u8 data_02148750[4];
 extern s32 func_020123f0(const char *, const char *);
 extern s32 func_02109444(void *);
@@ -41,3 +52,12 @@ const char *func_02092a40(u8 *arg0, const char *arg1) {
     }
     return r4;
 }
+
+s32 func_02092a70(const char *arg0, s32 arg1) {
+    if (*arg0 == '\0') {
+        return arg1;
+    }
+    func_02012590(arg0, (const char *)data_02148750, &arg1);
+    return arg1;
+}
+
