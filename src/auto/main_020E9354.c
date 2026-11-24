@@ -185,6 +185,15 @@ void func_020e9d64(s32 arg0) {
     }
 }
 
+void func_020e9dc0(void) {
+    u8 *p = data_02160a7c;
+    if ((*(u32 *)(p + 0x14) & 1) == 0) {
+        return;
+    }
+    *(volatile u32 *)0x04000358 = 0x1f7fff;
+    func_02002f9c((u32 *)(p + 0x1c) + *(s8 *)(p + 0x1a) / 2);
+}
+
 void func_020e9e0c(void) {
     u8 *p = data_02160a7c;
     if (p == NULL) {
