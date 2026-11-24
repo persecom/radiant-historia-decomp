@@ -119,19 +119,18 @@ s32 func_0200bb10(u8 *arg0, u32 arg1, u32 arg2) {
 
 s32 func_0200bb3c(u8 *arg0, void *arg1, s32 arg2) {
     u32 sp0[2];
-    s32 ret;
     *(u32 **)(arg0 + 0x10) = sp0;
     sp0[0] = (u32)arg1;
     sp0[1] = arg2;
     if (func_0200afb4(arg0, 0, 1) != 0) {
-        ret = sp0[1];
+        arg2 = sp0[1];
     } else {
-        ret = -1;
+        arg2 = -1;
         if (*(u32 *)(arg0 + 0x14) != 6) {
-            ret = sp0[1];
+            arg2 = sp0[1];
         }
     }
-    return ret;
+    return arg2;
 }
 
 u32 func_0200bb90(u8 *arg0, void *arg1, u32 arg2) {
