@@ -128,3 +128,8 @@ s32 func_020bdf24(volatile s32 arg0, ...) {
     return 0;
 }
 
+void func_020be2d8(s16 *arg0, s16 *arg1) {
+    *arg0 = (*arg0 - 0x38) / 32;
+    *arg1 = (*arg1 - 0x28) / 32;
+}
+
