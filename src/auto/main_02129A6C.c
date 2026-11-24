@@ -189,3 +189,6 @@ void func_0212a9e8(void) {
 void func_0212a9f4(void) {
 }
 
+void func_0212a9f8(void) {
+}
+
