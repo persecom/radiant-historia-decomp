@@ -210,7 +210,7 @@ void func_0200dcd4(u32 arg0,u32 arg1,void *arg2,u32 arg3) {
 }
 #pragma opt_propagation on
 void func_0200df30(u32 arg0) {
-    func_0200dddc();
+    func_0200dddc((TPData0200dddc *)arg0);
     func_0200e138(arg0, arg0);
 }
 
