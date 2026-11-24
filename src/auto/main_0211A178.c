@@ -11,6 +11,10 @@ void func_0211a4c0(void) {
     func_0211c5fc();
 }
 
+u32 func_0211a4cc(u8 *arg0) {
+    return *(u32 *)(arg0 + 0x78);
+}
+
 extern void func_0211c52c(void);
 void func_0211a4d4(void) {
     func_0211c52c();
