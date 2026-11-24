@@ -47,6 +47,16 @@ s32 func_0200cad8(void *arg0) {
     return (*(s32 (**)(void *, void *, u32, u32))((u8 *)vtbl + 0x20))(arc, dst, pos, len);
 }
 
+s32 func_0200cb08(void *arg0) {
+    void *arc = *(void **)((u8 *)arg0 + 0x8);
+    void *vtbl = *(void **)((u8 *)arc + 0x20);
+    u32 pos = *(u32 *)((u8 *)arg0 + 0x2c);
+    u32 len = *(u32 *)((u8 *)arg0 + 0x38);
+    void *dst = *(void **)((u8 *)arg0 + 0x30);
+    *(u32 *)((u8 *)arg0 + 0x2c) = pos + len;
+    return (*(s32 (**)(void *, void *, u32, u32))((u8 *)vtbl + 0x24))(arc, dst, pos, len);
+}
+
 s32 func_0200cb38(void) {
     return 0;
 }
