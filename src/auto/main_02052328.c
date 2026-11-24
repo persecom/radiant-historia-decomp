@@ -179,3 +179,80 @@ void func_02052abc(u8 *arg0) {
     }
 }
 
+extern u8 *data_021600ac;
+extern u8 *data_02160204;
+extern u8 *data_02160200;
+extern s32 func_0210c2f4(void *, void *);
+extern void func_0206e8f0(s32, void *, s32);
+extern void func_0207ae48(s32, s32);
+extern void func_0210d27c(s32);
+extern void func_0205440c(void *, s32);
+extern void func_02047490(void *);
+void func_02052b68(void) {
+    u8 *p8;
+    u8 *p9 = *(u8 **)(data_021600ac + 0x68);
+
+    if (p9 == NULL) {
+        return;
+    }
+    p8 = *(u8 **)(data_02160204 + 0xe8);
+    while (p8 != NULL) {
+        u16 id = *(u16 *)(p8 + 0x90);
+        if (id > 4000 && id < 5000) {
+            switch (*(u16 *)(p8 + 0x96)) {
+            case 0:
+                break;
+            case 1:
+                if (*(u32 *)(p9 + 0xac) & 0x2000) {
+                    return;
+                }
+                if (func_0210c2f4(p9, p8) < 0x10000) {
+                    u8 *tmp = func_02047820((u16)(*(u16 *)(p8 + 0x90) - 0xfa1));
+                    struct {
+                        s32 x;
+                        s32 y;
+                        s32 z;
+                    } pos;
+                    if (tmp != NULL) {
+                        *(u16 *)(*(u8 **)(tmp + 0xd0) + 6) = 0;
+                    }
+                    pos = *(typeof(pos) *)p8;
+                    pos.x -= 0x10000;
+                    func_0206e8f0(8, &pos, 2);
+                    func_0206e8f0(1, &pos, 2);
+                    func_02052984(10);
+                    func_0207ae48(0, 30);
+                    func_0210d27c(0x2b);
+                    func_0210d27c(0x27);
+                    *(u32 *)(p9 + 0xac) |= 0x800;
+                    if (*(u32 *)(data_02160200 + 0x34) & 0x40) {
+                        *(u16 *)(p8 + 0x96) = 2;
+                    } else {
+                        func_0205440c(p8, 1);
+                        *(u16 *)(p8 + 0x96) = 2;
+                    }
+                }
+                break;
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+                *(u32 *)(p9 + 0xac) |= 0x800;
+            case 7:
+            case 8:
+            case 9:
+            case 10:
+            case 11:
+                *(u16 *)(p8 + 0x96) += 1;
+                break;
+            case 12:
+                func_02047490(p8);
+                *(u32 *)(p9 + 0xac) &= ~0x800;
+                break;
+            }
+        }
+        p8 = *(u8 **)(p8 + 0x134);
+    }
+}
+
