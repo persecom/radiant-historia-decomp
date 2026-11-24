@@ -62,6 +62,16 @@ void func_020c94c8(u8 *arg0, u16 arg1, u16 arg2) {
     func_020c94dc(arg0);
 }
 
+void func_020c94dc(u8 *arg0) {
+    u8 *obj = func_020c9c10(*(void **)(arg0 + 0x30), 0);
+    ((void (*)(u8 *, s16))(*(void **)(obj + 0x10)))(obj, *(s16 *)(arg0 + 0x34) + *(u16 *)(arg0 + 0x52) - *(s16 *)(obj + 0x3e));
+    ((void (*)(u8 *, s16))(*(void **)(obj + 0x14)))(obj, *(s16 *)(arg0 + 0x36) + *(u16 *)(arg0 + 0x54) - *(s16 *)(obj + 0x40));
+    obj = func_020c9c10(*(void **)(arg0 + 0x30), 1);
+    ((void (*)(u8 *, s16))(*(void **)(obj + 0x10)))(obj, *(s16 *)(arg0 + 0x34) + *(u16 *)(arg0 + 0x52) - *(s16 *)(obj + 0x3e));
+    ((void (*)(u8 *, s16))(*(void **)(obj + 0x14)))(obj, *(s16 *)(arg0 + 0x36));
+    func_020c9590(arg0);
+}
+
 u16 func_020c9924(u8 *arg0) {
     return *(u16 *)(arg0 + 8);
 }
