@@ -9,6 +9,11 @@ typedef struct {
     s32 x, y;
 } Vec2;
 
+typedef union {
+    u64 packed;
+    struct { u32 x, y; } v;
+} Vec2Bits;
+
 typedef struct {
     Vec2 xy;
     s32 z;
@@ -106,12 +111,26 @@ void func_020020f8(s32 *arg0, s32 *arg1, s32 *arg2) {
     arg2[2] = arg0[2] + arg1[2];
 }
 
-void func_02002128(s32 *arg0, s32 *arg1, s32 *arg2) {
-    arg2[0] = arg0[0] - arg1[0];
-    arg2[1] = arg0[1] - arg1[1];
-    arg2[2] = arg0[2] - arg1[2];
+#pragma optimization_level 1
+#pragma scheduling on
+#pragma peephole on
+void func_02002128(s32 *arg0, s32 *arg1, s32 *arg2)
+{
+    u32 bx = (u32)arg1[0];
+    u32 by = (u32)arg1[1];
+    u64 a = *(const u64 *)arg0;
+    u32 ax = (u32)a;
+    u32 ay = (u32)(a >> 32);
+    u32 az, bz;
+    ay -= by;
+    ax -= bx;
+    az = (u32)arg0[2];
+    bz = (u32)arg1[2];
+    arg2[0] = (s32)ax;
+    arg2[1] = (s32)ay;
+    arg2[2] = (s32)(az - bz);
 }
-
+#pragma optimization_level 4
 s32 func_02002158(const s32 *a, const s32 *b) {
     return (s32)(((s64)a[0] * b[0] + (s64)a[1] * b[1] + (s64)a[2] * b[2] + 0x800) >> 12);
 }
