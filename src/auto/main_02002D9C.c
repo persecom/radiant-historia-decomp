@@ -478,6 +478,15 @@ void func_020037d4(void *src, u32 offset, u32 size) {
     }
 }
 
+void func_02003830(void *src, u32 offset, u32 size) {
+    s32 dma = data_02145ba4;
+    if (dma != -1 && size > 0x30) {
+        func_020085ec(dma, src, 0x06400000 + offset, size, 1);
+    } else {
+        func_02008e38(src, 0x06400000 + offset, size);
+    }
+}
+
 s32 func_0200308c(s32 *arg0) {
     if (*(volatile u32 *)0x04000600 & 0x4000) {
         return -1;
