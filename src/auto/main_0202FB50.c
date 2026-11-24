@@ -55,6 +55,91 @@ return dst;
 return 0;
 }
 
+extern char data_0214624c[];
+extern char data_02146264[];
+extern char data_02146278[];
+extern void *func_021092d8(void *);
+extern s32 func_020f685c(void *, s32);
+extern s32 func_02109444(void *);
+extern void func_021093b0(void *);
+extern void func_021093f0(void *);
+void func_0203017c(s32 arg0, void *arg1, u16 arg2, s32 arg3) {
+    u8 *r4;
+    void *csv;
+    u8 *r6;
+    u16 i;
+
+    csv = NULL;
+    r4 = NULL;
+    r6 = NULL;
+
+    if (arg2 == 0) {
+        return;
+    }
+
+    if (arg0 == 0) {
+        r6 = (u8 *)arg1;
+    } else {
+        r4 = (u8 *)arg1;
+    }
+
+    if (arg2 >= 0x12d && arg2 <= 0x1a9) {
+        csv = func_021092d8(data_0214624c);
+    } else if (arg2 >= 0x208 && arg2 <= 0x26c) {
+        csv = func_021092d8(data_02146264);
+    } else if (arg2 >= 0x2bd && arg2 <= 0x31e) {
+        csv = func_021092d8(data_02146278);
+    }
+
+    if (csv == NULL) {
+        return;
+    }
+
+    while (1) {
+        if (arg2 == func_020f685c(csv, 0)) {
+            break;
+        }
+        if (func_02109444(csv) == 0) {
+            func_021093b0(csv);
+            return;
+        }
+    }
+
+    func_021093f0(csv);
+    func_021093f0(csv);
+    func_021093f0(csv);
+    func_021093f0(csv);
+    func_021093f0(csv);
+
+    if (arg0 == 0) {
+        func_021093f0(csv);
+        func_021093f0(csv);
+        *(s16 *)(r6 + 0x1c) += (s16)func_020f685c(csv, 0);
+        *(s16 *)(r6 + 0x1e) += (s16)func_020f685c(csv, 0);
+        *(s16 *)(r6 + 0x20) += (s16)func_020f685c(csv, 0);
+        *(s16 *)(r6 + 0x22) += (s16)func_020f685c(csv, 0);
+        *(s16 *)(r6 + 0xa6) += (s16)func_020f685c(csv, 0);
+        *(s16 *)(r6 + 0xa8) += (s16)func_020f685c(csv, 0);
+        for (i = 0; i < 8; i++) {
+            *(s16 *)(r6 + i * 2 + 0xaa) += (s16)func_020f685c(csv, 0);
+        }
+        *(s16 *)(r6 + 0x24) = 0;
+    } else {
+        *(s16 *)(r4 + 0x24) += (s16)func_020f685c(csv, 0);
+        *(s16 *)(r4 + 0x26) += (s16)func_020f685c(csv, 0);
+        *(s16 *)(r4 + 0x28) += (s16)func_020f685c(csv, 0);
+        *(s16 *)(r4 + 0x2c) += (s16)func_020f685c(csv, 0);
+        *(s16 *)(r4 + 0x2a) += (s16)func_020f685c(csv, 0);
+        *(s16 *)(r4 + 0x2e) += (s16)func_020f685c(csv, 0);
+        *(s16 *)(r4 + 0x30) += (s16)func_020f685c(csv, 0);
+        *(s16 *)(r4 + 0x32) += (s16)func_020f685c(csv, 0);
+    }
+
+    if (csv != NULL) {
+        func_021093b0(csv);
+    }
+}
+
 void func_02030468(u8 *arg0, u32 arg1) {
     if (arg0 == NULL) {
         return;
