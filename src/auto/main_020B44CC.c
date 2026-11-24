@@ -106,6 +106,19 @@ void func_020b485c(void) {
     func_021167ac(data_021601e8, 0x60);
 }
 
+void *func_020b498c(void *arg0, s32 arg1, s32 arg2) {
+    u8 *p = func_020ec294(arg0, 0, 0x4000, arg2 << 14);
+    if (arg1 == 0) {
+        *(u32 *)(p + 0x14) = 0;
+        *(u8 *)(*(u8 **)(*(u8 **)p + 8) + 0x70) |= 2;
+    } else if (arg1 == 1) {
+        *(u32 *)(p + 0x14) = 0x100000;
+    }
+    *(u32 *)(p + 0x18) = 0x40000;
+    *(u32 *)(p + 0x1c) = 0x257000;
+    return p;
+}
+
 void func_020b4af0(void *arg0) {
     if (arg0 != NULL) {
         func_020ec548(arg0);
