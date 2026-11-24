@@ -248,6 +248,29 @@ s32 func_02021a60(u32 arg0) {
     return buf[1] == 0;
 }
 
+void func_02021ac4(void) {
+s32 offset;
+s32 ok=func_02021344(1);
+s32 flags[3]={0,0,0};
+register s32 *p=flags;
+s32 any=0;
+s32 i,first;
+
+if(ok) {
+for(i=0;i<3;i++) {
+offset=i*0x4800;
+p[i]=(func_02021a60(offset)||func_02021a60(offset+0x2400))?1:0;
+if(p[i]) any=1;
+}
+}
+if(!ok||!any) ((SaveFlag_02021ac4 *)(data_02160204+0x68))->value=0;
+else ((SaveFlag_02021ac4 *)(data_02160204+0x68))->value=1;
+first=1;
+for(i=0;i<3;i++) {
+if(first && flags[i]) {data_02160204[0x7f]=i;first=0;}
+}
+}
+
 extern void func_021072d0(u32, u32, u32);
 extern u32 func_02107294(void);
 extern void func_02107334(u32, u32, u32);
