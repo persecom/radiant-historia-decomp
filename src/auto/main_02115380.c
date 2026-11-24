@@ -269,3 +269,8 @@ void func_02115d90(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     func_0200a248(arg0);
 }
 
+void func_02115df0(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    func_02115d10(arg0, arg2, arg3);
+    func_0200a2e0(arg0);
+}
+
