@@ -249,14 +249,14 @@ void func_02113c0c(u32 *arg0) {
     *arg0 = 0;
 }
 
-void func_02113ce8(void **arg0, u8 arg1) {
-    void *p = *arg0;
-    if (p != NULL) {
-        *(u8 *)(*arg0 + 0x41) = arg1;
+void func_02113ce8(u32 *arg0, u8 arg1) {
+    u32 v = *arg0;
+    if (v != 0) {
+        *(u8 *)(*(void **)arg0 + 0x41) = arg1;
     }
 }
 
-void func_02113cfc(u8 **arg0, u8 arg1) {
+void func_02113cfc(u8 * volatile *arg0, u8 arg1) {
     if (*arg0 != NULL) {
         (*arg0)[0x40] = arg1;
     }
