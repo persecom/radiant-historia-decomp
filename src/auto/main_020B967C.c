@@ -140,14 +140,16 @@ void func_020ba520(void) {
     u8 *node = func_02112048(func_020c9c10(*(void **)(p + 0x4c), 2));
     u32 v = func_02022068(*(u16 *)(node + 2));
     u16 kind;
+    s32 flag;
     if (node[6] & 1) {
         return;
     }
     kind = *(u16 *)(node + 4);
-    if (kind == 1 || kind == 2 || kind == 3) {
-        func_020220b0(*(u16 *)(node + 2), ~0);
-    } else {
+    flag = kind == 1 ? 1 : (kind == 2 ? 1 : (kind == 3 ? 1 : 0));
+    if (flag == 0) {
         func_020220b0(*(u16 *)(node + 2), -v);
+    } else {
+        func_020220b0(*(u16 *)(node + 2), ~0);
     }
     if ((func_021136b0(*(u16 *)(p + 0xa2)) & 2) == 0) {
         func_020ba604();
@@ -164,5 +166,11 @@ s32 func_020ba5d4(void) {
         ret = 1;
     }
     return ret;
+}
+
+void func_020ba604(void) {
+    u8 *p = data_021601ec;
+    func_020220b0(*(u16 *)(p + 0xa2), *(u32 *)(p + 0xa8));
+    func_020de394(*(u32 *)(data_02160204 + 0x10c), *(u16 *)(p + 0xa0));
 }
 
