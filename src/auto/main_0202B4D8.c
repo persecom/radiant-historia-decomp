@@ -104,11 +104,12 @@ u8 *func_0202bc44(s32 arg0) {
         p[1] = arg0 / 3 + 1;
     }
     {
-        u32 v0 = data_0214618c[idx] << 12;
-        u32 v1 = data_0214618c[idx + 1] << 12;
-        *(u32 *)(p + 4) = v0;
+        u32 *tbl = data_0214618c;
+        u32 a = tbl[idx];
+        u32 b = tbl[idx + 1];
+        *(u32 *)(p + 4) = a << 12;
         *(u32 *)(p + 8) = 0x20000;
-        *(u32 *)(p + 0xc) = v1;
+        *(u32 *)(p + 0xc) = b << 12;
     }
     func_021167ac(p + 0x10, 8);
     return p;
@@ -133,6 +134,13 @@ void func_0202bd08(u8 *arg0) {
         node = *(u8 **)(arg0 + 0x10);
     }
     func_0202e874(arg0);
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
+void func_0202bdbc(void *arg0) {
+    func_021168f8(data_02160244 + 0x50, arg0);
     if (arg0 != NULL) {
         func_0210c5dc(arg0);
     }
