@@ -25,6 +25,29 @@ void func_0211c538(u8 *arg0, s32 arg1, s32 arg2) {
     *(s32 *)(arg0 + 0x20) = arg2;
 }
 
+void func_0211c544(s32 *arg0) {
+    u8 *ptr = data_021701f8;
+    *(s32 **)(ptr + 0x2c) = arg0;
+    *(s32 *)(ptr + 0x40) = arg0[0];
+    *(s32 *)(ptr + 0x44) = arg0[1];
+    *(s32 *)(ptr + 0x48) = 0;
+    *(s32 *)(ptr + 0x4c) = arg0[2];
+    *(s32 *)(ptr + 0x50) = arg0[3];
+    *(s32 *)(ptr + 0x54) = 0;
+    *(s32 *)(ptr + 0x58) = 0;
+    *(s32 *)(ptr + 0x5c) = 0;
+    *(s32 *)(ptr + 0x60) = 0x1000;
+    *(s32 *)(ptr + 0x64) = arg0[4];
+    *(s32 *)(ptr + 0x68) = arg0[5];
+    *(s32 *)(ptr + 0x6c) = *(s32 *)(ptr + 0x34);
+}
+
+void func_0211c5ac(s32 arg0, s32 arg1) {
+    u8 *ptr = data_021701f8;
+    *(s32 *)(ptr + 0x2c) = arg0;
+    *(s32 *)(ptr + 0x28) = arg1;
+}
+
 void func_0211c5c4(u8 *arg0, s32 arg1) {
     *(s32 *)(arg0 + 0x34) = arg1;
 }
