@@ -267,6 +267,25 @@ void func_0212c4b8(u32 arg0) {
     data_02156cd8[0] = arg0;
 }
 
+s32 func_0212c4c8(void) {
+    switch (func_0212c54c(data_02156cd8[0])) {
+    case -1:
+    case 0:
+        break;
+    case 1:
+        func_0212c520();
+        break;
+    case 2:
+        func_021384f0();
+        break;
+    case 3:
+        func_02138500();
+        func_02138510();
+        break;
+    }
+    return 0;
+}
+
 s32 func_0212c7b0(s8 *arg0) {
     return arg0[1];
 }
