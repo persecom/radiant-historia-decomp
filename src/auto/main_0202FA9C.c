@@ -9,6 +9,15 @@ void *func_020224cc(void);
 void func_02022508(void *);
 void func_02030574(void *);
 
+typedef struct Struct_0202fad8 {
+    u8 pad0[0x60];
+    void *unk60;
+    u8 pad64[0x3c];
+    void *unkA0;
+    u8 padA4[0x1c];
+    void *unkC0;
+} Struct_0202fad8;
+
 typedef struct Node_0202f5fc {
     struct Node_0202f5fc *next;
     u8 pad4[4];
@@ -27,7 +36,10 @@ void func_0202f4d8(void *);
 
 void *func_0202fa9c(void) {
     u8 *ptr = NULL;
-    ptr = (u8 *)func_0210c594(0xcc, data_02155c3c);
+    while (ptr == NULL) {
+        ptr = (u8 *)func_0210c594(0xcc, data_02155c3c);
+        break;
+    }
     *(void **)(ptr + 0x60) = func_020224cc();
     func_021167ac(ptr + 0xc0, 8);
     return ptr;
