@@ -61,6 +61,12 @@ void func_02135558(u8 *arg0, u8 arg1) {
     }
 }
 
+void func_02135724(u16 *arg0, u16 arg1) {
+    if (arg0 != 0) {
+        arg0[7] = arg1;
+    }
+}
+
 void func_02135c00(void) {
     func_0213807c();
 }
