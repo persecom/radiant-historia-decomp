@@ -58,7 +58,7 @@ void func_020b40a4(s32 arg0, u32 *arg1, u32 *arg2) {
     s32 n = 0;
     s32 first = -1;
     s32 cat = 0;
-    work = func_020b3fd8() + 0x2000;
+    work = func_020b3fd8();
     if (arg0 == 0) {
         cat = 1;
     } else if (arg0 == 1) {
@@ -66,7 +66,7 @@ void func_020b40a4(s32 arg0, u32 *arg1, u32 *arg2) {
     } else if (arg0 == 2) {
         cat = 3;
     }
-    for (i = 0; i < *(s32 *)(work + 0xa9c); i++) {
+    for (i = 0; i < *(s32 *)(work + 0x2a9c); i++) {
         u8 *item = func_020b4008(i);
         if (item != NULL) {
             s32 x = func_020b3f14(*(u16 *)(item + 4));
