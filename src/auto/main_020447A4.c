@@ -22,7 +22,7 @@ extern void func_020a9544(void *);
 extern void func_020a9610(void *, u32, u32, u32, u32, u32);
 extern void func_020a98ac(void *);
 extern void func_020a98f4(void *);
-extern void func_02044aec(void *, u16);
+extern void *func_02044aec(void *, u16);
 extern u8 *data_02160200;
 extern void *data_02155c3c;
 extern void func_0205a3cc(void *);
