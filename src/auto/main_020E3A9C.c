@@ -166,6 +166,48 @@ void func_020e419c(u16 *arg0, s32 arg1) {
     func_021098ac(arg0);
 }
 
+void func_020e43e4(u16 *, s32, s32, s32);
+void func_020e421c(u16 *arg0) {
+    UnkBuf10_020e3f30 buf = data_021449d4;
+    s16 x = *(s16 *)(data_02160a74 + 0x140);
+    s16 y = *(s16 *)(data_02160a74 + 0x142);
+    s32 depth = 0x2c6;
+    arg0[7] = depth;
+    *(volatile u32 *)0x40004a4 = 0x1f00c0;
+    func_020a3bbc(0x4e);
+    func_020e3db4(arg0, x, y);
+    func_020a3bbc(*(u16 *)(data_02160a74 + 0x180));
+    depth++;
+    func_020e43e4(arg0, (s16)(x + 2), (s16)(y - 2), depth);
+    if (*(s16 *)(data_02160a74 + 0xbc) == 3) {
+        func_020a3bbc(0x19);
+        buf.data[1] = 0x47;
+        buf.data[2] = 1;
+        buf.data[3] = 7;
+        buf.data[4] = 7;
+        buf.data[8] = 7;
+        buf.data[9] = 7;
+        buf.data[5] = x + 0x7b;
+        buf.data[6] = y + 5;
+        buf.data[7] = depth;
+        func_021098ac(&buf);
+        func_020e3e2c((s16)(x + 0x8a), (s16)(y + 4), *(s16 *)(data_02160a74 + 0x19a));
+    } else if (*(s16 *)(data_02160a74 + 0xbc) == 1) {
+        func_020a3bbc(0x19);
+        buf.data[1] = 0x51;
+        buf.data[2] = 0;
+        buf.data[3] = 12;
+        buf.data[4] = 8;
+        buf.data[8] = 12;
+        buf.data[9] = 8;
+        buf.data[5] = x + 0x76;
+        buf.data[6] = y + 4;
+        buf.data[7] = depth;
+        func_021098ac(&buf);
+        func_020e3e2c((s16)(x + 0x8a), (s16)(y + 4), *(s16 *)(data_02160a74 + 0x19a));
+    }
+}
+
 void func_020e43e4(u16 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     arg0[1] = 0;
     arg0[2] = 0;
