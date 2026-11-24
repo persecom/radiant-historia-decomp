@@ -69,7 +69,7 @@ extern void *func_0210c518(s32, void *);
 extern void func_02008e68(s32, void *, s32);
 extern u16 func_0210c060(void *, s32);
 extern void func_021167f0(void *, void *);
-extern void *func_0210ec9c(const char *, u16, s32);
+extern void *func_0210ec9c(const char *, s32, s32);
 extern void *func_0210edac(u32, u8);
 void func_0210e694(void) {
     u8 buf[8];
@@ -300,8 +300,7 @@ u32 func_0210ee58(s32 arg0, s32 arg1, s32 arg2) {
     if (data_02162b00[0] == '\0') {
         return (*(u32 (**)(s32, s32, s32))((u8 *)data_02162a54 + 0xc))(arg0, arg1, arg2);
     }
-    data_02162a54[0]++;
-    p = func_0210ec9c(data_02162b00, data_02162a54[0], 0);
+    p = func_0210ec9c(data_02162b00, ++data_02162a54[0], 0);
     if (p != NULL) {
         *(u16 *)(p + 0x14) += 1;
         return *(u32 *)(p + 8);
