@@ -1,6 +1,7 @@
 /* 36 functions from 0x0210F550 to 0x02110518 (main), found by ds-decomp. */
 #include "common.h"
 extern u8 *data_02160204;
+typedef struct { u8 bit0:1; u8 rest:7; } Flags_02110000;
 extern void (*data_02162a70)(void);
 extern s32 (*data_02162a6c)(void);
 
@@ -122,6 +123,20 @@ void func_0210fe40(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
             return;
         }
     }
+}
+
+void func_021100c4(void);
+s32 func_021100c8(void);
+void func_02110000(void) {
+ func_0210c010(); func_02107b38(); func_020a8404(); func_020a473c();
+ func_02021284(); func_021088cc(); func_020e9c90(); func_021071cc(0xd01);
+ func_021152a8(); func_021152bc(0x1000); func_020bddc4(); func_02021c48();
+ func_020bd690(); *(u32 *)(data_02160204+0x90)=func_020bd38c();
+ func_02021ac4();
+ if (((u32)data_02160204[0x68]<<31)>>31 == 0) func_02021c7c();
+ func_020bd574(); func_0207afc8(); func_0210fde8();
+ data_02162a70=func_021100c4; data_02162a6c=func_021100c8;
+ func_0210959c(0); func_0210959c(1); func_0210959c(2);
 }
 
 void func_021100c4(void) {
