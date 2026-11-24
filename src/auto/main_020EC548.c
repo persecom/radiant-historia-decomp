@@ -135,6 +135,15 @@ void func_020eca2c(s32 arg0) {
     }
 }
 
+void *func_020eca60(void) {
+    u8 *r4 = (u8 *)func_0210c594(0x18, data_02155c3c);
+    *(u32 *)(r4 + 8) = 1;
+    *(u16 *)(r4 + 0xc) = 0xffff;
+    *(u32 *)(r4 + 0x10) = 0;
+    *(void **)(r4 + 0) = func_0210853c();
+    return r4;
+}
+
 void func_020ecaa4(void **arg0) {
     func_02108594(*arg0);
     if (arg0 != NULL) {
