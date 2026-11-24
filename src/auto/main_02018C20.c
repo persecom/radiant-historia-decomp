@@ -1,7 +1,7 @@
 /* 7 functions from 0x02018C20 to 0x02019C20 (main), found by ds-decomp. */
 #include "common.h"
 
-extern void func_02019400(void *);
+extern void func_02019400();
 extern void func_02018900(u8 *, s32);
 s32 func_02018fa0(u8 *arg0, u8 *arg1)
 {
