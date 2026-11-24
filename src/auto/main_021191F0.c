@@ -16,6 +16,13 @@ typedef struct {
 } Struct0216f2c4;
 
 typedef struct {
+    u32 a;
+    u32 b;
+    u32 c;
+    u32 d;
+} Struct16;
+
+typedef struct {
     u32 f0;
     u32 f4;
     u32 f8;
@@ -32,3 +39,53 @@ extern u8 data_02155eb0[];
 extern u8 data_0216f3d8[];
 extern u32 data_02155eb8[];
 extern void func_02008e68(s32, void *, s32);
+
+void func_021191f0(void) {
+    Struct0216f2c4 *entry;
+    u16 f2;
+    u16 f0;
+    u32 *src;
+    Struct0216f9c4 *dst;
+    s32 i;
+    s32 idx;
+    s32 ok;
+
+    entry = &data_0216f2c4[(u16)data_0216f234.fc];
+    ok = (entry->f4 == 1 || entry->f4 == 2);
+    if (!ok) {
+        return;
+    }
+
+    f2 = entry->f2;
+    f0 = data_0216f234.f0;
+    if (f0 < 0x1f) {
+        data_0216f234.f0 = f0 + 1;
+    }
+    entry->f0 = f0;
+    func_02008e68(-1, data_0216f9c4[f0].f10, 0x10);
+
+    idx = data_0216f234.fc;
+    if (data_0216f234.f4 == 0) {
+        src = (u32 *)(data_0216f6c4 + idx * 0x18);
+    } else {
+        *(u32 *)(data_02155eb0 + 0x18) = *(u32 *)(data_0216f3d4 + idx * 0x18);
+        *(u32 *)(data_02155eb0 + 0x1c) = *(u32 *)(data_0216f3d8 + idx * 0x18);
+        src = data_02155eb8;
+    }
+
+    dst = &data_0216f9c4[data_0216f2c4[(u16)idx].f0];
+    dst->f0 = src[0];
+    dst->f4 = src[1];
+    dst->f8 = src[2];
+    dst->fc = src[3];
+
+    i = (u16)data_0216f234.fc;
+    while (i >= 0) {
+        if (f2 != data_0216f2c4[i].f2) {
+            return;
+        }
+        data_0216f2c4[i].f4 = 3;
+        data_0216f2c4[i].f0 = f0;
+        i--;
+    }
+}
