@@ -199,12 +199,12 @@ u32 func_0200bc94(u8 *arg0) {
 }
 
 void func_0200bcb0(u32 *arg0) {
-    u32 a = arg0[3];
-    u32 b = arg0[0];
-    u32 c = arg0[1];
-    func_02006e00(b, c + a);
-    func_02006d8c(b, c + a);
-    func_02008f74((void *)(b + c), 0, a);
+    u32 a = arg0[1];
+    u32 b = arg0[2];
+    u32 sum = b + arg0[3];
+    func_02006e00(a, sum);
+    func_02006d8c(a, sum);
+    func_02008f74((void *)(a + b), 0, sum - b);
 }
 
 void func_0200bcec(FSFileID *arg0, u8 *arg1) {
