@@ -127,6 +127,14 @@ void func_020ec9d0(u32 arg0, s32 arg1) {
     }
 }
 
+void func_020eca2c(s32 arg0) {
+    if (arg0 == 0) {
+        func_0210db10(data_02160ad8);
+    } else if (arg0 == 1) {
+        func_0210db58(data_02160ac4);
+    }
+}
+
 void func_020ecaa4(void **arg0) {
     func_02108594(*arg0);
     if (arg0 != NULL) {
