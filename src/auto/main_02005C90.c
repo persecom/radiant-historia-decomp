@@ -367,12 +367,12 @@ void func_020065c8(void *arg0) {
     func_0200813c(cookie);
 }
 
-void func_020065f0(void) {
+u8 *func_020065f0(void) {
     u8 *p = (u8 *)data_0215cde4[9];
-    while (p != NULL) {
-        if (*(u32 *)(p + 0x64) == 1) return;
+    while (p != NULL && *(u32 *)(p + 0x64) != 1) {
         p = *(u8 **)(p + 0x68);
     }
+    return p;
 }
 
 extern void func_020060b8(void);
