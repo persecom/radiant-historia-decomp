@@ -165,6 +165,34 @@ void func_020ba214(void) {
     }
 }
 
+extern u16 data_0214391c[4];
+void func_020ba2d0(void) {
+    struct {
+        s16 id;
+        s16 type;
+    } arr[2];
+    struct S {
+        u16 a[4];
+    };
+    u8 *p = data_021601ec;
+    u16 i;
+
+    *(struct S *)arr = *(struct S *)data_0214391c;
+
+    for (i = 0; i < 2; i++) {
+        s16 id = arr[i].id;
+        u8 *obj = func_020c9c10(*(void **)(p + 0x4c), (u16)id);
+        if (arr[i].type == 0) {
+            ((void (*)(u8 *, s16))(*(void **)(obj + 0x10)))(obj, (*(s32 *)(p + 0x94) >> 12) + 0xa0);
+        } else if (arr[i].type == 1) {
+            ((void (*)(u8 *, s16))(*(void **)(obj + 0x10)))(obj, -(*(s32 *)(p + 0x94) >> 12));
+            if (id == 0xd) {
+                ((void (*)(u8 *, s16))(*(void **)(obj + 0x10)))(obj, -5 - (*(s32 *)(p + 0x94) >> 12));
+            }
+        }
+    }
+}
+
 void func_020ba3c0(void) {
     u8 *obj = func_020c9c10(*(void **)(data_021601ec + 0x4c), 1);
     *(u16 *)(obj + 0x30) = func_020c73d8(obj) != 0 ? 0x1a : 0x19;
