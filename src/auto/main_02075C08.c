@@ -33,11 +33,11 @@ s32 func_02075c3c(s32 arg0) {
 
 u32 func_02075c5c(u32 *arg0, u32 arg1) {
     u32 val = arg0[1] * arg0[0] + arg0[2];
-    u32 res;
-    arg0[0] = val;
-    res = val >> 16;
+    u32 res = val >> 16;
+    *arg0 = val;
     if (arg1 != 0) {
-        res = res * arg1 >> 16;
+        arg1 = arg1 * res;
+        res = arg1 >> 16;
     }
     return (u16)res;
 }
@@ -91,11 +91,22 @@ extern void func_0210e290(s32);
 extern void func_0210f138(void);
 extern u32 data_02162858;
 extern u32 data_02162854;
+extern void func_0207763c(void);
+extern void func_02108ea4(s32, s32, s32);
+extern void func_02075fb8(s32);
+extern u16 data_021626a8;
+extern s16 data_02162908[4];
+extern u16 data_021628f8;
 void func_02076380(u8 *arg0) {
+    s32 shift;
     *(volatile u32 *)0x040004a8 = (*(u32 *)(arg0 + 4) >> 3) | (*(u32 *)(arg0 + 0x18) << 26) |
                                   0x40000000 | (*(u32 *)(arg0 + 0x10) << 20) |
                                   (*(u32 *)(arg0 + 0x14) << 23) | 0x20000000;
-    *(volatile u32 *)0x040004ac = *(u32 *)(arg0 + 0xc) >> (4 - (*(u32 *)(arg0 + 0x18) == 2));
+    shift = 1;
+    if (*(u32 *)(arg0 + 0x18) != 2) {
+        shift = 0;
+    }
+    *(volatile u32 *)0x040004ac = *(u32 *)(arg0 + 0xc) >> (4 - shift);
     *(volatile u32 *)0x04000480 = 0x7fff;
 }
 
