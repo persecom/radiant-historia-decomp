@@ -234,6 +234,28 @@ p=*(u8 **)(p+0x38);
 }
 }
 
+void func_020a72b8(u8 **arg) {
+Unk_020a7194 buf=data_021435b8;
+u8 *p;
+*(volatile u32 *)0x040004a4=0x1f0080;
+*(volatile u32 *)0x04000480=0x7fff;
+p=*arg;
+while(p){
+s32 dy=0, id=*(u16 *)(p+0x20);
+if(*(u16 *)(p+0x30)&2){dy=1;id++;}
+if(*(u16 *)(p+0x30)&1)func_020a3c54(id);else func_020a3bbc(id);
+buf.data[1]=*(s16 *)(p+0x28);buf.data[2]=*(s16 *)(p+0x2a);buf.data[3]=*(s16 *)(p+0x2c);buf.data[4]=*(s16 *)(p+0x2e);
+buf.data[5]=*(s32 *)p+*(s32 *)(p+0xc);
+buf.data[6]=dy+(*(s32 *)(p+4)+*(s32 *)(p+0x10));
+buf.data[7]=*(s32 *)(p+8)+*(s32 *)(p+0x14);
+{ s32 h=(*(s16 *)(p+0x2e)* *(s32 *)(p+0x1c))>>12;
+s32 w=(*(s16 *)(p+0x2c)* *(s32 *)(p+0x18))>>12;
+buf.data[8]=w;buf.data[9]=h; }
+func_021098ac(&buf);
+p=*(u8 **)(p+0x38);
+}
+}
+
 extern void func_020a745c(void);
 extern s32 func_020a2c5c(s32, s32, s32, s32, s32);
 s32 func_020a73e8(s32 arg0) {
