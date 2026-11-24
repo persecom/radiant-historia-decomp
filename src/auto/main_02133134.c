@@ -445,6 +445,16 @@ s32 func_02133a1c(u8 *arg0) {
     return 0;
 }
 
+void func_02133bbc(void *arg0) {
+    if (arg0 == NULL) {
+        func_021336c0(0, data_0215bb3c);
+        return;
+    }
+    func_02133688();
+    *((u8 *)arg0 + 1) = 0;
+    func_02133694();
+}
+
 s32 func_02133bf0(void *arg0) {
     if (arg0 != NULL) {
         return *(s8 *)((u8 *)arg0 + 1);
