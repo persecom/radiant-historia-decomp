@@ -46,7 +46,7 @@ extern s32 func_0212dc0c(s8 *);
 extern void func_0212dd68(void *);
 extern s32 func_0212dcb8(void *);
 extern void func_0212dc58(void *);
-extern void func_0212de14(void *, void *);
+extern void func_0212de14(void *, s32);
 extern void func_0212dde4(void *, u32, u32);
 extern s32 data_02173ab8[];
 extern s32 data_02156d74[];
