@@ -84,6 +84,11 @@ void func_0211742c(u32 *arg0, u32 arg1) {
     func_02007320(arg0[2], arg0[1], arg1);
 }
 
+extern void func_02007428(u32, u32, u32);
+void func_02117448(u32 *arg0, u32 arg1) {
+    func_02007428(arg0[2], arg0[1], arg1);
+}
+
 void func_02117464(void *arg0) {
     void *p = *(void **)arg0;
     (*(void (**)(void *))p)(arg0);
