@@ -1,5 +1,6 @@
 /* 40 functions from 0x02127E74 to 0x02128B80 (main), found by ds-decomp. */
 #include "common.h"
+extern u8 data_02156804[40];
 
 typedef struct {
     s8 field_0;
