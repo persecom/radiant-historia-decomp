@@ -79,6 +79,39 @@ void func_0206e990(u32 arg0, u16 arg1) {
     }
 }
 
+void func_0206ea84(u32 arg0, u16 arg1, u16 arg2) {
+    u8 *p = func_020675e4(arg0, *(u16 *)(data_021600e8 + 0x50));
+    u8 *q = func_020ddb90(arg1);
+
+    *(u8 *)(p + 0x20) = 0;
+    *(u16 *)(p + 0x24) = arg1;
+    *(u16 *)(p + 0x22) = arg2;
+    if (q != NULL) {
+        *(u8 **)(p + 0x4c) = q;
+        if (**(u8 **)(q + 0x118) == 0) {
+            if (((u32)(*(u8 *)(*(u8 **)(*(u8 **)(q + 0x108) + 8) + 0x70)) << 30) >> 31) {
+                *(u8 *)(p + 0x40) |= 2;
+            }
+        } else {
+            *(u8 *)(p + 0x40) |= 2;
+            if (((u32)(*(u8 *)(*(u8 **)(*(u8 **)(q + 0x108) + 0) + 0x70)) << 30) >> 31) {
+                *(u8 *)(p + 0x40) &= 0xfd;
+            }
+        }
+        if (arg0 == 0x68 || arg0 == 0x69 || arg0 == 0x6a || arg0 == 0x87) {
+            *(u8 *)(p + 0x40) = (*(u8 *)(p + 0x40) ^ 2) & 2;
+        }
+    } else {
+        if (p != NULL) {
+            func_0210c5dc(p);
+            p = NULL;
+        }
+    }
+    if (p != NULL) {
+        func_0206b3c0(p);
+    }
+}
+
 void func_0206eb80(u16 arg0, u8 arg1, u8 arg2, UnkVec12 *arg3, UnkStruct24 *arg4) {
     u32 *heap = &data_02155c3c;
     u8 *p = func_0210c594(0x2c, *heap);
