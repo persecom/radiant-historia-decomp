@@ -281,6 +281,19 @@ void func_02136cbc(u32 arg0, u32 arg1, u32 arg2) {
     func_021369b4();
 }
 
+void func_02136ce8(u32 arg0, u32 arg1, u32 arg2) {
+    if (arg0 == 0) {
+        func_021369e0(data_0215bf94, data_0215bfa0);
+        return;
+    }
+    if (*(void **)(arg0 + 4) == NULL) {
+        func_021369e0(data_0215bfbc, data_0215bfc8);
+        return;
+    }
+    *(u32 *)(arg0 + 0x1c) = arg1;
+    *(u32 *)(arg0 + 0x20) = arg2;
+}
+
 extern void func_02136d54(void *);
 void func_02136d38(void *arg0) {
     func_021369a8();
