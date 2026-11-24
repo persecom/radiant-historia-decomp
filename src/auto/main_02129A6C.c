@@ -198,6 +198,20 @@ s16 func_0212a270(u8 *a0, s32 a1) {
     return *(s16 *)(a0 + a1 * 2 + 0xda);
 }
 
+extern char data_02156b08[];
+extern void func_0212bda8(char *);
+extern void func_02129748(void *, void *, void *);
+extern void func_0212977c(void *, void *, void *, void *);
+extern void func_02129724(void *, void *, void *);
+extern void func_0212976c(void *, s32, s32, s32);
+void func_0212a4a4(u8 *arg0, s32 arg1) {
+    if (arg1 == 0) {
+        *(s32 *)(arg0 + 0xac) = 0;
+    } else {
+        *(s32 *)(arg0 + 0xac) = 1;
+    }
+}
+
 s32 func_0212a4b8(s32 *arg0) {
     return arg0[1];
 }
