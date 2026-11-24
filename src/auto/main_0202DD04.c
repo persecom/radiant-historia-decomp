@@ -30,7 +30,7 @@ s32 func_0202e260(u32 arg0) {
 s32 func_0202e468(void) {
     s32 i;
     for (i = 0; i < 9; i++) {
-        u8 *entry = data_02160244[8 + i];
+        u8 *entry = data_02160244[2 + i];
         u8 *sub = *(u8 **)(entry + 0x10);
         if (sub != NULL) {
             u8 *a = *(u8 **)(sub + 0);
