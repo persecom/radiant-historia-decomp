@@ -67,6 +67,29 @@ void func_020c6e2c(void *arg0, void *arg1) {
     func_020c6e40(arg0, arg1, 0, 0);
 }
 
+s32 func_020c6e40(void *arg0, u8 *arg1, s32 arg2, s32 arg3) {
+    if (func_020c73c0() == 0) {
+        return 2;
+    }
+    (*(void (**)(void *))(arg1 + 0x18))(arg0);
+    data_02160220[0] = 1;
+    data_02160220[1] = *(s16 *)(arg1 + 2);
+    data_02160220[2] = *(s16 *)(arg1 + 4);
+    data_02160220[3] = *(s16 *)(arg1 + 6);
+    data_02160220[4] = *(s16 *)(arg1 + 8);
+    data_02160220[5] = arg2 + (*(s16 *)(arg1 + 0xa) + arg1[0x14]);
+    data_02160220[6] = arg3 + (*(s16 *)(arg1 + 0xc) + arg1[0x15]);
+    data_02160220[7] = arg1[0x13];
+    data_02160220[8] = *(s16 *)(arg1 + 0xe);
+    data_02160220[9] = *(s16 *)(arg1 + 0x10);
+    func_021098ac(data_02160220);
+    return 0;
+}
+
+void func_020c6ef4(u8 *arg0) {
+    func_020a3bbc(*(u16 *)(arg0 + 0x30));
+}
+
 void func_020c6f04(u8 *arg0, u16 arg1) {
     *(u16 *)(arg0 + 0x3a) = arg1;
 }
