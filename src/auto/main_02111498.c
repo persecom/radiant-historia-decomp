@@ -338,7 +338,7 @@ s32 func_02112110(u8 *arg0) {
     return 0;
 }
 
-extern void func_021121b8(void *);
+extern s32 func_021121b8(u8 *);
 void func_02112198(void *arg0) {
     func_021121b8(arg0);
     if (arg0 != NULL) {
