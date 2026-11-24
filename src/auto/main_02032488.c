@@ -32,6 +32,18 @@ void func_020328fc(void) {
     }
 }
 
+u8 func_020329a0(void) {
+    u8 count = 0;
+    u8 *node = *(u8 **)(data_02160090 + 0x14);
+    while (node != NULL) {
+        if (node != NULL) {
+            count++;
+        }
+        node = *(u8 **)(node + 0x24);
+    }
+    return count;
+}
+
 void func_02032ff8(void) {
     data_02160090[0x7e] = 1;
 }
