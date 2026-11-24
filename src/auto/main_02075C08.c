@@ -175,3 +175,27 @@ void func_020767fc(void) {
     }
 }
 
+void func_02076868(void) {
+    u8 *r4 = (u8 *)func_020764e4();
+    s32 val = *(s32 *)(r4 + 0x6c);
+    if (val <= 0x1fc2) {
+        *(s32 *)(r4 + 0x6c) = val + 1;
+    } else {
+        func_0207763c();
+        *(u8 *)(r4 + 0x54) = 2;
+        return;
+    }
+    val = *(s32 *)(r4 + 0x6c);
+    if (val < 180) {
+        *(s32 *)(r4 + 0x70) = 0;
+    } else {
+        *(s32 *)(r4 + 0x70) = (val - 180) % 300;
+    }
+    if (data_021626a8 & 8) {
+        *(u8 *)(r4 + 0x54) = 1;
+        func_02108ea4(0, 1000, 1);
+        return;
+    }
+    func_02075fb8(*(s32 *)(r4 + 0x6c));
+}
+
