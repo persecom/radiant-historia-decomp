@@ -46,3 +46,10 @@ void func_020a25c8(void) {
 u8 func_020a2814(void) {
     return data_02160124;
 }
+
+void func_020a2824(u16 arg0) {
+    void *p = func_0210c594(0x14, data_02155c3c);
+    *(u16 *)p = arg0;
+    *(u8 *)((u8 *)p + 4) = 0;
+}
+
