@@ -52,3 +52,10 @@ void func_02022160(u32 arg0) {
     }
 }
 
+void func_020223bc(u8 *arg0, void *arg1, u16 arg2) {
+    u8 *p = func_0210c594(0x10, data_02155c3c);
+    *(u16 *)p = arg2;
+    *(void **)(p + 4) = arg1;
+    func_021167f0(arg0 + 0x64, p);
+}
+
