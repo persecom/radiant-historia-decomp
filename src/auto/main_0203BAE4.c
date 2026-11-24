@@ -50,6 +50,13 @@ void func_0203bcf8(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s
     func_0203bd68(local, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
 }
 
+void *func_0203be10(s32 arg0) {
+    s32 size = arg0 * 0x1c;
+    void *p = func_0210c518(size, data_02155c3c);
+    func_02008e68(0, p, size);
+    return p;
+}
+
 void func_0203be4c(void *arg0) {
     if (arg0 != NULL) {
         func_0210c5dc(arg0);
@@ -101,6 +108,35 @@ void func_0203c1c0(u8 *arg0, void *arg1, s32 arg2) {
     *(void **)(arg0 + 8) = arg1;
     *(void **)(arg0 + 0xc) = arg0;
     func_0210d9e4(arg0 + 4);
+}
+
+void func_0203c20c(void) {
+    u8 *p = data_02162880;
+    s32 count = 0;
+    u8 *best = NULL;
+    s32 i;
+    s32 n;
+    p[0x2c] = 0;
+    *(void **)(p + 0x38) = NULL;
+    if (p[0x2d] != 0) {
+        return;
+    }
+    n = *(u16 *)(p + 0x3c);
+    for (i = 0; i < n; i++) {
+        u8 *elem = ((u8 **)(*(void **)(p + 0x34)))[i];
+        if (elem[0xb] == 0 && *(void **)(elem + 0x10) != NULL) {
+            if (((s32 (*)(u8 *))(*(void **)(elem + 0x10)))(elem) != 0) {
+                count++;
+                if (best == NULL || *(s16 *)(best + 4) < *(s16 *)(elem + 4)) {
+                    best = elem;
+                }
+            }
+        }
+    }
+    if (count != 0) {
+        p[0x2c] = 1;
+        *(void **)(p + 0x38) = best;
+    }
 }
 
 void func_0203c820(void) {
