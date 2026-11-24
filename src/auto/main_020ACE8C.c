@@ -74,3 +74,8 @@ void func_020ade0c(void) {
     func_020ae6e8(p);
 }
 
+void func_020ade30(s32 arg0) {
+    u8 *p = func_020adda8();
+    *(s32 *)(p + 0x6BC) = arg0;
+}
+
