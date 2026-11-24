@@ -96,6 +96,32 @@ void func_0208cbcc(void) {
     func_0209250c(0x10, 0, 9, 0x94, 0xee, 0x23, 8, 8, 4, 2, 4, 2, 0xb1);
 }
 
+void func_0208ccc4(u32 id, s16 x, s16 y) {
+ Unk14 a=data_02141328;
+ Unk14 b=data_02141314;
+ u8 *state=data_0216010c;
+ s32 selected=0;
+ if(id==5 && !(*(u32 *)(data_02160200+0x15c)&0x10000000))return;
+ if(id==((s8 *)state)[0x50d2]+((s8 *)state)[0x50d1]*2)selected=1;
+ func_0209250c((s16)(selected+17),1,x,y,36,36,8,8,4,2,4,2,141);
+ func_020a3bbc(selected+19);
+ a.data[2]=id*19; a.data[5]=x+17; a.data[6]=y+17;
+ func_021098ac(&a);
+ if(id>=4) {
+ func_020a3bbc(selected+23);
+ b.data[1]=(id-4)*24;
+ } else {
+ func_020a3bbc(selected+21);
+ switch(id) {
+ case 1:b.data[2]=24;break;
+ case 2:b.data[1]=24;break;
+ case 3:b.data[1]=24;b.data[2]=24;break;
+ }
+ }
+ b.data[5]=x+1;b.data[6]=y+1;
+ func_021098ac(&b);
+}
+
 void func_0208ce74(void) {
     Unk14 buf = data_02141300;
     if (*(s16 *)(data_0216010c + 0x51ae) & 4) {
