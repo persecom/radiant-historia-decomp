@@ -305,8 +305,9 @@ char *func_021336a0(void) {
 
 void func_021336c0(s32 arg0, void *arg1) {
     u32 *p = (u32 *)&data_02174d64;
-    if (p[0] != 0) {
-        ((void (*)(u32, void *, s32))p[0])(p[1], arg1, arg0);
+    void (*cb)(u32, void *, s32) = (void (*)(u32, void *, s32))p[0];
+    if (cb != NULL) {
+        cb(p[1], arg1, arg0);
     }
 }
 
@@ -524,7 +525,7 @@ void *func_02133df8(void) {
     return data_0215bbb8;
 }
 
-extern void *memset(void *, int, u32);
+extern void *memset(void *, int, unsigned long);
 void func_02133e04(void) {
     s32 i;
     data_0215bbb4 = data_02145a60;
