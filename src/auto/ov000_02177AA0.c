@@ -14,6 +14,10 @@ u32 func_ov000_02178004(void) {
     return 0xaa65;
 }
 
+u32 func_ov000_02178010(void) {
+    return 0xa99f;
+}
+
 s32 func_ov000_0217849c(u8 *arg0, u8 *arg1, u32 arg2, u32 arg3) {
     Rc4State state;
     func_ov000_021780e0(&state, arg0, 0x10);
