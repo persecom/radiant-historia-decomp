@@ -36,6 +36,6 @@ void func_02109c24(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     func_0210a3d8(arg0, arg1, arg3);
 }
 
-void func_02109c54(void) {
+void func_02109c54(u8 *arg0) {
     func_0210a38c();
 }
