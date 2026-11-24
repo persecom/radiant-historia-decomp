@@ -14,6 +14,18 @@ void func_020f1dd4(s32 *arg0, s32 arg1) {
     func_0210b198(*arg0, (u16)(arg1 + 1), 0, 1, 0);
 }
 
+void func_020f1dfc(s32 arg0, s32 arg1) {
+    u32 *ptr = func_020f0a5c(arg0);
+    if (ptr == NULL) {
+        return;
+    }
+    if (arg1 != 0) {
+        ptr[5] |= 1;
+    } else {
+        ptr[5] &= ~1;
+    }
+}
+
 void func_020f1f28(u8 *arg0) {
     func_021168f8(data_02160c10 + arg0[0x20] * 0xc, arg0);
     if (*(void **)(arg0 + 0x1c) != NULL) {
