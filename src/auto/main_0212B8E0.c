@@ -123,6 +123,35 @@ void func_0212bfa4(void) {
     func_0212a9f8();
 }
 
+void func_0212bfb8(void) {
+    func_0212a9dc();
+    if (data_02173aac[3] != 0) {
+        func_0212a9e8();
+        return;
+    }
+    data_02173aac[3] = 1;
+    func_0212a9e8();
+    if (data_02173aac[2] != 0) {
+        ((void (*)(u32))data_02173aac[2])(data_02173aac[1]);
+    }
+    data_02173aac[3] = 3;
+    func_0212e514();
+    data_02173aac[3] = 4;
+    func_0212e4a0();
+    data_02173aac[3] = 5;
+    func_0212e5d0();
+    data_02173aac[3] = 6;
+    func_0212e4a0();
+    data_02173aac[3] = 7;
+    func_0212e514();
+    data_02173aac[3] = 9;
+    func_0212e534();
+    data_02173aac[3] = 0;
+    if (data_02173aac[0] != 0) {
+        ((void (*)(u32))data_02173aac[0])(data_02173aac[4]);
+    }
+}
+
 void func_0212c068(void *arg0, void *arg1) {
     func_0212bda8(arg1);
 }
