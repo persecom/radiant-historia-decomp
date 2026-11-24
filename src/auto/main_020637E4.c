@@ -12,10 +12,11 @@ extern void func_02063f68(void);
 extern void func_02064590(void);
 extern void func_02064a30(void);
 s16 func_02063e18(void) {
+    u8 *entry;
     s32 ret = 0;
     u8 i;
     for (i = 0; i < 9; i++) {
-        u8 *entry = *(u8 **)((u8 *)data_02160244 + i * 4 + 8);
+        entry = *(u8 **)((u8 *)data_02160244 + i * 4 + 8);
         u16 val = *(u16 *)(entry + 0x18);
         if (val != 0) {
             if (val >= 2) {
