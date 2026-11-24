@@ -51,6 +51,42 @@ void func_0200aeac(u8 *arg0) {
     }
 }
 
+void func_0200af30(u8 *s) {
+    u32 r4 = func_02008128();
+    while (!(*(u32 *)(s + 0xc) & 0x40) && (*(u32 *)(s + 0xc) & 1)) {
+        func_02006510(s + 0x18);
+    }
+    func_0200813c(r4);
+    if (!(*(u32 *)(s + 0xc) & 0x40)) {
+        return;
+    }
+    func_0200a884(s, func_0200a980(s, (*(u32 *)(s + 0xc) >> 8) & 0xff));
+    s32 next = func_0200ad00(*(u8 **)(s + 8), 1);
+    if (next == 0) {
+        return;
+    }
+    func_0200aeac((void *)next);
+}
+
+u8 *func_0200b0ec(u8 *arg0, s8 *arg1) {
+    u32 r6 = func_02008128();
+    u8 *r7 = data_0215ed68;
+    u32 r4 = 0;
+    u32 r5 = 1;
+    while (r7 != NULL) {
+        u32 hit = (*(u32 *)(r7 + 0x14) & 2) ? r5 : r4;
+        if (hit != 0) {
+            s32 r10 = (s32)func_0200b6b8(r7);
+            if (func_020124a8(r10, arg0, arg1) == 0 && arg1[r10] == 0) {
+                break;
+            }
+        }
+        r7 = *(u8 **)(r7 + 4);
+    }
+    func_0200813c(r6);
+    return r7;
+}
+
 s32 func_0200b24c(char *dst, s32 dst_len, const char *src, s32 src_len, s32 *truncated) {
     s32 i;
     s32 max_len = (dst_len - 1 < src_len) ? (dst_len - 1) : src_len;
