@@ -51,6 +51,16 @@ void func_020a2c20(void) {
     *(p + 0x200) = 0;
 }
 
+void func_020a2c38(u16 arg0, u32 arg1) {
+    if (arg1 == 0) {
+        *(u16 *)0x05000000 = arg0;
+        return;
+    }
+    if (arg1 == 1) {
+        *(u16 *)0x05000400 = arg0;
+    }
+}
+
 s32 func_020a2e64(void) {
     if (func_020a2f34() != 0) {
         return 1;
