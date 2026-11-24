@@ -3,6 +3,8 @@
 typedef struct { u16 id; s16 end, x, dx, y, dy, flag; } AnimEntry_020b748c;
 typedef struct { AnimEntry_020b748c entries[6]; } AnimTable_020b748c;
 extern AnimTable_020b748c data_02143a1c;
+typedef struct { AnimEntry_020b748c entries[5]; } AnimTable_020b7624;
+extern AnimTable_020b7624 data_021439d4;
 typedef struct AnimObj_020b748c { u8 pad[16]; void (*setX)(struct AnimObj_020b748c *, s32); void (*setY)(struct AnimObj_020b748c *, s32); } AnimObj_020b748c;
 
 extern u16 data_02151024;
