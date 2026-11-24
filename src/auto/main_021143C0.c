@@ -158,6 +158,28 @@ void func_021147e8(u8 *arg0, s32 arg1, s32 arg2) {
     func_020096b4(1u << (arg0 + arg1)[0x54], arg2);
 }
 
+void func_02114818(void *arg0p) {
+    u8 *arg0 = (u8 *)arg0p;
+    if (((*(s32 *)(arg0 + 0x2c) << 30) >> 31) != 0) {
+        s32 tag;
+        func_020095a8(*(void **)(arg0 + 0x4c), 0, 1u << *(s32 *)(arg0 + 0x48), 0);
+        func_0200f0e4(arg0 + 8);
+        func_0200f0fc(arg0 + 0x18);
+        *(u32 *)(arg0 + 0x2c) &= ~2u;
+        tag = func_02009d2c();
+        func_02009b24(1);
+        func_02009cc0(tag);
+    }
+    func_0211488c(arg0);
+}
+
+void func_0211488c(void *arg0p) {
+    u8 *arg0 = (u8 *)arg0p;
+    func_02113a60(*(s32 *)(arg0 + 0x48));
+    func_021168f8((u32)data_0216c8a8, arg0);
+    *(u32 *)(arg0 + 0x2c) &= ~1u;
+}
+
 void func_021148bc(u8 *arg0) {
     func_021148cc(arg0, 1);
 }
