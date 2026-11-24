@@ -4,6 +4,7 @@
 extern u32 func_02008128(void);
 extern void func_02008454(void);
 extern void func_020081a4(u32);
+extern u32 func_020081f0(void);
 u32 func_02008198(u32 x) {
     do {
         x -= 4;
