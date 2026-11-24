@@ -23,6 +23,14 @@ void func_0209e85c(void) {
     }
 }
 
+void func_0209ed00(void) {
+    u8 *base = data_021600b0;
+    func_020a5ce4(*(void **)(base + 0xe4));
+    func_020a5ce4(*(void **)(base + 0xe8));
+    func_020a5ce4(*(void **)(base + 0xec));
+    func_020a5ce4(*(void **)(base + 0xf0));
+}
+
 void func_0209ed34(u32 arg0, u32 arg1) {
     u8 *p = data_021600b0 + arg0 * 4;
     func_020a8810(*(void **)(*(void **)(p + 0xe4) + 4), arg1);
