@@ -2,6 +2,12 @@
 #include "common.h"
 
 extern void func_020c9980(void);
+extern void func_020c9404(u8 *, u16);
+void func_020c93f4(u8 *arg0, u16 arg1) {
+    *(u16 *)(arg0 + 0x3a) = arg1;
+    func_020c9404(arg0, arg1);
+}
+
 u8 func_020c9488(u8 *arg0) {
     return *(u8 *)(arg0 + 0x44);
 }
