@@ -88,6 +88,28 @@ void func_02108c24(u32 arg0, s32 arg1) {
     }
 }
 
+void func_02108e54(u32 arg0) {
+    if (arg0 >= 2) {
+        return;
+    }
+    while (func_021090f4(arg0, 0) != 2) {
+        if (func_021090f4(arg0, 0) == 0) {
+            return;
+        }
+        func_02108ffc();
+    }
+    func_02108b54(arg0);
+}
+
+void func_02108ea4(u32 arg0, u32 arg1) {
+    if (arg0 >= 2) {
+        return;
+    }
+    func_02108bb8(arg0, 0, arg1);
+    data_021624f8->unk_1a[arg0] = -1;
+    data_021624f8->unk_24[arg0] = 0;
+}
+
 void func_021091b0(void) {
 }
 
