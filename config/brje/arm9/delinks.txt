@@ -566,7 +566,10 @@ src/auto/main_020B2520.c:
     .text start:0x020b2520 end:0x020b34d0
 
 src/auto/main_020B34D0.c:
-    .text start:0x020b34d0 end:0x020b44cc
+    .text start:0x020b34d0 end:0x020b3fd8
+
+src/auto/main_020B3FD8.c:
+    .text start:0x020b3fd8 end:0x020b44cc
 
 src/auto/main_020B44CC.c:
     .text start:0x020b44cc end:0x020b5364
