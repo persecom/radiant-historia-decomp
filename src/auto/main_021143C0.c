@@ -296,6 +296,11 @@ void func_02114a64(void) {
     }
 }
 
+void func_02114aa4(void) {
+    data_0216c974 = NULL;
+    *(u32 *)data_0216c9bc = 0;
+}
+
 void func_02114c28(void) {
     UnkStruct_0216c9bc *p = (UnkStruct_0216c9bc *)data_0216c9bc;
     s32 tag;
