@@ -75,3 +75,15 @@ void func_020477dc(Obj_02046e30 *obj, u8 arg1, s32 arg2) {
     }
 }
 
+extern u8 *data_02160204;
+void *func_02047820(u16 arg0) {
+    u8 *node = *(u8 **)(data_02160204 + 0xe8);
+    while (node != NULL) {
+        if (*(u16 *)(node + 0x90) == arg0) {
+            return node;
+        }
+        node = *(u8 **)(node + 0x134);
+    }
+    return NULL;
+}
+
