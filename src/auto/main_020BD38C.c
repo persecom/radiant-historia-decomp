@@ -251,6 +251,35 @@ i++;
 }while(i<n);
 }
 
+void func_020be2d8(s16 *, s16 *);
+s32 func_020be1b0(void) {
+u8 *p=data_021600e4;
+s16 x,y,a,b;
+u8 *row;
+s16 j,n,i;
+s16 startx=-( *(s32 *)(p+0xfc)+0x80);
+s16 starty=-( *(s32 *)(p+0x100)+0x60);
+x=startx-32; y=starty-32;
+func_020be2d8(&x,&y);
+n=0;
+for(i=x;i<12;i++) {
+j=y;
+if(j>=11) continue;
+row=p+0x1b4+i*0x160;
+do {
+if(i<0) break;
+a=i; b=j;
+func_020be30c(&a,&b);
+func_020a9e38(&a,&b);
+if(a < -50 || a>306 || b>192) break;
+*(u8 **)(p+0x1234+4*n)=row+j*32;
+n++;
+j++;
+} while(j<11);
+}
+return n;
+}
+
 void func_020be2d8(s16 *arg0, s16 *arg1) {
     *arg0 = (*arg0 - 0x38) / 32;
     *arg1 = (*arg1 - 0x28) / 32;
