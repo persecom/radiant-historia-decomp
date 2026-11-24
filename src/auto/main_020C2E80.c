@@ -105,15 +105,14 @@ void func_020c31f0(void) {
 }
 
 void func_020c3244(u8 arg0) {
-    u8 *root = data_02160090;
     u8 *node;
     s8 v = -1;
     u8 flag;
-    if (*(u16 *)(root + 0x5c) == 0) {
+    if (*(u16 *)(data_02160090 + 0x5c) == 0) {
         return;
     }
     do {
-        node = *(u8 **)(root + 0x54);
+        node = *(u8 **)(data_02160090 + 0x54);
         node[0] -= arg0;
         if (v == -1) {
             flag = 1;
@@ -123,10 +122,10 @@ void func_020c3244(u8 arg0) {
             flag = 1;
         }
         node[1] = flag;
-        func_021168f8((void **)(root + 0x54), node);
-        func_021167f0((void **)(root + 0x48), node);
         flag++;
-    } while (*(u16 *)(root + 0x5c) != 0);
+        func_021168f8((void **)(data_02160090 + 0x54), node);
+        func_021167f0((void **)(data_02160090 + 0x48), node);
+    } while (*(u16 *)(data_02160090 + 0x5c) != 0);
 }
 
 void func_020c33d4(void) {
