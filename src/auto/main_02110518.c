@@ -1,5 +1,8 @@
 /* 27 functions from 0x02110518 to 0x02111498 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { u16 v[5]; } Unk10;
+extern const Unk10 data_02144bcc;
+extern u8 *func_020c9b24(void *, u16, int);
 
 extern void func_021107cc(u8 *, s32, s32);
 extern void func_02110abc(void *);
