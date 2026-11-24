@@ -1,5 +1,17 @@
 /* 23 functions from 0x020B44CC to 0x020B5364 (main), found by ds-decomp. */
 #include "common.h"
+extern s32 data_02162884, data_02162814;
+extern void func_020aad6c(void);
+extern s32 func_020aad7c(void);
+extern s32 func_020ab024(u8 *);
+extern s32 func_020ac0b0(u8 *);
+extern s32 func_020aadf8(void);
+extern s32 func_020ab140(u8 *, u8 *);
+extern void func_020aeda0(void);
+extern s32 func_020b3d88(void);
+extern void func_020aae98(void);
+extern void func_020aaf08(void);
+extern void func_020aac90(void);
 
 extern void func_020ec548(void *);
 extern void func_020b4c00(u8 *);
