@@ -86,9 +86,48 @@ void func_02021340(s32 arg0) {
     (void)arg0;
 }
 
+void func_0202147c(s32 arg0) {
+    s32 flag;
+    func_0210da14(data_02160064);
+    flag = 0;
+    data_02160054[4] = 0;
+    data_02160054[3] = arg0;
+    switch (arg0) {
+    case 4:
+        flag = 1;
+        break;
+    case 5:
+        flag = 1;
+        break;
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 6:
+    default:
+        break;
+    }
+    func_02021340(flag);
+    if (data_02160054[2] != 0) {
+        data_02160054[2] = 0;
+    }
+    if (data_021626f0 != NULL) {
+        *data_021626f0 = data_02160054[0];
+        data_02160054[0] = 0;
+    }
+}
+
 void func_02021514(void) {
     u32 *p = data_02160078;
     func_020213c4(p + 4, 0x1688, p[2]);
+}
+
+void func_0202153c(s32 arg0) {
+    if (data_02160054[2] != 0) {
+        data_02160054[2] = 0;
+        func_02021514();
+    }
+    func_0202147c(arg0);
 }
 
 s32 func_02021a28(void) {
