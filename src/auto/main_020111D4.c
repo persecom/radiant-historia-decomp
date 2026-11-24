@@ -40,7 +40,7 @@ extern void func_02008f74(void *, s32, s32);
 extern void func_020062d8(void *, void *, void *, void *, s32, s32);
 extern void func_020065c8(void *);
 extern void func_02011ef4(void *);
-extern void func_02011714(void);
+extern void func_02011714(void *);
 extern void *data_0215fc08;
 extern u8 data_0215fc0c[1060];
 extern u32 data_02160030;
