@@ -12,7 +12,7 @@ extern void func_02063f68(void);
 extern void func_02064590(void);
 extern void func_02064a30(void);
 s16 func_02063e18(void) {
-    s16 ret = 0;
+    s32 ret = 0;
     u8 i;
     for (i = 0; i < 9; i++) {
         u8 *entry = *(u8 **)((u8 *)data_02160244 + i * 4 + 8);
