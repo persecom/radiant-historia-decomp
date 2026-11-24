@@ -143,6 +143,10 @@ s32 func_0210cc88(const char *arg0) {
     return 1;
 }
 
+s32 func_0210ccbc(const char *arg0) {
+    return func_020123f0(arg0, *(const char **)((u8 *)data_021626e8.f4 + 8)) == 0;
+}
+
 const char *func_0210cd20(u8 *arg0, const char *arg1) {
     const char *r4 = *(const char **)(arg0 + 8);
     if (!func_021093f0(arg0)) {
