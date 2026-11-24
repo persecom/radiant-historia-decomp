@@ -6,6 +6,21 @@ void func_0210cd50(void) {
     func_0210cce4(0);
 }
 
+extern u8 data_02155c5c[4];
+extern s32 func_021093f0(void *);
+extern void func_02012590(const char *, const char *, ...);
+s32 func_0210cdfc(u8 *arg0, s32 arg1) {
+    const char *r4 = *(const char **)(arg0 + 8);
+    if (!func_021093f0(arg0)) {
+        return arg1;
+    }
+    if (*r4 == '\0') {
+        return arg1;
+    }
+    func_02012590(r4, (const char *)data_02155c5c, &arg1);
+    return arg1;
+}
+
 extern void func_0210cd90(s32);
 void func_0210ce5c(void) {
     func_0210cd90(0);
