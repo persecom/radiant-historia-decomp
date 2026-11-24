@@ -149,6 +149,32 @@ func_020c4720(7,*(u32 *)(base+4));
 func_020c4720(8,*(u32 *)(base+4));
 }
 
+void func_020c49ec(u8 *arg) {
+s32 *p=(s32 *)func_020c46ac();
+p[1]++;
+switch(p[0]) {
+case 0:
+if(p[1]>=1000) {p[0]=50;return;}
+if((data_021626a8&1)||(data_021626a8&8)||data_021628f8) {p[0]=50;p[2]=1;}
+break;
+case 50:
+func_0210d27c(98);data_02160af0[0x7d]=1;p[0]=51;break;
+case 51:
+if(data_02160af0[0x7d]==2) {func_0210d27c(131);p[0]=100;}break;
+case 100:
+func_0210968c(3,16,30);p[0]++;break;
+case 101:
+if(func_02109754(3)!=0)return;
+if(p[2]==0) {p[0]=102;p[3]=0;}
+else {data_02162830=30;data_02162834[0]=0;data_0216281c=1;data_02162820[0]=2;p[0]=104;}
+break;
+case 102:
+p[3]++;if(p[3]>=30)p[0]=104;break;
+case 104:
+*(s32 *)(arg+4)=1;break;
+}
+}
+
 void *func_020c4bd0(void) {
     return func_0210c594(0x10, data_02155c3c);
 }
