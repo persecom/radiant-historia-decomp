@@ -1,5 +1,10 @@
 /* 12 functions from 0x020CDCE8 to 0x020CEC8C (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { s16 field[10]; } DigitSprite;
+extern const DigitSprite data_02144678;
+extern void func_020a3bbc(void);
+extern void func_021098ac(void *);
+
 
 extern u8 *data_02160078;
 extern u8 *func_02021f10(u32);
