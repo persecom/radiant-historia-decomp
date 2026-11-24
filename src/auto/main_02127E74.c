@@ -344,6 +344,39 @@ void func_0212869c(void *arg0, void *arg1) {
     func_0212a9f8();
 }
 
+void func_021286c0(Unk_02128030 *arg0, s32 arg1) {
+    s32 ra, sum, rb, span;
+    if (arg0 == NULL) {
+        func_0212bda8(data_0215698c);
+        return;
+    }
+    s32 r4;
+    void *obj = arg0->f14;
+    if (obj == NULL) {
+        r4 = 0;
+    } else {
+        void **vt = *(void ***)obj;
+        r4 = ((s32 (*)(void *, s32))vt[9])(obj, 1);
+    }
+    if (arg0->f2 != 4 && *(s8 *)((u8 *)arg0 + 0x6c) == 1 && arg1 == 0) {
+        s32 base = func_0212d540(arg0->f4);
+        s32 a, b;
+        sum = r4 + base;
+        a = func_0212d610(arg0->f4);
+        ra = (a + 2047) / 2048;
+        b = func_0212d63c(arg0->f4);
+        rb = ((b + 2047) / 2048) * 2048;
+        span = rb - ra * 2048;
+        if (span <= 0) {
+            *(s32 *)((u8 *)arg0 + 0xc0) = 0;
+        } else {
+            s32 q = func_0201fb1c(sum - ra * 2048, span);
+            *(s32 *)((u8 *)arg0 + 0xc0) = span * q + ra * 2048;
+        }
+    }
+    *(s8 *)((u8 *)arg0 + 0x6c) = arg1;
+}
+
 extern void func_021287c0(void *);
 void func_0212879c(void *arg0, void *arg1) {
     func_0212a9f4();
