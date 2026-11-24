@@ -74,9 +74,9 @@ void func_020f4870(void) {
 }
 
 void func_020f48b8(u32 arg0) {
-    *(void **)data_02160c3c[4] = (void *)func_020f5150;
-    *(u32 *)((u8 *)data_02160c3c[4] + 4) = arg0;
-    func_0210d9e4((void *)data_02160c3c[4]);
+    *(u32 *)((u8 **)data_02160c3c)[4] = (u32)func_020f5150;
+    *(u32 *)(((u8 **)data_02160c3c)[4] + 4) = arg0;
+    func_0210d9e4(((u8 **)data_02160c3c)[4]);
     data_02162840[0]++;
 }
 
@@ -93,6 +93,22 @@ void func_020f4bd0(void *arg0) {
     if (arg0 != NULL) {
         func_0210c5dc(arg0);
     }
+}
+
+s32 func_020f4be4(u32 *arg0, u32 *arg1) {
+    u32 a = arg1[0];
+    u32 b = arg1[1];
+    u32 c = arg1[2];
+    u32 d = arg1[3];
+    u32 e = arg1[4];
+    arg0[2] = a;
+    arg0[6] = e;
+    arg0[3] = b;
+    arg0[4] = c;
+    arg0[5] = d;
+    arg0[0] = e | (b | (a << 10));
+    *(u16 *)(arg0 + 1) = (c | 0x800) | (d << 12);
+    return 1;
 }
 
 u32 func_020f53e4(void (*arg0)(void)) {
