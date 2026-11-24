@@ -108,11 +108,47 @@ void func_02007e44(u32 *arg0) {
     arg0[8] = 0;
 }
 
+void func_02007e58(u8 *alarm, s16 count, s16 delay, void *handler, void *arg) {
+    u32 enabled = func_02008128();
+    u32 vcount;
+    u32 frame;
+
+    if (alarm == NULL || *(void **)alarm != NULL) {
+        func_02008414();
+    }
+
+    vcount = *(volatile u16 *)0x04000006;
+    frame = func_020080d8(vcount);
+    if (count <= (s32)vcount) {
+        frame++;
+    }
+
+    *(u32 *)(alarm + 0x1c) = 0;
+    *(u32 *)(alarm + 0x0c) = frame;
+    *(s16 *)(alarm + 0x10) = count;
+    *(s16 *)(alarm + 0x12) = delay;
+    *(void **)(alarm + 0x00) = handler;
+    *(void **)(alarm + 0x04) = arg;
+    *(u32 *)(alarm + 0x24) = 0;
+
+    func_02007d58(alarm);
+    func_0200813c(enabled);
+}
+
 u32 func_02008198(u32 x) {
     do {
         x -= 4;
     } while (x >= 4);
     return x;
+}
+
+extern void WaitByLoop(s32);
+extern void func_02005650(s32, u32);
+void func_020081a4(u32 arg0) {
+    u32 x = arg0 << 1;
+    if (x > 0x10) {
+        func_02008198(x - 0x10);
+    }
 }
 
 u16 func_020081e0(void) {
