@@ -316,6 +316,36 @@ void func_021336e8(void) {
     func_020182e4();
 }
 
+u32 func_021336f4(void *arg0, s8 **arg1, s32 arg2) {
+    s8 *p = arg0;
+    s32 c;
+    u32 ret = 0;
+    while (1) {
+        c = *p;
+        if (c < '0') {
+            break;
+        }
+        if (c <= '9') {
+            c -= '0';
+        } else if (c < 'a') {
+            goto upper;
+        } else if (c <= 'f') {
+            c -= 0x57;
+            goto accum;
+        }
+upper:
+        if (c < 'A' || c > 'F') {
+            break;
+        }
+        c -= 0x37;
+accum:
+        ret = arg2 * ret + c;
+        p++;
+    }
+    *arg1 = p;
+    return ret;
+}
+
 u32 func_02133750(void *arg0, void *arg1) {
     s8 *ptr;
     u32 ret;
@@ -534,25 +564,23 @@ void func_02133e04(void) {
     }
 }
 
-void func_02133e54(s8 *arg0, s8 *arg1) {
-    if (arg1 != NULL) {
-        if (arg1[0] != 0) {
-            if (arg1[0] == '\\') {
-                arg0[0] = ((s8 *)data_02174f9c)[0x528];
-                arg0[1] = ((s8 *)data_02174f9c)[0x529];
-                arg0[2] = 0;
-                goto done;
-            }
-            if (arg1[1] == ':') {
-                arg0[0] = 0;
-                goto done;
-            }
+void func_02133e54(s8 *arg0, const s8 *arg1) {
+    if (arg1 != NULL && *arg1 != 0) {
+        if (*arg1 == '\\') {
+            arg0[0] = ((s8 *)data_02174f9c)[0x528];
+            arg0[1] = ((s8 *)data_02174f9c)[0x529];
+            arg0[2] = 0;
+        } else if (arg1[1] == ':') {
+            arg0[0] = 0;
+        } else {
+            goto copy_cwd;
         }
+    } else {
+copy_cwd:
+        func_02016dc0(arg0, data_021754c4);
     }
-    func_02016dc0(arg0, data_021754c4);
-done:
     if (arg1 != NULL) {
-        func_02016ed8(arg0, arg1);
+        func_02016ed8(arg0, (s8 *)arg1);
     }
 }
 
@@ -580,5 +608,23 @@ u32 func_02133ee0(u8 *arg0) {
 void func_02134064(u32 arg0, u32 arg1) {
     data_02174f9c[0x1ca] = arg0;
     data_02174f9c[0x1cb] = arg1;
+}
+
+extern s32 func_02134134(void *);
+extern s32 func_021346bc(void *);
+extern s32 func_021346c4(void *);
+s32 func_021340d0(void *arg0, s32 arg1) {
+    switch (arg1) {
+        case 0x12c:
+            return func_02134134(arg0);
+        case 0xc8:
+            return func_021346bc(arg0);
+        case 0xc9:
+            return func_021346c4(arg0);
+        case 0x190:
+            return 1;
+        default:
+            return -1;
+    }
 }
 
