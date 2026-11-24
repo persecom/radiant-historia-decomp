@@ -75,6 +75,10 @@ s32 func_02124b90(void) {
     return 0;
 }
 
+s32 func_02124b98(void) {
+    return -1;
+}
+
 s32 func_02124ba0(void) {
     return 0;
 }
