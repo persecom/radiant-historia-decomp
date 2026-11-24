@@ -184,6 +184,15 @@ void func_021267c0(void *arg0, u8 arg1) {
     *(u8 *)((u8 *)arg0 + 0x50) = arg1;
 }
 
+s32 func_021267c8(s32 *arg0) {
+    s32 val;
+    if (arg0[0x17] == 0) {
+        return 0;
+    }
+    val = arg0[0x15];
+    return val - (val * (s32)func_02126c90((void *)arg0[1])) / -arg0[0x17];
+}
+
 extern s32 func_0212689c(s32, s32, s32);
 extern void func_02125ea4(u32);
 extern const u8 data_02145000[];
