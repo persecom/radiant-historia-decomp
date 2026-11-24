@@ -19,41 +19,34 @@ void func_020ce738(void) {
     u8 i;
     for (i = 0; i < 3; i++) {
         u8 *p = *(u8 **)data_02160238 + i * 100;
-        s16 *q = (s16 *)(p + 0x500);
-        s32 a = q[0xb4 / 2];
-        s32 b = q[0xb0 / 2];
-        s32 c = *(s32 *)(p + 0x5bc);
-        s32 d = q[0xb2 / 2];
-        s32 e = *(s32 *)(p + 0x5c0);
-        u32 f = *(u32 *)(p + 0x5b8);
-        (*(u32 **)(p + 0x560))[0x4c / 4] = (a + 0x65) << 12;
-        (*(u32 **)(p + 0x560))[0x44 / 4] = (b + c) << 12;
-        (*(u32 **)(p + 0x560))[0x48 / 4] = (d + e) << 12;
-        (*(u32 **)(p + 0x560))[0x40 / 4] = f;
+        Unk738 *s = (Unk738 *)(p + 0x5b0);
+        (*(u32 **)(p + 0x560))[0x4c / 4] = (s->f4 + 0x65) << 12;
+        (*(u32 **)(p + 0x560))[0x44 / 4] = (s->f0 + s->fc) << 12;
+        (*(u32 **)(p + 0x560))[0x48 / 4] = (s->f2 + s->f10) << 12;
+        (*(u32 **)(p + 0x560))[0x40 / 4] = s->f8;
     }
 }
 
 u8 func_020ce9c0(u16 arg0) {
     u8 *node = func_020cda08(2, arg0);
+    s16 *p;
     s32 bx, by;
     s32 x1, y1, x2, y2;
 
     if (node == NULL) {
         return 0;
     }
-    if ((u16)data_02162908[2] == 0) {
+    p = data_02162908;
+    if ((u16)p[2] == 0) {
         return 0;
     }
     x1 = *(s16 *)(node + 0xc) + (*(s32 *)(node + 0x14) >> 12);
-    bx = data_02162908[0];
+    bx = p[0];
     y1 = *(s16 *)(node + 0xe) + (*(s32 *)(node + 0x18) >> 12);
     x2 = x1 + *(s16 *)(node + 0x10) + (*(s32 *)(node + 0x1c) >> 12);
     y2 = y1 + *(s16 *)(node + 0x12) + (*(s32 *)(node + 0x20) >> 12);
-    by = data_02162908[1];
-    if (bx >= x1 && bx <= x2 && by >= y1 && by <= y2) {
-        return 1;
-    }
-    return 0;
+    by = p[1];
+    return (bx >= x1 && bx <= x2 && by >= y1 && by <= y2) ? 1 : 0;
 }
 
 void func_020cea64(u8 arg0) {
@@ -62,9 +55,9 @@ void func_020cea64(u8 arg0) {
 
 void func_020ceb74(s32 *arg0, s32 *arg1, s32 *arg2, s32 arg3) {
     s32 q = arg3 / 60;
-    *arg0 = arg3 / 3600;
-    *arg1 = (arg3 % 3600) / 60;
-    *arg2 = arg3 % 60;
+    *arg0 = q / 3600;
+    *arg1 = (q % 3600) / 60;
+    *arg2 = q % 60;
     if (*arg0 > 999) {
         *arg0 = 999;
         *arg1 = 59;
