@@ -262,9 +262,9 @@ s32 func_02021a28(void) {
     return func_02021428((u16 *)&func_02021618);
 }
 
-extern u16 func_020217b4;
+void func_020217b4(void);
 s32 func_02021a3c(void) {
-    return func_02021428(&func_020217b4);
+    return func_02021428((u16 *)&func_020217b4);
 }
 
 extern u32 data_02160054[];
