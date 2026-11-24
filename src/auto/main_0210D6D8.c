@@ -229,6 +229,28 @@ void func_0210dc88(void) {
     }
 }
 
+void func_0210dd1c(void) {
+    Vec3_0210dd1c vec = data_02144bac;
+    u32 mtx[16];
+
+    func_020029a0(&vec, &data_02155c30, &data_02162670, 1, 0);
+    func_02117994();
+    *(volatile u32 *)0x4000440 = 3;
+    func_02001834(mtx);
+    func_02002ae0(mtx);
+    func_02002a28(mtx);
+    *(volatile u32 *)0x4000440 = 1;
+    *(volatile u32 *)0x4000454 = 0;
+    *(volatile u32 *)0x4000480 = 0x7fff;
+    *(volatile u16 *)0x4000060 = (*(volatile u16 *)0x4000060 & ~0x3000) | 4;
+    *(volatile u16 *)0x4000340 = 1;
+    *(volatile u16 *)0x4000060 = (*(volatile u16 *)0x4000060 & ~0x3000) | 8;
+    *(volatile u16 *)0x4000060 &= 0xffffcffd;
+    *(volatile u32 *)0x40004c0 = 0x7fff7fff;
+    *(volatile u32 *)0x40004c4 = 0x7fff7fff;
+    *(volatile u32 *)0x4000484 = 0;
+}
+
 void func_0210e3dc(void) {
     s32 v = *(s32 *)(data_0216280c + 8);
     if (v <= -0x10 || v >= 0x10) {
