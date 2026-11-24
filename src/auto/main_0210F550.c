@@ -44,6 +44,11 @@ void func_0210fd38(u32 *arg0, u32 arg1, u32 arg2, u32 arg3) {
     arg0[3] = arg3;
 }
 
+extern void *func_020c9c10(void *, u32);
+extern void func_020c7090(void *);
+extern u32 func_020c73b8(void *);
+extern void func_020c738c(void *, u32, u32);
+extern void func_0210fdc4(void *, u32, u32);
 extern void func_020c9940(void *);
 extern u8 data_02162b84[];
 extern s32 func_0210feb8(u32, u32, u32, u32, u32);
