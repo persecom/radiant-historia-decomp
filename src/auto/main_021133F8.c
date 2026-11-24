@@ -450,6 +450,32 @@ void func_02113da8(void) {
     }
 }
 
+void *func_02113fc0(void **arg0, s32 arg1, s32 arg2) {
+    u8 *slot = data_0216c424 + arg1 * 0x24;
+    void *res;
+    if (*arg0 != NULL) {
+        func_02113c18(arg0);
+    }
+    if (*(u16 *)(slot + 8) >= *(u32 *)(slot + 0x18)) {
+        u8 *node = func_02116958(slot, NULL);
+        if (node == NULL) {
+            return NULL;
+        }
+        if (arg2 < node[0x3d]) {
+            return NULL;
+        }
+        func_0211424c(node);
+    }
+    res = func_02114284(arg2);
+    if (res == NULL) {
+        return NULL;
+    }
+    func_021141a8(slot, res);
+    *(void ***)res = arg0;
+    *arg0 = res;
+    return res;
+}
+
 extern void func_021142f0();
 void func_0211405c(void) {
     func_021142f0();
@@ -469,17 +495,17 @@ void func_02114068(u8 *arg0) {
 }
 
 void func_021140b8(void *arg0p, s32 arg1) {
-    UnkEntry_0216bfe4 *arg0 = (UnkEntry_0216bfe4 *)arg0p;
-    if (arg0 == NULL || arg0->flag_2c == 0) {
+    u8 *arg0 = (u8 *)arg0p;
+    if (arg0 == NULL || arg0[0x2c] == 0) {
         return;
     }
     if (arg1 == 0) {
         func_0211424c();
         return;
     }
-    func_02116720((s32 *)((u8 *)arg0 + 0x1c), 0, arg1);
-    func_021143c0((u8 *)arg0, 0);
-    arg0->flag_2c = 2;
+    func_02116720((s32 *)(arg0 + 0x1c), 0, arg1);
+    func_021143c0(arg0, 0);
+    arg0[0x2c] = 2;
 }
 
 void *func_02114108(u32 arg0, u8 *arg1) {
