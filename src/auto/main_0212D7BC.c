@@ -101,6 +101,12 @@ void func_0212db44(s8 *arg0) {
     func_0212e588();
 }
 
+void func_0212db74(void *arg0) {
+    func_0212e5a0();
+    func_0212db90(arg0);
+    func_0212e5ac();
+}
+
 void func_0212db90(void *arg0) {
     s8 *r6 = (s8 *)arg0;
     func_0212dd4c(r6);
@@ -143,6 +149,20 @@ s32 func_0212dc40(void *arg0, s32 arg1) {
         *(s32 *)((u8 *)arg0 + 0x5c) = max;
     }
     return *(s32 *)((u8 *)arg0 + 0x5c);
+}
+
+void func_0212dc58(void *arg0) {
+    if (*(s32 *)((u8 *)arg0 + 0x18) == 0) {
+        *(u8 *)((u8 *)arg0 + 0x1) = 3;
+    } else {
+        *(u8 *)((u8 *)arg0 + 0x1) = 2;
+    }
+    *(s32 *)((u8 *)arg0 + 0x38) = 0;
+    *(s32 *)((u8 *)arg0 + 0x50) = 0;
+    *(u8 *)((u8 *)arg0 + 0x2) = 0;
+    *(s32 *)((u8 *)arg0 + 0x28) = 0;
+    *(s32 *)((u8 *)arg0 + 0x2c) = 0;
+    *(u8 *)((u8 *)arg0 + 0x4b) = 1;
 }
 
 void func_0212dce4(void *arg0) {
