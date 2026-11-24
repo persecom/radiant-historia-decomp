@@ -1,5 +1,6 @@
 /* 37 functions from 0x0212C824 to 0x0212D7BC (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { u32 head; void *ctx; void *obj; void *objs[2]; s32 pair[2]; s32 pairs[2][2]; s32 a,b,c,d,e,f,g; u32 pad[4]; void (*callback)(void *,s32,s32,s32); void *user; } Unk0212CFC4;
 typedef struct { s8 unk00[2]; s8 count; u8 unk03[9]; void *objs[4]; u8 unk1c[0x8c]; s32 unkA8; s32 remaining; } Unk0212D3B4;
 
 extern u8 data_02173df4[20];
@@ -41,6 +42,43 @@ s32 func_0212caec(u8 *arg0, s32 *arg1, s32 *arg2, s32 *arg3) {
         *arg3 = 0x1fffffff;
     }
     return func_0212a1d4(*(void **)(arg0 + 4));
+}
+
+s32 func_0212a1dc(void *);
+s32 func_0212a228(void *);
+u32 func_0212d70c(void *);
+void func_02137f80(void *, s32, void *, void *);
+void func_0212cfc4(void *arg) {
+u8 *p=arg;
+void *ctx=*(void **)(p+4);
+void *obj=*(void **)(p+8);
+s32 limit=func_0212a228(ctx);
+s32 a=func_0212a584(ctx);
+s32 b=func_0212a58c(ctx);
+s32 x[2], y[2];
+s32 i;
+if(func_0212a1dc(ctx)!=1 || func_0212d70c(p)!=1) {
+s32 rem=limit-*(s32 *)(p+0x34);
+b=b<rem?b:rem;
+}
+func_02137f80(p+0x14,a,x,y);
+(*(void (**)(void *,s32,void *))(*(u8 **)obj+0x20))(obj,0,x);
+(*(void (**)(void *,s32,void *))(*(u8 **)obj+0x1c))(obj,1,y);
+for(i=0;i<func_0212a1ec(*(void **)(p+4));i++){
+s32 one=1;
+func_02137f80(p+0x1c+i*8,b*2,x,y);
+if(*(void **)(p+0x58)) (*(void (**)(void *,s32,s32,s32))(p+0x58))(*(void **)(p+0x5c),i,x[0],x[1]);
+obj=*(void **)(p+i*4+0xc);
+(*(void (**)(void *,s32,void *))(*(u8 **)obj+0x20))(obj,one,x);
+obj=*(void **)(p+i*4+0xc);
+(*(void (**)(void *,s32,void *))(*(u8 **)obj+0x1c))(obj,0,y);
+}
+*(s32 *)(p+0x2c)+=b;
+*(s32 *)(p+0x30)+=a;
+*(s32 *)(p+0x34)+=b;
+*(s32 *)(p+0x40)+=b;
+*(s32 *)(p+0x44)+=a;
+func_0212a558(ctx);
 }
 
 void func_0212d168(u8 *arg0) {
