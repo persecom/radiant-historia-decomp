@@ -39,6 +39,21 @@ s32 func_020182e4(const char *str, char **endptr, s32 base) {
     return negative ? -result : result;
 }
 
+s32 func_02018378(const char *str, char **endptr, s32 base) {
+ u32 result;
+ s32 chars_scanned,negative,overflow;
+ Input_02018378 isc;
+ isc.p=str;isc.n=0;
+ result=func_02017f74(base,0x7fffffff,(void *)func_02016c84,&isc,&chars_scanned,&negative,&overflow);
+ if(endptr) *endptr=(char *)str+chars_scanned;
+ if(overflow || (!negative && result>0x7fffffff) || (negative && result>0x80000000)) {
+ result=negative ? (s32)0x80000000 : 0x7fffffff;
+ data_02160034=0x22;
+ return result;
+ }
+ return negative ? -result : result;
+}
+
 void func_02018830(void *arg0) {
     func_02018378(arg0, 0, 0xa);
 }
