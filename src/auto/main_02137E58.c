@@ -83,6 +83,10 @@ void func_0213825c(void *arg0, void *arg1) {
     func_0213808c();
 }
 
+void func_021384a0(void) {
+    func_0213841c(0);
+}
+
 extern void func_0213841c(s32);
 void func_021384b0(void) {
     func_0213841c(1);
