@@ -23,3 +23,8 @@ extern void func_020a9544(void *);
 extern void func_020e1ec8(void *, s32);
 extern void func_020a8810(void *, u32);
 extern void func_020e24bc(void *, s32, s32, s32, s32);
+
+void func_020d64c8(Struct020d64c8 *arg0) {
+    s16 *p = func_02022494(arg0, 0);
+    arg0->unk_52 = *p;
+}
