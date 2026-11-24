@@ -218,6 +218,21 @@ void func_02125448(void) {
     } while (func_021253e8((u8 *)data_02173180));
 }
 
+s32 func_021254a8(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    u8 *node;
+    if (func_02125074((u8 *)data_02173180) != 0) {
+        return 0;
+    }
+    node = func_021253d8((u8 *)data_02173180);
+    *(s32 *)(node + 0) = arg0;
+    *(s32 *)(node + 4) = arg2;
+    *(s32 *)(node + 8) = arg1;
+    *(s32 *)(node + 0xc) = arg3;
+    func_0212538c((u8 *)data_02173180);
+    *(s32 *)((u8 *)data_02173180 + 0x10) += *(s32 *)(node + 0xc);
+    return 1;
+}
+
 void func_02125510(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     func_02125524(arg0, arg1, arg2, arg3, 0);
 }
