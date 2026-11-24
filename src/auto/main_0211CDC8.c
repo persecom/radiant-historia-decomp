@@ -6,6 +6,7 @@ extern u8 data_0217032c[];
 extern u8 data_02170248[];
 extern u8 data_021702fc[];
 extern u8 data_021702b8[];
+extern u8 data_0217035c[];
 extern void func_02001194(u8 *, u8 *);
 extern void func_02001508(u8 *, u8 *, u8 *);
 extern void func_02001160(u8 *, u8 *, u32, u32, u32);
@@ -152,11 +153,13 @@ void func_0211d49c(u8 *arg0) {
     u8 *dict = mat + *(u16 *)(mat + 2);
     u32 i;
     for (i = 0; i < *(u8 *)(dict + 1); i++) {
-        u8 *entry = NULL;
+        u8 *entry;
         if (dict != NULL && i < *(u8 *)(dict + 1)) {
             u16 ofs = *(u16 *)(dict + 6);
             u16 unit = *(u16 *)(dict + ofs);
             entry = (dict + ofs + 4) + unit * i;
+        } else {
+            entry = NULL;
         }
         if (entry[3] & 1) {
             entry[3] &= ~1;
@@ -168,18 +171,24 @@ s32 func_0211d520(u8 *arg0, void *arg1) {
     s32 ret = 1;
     u32 i;
     for (i = 0; i < *(u8 *)(arg0 + 9); i++) {
-        u8 *mdl = NULL;
+        u8 *mdl;
         if (arg0 != NULL) {
             u8 *dict = arg0 + 8;
-            u32 *entry = NULL;
-            if (dict != NULL && i < *(u8 *)(dict + 1)) {
-                u16 ofs = *(u16 *)(dict + 6);
+            u32 *entry;
+            if (dict != NULL && i < *(u8 *)(arg0 + 9)) {
+                u16 ofs = *(u16 *)(arg0 + 0xe);
                 u16 unit = *(u16 *)(dict + ofs);
                 entry = (u32 *)((dict + ofs + 4) + unit * i);
+            } else {
+                entry = NULL;
             }
             if (entry != NULL) {
                 mdl = arg0 + *entry;
+            } else {
+                mdl = NULL;
             }
+        } else {
+            mdl = NULL;
         }
         ret &= func_0211d144(mdl, arg1);
         ret &= func_0211d3a0(mdl, arg1);
@@ -190,18 +199,24 @@ s32 func_0211d520(u8 *arg0, void *arg1) {
 void func_0211d5d0(u8 *arg0) {
     u32 i;
     for (i = 0; i < *(u8 *)(arg0 + 9); i++) {
-        u8 *mdl = NULL;
+        u8 *mdl;
         if (arg0 != NULL) {
             u8 *dict = arg0 + 8;
-            u32 *entry = NULL;
-            if (dict != NULL && i < *(u8 *)(dict + 1)) {
-                u16 ofs = *(u16 *)(dict + 6);
+            u32 *entry;
+            if (dict != NULL && i < *(u8 *)(arg0 + 9)) {
+                u16 ofs = *(u16 *)(arg0 + 0xe);
                 u16 unit = *(u16 *)(dict + ofs);
                 entry = (u32 *)((dict + ofs + 4) + unit * i);
+            } else {
+                entry = NULL;
             }
             if (entry != NULL) {
                 mdl = arg0 + *entry;
+            } else {
+                mdl = NULL;
             }
+        } else {
+            mdl = NULL;
         }
         func_0211d238(mdl);
         func_0211d49c(mdl);
@@ -209,9 +224,10 @@ void func_0211d5d0(u8 *arg0) {
 }
 
 void func_0211d7a4(void) {
-    func_021205ec(*(u32 *)data_021701fc, data_021701fc + 4, 0x3e);
-    *(u32 *)(data_021701fc + 0xfc) &= ~1;
-    *(u32 *)(data_021701fc + 0xfc) &= ~2;
+    u8 *p = data_021701fc;
+    func_021205ec(*(u32 *)p, p + 4, 0x3e);
+    *(u32 *)(p + 0xfc) &= ~1;
+    *(u32 *)(p + 0xfc) &= ~2;
 }
 
 void *func_0211d878(void) {
