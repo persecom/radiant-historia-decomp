@@ -27,6 +27,13 @@ s32 func_021185b8(s32 *arg0, s32 arg1) {
     return arg0[arg1];
 }
 
+void func_02118e68(s32 *arg0) {
+    s32 i;
+    for (i = 0; i < 3; i++) {
+        arg0[i] = -1;
+    }
+}
+
 extern void func_02117e4c(void *);
 extern void func_02118f24(void *);
 void func_021190bc(void *arg0) {
