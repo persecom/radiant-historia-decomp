@@ -129,6 +129,10 @@ void func_0210db40(s32 arg0) {
     func_0210d92c(data_02162898, arg0);
 }
 
+void func_0210db58(s32 arg0) {
+    func_0210d9ac(data_02162898, arg0);
+}
+
 void func_0210db70(u8 *arg0) {
     u8 *list = (*(s32 *)(data_0216280c + 0x44) == 0) ? data_021628a4 : data_0216288c;
     func_0210d92c(list, arg0);
