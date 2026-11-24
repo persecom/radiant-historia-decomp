@@ -1,5 +1,11 @@
 /* 9 functions from 0x020783E8 to 0x02079374 (main), found by ds-decomp. */
 #include "common.h"
+extern u64 data_02162658[3];
+static inline u32 random_02078e1c(u32 limit) {
+    u64 value = data_02162658[1] * data_02162658[0] + data_02162658[2];
+    data_02162658[0] = value;
+    return (u32)(((u64)(u32)(value >> 32) * limit) >> 32);
+}
 extern u32 data_0216263c[3];
 extern u32 data_0216244c[43];
 extern u64 data_02162658[3];
@@ -71,6 +77,31 @@ s32 func_02078d8c(Obj_02078d8c *obj, s32 arg1) {
     return 0;
 }
 
+void func_02078e1c(void) {
+u8 i;
+for(i=0;i<8;i++) {
+u32 x=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
+u16 r;
+data_0216263c[0]=x;
+r=((x>>16)*8)>>16;
+if(r-4==0) {
+Vec3_02078d8c v=*(Vec3_02078d8c *)data_0216244c;
+u64 a=data_02162658[0], b=data_02162658[1], c=data_02162658[2];
+u64 t=b*a+c;
+u32 r1=(u32)(((u64)(u32)(t>>32)*0x180000u)>>32);
+u64 res;
+v.y=0;
+v.x+=r1-0xc0000;
+data_02162658[0]=t;
+res=b*t+c;
+v.z+=(u32)(((u64)(u32)(res>>32)*0x200000u)>>32)-0x100000;
+v.z-=0x10000;
+data_02162658[0]=res;
+func_0206e8f0(0x77,&v,2);
+}
+}
+}
+
 void func_02078f58(void) {
 u8 i;
 for(i=0;i<8;i++) {
@@ -79,15 +110,17 @@ u16 r;
 Vec3_02078d8c v;
 data_0216263c[0]=x;
 r=((x>>16)*4)>>16;
-if(r==2) {
+switch(r) {
+case 2:
 v=*(Vec3_02078d8c *)data_0216244c;
-v.y=0;
 data_02162658[0]=data_02162658[1]*data_02162658[0]+data_02162658[2];
+v.y=0;
 v.x+=(s32)(((u64)(u32)(data_02162658[0]>>32)*0x1c0000)>>32)-0x120000;
 data_02162658[0]=data_02162658[1]*data_02162658[0]+data_02162658[2];
 v.z+=(s32)(((u64)(u32)(data_02162658[0]>>32)*0x200000)>>32)-0x100000;
 v.z-=0x40000;
 func_0206e8f0(0x78,&v,2);
+break;
 }
 }
 }
