@@ -12,6 +12,24 @@ void func_02116674(void *arg0) {
     func_0200813c(irq);
 }
 
+void* func_02117008(void* heap, u32 size, s32 alignment)
+{
+    extern void* func_02116d7c(void*, u32, s32);
+    extern void* func_02116e30(void*, u32, s32);
+
+    if (size == 0) {
+        size = 1;
+    }
+
+    size = (size + 3) & ~3;
+
+    if (alignment >= 0) {
+        return func_02116d7c(heap, size, alignment);
+    } else {
+        return func_02116e30(heap, size, -alignment);
+    }
+}
+
 u16 func_02117078(void *arg0, u16 arg1) {
     u16 old = *(u16 *)((u8 *)arg0 + 0x34);
     *(u16 *)((u8 *)arg0 + 0x34) = arg1;
