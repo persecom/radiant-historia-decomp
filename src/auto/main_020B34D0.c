@@ -43,7 +43,7 @@ void func_020b35e8(void) {
  switch(p[0x3442]){
  case 0:break;
  case 1:func_020b0ca0();func_020b2520(q,*(u32 *)(p+0x3438),p[0x3442]);break;
- case 2:func_020b0ca0();func_020b2aac(q);goto update;
+ case 2:func_020b0ca0();func_020b2aac(q);func_020b2520(q,*(u32 *)(p+0x3438),p[0x3442]);break;
  case 3:func_020b0ca0();func_020b33b8(q);break;
  case 4:func_020b0ca0();func_020b34d0(q);break;
  }
@@ -51,8 +51,8 @@ void func_020b35e8(void) {
  switch(p[0x3442]){
  case 0:break;
  case 1:
- select:func_020b0ca0();
- update:func_020b2520(q,*(u32 *)(p+0x3438),p[0x3442]);break;
+ func_020b0ca0();
+ func_020b2520(q,*(u32 *)(p+0x3438),p[0x3442]);break;
  }
  }
  func_020b0e08(p,q);func_020b1254(q);
