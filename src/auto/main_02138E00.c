@@ -1,5 +1,8 @@
 /* 26 functions from 0x02138E00 to 0x02139CDC (main), found by ds-decomp. */
 #include "common.h"
+extern char data_0215cc38[];
+extern void func_021394f8(u8 *,u8 *,s32,u8);
+extern void func_02139784(u8 *);
 
 extern char data_0215cab0[];
 extern char data_0215cae0[];
