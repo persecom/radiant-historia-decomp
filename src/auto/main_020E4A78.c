@@ -88,3 +88,8 @@ u16 func_020e4ba8(void) {
     return 1;
 }
 
+void func_020e57e8(void *arg0) {
+    s32 val = func_020e55d8((u8)*(u16 *)((u8 *)arg0 + 0x90));
+    func_02064cb8(*(void **)((u8 *)arg0 + 0x11c), val);
+}
+
