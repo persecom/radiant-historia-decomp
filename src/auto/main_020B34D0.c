@@ -20,6 +20,10 @@ u8 *func_020b3880(void) {
     return ((u8 **)&data_021601e0)[1];
 }
 
+u8 *func_020b3890(void) {
+    return func_020b3880() + 0x708;
+}
+
 void func_020b3908(void) {
     func_020b3890();
 }
