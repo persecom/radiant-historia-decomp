@@ -3,6 +3,7 @@
 
 extern u8 data_04000247;
 extern u8 data_0215d144[20];
+extern u16 data_0215d158;
 extern u32 func_02008128(void);
 extern void func_02008454(void);
 extern void func_020081a4(u32);
@@ -135,6 +136,39 @@ void func_02007e58(u8 *alarm, s16 count, s16 delay, void *handler, void *arg) {
     func_0200813c(enabled);
 }
 
+s32 func_0200808c(u8 *arg0, s32 arg1, s32 arg2) {
+    s32 a = arg1 - *(s32 *)(arg0 + 0xc);
+    s32 b = arg2 - *(s16 *)(arg0 + 0x10);
+    if (a < 0) {
+        s16 lim = *(s16 *)(arg0 + 0x12);
+        if (b < 0) {
+            a = b + 7;
+            b = a + 0x100;
+        }
+        if (b <= lim) {
+            return 1;
+        }
+        return 2;
+    }
+    if (a != 0) {
+        return 2;
+    }
+    if (b >= 0) {
+        return 2;
+    }
+    return 0;
+}
+
+u32 func_020080d8(u32 arg0) {
+    u32 irq = func_02008128();
+    if (arg0 < *(u32 *)(data_0215d144 + 4)) {
+        *(u32 *)(data_0215d144 + 8) += 1;
+    }
+    *(u32 *)(data_0215d144 + 4) = arg0;
+    func_0200813c(irq);
+    return *(u32 *)(data_0215d144 + 8);
+}
+
 u32 func_02008198(u32 x) {
     do {
         x -= 4;
@@ -149,6 +183,11 @@ void func_020081a4(u32 arg0) {
     if (x > 0x10) {
         func_02008198(x - 0x10);
     }
+}
+
+void func_020081c0(void) {
+    WaitByLoop(1);
+    func_02005650(1, 1);
 }
 
 u16 func_020081e0(void) {
