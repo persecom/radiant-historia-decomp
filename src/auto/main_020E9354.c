@@ -255,6 +255,30 @@ void func_020e9f44(void) {
     }
 }
 
+extern void *func_020ea100(void);
+extern void func_020ea188(void *, u32, s32);
+extern void func_020ea5d4(void *, s32);
+u8 *func_020e9fe8(u32 arg0, u32 arg1) {
+    u8 *r6;
+    if (arg0 > 0x1b58 && arg0 < 0x1b5c) {
+        r6 = func_020ea100();
+        func_020ea188(r6, arg0, 0);
+    } else if (arg0 > 0x1770 && arg0 < 0x1786) {
+        r6 = func_020ea100();
+        func_020ea188(r6, arg0, 1);
+    } else {
+        return NULL;
+    }
+    *(u32 *)(r6 + 0x4) = arg0;
+    *(u32 *)(r6 + 0x8) = arg1;
+    func_020ea5d4(r6, 0);
+    func_021167f0(data_02160a80 + 0x3c, r6);
+    if (arg1 > 0xbb8 && arg1 < 0xfa0) {
+        func_021167f0(data_02160a80 + 0x48, r6);
+    }
+    return r6;
+}
+
 u32 *func_020ea0b8(s32 arg0) {
     u8 *base = data_02160a80;
     u32 *node;
