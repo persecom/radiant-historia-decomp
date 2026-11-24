@@ -7,10 +7,12 @@ extern void func_0210d27c(s32);
 extern void func_020abf3c(void);
 extern void func_020aed5c(s32);
 extern void func_020ade30(s32);
+#pragma optimization_level 0
 static inline void ACSetSelection(u8 *self, s32 value) {
 *(s32 *)(self+0x3438)=value;
 if(value==2)func_020aed5c(0);
 }
+#pragma optimization_level 4
 
 s32 func_020ac0b0(u8 *self) {
 s32 *state=func_020b442c(self);
@@ -31,8 +33,7 @@ func_0210d27c(11);*(s32 *)(self+0x3438)=1;state[0]=-1;func_020abf3c();return 1;
 s32 selected=2;
 if(func_020abf5c(x,151,width,height,zero)) {
 if(state[0]!=2) {
-func_0210d27c(selected);*(s32 *)(self+0x3438)=selected;
-if(selected==2)func_020aed5c(0);
+func_0210d27c(selected);ACSetSelection(self,selected);
 state[0]=selected;
 } else if(state[2]==1) {
 func_0210d27c(5);*(s32 *)(self+0x3438)=selected;state[0]=-1;func_020abf3c();return 3;
