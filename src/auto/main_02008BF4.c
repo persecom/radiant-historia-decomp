@@ -253,6 +253,19 @@ void func_020097d0(u32 arg0) {
     func_020097f0(0x16, arg0, 0, 0, 0);
 }
 
+void func_020097f0(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
+    u32 *cmd = func_02009a64(1);
+    if (cmd == NULL) {
+        return;
+    }
+    cmd[1] = arg0;
+    cmd[2] = arg1;
+    cmd[3] = arg2;
+    cmd[4] = arg3;
+    cmd[5] = arg4;
+    func_02009aec(cmd);
+}
+
 s32 func_0200986c(void) {
     return func_02006afc(&data_0215d1a0);
 }
