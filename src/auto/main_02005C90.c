@@ -57,7 +57,8 @@ extern void func_02006478();
 extern void func_02006510(void *);
 extern void func_020060b8(void);
 s32 func_02005d2c(u16 arg0) {
-    return func_02005d0c(arg0);
+    s32 (*fp)(u16) = func_02005d0c;
+    return fp(arg0);
 }
 
 extern void func_02005d58(void);
@@ -395,5 +396,10 @@ void func_020067c8(void) {
 extern void func_02005ea8(s32, const char *, char *);
 void func_0200683c(u8 *arg0, u32 arg1) {
     *(u32 *)(arg0 + 0xb4) = arg1;
+}
+
+extern void func_02006c38(void *, u32);
+void func_02006b4c(void *arg0) {
+    func_02006c38(arg0, 0x10000000);
 }
 
