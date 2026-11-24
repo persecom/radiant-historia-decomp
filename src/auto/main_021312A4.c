@@ -257,6 +257,40 @@ sum+=*coef++ * base[-32];
  }while(--count>0);
 }
 
+void func_02131e2c(s16 *p, s16 *coef, s16 *out) {
+    int count = 32;
+    int sum;
+    s16 *base;
+    int lo = -32768, hi = 32767;
+    do {
+        base = p;
+        sum = 0;
+        sum += *coef++ * *p++;
+        sum += *coef++ * base[96];
+        sum += *coef++ * base[128];
+        sum += *coef++ * base[224];
+        sum += *coef++ * base[-768];
+        sum += *coef++ * base[-672];
+        sum += *coef++ * base[-640];
+        sum += *coef++ * base[-544];
+        sum += *coef++ * base[-512];
+        sum += *coef++ * base[-416];
+        sum += *coef++ * base[-384];
+        sum += *coef++ * base[-288];
+        sum += *coef++ * base[-256];
+        sum += *coef++ * base[-160];
+        sum += *coef++ * base[-128];
+        sum += *coef++ * base[-32];
+        if (sum > 0x3fff800) {
+            *out++ = hi;
+        } else if (sum < -0x4000000) {
+            *out++ = lo;
+        } else {
+            *out++ = sum >> 11;
+        }
+    } while (--count > 0);
+}
+
 void func_02131f74(s16 *arg0, s16 *arg1, s16 *arg2) {
 s32 hi = 0x7fff; s32 lo = -0x8000; s32 n = 0x20;
 do { s16 *s = arg0; s32 acc = 0;
