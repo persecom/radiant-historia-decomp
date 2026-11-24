@@ -23,14 +23,14 @@ void func_020c0940(void *arg0) {
 
 s16 func_020c0954(u8 *arg0) {
     u32 tmp;
-    func_020dd9b4(arg0, &tmp);
+    s32 ret = func_020dd9b4(arg0, &tmp);
     if (*(s32 *)(*(u8 **)(arg0 + 0x108) + 0x14) != 0) {
         *(u32 *)(arg0 + 0x80) &= ~2;
         *(s32 *)(arg0 + 0xf8) = 1;
         arg0[0xa5] = 1;
         return -1;
     }
-    return func_02117d80();
+    return func_02117d80(ret);
 }
 
 s32 func_020c09b0(u8 *arg0, s32 arg1, s32 arg2) {
