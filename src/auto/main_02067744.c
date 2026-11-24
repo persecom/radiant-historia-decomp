@@ -40,6 +40,11 @@ typedef struct { Pair values[4]; } Directions_02067de0;
 typedef struct { Spawn values[7]; } Spawns_02067de0;
 typedef struct { Directions_02067de0 directions; Spawns_02067de0 spawn, temp; } Tables_02067de0;
 
+static inline u16 Random_02067de0(u32 limit) {
+    u32 seed=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
+    data_0216263c[0]=seed;
+    return (u16)(((seed>>16)*limit)>>16);
+}
 void func_02067de0(u8 *arg0)
 {
     Particle *p;
