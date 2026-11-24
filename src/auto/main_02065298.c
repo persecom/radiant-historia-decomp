@@ -91,6 +91,65 @@ u16 func_02065958(u8 *arg0, s32 arg1) {
     return (u16)ret;
 }
 
+extern u64 func_02007904(void);
+extern void func_021167ac(void *, s32);
+extern void func_021091b4(void);
+extern char data_021466c8[];
+extern void *func_02065624(u16, s32, void *);
+extern void func_021167f0(void *, void *);
+extern void func_02064c80(void *);
+extern void func_021168f8(void *, void *);
+void func_02065a30(void) {
+    struct {
+        void *head;
+        void *tail;
+        u16 count;
+        u16 pad;
+    } list;
+    u64 t;
+    u8 *r5;
+    u8 *node;
+    u8 *next;
+    u16 i;
+    s16 idx;
+    void *r6;
+
+    t = func_02007904();
+    *(u64 *)((u8 *)data_021600c8 + 0x10) = t;
+    *(u64 *)((u8 *)data_021600c8 + 0x8) = t;
+    func_021167ac(&list, 0x30);
+    data_021600c8[0] = func_0210c594(4, data_02155c3c);
+    func_021091b4();
+    *data_021600c8[0] = func_02064be8();
+    r5 = *data_021600c8[0];
+    r6 = func_021092d8(data_021466c8);
+    for (i = 1; i < 0x33; i++) {
+        node = func_02065624(i, 5, r6);
+        if (node != NULL) {
+            if (*(s16 *)(node + 0x26) != 0) {
+                func_021167f0(&list, node);
+            } else {
+                func_02064c80(node);
+            }
+        }
+    }
+    if (r6 != NULL) {
+        func_021093b0(r6);
+    }
+    idx = 0;
+    while (list.count != 0) {
+        for (node = list.head; node != NULL; node = next) {
+            next = *(u8 **)(node + 0x34);
+            if (*(s16 *)(node + 0x26) == idx) {
+                func_021168f8(&list, node);
+                func_021167f0(r5 + 4, node);
+                break;
+            }
+        }
+        idx++;
+    }
+}
+
 void func_02065b80(void) {
     if (data_021600c8[0] != NULL) {
         func_02064c18(*data_021600c8[0]);
