@@ -189,6 +189,18 @@ BOOL func_0200d460(u8 *arg0, void *arg1) {
     return ret;
 }
 
+extern s32 func_0200d15c(void *, void *, void *);
+BOOL func_0200d4a0(u8 *arg0, void *arg1) {
+    BOOL ret = FALSE;
+    u8 *arc = *(u8 **)(arg0 + 8);
+    if (*(const void **)(arc + 0x24) == data_0213e964) {
+        if (func_0200d15c(arc, arg0, arg1) == 0) {
+            ret = TRUE;
+        }
+    }
+    return ret;
+}
+
 u32 func_0200d524(u8 *arg0) {
     return *(u32 *)(arg0 + 0x24);
 }
