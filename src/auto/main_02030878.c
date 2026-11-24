@@ -26,5 +26,38 @@ extern void func_0210db70(void *);
 extern void func_021167ac(void *, s32);
 extern void func_02031724(void);
 
+void func_02031498(void) {
+    s32 i;
+    for (i = 0; i < 9; i++) {
+        u8 *entry = data_02160244[2 + i];
+        if (entry != NULL && (entry[0x1c] & 8) != 0) {
+            func_0202e874();
+        }
+    }
+}
+
+void func_020314dc(void *arg0, u16 arg1) {
+    u32 v0 = *(u32 *)arg0;
+    u32 v4 = *(u32 *)((u8 *)arg0 + 4);
+    u32 vc = *(u32 *)((u8 *)arg0 + 0xc);
+    u8 *node = func_0203165c(*(u8 *)arg0 + 0xc, 0, 0, 0, arg1);
+    node[0x18] |= 9;
+    *(u16 *)(node + 0x20) = arg1;
+    *(u32 *)(node + 0xc) = v0;
+    *(u32 *)(node + 0x10) = v4 + 0x40000;
+    *(u32 *)(node + 0x14) = vc;
+}
+
+void func_02031534(u8 *arg0) {
+    void *node = func_02031c24((u8)(arg0[0] + 0xc));
+    if (node == NULL) {
+        return;
+    }
+    func_021168f8((u8 *)data_0216008c + 0x2c, node);
+    if (node != NULL) {
+        func_0210c5dc(node);
+    }
+}
+
 void func_02031658(void) {
 }
