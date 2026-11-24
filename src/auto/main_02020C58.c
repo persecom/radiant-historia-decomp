@@ -86,6 +86,11 @@ void func_02021340(s32 arg0) {
     (void)arg0;
 }
 
+void func_02021514(void) {
+    u32 *p = data_02160078;
+    func_020213c4(p + 4, 0x1688, p[2]);
+}
+
 s32 func_02021a28(void) {
     return func_02021428(&func_02021618);
 }
