@@ -35,6 +35,27 @@ void func_020b9990(void) {
     *(s32 *)(p + 0x5c) = 0xfa000;
 }
 
+void func_020b99d8(void) {
+u8 *p=data_021601ec;
+u8 *obj=func_020c9c10(*(void **)(p+0x4c),2);
+s32 val=(*(s32 *)(p+0x5c)*60)/100;
+*(s32 *)(p+0x5c)=val;
+((void (*)(u8 *,s32))(*(void **)(obj+0x10)))(obj,(s16)((val>>12)-0xe6));
+((void (*)(u8 *,s32))(*(void **)(obj+0x14)))(obj,0x19);
+obj=func_020c9c10(*(void **)(p+0x4c),0xd);
+val=(*(s32 *)(p+0x5c)*60)/100;
+*(s32 *)(p+0x5c)=val;
+((void (*)(u8 *,s32))(*(void **)(obj+0x10)))(obj,(s16)((val>>12)-0xe6));
+obj=func_020c9c10(*(void **)(p+0x4c),0xe);
+val=(*(s32 *)(p+0x5c)*60)/100;
+*(s32 *)(p+0x5c)=val;
+((void (*)(u8 *,s32))(*(void **)(obj+0x10)))(obj,(s16)((val>>12)-0xca));
+if(*(s32 *)(p+0x5c)<0x800) {
+*(s32 *)(p+0x40)=0;
+func_020b8aac();
+}
+}
+
 void func_020b9ad8(void) {
     *(s32 *)(data_021601ec + 0x5c) = 0xe6000;
 }
