@@ -35,6 +35,8 @@ extern u32 data_02155c18[];
 extern u8 data_02162618[];
 extern u8 data_02162624[];
 extern u8 data_02162648[];
+extern void func_02120bb0(void *);
+static inline void call_bb0_0210b27c(u8 *field, void *data) { func_02120bb0(data); }
 extern u8 *func_02120fe4(s32, s32);
 extern u8 *func_02120b8c(void *, u8 *, u32);
 
@@ -351,6 +353,33 @@ s32 func_0210b130(u8 *arg0, s32 arg1) {
         ret = 1;
     }
     return ret;
+}
+
+extern void func_0211cd24(u8 *, u8 *);
+extern void func_02120bb0(void *);
+u8 *func_0210b27c(u8 *arg0, s32 arg1) {
+    if (*(u8 **)(arg0 + 0xfc) != NULL) {
+        func_0211cd24(arg0, *(u8 **)(arg0 + 0xfc));
+    }
+    if (*(u8 **)(arg0 + 0x100) != NULL) {
+        func_0211cd24(arg0, *(u8 **)(arg0 + 0x100));
+    }
+    if (arg1 != 0) {
+        u32 field = *(u32 *)(arg0 + 0xfc);
+        if (field != 0) {
+            func_02120bb0(data_02162648);
+        }
+        field = *(u32 *)(arg0 + 0x100);
+        if (field != 0) {
+            func_02120bb0(data_02162648);
+        }
+    }
+    {
+        u8 *p = arg0 + 0x100;
+        *(volatile u16 *)(p + 0xa4) &= ~8;
+        *(volatile u16 *)(p + 0xa4) &= ~0x10;
+        return p;
+    }
 }
 
 extern void func_021167ac(void *, s32);
