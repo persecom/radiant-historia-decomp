@@ -6,6 +6,12 @@ void func_02107a94(void) {
     func_021254a8();
 }
 
+extern u32 data_02155984;
+extern s32 func_02108258(u32);
+s32 func_02108240(void) {
+    return func_02108258(data_02155984);
+}
+
 extern void func_0210c5dc(void *);
 void func_021088b4(void *arg0) {
     if (arg0 != NULL) {
