@@ -1,5 +1,11 @@
 /* 11 functions from 0x020EB180 to 0x020EC12C (main), found by ds-decomp. */
 #include "common.h"
+extern s32 data_02162834[3];
+void func_02117be0(void *, s32);
+void *func_021176b0(void *, u16);
+void func_02118eec(void *, s32);
+void func_02118e94(void *, s16, s16);
+void func_0211a7ec(s32, u32, u32);
 
 extern u8 *data_02160aa4;
 extern void (*data_02156154)(void *);
@@ -17,6 +23,54 @@ extern s32 func_021086d4();
 extern void *func_02117630(u8 *, u32);
 extern void func_0211903c(void *, void *, void *, void *, s32, s32, s32, s32, s32, s32);
 void func_020ebc94(u8 *, u32, s32);
+void func_020eb3dc(void);
+u32 func_02124cf8(u32, u32, u32);
+void func_0210db70(void *);
+void func_0210dbd0(void *);
+void func_020eb180(u32 arg0, s32 arg1) {
+ u32 mode = arg0;
+ u8 *p;
+ s32 enabled = arg1;
+ u32 zero = 0;
+ u8 **state = &data_02160aa4;
+ if ((*state) != 0) return;
+ (*state) = func_0210c594(0x44, data_02155c3c);
+ *(u32 *)((*state) + 0) = 0;
+ *(u32 *)((*state) + 4) = 0;
+ *(u32 *)((*state) + 8) = 0;
+ *(u32 *)((*state) + 12) = 0;
+ *(u32 *)((*state) + 16) = 0;
+ *(u32 *)((*state) + 20) = 0;
+ *(u32 *)((*state) + 0x18) = 1;
+ if (mode == 0) {
+ *(u32 *)((*state) + 0) = func_02124cf8(0x4000,zero,zero);
+ *(u32 *)((*state) + 4) = (u16)*(u32 *)((*state) + 0) * 8;
+ }
+ if (mode <= 1) {
+ *(u32 *)((*state) + 8) = func_02124cf8(0x8000,zero,zero);
+ p = (*state);
+ *(u32 *)(p + 12) = (u16)*(u32 *)(p + 8) * 8;
+ }
+ if (mode == 2) {
+ *(u32 *)((*state) + 8) = func_02124cf8(0x20000,zero,zero);
+ *(u32 *)((*state) + 12) = (u16)*(u32 *)((*state) + 8) * 8;
+ *(u32 *)((*state) + 16) = func_02124cf8(0x4000,zero,zero);
+ *(u32 *)((*state) + 20) = (u16)*(u32 *)((*state) + 16) * 8;
+ }
+ if (mode == 3) {
+ *(u32 *)((*state) + 8) = func_02124cf8(0x8000,zero,zero);
+ *(u32 *)((*state) + 12) = (u16)*(u32 *)((*state) + 8) * 8;
+ }
+ *(void (**)(void))((*state) + 0x1c) = func_020eb3dc;
+ *(u32 *)((*state) + 0x20) = 0x3eb;
+ func_0210db70((*state) + 0x1c);
+ if (enabled == 1) {
+ *(void (**)(void))((*state) + 0x30) = func_020eb3dc;
+ *(u32 *)((*state) + 0x34) = 0x3eb;
+ func_0210dbd0((*state) + 0x30);
+ }
+}
+
 void func_020eb344(s32 arg0, s32 arg1) {
     if (arg0 == 0) {
         data_02156154(*(void **)data_02160aa4);
