@@ -9,8 +9,9 @@ extern void func_02027004(void *, void *);
 extern u8 *func_0203222c(void);
 
 void func_0202b694(void) {
-    register s32 i asm("r5") = 0;
-    register u8 *node asm("r4");
+    u8 *node;
+    s32 i;
+    i = 0;
     node = func_0203222c();
     while (node != NULL) {
         u8 *p = *(u8 **)(node + 0);
