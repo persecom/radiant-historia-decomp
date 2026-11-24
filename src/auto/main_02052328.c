@@ -98,13 +98,13 @@ s32 func_020529ac(void *arg0, s32 arg1, s32 arg2) {
 }
 
 u32 func_02052a54(void *arg0, s32 arg1) {
-    s32 val;
+    s32 p;
     u32 ret = 0;
-    func_020dd9b4(arg0, &val);
-    if (val != 0) {
+    s32 a = func_020dd9b4(arg0, &p);
+    if (p != 0) {
         ret |= 2;
     }
-    if (arg1 == func_02117d80()) {
+    if (arg1 == func_02117d80(a)) {
         ret |= 1;
     }
     return ret;
