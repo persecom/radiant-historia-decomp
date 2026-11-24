@@ -19,6 +19,17 @@ extern void func_0210db70(void *);
 extern void func_02066eac(s32);
 extern void func_020bf768(void);
 extern void func_020bfb44(void);
+
+typedef struct Unk_020bf65c {
+    void (*unk00)(void);
+    s32 unk04;
+    u8 unk08[0xc];
+    void (*unk14)(void);
+    s32 unk18;
+    u8 unk1c[0xc];
+    u8 unk28[0xc];
+    s32 unk34;
+} Unk_020bf65c;
 extern u8 *data_02160214;
 extern void func_0210da14(void *);
 extern void func_0210dba0(void *);
@@ -86,6 +97,23 @@ void *func_020bf4dc(s32 arg0) {
     *(s32 *)(p + 0x4) = arg0;
     *(u32 *)(p + 0x24) = 0;
     return p;
+}
+
+void func_020bf65c(void) {
+    u8 *p;
+    if (data_02160214 != NULL) {
+        return;
+    }
+    data_02160214 = func_0210c594(0x38, data_02155c3c);
+    func_021167ac(data_02160214 + 0x28, 0x44);
+    *(u32 *)(data_02160214 + 0x34) = 0;
+    *(void **)(data_02160214 + 0x0) = (void *)func_020bf768;
+    *(u32 *)(data_02160214 + 0x4) = 0x3f6;
+    func_0210d9e4(data_02160214);
+    *(void **)(data_02160214 + 0x14) = (void *)func_020bfb44;
+    *(u32 *)(data_02160214 + 0x18) = *(u32 *)(data_02160214 + 0x4) - 0xc;
+    func_0210db70(data_02160214 + 0x14);
+    func_02066eac(1);
 }
 
 void func_020bf700(void) {
