@@ -37,6 +37,7 @@ typedef struct UnkStruct_0215d128 {
 
 extern u16 data_0215d124;
 extern u16 data_0215d128;
+extern u16 data_0215d138;
 extern void func_020077f8(s32);
 extern void func_0200789c(void);
 extern void func_020057e8(u32, void (*)(void));
@@ -190,8 +191,9 @@ void *func_02007278(void *arg0, void *arg1) {
     u8 *cur = (u8 *)arg0;
     u32 x, y;
 
-    if (cur != NULL) {
-        while ((u32)arg1 > (u32)cur) {
+    if (arg0 != NULL) {
+        while (1) {
+            if ((u32)arg1 <= (u32)cur) break;
             p = cur;
             cur = *(u8 **)(cur + 4);
             if (cur == NULL) break;
@@ -212,7 +214,7 @@ void *func_02007278(void *arg0, void *arg1) {
             }
         }
     }
-    if (p == NULL) return arg1;
+    if (p == NULL) goto ret_new;
     *(u8 **)(p + 4) = arg1;
     y = *(u32 *)(p + 8);
     if ((u8 *)p + y != arg1) return arg0;
@@ -222,6 +224,8 @@ void *func_02007278(void *arg0, void *arg1) {
         *(u8 **)cur = p;
     }
     return arg0;
+ret_new:
+    return arg1;
 }
 
 void func_02007428(s32 arg0, s32 arg1, void *arg2) {
