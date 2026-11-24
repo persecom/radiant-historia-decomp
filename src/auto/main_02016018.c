@@ -35,9 +35,32 @@ s32 func_02016c84(void *p, s32 ch, s32 act) {
     }
 }
 
+s32 func_02016cfc(s32 s_arg, const char *fmt, char *arg) {
+    const char *s = (const char *)s_arg;
+    struct {
+        const char *str;
+        s32 eof;
+    } isc;
+    isc.str = s;
+    if (s == NULL || *s == 0) {
+        return -1;
+    }
+    isc.eof = 0;
+    return func_02016018(func_02016c84, &isc, fmt, arg, 0);
+}
+
 void func_02016d50(s32 arg0, const char *arg1, ...) {
     char *vlist = (char *)((u32)&arg1 & ~3) + 4;
     func_02016cfc(arg0, arg1, vlist);
+}
+
+void func_02016d78(s32 a, s32 b, s32 c) {
+    void (*fn)(s32, s32, s32) = (void (*)(s32, s32, s32))data_02160038;
+    if (fn != NULL) {
+        fn(a, b, c);
+    } else {
+        func_02016da0();
+    }
 }
 
 void func_02016da0(void) {
