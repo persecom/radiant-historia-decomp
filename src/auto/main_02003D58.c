@@ -1,5 +1,6 @@
 /* 32 functions from 0x02003D58 to 0x02004CD4 (main), found by ds-decomp. */
 #include "common.h"
+extern u16 data_0215cd60[];
 
 extern void func_02004d70(u32);
 extern u32 data_0215cd40[8];
@@ -329,5 +330,34 @@ void func_02004810(u32 arg0) {
     if (arg0 & 0x100) {
         *(volatile u8 *)0x04000249 = 0x80;
     }
+}
+
+extern u16 data_0215cd60[];
+void func_02004bdc(u32 arg0) {
+    data_0215cd60[0] = (data_0215cd60[0] | data_0215cd60[7]) & ~arg0;
+    data_0215cd60[7] = arg0;
+    switch ((s32)arg0) {
+    case 0x10:
+        *(volatile u32 *)0x04000000 |= 0x40000000;
+        *(volatile u8 *)0x04000244 = 0x84;
+        break;
+    case 0x20:
+        *(volatile u32 *)0x04000000 |= 0x40000000;
+        *(volatile u8 *)0x04000245 = 0x84;
+        break;
+    case 0x40:
+        *(volatile u32 *)0x04000000 |= 0x40000000;
+        *(volatile u8 *)0x04000246 = 0x8c;
+        break;
+    case 0x60:
+        *(volatile u8 *)0x04000246 = 0x8c;
+        *(volatile u8 *)0x04000245 = 0x84;
+        *(volatile u32 *)0x04000000 |= 0x40000000;
+        break;
+    case 0:
+        *(volatile u32 *)0x04000000 &= ~0x40000000;
+        break;
+    }
+    func_02004810(data_0215cd60[0]);
 }
 
