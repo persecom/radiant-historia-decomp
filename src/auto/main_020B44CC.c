@@ -170,6 +170,16 @@ void func_020b4c00(u8 *arg0) {
     }
 }
 
+s32 func_020b4c60(u32 arg0, u32 arg1, u32 arg2, void *arg3, u8 arg4, u8 arg5) {
+    char buf[0x20];
+    if (arg4 == 0) {
+        func_02005e80(buf, data_02150ccc, arg0, arg1, arg2);
+    } else if (arg4 == 1) {
+        func_02005e80(buf, data_02150cf0, arg2, arg3);
+    }
+    return func_020b4b40(buf, arg3, arg5) != 0 ? 1 : 0;
+}
+
 void func_020b52e0(u32 arg0) {
     *(u32 *)(data_021601e8 + 0x14) = arg0;
 }
