@@ -131,6 +131,20 @@ void func_0213473c(void) {
     func_02135c78();
 }
 
+void func_02134844(u8 *arg0, s32 arg1) {
+    if (arg1 > 8) {
+        return;
+    }
+    *(s32 *)(data_021756d8 + 0x2bc) = arg1;
+    if (arg1 <= 0) {
+        return;
+    }
+    if (arg0 == NULL) {
+        return;
+    }
+    func_02013858(data_02175998, arg0, arg1);
+}
+
 extern void func_021146b8(void *);
 void func_02134bf0(u8 *arg0) {
     func_021146b8(arg0 + 0x34);
