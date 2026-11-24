@@ -12,6 +12,36 @@ extern void func_020a9d60(void *);
 extern void func_020a9b40(void *);
 
 extern void func_0210da44(void);
+void *func_020a94b8(s32 arg0) {
+    char buf[0x40];
+    void **ptr = func_0210c594(4, data_02155c3c);
+    if (ptr == NULL) {
+        return NULL;
+    }
+    func_02005e80(buf, data_02150098, arg0);
+    *ptr = func_02109b14(buf, 0);
+    if (*ptr == NULL) {
+        if (ptr != NULL) {
+            func_0210c5dc(ptr);
+        }
+        return NULL;
+    }
+    func_021091b4();
+    return ptr;
+}
+
+void func_020a9544(void **arg0) {
+    if (arg0 != NULL) {
+        if (*arg0 != NULL) {
+            func_0210c5dc(*arg0);
+            *arg0 = NULL;
+        }
+        if (arg0 != NULL) {
+            func_0210c5dc(arg0);
+        }
+    }
+}
+
 void func_020a98a0(void) {
     func_0210da44();
 }
