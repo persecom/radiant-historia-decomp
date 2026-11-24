@@ -295,6 +295,26 @@ void func_0200835c(void) {
     }
 }
 
+void func_02008390(u16 bank, u16 lockId) {
+    u32 workMap;
+    u32 enabled = func_02008128();
+    workMap = bank & data_0215d15c & 0x1ff;
+    while (1) {
+        s32 zeroBits = 31 - func_02008354(workMap);
+        u32 mask;
+        if (zeroBits < 0) {
+            break;
+        }
+        mask = ~(1 << zeroBits);
+        workMap &= mask;
+        if (data_0215d160[zeroBits] == lockId) {
+            data_0215d160[zeroBits] = 0;
+            data_0215d15c &= mask;
+        }
+    }
+    func_0200813c(enabled);
+}
+
 void func_02008444(void) {
     func_02008128();
     while (1) {
