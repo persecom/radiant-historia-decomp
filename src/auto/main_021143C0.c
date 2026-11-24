@@ -173,7 +173,7 @@ void func_02114818(void *arg0p) {
     u8 *arg0 = (u8 *)arg0p;
     if (((*(s32 *)(arg0 + 0x2c) << 30) >> 31) != 0) {
         s32 tag;
-        func_020095a8(*(void **)(arg0 + 0x4c), 0, 1 << *(s32 *)(arg0 + 0x48), 0);
+        func_020095a8(*(void **)(arg0 + 0x4c), 0, 1u << *(s32 *)(arg0 + 0x48), 0);
         func_0200f0e4(arg0 + 8);
         func_0200f0fc(arg0 + 0x18);
         *(u32 *)(arg0 + 0x2c) &= ~2u;
@@ -211,28 +211,32 @@ void func_021148cc(u8 *arg0, s32 arg1) {
 }
 
 void func_0211497c(u8 *arg0) {
-    if ((*(u32 *)(arg0 + 0x2c) & 2) == 0) {
+    s32 one = 1;
+    s32 v = *(s32 *)(arg0 + 0x2c);
+    if (((v << 30) >> 31) == 0) {
         return;
     }
-    func_020095a8((void *)(*(u32 *)(arg0 + 0x4c)), 0, 1 << *(u32 *)(arg0 + 0x48), 0);
+    func_020095a8((void *)(*(u32 *)(arg0 + 0x4c)), 0, one << *(u32 *)(arg0 + 0x48), 0);
     {
         s32 ret = func_02009d2c();
-        func_02009b24(1);
+        func_02009b24(one);
         func_02009cc0(ret);
     }
 }
 
 void func_021149c8(u8 *arg0) {
-    if ((*(u32 *)(arg0 + 0x2c) & 2) == 0) {
+    s32 one = 1;
+    s32 v = *(s32 *)(arg0 + 0x2c);
+    if (((v << 30) >> 31) == 0) {
         return;
     }
     if (*(u32 *)(arg0 + 0x40) != 0) {
         u32 irq = func_02008128();
-        func_021148cc(arg0, 1);
+        func_021148cc(arg0, one);
         func_0200813c(irq);
     }
     if (*(u32 *)(arg0 + 0x40) == 0) {
-        func_02009580((void *)(*(u32 *)(arg0 + 0x4c)), 0, 1 << *(u32 *)(arg0 + 0x48), 0);
+        func_02009580((void *)(*(u32 *)(arg0 + 0x4c)), 0, one << *(u32 *)(arg0 + 0x48), 0);
     }
 }
 
