@@ -204,6 +204,20 @@ void *func_02005f90(void **arg0, void *arg1) {
     return r2;
 }
 
+void *func_02005fe4(void **arg0) {
+    void *r2 = arg0[0];
+    if (r2 != NULL) {
+        void *r1 = *(void **)((u8 *)r2 + 0x10);
+        arg0[0] = r1;
+        if (r1 != NULL) {
+            *(void **)((u8 *)r1 + 0x14) = NULL;
+        } else {
+            arg0[1] = NULL;
+        }
+    }
+    return r2;
+}
+
 extern u32 data_0215cdf0[4];
 extern s32 func_02005c80(u16, void *, void *);
 extern void func_02005dd8(void);
