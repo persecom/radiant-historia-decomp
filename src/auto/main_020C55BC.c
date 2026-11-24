@@ -10,6 +10,25 @@ extern void func_020a5c40(void *, u16);
 extern void *func_0210c594(u32, u32);
 extern void *func_020e9fe8(void *, u16);
 extern void func_021167f0(void *, void *);
+
+typedef struct {
+    u8 pad[0x3c];
+    u32 field_3c;
+    u8 pad2[8];
+    s32 field_44;
+    s32 field_48;
+    u8 pad3[0x1c];
+    s8 field_68;
+    u8 pad4[7];
+    s32 field_70;
+    u8 pad5[0x54];
+    s32 field_c8;
+    u8 pad6[4];
+    s32 field_d0;
+    u8 pad7[0xd8];
+    u32 field_1ac;
+    u32 field_1b0;
+} Unk_020c627c;
 void func_020c6124(void) {
     u8 *ptr = data_021600e4;
     u16 *res = func_020a5f14(ptr + 0x124, *(u16 *)(ptr + 0xd4));
@@ -61,26 +80,34 @@ void func_020c6208(void) {
 void func_020c627c(void) {
     u8 *p = data_021600e4;
     u8 *obj;
-    s32 scale;
+    s32 a;
     s32 v1;
+    s32 t1;
+    s32 b;
+    s32 base1;
+    s32 scale;
     s32 v2;
-    s32 x;
-    s32 y;
+    s32 t2;
+    s32 base2;
     if (p == NULL) return;
     obj = func_020c61cc(0);
     if (obj == NULL) return;
     *(u32 *)(obj + 0x18) &= ~1;
     if ((*(u32 *)(p + 0x3c) & 2) != 0 || *(s8 *)(p + 0x68) != 1) return;
     *(u32 *)(obj + 0x18) |= 1;
+    a = *(s32 *)(p + 0xc8);
     scale = *(s32 *)(p + 0x70);
-    v1 = (*(s32 *)(p + 0xc8) >> 12) * scale;
-    v2 = (*(s32 *)(p + 0xd0) >> 12) * scale;
-    x = (*(s32 *)(p + 0x44) + v1 - 0x20) << 12;
-    y = (*(s32 *)(p + 0x48) + v2 + 0x14) << 12;
-    *(u32 *)(obj + 0x1c) = x;
-    *(u32 *)(obj + 0x20) = y;
-    *(u32 *)(p + 0x1ac) = x;
-    *(u32 *)(p + 0x1b0) = y;
+    v1 = (a >> 12) * scale;
+    t1 = v1 - 0x20;
+    b = *(s32 *)(p + 0xd0);
+    base1 = *(s32 *)(p + 0x44);
+    v2 = (b >> 12) * scale;
+    t2 = v2 + 0x14;
+    *(u32 *)(obj + 0x1c) = (base1 + t1) << 12;
+    base2 = *(s32 *)(p + 0x48);
+    *(u32 *)(obj + 0x20) = (base2 + t2) << 12;
+    *(u32 *)(p + 0x1ac) = *(u32 *)(obj + 0x1c);
+    *(u32 *)(p + 0x1b0) = *(u32 *)(obj + 0x20);
 }
 
 s32 func_020c6324(void) {
