@@ -14,3 +14,7 @@ void *func_020efb74(s32 arg0, s32 arg1) {
     }
     return (p + 0xBC8) + (arg1 * w + arg0) * 0xC;
 }
+
+void func_020efc54(void) {
+}
+
