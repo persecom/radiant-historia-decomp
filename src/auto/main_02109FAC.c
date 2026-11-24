@@ -170,25 +170,28 @@ s32 func_0210a39c(u32 *arg0, s32 arg1, u32 *arg2) {
 
 s32 func_0210a3d8(u8 *arg0, u8 *arg1, s32 arg2) {
     u32 local;
-    s32 start = func_02007904();
+    u32 start = func_02007904();
     s32 avail = func_0210a39c((u32 *)arg0, arg2, &local);
-    s32 written = 0;
+    s32 written;
     if (avail <= 0) {
         return avail;
     }
+    written = 0;
     for (;;) {
         func_0200bb10(data_021625c8, local, written);
         {
-            u32 elapsed = (func_02007904() - start) * 0x40;
-            u32 ticks = (u32)(((u64)elapsed * 0x7d269b01u) >> 46);
+            u32 elapsed = func_02007904() - start;
+            elapsed *= 0x40;
+            u32 ticks = (u32)(((u64)elapsed * 0x7d269b01ULL) >> 46);
             if (ticks > 0x28) {
                 func_021091b4();
                 if (avail == 0) {
                     break;
                 }
                 {
-                    s32 chunk = (avail >= 0x800) ? 0x800 : avail;
+                    s32 chunk = avail;
                     if (avail >= 0x800) {
+                        chunk = 0x800;
                         avail -= 0x800;
                     } else {
                         avail = written;
@@ -202,7 +205,7 @@ s32 func_0210a3d8(u8 *arg0, u8 *arg1, s32 arg2) {
             }
         }
     }
-    return avail;
+    return written;
 }
 
 u32 func_0210a498(u32 *arg) {
@@ -223,13 +226,11 @@ void *func_0210a4c0(void) {
     return data_02162614;
 }
 
-void func_0210a4cc(void) {
-    void *ptr = func_0210c594(0x34, data_02155c3c);
+void *func_0210a4cc(void) {
+    u8 *p = func_0210c594(0x34, data_02155c3c);
     func_02118594();
-    {
-        u32 *field = (u32 *)((u8 *)ptr + 0x24);
-        *field = 0;
-    }
+    *(u32 *)(p + 0x24) = 0;
+    return p;
 }
 
 extern u8 data_02155bf0[8];
