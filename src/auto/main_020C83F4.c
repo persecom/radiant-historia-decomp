@@ -1,5 +1,15 @@
 /* 52 functions from 0x020C83F4 to 0x020C93F4 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct Table_020c9000 { u16 v[6]; } Table_020c9000;
+extern const Table_020c9000 data_0214460c;
+extern u16 data_021626a6;
+s32 func_020c70c0(void *, u16);
+void func_020c9404(u8 *);
+s32 func_020c6fe4(void *);
+void func_020c96b4(u8 *, void *);
+u16 func_020c9744(u8 *, void *);
+void func_020c7090(void *, s32);
+void func_020c9348(u8 *, s32);
 typedef struct { s16 data[24]; } Unk_020c8c08;
 extern const Unk_020c8c08 data_02144618;
 static inline s32 contains_020c8650(s32 x, s32 y, s32 right, s32 bottom, s32 tx, s32 ty) { if(tx>=x && tx<=right && ty>=y && ty<=bottom) return 1; return 0; }
