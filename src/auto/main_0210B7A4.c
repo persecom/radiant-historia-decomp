@@ -161,6 +161,14 @@ u16 func_0210c060(void *arg0, u32 arg1) {
     return ~sum;
 }
 
+void func_0210c094(void *arg0, void *arg1, void *arg2, void *arg3) {
+    Vec a;
+    Vec b;
+    func_02002128(arg1, arg0, &a);
+    func_02002128(arg2, arg0, &b);
+    func_02002194(&a, &b, arg3);
+}
+
 extern void func_0210c094(void *, void *, void *, void *);
 s32 func_0210c1dc(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4) {
     s32 vec[3];
