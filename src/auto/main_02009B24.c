@@ -22,12 +22,6 @@ typedef union ChanCmd {
     u32 raw;
     ChanBits bits;
 } ChanCmd;
-
-static inline u32 chan_of(u32 cmd) {
-    ChanCmd c;
-    c.raw = cmd;
-    return c.bits.ch;
-}
 extern s32 func_02008128(void);
 extern void func_0200813c(s32);
 extern s32 func_02009964(s32);
