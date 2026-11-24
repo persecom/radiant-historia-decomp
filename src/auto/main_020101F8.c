@@ -425,24 +425,25 @@ BOOL func_02011054(void) {
     u32 buf2[2];
     u32 buf1[2];
     u8 val;
+    CtrdgInfo_02011054 *info = (CtrdgInfo_02011054 *)0x02fffc30;
+    CtrdgRom_02011054 *rom = (CtrdgRom_02011054 *)0x08000000;
 
     if (!func_02010ff8()) {
         return FALSE;
     }
-    if ((((u32)((u8 *)0x02fffc30)[5] << 30) >> 31) == 1) {
+    if (info->b1 == 1) {
         return FALSE;
     }
 
     func_020111d4(*(u16 *)(data_0215fa2c + 6), buf2);
     func_02011158((s32 *)buf1);
 
-    val = ((u8 *)0x08000000)[0xb2];
-    if ((val == 0x96 && *(u16 *)((u8 *)0x02fffc30 + 0) != *(u16 *)((u8 *)0x08000000 + 0xbe)) ||
-        (val != 0x96 && *(u16 *)((u8 *)0x02fffc30 + 0) != *(u16 *)0x0801fffe) ||
-        (*(u32 *)((u8 *)0x02fffc30 + 8) != *(u32 *)((u8 *)0x08000000 + 0xac) &&
-         (((u32)((u8 *)0x02fffc30)[5] << 31) >> 31) != 0)) {
+    val = rom->field_b2;
+    if ((val == 0x96 && info->field_0 != rom->field_be) ||
+        (val != 0x96 && info->field_0 != *(u16 *)0x0801fffe) ||
+        (info->field_8 != rom->field_ac && info->b0 != 0)) {
         ret = FALSE;
-        ((u8 *)0x02fffc30)[5] |= 2;
+        info->b1 = 1;
     }
 
     func_020111a0(buf1);
