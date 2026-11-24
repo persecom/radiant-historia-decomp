@@ -12,6 +12,9 @@ extern void func_021167f0(void *, void *);
 extern void func_021168f8(void *, void *);
 extern void func_0210c5dc(void *);
 extern void func_020a30d4(void);
+extern void func_020a2eb4(void);
+extern void func_020a2ee4(void);
+extern void func_0203be4c(void *);
 s32 func_020a3128(void);
 void func_020a29dc(u16 arg0) {
     void *p = func_0210c594(0x20, data_02155c3c);
