@@ -59,7 +59,10 @@ static inline void MI_CpuFill32(void *dest, u32 data, u32 size) {
 }
 
 static inline s32 is_valid_id(s32 id) {
-    return id != -1;
+    if (id != -1) {
+        return 1;
+    }
+    return 0;
 }
 
 void func_021191f0(void) {
@@ -197,8 +200,7 @@ void func_02119b34(u32 arg0) {
 
     if (*(u16 *)(p + 0x4e) == 0) {
         s32 f38 = *(s32 *)(p + 0x38);
-        s32 flag = (f38 != -1) ? 1 : 0;
-        if (flag != 0) {
+        if ((u8)(f38 != -1)) {
             *(s32 *)(data_02155eb0 + 4) = f38;
             func_02119728(f30);
             *(s32 *)(data_02155eb0 + 4) = -1;
@@ -211,8 +213,10 @@ void func_02119b34(u32 arg0) {
     func_02119f1c();
 
     if (*(u16 *)(p + 0x4e) & 8) {
-        s32 y = *(s16 *)(p + 0x4a);
-        s32 x = *(s16 *)(p + 0x48);
+        s32 x;
+        s32 y;
+        y = *(s16 *)(p + 0x4a);
+        x = *(s16 *)(p + 0x48);
         if (func_0211c5d4(data_0216f234.f8) != 0) {
             x = -x;
         }
@@ -233,8 +237,7 @@ void func_02119b34(u32 arg0) {
 
     {
         s32 f38 = *(s32 *)(p + 0x38);
-        s32 flag = (f38 != -1) ? 1 : 0;
-        if (flag != 0) {
+        if ((u8)(f38 != -1)) {
             *(s32 *)(data_02155eb0 + 4) = f38;
             func_02119728(f30);
             *(s32 *)(data_02155eb0 + 4) = -1;
