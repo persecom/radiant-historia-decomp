@@ -33,6 +33,74 @@ s32 func_0205a83c(void) {
     return 1;
 }
 
+extern void func_02025f84(void *, u16);
+extern void func_020263b4(void *, u16);
+void func_0205a8c8(void) {
+    u8 *cur = *(u8 **)(data_02160a6c + 0x70);
+
+    while (cur != NULL) {
+        u8 *sub = *(u8 **)(cur + 0x118);
+        if (*(u32 *)(sub + 0x70) != 0) {
+            u8 *list = *(u8 **)(sub + 0x60);
+            if (*(u16 *)list >= 1) {
+                u8 *node = *(u8 **)(list + 4);
+                while (node != NULL) {
+                    u8 *next = *(u8 **)(node + 0x14);
+                    switch (*(u16 *)node) {
+                    case 0x8c:
+                    case 0x8d:
+                    case 0x8e:
+                    case 0x8f:
+                    case 0x90:
+                    case 0x91:
+                    case 0x92:
+                    case 0x93:
+                    case 0x94:
+                    case 0x95:
+                    case 0x96:
+                    case 0x97:
+                    case 0x98:
+                    case 0x99:
+                    case 0x9a:
+                    case 0x9b:
+                    case 0x9c:
+                    case 0x9d:
+                    case 0x9e:
+                    case 0x9f:
+                    case 0xa0:
+                    case 0xa1:
+                    case 0xa5:
+                    case 0xad:
+                    case 0xae:
+                        if ((node[0xe] & 1) == 0) {
+                            ((s8 *)node)[0xa]--;
+                            if (((s8 *)node)[0xa] <= 0) {
+                                func_02025f84(cur, *(u16 *)node);
+                            }
+                        }
+                        break;
+                    case 0xa2:
+                    case 0xa3:
+                    case 0xa4:
+                    case 0xa7:
+                    case 0xa8:
+                    case 0xa9:
+                        if ((node[0xe] & 1) == 0) {
+                            ((s8 *)node)[0xa]--;
+                            if (((s8 *)node)[0xa] <= 0) {
+                                func_020263b4(cur, *(u16 *)node);
+                            }
+                        }
+                        break;
+                    }
+                    node = next;
+                }
+            }
+        }
+        cur = *(u8 **)(cur + 0x13c);
+    }
+}
+
 void func_0205b4e0(void) {
     u8 *p = *data_02160244;
     if (*(u8 *)(p + 0x3c) == 0) {
