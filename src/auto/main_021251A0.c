@@ -218,6 +218,10 @@ void func_02125448(void) {
     } while (func_021253e8((u8 *)data_02173180));
 }
 
+void func_02125510(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    func_02125524(arg0, arg1, arg2, arg3, 0);
+}
+
 s32 func_02125a5c(void *arg0) {
     s32 ret;
     if (!data_02173194) {
@@ -289,7 +293,8 @@ void func_02125bd4(void *arg0, s32 arg1) {
 
 void func_02125e20(void *arg0) {
     u8 *p = (u8 *)arg0;
-    if ((*(u32 *)(p + 0x28) & 0x10) ? 1 : 0) {
+    s32 flag = (*(u32 *)(p + 0x28) & 0x10) != 0;
+    if (flag != 0) {
         func_0200baa4(p + 0x1c);
     }
 }
