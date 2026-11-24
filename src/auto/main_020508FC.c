@@ -109,13 +109,14 @@ void func_02050b0c(u8 *arg0, s32 arg1) {
         }
     }
 }
-#pragma optimization_level reset
+#pragma optimization_level 0
 BOOL func_02050e2c(s32* arg0, s32* arg1, s32* arg2)
 {
     extern s32 func_02002404(s32, s32);
+    extern s32 func_0201fb1c(s32, s32);
     extern s16 data_0213a394[];
 
-    volatile struct {
+    struct {
         s32 projected[2];
         s32 scaled[2];
         s32 relative[2];
@@ -123,32 +124,19 @@ BOOL func_02050e2c(s32* arg0, s32* arg1, s32* arg2)
         s32 cross;
     } local;
 
-    register s32 percent;
-    register s32 angle;
-    register s32 normalX;
-    register s32 normalY;
-    s32 numerator;
-    s32 denominator;
+    s32 percent;
+    s32 angle;
+    s32 normalX;
+    s32 normalY;
 
-    local.direction[0] = ((volatile s32*)arg2)[0] -
-                         ((volatile s32*)arg1)[0];
+    local.direction[0] = arg2[0] - arg1[0];
+    local.direction[1] = arg2[1] - arg1[1];
+    local.relative[0] = arg0[0] - arg1[0];
+    local.relative[1] = arg0[1] - arg1[1];
 
-    local.direction[1] = ((volatile s32*)arg2)[1] -
-                         ((volatile s32*)arg1)[1];
-
-    local.relative[0] = ((volatile s32*)arg0)[0] -
-                        ((volatile s32*)arg1)[0];
-
-    local.relative[1] = ((volatile s32*)arg0)[1] -
-                        ((volatile s32*)arg1)[1];
-
-    numerator = (local.direction[0] * local.relative[0] +
-                 local.direction[1] * local.relative[1]) * 100;
-
-    denominator = local.direction[0] * local.direction[0] +
-                  local.direction[1] * local.direction[1];
-
-    percent = numerator / denominator;
+    percent = func_0201fb1c(
+        (local.direction[0] * local.relative[0] + local.direction[1] * local.relative[1]) * 100,
+        local.direction[0] * local.direction[0] + local.direction[1] * local.direction[1]);
 
     if ((f64)percent < 0.0 || (f64)percent > 100.0) {
         return FALSE;
@@ -156,35 +144,20 @@ BOOL func_02050e2c(s32* arg0, s32* arg1, s32* arg2)
 
     local.scaled[0] = (local.direction[0] * percent) / 100;
     local.scaled[1] = (local.direction[1] * percent) / 100;
+    local.projected[0] = arg1[0] + local.scaled[0];
+    local.projected[1] = arg1[1] + local.scaled[1];
 
-    local.projected[0] = ((volatile s32*)arg1)[0] +
-                         local.scaled[0];
-
-    local.projected[1] = ((volatile s32*)arg1)[1] +
-                         local.scaled[1];
-
-    angle = func_02002404(local.direction[0],
-                          local.direction[1]);
-
-    normalX = ((volatile s16*)data_0213a394)[
-        (((angle + 0x8000) % 0x10000) >> 4) * 2 + 1
-    ] >> 12;
-
-    normalY = ((volatile s16*)data_0213a394)[
-        (((angle + 0x8000) % 0x10000) >> 4) * 2
-    ] >> 12;
-
-    local.cross = local.direction[0] * local.relative[1] -
-                  local.direction[1] * local.relative[0];
+    angle = func_02002404(local.direction[0], local.direction[1]);
+    normalX = ((s16*)data_0213a394)[(((angle + 0x8000) % 0x10000) >> 4) * 2 + 1] >> 12;
+    normalY = ((s16*)data_0213a394)[(((angle + 0x8000) % 0x10000) >> 4) * 2] >> 12;
+    local.cross = local.direction[0] * local.relative[1] - local.direction[1] * local.relative[0];
 
     if (local.cross < 0) {
-        ((volatile s32*)arg0)[0] = local.projected[0] + normalX;
-        ((volatile s32*)arg0)[1] = local.projected[1] - normalY;
+        arg0[0] = local.projected[0] + normalX;
+        arg0[1] = local.projected[1] - normalY;
     } else {
-        ((volatile s32*)arg0)[0] = local.projected[0] - normalX;
-        ((volatile s32*)arg0)[1] = local.projected[1] + normalY;
+        arg0[0] = local.projected[0] - normalX;
+        arg0[1] = local.projected[1] + normalY;
     }
-
     return TRUE;
 }
-
