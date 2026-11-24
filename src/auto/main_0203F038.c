@@ -57,6 +57,38 @@ void func_0203faf4(void) {
     }
 }
 
+void *func_0203fb58(void *arg0, u16 arg1) {
+    void *result;
+    u8 *p1;
+    u8 *p2;
+    void *second;
+
+    p1 = func_0210c594(0x1c, data_02155c3c);
+    p2 = func_0210c594(0x10, data_02155c3c);
+    second = *(void **)((u8 *)arg0 + 4);
+    if (second == NULL) {
+        result = func_0203be60(p1, *(void **)arg0, *(void **)arg0);
+    } else {
+        result = func_0203be60(p1, *(void **)arg0, second);
+    }
+    if (result != NULL) {
+        *(s32 *)(p1 + 0x10) = *(s32 *)((u8 *)arg0 + 0x8);
+        *(s32 *)(p1 + 0x14) = *(s32 *)((u8 *)arg0 + 0xc);
+        *(s32 *)(p1 + 0x18) = *(s32 *)((u8 *)arg0 + 0x10);
+        *(void **)p2 = p1;
+        *(u16 *)(p2 + 0x4) = arg1;
+        func_021167f0(&data_021600a0->unk28, p2);
+    } else {
+        if (p1 != NULL) {
+            func_0210c5dc(p1);
+        }
+        if (p2 != NULL) {
+            func_0210c5dc(p2);
+        }
+    }
+    return result;
+}
+
 void func_0203fc18(u16 arg0) {
     UnkStruct_0203fc18 *p;
     UnkNode_0203fb58 *node;
