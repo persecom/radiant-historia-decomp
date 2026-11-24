@@ -19,6 +19,9 @@ extern s32 func_0210e848(void *, void *);
 extern void func_021091b4(void);
 extern char data_0214628c[8];
 extern char data_02146294[8];
+void func_0203c1f0(u8 *, s32);
+void func_0203bd68(u8 *, s32, s32, s32, s32, s32, s32, s32, s32);
+s32 func_0203be60(u8 *, s32, s32);
 void func_0203bc74(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, u8 arg6);
 void func_0203c0f4(u8 *arg0);
 void func_0203c20c(void);
@@ -103,17 +106,18 @@ void func_0203c168(u8 *arg0) {
 }
 
 void func_0203c1c0(u8 *arg0, void *arg1, s32 arg2) {
+    u8 *sub = arg0 + 4;
     func_0203c1f0(arg0, arg2);
-    *(void **)(arg0 + 4) = (void *)func_0203c20c;
-    *(void **)(arg0 + 8) = arg1;
+    *(void **)(sub + 0) = (void *)func_0203c20c;
+    *(void **)(sub + 4) = arg1;
     *(void **)(arg0 + 0xc) = arg0;
-    func_0210d9e4(arg0 + 4);
+    func_0210d9e4(sub);
 }
 
 void func_0203c20c(void) {
     u8 *p = data_02162880;
     s32 count = 0;
-    u8 *best = NULL;
+    u8 *best;
     s32 i;
     s32 n;
     p[0x2c] = 0;
@@ -122,6 +126,7 @@ void func_0203c20c(void) {
         return;
     }
     n = *(u16 *)(p + 0x3c);
+    best = NULL;
     for (i = 0; i < n; i++) {
         u8 *elem = ((u8 **)(*(void **)(p + 0x34)))[i];
         if (elem[0xb] == 0 && *(void **)(elem + 0x10) != NULL) {
