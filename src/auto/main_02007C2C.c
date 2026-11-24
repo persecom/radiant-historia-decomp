@@ -9,6 +9,13 @@ extern void func_020081a4(u32);
 extern u32 func_020081f0(void);
 extern void func_020059e4(u32);
 extern void func_02007ee4();
+extern void func_02008414(void);
+extern u32 func_020080d8(u32 arg0);
+extern void func_0200813c(u32 arg0);
+extern void func_020057e8(u32 irq, void (*handler)(void));
+extern void func_020026e0(s32 count);
+extern void func_020059b4(u32 irq);
+extern void func_02007f24(void);
 extern void func_02007dd4(u8 *);
 extern void func_02007ee4(void);
 void func_02007d18(void) {
@@ -73,6 +80,26 @@ void func_02007dd4(u8 *arg0) {
     }
     *(u32 *)(p + 0xc) = (u32)arg0;
     func_02007ee4();
+}
+
+void func_02007e0c(u8 *alarm) {
+    u8 *prev;
+    u8 *next;
+    if (alarm == NULL) {
+        return;
+    }
+    prev = *(u8 **)(alarm + 0x18);
+    next = *(u8 **)(alarm + 0x14);
+    if (prev != NULL) {
+        *(u8 **)(prev + 0x14) = next;
+    } else {
+        *(u8 **)(data_0215d144 + 0x10) = next;
+    }
+    if (next != NULL) {
+        *(u8 **)(next + 0x18) = prev;
+    } else {
+        *(u8 **)(data_0215d144 + 0x0c) = prev;
+    }
 }
 
 void func_02007e44(u32 *arg0) {
