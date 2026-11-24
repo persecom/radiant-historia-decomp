@@ -23,6 +23,10 @@ void func_02030468(u8 *arg0, u32 arg1) {
             }
             break;
         case 2:
+            if (data_02160204[0x11c] != 0) {
+                *(s16 *)(arg0 + 0x5a) += 1;
+            }
+            break;
         case 5:
             if (data_02160204[0x11c] != 0) {
                 *(s16 *)(arg0 + 0x5a) += 1;
