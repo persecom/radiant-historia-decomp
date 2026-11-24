@@ -44,6 +44,12 @@ extern void func_0200bb10(void *, u32, u32);
 extern void func_021091b4(void);
 extern s32 func_0210a39c(u32 *, s32, u32 *);
 
+typedef struct Unk_0210a39c {
+    u32 field_0;
+    u32 field_4;
+    u32 field_8;
+} Unk_0210a39c;
+
 void *func_02109fac(void *arg0) {
     register u8 *buf asm("r5");
     register void *src asm("r4") = arg0;
@@ -122,15 +128,29 @@ s32 func_0210a30c(u32 *arg0, u32 arg1, s32 arg2) {
     return 1;
 }
 
+s32 func_0210a348(u8 *arg0, s32 arg1) {
+    s32 result = 0;
+    *(u32 *)arg0 = result;
+    arg0[0xc] = result;
+    if (func_0210a0f4(arg1, arg0 + 8, arg0 + 4) != 1) {
+        if (*(u32 *)(arg0 + 8) != 0) {
+            result = 1;
+        }
+    }
+    return result;
+}
+
 s32 func_0210a38c(u8 *arg0) {
     *(s32 *)arg0 = -1;
     return 1;
 }
 
 s32 func_0210a39c(u32 *arg0, s32 arg1, u32 *arg2) {
-    u32 cur = arg0[0];
-    u32 max = arg0[2];
-    *arg2 = cur + arg0[1];
+    u32 max;
+    u32 cur;
+    *arg2 = arg0[0] + arg0[1];
+    max = arg0[2];
+    cur = arg0[0];
     if (cur >= max) {
         return 0;
     }
@@ -143,6 +163,43 @@ s32 func_0210a39c(u32 *arg0, s32 arg1, u32 *arg2) {
         arg0[0] = next;
         return arg1;
     }
+}
+
+s32 func_0210a3d8(u8 *arg0, u8 *arg1, s32 arg2) {
+    u32 local;
+    s32 start = func_02007904();
+    s32 avail = func_0210a39c((u32 *)arg0, arg2, &local);
+    s32 written = 0;
+    if (avail <= 0) {
+        return avail;
+    }
+    for (;;) {
+        func_0200bb10(data_021625c8, local, written);
+        {
+            u32 elapsed = (func_02007904() - start) * 0x40;
+            u32 ticks = (u32)(((u64)elapsed * 0x7d269b01u) >> 46);
+            if (ticks > 0x28) {
+                func_021091b4();
+                if (avail == 0) {
+                    break;
+                }
+                {
+                    s32 chunk = (avail >= 0x800) ? 0x800 : avail;
+                    if (avail >= 0x800) {
+                        avail -= 0x800;
+                    } else {
+                        avail = written;
+                    }
+                    func_0200bb3c(data_021625c8, arg1, chunk);
+                    arg1 += chunk;
+                    written += chunk;
+                }
+            } else {
+                avail = written;
+            }
+        }
+    }
+    return avail;
 }
 
 u32 func_0210a498(u32 *arg) {
