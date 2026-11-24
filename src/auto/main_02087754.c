@@ -9,6 +9,9 @@ typedef struct {
     void *field_58;
 } G_02085f50;
 
+extern G_02085f50 *data_0216010c;
+extern u32 func_02085110(u32);
+extern void *func_02021f10(u32);
 
 extern void func_02087f70(void);
 void func_02087e84(void) {
