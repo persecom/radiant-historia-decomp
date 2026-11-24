@@ -416,22 +416,22 @@ s32 func_02006638(void *arg0, s32 arg1) {
         r4 = r8;
         r8 = *(u8 **)(r8 + 0x68);
     }
-    if (r8 != NULL && r8 != (u8 *)data_0215ce10) {
-        if (*(u32 *)(r8 + 0x70) != arg1) {
-            if (r4 == NULL) {
-                data_0215cde4[9] = *(u32 *)(arg0 + 0x68);
-            } else {
-                *(u32 *)(r4 + 0x68) = *(u32 *)(arg0 + 0x68);
-            }
-            *(u32 *)(arg0 + 0x70) = arg1;
-            func_02006014(arg0);
-            func_020060b8();
-        }
+    if (r8 == NULL || r8 == (u8 *)data_0215ce10) {
         func_0200813c(irq);
-        return 1;
+        return 0;
+    }
+    if (*(u32 *)(r8 + 0x70) != arg1) {
+        if (r4 == NULL) {
+            data_0215cde4[9] = *(u32 *)(arg0 + 0x68);
+        } else {
+            *(u32 *)(r4 + 0x68) = *(u32 *)(arg0 + 0x68);
+        }
+        *(u32 *)(arg0 + 0x70) = arg1;
+        func_02006014(arg0);
+        func_020060b8();
     }
     func_0200813c(irq);
-    return 0;
+    return 1;
 }
 
 void func_02006780(void *arg0) {
