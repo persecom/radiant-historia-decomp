@@ -462,6 +462,20 @@ s32 func_0212f570(void) {
     return 0;
 }
 
+s32 func_0212f58c(s8 *buf, s32 len, s16 *out1, s16 *out2, s16 *out3) {
+int i; s16 a,b,c;
+if(data_021747a0[1]==0)func_0212f570();
+*out1=0;*out2=0;*out3=0;
+if(!buf && len<=0)return 0;
+a=data_02145288[0];
+for(i=0;i<len;i++)a=data_02145088[(a*data_02145088[buf[i]+128])%1024];
+b=data_02145488[0];
+for(i=0;i<len;i++)b=data_02145088[(b*data_02145088[buf[i]+128])%1024];
+c=data_02145688[0];
+for(i=0;i<len;i++)c=data_02145088[(c*data_02145088[buf[i]+128])%1024];
+*out1=a;*out2=b;*out3=c;return 0;
+}
+
 s32 func_0212f6e4(void *arg0, void *arg1, void *arg2) {
     if (*(u32 *)((u8 *)data_021747a0 + 4) == 0) {
         func_0212f570();
