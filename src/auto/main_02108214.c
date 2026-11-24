@@ -153,6 +153,55 @@ void func_02108378(void **arg0) {
     }
 }
 
+extern void func_02005e80(char *,const char *,...);
+extern void *func_0210abb8(void *,char *,void *);
+extern void *func_0210ac2c(void *,char *,void *);
+extern void func_02108ffc(void);
+extern void *func_0210a4cc(void);
+extern s32 func_0210a4fc(void *,u32,u32);
+extern void *func_0210a6d8(u32);
+extern void *func_0210a7b4(void);
+extern s32 func_0210a7e4(void *,u32,u32);
+extern void *func_0210a984(u32);
+s32 func_021083d8(void *arg,u32 name,u32 a,u32 b,u32 type) {
+u8 *p=arg;
+char path[256];
+u32 size;
+void *obj;
+func_02005e80(path,data_021559b0,name);
+*(void **)(p+0)=func_0210abb8(p+4,path,&size);
+if(!*(void **)(p+0)) return 0;
+func_02108ffc();
+func_02005e80(path,data_021559b8,name);
+*(void **)(p+8)=func_0210ac2c(p+12,path,&size);
+if(!*(void **)(p+8)) return 0;
+func_02108ffc();
+if(type) {
+obj=func_0210a4cc();
+if(!func_0210a4fc(obj,a,type)) {
+if(obj) func_0210c5dc(obj);
+return 0;
+}
+} else {
+obj=func_0210a6d8(a);
+if(!obj) return 0;
+}
+*(void **)(p+0x10)=obj;
+func_02108ffc();
+if(type) {
+obj=func_0210a7b4();
+if(!func_0210a7e4(obj,b,type)) {
+if(obj) func_0210c5dc(obj);
+return 0;
+}
+} else {
+obj=func_0210a984(b);
+if(!obj) return 0;
+}
+*(void **)(p+0x14)=obj;
+return 1;
+}
+
 void *func_0210853c(void) {
     u8 *p = (u8 *)func_0210c518(0x88, data_02155c3c);
     func_02008e68(0, p, 0x88);
