@@ -1,5 +1,10 @@
 /* 37 functions from 0x020BE330 to 0x020BF330 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { s16 v[10]; } Unk_020be490;
+extern const Unk_020be490 data_02143db8;
+extern void func_020a9ebc(s16 *,s16 *);
+extern void func_020a3bbc(s32);
+extern void func_021098ac(void *);
 extern u32 data_0216263c[3];
 static inline u16 RandomRange_bedf8(u16 max) {
 u32 value=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
