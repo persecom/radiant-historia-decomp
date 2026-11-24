@@ -78,6 +78,19 @@ void func_020960dc(void) {
     func_02093424(func_02093658(0x1e), 0);
 }
 
+void func_020960f4(void) {
+u8 *p; s32 y,x; s32 id=*(s16 *)(data_02160110+0xce);
+if(id==-1) return;
+p=func_02093658((u16)id);
+if(p) {
+x=*(s16 *)(p+0xc); y=*(s16 *)(p+0xe);
+func_020938b0(func_020936f8(14,*(u16 *)(data_02160110+0xce),x,y,3,2,13),1,13);
+func_020938b0(func_020936f8(16,*(u16 *)(data_02160110+0xce),x,y,4,4,2),1,2);
+func_020938b0(func_020936f8((u16)(data_02160110[0xd0]+1),*(u16 *)(data_02160110+0xce),x,y,2,4,6),1,6);
+}
+*(s16 *)(data_02160110+0xce)=-1;
+}
+
 void func_020961f8(u8 *arg0) {
     u8 *p = *(u8 **)(*(u8 **)(arg0 + 0x14) + 8);
     u8 *q = *(u8 **)arg0;
