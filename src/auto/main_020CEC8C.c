@@ -110,10 +110,9 @@ void func_020cf3b4(void) {
 void func_020cf424(void) {
     func_020cf3b4();
     func_02021a28();
-    func_0210dc88();
-    if (func_02021a50() == 1) {
-        return;
-    }
+    do {
+        func_0210dc88();
+    } while (func_02021a50() == 1);
     if (func_02021a50() == 0) {
         *(u32 *)&data_02160240 = 1;
     } else {
