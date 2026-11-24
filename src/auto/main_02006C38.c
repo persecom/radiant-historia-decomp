@@ -2,6 +2,28 @@
 #include "common.h"
 
 extern void func_02006e48(void);
+extern void func_0200a56c(void);
+extern void func_02006e90(void);
+extern void func_02005ae0(void);
+extern void func_02006fac(void);
+extern void func_020057d0(void);
+extern void func_02005a40(void);
+extern void func_020075fc(void);
+extern void func_020094a8(void);
+extern void func_02007d18(void);
+extern void func_0200835c(void);
+extern void func_0200617c(void);
+extern void func_020081fc(void);
+extern void func_02011334(void);
+extern void func_0200f858(void);
+extern void func_0200e384(void);
+extern void func_02006e1c(void);
+extern void func_02006940(void);
+extern u32 func_0200701c(s32);
+extern void func_020071a0(s32, u32);
+extern u32 func_020070fc(s32);
+extern void func_020071b4(s32, u32);
+extern void func_020075d4(s32, u32, s32);
 void func_02006d10(u8 *arg0, u8 *arg1) {
     u8 *tail = *(u8 **)(arg0 + 0x8c);
     if (tail == NULL) {
