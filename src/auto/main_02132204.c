@@ -363,6 +363,28 @@ void func_02132c7c(void) {
     }
 }
 
+void func_02132cbc(const char *arg0, void *(*arg1)(void)) {
+    u32 *res;
+    void (*fn)(void *, s32);
+    if (arg0 == NULL) {
+        func_02132ca0(data_0215b61c);
+        return;
+    }
+    if (arg1 == NULL) {
+        func_02132ca0(data_0215b640);
+        return;
+    }
+    res = func_02132d2c(arg0, arg1);
+    if (res == NULL) {
+        func_02132ca0(data_0215b664);
+        return;
+    }
+    fn = (void (*)(void *, s32))res[1];
+    if (fn != NULL) {
+        fn((void *)func_02132c7c, 0);
+    }
+}
+
 extern u8 data_021749dc[64];
 void *func_02132f14(void) {
     return data_021749dc;
