@@ -292,6 +292,13 @@ void func_02112048(u8 *arg0) {
     func_02111d7c(arg0, func_020c94a0(*(u8 **)(arg0 + 0x6c)));
 }
 
+void func_02112068(u8 *arg0) {
+    u8 *obj = *(u8 **)(arg0 + 0x6c);
+    *(u16 *)(obj + 0x42) = func_02111d10(arg0);
+    *(u16 *)(obj + 0x40) = func_020c9c34(*(void **)(arg0 + 0x34));
+    func_020c98f8(*(void **)(arg0 + 0x6c));
+}
+
 extern void func_020c8ee4(void *);
 void func_02112094(MainSub_6C *arg0) {
     func_020c8ee4(arg0->field);
@@ -311,6 +318,24 @@ void func_021120ac(u8 *arg0) {
             func_02111638(obj);
         }
     }
+}
+
+s32 func_02112110(u8 *arg0) {
+    func_02111674(arg0);
+    if (*(void **)(arg0 + 0x8c) == NULL) {
+        void *p = func_0210c594(8, data_02155c3c);
+        *(void **)(arg0 + 0x8c) = p;
+        func_020c992c(p);
+    }
+    if (*(void **)(arg0 + 0x90) == NULL) {
+        void *p = func_020c641c(0xf);
+        *(void **)(arg0 + 0x90) = p;
+        ((void (*)(void *))*(void **)p)(p);
+        ((void (*)(void *, s32))*(void **)(p + 0x10))(p, 5);
+        ((void (*)(void *, s32))*(void **)(p + 0x14))(p, 3);
+        func_0211078c(*(void **)(arg0 + 0x90));
+    }
+    return 0;
 }
 
 extern void func_021121b8(void *);
