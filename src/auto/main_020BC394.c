@@ -39,6 +39,26 @@ u32 func_020bc954(u32 arg0) {
     return 0xff;
 }
 
+extern s32 func_02092994(void *, s32);
+void func_020bca10(u8 *arg0, void *arg1) {
+    s32 i;
+    *(u16 *)(arg0 + 0x0) = func_02092994(arg1, 0);
+    *(u16 *)(arg0 + 0x2) = func_02092994(arg1, 0);
+    *(u16 *)(arg0 + 0x4) = func_02092994(arg1, 0);
+    *(u16 *)(arg0 + 0x6) = func_02092994(arg1, 0);
+    *(u16 *)(arg0 + 0x8) = func_02092994(arg1, 0);
+    *(u16 *)(arg0 + 0xa) = func_02092994(arg1, 0);
+    *(u16 *)(arg0 + 0xc) = func_02092994(arg1, 0);
+    *(u16 *)(arg0 + 0xe) = func_02092994(arg1, 0);
+    for (i = 0; i < 3; i++) {
+        arg0[0x16 + i] = func_02092994(arg1, 0);
+        if (arg0[0x16 + i] == 0) {
+            return;
+        }
+        *(u16 *)(arg0 + 0x10 + i * 2) = func_02092994(arg1, 0);
+    }
+}
+
 s32 func_020bd250(void) {
     u8 *p = (u8 *)&data_021601f8;
     volatile u32 buf;
