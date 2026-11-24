@@ -125,6 +125,23 @@ void func_020071b4(s32 arg0, u32 arg1) {
     ((u32 *)0x02fffda0)[arg0] = arg1;
 }
 
+u32 func_020071c8(s32 arg0, u32 arg1, u32 arg2) {
+    u32 lo = func_02007008(arg0);
+    u32 aligned;
+    u32 next;
+    if (lo == 0) {
+        return 0;
+    }
+    aligned = (lo + arg2 - 1) & ~(arg2 - 1);
+    next = aligned + arg1;
+    next = (next + arg2 - 1) & ~(arg2 - 1);
+    if (next > func_02006ff4(arg0)) {
+        return 0;
+    }
+    func_020071b4(arg0, next);
+    return aligned;
+}
+
 extern u32 data_0215d084[3];
 u32 func_02007664(void) {
     return data_0215d084[2];
