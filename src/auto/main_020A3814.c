@@ -87,6 +87,57 @@ if(file) func_0210c5dc(file);
 return result;
 }
 
+extern void func_0203be60(void *, u32, u32);
+extern void func_021091b4(void);
+void *func_020a39ac(void *arg0,s32 arg1,char *arg2) {
+u32 size;
+u8 skip[256], header[256];
+u8 *result;
+u8 *file;
+u8 *a,*p;
+s32 i;
+u32 *entry;
+result=func_0203be10(arg1);
+a=result;
+file=func_02109c60(arg2,&size);
+func_0210fe1c(file,size,arg2,1);
+func_02108ffc();
+p=file;
+for(i=0;i<arg1;i++) {
+if ((u32)(i-134)<=2) {
+entry=(u32 *)((u8 *)arg0+i*20);
+if(entry[1]==0) func_0203be60(a,entry[0],entry[0]);
+else func_0203be60(a,entry[0],entry[1]);
+} else {
+if(i!=0) {
+func_020a37f0(skip,p,256);
+p=p+256+((*(s32 *)(skip+252)+63)/64)*64;
+}
+func_020a37f0(header,p,256);
+if(p+256==0) return 0;
+entry=(u32 *)((u8 *)arg0+i*20);
+func_0210e9e8(p+256,*(s32 *)(header+252),entry[0],a);
+func_020a37f0(skip,p,256);
+p=p+256+((*(s32 *)(skip+252)+63)/64)*64;
+func_020a37f0(header,p,256);
+if(entry[1]==0) {
+if(p+256==0) return 0;
+func_0210ea6c(p+256,*(s32 *)(header+252),entry[0],a+8);
+} else {
+if(p+256==0) return 0;
+func_0210ea6c(p+256,*(s32 *)(header+252),entry[1],a+8);
+}
+}
+*(u32 *)(a+16)=entry[2];
+*(u32 *)(a+20)=entry[3];
+*(u32 *)(a+24)=entry[4];
+a+=28;
+}
+func_021091b4();
+if(file) func_0210c5dc(file);
+return result;
+}
+
 void func_020a3b84(void) {
     func_0203c168(*data_0216012c);
     if (data_0216012c != NULL) {
