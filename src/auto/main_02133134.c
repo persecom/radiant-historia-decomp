@@ -230,6 +230,16 @@ s32 func_0213359c(void *arg0) {
     return cb(NULL, 0x64, 0, 0);
 }
 
+void func_021335d4(void *arg0, void *arg1) {
+    if (arg0 == NULL) {
+        arg0 = func_02132f14();
+    }
+    if (func_0213359c(arg0) == 1) {
+        func_02132bf8(data_02174a38, 0x129, arg1);
+        func_02132c40(arg1, 0x129, data_0215b98c, arg0, data_02174a38);
+    }
+}
+
 void func_02133688(void) {
     func_0213807c();
 }
