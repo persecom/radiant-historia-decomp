@@ -64,6 +64,25 @@ void func_02006e3c(void) {
     func_02006e48();
 }
 
+void func_02006e48(void) {
+    func_0200a56c();
+    func_02006e90();
+    func_02005ae0();
+    func_02006fac();
+    func_020057d0();
+    func_02005a40();
+    func_020075fc();
+    func_020094a8();
+    func_02007d18();
+    func_0200835c();
+    func_0200617c();
+    func_020081fc();
+    func_02011334();
+    func_0200f858();
+    func_0200e384();
+    func_02006e1c();
+}
+
 u32 func_02006ff4(s32 arg0) {
     return ((u32 *)0x02fffdc4)[arg0];
 }
