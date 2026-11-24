@@ -121,6 +121,13 @@ void func_020aa76c(void **arg0) {
     }
 }
 
+void *func_020aa7c0(void *arg0, u16 arg1) {
+    u16 *node = (u16 *)func_0210c594(0x1c, data_02155c3c);
+    *node = arg1;
+    func_021167f0(arg0, node);
+    return node;
+}
+
 extern u8 *data_021600e4;
 extern s32 func_020bdd40(void);
 extern u16 *func_02103c6c(void *, s32);
