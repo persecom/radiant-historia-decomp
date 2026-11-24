@@ -142,8 +142,8 @@ void func_020e4c80(void *arg0, s32 arg1) {
     }
 }
 
-void func_020e57e8(void *arg0) {
-    s32 val = func_020e55d8((u8)*(u16 *)((u8 *)arg0 + 0x90));
+void func_020e57e8(void *arg0, s32 arg1) {
+    s32 val = func_020e55d8((u8)*(u16 *)((u8 *)arg0 + 0x90), arg1);
     func_02064cb8(*(void **)((u8 *)arg0 + 0x11c), val);
 }
 
