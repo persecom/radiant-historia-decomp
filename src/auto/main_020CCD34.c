@@ -1,5 +1,9 @@
 /* 7 functions from 0x020CCD34 to 0x020CDCE8 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct Table_ccd34 { u16 v[4]; } Table_ccd34;
+extern const Table_ccd34 data_02144660, data_02144658;
+void func_020c738c(void *, s32, s32);
+void func_020ce170(u8, u8, s32);
 
 extern u8 *data_02160238;
 
