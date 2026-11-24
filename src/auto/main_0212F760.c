@@ -1,5 +1,10 @@
 /* 21 functions from 0x0212F760 to 0x02130300 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { u16 a,b; } PairF994;
+typedef struct { u8 bytes[8]; } BytesF994;
+extern u8 data_021747ac[], data_021747b0[];
+extern s32 func_0212ee80(void *,s32,void *,void *);
+extern void func_0212f6e4(void *,void *,void *);
 
 extern s32 func_02130300(void *, void *, void *, void *, s32, s32, s32);
 extern s32 func_02139b34(s32, s32, s32, void *);
