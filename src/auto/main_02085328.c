@@ -25,20 +25,23 @@ void func_02085f44(void) {
 }
 
 void func_02085f50(void) {
+    G_02085f50 **g;
     data_0216010c->field_44 = func_0210c594(0x2c, data_02155c3c);
     if (data_0216010c->field_58 != NULL && *(void **)data_0216010c->field_58 != NULL) {
         func_020a9544(data_0216010c->field_58);
     }
     data_0216010c->field_58 = func_020a94b8(data_021485a8);
-    if (data_0216010c->field_48 != NULL && *(void **)data_0216010c->field_48 != NULL) {
-        func_020a9544(data_0216010c->field_48);
+    g = &data_0216010c;
+    if ((*g)->field_48 != NULL && *(void **)(*g)->field_48 != NULL) {
+        func_020a9544((*g)->field_48);
+        (*g)->field_48 = NULL;
     }
-    data_0216010c->field_48 = NULL;
     data_0216010c->field_48 = func_020a94b8(data_021485b0);
-    if (data_0216010c->field_4c != NULL && *(void **)data_0216010c->field_4c != NULL) {
-        func_020a9544(data_0216010c->field_4c);
+    g = &data_0216010c;
+    if ((*g)->field_4c != NULL && *(void **)(*g)->field_4c != NULL) {
+        func_020a9544((*g)->field_4c);
+        (*g)->field_4c = NULL;
     }
-    data_0216010c->field_4c = NULL;
     data_0216010c->field_4c = func_020a94b8(data_021485bc);
 }
 
