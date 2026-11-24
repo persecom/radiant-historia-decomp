@@ -104,7 +104,7 @@ u32 func_0202c898(u32 arg0, void *arg1, u32 arg2) {
         v = *(u32 *)(node + 0);
         p = func_0205bad4(arg1);
         while (p != NULL) {
-            if (*(u32 *)(p + 0) == v) {
+            if (v == *(u32 *)(p + 0)) {
                 v = zero;
             }
             p = *(u8 **)(p + 0x18);
