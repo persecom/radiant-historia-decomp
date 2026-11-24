@@ -95,14 +95,17 @@ void func_020c319c(u8 *arg0, u8 *arg1) {
 void func_020c31f0(void) {
     u8 *node;
     u8 zero = 0;
-    do {
+    for (;;) {
         node = func_020c2dd8(zero);
-        if (node == NULL) {
-            break;
+        if (node != NULL) {
+            func_021168f8((void **)(data_02160090 + 0x48), node);
+            func_021167f0((void **)(data_02160090 + 0x54), node);
+            if (*(u16 *)(data_02160090 + 0x50) != 0) {
+                continue;
+            }
         }
-        func_021168f8((void **)(data_02160090 + 0x48), node);
-        func_021167f0((void **)(data_02160090 + 0x54), node);
-    } while (*(u16 *)(data_02160090 + 0x50) != 0);
+        break;
+    }
 }
 
 void func_020c3244(u8 arg0) {
@@ -116,7 +119,10 @@ void func_020c3244(u8 arg0) {
     do {
         node = *(u8 **)(root + 0x54);
         node[0] -= arg0;
-        if (v == -1 || v != node[0]) {
+        if (v == -1) {
+            flag = 1;
+            v = (s8)node[0];
+        } else if (v != node[0]) {
             v = (s8)node[0];
             flag = 1;
         }
@@ -130,12 +136,15 @@ void func_020c3244(u8 arg0) {
 void func_020c33d4(void) {
 }
 
-void func_020c35c4(u32 *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u16 arg6, u32 arg7) {
+void func_020c35c4(u32 *arg0, u32 arg1, u32 arg2, u32 arg3, u32 unused, u32 arg4, u32 arg5, u16 arg6, u32 arg7) {
+    u32 v0 = arg0[0];
+    u32 v1 = arg0[1];
+    u32 v2 = arg0[2];
     *(volatile u32 *)0x40004a8 = 0;
     *(volatile u32 *)0x4000444 = 0;
-    *(volatile u32 *)0x4000470 = arg0[0];
-    *(volatile u32 *)0x4000470 = arg0[1];
-    *(volatile u32 *)0x4000470 = arg0[2];
+    *(volatile u32 *)0x4000470 = v0;
+    *(volatile u32 *)0x4000470 = v1;
+    *(volatile u32 *)0x4000470 = v2;
     *(volatile u32 *)0x400046c = arg4 << 12;
     *(volatile u32 *)0x400046c = 0x1000;
     *(volatile u32 *)0x400046c = arg5 << 12;
