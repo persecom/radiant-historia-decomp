@@ -21,6 +21,15 @@ u32 func_02114f70(void) {
     return data_0216cad0[0];
 }
 
+extern void func_021139d0(void *);
+extern void func_02009580(void *, s32, u32, s32);
+extern void func_0200f0a4(void *);
+extern void func_0200f0c4(void *);
+extern void func_02114818(void *);
+void func_021152bc(u32 arg0) {
+    *(u32 *)(data_0216cad0[0] + 0x9c) = arg0;
+}
+
 void func_021152d0(u32 arg0, u32 arg1, u8 *arg2) {
     *(u32 *)(arg2 + 0x98) = 0;
 }
