@@ -54,6 +54,7 @@ typedef struct Unk18 {
 
 extern const Unk20 data_02143388;
 extern const Unk20 data_0214339c;
+extern const Unk20 data_02143360;
 extern u8 *data_021600bc;
 extern s32 func_02109754(s32);
 extern void func_02109840(void),func_020a56cc(void);
@@ -380,9 +381,8 @@ data_02162814=-16;data_02162884=-16;
 data_02160200->unk160&=~0x20;
 break;
 case 4:case 6:
-data_02162814=4+data_02162814;
-if(data_02162814<=0)return;
-*(volatile s32 *)&data_02162814=0;func_02109884(1,0);
+if((data_02162814+=4)<=0) return;
+func_02109884(1,(data_02162814=0));
 if(*(s32 *)((u8 *)data_02160134.unk04+0x10)==0){data_02162884=0;func_02109884(2,0);}
 func_02108cc8(0);func_02108cc8(1);
 data_02160200->unk160&=~0x20;
