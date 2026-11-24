@@ -8,6 +8,8 @@ extern void func_021167ac(void *, s32);
 extern void **data_021601d8;
 extern void *data_021601dc;
 extern void *data_02155c3c;
+extern void *func_020a5f14(u8 *, u16);
+extern s32 func_0201fb1c(s32, s32);
 
 extern void func_0210c5dc(void *);
 void func_020aa464(void) {
@@ -262,5 +264,24 @@ void func_020aadd8(void) {
     func_020ade8c(1);
     func_020ade8c(2);
     func_020ade8c(3);
+}
+
+s32 func_020aadf8(void) {
+    u8 *p2 = func_020ade60(2);
+    u8 *p1;
+    func_020aaa60(p2 + 0xc, 1, 0x1f, 4, *(s32 *)(p2 + 8));
+    p1 = func_020ade60(1);
+    func_020aaaec((s32 *)(p1 + 4), 0x39, 0, 4, *(s32 *)(p1 + 8));
+    if (func_020aae98() != 0) {
+        *(s32 *)(p1 + 8) = 0;
+        *(s32 *)(p2 + 8) = 0;
+        *(u8 *)(p2 + 0xc) = 1;
+        *(u8 *)(p2 + 0xd) = 0;
+        return 1;
+    }
+    *(u8 *)(p2 + 0xd) = 1;
+    *(s32 *)(p2 + 8) += 1;
+    *(s32 *)(p1 + 8) = *(s32 *)(p2 + 8);
+    return 0;
 }
 
