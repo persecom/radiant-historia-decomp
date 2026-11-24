@@ -291,16 +291,6 @@ s32 func_0212c7b0(s8 *arg0) {
 }
 
 extern void func_0212999c(void *, u32);
-extern void func_021384a0(void);
-extern void func_021384b0(void);
-extern void func_021384c0(void);
-extern void func_021384d0(void);
-extern void func_021384e0(void);
-extern u32 func_0212ea3c(void);
-extern void func_02129bd8(void);
-extern void *memset(void *, int, u32);
-extern u8 data_02173df4[20];
-extern u8 data_02173e08[720];
 void func_0212c7b8(void *arg0, u32 arg1) {
     *(u32 *)((u8 *)arg0 + 8) = arg1;
     func_0212999c(*(void **)((u8 *)arg0 + 4), arg1);
