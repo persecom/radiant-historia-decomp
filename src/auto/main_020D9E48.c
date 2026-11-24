@@ -282,6 +282,50 @@ BOOL func_020da4f0(u8 *arg0, s32 arg1) {
     return val >= r;
 }
 
+void func_020da574(u8 *a,u8 *b,u8 *skill,s32 *out,s32 type){
+register u8 *target=*(u8 **)(b+0x118);
+register s32 attack,defense,damage;
+s32 rate;
+if(type==0){s32 zero=0;attack=func_020db864(a,skill,zero);defense=func_020db864(b,(void *)zero,2);}
+else if(type==1){attack=func_020db864(a,skill,1);defense=func_020db864(b,0,3);}
+rate=100;
+if((*(u8 **)(a+0x118))[0]==0){
+void *effect=*(void **)(skill+0x2c);
+if(effect&&target[0x3f]){
+u8 *entry=func_02023108(effect);
+if(entry){
+switch(*(u16 *)entry){
+case 0xd3:if(target[0x3f]!=1)break;goto apply_rate;
+case 0xd4:if(target[0x3f]!=2)break;
+apply_rate:rate=125+*(s16 *)(entry+2)*25;break;
+case 0xd5:if(target[0x3f]==3)rate=125+*(s16 *)(entry+2)*25;break;
+}
+}
+}
+}
+if(attack<0)attack=0;if(defense<0)defense=0;
+if(defense<attack)damage=((attack-defense)*rate)/100;else if(defense>=attack)damage=1;
+{s32 one=1;
+if((*(u8 **)(a+0x118))[0]==1){
+if(type==0)damage=func_0202c668(a,0,damage);
+else if(type==1)damage=func_0202c668(a,one,damage);
+if(*(u32 *)(*(u8 **)(b+0x118)+0x78)&4)damage=(damage*125)/100;
+}else if((*(u8 **)(a+0x118))[0]==0){
+if(type==0)damage=func_0202c668(b,0,damage);
+else if(type==1)damage=func_0202c668(b,one,damage);
+if(*(u32 *)(*(u8 **)(b+0x118)+0x78)&4)damage=(damage*125)/100;
+}
+if((*(u8 **)(a+0x118))[0]==1&&(*(u8 **)(b+0x118))[0]==0){
+s16 bonus=*(s16 *)(*(u8 **)(b+0x118)+0xbc);
+if(bonus)damage=(damage*(100+bonus*25))/100;
+}
+out[2]=one;out[3]=one;
+if(damage<2)return;
+if(skill[0x24]==1){out[2]=damage;return;}
+if(skill[0x24]>=2){out[2]=(damage*70)/100;out[3]=((damage*30)/100)/(skill[0x24]-1);}
+}
+}
+
 void func_020da870(u8 *arg0, s32 arg1, s32 arg2) {
     *(u8 *)(arg0 + 0x9c) = 0;
     func_020dd810(arg0, arg1, 0);
