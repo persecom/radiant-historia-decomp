@@ -110,6 +110,28 @@ s32 func_02002214(const s32 *v) {
     return (*(volatile s32 *)0x040002b4 + 1) >> 1;
 }
 
+void func_02002274(const Vec3 *pSrc, Vec3 *pDst) {
+    s64 t = (s64)pSrc->y * pSrc->y;
+    s32 s;
+    s64 d;
+    t += (s64)pSrc->x * pSrc->x;
+    t += (s64)pSrc->z * pSrc->z;
+    *(volatile u16 *)0x04000280 = 2;
+    *(volatile u64 *)0x04000290 = (u64)1 << 56;
+    *(volatile u64 *)0x04000298 = t;
+    *(volatile u16 *)0x040002b0 = 1;
+    *(volatile u64 *)0x040002b8 = t << 2;
+    while (*(volatile u16 *)0x040002b0 & 0x8000) {
+    }
+    s = *(volatile s32 *)0x040002b4;
+    while (*(volatile u16 *)0x04000280 & 0x8000) {
+    }
+    d = *(volatile s64 *)0x040002a0 * s;
+    pDst->x = (s32)((d * pSrc->x + ((s64)1 << 44)) >> 45);
+    pDst->y = (s32)((d * pSrc->y + ((s64)1 << 44)) >> 45);
+    pDst->z = (s32)((d * pSrc->z + ((s64)1 << 44)) >> 45);
+}
+
 s32 func_02002388(s32 *arg0, s32 *arg1) {
     s64 sum;
     s32 a;
@@ -235,6 +257,42 @@ u16 func_02002404(s32 y, s32 x)
 }
 
 void func_02002594(void) {
+}
+
+void func_020055f0(void);
+s32 func_02005df8(void);
+void func_02008414(void);
+void func_02008568(s32,void *,s32,s32,s32);
+void func_02008e24(s32,void *,s32);
+void func_02002598(void) {
+*(volatile u16 *)0x4000304 |= 0x8000;
+*(volatile u16 *)0x4000304 = (*(volatile u16 *)0x4000304 & ~0x20e) | 0x20e;
+*(volatile u16 *)0x4000304 |= 1;
+func_020055f0();
+while((&data_0215cd20)[1]==0) {
+s32 id=func_02005df8();
+if(id==-3) func_02008414();
+(&data_0215cd20)[1]=id;
+}
+*(volatile u16 *)0x4000004=0;
+*(volatile u32 *)0x4000000=0;
+if(((s32 *)&data_02145ba0)[1]!=-1) {
+func_02008568(((s32 *)&data_02145ba0)[1],(void *)0x4000008,0,0x60,1);
+*(volatile u16 *)0x400006c=0;
+func_02008568(((s32 *)&data_02145ba0)[1],(void *)0x4001000,0,0x70,1);
+} else {
+func_02008e24(0,(void *)0x4000008,0x60);
+*(volatile u16 *)0x400006c=0;
+func_02008e24(0,(void *)0x4001000,0x70);
+}
+*(volatile u16 *)0x4000020=0x100;
+*(volatile u16 *)0x4000026=0x100;
+*(volatile u16 *)0x4000030=0x100;
+*(volatile u16 *)0x4000036=0x100;
+*(volatile u16 *)0x4001020=0x100;
+*(volatile u16 *)0x4001026=0x100;
+*(volatile u16 *)0x4001030=0x100;
+*(volatile u16 *)0x4001036=0x100;
 }
 
 void func_020026e0(s32 arg0) {
