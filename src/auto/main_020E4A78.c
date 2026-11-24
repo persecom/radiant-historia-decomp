@@ -60,10 +60,10 @@ s16 func_020e4ad4(void) {
 
 u8 func_020e4b88(void) {
     u8 *p = *(u8 **)((u8 *)data_02160a74[0] + 0xc0);
-    if (p == NULL) {
-        return 1;
+    if (p != NULL) {
+        return *(u8 *)(p + 6);
     }
-    return *(u8 *)(p + 6);
+    return 1;
 }
 
 u16 func_020e4ba8(void) {
