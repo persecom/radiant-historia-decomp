@@ -198,10 +198,10 @@ void func_0200e9a0(void) {
             func_0200893c(i);
             break;
         default:
-            if (*reg & 0x02000000) {
-                func_02008998(i);
-            } else {
+            if ((*reg & 0x02000000) == 0) {
                 func_0200893c(i);
+            } else {
+                func_02008998(i);
             }
             break;
         }
