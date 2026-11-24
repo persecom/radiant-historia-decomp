@@ -63,6 +63,20 @@ s32 func_020c745c(void *arg0) {
     return 0;
 }
 
+void func_020c74fc(void *arg0) {
+    u8 *p = arg0;
+    u8 state = p[0x3a];
+    u8 *obj = *(u8 **)(p + 0x30);
+    switch (state) {
+    case 0:
+        ((void (*)(u8 *, s32))(*(void **)(obj + 0x20)))(obj, 0x1f);
+        break;
+    case 1:
+        ((void (*)(u8 *, s32))(*(void **)(obj + 0x20)))(obj, 0);
+        break;
+    }
+}
+
 s32 func_020c7604(void) {
     return 0;
 }
