@@ -1,5 +1,8 @@
 /* 38 functions from 0x021078D0 to 0x021088CC (main), found by ds-decomp. */
 #include "common.h"
+extern u8 data_02161198[], data_021612c8[], data_02161230[];
+extern u32 data_02162834[];
+typedef struct { unsigned char bit0:1; unsigned char flip:1; unsigned char visible:1; unsigned char rest:5; } RenderFlags;
 
 extern void func_021190bc(void *, void *);
 extern void func_021190d4(void *, void *);
@@ -7,7 +10,7 @@ extern s32 func_021083d8(void *, u32, u32, u32, u32);
 extern void *func_02117630(void *, s32);
 extern void *func_0210c518(u32, u32);
 extern void func_02008e68(s32, void *, u32);
-extern void func_021086f8(void);
+extern void func_021086f8(u8 *);
 extern void func_02119000(void *, void *, void *);
 extern void func_02108680(void *, s32, s32);
 extern u32 data_02155c3c;
@@ -208,7 +211,7 @@ void func_02108680(void *arg0, s32 arg1, s32 arg2) {
 extern void *func_02117630(void *, s32);
 extern void *func_0210c518(u32, u32);
 extern void func_02008e68(s32, void *, u32);
-extern void func_021086f8(void);
+extern void func_021086f8(u8 *);
 extern void func_02119000(void *, void *, void *);
 extern void func_02108680(void *, s32, s32);
 u16 func_021086d4(u8 *arg0, s32 arg1) {
