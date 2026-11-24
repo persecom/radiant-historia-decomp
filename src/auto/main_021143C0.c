@@ -86,6 +86,12 @@ void func_021146b8(u8 *arg0) {
     *(u32 *)(arg0 + 0x2c) |= 2;
 }
 
+void func_0211470c(u8 *arg0) {
+    if (((*(s32 *)(arg0 + 0x2c) << 31) >> 31) != 0) {
+        func_02114818(arg0);
+    }
+}
+
 void func_021148bc(u8 *arg0) {
     func_021148cc(arg0, 1);
 }
