@@ -152,13 +152,10 @@ void func_02124bb0(s32 a0, s32 a1, s32 a2, s32 a3, s32 a4) {
 }
 
 void func_02124c78(void) {
+    s32 n = (data_02173170 > 1) ? data_02173170 + 1 : data_02173170;
     s32 i;
-    u32 n = data_02173170;
-    if (n > 1) {
-        n++;
-    }
     for (i = 0; i < 5; i++) {
-        if (i < (s32)n) {
+        if (i < n) {
             data_0215617c[i].f[2] = 1;
         } else {
             data_0215617c[i].f[2] = 0;
