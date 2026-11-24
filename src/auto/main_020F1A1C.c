@@ -89,7 +89,8 @@ s32 func_020f1b70(void *obj, s32 mode) {
     char path[32];
     char ext3[8];
     char ext5[8];
-    Info_020f1b70 info;
+    Header_020f1b70 header;
+    s32 info;
     s32 ret = 0;
     void *compressed = NULL, *buffer = NULL;
     u16 i;
@@ -106,12 +107,11 @@ s32 func_020f1b70(void *obj, s32 mode) {
         }
     }
     if (func_020123f0(data_02151dbc, ext3)==0) {
-        u32 header;
         data_02155bac=0;
         compressed=func_02109b14(path,(s32)&info);
         data_02155bac=1;
-        info.header.size=*(u32 *)compressed >> 8;
-        buffer=func_0210c594(info.header.size,data_02155c3c);
+        header.size=*(u32 *)compressed >> 8;
+        buffer=func_0210c594(header.size,data_02155c3c);
         func_02009230(compressed,buffer);
         if(compressed)func_0210c5dc(compressed);
         if(!mode)func_0210b0c8(obj,buffer);
