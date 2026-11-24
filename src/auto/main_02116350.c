@@ -313,6 +313,18 @@ void func_021171ac(void* heap)
     *(u8**)((u8*)heap + 0x28) = *(u8**)((u8*)heap + 0x1C);
 }
 
+void* func_021171d8(void* start, u32 size, u16 opt)
+{
+    u32 end = (size + (u32)start) & ~3;
+    start = (void*)(((u32)start + 3) & ~3);
+
+    if ((u32)start > end || end - (u32)start < 0x30) {
+        return NULL;
+    }
+
+    return func_0211709c(start, (void*)end, opt);
+}
+
 void func_02117210(void) {
     func_02116ad8();
 }
