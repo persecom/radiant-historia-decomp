@@ -6,6 +6,17 @@ extern void *data_02160088;
 extern void *data_02155c3c;
 
 void *func_020224cc(void);
+void func_02022508(void *);
+void func_02030574(void *);
+
+typedef struct Node_0202f5fc {
+    struct Node_0202f5fc *next;
+    u8 pad4[4];
+    s32 unk8;
+    u8 unkc;
+    u8 padD[3];
+    void *unk10;
+} Node_0202f5fc;
 
 void *func_0210c594(u32, void *);
 void func_0210c5dc(void *);
