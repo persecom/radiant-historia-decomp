@@ -120,11 +120,13 @@ extern void func_02053f6c(void *);
 extern void func_02053f94(void *);
 u32 func_02052a88(u8 *arg0, s32 arg1) {
     u8 *p = *(u8 **)(arg0 + 0x108);
+    s32 a = *(s32 *)(p + 0x14);
+    void *b = *(void **)p;
     u32 ret = 0;
-    if (*(s32 *)(p + 0x14) != 0) {
+    if (a != 0) {
         ret |= 2;
     }
-    if (arg1 == func_02117d80(*(void **)p)) {
+    if (arg1 == func_02117d80(b)) {
         ret |= 1;
     }
     return ret;
