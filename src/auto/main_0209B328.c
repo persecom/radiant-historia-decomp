@@ -16,9 +16,9 @@ void func_0209b570(void) {
     *(s16 *)(base + 0x69c) += 0x20;
     if (*(s16 *)(base + 0x69c) > 0x64) {
         *(s16 *)(base + 0x69c) = 0x64;
-    }
-    if (*(s16 *)(base + 0x5a) == 0) {
-        *(s16 *)(base + 0x5a) = 1;
+        if (*(s16 *)(base + 0x5a) == 0) {
+            *(s16 *)(base + 0x5a) = 1;
+        }
     }
     *(s16 *)(base + 0x698) += 2;
     if (*(s16 *)(base + 0x698) > 0x3c) {
