@@ -158,6 +158,22 @@ u32 func_0200bc18(u8 *arg0) {
     return func_0200bab8(arg0);
 }
 
+void func_0200bc24(void) {
+    if (func_020081e0() == 2) {
+        data_0215ef7c[1] = -1;
+        data_0215ef7c[2] = 0;
+        data_0215ef7c[3] = -1;
+        data_0215ef7c[4] = 0;
+    } else {
+        data_0215ef7c[1] = 0;
+        data_0215ef7c[2] = 0;
+        data_0215ef7c[3] = 0;
+    }
+    data_0215ef7c[5] = (u32)data_0213e8f0;
+    data_0215ef7c[6] = 0x40;
+    data_0215ef7c[0] = func_0200b0ec(data_02145c04, 3, 0x40);
+}
+
 extern s32 func_0200d4a0(u8 *, u32 *);
 extern s32 func_020081e0(void);
 extern u32 func_0200b0ec(void *, s32, s32);
@@ -165,9 +181,12 @@ extern u32 data_0215ef7c[];
 extern u8 data_0213e8f0[];
 extern u8 data_02145c04[];
 u32 func_0200bc94(u8 *arg0) {
-    u32 val = *(u32 *)(arg0 + 0x1c);
-    if ((val >> 24) & 1) {
-        return (val << 8) >> 8;
+    struct {
+        u32 low : 24;
+        u32 flag : 8;
+    } *s = (void *)(arg0 + 0x1c);
+    if (s->flag & 1) {
+        return s->low;
     }
     return *(u32 *)(arg0 + 8);
 }
