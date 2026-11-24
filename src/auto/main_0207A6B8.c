@@ -96,6 +96,62 @@ u8 *func_0207a6b8(u8 *arg0) {
     return r5;
 }
 
+void func_0207a8cc(void) {
+s32 zero=0, one=1;
+u8 *player=*(u8 **)((u8 *)data_021600ac+0x68);
+u8 *obj;
+u8 *node=*(u8 **)((u8 *)data_021600ac+0x384);
+u8 *next;
+s32 done;
+while(node) {
+next=*(u8 **)(node+0x38);
+if(node[7]==0 && node[6]==2) {
+done=zero;
+obj=*(u8 **)node;
+*(s32 *)(obj+4)-=0x6000;
+if(!(node[0x2c]&4)) {
+s32 h=*(s32 *)(obj+4)>>12;
+if(h>=200) h=200;
+obj[0x9d]=16-(h*16)/200;
+if(obj[0x9d]==0) obj[0x9d]=one;
+else if(obj[0x9d]>=16) obj[0x9d]=16;
+if((*(s32 *)(node+0x30)>>12)+10>h) obj[0x9d]=zero;
+} else obj[0x9d]=zero;
+if(*(s32 *)(obj+4)<=*(s32 *)(node+0x30)) {
+*(s32 *)(obj+4)=*(s32 *)(node+0x30);
+if((node[0x2c]&4) && (func_02052a54(obj,zero)&2)) {
+*(u16 *)(obj+0x9a)=zero;
+node[0x2c]=zero;
+done=one;
+*(s32 *)(obj+4)=*(s32 *)(data_0216242c+0x24)+0x100000;
+*(u32 *)(obj+0x80)&=~2;
+}
+if(!(node[0x2c]&4) && (*(u32 *)(obj+0x80)&2)) {
+func_0206e8f0(0x7c,obj,2);
+func_020477dc(obj,one,zero);
+obj[0x9d]=zero;
+func_0210d27c(0x38);
+node[0x2c]|=4;
+}
+}
+if(!(node[0x2c]&4) && func_0210c2f4(obj,player)<0x20000 &&
+*(s32 *)(obj+4)>=*(s32 *)(player+4) &&
+*(s32 *)(obj+4)<=*(s32 *)(player+4)+0x18000) {
+if(!(*(u32 *)(player+0xac)&0x2000)) {
+func_0207ae48(zero,50); func_0210d27c(0x2b); func_0206e8f0(8,player,2);
+} done=one;
+}
+if(done) {
+obj=func_02044180((u16)(*(u16 *)(obj+0x90)-0x2ee1));
+if(obj) { func_021168f8((u8 *)data_021600bc+0xb8,obj); if(obj) func_0210c5dc(obj); }
+node[7]=one;
+func_02047820((u16)(*(u16 *)(node+4)+0x2ee1)); func_02047490();
+}
+}
+node=next;
+}
+}
+
 s32 func_0207ab34(s32 arg0) {
 u8 *node;
 u8 *obj;
