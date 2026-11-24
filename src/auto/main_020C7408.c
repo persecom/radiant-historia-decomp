@@ -191,6 +191,16 @@ void func_020c7ff4(u8 *arg0, s32 arg1) {
     ((void (*)(u8 *, s16, s32))func_020c7f6c)(arg0, *(s16 *)(arg0 + 0x3a), arg1);
 }
 
+void func_020c8008(u8 *arg0, u8 arg1) {
+    u16 i;
+    u32 count = func_020c9c34(*(void **)(arg0 + 0x4c));
+    for (i = 0; i < count; i++) {
+        u8 *obj = func_020c9c10(*(void **)(arg0 + 0x4c), i);
+        ((void (*)(u8 *, u8))(*(void **)(obj + 0x1c)))(obj, arg1);
+    }
+    *(u8 *)(arg0 + 0x43) = arg1;
+}
+
 s32 func_020c8124(void) {
     return 5;
 }
