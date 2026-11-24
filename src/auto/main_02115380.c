@@ -121,6 +121,51 @@ BOOL func_0211568c(void *arg0, void *arg1) {
     return func_02115770(arg0, 0xff, arg1, 1, NULL) == 0;
 }
 
+s32 func_021156ec(void *arg0, u32 arg1, void *arg2, s32 arg3, void **arg4) {
+    u8 *p = func_02114f80(arg0);
+    s32 ret;
+    void *val;
+    if (p == NULL) {
+        return 2;
+    }
+    ret = func_021157d0(*(u16 *)(p + 4), arg1, arg2, arg3, NULL);
+    if (ret != 0) {
+        return ret;
+    }
+    if ((arg1 & 1) != 0) {
+        val = func_02115a38(*(void **)p, arg2, arg3);
+        if (val == NULL) {
+            return 6;
+        }
+    } else {
+        val = func_02115264(*(void **)p);
+    }
+    if (arg4 != NULL) {
+        *arg4 = val;
+    }
+    return 0;
+}
+
+s32 func_02115770(void *arg0, u32 arg1, void *arg2, s32 arg3, void **arg4) {
+    u8 *p = func_02114fe4(arg0);
+    void *val;
+    if (p == NULL) {
+        return 3;
+    }
+    if ((arg1 & 8) != 0) {
+        val = func_02115aa4(*(void **)p, arg2, arg3);
+        if (val == NULL) {
+            return 7;
+        }
+    } else {
+        val = func_02115264(*(void **)p);
+    }
+    if (arg4 != NULL) {
+        *arg4 = val;
+    }
+    return 0;
+}
+
 extern void *func_02115264(void *);
 extern void *func_02114f70(void);
 extern void *func_02115994(void *, void *, void *, void *, void *);
