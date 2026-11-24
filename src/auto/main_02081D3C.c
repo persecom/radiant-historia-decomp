@@ -11,6 +11,7 @@ typedef struct Data_02081f08 {
 } Data_02081f08;
 
 extern u8 data_02148538[];
+extern u8 data_02148570[], data_0214857c[];
 void func_02081f08(u32 *,s32);
 void func_0210d27c(s32);
 void *func_020a94b8(void *);
@@ -20,6 +21,30 @@ extern u8 *data_0216010c;
 extern u8 *data_02160204;
 extern void func_0210968c(u32, u32, u32);
 extern void func_02109790(u32);
+
+void func_02081d3c(void) {
+Data_02081f08 buf, temp;
+u8 *state=*(u8 **)(data_0216010c+0x44);
+void **obj;
+if(state[2]!=0) return;
+if(*(s16 *)(data_0216010c+0x50d4)==0) return;
+func_02081f08((u32 *)&temp,data_0216010c[0x50d7]);
+buf=temp;
+if(*(s16 *)((u8 *)&buf+8)!=501 && *(s16 *)((u8 *)&buf+8)!=502) {
+func_0210d27c(7);
+return;
+}
+data_0216010c[0x50de]=0;
+if(((u8 *)&buf)[10]==12) data_0216010c[0x50de]=-1;
+else data_0216010c[0x50de]=0;
+state[0]=2;
+obj=*(void ***)(data_0216010c+0x58);
+if(obj!=NULL && *obj!=NULL) func_020a9544(obj);
+*(void **)(data_0216010c+0x58)=func_020a94b8(data_02148538);
+func_0210d27c(11);
+func_020a994c(data_0216010c+0x2a4);
+*(s16 *)(data_0216010c+0x5382)|=4;
+}
 
 void func_02081e78(void) {
     u8 **p = &data_0216010c;
