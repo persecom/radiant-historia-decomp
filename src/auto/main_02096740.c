@@ -52,6 +52,70 @@ void func_02096740(u8 *p, int mode) {
  }
 }
 
+void func_02096880(u8 *arg0, u32 arg1, u8 *arg2) {
+    u8 *r8;
+    u16 r9;
+    u16 r10 = 0;
+
+    if (arg0 == NULL) {
+        arg0 = *(u8 **)(data_02160090 + 8);
+    }
+
+    while (arg0 != NULL) {
+        u8 *r1 = *(u8 **)(arg0 + 0x14);
+        if (r1 != NULL && r10 != 0) {
+            if (arg1 == 0 || arg1 == 1) {
+                r8 = *(u8 **)arg0;
+                if (**(u8 **)(r8 + 0x118) == 0) {
+                    r9 = **(u16 **)(r1 + 8);
+                    if (arg1 == 0) {
+                        func_0209368c(r9, 5, 0xd);
+                        func_0209368c(r9, 5, 2);
+                        func_0209368c(r9, 5, 0x7c);
+                        func_0209368c(r9, 5, 0x7d);
+                        func_0209368c(r9, *(u8 *)(r8 + 0x114) + 6, 6);
+                    } else if (arg1 == 1) {
+                        func_0209368c(r9, 0, 0xd);
+                        func_0209368c(r9, 0, 2);
+                        func_0209368c(r9, 0, 0x7c);
+                        func_0209368c(r9, 0, 0x7d);
+                        func_0209368c(r9, *(u8 *)(r8 + 0x114) + 0xd, 6);
+                    }
+                } else if (**(u8 **)(r8 + 0x118) == 1) {
+                    u16 id = **(u16 **)(r1 + 8);
+                    if (arg1 == 1) {
+                        func_0209368c(id, 0, 4);
+                        func_0209368c(id, 0, 5);
+                        func_0209368c(id, 0, 0x7c);
+                        func_0209368c(id, 0, 0x7d);
+                    }
+                }
+            } else if (arg1 == 2) {
+                u8 type;
+                r8 = *(u8 **)arg0;
+                type = **(u8 **)(r8 + 0x118);
+                if (type == 1 || r8 == arg2) {
+                    r9 = **(u16 **)(r1 + 8);
+                    if (type == 0) {
+                        func_0209368c(r9, 5, 0xd);
+                        func_0209368c(r9, 5, 2);
+                        func_0209368c(r9, 5, 0x7c);
+                        func_0209368c(r9, 5, 0x7d);
+                        func_0209368c(r9, *(u8 *)(r8 + 0x114) + 6, 6);
+                    } else if (type == 1) {
+                        func_0209368c(r9, 5, 4);
+                        func_0209368c(r9, 5, 5);
+                        func_0209368c(r9, 5, 0x7c);
+                        func_0209368c(r9, 5, 0x7d);
+                    }
+                }
+            }
+        }
+        r10++;
+        arg0 = *(u8 **)(arg0 + 0x1c);
+    }
+}
+
 void func_02096ad4(u8 *arg0, u8 *arg1, s32 arg2) {
     u8 *r6;
     u16 r7;
