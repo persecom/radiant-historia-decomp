@@ -430,6 +430,19 @@ void func_020de374(void *arg0, void *arg1) {
     }
 }
 
+void func_020de394(void *arg0, u16 arg1) {
+    u8 *node = *(u8 **)arg0;
+    u16 i = 0;
+    while (node != NULL) {
+        if (i == arg1) {
+            func_020de374(arg0, node);
+            return;
+        }
+        i++;
+        node = *(u8 **)(node + 0x4);
+    }
+}
+
 u16 func_020de3d8(u8 *arg0) {
     u16 count = 0;
     u8 *node = *(u8 **)arg0;
