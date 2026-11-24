@@ -129,6 +129,8 @@ void func_020a9b28(void *arg0) {
 extern u8 *data_021600e4;
 extern s32 func_020a9194(void *);
 extern s32 func_020a916c(s32);
+extern s32 func_020a932c(void *);
+extern u32 data_021601d4;
 u32 func_020aa19c(void) {
     return *(u32 *)(data_021600e4 + 0x13c8);
 }
