@@ -87,6 +87,13 @@ void func_0210bf38(void *arg0, u32 arg1) {
     func_0210c518(arg1, *(s32 *)((u8 *)arg0 + 8));
 }
 
+void func_0210bf50(void *arg0, void *arg1) {
+    if (arg1 == NULL) {
+        return;
+    }
+    func_0210c5dc(arg1);
+}
+
 void* func_0210c518(u32 size, s32 arg1)
 {
     extern u8 data_02162684;
