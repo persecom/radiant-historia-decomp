@@ -188,11 +188,57 @@ s32 func_02115770(void *arg0, u32 arg1, void *arg2, s32 arg3, void **arg4) {
     return 0;
 }
 
+s32 func_02115910(void *arg0, u32 arg1, void *arg2, s32 arg3, void **arg4) {
+    u8 *p = func_021150ac(arg0);
+    u32 v;
+    void *val;
+    if (p == NULL) {
+        return 5;
+    }
+    v = *(u32 *)p;
+    if ((arg1 & 4) != 0) {
+        if (((v >> 24) & 1) != 0) {
+            val = func_02115be8((void *)((v << 8) >> 8), arg2, arg3);
+        } else {
+            val = func_02115b7c((void *)((v << 8) >> 8), arg2, arg3);
+        }
+        if (val == NULL) {
+            return 9;
+        }
+    } else {
+        val = func_02115264((void *)((v << 8) >> 8));
+    }
+    if (arg4 != NULL) {
+        *arg4 = val;
+    }
+    return 0;
+}
+
+void *func_02115994(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4) {
+    u8 *p = func_02115174(arg0);
+    void *buf;
+    if (p == NULL) {
+        return NULL;
+    }
+    if (arg4 == NULL) {
+        return NULL;
+    }
+    buf = func_0211543c(p, (u32)(p + 0x20), arg1, (u32)arg2, (u32)arg3);
+    if (buf == NULL) {
+        return NULL;
+    }
+    if (func_0211519c(arg0, buf, p, NULL) != p) {
+        return NULL;
+    }
+    func_02006da8(buf, p);
+    return buf;
+}
+
 extern void *func_02115264(void *);
 extern void *func_02114f70(void);
 extern void *func_02115994(void *, void *, void *, void *, void *);
 extern void func_0211528c(void *, void *);
-extern void func_02115d68(void);
+extern void func_02115d68(void *, s32, s32, s32);
 extern u32 func_0211727c(void *, u32);
 void *func_02115a38(void *arg0, void *arg1, s32 arg2) {
     void *r4 = func_02115264(arg0);
