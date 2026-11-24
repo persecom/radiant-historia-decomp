@@ -36,6 +36,13 @@ void func_0200e254(s32);
 void func_0200e26c(s32);
 void func_02008f74(void *, s32, s32);
 void func_0200df30(void *);
+extern s32 (*data_02156158)(s32, s32, s32);
+extern void func_020081c0(void);
+extern void func_02002790(void);
+extern void func_02002750(void);
+extern void *func_02109b14(s32, void *);
+extern void *func_0210e8b4(void *, s32, s32, s32);
+extern void func_0210c5dc(void *);
 void func_0210e694(void) {
     u8 buf[8];
     func_0200dadc();
