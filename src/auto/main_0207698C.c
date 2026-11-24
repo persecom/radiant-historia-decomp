@@ -113,6 +113,35 @@ void func_020772b8(void) {
     func_021099f8(&buf);
 }
 
+void func_02077314(void) {
+ s32 zero=0;
+ u8 *ptr=func_020764e4();
+ void *file=func_021092d8(data_02148444);
+ s32 count=zero;
+ s32 i;
+ func_02109444(file);
+ do {
+ if(func_0210cdfc(file,zero)==-1) break;
+ if(!func_02109444(file)) break;
+ count++;
+ } while(1);
+ func_0210950c(file);
+ func_02109444(file);
+ *(s32 *)(ptr+0x74)=count;
+ *(void **)(ptr+0x78)=func_0210c594(count*40,data_02155c3c);
+ for(i=0;i<count;i++) {
+ u8 *entry=*(u8 **)(ptr+0x78)+i*40;
+ s32 value=func_0210cdfc(file,zero);
+ if(value==-1) break;
+ if(value>10) value=value*78/100;
+ *(s32 *)entry=value;
+ func_02015a10(entry+4,func_0210cd20(file,zero));
+ *(s32 *)(entry+0x24)=func_0210cdfc(file,zero);
+ if(!func_02109444(file)) break;
+ }
+ func_021093b0(file);
+}
+
 void func_02077440(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, u32 arg4, u16 arg5) {
     if (arg5 == 0) {
         return;
