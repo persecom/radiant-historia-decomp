@@ -279,9 +279,12 @@ void func_0211cc30(u8 *arg0, u8 *arg1) {
 }
 
 void func_0211cd24(u8 *arg0, u8 *arg1) {
-    if (func_0211ccb0(arg0 + 8, arg1) == 0 && func_0211ccb0(arg0 + 0x10, arg1) == 0 && func_0211ccb0(arg0 + 0x18, arg1) == 0) {
-        *(u32 *)arg0 |= 0x10;
+    if (func_0211ccb0(arg0 + 8, arg1) == 0 &&
+        func_0211ccb0(arg0 + 0x10, arg1) == 0 &&
+        func_0211ccb0(arg0 + 0x18, arg1) == 0) {
+        return;
     }
+    *(u32 *)arg0 |= 0x10;
 }
 
 void func_0211cd78(u8 *arg0) {
