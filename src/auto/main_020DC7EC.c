@@ -154,3 +154,50 @@ if(list) {while((node=*(void **)list)!=NULL){func_021168f8(list,node);if(node)fu
 if(g[1]){func_0210c5dc(g[1]);g[1]=NULL;}
 }
 
+void func_020dd51c(u8 *obj) {
+u16 id=*(u16 *)(obj+0x8e);
+if(id>0 && id<99) {
+func_020ebc24(*(void **)(obj+0x108)); *(void **)(obj+0x108)=0;
+func_021168f8(data_02160a68[1]+0x70,obj);
+func_021168f8(data_02160a68[1]+0x7c,obj);
+} else if(id>100 && id<799) {
+func_020f2638(*(void **)(obj+0x108)); *(void **)(obj+0x108)=0;
+func_021168f8(data_02160a68[1]+0x70,obj);
+func_021168f8(data_02160a68[1]+0x88,obj);
+} else if(id>1900 && id<1999) {
+func_020f2638(*(void **)(obj+0x108)); *(void **)(obj+0x108)=0;
+func_021168f8(data_02160a68[1]+0xa0,obj);
+func_021168f8(data_02160a68[1]+0x88,obj);
+} else if(id>1100 && id<1899) {
+func_020f265c(*(void **)(obj+0x108)); *(void **)(obj+0x108)=0;
+func_021168f8(data_02160a68[1]+0xa0,obj);
+func_021168f8(data_02160a68[1]+0x88,obj);
+} else if(id>1000 && id<1099) {
+func_020f265c(*(void **)(obj+0x108)); *(void **)(obj+0x108)=0;
+func_021168f8(data_02160a68[1]+0xa0,obj);
+func_021168f8(data_02160a68[1]+0x88,obj);
+} else if(id>3000 && id<3999) {
+func_020f265c(*(void **)(obj+0x108)); *(void **)(obj+0x108)=0;
+func_021168f8(data_02160a68[1]+0xa0,obj);
+func_021168f8(data_02160a68[1]+0x88,obj);
+} else if(id>4000 && id<4099) {
+func_020f265c(*(void **)(obj+0x108)); *(void **)(obj+0x108)=0;
+func_021168f8(data_02160a68[1]+0xa0,obj);
+func_021168f8(data_02160a68[1]+0x88,obj);
+} else if(id>5000 && id<5099) {
+func_020ebc24(*(void **)(obj+0x108)); *(void **)(obj+0x108)=0;
+func_021168f8(data_02160a68[1]+0xc4,obj);
+func_021168f8(data_02160a68[1]+0x7c,obj);
+} else if(id>800 && id<899) {
+func_020f2638(*(void **)(obj+0x108)); *(void **)(obj+0x108)=0;
+func_021168f8(data_02160a68[1]+0x88,obj);
+if(*(u32 *)(obj+0x80)&0x200) func_021168f8(data_02160a68[1]+0xc4,obj);
+else func_021168f8(data_02160a68[1]+0x70,obj);
+} else if(id>900 && id<999) {
+func_020f09d4(*(void **)(obj+0x108)); *(void **)(obj+0x108)=0;
+func_021168f8(data_02160a68[1]+0x94,obj);
+}
+func_021168f8(data_02160a68[1]+0x64,obj);
+if(obj) func_0210c5dc(obj);
+}
+
