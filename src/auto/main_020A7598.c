@@ -1,5 +1,12 @@
 /* 26 functions from 0x020A7598 to 0x020A84B8 (main), found by ds-decomp. */
 #include "common.h"
+extern s32 data_02162868;
+extern u8 *data_02160204;
+extern void func_02108e54(s32);
+extern void func_0210968c(s32,s32,s32);
+extern void func_02109790(s32);
+extern void func_0210dc88(void);
+extern void func_020a7ec8(void);
 
 extern u8 *data_02160140;
 extern u32 data_02155c3c;
@@ -84,6 +91,40 @@ extern void *func_020f4c2c(u32);
 extern s32 func_020f50bc(void *, void *);
 extern void func_020f5114(void *, s32);
 extern void func_021167f0(void *, void *);
+
+void func_020a7598(void *arg0) {
+    Struct20_020a7598 s0 = data_0214364c;
+    Struct108_020a7598 s1 = data_02143660;
+    u8 i;
+
+    for (i = 0; i < 3; i++) {
+        u8 *p5 = func_020a7460();
+        u8 *p6 = *(u8 **)(p5 + 4);
+        u32 id = s1.entries[i].unk_10;
+        u8 *p2 = func_020f4d40(id);
+        if (p2 == NULL) {
+            p2 = func_020f4c2c(id);
+        }
+        *(u16 *)(p5 + 8) = 0;
+        *(u16 *)(p5 + 0xa) = 0;
+        *(u8 *)(p5 + 0) = (u8)s1.entries[i].unk_20;
+        *(u32 *)(p2 + 0x20) = 0x1000;
+        *(u32 *)(p2 + 0x24) = 0x1000;
+        *(u32 *)(p6 + 0x48) = s1.entries[i].unk_14;
+        *(u32 *)(p6 + 0x8) = s1.entries[i].unk_00;
+        *(u32 *)(p6 + 0xc) = s1.entries[i].unk_04;
+        *(u8 *)(p6 + 0x10) = 0;
+        *(u16 *)(p6 + 0x44) = 3;
+        s0.unk_04 = s1.entries[i].unk_08;
+        s0.unk_08 = s1.entries[i].unk_0c;
+        s0.unk_0c = s1.entries[i].unk_1c;
+        if (func_020f50bc(p6, &s0) == 0) {
+            return;
+        }
+        func_020f5114(p6, 1);
+        func_021167f0(arg0, p5);
+    }
+}
 
 void func_020a76cc(void)
 {
