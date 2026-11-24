@@ -125,6 +125,32 @@ s32 func_020f4be4(u32 *arg0, u32 *arg1) {
     return 1;
 }
 
+u8 *func_020f4c2c(u32 arg0) {
+s32 size = 0x54;
+u8 *p = func_0210c518(size, (void *)data_02155c3c);
+s32 zero = 0;
+func_02008e68(zero,p,size);
+if (func_020f4d40(arg0) != 0) {
+if(p != NULL) func_0210c5dc(p);
+return NULL;
+}
+if (arg0 >= 32) {
+if(p != NULL) func_0210c5dc(p);
+return NULL;
+}
+*(s32 *)(p+0x20)=0x1000;
+*(s32 *)(p+0x24)=0x1000;
+*(s32 *)(p+0x28)=1;
+*(u16 *)(p+0x3c)=zero;
+*(s32 *)(p+0x40)=1;
+*(u32 *)(p+0x44)=arg0;
+func_02000bec(p);
+func_02000bec(p+0x10);
+func_02000bec(p+0x2c);
+if (*(u32 *)(p+0x4c)==0) func_021167f0((void *)data_02160c3c[0],p);
+return p;
+}
+
 void func_020f4d0c(void *arg0) {
     if (arg0 == NULL) {
         return;
