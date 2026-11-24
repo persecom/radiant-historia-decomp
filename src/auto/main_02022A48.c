@@ -25,6 +25,19 @@ void func_02022f0c(void *arg0, u16 arg1, u16 arg2, u8 arg3) {
     func_021167f0(arg0, ptr);
 }
 
+void func_02022f60(void **arg0) {
+    void *ptr;
+    while ((ptr = *arg0) != NULL) {
+        func_021168f8(arg0, ptr);
+        if (ptr != NULL) {
+            func_0210c5dc(ptr);
+        }
+    }
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
 void *func_02023100(void **arg0) {
     return *arg0;
 }
