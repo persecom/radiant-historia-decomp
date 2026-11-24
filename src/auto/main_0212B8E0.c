@@ -29,7 +29,7 @@ extern void func_0212e5fc(u32);
 extern void func_0212e60c(u32, s32);
 extern void func_0212e600(void);
 extern s32 func_0212c54c(u32);
-extern void func_0212c520(void);
+extern s32 func_0212c520(void);
 extern void func_021384f0(void);
 extern void func_02138500(void);
 extern void func_02138510(void);
