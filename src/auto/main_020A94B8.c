@@ -162,9 +162,12 @@ u32 func_020a9738(u32 arg0, u16 arg1) {
 }
 
 u32 func_020a97e4(void **arg0, u32 arg1) {
-    u32 state[2] = { (u32)func_020a95d0(arg0, arg1), 0 };
     u32 total = 0;
+    u32 state[2];
     s32 val;
+    void *p = func_020a95d0(arg0, arg1);
+    state[0] = (u32)p;
+    state[1] = 0;
     while (1) {
         val = func_020a9194(state);
         if (val < 0x500) {
