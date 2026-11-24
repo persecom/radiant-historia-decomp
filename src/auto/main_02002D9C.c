@@ -78,6 +78,14 @@ s32 func_02002f3c(void *arg0) {
     return 0;
 }
 
+s32 func_02002f6c(void *arg0) {
+    if (*(volatile u32 *)0x04000600 & 0x08000000) {
+        return -1;
+    }
+    func_02008f08((void *)0x04000680, arg0);
+    return 0;
+}
+
 void func_020038f8(void *arg0, u32 arg1, u32 arg2) {
     u32 base = func_02003188();
     if (data_02145ba4 != -1 && arg2 > 0x1c) {
