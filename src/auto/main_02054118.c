@@ -1,6 +1,8 @@
 /* 14 functions from 0x02054118 to 0x02054E14 (main), found by ds-decomp. */
 #include "common.h"
 extern const s16 data_0213a394[];
+static inline s16 Sin_54a94(s32 a) { return data_0213a394[((a%65536)>>4)*2]; }
+static inline s16 Cos_54a94(s32 a) { return data_0213a394[((a%65536)>>4)*2+1]; }
 extern u32 data_0216263c[3];
 extern u8 *data_02160aec;
 typedef struct { s32 x,y,z; } Vec_546c0;
@@ -325,22 +327,22 @@ extern void func_020510e8(void *);
 extern void func_02051344(void *);
 extern void func_0205196c(void *);
 s32 func_02054800(u8 *arg0) {
-    u16 val8e;
     u8 *s = *(u8 **)(arg0 + 0xd0);
     s32 angle;
+    s16 sinVal, cosVal;
 
     *(u16 *)(arg0 + 0x92) = func_020ddc8c(arg0, *(u8 **)(data_021600ac + 0x68));
-    angle = *(u16 *)(arg0 + 0x92);
-    val8e = *(u16 *)(arg0 + 0x8e);
-    angle = (angle % 65536) >> 4;
-    *(s32 *)(arg0 + 0x30) = (s16)s[0x1a] * data_0213a394[angle * 2];
-    *(s32 *)(arg0 + 0x38) = (s16)s[0x1a] * data_0213a394[angle * 2 + 1];
+    angle = (*(u16 *)(arg0 + 0x92) % 65536) >> 4;
+    sinVal = data_0213a394[angle * 2];
+    cosVal = data_0213a394[angle * 2 + 1];
+    *(s32 *)(arg0 + 0x30) = (s16)s[0x1a] * sinVal;
+    *(s32 *)(arg0 + 0x38) = (s16)s[0x1a] * cosVal;
 
     CopyVec_546c0((Vec_546c0 *)(arg0 + 0xc), (Vec_546c0 *)arg0);
     CopyVec_546c0((Vec_546c0 *)(arg0 + 0xd4), (Vec_546c0 *)arg0);
     SetVec_546c0((Vec_546c0 *)(arg0 + 0xe0), *(s32 *)arg0 + *(s32 *)(arg0 + 0x30), *(s32 *)(arg0 + 4), *(s32 *)(arg0 + 8) + *(s32 *)(arg0 + 0x38));
 
-    if (val8e < 700) {
+    if (*(u16 *)(arg0 + 0x8e) < 700) {
         func_020477dc(arg0, 1, 1);
     } else {
         func_020477dc(arg0, 0, 1);
@@ -397,6 +399,66 @@ s32 func_02054800(u8 *arg0) {
         *(s16 *)(arg0 + 0x98) = 0;
         return 1;
     }
+    return 0;
+}
+
+void func_02054d5c(u8 *);
+s32 func_02054a94(u8 *p) {
+    u8 *config = *(u8 **)(p + 0xd0);
+    s32 angle;
+    s16 speed;
+    u16 id;
+    Vec_546c0 pos, next;
+    if ((func_02002388(p,p+0x1b4)>>12)<3) {
+        if (func_02054324(p)==1) {config[1]=2;func_02054d5c(p);return 0;}
+        else {config[1]=1;func_020477dc(p,2,1);return 0;}
+        return 0;
+    }
+    angle = *(u16 *)(p + 0x92);
+    angle = (angle % 65536) >> 4;
+    speed = config[0x1a];
+    *(s32 *)(p + 0x30) = speed * data_0213a394[angle * 2];
+    *(s32 *)(p + 0x38) = (s16)config[0x1a] * data_0213a394[angle * 2 + 1];
+    CopyVec_546c0((Vec_546c0 *)(p+0xc), (Vec_546c0 *)p);
+    CopyVec_546c0((Vec_546c0 *)(p+0xd4), (Vec_546c0 *)p);
+    SetVec_546c0((Vec_546c0 *)(p+0xe0), *(s32 *)p+*(s32 *)(p+0x30), *(s32 *)(p+4), *(s32 *)(p+8)+*(s32 *)(p+0x38));
+    if (*(u16 *)(p+0x8e) < 700) func_020477dc(p, 1, 1);
+    else func_020477dc(p, 0, 1);
+    if (*(u32 *)(p + 0xac) & 1) {
+        u8 *other;
+        *(u16 *)(*(u8 **)(p + 0xb0) + 4) = 0;
+        func_020495fc(p, 0);
+        func_02050b0c(p, 0);
+        func_02050b0c(p, 0x8000);
+        func_0205103c(p);
+        CopyVec_546c0((Vec_546c0 *)(p+0xd4), (Vec_546c0 *)(p+0xc));
+        CopyVec_546c0((Vec_546c0 *)(p+0xe0), (Vec_546c0 *)p);
+        *(s32 *)(p + 0x30) = *(s32 *)p - *(s32 *)(p + 0xc);
+        *(s32 *)(p + 0x38) = *(s32 *)(p + 8) - *(s32 *)(p + 0x14);
+        if (*(s32 *)(p + 0x30) == 0 && *(s32 *)(p + 0x38) == 0) p[0xa4] |= 8;
+        func_020510e8(p);
+        p[0xa4] &= 0xfe;
+        p[0xa4] &= 0xfd;
+        p[0xa4] &= 0xfb;
+        other = *(u8 **)(data_021600ac + 0x68);
+        if (other && *(u16 *)(p + 0x90) == *(u16 *)(*(u8 **)(other + 0xb0) + 4)) {
+            *(u16 *)(*(u8 **)(p + 0xb0) + 4) = 0;
+            *(u16 *)(*(u8 **)(other + 0xb0) + 4) = 0;
+        }
+        func_02051344(p);
+        func_0205196c(p);
+        *(s32 *)(p + 0x30) = 0;
+        *(s32 *)(p + 0x38) = 0;
+        if (*(s32 *)(p + 0xec) != *(s32 *)p || *(s32 *)(p + 0xf4) != *(s32 *)(p + 8))
+            CopyVec_546c0((Vec_546c0 *)(p + 0xec), (Vec_546c0 *)p);
+    } else {
+        *(s32 *)p += *(s32 *)(p + 0x30);
+        *(s32 *)(p + 8) += *(s32 *)(p + 0x38);
+    }
+    if(p[0xa4]&8) ++*(s16 *)(p+0x98);
+    else if(p[0xa4]&4) ++*(s16 *)(p+0x98);
+    else *(s16 *)(p+0x98)=0;
+    if(*(s16 *)(p+0x98)>60) {*(s16 *)(p+0x98)=0;return 1;}
     return 0;
 }
 
