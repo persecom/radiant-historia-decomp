@@ -162,6 +162,27 @@ u32 func_02112d88(u8 *arg0) {
     return ret;
 }
 
+void func_02112dcc(void *arg0, s32 arg1, s32 arg2) {
+    u8 *p = (u8 *)arg0;
+    u16 vals[2];
+    u16 *dst = vals;
+    u16 i;
+    u8 *obj;
+    s16 x;
+    s16 y;
+    vals[0] = data_02144cf8[0];
+    vals[1] = data_02144cf8[1];
+    for (i = 0; i < 2; i++) {
+        obj = func_020c9c10(*(void **)(p + 0x30), dst[i]);
+        x = arg1 + (*(s16 *)(obj + 0x3a) - *(s16 *)(p + 0x34));
+        y = arg2 + (*(s16 *)(obj + 0x3c) - *(s16 *)(p + 0x36));
+        ((void (*)(u8 *, s32))(*(void **)(obj + 0x10)))(obj, x);
+        ((void (*)(u8 *, s32))(*(void **)(obj + 0x14)))(obj, y);
+    }
+    *(s16 *)(p + 0x34) = arg1;
+    *(s16 *)(p + 0x36) = arg2;
+}
+
 extern u32 data_0216bf88;
 extern const u16 data_02144cfc[2];
 extern const u16 data_02144cf8[2];
