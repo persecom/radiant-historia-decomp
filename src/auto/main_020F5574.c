@@ -158,3 +158,14 @@ s32 func_020f5948(void) {
     return 0;
 }
 
+s32 func_020f62f4(s32 arg0, s32 arg1) {
+    switch (arg1) {
+    case 0:
+        return (arg0 << 17) + 0x8000;
+    case 1:
+        return ((arg0 % 360) << 16) / 360;
+    default:
+        return 0;
+    }
+}
+
