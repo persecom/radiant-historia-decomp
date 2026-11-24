@@ -154,6 +154,44 @@ s32 func_0212b8e0(u8 *p, s32 len, s32 *arg2, s16 *arg3, s16 *arg4, s32 *arg5, s3
     return 0;
 }
 
+s32 func_0212bad8(u8 *p, s32 len, s32 *out, u8 *dst, s16 *a, s16 *b) {
+u8 type, flag;
+s32 n, off, v, ret;
+u32 i;
+u16 h;
+s16 sh;
+u8 *src;
+*out = 0;
+ret = func_0212b72c(p,len,&type,&flag);
+if(ret) return ret;
+n=0x18; n+=0x24;
+if(type==4)n+=12;
+if(len<n)return -1;
+h=*(u16 *)p;
+sh=((h>>8)&255)|((h<<8)&0xff00);
+if((u16)sh!=0x8000)return -2;
+n-=4;
+v=*(s16 *)(p+2);
+sh=((v>>8)&255)|((v<<8)&0xff00);
+if(sh<n)return -1;
+off=20;
+if(type==4)off+=12;
+v=*(s16 *)(p+off+2);
+off+=4;
+if((s16)(((v>>8)&255)|((v<<8)&0xff00)))off+=20;
+src=p+off;
+if(((src[0]<<24)|(src[1]<<16)|(src[2]<<8)|src[3])!=0x41494e46)return -2;
+v=*(s32 *)(src+4);
+*out=((v>>24)&255)|((v>>8)&0xff00)|((v<<8)&0xff0000)|(v<<24);
+src=p+(off+8);
+i=8; do {u8 x=src[0],y=src[1];src+=2;dst[1]=y;dst[0]=x;dst+=2;}while(--i);
+p+=off;
+v=*(s16 *)(p+24);*a=((v>>8)&255)|((v<<8)&0xff00);
+v=*(s16 *)(p+28);b[0]=((v>>8)&255)|((v<<8)&0xff00);
+v=*(s16 *)(p+30);b[1]=((v>>8)&255)|((v<<8)&0xff00);
+return 0;
+}
+
 s32 func_0212bcd0(s16 *arg0, s32 arg1, s16 *arg2) {
     u16 v0;
     s16 swapped;
