@@ -16,7 +16,7 @@ extern void func_0210d6f4(void *);
 extern void func_0210d828(void);
 extern void func_0210d6a4(s32, s32);
 extern void func_0210c5dc(void *);
-extern void func_02046760(void);
+extern void func_02046760();
 extern void func_0210da14(void *);
 extern void func_020a9544(void *);
 extern void func_0210c970(void *);
@@ -85,8 +85,10 @@ void func_020f5798(void) {
 }
 
 void func_020f58c0(u8 *p) {
+    u8 v;
     void **q;
-    if (p[0x1f4] == 1) {
+    v = p[0x1f4];
+    if (v == 1) {
         func_02046760();
     }
     func_0210da14(p);
