@@ -13,6 +13,21 @@ extern u32 data_02155c3c;
 extern void func_02008f74(void *, s32, u32);
 extern void *func_0210c594(s32, u32);
 extern void *func_021092d8(void *);
+void func_0210c898(void) {
+    *(u16 *)(data_021626a0 + 0xc) = 0;
+    *(u16 *)(data_021626a0 + 0xe) = 0;
+    *(u16 *)(data_021626a0 + 0x10) = 0;
+    *(u16 *)(data_021626a0 + 0x14) = 0;
+    *(u16 *)(data_021626a0 + 0x8) = 0;
+    *(u16 *)(data_021626a0 + 0xa) = 0;
+    data_021626a0[0] = 0;
+    data_021626a0[2] = 0;
+    *(u16 *)(data_021626a0 + 0x6) = 0;
+    *(u16 *)(data_021626a0 + 0x12) = 0;
+    *(u16 *)(data_021626a0 + 0x4) = 0;
+    func_02008f74(data_021626b6, 0, 0x18);
+}
+
 u32 func_0210c8e8(u32 arg0) {
     u32 ret = 0;
     s32 i;
