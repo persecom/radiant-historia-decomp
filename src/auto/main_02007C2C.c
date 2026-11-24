@@ -204,6 +204,62 @@ void func_02007ee4(u8 *alarm) {
     func_020059b4(4);
 }
 
+extern s32 func_0200808c(u8 *, s32, s32);
+extern void func_02007e0c(u8 *);
+void func_02007f24(void) {
+    u8 *alarm;
+    u16 dispstat;
+    u16 vcount;
+    u32 frame;
+    s32 check;
+    void (*cb)(void *);
+
+    func_020059e4(4);
+    *(volatile u16 *)0x04000004 &= 0xffdf;
+    *(volatile u32 *)((u32)data_027e0000 + 0x3ff8) |= 4;
+    dispstat = *(volatile u16 *)0x04000004;
+    func_020080d8(((((s32)dispstat >> 8) & 0xff) | (((s32)dispstat << 1) & 0x100)) - 1);
+
+    alarm = *(u8 **)(data_0215d144 + 0xc);
+    while (alarm != NULL) {
+        vcount = *(volatile u16 *)0x04000006;
+        frame = func_020080d8(vcount);
+        check = func_0200808c(alarm, frame, vcount);
+
+        switch (check) {
+        case 0:
+            func_02007ee4(alarm);
+            vcount = *(volatile u16 *)0x04000006;
+            if (*(s16 *)(alarm + 0x10) != vcount || *(u32 *)(alarm + 0xc) != frame) {
+                return;
+            }
+            func_020059e4(4);
+            *(volatile u16 *)0x04000004 &= 0xffdf;
+            func_02005a14(4);
+            /* fallthrough */
+        case 1:
+            cb = *(void (**)(void *))alarm;
+            func_02007e0c(alarm);
+            *(u32 *)alarm = 0;
+            if (cb != NULL) {
+                cb(*(void **)(alarm + 4));
+            }
+            if (*(u32 *)(alarm + 0x1c) != 0 && *(u32 *)(alarm + 0x24) == 0) {
+                *(void (**)(void *))alarm = cb;
+                goto reinsert;
+            }
+            break;
+        case 2:
+            func_02007e0c(alarm);
+        reinsert:
+            *(u32 *)(alarm + 0xc) = *(u32 *)(data_0215d144 + 8) + 1;
+            func_02007d58(alarm);
+            break;
+        }
+        alarm = *(u8 **)(data_0215d144 + 0xc);
+    }
+}
+
 s32 func_0200808c(u8 *arg0, s32 arg1, s32 arg2) {
     s32 a = arg1 - *(s32 *)(arg0 + 0xc);
     s32 b = arg2 - *(s16 *)(arg0 + 0x10);
