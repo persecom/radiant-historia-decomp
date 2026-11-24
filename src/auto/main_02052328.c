@@ -23,7 +23,7 @@ extern s32 func_02117d80();
 extern u32 *data_02155984;
 extern u8 *data_02160a80;
 extern u8 *data_021600bc;
-extern void func_020526f0();
+static void func_020526f0(Vec2_02052844, u16, s32, s32);
 extern void func_020477dc(void *, s32, s32);
 extern void *func_02047820(s32);
 extern s32 func_020ddc8c(void *, s32);
