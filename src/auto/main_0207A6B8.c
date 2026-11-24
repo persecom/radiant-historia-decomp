@@ -2,6 +2,7 @@
 #include "common.h"
 
 extern void *data_021600ac;
+extern void *data_02155c3c;
 extern void *data_021600f0;
 extern void *data_02160200;
 
