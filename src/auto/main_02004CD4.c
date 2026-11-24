@@ -347,14 +347,15 @@ void func_020057d0(void) {
 }
 
 void func_020057e8(u32 arg0, u32 arg1) {
+    u8 (*base)[12] = (u8 (*)[12])data_0215cd7c;
     s32 i;
     for (i = 0; i < 0x16; i++) {
         if (arg0 & 1) {
             u8 *rec = NULL;
             if (i >= 8 && i <= 0xb) {
-                rec = data_0215cd7c + (i - 8) * 12;
+                rec = base[i - 8];
             } else if (i >= 3 && i <= 6) {
-                rec = data_0215cd7c + (i + 1) * 12;
+                rec = base[i + 1];
             }
             *(u32 *)(data_027e0000 + i * 4) = arg1;
             if (rec != NULL) {
@@ -387,15 +388,18 @@ u32 func_02005870(u32 arg0) {
 }
 
 void func_020058fc(u32 index, u32 arg1, u32 arg2) {
-    *(u32 *)(data_0215cd7c + index * 12) = arg1;
-    *(u32 *)(data_0215cd84 + index * 12) = arg2;
-    *(u32 *)(data_0215cd80 + index * 12) = func_020059b4(1 << (index + 8)) & (1 << (index + 8));
+    u32 offset = index * 12;
+    u32 bit = 1 << (index + 8);
+    *(u32 *)(data_0215cd7c + offset) = arg1;
+    *(u32 *)(data_0215cd84 + offset) = arg2;
+    *(u32 *)(data_0215cd80 + offset) = func_020059b4(bit) & bit;
 }
 
 void func_02005944(s32 arg0, u32 arg1, u32 arg2) {
     *(u32 *)((u8 *)data_0215cdac + arg0 * 12) = arg1;
+    u32 mask = 1 << (arg0 + 3);
     *(u32 *)((u8 *)data_0215cdb4 + arg0 * 12) = arg2;
-    func_020059b4(1 << (arg0 + 3));
+    func_020059b4(mask);
     *(u32 *)((u8 *)data_0215cdb0 + arg0 * 12) = 1;
 }
 
@@ -420,12 +424,14 @@ u32 func_020059b4(u32 arg0) {
 }
 
 void func_020059e4(u32 arg0) {
-    register volatile u16 *reg = (volatile u16 *)0x04000208;
-    u16 ime = *reg;
-    *reg = 0;
-    *(volatile u32 *)((u8 *)reg + 8) &= ~arg0;
-    (void)*reg;
-    *reg = ime;
+    u16 ime = *(volatile u16 *)0x04000208;
+    u32 zero = 0;
+    u32 mask = ~arg0;
+    *(volatile u16 *)0x04000208 = zero;
+    u32 old = *(volatile u32 *)(0x04000208 + 8);
+    *(volatile u32 *)(0x04000208 + 8) = old & mask;
+    (void)*(volatile u16 *)0x04000208;
+    *(volatile u16 *)0x04000208 = ime;
 }
 
 u32 func_02005a14(u32 arg0) {
@@ -469,6 +475,31 @@ void func_02005bb0(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 void func_02005bfc(s32 arg0, s32 arg1, s32 arg2) {
     func_02005bb0(arg0, arg1, arg2, 0);
+}
+
+extern u32 func_02008154(void);
+extern void func_02008168(u32);
+s32 func_02005c0c(u32 arg0, void *arg1, void (*arg2)(void), BOOL arg3) {
+    u32 r4;
+    if (arg0 != *(u16 *)((u8 *)arg1 + 4)) {
+        return -2;
+    }
+    if (arg3) {
+        r4 = func_02008154();
+    } else {
+        r4 = func_02008128();
+    }
+    *(u16 *)((u8 *)arg1 + 4) = 0;
+    if (arg2 != NULL) {
+        arg2();
+    }
+    *(u32 *)arg1 = 0;
+    if (arg3) {
+        func_02008168(r4);
+    } else {
+        func_0200813c(r4);
+    }
+    return 0;
 }
 
 extern s32 func_02005c0c();
