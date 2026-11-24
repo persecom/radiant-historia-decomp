@@ -114,22 +114,26 @@ s32 func_020f4be4(u32 *arg0, u32 *arg1) {
     return 1;
 }
 
+void func_020f4d0c(void *arg0) {
+    if (arg0 == NULL) {
+        return;
+    }
+    func_021168f8((void *)data_02160c3c[0], arg0);
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
 void *func_020f4d40(u32 arg0) {
-    u8 *p = NULL;
     u32 *head = (u32 *)data_02160c3c;
-    while (1) {
-        if (p != NULL) {
-            p = *(u8 **)(p + *(u16 *)((u8 *)head + 0xa) + 4);
-        } else {
-            p = *(u8 **)head;
-        }
-        if (p == NULL) {
-            return NULL;
-        }
+    u8 *p;
+    for (p = NULL;
+         (p = (p != NULL) ? *(u8 **)(p + *(u16 *)((u8 *)head + 0xa) + 4) : *(u8 **)head) != NULL;) {
         if (*(u32 *)(p + 0x44) == arg0) {
             return p;
         }
     }
+    return NULL;
 }
 
 extern void func_021168f8(void *, void *);
