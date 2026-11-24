@@ -67,6 +67,17 @@ s32 func_0200b77c(const char *str, s32 pos) {
     return (pos - 1) - (((pos - 1) - i) & 1);
 }
 
+s32 func_0200b7bc(const char *str, s32 pos) {
+    for (;;) {
+        char c = str[pos];
+        if (c == '\0' || (u8)c == '/' || (u8)c == '\\') {
+            break;
+        }
+        pos += 1 + ((u32)(((u8)c ^ 0x20) - 0xa1) < 0x3c);
+    }
+    return pos;
+}
+
 s32 func_0200b810(const char *str, s32 pos) {
     for (;;) {
         pos = func_0200b77c(str, pos);
@@ -75,6 +86,16 @@ s32 func_0200b810(const char *str, s32 pos) {
         }
     }
     return pos;
+}
+
+s32 func_0200b844(char *str) {
+    s32 len = func_02012348(str);
+    s32 pos = func_0200b77c(str, len);
+    if (pos >= 0 && ((u8)str[pos] == '/' || (u8)str[pos] == '\\')) {
+        str[pos] = '\0';
+        len = pos;
+    }
+    return len;
 }
 
 void func_0200b888(u32 *arg0) {
