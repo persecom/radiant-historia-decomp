@@ -100,6 +100,34 @@ void func_02106aa0(void) {
     }
 }
 
+void func_02106b18(void) {
+    UnkNode_02106aa0 *node;
+    s16 sp[10];
+
+    node = data_02161064->unk34;
+    if (node == NULL) {
+        return;
+    }
+    do {
+        if (node->unk02 != 0 && node->unk26 != 0 && node->unk10 != 0 && node->unk12 != 0) {
+            *(volatile u32 *)0x040004a4 = (u32)(node->unk26 << 16) | 0xc0;
+            func_0210701c(node->unk03);
+            sp[0] = 1;
+            sp[1] = node->unk04;
+            sp[2] = node->unk06;
+            sp[3] = node->unk08;
+            sp[4] = node->unk0a;
+            sp[5] = node->unk0c;
+            sp[6] = node->unk0e;
+            sp[7] = node->unk24;
+            sp[8] = node->unk10;
+            sp[9] = node->unk12;
+            func_021098ac(sp);
+        }
+        node = node->next;
+    } while (node != NULL);
+}
+
 void func_02106bec(s16 *arg0) {
     UnkNode_02106aa0 *node;
     if (data_02161064 == NULL) {
