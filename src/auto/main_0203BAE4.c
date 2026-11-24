@@ -110,7 +110,7 @@ s32 func_0203be60(u8 *arg0, s32 arg1, s32 arg2) {
 }
 
 s32 func_0203bef0(u8 *arg0, s32 arg1, s32 arg2) {
-char buf[0x64]; u32 info; void *src; void *dst; ResourceHeader size; char *p;
+char buf[0x64]; ResourceHeader size; u32 info; void *src; void *dst; char *p;
 func_02108ffc(); p = buf;
 func_02005e80(p, data_0214629c, arg1);
 src = func_02109b14(p, &info);
