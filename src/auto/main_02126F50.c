@@ -50,6 +50,29 @@ void func_021273f0(void *arg0) {
     }
 }
 
+BOOL func_02127404(void *arg0, void *arg1, void *arg2, s32 arg3) {
+    void *p;
+    if (*(s32 *)((u8 *)arg1 + 8) != 0) {
+        p = func_02127dec(arg2, arg3 - 0xc);
+    } else {
+        p = func_02127a9c(*(void **)arg1, arg2, arg3 - 0xc);
+    }
+    *(void **)((u8 *)arg0 + 4) = p;
+    if (p == NULL) {
+        func_02126c20(data_0215665c);
+        return FALSE;
+    }
+    *(void **)((u8 *)arg0 + 8) = *(void **)arg1;
+    return TRUE;
+}
+
+void func_02127468(void *arg0) {
+    if (*(void **)((u8 *)arg0 + 4) != NULL) {
+        func_02127e58(*(void **)((u8 *)arg0 + 4));
+        *(void **)((u8 *)arg0 + 4) = NULL;
+    }
+}
+
 extern void func_0212789c(void *);
 extern void func_02126c20(void *);
 extern u8 data_021565f0[52];
