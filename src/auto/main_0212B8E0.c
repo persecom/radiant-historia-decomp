@@ -306,6 +306,14 @@ s32 func_0212c520(void) {
     return 0;
 }
 
+extern s32 func_0212ea3c(void);
+s32 func_0212c54c(u32 arg0) {
+    if (arg0 != (u32)-1) {
+        return arg0;
+    }
+    return func_0212ea3c() == 1 ? 2 : 1;
+}
+
 s32 func_0212c7b0(s8 *arg0) {
     return arg0[1];
 }
