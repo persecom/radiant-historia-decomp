@@ -326,24 +326,22 @@ void *func_02115b7c(void *arg0, void *arg1, s32 arg2) {
     return r4;
 }
 
+#pragma peephole off
 void func_02115d10(void *arg0, s32 arg1, s32 arg2) {
     void *r5;
     void *r4;
     if (arg1 == 0) {
         return;
     }
-    r5 = func_02008128();
+    r5 = (void *)func_02008128();
     r4 = func_02114f58((void *)arg1);
-    if (arg0 != func_02115264((void *)arg2)) {
-        goto done;
+    if (arg0 == func_02115264((void *)arg2)) {
+        func_0211528c((void *)arg2, NULL);
+        func_02114f58(r4);
     }
-    func_0211528c((void *)arg2, NULL);
-    func_02114f58(r4);
-    func_0200813c(r5);
-done:
-    return;
+    func_0200813c((u32)r5);
 }
-
+#pragma peephole on
 void func_02115d68(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     func_02115d10(arg0, arg2, arg3);
     func_02009720(arg0, (u8 *)arg0 + arg1);
