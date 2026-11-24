@@ -64,7 +64,10 @@ s32 func_02013778(u16 *pwc, const u8 *s, u32 n) {
     if (pwc) {
         *pwc = *s;
     }
-    return *s == 0 ? 0 : 1;
+    if (*s == 0) {
+        return 0;
+    }
+    return 1;
 }
 
 extern u32 data_02145c8c[];
