@@ -305,6 +305,19 @@ void func_0210cfc4(void) {
 void func_0210cfc8(void) {
 }
 
+void func_0210cfcc(s32 arg0) {
+    if (data_021626f0[2] == arg0) {
+        return;
+    }
+    data_021626f0[2] = arg0;
+    if (arg0 != 0) {
+        func_0200ef20(0);
+    } else {
+        while (func_0200ef20(1) == 0) {
+        }
+    }
+}
+
 extern s16 data_0216274c[];
 extern u8 data_02155c7c[];
 extern char data_02155c4c[];
