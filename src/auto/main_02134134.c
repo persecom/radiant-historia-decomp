@@ -44,7 +44,7 @@ void func_0213473c(void) {
 
 s32 func_02134efc(void *arg0) {
     if (arg0 == NULL) {
-        return 0;
+        return -1;
     }
     return func_02136930(*(void **)((u8 *)arg0 + 0x20));
 }
