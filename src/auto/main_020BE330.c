@@ -198,13 +198,13 @@ s32 func_020ddc8c(void *, void *);
 void func_020020f8(void *, void *, void *);
 void func_020f46a0(s32);
 void func_020be9b8(s32 unused) {
-VecBf118 a,b;
+VecBf118 b,a;
 s32 dist,angle,idx;
 s16 sn,cs;
 u8 *p=data_0216020c;
 if(!p) return;
-a.x=*(s32 *)(p+0xa0);a.y=*(s32 *)(p+0xa4);a.z=*(s32 *)(p+0xa8);
-b.x=data_02155984[8]; b.y=a.y-0x4000; b.z=data_02155984[10];
+SetVecBf118(&a,*(s32 *)(p+0xa0),*(s32 *)(p+0xa4),*(s32 *)(p+0xa8));
+SetVecBf118(&b,data_02155984[8],a.y-0x4000,data_02155984[10]);
 dist=func_020dddf0(&b,&a);
 angle=func_020ddc8c(&a,&b);
 if(dist>0xa000) {
