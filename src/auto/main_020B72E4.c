@@ -13,3 +13,7 @@ typedef struct {
     u8 field_3c;
     u32 field_40;
 } Unk_020b72e4;
+
+void func_020b7350(u16 arg0) {
+    data_02151024 = arg0;
+}
