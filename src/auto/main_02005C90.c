@@ -19,6 +19,7 @@ extern void func_02007bb0(void *, u64, void (*)(void *), void **);
 extern u16 func_020081e0(void);
 extern u32 data_0213e508[];
 extern u8 data_0215ce10[];
+void func_02006780(void *);
 s32 func_02005c90(u16 arg0, void *arg1, void (*arg2)(void), BOOL arg3) {
     u32 r5;
     s32 r4;
@@ -405,6 +406,32 @@ void func_0200661c(void) {
     u32 r4 = func_02008128();
     func_020060b8();
     func_0200813c(r4);
+}
+
+s32 func_02006638(void *arg0, s32 arg1) {
+    u8 *r8 = (u8 *)data_0215cde4[9];
+    u8 *r4 = NULL;
+    u32 irq = func_02008128();
+    while (r8 != NULL && r8 != arg0) {
+        r4 = r8;
+        r8 = *(u8 **)(r8 + 0x68);
+    }
+    if (r8 != NULL && r8 != (u8 *)data_0215ce10) {
+        if (*(u32 *)(r8 + 0x70) != arg1) {
+            if (r4 == NULL) {
+                data_0215cde4[9] = *(u32 *)(arg0 + 0x68);
+            } else {
+                *(u32 *)(r4 + 0x68) = *(u32 *)(arg0 + 0x68);
+            }
+            *(u32 *)(arg0 + 0x70) = arg1;
+            func_02006014(arg0);
+            func_020060b8();
+        }
+        func_0200813c(irq);
+        return 1;
+    }
+    func_0200813c(irq);
+    return 0;
 }
 
 void func_02006780(void *arg0) {
