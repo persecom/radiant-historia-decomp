@@ -1,5 +1,10 @@
 /* 26 functions from 0x02138E00 to 0x02139CDC (main), found by ds-decomp. */
 #include "common.h"
+typedef struct {
+ u8 pad0; u8 state; u8 flag2; u8 pad3[5];
+ u32 field8; u8 padc[0x54]; s16 field60; u8 pad62[0x46];
+ u8 flaga8; u8 pada9[3]; u32 fieldac, fieldb0, fieldb4, fieldb8, fieldbc;
+} State_02139be8;
 extern char data_0215ccac[];
 extern char data_0215ccd8[];
 
@@ -125,3 +130,25 @@ void func_02139bbc(u32 arg0, u32 arg1, u32 arg2) {
     func_02139be8(arg0, arg1, arg2);
     func_0212a9f8();
 }
+
+void func_02139be8(u32 arg0, u32 arg1, u32 arg2) {
+ u8 *p=(u8 *)arg0;
+ char buf[16];
+ u32 c,b,a;
+ if(p==0) { func_0212bda8(data_0215ccac); return; }
+ func_0212824c(p);
+ if(func_0212e5d4(arg1,arg2,*(u32 *)(p+0xac),&a,&c,&b)!=0) return;
+ if(*(u32 *)(p+8)==0) {
+ s32 size=16;
+ func_0212bf38(arg1,arg2,buf,size);
+ func_0212be08(data_0215ccd8,buf);
+ *(s16 *)(p+0x60)=size-17;
+ p[1]=6;
+ return;
+ }
+ *(u32 *)(p+0xb0)=*(u32 *)(p+0xac);
+ *(u32 *)(p+0xb4)=a; *(u32 *)(p+0xb8)=c; *(u32 *)(p+0xbc)=b;
+ p[1]=1;p[0xa8]=1;p[2]=1;
+ func_02128880(p,0);
+}
+
