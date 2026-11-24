@@ -4,7 +4,12 @@ extern s32 data_0215118c[][7];
 void func_021098ac(void *);
 
 typedef struct { u16 v[7]; } Unk14;
+typedef struct { u16 v[10]; } Unk20;
 extern const Unk14 data_021444d0;
+extern const Unk14 data_021444e0;
+extern const Unk20 data_021444f0;
+extern void func_020a3c54(s32);
+extern void func_020a3bbc(s32);
 extern void func_021099f8(void *);
 extern void func_020c4720(int, u32);
 extern u8 data_0216242c[];
