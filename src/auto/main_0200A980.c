@@ -9,6 +9,8 @@ extern void func_0200813c(u32);
 extern void func_0200a884(void *);
 extern s32 func_0200ad00(void *, s32);
 extern void func_0200aeac(void);
+extern s32 func_02012348(const char *);
+s32 func_0200b77c(const char *str, s32 pos);
 
 s32 func_0200b24c(char *dst, s32 dst_len, const char *src, s32 src_len, s32 *truncated) {
     s32 i;
