@@ -167,3 +167,10 @@ void func_0212d600(void *arg0) {
     func_0212a238(*(void **)((u8 *)arg0 + 4));
 }
 
+s32 func_0212d610(void *arg0) {
+    if (arg0 == NULL) {
+        return 0;
+    }
+    return func_0212a240(*(void **)((u8 *)arg0 + 4));
+}
+
