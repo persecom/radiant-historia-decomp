@@ -1,5 +1,15 @@
 /* 3 functions from 0x02068380 to 0x0206923C (main), found by ds-decomp. */
 #include "common.h"
+extern u32 data_0216263c[3];
+static inline u16 effect_random(u16 range) {
+ u32 value = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
+ data_0216263c[0] = value;
+ return ((value >> 16) * range) >> 16;
+}
+static inline s32 effect_signed_random(u16 range) {
+ s32 first = effect_random(range) - range / 2;
+ return first >= 0 ? effect_random(range) - range / 2 : -(effect_random(range) - range / 2);
+}
 typedef struct { s8 xy[4][2]; } DirectionTable8;
 
 #pragma peephole off
@@ -629,13 +639,20 @@ void func_02068da0(u8 *arg0)
 
     Effect *e = (Effect *)arg0;
     Particle *p;
-    s32 depth = -0x10000;
-    u16 i = 0;
-    s16 flipX = -1;
-    u32 *rng = data_0216263c;
-    s16 flipY = flipX;
-    s32 zero = 0;
-    s32 one = 1;
+    s16 flipY;
+    s16 flipX;
+    u32 *rng;
+    s32 depth;
+    s32 zero;
+    u16 i;
+    s32 one;
+    depth=-0x10000;
+    i=0;
+    flipX=-1;
+    rng=data_0216263c;
+    flipY=flipX;
+    zero=0;
+    one=1;
 
     e->y += 0x10000;
 
@@ -667,8 +684,8 @@ void func_02068da0(u8 *arg0)
             multiplier = rng[1];
             increment = rng[2];
 
-            seed = seed * multiplier + increment;
-            next = seed * multiplier + increment;
+            seed = multiplier * seed + increment;
+            next = multiplier * seed + increment;
 
             first = (u16)(((seed >> 16) * 8) >> 16) - 4;
             rng[0] = next;
@@ -709,8 +726,8 @@ void func_02068da0(u8 *arg0)
             multiplier = rng[1];
             increment = rng[2];
 
-            seed = seed * multiplier + increment;
-            next = seed * multiplier + increment;
+            seed = multiplier * seed + increment;
+            next = multiplier * seed + increment;
 
             first = (u16)(((seed >> 16) * 2) >> 16) - 1;
             rng[0] = next;
@@ -727,8 +744,8 @@ void func_02068da0(u8 *arg0)
             multiplier = rng[1];
             increment = rng[2];
 
-            seed = seed * multiplier + increment;
-            next = seed * multiplier + increment;
+            seed = multiplier * seed + increment;
+            next = multiplier * seed + increment;
 
             first = (u16)(((seed >> 16) * 2) >> 16) - 1;
             rng[0] = next;
@@ -755,7 +772,7 @@ void func_02068da0(u8 *arg0)
             p->x = -p->fxScaleX / 2;
             p->y = p->fxScaleY / 2;
 
-            if ((u16)(j - 5) <= 1) {
+            if (j == 5 || j == 6) {
                 p->x -= 0x1000;
             }
         }
@@ -828,7 +845,7 @@ void func_02068da0(u8 *arg0)
 
             p->y += height * 8 + absY / 2;
 
-            if ((u16)(j - 5) <= 1) {
+            if (j == 5 || j == 6) {
                 p->x -= 0x1000;
             }
 
