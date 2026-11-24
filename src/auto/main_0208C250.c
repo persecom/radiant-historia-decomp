@@ -81,6 +81,45 @@ func_021098ac(&s);
 }
 }
 
+void func_0208c420(s32 x,s32 y) {
+Unk14 a=data_02140d9c;
+s8 *p=data_021600b0;
+if(!(*(s16 *)(p+*(s16 *)(p+0x1e8)*40+0x24e)&0x40))return;
+*(volatile u32 *)0x40004a4=0x1f00c0;
+func_020a3bbc(17);
+a.data[1]=0;a.data[2]=0;a.data[3]=128;a.data[4]=18;a.data[5]=64;a.data[6]=8;a.data[8]=128;a.data[9]=18;
+func_021098ac(&a);
+*(volatile u32 *)0x40004a4=0x1f00c0;
+switch(*(s8 *)(p+*(s16 *)(p+0x1e8)*40+0x23a)) {
+case 1:func_020a3bbc(28);break;
+case 2:func_020a3bbc(28);break;
+case 3:func_020a3bbc(29);break;
+case 4:func_020a3bbc(27);break;
+case 5:func_020a3bbc(26);break;
+case 6:func_020a3bbc(28);break;
+case 7:func_020a3bbc(28);break;
+case 8:func_020a3bbc(26);break;
+}
+{
+Unk24 table=data_02140e64;
+u16 i;
+for(i=0;i<2;i++) {
+u16 k=i*9;
+a.data[1]=table.data[k];a.data[2]=table.data[k+1];
+a.data[3]=table.data[k+2];a.data[4]=table.data[k+3];
+a.data[5]=x+table.data[k+4];a.data[6]=y+table.data[k+5];
+a.data[7]=table.data[k+6];a.data[8]=table.data[k+7];a.data[9]=table.data[k+8];
+func_021098ac(&a);
+}
+}
+{
+Unk14 b=data_02140d60;
+if((*(s16 *)(p+*(s16 *)(p+0x1e8)*40+0x24e)&0x80) && *(s8 *)(p+*(s16 *)(p+0x1e8)*40+0x23a)==8) {
+func_020a3bbc(21);func_021098ac(&b);
+}
+}
+}
+
 void func_0208c680(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u16 arg4) {
     func_020a8810(*(void **)(data_0216010c + 0x340), 0x18);
     func_020896f4(9, 0x40, 0xb, 0x46, 7, arg0, 1);
