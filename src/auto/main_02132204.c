@@ -7,6 +7,15 @@ void func_0213235c(u32 arg0) {
     data_021749ac[0] = arg0;
 }
 
+extern void func_02016e88(s32, s32, s32);
+void func_0213239c(void);
+void func_0213236c(void) {
+    if (data_021749ac[2] == 0) {
+        func_0213239c();
+    }
+    data_021749ac[2]++;
+}
+
 void func_02132484(void) {
     func_0212f738();
 }
