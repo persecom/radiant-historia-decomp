@@ -10,6 +10,8 @@ extern void func_0212a0e4(void *, s32);
 extern void *memset(void *, int, u32);
 extern u8 data_021735a4[976];
 extern u8 data_0217358c[12];
+extern u32 data_02173974[2];
+extern s32 func_02129db4(void *, void *, u32);
 void func_02129bb8(s32 arg0) {
     *(s32 *)(data_0217358c + 8) = arg0;
 }
@@ -46,19 +48,20 @@ void func_02129c50(u8 *arg0, s32 arg1, s32 arg2) {
 
 void func_02129c6c(u8 *arg0) {
     u8 *p;
-    s32 i;
+    u32 i;
     *(u32 *)(arg0 + 0xc4) = 0;
     *(s16 *)(arg0 + 0xd8) = 0;
     *(s16 *)(arg0 + 0xda) = -0x80;
     *(s16 *)(arg0 + 0xdc) = -0x80;
     p = arg0 + 0xc8;
-    for (i = 0; i < 4; i++) {
+    i = 4;
+    do {
         p[0] = 0;
         p[1] = 0;
         p[2] = 0;
         p[3] = 0;
         p += 4;
-    }
+    } while (--i != 0);
 }
 
 void func_02129d80(u8 *arg0) {
