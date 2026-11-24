@@ -11,6 +11,26 @@ extern const Unk20 data_02140fb8;
 
 extern void func_020a3bbc(s32);
 extern void func_021098ac(void *);
+void func_02090d48(s32 kind,s16 x,s16 y,s16 w,s16 w2,s16 z) {
+Unk20 b=data_02140fb8;
+s32 extra=0;
+func_020a3bbc(0x40);
+((s16 *)b.unk)[7]=z;
+((s16 *)b.unk)[2]=((s16 *)b.unk)[1]=0;((s16 *)b.unk)[8]=2;((s16 *)b.unk)[3]=2;((s16 *)b.unk)[5]=x;((s16 *)b.unk)[6]=y;
+func_021098ac(&b);
+s32 px=x+2;
+((s16 *)b.unk)[1]=1;((s16 *)b.unk)[2]=0;((s16 *)b.unk)[3]=2;((s16 *)b.unk)[5]=px;((s16 *)b.unk)[6]=y;((s16 *)b.unk)[8]=w;
+func_021098ac(&b);
+if(kind==1) {
+((s16 *)b.unk)[2]=0;extra=7;((s16 *)b.unk)[1]=4;((s16 *)b.unk)[8]=extra;((s16 *)b.unk)[3]=extra;((s16 *)b.unk)[5]=px+w;((s16 *)b.unk)[6]=y;func_021098ac(&b);
+} else if(kind==2) {
+((s16 *)b.unk)[2]=0;extra=5;((s16 *)b.unk)[1]=11;((s16 *)b.unk)[8]=extra;((s16 *)b.unk)[3]=extra;((s16 *)b.unk)[5]=px+w;((s16 *)b.unk)[6]=y;func_021098ac(&b);
+}
+s32 end=extra+(px+w);
+((s16 *)b.unk)[1]=1;((s16 *)b.unk)[2]=0;((s16 *)b.unk)[3]=2;((s16 *)b.unk)[5]=end;((s16 *)b.unk)[6]=y;((s16 *)b.unk)[8]=w2;func_021098ac(&b);
+((s16 *)b.unk)[1]=2;((s16 *)b.unk)[2]=0;((s16 *)b.unk)[8]=2;((s16 *)b.unk)[3]=2;((s16 *)b.unk)[5]=w2+end;((s16 *)b.unk)[6]=y;func_021098ac(&b);
+}
+
 void func_02091b38(s32 kind, s16 x, s16 y, s16 dx, s16 dy, s16 z) {
  Unk20 b = data_02141120;
  s16 w, h;
