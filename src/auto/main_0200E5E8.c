@@ -8,6 +8,7 @@ extern s32 func_0200ed20(s32, s32, s32, s32);
 extern s32 func_0200e4a0(u32 *, s32, void *, void *, void *);
 extern void func_0200e314(void);
 extern void func_0200e290(void);
+extern void func_0200ef78(void *, u32, u32, u32);
 s32 func_0200e5e8(u32 arg0, u32 arg1) {
     u32 buf[2];
     buf[0] = 0x03006000;
