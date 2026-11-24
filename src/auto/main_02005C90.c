@@ -344,6 +344,43 @@ u32 func_020062c8(void) {
     return data_0215cdf0[0];
 }
 
+extern u32 func_02005ecc(void);
+extern void func_02006014(void *);
+extern void func_020063c8(void);
+extern void func_02008e24(u8, void *, u32);
+extern void func_0200683c(u8 *, u32);
+void func_020062d8(u8 *thread, void (*func)(void *), void *arg, u8 *stack, u32 stackSize, u32 prio) {
+    u32 r5 = func_02008128();
+    u8 *r6;
+    *(u32 *)(thread + 0x6c) = func_02005ecc();
+    *(u32 *)(thread + 0x70) = prio;
+    *(u32 *)(thread + 0x64) = 0;
+    *(u32 *)(thread + 0x74) = 0;
+    func_02006014(thread);
+    *(u8 **)(thread + 0x94) = stack;
+    *(u32 *)(thread + 0x98) = 0;
+    r6 = stack - stackSize;
+    *(u8 **)(thread + 0x90) = r6;
+    *(u32 *)(stack - 8) = 0xfddb597d;
+    **(u32 **)(thread + 0x90) = 0x7bf9dd5b;
+    *(u32 *)(thread + 0xa0) = 0;
+    *(u32 *)(thread + 0x9c) = 0;
+    func_02006844(thread, func, stack - 8);
+    *(void **)(thread + 4) = arg;
+    *(void (**)(void))(thread + 0x3c) = func_020063c8;
+    func_02008e24(0, r6 + 4, stackSize - 0xc);
+    *(u32 *)(thread + 0x84) = 0;
+    *(u32 *)(thread + 0x88) = 0;
+    *(u32 *)(thread + 0x8c) = 0;
+    func_0200683c(thread, 0);
+    *(u32 *)(thread + 0x78) = 0;
+    *(u32 *)(thread + 0x80) = 0;
+    *(u32 *)(thread + 0x7c) = 0;
+    func_02008e24(0, thread + 0xa4, 0xc);
+    *(u32 *)(thread + 0xb0) = 0;
+    func_0200813c(r5);
+}
+
 void func_020063c8(void) {
     func_02008128();
     func_020063e8((void *)data_0215cde4[8], 0);
