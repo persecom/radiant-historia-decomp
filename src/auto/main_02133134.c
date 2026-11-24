@@ -513,6 +513,51 @@ void *func_02133df8(void) {
     return data_0215bbb8;
 }
 
+void func_02133e04(void) {
+    data_0215bbb4 = data_02145a60;
+    __builtin_memset(data_02174f9c, 0, 0x738);
+}
+
+void func_02133e54(s8 *arg0, s8 *arg1) {
+    if (arg1 != NULL && arg1[0] != 0) {
+        if (arg1[0] == '\\') {
+            arg0[0] = ((s8 *)data_02174f9c)[0x528];
+            arg0[1] = ((s8 *)data_02174f9c)[0x529];
+            arg0[2] = 0;
+        } else if (arg1[1] == ':') {
+            arg0[0] = 0;
+        } else {
+            func_02016dc0(arg0, data_021754c4);
+        }
+    } else {
+        func_02016dc0(arg0, data_021754c4);
+    }
+    if (arg1 != NULL) {
+        func_02016ed8(arg0, arg1);
+    }
+}
+
+u32 func_02133ee0(u8 *arg0) {
+    s32 readSize = 0;
+    if (data_02174f9c[0x1cd] == 0) {
+        if (data_02174f9c[0x1cc] != 0) {
+            readSize = func_0200bb3c(*(void **)(arg0 + 0x4c), *(void **)(arg0 + 0x54), *(s32 *)(arg0 + 0x74));
+        } else {
+            readSize = func_0200bb90(*(void **)(arg0 + 0x4c), *(void **)(arg0 + 0x54), *(s32 *)(arg0 + 0x74));
+        }
+        if (*(s32 *)(arg0 + 0x74) < 0 || readSize < 0) {
+            readSize = 0;
+        } else {
+            if (readSize < *(s32 *)(arg0 + 0x74)) {
+                func_02008f74((u8 *)*(void **)(arg0 + 0x54) + readSize, 0, *(s32 *)(arg0 + 0x74) - readSize);
+            }
+            *(s32 *)(arg0 + 0x74) = readSize;
+            *(s32 *)(arg0 + 0x50) = 2;
+        }
+    }
+    return ((u32)readSize + *(u32 *)(arg0 + 0x58) - 1) / *(u32 *)(arg0 + 0x58);
+}
+
 void func_02134064(u32 arg0, u32 arg1) {
     data_02174f9c[0x1ca] = arg0;
     data_02174f9c[0x1cb] = arg1;
