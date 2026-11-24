@@ -441,8 +441,8 @@ void func_0210f38c(void) {
     data_02162a54[0] = 0;
 }
 
-void *func_0210f3ec(s32 arg0, s32 arg1) {
-    void *ret = func_0210ec9c(NULL, 0, arg1);
+void *func_0210f3ec(void *arg0, s32 arg1) {
+    void *ret = func_0210ec9c((const char *)arg0, 0, arg1);
     if (ret == NULL) {
         return NULL;
     }
