@@ -191,6 +191,10 @@ u8 *func_020bed34(void) {
     return func_020becfc() + 0xe8;
 }
 
+u8 *func_020bed44(void) {
+    return func_020becfc() + 0xf4;
+}
+
 void func_020bed94(void) {
     func_020becfc();
 }
