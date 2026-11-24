@@ -207,6 +207,14 @@ void func_0210af80(void) {
     func_0210b300();
 }
 
+void func_0210b080(u8 *arg0) {
+    void **p;
+    func_0210b0ac(arg0);
+    p = func_0210c518(0xc, data_02155c3c);
+    *p = arg0;
+    func_0210b848(p);
+}
+
 extern void func_0211cac0(u8 *, u32);
 extern void func_0211cd78(u8 *);
 extern s32 func_0211783c(void *, void *);
