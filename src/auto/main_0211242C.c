@@ -5,6 +5,12 @@ extern void func_0211242c(void *, s32, s32);
 extern u32 func_020c9c34(void *);
 extern u8 *func_020c9c10(void *, u16);
 extern void func_02111a3c(void *, u8);
+extern void func_02112dcc(void *, s32, s32);
+extern void func_020c7930(void *);
+extern void func_020c94c8(void *, u16, u16);
+extern void func_02110b94(void *);
+extern void func_02112724(void);
+extern void func_021127fc(void);
 
 extern void func_02112110(void);
 void func_02112554(u8 *arg0, s32 arg1) {
