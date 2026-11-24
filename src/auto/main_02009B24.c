@@ -381,6 +381,52 @@ void func_0200a56c(void) {
     func_0200a578();
 }
 
+extern u16 data_0215ece4;
+extern void func_02005a14(u32);
+extern void func_020057e8(u32, void *);
+extern void func_020059b4(u32);
+extern void func_0200a75c(void);
+void func_0200a578(void) {
+    struct {
+        u8 pad[0x388];
+        u32 flags;
+    } *work = (void *)0x02fffc00;
+    s32 i;
+    s32 irq = func_02008128();
+    if (!data_0215ece4) {
+        s32 timeout;
+        u32 val;
+        s32 count;
+        data_0215ece4 = 1;
+        work->flags = 0;
+        for (i = 0; i < 32; i++) {
+            data_0215ece8[i] = NULL;
+        }
+        *(volatile u16 *)0x04000184 = 0xc408;
+        func_02005a14(0x40000);
+        func_020057e8(0x40000, func_0200a75c);
+        func_020059b4(0x40000);
+        count = 0;
+        while (1) {
+            val = *(volatile u16 *)0x04000180 & 0xf;
+            *(volatile u16 *)0x04000180 = (u16)(val << 8);
+            if (val == 0 && count > 4) {
+                break;
+            }
+            timeout = 1000;
+            while ((*(volatile u16 *)0x04000180 & 0xf) == val) {
+                if (timeout <= 0) {
+                    count = 0;
+                    break;
+                }
+                timeout--;
+            }
+            count++;
+        }
+    }
+    func_0200813c(irq);
+}
+
 void func_0200a674(s32 arg0, void *arg1) {
     struct {
         u8 pad[0x388];
