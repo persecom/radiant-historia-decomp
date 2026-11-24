@@ -3,6 +3,15 @@
 
 extern u8 *data_02160c74;
 
+extern char data_021556b8[];
+extern u8 *data_02160200;
+extern void func_02005e80(char *, char *);
+extern void *func_021092d8(char *);
+extern s32 func_021093f0(void *);
+extern s32 func_02092994(void *, s32);
+extern s32 func_02109444(void *);
+extern void func_021093b0(void *);
+
 s32 func_02103b04(s32 arg0, void *arg1) {
     s32 result;
     void *p;
