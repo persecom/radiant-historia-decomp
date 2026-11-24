@@ -79,3 +79,8 @@ void func_0203fc18(u16 arg0) {
         if (node == NULL) return;
     }
 }
+
+void func_0203fcc0(u16 arg0) {
+    data_021600a0->unk34 = arg0;
+}
+
