@@ -162,6 +162,13 @@ void func_02007e58(u8 *alarm, s16 count, s16 delay, void *handler, void *arg) {
     func_0200813c(enabled);
 }
 
+void func_02007ee4(u8 *alarm) {
+    func_020057e8(4, func_02007f24);
+    func_020026e0(*(s16 *)(alarm + 0x10));
+    *(volatile u16 *)0x04000004 |= 0x20;
+    func_020059b4(4);
+}
+
 s32 func_0200808c(u8 *arg0, s32 arg1, s32 arg2) {
     s32 a = arg1 - *(s32 *)(arg0 + 0xc);
     s32 b = arg2 - *(s16 *)(arg0 + 0x10);
