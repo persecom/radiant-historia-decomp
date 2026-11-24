@@ -120,7 +120,7 @@ void func_020029ec(u32 arg0, u32 arg1) {
     *(volatile u32 *)0x04000468 = 0x1000;
 }
 
-extern void func_020055d4(void);
+extern void func_020055d4();
 void func_02002bbc(void)
 {
   *((volatile u32 *) 0x4000400) = 0x16;
