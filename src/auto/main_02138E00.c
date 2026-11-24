@@ -179,6 +179,35 @@ void func_021396e8(u8 *arg0, u32 arg1) {
     *(u8 *)(arg0 + 0xac) = arg1;
 }
 
+void func_021396f0(u8 *arg0, u8 *arg1) {
+    switch ((s8)arg1[5]) {
+        case 0:
+            break;
+        case 1: {
+            s32 diff;
+            func_02126c00();
+            diff = *(s32 *)(arg0 + 0xbc) - *(s32 *)(arg0 + 0xb0);
+            if (*(s32 *)(arg0 + 0xbc) <= *(s32 *)(arg0 + 0xb0)) {
+                diff = 0;
+            }
+            func_02139450(arg0, arg1, diff, 0);
+            func_02126c0c();
+            func_0213937c(arg0, arg0 + 0x30);
+            break;
+        }
+        case 2: {
+            void *obj = *(void **)arg1;
+            (*(void (**)(void *))(*(u8 **)obj + 0x20))(obj);
+            break;
+        }
+        case 3: {
+            void *obj = *(void **)arg1;
+            (*(void (**)(void *, s32))(*(u8 **)obj + 0x24))(obj, 1);
+            break;
+        }
+    }
+}
+
 s32 func_02139a34(u8 *arg0) {
     s32 i;
     if (*(s32 *)(arg0 + 0x6c) == 1) {
