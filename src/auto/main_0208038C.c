@@ -19,6 +19,29 @@ extern void func_0208a4ac(void);
 u32 func_02085110(u8);
 u8 *func_02021f10(u32);
 #pragma optimization_level 0
+void func_02081f08(u32 *,s32);
+#pragma optimization_level 0
+s16 func_020806e8(u8 stat,s32 slot,u8 actor,u8 item) {
+u32 buf[25];
+Stats_020806e8 old;
+u8 *p=NULL;
+if(*(s16 *)(data_0216010c+0x50d4)==0)return 0;
+p=func_02021f10(actor);
+func_02081f08((u32 *)buf,item);
+if(slot==0)old=*(Stats_020806e8 *)(p+0x7c);
+else if(slot==1)old=*(Stats_020806e8 *)(p+0x9e);
+else old=*(Stats_020806e8 *)(p+0xc0+(slot-2)*0x22);
+switch(stat) {
+case 0:return (s16)(*(s16 *)((u8 *)buf+68)-old.value[0]);
+case 1:return (s16)(*(s16 *)((u8 *)buf+70)-old.value[1]);
+case 2:return (s16)(*(s16 *)((u8 *)buf+72)-old.value[2]);
+case 3:return (s16)(*(s16 *)((u8 *)buf+74)-old.value[3]);
+case 4:return (s16)(*(s16 *)((u8 *)buf+76)-old.value[4]);
+case 5:return (s16)(*(s16 *)((u8 *)buf+78)-old.value[5]);
+case 6:return (s16)(*(s16 *)((u8 *)buf+80)-old.value[6]);
+case 7:return (s16)(*(s16 *)((u8 *)buf+82)-old.value[7]);
+}
+}
 void func_02080930(u8 arg) {
 u8 *p=NULL;
 p=func_02021f10(func_02085110(arg));
