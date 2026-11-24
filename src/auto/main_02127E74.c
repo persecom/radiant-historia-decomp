@@ -74,6 +74,32 @@ void func_02127ff4(void) {
     }
 }
 
+void func_02128030(Unk_02128030 *arg0, void *arg1) {
+    s32 i;
+    for (i = 0; i < (s8)arg0->f3; i++) {
+        void *obj = arg0->arr[i];
+        ((void (**)(void))*(void **)obj)[5]();
+    }
+    func_0212c7b8(arg0->f4, arg1);
+    arg0->f14 = (u32)arg1;
+    func_0212c7f0(arg0->f4);
+    arg0->f1 = 1;
+    arg0->f4c = 0;
+    arg0->f71 = 0;
+    arg0->f8c = 0x7fffffff;
+    arg0->f90 = -1;
+    arg0->f9c = 0;
+    arg0->fa4 = 0;
+    arg0->fa0 = (u32)data_02173ac0;
+    arg0->fc0 = 0;
+    if (arg0->f2 == 4) {
+        func_0212869c(arg0, 0);
+    }
+    if (arg0->f74 != NULL) {
+        func_0212e5b8(arg0->f74);
+    }
+}
+
 void func_021280f0(Unk_02128030 *arg0, u32 arg1, u32 arg2, u32 arg3, s32 arg4) {
     func_0212e538(arg0->f8, (s16)arg0->f3e << 11, (s16)arg0->f3c << 11);
     func_0212ddf0(arg0->f8, data_0215677c);
