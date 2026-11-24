@@ -1,6 +1,6 @@
 /* 25 functions from 0x0200D63C to 0x0200E5E8 (main), found by ds-decomp. */
 #include "common.h"
-typedef struct { u8 pad0[4]; void (*callback)(s32,s32,s32); u8 pad8[8]; u16 f10, f12; u8 *entries; u16 count; u8 pad1a[0x1e]; volatile u16 f38, f3a; } State0200dcd4;
+typedef struct { u8 pad0[4]; void (*callback)(s32,s32,s32); u8 pad8[8]; u16 f10, f12; u8 *entries; u16 count; u8 pad1a[0x1a]; u16 f34, f36; volatile u16 f38, f3a; } State0200dcd4;
 
 extern u8 data_0215f000[];
 extern s32 func_0200a6e4(s32,u32,s32);
