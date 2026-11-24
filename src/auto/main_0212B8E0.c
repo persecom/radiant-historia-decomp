@@ -22,6 +22,17 @@ extern void func_0212a9f8(void);
 extern void func_0212c3d4(void);
 extern void func_0212c464(void);
 extern void func_0212bfb8(void);
+extern void func_0212a9dc(void);
+extern void func_0212a9e8(void);
+extern void func_0212e514(void);
+extern void func_0212e4a0(void);
+extern void func_0212e5d0(void);
+extern void func_0212e534(void);
+extern void func_021281b0(void);
+extern void func_02128030(void *, u32);
+extern void func_0212e608(u32, s32);
+extern void func_0212e5f8(u32);
+extern void func_02128880(void *, s32);
 s32 func_0212bcd0(s16 *arg0, s32 arg1, s16 *arg2) {
     u16 v0;
     s16 swapped;
