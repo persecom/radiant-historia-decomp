@@ -89,18 +89,18 @@ void *func_02133300(void *arg0, s32 arg1, s32 arg2) {
     return ret;
 }
 
-void *func_02133358(void *arg0) {
+void *func_02133358(void *arg0, s32 arg1, s32 arg2) {
     void *p;
-    void *(*cb)(void *);
+    void *(*cb)(void *, s32, s32);
     void *ret;
     if (arg0 == NULL) {
         func_02132ca0(data_0215b830);
         return NULL;
     }
     p = *(void **)arg0;
-    cb = *(void *(**)(void *))((u8 *)p + 0x20);
+    cb = *(void *(**)(void *, s32, s32))((u8 *)p + 0x20);
     if (cb != NULL) {
-        ret = cb(*(void **)((u8 *)arg0 + 4));
+        ret = cb(*(void **)((u8 *)arg0 + 4), arg1, arg2);
     } else {
         ret = NULL;
         func_02132ca0(data_0215b84c);
