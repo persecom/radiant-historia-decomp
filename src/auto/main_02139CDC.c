@@ -92,3 +92,25 @@ void func_0213a06c(void) {
 
 void func_0213a0b0(void) {
 }
+
+extern void func_0203bc34(void *, void *, void *, int, int, int);
+extern void func_020a9610(void *, void *, void *, void *, int, int);
+extern void func_020a98ac(void *);
+extern void func_020a98f4(void *);
+void func_0213a248(int index, int x, int y, int z, void *arg, u8 mode, int a, int b) {
+u32 off = index * 0x50;
+func_020a994c((u8 *)data_021769fc + 0x48 + off);
+if (!arg) return;
+*(int *)(*(u8 **)((u8 *)data_021769fc + off + 0x44) + 0x4c) = (z + 101) << 12;
+*(int *)(*(u8 **)((u8 *)data_021769fc + off + 0x44) + 0x44) = x;
+*(int *)(*(u8 **)((u8 *)data_021769fc + off + 0x44) + 0x48) = y;
+switch(mode) {
+case 2: func_0203bc34(*(void **)((u8 *)data_021769fc+0x40), *(void **)((u8 *)data_021769fc+off+0x44),arg,a,b,2); break;
+case 1: func_0203bc34(*(void **)((u8 *)data_021769fc+0x40), *(void **)((u8 *)data_021769fc+off+0x44),arg,a,b,1); break;
+default:
+func_020a9610((u8 *)data_021769fc+0x7c+off,*(void **)((u8 *)data_021769fc+0x40),arg,*(void **)((u8 *)data_021769fc+off+0x44),0,0);
+func_020a98ac((u8 *)data_021769fc+0x48+off);
+func_020a98f4((u8 *)data_021769fc+0x48+off);
+}
+}
+
