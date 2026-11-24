@@ -12,6 +12,7 @@ extern void func_02008414(void);
 extern void func_0200fd64(void *, s32, u32, u32);
 extern void func_02010060(void);
 extern void func_0200fca4(void (*)(void), u32);
+extern void func_020101f8(void *);
 
 extern void func_0200fb84(void);
 void func_02010540(u32 **arg0) {
