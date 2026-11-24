@@ -112,6 +112,15 @@ s32 func_02032c80(void) {
     return 1;
 }
 
+void func_02032cac(void) {
+    u8 *node = *(u8 **)(data_02160090 + 8);
+    while (node != NULL) {
+        func_02031fcc(node, 0);
+        node = *(u8 **)(data_02160090 + 8);
+    }
+    func_02031c60(2, 0x64);
+}
+
 void func_02032ff8(void) {
     data_02160090[0x7e] = 1;
 }
