@@ -8,14 +8,7 @@ void *func_020c2b20(u8);
 
 extern u32 data_02155c3c;
 extern u32 data_0216263c[3];
-static inline u16 RandomRange_C2870(u16 max) {
-u32 seed=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
-u32 value;
-data_0216263c[0]=seed;
-value=seed>>16;
-if(max)value=(value*max)>>16;
-return value;
-}
+
 extern u8 *func_0210c594(u32,u32);
 extern s32 func_020330b8(void *);
 extern s32 func_02064cb8(void *,s32);
