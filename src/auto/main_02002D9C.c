@@ -184,3 +184,7 @@ void func_02003ce8(void *arg0, u32 arg1, u32 arg2) {
     }
 }
 
+void func_020030e4(u32 arg0) {
+    *(volatile u32 *)0x04000010 = arg0;
+}
+
