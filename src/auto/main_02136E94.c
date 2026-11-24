@@ -40,7 +40,10 @@ extern u8 data_0215c5bc[28];
 extern u8 data_0215c5d8[12];
 extern u8 data_0215c5e4[32];
 
-extern void func_021378d8(void);
+extern void func_021378d8();
+extern void func_02137250(void *, void *);
+extern void *func_02013858(void *, void *, s32);
+extern u8 data_0215c43c[], data_0215c448[], data_0215c464[], data_0215c470[];
 extern void func_021369a8(void);
 extern void func_02137470(void *);
 extern void func_02013878(void *, s32, u32);
