@@ -6,11 +6,12 @@ extern void func_020a9ebc(s16 *,s16 *);
 extern void func_020a3bbc(s32);
 extern void func_021098ac(void *);
 extern u32 data_0216263c[3];
-static inline u16 RandomRange_bedf8(u32 limit) {
-u16 max=limit;
+typedef struct { u32 seed, multiplier, increment; } RandomState_bedf8;
+static inline u16 RandomRange_bedf8(u16 max) {
+RandomState_bedf8 *state=(RandomState_bedf8 *)data_0216263c;
 u32 value;
-data_0216263c[0]=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
-value=data_0216263c[0]>>16;
+state->seed=state->seed*state->multiplier+state->increment;
+value=state->seed>>16;
 if(max) value=(value*max)>>16;
 return value;
 }
