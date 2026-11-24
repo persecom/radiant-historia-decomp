@@ -148,6 +148,24 @@ void func_020951e8(u8 *arg0) {
     }
 }
 
+void *func_02095228(u32 arg0, u16 arg1, u32 arg2) {
+    u8 *cur = (u8 *)func_02095198();
+    u8 *node = (u8 *)func_0210c594(0x1c, data_02155c3c);
+    while (cur != NULL) {
+        if (*(u16 *)(cur + 0x10) >= arg1) {
+            *(u16 *)(cur + 0x10) += 1;
+        }
+        cur = *(u8 **)(cur + 4);
+    }
+    *(u32 *)(node + 8) = arg0;
+    *(u16 *)(node + 0x10) = arg1;
+    *(u8 *)(node + 0x14) = 0;
+    *(u32 *)(node + 0xc) = arg2;
+    *(u8 *)(node + 0x15) = 0;
+    func_021167f0(data_02160110 + 0x9c, node);
+    return node;
+}
+
 void *func_020952f8(u16 arg0) {
     u8 *node = (u8 *)func_02095198();
     while (node != NULL) {
