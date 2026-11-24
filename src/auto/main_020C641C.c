@@ -35,6 +35,13 @@ s32 func_020c6db4(void) {
     return 1;
 }
 
+s32 func_020c6dbc(u8 *arg0) {
+    arg0[0x42] = 0x1f;
+    arg0[0x43] = 0x2d;
+    *(void **)(arg0 + 0x48) = (void *)func_020c6ef4;
+    return 0;
+}
+
 void func_020c6de0(void *arg0) {
     if (arg0 != NULL) {
         func_0210c5dc(arg0);
