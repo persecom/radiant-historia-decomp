@@ -26,6 +26,11 @@ u8 func_02085128(u32 arg0) {
     return ptr[0x619];
 }
 
+u32 func_02085140(u32 arg0) {
+    u8 *ptr = data_0216010c + arg0 * 8;
+    return *(u32 *)(ptr + 0x61c);
+}
+
 void func_02085234(void) {
     func_02085328();
 }
