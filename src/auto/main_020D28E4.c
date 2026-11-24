@@ -50,6 +50,7 @@ typedef struct {
 typedef struct {
     u8 pad[0x68];
     s32 unk68;
+    u8 pad2[2];
     u16 unk70;
 } UnkE;
 
@@ -133,6 +134,25 @@ void func_020d2c54(UnkA *a, Unk_020895a0 *b) {
     a->unk2c = b->unk8;
     a->unk92 = func_020ddcb0(a, &a->unk24);
     func_020ddd8c(a);
+}
+
+s32 func_020d2e14(s32 arg0, s32 arg1) {
+    UnkE *g = data_02160110[0];
+    switch (arg0) {
+    case 2:
+        if (g->unk68 & arg1) return 1;
+        break;
+    case 3:
+        g->unk70 &= ~(u16)arg1;
+        break;
+    case 4:
+        g->unk70 |= (u16)arg1;
+        break;
+    case 5:
+        if (g->unk70 & arg1) return 1;
+        break;
+    }
+    return 0;
 }
 
 void func_020d30a0(void) {
