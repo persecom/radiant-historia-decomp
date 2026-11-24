@@ -350,12 +350,14 @@ void func_0212f384(s32 *arg0, s32 arg1, s32 *arg2, s32 *arg3) {
     arg3[0] = (rem == 0) ? 0 : (arg2[0] + arg2[1]);
 }
 
-u32 func_0212f3cc(u8 *arg0, s32 arg1) {
-    s32 value = *(s32 *)(arg0 + 0xc);
-    if (value < arg1) {
-        func_0212f178();
+BOOL func_0212f3cc(u8 *arg0, s32 arg1) {
+    if (*(s32 *)(arg0 + 0xc) < arg1) {
+        ((void (*)(void *, s32))func_0212f178)(arg0, arg1);
     }
-    return arg1 <= *(s32 *)(arg0 + 0xc);
+    if (arg1 > *(s32 *)(arg0 + 0xc)) {
+        return FALSE;
+    }
+    return TRUE;
 }
 
 extern void func_0212f178(void);
