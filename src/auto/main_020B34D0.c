@@ -82,6 +82,14 @@ s32 func_020b3a28(void)
   return 0;
 }
 
+s32 func_020b3ef4(s32 arg0) {
+    s32 r = 0;
+    if ((u32)(func_020b3f14(arg0) - 1) <= 2) {
+        r = 1;
+    }
+    return r;
+}
+
 s32 func_020b3f14(u32 arg0) {
     s32 res = -1;
     if (arg0 != 0 && arg0 < 0x385) {
