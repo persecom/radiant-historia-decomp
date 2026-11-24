@@ -131,6 +131,10 @@ void func_02005ec0(void) {
     func_02012e3c();
 }
 
+u32 func_02005ecc(void) {
+    return ++data_0215cde4[6];
+}
+
 void func_02005ee4(void **arg0, u8 *arg1) {
     u8 *node = (u8 *)arg0[0];
     while (node != NULL && *(u32 *)(node + 0x70) <= *(u32 *)(arg1 + 0x70)) {
