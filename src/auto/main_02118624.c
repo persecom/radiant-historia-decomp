@@ -3,6 +3,7 @@
 static inline s32 size_02118a54(s32 n) { switch(n) { case 1:return 0; case 2:return 1; case 4:return 2; case 8:return 3; case 16:return 4; case 32:return 5; default:return 0; } }
 typedef struct { u16 width,height; u32 format,type,unkC,size; void *data; } Unk02118A54;
 typedef struct { u32 unk[3]; u32 height,width,format,zero,one,type; } Unk02118A54Out;
+static inline void init_02118a54(Unk02118A54Out *p, u32 format, u32 zero, u32 type) { p->format=format; p->zero=zero; p->one=1; p->type=type; }
 static inline s32 has_02118f24_data(u8 *p) { s32 r = 1; if (!*(void **)(p + 12)) r = 0; return r; }
 static inline s32 has_02118f24_handle(u8 *p) { s32 r = 1; if (*(s32 *)(p + 0x38) == -1) r = 0; return r; }
 
@@ -117,42 +118,23 @@ void func_02118a54(void *arg0, u32 arg1, s32 arg2, void *arg3) {
 
 
     if (p->type == 0) {
-        u32 val;
-        switch (((volatile Unk02118A54 *)p)->height) {
-            case 1: val = 0; break;
-            case 2: val = 1; break;
-            case 4: val = 2; break;
-            case 8: val = 3; break;
-            case 16: val = 4; break;
-            case 32: val = 5; break;
-            default: val = 0; break;
-        }
-        { s32 width=p->width;
-        out->height = val;
-
-        switch (width) {
-            case 1: val = 0; break;
-            case 2: val = 1; break;
-            case 4: val = 2; break;
-            case 8: val = 3; break;
-            case 16: val = 4; break;
-            case 32: val = 5; break;
-            default: val = 0; break;
-        }
-        widthResult = val;
-        }
+        s32 height = size_02118a54(p->height);
+        s32 width=p->width;
+        out->height=height;
+        out->width=size_02118a54(width);
     } else {
-        u32 width=p->width, height=p->height;
+        u32 height=((volatile Unk02118A54 *)p)->height, width=p->width;
         out->height = height;
-        widthResult = width;
+        out->width = width;
     }
 
-    out->width = widthResult;
+
     { u32 format=((volatile Unk02118A54 *)p)->format, type=p->type;
+    u32 one=1;
     out->format = format;
     out->zero = zero;
-    out->one = 1;
     out->type = type;
+    out->one = one;
     }
     func_021185b0((s32 *)arg3, arg2, (s32)arg1);
 }
