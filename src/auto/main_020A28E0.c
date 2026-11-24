@@ -114,6 +114,30 @@ void func_020a2c38(u16 arg0, u32 arg1) {
     }
 }
 
+int func_020a2c5c(u32 arg0, u32 arg1, u32 arg2, int id, u16 flags) {
+u8 path[32], a[64], b[64], c[64];
+void *file; u32 *obj;
+func_02005e80(path,data_02148b08);
+file=func_021092d8(path);
+if(func_02092ab0(file,(u16)id)==-1) {
+if(file){func_021093b0(file);file=NULL;}
+} else {
+if(flags&4)func_02005e80(a,data_02148b1c,func_02092a40(file,0));
+if(flags&1)func_02005e80(b,data_02148b28,func_02092a40(file,0));
+if(flags&2)func_02005e80(c,data_02148b34,func_02092a40(file,0));
+}
+obj=func_02107390();
+if(func_02107594(obj,a,b,c)==0) {
+func_021073d0(obj);
+if(file)func_021093b0(file);
+return 0;
+}
+func_0211b96c(arg0,obj[3],obj[4],obj[5],obj[6],obj[7],arg1,arg2);
+func_021073d0(obj);
+if(file)func_021093b0(file);
+return 1;
+}
+
 s32 func_020a2dd0(void) {
     u32 *ptr = &data_02160128;
     void *p;
