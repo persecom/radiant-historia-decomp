@@ -115,6 +115,17 @@ void func_020ba3f8(void) {
     *(u16 *)(obj + 0x30) = val;
 }
 
+void func_020ba4b4(void) {
+    u8 *obj = func_020c9c10(*(void **)(data_021601ec + 0x4c), 2);
+    u8 *node = func_02111da8(obj);
+    while (node != NULL) {
+        if (func_020ba504(node) != 0) {
+            node[6] |= 1;
+        }
+        node = *(u8 **)(node + 0x10);
+    }
+}
+
 s32 func_020ba504(u8 *arg0) {
     s32 ret = 0;
     ret |= func_02113824(*(u16 *)(arg0 + 2));
@@ -149,7 +160,7 @@ void func_020ba520(void) {
 
 s32 func_020ba5d4(void) {
     s32 ret = 0;
-    if ((func_021136b0(*(u16 *)(data_021601ec + 0xa2)) & 2) == 0) {
+    if (((func_021136b0(*(u16 *)(data_021601ec + 0xa2)) | 0) & 2) == 0) {
         ret = 1;
     }
     return ret;
