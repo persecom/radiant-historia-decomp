@@ -184,7 +184,7 @@ extern u8 data_02145040[];
 extern u8 data_02156698[48];
 extern void func_0212bda8(void *);
 extern void func_02132bf8(void *, s32, void *);
-extern void func_02128880(void *);
+extern void func_02128880();
 void func_02127600(void *arg0) {
     *(void **)arg0 = data_02145040;
     *(u32 *)((u8 *)arg0 + 4) = 0;
