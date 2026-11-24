@@ -55,6 +55,29 @@ void func_0202b6ec(void) {
     }
 }
 
+extern s32 func_0202c658(void *);
+void func_0202b754(void) {
+u8 *p;
+if(data_02160a6c==0)return;
+*(u32 *)(data_02160244+0xf0)=0;
+*(u16 *)(data_02160244+0xf6)=0;
+*(u16 *)(data_02160244+0xf8)=0;
+*(u16 *)data_02160080 &= 0xfffe;
+*(u16 *)data_02160080 |= 2;
+p=*(u8 **)(data_02160a6c+0xb8);
+while(p){
+func_02027004(p,0);
+if((*(u32 *)(*(u8 **)(p+0x12c)+0x10)&2) && p){
+s32 bit=func_0202c658(p);
+*(u32 *)(data_02160244+0xf0) |= 1<<bit;
+}
+p=*(u8 **)(p+0x174);
+}
+*(u16 *)data_02160080 &= 0xfffd;
+*(u16 *)data_02160080 |= 1;
+if(*(u32 *)(data_02160244+0xf0)==0) data_02160244[0x10a]=0;
+}
+
 extern s32 func_020329a0(void);
 extern u8 *func_02032254(u16);
 void func_0202b864(void) {
