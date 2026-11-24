@@ -33,6 +33,16 @@ extern void func_02066bdc(void);
 
 extern void func_0210c5dc(void *);
 
+extern void func_020a9aa8(void *);
+void func_020a9d60(void *arg0) {
+    void *ptr;
+    func_020aa348(arg0);
+    while ((ptr = *(void **)arg0) != NULL) {
+        func_021168f8(arg0, ptr);
+        func_020a9aa8(ptr);
+    }
+}
+
 void func_020a9d9c(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 a[2];
     s32 b[2];
