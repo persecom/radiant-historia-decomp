@@ -2,6 +2,13 @@
 #include "common.h"
 
 extern s32 func_0200d510(u8 *);
+extern s32 func_02010f10(void);
+extern void func_0200b710(u32 *, u32);
+extern s32 func_0200b6c8(u32 *, u32, u32);
+extern s32 func_02010c40(void *, u32, u32, void *, u32, u32);
+extern void func_0200d534(u32 *);
+extern const u8 data_0213e964[];
+extern u32 data_0215ef98[2];
 
 extern s32 func_0200c248(void *, void *, u32);
 extern s32 func_0200cb40(void *, s32, s32);
