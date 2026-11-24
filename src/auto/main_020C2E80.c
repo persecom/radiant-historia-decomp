@@ -52,11 +52,30 @@ void func_020c30f8(void) {
     }
 }
 
+void func_020c3134(void *arg0) {
+    u8 i;
+    u8 *node;
+    func_021168f8((void **)(data_02160090 + 0x48), arg0);
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+    i = 0;
+    node = *(u8 **)(data_02160090 + 0x48);
+    while (node != NULL) {
+        i++;
+        node = *(u8 **)(node + 0x24);
+        if (i > 15) {
+            return;
+        }
+    }
+}
+
 void func_020c33d4(void) {
 }
 
 void *func_020c3c78(void) {
-    return func_0210c594(0x28, data_02155c3c);
+    void *heap = data_02155c3c;
+    return func_0210c594(0x28, heap);
 }
 
 void func_020c3c94(void *arg0) {
