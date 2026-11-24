@@ -133,6 +133,22 @@ s32 func_0200e85c(void) {
     return result;
 }
 
+extern s32 func_0200e85c(void);
+extern void func_020081a4(u32);
+extern void func_02008128(void);
+extern void func_02008a00(void);
+extern void func_02008454(void);
+void func_0200e8a8(void) {
+    while (func_0200e85c() != 0) {
+        func_020081a4(0x51d23);
+    }
+    func_02008128();
+    func_02008a00();
+    for (;;) {
+        func_02008454();
+    }
+}
+
 s32 func_0200e8e4(u32 arg0) {
     if (func_0200ef5c() == 0) {
         return 0;
