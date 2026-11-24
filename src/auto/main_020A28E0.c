@@ -84,21 +84,12 @@ void func_020a2a08(void) {
 }
 
 void func_020a2a50(void) {
-    u8 *base = (u8 *)data_021600b0[0];
-    void *node = *(void **)(base + 0x140);
-    if (node == NULL) {
-        return;
-    }
-    func_021168f8(base + 0x140, node);
-    if (node != NULL) {
-        func_0210c5dc(node);
-    }
-    while (1) {
-        node = *(void **)(base + 0x140);
-        if (node == NULL) {
-            break;
-        }
-    }
+ u8 *base=(u8*)data_021600b0[0];
+ void *node;
+ while ((node=*(void**)(base+0x140)) != NULL) {
+ func_021168f8(base+0x140,node);
+ if(node != NULL) func_0210c5dc(node);
+ }
 }
 
 void func_020a2c20(void) {
