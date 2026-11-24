@@ -145,6 +145,24 @@ void func_02118efc(void *arg0) {
     *(s32 *)(p + 8) = 0x1000;
 }
 
+extern u8 *func_02117bd4(void *);
+extern u32 func_021176b0(void *, u32);
+extern void func_0211a7ec(s32, u32, u32);
+void func_02118f24(void *arg0) {
+u8 *p=arg0, *v, *res, *tbl; u32 kind;
+if (*(u16 *)(*(u8 **)(p+4)+4)==0) return;
+v=func_02117bd4(p); res=*(u8 **)(p+0x34);
+*(u32 *)(p+0x30)=func_021176b0(res,*(u16 *)v);
+kind=*(u32 *)(*(u8 **)(p+0x1c)+4)&255;
+func_02118eec((u32 *)(p+0x3c),1);
+if(kind!=0) {
+if(kind==2) ((void (*)(u8 *, s32, s32))func_02118e94)(p+0x3c,*(s16 *)(v+4),*(s16 *)(v+6));
+else {func_02118ed0(p+0x3c,*(u32 *)(v+4),*(u32 *)(v+8));func_02118eb4(p+0x3c,*(u16 *)(v+2));((void (*)(u8 *, s32, s32))func_02118e94)(p+0x3c,*(s16 *)(v+12),*(s16 *)(v+14));}
+}
+tbl=*(u8 **)(res+12);
+if((tbl!=0)==1) {if((*(s32 *)(p+0x38)!=-1)==1) {u32 *a=(u32 *)(*(u8 **)(tbl+4)+*(u16 *)v*8);func_0211a7ec(*(s32 *)(p+0x38),a[0],a[1]);}}
+}
+
 void func_02119000(u8 *arg0, void *arg1, void *arg2) {
     u8 *p = arg0;
     *(void **)(p + 0x34) = arg2;
@@ -216,4 +234,5 @@ void func_02119150(void) {
     }
     data_0216f244[index] = 0;
 }
-
+static inline s32 has_02118f24_data(u8 *p) { return *(void **)(p + 12) != 0; }
+static inline s32 has_02118f24_handle(u8 *p) { return *(s32 *)(p + 0x38) != -1; }
