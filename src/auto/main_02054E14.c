@@ -28,7 +28,7 @@ extern void func_02055bac(void);
 extern void func_02055c90(s32);
 extern void func_02055ebc(void);
 extern void func_02005e80(void *, const char *, ...);
-extern void func_02055d28(void *, u16);
+extern void *func_02055d28(void *, u16);
 extern void func_02124e68(void *);
 extern void func_0212501c(void *);
 
