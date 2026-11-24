@@ -197,14 +197,16 @@ u16 func_020a30d4(u16 arg0) {
 
 void func_020a3128(u16 arg0) {
     UnkStruct_020a3128 *d;
+    s32 idx;
     if (arg0 == 0) {
         return;
     }
     d = *(UnkStruct_020a3128 **)data_02160128;
-    *(volatile u32 *)0x040004a8 = (d[arg0 - 1].unk4 >> 3) | (d[arg0 - 1].unk18 << 26) |
-                                  0x40000000 | (d[arg0 - 1].unk10 << 20) |
-                                  (d[arg0 - 1].unk14 << 23) | 0x20000000;
-    *(volatile u32 *)0x040004ac = d[arg0 - 1].unkC >> (4 - (d[arg0 - 1].unk18 == 2));
+    idx = arg0 - 1;
+    *(volatile u32 *)0x040004a8 = (d[idx].unk4 >> 3) | (d[idx].unk18 << 26) |
+                                  0x40000000 | (d[idx].unk10 << 20) |
+                                  (d[idx].unk14 << 23) | 0x20000000;
+    *(volatile u32 *)0x040004ac = d[idx].unkC >> (4 - (d[idx].unk18 == 2));
     *(volatile u32 *)0x04000480 = 0x7fff;
 }
 
@@ -222,12 +224,12 @@ void func_020a31c8(s32 arg0) {
     if (data_0216012c != 0) {
         return;
     }
-    data_0216012c = (u32)func_0210c594(4, data_02155c3c);
+    data_0216012c = func_0210c594(4, data_02155c3c);
     func_02108ffc();
-    *(u32 *)data_0216012c = func_0203c0d8();
-    *(u32 *)(data_0216012c + 4) = (u32)func_020a3bb8;
+    *data_0216012c = func_0203c0d8();
+    **(u32 **)data_0216012c = (u32)func_020a3bb8;
     func_020a3244(arg0);
-    func_0203c1c0(*(u32 *)data_0216012c, 0x3f3, 0x3e9);
+    func_0203c1c0(*data_0216012c, 0x3f3, 0x3e9);
 }
 
 void *func_020a36ac(void *arg0, s32 arg1) {
