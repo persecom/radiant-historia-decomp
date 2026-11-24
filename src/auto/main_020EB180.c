@@ -1,5 +1,18 @@
 /* 11 functions from 0x020EB180 to 0x020EC12C (main), found by ds-decomp. */
 #include "common.h"
+static inline s32 animation_end_020ebddc(u8 *p) {
+u8 *cur=*(u8 **)p;
+u8 *seq;
+s32 end;
+if((*(s32 *)(p+20)>0)^*(u32 *)(p+8)){
+seq=*(u8 **)(p+28);
+if(cur>=*(u8 **)(seq+12)+*(u16 *)seq*8)end=1;else end=0;
+}else{
+seq=*(u8 **)(p+28);
+if(cur<=*(u8 **)(seq+12)+*(u16 *)(seq+2)*8-8)end=1;else end=0;
+}
+return end;
+}
 static inline s32 has_02118f24_data(u8 *p) { s32 r = 1; if (!*(void **)(p + 12)) r = 0; return r; }
 static inline s32 has_02118f24_handle(u8 *p) { s32 r = 1; if (*(s32 *)(p + 0x38) == -1) r = 0; return r; }
 extern s32 data_02162834[3];
@@ -221,13 +234,15 @@ func_02118eec(p+60,1);
 if(flag)func_02118e94(p+60,*(s16 *)(frame+4),*(s16 *)(frame+6));
 valid=has_02118f24_data(bank);
 if(valid){
-valid=has_02118f24_handle(p);
+valid=(u32)(*(s32 *)(p+56)!=-1);
+if(valid==0)goto done;
 if(valid){
 u32 *entry=(u32 *)(*(u8 **)(*(u8 **)(bank+12)+4)+*(u16 *)frame*8);
-func_0211a7ec(*(s32 *)(p+56),entry[0],entry[1]);
+func_0211a7ec(*(volatile s32 *)(p+56),entry[0],entry[1]);
 }
 }
 }
+done:;
 }
 
 s32 func_020020bc(s32,s32);
