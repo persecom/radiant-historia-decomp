@@ -10,6 +10,50 @@ typedef struct Mtx9 {
 } Mtx9;
 
 extern void func_02000cd8(void *, void *, u32, u32, u32);
+void func_02000f44(const Mtx33 *a, const Mtx33 *b, Mtx33 *out)
+{
+  Mtx33 tmp;
+  Mtx33 *dst = out;
+  s32 *new_var;
+  s32 x;
+  s32 y;
+  s32 z;
+  s32 t;
+  s32 t2;
+  if (out == b)
+  {
+    dst = &tmp;
+  }
+  x = a->v[0];
+  y = a->v[1];
+  z = a->v[2];
+  dst->v[0] = (((((s64) x) * b->v[0]) + (((s64) y) * b->v[3])) + (((s64) z) * b->v[6])) >> 12;
+  dst->v[1] = (((((s64) x) * b->v[1]) + (((s64) y) * b->v[4])) + (((s64) z) * b->v[7])) >> 12;
+  t = (((((s64) x) * b->v[2]) + (((s64) y) * b->v[5])) + (((s64) z) * b->v[8])) >> 12;
+  x = a->v[3];
+  y = a->v[4];
+  z = a->v[5];
+  t2 = (((((s64) x) * b->v[2]) + (((s64) y) * b->v[5])) + (((s64) z) * b->v[8])) >> 12;
+  dst->v[2] = t;
+  dst->v[5] = t2;
+  dst->v[4] = (((((s64) x) * b->v[1]) + (((s64) y) * b->v[4])) + (((s64) z) * b->v[7])) >> 12;
+  z = (((((s64) x) * b->v[0]) + (((s64) y) * b->v[3])) + (((s64) z) * b->v[6])) >> 12;
+  t = z;
+  x = a->v[6];
+  y = a->v[7];
+  new_var = a->v;
+  z = new_var[8];
+  t2 = (((((s64) x) * b->v[0]) + (((s64) y) * b->v[3])) + (((s64) z) * b->v[6])) >> 12;
+  dst->v[3] = t;
+  dst->v[6] = t2;
+  dst->v[7] = (((((s64) x) * b->v[1]) + (((s64) y) * b->v[4])) + (((s64) z) * b->v[7])) >> 12;
+  dst->v[8] = (((((s64) x) * b->v[2]) + (((s64) y) * b->v[5])) + (((s64) z) * b->v[8])) >> 12;
+  if (dst == (&tmp))
+  {
+    *out = tmp;
+  }
+}
+
 void func_020010d8(u32 *p)
 {
     u64 *q = (u64 *)p;
