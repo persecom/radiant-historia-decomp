@@ -69,7 +69,6 @@ BOOL func_020508fc(register volatile s32* arg0,
 void func_02050b0c(u8 *arg0, s32 arg1) {
     extern struct Mgr_02046e30 *data_021600bc;
     extern u8 *data_02160aec;
-    extern s16 data_0213a394[];
 
     void *manager = data_021600bc;
     s32 rect[4];
@@ -93,14 +92,8 @@ void func_02050b0c(u8 *arg0, s32 arg1) {
     pos.y = *(s32 *)(arg0 + 0x4);
     pos.z = *(s32 *)(arg0 + 0x8);
 
-    {
-        s16 s = data_0213a394[(((*(u16 *)(arg0 + 0x92) + arg1) % 0x10000) >> 4) * 2 + 1];
-        pos.x += -(s * 2);
-    }
-    {
-        s16 s = data_0213a394[(((*(u16 *)(arg0 + 0x92) + arg1) % 0x10000) >> 4) * 2];
-        pos.z += s * 2;
-    }
+    pos.x += -(FX_CosIdx_02050b0c((*(u16 *)(arg0 + 0x92) + arg1) % 0x10000) * 2);
+    pos.z += FX_SinIdx_02050b0c((*(u16 *)(arg0 + 0x92) + arg1) % 0x10000) * 2;
 
     startX = pos.x / 0x10000 - 1;
     endX = startX + 2;
@@ -132,14 +125,8 @@ void func_02050b0c(u8 *arg0, s32 arg1) {
                 case 1:
                 case 6:
                 case 7:
-                    {
-                        s16 s = data_0213a394[(((*(u16 *)(arg0 + 0x92) + arg1) % 0x10000) >> 4) * 2 + 1];
-                        *(s32 *)(arg0 + 0x0) -= -(s * 2);
-                    }
-                    {
-                        s16 s = data_0213a394[(((*(u16 *)(arg0 + 0x92) + arg1) % 0x10000) >> 4) * 2];
-                        *(s32 *)(arg0 + 0x8) -= s * 2;
-                    }
+                    *(s32 *)(arg0 + 0x0) -= -(FX_CosIdx_02050b0c((*(u16 *)(arg0 + 0x92) + arg1) % 0x10000) * 2);
+                    *(s32 *)(arg0 + 0x8) -= FX_SinIdx_02050b0c((*(u16 *)(arg0 + 0x92) + arg1) % 0x10000) * 2;
                     return;
                 }
             }
