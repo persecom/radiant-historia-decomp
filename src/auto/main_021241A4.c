@@ -1,8 +1,8 @@
 /* 45 functions from 0x021241A4 to 0x021251A0 (main), found by ds-decomp. */
 #include "common.h"
 
-extern u8 data_0215617c[];
-extern u8 data_02156160[];
+extern u32 data_0215617c[];
+extern u32 data_02156160[];
 extern u16 data_02173170;
 extern u32 data_02156150;
 extern u32 data_02156154;
