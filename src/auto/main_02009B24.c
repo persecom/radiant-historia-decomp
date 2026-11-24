@@ -295,9 +295,12 @@ void func_0200a2e0(u8 *arg0) {
 
 extern s32 func_0200698c(void);
 void func_0200a328(u32 *arg0) {
-    u32 tmp[2] = {0};
-    arg0[0] = tmp[0];
-    arg0[1] = tmp[1];
+    volatile u32 a;
+    volatile u32 b;
+    b = 0;
+    a = 0;
+    arg0[0] = 0;
+    arg0[1] = 0;
 }
 
 s32 func_0200a4f4(u8 *arg0) {
@@ -411,8 +414,26 @@ void func_0200a884(u8 *arg0, u32 arg1) {
     func_0200813c(irq);
 }
 
-s32 func_0200a6e4(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    return arg3;
+s32 func_0200a6e4(s32 arg0, s32 arg1, u32 arg2, s32 arg3) {
+    u32 v = (arg3 & ~0x1f) | (arg0 & 0x1f);
+    u32 val;
+    volatile u16 *reg = (volatile u16 *)0x4000184;
+    s32 irq;
+    v &= ~0x20;
+    v = (v | ((arg2 << 31) >> 26)) & 0x3f;
+    val = v | (arg1 << 6);
+    if ((*reg & 0x4000) != 0) {
+        *reg |= 0xc000;
+        return -1;
+    }
+    irq = func_02008128();
+    if ((*reg & 2) != 0) {
+        func_0200813c(irq);
+        return -2;
+    }
+    *(volatile u32 *)((u8 *)reg + 4) = val;
+    func_0200813c(irq);
+    return 0;
 }
 
 s32 func_0200a85c(s32 c) {
