@@ -43,6 +43,46 @@ void func_020a25c8(void) {
     }
 }
 
+s32 func_020a25fc(s32 arg0, u32 arg1) {
+    u8 *base = data_021600b0;
+    if (arg0 == 0) {
+        *(u32 *)(base + 0x1a0) = 0;
+    } else if (arg0 == 1) {
+        *(u32 *)(base + 0x1a0) |= arg1;
+    } else if (arg0 == 2) {
+        *(u32 *)(base + 0x1a0) &= ~arg1;
+    } else if (arg0 == 3) {
+        if (*(u32 *)(base + 0x1a0) & arg1) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+s32 func_020a27a8(s32 arg0) {
+    switch (arg0) {
+    case 2:
+        return 1;
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+    case 7:
+    case 8:
+    case 9:
+        return 2;
+    case 10:
+    case 11:
+    case 12:
+    case 13:
+    case 14:
+    case 15:
+        return 0;
+    default:
+        return 0;
+    }
+}
+
 u8 func_020a2814(void) {
     return data_02160124;
 }
@@ -51,5 +91,13 @@ void func_020a2824(u16 arg0) {
     void *p = func_0210c594(0x14, data_02155c3c);
     *(u16 *)p = arg0;
     *(u8 *)((u8 *)p + 4) = 0;
+}
+
+void func_020a2850(void) {
+    u16 i;
+    u8 *base = data_021600b0;
+    for (i = 0; i < 0x20; i++) {
+        func_021167f0(base + 0x134, ((void *(*)(u16))func_020a2824)((u16)(i + 1)));
+    }
 }
 
