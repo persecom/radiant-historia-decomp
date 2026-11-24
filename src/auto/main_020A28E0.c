@@ -1,21 +1,40 @@
 /* 25 functions from 0x020A28E0 to 0x020A3814 (main), found by ds-decomp. */
 #include "common.h"
 
+typedef struct {
+    u32 data[0x294 / 4];
+} UnkStruct_02142e34;
+
+typedef struct {
+    u32 unk0;
+    u32 unk4;
+    u32 unk8;
+    u32 unkC;
+    u32 unk10;
+    u32 unk14;
+    u32 unk18;
+} UnkStruct_020a3128;
+
 extern u32 data_02155c3c;
 extern u32 data_02160128;
 extern u32 data_021600b0[2];
+extern u8 data_02148ee0[];
+extern u8 data_02149174[];
+extern const UnkStruct_02142e34 data_02142e34;
 extern s32 func_020a2f34(void);
 extern s32 func_020a2fe4(void);
+extern void *func_020a36ac(void *, s32);
+extern void *func_020a3814(void *, s32, void *);
 extern void func_021167ac(void *, u32);
 extern void *func_0210c594(u32, u32);
 extern void func_021167f0(void *, void *);
 extern void func_021168f8(void *, void *);
 extern void func_0210c5dc(void *);
-extern void func_020a30d4(void);
+extern u16 func_020a30d4();
 extern void func_020a2eb4(void);
 extern void func_020a2ee4(void);
 extern void func_0203be4c(void *);
-s32 func_020a3128(void);
+extern s32 func_020a3128();
 void func_020a29dc(u16 arg0) {
     void *p = func_0210c594(0x20, data_02155c3c);
     *(u16 *)p = arg0;
