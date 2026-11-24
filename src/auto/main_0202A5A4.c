@@ -29,3 +29,8 @@ s32 func_0202b3b0(s32 arg0) {
     return 1;
 }
 
+void func_0202b3d4(Unk_0202B3D4 *arg0, u8 arg1) {
+    arg0->ptr_128->field_74 = arg1;
+    data_02160244->field_70 |= 1 << arg1;
+}
+
