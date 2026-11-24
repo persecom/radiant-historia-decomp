@@ -165,6 +165,19 @@ void *func_02026d70(u32 arg0, u32 arg1, u32 arg2) {
     return node;
 }
 
+void func_02026ddc(void *arg0) {
+    void *sub = *(void **)((u8 *)arg0 + 0xc);
+    func_0203218c(sub);
+    if (sub != NULL) {
+        func_0210c5dc(sub);
+    }
+    func_021168f8((u8 *)data_0216007c[1] + 0x18, arg0);
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+    *(u16 *)((u8 *)data_0216007c[1] + 0x16) -= 1;
+}
+
 void func_02026e40(u16 arg0) {
     void *p = func_0210c594(0x28, data_02155c3c);
     *(u16 *)p = arg0;
