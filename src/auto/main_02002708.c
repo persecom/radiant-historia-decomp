@@ -71,6 +71,16 @@ void func_0200283c(u32 arg0) {
     *(volatile u32 *)0x04001000 = (*(volatile u32 *)0x04001000 & ~7) | arg0;
 }
 
+void func_02002858(volatile u16 *reg, s32 brightness) {
+    if (brightness == 0) {
+        *reg = 0;
+    } else if (brightness > 0) {
+        *reg = (u16)(brightness | 0x4000);
+    } else {
+        *reg = (u16)((-brightness) | 0x8000);
+    }
+}
+
 void func_02002920(u32 *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
     *arg0 = (arg1 | 0x40) | (arg2 << 8) | ((arg3 | (arg4 << 8)) << 16);
 }
