@@ -109,6 +109,69 @@ void func_020a5858(u8 *arg0) {
     }
 }
 
+void func_020a58d8(u8 *p, int type, int index) {
+int width;
+int zero=0;
+switch(type) {
+case 0:
+*(void**)p=func_020a94b8(data_0214fe5c);
+*(void**)(p+8)=func_020a8844(16,0x1e0,16,2);
+break;
+case 1:
+*(void**)p=func_020a94b8(data_0214fe6c);
+*(void**)(p+8)=func_020a8844(16,0x240,16,2);
+break;
+case 2:
+*(void**)(p+4)=func_020a84b8(5,1);
+func_020a8810(*(void**)(p+4),4);
+*(void**)p=func_020a94b8(data_0214fe78);
+func_020a9830(p+12,p+0x40,0xf0,16,zero,zero);
+func_020a9610(p+0x40,*(void**)p,(void*)1,*(void**)(p+4),zero,zero);
+*(u16*)(p+0x5c)|=1;
+break;
+case 3:
+*(void**)(p+4)=func_020a84b8(5,1);
+func_020a8810(*(void**)(p+4),4);
+*(void**)p=func_020a94b8(data_0214fe84);
+func_020a9830(p+12,p+0x40,0xf0,16,zero,zero);
+func_020a9610(p+0x40,*(void**)p,(void*)4,*(void**)(p+4),zero,zero);
+width=func_020a9738(**(void***)(p+0x40),4);
+func_020a98ac(p+12);
+func_020a98f4(p+12);
+*(int*)(*(u8**)(p+4)+0x4c)=0x2bc000;
+*(int*)(*(u8**)(p+4)+0x44)=(128-width/2)<<12;
+*(int*)(*(u8**)(p+4)+0x48)=0x2000;
+*(u16*)(p+0x5c)|=1;
+break;
+case 4:
+func_020a994c(p+12);
+width=index-100;
+func_020a9610(p+0x40,*(void**)p,(void*)width,*(void**)(p+4),128,zero);
+width=func_020a9738(**(void***)(p+0x40),(u16)width);
+func_020a98ac(p+12);
+*(int*)(*(u8**)(p+4)+0x4c)=0x2bc000;
+*(int*)(*(u8**)(p+4)+0x44)=(128-width/2)<<12;
+*(int*)(*(u8**)(p+4)+0x48)=0xb2000;
+*(u16*)(p+0x5c)|=1;
+break;
+case 6:
+*(void**)(p+4)=func_020a84b8(5,1);
+func_020a8810(*(void**)(p+4),16);
+*(void**)p=func_020a94b8(data_0214fe90);
+func_020a9610(p+0x40,*(void**)p,(void*)1,*(void**)(p+4),zero,zero);
+break;
+case 7:
+*(void**)(p+4)=func_020a84b8(5,4);
+func_020a8810(*(void**)(p+4),7);
+*(void**)p=func_020a94b8(data_0214fea0);
+func_020a9610(p+0x40,*(void**)p,(void*)1,*(void**)(p+4),zero,zero);
+*(int*)(*(u8**)(p+4)+0x4c)=0x2bc000;
+*(int*)(*(u8**)(p+4)+0x44)=0xf000;
+*(int*)(*(u8**)(p+4)+0x48)=0x3a000;
+break;
+}
+}
+
 void func_020a5bf4(u8 *arg0, void *arg1) {
     (*(void (**)(void *))(*(u8 **)(arg0 + 4) + 4))(*(void **)(arg0 + 4));
     if (arg1 != NULL) {
