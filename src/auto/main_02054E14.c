@@ -34,23 +34,17 @@ extern void func_0212501c(void *);
 
 void func_02055240(u8 *arg0) {
     u8 *p = *(u8 **)(data_021600ac + 0x68);
-    s32 vec1[3];
-    s32 vec2[3];
+    struct { s32 x, y, z; } vec1 = { 0, 0, 0 };
+    struct { s32 x, y, z; } vec2 = { 0, 0, 0 };
     s32 dist;
 
-    vec1[0] = 0;
-    vec1[1] = 0;
-    vec1[2] = 0;
-    vec2[0] = 0;
-    vec2[1] = 0;
-    vec2[2] = 0;
     *(s32 *)(arg0 + 0x1b8) = 0;
-    func_02002128(arg0, p, vec1);
+    func_02002128(arg0, p, &vec1);
     dist = (func_02002388(arg0, p) >> 12) + 0x50;
-    func_02002274(vec1, vec1);
-    vec2[0] = vec1[0] * dist;
-    vec2[2] = vec1[2] * dist;
-    func_020020f8(p, vec2, arg0 + 0x1b4);
+    func_02002274(&vec1, &vec1);
+    vec2.x = vec1.x * dist;
+    vec2.z = vec1.z * dist;
+    func_020020f8(p, &vec2, arg0 + 0x1b4);
     *(s16 *)(arg0 + 0x98) = 0;
 }
 
