@@ -87,6 +87,8 @@ extern u8 data_0216bfd8[12];
 extern void *func_02116958(void *, void *);
 extern void func_02116708(u8 *);
 extern void func_0211424c();
+extern void *func_02114284(s32);
+extern void func_021141a8(void *, u8 *);
 extern void func_021143c0(u8 *, s32);
 extern void func_021168f8(void *, void *);
 extern void func_02115380(u32);
@@ -515,6 +517,18 @@ void func_021141a8(void *arg0, u8 *arg1) {
     }
     func_02116894(arg0, obj, arg1);
     *(u32 *)(arg1 + 4) = (u32)arg0;
+}
+
+extern void func_02115368(void *);
+void func_021141f8(u8 *arg0) {
+    void *obj = func_02116958(data_0216bfd8, NULL);
+    while (obj != NULL) {
+        if (arg0[0x3d] < ((u8 *)obj)[0x3d]) {
+            return;
+        }
+        obj = func_02116958(data_0216bfd8, obj);
+    }
+    func_02116894(data_0216bfd8, obj, arg0);
 }
 
 extern void func_02009528(u8, s32);
