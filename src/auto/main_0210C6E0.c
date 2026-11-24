@@ -362,6 +362,14 @@ void func_0210d46c(void) {
     func_02113c18(data_02162740);
 }
 
+s32 func_0210d548(void) {
+    s32 ret = 0;
+    if (func_02113c34(0) >= 6) {
+        ret = 1;
+    }
+    return ret;
+}
+
 void func_0210d6a4(void) {
 }
 
