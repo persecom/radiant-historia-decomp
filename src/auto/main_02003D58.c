@@ -210,6 +210,17 @@ void func_0200439c(void) {
     data_0215cd40[7] = (u32)c << 12;
 }
 
+void func_02004544(void) {
+    if (data_02145ba4 != -1) {
+        func_0200893c();
+    }
+    func_02004d70(data_0215cd40[5]);
+    data_0215cd40[7] = 0;
+    data_0215cd40[6] = 0;
+    data_0215cd40[1] = 0;
+    data_0215cd40[5] = 0;
+}
+
 extern s32 func_0200542c(void);
 extern void func_02004d70(u32);
 extern u32 data_0215cd40[8];
