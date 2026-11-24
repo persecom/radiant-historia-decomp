@@ -220,9 +220,27 @@ void func_020030e4(u32 arg0) {
     *(volatile u32 *)0x04000010 = arg0;
 }
 
+void func_020030f4(void *arg0) {
+    s32 i;
+    for (i = 0; i < 0x80; i++) {
+        ((u32 *)arg0)[i] = 0;
+    }
+}
+
+u32 func_02003188(void) {
+    u16 b = *(volatile u16 *)0x04000008;
+    u32 a = (*(volatile u32 *)0x04000000 & 0x38000000) >> 27;
+    return 0x06000000 + (a << 16) + (((b & 0x1f00) >> 8) << 11);
+}
+
 u32 func_020031bc(void) {
     u16 v = *(volatile u16 *)0x04001008;
     return 0x06200000 + (((v & 0x1f00) >> 8) << 11);
+}
+
+u32 func_02003210(void) {
+    s32 offset = (*(volatile u16 *)0x0400100a & 0x1f00) >> 8;
+    return 0x06200000 + (offset << 11);
 }
 
 s32 func_0200308c(s32 *arg0) {
