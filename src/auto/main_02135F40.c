@@ -301,6 +301,19 @@ void func_02136d38(void *arg0) {
     func_021369b4();
 }
 
+void func_02136d54(void *arg0) {
+    if (arg0 == NULL) {
+        func_021369e0(data_0215bfe8, data_0215bff4);
+        return;
+    }
+    if (*(void **)((u8 *)arg0 + 4) == NULL) {
+        func_021369e0(data_0215c010, data_0215c01c);
+        return;
+    }
+    *(void **)((u8 *)arg0 + 0xc) = *(void **)((u8 *)arg0 + 0x18);
+    *(void **)((u8 *)arg0 + 0x10) = NULL;
+}
+
 extern s32 func_02136dd8(void *, void *);
 s32 func_02136dac(void *arg0, void *arg1) {
     s32 ret;
