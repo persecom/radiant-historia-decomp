@@ -18,6 +18,13 @@ extern u8 data_021756d8[];
 extern u32 data_021756d4;
 extern u8 data_02175998[];
 extern u8 data_021759a0[];
+typedef struct {
+    u8 pad[0x2bc];
+    s32 count;
+    u8 pad2[8];
+    u8 flags[8];
+    void (*cb)(u8 *);
+} Mgr_02134884;
 extern void func_0200b888(u32 *);
 extern s32 func_0200bc08(u32 *, u32);
 extern s32 func_0200bc18(u32 *);
@@ -251,6 +258,28 @@ void func_02134844(u8 *arg0, s32 arg1) {
         return;
     }
     func_02013858(data_02175998, arg0, arg1);
+}
+
+u8 func_02134884(void) {
+    u8 result = 0xff;
+    void (*cb)(u8 *) = *(void **)(data_021756d8 + 0x2d0);
+    u8 *base = data_021756d8;
+    if (cb != NULL) {
+        cb(&result);
+    } else {
+        s32 count = *(s32 *)(base + 0x2bc);
+        s32 i;
+        for (i = 0; i < count; i++) {
+            if (*(u8 *)(base + i + 0x2c8) == 0) {
+                u8 *flags = data_021759a0;
+                u8 *vals = data_02175998;
+                flags[i] = 1;
+                result = vals[i];
+                break;
+            }
+        }
+    }
+    return result;
 }
 
 extern void func_021146b8(void *);
