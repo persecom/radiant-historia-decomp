@@ -343,6 +343,63 @@ void func_020057d0(void) {
     *(u32 *)data_027e0060 = 0;
 }
 
+void func_020057e8(u32 arg0, u32 arg1) {
+    s32 i;
+    for (i = 0; i < 0x16; i++) {
+        if (arg0 & 1) {
+            u8 *rec = NULL;
+            *(u32 *)(data_027e0000 + i * 4) = arg1;
+            if (i >= 8 && i <= 0xb) {
+                rec = data_0215cd7c + (i - 8) * 12;
+            }
+            if (i >= 3 && i <= 6) {
+                rec = data_0215cd7c + (i + 1) * 12;
+            }
+            if (rec != NULL) {
+                *(u32 *)(rec + 0) = arg1;
+                *(u32 *)(rec + 4) = 1;
+                *(u32 *)(rec + 8) = 0;
+            }
+        }
+        arg0 >>= 1;
+    }
+}
+
+u32 func_02005870(u32 arg0) {
+    u32 *p = (u32 *)data_027e0000;
+    s32 i;
+    for (i = 0; i < 0x16; i++) {
+        if (arg0 & 1) {
+            if (i >= 8 && i <= 0xb) {
+                return *(u32 *)(data_0215cd7c + (i - 8) * 12);
+            }
+            if (i >= 3 && i <= 6) {
+                return *(u32 *)(data_0215cd7c + (i + 1) * 12);
+            }
+            return *p;
+        }
+        arg0 >>= 1;
+        p++;
+    }
+    return 0;
+}
+
+void func_020058fc(u32 index, u32 arg1, u32 arg2) {
+    u32 bit = 1 << (index + 8);
+    *(u32 *)(data_0215cd7c + index * 12) = arg1;
+    *(u32 *)(data_0215cd84 + index * 12) = arg2;
+    *(u32 *)(data_0215cd80 + index * 12) = func_020059b4(bit) & bit;
+}
+
+u32 func_02005988(u32 arg0) {
+    u16 ime = *(volatile u16 *)0x04000208;
+    *(volatile u16 *)0x04000208 = 0;
+    u32 old = *(volatile u32 *)0x04000210;
+    *(volatile u32 *)0x04000210 = arg0;
+    *(volatile u16 *)0x04000208 = ime;
+    return old;
+}
+
 u32 func_020059b4(u32 arg0) {
     u16 ime = *(volatile u16 *)0x04000208;
     *(volatile u16 *)0x04000208 = 0;
@@ -377,6 +434,10 @@ u32 func_02005a14(u32 arg0) {
 extern u16 data_0215cddc;
 u16 func_02005a74(void) {
     return data_0215cddc;
+}
+
+void func_02005ab4(u32 arg0) {
+    while (func_0200a6e4(0xc, arg0 << 8, 0) != 0) {}
 }
 
 void func_02005bfc(s32 arg0, s32 arg1, s32 arg2) {
