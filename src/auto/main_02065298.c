@@ -16,6 +16,46 @@ extern void **func_0210c594(s32, s32);
 extern void *func_02064be8(void);
 extern void func_02064ce4(void *, s32, s32, s32);
 
+void *func_02065624(u16 arg0, s32 arg1, void *arg2) {
+u8 *p = 0;
+s32 id, value;
+((u32 *)arg2)[2]=((u32 *)arg2)[0];
+id=func_02092ab0(arg2,arg0);
+if(id!=-1) {
+value=func_02092994(arg2,0);
+while(value!=arg1) {
+func_02109444(arg2);
+id=func_02092ab0(arg2,arg0);
+if(id==-1) break;
+value=(u16)func_02092994(arg2,0);
+}
+}
+if(id==arg0 && value==arg1) {
+p=(u8 *)func_0210c594(0x40,data_02155c3c);
+func_021091b4();
+*(u8 *)(p+0)=func_02092994(arg2,0);
+*(u16 *)(p+2)=func_02092994(arg2,0);
+*(u16 *)(p+4)=func_02092994(arg2,0);
+*(u8 *)(p+6)=func_02092994(arg2,0);
+*(u8 *)(p+7)=func_02092994(arg2,0);
+*(u16 *)(p+22)=func_02092994(arg2,0);
+*(u16 *)(p+24)=func_02092994(arg2,0);
+*(u8 *)(p+26)=func_02092994(arg2,0);
+*(u16 *)(p+28)=func_02092994(arg2,0);
+*(u8 *)(p+20)=func_02092994(arg2,0);
+*(u32 *)(p+8)=func_02092994(arg2,0);
+id=(u16)func_02092994(arg2,0); value=(s16)func_02092994(arg2,0);
+*(u8 *)(p+30)=func_02092994(arg2,0);
+*(u8 *)(p+36)=func_02092994(arg2,0);
+*(u16 *)(p+32)=func_02092994(arg2,0);
+*(u16 *)(p+34)=func_02092994(arg2,0);
+*(u16 *)(p+38)=func_02092994(arg2,0);
+*(u16 *)(p+56)=0; p[58]=0; p[1]=arg0;
+if(id!=0) { void *v=func_02022ee0(); *(void **)(p+44)=v; func_02022f0c(v,id,value,0); }
+}
+return p;
+}
+
 s32 func_02065840(s32 arg0, u32 arg1) {
     if (arg0 == 0) {
         switch (arg1) {
