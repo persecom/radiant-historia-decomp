@@ -27,6 +27,9 @@ extern void func_0210da14(void *);
 extern void func_0210c5dc(void *);
 
 extern u32 data_02155c3c;
+extern u8 *data_02155984;
+
+typedef struct { u32 a, b, c; } Trip;
 
 typedef struct {
     u16 field_0;
