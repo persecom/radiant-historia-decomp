@@ -542,7 +542,10 @@ src/auto/main_020ACE8C.c:
     .text start:0x020ace8c end:0x020ade8c
 
 src/auto/main_020ADE8C.c:
-    .text start:0x020ade8c end:0x020aedc0
+    .text start:0x020ade8c end:0x020adf34
+
+src/auto/main_020ADF34.c:
+    .text start:0x020adf34 end:0x020aedc0
 
 src/auto/main_020AEDC0.c:
     .text start:0x020aedc0 end:0x020af2dc

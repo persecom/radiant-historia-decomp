@@ -1,0 +1,94 @@
+/* 23 functions from 0x020ADE8C to 0x020AEDC0 (main), found by ds-decomp. */
+#include "common.h"
+
+typedef struct Unk_02150788 {
+    u32 field_0;
+    u32 field_4;
+    u32 field_8;
+    u32 field_c;
+    u32 field_10;
+} Unk_02150788;
+
+extern Unk_02150788 data_02150788[];
+extern void func_02008f74(void *, s32, u32);
+extern void *func_020ade60(s32);
+extern u8 *func_0203be10(s32);
+extern s32 func_0203be60(u8 *, s32, s32);
+extern void func_020aed5c(s32);
+extern void func_020aea1c(void);
+extern void func_020ae530(void);
+extern void func_0203be4c(void *);
+extern void func_021098ac(void *);
+
+void func_020adf34(void **arg0) {
+    s32 i;
+    u8 *obj;
+    Unk_02150788 *entry;
+    for (i = 0; ; i++) {
+        entry = &data_02150788[i];
+        if (entry->field_0 == 0) {
+            return;
+        }
+        obj = func_0203be10(1);
+        func_0203be60(obj, entry->field_0, entry->field_4 ? entry->field_4 : entry->field_0);
+        *(u32 *)(obj + 0x10) = entry->field_8;
+        *(u32 *)(obj + 0x14) = entry->field_c;
+        *(u32 *)(obj + 0x18) = entry->field_10;
+        arg0[i] = obj;
+    }
+}
+
+void func_020adfb4(void **arg0) {
+    s32 i;
+    for (i = 0; i < 0x3b; i++) {
+        if (arg0[i] != NULL) {
+            func_0203be4c(arg0[i]);
+            arg0[i] = NULL;
+        }
+    }
+}
+
+void func_020adfe8(u16 arg0, u8 arg1) {
+    *(u32 *)0x40004A4 = (arg1 << 24) | 0xC0 | (arg0 << 16);
+}
+
+void func_020ae004(s16 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s16 arg5, s16 arg6, s16 arg7, s16 arg8) {
+    s16 buf[10];
+    buf[0] = 1;
+    buf[1] = arg1;
+    buf[2] = arg2;
+    buf[3] = arg3;
+    buf[4] = arg4;
+    buf[5] = arg5;
+    buf[6] = arg6;
+    buf[7] = arg0;
+    buf[8] = arg7;
+    buf[9] = arg8;
+    func_021098ac(buf);
+}
+
+u8 func_020ae05c(u32 arg0, u32 arg1) {
+    u32 pow10 = 1;
+    u32 i;
+    if (arg0 == 0 && arg1 == 1) {
+        return 0;
+    }
+    for (i = 0; i < arg1 - 1; i++) {
+        pow10 *= 10;
+    }
+    if (arg0 < pow10) {
+        return 10;
+    }
+    for (i = 0; i < arg1 - 1; i++) {
+        arg0 /= 10;
+    }
+    return arg0 % 10;
+}
+
+void func_020aeda0(void) {
+    func_020aed5c(0);
+    func_020aed5c(1);
+    func_020aea1c();
+    func_020ae530();
+}
+
