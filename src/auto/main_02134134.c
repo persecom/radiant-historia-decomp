@@ -113,8 +113,8 @@ s32 func_0213443c(u8 *arg0) {
 }
 
 s32 func_02134468(u8 *p,s32 count,void *buf) {
- s32 zero=0;
- if(!p) {func_02133dd0((s32)p,data_0215bd44);return zero;}
+ register s32 zero=0;
+ if(!p) {func_02133dd0(zero,data_0215bd44);return zero;}
  if(count<0) {func_02133dd0((s32)p,data_0215bd5c);return zero;}
  if(!buf) {func_02133dd0((s32)p,data_0215bd80);return zero;}
  if(count>=0x100000) {func_02133dd0((s32)p,data_0215bda4);return zero;}
