@@ -256,6 +256,46 @@ s32 func_0210922c(u32 arg0) {
     return *(f32 *)&data_021624f8->unk_24[arg0] < 1.0f;
 }
 
+s32 func_02109264(u32 arg0) {
+    u32 *ptr = NULL;
+    if (arg0 >= 2) {
+        return 0;
+    }
+    if (data_021624f8->unk_18[arg0] & 8) {
+        return 0;
+    }
+    if (arg0 == 0) {
+        ptr = &data_021624f8->unk_08;
+    } else if (arg0 == 1) {
+        ptr = &data_021624f8->unk_0c;
+    }
+    func_02125994(*ptr);
+    data_021624f8->unk_18[arg0] |= 8;
+    return 1;
+}
+
+s32 func_021093f0(u8 *arg0) {
+    u8 *start = *(u8 **)arg0;
+    u8 *end = start + *(u32 *)(arg0 + 4);
+    u8 *ptr = *(u8 **)(arg0 + 8);
+    if (ptr == end) {
+        return 0;
+    }
+    if (ptr[1] == '\n') {
+        return 0;
+    }
+    while (*ptr++ != 0) {
+    }
+    if (ptr >= end) {
+        ptr = end;
+    }
+    if (*ptr == '\n') {
+        ptr--;
+    }
+    *(u8 **)(arg0 + 8) = ptr;
+    return 1;
+}
+
 u32 func_0210957c(s32 arg0) {
     func_0210950c(data_02162504[arg0]);
     return data_02162504[arg0];
