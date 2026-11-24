@@ -27,6 +27,13 @@ void func_02009cc0(u32 arg0) {
     } while (!func_02009d58(arg0));
 }
 
+u32 func_02009d2c(void) {
+    s32 irq = func_02008128();
+    u32 ret = (data_0215d1b8[2] == 0) ? data_0215d1b8[1] : data_0215d1b8[8];
+    func_0200813c(irq);
+    return ret;
+}
+
 s32 func_0200a4f4(u8 *arg0) {
     return *(s32 *)(arg0 + 0x38);
 }
