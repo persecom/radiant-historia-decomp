@@ -17,19 +17,20 @@ extern void func_02089a98(void);
 void func_0207d3cc(void) {
     func_0207d4cc();
 }
+#pragma optimization_level 0
 void func_0207d3d8(void) {
+    s32 i = 0;
     *(void **)(data_0216010c + 0x44) = func_0210c594(0x20, data_02155c3c);
-    if (*(void **)(data_0216010c + 0x58) != NULL) {
-        if (**(void ***)(data_0216010c + 0x58) != NULL) {
+    if (*(void **)(data_0216010c + 0x58)) {
+        if (**(void ***)(data_0216010c + 0x58)) {
             func_020a9544(*(void **)(data_0216010c + 0x58));
         }
     }
     *(void **)(data_0216010c + 0x58) = func_020a94b8(&data_021484dc);
 }
-
 void func_0207d464(void) {
     func_02080d30();
-    if (*(void **)(data_0216010c + 0x44) != NULL) {
+    if (*(void **)(data_0216010c + 0x44)) {
         func_0210c5dc(*(void **)(data_0216010c + 0x44));
         *(void **)(data_0216010c + 0x44) = NULL;
     }
