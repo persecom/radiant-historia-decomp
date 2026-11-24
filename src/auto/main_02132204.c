@@ -281,3 +281,8 @@ void *func_02132f14(void) {
     return data_021749dc;
 }
 
+void func_02133124(u32 *arg0) {
+    arg0[1] = 0;
+    arg0[0] = 0;
+}
+
