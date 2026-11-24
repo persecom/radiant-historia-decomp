@@ -232,6 +232,13 @@ BOOL func_02134c94(u8 *arg0) {
     return (arg0[1] & 1) != 0;
 }
 
+BOOL func_02134edc(u8 *arg0) {
+    if (arg0 == NULL) {
+        return -1;
+    }
+    return (arg0[1] & 2) != 0;
+}
+
 s32 func_02134efc(void *arg0) {
     if (arg0 == NULL) {
         return -1;
