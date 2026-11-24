@@ -314,6 +314,18 @@ void func_02113b58(void **arg0, s32 arg1) {
     func_021140b8(*arg0, arg1);
 }
 
+void func_02113b68(u32 arg0, u32 arg1, s32 arg2) {
+    s32 i;
+    for (i = 0; i < 16; i++) {
+        u8 *p = data_0216bfe4 + i * 0x44;
+        if (p[0x2c] != 0) {
+            if (*(u16 *)(p + 0x34) == 2 && *(u16 *)(p + 0x38) == arg0 && *(u16 *)(p + 0x3a) == arg1) {
+                func_021140b8(p, arg2);
+            }
+        }
+    }
+}
+
 void func_02113bcc(s32 arg0) {
     s32 i;
     for (i = 0; i < 16; i++) {
@@ -367,6 +379,15 @@ void func_02113d5c(void *arg0, u16 arg1) {
         *(u16 *)((u8 *)*(void **)arg0 + 0x34) = 1;
         *(u16 *)((u8 *)*(void **)arg0 + 0x38) = arg1;
     }
+}
+
+void func_02113d7c(void *arg0, u16 arg1, u16 arg2) {
+    if (*(void **)arg0 == NULL) {
+        return;
+    }
+    *(u16 *)((u8 *)*(void **)arg0 + 0x34) = 2;
+    *(u16 *)((u8 *)*(void **)arg0 + 0x38) = arg1;
+    *(u16 *)((u8 *)*(void **)arg0 + 0x3a) = arg2;
 }
 
 extern void func_021142f0(void);
