@@ -268,6 +268,11 @@ void func_020bafe8(void) {
     func_020c4c60(*(void **)(p + 0x3c), 10);
 }
 
+void func_020bb008(void) {
+    func_020c4e00(*(void **)(*(u8 **)((u8 *)&data_021601f0 + 4) + 0x3c), 10);
+    func_020c4fa4(*(void **)(*(u8 **)((u8 *)&data_021601f0 + 4) + 0x40));
+}
+
 void func_020bb508(u8 *arg0) {
     if (arg0 == NULL) {
         return;
