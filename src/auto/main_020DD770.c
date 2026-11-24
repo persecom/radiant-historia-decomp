@@ -19,6 +19,10 @@ extern void func_021168f8(void *, void *);
 extern void func_020ec548(void *);
 
 extern void func_0210c2f4(void);
+void *func_020dd7f0(void) {
+    return *(void **)(data_02160a68.unk04 + 0x70);
+}
+
 void func_020dddf0(void) {
     func_0210c2f4();
 }
