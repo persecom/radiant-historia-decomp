@@ -75,6 +75,10 @@ void func_021384f0(void) {
     func_0213841c(5);
 }
 
+void func_02138500(void) {
+    func_0213841c(6);
+}
+
 void func_021386f0(void *arg0) {
     if (arg0 != NULL) {
         func_021390fc(arg0);
