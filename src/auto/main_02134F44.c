@@ -10,6 +10,9 @@ extern void func_02134f44(u8 *);
 extern s32 func_02134edc(u8 *);
 extern s32 func_02136930(void *);
 extern void func_02134cb4(u8 *, s32, s32);
+extern void func_02135920(void);
+extern void func_02135960(u8 *, s32, s32);
+extern void func_02135984(u8 *, s32, s32);
 
 typedef struct {
     s8 field_0;
