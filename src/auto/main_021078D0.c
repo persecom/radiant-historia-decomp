@@ -114,10 +114,10 @@ extern void func_0210dae0(void *);
 extern void func_0210db40(void *);
 void *func_021082d0(void) {
     u8 *p = (u8 *)data_02155984;
-    if (p == NULL) {
-        return NULL;
+    if (p != NULL) {
+        return p + 0x14;
     }
-    return p + 0x14;
+    return NULL;
 }
 
 extern u32 data_02155c3c;
