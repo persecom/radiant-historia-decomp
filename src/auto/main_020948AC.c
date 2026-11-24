@@ -8,6 +8,15 @@ extern void func_020a8ab8(void *);
 extern void *func_020a94b8(void *);
 extern u8 data_021488b0[];
 extern u8 data_021488bc[];
+typedef struct { u32 data[0x2f0]; } Unk_020949f4;
+extern const Unk_020949f4 data_021413f0;
+extern void func_020951e8(void);
+extern void func_020951b4(void);
+extern void func_0209532c(void);
+extern void func_02094a34(u32 *, s32, s32);
+extern u32 data_02155c3c;
+extern void *func_0210c594(u32, u32);
+extern void func_021167f0(void *, void *);
 void func_020948ac(void) {
     u8 *p = data_02160110;
     u16 i;
