@@ -78,6 +78,14 @@ extern void func_02009cc0(s32);
 extern void func_02113948(void);
 extern void func_02113980(void);
 
+typedef struct {
+    u8 unk_00[0x2c];
+    u8 flag_2c;
+    u8 unk_2d[0x17];
+} UnkEntry_0216bfe4;
+extern u8 data_0216bfd8[12];
+extern void *func_02116958(void *, void *);
+
 extern void func_02114c80(void);
 extern void func_02112f88(void);
 void func_0211355c(void) {
