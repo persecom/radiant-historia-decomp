@@ -47,9 +47,7 @@ s32 func_02118600(u8 *arg0, s32 arg1) {
 }
 
 s32 func_0211860c(u8 *arg0, s32 arg1) {
-    s32 value = *(s32 *)(arg0 + 8 + arg1 * 4);
-    if ((value + 1) != 0) return 1;
-    return 0;
+    return *(s32 *)(arg0 + arg1 * 4 + 8) != -1;
 }
 
 extern void func_02006dc4(void *, u32);
