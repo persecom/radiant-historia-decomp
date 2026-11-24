@@ -52,12 +52,48 @@ extern void func_0200fedc(u32, u32, u32);
 
 void func_0200fedc(u32 arg0, u32 arg1, u32 arg2) {
     volatile u32 *p;
-    u32 v;
     if (arg0 != 0xb || arg2 == 0) {
         return;
     }
     p = (volatile u32 *)data_0215f120;
-    v = p[1] & ~0x20;
-    p[1] = v;
+    p[1] &= ~0x20;
     func_020065c8((void *)p[0x51c / 4]);
 }
+
+extern u32 data_0215ce00[];
+extern s32 func_0200a6c0(s32, s32);
+extern void func_020081a4(s32);
+s32 func_0200ff10(u8 *arg0, s32 arg1, s32 arg2) {
+    u32 cpsr;
+    u32 res;
+
+    if ((*(volatile u32 *)(arg0 + 4) & 2) == 0) {
+        *(volatile u32 *)(arg0 + 4) |= 2;
+        while (!func_0200a6c0(0xb, 1)) {
+            func_020081a4(0x32);
+        }
+        func_0200ff10(arg0, 0, 1);
+    }
+    func_02006dc4(*(void **)arg0, 0x60);
+    func_02006de8();
+    *(u32 *)(arg0 + 0x51c) = data_0215ce00[1];
+    do {
+        *(volatile u32 *)(arg0 + 4) |= 0x20;
+        while (func_0200a6e4(0xb, arg1, 1) < 0) {
+        }
+        if (arg1 == 0) {
+            s32 val = *(s32 *)arg0;
+            while (func_0200a6e4(0xb, val, 1) < 0) {
+            }
+        }
+        cpsr = func_02008128();
+        while ((*(volatile u32 *)(arg0 + 4) & 0x20) != 0) {
+            func_02006510(NULL);
+        }
+        func_0200813c(cpsr);
+        func_02006d8c(*(u32 *)arg0, 0x60);
+        res = **(u32 **)arg0;
+    } while (res == 4 && --arg2 > 0);
+    return res == 0;
+}
+
