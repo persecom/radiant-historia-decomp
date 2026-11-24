@@ -175,18 +175,13 @@ void *func_02007234(void *arg0, void *arg1) {
 }
 
 void *func_02007250(void *arg0, void *arg1) {
-    void *prev = *(void **)((u8 *)arg1 + 4);
-    void *next;
-
-    if (prev != NULL) {
-        next = *(void **)arg1;
-        *(void **)prev = next;
+    if (*(void **)((u8 *)arg1 + 4) != NULL) {
+        *(void **)(*(void **)((u8 *)arg1 + 4)) = *(void **)arg1;
     }
-    next = *(void **)arg1;
-    if (next == NULL) {
-        return prev;
+    if (*(void **)arg1 == NULL) {
+        return *(void **)((u8 *)arg1 + 4);
     }
-    *(void **)((u8 *)next + 4) = prev;
+    *(void **)((u8 *)*(void **)arg1 + 4) = *(void **)((u8 *)arg1 + 4);
     return arg0;
 }
 
