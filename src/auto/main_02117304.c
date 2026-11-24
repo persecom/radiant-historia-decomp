@@ -302,6 +302,12 @@ void func_02117d74(void) {
     func_02117b9c();
 }
 
+s32 func_02117d80(void *arg0) {
+    u32 *t = *(u32 **)((u8 *)arg0 + 0x1c);
+    u32 diff = *(u32 *)arg0 - t[3];
+    return (diff << 13) >> 16;
+}
+
 void func_02117ddc(u32 *arg0) {
     arg0[0] = 0;
     arg0[1] = 0;
