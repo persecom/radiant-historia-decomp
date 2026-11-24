@@ -154,6 +154,55 @@ void func_02031fbc(s32 arg0, s32 arg1, s32 arg2) {
     func_02031fcc(arg0, arg2);
 }
 
+void func_02031fcc(s32 arg, s32 mode) {
+u8 *p=(u8 *)arg;
+u8 *node=*(u8 **)(data_02160a74+0x4c);
+while(node) {
+u8 *next=*(u8 **)(node+0x10);
+if(*(u8 **)node==p) {
+func_021168f8(data_02160a74+0x4c,node);
+if(node) func_0210c5dc(node);
+break;
+}
+node=next;
+}
+func_0203218c(p);
+if(mode==0) {
+u8 *obj=*(u8 **)(p+0x14);
+if(obj) {
+if(func_02032f80(obj)) func_02032efc();
+func_020952b4(obj);
+}
+} else if(mode==1) {
+u8 *obj=*(u8 **)(p+0x14);
+if(obj) obj[0x17]=1;
+} else if(mode==2) {
+u8 *obj=*(u8 **)(p+0x14);
+if(obj) obj[0x17]=2;
+} else if(mode==3) {
+u8 *obj=*(u8 **)(p+0x14);
+if(obj && obj[0x17]==0) obj[0x17]=3;
+} else if(mode==4) {
+u8 *obj=*(u8 **)(p+0x14);
+if(obj) {
+if(func_02032f80(obj)) func_02032efc();
+func_020952b4(obj);
+}
+}
+if(p[0xc]==1) func_021168f8((u8 *)data_02160090+0x14,p);
+if(mode!=4) {
+u8 *obj=*(u8 **)(p+0x48);
+if(obj) {
+((u8 *)data_02160090)[0x7f]=obj[0];
+func_021168f8((u8 *)data_02160090+0x48,obj);
+if(obj) func_0210c5dc(obj);
+}
+}
+func_021168f8((u8 *)data_02160090+8,p);
+if(p) func_0210c5dc(p);
+--*(u16 *)data_02160090;
+}
+
 void func_0203218c(u8 *arg0) {
     void *node;
     if (arg0 == NULL) {
