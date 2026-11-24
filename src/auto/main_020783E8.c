@@ -1,2 +1,37 @@
 /* 9 functions from 0x020783E8 to 0x02079374 (main), found by ds-decomp. */
 #include "common.h"
+
+typedef struct Vec3_02078d8c {
+    s32 x;
+    s32 y;
+    s32 z;
+} Vec3_02078d8c;
+
+typedef struct Obj_02078d8c {
+    Vec3_02078d8c pos;
+    u8 pad_0c[0x91];
+    u8 unk_9d;
+} Obj_02078d8c;
+
+typedef struct Mgr_02078d8c {
+    u8 pad_00[0x68];
+    Obj_02078d8c *unk_68;
+} Mgr_02078d8c;
+
+typedef struct Node_020789ec {
+    u8 pad_00[0x28];
+    void *unk_28;
+} Node_020789ec;
+
+typedef struct Mgr_020789ec {
+    u8 pad_00[0x7c];
+    Node_020789ec *unk_7c;
+} Mgr_020789ec;
+
+extern Mgr_020789ec *data_021600bc;
+extern Mgr_02078d8c *data_021600ac;
+
+void func_021168f8(Node_020789ec **, Node_020789ec *);
+void func_02047490(void *);
+void func_0210c5dc(void *);
+s32 func_0210c2f4(Obj_02078d8c *, Vec3_02078d8c *);
