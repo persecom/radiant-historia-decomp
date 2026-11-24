@@ -56,15 +56,14 @@ void func_020f4860(u32 arg0) {
 }
 
 void func_020f4870(void) {
-    void **p = (void **)&data_02160c3c[1];
-    if (*p == NULL) {
+    if (data_02160c3c[1] == 0) {
         return;
     }
-    func_0210a76c(*(void **)*p);
-    func_0210aa14(*(void **)((u8 *)*p + 4));
-    if (*p != NULL) {
-        func_0210c5dc(*p);
-        *p = NULL;
+    func_0210a76c(*(void **)data_02160c3c[1]);
+    func_0210aa14(*(void **)((u8 *)data_02160c3c[1] + 4));
+    if (data_02160c3c[1] != 0) {
+        func_0210c5dc((void *)data_02160c3c[1]);
+        data_02160c3c[1] = 0;
     }
 }
 
