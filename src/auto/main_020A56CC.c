@@ -86,6 +86,10 @@ void func_020a5d0c(void *arg0) {
     *(s32 *)((u8 *)*(void **)((u8 *)arg0 + 4) + 0x4c) = *(s32 *)((u8 *)arg0 + 0x68) + *(s32 *)((u8 *)arg0 + 0x74);
 }
 
+void *func_020a5d4c(void) {
+    return func_0210c594(0xb4, data_02155c3c);
+}
+
 void func_020a5ed4(void **arg0) {
     void *ptr;
     while ((ptr = *arg0) != NULL) {
