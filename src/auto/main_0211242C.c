@@ -155,6 +155,13 @@ void func_02112d74(u8 *arg0, s32 arg1) {
     func_02112dcc(arg0, *(s16 *)(arg0 + 0x34), arg1);
 }
 
+u32 func_02112d88(u8 *arg0) {
+    u8 *obj = func_020c9c10(*(void **)(arg0 + 0x30), 0);
+    u32 ret = ((u32 (*)(u8 *))(*(void **)(obj + 0x18)))(obj);
+    func_020c738c(arg0, func_020c73b8(obj), 2);
+    return ret;
+}
+
 extern u32 data_0216bf88;
 extern const u16 data_02144cfc[2];
 extern const u16 data_02144cf8[2];
