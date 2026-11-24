@@ -264,6 +264,13 @@ void *func_02126900(void *arg0) {
     return ret;
 }
 
+extern void *func_02126134(u32, void *);
+extern u8 data_02156588[52];
+extern u8 data_021565bc[52];
+void *func_02126924(void *arg0) {
+    return func_02126134(data_02156580[1], arg0);
+}
+
 extern void func_02126964(void);
 void func_02126940(void *arg0, void *arg1) {
     func_02126c18();
