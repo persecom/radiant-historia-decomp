@@ -5,3 +5,8 @@ extern u32 data_0216cad0[4];
 u32 func_02114f70(void) {
     return data_0216cad0[0];
 }
+
+void func_021152d0(u32 arg0, u32 arg1, u8 *arg2) {
+    *(u32 *)(arg2 + 0x98) = 0;
+}
+
