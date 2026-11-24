@@ -261,6 +261,34 @@ void func_0210eb80(u8 *arg0) {
     func_0210eb4c(arg0 + 8);
 }
 
+void *func_0210ed58(u32 arg0, u8 arg1) {
+    u8 *node = NULL;
+    while ((node = (node == NULL) ? *(u8 **)((u8 *)data_02162a54 + 0x20)
+                                  : *(u8 **)(node + *(u16 *)((u8 *)data_02162a54 + 0x2a) + 4)) != NULL) {
+        if (*(u32 *)(node + 8) == arg0 && *(u8 *)(node + 0xc) == arg1) {
+            return node;
+        }
+    }
+    return NULL;
+}
+
+void *func_0210edac(u32 arg0, u8 arg1) {
+    s32 len = func_02012348(data_02162b00);
+    u8 *p = func_0210c518(len + 0x1c, data_02155c3c);
+    func_02008e68(0, p, 0x1c);
+    if (p != NULL) {
+        func_02012210((char *)(p + 0x1a), data_02162b00);
+        *(u16 *)(p + 0x18) = func_0210c060(p + 0x1a, len);
+        *(u16 *)(p + 0x16) = data_02162a54[0];
+        *(u32 *)(p + 8) = arg0;
+        *(u16 *)(p + 0x14) = 1;
+        *(u8 *)(p + 0xc) = arg1;
+        *(u32 *)(p + 0x10) = 0;
+        func_021167f0(data_02162a74, p);
+    }
+    return p;
+}
+
 s32 func_0210f170(const char *arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 ret;
     if (data_02155c94[2] != 0 && arg0 != NULL) {
@@ -291,6 +319,14 @@ s32 func_0210f20c(const char *arg0, s32 arg1, s32 arg2, s32 arg3) {
     data_02162b00[0] = '\0';
     data_02162a54[0] = 0;
     return ret;
+}
+
+s32 func_0210f2e4(u32 arg0) {
+    u8 *p = func_0210ed58(arg0, 0);
+    if (p == NULL) {
+        return 0;
+    }
+    return *(u16 *)(p + 0x14) >= 2;
 }
 
 void func_0210f38c(void) {
