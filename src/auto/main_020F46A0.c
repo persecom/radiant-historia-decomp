@@ -47,8 +47,8 @@ void func_020f4828(u16 arg0, u16 arg1) {
 }
 
 void func_020f4844(u16 arg0, u16 arg1) {
-    *(u16 *)(data_02160c34[1] + 0x1c) = arg0;
-    *(u16 *)(data_02160c34[1] + 0x1e) = arg1;
+    *(u16 *)((u8 *)((u32 *)data_02160c34)[1] + 0x1c) = arg0;
+    *(u16 *)((u8 *)((u32 *)data_02160c34)[1] + 0x1e) = arg1;
 }
 
 void func_020f4860(u32 arg0) {
