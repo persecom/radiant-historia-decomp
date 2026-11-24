@@ -35,3 +35,10 @@ void func_020de29c(void) {
     func_020de404();
 }
 
+void func_020de374(void *arg0, void *arg1) {
+    func_021168f8(arg0, arg1);
+    if (arg1 != NULL) {
+        func_0210c5dc(arg1);
+    }
+}
+
