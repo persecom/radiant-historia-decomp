@@ -230,6 +230,13 @@ s32 func_0210920c(u32 arg0) {
     return arg0 >= 2 ? -1 : data_021624f8->unk_1a[arg0];
 }
 
+s32 func_0210922c(u32 arg0) {
+    if (arg0 >= 2) {
+        return 1;
+    }
+    return *(f32 *)&data_021624f8->unk_24[arg0] < 1.0f;
+}
+
 u32 func_0210957c(s32 arg0) {
     func_0210950c(data_02162504[arg0]);
     return data_02162504[arg0];
