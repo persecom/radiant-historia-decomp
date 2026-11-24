@@ -1,5 +1,9 @@
 /* 20 functions from 0x0200A980 to 0x0200B8FC (main), found by ds-decomp. */
 #include "common.h"
+typedef struct CmdPair_0200a980 { u32 a,b; } CmdPair_0200a980;
+typedef struct CmdTriple_0200a980 { u32 a,b,c; } CmdTriple_0200a980;
+extern s32 func_0200a85c(s32);
+extern s32 func_0200a928(void *, s32);
 
 void func_0200b888(u32 *arg0);
 u8 *func_0200b6b8(u8 *arg0);
