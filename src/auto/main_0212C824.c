@@ -50,6 +50,7 @@ u32 func_0212d70c(void *);
 void func_02137f80(void *, s32, void *, void *);
 void func_0212cfc4(void *arg) {
 u8 *p=arg;
+Unk0212CFC4 *self=arg;
 void *ctx=*(void **)(p+4);
 void *obj=*(void **)(p+8);
 s32 limit=func_0212a228(ctx);
@@ -67,10 +68,10 @@ func_02137f80(p+0x14,a,x,y);
 for(i=0;i<func_0212a1ec(*(void **)(p+4));i++){
 s32 one=1;
 func_02137f80(p+0x1c+i*8,b*2,x,y);
-if(*(void **)(p+0x58)) (*(void (**)(void *,s32,s32,s32))(p+0x58))(*(void **)(p+0x5c),i,x[0],x[1]);
-obj=*(void **)(p+i*4+0xc);
+if(self->callback) self->callback(*(void **)(p+0x5c),i,x[0],x[1]);
+obj=self->objs[i];
 (*(void (**)(void *,s32,void *))(*(u8 **)obj+0x20))(obj,one,x);
-obj=*(void **)(p+i*4+0xc);
+obj=self->objs[i];
 (*(void (**)(void *,s32,void *))(*(u8 **)obj+0x1c))(obj,0,y);
 }
 *(s32 *)(p+0x2c)+=b;
