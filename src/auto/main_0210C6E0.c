@@ -341,6 +341,13 @@ void func_0210cfcc(s32 arg0) {
     }
 }
 
+void func_0210d014(void) {
+    u32 *p = (u32 *)data_021626f0[0];
+    if (*p != 0) {
+        ((void (*)(void))*(void **)(p + 1))();
+    }
+}
+
 void func_0210d220(void) {
     if (data_02162730 == NULL) {
         return;
