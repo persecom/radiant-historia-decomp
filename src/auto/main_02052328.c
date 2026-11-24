@@ -25,6 +25,8 @@ extern u8 *data_02160a80;
 extern u8 *data_021600bc;
 extern void func_020526f0();
 extern void func_020477dc(void *, s32, s32);
+extern void *func_02047820(s32);
+extern s32 func_020ddc8c(void *, s32);
 void func_02052328(void) {
     data_02155984[0] = 0x165;
     data_02155984[1] = 0xff0;
@@ -64,8 +66,7 @@ void func_02052904(s32 arg0) {
 u32 func_02052a54(void *arg0, s32 arg1) {
     u32 ret = 0;
     s32 val;
-    func_020dd9b4(arg0, &val);
-    if (val != 0) {
+    if (func_020dd9b4(arg0, &val), val != 0) {
         ret |= 2;
     }
     if (arg1 == func_02117d80()) {
