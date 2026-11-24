@@ -41,6 +41,9 @@ u64 func_02007904(void);
 void func_021256b4(void);
 void func_02125c38(u32);
 void func_021089e8(u32, s32, u32);
+extern s32 func_0201f884(s32);
+extern s32 func_020201f4(s32, s32);
+extern s32 func_02020604(s32, s32);
 
 void func_02108b54(u32 arg0) {
     u32 *ptr = NULL;
@@ -307,13 +310,14 @@ s32 func_021093f0(u8 *arg0) {
 }
 
 s32 func_02109444(Unk02109444 *arg0) {
-    u8 *end = arg0->buf + arg0->size;
     u8 *cur = arg0->cur;
+    u8 *end = arg0->buf + arg0->size;
+    u8 c;
     if (cur == end) {
         return 0;
     }
     while (cur < end) {
-        u8 c = *cur++;
+        c = *cur++;
         if (c == '\n') {
             break;
         }
