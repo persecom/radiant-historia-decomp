@@ -265,6 +265,34 @@ void* func_021170e4(void* heap, u32 size, s32 alignment)
     return (void*)aligned;
 }
 
+void* func_02117140(void* heap, u32 size, s32 alignment)
+{
+    u8* frame = (u8*)heap;
+    u32 tail = *(u32*)(frame + 0x4);
+    u32 aligned;
+    u32 flags;
+    u32 clearSize;
+
+    alignment -= 1;
+
+    aligned = ~alignment & (tail - size);
+
+    if (aligned < *(u32*)(frame + 0x0)) {
+        return NULL;
+    }
+
+    flags = *(u32*)(frame - 0x4);
+    clearSize = tail - aligned;
+
+    if ((u8)flags & 1) {
+        func_02008e24(0, (void*)aligned, clearSize);
+    }
+
+    *(u32*)(frame + 0x4) = aligned;
+
+    return (void*)aligned;
+}
+
 void func_02117210(void) {
     func_02116ad8();
 }
