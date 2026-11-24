@@ -169,6 +169,10 @@ BOOL func_02050e2c(s32* arg0, s32* arg1, s32* arg2)
 }
 
 #pragma optimization_level 4
+static inline void Step_020510e8(s32 *p,s32 dx,s32 dz) {
+s32 z=p[5]+dz; s32 y=p[1]; s32 x=p[3]+dx;
+p[57]=y;p[58]=z;p[56]=x;
+}
 BOOL func_0205103c(u8 *arg0)
 {
   u8 *p = data_02160aec;
@@ -206,3 +210,42 @@ BOOL func_0205103c(u8 *arg0)
   }
 
 }
+
+extern s32 func_020ef4c8(void *);
+#pragma optimization_level 3
+void func_020510e8(s32 *p){
+s32 positive=0x4000; s32 negative=-positive; s32 h,d; s32 ok=0; u8 tries=0; s32 again;
+do {
+again=0;
+h=func_020ef4c8(p+56); d=(p[20]-h)>>12; if(d<0)d=-d;
+if(d<=18)ok=1;
+else {
+p[56]=p[53];
+h=func_020ef4c8(p+56); d=(p[20]-h)>>12;if(d<0)d=-d;
+if(d<=18){p[12]=0;ok=1;}
+else{
+p[58]=p[55];p[56]+=p[12];
+h=func_020ef4c8(p+56);d=(p[20]-h)>>12;if(d<0)d=-d;
+if(d<=18){p[14]=0;ok=1;}
+else{
+u32 type;u8 *mgr;
+{s32 z=p[5];s32 x=p[3];p[2]=z;p[0]=x;}h=func_020ef4c8(p+3);
+mgr=data_02160aec;
+if(mgr){u8 *q=*(u8 **)(mgr+0x58be0);if(q)type=q[2];else type=0;}else type=0;
+if(type==5){s32 z=p[5];s32 y=p[1];p[14]=positive;p[12]=negative;again=1;p[57]=y;p[58]=z+positive;goto minus;}
+else if(type==8){p[12]=positive;p[14]=positive;again=1;p[57]=p[1];p[58]=p[5]+positive;p[56]=p[3]+positive;}
+else if(type==6){p[12]=negative;p[14]=negative;again=1;p[57]=p[1];p[58]=p[5] +negative;minus:p[56]=p[3]+negative;}
+else if(type==7){p[57]=p[1];p[12]=positive;p[14]=negative;again=1;p[58]=p[5] +negative;p[56]=p[3]+positive;}
+else again=0;
+tries++;if(tries>=2)again=0;
+}
+}
+}
+}while(again);
+if(ok){
+u8 *mgr;p[1]=h;p[20]=h;mgr=data_02160aec;
+if(mgr){u8 *q=*(u8 **)(mgr+0x58be0);if(q)p[31]=q[3];else p[31]=0;}else p[31]=0;
+p[0]=p[3]+p[12];p[2]=p[5]+p[14];
+}
+}
+#pragma optimization_level 4
