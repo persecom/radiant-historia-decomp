@@ -314,6 +314,11 @@ s32 func_0200d3a0(u8 *arg0, void *arg1, s32 arg2, u32 arg3) {
     return 0;
 }
 
+s32 func_0200d3c8(u8 *arg0, void *arg1, s32 arg2, u32 arg3) {
+    func_02009008(arg1, func_0200d500(arg0, arg2), arg3);
+    return 0;
+}
+
 extern const u8 data_0213e964[];
 extern s32 func_0200d140(void *, void *, void *);
 BOOL func_0200d460(u8 *arg0, void *arg1) {
@@ -363,6 +368,11 @@ u32 func_0200d524(u8 *arg0) {
 
 s32 func_0200d52c(void) {
     return 0;
+}
+
+void func_0200d534(u32 *arg0) {
+    s32 res = func_02010f10();
+    func_0200b710(arg0, res == 0 ? 0 : 5);
 }
 
 u32 func_0200d5a0(void *arg0, s32 arg1) {
