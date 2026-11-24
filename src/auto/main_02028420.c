@@ -239,7 +239,7 @@ s32 func_02028420(u8 *arg0, u8 *arg1)
         u32 cnt = 0;
         u32 x;
         u32 idx;
-        u8 *volatile *items = arr;
+        
         mask |= 1U << v1;
         node = *((u8 **) (data_02160a6c + 0xb8));
         while (node != NULL)
@@ -282,14 +282,8 @@ s32 func_02028420(u8 *arg0, u8 *arg1)
         {
           break;
         }
-        x = (data_0216263c[1] * data_0216263c[0]) + data_0216263c[2];
-        data_0216263c[0] = x;
-        if (cnt != 0)
-        {
-          x = (x >> 16) * cnt;
-        }
-        idx = (u16) (x >> 16);
-        node = items[idx];
+        idx = Random_02028420(cnt);
+        node = arr[idx];
         *((u8 **) ((*((u8 **) (((u8 *) (&data_0216007c)) + 4))) + 0x38)) = node;
         return (s32) node;
       }
