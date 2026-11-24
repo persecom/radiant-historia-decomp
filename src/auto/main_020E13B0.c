@@ -11,6 +11,36 @@ extern void func_021099f8(void *);
 extern void func_0210c5dc(void *);
 extern void func_021168f8(void *, void *);
 
+void func_020e1850(void) {
+    u16 i;
+    for (i = 0; i < 10; i++) {
+        *(u16 *)(*(u8 **)(data_02160a74 + i * 4 + 0x110) + 0x0) = 0;
+        *(u16 *)(*(u8 **)(data_02160a74 + i * 4 + 0x110) + 0x2) = 0;
+        *(u16 *)(*(u8 **)(data_02160a74 + i * 4 + 0x110) + 0x4) = 0;
+        *(u16 *)(*(u8 **)(data_02160a74 + i * 4 + 0x110) + 0x6) = 0;
+        *(u32 *)(*(u8 **)(data_02160a74 + i * 4 + 0x110) + 0x8) = 0;
+        *(u32 *)(*(u8 **)(data_02160a74 + i * 4 + 0x110) + 0xc) = 0;
+    }
+}
+
+void func_020e1bc4(u16 arg0, s32 arg1) {
+    Unk18 buf = data_02144970;
+    *(volatile u32 *)0x040004A4 = (arg1 == 0) ? 0x01480C0 : 0x01880C0;
+    buf.unk[3] = arg0;
+    buf.unk[6] = 0;
+    func_021099f8(&buf);
+}
+
+void func_020e1c3c(void) {
+    void *node;
+    while ((node = *(void **)(data_02160a74 + 0x1a4)) != NULL) {
+        func_021168f8(data_02160a74 + 0x1a4, node);
+        if (node != NULL) {
+            func_0210c5dc(node);
+        }
+    }
+}
+
 void *func_020e1ccc(u32 arg0) {
     u8 *root = data_02160a74;
     u8 *node = *(u8 **)(root + 0x1a4);
