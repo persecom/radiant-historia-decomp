@@ -328,15 +328,10 @@ extern void func_02051344(void *);
 extern void func_0205196c(void *);
 s32 func_02054800(u8 *arg0) {
     u8 *s = *(u8 **)(arg0 + 0xd0);
-    s32 angle;
-    s16 sinVal, cosVal;
 
     *(u16 *)(arg0 + 0x92) = func_020ddc8c(arg0, *(u8 **)(data_021600ac + 0x68));
-    angle = (*(u16 *)(arg0 + 0x92) % 65536) >> 4;
-    sinVal = data_0213a394[angle * 2];
-    cosVal = data_0213a394[angle * 2 + 1];
-    *(s32 *)(arg0 + 0x30) = (s16)s[0x1a] * sinVal;
-    *(s32 *)(arg0 + 0x38) = (s16)s[0x1a] * cosVal;
+    *(s32 *)(arg0 + 0x30) = (s16)s[0x1a] * data_0213a394[((*(u16 *)(arg0 + 0x92) % 65536) >> 4) * 2];
+    *(s32 *)(arg0 + 0x38) = (s16)s[0x1a] * data_0213a394[((*(u16 *)(arg0 + 0x92) % 65536) >> 4) * 2 + 1];
 
     CopyVec_546c0((Vec_546c0 *)(arg0 + 0xc), (Vec_546c0 *)arg0);
     CopyVec_546c0((Vec_546c0 *)(arg0 + 0xd4), (Vec_546c0 *)arg0);
