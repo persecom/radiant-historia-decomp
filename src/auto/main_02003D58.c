@@ -1,5 +1,7 @@
 /* 32 functions from 0x02003D58 to 0x02004CD4 (main), found by ds-decomp. */
 #include "common.h"
+
+extern void func_02004d70(u32);
 extern u32 data_0215cd40[8];
 
 extern u32 func_020034a8(void);
