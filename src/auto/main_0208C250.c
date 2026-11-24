@@ -14,6 +14,22 @@ extern void func_021098ac(void *);
 extern void func_02092814(s32, s32, s32, s32, s32, s32, s32);
 extern void func_020895a0(s32, s32, s32, s32, s32, s32, s32, s32, s32);
 
+extern void func_020a8810(void *, s32);
+extern void func_020896f4(s32, s32, s32, s32, s32, s32, s32);
+extern void func_020a994c(void *);
+void func_0208c680(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u16 arg4) {
+    func_020a8810(*(void **)(data_0216010c + 0x340), 0x18);
+    func_020896f4(9, 0x40, 0xb, 0x46, 7, arg0, 1);
+    func_020a8810(*(void **)(data_0216010c + 0x3e0), 0x18);
+    func_020896f4(0xb, 0x40, 0x21, 0x46, 8, arg1, 1);
+    func_020896f4(8, 0x17, 0x3c, 0x14, 9, arg2, 3);
+    if (arg4 != 0) {
+        func_020896f4(0xa, 0x17, 0x74 - arg3 * 0xe, 0x14, 9, arg4, 3);
+    } else {
+        func_020a994c(data_0216010c + 0x394);
+    }
+}
+
 void func_0208cb1c(void) {
     Unk14 buf = data_02141378;
     func_02092814(6, 0, 0, 0x38, 0xef, 0x2d, 0x8d);
