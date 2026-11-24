@@ -269,6 +269,36 @@ void func_0212a2ac(u8 *arg0) {
     func_0212976c(*(void **)(arg0 + 8), *(s16 *)(arg0 + 0xa6), *(s16 *)(arg0 + 0xa8), *(s16 *)(arg0 + 0xaa));
 }
 
+s32 func_0212a2dc(u8 *p,u32 arg,s16 *x,s16 *y,s16 *z) {
+s8 buf[16];
+if(data_02156a80==0){
+if(p[0xde]<4){*x=0;*y=0;*z=0;goto done;}
+if(p[0xdf]>=16){func_02132c40(buf,16,data_02156b30,arg);func_02129a6c(buf,8,x,y,z);goto done;}
+if(p[0xdf]>=8){
+if(*(s16 *)(p+0xa0)==0 && *(s16 *)(p+0xa2)==0 && *(s16 *)(p+0xa4)==0){
+*(s16 *)(p+0xa0)=*(s16 *)data_0217358c;
+*(s16 *)(p+0xa2)=*(s16 *)(data_0217358c+2);
+*(s16 *)(p+0xa4)=*(s16 *)(data_0217358c+4);
+}
+*x=*(s16 *)(p+0xa0);*y=*(s16 *)(p+0xa2);*z=*(s16 *)(p+0xa4);
+goto done;
+}
+*x=0;*y=0;*z=0;goto done;
+}
+if(p[0xde]<4){
+if(*(s16 *)(p+0xa0)==0 && *(s16 *)(p+0xa2)==0 && *(s16 *)(p+0xa4)==0 && *(s16 *)data_0217358c==0 && *(s16 *)(data_0217358c+2)==0 && *(s16 *)(data_0217358c+4)==0){*x=0;*y=0;*z=0;return 0;}
+*x=-4096;*y=-32548;*z=32767;func_0212bda8(data_02156b38);return -1;
+}
+if(*(s16 *)(p+0xa0)==0 && *(s16 *)(p+0xa2)==0 && *(s16 *)(p+0xa4)==0){
+*(s16 *)(p+0xa0)=*(s16 *)data_0217358c;
+*(s16 *)(p+0xa2)=*(s16 *)(data_0217358c+2);
+*(s16 *)(p+0xa4)=*(s16 *)(data_0217358c+4);
+}
+copy:
+*x=*(s16 *)(p+0xa0);*y=*(s16 *)(p+0xa2);*z=*(s16 *)(p+0xa4);
+done:return 0;
+}
+
 extern char data_02156b08[];
 extern void func_0212bda8(char *);
 extern void func_02129748(void *, void *, void *);
