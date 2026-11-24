@@ -19,6 +19,51 @@ extern u8 data_02162908[];
 extern void func_021167f0(void *, s32);
 extern s32 func_02079720(s32);
 extern void func_020ea5d4(void *, s32);
+extern u16 data_021626a8;
+extern s32 func_02052520(void);
+s32 func_0207ab34(s32 arg0) {
+u8 *node;
+u8 *obj;
+u8 *base=data_021600ac;
+obj=*(u8 **)(base+0x68);
+if(data_021626a8&1) {
+*(s32 *)(base+0x10)=8;
+*(s32 *)(base+0x370)=arg0;
+func_021167f0((u8 *)data_021600bc+0x40,arg0);
+*(u32 *)(obj+0xac)|=0x2000000;
+node=*(u8 **)((u8 *)data_02160a80[0]+0x3c);
+while(node) {if(*(u32 *)(node+8)==0x32c9) goto found1;node=*(u8 **)(node+0x38);}
+node=0;
+found1:
+if(node) {
+s32 res=func_02079720(arg0);
+if(res==4) return 0;
+if(res==0 || res==2) func_020ea5d4(node,5); else func_020ea5d4(node,4);
+}
+return 1;
+}
+if(func_02052520()) {
+base[0x374]=0;
+*(s32 *)(base+0x10)=8;
+*(s32 *)(base+0x370)=arg0;
+func_021167f0((u8 *)data_021600bc+0x40,arg0);
+*(u32 *)(obj+0xac)|=0x2000000;
+obj=*(u8 **)((u8 *)data_02160a80[0]+0x3c);
+while(obj) {if(*(u32 *)(obj+8)==0x32c9) goto found2;obj=*(u8 **)(obj+0x38);}
+obj=0;
+found2:
+{
+s32 res=func_02079720(arg0);
+if(res==4) return 0;
+if(res==0 || res==2) func_020ea5d4(obj,5); else func_020ea5d4(obj,4);
+}
+base[0x374]++;
+if(*(u16 *)(data_02162908+4)==0) base[0x374]=0;
+return 1;
+}
+return 0;
+}
+
 void func_0207ace8(s32 arg0) {
     u8 *r4 = (u8 *)data_021600ac;
     u8 *r6;
