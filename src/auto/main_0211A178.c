@@ -1,5 +1,6 @@
 /* 28 functions from 0x0211A178 to 0x0211B0E8 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { s32 v[6]; } Mtx23;
 extern s32 data_0216f234[4];
 extern s32 data_0216f3d4[];
 extern s32 data_0216f3d8[];
