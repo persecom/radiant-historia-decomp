@@ -6,6 +6,16 @@ typedef struct {
     u32 file_id;
 } FSFileID;
 
+typedef struct CallbackNode {
+    struct CallbackNode *next;
+    void (*callback)(u32);
+    u32 arg;
+} CallbackNode;
+
+extern CallbackNode *data_0216004c;
+extern u32 func_02008128(void);
+extern void func_0200813c(u32);
+
 typedef struct {
     void *file;
     u16 unk4;
