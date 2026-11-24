@@ -157,6 +157,27 @@ void func_02107aec(s32 *arg0, s32 *arg1, s32 *arg2, s32 *arg3, s32 arg4, s32 arg
     }
 }
 
+void func_02107b38(void) {
+ func_02008e68(0,data_02161088,28);
+ func_02008e68(0,data_021610a4,28);
+ func_02008e68(0,data_021612c8,152);
+ func_02008e68(0,data_02161230,152);
+ func_02008e68(0,data_02161198,152);
+ func_02008e68(0,data_02161150,72);
+ func_02008e68(0,data_021610c0,72);
+ func_02008e68(0,data_02161108,72);
+ func_02117e80();
+ func_021077f0(data_02161088,0);
+ func_021077f0(data_021610a4,1);
+ func_021078d0(data_021612c8,data_02161150);
+ func_02107938();
+ func_02117a48(31);
+ func_0211ad90((void *)func_02107aa0);
+ func_0210d07c();
+ func_02125424(data_02161360,64);
+ func_0211a698(data_02161760,64,func_02107a94);
+}
+
 void func_02107c70(u8 *arg0) {
     u32 prev = data_02155984;
     data_02155984 = (u32)arg0;
