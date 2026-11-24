@@ -394,8 +394,8 @@ void func_0200d534(u32 *arg0) {
     func_0200b710(arg0, mode);
 }
 
-s32 func_0200d558(u32 arg0, u32 arg1, u32 arg2) {
-    func_02010c40(*(void **)data_0215ef98, arg2, arg1, func_0200d534, arg0, 1);
+s32 func_0200d558(u32 arg0, u32 arg1, u32 arg2, void *arg3) {
+    func_02010c40(*(void **)data_0215ef98, arg2, arg1, arg3, func_0200d534, arg0, 1);
     return 0x100;
 }
 
