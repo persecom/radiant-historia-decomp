@@ -6,6 +6,11 @@ extern void *data_02160090;
 extern void *data_02155c3c;
 extern void *func_0210c594(s32, void *);
 extern void func_021167ac(void *, s32);
+typedef struct {
+    u16 unk00;
+    u8 pad02[6];
+    void *unk08;
+} Unk_02160090;
 extern void func_02031fcc(s32, s32);
 extern void func_021168f8(void *, void *);
 extern void func_02033060(void);
@@ -67,6 +72,47 @@ void func_02031d2c(void) {
         func_0210c5dc(data_02160090);
         data_02160090 = NULL;
     }
+}
+
+extern u8 *func_02032c44(void);
+extern void func_021167f0(void *, void *);
+extern void func_02116844(void *, void *);
+extern void func_02116894(void *, void *, void *);
+u8 *func_02031ec8(s32 arg0, s32 arg1, u8 *arg2, s32 arg3, u16 arg4) {
+    u8 *node = func_02032c44();
+    u8 *cur;
+    u16 i;
+    *(s32 *)(node + 0) = arg0;
+    *(s32 *)(node + 4) = arg1;
+    *(u8 **)(node + 8) = arg2;
+    *(u8 **)(node + 0x3c) = arg2;
+    *(s32 *)(node + 0x38) = arg1;
+    *(s32 *)(node + 0x34) = arg0;
+    *(u16 *)(node + 0x4c) = arg4;
+    *(s32 *)(node + 0x48) = arg3;
+    if (arg2 != NULL) {
+        if (arg2[0x14] == 1) {
+            *(u16 *)(node + 0xe) |= 2;
+        }
+    }
+    cur = *(u8 **)((u8 *)data_02160090 + 8);
+    i = 0;
+    while (cur != NULL) {
+        if (arg4 == i) {
+            break;
+        }
+        i++;
+        cur = *(u8 **)(cur + 0x1c);
+    }
+    if (cur == NULL) {
+        func_021167f0((u8 *)data_02160090 + 8, node);
+    } else if (*(u8 **)((u8 *)data_02160090 + 8) == cur) {
+        func_02116844((u8 *)data_02160090 + 8, node);
+    } else {
+        func_02116894((u8 *)data_02160090 + 8, cur, node);
+    }
+    *(u16 *)data_02160090 += 1;
+    return node;
 }
 
 void func_02031fbc(s32 arg0, s32 arg1, s32 arg2) {
