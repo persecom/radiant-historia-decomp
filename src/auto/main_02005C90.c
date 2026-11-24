@@ -330,6 +330,18 @@ void func_020064d4(u8 *arg0) {
     func_0200813c(cookie);
 }
 
+void func_02006510(void *arg0) {
+    u32 cookie = func_02008128();
+    u8 *p = *(u8 **)data_0215cde4[2];
+    if (arg0 != NULL) {
+        *(void **)(p + 0x78) = arg0;
+        func_02005ee4(arg0, p);
+    }
+    *(u32 *)(p + 0x64) = 0;
+    func_020060b8();
+    func_0200813c(cookie);
+}
+
 extern void func_020060b8(void);
 void func_0200661c(void) {
     u32 r4 = func_02008128();
