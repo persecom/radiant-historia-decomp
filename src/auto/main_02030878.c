@@ -75,5 +75,38 @@ void func_0203157c(void) {
     func_021167ac(&data_0216008c->unk2c, 0);
 }
 
+extern void func_020316d8(void);
+extern void func_0210da14(void *);
+extern void func_0210dba0(void *);
+extern void func_021167f0(void *, void *);
+void func_0203160c(void) {
+    if (data_0216008c == NULL) {
+        return;
+    }
+    func_020316d8();
+    func_0210da14(data_0216008c);
+    func_0210dba0(&data_0216008c->unk14);
+    if (data_0216008c != NULL) {
+        func_0210c5dc(data_0216008c);
+        data_0216008c = NULL;
+    }
+}
+
 void func_02031658(void) {
 }
+
+void *func_0203165c(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u16 arg4) {
+    u8 *node = func_02031c24(arg0);
+    if (node != NULL) {
+        return node;
+    }
+    node = func_0210c594(0x2c, data_02155c3c);
+    node[8] = arg0;
+    *(u16 *)(node + 0x20) = arg4;
+    *(u32 *)(node + 0xc) = arg1 << 12;
+    *(u32 *)(node + 0x10) = arg2 << 12;
+    *(u32 *)(node + 0x14) = arg3 << 12;
+    func_021167f0(&data_0216008c->unk2c, node);
+    return node;
+}
+
