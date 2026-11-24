@@ -132,6 +132,16 @@ u32 func_020062c8(void) {
     return data_0215cdf0[0];
 }
 
+extern void func_02008114(void);
+extern void func_02008454(void);
+extern u32 data_0215cde4[];
+void func_020067c8(void) {
+    func_02008114();
+    while (1) {
+        func_02008454();
+    }
+}
+
 extern void func_02005ea8(s32, const char *, char *);
 void func_0200683c(u8 *arg0, u32 arg1) {
     *(u32 *)(arg0 + 0xb4) = arg1;
