@@ -5,6 +5,12 @@ extern u8 *func_0202c7d8(s32);
 extern void *func_020de534(void *);
 extern u8 *data_02160a6c;
 extern u8 *data_02160a74;
+
+void func_020220b0(u32, u32);
+void func_02065c44(void *);
+void func_020de56c(void *);
+void func_020df224(void *, u8 *);
+void func_020e2788(u32);
 u8 *func_020de810(void) {
     u8 i;
     for (i = 0; i < 9; i++) {
