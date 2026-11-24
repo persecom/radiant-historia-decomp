@@ -77,6 +77,24 @@ void func_02075c98(void) {
     func_0207630c();
 }
 
+s32 func_02075ca4(void) {
+char buf[64];
+u8 *base=(u8 *)func_020764e4();
+u32 *p;
+p=func_0203be10(1);
+func_0203be60(p,data_021480d4,data_021480ec);
+p[4]=4;p[5]=4;p[6]=3;
+*(void **)(base+0x58)=p;
+p=func_0203be10(1);func_02008f74(buf,0,64);func_02015a10(buf,data_02148104,data_02148074[0]);func_0203be60(p,buf,buf);p[4]=5;p[5]=4;p[6]=4;*(void **)(base+92)=p;
+p=func_0203be10(1);func_02008f74(buf,0,64);func_02015a10(buf,data_02148118,data_02148074[0]);func_0203be60(p,buf,buf);p[4]=5;p[5]=3;p[6]=4;*(void **)(base+96)=p;
+p=func_0203be10(1);func_02008f74(buf,0,64);func_02015a10(buf,data_0214812c,data_02148074[0]);func_0203be60(p,buf,buf);p[4]=5;p[5]=4;p[6]=4;*(void **)(base+100)=p;
+p=func_0203be10(1);func_02008f74(buf,0,64);func_02015a10(buf,data_02148144,data_02148074[0]);func_0203be60(p,buf,buf);p[4]=5;p[5]=3;p[6]=4;*(void **)(base+104)=p;
+p=func_0203be10(1);func_02008f74(buf,0,64);func_02015a10(buf,data_0214815c);func_0203be60(p,buf,buf);p[4]=2;p[5]=2;p[6]=3;*(void **)(base+172)=p;
+p=func_0203be10(1);func_0203be60(p,data_02148174,data_0214818c);p[4]=2;p[5]=2;p[6]=3;*(void **)(base+0xb0)=p;
+p=func_0203be10(1);func_02008f74(buf,0,64);func_02015a10(buf,data_021481a4);func_0203be60(p,buf,buf);p[4]=2;p[5]=2;p[6]=2;*(void **)(base+180)=p;
+return 0;
+}
+
 void func_02075f18(s32 arg0, u8 *arg1) {
     u8 *r5 = (u8 *)func_020764e4();
     s32 sp0;
