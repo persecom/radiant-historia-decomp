@@ -256,14 +256,19 @@ static void func_02108ffc(void) {
 }
 
 void func_02109040(void) {
-    u32 i;
+    u32 i = 0;
     Unk021624F8 *p;
-    for (i = 0; i < 2; i++) {
-        if (func_021090f4(i, 1) == 3) {
-            p = data_021624f8;
-            if (p->unk_18[i] & 2) {
-                func_021089e8(i, p->unk_1a[i], 3);
-            }
+    if (func_021090f4(i, 1) == 3) {
+        p = data_021624f8;
+        if (p->unk_18[i] & 2) {
+            func_021089e8(i, p->unk_1a[i], 3);
+        }
+    }
+    i = 1;
+    if (func_021090f4(i, 1) == 3) {
+        p = data_021624f8;
+        if (p->unk_18[i] & 2) {
+            func_021089e8(i, p->unk_1a[i], 3);
         }
     }
     p = data_021624f8;
