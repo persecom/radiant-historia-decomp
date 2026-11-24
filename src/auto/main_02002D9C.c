@@ -377,6 +377,17 @@ u32 func_020034a8(void) {
     return 0x06200000 + (offset << 14);
 }
 
+u32 func_020034c8(void) {
+    s32 mode = *(volatile u32 *)0x04000000 & 7;
+    u16 cnt = *(volatile u16 *)0x0400000c;
+    if (mode < 5 || !(cnt & 0x80)) {
+        u32 base = ((*(volatile u32 *)0x04000000 & 0x07000000) >> 24) << 16;
+        u32 offset = (u32)(cnt & 0x3c) >> 2;
+        return 0x06000000 + base + (offset << 14);
+    }
+    return 0;
+}
+
 s32 func_0200308c(s32 *arg0) {
     if (*(volatile u32 *)0x04000600 & 0x4000) {
         return -1;
