@@ -278,3 +278,17 @@ void func_02011950(u8 *ctx, u8 *src, u32 len) {
     } while (len != 0);
 }
 
+extern void func_020119e4(void);
+extern s32 func_02011c70(s32, s32, s32, s32, s32, void *);
+s32 func_02011bdc(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    u8 buf1[0x60];
+    u8 buf2[0x14];
+    u32 ctx[7] = { 0x14, 0x40 };
+    ctx[2] = (u32)buf1;
+    ctx[3] = (u32)buf2;
+    ctx[4] = (u32)func_020118fc;
+    ctx[5] = (u32)func_02011950;
+    ctx[6] = (u32)func_020119e4;
+    return func_02011c70(arg0, arg1, arg2, arg3, arg4, ctx);
+}
+
