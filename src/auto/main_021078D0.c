@@ -26,6 +26,10 @@ void func_021078d0(void *arg0, void *arg1) {
     *(u32 *)((u8 *)arg0 + 0x80) = val - 0xc1000;
 }
 
+void func_02107a24(s32 arg0, s32 arg1) {
+    func_0211809c(data_02161088, arg0, arg1);
+}
+
 void func_02107a64(s32 arg0) {
     func_02118178(data_02161088, arg0);
 }
