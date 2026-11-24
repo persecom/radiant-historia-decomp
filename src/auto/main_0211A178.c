@@ -2,6 +2,7 @@
 #include "common.h"
 extern u32 data_021701d8[4];
 extern u32 data_021701cc[3];
+extern u16 data_02144e48[8];
 
 typedef struct {
     u32 a;
