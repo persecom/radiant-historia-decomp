@@ -62,10 +62,11 @@ s32 func_020595c0(u8 *arg0, s32 *arg1) {
             arg1[1] = *(s32 *)(arg0 + 0x24) << 0xc;
             arg1[2] = *(s32 *)(arg0 + 0x28) << 0xc;
         }
-        return 1;
+    } else {
+        func_020bf330(arg0);
+        return 0;
     }
-    func_020bf330(arg0);
-    return 0;
+    return 1;
 }
 
 s32 func_0205965c(u8 *arg0) {
