@@ -35,6 +35,15 @@ void func_0212f79c(void) {
     }
 }
 
+void func_0212f880(u8 *a0) {
+    void *ptr = *(void **)(a0 + 0x1b4);
+    if (ptr != NULL) {
+        *(void **)(a0 + 0x1b4) = NULL;
+        func_0213246c(ptr);
+    }
+    func_02013878(a0, 0, 0xa2c);
+}
+
 extern void func_0212f558(s32, s32);
 extern void func_0213246c(void *);
 extern void func_0212f8b8(void *);
