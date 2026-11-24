@@ -48,3 +48,7 @@ void *func_0200f998(void) {
     return (void *)0x02fffa80;
 }
 
+void *func_0200f9a4(void) {
+    return (void *)0x02fffe00;
+}
+
