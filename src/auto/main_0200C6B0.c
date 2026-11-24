@@ -9,6 +9,9 @@ extern void func_0200b888(void *);
 extern void *func_0200f998(void *);
 extern u8 *func_0200d500(u8 *, s32);
 extern void func_02009008(void *, void *, u32);
+extern u32 data_0215ef98[2];
+extern void func_0200f9b0(u16);
+extern void func_0200fa20(u16);
 s32 func_0200ca2c(void *arg0) {
     void *r3 = *(void **)((u8 *)arg0 + 0x8);
     u32 r4 = *(u32 *)((u8 *)arg0 + 0x34);
