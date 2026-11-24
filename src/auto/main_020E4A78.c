@@ -161,6 +161,51 @@ u8 func_020e55d8(s32 arg0, s32 arg1) {
     return ret;
 }
 
+s32 func_020e5630(u32 type,u8 *p,u16 index) {
+ switch(type) {
+ case 0: return func_02064cb8(*(void **)(p+0x11c),11);
+ case 1: {
+  u8 *node=*(u8 **)(*(u8 **)(p+0x11c)+4);
+  u16 count=0;
+  while(node) {
+   if(*(s16 *)(node+0x26)!=0 && *(s16 *)(node+0x3c)!=-1 && *(s16 *)(node+0x3c)<100) {
+    if(count==index) {
+     if(*(s16 *)((u8 *)data_02160a74[0]+0xc8)>=9 && *(u16 *)(node+0x20)==21) return 0;
+     if(*(s16 *)(*(u8 **)(p+0x118)+0xc)>=*(s16 *)(node+0x1c)) return (s32)node;
+    }
+    count++;
+   }
+   node=*(u8 **)(node+0x34);
+  }
+  return 0;
+ }
+ case 3: {
+  u8 *node;
+  u16 count=0;
+  node=*(u8 **)(*data_021600c8+4);
+  while(node) {
+   if(func_02022068(node[1])) {
+    if(count==index) return func_02064cb8(*data_021600c8,node[1]);
+    count++;
+   }
+   node=*(u8 **)(node+0x34);
+  }
+  break;
+ }
+ case 4: return func_02064cb8(*(void **)(p+0x11c),3);
+ case 5: return func_02064cb8(*(void **)(p+0x11c),4);
+ case 6: {
+  s32 id=func_020e55d8((u8)*(u16 *)(p+0x90),index);
+  if(*(s16 *)(*(u8 **)(p+0x118)+0x5a)>=100) {
+   if(id==103 && *(s16 *)((u8 *)data_02160a74[0]+0xc8)>=9) return 0;
+   return func_02064cb8(*(void **)(p+0x11c),id);
+  }
+  break;
+ }
+ }
+ return 0;
+}
+
 void func_020e57e8(void *arg0, s32 arg1) {
     s32 val = func_020e55d8((u8)*(u16 *)((u8 *)arg0 + 0x90), arg1);
     func_02064cb8(*(void **)((u8 *)arg0 + 0x11c), val);
