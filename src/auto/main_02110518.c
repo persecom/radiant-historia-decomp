@@ -102,17 +102,18 @@ void func_02110a28(u8 *arg0) {
     }
 }
 
-void func_02110abc(void *arg0) {
-    u8 *p = (u8 *)arg0;
-    u16 i;
-    u32 count = func_020c9c34(*(void **)(p + 0x30));
-    for (i = 0; i < count; i++) {
-        u8 *obj = func_020c9c10(*(void **)(p + 0x30), i);
-        u8 flag;
-        *(u8 **)(obj + 0x34) = p;
-        flag = (u8)(i == p[0x39]);
-        func_021103c0(obj, flag);
-    }
+void func_02110abc(void *arg0)
+{
+  u8 *p = (u8 *) arg0;
+  u32 count = func_020c9c34(*((void **) (p + 0x30)));
+  u16 i;
+  for (i = 0; i < count; i++)
+  {
+    u8 *obj = func_020c9c10(*((void **) (p + 0x30)), i);
+    *((u8 **) (obj + 0x34)) = p;
+    func_021103c0(obj, (u8) (i == p[0x39]));
+  }
+
 }
 
 extern s32 func_020c73d8(u16 *);
