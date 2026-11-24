@@ -1,6 +1,11 @@
 /* 35 functions from 0x02115380 to 0x02116350 (main), found by ds-decomp. */
 #include "common.h"
 
+typedef union UnkBits24 {
+    u32 all;
+    u32 bits : 24;
+} UnkBits24;
+
 extern void func_02115d90(void *, s32, s32, s32);
 extern void func_02115d10(void *, s32, s32);
 extern void func_02009740(void *, void *);
