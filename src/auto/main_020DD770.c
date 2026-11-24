@@ -77,6 +77,70 @@ void func_020dd808(void) {
 void func_020dd80c(void) {
 }
 
+extern void *func_020ddc08(u16);
+extern s32 func_020ebd5c(void *, s32);
+extern s32 func_020f402c(void *, s32);
+void func_020dd810(void *arg0_p, s32 arg1, s32 arg2) {
+    u8 *arg0 = (u8 *)arg0_p;
+
+    if (arg0 == NULL) {
+        return;
+    }
+    switch (*(u16 *)(arg0 + 0x8e)) {
+    case 801:
+        func_020dd810(func_020ddc08(802), arg1, 0);
+        func_020dd810(func_020ddc08(803), arg1, 0);
+        break;
+    case 811:
+        func_020dd810(func_020ddc08(813), arg1, 0);
+        break;
+    case 821:
+        func_020dd810(func_020ddc08(823), arg1, 0);
+        break;
+    case 831:
+        func_020dd810(func_020ddc08(832), arg1, 0);
+        func_020dd810(func_020ddc08(833), arg1, 0);
+        break;
+    case 841:
+        func_020dd810(func_020ddc08(843), arg1, 0);
+        break;
+    case 851:
+        func_020dd810(func_020ddc08(852), arg1, 0);
+        func_020dd810(func_020ddc08(853), arg1, 0);
+        break;
+    case 861:
+        func_020dd810(func_020ddc08(863), arg1, 0);
+        break;
+    }
+    if (*(u8 **)(arg0 + 0x118) != NULL && *(s32 *)(*(u8 **)(arg0 + 0x118) + 0x70) == 0) {
+        return;
+    }
+    if (arg0[0x104] == arg1) {
+        return;
+    }
+    if (arg2 == 0) {
+        arg2 = 1;
+    }
+    if (arg2 == 0) {
+        return;
+    }
+    {
+        u16 id = *(u16 *)(arg0 + 0x8e);
+        if (id <= 99 || (id >= 5000 && id <= 5099)) {
+            if (func_020ebd5c(*(void **)(arg0 + 0x108), arg1) != 0) {
+                arg0[0x104] = arg1;
+            }
+            return;
+        }
+        if (id >= 900 && id <= 999) {
+            return;
+        }
+        if (func_020f402c(*(void **)(arg0 + 0x108), arg1) != 0) {
+            arg0[0x104] = arg1;
+        }
+    }
+}
+
 void *func_020dd9b4(u8 *arg0, void **arg1) {
     u16 v;
     *arg1 = NULL;
