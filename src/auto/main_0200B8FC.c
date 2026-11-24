@@ -198,6 +198,13 @@ u32 func_0200bc94(u8 *arg0) {
     return *(u32 *)(arg0 + 8);
 }
 
+void func_0200bcec(FSFileID *arg0, u8 *arg1) {
+    FSFileID file;
+    file.arc = (void *)data_0215ef7c[0];
+    file.file_id = *(u32 *)(arg1 + 0x18);
+    *arg0 = file;
+}
+
 extern void func_0200c0a8(void);
 s32 func_0200c198(void) {
     func_0200c0a8();
