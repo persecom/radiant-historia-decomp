@@ -3,15 +3,15 @@
 
 extern u8 *data_021600b0;
 extern u8 *data_0216010c;
-extern s32 func_02092ab0(void *);
+extern s32 func_02092ab0();
 extern u16 func_02092994(void *, s32);
 extern void func_020a3b84(void);
 extern void func_020a0da8(void);
 extern void func_020a0dc8(void *);
 extern void func_0210c5dc(void *);
 extern void func_020a9544(void *);
-void func_0208a168(u8 *arg0, s32 arg1, s32 arg2, u32 *arg3) {
-    arg3[2] = arg3[0];
+void func_0208a168(u8 *arg0, s32 arg1, s32 arg2, u8 *arg3) {
+    *(u32 *)(arg3 + 8) = *(u32 *)arg3;
     if (func_02092ab0(arg3) == -1) {
         return;
     }
