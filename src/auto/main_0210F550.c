@@ -76,8 +76,8 @@ void func_0210fd94(u32 *arg0) {
 void func_0210fde8(void) {
     s32 i;
     for (i = 0; i < 0x100; i++) {
-        *(u32 *)(data_02162b84 + i * 0x94) = 0;
-        *(u32 *)(data_02162b84 + i * 0x94 + 4) = 0;
+        ((Entry_94 *)data_02162b84)[i].field_0 = 0;
+        ((Entry_94 *)data_02162b84)[i].field_4 = 0;
     }
 }
 
@@ -88,13 +88,12 @@ s32 func_0210fe1c(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
 void func_0210fe40(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     s32 i;
     for (i = 0; i < 0x100; i++) {
-        Entry_94 *e = &((Entry_94 *)data_02162b84)[i];
-        if (e->field_0 == 0) {
-            e->field_0 = 1;
-            e->field_4 = arg0;
-            e->field_88 = arg1;
-            e->field_8c = arg2;
-            func_0210fdc4(e->field_8, arg3, 0x80);
+        if (((Entry_94 *)data_02162b84)[i].field_0 == 0) {
+            ((Entry_94 *)data_02162b84)[i].field_0 = 1;
+            ((Entry_94 *)data_02162b84)[i].field_4 = arg0;
+            ((Entry_94 *)data_02162b84)[i].field_88 = arg1;
+            ((Entry_94 *)data_02162b84)[i].field_8c = arg2;
+            func_0210fdc4(((Entry_94 *)data_02162b84)[i].field_8, arg3, 0x80);
             return;
         }
     }
@@ -137,7 +136,7 @@ s32 func_02110228(void *arg0) {
     return 0;
 }
 
-s32 func_0211023c(void *arg0) {
+s32 func_0211023c(void *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
     void *p = func_020c9c10(*(void **)((u8 *)arg0 + 0x30), 0);
     s32 result = ((s32 (*)(void *))(*(void **)((u8 *)p + 0x18)))(p);
     func_020c738c(arg0, func_020c73b8(p), 2);
