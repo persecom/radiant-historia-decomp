@@ -230,6 +230,12 @@ void func_020befc4(void *arg0) {
     func_02008f74(arg0, 0, 0x38);
 }
 
+void func_020befd8(u8 *arg0, s32 arg1, s32 arg2) {
+    *(s32 *)(arg0 + 0x0) = func_0201f884(arg2);
+    func_02009008(arg1, arg0 + 0x8, 0x30);
+    *(s32 *)(arg0 + 0x4) = 0;
+}
+
 void *func_020bf308(u32 arg0) {
     if (arg0 >= 3) {
         return NULL;
