@@ -406,7 +406,6 @@ void func_02054d5c(u8 *);
 s32 func_02054a94(u8 *p) {
     u8 *config = *(u8 **)(p + 0xd0);
     s32 angle;
-    s16 speed;
     u16 id;
     Vec_546c0 pos, next;
     if ((func_02002388(p,p+0x1b4)>>12)<3) {
@@ -416,9 +415,8 @@ s32 func_02054a94(u8 *p) {
     }
     angle = *(u16 *)(p + 0x92);
     angle = (angle % 65536) >> 4;
-    speed = config[0x1a];
-    *(s32 *)(p + 0x30) = speed * data_0213a394[angle * 2];
-    *(s32 *)(p + 0x38) = (s16)config[0x1a] * data_0213a394[angle * 2 + 1];
+    *(s32 *)(p + 0x30) = (s16)config[0x1a] * Sin_54a94(*(u16 *)(p+0x92));
+    *(s32 *)(p + 0x38) = (s16)config[0x1a] * Cos_54a94(*(u16 *)(p+0x92));
     CopyVec_546c0((Vec_546c0 *)(p+0xc), (Vec_546c0 *)p);
     CopyVec_546c0((Vec_546c0 *)(p+0xd4), (Vec_546c0 *)p);
     SetVec_546c0((Vec_546c0 *)(p+0xe0), *(s32 *)p+*(s32 *)(p+0x30), *(s32 *)(p+4), *(s32 *)(p+8)+*(s32 *)(p+0x38));
