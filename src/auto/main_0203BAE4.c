@@ -11,3 +11,6 @@ void func_0203be4c(void *arg0) {
 void func_0203c820(void) {
 }
 
+void func_0203c994(void) {
+}
+
