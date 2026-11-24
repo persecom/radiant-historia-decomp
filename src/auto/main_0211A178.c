@@ -44,6 +44,37 @@ void func_0211a5fc(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u32 arg4, u32 arg5, u
     *(u32 *)(ptr + 0x18) = arg7;
 }
 
+void func_0211a698(u8 *arg0, u32 count, u32 arg2) {
+    u32 i;
+
+    data_021701cc[0] = arg2;
+    data_021701cc[1] = count;
+    data_021701cc[2] = (u32)arg0;
+    if (count == 0) {
+        return;
+    }
+    for (i = 0; i < count; i++) {
+        u8 *p = arg0 + i * 0x30;
+        func_02118e68(p);
+        *(u32 *)(p + 0xc) = 0;
+        *(u32 *)(p + 0x10) = 0;
+        *(u32 *)(p + 0x14) = 0;
+        *(u32 *)(p + 0x18) = 0;
+        *(u32 *)(p + 0x1c) = 0;
+        *(u32 *)(p + 0x20) = 0;
+        *(u32 *)(p + 0x24) = 0;
+        *(u32 *)(p + 0x28) = 0;
+        *(u32 *)(p + 0x2c) = 0;
+    }
+}
+
+void func_0211a7ec(s32 arg0, u32 arg1, u32 arg2) {
+    u8 *p = func_0211a5e4(arg0);
+    *(u32 *)(p + 0x24) = -1;
+    *(u32 *)(p + 0x28) = arg1;
+    *(u32 *)(p + 0x2c) = arg2;
+}
+
 void func_0211ab04(u32 arg0) {
     data_021701d8[2] = arg0;
 }
