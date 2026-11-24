@@ -200,14 +200,16 @@ void func_02119b34(u32 arg0) {
 
     if (*(u16 *)(p + 0x4e) == 0) {
         s32 f38 = *(s32 *)(p + 0x38);
-        if ((u8)(f38 != -1)) {
+        switch (f38 != -1) {
+        default:
             *(s32 *)(data_02155eb0 + 4) = f38;
             func_02119728(f30);
             *(s32 *)(data_02155eb0 + 4) = -1;
             return;
+        case 0:
+            func_02119728(f30);
+            return;
         }
-        func_02119728(f30);
-        return;
     }
 
     func_02119f1c();
@@ -237,12 +239,15 @@ void func_02119b34(u32 arg0) {
 
     {
         s32 f38 = *(s32 *)(p + 0x38);
-        if ((u8)(f38 != -1)) {
+        switch (f38 != -1) {
+        default:
             *(s32 *)(data_02155eb0 + 4) = f38;
             func_02119728(f30);
             *(s32 *)(data_02155eb0 + 4) = -1;
-        } else {
+            break;
+        case 0:
             func_02119728(f30);
+            break;
         }
     }
 
