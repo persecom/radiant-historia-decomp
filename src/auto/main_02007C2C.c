@@ -407,7 +407,7 @@ void func_02008690(u32 dmaNo, const void *src, void *dest, u32 size, u32 arg4) {
     }
 
     func_02008ab4(dmaNo, (u32)src, size, 0);
-    dmaReg = (volatile u32 *)0x040000b0 + dmaNo * 3 + 2;
+    dmaReg = (volatile u32 *)(0x040000b0 + (dmaNo * 3 + 2) * 4);
     while (*dmaReg & 0x80000000) {
     }
 
