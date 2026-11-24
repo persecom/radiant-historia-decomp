@@ -265,3 +265,11 @@ s32 func_0200c198(void *arg0) {
     return 1;
 }
 
+s32 func_0200c2a8(u8 *arg0, u16 arg1) {
+    *(u32 *)(arg0 + 0x30) = *(u32 *)(arg0 + 8);
+    *(u16 *)(arg0 + 0x34) = arg1;
+    *(u16 *)(arg0 + 0x36) = 0;
+    *(u32 *)(arg0 + 0x38) = 0;
+    return func_0200cb40(arg0, 2, 1);
+}
+
