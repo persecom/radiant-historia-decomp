@@ -74,6 +74,38 @@ s32 func_02002158(const s32 *a, const s32 *b) {
     return (s32)(((s64)a[0] * b[0] + (s64)a[1] * b[1] + (s64)a[2] * b[2] + 0x800) >> 12);
 }
 
+void func_02002194(const s32 *a, const s32 *b, s32 *ab) {
+    s32 x = (s32)(((s64)a[1] * b[2] - (s64)a[2] * b[1] + 0x800) >> 12);
+    s32 y = (s32)(((s64)a[2] * b[0] - (s64)a[0] * b[2] + 0x800) >> 12);
+    s32 z = (s32)(((s64)a[0] * b[1] - (s64)a[1] * b[0] + 0x800) >> 12);
+    ab[0] = x;
+    ab[1] = y;
+    ab[2] = z;
+}
+
+s32 func_02002214(const s32 *v) {
+    s64 sum = (s64)v[0] * v[0] + (s64)v[1] * v[1] + (s64)v[2] * v[2];
+    *(volatile u16 *)0x040002b0 = 1;
+    *(volatile u64 *)0x040002b8 = (u64)sum << 2;
+    while (*(volatile u16 *)0x040002b0 & 0x8000) {
+    }
+    return (*(volatile s32 *)0x040002b4 + 1) >> 1;
+}
+
+s32 func_02002388(s32 *arg0, s32 *arg1) {
+    s32 dy = arg0[1] - arg1[1];
+    s32 dx = arg0[0] - arg1[0];
+    s32 dz = arg0[2] - arg1[2];
+    s64 sum = (s64)dy * dy;
+    sum += (s64)dx * dx;
+    sum += (s64)dz * dz;
+    *(volatile u16 *)0x40002b0 = 1;
+    *(volatile u64 *)0x40002b8 = (u64)sum << 2;
+    while (*(volatile u16 *)0x40002b0 & 0x8000) {
+    }
+    return (*(volatile s32 *)0x40002b4 + 1) >> 1;
+}
+
 u16 func_02002404(s32 y, s32 x)
 {
     extern s32 func_02001fb0(s32, s32);
@@ -179,6 +211,11 @@ u16 func_02002404(s32 y, s32 x)
 void func_02002594(void) {
 }
 
+void func_020026e0(s32 arg0) {
+    u32 v = (u32)arg0 << 24;
+    *(volatile u16 *)0x4000004 = (*(volatile u16 *)0x4000004 & 0x3f) | (v >> 16) | ((arg0 & 0x100) >> 1);
+}
+
 extern u16 data_02145ba0;
 extern void func_02002028(u32);
 extern s32 func_02001ff4(void);
@@ -192,5 +229,11 @@ void func_0200283c(u32 arg0) {
 
 void func_02002920(u32 *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
     *arg0 = (arg1 | 0x40) | (arg2 << 8) | ((arg3 | (arg4 << 8)) << 16);
+}
+
+extern void func_020055d4(void);
+void func_02002bbc(void) {
+    *(volatile u32 *)0x4000400 = 0x16;
+    func_020055d4();
 }
 
