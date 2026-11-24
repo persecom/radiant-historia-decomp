@@ -46,7 +46,7 @@ void func_02026578(void *arg0) {
     }
 }
 
-void func_0202659c(u8 *arg0, s16 arg1) {
+void func_0202659c(u8 *arg0, s32 arg1) {
     *(s16 *)(arg0 + 2) += arg1;
     if (*(s16 *)(arg0 + 2) > 2) {
         *(s16 *)(arg0 + 2) = 2;
@@ -64,7 +64,7 @@ void func_020265d4(u8 *arg0, s32 arg1) {
     if (arg1 >= *(s16 *)(arg0 + 2) * 0x58) {
         return;
     }
-    *(s32 *)(arg0 + 0xc) = -0x2000;
+    *(s32 *)(arg0 + 0xc) = 0xe000;
     *(u16 *)(arg0 + 0) = 1;
     *(u32 *)(arg0 + 8) |= 0x20;
 }
