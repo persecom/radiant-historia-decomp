@@ -244,6 +244,17 @@ void func_02108594(u8 *arg0) {
     }
 }
 
+s32 func_021085c8(u8 *arg0) {
+    u8 *r4;
+    void *r0;
+    func_02117630(*(void **)(*(u8 **)(arg0 + 0x58) + 0xc), 0);
+    r4 = *(u8 **)(arg0 + 0x58);
+    r0 = func_02117630(*(void **)(r4 + 0xc), 0);
+    func_02119000(arg0, r0, *(void **)(r4 + 4));
+    func_02108680(arg0, 0, 1);
+    return 1;
+}
+
 extern void *func_02117630(void *, s32);
 extern void *func_0210c518(u32, u32);
 extern void func_02008e68(s32, void *, u32);
