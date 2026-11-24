@@ -3,6 +3,7 @@
 
 extern u16 data_0215d1a0;
 extern s32 func_02006afc(u16 *);
+extern s32 func_02006b4c(u16 *);
 typedef struct {
     u32 field_0;
     u32 field_4;
