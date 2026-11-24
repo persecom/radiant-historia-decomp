@@ -44,6 +44,11 @@ void func_0212f880(u8 *a0) {
     func_02013878(a0, 0, 0xa2c);
 }
 
+void func_0212f97c(u8 *a0, u32 a1) {
+    func_0212f8b8(a0);
+    *(u32 *)(a0 + 0x1b0) = a1;
+}
+
 extern void func_0212f558(s32, s32);
 extern void func_0213246c(void *);
 extern void func_0212f8b8(void *);
