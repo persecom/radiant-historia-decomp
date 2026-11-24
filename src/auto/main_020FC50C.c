@@ -19,3 +19,6 @@ typedef struct Unk020FC50C {
 } Unk020FC50C;
 
 extern Unk020FC50C data_02160c74;
+
+void func_020fce9c(void) {
+}
