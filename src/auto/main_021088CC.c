@@ -306,6 +306,47 @@ s32 func_021093f0(u8 *arg0) {
     return 1;
 }
 
+s32 func_02109444(Unk02109444 *arg0) {
+    u8 *end = arg0->buf + arg0->size;
+    u8 *cur = arg0->cur;
+    if (cur == end) {
+        return 0;
+    }
+    while (cur < end) {
+        u8 c = *cur++;
+        if (c == '\n') {
+            break;
+        }
+        if ((c >= 0x81 && c <= 0x9f) || (c >= 0xe0 && c <= 0xfc)) {
+            cur++;
+        }
+    }
+    arg0->cur = cur;
+    return 1;
+}
+
+s32 func_021094a4(Unk02109444 *arg0, char *arg1) {
+    char *cur = (char *)arg0->buf;
+    char *end = cur + arg0->size;
+    s32 line = 1;
+    while (cur < end) {
+        if (cur == arg1) {
+            break;
+        }
+        if (*cur == '\n') {
+            line++;
+        }
+        if ((*cur >= 0x81 && *cur <= 0x9f) || (*cur >= 0xe0 && *cur <= 0xfc)) {
+            cur++;
+        }
+        cur++;
+    }
+    if (cur == end) {
+        line = -1;
+    }
+    return line;
+}
+
 u32 func_0210957c(s32 arg0) {
     func_0210950c(data_02162504[arg0]);
     return data_02162504[arg0];
