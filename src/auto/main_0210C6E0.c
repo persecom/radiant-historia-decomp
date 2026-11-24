@@ -1,5 +1,6 @@
 /* 46 functions from 0x0210C6E0 to 0x0210D6D8 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { char *name; u16 hash; u16 pad; } SectionEntry;
 extern char data_02155c40[4], data_02155c44[8];
 extern s32 func_02012348(const char *);
 extern s32 func_0210c060(const char *, s32);
@@ -168,6 +169,32 @@ void func_0210ca6c(void) {
     u32 r4 = func_0210c924();
     func_0210c9cc();
     func_0210c970(r4);
+}
+
+void *func_0210ca88(void *arg0, s32 arg1) {
+ char name[64];
+ u8 *p=arg0;
+ s32 hash,i,count;
+ void *saved,*result;
+ func_02005e80(name,data_02155c40,(const char *)arg1);
+ if(name[0]!='[') func_02005e80(name,data_02155c44,(const char *)arg1);
+ hash=func_0210c060(name,func_02012348(name));
+ if(*(void **)(p+0x18)) {
+ count=*(s32 *)(p+0x14);
+ for(i=0;i<count;i++) {
+ u8 *entries=*(u8 **)(p+0x18);
+ if(hash==*(u16 *)(entries+i*8+4) && func_020123f0(*(char **)(entries+i*8),name)==0)
+ return *(void **)(*(u8 **)(p+0x18)+i*8);
+ }
+ }
+ result=0;
+ saved=*(void **)(*(u8 **)p+8);
+ *(void **)(*(u8 **)p+8)=**(void ***)p;
+ do {
+ if(func_020123f0(*(char **)(*(u8 **)p+8),name)==0) {result=*(void **)(*(u8 **)p+8);break;}
+ }while(func_02109444(*(void **)p));
+ *(void **)(*(u8 **)p+8)=saved;
+ return result;
 }
 
 s32 func_0210cba0(u8 *arg0, s32 arg1) {
