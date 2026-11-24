@@ -14,6 +14,10 @@ u16 func_020c94a8(u8 *arg0) {
     return *(u16 *)(arg0 + 0x3e);
 }
 
+u16 func_020c9924(u8 *arg0) {
+    return *(u16 *)(arg0 + 8);
+}
+
 void func_020c9940(void) {
     func_020c9980();
 }
