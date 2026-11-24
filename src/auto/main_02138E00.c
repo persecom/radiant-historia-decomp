@@ -4,6 +4,11 @@
 extern void func_0212a9f4(void);
 extern void func_02139be8(u32, u32, u32);
 extern void func_0212a9f8(void);
+void func_0213904c(u32 *arg0) {
+    arg0[0x33] = 0;
+    arg0[0x34] = 0;
+}
+
 void func_021396e8(u8 *arg0, u32 arg1) {
     *(u8 *)(arg0 + 0xac) = arg1;
 }
