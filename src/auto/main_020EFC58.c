@@ -22,19 +22,19 @@ void func_020f0984(u32 *arg0) {
 }
 
 void func_020f09d4(u32 *arg0) {
-    u8 *p = *(u8 **)data_02162618;
-    u8 *q = p;
+    u8 *p;
     func_021168f8(data_02160af0 + 0x70, arg0);
-    if (p != NULL) {
+    p = *(u8 **)data_02162618;
+    while (p != NULL) {
         u16 off = *(u16 *)(data_02162618 + 0xa);
-        if (off != 0) {
-            q = *(u8 **)(p + off + 4);
-        }
+        u8 *q = (off != 0) ? *(u8 **)(p + off + 4) : p;
         if (*(u32 **)p == *(u32 **)arg0) {
             func_0210b860((void **)q);
+            break;
         }
+        p = q;
     }
-    if (q == NULL && arg0 != NULL) {
+    if (arg0 != NULL) {
         func_0210c5dc(arg0);
     }
 }
@@ -66,10 +66,10 @@ u32 *func_020f0aa4(s32 arg0) {
     }
     node = *(u32 **)(base + 0x70);
     while (node != NULL) {
-        if (*(s32 *)(node + 0x2c) == arg0) {
+        if (*(s32 *)((u8 *)node + 0x2c) == arg0) {
             return node;
         }
-        node = *(u32 **)(node + 0x54);
+        node = *(u32 **)((u8 *)node + 0x54);
     }
     return NULL;
 }
