@@ -5,7 +5,7 @@ extern u8 data_0215f000[];
 extern u8 data_0215efa0[];
 extern u32 data_0215effc;
 extern void func_0200b988(void *, void *, u32, u32, u32);
-extern void func_0200d63c(void);
+extern void func_0200d63c();
 extern void func_0200bc24(void);
 extern void func_0200a56c(void);
 extern s32 func_0200a6c0(s32, s32);
