@@ -44,6 +44,18 @@ void func_0210fd38(u32 *arg0, u32 arg1, u32 arg2, u32 arg3) {
     arg0[3] = arg3;
 }
 
+extern void func_020c9940(void *);
+extern u8 data_02162b84[];
+extern s32 func_0210feb8(u32, u32, u32, u32, u32);
+void func_0210fd94(u32 *arg0) {
+    if (arg0[3] != 0) {
+        func_021254a8(arg0[0], arg0[1], arg0[2], arg0[3]);
+        arg0[1] = 0;
+        arg0[2] = 0;
+        arg0[3] = 0;
+    }
+}
+
 s32 func_021100c8(void) {
     func_020a8440();
     return func_020a47c8();
