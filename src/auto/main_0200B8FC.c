@@ -8,10 +8,10 @@ extern void func_0200b888(u8 *);
 extern s32 func_0200afb4(u8 *, s32, s32);
 s32 func_0200b8fc(u32 *arg0, const char *arg1) {
     s32 ret = 0;
-    u32 sp0 = 0;
-    u32 sp4[4];
-    u8 file[0x48];
     u8 path[0x118];
+    u8 file[0x48];
+    u32 sp4[4];
+    u32 sp0 = 0;
     void *arc;
 
     arc = func_0200b2ac(arg1, &sp0, path);
