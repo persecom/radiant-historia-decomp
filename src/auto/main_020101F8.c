@@ -98,9 +98,10 @@ void func_02010738(u32 arg0) {
 }
 
 void func_0201088c(void) {
-    func_020106b8(0xb5, 0);
+    u32 zero = 0;
+    func_020106b8(0xb5, zero);
     do {
-        *(volatile u32 *)0x40001a4 = (*(volatile u32 *)0x2fffae0 & ~0x07000000 | 0xa0000000) & -0x2000;
+        *(volatile u32 *)0x40001a4 = (*(volatile u32 *)0x2fffae0 & ~0x07000000 | 0xa0000000) & (zero - 0x2000);
     } while (*(volatile u32 *)0x40001a4 & 0x80000000);
 }
 
@@ -148,7 +149,10 @@ void func_02010b10(void) {
     func_0201076c();
     func_02010f58();
     func_0201082c(8);
-    *(u32 *)*(u32 **)data_0215f120 = 0;
+    {
+        u32 *p = *(u32 **)data_0215f120;
+        p[0] = 0;
+    }
     func_0200fddc();
 }
 
