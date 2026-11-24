@@ -2,6 +2,8 @@
 #include "common.h"
 
 extern void func_02012634(s32, const char *, char *);
+extern int strlen(const char *);
+extern int strcmp(const char *, const char *);
 char *func_02012210(char *dst, const char *src) {
     char *p = dst;
     while (*src != 0) {
