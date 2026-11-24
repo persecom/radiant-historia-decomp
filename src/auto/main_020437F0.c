@@ -168,6 +168,35 @@ void func_02044428(u16 arg0) {
     }
 }
 
+extern void func_020a8810(void *, s32);
+extern void func_020a994c(void *);
+extern void func_020a9610(void *, void *, u32, void *, s32, s32);
+extern u32 func_020a96f0(void *);
+extern void func_020a98ac(void *);
+extern void func_020a98f4(void *);
+u32 func_020444a0(u32 arg0) {
+    u32 ret;
+
+    func_020a8810(*(void **)(*(u8 **)(data_021600a8 + 4) + 0xb4), 0x11);
+    *(s32 *)(*(u8 **)(*(u8 **)(data_021600a8 + 4) + 0xb4) + 0x40) = 1;
+    func_020a994c(*(u8 **)(data_021600a8 + 4) + 0xb8);
+    func_020a9610(
+        *(u8 **)(data_021600a8 + 4) + 0xec,
+        *(void **)(*(u8 **)(data_021600a8 + 4) + 0xa4),
+        arg0,
+        *(void **)(*(u8 **)(data_021600a8 + 4) + 0xb4),
+        0,
+        0
+    );
+    ret = func_020a96f0(*(void **)(*(u8 **)(data_021600a8 + 4) + 0xfc));
+    func_020a98ac(*(u8 **)(data_021600a8 + 4) + 0xb8);
+    func_020a98f4(*(u8 **)(data_021600a8 + 4) + 0xb8);
+    *(s32 *)(*(u8 **)(*(u8 **)(data_021600a8 + 4) + 0xb4) + 0x4c) = 0x2bc000;
+    *(s32 *)(*(u8 **)(*(u8 **)(data_021600a8 + 4) + 0xb4) + 0x44) = 0x18000;
+    *(s32 *)(*(u8 **)(*(u8 **)(data_021600a8 + 4) + 0xb4) + 0x48) = 0x2000;
+    return ret;
+}
+
 void func_02044568(void) {
     u8 *r5 = func_020f0aa4();
     u8 *r6 = *(u8 **)r5;
