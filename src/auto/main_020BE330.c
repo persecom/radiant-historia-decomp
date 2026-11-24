@@ -94,3 +94,8 @@ void func_020be774(void) {
 void func_020bed94(void) {
     func_020becfc();
 }
+
+void func_020befc4(void *arg0) {
+    func_02008f74(arg0, 0, 0x38);
+}
+
