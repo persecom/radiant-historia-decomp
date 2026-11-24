@@ -153,6 +153,18 @@ BOOL func_02116ee0(void* expHeap, void* region)
     return 1;
 }
 
+void* func_02116fd0(void* start, u32 size, u16 opt)
+{
+    u32 end = (size + (u32)start) & ~3;
+    start = (void*)(((u32)start + 3) & ~3);
+
+    if ((u32)start > end || end - (u32)start < 0x4C) {
+        return NULL;
+    }
+
+    return func_02116ba0(start, (void*)end, opt);
+}
+
 void* func_02117008(void* heap, u32 size, s32 alignment)
 {
     extern void* func_02116d7c(void*, u32, s32);
