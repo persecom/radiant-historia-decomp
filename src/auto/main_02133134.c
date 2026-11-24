@@ -631,23 +631,22 @@ void func_02133e04(void) {
     }
 }
 
-void func_02133e54(s8 *arg0, const s8 *arg1) {
-    if (arg1 != NULL && *arg1 != 0) {
-        if (*arg1 == '\\') {
-            arg0[0] = ((s8 *)data_02174f9c)[0x528];
-            arg0[1] = ((s8 *)data_02174f9c)[0x529];
-            arg0[2] = 0;
-        } else if (arg1[1] == ':') {
-            arg0[0] = 0;
-        } else {
-            goto copy_cwd;
-        }
+void func_02133e54(s8 *arg0, s8 *arg1) {
+    if (arg1 == NULL) {
+        func_02016dc0(arg0, data_021754c4);
+    } else if (arg1[0] == 0) {
+        func_02016dc0(arg0, data_021754c4);
+    } else if (arg1[0] == '\\') {
+        arg0[0] = ((s8 *)data_02174f9c)[0x528];
+        arg0[1] = ((s8 *)data_02174f9c)[0x529];
+        arg0[2] = 0;
+    } else if (arg1[1] == ':') {
+        arg0[0] = 0;
     } else {
-copy_cwd:
         func_02016dc0(arg0, data_021754c4);
     }
     if (arg1 != NULL) {
-        func_02016ed8(arg0, (s8 *)arg1);
+        func_02016ed8(arg0, arg1);
     }
 }
 
