@@ -63,6 +63,16 @@ void func_020932a8(u16 id, s16 x, s16 y) {
     }
 }
 
+void func_020f4f04(void *);
+void *func_020935ec(void *, s32);
+void func_02093424(u8 *arg0, s32 arg1) {
+    u8 *node = *(u8 **)(arg0 + 0x20);
+    while (node != NULL) {
+        *(s32 *)(node + 0x20) = arg1;
+        node = *(u8 **)(node + 0x50);
+    }
+}
+
 void func_0209353c(u16 id, s16 x, s16 y) {
     u8 *ptr = (u8 *)func_02093658(id);
     s16 oldX, oldY;
