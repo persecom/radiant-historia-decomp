@@ -10,6 +10,13 @@ extern void func_020a0da8(void);
 extern void func_020a0dc8(void *);
 extern void func_0210c5dc(void *);
 extern void func_020a9544(void *);
+extern void *data_02155c3c;
+extern u8 data_021486e4[28];
+extern u8 data_02148700[28];
+extern u8 data_0214871c[24];
+extern void *func_0210c594(s32, void *);
+extern void *func_020a94b8(void *);
+extern void func_020a994c(void *);
 void func_0208a168(u8 *arg0, s32 arg1, s32 arg2, u32 *arg3) {
     arg3[2] = arg3[0];
     if (func_02092ab0(arg3, arg1) == -1) {
