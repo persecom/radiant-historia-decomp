@@ -6,6 +6,7 @@ extern u8 data_0216cb1c[12];
 extern u8 data_0216e1f8[24];
 extern u8 data_0216e210[12];
 extern u8 *data_0216cb10[3];
+extern s32 data_02155dc4[54];
 extern void *func_02116958(void *, void *);
 void func_0211645c(u8 *arg0);
 void func_021164e0(u8 *arg0);
