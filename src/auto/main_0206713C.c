@@ -88,6 +88,49 @@ void *func_02067294(void *arg0, u32 arg1) {
     return result;
 }
 
+void *func_02067354(void *arg0,s32 arg1) {
+u32 size;
+u8 skip[256], header[256];
+u8 *file;
+s32 i;
+u16 index=0;
+u8 *p,*a,*b;
+u32 *entry;
+file=func_02109c60(data_02147f84,&size);
+func_0210fe1c(file,size,data_02147fa0,1);
+p=file;
+for(i=0;i<arg1;i=(s16)(i+1)) {
+a=func_0210c594(28,data_02155c3c);
+b=func_0210c594(16,data_02155c3c);
+if(i!=0) {
+func_02013858(skip,p,256);
+p=p+256+((*(s32 *)(skip+252)+63)/64)*64;
+}
+func_02013858(header,p,256);
+if(p+256==0) return 0;
+entry=(u32 *)((u8 *)arg0+(u32)i*20);
+func_0210e9e8(p+256,*(s32 *)(header+252),entry[0],a);
+func_02013858(skip,p,256);
+p=p+256+((*(s32 *)(skip+252)+63)/64)*64;
+func_02013858(header,p,256);
+if(entry[1]==0) {
+if(p+256==0) return 0;
+func_0210ea6c(p+256,*(s32 *)(header+252),entry[0],a+8);
+} else {
+if(p+256==0) return 0;
+func_0210ea6c(p+256,*(s32 *)(header+252),entry[1],a+8);
+}
+*(u32 *)(a+16)=entry[2];
+*(u32 *)(a+20)=entry[3];
+*(u32 *)(a+24)=entry[4];
+*(void **)b=a;
+*(u16 *)(b+4)=index;
+func_021167f0(data_021600e8+60,b);
+index++;
+}
+if(file) func_0210c5dc(file);
+}
+
 void func_0206753c(u16 arg0) {
     u8 *p;
     u8 *node;
