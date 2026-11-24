@@ -17,28 +17,32 @@ extern s32 func_0210a7e4(void *, s32, s32);
 extern void func_0210f3ac(void *, void *, s32);
 
 extern void func_0210b300(void);
-void *func_0210a984(s32 arg0) {
+void *func_0210a984(s32 arg0, s32 arg1) {
     void *p;
     void *obj;
     s32 ret;
     obj = func_0210eb98(data_02155c08, arg0);
-    ret = func_0210f3ec(obj, 1);
+    ret = func_0210f3ec(obj, arg1);
     if (ret != 0) {
-        return (void *)ret;
+        goto done;
     }
     p = func_0210a7b4();
     if (p == NULL) {
-        return NULL;
+        ret = 0;
+        goto done;
     }
     if (func_0210a7e4(p, arg0, 0) == 0) {
         if (p != NULL) {
             func_0210c5dc(p);
         }
-        return NULL;
+        ret = 0;
+        goto done;
     }
-    func_0210f3ac(func_0210eb98(data_02155c10, arg0), p, 1);
-    *(s32 *)((u8 *)p + 0x20) = 1;
-    return p;
+    func_0210f3ac(func_0210eb98(data_02155c10, arg0), p, arg1);
+    *(s32 *)((u8 *)p + 0x20) = arg1;
+    ret = (s32)p;
+done:
+    return (void *)ret;
 }
 
 void func_0210aa14(void *arg0) {
@@ -134,3 +138,14 @@ void *func_0210ad14(void *arg0, s32 arg1, s32 arg2) {
 void func_0210af80(void) {
     func_0210b300();
 }
+
+extern void func_0211cac0(u8 *, u32);
+extern void func_0211cd78(u8 *);
+extern s32 func_0211783c(void *, void *);
+extern s32 func_02117674(void *, void *);
+extern s32 func_021174e4(void *, void *);
+void func_0210b0ac(u8 *arg0) {
+    func_0211cac0(arg0, *(u32 *)(arg0 + 0x54));
+    func_0211cd78(arg0);
+}
+
