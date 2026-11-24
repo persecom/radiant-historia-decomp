@@ -30,6 +30,10 @@ u8 *func_020b4008(s32 arg0) {
     return func_020b3fd8() + arg0 * 0xc;
 }
 
+u8 *func_020b4044(void) {
+    return func_020b3fd8() + 0x2a3c;
+}
+
 void func_020b4058(s32 arg0) {
     if (func_020b4008(arg0) != NULL) {
         func_02009008(func_020b4008(arg0), func_020b4044(), 0xc);
