@@ -61,7 +61,7 @@ void func_020106ac(void) {
 }
 
 void func_020106b8(u32 arg0, u32 arg1) {
-    u32 cmd0 = (arg0 << 24) | (arg1 >> 8);
+    u32 cmd0 = (arg1 >> 8) | (arg0 << 24);
     u32 cmd1 = arg1 << 24;
     while (*(volatile u32 *)0x40001a4 & 0x80000000) {
     }
