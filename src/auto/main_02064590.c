@@ -1,5 +1,7 @@
 /* 11 functions from 0x02064590 to 0x02065298 (main), found by ds-decomp. */
 #include "common.h"
+void *func_02022ee0(void);
+void func_02022f0c(void *, u16, s16, s32);
 
 typedef struct {
     s16 x;
