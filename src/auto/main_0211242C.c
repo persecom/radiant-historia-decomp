@@ -40,6 +40,10 @@ void func_02112578(u8 *arg0, u8 arg1) {
     func_02111a3c(arg0, val);
 }
 
+u16 func_02112620(u8 *arg0) {
+    return *(u16 *)(arg0 + 0x9a);
+}
+
 void *func_02112688(u8 *arg0) {
     return *(void **)(arg0 + 0x90);
 }
