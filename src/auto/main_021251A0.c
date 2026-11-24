@@ -31,6 +31,17 @@ extern char data_02156388[];
 extern void func_0200baa4(void *);
 extern void func_02126998(void *, s32);
 extern void func_02015a10(void *, const char *, u32, u32);
+extern void func_02008f74(void *, s32, u32);
+extern void func_0212e7f0(u32, void *);
+extern void func_0212ebd8(void);
+extern void func_0212c0b8(void);
+extern void func_02126844(void);
+extern void func_02126bd0(void);
+extern void func_0212e7e4(void *, s32);
+extern void func_02134844(s32, s32);
+extern u8 data_02156328[];
+extern void func_02125e48(void *, void *);
+extern void func_02125e64(void);
 static inline s32 func_02125e20_check(u8 *p) {
     if (*(u32 *)(p + 0x28) & 0x10) {
         return 1;
