@@ -79,3 +79,9 @@ s32 func_020137b0(u8 *arg0, u8 arg1) {
     return 1;
 }
 
+extern void func_020138f8(void *);
+void *func_02013878(void *arg0) {
+    func_020138f8(arg0);
+    return arg0;
+}
+
