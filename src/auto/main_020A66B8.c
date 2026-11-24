@@ -176,6 +176,22 @@ void *func_020a7154(u16 arg0) {
     return NULL;
 }
 
+extern void func_020a745c(void);
+extern s32 func_020a2c5c(s32, s32, s32, s32, s32);
+s32 func_020a73e8(s32 arg0) {
+    s32 one = 1;
+    s32 zero = 0;
+    s32 four = 4;
+    s32 seven = 7;
+    func_020a745c();
+    if (func_020a2c5c(four, zero, one, arg0, seven) == 0) {
+        if (func_020a2c5c(four, zero, one, 0x63, seven) == 0) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
 void func_020a745c(void) {
 }
 
