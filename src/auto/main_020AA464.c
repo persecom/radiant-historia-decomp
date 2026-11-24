@@ -187,19 +187,19 @@ void func_020aa8e8(void) {
     u8 *p = data_021600e4;
     u8 *node = func_020aa7fc(*(void **)(p + 0x13f4));
     while (node != NULL) {
-        s32 scale = *(s32 *)(p + 0x70);
-        s32 a = *(s32 *)(node + 4) * scale;
-        s32 b = *(s32 *)(node + 8) * scale;
-        a = a - 0x20;
-        b = b + 0xc;
-        *(u16 *)(node + 0x10) = *(s32 *)(p + 0x44) + a;
-        *(u16 *)(node + 0x12) = *(s32 *)(p + 0x48) + b;
+        u32 scale = *(u32 *)(p + 0x70);
+        u32 a = *(u32 *)(node + 4) * scale;
+        u32 b = *(u32 *)(node + 8) * scale;
+        a -= 0x20;
+        b += 0xc;
+        *(u16 *)(node + 0x10) = *(u32 *)(p + 0x44) + a;
+        *(u16 *)(node + 0x12) = *(u32 *)(p + 0x48) + b;
         node = *(u8 **)(node + 0x18);
     }
 }
 
 s32 func_020aaa20(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    s32 delta;
+    s32 ret;
     if (arg2 == 0) {
         return arg1;
     }
@@ -208,9 +208,12 @@ s32 func_020aaa20(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     }
     if (arg3 >= arg2) {
         return arg1;
+    } else {
+        s32 delta = arg1 - arg0;
+        ret = func_0201fb1c(delta * arg3, arg2);
+        ret += arg0;
+        return ret;
     }
-    delta = arg1 - arg0;
-    return func_0201fb1c(delta * arg3, arg2) + arg0;
 }
 
 s32 func_020aaa60(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
@@ -299,6 +302,36 @@ s32 func_020aadf8(void) {
     *(u8 *)(p2 + 0xd) = 1;
     *(s32 *)(p2 + 8) += 1;
     *(s32 *)(p1 + 8) = *(s32 *)(p2 + 8);
+    return 0;
+}
+
+s32 func_020aae98(void) {
+    s32 id = 3;
+    u8 *p = func_020ade60(id);
+    if (*(u8 *)(p + 0xd) == 0) {
+        if (func_020aaaec((s32 *)p, id - 0xdf, 0, 4, *(s32 *)(p + 8)) != 0) {
+            *(u8 *)(p + 0xd) = 1;
+            *(s32 *)(p + 8) = 0;
+            return 1;
+        }
+    }
+    ++*(s32 *)(p + 8);
+    return 0;
+}
+
+s32 func_020aaf08(void) {
+    s32 id = 4;
+    u8 *p = func_020ade60(id);
+    if (*(u8 *)(p + 0xd) != 0) {
+        if (func_020aaa60(p + 0xc, 1, 0x1f, id, *(s32 *)(p + 8)) != 0) {
+            *(u8 *)(p + 0xd) = 0;
+            *(s32 *)(p + 8) = 0;
+            return 1;
+        }
+    } else {
+        *(u8 *)(p + 0xd) = 2;
+    }
+    ++*(s32 *)(p + 8);
     return 0;
 }
 
