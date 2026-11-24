@@ -214,3 +214,14 @@ void func_020a7494(void **arg0) {
     }
 }
 
+void func_020a74d4(void) {
+ void *a[3], *b[3];
+ void *p;
+ s32 size = 0x114;
+ func_021167ac(a, size);
+ func_021167ac(b, size);
+ func_020f2524(data_0214ffc4, data_0214ffe4, 2, a, b);
+ while ((p=a[0]) != NULL) { func_021168f8(a,p); if(p != NULL) func_0210c5dc(p); }
+ while ((p=b[0]) != NULL) { func_021168f8(b,p); if(p != NULL) func_0210c5dc(p); }
+}
+
