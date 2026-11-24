@@ -336,6 +336,39 @@ void func_02133864(void *arg0) {
     func_02013878(arg0, 0, 0x38);
 }
 
+void func_02133878(u8 *arg0) {
+    u32 val;
+    *(u32 *)(arg0 + 4) = 0x800;
+    val = func_02133814(arg0 + 0x1c);
+    *(u32 *)(arg0 + 8) = val;
+    *(u32 *)(arg0 + 0xc) = (val + *(u32 *)(arg0 + 4) - 1) / *(u32 *)(arg0 + 4);
+    *(u32 *)(arg0 + 0x10) = 0;
+    *(u32 *)(arg0 + 0x18) = 0;
+    *(u32 *)(arg0 + 0x14) = 0;
+    *(s8 *)(arg0 + 1) = 0;
+    *(s8 *)(arg0 + 0) = 1;
+}
+
+void *func_021338c8(void *arg0, s32 arg1, s32 arg2) {
+    u8 *p;
+    if (arg0 == NULL) {
+        func_021336c0(0, data_0215ba2c);
+        return NULL;
+    }
+    if (arg2 != 0) {
+        func_021336c0(0, data_0215ba50);
+        return NULL;
+    }
+    p = func_02133828();
+    if (p == NULL) {
+        func_021336c0(0, data_0215ba74);
+        return NULL;
+    }
+    func_02132bf8(p + 0x1c, 0x12, arg0);
+    func_02133878(p);
+    return p;
+}
+
 s32 func_02133a1c(u8 *arg0) {
     if (arg0 != NULL) {
         return *(s32 *)(arg0 + 0x10);
