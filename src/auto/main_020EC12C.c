@@ -36,13 +36,15 @@ void func_020ec548(u8 *arg0) {
 }
 
 void func_020ec6ac(void) {
-    u8 *node = data_02160ab4;
-    u8 *obj = *(u8 **)(node + 0x50);
+    u8 *obj = *(u8 **)(data_02160ab4 + 0x50);
     s32 zero = 0;
     s32 one = 1;
+    s32 arg;
     if (obj == NULL) return;
     while (obj != NULL) {
-        func_020ebddc(*(u8 **)(obj + 0x0), *(u32 *)(obj + 0x38) == 0 ? one : zero);
+        arg = one;
+        if (*(u32 *)(obj + 0x38) != 0) arg = zero;
+        func_020ebddc(*(u8 **)(obj + 0x0), arg);
         obj = *(u8 **)(obj + 0x48);
     }
 }
