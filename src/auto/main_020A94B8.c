@@ -206,6 +206,14 @@ void func_020a98a0(void) {
     func_0210da44();
 }
 
+void func_020a98ac(u8 *arg0) {
+    *(u32 *)(*(u8 **)(arg0 + 0x18) + 8) = *(u32 *)(arg0 + 0x28);
+    *(u32 *)(*(u8 **)(arg0 + 0x18) + 0xc) = *(u32 *)(arg0 + 0x2c);
+    *(u32 *)(arg0 + 0x30) = 0;
+    *(u32 *)(arg0 + 0x14) = (*(u32 *)(*(u8 **)(arg0 + 0x18) + 0x10) != 0) ? 1 : 0;
+    data_021601d4 = 0;
+}
+
 void func_020a9a58(void) {
     u8 *p = data_02162880;
     u8 *obj;
