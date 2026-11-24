@@ -10,6 +10,11 @@ extern void func_020a994c(void *);
 extern void func_020a98a0(void *);
 extern void func_02046760(u8 *);
 extern void func_020f58c0(void *);
+extern u8 *data_021600bc;
+extern void func_0204798c(void);
+extern void func_02051ef4(void);
+extern void func_0210d9e4(void *);
+extern void func_0210dae0(void *);
 
 void func_02046594(void) {
     data_021600b8 = func_0210c594(0x2c, data_02155c3c);
