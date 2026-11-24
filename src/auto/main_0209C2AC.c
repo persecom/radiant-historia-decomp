@@ -4,6 +4,10 @@
 extern u8 *data_02160120;
 extern u32 func_021136b0(void);
 extern void func_0209c94c(void *);
+typedef struct {
+    u8 pad[0x3c];
+    u32 flag;
+} S_0209c920;
 
 void *func_0209c888(u32 arg0, u32 arg1) {
     u8 *node = *(u8 **)(data_02160120 + 0x708);
@@ -31,10 +35,11 @@ void *func_0209c8dc(u32 arg0) {
 }
 
 void func_0209c920(u8 *arg0) {
-    if (*(u32 *)(arg0 + 0x3c) == 0) return;
+    u32 *p = (u32 *)(arg0 + 0x3c);
+    if (*p == 0) return;
     do {
         func_0209c94c(arg0);
-    } while (*(u32 *)(arg0 + 0x3c) != 0);
+    } while (*p != 0);
 }
 
 u32 func_0209cb98(void) {
