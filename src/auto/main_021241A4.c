@@ -91,6 +91,35 @@ void func_021243f4(s32 *arg0) {
     arg0[13] = 0;
 }
 
+void func_02124550(s32 *arg0, u8 *arg1) {
+    s32 w = *(u16 *)(arg1 + 0x2c) << 12;
+    s32 h = *(u16 *)(arg1 + 0x2e) << 12;
+    s32 c, s, sx, sy, ss, cy;
+
+    func_02002058(h, w);
+    c = *(s16 *)(arg1 + 0x22);
+    sx = *(s32 *)(arg1 + 0x18);
+    sy = *(s32 *)(arg1 + 0x1c);
+    arg0[0] = ((s64)sx * c) >> 12;
+    cy = ((s64)sy * c) >> 12;
+    arg0[5] = cy;
+    s = *(s16 *)(arg1 + 0x20);
+    ss = ((s64)sx * s) >> 12;
+    arg0[1] = ((s32)(((s64)sy * s) >> 12) * func_02001ff4()) >> 12;
+    func_02002058(w, h);
+    {
+        u16 w2 = *(u16 *)(arg1 + 0x2c);
+        u16 h2 = *(u16 *)(arg1 + 0x2e);
+        s32 tx = *(s32 *)(arg1 + 0x24);
+        s32 ty = *(s32 *)(arg1 + 0x28);
+        s64 a = ((s64)tx * s - (s64)ty * *(s16 *)(arg1 + 0x22)) >> 12;
+        s64 b = ((s64)ty * s + (s64)tx * *(s16 *)(arg1 + 0x22)) >> 12;
+        arg0[13] = (-h2 * (cy + (s32)((a * sy) >> 12) - 0x1000)) << 4;
+        arg0[12] = (w2 * (ss - (s32)((b * *(s32 *)(arg1 + 0x18)) >> 12))) << 4;
+    }
+    arg0[4] = (-ss * func_02001ff4()) >> 12;
+}
+
 void func_021246b0(s32 *arg0, u8 *arg1) {
     s32 w = *(u16 *)(arg1 + 0x2c) << 12;
     s32 h = *(u16 *)(arg1 + 0x2e) << 12;
@@ -288,11 +317,38 @@ void func_02124eac(u32 arg0, s32 arg1) {
     }
 }
 
+u32 func_02124ef8(u32 size, s32 small, s32 dir) {
+u32 addr=0; s32 ok; u32 total, edge, pad, end;
+if(size==0) size=8; else size=(size+7)&~7;
+if(size>=0x7fff8) return 0;
+if(dir==1) {
+edge=data_02173174[0];
+if(small) pad=(8-(edge&7))&7; else pad=(16-(edge&15))&15;
+total=size+pad;
+if(data_02173174[1]-edge>=total) {
+end=edge+total;
+if(small && end>0x10000) ok=0;
+else {addr=edge+pad; data_02173174[0]+=total; ok=1;}
+} else ok=0;
+} else {
+edge=data_02173174[1];
+if(edge>=size) {
+if(small) pad=(edge-size)&7; else pad=(edge-size)&15;
+total=size+pad;
+if(edge-data_02173174[0]>=total) {
+if(small && edge>0x10000) ok=0;
+else {ok=1; addr=*(volatile u32 *)&data_02173174[1]-total; data_02173174[1]=addr;}
+} else ok=0;
+} else ok=0;
+}
+if(ok) { u32 a=(addr<<13)>>16; u32 b=size>>3; return (b<<16)|a; }
+return 0;
+}
+
 s32 func_02125014(void) {
     return 0;
 }
 
-extern void func_02124cf8(void);
 extern int func_02124e60(void);
 void func_0212501c(u32 *arg0) {
     arg0[0] = data_02173174[0];
