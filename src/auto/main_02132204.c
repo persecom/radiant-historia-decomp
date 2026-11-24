@@ -46,6 +46,11 @@ void func_0213239c(void) {
     data_021749ac[1] = 1;
 }
 
+extern void func_02013878(void *, s32, u32);
+void func_0213240c(void) {
+    data_021749ac[2]--;
+}
+
 void func_02132484(void) {
     func_0212f738();
 }
