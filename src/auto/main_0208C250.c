@@ -21,6 +21,63 @@ extern void func_020895a0(s32, s32, s32, s32, s32, s32, s32, s32, s32);
 extern void func_020a8810(void *, s32);
 extern void func_020896f4(s32, s32, s32, s32, s32, s32, s32);
 extern void func_020a994c(void *);
+void func_0208c250(s32 arg0, s32 arg1) {
+Unk14 s = data_02140db0;
+s8 *p = (s8 *)data_021600b0;
+if (arg1 == 1) {
+s8 flags = p[0x22a];
+if ((flags & 2) || (flags & 4)) {
+if (flags & 4) p[0x22a] &= ~4;
+func_020a3bbc(0x17);
+} else {func_020a3bbc(0x16);}
+s.data[2]=0;
+s.data[1]=0;
+s.data[3]=16;
+s.data[4]=14;
+s.data[5]=10;
+s.data[6]=80;
+s.data[8]=16;
+s.data[9]=14;
+func_021098ac(&s);
+func_020a3bbc(0x18);
+s.data[2]=0;
+s.data[1]=0;
+s.data[3]=8;
+s.data[4]=12;
+s.data[5]=0;
+s.data[6]=81;
+s.data[8]=8;
+s.data[9]=12;
+func_021098ac(&s);
+}
+if (arg0 == 1) {
+s8 flags = p[0x236];
+if ((flags & 2) || (flags & 4)) {
+if (flags & 4) p[0x236] &= ~4;
+func_020a3bbc(0x17);
+} else {func_020a3bbc(0x16);}
+s.data[1]=16;
+s.data[2]=0;
+s.data[3]=16;
+s.data[4]=14;
+s.data[5]=231;
+s.data[6]=80;
+s.data[8]=16;
+s.data[9]=14;
+func_021098ac(&s);
+func_020a3bbc(0x18);
+s.data[1]=8;
+s.data[2]=0;
+s.data[3]=8;
+s.data[4]=12;
+s.data[5]=249;
+s.data[6]=81;
+s.data[8]=8;
+s.data[9]=12;
+func_021098ac(&s);
+}
+}
+
 void func_0208c680(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u16 arg4) {
     func_020a8810(*(void **)(data_0216010c + 0x340), 0x18);
     func_020896f4(9, 0x40, 0xb, 0x46, 7, arg0, 1);
