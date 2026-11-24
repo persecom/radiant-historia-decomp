@@ -34,10 +34,11 @@ extern void func_0202e874(void *);
 u8 *func_0202b4d8(s32 type) {
 u16 count=0;
 switch(type) {
-case 1: {
+case 1: do {
 u8 *p=*(u8 **)(data_02160a6c+0xb8); u16 index;
 while(p) {count++;p=*(u8 **)(p+0x174);}
-if(!count) break;
+if(count==0) break;
+{
 index=0;
 if(count>=2) index=RandomRange_0202b4d8(count);
 p=*(u8 **)(data_02160a6c+0xb8);
@@ -45,10 +46,12 @@ count=0;
 while(p) { if(count==index)break;count++;p=*(u8 **)(p+0x174); }
 *(u8 **)(data_02160080+0x38)=p; return p;
 }
-case 2: {
+} while(0); break;
+case 2: do {
 u8 *p=*(u8 **)(data_02160a6c+0xac); u16 index;
 while(p) {if(*(u32 *)(*(u8 **)(p+0x118)+0x70))count++;p=*(u8 **)(p+0x16c);}
-if(!count) break;
+if(count==0) break;
+{
 index=0;
 if(count>=2) index=RandomRange_0202b4d8(count);
 p=*(u8 **)(data_02160a6c+0xac);
@@ -56,8 +59,11 @@ count=0;
 while(p) { if(*(u32 *)(*(u8 **)(p+0x118)+0x70)) {if(count==index)break;count++;}p=*(u8 **)(p+0x16c); }
 *(u8 **)(data_02160080+0x3c)=p; return p;
 }
+} while(0); break;
+default: goto end;
 }
-return 0;
+count=0;
+end: return (u8 *)count;
 }
 
 void func_0202b694(void) {
@@ -324,5 +330,104 @@ s32 func_0202bf4c(u16 arg0, u32 arg1) {
         node = *(u8 **)(node + 0xc);
     }
     return 0;
+}
+
+extern void func_020020f8(s32 *, s32 *, s32 *);
+void func_0202bfa8(u8 *arg0, s32 arg1) {
+    u8 *p128 = *(u8 **)(arg0 + 0x128);
+    u8 *r5 = *(u8 **)(p128 + 0x54);
+    s32 vec[3];
+    u8 *res;
+    u8 i;
+
+    if (arg0 == NULL) {
+        return;
+    }
+
+    switch (*(s8 *)(r5 + 1)) {
+    case 0:
+        res = func_0202bdf0(arg0, arg1, 0);
+        *(s32 *)(arg0 + 0) = *(s32 *)(res + 4);
+        *(s32 *)(arg0 + 4) = *(s32 *)(res + 8);
+        *(s32 *)(arg0 + 8) = *(s32 *)(res + 0xc);
+        *(s32 *)(r5 + 0x18) = *(s32 *)(res + 4);
+        *(s32 *)(r5 + 0x1c) = *(s32 *)(res + 8);
+        *(s32 *)(r5 + 0x20) = *(s32 *)(res + 0xc);
+        break;
+    case 1:
+        if ((arg1 % 3) + 1 > 2) {
+            return;
+        }
+        res = func_0202bdf0(arg0, arg1, 0);
+        vec[0] = *(s32 *)(res + 4);
+        vec[1] = *(s32 *)(res + 8);
+        vec[2] = *(s32 *)(res + 0xc);
+        res = func_0202bdf0(arg0, (u8)(arg1 + 1), 2);
+        func_020020f8(vec, (s32 *)(res + 4), vec);
+        *(s32 *)(arg0 + 0) = vec[0] / 2;
+        *(s32 *)(arg0 + 4) = vec[1] / 2;
+        *(s32 *)(arg0 + 8) = vec[2] / 2;
+        *(s32 *)(r5 + 0x18) = *(s32 *)(arg0 + 0);
+        *(s32 *)(r5 + 0x1c) = *(s32 *)(arg0 + 4);
+        *(s32 *)(r5 + 0x20) = *(s32 *)(arg0 + 8);
+        break;
+    case 2:
+        if ((arg1 / 3) - 1 < 0) {
+            return;
+        }
+        res = func_0202bdf0(arg0, arg1, 0);
+        vec[0] = *(s32 *)(res + 4);
+        vec[1] = *(s32 *)(res + 8);
+        vec[2] = *(s32 *)(res + 0xc);
+        res = func_0202bdf0(arg0, (u8)(arg1 - 3), 1);
+        func_020020f8(vec, (s32 *)(res + 4), vec);
+        *(s32 *)(arg0 + 0) = vec[0] / 2;
+        *(s32 *)(arg0 + 4) = vec[1] / 2;
+        *(s32 *)(arg0 + 8) = vec[2] / 2;
+        *(s32 *)(r5 + 0x18) = *(s32 *)(arg0 + 0);
+        *(s32 *)(r5 + 0x1c) = *(s32 *)(arg0 + 4);
+        *(s32 *)(r5 + 0x20) = *(s32 *)(arg0 + 8);
+        break;
+    case 3:
+        if ((arg1 / 3) - 1 < 0) {
+            return;
+        }
+        if ((arg1 % 3) + 1 > 2) {
+            return;
+        }
+        res = func_0202bdf0(arg0, arg1, 0);
+        vec[0] = *(s32 *)(res + 4);
+        vec[1] = *(s32 *)(res + 8);
+        vec[2] = *(s32 *)(res + 0xc);
+        res = func_0202bdf0(arg0, (u8)(arg1 - 3), 1);
+        func_020020f8(vec, (s32 *)(res + 4), vec);
+        res = func_0202bdf0(arg0, (u8)(arg1 + 1), 2);
+        func_020020f8(vec, (s32 *)(res + 4), vec);
+        func_0202bdf0(arg0, (u8)(arg1 - 2), 3);
+        *(s32 *)(arg0 + 0) = vec[0] / 3;
+        *(s32 *)(arg0 + 4) = vec[1] / 3;
+        *(s32 *)(arg0 + 8) = vec[2] / 3;
+        *(s32 *)(r5 + 0x18) = *(s32 *)(arg0 + 0);
+        *(s32 *)(r5 + 0x1c) = *(s32 *)(arg0 + 4);
+        *(s32 *)(r5 + 0x20) = *(s32 *)(arg0 + 8);
+        break;
+    case 4:
+        res = func_0202bdf0(arg0, arg1, 0);
+        vec[0] = *(s32 *)(res + 4);
+        vec[1] = *(s32 *)(res + 8);
+        vec[2] = *(s32 *)(res + 0xc);
+        *(s32 *)(arg0 + 0) = vec[0];
+        *(s32 *)(arg0 + 4) = vec[1];
+        *(s32 *)(arg0 + 8) = vec[2];
+        *(s32 *)(r5 + 0x18) = *(s32 *)(arg0 + 0);
+        *(s32 *)(r5 + 0x1c) = *(s32 *)(arg0 + 4);
+        *(s32 *)(r5 + 0x20) = *(s32 *)(arg0 + 8);
+        for (i = 0; i < 9; i++) {
+            if (arg1 != i) {
+                func_0202bdf0(arg0, i, 4);
+            }
+        }
+        break;
+    }
 }
 
