@@ -534,6 +534,16 @@ s32 func_0210d548(void) {
     return ret;
 }
 
+void func_0210d568(s32 arg0) {
+    if (arg0 < 0) {
+        return;
+    }
+    if (func_02113c88(0, arg0) <= 0) {
+        return;
+    }
+    func_02113b68(0, arg0, 0);
+}
+
 void func_0210d6a4(void) {
 }
 
