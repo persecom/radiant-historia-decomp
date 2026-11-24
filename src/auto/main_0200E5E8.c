@@ -101,6 +101,9 @@ s32 func_0200e780(u32 arg0, u32 arg1, void *arg2, void *arg3) {
     return func_0200e674(val, 0, NULL, arg2, arg3);
 }
 
+void func_0200f084(u32 arg0) {
+}
+
 void func_0200f0e4(s32 arg0) {
     func_0200f004(data_0215f04c, arg0);
 }
