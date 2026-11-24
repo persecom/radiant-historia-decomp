@@ -12,6 +12,33 @@ extern void *func_020a94b8(void *);
 extern void func_02080d30(void);
 extern void func_0210c5dc(void *);
 extern void func_02089a98(void);
+extern void func_020a3bbc(s32);
+extern void func_021098ac(void *);
+
+typedef struct UnkNode_02084a70 {
+    u8 pad00[2];
+    u8 unk02;
+    u8 unk03;
+    s16 unk04;
+    s16 unk06;
+    s16 unk08;
+    s16 unk0a;
+    s16 unk0c;
+    s16 unk0e;
+    s16 unk10;
+    s16 unk12;
+    s32 unk14;
+    s32 unk18;
+    s32 unk1c;
+    s32 unk20;
+    s16 unk24;
+    u8 pad26[2];
+    u8 unk26;
+    u8 pad27[3];
+    s8 unk2a;
+    u8 pad2b[5];
+    struct UnkNode_02084a70 *next;
+} UnkNode_02084a70;
 
 typedef struct {
     u8 pad[0x44];
