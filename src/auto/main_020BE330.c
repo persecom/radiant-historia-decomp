@@ -144,8 +144,25 @@ void func_020beb14(void) {
     func_02108240();
 }
 
+void func_020beb64(s32 arg0) {
+    if (arg0 == 1) {
+        *(s32 *)(data_0216020c + 0xc) = data_0213a394[((data_02151fc8 >> 4) * 2) + 1];
+        *(s32 *)(data_0216020c + 0x14) = data_0213a394[(data_02151fc8 >> 4) * 2];
+    } else {
+        *(s32 *)(data_0216020c + 0xc) = data_0213a394[((data_02151fc8 >> 4) * 2) + 1];
+        *(s32 *)(data_0216020c + 0x14) = data_0213a394[(data_02151fc8 >> 4) * 2];
+    }
+}
+
 void func_020bebc8(s32 arg0) {
     data_02151fc8 = (u16)((((s64)(arg0 << 12) * 0xb60b60b60bLL) + 0x80000000000LL) >> 44);
+}
+
+void func_020bec40(u16 arg0) {
+    if (arg0 < 0x20) {
+        arg0 = 0x20;
+    }
+    data_02151fcc = (s32)arg0 << 12;
 }
 
 void func_020bed94(void) {
