@@ -190,9 +190,9 @@ void func_02129894(void) {
     data_02173488 = 1;
 }
 
-void func_0212999c(u8 *arg0) {
+void func_0212999c(u8 *arg0, s32 arg1) {
     if (*(u32 *)(arg0 + 0xb8) != 0) {
-        ((void (*)(u32))data_0217357c[2]) (*(u32 *)(arg0 + 0xb8));
+        ((void (*)(u32, s32))data_0217357c[2]) (*(u32 *)(arg0 + 0xb8), arg1);
     }
 }
 
