@@ -123,6 +123,39 @@ void func_02066868(void) {
  func_020a6020();
 }
 
+void func_020ea5d4(void *, s32);
+void func_020669e0(s32 enable) {
+ u8 *node;
+ s32 x,y;
+ if (!enable || !(node=*(u8 **)((*(u8 *volatile *)&data_021600e0[1])+0x10c))) return;
+ do {
+ u8 *base=(*(u8 *volatile *)&data_021600e0[1]);
+ u8 *obj;
+ s32 scale;
+ x=*(s32 *)(node+8)>>12;
+ y=*(s32 *)(node+12)>>12;
+ scale=*(s32 *)(base+0x6c);
+ x=(x*scale)/4096;
+ y=(y*scale)/4096;
+ obj=*(u8 **)node;
+ *(s32 *)(obj+0x1c)=(*(s32 *)(base+0x44)+(x-32))<<12;
+ *(s32 *)(obj+0x20)=(*(s32 *)((*(u8 *volatile *)&data_021600e0[1])+0x48)+(y+8))<<12;
+ *(u32 *)(obj+0x18)|=1;
+ if (*(u32 *)((*(u8 *volatile *)&data_021600e0[1])+0x3c)&2) *(u32 *)(obj+0x18)&=~1;
+ if (*(s32 *)(obj+4)==7001) {
+ if (*(s32 *)((*(u8 *volatile *)&data_021600e0[1])+0x6c)<4096) func_020ea5d4(obj,1);
+ else { s32 id=*(s32 *)(obj+8); if(id==101||id==102||id==103||id==105||id==107) func_020ea5d4(obj,0); else func_020ea5d4(obj,1); }
+ }
+ obj=*(u8 **)(node+4);
+ *(s32 *)(obj+0x1c)=(*(s32 *)((*(u8 *volatile *)&data_021600e0[1])+0x44)+(x-32))<<12;
+ *(s32 *)(obj+0x20)=(*(s32 *)((*(u8 *volatile *)&data_021600e0[1])+0x48)+(y+8))<<12;
+ *(u32 *)(obj+0x18)|=1;
+ if (*(u32 *)((*(u8 *volatile *)&data_021600e0[1])+0x3c)&2) *(u32 *)(obj+0x18)&=~1;
+ if (*(s32 *)(obj+4)==7001 && *(s32 *)((*(u8 *volatile *)&data_021600e0[1])+0x6c)<4096) *(u32 *)(obj+0x18)&=~1;
+ node=*(u8 **)(node+0x70);
+ } while(node);
+}
+
 void func_02066b7c(u32 arg0, u32 arg1, u32 arg2) {
     u8 *ptr = data_021600e0[1];
     ptr[0xe0] = 3;
