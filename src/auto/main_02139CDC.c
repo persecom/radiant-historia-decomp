@@ -93,6 +93,26 @@ void func_0213a06c(void) {
 void func_0213a0b0(void) {
 }
 
+extern void func_0213a248(int,int,int,int,void *,u8,int,int);
+extern void func_0209250c(int,int,int,int,int,int,int,int,int,int,int,int,int);
+extern void func_020a8810(void *, int);
+void func_0213a0b4(void) {
+if(data_021769fc->field_184 != 1) return;
+func_0209250c(1,1,0x20,0x30,0xc2,0x38,8,16,2,2,2,2,0x66);
+func_0213a248(0,163840,229376,0x67,(void *)14,0,0,0);
+*(s32 *)(*(u8 **)((u8 *)data_021769fc+68)+0x40)=1;
+func_020a8810(*(void **)((u8 *)data_021769fc+68),22);
+func_0213a248(1,405504,229376,0x67,(void *)15,0,0,0);
+*(s32 *)(*(u8 **)((u8 *)data_021769fc+148)+0x40)=1;
+func_020a8810(*(void **)((u8 *)data_021769fc+148),22);
+func_0213a248(2,163840,286720,0x67,(void *)17,0,0,0);
+*(s32 *)(*(u8 **)((u8 *)data_021769fc+228)+0x40)=1;
+func_020a8810(*(void **)((u8 *)data_021769fc+228),22);
+func_0213a248(3,163840,344064,0x67,(void *)18,0,0,0);
+*(s32 *)(*(u8 **)((u8 *)data_021769fc+308)+0x40)=1;
+func_020a8810(*(void **)((u8 *)data_021769fc+308),22);
+}
+
 extern void func_0203bc34(void *, void *, void *, int, int, int);
 extern void func_020a9610(void *, void *, void *, void *, int, int);
 extern void func_020a98ac(void *);
