@@ -465,18 +465,20 @@ void func_02123074(u8 *arg0, void *arg1, u32 *arg2) {
 
 void func_021230d8(u8 *arg0, u8 *arg1, s32 arg2) {
     u8 *ptr = *(u8 **)(arg1 + 8);
-    u32 frame = *(u32 *)(arg1 + 0);
+    s32 frame = *(s32 *)(arg1 + 0);
     s32 limit = *(u16 *)(ptr + 4) << 12;
     u8 *r;
-    if ((s32)frame >= limit) {
+    u8 idx;
+    if (frame >= limit) {
         frame = limit - 1;
-    } else if ((s32)frame < 0) {
+    } else if (frame < 0) {
         frame = 0;
     }
-    r = func_02121090(ptr, (u16)arg2, (u16)(frame << 4));
+    r = func_02121090(ptr, (u16)arg2, (u16)(frame >> 12));
     func_02122fa0(*(void **)(arg1 + 0x14), func_02121040(ptr, *(u8 *)(r + 2)), arg0);
-    if (*(u8 *)(r + 3) != 0xff) {
-        func_02123074(*(void **)(arg1 + 0x14), func_02121068(ptr), arg0);
+    idx = *(u8 *)(r + 3);
+    if (idx != 0xff) {
+        func_02123074(*(void **)(arg1 + 0x14), func_02121068(ptr, idx), arg0);
     }
 }
 
