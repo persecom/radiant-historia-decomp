@@ -2,6 +2,11 @@
 #include "common.h"
 
 extern u8 *data_02160140;
+extern u8 *data_0216013c;
+extern void func_020c3df4(void *, s32);
+extern void func_020c49ec(void *);
+extern void func_020c3fa0(void *);
+extern void func_020c48b8(void);
 extern u8 *data_021600e4;
 extern void func_020c3850(void *);
 extern void func_020a78f0(void);
@@ -20,8 +25,9 @@ void func_020a76cc(void) {
     u8 *p = data_021600e4;
     func_020a78f0();
     if (*(void **)(p + 0x154) == NULL) {
-        register s32 six = 6;
-        *(void **)(p + 0x154) = func_020c6d5c(six);
+        s32 six = 6;
+        void *obj = func_020c6d5c(six);
+        *(void **)(p + 0x154) = obj;
         func_020c7654(*(void **)(p + 0x154), 2, 0x80008000, 0, 0, 0xa0, 0, six, 0);
         func_020a7834();
         func_020a773c();
@@ -52,14 +58,18 @@ void func_020a779c(void) {
     s32 b = *(s32 *)(p + 0x80);
     s32 c = *(s32 *)(p + 0xc8);
     s32 d = *(s32 *)(p + 0xd0);
-    s32 x = (a * -235) / 0x1000 + 0x80 + ((c >> 12) * a) / 0x1000;
-    s32 y = (b * -235) / 0x1000 + 0x60 + ((d >> 12) * b) / 0x1000;
+    s32 x = ((c >> 12) * a) / 0x1000 + (0x80 + (a * -235) / 0x1000);
+    s32 y = ((d >> 12) * b) / 0x1000 + (0x60 + (b * -235) / 0x1000);
     func_020c7760(*(void **)(p + 0x154), (s16)(x - 8), (s16)(y - 0x18));
 }
 
 void func_020a7834(void) {
     u8 *p = data_021600e4;
-    *(s8 *)(p + 0x158) += (*(u8 *)(p + 0x159) == 0) ? 1 : -1;
+    if (*(u8 *)(p + 0x159) == 0) {
+        *(s8 *)(p + 0x158) = *(s8 *)(p + 0x158) + 1;
+    } else {
+        *(s8 *)(p + 0x158) = *(s8 *)(p + 0x158) - 1;
+    }
     if (*(s8 *)(p + 0x158) < 0) {
         *(u8 *)(p + 0x159) = 0;
         func_020a7834();
@@ -105,9 +115,9 @@ void func_020a78f0(void) {
 
 void func_020a795c(u32 arg0, u32 *arg1, u32 *arg2) {
     u8 *p = data_021600e4;
-    u8 *result = func_020a6360(p + 0x118, (arg0 - *(u32 *)(p + 0x184) + 1) & 0xff);
-    *arg1 = *(u32 *)(result + 4);
-    *arg2 = *(u32 *)(result + 8);
+    void *result = func_020a6360(p + 0x118, (arg0 - *(u32 *)(p + 0x184) + 1) & 0xff);
+    *arg1 = *(u32 *)((u8 *)result + 4);
+    *arg2 = *(u32 *)((u8 *)result + 8);
 }
 
 void func_020a7fe8(void) {
