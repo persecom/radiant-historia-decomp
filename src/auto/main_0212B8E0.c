@@ -13,6 +13,25 @@ extern void func_0212a9f8(void);
 extern void func_0212c3d4(void);
 extern void func_0212c464(void);
 extern void func_0212bfb8(void);
+s32 func_0212bcd0(s16 *arg0, s32 arg1, s16 *arg2) {
+    u16 v0;
+    s16 swapped;
+    s16 v1;
+
+    if (arg1 < 0x10) {
+        return -1;
+    }
+    v0 = (u16)arg0[0];
+    swapped = ((v0 >> 8) & 0xff) | ((v0 << 8) & 0xff00);
+    if ((u16)swapped != 0x8001) {
+        return -2;
+    }
+    v1 = arg0[1];
+    *arg2 = ((v1 >> 8) & 0xff) | ((v1 << 8) & 0xff00);
+    *arg2 += 4;
+    return 0;
+}
+
 void func_0212bfa4(void) {
     func_0212a9f4();
     func_0212bfb8();
