@@ -224,7 +224,7 @@ void *func_0211d7d4(void) {
 }
 
 void func_0211d814(void) {
-    u8 *p = data_0217032c;
+    u8 *const p = data_0217032c;
     func_02001508(data_021702b8, data_02170248, p);
     func_02001160(p, p, *(u32 *)(data_021701fc + 0xec), *(u32 *)(data_021701fc + 0xf0), *(u32 *)(data_021701fc + 0xf4));
     func_02001194(p, data_0217035c);
