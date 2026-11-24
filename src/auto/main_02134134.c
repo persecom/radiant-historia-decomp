@@ -112,6 +112,24 @@ s32 func_0213443c(u8 *arg0) {
     return 0;
 }
 
+s32 func_02134468(u8 *p,s32 count,void *buf) {
+ s32 zero=0;
+ if(!p) {func_02133dd0((s32)p,data_0215bd44);return zero;}
+ if(count<0) {func_02133dd0((s32)p,data_0215bd5c);return zero;}
+ if(!buf) {func_02133dd0((s32)p,data_0215bd80);return zero;}
+ if(count>=0x100000) {func_02133dd0((s32)p,data_0215bda4);return zero;}
+ if(*(s32 *)(p+0x50)==2)return zero;
+ if(count==0) {p[1]=1;return zero;}
+ func_0213807c();
+ *(s32 *)(p+0x6c)=count;
+ *(s32 *)(p+0x74)=count**(s32 *)(p+0x58);
+ *(s32 *)(p+0x50)=1;
+ *(void **)(p+0x54)=buf;
+ p[1]=2;
+ func_0213808c();
+ return *(s32 *)(p+0x6c);
+}
+
 void func_02134544(u8 *arg0) {
     s8 flag;
     if (arg0 == NULL) {
