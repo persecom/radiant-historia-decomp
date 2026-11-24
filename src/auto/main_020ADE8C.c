@@ -61,6 +61,16 @@ void func_020adf34(void **arg0) {
     }
 }
 
+void func_020adfb4(void **arg0) {
+    s32 i;
+    for (i = 0; i < 0x3b; i++) {
+        if (arg0[i] != NULL) {
+            func_0203be4c(arg0[i]);
+            arg0[i] = NULL;
+        }
+    }
+}
+
 void func_020adfe8(u16 arg0, u8 arg1) {
     *(u32 *)0x40004A4 = (arg1 << 24) | 0xC0 | (arg0 << 16);
 }
