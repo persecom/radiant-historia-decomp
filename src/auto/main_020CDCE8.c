@@ -59,14 +59,69 @@ void func_020cdce8(s32 value, s16 x, s16 y, s16 z, s8 spacing, u16 kind, s32 ali
  for(i=0;i<digits;i++) {
  sprite.field[3]=width; sprite.field[4]=height;
  sprite.field[8]=width; sprite.field[9]=height;
- sprite.field[2]=0; sprite.field[6]=y;
+ sprite.field[2]=0;
  sprite.field[1]=(u8)(value%10)*width;
+ sprite.field[6]=y;
  value/=10;
  if(align) sprite.field[5]=x+i*(-(width+spacing));
  else { s32 left=(digits-1)*(width+spacing); sprite.field[5]=i*(-(width+spacing))+left+x; }
  sprite.field[7]=z+101;
  func_021098ac(&sprite);
  }
+}
+
+void func_020cdf18(void) {
+    SpriteTable12_020cdf18 first=data_021447c0;
+    SpriteTable11_020cdf18 second=data_0214468c;
+    u8 i;
+    s32 row;
+    s32 offset, idOffset;
+    u8 j;
+    for(i=0;i<12;i++) {
+        u8 *p=func_0210c594(0x34,data_02155c3c);
+        s16 *s=first.entries[i];
+        *(s16 *)(p+4)=s[0];
+        *(s16 *)(p+6)=s[1];
+        *(s16 *)(p+8)=s[2];
+        *(s16 *)(p+10)=s[3];
+        *(s16 *)(p+16)=s[4];
+        *(s16 *)(p+18)=s[5];
+        *(s16 *)(p+12)=s[6];
+        *(s16 *)(p+14)=s[7];
+        *(s16 *)(p+36)=s[8]+101;
+        p[2]=1;
+        *(s16 *)p=s[11];
+        p[3]=s[9];
+        p[42]=s[12];
+        p[38]=31;
+        if(s[10]==1)func_021167f0(data_02160238+0x740,p);
+        else if(s[10]==2)func_021167f0(data_02160238+0x74c,p);
+    }
+    for(row=0;row<4;row++) {
+        offset=row*48;
+        idOffset=row*100;
+        for(j=0;j<11;j++) {
+            u8 *p=func_0210c594(0x34,data_02155c3c);
+            s16 *s=second.entries[j];
+            *(s16 *)(p+4)=s[0];
+            *(s16 *)(p+6)=s[1];
+            *(s16 *)(p+8)=s[2];
+            *(s16 *)(p+10)=s[3];
+            *(s16 *)(p+16)=s[4];
+            *(s16 *)(p+18)=s[5];
+            *(s16 *)(p+12)=s[6];
+            if(row==3)*(s16 *)(p+14)=s[7]+48;
+            else *(s16 *)(p+14)=s[7]+offset;
+            *(s16 *)(p+36)=s[8]+111;
+            p[2]=1;
+            *(u16 *)p=(u16)s[11]+idOffset;
+            p[3]=s[9];
+            p[42]=s[12];
+            p[38]=31;
+            if(s[10]==1)func_021167f0(data_02160238+0x740,p);
+            else if(s[10]==2)func_021167f0(data_02160238+0x74c,p);
+        }
+    }
 }
 
 void func_020ce664(s32 arg0, s16 arg1, s16 arg2, s16 arg3, u8 arg4) {
