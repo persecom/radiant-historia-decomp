@@ -5,6 +5,9 @@ typedef struct {
     s16 unk[10];
 } Unk20;
 
+static inline void SetRect_020c0660(Unk20 *p, s16 x, s16 y, s16 w, s16 h, s16 dw, s16 dh) {
+p->unk[1]=x;p->unk[2]=y;p->unk[3]=w;p->unk[4]=h;p->unk[8]=dw;p->unk[9]=dh;
+}
 extern const Unk20 data_02143dcc;
 extern const Unk20 data_02143e30;
 extern const Unk20 data_02143df4;
@@ -111,6 +114,47 @@ void func_020c0588(void) {
             obj = *(u8 **)(obj + 0x13c);
         }
     }
+}
+
+void func_020c0660(u32 kind, s16 x, s16 y, s16 depth, u32 value, s16 size) {
+Unk20 buf = data_02143e30;
+s16 w,h;
+*(volatile u32 *)0x40004a4=0x1f00c0;
+switch(kind) {
+case 0: case 1: case 2:
+if(value<=6)func_020a3bbc(0x70);
+else if(value<=12)func_020a3bbc(0x71);
+else if(value<=18)func_020a3bbc(0x72);
+else if(value<=24)func_020a3bbc(0x73);
+else func_020a3bbc(0x74);
+buf.unk[1]=0x97;buf.unk[2]=3;buf.unk[3]=21;buf.unk[4]=13;
+buf.unk[8]=21;buf.unk[9]=13;
+buf.unk[5]=x;buf.unk[6]=y;buf.unk[7]=depth+0x2bf;
+func_021098ac(&buf);break;
+case 3: case 4: case 5:
+func_020c0284(x,y,depth,value,size);break;
+case 6: case 7:
+if(value<=6){func_020a3bbc(0x6b);w=0x35;goto height16;}
+else if(value<=12){func_020a3bbc(0x6c);w=0x37;height16: h=0x10;}
+else if(value<=18){func_020a3bbc(0x6d);w=0x67;goto height19;}
+else if(value<=24){func_020a3bbc(0x6e);w=0x7a;height19: h=0x13;}
+else {func_020a3bbc(0x6f);w=0x79;h=0x17;}
+buf.unk[1]=0;buf.unk[2]=0;buf.unk[3]=w;buf.unk[4]=h;
+buf.unk[8]=w;buf.unk[9]=h;
+buf.unk[5]=x;buf.unk[6]=y;buf.unk[7]=depth+0x2bf;
+func_021098ac(&buf);break;
+case 8:
+*(volatile u32 *)0x40004a4=0xd00c0;func_020a3bbc(0x75);
+buf.unk[1]=0;buf.unk[2]=1;buf.unk[3]=-64;buf.unk[4]=25;
+buf.unk[8]=64;buf.unk[9]=25;buf.unk[5]=x;buf.unk[6]=y;buf.unk[7]=703;
+func_021098ac(&buf);
+buf.unk[1]=0;buf.unk[2]=1;buf.unk[3]=28;buf.unk[4]=25;
+buf.unk[8]=196;buf.unk[9]=25;buf.unk[5]=x+64;buf.unk[6]=y;buf.unk[7]=depth+0x2bf;
+func_021098ac(&buf);
+buf.unk[1]=28;buf.unk[2]=1;buf.unk[3]=36;buf.unk[4]=-25;
+buf.unk[8]=36;buf.unk[9]=25;buf.unk[5]=x+260;buf.unk[6]=y;buf.unk[7]=depth+0x2bf;
+func_021098ac(&buf);break;
+}
 }
 
 void *func_020c0924(void) {
