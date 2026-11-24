@@ -222,25 +222,25 @@ void func_020c1038(void) {
     for (i = 0; i < 8; i++) {
         u8 *node = *(u8 **)(data_02160a6c + 0x70);
         while (node != NULL) {
-            if (*(u16 *)(node + 0x8e) == ((s32 *)&table)[i * 2] || ((s32 *)&table)[i * 2] == -1) {
+            if (*(u16 *)(node + 0x8e) == table.data[i * 2] || table.data[i * 2] == -1) {
                 u8 *list_mgr = ((u8 **)&data_02160218)[1];
                 if (*(u32 *)list_mgr == 0) {
                     u8 *item = (u8 *)func_0210c594(0xc, data_02155c3c);
-                    *(u16 *)item = ((s32 *)&table)[i * 2 + 1];
+                    *(u16 *)item = table.data[i * 2 + 1];
                     func_021167f0(((u8 **)&data_02160218)[1] + 4, item);
                     *(u32 *)(((u8 **)&data_02160218)[1]) += 1;
                 } else {
                     u8 *it = *(u8 **)(list_mgr + 4);
                     s32 add = 1;
                     while (it != NULL) {
-                        if (*(u16 *)it == ((s32 *)&table)[i * 2 + 1]) {
+                        if (*(u16 *)it == table.data[i * 2 + 1]) {
                             add = 0;
                         }
                         it = *(u8 **)(it + 8);
                     }
                     if (add != 0) {
                         u8 *item = (u8 *)func_0210c594(0xc, data_02155c3c);
-                        *(u16 *)item = ((s32 *)&table)[i * 2 + 1];
+                        *(u16 *)item = table.data[i * 2 + 1];
                         func_021167f0(((u8 **)&data_02160218)[1] + 4, item);
                         *(u32 *)(((u8 **)&data_02160218)[1]) += 1;
                     }
