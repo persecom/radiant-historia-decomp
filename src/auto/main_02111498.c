@@ -102,6 +102,12 @@ void func_02111a18(u8 *arg0, s32 arg1) {
     func_0211192c(arg0, arg1, *(s16 *)(arg0 + 0x46));
 }
 
+extern void func_020c9940(void *);
+extern void func_02111ccc(u8 *);
+void func_02111a28(u8 *arg0, s32 arg1) {
+    func_0211192c(arg0, *(s16 *)(arg0 + 0x44), arg1);
+}
+
 s32 func_02111da8(u8 *arg0) {
     return *(s32 *)(arg0 + 0x38);
 }
