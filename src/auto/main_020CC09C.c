@@ -19,6 +19,40 @@ void func_020ccadc(void) {
     func_020ce170(v, v, 0);
 }
 
+void func_020ccb10(void) {
+    u8 *a;
+
+    switch (data_02160238[0x70a]) {
+    case 0:
+        a = func_020cda08(2, 7);
+        a[3] = 0x15;
+        a[0x27] = 0;
+        a = func_020cda08(2, 8);
+        a[3] = 0x14;
+        a[0x27] = 0;
+        func_020a8810(*(void **)(data_02160238 + 0xb0), 0x13);
+        func_020a8810(*(void **)(data_02160238 + 0x100), 0x14);
+        *(u32 *)(*(u8 **)(data_02160238 + 0xb0) + 0x40) = 1;
+        *(u32 *)(*(u8 **)(data_02160238 + 0x100) + 0x40) = 1;
+        break;
+    case 1:
+        a = func_020cda08(2, 7);
+        a[3] = 0x14;
+        a[0x27] = 0;
+        a = func_020cda08(2, 8);
+        a[3] = 0x15;
+        a[0x27] = 0;
+        func_020a8810(*(void **)(data_02160238 + 0xb0), 0x14);
+        func_020a8810(*(void **)(data_02160238 + 0x100), 0x13);
+        *(u32 *)(*(u8 **)(data_02160238 + 0xb0) + 0x40) = 1;
+        *(u32 *)(*(u8 **)(data_02160238 + 0x100) + 0x40) = 1;
+        break;
+    case 2:
+    case 3:
+        break;
+    }
+}
+
 extern u8 *func_020cda08(u32, u32);
 extern void func_020ccb10(void);
 extern void func_020ccd34(s32);
