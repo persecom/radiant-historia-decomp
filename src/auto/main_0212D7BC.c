@@ -102,6 +102,17 @@ void func_0212da70(void *arg0, u32 arg1, u32 arg2, u32 arg3, u64 arg4) {
     func_0212e5ac();
 }
 
+void func_0212dabc(void *arg0, u32 arg1, u32 arg2, u32 arg3, u64 arg4) {
+    func_0212e57c();
+    *(u32 *)((u8 *)arg0 + 0xc) = arg3;
+    *(u64 *)((u8 *)arg0 + 0x10) = arg4;
+    *(u32 *)((u8 *)arg0 + 0x18) = (u32)(((s64)arg4 + 0x7ff) / 0x800);
+    *(u32 *)((u8 *)arg0 + 0x54) = arg1;
+    *(u32 *)((u8 *)arg0 + 0x58) = arg2;
+    *(u8 *)((u8 *)arg0 + 0x49) = 1;
+    func_0212e588();
+}
+
 void func_0212db28(void *arg0) {
     func_0212e5a0();
     func_0212db44(arg0);
@@ -169,7 +180,6 @@ s32 func_0212dc40(void *arg0, s32 arg1) {
 }
 
 void func_0212dc58(void *arg0) {
-    u8 zero;
     if (*(s32 *)((u8 *)arg0 + 0x18) == 0) {
         *(u8 *)((u8 *)arg0 + 0x1) = 3;
     } else {
@@ -177,8 +187,7 @@ void func_0212dc58(void *arg0) {
     }
     *(s32 *)((u8 *)arg0 + 0x38) = 0;
     *(s32 *)((u8 *)arg0 + 0x50) = 0;
-    zero = 0;
-    *(u8 *)((u8 *)arg0 + 0x2) = zero;
+    *(u8 *)((u8 *)arg0 + 0x2) = NULL;
     *(s32 *)((u8 *)arg0 + 0x28) = 0;
     *(s32 *)((u8 *)arg0 + 0x2c) = 0;
     *(u8 *)((u8 *)arg0 + 0x4b) = 1;
