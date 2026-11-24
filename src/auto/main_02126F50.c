@@ -25,6 +25,19 @@ BOOL func_0212737c(void *arg0) {
     return TRUE;
 }
 
+void *func_021273a8(void *arg0, u32 arg1) {
+    if (arg0 == NULL) {
+        func_02126c20(data_021565f0);
+        return NULL;
+    }
+    if (arg1 < 0xc) {
+        func_02126c20(data_02156624);
+        return NULL;
+    }
+    func_02127600(arg0);
+    return arg0;
+}
+
 void func_021273f0(void *arg0) {
     if (arg0 != NULL) {
         func_02127600(arg0);
