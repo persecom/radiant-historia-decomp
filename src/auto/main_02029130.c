@@ -10,7 +10,10 @@ extern u8 *func_0202e548(u32);
 extern char data_02146168[];
 extern u32 data_0216263c[3];
 static inline u16 RandomRange_020295f0(u16 max) {
- u32 value = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
+ u32 seed = data_0216263c[0];
+ u32 multiplier = data_0216263c[1];
+ u32 increment = data_0216263c[2];
+ u32 value = multiplier * seed + increment;
  data_0216263c[0] = value;
  value >>= 16;
  if(max) value = (value * max) >> 16;
@@ -112,6 +115,25 @@ s32 func_02029130(u8 *arg0, u8 *arg1) {
         }
     }
     return -1;
+}
+
+s32 func_020295f0(u8 *arg0, u8 *arg1) {
+ s32 zero=0;
+ s16 a=func_02092994(arg1,zero);
+ s16 w1=func_02092994(arg1,zero);
+ s16 b=func_02092994(arg1,zero);
+ s16 w2=func_02092994(arg1,zero);
+ s16 c=func_02092994(arg1,zero);
+ s16 w3=func_02092994(arg1,zero);
+ s16 sum=w1+w2+w3;
+ s16 roll;
+ if(sum>0) {
+ roll=RandomRange_020295f0(sum)+1;
+ if(roll>0 && roll<=w1) return a;
+ if(w1<roll && roll<=w1+w2) return b;
+ if(w1+w2<roll && roll<=w1+w2+w3) return c;
+ }
+ return -1;
 }
 
 s32 func_02029704(u8 *arg0, u8 *arg1) {
