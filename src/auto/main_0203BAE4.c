@@ -49,6 +49,38 @@ s32 func_0203be60(u8 *, s32, s32);
 void func_0203bc74(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, u8 arg6);
 void func_0203c0f4(u8 *arg0);
 void func_0203c20c(void);
+extern s32 func_02064cb8(void *,s32);
+extern void func_02094c74(void *,s32);
+extern void func_0203305c(void *);
+extern void func_0210d27c(s32);
+void func_0203bae4(void) {
+ u8 *p=data_02160a74;
+ s32 result=0;
+ u8 *obj=**(u8 ***)(p+0xa0);
+ u8 *inner=*(u8 **)obj;
+ if(*(s16 *)(p+0xbc)==4) {
+ result=func_02064cb8(*(void **)(inner+0x11c),3);
+ if(result) func_02094c74(obj,3);
+ } else if(*(s16 *)(p+0xbc)==5) {
+ result=func_02064cb8(*(void **)(inner+0x11c),4);
+ if(result) func_02094c74(obj,4);
+ }
+ *(u16 *)(*(u8 **)(p+0x110+*(s16 *)(p+0xc8)*4))|=2;
+ *(u16 *)(*(u8 **)(p+0x110+*(s16 *)(p+0xc8)*4)+2)=*(s16 *)(p+0xbc);
+ *(u16 *)(*(u8 **)(p+0x110+*(s16 *)(p+0xc8)*4)+4)=*(s16 *)(p+0xce);
+ *(u16 *)(*(u8 **)(p+0x110+*(s16 *)(p+0xc8)*4)+6)=*(s16 *)(p+0xb2);
+ *(s32 *)(*(u8 **)(p+0x110+*(s16 *)(p+0xc8)*4)+8)=result;
+ *(s32 *)(p+0xc0)=result;
+ data_02160a74[0x1c2]&=0xf7;
+ *(u32 *)(data_02160a74+0x58)|=0x800;
+ func_020e25fc(8,0,0);
+ *(u32 *)(p+0x58)&=~0x2000;
+ *(u32 *)(p+0x58)&=~0x4000;
+ func_0203305c(**(void ***)(p+0xa0));
+ if(*(s16 *)(p+0xbc)!=4 && *(s16 *)(p+0xbc)!=5) func_0210d27c(11);
+ func_020e86c0(7);
+}
+
 void func_0203bc34(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, u8 arg5) {
     u8 local[0x18];
     func_0203bc74(local, arg0, arg1, arg2, arg3, arg4, arg5);
