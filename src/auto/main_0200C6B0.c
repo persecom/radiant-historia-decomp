@@ -387,7 +387,11 @@ s32 func_0200d52c(void) {
 
 void func_0200d534(u32 *arg0) {
     s32 res = func_02010f10();
-    func_0200b710(arg0, res == 0 ? 0 : 5);
+    u32 mode = 5;
+    if (res == 0) {
+        mode = 0;
+    }
+    func_0200b710(arg0, mode);
 }
 
 s32 func_0200d558(u32 arg0, u32 arg1, u32 arg2) {
