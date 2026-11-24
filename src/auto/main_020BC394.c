@@ -8,6 +8,7 @@ typedef struct UnkStruct_02160134 {
 
 extern UnkStruct_02160134 data_021601f8;
 extern void func_0210c5dc(void *);
+extern u8 *data_02160078;
 void func_020bd2cc(void) {
     if (data_021601f8.unk04 == NULL) {
         return;
