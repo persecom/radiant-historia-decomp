@@ -83,13 +83,13 @@ void func_02007dd4(u8 *arg0) {
 }
 
 void func_02007e0c(u8 *alarm) {
-    u8 *prev;
     u8 *next;
+    u8 *prev;
     if (alarm == NULL) {
         return;
     }
-    prev = *(u8 **)(alarm + 0x18);
     next = *(u8 **)(alarm + 0x14);
+    prev = *(u8 **)(alarm + 0x18);
     if (prev != NULL) {
         *(u8 **)(prev + 0x14) = next;
     } else {
