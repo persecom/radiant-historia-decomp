@@ -407,6 +407,13 @@ void func_0200661c(void) {
     func_0200813c(r4);
 }
 
+void func_02006780(void *arg0) {
+    void *r2 = *(void **)arg0;
+    *(void **)arg0 = NULL;
+    *(u32 *)((u8 *)r2 + 0xb0) = 0;
+    func_020065c8(r2);
+}
+
 s32 func_020067a0(s32 arg0) {
     u32 irq = func_02008128();
     s32 old = data_0215cde4[10];
