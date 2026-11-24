@@ -84,3 +84,11 @@ void func_0211b2f4(s32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
     func_0211b1f8(arg0, *(u16 *)(p + 4), data_021701f4, arg3, arg4);
 }
 
+s32 func_0211b334(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    if (arg1 != 0) {
+        return func_0211ae60(func_0211b0bc(arg0), arg2, arg3);
+    } else {
+        return func_0211af90(arg0, arg2, arg3);
+    }
+}
+
