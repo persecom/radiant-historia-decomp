@@ -24,6 +24,62 @@ extern u32 *data_0215ece0;
 extern void func_02006d8c(void *, s32);
 
 extern void func_0200a578(void);
+extern u8 data_0215d480[0x1000];
+extern u32 data_0215d1dc[9];
+extern void func_02006dc4(void *, int);
+extern s32 func_0200a6e4(s32, u32, s32);
+s32 func_02009b24(u32 arg0) {
+    s32 irq = func_02008128();
+    if (data_0215d1b8[2] == 0) {
+        func_0200813c(irq);
+        return 1;
+    }
+    if ((s32)data_0215d1b8[7] >= 8) {
+        if ((arg0 & 1) == 0) {
+            func_0200813c(irq);
+            return 0;
+        }
+        do {
+            func_02009964(1);
+        } while ((s32)data_0215d1b8[7] >= 8);
+        if (data_0215d1b8[2] == 0) {
+            func_0200813c(irq);
+            return 1;
+        }
+    }
+    func_02006dc4(data_0215d480, 0x1800);
+    if (func_0200a6e4(7, data_0215d1b8[2], 0) < 0) {
+        if ((arg0 & 1) == 0) {
+            func_0200813c(irq);
+            return 0;
+        }
+        while ((s32)data_0215d1b8[7] >= 8 || func_0200a6e4(7, data_0215d1b8[2], 0) < 0) {
+            func_0200813c(irq);
+            func_02009964(0);
+            irq = func_02008128();
+            func_02006dc4(data_0215d480, 0x1800);
+            if (data_0215d1b8[2] == 0) {
+                func_0200813c(irq);
+                return 1;
+            }
+        }
+    }
+    data_0215d1dc[data_0215d1b8[6]] = data_0215d1b8[2];
+    data_0215d1b8[6]++;
+    if ((s32)data_0215d1b8[6] > 8) {
+        data_0215d1b8[6] = 0;
+    }
+    data_0215d1b8[2] = 0;
+    data_0215d1b8[3] = 0;
+    data_0215d1b8[7]++;
+    data_0215d1b8[8]++;
+    func_0200813c(irq);
+    if (arg0 & 2) {
+        func_02009ec4();
+    }
+    return 1;
+}
+
 void func_02009cc0(u32 arg0) {
     if (func_02009d58(arg0)) {
         return;
@@ -532,10 +588,9 @@ s32 func_0200a6e4(s32 arg0, u32 arg1, s32 arg2) {
     return 0;
 }
 
-void func_0200a75c(void) {
+void func_0200a75c(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 val) {
     volatile u16 *reg = (volatile u16 *)0x04000184;
     s32 ret;
-    u32 val;
     u32 ch;
     s32 irq;
     void (**table)(u32, u32, u32) = (void (**)(u32, u32, u32))data_0215ece8;
@@ -561,15 +616,15 @@ void func_0200a75c(void) {
         if (ret == -3) {
             continue;
         }
-        ch = val & 0x1f;
+        ch = (val << 27) >> 27;
         if (ch == 0) {
             continue;
         }
         if (table[ch] != NULL) {
-            table[ch](ch, val >> 6, (val >> 26) & 1);
+            table[ch](ch, val >> 6, (val << 26) >> 31);
             continue;
         }
-        if (((val >> 26) & 1) != 0) {
+        if (((val << 26) >> 31) != 0) {
             continue;
         }
         val |= 0x20;
@@ -580,8 +635,10 @@ void func_0200a75c(void) {
         irq = func_02008128();
         if ((*reg & 2) == 0) {
             *(volatile u32 *)((u8 *)reg + 4) = val;
+            func_0200813c(irq);
+        } else {
+            func_0200813c(irq);
         }
-        func_0200813c(irq);
     }
 }
 
