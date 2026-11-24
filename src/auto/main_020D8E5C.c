@@ -69,8 +69,6 @@ void func_020d9090(void) {
     }
 }
 
-extern void func_020d9cc0(void *);
-extern void func_020f4668(void *);
 void *func_020d9df4(void) {
     return *(void **)(data_02160258 + 0x80);
 }
