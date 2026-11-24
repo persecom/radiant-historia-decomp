@@ -256,6 +256,25 @@ void func_020c8ba0(void *arg0) {
     }
 }
 
+BOOL func_020c8bb4(u8 *arg0) {
+    s32 delta = *(s32 *)(arg0 + 0x58);
+    s32 cur = *(s32 *)(arg0 + 0x4c);
+    s32 next = cur + delta;
+    *(s32 *)(arg0 + 0x4c) = next;
+    if (delta > 0) {
+        if (next >= *(s32 *)(arg0 + 0x54)) {
+            *(s32 *)(arg0 + 0x4c) = *(s32 *)(arg0 + 0x54);
+            *(s32 *)(arg0 + 0x58) = 0;
+        }
+    } else if (delta < 0) {
+        if (next <= *(s32 *)(arg0 + 0x54)) {
+            *(s32 *)(arg0 + 0x4c) = *(s32 *)(arg0 + 0x54);
+            *(s32 *)(arg0 + 0x58) = 0;
+        }
+    }
+    return FALSE;
+}
+
 void func_020c8d24(u8 *arg0) {
     if (*(void **)(arg0 + 0x30) != NULL) {
         func_020c9940(*(void **)(arg0 + 0x30));
@@ -276,6 +295,17 @@ s32 func_020c8d70(u8 *arg0) {
     }
     func_020c9b64(*(void **)(arg0 + 0x30));
     return 0;
+}
+
+void func_020c8e5c(u8 *arg0, u8 arg1) {
+    u16 i;
+    u32 count = func_020c9c34(*(void **)(arg0 + 0x30));
+    for (i = 0; i < count; i++) {
+        u8 *obj = func_020c9c10(*(void **)(arg0 + 0x30), i);
+        s32 delta = obj[0x43] - arg0[0x38];
+        ((void (*)(u8 *, u8))(*(void **)(obj + 0x1c)))(obj, arg1 + delta);
+    }
+    arg0[0x38] = arg1;
 }
 
 void func_020c8ec0(u8 *arg0, s32 arg1) {
