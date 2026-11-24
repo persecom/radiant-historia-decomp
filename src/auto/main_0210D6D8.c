@@ -332,6 +332,55 @@ void func_0210e3dc(void) {
     func_020081c0();
 }
 
+extern void func_020081a4(s32);
+extern void func_02005468(void);
+extern void func_02005454(void);
+extern void func_0200518c(s32);
+extern void func_02005168(s32);
+extern void func_02005228(s32);
+extern void func_0200283c(s32);
+extern void func_021091b0(void);
+extern u8 data_027e0000[];
+void func_0210e404(void) {
+register u8 *node=0; u8 *base; base=data_0216280c;
+if(*(volatile u32 *)(base+0x58)) {
+if((s32)*(volatile u16 *)0x4000006<=193) func_020081a4(392);
+if(!(*(volatile u32 *)0x4000600&0x8000000) && *(volatile u32 *)(base+0x50)) {
+if(!*(volatile u32 *)(base+0x54)) {
+*(volatile u16 *)0x4000304|=0x8000;
+func_02005468(); func_0200518c(4); func_02005168(8);
+*(volatile u32 *)0x4000064=0x80330010;
+if(*(void (**)(void))(base+0x4c)) (*(void (**)(void))(base+0x4c))();
+func_0200283c(5);
+*(volatile u32 *)0x4001000=(*(volatile u32 *)0x4001000&~0x1f00)|0x400;
+*(volatile u16 *)0x400100c=(*(volatile u16 *)0x400100c&0x43)|0x4084;
+*(volatile u16 *)0x400100c&=~3;
+*(volatile u16 *)0x400100c&=0xffbf;
+} else {
+*(volatile u16 *)0x4000304&=~0x8000;
+func_02005454();func_02005228(8);func_02005168(4);
+*(volatile u32 *)0x4000064=0x80320010;
+if(*(void (**)(void))(base+0x48)) (*(void (**)(void))(base+0x48))();
+func_0200283c(5);
+*(volatile u32 *)0x4001000=(*(volatile u32 *)0x4001000&~0x1f00)|0x1000;
+}
+*(volatile u32 *)(base+0x50)=0;
+*(volatile u32 *)(base+0x54)=!*(volatile u32 *)(base+0x54);
+}
+}
+goto next;
+loop: {
+*(volatile u32 *)(base+0x70)=*(u32 *)(node+8);
+(*(void (**)(void))node)();
+}
+next: if(!node) node=*(u8 **)(base+0xbc); else node=*(u8 **)(node+*(u16 *)(base+0xc6)+4); if(node) goto loop;
+(*(volatile u32 *)(base+0x18))++;
+(*(volatile u32 *)(base+0x60))++;
+{ s32 count=*(volatile s32 *)(base+4); if(count!=-1) *(volatile s32 *)(base+4)=count+1; }
+if(*(volatile u32 *)(base+0x64)==1) func_021091b0();
+*(volatile u32 *)((u32)data_027e0000+0x3ff8)|=1;
+}
+
 s32 func_0210e600(void) {
     s32 irq = func_02008128();
     s32 v = *(s32 *)(data_0216280c + 4);
