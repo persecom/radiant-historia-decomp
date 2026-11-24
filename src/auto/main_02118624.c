@@ -170,6 +170,17 @@ void func_021190bc(void *arg0, void *arg1) {
     func_02118f24(arg0);
 }
 
+void func_021190d4(u8 *arg0, u32 arg1)
+{
+  void *v = func_02117d80(arg0);
+  *((u32 *) (arg0 - -0x1c)) = arg1;
+  if (func_02117d74(arg0, v) == 0)
+  {
+    func_02117df4(arg0);
+  }
+  func_02118f24(arg0);
+}
+
 extern s32 func_02117be0(void *);
 extern void func_02008df0(s32, void *, s32);
 extern void func_02117d9c(void *);
@@ -184,5 +195,28 @@ void func_02119130(u8 *arg0) {
     func_02117df4(arg0);
     *(u32 *)(arg0 + 0xc) = 1;
     func_02118f24(arg0);
+}
+
+void func_02119150(void) {
+    u32 *base = (u32 *)data_0216f234;
+    u32 index = base[3];
+    u32 flag = base[1];
+    u32 offset = index * 0x18;
+    u8 *dst;
+    if (flag != 0) {
+        *(u32 *)(data_0216f3d4 + offset) = 0;
+        *(u32 *)(data_0216f3d8 + offset) = 0;
+    } else {
+        u8 *p = data_0216f3c4 + offset;
+        *(u32 *)p = 0x1000;
+        *(u32 *)(p + 4) = 0;
+        *(u32 *)(p + 8) = 0;
+        *(u32 *)(p + 0xc) = 0x1000;
+        *(u32 *)(p + 0x10) = 0;
+        *(u32 *)(p + 0x14) = 0;
+        dst = data_0216f6c4 + offset;
+        *(S_02119150 *)dst = *(S_02119150 *)p;
+    }
+    data_0216f244[index] = 0;
 }
 
