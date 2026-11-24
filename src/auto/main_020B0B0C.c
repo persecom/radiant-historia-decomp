@@ -12,7 +12,7 @@ extern void func_020ae3f8(s32, s32, s32, s32, s32, s32);
 
 void func_020b0b0c(void) {
     u8 *p = func_020b3890();
-    u8 val = func_020b3890()[*(s32 *)(p + 0x250) + 0x25c];
+    u8 val = ((u8 *)(*(u32 *)(p + 0x250) + (u32)func_020b3890()))[0x25c];
     func_020ae3f8(3, 0x18, val + 1, 0x80, 0x25, 0x6b);
     func_020ae3f8(0, 0x18, 6, 0xc6, 0x25, 0x6b);
 }
