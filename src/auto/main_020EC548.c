@@ -252,11 +252,4 @@ void func_020ecaa4(void **arg0) {
         func_0210c5dc(arg0);
     }
 }
-extern char data_02151b0c[], data_02151b28[], data_02151b48[];
-extern void *func_0210957c(s32);
-extern s32 func_02092ab0(void *, s32);
-extern u32 func_0210cd20(void *, s32);
-extern s32 func_02005e80(char *, const char *, ...);
-extern s32 func_02108620(void *, char *, char *, char *, s32);
-extern u8 *func_02109f3c(void *);
-extern s32 func_021086d4(void *, u16);
+
