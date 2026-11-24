@@ -26,6 +26,7 @@ extern void func_0200893c(u32);
 extern void func_02008ca8(void);
 extern void func_02008dc4(void);
 typedef void (*Fn_U32)(u32);
+typedef struct { u32 a, b, c; } Triple0215;
 
 void func_02008bf4(void) {
     u32 base;
@@ -61,6 +62,27 @@ void func_02008ca8(void) {
     }
 }
 
+void func_02008d08(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
+    if (arg2 == 0) {
+        if (arg3 != 0) {
+            ((Fn_U32)arg3)(arg4);
+        }
+        return;
+    }
+    if (data_0215d17c.field_0 != 0) goto done;
+    data_0215d17c.field_0 = 1;
+    data_0215d17c.field_4 = arg0;
+    data_0215d17c.field_10 = arg3;
+    data_0215d17c.field_14 = arg4;
+    func_02008a28(arg0, 0x38000000);
+    func_02008ab4(arg0, arg1, arg2, 0);
+    func_0200893c(arg0);
+    func_020058fc(arg0, (u32)func_02008dc4, 0);
+    func_01ff845c(arg0, arg1, 0x4000400, (-0x3c00000) | (arg2 >> 2), 0);
+done:
+    return;
+}
+
 void func_02008dc4(void) {
     void (*cb)(u32);
     u32 arg;
@@ -86,6 +108,17 @@ void func_02008e08(u8 *src, u8 *dst, s32 size) {
         *(u16 *)(dst + i) = *(u16 *)(src + i);
         i += 2;
     }
+}
+
+void func_02009138(u32 *dst) {
+    u32 i;
+    for (i = 0; i < 9; i++) {
+        dst[i] = 0;
+    }
+}
+
+u32 func_02009148(u32 val, u32 *ptr) {
+    return __swp(val, ptr);
 }
 
 s32 func_0200986c(void) {
