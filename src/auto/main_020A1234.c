@@ -30,6 +30,40 @@ extern const UnkSprite_020A1564 data_02142cf4;
 extern void func_020a3bbc(s32);
 extern void func_021098ac(UnkSprite_020A1564 *);
 
+void func_020a1234(s32 index,s32 start,s32 end,s32 y) {
+UnkSprite_020A1564 d=data_02142cf4;
+u8 *p=data_021600b0;
+s16 x;
+*(s8*)(p+0x206+index*12)&=~1;
+x=start+(end-start)* *(s16*)(p+0x204+index*12)/7;
+if(*(s32*)(p+0x200+index*12)==1) {
+if(*(s16*)(p+0x204+index*12)<7) ++*(s16*)(p+0x204+index*12);
+else *(s8*)(p+0x206+index*12)|=1;
+} else if(*(s32*)(p+0x200+index*12)==0) {
+if(*(s16*)(p+0x204+index*12)>0) --*(s16*)(p+0x204+index*12);
+}
+s8 *flags=(s8*)(p+0x206);
+if((flags[index*12]&2)||(flags[index*12]&4))func_020a3bbc(24);else func_020a3bbc(23);
+d.unk_02=0;d.unk_04=0;d.unk_06=4;d.unk_08=16;d.unk_0a=x;d.unk_0c=y;d.unk_0e=115;d.unk_10=4;d.unk_12=16;
+func_021098ac(&d);
+if((flags[index*12]&2)||(flags[index*12]&4))func_020a3bbc(24);else func_020a3bbc(23);
+d.unk_02=4;d.unk_04=0;d.unk_06=41;d.unk_08=16;d.unk_0a=x+4;d.unk_0c=y;d.unk_0e=115;d.unk_10=73;d.unk_12=16;
+func_021098ac(&d);
+if((flags[index*12]&2)||(flags[index*12]&4))func_020a3bbc(24);else func_020a3bbc(23);
+d.unk_02=46;d.unk_04=0;d.unk_06=6;d.unk_08=16;d.unk_0a=x+77;d.unk_0c=y;d.unk_0e=115;d.unk_10=6;d.unk_12=16;
+func_021098ac(&d);
+if((flags[index*12]&2)||(flags[index*12]&4))func_020a3bbc(26);else func_020a3bbc(25);
+if(index==0){d.unk_04=0;d.unk_02=0;}else if(index==1){d.unk_02=12;d.unk_04=11;}
+d.unk_06=12;d.unk_08=11;d.unk_0a=x+2;s32 py=y+2;d.unk_0c=py;d.unk_0e=116;d.unk_10=12;d.unk_12=11;
+func_021098ac(&d);
+if((flags[index*12]&2)||(flags[index*12]&4))func_020a3bbc(28);else func_020a3bbc(27);
+if(index==0){d.unk_02=58;d.unk_06=57;d.unk_0a=x+20;d.unk_10=57;}
+else if(index==1){d.unk_02=8;d.unk_06=45;d.unk_0a=x+18;d.unk_10=45;}
+d.unk_04=12;d.unk_08=12;d.unk_0c=py;d.unk_0e=116;d.unk_12=12;
+func_021098ac(&d);
+if(flags[index*12]&4)flags[index*12]&=~4;
+}
+
 void func_020a1564(s32 arg0, s32 arg1) {
     UnkSprite_020A1564 s = data_02142c54;
     s8 *p = (s8 *)data_021600b0;
