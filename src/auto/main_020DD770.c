@@ -139,7 +139,7 @@ void func_020de17c(void *arg0) {
     }
 }
 
-extern void func_020de404(void);
+extern void func_020de404();
 void func_020de29c(void) {
     func_020de404();
 }
