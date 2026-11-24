@@ -262,6 +262,15 @@ void func_02002750(void) {
     func_0200f1bc();
 }
 
+void func_02002790(void) {
+    data_02145ba0 = 1;
+    if (data_0215cd20 != 0) {
+        *(volatile u32 *)0x04000000 = (*(volatile u32 *)0x04000000 & ~0x30000) | (data_0215cd20 << 16);
+    } else {
+        *(volatile u32 *)0x04000000 |= 0x10000;
+    }
+}
+
 void func_0200283c(u32 arg0) {
     *(volatile u32 *)0x04001000 = (*(volatile u32 *)0x04001000 & ~7) | arg0;
 }
