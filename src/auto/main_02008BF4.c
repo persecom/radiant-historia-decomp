@@ -26,6 +26,11 @@ extern void func_0200893c(u32);
 extern void func_02008ca8(void);
 extern void func_02008dc4(void);
 typedef void (*Fn_U32)(u32);
+extern void func_02008558(s32);
+extern void func_02008998(s32);
+typedef struct { u32 a[8]; } Copy32B;
+typedef struct { u32 a[9]; } Copy36B;
+typedef struct { u32 a[12]; } Copy48B;
 
 void func_02008bf4(void) {
     u32 base;
