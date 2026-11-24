@@ -1,6 +1,5 @@
 /* 6 functions from 0x02121494 to 0x021221E4 (main), found by ds-decomp. */
 #include "common.h"
-typedef struct { s32 left, right; } SamplePair_02121c60;
 
 void func_021217e8(s32 *out, s32 pos, u32 *desc, u8 *data) {
  u32 offset = desc[1];
