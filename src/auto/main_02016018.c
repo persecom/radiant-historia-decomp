@@ -2,6 +2,36 @@
 #include "common.h"
 
 extern void func_02016cfc(s32, const char *, char *);
+s32 func_02016c84(void *p, s32 ch, s32 act) {
+    struct {
+        u8 *str;
+        s32 eof;
+    } *isc = p;
+    switch (act) {
+        case 0: {
+            u8 c = *isc->str;
+            if (c == 0) {
+                isc->eof = 1;
+                return -1;
+            } else {
+                isc->str++;
+                return c;
+            }
+        }
+        case 1:
+            if (isc->eof == 0) {
+                isc->str--;
+            } else {
+                isc->eof = 0;
+            }
+            return ch;
+        case 2:
+            return isc->eof;
+        default:
+            return 0;
+    }
+}
+
 void func_02016d50(s32 arg0, const char *arg1, ...) {
     char *vlist = (char *)((u32)&arg1 & ~3) + 4;
     func_02016cfc(arg0, arg1, vlist);
