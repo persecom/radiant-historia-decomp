@@ -138,6 +138,18 @@ void func_02129830(u8 *arg0) {
     }
 }
 
+void func_0212984c(u8 *arg0) {
+    *(s32 *)(arg0 + 0xc) = 0;
+    *(u8 *)(arg0 + 0x28) = 0;
+    *(u8 *)(arg0 + 0x29) = 0;
+    *(u8 *)(arg0 + 0x2a) = 0;
+    *(u8 *)(arg0 + 0x2b) = 0;
+    *(u8 *)(arg0 + 0x2c) = 0;
+    *(u8 *)(arg0 + 0x2d) = 0;
+    *(u8 *)(arg0 + 0x2e) = 0;
+    *(u8 *)(arg0 + 0x2f) = 0;
+}
+
 void func_02129878(u8 *arg0) {
     if (*(s32 *)(arg0 + 0xc) == 3) {
         *(s32 *)(arg0 + 0xc) = 0;
