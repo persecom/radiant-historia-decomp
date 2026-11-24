@@ -93,6 +93,21 @@ void func_0200293c(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s
     }
 }
 
+extern void func_02001720(s32, s32, s32, void *);
+extern void func_02002bd8(void *);
+void func_020029a0(s32 arg0, s32 arg1, s32 arg2, void *arg3, u8 *arg4) {
+    u8 buf[0x30];
+    if (arg4 == NULL) {
+        arg4 = buf;
+    }
+    func_02001720(arg0, arg1, arg2, arg4);
+    if (arg3 == NULL) {
+        return;
+    }
+    *(volatile u32 *)0x04000440 = 2;
+    func_02002bd8(arg4);
+}
+
 extern void func_020055d4(void);
 void func_02002bbc(void)
 {
