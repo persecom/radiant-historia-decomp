@@ -130,6 +130,30 @@ s32 func_020c6348(u8 *arg0) {
     return 0;
 }
 
+extern s32 func_020c73c0(void *);
+extern s32 func_020c7408(void *);
+extern void func_020c6df4(void *);
+extern void func_020c6e40(void *, void *, s16, s32);
+s32 func_020c636c(u8 *arg0) {
+    if (func_020c73c0(arg0) == 0) {
+        return 0;
+    }
+    *(volatile u32 *)0x40004a4 = (*(u8 *)(arg0 + 0x42) << 16) | 0xc0;
+    if (func_020c7408(arg0) != 0) {
+        func_020c6df4(arg0);
+        return 0;
+    }
+    switch (arg0[0x4c]) {
+        case 0:
+            func_020c6e40(arg0, arg0 + 0x30, arg0[0x4d] / 4, 0);
+            break;
+        case 1:
+            func_020c6e40(arg0, arg0 + 0x30, -(s32)arg0[0x4d] / 4, 0);
+            break;
+    }
+    return 0;
+}
+
 s32 func_020c6414(void) {
     return 9;
 }
