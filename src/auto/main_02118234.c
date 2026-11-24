@@ -12,6 +12,13 @@ u16 func_02118588(u16 *arg0, s32 arg1) {
     return arg0[arg1];
 }
 
+void func_02118594(s32 *arg0) {
+    s32 i;
+    for (i = 0; i < 3; i++) {
+        arg0[i] = -1;
+    }
+}
+
 void func_021185b0(s32 *arg0, s32 arg1, s32 arg2) {
     arg0[arg1] = arg2;
 }
