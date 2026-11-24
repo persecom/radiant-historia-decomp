@@ -397,6 +397,12 @@ void func_02126b34(void) {
     func_02138e00();
 }
 
+void func_02126b40(void *arg0) {
+    func_02126c18();
+    ((void (*)(void *))func_02126b5c)(arg0);
+    func_02126c1c();
+}
+
 extern void func_02138ea4(void);
 void func_02126b5c(void) {
     func_02138ea4();
