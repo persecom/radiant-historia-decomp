@@ -27,6 +27,43 @@ void func_020d9e7c(void) {
     *(u32 *)(p + 0x88) &= ~8;
 }
 
+BOOL func_020da008(s32);
+BOOL func_020d9ea8(u32 flags,s32 arg1) {
+u8 *p=data_02160258;
+if(flags) *(u32 *)(p+0x88)|=flags;
+if(*(u32 *)(p+0x88)&0x80000000) *(u32 *)(p+0x88)=0;
+if(*(u32 *)(p+0x88)&2) *(u32 *)(p+0x88)&=~1;
+if(*(u32 *)(p+0x88)&0x10) *(u32 *)(p+0x88)&=~8;
+if(arg1!=0) {
+s32 value=0;
+if(arg1>=0x30) {
+if(arg1>0x30 && arg1<=0x88) value=*(u16 *)(data_02160258+0x90)+*(u16 *)(data_02160258+0x94);
+else if(arg1>0x88) value=*(u16 *)(data_02160258+0x90)+*(u16 *)(data_02160258+0x92);
+}
+if(*(u32 *)(p+0x88)&0x10) {
+if(arg1==0x30) value=*(u16 *)(data_02160258+0x90);
+}
+if(value!=0 && !(*(u32 *)(p+0x88)&0x20)) {
+func_020da008(value);
+*(u32 *)(p+0x88)|=0x10;
+}
+}
+if(*(u32 *)(p+0x88)&1) {
+data_02151fcc-=0x20000;
+if((data_02151fcc>>12)<0x200) {
+data_02151fcc=0x200000;
+*(u32 *)(p+0x88)&=~1;
+}
+} else if(*(u32 *)(p+0x88)&8) {
+data_02151fcc+=0x20000;
+if((data_02151fcc>>12)>*(u16 *)(data_02160258+0x90)) {
+data_02151fcc=*(u16 *)(data_02160258+0x90)<<12;
+*(u32 *)(p+0x88)&=~8;
+}
+}
+return (*(u32 *)(p+0x88)&flags)!=0;
+}
+
 BOOL func_020da008(s32 arg0) {
     s32 val = data_02151fcc;
     if (val - arg0 < 0) {
@@ -119,10 +156,16 @@ void func_020da0dc(void) {
 void func_020da1c0(void) {
     u8 *node;
     u8 *next;
-    if (*(u16 *)(data_02160080 + 0x14) == 0) {
+    u8 **g = &data_02160080;
+    s32 zero = 0;
+    s32 two = 2;
+    s32 c3f2 = 0x3f2;
+    s32 one = 1;
+    if (*(u16 *)(*g + 0x14) == 0) {
         return;
     }
-    for (node = *(u8 **)(data_02160080 + 0x18); node != NULL; node = next) {
+    node = *(u8 **)(*g + 0x18);
+    while (node != NULL) {
         u8 *obj = *(u8 **)(node + 0);
         u8 *sub;
         next = *(u8 **)(node + 0x18);
@@ -131,27 +174,28 @@ void func_020da1c0(void) {
             case 0:
                 *(u8 *)(sub + 0x76) |= 1;
                 *(void **)(sub + 0x78) = node;
-                *(s16 *)(node + 0x10) = 1;
+                *(s16 *)(node + 0x10) = one;
                 break;
             case 1:
-                if (*(u16 *)(data_02160080 + 0x14) == 2) {
-                    *(u32 *)(sub + 0x24) = 0x3f2;
+                if (*(u16 *)(*g + 0x14) == 2) {
+                    *(u32 *)(sub + 0x24) = c3f2;
                     func_020d626c(obj, sub);
-                    *(s16 *)(node + 0x10) = 2;
+                    *(s16 *)(node + 0x10) = two;
                 }
                 break;
             case 2:
                 if (*(u32 *)(sub + 0x24) == 0) {
-                    *(void **)(sub + 0x78) = NULL;
-                    *(u8 *)(sub + 0x76) = 0;
+                    *(void **)(sub + 0x78) = (void *)zero;
+                    *(u8 *)(sub + 0x76) = zero;
                     if (*(u8 *)(node + 0x12) & 1) {
-                        func_020223f8(sub, 0);
+                        func_020223f8(sub, zero);
                     }
                     func_02026ddc(node);
                 }
                 break;
             }
         }
+        node = next;
     }
     if (*(u16 *)(data_02160080 + 0x16) == 0) {
         *(u16 *)(data_02160080 + 0x14) = 0;
