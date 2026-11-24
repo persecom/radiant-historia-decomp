@@ -23,3 +23,11 @@ void func_0211b2b4(s32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
     u8 *p = func_0211adb4(data_02144e80, arg1, arg2, arg3);
     func_0211b17c(arg0, *(u16 *)(p + 4), data_021701f4, arg3, arg4);
 }
+
+extern u8 data_02144e68[24];
+extern void func_0211b1f8(s32, u32, u32, u32, u32);
+void func_0211b2f4(s32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
+    u8 *p = func_0211adb4(data_02144e68, arg1, arg2, arg3);
+    func_0211b1f8(arg0, *(u16 *)(p + 4), data_021701f4, arg3, arg4);
+}
+
