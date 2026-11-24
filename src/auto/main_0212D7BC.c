@@ -392,6 +392,9 @@ s32 func_0212e5d4(void) {
     return 0;
 }
 
+void func_0212e5dc(void) {
+}
+
 extern void func_0212c4c8(void);
 void func_0212e610(void) {
     func_0212c4c8();
