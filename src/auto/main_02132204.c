@@ -444,6 +444,16 @@ void func_02132e0c(char *str) {
     }
 }
 
+s32 func_02132ec8(char *arg0, u32 arg1) {
+    s32 i;
+    for (i = 0; i < 32; i++) {
+        if (func_02016f58(arg0, data_02174b64[i].name, arg1) == 0) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
 extern u8 data_021749dc[64];
 void *func_02132f14(void) {
     return data_021749dc;
