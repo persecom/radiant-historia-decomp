@@ -205,6 +205,15 @@ void func_0212ed3c(u8 *arg0, u8 *arg1) {
     *(u16 *)(arg1 + 0xe) = (arg0[2] << 8) | arg0[3];
 }
 
+void func_0212ed50(u8 *arg0, u8 *arg1) {
+    *(u16 *)(arg1 + 0) = (arg0[0] << 8) | arg0[1];
+    *(u16 *)(arg1 + 2) = (arg0[2] << 8) | arg0[3];
+    *(u32 *)(arg1 + 4) = (arg0[4] << 24) | (arg0[5] << 16) | (arg0[6] << 8) | arg0[7];
+    *(u32 *)(arg1 + 8) = (arg0[8] << 24) | (arg0[9] << 16) | (arg0[10] << 8) | arg0[11];
+    *(u32 *)(arg1 + 0xc) = (arg0[0xc] << 24) | (arg0[0xd] << 16) | (arg0[0xe] << 8) | arg0[0xf];
+    *(u32 *)(arg1 + 0x10) = (arg0[0x10] << 24) | (arg0[0x11] << 16) | (arg0[0x12] << 8) | arg0[0x13];
+}
+
 void func_0212f384(s32 *arg0, s32 arg1, s32 *arg2, s32 *arg3) {
     s32 ptr = *(volatile s32 *)arg0;
     s32 len = *(volatile s32 *)(arg0 + 1);
