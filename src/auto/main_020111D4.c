@@ -343,6 +343,28 @@ s32 func_02011bdc(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     return func_02011c70(arg0, arg1, arg2, arg3, arg4, ctx);
 }
 
+s32 func_02011c70(s32 out,s32 data,s32 size,s32 key,s32 keySize,void *arg){
+u8 hash[64],inner[64],outer[64];
+Unk_02011c70 *ctx;
+u32 i;
+u32 len=keySize;
+ctx=arg;
+u8 *k=(u8*)key;
+if(!out||!data||!size||!key||!len||!ctx)return;
+if(len>ctx->blockSize){
+ctx->init(ctx->ctx);ctx->update(ctx->ctx,k,len);
+k=hash;ctx->finish(ctx->ctx,k);len=ctx->digestSize;
+}
+for(i=0;i<len;i++)inner[i]=k[i]^0x36;
+for(;i<ctx->blockSize;i++)inner[i]=0x36;
+ctx->init(ctx->ctx);ctx->update(ctx->ctx,inner,ctx->blockSize);
+ctx->update(ctx->ctx,(void*)data,size);ctx->finish(ctx->ctx,ctx->digest);
+for(i=0;i<len;i++)outer[i]=k[i]^0x5c;
+for(;i<ctx->blockSize;i++)outer[i]=0x5c;
+ctx->init(ctx->ctx);ctx->update(ctx->ctx,outer,ctx->blockSize);
+ctx->update(ctx->ctx,ctx->digest,ctx->digestSize);ctx->finish(ctx->ctx,(void*)out);
+}
+
 void func_02011e20(u16 *ctx, const void *buf, u32 len) {
     s32 odd = 0;
     u32 sum = 0;
