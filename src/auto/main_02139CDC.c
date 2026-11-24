@@ -17,3 +17,6 @@ extern void func_02139cdc(void);
 extern void func_02139ee4(void);
 extern void func_0210dc88(void);
 extern s32 func_0210723c(void);
+
+void func_0213a0b0(void) {
+}
