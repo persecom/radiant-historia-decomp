@@ -53,11 +53,12 @@ void func_020b4058(s32 arg0) {
 }
 
 void func_020b40a4(s32 arg0, u32 *arg1, u32 *arg2) {
-    u8 *work = func_020b3fd8() + 0x2000;
-    s32 n = 0;
-    s32 cat = 0;
-    s32 first = -1;
+    u8 *work;
     s32 i;
+    s32 n = 0;
+    s32 first = -1;
+    s32 cat = 0;
+    work = func_020b3fd8() + 0x2000;
     if (arg0 == 0) {
         cat = 1;
     } else if (arg0 == 1) {
@@ -95,15 +96,16 @@ void func_020b4150(void) {
 }
 
 s32 func_020b4198(u8 *arg0, u8 *arg1) {
+    s32 ret = 0;
     u16 b = *(u16 *)((u8 *)arg1 + 6);
     u16 a = *(u16 *)((u8 *)arg0 + 6);
     if (a > b) {
         return 1;
     }
     if (a < b) {
-        return -1;
+        ret = -1;
     }
-    return 0;
+    return ret;
 }
 
 u8 *func_020b442c(void) {
