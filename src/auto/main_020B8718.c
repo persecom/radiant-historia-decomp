@@ -148,3 +148,7 @@ void func_020b9250(void) {
     func_020c8488(func_020c9c10(*(void **)(data_021601ec + 0x48), 10));
 }
 
+void func_020b92b0(void) {
+    func_020c8488(func_020c9c10(*(void **)(data_021601ec + 0x48), 11));
+}
+
