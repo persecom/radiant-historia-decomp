@@ -197,10 +197,6 @@ void func_020c8948(u8 *arg0, s32 arg1) {
     func_020c888c(arg0, arg1, *(s16 *)(arg0 + 0x5a));
 }
 
-extern void func_020c77d8(u8 *);
-extern void func_020c992c(void);
-extern void func_020c9a04(void *, s32);
-extern void func_020c7838(void *);
 extern s32 func_020c786c(u8 *);
 void func_020c8958(u8 *arg0, s32 arg1) {
     func_020c888c(arg0, *(s16 *)(arg0 + 0x58), arg1);
@@ -389,12 +385,47 @@ void func_020c8ed0(u8 *arg0, s32 arg1) {
 
 extern void func_020c9610(u8 *);
 void func_020c8ee4(u8 *arg0, u16 *arg1) {
-    *(u16 *)(arg0 + 0x46) = arg1[0];
-    *(u16 *)(arg0 + 0x48) = arg1[1];
-    *(u16 *)(arg0 + 0x4a) = arg1[2];
-    *(u16 *)(arg0 + 0x4c) = arg1[3];
-    *(u16 *)(arg0 + 0x4e) = arg1[4];
-    *(u16 *)(arg0 + 0x50) = arg1[5];
+    u16 v0 = arg1[0];
+    u16 v1 = arg1[1];
+    u16 v2 = arg1[2];
+    u16 v3 = arg1[3];
+    u16 v4 = arg1[4];
+    u16 v5 = arg1[5];
+    *(u16 *)(arg0 + 0x46) = v0;
+    *(u16 *)(arg0 + 0x48) = v1;
+    *(u16 *)(arg0 + 0x4a) = v2;
+    *(u16 *)(arg0 + 0x4c) = v3;
+    *(u16 *)(arg0 + 0x4e) = v4;
+    *(u16 *)(arg0 + 0x50) = v5;
     func_020c8f20(arg0);
+}
+
+void func_020c9348(u8 *arg0, s32 arg1) {
+    u16 cur = *(u16 *)(arg0 + 0x3e);
+    u16 end = *(u16 *)(arg0 + 0x3a);
+    u16 step = *(u16 *)(arg0 + 0x40);
+    u16 limit = *(u16 *)(arg0 + 0x42);
+    s16 val = (s16)cur;
+    if (end < cur) {
+        if (arg1 == 0) {
+            val = (s16)(end - step + 1);
+        } else if (arg1 == 1) {
+            val = (s16)end;
+        }
+    }
+    if (end >= cur + step) {
+        if (arg1 == 0) {
+            val = (s16)(end - step + 1);
+        } else if (arg1 == 1) {
+            val = (s16)end;
+        }
+    }
+    if (val < 0) val = 0;
+    if (limit >= step) {
+        s16 max = (s16)(limit - step);
+        if (val > max) val = max;
+    }
+    *(u16 *)(arg0 + 0x3e) = val;
+    func_020c9610(arg0);
 }
 
