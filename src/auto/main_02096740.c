@@ -16,6 +16,30 @@ extern void func_0210da14(void *);
 extern void func_0210dba0(void *);
 extern void func_0210c5dc(void *);
 
+void func_02096740(u8 *p, int mode) {
+ u8 *base = *(u8 **)p;
+ u16 id;
+ u16 seen = 0;
+ if (!p) p = *(u8 **)(data_02160090 + 8);
+ while (p) {
+  u8 *obj = *(u8 **)(p + 0x14);
+  if (obj) {
+   if (*(u8 **)p == base && seen == 0) seen++;
+   else if (*(u8 **)p == base && seen == 1) {
+    id = **(u16 **)(obj + 8);
+    if (mode == 0) {
+     func_0209368c(id,5,13); func_0209368c(id,5,2); func_0209368c(id,5,124); func_0209368c(id,5,125);
+     func_0209368c(id,base[0x114]+6,6);
+    } else if (mode == 1) {
+     func_0209368c(id,0,13); func_0209368c(id,0,2); func_0209368c(id,0,124); func_0209368c(id,0,125);
+     func_0209368c(id,base[0x114]+13,6);
+    }
+   }
+  }
+  p = *(u8 **)(p+0x1c);
+ }
+}
+
 void func_020972cc(void) {
     Unk_0206011c **g = &data_0216011c;
     if (*g == NULL) {
