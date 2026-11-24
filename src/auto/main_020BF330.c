@@ -1,5 +1,10 @@
 /* 19 functions from 0x020BF330 to 0x020C0284 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { s16 v[10]; } Unk_020bfb44;
+extern const Unk_020bfb44 data_02143de0;
+extern void func_020c0018(s16, s16, s32, s32, s32, s32);
+extern void func_020a3bbc(s32);
+extern void func_021098ac(void *);
 typedef struct { s32 a,b; u16 c,pad; s32 d,e,f,g; s32 x,y,z,w,speed; u16 kind,h,i,j; s32 timer; u8 *owner; u16 state; u8 rest[10]; } Unk_020bfd78;
 extern u32 data_0216263c[3];
 #define RH_RANDOM(n) ((u16)((((data_0216263c[0] = data_0216263c[1] * data_0216263c[0] + data_0216263c[2]) >> 16) * (n)) >> 16))
