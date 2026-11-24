@@ -257,6 +257,29 @@ sum+=*coef++ * base[-32];
  }while(--count>0);
 }
 
+void func_02131f74(s16 *arg0, s16 *arg1, s16 *arg2) {
+s32 hi = 0x7fff; s32 lo = -0x8000; s32 n = 0x20;
+do { s16 *s = arg0; s32 acc = 0;
+acc += *arg1++ * *arg0++;
+acc += *arg1++ * s[96];
+acc += *arg1++ * s[128];
+acc += *arg1++ * s[-800];
+acc += *arg1++ * s[-768];
+acc += *arg1++ * s[-672];
+acc += *arg1++ * s[-640];
+acc += *arg1++ * s[-544];
+acc += *arg1++ * s[-512];
+acc += *arg1++ * s[-416];
+acc += *arg1++ * s[-384];
+acc += *arg1++ * s[-288];
+acc += *arg1++ * s[-256];
+acc += *arg1++ * s[-160];
+acc += *arg1++ * s[-128];
+acc += *arg1++ * s[-32];
+if (acc > 0x3fff800) { *arg2++ = hi; } else if (acc < (s32)0xfc000000) { *arg2++ = lo; } else { *arg2++ = acc >> 11; }
+} while (--n > 0);
+}
+
 void func_021320bc(s16 *p,s16 *coef,s16 *out) {
  int count=32;
  int sum;
