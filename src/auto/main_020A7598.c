@@ -30,3 +30,7 @@ void func_020a80d4(void) {
 void func_020a80d8(void) {
 }
 
+void func_020a83a8(void) {
+    func_020c3850(*(void **)(data_02160140 + 0x40));
+}
+
