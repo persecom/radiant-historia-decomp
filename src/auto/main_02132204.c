@@ -208,6 +208,15 @@ void func_02132a24(s32 *arg0, s32 arg1, s32 *arg2, s32 *arg3) {
     arg3[0] = (rem == 0) ? 0 : (arg2[0] + arg2[1]);
 }
 
+void func_02132a6c(u8 *arg0) {
+    s8 state = *(s8 *)(arg0 + 9);
+    if (state == 2) {
+        func_021327cc(arg0);
+    } else if (state == 1) {
+        func_0213278c(arg0);
+    }
+}
+
 u32 func_02132a94(u8 *arg0) {
     return *(u32 *)(arg0 + 0x24);
 }
@@ -244,6 +253,10 @@ void func_02132ae8(u8 *arg0, s32 arg1) {
 
 void func_02132af0(u32 *arg0) {
     arg0[3] = 1;
+}
+
+void func_02132afc(u8 *arg0, s32 arg1) {
+    *(u32 *)(arg0 + 0x38) = (arg1 != 0);
 }
 
 void func_02132b10(void **arg0, void **arg1) {
