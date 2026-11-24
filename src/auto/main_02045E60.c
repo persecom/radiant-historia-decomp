@@ -335,3 +335,31 @@ void func_02046b6c(void) {
     func_0210dae0(data_021600bc + 0x14);
 }
 
+void func_02046bcc(void) {
+u8 *node; u8 *outer; u8 *list; u8 *inner;
+if(!data_021600bc) return;
+while(*(u32 *)(data_02160204+0xe8)) func_02047490();
+if(!data_02160204[0x7a]) {
+func_0210da14(data_021600bc);func_0210db10(data_021600bc+0x14);
+}
+while((node=*(u8 **)(data_021600bc+136))!=0) { func_021168f8(data_021600bc+136,node); if(node) func_0210c5dc(node); }
+while((node=*(u8 **)(data_021600bc+148))!=0) { func_021168f8(data_021600bc+148,node); if(node) func_0210c5dc(node); }
+while((outer=*(u8 **)(data_021600bc+0xa0))!=0) {
+func_021168f8(data_021600bc+0xa0,outer);
+list=*(u8 **)outer;
+if(list) {
+while((inner=*(u8 **)list)!=0) {
+func_021168f8(list,inner); if(inner) func_0210c5dc(inner);
+}
+}
+if(*(u8 **)outer) {func_0210c5dc(*(u8 **)outer); *(u8 **)outer=0;}
+if(outer) func_0210c5dc(outer);
+}
+while((node=*(u8 **)(data_021600bc+172))!=0) { func_021168f8(data_021600bc+172,node); if(node) func_0210c5dc(node); }
+while((node=*(u8 **)(data_021600bc+184))!=0) { func_021168f8(data_021600bc+184,node); if(node) func_0210c5dc(node); }
+while((node=*(u8 **)(data_021600bc+196))!=0) { func_021168f8(data_021600bc+196,node); if(node) func_0210c5dc(node); }
+while((node=*(u8 **)(data_021600bc+220))!=0) { func_021168f8(data_021600bc+220,node); if(node) func_0210c5dc(node); }
+func_020789ec();
+if(data_021600bc) {func_0210c5dc(data_021600bc);data_021600bc=0;}
+}
+
