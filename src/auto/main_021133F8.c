@@ -270,6 +270,12 @@ void func_02113a60(s32 arg0) {
     data_0216bfc0[1] &= ~(1 << arg0);
 }
 
+void func_02113a80(void) {
+    data_0216bfc0[2] = 0;
+    data_0216bfc0[0] = 0;
+    data_0216bfc0[1] = 0;
+}
+
 void func_02113abc(s32 arg0, u32 arg1) {
     *(u32 *)(data_0216c440 + arg0 * 0x24) = arg1;
 }
@@ -292,6 +298,13 @@ void func_02113cfc(u8 * volatile *arg0, u8 arg1) {
     if (*arg0 != NULL) {
         (*arg0)[0x40] = arg1;
     }
+}
+
+void func_02113d3c(void *arg0) {
+    if (*(void **)arg0 == NULL) {
+        return;
+    }
+    func_02009540(*(u8 *)((u8 *)*(void **)arg0 + 0x3c));
 }
 
 extern void func_021142f0(void);
