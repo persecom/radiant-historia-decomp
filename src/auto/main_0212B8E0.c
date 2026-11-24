@@ -74,6 +74,28 @@ void func_0212be08(void *arg0, void *arg1) {
     func_021380bc(data_021739ac);
 }
 
+void func_0212be8c(s32 arg0, s8 *arg1, s32 arg2) {
+    s32 i;
+    s32 len;
+
+    for (i = 0; i < 0x20; i++) {
+        arg1[i] = arg0 % 10;
+        arg0 /= 10;
+        if (arg0 == 0) {
+            arg1[i] = 0;
+            break;
+        }
+    }
+    len = func_02016da4(data_0217398c);
+    if (len >= arg2 - 1) {
+        len = arg2 - 1;
+    }
+    for (i = 0; i < len; i++) {
+        arg1[i] = data_0217398c[len - 1 - i];
+    }
+    arg1[i] = 0;
+}
+
 void func_0212bfa4(void) {
     func_0212a9f4();
     func_0212bfb8();
