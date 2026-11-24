@@ -102,7 +102,7 @@ void func_020c7fe4(u8 *arg0, s32 arg1) {
 }
 
 void func_020c7ff4(u8 *arg0, s32 arg1) {
-    func_020c7f6c(arg0, arg1, *(s16 *)(arg0 + 0x3a));
+    ((void (*)(u8 *, s16, s32))func_020c7f6c)(arg0, *(s16 *)(arg0 + 0x3a), arg1);
 }
 
 s32 func_020c8124(void) {
