@@ -81,13 +81,11 @@ void func_02133864(void *arg0) {
 }
 
 s32 func_02133bf0(void *arg0) {
-    s32 ret = 0;
     if (arg0 != NULL) {
-        ret = *(s8 *)((u8 *)arg0 + 1);
-        return ret;
+        return *(s8 *)((u8 *)arg0 + 1);
     }
-    func_021336c0(ret, data_0215bb54);
-    return ret;
+    func_021336c0(0, data_0215bb54);
+    return 0;
 }
 
 extern u8 data_0215bbb8[64];
