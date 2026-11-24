@@ -133,7 +133,8 @@ s32 func_0210c1dc(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4) {
 s32 func_0210c28c(s32 *arg0, s32 *arg1) {
     s32 dx = arg0[0] - arg1[0];
     s32 dy = arg0[1] - arg1[1];
-    s64 sum = (s64)dx * dx + (s64)dy * dy;
+    s64 sum = (s64)dx * dx;
+    sum += (s64)dy * dy;
     *(volatile u16 *)0x040002b0 = 1;
     *(volatile u64 *)0x040002b8 = (u64)sum << 2;
     while (*(volatile u16 *)0x040002b0 & 0x8000) {
