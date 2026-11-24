@@ -105,3 +105,28 @@ void func_0208ce74(void) {
     }
     func_021098ac(&buf);
 }
+
+void func_0208cef8(s32 value) {
+ Unk14 a=data_021410d0;
+ Unk14 b=data_021412d8;
+ Unk14 c=data_021412c4;
+ s16 i=0;
+ func_020a3bbc(5);
+ a.data[1]=0; a.data[2]=0; a.data[3]=a.data[8]=16; a.data[4]=a.data[9]=14;
+ func_021098ac(&a);
+ a.data[1]=10; a.data[2]=0; a.data[3]=6; a.data[4]=a.data[9]=14; a.data[5]=(s16)a.data[5]+16; a.data[8]=90;
+ func_021098ac(&a);
+ func_020a3bbc(27);
+ func_021098ac(&b);
+ func_020a3bbc(28);
+ do {
+ c.data[1]=(value%10)*8;
+ c.data[5]=237-i*8;
+ func_021098ac(&c);
+ value/=10;
+ i++;
+ } while(value!=0);
+ c.data[1]=80; c.data[5]=245;
+ func_021098ac(&c);
+}
+
