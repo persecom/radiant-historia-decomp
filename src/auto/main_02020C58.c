@@ -18,7 +18,15 @@ extern void func_0211568c(s32, u32);
 extern u8 data_02145fc8[];
 extern void *data_02155c80;
 extern s32 data_02160050;
+extern u32 data_02160054[];
+extern u8 data_02160064[];
+extern u32 *data_02160078;
+extern u32 *data_021626f0;
+extern void func_020213c4(void *, s32, u32);
+extern void func_0210da14(void *);
 void func_020211f0(void *arg0, s32 arg1);
+void func_0202147c(s32 arg0);
+void func_02021514(void);
 void func_0202119c(void) {
 }
 
