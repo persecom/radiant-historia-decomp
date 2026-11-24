@@ -120,3 +120,38 @@ u32 func_0202e98c(u32 arg0, u32 arg1) {
         return 0;
     }
 }
+
+u32 func_0202ea28(u32 arg0, u32 arg1) {
+    switch (arg0) {
+    case 0: {
+        u32 mask = 0;
+        mask |= 1 << arg1;
+        return mask;
+    }
+    case 1: {
+        u32 mask = 0;
+        mask |= 1 << arg1;
+        mask |= 1 << (arg1 + 1);
+        return mask;
+    }
+    case 2: {
+        u32 mask = 0;
+        mask |= 1 << arg1;
+        mask |= 1 << (arg1 - 3);
+        return mask;
+    }
+    case 3: {
+        u32 mask = 0;
+        mask |= 1 << arg1;
+        mask |= 1 << (arg1 + 1);
+        mask |= 1 << (arg1 - 3);
+        mask |= 1 << (arg1 - 2);
+        return mask;
+    }
+    case 4:
+        return 0x1ff;
+    default:
+        return 0;
+    }
+}
+
