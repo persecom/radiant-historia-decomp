@@ -96,6 +96,12 @@ void func_0212be8c(s32 arg0, s8 *arg1, s32 arg2) {
     arg1[i] = 0;
 }
 
+void func_0212bf38(s32 arg0, s32 arg1, s8 *arg2, s32 arg3) {
+    func_0212be8c(arg0, arg2, arg3);
+    func_02132c2c(arg2, arg3, data_02156b70, arg3 - func_02016da4(arg2) - 1);
+    func_0212be8c(arg1, arg2 + func_02016da4(arg2), 4 - func_02016da4(arg2));
+}
+
 void func_0212bfa4(void) {
     func_0212a9f4();
     func_0212bfb8();
