@@ -185,6 +185,18 @@ void func_02009580(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     func_020097f0(0xc, arg0, arg1, arg2, arg3);
 }
 
+extern void func_02009fac(s32);
+void func_020095a8(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
+    s32 i;
+    u32 mask = arg2;
+    for (i = 0; i < 8 && mask != 0; i++, mask >>= 1) {
+        if (mask & 1) {
+            func_02009fac(i);
+        }
+    }
+    func_020097f0(0xd, arg0, arg1, arg2, arg3);
+}
+
 void func_0200964c(u32 arg0, u32 arg1) {
     func_020097f0(0x1a, arg0, arg1, 0, 0);
 }
