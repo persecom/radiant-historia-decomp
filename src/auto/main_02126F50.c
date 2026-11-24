@@ -283,6 +283,14 @@ void *func_02127dec(void *arg0, s32 arg1) {
     return ret;
 }
 
+void *func_02127e18(void *arg0, s32 arg1) {
+    void *ret = func_02127ad0((void *)1, arg0, arg1);
+    if (ret == NULL) {
+        return NULL;
+    }
+    return ret;
+}
+
 extern void func_0212a9f4(void);
 extern void func_02127e74(void *);
 extern void func_0212a9f8(void);
