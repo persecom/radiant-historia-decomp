@@ -217,6 +217,19 @@ void func_02133578(void *arg0, void *arg1) {
     }
 }
 
+s32 func_0213359c(void *arg0) {
+    void *p = func_02132dbc(arg0);
+    s32 (*cb)(void *, s32, s32, s32);
+    if (p == NULL) {
+        return 0;
+    }
+    cb = *(s32 (**)(void *, s32, s32, s32))((u8 *)p + 0x60);
+    if (cb == NULL) {
+        return 0;
+    }
+    return cb(NULL, 0x64, 0, 0);
+}
+
 void func_02133688(void) {
     func_0213807c();
 }
