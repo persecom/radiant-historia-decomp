@@ -31,7 +31,7 @@ extern void func_02139804(void *);
 extern void func_021398d0(void *);
 extern void func_0213999c(u8 *, u8 *);
 extern char data_0215cc64[];
-extern void *data_0215cc6c[];
+extern void (*data_0215cc6c[])(void *, s32, void *);
 extern s32 func_020138b8(const void *, const void *, u32);
 extern u32 func_02126c90(void *);
 extern void func_02130b48(s32, s32, void *);
@@ -232,6 +232,21 @@ void func_02139784(u8 *arg0) {
     func_02126c0c();
 }
 
+void func_0213999c(u8 *arg0, u8 *arg1) {
+    if (*(s32 *)(arg0 + 0x9c) == 1) {
+        s32 i;
+        for (i = 0; i < *(s32 *)(arg0 + 0x8c); i++) {
+            u32 v = func_02126c90(*(void **)(arg1 + 8));
+            void *obj = *(void **)arg1;
+            (*(void (**)(void *, s32, u32))(*(u8 **)obj + 0x38))(obj, i, *(s32 *)(arg0 + 0xcc) + ((s32 *)(arg0 + 0xc8))[i] + v);
+        }
+    } else {
+        u32 v = func_02126c90(*(void **)(arg1 + 8));
+        void *obj = *(void **)arg1;
+        (*(void (**)(void *, s32))(*(u8 **)obj + 0x30))(obj, *(s32 *)(arg0 + 0xcc) + v);
+    }
+}
+
 s32 func_02139a34(u8 *arg0) {
     s32 i;
     s32 ret = 0;
@@ -278,13 +293,17 @@ s32 func_02139ab8(u8 *arg0, s32 arg1, u16 *arg2) {
 
 void func_02139b34(u8 *arg0, s32 arg1, s32 arg2, void *arg3) {
     s32 val = (*(s32 *)(arg0 + arg2 * 4 + 4) - 0x40) & 0x3ff;
-    u8 *p = arg0 + 0x14 + (arg2 << 11);
-    s32 c = *(s32 *)(arg0 + 0xc);
+    u8 *p;
+    u8 *dst;
+    s32 c;
     *(s32 *)(arg0 + arg2 * 4 + 4) = val;
-    if ((arg1 & 0x1f) || (c & 0x1f)) {
-        func_02130b48(arg1, c, p + val * 2);
+    p = arg0 + 0x14 + (arg2 << 11);
+    dst = p + val * 2;
+    c = *(s32 *)(arg0 + 0xc);
+    if ((arg1 & 0x1f) != 0 || (c & 0x1f) != 0) {
+        func_02130b48(arg1, c, dst);
     }
-    (*(void (**)(void *, s32, void *))data_0215cc6c[val >> 6])(p + val * 2, *(u32 *)(arg0 + 0x10), arg3);
+    (*(void (**)(void *, s32, void *))data_0215cc6c[*(s32 *)(arg0 + arg2 * 4 + 4) >> 6])(p + *(s32 *)(arg0 + arg2 * 4 + 4) * 2, *(u32 *)(arg0 + 0x10), arg3);
 }
 
 void func_02139bbc(u32 arg0, u32 arg1, u32 arg2) {
