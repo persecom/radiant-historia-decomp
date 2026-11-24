@@ -131,28 +131,25 @@ void func_0211470c(u8 *arg0) {
     }
 }
 
-void func_02114728(u8 *arg0, s32 arg1) {
-    u8 ch;
+void func_02114728(UnkStruct_02114728 *arg0, s32 arg1) {
     s32 i;
-    *(s32 *)(arg0 + 0x44) = arg1;
-    for (i = 0; i < *(s32 *)(arg0 + 0x50); i++) {
-        s32 val;
-        ch = (arg0 + i)[0x54];
-        val = func_0200a108(*(s32 *)(arg0 + 0x44) + *(s32 *)(data_0216c8f4 + ch * 8 + 4));
+    arg0->unk_44 = arg1;
+    for (i = 0; i < arg0->unk_50; i++) {
+        u8 ch = arg0->unk_54[i];
+        s32 val = func_0200a108(arg0->unk_44 + *(s32 *)(data_0216c8f4 + ch * 8 + 4));
         func_0200968c(1u << ch, val & 0xff, val >> 8);
     }
 }
 
-void func_02114794(u8 *arg0, s32 arg1, s32 arg2) {
-    u8 ch;
+void func_02114794(UnkStruct_02114728 *arg0, s32 arg1, s32 arg2) {
     s32 val;
-    if (arg1 > *(s32 *)(arg0 + 0x50) - 1) {
+    if (arg1 > arg0->unk_50 - 1) {
         return;
     }
-    ch = (arg0 + arg1)[0x54];
-    *(s32 *)(data_0216c8f8 + ch * 8) = arg2;
-    val = func_0200a108(*(s32 *)(arg0 + 0x44) + arg2);
-    func_0200968c(1u << ch, val & 0xff, val >> 8);
+    arg1 = arg0->unk_54[arg1];
+    *(s32 *)(data_0216c8f8 + arg1 * 8) = arg2;
+    val = func_0200a108(arg0->unk_44 + arg2);
+    func_0200968c(1u << arg1, val & 0xff, val >> 8);
 }
 
 void func_021147e8(u8 *arg0, s32 arg1, s32 arg2) {
