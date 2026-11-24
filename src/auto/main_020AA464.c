@@ -121,6 +121,20 @@ void func_020aa76c(void **arg0) {
     }
 }
 
+extern u8 *data_021600e4;
+extern s32 func_020bdd40(void);
+extern u16 *func_02103c6c(void *, s32);
+extern void func_020aa894(void *);
+void *func_020aa7fc(void **arg0) {
+    if (arg0 == NULL) {
+        return NULL;
+    }
+    if (*arg0 == NULL) {
+        return NULL;
+    }
+    return *arg0;
+}
+
 extern void func_020ade8c(s32);
 void func_020aad6c(void) {
     func_020ade8c(1);
