@@ -138,3 +138,15 @@ void *func_0201388c(const void *src, s32 val, u32 n) {
     return 0;
 }
 
+s32 func_020138b8(const void *src1, const void *src2, u32 n) {
+    const u8 *p1 = (const u8 *)src1;
+    const u8 *p2 = (const u8 *)src2;
+    while (n) {
+        if (*p1++ != *p2++) {
+            return *--p1 < *--p2 ? -1 : 1;
+        }
+        n--;
+    }
+    return 0;
+}
+
