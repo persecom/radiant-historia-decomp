@@ -26,7 +26,10 @@ extern void func_0200baa4(void *);
 extern void func_02126998(void *, s32);
 extern void func_02015a10(void *, const char *, u32, u32);
 static inline s32 func_02125e20_check(u8 *p) {
-    return (*(u32 *)(p + 0x28) & 0x10) != 0;
+    if (*(u32 *)(p + 0x28) & 0x10) {
+        return 1;
+    }
+    return 0;
 }
 
 extern void func_02003ab8(void);
