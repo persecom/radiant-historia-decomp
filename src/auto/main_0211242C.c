@@ -95,6 +95,31 @@ void func_021126fc(u8 *arg0, u32 arg1) {
     obj[0x50] = 1;
 }
 
+void func_021127fc(u8 *arg0) {
+ u8 *p;
+ s32 two=2, zero=0, eight=8, ten=10;
+ p=func_020c9b24(*(void **)(arg0+0x30),4,two);
+ *(u16 *)(p+0x32)=zero;
+ *(u16 *)(p+0x34)=zero;
+ *(u16 *)(p+0x36)=eight;
+ *(u16 *)(p+0x38)=ten;
+ *(u16 *)(p+0x3e)=eight;
+ *(u16 *)(p+0x40)=ten;
+ p[0x43]++;
+ (*(void (**)(u8 *,s32))(p+0x10))(p,0xb6);
+ (*(void (**)(u8 *,s32))(p+0x14))(p,two);
+ p=func_020c9b24(*(void **)(arg0+0x30),5,1);
+ *(u16 *)(p+0x32)=0x50;
+ *(u16 *)(p+0x34)=zero;
+ *(u16 *)(p+0x36)=eight;
+ *(u16 *)(p+0x38)=ten;
+ *(u16 *)(p+0x3e)=eight;
+ *(u16 *)(p+0x40)=ten;
+ p[0x43]++;
+ (*(void (**)(u8 *,s32))(p+0x10))(p,0xbe);
+ (*(void (**)(u8 *,s32))(p+0x14))(p,two);
+}
+
 s32 func_021128c4(void) {
     func_02112110();
     return 0;
