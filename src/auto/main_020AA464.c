@@ -23,7 +23,7 @@ extern void **data_021601d8;
 extern void *data_021601dc;
 extern void *data_02155c3c;
 extern void *func_020a5f14(u8 *, u16);
-extern s32 func_0201fb1c(s32, s32);
+extern s32 _s32_div_f(s32, s32);
 
 extern void func_0210c5dc(void *);
 extern u8 data_021500a8[32];
@@ -299,7 +299,7 @@ s32 func_020aaa20(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
         return arg1;
     } else {
         s32 delta = arg1 - arg0;
-        ret = func_0201fb1c(delta * arg3, arg2);
+        ret = _s32_div_f(delta * arg3, arg2);
         ret += arg0;
         return ret;
     }
@@ -414,7 +414,7 @@ s32 func_020aad7c(void) {
 }
 
 extern void *func_020a5f14(u8 *, u16);
-extern s32 func_0201fb1c(s32, s32);
+extern s32 _s32_div_f(s32, s32);
 void func_020aadd8(void) {
     func_020ade8c(1);
     func_020ade8c(2);

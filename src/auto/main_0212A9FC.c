@@ -46,7 +46,7 @@ s32 func_0212b550(u8 *arg0, s32 arg1, u16 *arg2) {
     return -1;
 }
 
-extern s32 func_0201fb1c(s32);
+extern s32 _s32_div_f(s32);
 s32 func_0212b5ac(u8 *arg0, s32 arg1, u16 *arg2, s8 *arg3, s8 *arg4, s8 *arg5, s8 *arg6, s32 *arg7, s32 *arg8, s32 *arg9) {
     u16 v0;
     u32 v2;
@@ -71,7 +71,7 @@ s32 func_0212b5ac(u8 *arg0, s32 arg1, u16 *arg2, s8 *arg3, s8 *arg4, s8 *arg5, s
     if (*arg4 == 0) {
         return 0;
     }
-    *arg9 = func_0201fb1c((*arg5 - 2) << 3);
+    *arg9 = _s32_div_f((*arg5 - 2) << 3);
     return 0;
 }
 

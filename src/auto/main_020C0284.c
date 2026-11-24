@@ -7,7 +7,7 @@ typedef struct {
 
 extern const Unk20 data_02143dcc;
 extern const Unk20 data_02143e1c;
-s32 func_0201fb1c(s32,s32);
+s32 _s32_div_f(s32,s32);
 extern u8 *data_02160a6c;
 extern void func_020a3bbc(s32);
 extern void func_021098ac(void *);
@@ -27,7 +27,7 @@ Unk20 buf=data_02143e1c;
 s32 percent;
 s32 width;
 if(!arg1) return;
-percent=func_0201fb1c(*(s32 *)(*(u8 **)(arg0+0x118)+4)*100,*(s32 *)(*(u8 **)(arg0+0x118)+8));
+percent=_s32_div_f(*(s32 *)(*(u8 **)(arg0+0x118)+4)*100,*(s32 *)(*(u8 **)(arg0+0x118)+8));
 *(volatile u32 *)0x40004a4=0x1f00c0;
 func_020a3bbc(0x20);
 buf.unk[1]=0;buf.unk[2]=0;buf.unk[3]=0xc2;buf.unk[4]=5;

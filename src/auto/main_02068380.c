@@ -5,7 +5,7 @@
 void func_02068380(u8 *arg0)
 {
     extern void *func_02067698(u8 *, u16);
-    extern s32 func_0201fb1c(s32, s32);
+    extern s32 _s32_div_f(s32, s32);
     extern u8 data_0213fd04[];
     extern u8 data_0213a394[];
     extern u32 data_0216263c[3];
@@ -191,7 +191,7 @@ void func_02068380(u8 *arg0)
                     n = random - 14;
                     magnitude = n >= 0 ? n : -n;
 
-                    offset = func_0201fb1c(n, magnitude);
+                    offset = _s32_div_f(n, magnitude);
 
                     p->x = (n + offset * 8) * 0x1000;
 
@@ -205,7 +205,7 @@ void func_02068380(u8 *arg0)
                     n = random - 10;
                     magnitude = n >= 0 ? n : -n;
 
-                    offset = func_0201fb1c(n, magnitude);
+                    offset = _s32_div_f(n, magnitude);
 
                     p->y =
                         ((s16 *)data_0213a394)

@@ -23,7 +23,7 @@ void func_0206ed38(void)
     extern u32 func_02075c5c(u32 *, u32);
     extern void func_02075c84(void *, void *);
     extern void func_0210c5dc(void *);
-    extern s32 func_0201fb1c(s32, s32);
+    extern s32 _s32_div_f(s32, s32);
     extern s32 func_0201f884(s32);
     extern s32 func_02020888(s32, s32);
     extern s32 func_020201f4(s32, s32);
@@ -167,7 +167,7 @@ void func_0206ed38(void)
 #define HALF_POS(p) do { (p)->x = (p)->fx / 2; (p)->y = (p)->fy / 2; } while (0)
 #define FADE(p,n) do { if ((p)->alpha >= (n)) (p)->alpha -= (n); else (p)->active = 0; } while (0)
 #define END_IF(x) do { if (x) e->finished = one; } while (0)
-#define DEC_TIMER(p,d) do { (p)->timer -= (u16)func_0201fb1c((p)->timer,(d)); } while (0)
+#define DEC_TIMER(p,d) do { (p)->timer -= (u16)_s32_div_f((p)->timer,(d)); } while (0)
 #define CORNER(p,i) do { if ((i)==0 || (i)==3) (p)->x += 0x1000; if ((u32)((i)-2)<=1) (p)->y += 0x1000; } while (0)
 #define ORBIT(p,a,k) do { (p)->x = (s16)func_02075c24(a)*(s16)(k); (p)->z = (s16)func_02075c3c(a)*(s16)(k); } while (0)
 
@@ -413,7 +413,7 @@ void func_0206ed38(void)
             {s32 offset=e->param;if(e->type==0x87)offset+=50;else offset+=24;e->y+=FX(offset);}
             if(e->frame==0){p=FIND(1);if(p){p->active=one;p->x=0x18000;p->z+=0x10000;}}
             if(e->frame==1){p=FIND(0);if(p){p->active=one;p->x=0x2e000;p->z+=0x10000;}}
-            for(i=0;i<2;i++){p=FIND(i);if(p){p->x+=6*func_0201fb1c(0x1000,e->timer/6);if(i==0)p->sx++;}}
+            for(i=0;i<2;i++){p=FIND(i);if(p){p->x+=6*_s32_div_f(0x1000,e->timer/6);if(i==0)p->sx++;}}
             e->timer++; END_IF(e->timer>16);
             if(e->timer>2){p=FIND(1);if(p){p->sy-=(s16)(p->sy/2);if(p->sy<2)p->active=0;}}
             if(e->timer>5){p=FIND(0);if(p){p->sy-=(s16)(p->sy/2);if(p->sy<2)p->active=0;}}
@@ -425,7 +425,7 @@ void func_0206ed38(void)
             e->y+=FX(e->param+24);
             if(e->state==0){for(i=0;i<2;i++){p=FIND(i);if(p){p->x+=FX((2-i)*8+8);p->z+=0x8000;p->active=one;}}e->state=one;}
             if(e->state==1){
-                for(i=0;i<2;i++){p=FIND(i);if(p)p->x+=func_0201fb1c(0x1000,e->timer/3)*((2-i)*4);}
+                for(i=0;i<2;i++){p=FIND(i);if(p)p->x+=_s32_div_f(0x1000,e->timer/3)*((2-i)*4);}
                 if(e->timer>5){p=FIND(0);if(p){p->sy=p->sy>=2?p->sy-2:0;p->sx=p->sx>=2?p->sx-2:0;}p=FIND(1);goto shrink69;}
                 else if(e->timer>3){p=FIND(0);if(p){p->sx+=4;if(p->sy)p->sy--;}p=FIND(1);
                 shrink69: if(p){p->sy-=(s16)(p->sy/3);if(p->sy<3)p->sy=0;}}
@@ -439,7 +439,7 @@ void func_0206ed38(void)
             u8 i;
             e->y+=FX(e->param+24);
             if(e->state==0){for(i=0;i<2;i++){p=FIND(i);if(p){p->x+=FX((2-i)*2+16);p->z+=0x8000;p->active=one;if(i){p->sx=36;p->sy=82;}else p->sy=30;}}e->state=one;}
-            if(e->state==1){for(i=0;i<2;i++){p=FIND(i);if(p)p->x+=func_0201fb1c(0x1000,e->timer/3)*((2-i)*4);}if(e->frame){p=FIND(0);if(p){p->sx+=5;p->sy-=(s16)(p->sy/2);if(p->sy<2)p->sy=0;}p=FIND(1);if(p){p->sy/=2;p->sx-=(s16)(p->sx/3);if(p->sx<3)p->active=0;}}}
+            if(e->state==1){for(i=0;i<2;i++){p=FIND(i);if(p)p->x+=_s32_div_f(0x1000,e->timer/3)*((2-i)*4);}if(e->frame){p=FIND(0);if(p){p->sx+=5;p->sy-=(s16)(p->sy/2);if(p->sy<2)p->sy=0;}p=FIND(1);if(p){p->sy/=2;p->sx-=(s16)(p->sx/3);if(p->sx<3)p->active=0;}}}
             END_IF(e->frame>16);break;
         }
         /* 0x1960 */
@@ -464,7 +464,7 @@ void func_0206ed38(void)
             u8 i;
             if(e->state==0){{ const u16 *src=(const u16 *)&t0980; u16 *dst=(u16 *)&copy0980; u32 n=sizeof(t0980)/4; if(sizeof(t0980)>=16){do{dst[1]=src[1];*dst=*src;src+=2;dst+=2;}while(--n);}else copy0980=t0980; }for(i=0;i<4;i++){p=FIND(i);if(p){p->fx=0;p->fy=0;p->z=FX(copy0980.v[i]);p->active=one;}}e->timer=0x1000;e->state=one;}
             if(e->state==1){
-                {u16 decrement;if(e->param==0)decrement=(u16)(e->timer/8);else decrement=(u16)func_0201fb1c(e->timer,e->param);e->timer-=decrement;}
+                {u16 decrement;if(e->param==0)decrement=(u16)(e->timer/8);else decrement=(u16)_s32_div_f(e->timer,e->param);e->timer-=decrement;}
                 for(i=0;i<4;i++){p=FIND(i);if(!p)continue;p->fx=(0x1000-e->timer)*34;p->fy=(0x1000-e->timer)*18;if(i==1)p->fx*=-1;else if(i==2)p->fy*=-1;else if(i==3){p->fx*=-1;p->fy*=-1;}HALF_POS(p);if(e->timer>32){if(i==2||i==3)p->y+=0x1000;if(i==1||i==3)p->x+=0x1000;}SCALE8(p);}
                 for(i=4;i<12;i++){
                     p=FIND(i);if(!p)continue;
@@ -509,7 +509,7 @@ void func_0206ed38(void)
                 {s32 v=RAND(6)-3;p->timer=ABS(v);} \
             }else{ \
                 s32 v=RAND(4)-1;p->y+=0x1000+ABS(v)*0x800; \
-                v=RAND(4)-2;p->fx-=func_0201fb1c(p->fx,p->timer+6+v);p->fy+=p->fy/40; \
+                v=RAND(4)-2;p->fx-=_s32_div_f(p->fx,p->timer+6+v);p->fy+=p->fy/40; \
                 SCALE(p);if(p->sy>32)p->sy=32;if(p->sx<2){p->active=0;p->phase++;} \
             } \
         } \
@@ -576,7 +576,7 @@ void func_0206ed38(void)
                     p->x-=x;p->y-=(ratio*0x2000)/100;
                     p->dx=p->dx*94/100;
                     p->fx=((ratio-50)*0x8000)/50;p->sx=p->fx>>12;
-                    if(p->dx<=0x800 && p->dx>=-0x800){s32 n=RAND(4)-2; s32 sign=func_0201fb1c(n,ABS(n));p->dx=FX(n+sign*2+1);p->dy=p->dx;}
+                    if(p->dx<=0x800 && p->dx>=-0x800){s32 n=RAND(4)-2; s32 sign=_s32_div_f(n,ABS(n));p->dx=FX(n+sign*2+1);p->dy=p->dx;}
                     break;}
                 case 1:
                     p->x-=FX(RAND(6)-3);p->y-=FX(RAND(2));if(RAND(12)==0){if(p->flip==0)p->flip=8;else p->flip=0;}break;
@@ -616,8 +616,8 @@ void func_0206ed38(void)
                     p=FIND(i);
                     if(p->phase==0){
                         s32 x=p->fx,y=p->fy;
-                        s32 dx=(func_0201fb1c(x,ABS(x))*0x7000-x)*10/100;
-                        s32 dy=(func_0201fb1c(y,ABS(y))*0x7000-y)*10/100;
+                        s32 dx=(_s32_div_f(x,ABS(x))*0x7000-x)*10/100;
+                        s32 dy=(_s32_div_f(y,ABS(y))*0x7000-y)*10/100;
                         p->fx+=dx;p->fy+=dy;
                         /* Original branches accept a small X OR a small Y delta. */
                         if((dx<128 && dx>-128)||(dy<128 && dy>-128))p->phase=one;
@@ -935,7 +935,7 @@ end_frame32_b:
             for(i=0;i<4;i++){
                 p=FIND(i);
                 if(p->active){if(p->timer>=2)p->active=0;else p->alpha-=10;p->timer++;}
-                else if(RAND(16)==0){p->active=one;if(i!=3){s32 x=RAND(16)-8;p->x=FX(x+func_0201fb1c(x,ABS(x))*8);p->y=FX(RAND(8));}else p->y=FX(RAND(8)+10);p->z=-0x10000;p->timer=0;p->alpha=31;if(RAND(2)==0)p->sx*=-1;if(RAND(2)==0)p->sy*=-1;}
+                else if(RAND(16)==0){p->active=one;if(i!=3){s32 x=RAND(16)-8;p->x=FX(x+_s32_div_f(x,ABS(x))*8);p->y=FX(RAND(8));}else p->y=FX(RAND(8)+10);p->z=-0x10000;p->timer=0;p->alpha=31;if(RAND(2)==0)p->sx*=-1;if(RAND(2)==0)p->sy*=-1;}
             }
             for(i=4;i<8;i++){p=FIND(i);p->active=p->active?0:one;}
             END_IF(e->frame>64);break;

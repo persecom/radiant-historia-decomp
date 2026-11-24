@@ -431,7 +431,7 @@ void func_021285c4(void) {
 
 extern void func_021286c0(Unk_02128030 *, s32);
 extern s32 func_0212d63c(void *);
-extern s32 func_0201fb1c(s32, s32);
+extern s32 _s32_div_f(s32, s32);
 extern u8 data_0215698c[44];
 void func_0212869c(void *arg0, void *arg1) {
     func_0212a9f4();
@@ -465,7 +465,7 @@ void func_021286c0(Unk_02128030 *arg0, s32 arg1) {
         if (span <= 0) {
             *(s32 *)((u8 *)arg0 + 0xc0) = 0;
         } else {
-            s32 q = func_0201fb1c(sum - ra * 2048, span);
+            s32 q = _s32_div_f(sum - ra * 2048, span);
             *(s32 *)((u8 *)arg0 + 0xc0) = span * q + ra * 2048;
         }
     }

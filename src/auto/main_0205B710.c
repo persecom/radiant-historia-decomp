@@ -62,10 +62,10 @@ return;
 a = arg0[12]; b = arg0[14];
 aa = a; if (a < 0) aa = -a;
 bb = b; if (b < 0) bb = -b;
-if (bb < aa) t = func_0201fb1c(arg0[9] - arg0[0], a);
-else t = func_0201fb1c(arg0[11] - arg0[2], b);
+if (bb < aa) t = _s32_div_f(arg0[9] - arg0[0], a);
+else t = _s32_div_f(arg0[11] - arg0[2], b);
 if (t < 0) t = -t;
-arg0[13] = func_0201fb1c(dy, t);
+arg0[13] = _s32_div_f(dy, t);
 if (t <= 8) arg0[13] = dy / 8;
 }
 

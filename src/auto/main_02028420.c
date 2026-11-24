@@ -10,7 +10,7 @@ extern u8 *data_02160a6c;
 extern u8 *data_0216007c;
 extern u32 data_0216263c[3];
 extern char data_02146164[];
-extern s32 func_0201fb1c(s32, s32);
+extern s32 _s32_div_f(s32, s32);
 s32 func_02028420(u8 *arg0, u8 *arg1) {
     u8 *src = arg1;
     u8 *self = arg0;
@@ -235,7 +235,7 @@ s32 func_02028420(u8 *arg0, u8 *arg1) {
             do {
                 u8 *info = *(u8 **)(node + 0x118);
                 if (*(u32 *)(info + 0x70) != 0) {
-                    s32 pct = func_0201fb1c(*(s32 *)(info + 4) * 100, *(s32 *)(info + 8));
+                    s32 pct = _s32_div_f(*(s32 *)(info + 4) * 100, *(s32 *)(info + 8));
                     if (v1 <= pct && pct <= v2) {
                         *(u8 **)(*((u8 **)((u8 *)&data_0216007c + 4)) + 0x38) = node;
                         return (s32)node;
@@ -250,7 +250,7 @@ s32 func_02028420(u8 *arg0, u8 *arg1) {
             do {
                 u8 *info = *(u8 **)(node + 0x118);
                 if (*(u32 *)(info + 0x70) != 0) {
-                    s32 pct = func_0201fb1c(*(s32 *)(info + 4) * 100, *(s32 *)(info + 8));
+                    s32 pct = _s32_div_f(*(s32 *)(info + 4) * 100, *(s32 *)(info + 8));
                     if (v1 <= pct && pct <= v2) {
                         *(u8 **)(*((u8 **)((u8 *)&data_0216007c + 4)) + 0x3c) = node;
                         return (s32)node;
@@ -364,7 +364,7 @@ s32 func_02028420(u8 *arg0, u8 *arg1) {
             do {
                 u8 *info = *(u8 **)(node + 0x118);
                 if (*(u32 *)(info + 0x70) != 0 && self != node) {
-                    s32 pct = func_0201fb1c(*(s32 *)(info + 4) * 100, *(s32 *)(info + 8));
+                    s32 pct = _s32_div_f(*(s32 *)(info + 4) * 100, *(s32 *)(info + 8));
                     if (v1 <= pct && pct <= v2) {
                         return (s32)node;
                     }

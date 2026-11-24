@@ -278,7 +278,7 @@ void func_0212a4a4(u8 *arg0, s32 arg1) {
     }
 }
 
-extern u64 func_0201fb1c(s32, s32);
+extern u64 _s32_div_f(s32, s32);
 
 s32 func_0212a4b8(s32 *arg0) {
     return arg0[1];
@@ -287,11 +287,11 @@ s32 func_0212a4b8(s32 *arg0) {
 void func_0212a4c0(u8 *arg0, s32 arg1, s32 arg2) {
     if (*(s16 *)(arg0 + 0x98) == 0) {
         *(s32 *)(arg0 + 0x48) = arg1;
-        *(s32 *)(arg0 + 0x4c) = func_0201fb1c(arg2, *(s8 *)(arg0 + 0xf));
+        *(s32 *)(arg0 + 0x4c) = _s32_div_f(arg2, *(s8 *)(arg0 + 0xf));
         *(s32 *)(arg0 + 0x74) = 0;
     } else {
         *(s32 *)(arg0 + 0x48) = arg1;
-        *(s32 *)(arg0 + 0x4c) = func_0201fb1c(arg2, (*(s8 *)(arg0 + 0xd) / 8) * *(s8 *)(arg0 + 0xe));
+        *(s32 *)(arg0 + 0x4c) = _s32_div_f(arg2, (*(s8 *)(arg0 + 0xd) / 8) * *(s8 *)(arg0 + 0xe));
         *(s32 *)(arg0 + 0x74) = 0;
     }
     *(s32 *)(arg0 + 0x90) = 0;
@@ -300,7 +300,7 @@ void func_0212a4c0(u8 *arg0, s32 arg1, s32 arg2) {
     *(s32 *)(arg0 + 0xe4) = 0;
 }
 
-extern u64 func_0201fb1c(s32, s32);
+extern u64 _s32_div_f(s32, s32);
 extern void func_0212984c(void *);
 extern void func_02129878(void *);
 void func_0212a528(u8 *arg0) {
@@ -412,11 +412,11 @@ void func_0212a788(u8 *self) {
     s32 f44 = *(s32 *)(self + 0x44);
     s32 r4, n, q1, q2, c;
 
-    r4 = (f58 - 1) - (s32)(func_0201fb1c(a, f58) >> 32);
+    r4 = (f58 - 1) - (s32)(_s32_div_f(a, f58) >> 32);
     n = (s32)func_0212988c(*(void **)(self + 0x8));
     c = *(s32 *)(self + 0x50);
-    q1 = (s32)func_0201fb1c(n * f58, c);
-    q2 = (s32)func_0201fb1c(a, f58);
+    q1 = (s32)_s32_div_f(n * f58, c);
+    q2 = (s32)_s32_div_f(a, f58);
     if (q2 * c <= n) {
         q1 -= r4;
     }

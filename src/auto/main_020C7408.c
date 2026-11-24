@@ -9,7 +9,7 @@ extern void func_020c7630(void *);
 extern void func_020c7f6c(void *, s32, s16);
 extern void func_020f4f04(void *);
 extern void func_020f4ea4(u32, s32);
-extern s32 func_0201fb1c(s32, s32);
+extern s32 _s32_div_f(s32, s32);
 extern void func_020c6dbc(void);
 extern void func_020c992c(void);
 extern void *func_0210c594(s32, void *);

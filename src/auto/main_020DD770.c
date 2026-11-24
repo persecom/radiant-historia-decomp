@@ -26,7 +26,7 @@ extern UnkStruct_02160a68 data_02160a68;
 extern void *data_02160a70;
 extern const s16 data_0213a394[];
 extern void func_020de4ec(void);
-extern s32 func_0201fb1c(s32, s32);
+extern s32 _s32_div_f(s32, s32);
 extern void func_020dd810(void *, s32, s32);
 extern void func_021167f0(void *, void *);
 void *func_020de33c(void *arg0, u16 arg1, u8 arg2);
@@ -346,7 +346,7 @@ void func_020de0a8(u8 *arg0) {
     if (arg0 == NULL || (r5 = *(u8 **)(arg0 + 0x118)) == NULL) {
         return;
     }
-    pct = (s16)func_0201fb1c(*(s32 *)(r5 + 0x4) * 100, *(s32 *)(r5 + 0x8));
+    pct = (s16)_s32_div_f(*(s32 *)(r5 + 0x4) * 100, *(s32 *)(r5 + 0x8));
     if (*(s32 *)(r5 + 0x70) == 0) {
         return;
     }

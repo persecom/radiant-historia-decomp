@@ -13,7 +13,7 @@ extern void func_020d2bf0(u8 *, s32 *, s32, s32);
 extern u8 *data_02160a6c;
 extern u8 *data_02160a74;
 extern void func_02025f84(u8 *, s32);
-extern s32 func_0201fb1c(s32, s32);
+extern s32 _s32_div_f(s32, s32);
 extern void func_020d907c(u32);
 extern void func_020d9090(void);
 extern u8 *data_02160260;
@@ -118,9 +118,9 @@ void func_02060604(void) {
     }
 
     node = data_02160a74;
-    *(s32 *)(node + 0x1e8) = func_0201fb1c(x, n);
-    *(s32 *)(node + 0x1ec) = func_0201fb1c(y, n) + 0x8000;
-    *(s32 *)(node + 0x1f0) = func_0201fb1c(z, n);
+    *(s32 *)(node + 0x1e8) = _s32_div_f(x, n);
+    *(s32 *)(node + 0x1ec) = _s32_div_f(y, n) + 0x8000;
+    *(s32 *)(node + 0x1f0) = _s32_div_f(z, n);
     func_020d907c((u32)(data_02160a74 + 0x1e8));
     func_020d9090();
 }

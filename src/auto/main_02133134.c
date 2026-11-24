@@ -750,13 +750,13 @@ void func_02133f78(u8 *arg0) {
     func_0213807c();
     *(u32 *)(arg0 + 0x50) = 0;
     *(u8 *)(arg0 + 1) = 1;
-    *(u32 *)(arg0 + 0x64) += func_0201fb1c(*(s32 *)(arg0 + 0x74), *(s32 *)(arg0 + 0x58));
+    *(u32 *)(arg0 + 0x64) += _s32_div_f(*(s32 *)(arg0 + 0x74), *(s32 *)(arg0 + 0x58));
     *(u32 *)(arg0 + 0x68) = *(u32 *)(arg0 + 0x74);
     *(u32 *)(arg0 + 0x6c) = 0;
     func_0213808c();
 }
 
-extern s32 func_0201fb1c(s32, s32);
+extern s32 _s32_div_f(s32, s32);
 extern void func_02133f78(u8 *);
 extern s32 func_021346cc(u32);
 extern u8 data_0215bc20[44];

@@ -688,7 +688,7 @@ BOOL func_020069a4(Unk69A4 *arg0, void *arg1, s32 arg2) {
 
 extern u32 data_0215ce00[];
 extern void func_02006d10(u8 *, u8 *);
-extern u64 func_0201fb1c(u32, u32);
+extern u64 _s32_div_f(u32, u32);
 s32 func_02006a38(Unk69A4 *arg0, u32 *arg1, u32 arg2) {
     u32 cookie = func_02008128();
     if (arg0->usedCount == 0) {
@@ -706,7 +706,7 @@ s32 func_02006a38(Unk69A4 *arg0, u32 *arg1, u32 arg2) {
     if (arg1 != NULL) {
         *arg1 = arg0->msgArray[arg0->firstIndex];
     }
-    u32 next = func_0201fb1c(arg0->firstIndex + 1, arg0->msgCount) >> 32;
+    u32 next = _s32_div_f(arg0->firstIndex + 1, arg0->msgCount) >> 32;
     arg0->firstIndex = next;
     arg0->usedCount -= 1;
     ((void (*)(void *))func_02006560)(arg0);
