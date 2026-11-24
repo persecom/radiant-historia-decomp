@@ -254,3 +254,34 @@ void func_02111374(u8 *arg0, u32 arg1) {
     *(u32 *)(arg0 + 0x48) = arg1;
 }
 
+void func_0211137c(u8 *arg0) {
+u8 *p48 = *(u8 **)(arg0 + 0x48);
+u32 r4 = 0;
+u8 *r5;
+u8 *sub = p48 + 0x30;
+u32 index = 0;
+u8 *v1;
+u16 anim;
+void *v7;
+u8 *v6;
+u32 value;
+r5 = func_02111d7c(p48, *(u16 *)(arg0 + 0x3a));
+if(r5 != NULL) r4 = func_02111dbc(p48, *(u16 *)(r5+4));
+v1 = func_020c9c10(*(void **)(arg0+0x30),1);
+if(r5 != NULL) { func_020c738c(v1,0,1); *(u16 *)(v1+0x4c)=*(u16 *)(r5+2); }
+else func_020c738c(v1,1,1);
+if(r5 != NULL && (r5[6]&1)) index=1;
+if(*(u16 *)(arg0+0x3c)) anim=((u16 *)(sub+0x1a))[index];
+else anim=((u16 *)(sub+0x1e))[index];
+func_021115bc(arg0,anim);
+v7=func_020c9c10(*(void **)(arg0+0x30),2);
+if(*(u16 *)(arg0+0x3c)) value=((u32 *)(sub+0x2c))[index];
+else value=((u32 *)(sub+0x34))[index];
+if(r5 != NULL) {
+v6=func_020c9c10(*(void **)(arg0+0x30),3);
+func_020c83f4(v7,r4,*(u16 *)(r5+2),0);
+func_020c738c(v6,1,1);
+}
+func_020c8640(v7,value);
+}
+
