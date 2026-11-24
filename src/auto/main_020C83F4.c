@@ -501,15 +501,15 @@ else *(u16 *)(obj+0x30)=p[0];
 
 void func_020c9000(u8 *p) {
 Table_020c9000 t=data_0214460c;
-s32 action=0;
+u8 action=0;
 u16 count=*(u16 *)(p+0x42),i;
 u8 *obj;
 for(i=0;i<2;i++) {
-u16 *row=&t.v[i*3];
-if(func_020c70c0(func_020c9c10(*(void **)(p+0x30),row[0]),row[2])) {
-s16 old=*(u16 *)(p+0x3e), pos=*(s16 *)(p+0x3a);
-if((s16)row[1]==1) ++*(u16 *)(p+0x3e);
-else if((s16)row[1]==2 && *(u16 *)(p+0x3e)) --*(u16 *)(p+0x3e);
+Row_020c9000 *row=&((Row_020c9000 *)&t)[i];
+if(func_020c70c0(func_020c9c10(*(void **)(p+0x30),row->id),row->mask)) {
+s16 pos,old; old=*(u16 *)(p+0x3e); pos=*(s16 *)(p+0x3a);
+if((s16)row->dir==1) ++*(u16 *)(p+0x3e);
+else if((s16)row->dir==2 && *(u16 *)(p+0x3e)) --*(u16 *)(p+0x3e);
 p[0x45]=1; func_020c9404(p);
 if(old!=*(u16 *)(p+0x3e)) *(s16 *)(p+0x3a)=pos+(s16)(*(u16 *)(p+0x3e)-old);
 func_020c9610(p);
@@ -517,7 +517,7 @@ func_020c9610(p);
 }
 obj=func_020c9c10(*(void **)(p+0x30),2);
 p[0x45]=0;
-if(data_021628fa && func_020c7420(obj)) {
+if(data_021628fa[0] && func_020c7420(obj)) {
 func_020c738c(obj,0,8); func_020c8f20(p); func_020c9610(p);
 }
 if(((u16 *)data_02162908)[2]) {
@@ -538,7 +538,7 @@ if(*(u16 *)(p+0x3a)>=*(u16 *)(p+0x3e)) delta=*(u16 *)(p+0x3a)-*(u16 *)(p+0x3e);
 }
 if(data_021626a6&0x40) {obj=func_020c9c10(*(void **)(p+0x30),1); action=2; func_020c7090(obj,action);}
 if(data_021626a6&0x80) {obj=func_020c9c10(*(void **)(p+0x30),0); action=1; func_020c7090(obj,action);}
-p[0x44]=0; p[0x56]=action;
+p[0x56]=action; p[0x44]=0;
 if(action==1) {
 ++*(u16 *)(p+0x3a);
 if(count) {if(*(u16 *)(p+0x3a)>=count) {*(u16 *)(p+0x3a)=count-1; p[0x44]|=1;}}
