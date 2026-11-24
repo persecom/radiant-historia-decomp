@@ -46,6 +46,11 @@ void func_020105e0(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u
     func_0200fca4(func_02010060, arg5);
 }
 
+extern void func_020101f8(void *);
+u32 func_0201068c(void) {
+    return *(u32 *)(*(u8 **)data_0215f120 + 0x1c);
+}
+
 void func_020106a0(void) {
     func_0200fb84();
 }
