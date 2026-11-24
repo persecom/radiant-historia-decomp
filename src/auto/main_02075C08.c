@@ -54,6 +54,28 @@ void func_02075c98(void) {
     func_0207630c();
 }
 
+extern u32 func_020764e4(void);
+void func_0207630c(void) {
+    u8 *r4 = (u8 *)func_020764e4();
+
+    func_0203be4c(*(void **)(r4 + 0x58));
+    func_0203be4c(*(void **)(r4 + 0x5c));
+    func_0203be4c(*(void **)(r4 + 0x60));
+    func_0203be4c(*(void **)(r4 + 0x64));
+    func_0203be4c(*(void **)(r4 + 0x68));
+    func_0203be4c(*(void **)(r4 + 0xac));
+    func_0203be4c(*(void **)(r4 + 0xb0));
+    func_0203be4c(*(void **)(r4 + 0xb4));
+    *(u32 *)(r4 + 0x58) = 0;
+    *(u32 *)(r4 + 0x5c) = 0;
+    *(u32 *)(r4 + 0x60) = 0;
+    *(u32 *)(r4 + 0x64) = 0;
+    *(u32 *)(r4 + 0x68) = 0;
+    *(u32 *)(r4 + 0xac) = 0;
+    *(u32 *)(r4 + 0xb0) = 0;
+    *(u32 *)(r4 + 0xb4) = 0;
+}
+
 extern void func_020772b8(void);
 extern void func_02077180(s32, s32);
 extern void func_02077110(s32);
@@ -84,19 +106,19 @@ u32 func_020764e4(void) {
 void func_020766ec(void) {
     func_02107104();
     func_02075c98();
-    if ((u8 *)data_021600ec[0] != NULL) {
-        if (*(void **)((u8 *)data_021600ec[0] + 0x78) != NULL) {
-            func_0210c5dc(*(void **)((u8 *)data_021600ec[0] + 0x78));
-            *(void **)((u8 *)data_021600ec[0] + 0x78) = NULL;
+    if (data_021600ec != NULL) {
+        if (*(void **)(data_021600ec + 0x78) != NULL) {
+            func_0210c5dc(*(void **)(data_021600ec + 0x78));
+            *(void **)(data_021600ec + 0x78) = NULL;
         }
-        func_0210dba0((u8 *)data_021600ec[0] + 0x14);
-        func_0210dbe8((u8 *)data_021600ec[0] + 0x28);
-        func_0210da14((u8 *)data_021600ec[0]);
-        func_0210dc2c((u8 *)data_021600ec[0] + 0x3c);
-        if ((u8 *)data_021600ec[0] != NULL) {
-            func_0210c5dc((void *)data_021600ec[0]);
-            data_021600ec[0] = 0;
+        func_0210dba0(data_021600ec + 0x14);
+        func_0210dbe8(data_021600ec + 0x28);
+        func_0210da14(data_021600ec);
+        func_0210dc2c(data_021600ec + 0x3c);
+        if (data_021600ec != NULL) {
+            func_0210c5dc(data_021600ec);
         }
+        data_021600ec = NULL;
     }
     func_0210e290(0);
     data_02162858 = 0;
