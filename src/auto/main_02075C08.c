@@ -14,7 +14,7 @@ extern void func_0200462c(void);
 extern void func_0203be4c(void *);
 
 extern void func_021168f8(void);
-void func_02075c08(u32 *arg0, u32 *arg1) {
+void func_02075c08(volatile u32 *arg0, volatile u32 *arg1) {
     u32 a = arg1[0];
     u32 b = arg1[1];
     u32 c = arg1[2];
