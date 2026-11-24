@@ -20,7 +20,7 @@ extern u8 *func_02044f70(void);
 extern u8 *func_020bed44(void);
 extern u8 *func_020f0a5c(s32);
 extern void func_020f0154(s32);
-extern void func_020f0898(s32, s32, s32, s32, s32);
+extern void func_020f0898();
 extern u8 *func_020f0aa4(s32);
 void func_02059888(void) {
     u8 *r7 = *(u8 **)(data_021600ac + 0x68);
