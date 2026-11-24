@@ -88,3 +88,32 @@ void func_020a3ce8(s16 *arg0) {
     func_021098ac(sp);
 }
 
+void func_020a46cc(s16 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s16 arg5, s16 arg6) {
+    typedef struct {
+        s16 f0, f1, f2, f3, f4, f5, f6, f7, f8, f9;
+    } Unk;
+    Unk sp;
+    sp = *(Unk *)data_021430cc;
+    sp.f1 = arg0;
+    sp.f2 = arg1;
+    sp.f3 = arg2;
+    sp.f4 = arg3;
+    sp.f5 = arg4;
+    sp.f6 = arg5;
+    sp.f7 = arg6;
+    sp.f8 = arg2;
+    sp.f9 = arg3;
+    func_021098ac(&sp);
+}
+
+void func_020a473c(void) {
+    u32 sp0;
+    char buf[0x1c];
+    UnkStruct_020a473c *p = func_0210c594(0x24, data_02155c3c);
+    data_02160130 = p;
+    p->unk0 = func_02109c60(data_0214fe18, &p->unk4);
+    func_02005e80(buf, data_0214fe38, data_0214fe40, 1);
+    p->unk8 = func_02109c60(buf, &sp0);
+    p->unkc = sp0;
+}
+
