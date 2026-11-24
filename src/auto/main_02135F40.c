@@ -42,6 +42,74 @@ void func_02135f40(u8 *arg0, u32 arg1) {
     *(volatile u16 *)0x04000208 = ime;
 }
 
+extern u32 func_021361bc(u8 *, u16 *, u16 *);
+u16 func_02135f7c(u8 *arg0, u32 arg1, u16 *arg2) {
+    u16 sp2;
+    u16 sp0;
+    u16 count;
+    u16 r5;
+    u16 r2;
+
+    if (arg1 == 0) {
+        *arg2 = 0;
+        return 0;
+    }
+
+    func_021361bc(arg0, &sp2, &sp0);
+    if (sp2 == 0) {
+        *arg2 = 0;
+        return 0;
+    }
+
+    count = arg1;
+    if (count > 0xc00) {
+        count = 0xc00;
+    }
+    if (count > sp2) {
+        count = sp2;
+    }
+
+    if (*(u16 *)(arg0 + 0x28) != 8) {
+        if (*(u16 *)(arg0 + 0x28) == 5) {
+            if (count < 10) {
+                *arg2 = 0;
+                return count;
+            }
+            count = (count / 10) * 10;
+            r5 = 0;
+            r2 = (count / *(u16 *)(arg0 + 0x28)) * 8;
+        } else if (*(u16 *)(arg0 + 0x28) == 3 || *(u16 *)(arg0 + 0x28) == 6) {
+            if (count < 6) {
+                *arg2 = 0;
+                return count;
+            }
+            count = (count / 6) * 6;
+            r5 = 0;
+            r2 = (count / *(u16 *)(arg0 + 0x28)) * 8;
+        } else {
+            r5 = 8 / *(u16 *)(arg0 + 0x28);
+            r2 = count * r5;
+        }
+    } else {
+        r2 = count;
+        r5 = 1;
+    }
+
+    if (r2 > sp2) {
+        if (*(u16 *)(arg0 + 0x28) == 3 || *(u16 *)(arg0 + 0x28) == 5 || *(u16 *)(arg0 + 0x28) == 6) {
+            count = (*(u16 *)(arg0 + 0x28) * sp2) / 8;
+            *arg2 = (count / *(u16 *)(arg0 + 0x28)) * 8;
+        } else {
+            count -= (u16)((r2 - sp2) / r5);
+            *arg2 = count * r5;
+        }
+    } else {
+        *arg2 = r2;
+    }
+
+    return count;
+}
+
 extern u32 func_0201fd28(u32, u32);
 u32 func_02136138(u8 *arg0, s16 *arg1, u32 arg2) {
     func_02135f40(arg0, arg2);
