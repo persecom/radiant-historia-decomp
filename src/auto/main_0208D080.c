@@ -4,6 +4,11 @@
 typedef struct {
     s16 f0, f1, f2, f3, f4, f5, f6, f7, f8, f9;
 } Unk10;
+extern const Unk10 data_0214124c, data_02141238, data_02141080;
+extern u8 *func_02021f10(s32);
+extern f32 func_0201f8cc(u32),func_0201f884(s32);
+extern f32 func_02020888(f32,f32),func_020201f4(f32,f32);
+extern s32 func_0201ff0c(f32);
 
 extern const Unk10 data_02141184;
 extern u8 *data_0216010c;
