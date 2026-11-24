@@ -25,7 +25,7 @@ extern void func_0210d9e4(void *);
 void func_020c0454(u8 *arg0, s32 arg1) {
 Unk20 buf=data_02143e1c;
 s32 percent;
-s16 width;
+s32 width;
 if(!arg1) return;
 percent=func_0201fb1c(*(s32 *)(*(u8 **)(arg0+0x118)+4)*100,*(s32 *)(*(u8 **)(arg0+0x118)+8));
 *(volatile u32 *)0x40004a4=0x1f00c0;
@@ -34,8 +34,8 @@ buf.unk[1]=0;buf.unk[2]=0;buf.unk[3]=0xc2;buf.unk[4]=5;
 buf.unk[8]=0xc2;buf.unk[9]=5;buf.unk[5]=4;buf.unk[6]=0xb7;
 func_021098ac(&buf);
 if(*(s32 *)(*(u8 **)(arg0+0x118)+4)<=0) return;
+buf.unk[7]++;
 width=percent*192/100;
-buf.unk[7]=(s16)buf.unk[7]+1;
 buf.unk[1]=0;buf.unk[2]=5;buf.unk[3]=width;buf.unk[4]=3;
 buf.unk[8]=width;buf.unk[9]=3;buf.unk[5]=5;buf.unk[6]=0xb8;
 func_021098ac(&buf);
