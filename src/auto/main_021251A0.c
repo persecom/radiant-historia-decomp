@@ -230,15 +230,13 @@ void func_02125424(u32 arg0, u32 arg1) {
 }
 #pragma opt_schedule reset
 void func_02125448(void) {
-    u8 *p = func_021253c8((u8 *)data_02173180);
-    if (!func_021253e8((u8 *)data_02173180)) {
-        return;
-    }
-    func_02125340((u32 *)p);
-    do {
-        *(u32 *)((u8 *)data_02173180 + 0x10) -= *(u32 *)(p + 0xc);
-        p = func_021253c8((u8 *)data_02173180);
-    } while (func_021253e8((u8 *)data_02173180));
+ u8 *p=func_021253c8((u8 *)data_02173180);
+ if(!func_021253e8((u8 *)data_02173180)) return;
+ do {
+  func_02125340((u32 *)p);
+  *(u32 *)((u8 *)data_02173180+0x10)-=*(u32 *)(p+0xc);
+  p=func_021253c8((u8 *)data_02173180);
+ } while(func_021253e8((u8 *)data_02173180));
 }
 
 s32 func_021254a8(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
