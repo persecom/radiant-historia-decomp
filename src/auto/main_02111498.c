@@ -223,6 +223,29 @@ void func_02111ac0(u8 *arg0, u16 arg1, u16 arg2, u16 arg3, u16 arg4) {
     *(u16 *)(arg0 + 0x4c) = arg4;
 }
 
+extern void func_0211164c(u8 *);
+extern void func_020c738c(u8 *, s32, s32);
+void func_02111bf0(u8 *arg0) {
+    u8 *obj;
+    u32 count = func_020c9c34(*(void **)(arg0 + 0x34));
+    u16 max = func_02111d10(arg0);
+    u16 i;
+    for (i = 0; i < count; i++) {
+        u16 idx;
+        obj = func_020c9c10(*(void **)(arg0 + 0x34), i);
+        idx = i + func_020c94a8(*(void **)(arg0 + 0x6c));
+        if (func_02111630((u32 *)obj) != 0) {
+            ((void (*)(u8 *, s32, s32))(*(void **)(obj + 0x24)))(obj, 1, 1);
+        } else {
+            ((void (*)(u8 *, s32, s32))(*(void **)(obj + 0x24)))(obj, 0, 0);
+        }
+        func_0211164c(obj);
+        *(u16 *)(obj + 0x3a) = idx;
+        func_020c738c(obj, idx < max ? 0 : 1, 1);
+        func_021115b0(obj, idx == func_020c94a0(*(u8 **)(arg0 + 0x6c)) ? 1 : 0);
+    }
+}
+
 void func_02111ccc(u8 *arg0) {
     u8 *node = *(u8 **)(arg0 + 0x38);
     while (node != NULL) {
