@@ -19,6 +19,28 @@ extern void func_021167f0(u8 *, u8 *);
 extern void func_02108ffc(void);
 
 void func_020c2734(u8 arg0, s8 arg1, u32 arg2);
+u8 *func_020c2584(u8 *arg0,u32 arg1) {
+ u8 *p; s32 val=0; s16 sum;
+ p=func_0210c594(0x2c,data_02155c3c);
+ *(u8 **)(p+4)=arg0;
+ p[1]=255;p[0]=0;p[0x14]=0;p[0x1a]=1;
+ if(arg1==0) {
+ u32 seed=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
+ u16 random=((seed>>16)*3)>>16;
+ data_0216263c[0]=seed;
+ *(s16 *)(p+0x12)=random+1;
+ }
+ p[2]=1;
+ if(*(s32 *)(*(u8 **)(arg0+0x118)+0x70)!=0) p[2]=0;
+ if((*(u8 **)(arg0+0x118))[0]==0) val=func_020330b8(arg0);
+ else if((*(u8 **)(arg0+0x118))[0]==1) val=func_02064cb8(*(void **)(arg0+0x11c),11);
+ *(s32 *)(p+8)=val;
+ sum=*(s16 *)(p+0x12)+(*(s16 *)(*(u8 **)(arg0+0x118)+0x18)+*(s16 *)(*(u8 **)(arg0+0x118)+0xa6)+1);
+ *(s16 *)(p+0x10)=func_02032294(arg0)+sum;
+ *(s16 *)(p+0x28)=*(volatile s16 *)(p+0x10);
+ return p;
+}
+
 void func_020c2694(void) {
     u8 *node = *(u8 **)(data_02160a6c + 0xac);
     while (node != NULL) {
