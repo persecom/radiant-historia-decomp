@@ -381,7 +381,6 @@ void func_02008558(u8 arg0) {
 }
 
 extern void func_02008998(u32);
-extern void func_02006560(void *, u32);
 void func_02008a00(void) {
     func_02008998(0);
     func_02008998(1);
