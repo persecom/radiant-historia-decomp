@@ -6,7 +6,7 @@ extern void *func_02127dec(void *, s32);
 extern void *func_02127a9c(void *, void *, s32);
 extern void func_02127e58(void *);
 extern void func_0212c3b0(void *);
-extern void func_021277f4(void *);
+extern void func_021277f4();
 extern void func_02126c20(void *);
 extern void func_02127600(void *);
 extern u8 data_021565f0[52];
@@ -184,6 +184,24 @@ void func_02127600(void *arg0) {
     *(void **)arg0 = data_02145040;
     *(u32 *)((u8 *)arg0 + 4) = 0;
     *(u32 *)((u8 *)arg0 + 8) = 0;
+}
+
+void func_02127828(void *arg0, void *arg1, s32 arg2, s32 arg3) {
+    s32 zero = 0;
+    if (arg0 == NULL || arg1 == NULL) {
+        func_0212bda8(data_02156698);
+        return;
+    }
+    func_0212824c(arg0);
+    func_02132bf8(*(void **)((u8 *)arg0 + 0xac), 0x100, arg1);
+    *(void **)((u8 *)arg0 + 0xb0) = *(void **)((u8 *)arg0 + 0xac);
+    *(s32 *)((u8 *)arg0 + 0xb4) = zero;
+    *(s32 *)((u8 *)arg0 + 0xb8) = arg2;
+    *(s32 *)((u8 *)arg0 + 0xbc) = arg3;
+    *((u8 *)arg0 + 1) = 1;
+    *((u8 *)arg0 + 0xa8) = 1;
+    *((u8 *)arg0 + 2) = zero;
+    func_02128880(arg0);
 }
 
 extern void func_0212a9f4(void);
