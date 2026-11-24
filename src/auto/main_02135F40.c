@@ -240,6 +240,19 @@ void func_02136bc8(void *arg0) {
     func_021369b4();
 }
 
+void func_02136be4(void *arg0) {
+    if (arg0 == NULL) {
+        func_021369e0(data_0215beec, data_0215bef8);
+        return;
+    }
+    if (*(void **)((u8 *)arg0 + 4) == NULL) {
+        func_021369e0(data_0215bf14, data_0215bf20);
+        return;
+    }
+    func_02013878(arg0, 0, 0x24);
+    *(void **)((u8 *)arg0 + 4) = NULL;
+}
+
 extern void *func_02136c68(void *);
 void *func_02136c44(void *arg0) {
     void *ret;
