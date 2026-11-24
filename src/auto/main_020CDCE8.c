@@ -20,19 +20,18 @@ extern void func_020a9610(void *, s32, s32, s32, s32, s32);
 extern void func_020a98ac(void *);
 extern void func_020a98f4(void *);
 void func_020ce664(s32 arg0, s16 arg1, s16 arg2, s16 arg3, u8 arg4) {
-    u8 *p = data_02160238;
     s32 idx = arg0 * 100;
 
-    func_020a994c(p + 0x164 + 0x400 + idx);
+    func_020a994c(data_02160238 + 0x164 + 0x400 + idx);
     if (arg4 == 0) {
         return;
     }
-    *(u16 *)(p + idx + 0x5b0) = arg1;
-    *(u16 *)(p + idx + 0x5b2) = arg2;
-    *(u16 *)(p + idx + 0x5b4) = arg3;
-    func_020a9610(p + 0x198 + 0x400 + idx, *(u32 *)(p + 0x704), arg4, *(u32 *)(p + idx + 0x560), 0, 0);
-    func_020a98ac(p + 0x164 + 0x400 + idx);
-    func_020a98f4(p + 0x164 + 0x400 + idx);
+    *(u16 *)(data_02160238 + idx + 0x5b0) = arg1;
+    *(u16 *)(data_02160238 + idx + 0x5b2) = arg2;
+    *(u16 *)(data_02160238 + idx + 0x5b4) = arg3;
+    func_020a9610(data_02160238 + 0x198 + 0x400 + idx, *(u32 *)(data_02160238 + 0x704), arg4, *(u32 *)(data_02160238 + idx + 0x560), 0, 0);
+    func_020a98ac(data_02160238 + 0x164 + 0x400 + idx);
+    func_020a98f4(data_02160238 + 0x164 + 0x400 + idx);
 }
 
 void func_020ce738(void) {
