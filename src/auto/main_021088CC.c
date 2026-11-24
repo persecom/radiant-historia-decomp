@@ -116,6 +116,26 @@ void func_02108cc8(u32 arg0) {
     func_02108c24(arg0, 1);
 }
 
+void func_02108d34(u32 arg0, u32 arg1) {
+    u32 *ptr = NULL;
+    if (arg0 == 0) {
+        ptr = &data_021624f8->unk_08;
+    } else if (arg0 == 1) {
+        ptr = &data_021624f8->unk_0c;
+    }
+    if (arg0 >= 2) {
+        return;
+    }
+    if (ptr == NULL) {
+        return;
+    }
+    if (data_021624f8->unk_18[arg0] & 8) {
+        return;
+    }
+    data_021624f8->unk_24[arg0] = arg1;
+    func_02125c38(*ptr);
+}
+
 void func_02108e54(u32 arg0) {
     if (arg0 >= 2) {
         return;
