@@ -291,6 +291,10 @@ void *func_0212a58c(u8 *arg0) {
     return *(void **)(arg0 + 0x90);
 }
 
+void func_0212a774(u16 *arg0, u32 arg1, u32 arg2, s32 arg3) {
+    func_0212a71c(arg0, arg0 + arg1, arg3);
+}
+
 void func_0212a98c(void) {
     data_02173974[1]++;
     if (data_02173974[1] == 1) {
