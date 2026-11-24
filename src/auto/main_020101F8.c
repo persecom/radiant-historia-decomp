@@ -259,3 +259,14 @@ u32 func_02010f10(void) {
     return data_0215fa20[1];
 }
 
+extern u8 data_0215fa30[4];
+extern u8 data_0215fa2c[4];
+extern void CpuSet(const void *, void *, u32);
+extern s32 func_0200a6e4(s32, s32, s32);
+extern void WaitByLoop(s32);
+void func_0201101c(void) {
+    u32 zero = 0;
+    CpuSet(&zero, data_0215fa30, 0x05000001);
+    *(u16 *)(data_0215fa2c + 6) = func_02005df8();
+}
+
