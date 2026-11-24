@@ -21,7 +21,7 @@ u32 size; s32 shape;
 a &= 0xc000c000;
 size=(a&0xc0000000)>>30;
 shape=(s32)(a&0xc000)>>14;
-return data_02144d6c[shape][size];
+return size[data_02144d6c[shape]];
 }
 static inline s32 Double_bb3c(u32 a) { return Mode_bb3c(a)==0x300; }
 static inline void SetMode_bb3c(u32 *p,s32 mode) {
