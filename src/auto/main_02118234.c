@@ -28,7 +28,7 @@ s32 func_021185b8(s32 *arg0, s32 arg1) {
 }
 
 s32 func_021185c0(s32 *arg0, s32 arg1) {
-    return (arg0[arg1] + 1) ? 1 : 0;
+    return arg0[arg1] != -1;
 }
 
 void func_021185d4(s32 *arg0) {
