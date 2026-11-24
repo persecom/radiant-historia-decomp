@@ -39,6 +39,20 @@ u32 func_0210c8e8(u32 arg0) {
     return ret;
 }
 
+void *func_0210c924(arg0, arg1)
+void *arg0;
+u32 arg1;
+{
+    void *r4 = func_0210c594(0x60, data_02155c3c);
+    *(void **)r4 = func_021092d8(arg0);
+    if (*(void **)r4 == NULL) {
+        func_0210c970(r4);
+        return NULL;
+    }
+    *(u32 *)((u8 *)r4 + 0xc) = arg1;
+    return r4;
+}
+
 void func_0210ca6c(void) {
     u32 r4 = func_0210c924();
     func_0210c9cc();
