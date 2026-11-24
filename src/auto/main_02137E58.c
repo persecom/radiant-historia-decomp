@@ -145,6 +145,15 @@ void func_021380ac(void) {
     func_0213800c(3);
 }
 
+void func_021380bc(const char *arg0, ...) {
+    char *vlist = (char *)((u32)&arg0 & ~3) + 4;
+    func_02013878(data_021766bc, 0, 0x100);
+    func_02132c68(data_021766bc, 0x100, arg0, vlist);
+    if (data_02176644[10] != 0) {
+        ((void (*)(u32, void *))data_02176644[10])(data_02176644[11], data_021766bc);
+    }
+}
+
 void func_02138130(void *arg0) {
     if (arg0 == NULL) {
         ((void (*)(u32, void *))data_02176644[10])(data_02176644[11], NULL);
