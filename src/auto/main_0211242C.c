@@ -1,5 +1,19 @@
 /* 33 functions from 0x0211242C to 0x021133F8 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { s16 v[9]; } InitNine;
+typedef struct { s16 v[6]; } InitSix;
+typedef struct { u32 v[2]; } InitPair;
+extern const InitNine data_02144d0c;
+extern const InitSix data_02144d00;
+extern InitPair data_02155ca0;
+extern void func_020c6d78(void *);
+extern void func_020c992c(void *);
+extern void func_020c9a04(void *,s32);
+extern void func_020c7894(void *,u8);
+extern void func_020c8344(void *,s32,s32);
+extern void func_020c83b0(void *,u32);
+extern void func_020c83d0(void *,s32,s32);
+extern void func_020c8640(void *,s32);
 extern u8 data_02155d6c[24];
 
 extern void func_0211242c(void *, s32, s32);
