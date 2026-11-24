@@ -6,11 +6,12 @@ typedef struct {
     u32 file_id;
 } FSFileID;
 
-extern void func_0200bab8(void);
+extern u32 func_0200bab8(u8 *);
 extern s32 func_0200ba20(void *, void *, s32);
 extern void *func_0200b2ac(const char *, u32 *, u8 *);
 extern void func_0200b888(u8 *);
 extern s32 func_0200afb4(u8 *, s32, s32);
+extern s32 func_0200d460(u8 *, u32 *);
 s32 func_0200b8fc(u32 *arg0, const char *arg1) {
     s32 ret = 0;
     u8 path[0x118];
@@ -64,8 +65,8 @@ s32 func_0200bc08(void *arg0, void *arg1) {
     return func_0200ba20(arg0, arg1, 1);
 }
 
-void func_0200bc18(void) {
-    func_0200bab8();
+u32 func_0200bc18(u8 *arg0) {
+    return func_0200bab8(arg0);
 }
 
 extern void func_0200c0a8(void);
