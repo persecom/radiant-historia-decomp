@@ -150,6 +150,11 @@ void func_020c87f8(void *arg0) {
     }
 }
 
+extern void func_020c888c(u8 *, s32, s32);
+void func_020c8948(u8 *arg0, s32 arg1) {
+    func_020c888c(arg0, arg1, *(s16 *)(arg0 + 0x5a));
+}
+
 void func_020c8a08(void) {
     func_020c6f14();
 }
