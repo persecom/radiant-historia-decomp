@@ -29,6 +29,55 @@ void func_020ba4b4(void);
 void func_020ba520(void);
 void func_020ba604(void);
 
+void func_020b967c(void) {
+u8 *p=data_021601ec;
+s32 two=2;
+u8 *obj=func_020c9c10(*(void **)(p+0x4c),two);
+s32 val=(*(s32 *)(p+0x5c)*60)/100;
+s32 accept,cancel;
+u8 *button,*entry;
+*(s32 *)(p+0x5c)=val;
+((void (*)(u8 *,s32))(*(void **)(obj+0x10)))(obj,(s16)-(val>>12));
+((void (*)(u8 *,s32))(*(void **)(obj+0x14)))(obj,25);
+if(func_02112038(obj)){
+u8 a=p[0x99],b=p[0x9a];
+p[0x9a]=func_020c94a8(*(void **)(obj+0x6c));
+p[0x99]=func_020c94b0(*(void **)(obj+0x6c));
+func_020b91a8();
+if(a!=p[0x99]||b!=p[0x9a])func_0210d27c(2);
+}
+obj=func_020c9c10(*(void **)(p+0x4c),13);
+val=(*(s32 *)(p+0x5c)*60)/100;
+*(s32 *)(p+0x5c)=val;
+((void (*)(u8 *,s32))(*(void **)(obj+0x10)))(obj,(s16)(-5-(val>>12)));
+obj=func_020c9c10(*(void **)(p+0x4c),14);
+val=(*(s32 *)(p+0x5c)*60)/100;
+*(s32 *)(p+0x5c)=val;
+((void (*)(u8 *,s32))(*(void **)(obj+0x10)))(obj,(s16)(28-(val>>12)));
+accept=0;cancel=0;
+if(data_021626a8&2)func_020c7090(func_020c9c10(*(void **)(p+0x4c),1));
+if(data_021626a8&0x400)func_020c7090(func_020c9c10(*(void **)(p+0x4c),3));
+button=func_020c9c10(*(void **)(p+0x4c),1);
+if(!((s32 (*)(void *))(*(void **)(button+0x18)))(button)&&!func_020c73d8(button))cancel=1;
+button=func_020c9c10(*(void **)(p+0x4c),3);
+if(!((s32 (*)(void *))(*(void **)(button+0x18)))(button)&&!func_020c73d8(button))accept=1;
+if(func_021120a4(func_020c9c10(*(void **)(p+0x4c),2)))accept=1;
+if(cancel){
+*(s32 *)(p+0x40)=3;func_020b8aac();
+obj=func_020c9c10(*(void **)(p+0x4c),2);
+*(u16 *)(p+0x9e)=func_020c94a0(*(void **)(obj+0x6c));
+func_0210d27c(5);
+}
+if(!accept)return;
+obj=func_020c9c10(*(void **)(p+0x4c),two);
+entry=func_02112048(obj);func_021120ac(obj);
+obj=func_020c9c10(*(void **)(p+0x4c),two);
+*(u16 *)(p+0x9e)=func_020c94a0(*(void **)(obj+0x6c));
+if(entry[6]&1)accept=0;
+if(accept){*(s32 *)(p+0x40)=4;func_020b8aac();func_0210d27c(11);}
+else func_0210d27c(7);
+}
+
 void func_020b9930(void) {
     u8 *obj = func_020c9c10(*(void **)(data_021601ec + 0x4c), 2);
     func_02112688();
