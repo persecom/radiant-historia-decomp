@@ -20,3 +20,13 @@ extern void func_0206b3c0(void *);
 extern void func_0210c5dc(void *);
 extern void func_021167f0(void *, void *);
 extern void func_0206e7a0(u8, void *, void *, u16);
+
+void func_0206ed00(u16 arg0) {
+    u8 *p = *(u8 **)(data_021600e8 + 0x48);
+    while (p != NULL) {
+        if (*(u16 *)(p + 0x50) == arg0) {
+            *(u32 *)(p + 0x44) = 0;
+        }
+        p = *(u8 **)(p + 0x64);
+    }
+}
