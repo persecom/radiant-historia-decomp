@@ -54,6 +54,13 @@ s32 func_02009d58(u32 arg0) {
     return ret;
 }
 
+extern u32 func_02009da8(void);
+extern u32 func_02009de4(void);
+extern void func_02009ffc(u32);
+s32 func_02009e20(void) {
+    return 0x100 - func_02009da8() - func_02009de4();
+}
+
 s32 func_0200a4f4(u8 *arg0) {
     return *(s32 *)(arg0 + 0x38);
 }
