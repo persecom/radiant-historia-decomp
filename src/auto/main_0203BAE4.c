@@ -192,6 +192,21 @@ void func_0203c20c(void) {
     }
 }
 
+void func_0203c780(void) {
+void *p;
+func_020eaacc(); func_020f4144(); func_020a3b84(); func_020dcca4(); func_020eb344(0,0);
+while ((p = *(void **)(data_02160094 + 0x2c)) != NULL) {
+func_021168f8(data_02160094 + 0x2c, p);
+if (p != NULL) func_0210c5dc(p);
+}
+if (data_02160094 != NULL) {
+func_0210da14(data_02160094);
+func_0210dba0(data_02160094 + 0x14);
+if (data_02160094 != NULL) {func_0210c5dc(data_02160094); data_02160094 = NULL;}
+}
+func_0210f138();
+}
+
 void func_0203c820(void) {
 }
 
