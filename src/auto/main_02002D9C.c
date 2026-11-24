@@ -388,6 +388,17 @@ u32 func_020034c8(void) {
     return 0;
 }
 
+u32 func_02003518(void) {
+    volatile u8 *reg = (volatile u8 *)0x04001000;
+    s32 mode = *(volatile u32 *)reg & 7;
+    u16 cnt = *(volatile u16 *)(reg + 0xc);
+    if (mode < 5 || !(cnt & 0x80)) {
+        u32 offset = (u32)(cnt & 0x3c) >> 2;
+        return 0x06200000 + (offset << 14);
+    }
+    return 0;
+}
+
 s32 func_0200308c(s32 *arg0) {
     if (*(volatile u32 *)0x04000600 & 0x4000) {
         return -1;
