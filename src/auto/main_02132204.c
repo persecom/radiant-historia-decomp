@@ -33,7 +33,7 @@ extern char data_0215b61c[];
 extern char data_0215b640[];
 extern char data_0215b664[];
 extern void func_02132ca0(const char *);
-extern void func_02132c7c(void);
+extern void func_02132c7c();
 extern void func_02132e0c();
 extern void func_0213320c(void);
 extern void func_021335d4(void *, s32);
@@ -366,9 +366,12 @@ void func_02132c68(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 }
 
 void func_02132c7c(void) {
-    if (data_021749d0[1] != 0) {
-        ((void (*)(u32))data_021749d0[1])(data_021749d0[2]);
+    u32 *p = data_021749d0;
+    void (*fn)(u32) = (void (*)(u32))p[1];
+    if (fn == NULL) {
+        return;
     }
+    fn(p[2]);
 }
 
 void func_02132ca0(const char *arg0) {
