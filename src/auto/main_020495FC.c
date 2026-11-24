@@ -50,7 +50,7 @@ s32 X,aG,M;}ac;extern u8*data_021600bc;extern u8*M6;extern s32 data_02155c3c;
 extern u16 data_02162908[];extern s16 M15[];extern void*func_0210c594(u32,s32);
 extern void func_020477c0(void*,void*);extern void func_02047778(void*);
 extern void func_02050b0c(u8*,s32);extern BOOL func_020508fc(s32*,s32*,s32*,s32*,s32*);
-extern BOOL func_02050e2c(s32*,s32*,s32*);extern s32 func_0201fb1c(s32,s32);
+extern BOOL func_02050e2c(s32*,s32*,s32*);extern s32 func_0201fb1c_tmp(s32,s32);
 extern s32 func_02002404(s32,s32);
 #define g ((ac*)aI)
 {register o*f=NULL;register s32 e;register u32 l;register s32 F;register u32 i;register s32 x;
@@ -132,7 +132,7 @@ switch(Y){case 1:case 6:case 7:g->x-=-(M15[(((g->ag+32768)%0x10000)>>4)*2+1]*2);
 g->z-=M15[(((g->ag+32768)%0x10000)>>4)*2]*2;goto af;}}}}}af:;}if(aB!=0){
 return;}{struct{s32 L[2];s32 ai[2];s32 aA[2];s32 av[2];}p;s32 aq;s32 ag;
 s32 aD,aE;p.L[0]=ae[0]-Z[0];p.L[1]=ae[1]-Z[1];p.ai[0]=J[0]-Z[0];p.ai[1]=J[1]-Z[1];
-aq=func_0201fb1c((p.L[0]*p.ai[0]+p.L[1]*p.ai[1])*100,p.L[0]*p.L[0]+p.L[1]*p.L[1]);
+aq=func_0201fb1c_tmp((p.L[0]*p.ai[0]+p.L[1]*p.ai[1])*100,p.L[0]*p.L[0]+p.L[1]*p.L[1]);
 if((f64)aq<0.0||(f64)aq>100.0){d=FALSE;}else{p.aA[0]=(p.L[0]*aq)/100;p.aA[1]=(p.L[1]*aq)/100;
 p.av[0]=Z[0]+p.aA[0];p.av[1]=Z[1]+p.aA[1];ag=func_02002404(p.L[0],p.L[1]);
 aD=M15[(((ag+0x8000)%0x10000)>>4)*2+1]>>12;aE=M15[(((ag+0x8000)%0x10000)>>4)*2]>>12;
