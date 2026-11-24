@@ -115,6 +115,46 @@ void func_0212f97c(u8 *a0, u32 a1) {
     *(u32 *)(a0 + 0x1b0) = a1;
 }
 
+void func_0212f994(u8 *arg0) {
+u8 *end; u8 *dst; u8 *p; register u8 *stream;
+stream=*(u8 **)(arg0+0x1b0); dst=arg0+0x1e8;
+if(!stream) return;
+{
+u32 data[16]={0};
+s32 size=0;
+p=data_021747ac;
+end=data_021747b0;
+while(p!=end) { u32 value=func_0212f3fc(stream,8); *p=value; p++; }
+func_0212ee80(data_021747ac,4,&size,0);
+end+=size;
+while(p!=end) { u32 value=func_0212f3fc(stream,8); *p=value; p++; }
+if(func_0212ee80(data_021747ac,512,&size,data)<0) return;
+*(s32 *)(dst+4)=*((s8 *)data+3);
+*(u32 *)(dst+8)=data[1];
+*(u32 *)(dst+12)=data[2];
+*(PairF994 *)(dst+28)=*(PairF994 *)((u8 *)data+36);
+*(PairF994 *)(dst+32)=*(PairF994 *)((u8 *)data+40);
+*(PairF994 *)(dst+36)=*(PairF994 *)((u8 *)data+44);
+*(PairF994 *)(dst+40)=*(PairF994 *)((u8 *)data+48);
+*(PairF994 *)(dst+44)=*(PairF994 *)((u8 *)data+52);
+*(PairF994 *)(dst+48)=*(PairF994 *)((u8 *)data+56);
+*(u32 *)dst=1;
+if(*((s8 *)data+61)>=16) {
+*(u16 *)(dst+52)=0;
+func_0212f6e4(dst+54,dst+56,dst+58);
+} else if(*((s8 *)data+61)>=8) {
+{ u32 count; u8 *in; u8 *out; out=dst+52; in=arg0+0xa24; count=4; do { u8 a=in[0],b=in[1]; in+=2; out[1]=b; *out=a; out+=2; } while(--count); }
+} else {
+dst[52]=0;
+dst[53]=0;
+dst[54]=0;
+dst[55]=0;
+dst[56]=0;
+dst[57]=0;
+dst[58]=0;
+dst[59]=0;
+}}}
+
 extern void func_0213246c(void *);
 extern void func_0212f8b8(void *);
 extern s32 func_0212f4b0(void *);
