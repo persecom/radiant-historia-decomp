@@ -187,13 +187,13 @@ void func_020aa8e8(void) {
     u8 *p = data_021600e4;
     u8 *node = func_020aa7fc(*(void **)(p + 0x13f4));
     while (node != NULL) {
-        u32 scale = *(u32 *)(p + 0x70);
-        u32 a = *(u32 *)(node + 4) * scale;
-        u32 b = *(u32 *)(node + 8) * scale;
-        a -= 0x20;
-        b += 0xc;
-        *(u16 *)(node + 0x10) = *(u32 *)(p + 0x44) + a;
-        *(u16 *)(node + 0x12) = *(u32 *)(p + 0x48) + b;
+        s32 scale = *(s32 *)(p + 0x70);
+        s32 a = *(s32 *)(node + 4) * scale;
+        s32 b = *(s32 *)(node + 8) * scale;
+        a = a - 0x20;
+        b = b + 0xc;
+        *(u16 *)(node + 0x10) = *(s32 *)(p + 0x44) + a;
+        *(u16 *)(node + 0x12) = *(s32 *)(p + 0x48) + b;
         node = *(u8 **)(node + 0x18);
     }
 }
@@ -306,6 +306,7 @@ s32 func_020aadf8(void) {
 }
 
 s32 func_020aae98(void) {
+    s32 v;
     s32 id = 3;
     u8 *p = func_020ade60(id);
     if (*(u8 *)(p + 0xd) == 0) {
@@ -315,23 +316,58 @@ s32 func_020aae98(void) {
             return 1;
         }
     }
-    ++*(s32 *)(p + 8);
+    v = *(s32 *)(p + 8);
+    *(s32 *)(p + 8) = v + 1;
     return 0;
 }
 
 s32 func_020aaf08(void) {
-    s32 id = 4;
-    u8 *p = func_020ade60(id);
+    u8 *p = func_020ade60(4);
     if (*(u8 *)(p + 0xd) != 0) {
-        if (func_020aaa60(p + 0xc, 1, 0x1f, id, *(s32 *)(p + 8)) != 0) {
+        if (func_020aaa60(p + 0xc, 1, 0x1f, 4, *(s32 *)(p + 8)) != 0) {
             *(u8 *)(p + 0xd) = 0;
             *(s32 *)(p + 8) = 0;
             return 1;
         }
-    } else {
-        *(u8 *)(p + 0xd) = 2;
     }
-    ++*(s32 *)(p + 8);
+    *(u8 *)(p + 0xd) = 2;
+    *(u32 *)(p + 8) += 1;
     return 0;
+}
+
+BOOL func_020aaf88(s32 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    s32 v = *arg0 + arg1;
+    *arg0 = v;
+    if (v < arg2) {
+        if (arg4 == 1) {
+            if (arg3 == arg2) {
+                *arg0 = arg2;
+            } else {
+                v = arg3 - 1;
+                *arg0 = v;
+            }
+        } else if (arg4 == 2) {
+            *arg0 = arg3 - (arg2 - v);
+        } else {
+            *arg0 = arg2;
+        }
+        return TRUE;
+    }
+    if (v < arg3) {
+        goto fail;
+    }
+    if (arg4 == 1) {
+        *arg0 = arg2;
+    } else if (arg4 == 2) {
+        *arg0 = arg2 + (v - arg3);
+    } else if (arg3 == arg2) {
+        *arg0 = arg2;
+    } else {
+        v = arg3 - 1;
+        *arg0 = v;
+    }
+    return TRUE;
+fail:
+    return FALSE;
 }
 
