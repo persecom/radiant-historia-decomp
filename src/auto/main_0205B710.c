@@ -82,6 +82,21 @@ void func_0205bc60(s32 *arg0, u8 *arg1, s32 arg2) {
     }
 }
 
+extern s32 func_020dd9b4(void *, s32 *);
+extern s32 func_02117d80(s32);
+u32 func_0205bcb0(void *arg0, s32 arg1) {
+    s32 p;
+    u32 ret = 0;
+    s32 a = func_020dd9b4(arg0, &p);
+    if (p != 0) {
+        ret |= 2;
+    }
+    if (arg1 == func_02117d80(a)) {
+        ret |= 1;
+    }
+    return ret;
+}
+
 void func_0205c314(void) {
     func_020d4eb8();
 }
