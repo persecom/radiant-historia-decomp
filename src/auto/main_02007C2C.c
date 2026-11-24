@@ -239,7 +239,6 @@ void func_020081fc(void) {
 }
 
 void func_02008250(u32 arg0) {
-    u32 *dst = (u32 *)0x2fffc20;
     if (*(u16 *)0x2fffc40 != 2) {
         return;
     }
@@ -248,9 +247,12 @@ void func_02008250(u32 arg0) {
     func_02005988(0x40000);
     func_02005a14(-1);
     func_02008a00();
-    *dst = arg0;
-    func_02005ab4(0x10);
-    dst[0x7f] = func_02007664();
+    {
+        u32 *dst = (u32 *)0x2fffc20;
+        *dst = arg0;
+        func_02005ab4(0x10);
+        dst[0xdf] = func_02007664();
+    }
     func_01ff81b8();
 }
 
@@ -317,6 +319,15 @@ void func_02008390(u16 bank, u16 lockId) {
         }
     }
     func_0200813c(enabled);
+}
+
+void func_02008414(void) {
+    void (*fn)(void *) = (void (*)(void *))data_0215d174[0];
+    if (fn != NULL) {
+        data_0215d174[0] = NULL;
+        fn(data_0215d174[1]);
+    }
+    func_02008444();
 }
 
 void func_02008444(void) {
