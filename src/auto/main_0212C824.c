@@ -24,21 +24,17 @@ void func_0212d168(u8 *arg0) {
 
 void func_0212d1b0(u8 *arg0) {
     u8 *p = *(u8 **)(arg0 + 4);
+    s16 val;
     if (func_0212a4b8(p) == 0) {
         func_0212cbb8(arg0);
-        func_0212a904(p);
     }
+    func_0212a904(p);
     if (func_0212a4b8(p) == 3) {
         func_0212cfc4(arg0);
     }
-    switch (*(s16 *)(p + 0x98)) {
-    case 0xa:
-    case 0x14:
-    case 0xb:
-    case 0xc:
-    case 0xf:
+    val = *(s16 *)(p + 0x98);
+    if (val == 0xa || val == 0x14 || val == 0xb || val == 0xc || val == 0xf) {
         func_0212d168(arg0);
-        break;
     }
 }
 
