@@ -119,6 +119,28 @@ u32 func_0205bcb0(void *arg0, s32 arg1) {
     return ret;
 }
 
+void func_0205c21c(s32 *arg0) {
+u8 *p = *(u8 **)((u8 *)arg0 + 0x128);
+u8 count = 0;
+s32 dy;
+func_0205bc60(arg0, &count, 20);
+dy = (arg0[10] - arg0[1]) >> 12;
+if (dy < 0) dy = -dy;
+if (dy < 10) { arg0[13] = 0; count++; }
+if (count >= 2) {
+s32 zero = 0;
+arg0[0] = arg0[6]; arg0[1] = arg0[7]; arg0[2] = arg0[8];
+arg0[12] = zero; arg0[13] = zero; arg0[14] = zero;
+func_020de0a8(arg0);
+*(s32 *)(p + 0x24) = 20;
+if (*(u16 *)(p + 0x1e) & 0x40) {
+*(u16 *)(p + 0x1e) &= 0xffbf;
+func_0205aa34(arg0, zero);
+}
+if (*(u16 *)(p + 0x1e) & 0x100) func_0205aa34(arg0, 30);
+} else func_020020f8(arg0, arg0 + 12, arg0);
+}
+
 void func_0205c314(void) {
     func_020d4eb8();
 }
