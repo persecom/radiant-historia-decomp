@@ -119,6 +119,18 @@ u32 func_021297b8(void *arg0) {
     return *(u32 *)((u8 *)arg0 + 0xc);
 }
 
+s32 func_021297f8(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    if (*(s32 *)(arg0 + 0xc) != 0) {
+        return 0;
+    }
+    *(s32 *)(arg0 + 0x14) = 2;
+    *(s32 *)(arg0 + 0x18) = arg1;
+    *(s32 *)(arg0 + 0x1c) = arg2;
+    *(s32 *)(arg0 + 0x20) = arg3;
+    *(s32 *)(arg0 + 0x24) = arg4;
+    return 1;
+}
+
 void func_02129830(u8 *arg0) {
     if (*(s32 *)(arg0 + 0xc) == 0) {
         *(s32 *)(arg0 + 0x10) = 0;
