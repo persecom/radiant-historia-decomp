@@ -260,6 +260,21 @@ void func_021335d4(void *arg0, void *arg1) {
     }
 }
 
+s32 func_0213363c(void *arg0) {
+    void *p;
+    s32 (*cb)(void *, s32, s32, s32);
+    if (arg0 == NULL) {
+        func_02132ca0(data_0215b994);
+        return 0;
+    }
+    p = *(void **)arg0;
+    cb = *(s32 (**)(void *, s32, s32, s32))((u8 *)p + 0x60);
+    if (cb == NULL) {
+        return 1;
+    }
+    return cb(*(void **)((u8 *)arg0 + 4), 0x190, 0, 0);
+}
+
 void func_02133688(void) {
     func_0213807c();
 }
