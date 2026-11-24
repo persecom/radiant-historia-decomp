@@ -145,6 +145,10 @@ void *func_02117648(u8 *arg0) {
     return *(u8 **)(arg0 + 4) + (*(u16 *)arg0 << 3);
 }
 
+void func_02117664(u8 *arg0) {
+    func_0211794c(arg0 + 8);
+}
+
 s32 func_02117774(void *arg0, void **arg1) {
     u8 *r4 = func_02117904(arg0, 0x43484152);
     if (r4 != NULL) {
