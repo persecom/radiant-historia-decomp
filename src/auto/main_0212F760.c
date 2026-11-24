@@ -241,3 +241,29 @@ void func_0212fe64(void *arg0, void *arg1) {
     *(s32 *)(a1 + 0x8) = data_0215a05c[*(s32 *)(a0 + 0x0)][*(s32 *)(a0 + 0x10)];
 }
 
+void func_0212ff10(void *arg0, void *arg1, void *arg2) {
+ s32 i,j;
+ s32 channels;
+ u8 *entry;
+ u8 *p=arg1;
+ u8 *table=*(u8 **)(p+0x18);
+ s32 count=*(s32 *)(p+0x14);
+ s32 end=*(s32 *)(p+0x10);
+ channels=*(s32 *)(p+4);
+ s32 (*out)[32]=arg2;
+ for(i=0;i<count;i++) {
+ j=0;
+ if(channels>0) {
+ entry=table+i*0x180;
+ do {out[j][i]=func_0212f3fc(arg0,*(s32 *)(entry+4)); ++j;} while(j<channels);
+ }
+ }
+ for(;count<end;count++) {
+ s32 value=func_0212f3fc(arg0,*(s32 *)(table+count*0x180+4));
+ out[1][count]=value;out[0][count]=value;
+ }
+ for(;end<32;end++) {
+ for(j=0;j<channels;j++) out[j][end]=0;
+ }
+}
+
