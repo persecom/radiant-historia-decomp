@@ -177,14 +177,12 @@ void func_020c7818(void *arg0) {
 
 void func_020c7838(void *arg0) {
     u8 *p = arg0;
+    func_020c9940(*(void **)(p + 0x4c));
     if (*(void **)(p + 0x4c) != NULL) {
-        func_020c9940(*(void **)(p + 0x4c));
-        if (*(void **)(p + 0x4c) != NULL) {
-            func_0210c5dc(*(void **)(p + 0x4c));
-            *(void **)(p + 0x4c) = NULL;
-        }
+        func_0210c5dc(*(void **)(p + 0x4c));
         *(void **)(p + 0x4c) = NULL;
     }
+    *(void **)(p + 0x4c) = NULL;
 }
 
 s32 func_020c786c(u8 *arg0) {
