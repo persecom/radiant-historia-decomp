@@ -315,13 +315,15 @@ s32 func_02133814(void *arg0) {
 }
 
 void *func_02133828(void) {
+    void *ret = NULL;
     s32 i;
     for (i = 0; i < 10; i++) {
         if (data_02174d6c[i].field_0 == 0) {
-            return &data_02174d6c[i];
+            ret = &data_02174d6c[i];
+            break;
         }
     }
-    return NULL;
+    return ret;
 }
 
 extern void func_02013878(void *, s32, s32);
