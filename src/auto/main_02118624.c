@@ -125,6 +125,13 @@ void func_02118eec(u32 *arg0, u32 arg1) {
     func_02118efc(arg0);
 }
 
+void func_02118efc(void *arg0) {
+    u8 *p = (u8 *)arg0;
+    func_02008df0(0, p + 4, 0x18);
+    *(s32 *)(p + 4) = 0x1000;
+    *(s32 *)(p + 8) = 0x1000;
+}
+
 extern void func_02117e4c(void *, void *);
 extern void func_02118f24(void *);
 void func_021190bc(void *arg0, void *arg1) {
