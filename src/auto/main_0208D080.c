@@ -122,6 +122,29 @@ void func_0208dc14(s16 arg0, s16 arg1, s16 arg2, s16 arg3, s32 arg4) {
     func_021098ac(&sp);
 }
 
+void func_0208dcc8(s16 x,s16 y,s16 height,s32 unused,u8 value) {
+Unk10 sp=data_02141184;
+u8 *p=data_0216010c;
+s16 fraction=(height*100)/(*(s16 *)(p+0x50d4)-1)*value;
+s32 pos;
+if(*(s16 *)(p+0x5368)&2) {
+pos=y+15+fraction/100;
+func_0209250c(0x36,1,x,(s16)pos,14,p[0x50d8],14,16,4,4,4,4,177);
+} else {
+pos=y+15+fraction/100;
+func_0209250c(0x35,1,x,(s16)pos,14,p[0x50d8],14,16,4,4,4,4,177);
+}
+*(s16 *)(data_0216010c+0x50da)=pos;
+if(*(s16 *)(data_0216010c+0x5300)&2) func_020a3bbc(0x38);
+else func_020a3bbc(0x37);
+sp.f1=0;sp.f2=16;sp.f5=x;sp.f6=y;
+func_021098ac(&sp);
+if(*(s16 *)(data_0216010c+0x5334)&2) func_020a3bbc(0x38);
+else func_020a3bbc(0x37);
+sp.f1=16;sp.f2=16;sp.f5=x;sp.f6=y+height+18;
+func_021098ac(&sp);
+}
+
 void func_0208dea4(u32 id,s32 mode,s16 x,s16 y,s16 z,u8 bank) {
  Unk10 a=data_02141170;
  Unk10 b=data_0214115c;
