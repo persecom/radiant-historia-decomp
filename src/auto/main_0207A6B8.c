@@ -79,3 +79,11 @@ void func_0207b218(void) {
     }
 }
 
+void func_020477dc(void *, s32, s32);
+BOOL func_0207b32c(void) {
+    if (data_021600f0 == NULL) {
+        return FALSE;
+    }
+    return (*(u8 **)((u8 *)data_021600f0 + 4))[0] != 0;
+}
+
