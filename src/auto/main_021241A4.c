@@ -151,8 +151,38 @@ void func_02124bb0(s32 a0, s32 a1, s32 a2, s32 a3, s32 a4) {
     data_02156160[6] = (u32)&data_0215617c[a4];
 }
 
+void func_02124c78(void) {
+    s32 i;
+    u32 n = data_02173170;
+    if (n > 1) {
+        n++;
+    }
+    for (i = 0; i < 5; i++) {
+        if (i < (s32)n) {
+            data_0215617c[i].f[2] = 1;
+        } else {
+            data_0215617c[i].f[2] = 0;
+        }
+        if (data_0215617c[i].f[3] != 0) {
+            data_0215617c[i].f[0] = 0;
+            data_0215617c[i].f[1] = 0x10000;
+        } else {
+            data_0215617c[i].f[0] = 0;
+            data_0215617c[i].f[1] = 0x20000;
+        }
+    }
+}
+
 s32 func_02124e60(void) {
     return 0;
+}
+
+void func_02124e68(u32 *arg0) {
+    s32 i;
+    for (i = 0; i < 5; i++) {
+        arg0[i * 2] = data_0215617c[i].f[0];
+        arg0[i * 2 + 1] = data_0215617c[i].f[1];
+    }
 }
 
 s32 func_02125014(void) {
