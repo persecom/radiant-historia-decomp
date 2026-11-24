@@ -215,6 +215,12 @@ void func_02127828(void *arg0, void *arg1, s32 arg2, s32 arg3) {
     func_02128880(arg0);
 }
 
+void func_0212789c(void *arg0, void *arg1) {
+    func_0212a9f4();
+    func_021278c0(arg0, arg1);
+    func_0212a9f8();
+}
+
 extern void func_0212a9f4(void);
 extern void func_02127e74(void *);
 extern void func_0212a9f8(void);
