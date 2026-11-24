@@ -162,14 +162,7 @@ void func_0211d49c(u8 *arg0) {
     u8 *dict = mat + *(u16 *)(mat + 2);
     u32 i;
     for (i = 0; i < *(u8 *)(dict + 1); i++) {
-        u8 *entry;
-        if (dict != NULL && i < *(u8 *)(dict + 1)) {
-            u16 ofs = *(u16 *)(dict + 6);
-            u16 unit = *(u16 *)(dict + ofs);
-            entry = (dict + ofs + 4) + unit * i;
-        } else {
-            entry = NULL;
-        }
+        u8 *entry = (u8 *)get_res_data_by_idx(dict, i);
         if (entry[3] & 1) {
             entry[3] &= ~1;
         }
