@@ -12,6 +12,49 @@ void func_02116674(void *arg0) {
     func_0200813c(irq);
 }
 
+void* func_02116d7c(void* heap, u32 size, s32 alignment)
+{
+    typedef struct Block {
+        u16 signature;
+        u16 attribute;
+        u32 blockSize;
+        struct Block* prev;
+        struct Block* next;
+    } Block;
+
+    u8* expHeap = (u8*)heap + 0x24;
+    const BOOL allocFirst = (u16)(*(u16*)(expHeap + 0x12) & 1) == 0;
+
+    Block* block = NULL;
+    Block* found = NULL;
+    u32 foundSize = 0xFFFFFFFF;
+    void* foundMem = NULL;
+
+    alignment -= 1;
+
+    for (block = *(Block**)expHeap; block != NULL; block = block->next) {
+        void* const mem = (void*)(block + 1);
+        void* const aligned = (void*)((alignment + (u32)mem) & ~alignment);
+        const u32 offset = (u32)aligned - (u32)mem;
+
+        if (block->blockSize >= size + offset && foundSize > block->blockSize) {
+            found = block;
+            foundSize = block->blockSize;
+            foundMem = aligned;
+
+            if (allocFirst || foundSize == size) {
+                break;
+            }
+        }
+    }
+
+    if (found == NULL) {
+        return NULL;
+    }
+
+    return func_02116c10(expHeap, found, foundMem, size, 0);
+}
+
 void* func_02117008(void* heap, u32 size, s32 alignment)
 {
     extern void* func_02116d7c(void*, u32, s32);
