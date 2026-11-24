@@ -49,7 +49,7 @@ extern void func_02005e80(char *, const char *, ...);
 extern void func_02012590(const char *, const char *, ...);
 extern f64 func_02017f64(const char *);
 extern s32 func_0201f114(f64);
-extern s32 func_0201f678(s32, s32);
+extern s32 _fgr(s32, s32);
 extern s32 func_020201f4(s32, s32);
 extern s32 func_020203d4(s32, s32);
 extern s32 func_02020604(s32, s32);
