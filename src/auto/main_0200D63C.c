@@ -63,15 +63,17 @@ s32 func_0200db50(u16 *arg0) {
     u8 b5d = g[0x5d];
     u8 b62 = g[0x62];
     u8 b63 = g[0x63];
-    if (v58 == 0 || v5e == 0 || v5a == 0 || v60 == 0) {
-        return 1;
+    if (v58 == 0 && v5e == 0 && v5a == 0 && v60 == 0) {
+        goto clear;
     }
     if (func_0200df4c(arg0, v58, v5a, b5c, b5d, v5e, v60, b62, b63) == 0) {
-        arg0[0] = 0;
-        arg0[1] = 0;
-        arg0[2] = 0;
-        arg0[3] = 0;
+        return 1;
     }
+clear:
+    arg0[0] = 0;
+    arg0[1] = 0;
+    arg0[2] = 0;
+    arg0[3] = 0;
     return 1;
 }
 
@@ -126,7 +128,7 @@ void func_0200e314(u32 val, u32 *ptr) {
     }
 }
 
-void func_0200e320(void) {
+void func_0200e320(u32 unused) {
     void (*cb)(u32) = (void (*)(u32))*(u32 *)(data_0215f03c + 0x30);
     u32 arg = *(u32 *)(data_0215f03c + 0x34);
     *(u32 *)(data_0215f03c + 0x2c) = 0;
@@ -137,11 +139,9 @@ void func_0200e320(void) {
 }
 
 void func_0200e350(void) {
-    volatile u32 *p = (volatile u32 *)0x02fffc3c;
-    u32 v;
-    do {
-        v = *p;
-    } while (v == *p);
+    volatile u32 v = *(volatile u32 *)0x02fffc3c;
+    while (v == *(volatile u32 *)0x02fffc3c) {
+    }
 }
 
 void func_0200e384(void) {
@@ -162,5 +162,35 @@ void func_0200e384(void) {
     reg = *(u32 *)0x02fffc3c;
     *(u32 *)(data_0215f03c + 8) = reg;
     *(u32 *)(data_0215f03c + 4) = reg;
+}
+
+void func_0200e418(u32 arg0, u32 arg1, u32 arg2) {
+    void (*call)(u32) = (void (*)(u32))func_0200e320;
+    u16 v = (arg1 >> 8) & 0x7f;
+    u8 b = arg1 & 0xff;
+    if (arg2 != 0) {
+        call((v == 0x61 || v == 0x62) ? 1 : 2);
+        return;
+    }
+    switch (v) {
+    case 0x60:
+        call(0);
+        break;
+    case 0x61: {
+        u8 *p = *(u8 **)(data_0215f03c + 0x38);
+        if (p != NULL) {
+            *(u16 *)p = b;
+        }
+        call(0);
+        break;
+    }
+    case 0x62:
+        call(b);
+        break;
+    case 0x63:
+        *(u32 *)(data_0215f03c + 0xc) = 1;
+        call(b);
+        break;
+    }
 }
 
