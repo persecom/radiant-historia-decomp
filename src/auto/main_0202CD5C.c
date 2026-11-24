@@ -258,6 +258,66 @@ s32 func_0202d890(s8 arg0, s16 arg1) {
     return 0;
 }
 
+void func_0202d998(void *arg0, void *arg1, u16 arg2) {
+    struct {
+        u8 pad[0x38];
+        s8 grid[9];
+    } *s0 = arg0;
+    u8 *p1 = (u8 *)arg1;
+
+    if (s0->grid[arg2] != -1) {
+        return;
+    }
+    switch (*(s8 *)(p1 + 1)) {
+        case 0:
+            s0->grid[arg2] = 1;
+            *(s8 *)(p1 + 2) = arg2;
+            *(s8 *)(p1 + 3) = -1;
+            break;
+        case 1:
+            if (arg2 == 2 || arg2 == 5 || arg2 == 8) {
+                return;
+            }
+            if (s0->grid[arg2 + 1] != -1) {
+                return;
+            }
+            s0->grid[arg2 + 1] = 1;
+            s0->grid[arg2] = 1;
+            *(s8 *)(p1 + 2) = arg2;
+            *(s8 *)(p1 + 3) = -1;
+            break;
+        case 2:
+            if (arg2 < 3 || arg2 > 8) {
+                return;
+            }
+            if (s0->grid[arg2 - 3] != -1) {
+                return;
+            }
+            s0->grid[arg2 - 3] = 1;
+            s0->grid[arg2] = 1;
+            *(s8 *)(p1 + 2) = arg2;
+            *(s8 *)(p1 + 3) = -1;
+            break;
+        case 3:
+            if (arg2 == 3 || arg2 == 4 || arg2 == 6 || arg2 == 7) {
+                if (s0->grid[arg2 + 1] != -1 ||
+                    s0->grid[arg2 - 3] != -1 ||
+                    s0->grid[arg2 - 2] != -1) {
+                    return;
+                }
+                s0->grid[arg2 - 3] = 1;
+                s0->grid[arg2 - 2] = 1;
+                s0->grid[arg2 + 1] = 1;
+                s0->grid[arg2] = 1;
+                *(s8 *)(p1 + 2) = arg2;
+                *(s8 *)(p1 + 3) = -1;
+            }
+            break;
+        case 4:
+            break;
+    }
+}
+
 extern void func_0202d998(void *, void *, u16);
 void func_0202dacc(void *arg0, u8 *arg1, u16 arg2, s32 *arg3) {
     s32 col;
