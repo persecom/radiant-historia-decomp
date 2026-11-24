@@ -489,3 +489,7 @@ void func_02126c74(void *arg0) {
     }
 }
 
+s32 func_02126c88(s8 *arg0) {
+    return *arg0;
+}
+
