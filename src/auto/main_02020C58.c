@@ -34,6 +34,21 @@ u32 func_020211d0(void) {
     return func_021155c8(*data_02162730) >> 10;
 }
 
+void func_020211f0(void *arg0, s32 arg1) {
+    if (data_02162730[4] == 0) {
+        if (func_020211d0() <= 0x80) {
+            data_02162730[4] = func_021154a4(data_02162730[0]);
+        }
+    } else {
+        if (func_020211d0() < 0x1e) {
+            func_0210d85c(0);
+            func_021154f4(data_02162730[0], data_02162730[4]);
+        }
+    }
+    func_021156bc(arg1, data_02162730[0]);
+    func_021160c0(arg0, 0, arg1);
+}
+
 s32 func_020212ec(void) {
     func_0210d220();
     return func_02021284();
