@@ -1,5 +1,11 @@
 /* 4 functions from 0x0208E000 to 0x0208EEF4 (main), found by ds-decomp. */
 #include "common.h"
+extern u8 *data_0216010c;
+void func_0209250c(s32,s32,s32,s16,s32,s32,s32,s32,s32,s32,s32,s32,s32);
+void func_020a8810(void *,s32);
+u32 func_02085110(u32);
+void func_020895a0(s32,s32,s32,s32,s32,s32,s32,s32,s32);
+void func_0208d5c0(u8,s16,s16,s32);
 
 typedef struct { s16 f0, f1, f2, f3, f4, f5, f6, f7, f8, f9; } Unk10;
 extern const Unk10 data_02141148, data_02141134;
