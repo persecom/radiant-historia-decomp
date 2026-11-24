@@ -7,6 +7,14 @@ extern void func_020c94dc(u8 *);
 extern void func_020c9348(u8 *, s32);
 extern u8 *func_020c9c10(void *, s32);
 extern void func_020c9590(u8 *);
+extern s16 func_020c9808(void);
+extern s16 func_020c9888(u8 *);
+extern s32 func_0201f8cc(u32);
+extern s32 func_020201f4(s32, s32);
+extern s32 func_0201ff0c(void);
+extern void func_020c7930(void *);
+extern void func_020c9680(u8 *, s16 *, s16 *);
+extern s32 func_020c992c(u8 *);
 void func_020c93f4(u8 *arg0, u16 arg1) {
     *(u16 *)(arg0 + 0x3a) = arg1;
     func_020c9404(arg0, arg1);
