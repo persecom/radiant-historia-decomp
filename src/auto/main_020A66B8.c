@@ -1,5 +1,8 @@
 /* 23 functions from 0x020A66B8 to 0x020A7598 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { s16 v[63]; } Table_020a6ed0;
+extern const Table_020a6ed0 data_021435cc;
+extern u8 *data_02160200;
 typedef struct { s16 data[10]; } Unk_020a7194;
 extern const Unk_020a7194 data_021435a4;
 extern const Unk_020a7194 data_02143590;
