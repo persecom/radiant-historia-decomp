@@ -71,7 +71,7 @@ void func_02135558(u8 *arg0, u8 arg1) {
 extern u8 data_0215be8c[];
 extern s16 func_02135d94(u8 *);
 extern void func_02135c8c(void *);
-extern u16 func_02135e18(void *, s32);
+extern s32 func_02135e18(void *, s32);
 void func_02135564(u8 *arg0, s32 arg1) {
     s32 i;
     if (arg0 == NULL) {
@@ -243,12 +243,14 @@ void func_02135abc(u8 *arg0, s16 *arg1, s32 arg2) {
 }
 
 void func_02135b1c(u8 *arg0, s16 *arg1, s32 count, s16 **out) {
-s32 i;
-s16 *left;
-s16 *right;
-u16 pos;
-out[0]=left=*(s16 **)((u8 *)data_021756d8+0x2b4);
-out[1]=right=*(s16 **)((u8 *)data_021756d8+0x2b4)+*(s32 *)(arg0+0xa4);
+register s32 i;
+register s16 *left;
+register s16 *right;
+register u16 pos;
+left=*(s16 **)((u8 *)data_021756d8+0x2b4);
+out[0]=left;
+right=*(s16 **)((u8 *)data_021756d8+0x2b4)+*(s32 *)(arg0+0xa4);
+out[1]=right;
 pos=*(u16 *)(arg0+0xa8);
 for(i=0;i<count;i++){
 s32 v=(3*arg1[i]+2*(*(s16 **)(arg0+0x9c))[pos])>>2;
@@ -356,6 +358,26 @@ u8 *func_02135d9c(s32 arg0, s32 arg1, u16 arg2) {
     *(u16 *)(entry + 2) = arg2;
     *(u32 *)(entry + 0x14) = 0;
     return entry;
+}
+
+s32 func_0201f884(s32);
+s32 func_02020888(s32,s32);
+s32 func_020203d4(s32,s32);
+s32 func_0201ff0c(s32);
+s32 func_02135e18(void *arg0, s32 rate) {
+u8 *p = arg0;
+if (p == NULL) return 0;
+if (*(s16 *)(p+0x26)) {
+if (rate == 4091) { *(s16 *)(p+0x28)=1; rate=32728; }
+else if (rate == 8182) { *(s16 *)(p+0x28)=2; rate=32728; }
+else if (rate == 12273) { *(s16 *)(p+0x28)=3; rate=32728; }
+else if (rate == 16364) { *(s16 *)(p+0x28)=4; rate=32728; }
+else if (rate == 20455) { *(s16 *)(p+0x28)=5; rate=32728; }
+else if (rate == 24546) { *(s16 *)(p+0x28)=6; rate=32728; }
+else *(s16 *)(p+0x28)=8;
+} else *(s16 *)(p+0x28)=8;
+*(s32 *)(p+8)=func_0201ff0c(func_020203d4(0x3f000000,func_02020888(0x48ffb0e0,func_0201f884(rate))));
+return rate;
 }
 
 void func_02135f0c(void *arg0, u16 *arg1, u16 *arg2) {
