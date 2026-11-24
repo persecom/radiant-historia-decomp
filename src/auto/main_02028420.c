@@ -9,7 +9,7 @@ extern s32 func_0202b4d8(s32, u8 *);
 extern u8 *data_02160a6c;
 extern u8 *data_0216007c;
 extern u32 data_0216263c[3];
-static inline u16 Random_02028420(u16 max) {
+static inline u16 Random_02028420(u32 max) {
  u32 x=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
  data_0216263c[0]=x;
  if(max==0)return (u16)(x>>16);
@@ -232,7 +232,7 @@ s32 func_02028420(u8 *arg0, u8 *arg1)
       case 28:
       {
         u8 *arr[9] = {NULL};
-        u8 cnt = 0;
+        u8 cnt = is32;
         u32 x;
         u32 idx;
         node = *((u8 **) (data_02160a6c + 0xb8));
