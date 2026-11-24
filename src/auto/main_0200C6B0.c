@@ -245,6 +245,12 @@ void func_0200d1a8(u32 arg0, u32 *ptr) {
     *ptr = 0;
 }
 
+s32 func_0200d20c(u32 arg0, void *arg1) {
+    *(u32 *)((u8 *)arg1 + 4) = 0;
+    *(u32 *)((u8 *)arg1 + 0xc) &= ~0x30;
+    return 0;
+}
+
 extern const u8 data_0213e964[];
 extern s32 func_0200d140(void *, void *, void *);
 BOOL func_0200d460(u8 *arg0, void *arg1) {
