@@ -14,11 +14,24 @@ char *func_02012210(char *dst, const char *src) {
 }
 
 int func_02012348(const char *s) {
-    const char *p = s;
-    while (*p != 0) {
-        p++;
+    u32 i = 0;
+    u32 mask = 0x7f7f7f7f;
+    const u32 *p;
+    if (((u32)s & 3) != 0) {
+        do {
+            if (s[i] == 0) return i;
+            i++;
+        } while (((u32)(s + i) & 3) != 0);
     }
-    return p - s;
+    p = (const u32 *)(s + i);
+    for (;;) {
+        u32 w = *p;
+        u32 t = ((w & mask) + mask) | w | mask;
+        if ((~t) == 0) { p++; i += 4; } else break;
+    }
+    if (s[i] == 0) return i;
+    do { i++; } while (s[i] != 0);
+    return i;
 }
 
 char *func_020123cc(char *dst, const char *src) {
@@ -26,16 +39,97 @@ char *func_020123cc(char *dst, const char *src) {
     return dst;
 }
 
-int func_020123f0(const char *a, const char *b) {
-    while (*a == *b) {
-        if (*a == 0) return 0;
-        a++;
-        b++;
+int func_020123f0(const u8 *a, const u8 *b) {
+    u32 aa = (u32)a & 3;
+    u32 ba = (u32)b & 3;
+    u32 i = 0;
+    if (aa != ba) goto bytes;
+    if (aa == 0) goto words;
+    if (aa >= 4) goto words;
+    do {
+        if (a[i] != b[i]) return a[i] - b[i];
+        if (a[i] == 0) return 0;
+        i++;
+    } while (i + aa < 4);
+words:
+    {
+        u32 mask = 0x7f7f7f7f;
+        for (;;) {
+            u32 x = *(const u32 *)(a + i);
+            u32 y = *(const u32 *)(b + i);
+            u32 t;
+            if (x != y) break;
+            t = ((x & mask) + mask) | x | mask;
+            if (t != 0xffffffff) break;
+            i += 4;
+        }
     }
-    return *a - *b;
+bytes:
+    for (;;) {
+        if (a[i] != b[i]) return a[i] - b[i];
+        if (a[i] == 0) return 0;
+        i++;
+    }
 }
 
 void func_02012590(s32 arg0, const char *arg1, ...) {
     char *vlist = (char *)((u32)&arg1 & ~3) + 4;
     func_02012634(arg0, arg1, vlist);
 }
+
+s32 func_020125b8(s32 c) {
+    switch (c) {
+        case '\t':
+        case '\n':
+        case '\v':
+        case '\f':
+        case '\r':
+        case ' ':
+            return 1;
+        default:
+            return 0;
+    }
+}
+
+void func_020125e0(u32 *bits, u32 start, u32 end) {
+    u32 endMask;
+    if (start >= end) {
+        return;
+    }
+    endMask = (1U << (end & 0x1f)) - 1;
+    do {
+        u32 word = start >> 5;
+        u32 mask = ~0U << (start & 0x1f);
+        u32 next = (word + 1) << 5;
+        if (end < next) {
+            mask &= endMask;
+        }
+        bits[word] |= mask;
+        start = next;
+    } while (start < end);
+}
+
+void func_02012d64(u32 *arg0, u8 arg1) {
+    if (arg0[0] != 0) {
+        *(u8 *)arg0[1] = arg1;
+        arg0[0]--;
+    }
+    arg0[1]++;
+}
+
+void func_02012d90(u32 *arg0, u8 arg1, s32 arg2) {
+    u32 n, i;
+    if (arg2 <= 0) {
+        return;
+    }
+    n = arg0[0];
+    if (n > (u32)arg2) {
+        n = (u32)arg2;
+    }
+    for (i = 0; i < n; i++) {
+        ((u8 *)arg0[1])[i] = arg1;
+    }
+    arg0[0] -= n;
+    arg0[1] += arg2;
+}
+
