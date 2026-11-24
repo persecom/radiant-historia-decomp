@@ -7,14 +7,22 @@ typedef struct {
     u32 unk_0c;
     u8 unk_10[0x08];
     u8 unk_18[2];
+    s8 unk_1a[2];
+    u8 unk_1c[0x08];
+    u32 unk_24[2];
 } Unk021624F8;
 
 extern Unk021624F8 *data_021624f8;
+extern u32 data_02162504[];
 extern u8 data_02162510[];
 
 void func_02125b78(u32);
 void func_02125d00();
 void func_02125bd4(u32, s32);
+void func_0210950c(u32);
+s32 func_021090f4(u32, s32);
+void func_02108ffc(void);
+void func_02109264(u32);
 
 void func_02108b54(u32 arg0) {
     u32 *ptr = NULL;
