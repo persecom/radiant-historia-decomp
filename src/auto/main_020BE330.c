@@ -125,16 +125,20 @@ void func_020be784(void) {
 }
 
 void func_020be844(void) {
+    if (data_0216020c == NULL) {
+        return;
+    }
     if (data_0216020c != NULL) {
         func_0210c5dc(data_0216020c);
-        data_0216020c = NULL;
     }
+    data_0216020c = NULL;
 }
 
 void func_020beb14(void) {
+    u8 *p = data_0216020c;
     data_02155984 = data_0216242c;
-    data_0216242c[9] += *(s32 *)(data_0216020c + 0x98);
-    data_02151fcc = *(s16 *)(data_0216020c + 0x8e) + 0x80;
+    data_0216242c[9] += *(s32 *)(p + 0x98);
+    data_02151fcc = *(s16 *)(p + 0x8e) + 0x80;
     func_02108240();
 }
 
