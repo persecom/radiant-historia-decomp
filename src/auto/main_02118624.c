@@ -1,5 +1,6 @@
 /* 33 functions from 0x02118234 to 0x021191F0 (main), found by ds-decomp. */
 #include "common.h"
+static inline s32 size_02118a54(s32 n) { switch(n) { case 1:return 0; case 2:return 1; case 4:return 2; case 8:return 3; case 16:return 4; case 32:return 5; default:return 0; } }
 typedef struct { u16 width,height; u32 format,type,unkC,size; void *data; } Unk02118A54;
 typedef struct { u32 unk[3]; u32 height,width,format,zero,one,type; } Unk02118A54Out;
 static inline s32 has_02118f24_data(u8 *p) { s32 r = 1; if (!*(void **)(p + 12)) r = 0; return r; }
@@ -95,11 +96,14 @@ void func_02118624(void *arg0, u32 arg1, s32 arg2, void *arg3) {
 }
 
 void func_02118a54(void *arg0, u32 arg1, s32 arg2, void *arg3) {
+    const Unk02118A54 *p=arg0;
+    Unk02118A54Out *out=arg3;
     u32 mapType;
     u32 zero = 0;
+    s32 widthResult;
 
-    func_02006dc4(*(void **)((u8 *)arg0 + 0x14), *(u32 *)((u8 *)arg0 + 0x10));
-    mapType = *(u32 *)((u8 *)arg0 + 8);
+    func_02006dc4(p->data, p->size);
+    mapType = p->type;
     switch (arg2) {
         case 0:
             break;
@@ -112,9 +116,9 @@ void func_02118a54(void *arg0, u32 arg1, s32 arg2, void *arg3) {
     }
 
 
-    if (*(u32 *)((u8 *)arg0 + 8) == 0) {
+    if (p->type == 0) {
         u32 val;
-        switch (*(u16 *)((u8 *)arg0 + 2)) {
+        switch (((volatile Unk02118A54 *)p)->height) {
             case 1: val = 0; break;
             case 2: val = 1; break;
             case 4: val = 2; break;
@@ -123,9 +127,10 @@ void func_02118a54(void *arg0, u32 arg1, s32 arg2, void *arg3) {
             case 32: val = 5; break;
             default: val = 0; break;
         }
-        *(u32 *)((u8 *)arg3 + 0xc) = val;
+        { s32 width=p->width;
+        out->height = val;
 
-        switch (*(u16 *)((u8 *)arg0 + 0)) {
+        switch (width) {
             case 1: val = 0; break;
             case 2: val = 1; break;
             case 4: val = 2; break;
@@ -134,16 +139,21 @@ void func_02118a54(void *arg0, u32 arg1, s32 arg2, void *arg3) {
             case 32: val = 5; break;
             default: val = 0; break;
         }
-        *(u32 *)((u8 *)arg3 + 0x10) = val;
+        widthResult = val;
+        }
     } else {
-        *(u32 *)((u8 *)arg3 + 0xc) = *(u16 *)((u8 *)arg0 + 2);
-        *(u32 *)((u8 *)arg3 + 0x10) = *(u16 *)((u8 *)arg0 + 0);
+        u32 width=p->width, height=p->height;
+        out->height = height;
+        widthResult = width;
     }
 
-    *(u32 *)((u8 *)arg3 + 0x14) = *(u32 *)((u8 *)arg0 + 4);
-    *(u32 *)((u8 *)arg3 + 0x18) = zero;
-    *(u32 *)((u8 *)arg3 + 0x1c) = 1;
-    *(u32 *)((u8 *)arg3 + 0x20) = *(u32 *)((u8 *)arg0 + 8);
+    out->width = widthResult;
+    { u32 format=((volatile Unk02118A54 *)p)->format, type=p->type;
+    out->format = format;
+    out->zero = zero;
+    out->one = 1;
+    out->type = type;
+    }
     func_021185b0((s32 *)arg3, arg2, (s32)arg1);
 }
 
