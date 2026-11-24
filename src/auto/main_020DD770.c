@@ -384,6 +384,27 @@ void func_020de29c(void) {
     func_020de404();
 }
 
+void *func_020de2a8(u8 *arg0, u16 arg1, u8 arg2) {
+    u8 *node = func_020de33c(arg0, arg1, arg2);
+    if (node != NULL) {
+        *(u16 *)(node + 0xa) += 1;
+        if (*(u16 *)(node + 0xa) >= 99) {
+            *(u16 *)(node + 0xa) = 99;
+        }
+    } else {
+        node = func_0210c594(0x10, data_02155c3c);
+        *(u16 *)(node + 0x8) = arg1;
+        *(u8 *)(node + 0xc) = arg2;
+        *(u16 *)(node + 0xa) = 1;
+        func_021167f0(arg0, node);
+        *(u16 *)(arg0 + 0xc) += 1;
+        if (*(u16 *)(arg0 + 0xc) >= 99) {
+            *(u16 *)(arg0 + 0xc) = 99;
+        }
+    }
+    return node;
+}
+
 void func_020de374(void *arg0, void *arg1) {
     func_021168f8(arg0, arg1);
     if (arg1 != NULL) {
@@ -440,5 +461,15 @@ void func_020de4b4(void *arg0) {
     void **node = func_0210c594(0xc, data_02155c3c);
     *node = arg0;
     func_021167f0(data_02160a70, node);
+}
+
+void func_020de4ec(void) {
+    void *node;
+    while ((node = *(void **)data_02160a70) != NULL) {
+        func_021168f8(data_02160a70, node);
+        if (node != NULL) {
+            func_0210c5dc(node);
+        }
+    }
 }
 
