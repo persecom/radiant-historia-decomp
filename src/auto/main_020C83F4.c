@@ -59,6 +59,10 @@ void func_020c8588(u8 *arg0, u16 arg1) {
     *(u16 *)(arg0 + 0x3a) = arg1;
 }
 
+void func_020c8590(u8 *arg0, u16 arg1) {
+    *(u16 *)(arg0 + 0x3c) = arg1;
+}
+
 s32 func_020c8624(void) {
     return 4;
 }
