@@ -61,7 +61,7 @@ void func_020d2a44(s8 arg0, u8 arg1, s16 arg2) {
 void func_020d2ac4(Unk3 *arg) {
     if (arg == NULL) return;
     if (arg->unk1 < 1 || arg->unk1 > 0x1f) return;
-    func_020d2a44(arg->unk0, arg->unk1, arg->unk2);
+    func_020d2a44(arg->unk1, arg->unk0, arg->unk2);
 }
 
 s32 func_020d2af4(s32 arg0, s8 arg1, s8 arg2, u8 arg3, s16 arg4) {
