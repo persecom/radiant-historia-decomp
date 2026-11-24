@@ -95,3 +95,34 @@ void *func_0209c14c(u16 arg0) {
     return NULL;
 }
 
+void func_0209c198(void) {
+    Unk870 buf = data_02142344;
+    u8 *base = data_02160120;
+    void *list;
+    u16 i;
+
+    if (base == NULL) {
+        return;
+    }
+
+    list = *(void **)(base + 0x704);
+    for (i = 0; i < 0x5d; i++) {
+        u16 idx = i * 12;
+        u8 *p = (u8 *)func_0210c594(0x2c, data_02155c3c);
+        *(s16 *)(p + 0x06) = buf.data[idx + 0];
+        *(s16 *)(p + 0x08) = buf.data[idx + 1];
+        *(s16 *)(p + 0x0a) = buf.data[idx + 2];
+        *(s16 *)(p + 0x0c) = buf.data[idx + 3];
+        *(s32 *)(p + 0x10) = buf.data[idx + 4];
+        *(s32 *)(p + 0x14) = buf.data[idx + 5];
+        *(s32 *)(p + 0x18) = buf.data[idx + 6];
+        *(s16 *)(p + 0x1c) = buf.data[idx + 7];
+        *(s16 *)(p + 0x1e) = buf.data[idx + 8];
+        *(s16 *)(p + 0x04) = buf.data[idx + 9];
+        *(s16 *)(p + 0x00) = buf.data[idx + 10];
+        *(s16 *)(p + 0x02) = buf.data[idx + 11];
+        p[0x20] = 0x1f;
+        func_021167f0(list, p);
+    }
+}
+
