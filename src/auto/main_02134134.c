@@ -13,6 +13,7 @@ extern void func_0213807c(void);
 extern void func_0213808c(void);
 extern void func_0200bb10(void *, s32, s32);
 extern void func_0200b8b4(void *);
+extern void func_02133dd0(s32, void *);
 extern u8 data_0215bd14[];
 extern u8 data_0215bd2c[];
 extern u8 data_0215bdd0[];
@@ -70,6 +71,13 @@ void func_0213473c(void) {
 extern void func_021146b8(void *);
 void func_02134bf0(u8 *arg0) {
     func_021146b8(arg0 + 0x34);
+}
+
+BOOL func_02134c94(u8 *arg0) {
+    if (arg0 == NULL) {
+        return FALSE;
+    }
+    return (arg0[1] & 1) != 0;
 }
 
 s32 func_02134efc(void *arg0) {
