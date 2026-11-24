@@ -225,6 +225,39 @@ void func_0202d3ac(u8 *arg0) {
     }
 }
 
+s32 func_0202d890(s8 arg0, s16 arg1) {
+    u8 *node = *(u8 **)(data_02160244 + 0x44);
+
+    while (node != NULL) {
+        if (*(s16 *)(node + 0x24) != arg1) {
+            switch (*(s8 *)(node + 1)) {
+                case 0:
+                    if (*(s8 *)(node + 2) == arg0 && *(s8 *)(node + 3) != -1) {
+                        return 1;
+                    }
+                    break;
+                case 1:
+                    if ((*(s8 *)(node + 2) == arg0 || *(s8 *)(node + 2) == arg0 - 1) && *(s8 *)(node + 3) != -1) {
+                        return 1;
+                    }
+                    break;
+                case 2:
+                    if ((*(s8 *)(node + 2) == arg0 || *(s8 *)(node + 2) == arg0 + 3) && *(s8 *)(node + 3) != -1) {
+                        return 1;
+                    }
+                    break;
+                case 3:
+                    if ((*(s8 *)(node + 2) == arg0 || *(s8 *)(node + 2) == arg0 - 1 || *(s8 *)(node + 2) == arg0 + 3 || *(s8 *)(node + 2) == arg0 + 2) && *(s8 *)(node + 3) != -1) {
+                        return 1;
+                    }
+                    break;
+            }
+        }
+        node = *(u8 **)(node + 0xc);
+    }
+    return 0;
+}
+
 extern void func_0202d998(void *, void *, u16);
 void func_0202dacc(void *arg0, u8 *arg1, u16 arg2, s32 *arg3) {
     s32 col;
