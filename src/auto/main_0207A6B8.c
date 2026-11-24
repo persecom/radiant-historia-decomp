@@ -71,6 +71,47 @@ BOOL func_0207ae24(void) {
     return (*(u8 **)((u8 *)data_021600f0 + 8))[0] == 1;
 }
 
+void *func_020bd438(u8);
+void *func_02021f10(u8);
+void func_02057f5c(void);
+void func_0207ae48(s32 mode, s32 amount) {
+ u16 adjustment;
+ u8 i;
+ if (amount == 0) return;
+ adjustment=(u16)amount;
+ for(i=0;i<7;i++) {
+  u8 *entry=func_020bd438(i);
+  u8 *p;
+  if(!entry || !(*(u16 *)entry & 1)) continue;
+  p=func_02021f10(entry[2]);
+  if(!p) continue;
+  if(mode==0) {
+   if(amount>0) {
+    if(*(u16 *)(p+0x10)>amount) *(u16 *)(p+0x10)-=adjustment;
+    else *(u16 *)(p+0x10)=1;
+   } else {
+    s32 max=*(u16 *)(p+0x12)+*(s16 *)(p+0x24);
+    if(*(u16 *)(p+0x10)-amount>max) *(u16 *)(p+0x10)=max;
+    else *(u16 *)(p+0x10)-=adjustment;
+   }
+  } else {
+   s32 max=*(u16 *)(p+0x12)+*(s16 *)(p+0x24);
+   s32 magnitude=amount;
+   u16 delta;
+   if(amount<0) magnitude=-amount;
+   delta=max*magnitude/100;
+   if(amount>0) {
+    if(*(u16 *)(p+0x10)>delta) *(u16 *)(p+0x10)-=delta;
+    else *(u16 *)(p+0x10)=1;
+   } else {
+    if(*(u16 *)(p+0x10)+delta>max) *(u16 *)(p+0x10)=max;
+    else *(u16 *)(p+0x10)+=delta;
+   }
+  }
+ }
+ func_02057f5c();
+}
+
 void func_0207af60(void) {
     u8 *p = *(u8 **)((u8 *)data_021600f0 + 8);
     u8 *q = *(u8 **)((u8 *)data_021600f0 + 4);
