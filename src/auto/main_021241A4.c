@@ -138,6 +138,11 @@ s32 func_02125014(void) {
     return 0;
 }
 
+extern u8 data_0215617c[];
+extern u8 data_02156160[];
+extern u16 data_02173170;
+extern u32 data_02156150;
+extern u32 data_02156154;
 extern void func_0200439c(void);
 extern void func_020043f8(u32, u32, u32);
 extern void func_02004544(void);
