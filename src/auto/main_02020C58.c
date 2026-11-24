@@ -45,3 +45,20 @@ u32 func_02021a50(void) {
     return data_02160054[3];
 }
 
+extern void func_02021bd0(s32);
+extern void func_0210d85c(s32);
+extern u32 func_021154a4(u32);
+extern void func_021154f4(u32, u32);
+extern void func_021156bc(s32, u32);
+extern void func_021160c0(void *, s32, s32);
+extern void func_0210d114(u32, void *);
+extern void func_0211568c(s32, u32);
+extern u8 data_02145fc8[];
+extern void *data_02155c80;
+extern s32 data_02160050;
+void func_02021c28(s32 arg0) {
+    s32 offset = arg0 * 0x4800;
+    func_02021bd0(offset);
+    func_02021bd0(offset + 0x2400);
+}
+
