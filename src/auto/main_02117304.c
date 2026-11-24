@@ -193,6 +193,29 @@ void *func_021176b0(u8 *arg0, u32 arg1) {
     return *(u8 **)(arg0 + 4) + (arg1 << 3);
 }
 
+void func_021176d8(u8 *arg0) {
+    u8 *r4;
+    u16 i;
+    *(u32 *)(arg0 + 4) += (u32)arg0;
+    r4 = func_02117648(arg0);
+    for (i = 0; i < *(u16 *)arg0; i++) {
+        u8 *node = func_021176b0(arg0, i);
+        *(u32 *)(node + 4) += (u32)r4;
+    }
+    if (*(u32 *)(arg0 + 0xc) != 0) {
+        u8 *p = *(u8 **)(arg0 + 0xc);
+        p = (u8 *)p + (u32)arg0;
+        *(u32 *)(arg0 + 0xc) = (u32)p;
+        *(u32 *)(p + 4) += (u32)p;
+        *(u32 *)(arg0 + 0xc) = (u32)p;
+    }
+    if (*(u32 *)(arg0 + 0x14) == 0) {
+        return;
+    }
+    *(u32 *)(arg0 + 0x14) += (u32)arg0;
+    func_02117664((void *)*(u32 *)(arg0 + 0x14));
+}
+
 s32 func_02117774(void *arg0, void **arg1) {
     u8 *r4 = func_02117904(arg0, 0x43484152);
     if (r4 != NULL) {
