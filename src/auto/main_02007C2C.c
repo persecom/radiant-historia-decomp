@@ -38,7 +38,6 @@ extern void func_020026e0(s32 count);
 extern void func_020059b4(u32 irq);
 extern void func_02007f24(void);
 extern void func_02007dd4(u8 *);
-extern void func_02007ee4(void);
 void func_02007d18(void) {
     u8 *p = data_0215d144;
     u32 zero = 0;
@@ -388,5 +387,57 @@ void func_02008a00(void) {
     func_02008998(1);
     func_02008998(2);
     func_02008998(3);
+}
+
+void func_02008a28(s32 arg0, u32 arg1) {
+    s32 i;
+    for (i = 0; i < 3; i++) {
+        u32 v = *(u32 *)(0x4000000 + i * 0xc + 0xb8);
+        u32 mode;
+        if ((v & 0x80000000) == 0) {
+            continue;
+        }
+        mode = v & 0x38000000;
+        if (mode == arg1) {
+            continue;
+        }
+        if (mode == 0x8000000 && arg1 == 0x10000000) {
+            continue;
+        }
+        if (mode == 0x10000000 && arg1 == 0x8000000) {
+            continue;
+        }
+        if (mode != 0x18000000 && mode != 0x20000000 && mode != 0x28000000 && mode != 0x30000000 && mode != 0x38000000 && mode != 0x8000000 && mode != 0x10000000) {
+            continue;
+        }
+        func_02008414();
+    }
+}
+
+void func_02008ab4(s32 arg0, u32 arg1, u32 arg2, u32 arg3) {
+    u32 hi;
+    u32 hi2;
+    if (arg0 == 0) {
+        return;
+    }
+    hi = arg1 & 0xff000000;
+    if (arg3 != 0) {
+        if (arg3 == 0x800000) {
+            arg1 -= arg2;
+        }
+    } else {
+        arg1 += arg2;
+    }
+    if (hi == 0x4000000) {
+        return;
+    }
+    if (hi >= 0x8000000) {
+        return;
+    }
+    hi2 = arg1 & 0xff000000;
+    if (hi2 == 0x4000000 || hi2 >= 0x8000000) {
+        return;
+    }
+    func_02008414();
 }
 
