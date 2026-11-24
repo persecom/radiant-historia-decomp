@@ -237,6 +237,12 @@ void func_0212dd4c(void *arg0) {
     func_0212e5ac();
 }
 
+void func_0212ddf0(void *arg0, void *arg1) {
+    func_0212e5a0();
+    func_0212de14(arg0, arg1);
+    func_0212e5ac();
+}
+
 void func_0212de24(void) {
     data_021740d8[0]++;
 }
