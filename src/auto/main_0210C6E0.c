@@ -308,3 +308,6 @@ void func_0210d46c(void) {
     func_02113c18(data_02162740);
 }
 
+void func_0210d6a4(void) {
+}
+
