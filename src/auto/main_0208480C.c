@@ -12,6 +12,13 @@ extern void *func_020a94b8(void *);
 extern void func_02080d30(void);
 extern void func_0210c5dc(void *);
 extern void func_02089a98(void);
+
+typedef struct {
+    u8 pad[0x44];
+    void *field_44;
+    u8 pad2[0x10];
+    void *field_58;
+} G_020852a0;
 void func_0208480c(void) {
     data_0216010c[0x50b4] = 1;
 }
@@ -56,7 +63,7 @@ s32 func_020851bc(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u8 arg4) {
     if (arg4 == 0) return (s16)sum;
     if (arg2 < sum) {
         if (arg4 != 1) return arg3;
-        return sum;
+        return arg2;
     } else {
         return (s16)sum;
     }
@@ -90,19 +97,20 @@ void func_02085240(void) {
 }
 
 void func_020852a0(void) {
-    if (*(void **)(data_0216010c + 0x58)) {
-        if (**(void ***)(data_0216010c + 0x58)) {
-            func_020a9544(*(void **)(data_0216010c + 0x58));
+    u8 **pp = &data_0216010c;
+    if (*(void **)(*pp + 0x58)) {
+        if (**(void ***)(*pp + 0x58)) {
+            func_020a9544(*(void **)(*pp + 0x58));
         }
     }
-    *(void **)(data_0216010c + 0x58) = NULL;
+    *(void **)(*pp + 0x58) = NULL;
     func_02080d30();
-    if (*(void **)(data_0216010c + 0x44)) {
-        func_0210c5dc(*(void **)(data_0216010c + 0x44));
-        *(void **)(data_0216010c + 0x44) = NULL;
+    if (*(void **)(*pp + 0x44)) {
+        func_0210c5dc(*(void **)(*pp + 0x44));
+        *(void **)(*pp + 0x44) = NULL;
     }
-    *(void **)(data_0216010c + 0x44) = NULL;
-    *(u8 *)(data_0216010c + 0x3f) = 0;
+    *(void **)(*pp + 0x44) = NULL;
+    *(u8 *)(*pp + 0x3f) = 0;
     func_02089a98();
 }
 
