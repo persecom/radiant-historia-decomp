@@ -20,6 +20,57 @@ extern u16 data_02162908[4];
 extern void func_020ae50c(s32);
 extern void *func_020b442c(void);
 
+u8 *func_020b3890(void);
+void func_020ade8c(s32);
+s32 func_02022068(u16);
+void func_0210d490(s32);
+s32 func_020ab638(u8 *arg0) {
+s32 two=2,one=1;
+u8 *a,*p,*q;
+s32 dir=0;
+s32 amount=0;
+a=func_020b3890();
+p=func_020b4044();
+q=func_020b3fd8();
+s32 type=func_020b3f14(*(u16*)(p+4));
+if(data_021626a6&16) dir=one;
+else if(data_021626a6&32) dir--;
+else if(data_021626a8&1) {
+*(s32*)(a+0x258)-=*(s32*)p * *(s32*)(q+0x2aac);
+if(a[0x263]==2) {
+if(type==1) *(s32*)(q+0x2aa8)=dir;
+else if(type==2) *(s32*)(q+0x2aa8)=one;
+else {func_020ade8c(3);*(s32*)(q+0x2aa8)=two;}
+func_020ade8c(4);
+*arg0=two;
+} else {
+func_020220b0(*(u16*)(p+4),*(s32*)(q+0x2aac));
+*arg0=dir;
+}
+func_020ae50c(6);func_020ae50c(7);func_020ade30(18);func_0210d27c(15);
+*(s32*)(q+0x2aac)=1;return 2;
+} else if(data_021626a8&2) {
+*arg0=dir;
+*(s32*)(q+0x2aac)=one;
+func_020ae50c(6);func_020ae50c(7);func_020ade30(two);func_0210d27c(5);
+return two;
+}
+if(dir!=0 && type==0) {
+s32 old=*(s32*)(q+0x2aac);
+amount=old;
+func_020aaf88(&amount,dir,1,100,0);
+s32 money=*(s32*)(a+0x258)-*(s32*)p*amount;
+if(old!=amount) {
+if(money>=0 && amount+func_02022068(*(u16*)(p+4))<=99) {
+func_0210d27c(2);
+*(s32*)(q+0x2aac)=amount;
+} else { func_0210d490(7); }
+} else { func_0210d490(7); }
+}
+done:
+return 0;
+}
+
 s32 func_020ab840(u8 *arg0) {
 u8 *q;
 s32 dir = 0;
