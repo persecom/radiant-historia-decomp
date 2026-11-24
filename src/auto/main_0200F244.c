@@ -82,3 +82,10 @@ void func_0200fa3c(void *arg0) {
     func_0200fa74(arg0, 2);
 }
 
+void func_0200fa4c(u32 arg0) {
+    if (func_020106ac() == 0) {
+        func_020106a0();
+    }
+    func_0200faec(arg0, 2);
+}
+
