@@ -176,6 +176,9 @@ void func_0212ebb0(void) {
     func_0213575c();
 }
 
+void func_0212ebbc(void) {
+}
+
 s32 func_0212ebc0(void) {
     return 0;
 }
@@ -184,23 +187,19 @@ void func_0212ebc8(void *arg0, void *arg1) {
     func_0212bda8(arg1);
 }
 
-void func_0212f384(void *p0, s32 arg1, void *p2, void *p3) {
-    struct Buf { u8 *ptr; s32 len; };
-    struct Buf *arg0 = (struct Buf *)p0;
-    struct Buf *arg2 = (struct Buf *)p2;
-    struct Buf *arg3 = (struct Buf *)p3;
-    u8 *ptr = arg0->ptr;
-    s32 len = arg0->len;
+void func_0212f384(s32 *arg0, s32 arg1, s32 *arg2, s32 *arg3) {
+    s32 ptr = arg0[0];
+    s32 len = arg0[1];
     s32 rem;
-    arg2->ptr = ptr;
-    arg2->len = len;
-    arg3->len = len;
-    if (arg2->len > arg1) {
-        arg2->len = arg1;
+    arg2[0] = ptr;
+    arg2[1] = len;
+    arg3[1] = len;
+    if (arg2[1] > arg1) {
+        arg2[1] = arg1;
     }
-    rem = arg3->len - arg2->len;
-    arg3->len = rem;
-    arg3->ptr = (rem == 0) ? NULL : (arg2->ptr + arg2->len);
+    rem = arg3[1] - arg2[1];
+    arg3[1] = rem;
+    arg3[0] = (rem == 0) ? 0 : (arg2[0] + arg2[1]);
 }
 
 void *func_0212f468(void *arg0) {
