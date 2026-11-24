@@ -486,6 +486,15 @@ s32 func_0210f314(u32 arg0) {
     return (*(u16 *)(p + 0x14) >= 2) ? 1 : 0;
 }
 
+void func_0210f344(const char *arg0) {
+    if (data_02162a80[0] == '\0') {
+        func_02012210(data_02162b00, arg0);
+    } else {
+        func_02012210(data_02162b00, data_02162a80);
+    }
+    data_02162a54[0] = 0;
+}
+
 void func_0210f38c(void) {
     data_02162b00[0] = '\0';
     data_02162a54[0] = 0;
