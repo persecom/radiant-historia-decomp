@@ -151,8 +151,27 @@ u32 func_020071c8(s32 arg0, u32 arg1, u32 arg2) {
     return aligned;
 }
 
+void func_02007428(s32 arg0, s32 arg1, u8 *arg2) {
+    u32 cookie = func_02008128();
+    u8 *arena = data_0215d060[arg0];
+    u8 *heap;
+    if (arg1 < 0) {
+        arg1 = *(s32 *)(arena + 0x0);
+    }
+    heap = *(u8 **)(arena + 0x10) + arg1 * 0xc;
+    arg2 -= 0x20;
+    *(void **)(heap + 0x8) = func_02007250(*(void **)(heap + 0x8), arg2);
+    *(void **)(heap + 0x4) = func_02007278(*(void **)(heap + 0x4), arg2);
+    func_0200813c(cookie);
+}
+
 void func_02007538(s32 arg0, u32 arg1) {
     data_02145bc0[arg0](arg1);
+}
+
+void func_020075d4(s32 arg0, u32 arg1, s32 arg2) {
+    u32 mask = (u32)(-0x1000) << ((u32)(arg2 - 0x16) >> 1);
+    func_02007538(arg0, arg2 | (arg1 & mask) | 1);
 }
 
 extern u32 data_0215d084[3];
