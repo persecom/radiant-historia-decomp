@@ -12,3 +12,14 @@ void func_020a6e90(void **arg0) {
         }
     }
 }
+
+void func_020a7494(void **arg0) {
+    void *ptr;
+    while ((ptr = *arg0) != NULL) {
+        func_021168f8(arg0, ptr);
+        if (ptr != NULL) {
+            func_0210c5dc(ptr);
+        }
+    }
+}
+
