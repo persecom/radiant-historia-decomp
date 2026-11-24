@@ -471,6 +471,19 @@ s32 func_02133c1c(u8 *arg0) {
     return 0;
 }
 
+void func_02133c48(u8 *arg0, u32 arg1) {
+    u32 bytePos;
+    if (arg0 == NULL) {
+        func_021336c0(0, data_0215bb84);
+        return;
+    }
+    bytePos = *(u32 *)(arg0 + 0x10) * *(u32 *)(arg0 + 4);
+    *(u32 *)(arg0 + 4) = arg1;
+    *(u32 *)(arg0 + 0xc) = (*(u32 *)(arg0 + 8) + (arg1 - 1)) / arg1;
+    *(u32 *)(arg0 + 0x10) = bytePos / *(u32 *)(arg0 + 4);
+    *(u32 *)(arg0 + 0x14) = *(u32 *)(arg0 + 0x18) * arg1;
+}
+
 void func_02133dd0(u32 arg0, u32 arg1) {
     if (data_02174f9c[0x1ca] != 0) {
         ((void (*)(u32, u32, u32))data_02174f9c[0x1ca])(data_02174f9c[0x1cb], arg1, arg0);
