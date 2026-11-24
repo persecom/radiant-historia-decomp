@@ -4,6 +4,20 @@
 extern u8 data_04000247;
 extern u8 data_0215d144[20];
 extern u16 data_0215d158;
+extern void func_02009008(u32, u32, u32);
+extern void func_0200a56c(void);
+extern s32 func_0200a6c0(s32, s32);
+extern void func_0200a674(s32, void *);
+extern void func_02005a84(void);
+extern u32 func_02005df8(void);
+extern void func_0200f9b0(u32);
+extern void func_02005988(u32);
+extern void func_02005a14(s32);
+extern void func_02008a00(void);
+extern void func_02005ab4(s32);
+extern u32 func_02007664(void);
+extern void func_01ff81b8(void);
+extern void func_02008e08(void *, void *, u32);
 extern u32 func_02008128(void);
 extern void func_02008454(void);
 extern void func_020081a4(u32);
@@ -144,34 +158,34 @@ void func_02007e58(u8 *alarm, s16 count, s16 delay, void *handler, void *arg) {
 s32 func_0200808c(u8 *arg0, s32 arg1, s32 arg2) {
     s32 a = arg1 - *(s32 *)(arg0 + 0xc);
     s32 b = arg2 - *(s16 *)(arg0 + 0x10);
-    if (a < 0) {
+    if (a >= 0) {
+        if (a != 0) {
+            return 2;
+        }
+        if (b >= 0) {
+            return 2;
+        }
+        return 0;
+    }
+    {
         s16 lim = *(s16 *)(arg0 + 0x12);
         if (b < 0) {
             a = b + 7;
             b = a + 0x100;
         }
-        if (b <= lim) {
-            return 1;
-        }
-        return 2;
+        return (b <= lim) ? 1 : 2;
     }
-    if (a != 0) {
-        return 2;
-    }
-    if (b >= 0) {
-        return 2;
-    }
-    return 0;
 }
 
 u32 func_020080d8(u32 arg0) {
+    u32 *p = (u32 *)data_0215d144;
     u32 irq = func_02008128();
-    if (arg0 < *(u32 *)(data_0215d144 + 4)) {
-        *(u32 *)(data_0215d144 + 8) += 1;
+    if (arg0 < p[1]) {
+        p[2]++;
     }
-    *(u32 *)(data_0215d144 + 4) = arg0;
+    p[1] = arg0;
     func_0200813c(irq);
-    return *(u32 *)(data_0215d144 + 8);
+    return p[2];
 }
 
 u32 func_02008198(u32 x) {
@@ -191,8 +205,9 @@ void func_020081a4(u32 arg0) {
 }
 
 void func_020081c0(void) {
-    WaitByLoop(1);
-    func_02005650(1, 1);
+    s32 one = 1;
+    WaitByLoop(one);
+    func_02005650(one, one);
 }
 
 u16 func_020081e0(void) {
@@ -201,6 +216,38 @@ u16 func_020081e0(void) {
 
 u32 func_020081f0(void) {
     return 0x2fffc40;
+}
+
+extern void func_02009008(u32, u32, u32);
+extern void func_0200a56c(void);
+extern s32 func_0200a6c0(s32, s32);
+extern void func_0200a674(s32, void *);
+extern void func_02005a84(void);
+extern u32 func_02005df8(void);
+extern void func_0200f9b0(u32);
+extern void func_02005988(u32);
+extern void func_02005a14(s32);
+extern void func_02008a00(void);
+extern void func_02005ab4(s32);
+extern u32 func_02007664(void);
+extern void func_01ff81b8(void);
+extern void func_02008e08(void *, void *, u32);
+void func_020082b8(u32 arg0) {
+    ((void (*)(u32, u32, u32))func_02009008)(0x2fffcf4, arg0, 6);
+}
+
+void func_020082d4(u8 *arg0) {
+    u8 *p = (u8 *)0x2fffc80;
+    *(u8 *)arg0 = *(u16 *)(p + 0x64) & 7;
+    *(u8 *)(arg0 + 1) = *(u8 *)(p + 2) & 0xf;
+    *(u8 *)(arg0 + 2) = *(u8 *)(p + 3);
+    *(u8 *)(arg0 + 3) = *(u8 *)(p + 4);
+    *(u16 *)(arg0 + 0x1a) = *(u8 *)(p + 0x1a);
+    *(u16 *)(arg0 + 0x52) = *(u8 *)(p + 0x50);
+    func_02008e08(p + 6, arg0 + 4, 0x14);
+    func_02008e08(p + 0x1c, arg0 + 0x1c, 0x34);
+    *(u16 *)(arg0 + 0x18) = 0;
+    *(u16 *)(arg0 + 0x50) = 0;
 }
 
 u32 func_02008354(u32 x) {
