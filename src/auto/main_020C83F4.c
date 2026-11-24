@@ -261,6 +261,16 @@ u8 *func_020c8adc(u8 *arg0) {
     return func_020c9b24(*(void **)(arg0 + 0x54), 0, 4);
 }
 
+u8 *func_020c8b10(u8 *arg0) {
+    u8 *obj = func_020c9c10(*(void **)(arg0 + 0x54), 1);
+    if (obj != NULL) {
+        return obj;
+    }
+    u8 *ret = func_020c9b24(*(void **)(arg0 + 0x54), 1, 1);
+    func_020c8b58(arg0, ret);
+    return ret;
+}
+
 void func_020c8b58(u8 *arg0, u8 *obj) {
     ((void (*)(u8 *, s16))(*(void **)(obj + 0x10)))(obj, *(s16 *)(arg0 + 0x58));
     ((void (*)(u8 *, s16))(*(void **)(obj + 0x14)))(obj, *(s16 *)(arg0 + 0x5a));
