@@ -378,6 +378,24 @@ s32 func_02137c2c(u8 *arg0, s32 arg1, s32 arg2, s32 *arg3) {
     return ret;
 }
 
+s32 func_02137c68(u8 *arg0, s32 arg1, s32 arg2, s32 *arg3) {
+ s32 val, limit;
+ if (!arg0) {func_02137250(data_0215c508,data_0215c514);return 0;}
+ if (!*(u32 *)(arg0+4)) {func_02137250(data_0215c530,data_0215c53c);return 0;}
+ if (arg1==0) {
+ limit=*(s32 *)(arg0+0x24)+(*(s32 *)(arg0+0x20)-*(s32 *)(arg0+0x14));
+ val=*(s32 *)(arg0+0x10);
+ if(val>=limit) val=limit;
+ if(val>=arg2) val=arg2;
+ } else if(arg1==1) {
+ limit=*(s32 *)(arg0+0x24)+(*(s32 *)(arg0+0x20)-*(s32 *)(arg0+0x18));
+ val=*(s32 *)(arg0+0xc);
+ if(val>=limit) val=limit;
+ if(val>=arg2) val=arg2;
+ } else {val=0; if(*(u32 *)(arg0+0x38)) ((void (*)(u32,s32))*(u32 *)(arg0+0x38))(*(u32 *)(arg0+0x3c),-3);}
+ *arg3=val;return val==arg2;
+}
+
 extern void *func_02137d68(void *);
 void *func_02137d44(void *arg0) {
     void *ret;
