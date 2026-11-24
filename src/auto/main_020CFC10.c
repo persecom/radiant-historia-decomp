@@ -44,6 +44,25 @@ void func_020d0884(void) {
     }
 }
 
+void func_020d09d8(u8 *);
+void func_020d08d0(void) {
+ u8 *p;
+ *(s32 *)(data_02160a6c+0x100)=0;
+ data_02160a6c[0x104]=16;
+ for(p=*(u8 **)(data_02160a6c+0xac);p;p=*(u8 **)(p+0x16c)) {
+ u8 *q;
+ u16 id=*(u16 *)(p+0x90);
+ q=*(u8 **)(p+0x128);
+ *(s32 *)(q+0x54)=func_0202bd60(id+9U,0);
+ func_0202bfa8(p,id+9);
+ func_020dd810(p,1,0);
+ *(s32 *)(p)=*(s32 *)(p)-((const s16 (*)[2])data_0213a394)[func_020d9e38()>>4][1]*-90;
+ *(s32 *)(p+4)+=0x1a000;
+ *(s32 *)(p+8)=*(s32 *)(p+8)-data_0213a394[(func_020d9e38()>>4)*2]*-90;
+ }
+ for(p=*(u8 **)(data_02160a6c+0xb8);p;p=*(u8 **)(p+0x174))func_020d09d8(p);
+}
+
 void func_020d09d8(u8 *arg0) {
     u8 *r4 = *(u8 **)(arg0 + 0x128);
     *(s32 *)(r4 + 0x54) = func_0202bd60(*(u8 *)(arg0 + 0x1a0), *(u8 *)(*(u8 **)(arg0 + 0x118) + 0x54));
