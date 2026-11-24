@@ -6,7 +6,7 @@ void func_0212f760(void) {
     func_0213235c();
 }
 
-extern void func_0212fd20(void);
+extern s32 func_0212fd20(void);
 void func_0212fcfc(void) {
     func_0212fd20();
 }
