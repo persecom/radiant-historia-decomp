@@ -173,6 +173,29 @@ check:
     (void)x;
 }
 
+s32 func_020cf284(void) {
+func_0210968c(3,0,30);
+data_0216023c=0;
+for (;;) {
+func_0210dc88();
+if (data_021626a8 & 1) {
+if(data_0216023c) data_0216023c=0;
+else {func_020bdd88();func_02021c7c();func_020cf228();}
+} else if(data_021626a8 & 2) break;
+if(data_0216023c) continue;
+if(data_021626a8 & 16) {
+((u8 *)data_02160204)[0x7f]++;
+((u8 *)data_02160204)[0x7f] %= 3;
+} else if(data_021626a8 & 32) {
+((u8 *)data_02160204)[0x7f]--;
+((u8 *)data_02160204)[0x7f] %= 3;
+}
+}
+func_0210968c(3,-16,1);func_02109790(3);
+*(u16 *)((u8 *)data_02160204+0x102)=1;
+return 36;
+}
+
 void func_020cf3b4(void) {
     u8 i;
     u8 *src;
