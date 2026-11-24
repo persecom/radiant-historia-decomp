@@ -296,3 +296,33 @@ s32 func_02009880(void) {
     return func_02006b4c(&data_0215d1a0);
 }
 
+u32 *func_02009a64(s32 arg0) {
+    u32 *cmd;
+    if (!func_02009f34()) {
+        return NULL;
+    }
+    cmd = func_02009eec();
+    if (cmd != NULL) {
+        return cmd;
+    }
+    if (!(arg0 & 1)) {
+        return NULL;
+    }
+    if (func_02009e20() > 0) {
+        while (func_02009964(0) != 0) {
+        }
+        cmd = func_02009eec();
+        if (cmd != NULL) {
+            return cmd;
+        }
+    } else {
+        func_02009b24(1);
+    }
+    func_02009ec4();
+    do {
+        func_02009964(1);
+        cmd = func_02009eec();
+    } while (cmd == NULL);
+    return cmd;
+}
+
