@@ -180,3 +180,9 @@ void func_02119110(void *arg0) {
     }
 }
 
+void func_02119130(u8 *arg0) {
+    func_02117df4(arg0);
+    *(u32 *)(arg0 + 0xc) = 1;
+    func_02118f24(arg0);
+}
+
