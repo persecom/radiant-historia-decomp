@@ -49,3 +49,8 @@ void func_0211104c(void *arg0) {
         func_0210c5dc(arg0);
     }
 }
+
+void func_0211128c(u8 *arg0, s32 arg1) {
+    func_0211111c(arg0, arg1, *(s16 *)(arg0 + 0x36));
+}
+
