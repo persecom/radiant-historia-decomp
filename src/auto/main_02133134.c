@@ -13,6 +13,15 @@ extern u8 data_0215b794[28];
 extern u8 data_0215b7b0[24];
 extern u8 data_0215b7c8[28];
 extern u8 data_0215b7e4[24];
+extern u8 data_0215b7fc[28];
+extern u8 data_0215b818[24];
+extern u8 data_0215b830[28];
+extern u8 data_0215b84c[24];
+typedef struct {
+    void (**fn)(void);
+    u32 pad[3];
+} UnkEntry_021333b0;
+extern UnkEntry_021333b0 data_02174b64[32];
 
 extern void func_0213807c(void);
 void func_0213320c(u8 *arg0) {
