@@ -75,6 +75,18 @@ void func_0211104c(void *arg0) {
     }
 }
 
+extern void func_020c9940(void *);
+void func_0211106c(void *arg0) {
+    if (*(void **)((u8 *)arg0 + 0x30) != NULL) {
+        func_020c9940(*(void **)((u8 *)arg0 + 0x30));
+        if (*(void **)((u8 *)arg0 + 0x30) != NULL) {
+            func_0210c5dc(*(void **)((u8 *)arg0 + 0x30));
+            *(void **)((u8 *)arg0 + 0x30) = NULL;
+        }
+        *(void **)((u8 *)arg0 + 0x30) = NULL;
+    }
+}
+
 void func_0211128c(u8 *arg0, s32 arg1) {
     func_0211111c(arg0, arg1, *(s16 *)(arg0 + 0x36));
 }
