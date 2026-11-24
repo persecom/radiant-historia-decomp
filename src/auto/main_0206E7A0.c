@@ -82,6 +82,28 @@ void *func_0206ec3c(u16 arg0) {
     return NULL;
 }
 
+extern void func_021168f8(void *, void *);
+void func_0206ec84(u16 arg0) {
+    u8 *base = data_021600e8;
+    u8 *p = *(u8 **)(base + 0x54);
+    while (p != NULL) {
+        if (*(u16 *)p == arg0) {
+            func_021168f8(base + 0x54, p);
+            if (*(u8 *)(p + 0x14) == 2) {
+                if (*(void **)(p + 0x4) != NULL) {
+                    func_0210c5dc(*(void **)(p + 0x4));
+                    *(void **)(p + 0x4) = NULL;
+                }
+            }
+            if (p != NULL) {
+                func_0210c5dc(p);
+            }
+            return;
+        }
+        p = *(u8 **)(p + 0x28);
+    }
+}
+
 void func_0206ed00(u16 arg0) {
     u8 *p = *(u8 **)(data_021600e8 + 0x48);
     while (p != NULL) {
