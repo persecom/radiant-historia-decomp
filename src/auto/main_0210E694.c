@@ -140,22 +140,54 @@ s32 func_0210e848(const char *arg0, u32 *arg1) {
     return 1;
 }
 
-extern void (*data_02156154)(u32);
-extern s32 data_02162950;
+void *func_0210e8b4(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    u32 *out = (u32 *)arg3;
+
+    if (data_02162950 != 0) {
+        arg1 = data_02162950;
+    }
+    out[0] = func_0210f170((const char *)arg2, arg1, 0, 0);
+    if (out[0] == 0) {
+        return (void *)0;
+    }
+    out[1] = (u16)out[0] << 3;
+    if (!func_0210f2e4()) {
+        func_0200439c();
+        func_020043f8(arg0, out[1], arg1);
+        func_02004544();
+    }
+    func_021091b4();
+    return (void *)1;
+}
+
+s32 func_0210e93c(void *arg0, u32 arg1, const char *arg2, u32 *arg3) {
+    u32 size;
+    s32 flag;
+
+    if (arg1 < 8) {
+        arg1 = 8;
+    } else if (arg1 < 0x20) {
+        arg1 = 0x20;
+    }
+    size = (arg1 + 3) & ~3;
+    flag = (arg1 <= 8) ? 1 : 0;
+    arg3[0] = func_0210f20c(arg2, size, flag, 0);
+    if (arg3[0] == 0) {
+        data_02156154(arg3[0]);
+        return 0;
+    }
+    arg3[1] = (u16)arg3[0] << 3;
+    if (!func_0210f314()) {
+        func_02004588();
+        func_020045bc(arg0, arg3[1], size);
+        func_0200462c();
+    }
+    func_021091b4();
+    return 1;
+}
+
 extern void func_0210eb14(void *);
 extern void func_0210eb4c(void *);
-extern s32 func_0210f170(const char *, s32, s32, s32);
-extern s32 func_0210f20c(const char *, s32, s32, s32);
-extern s32 func_0210f2e4(void);
-extern s32 func_0210f314(void);
-extern void func_0200439c(void);
-extern void func_020043f8(void *, u32, s32);
-extern void func_02004544(void);
-extern void func_02004588(void);
-extern void func_020045bc(void *, u32, u32);
-extern void func_0200462c(void);
-extern void func_021091b4(void);
-extern s32 func_0210e93c(void *, u32, const char *, u32 *);
 void func_0210eb80(u8 *arg0) {
     func_0210eb14(arg0);
     func_0210eb4c(arg0 + 8);
