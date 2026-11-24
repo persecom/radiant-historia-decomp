@@ -92,6 +92,29 @@ void func_02118624(void *arg0, u32 arg1, s32 arg2, void *arg3) {
     func_021185b0((s32 *)arg3, arg2, (s32)arg1);
 }
 
+extern void func_02004138(void);
+extern void func_02004180(void *,u32,u32);
+extern void func_020041f0(void);
+extern void func_020036b8(void *,u32,u32);
+extern void func_020042e4(void);
+extern void func_020042fc(void *,u32,u32);
+extern void func_02004364(void);
+extern void func_02003714(void *,u32,u32);
+extern void func_02004588(void);
+extern void func_020045bc(void *,u32,u32);
+extern void func_0200462c(void);
+extern void func_021185f4(void *,s32,u32);
+void func_02118c14(u32 *p,u32 addr,s32 type,u32 *out){
+void *data=(void *)p[3];u32 size=p[2];
+func_02006dc4(data,size);
+switch(type){
+case 1: if(p[1]){func_02004138();func_02004180(data,addr,size);func_020041f0();}else func_020036b8(data,addr,size);break;
+case 2: if(p[1]){func_020042e4();func_020042fc(data,addr,size);func_02004364();}else func_02003714(data,addr,size);break;
+case 0: func_02004588();func_020045bc(data,addr,size);func_0200462c();break;
+}
+{u32 a=((volatile u32 *)p)[0],b=((volatile u32 *)p)[1];out[0]=a;out[1]=b;}func_021185f4(out,type,addr);
+}
+
 void func_02118e68(s32 *arg0) {
     s32 i;
     for (i = 0; i < 3; i++) {
