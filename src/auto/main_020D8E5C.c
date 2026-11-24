@@ -83,6 +83,31 @@ void func_020d9090(void) {
     }
 }
 
+s32 func_020d90bc(s32 arg0) {
+    u8 *p = data_02160258;
+    u8 *q = *(u8 **)(p + 0x54);
+    s32 dx = *(s32 *)q - *(s32 *)p;
+    s32 dz = *(s32 *)(q + 8) - *(s32 *)(p + 8);
+    if (arg0 == 0) {
+        if (dx < 0) dx = -dx;
+        if (dx < 0xa000) {
+            if (dz < 0) dz = -dz;
+            if (dz < 0xa000) {
+                return 1;
+            }
+        }
+    } else if (arg0 == 1) {
+        if (dx < 0) dx = -dx;
+        if (dx < 0x1000) {
+            if (dz < 0) dz = -dz;
+            if (dz < 0x1000) {
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+
 void *func_020d9df4(void) {
     return *(void **)(data_02160258 + 0x80);
 }
