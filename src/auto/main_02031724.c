@@ -6,11 +6,6 @@ extern void *data_02160090;
 extern void *data_02155c3c;
 extern void *func_0210c594(s32, void *);
 extern void func_021167ac(void *, s32);
-typedef struct {
-    u16 unk00;
-    u8 pad02[6];
-    void *unk08;
-} Unk_02160090;
 extern void func_02031fcc(s32, s32);
 extern void func_021168f8(void *, void *);
 extern void func_02033060(void);
