@@ -15,6 +15,28 @@ void func_020a29dc(u16 arg0) {
     *(u8 *)((u8 *)p + 0xc) = 0;
 }
 
+void func_020a2a08(void) {
+    u16 i;
+    u8 *base = (u8 *)data_021600b0[0];
+    for (i = 0; i < 0x3d; i++) {
+        func_021167f0(base + 0x140, ((void *(*)(u16))func_020a29dc)((u16)(i + 1)));
+    }
+}
+
+void func_020a2a50(void) {
+    u8 *base = (u8 *)data_021600b0[0];
+    void *node = *(void **)(base + 0x140);
+    if (node == NULL) {
+        return;
+    }
+    func_021168f8(base + 0x140, node);
+    if (node != NULL) {
+        func_0210c5dc(node);
+    }
+    while (*(void **)(base + 0x140) != NULL) {
+    }
+}
+
 s32 func_020a30c4(void) {
     func_020a30d4();
     return func_020a3128();
