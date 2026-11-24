@@ -1,7 +1,8 @@
 /* 17 functions from 0x0205B710 to 0x0205C65C (main), found by ds-decomp. */
 #include "common.h"
 
-extern void func_020d4eb8(void);
+extern void func_020d4eb8();
+extern void func_020d2b78(void *arg0, void *arg1, s32 arg2, s32 arg3);
 extern void *func_02022494(void *arg0, s32 arg1);
 extern s32 func_020dddfc(void *arg0, void *arg1, s32 arg2);
 extern void func_020020f8(void *arg0, void *arg1, void *arg2);
@@ -45,6 +46,18 @@ void func_0205bbd8(void *arg0) {
             }
         }
         p = *(u8 **)(p + 0x18);
+    }
+}
+
+void func_0205bc60(s32 *arg0, u8 *arg1, s32 arg2) {
+    if (func_020dddfc(arg0, arg0 + 9, arg2 << 12) == 0) {
+        return;
+    }
+    arg0[0xc] = 0;
+    arg0[0xe] = 0;
+    (*arg1)++;
+    if (arg0[0xd] == 0) {
+        (*arg1)++;
     }
 }
 
