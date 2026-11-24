@@ -118,3 +118,18 @@ void func_020d2b78(UnkA *a, UnkB *b, s32 c, s32 d) {
     func_020ddd8c(a);
 }
 
+void func_020d2bf0(UnkA *a, Unk_020895a0 *b, s32 c, s32 d) {
+    s32 idx = c >> 4;
+    a->unk24 = b->unk0 + d * data_0213a394[idx * 2 + 1];
+    a->unk28 = b->unk4;
+    a->unk2c = b->unk8 + d * data_0213a394[idx * 2];
+    a->unk92 = func_020ddcb0(a, &a->unk24);
+    func_020ddd8c(a);
+}
+
+void func_020d30a0(void) {
+    if (data_02160a6c->unk64 == 0) return;
+    func_020d2f44();
+    if (data_02160a6c->unk64 != 0) return;
+}
+
