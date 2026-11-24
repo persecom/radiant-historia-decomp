@@ -12,6 +12,43 @@ extern void func_020223f8(void *, s32);
 extern void func_0205aa34(void *, s32);
 
 u32 *func_0202c5a0(u8 *);
+void func_02060b4c(u8 *p){
+s32 id;
+u8 *r=*(u8 **)(p+0x128);
+u8 *node,*b,*a;
+s32 flags;
+if(r[0x76]&1){
+u8 *q=*(u8 **)(r+0x78);
+b=*(u8 **)(q+0xc);a=*(u8 **)(q+4);node=*(u8 **)(b+0x28);
+}else{
+a=*(u8 **)(r+8);node=func_0205bad4(r);b=*(u8 **)(r+0xc);
+}
+flags=func_0205bcb0(p,(u16)*(s32 *)(r+0x34));
+if((flags&1) && *(s16 *)(r+0x1c)==0){
+s32 one=1;
+*(s16 *)(r+0x1c)=one;
+func_020d3fe8(p,node,a);
+func_020d3160(one,*(u16 *)(a+0x16),b,*(u16 *)(p+0x90)&255);
+if(node){
+s32 zero=0,one=1,other=0;
+do{
+id=*(s32 *)node;
+func_020d9e48(p,id);
+if(*(s32 *)(r+0x30)==0)*(u16 *)(node+4)|=0x10;
+func_020d56d8(p,id,zero,one);
+func_020d56d8(p,id,zero,2);
+if(*(s16 *)(r+0x90)){func_0210d27c(*(s16 *)(r+0x90));*(s16 *)(r+0x90)=zero;}
+func_020daefc(p,id,a,other,node,other,other);
+node=*(u8 **)(node+0x18);
+}while(node);
+}
+func_020d5fd0(p);
+func_020d9da8(32);
+func_020d9ea8(8,0);
+}
+if(flags&2)func_020d4eb8(p);
+}
+
 void func_02060cc4(u8 *p){
 u8 *r=*(u8 **)(p+0x128);
 s32 state=*(s16 *)(r+0x1c);
