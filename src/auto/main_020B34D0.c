@@ -100,6 +100,19 @@ s32 func_020b3f14(u32 arg0) {
     return res;
 }
 
+void func_020b3fb4(u32 arg0, s32 *arg1, s32 *arg2) {
+    if (arg0 & 1) {
+        *arg2 = 0;
+    } else {
+        *arg2 = 3;
+    }
+    if (arg0 & 8) {
+        *arg1 = 4;
+    } else {
+        *arg1 = 3;
+    }
+}
+
 extern void func_020b3a9c(void);
 extern void func_02009008(void *, void *, s32);
 extern u8 *func_020b4044(void);
