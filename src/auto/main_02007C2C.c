@@ -12,6 +12,10 @@ u32 func_02008198(u32 x) {
     return x;
 }
 
+u16 func_020081e0(void) {
+    return *(u16 *)func_020081f0();
+}
+
 u32 func_020081f0(void) {
     return 0x2fffc40;
 }
