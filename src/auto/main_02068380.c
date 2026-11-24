@@ -414,6 +414,12 @@ void func_02068380(u8 *arg0)
     } Effect;
 
 
+static inline u16 Random_02068ac4(u32 limit) {
+    u32 seed = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
+    data_0216263c[0] = seed;
+    return (u16)(((seed >> 16) * limit) >> 16);
+}
+
 void func_02068ac4(u8 *arg0)
 {
     Effect *e = (Effect *)arg0;
