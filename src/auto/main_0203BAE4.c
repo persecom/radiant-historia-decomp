@@ -1,5 +1,7 @@
 /* 23 functions from 0x0203BAE4 to 0x0203C998 (main), found by ds-decomp. */
 #include "common.h"
+extern char data_021462b0[12];
+extern char data_021462bc[8];
 extern u8 *data_02160094;
 typedef struct { u32 kind : 8; u32 size : 24; } ResourceHeader;
 extern char data_0214629c[12];
@@ -107,27 +109,20 @@ s32 func_0203be60(u8 *arg0, s32 arg1, s32 arg2) {
 }
 
 s32 func_0203bef0(u8 *arg0, s32 arg1, s32 arg2) {
-char buf[0x64];
-u32 info[2];
-void *src;
-void *dst;
-u32 size;
-char *p;
-func_02108ffc();
-p = buf;
+char buf[0x64]; ResourceHeader info[2]; void *src; void *dst; ResourceHeader size; char *p;
+func_02108ffc(); p = buf;
 func_02005e80(p, data_0214629c, arg1);
 src = func_02109b14(p, info);
-size = (info[1] & 0xff) | ((*(u32 *)src >> 8) << 8);
-dst = func_0210c594(size >> 8, data_02155c3c);
-func_021091b4();
-func_02009230(src, dst);
+size = info[1]; size.size = ((ResourceHeader *)src)->size;
+dst = func_0210c594(size.size, data_02155c3c);
+func_021091b4(); func_02009230(src, dst);
 if (src != NULL) func_0210c5dc(src);
-func_0210e8b4(dst, size >> 8, buf, arg0);
+func_0210e8b4(dst, size.size, buf, arg0);
 if (dst != NULL) func_0210c5dc(dst);
-func_021091b4();
-p = buf;
+func_021091b4(); p = buf;
 func_02005e80(p, data_021462a8, arg2);
-return func_0210e848(p, arg0 + 8) != 0;
+if (func_0210e848(p, arg0 + 8) == 0) return 0;
+return 1;
 }
 
 void *func_0203c0d8(void) {
