@@ -237,6 +237,12 @@ void func_02125510(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     func_02125524(arg0, arg1, arg2, arg3, 0);
 }
 
+void func_021256b4(void) {
+    if (data_02173194 != 0) {
+        func_0212e610();
+    }
+}
+
 s32 func_02125a5c(void *arg0) {
     s32 ret;
     if (!data_02173194) {
