@@ -342,6 +342,12 @@ s32 func_0212e538(s32 arg0, s32 arg1, s32 arg2) {
     return ret;
 }
 
+s32 func_0212e56c(s32 arg0, s32 arg1, s32 arg2) {
+    *(s32 *)((u8 *)arg0 + 0x20) = arg1;
+    *(s32 *)((u8 *)arg0 + 0x1c) = arg2;
+    return 1;
+}
+
 extern void func_0212a9dc(void);
 void func_0212e57c(void) {
     func_0212a9dc();
