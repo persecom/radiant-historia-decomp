@@ -1,5 +1,11 @@
 /* 11 functions from 0x0209DFDC to 0x0209EE60 (main), found by ds-decomp. */
 #include "common.h"
+extern u8 data_02148964[],data_02148978[],data_02148994[],data_021489ac[],data_021489c4[],data_021489e0[];
+extern void *func_020a8604(s32,s32);
+extern void *func_020a84b8(s32,s32);
+extern void *func_020a94b8(void *);
+extern void func_020a9830(void *,void *,s32,s32,s32,s32);
+extern void func_020a9610(void *,void *,s32,void *,s32,s32);
 
 extern u8 *data_021600b0;
 typedef struct { s16 field[10]; } Unk_0209e688;
