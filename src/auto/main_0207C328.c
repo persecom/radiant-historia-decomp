@@ -166,18 +166,18 @@ void func_0207cd44(s32 arg0) {
     if (node == NULL) {
         return;
     }
-    goto check;
+check:
+    if ((s32)arg0 != (s32)node) {
+        goto advance;
+    }
+    func_021168f8(p + 4, (void *)arg0);
+    return;
 advance:
     node = *(u8 **)(node + 0x54);
     if (node != NULL) {
         goto check;
     }
     return;
-check:
-    if ((s32)arg0 != (s32)node) {
-        goto advance;
-    }
-    func_021168f8(p + 4, (void *)arg0);
 }
 
 void func_0207cd8c(s32 arg0) {
