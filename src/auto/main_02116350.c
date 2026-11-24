@@ -328,3 +328,19 @@ void* func_021171d8(void* start, u32 size, u16 opt)
 void func_02117210(void) {
     func_02116ad8();
 }
+
+void* func_0211721c(void* heap, u32 size, s32 alignment)
+{
+    if (size == 0) {
+        size = 1;
+    }
+
+    size = (size + 3) & ~3;
+
+    if (alignment >= 0) {
+        return func_021170e4((u8*)heap + 0x24, size, alignment);
+    } else {
+        return func_02117140((u8*)heap + 0x24, size, -alignment);
+    }
+}
+
