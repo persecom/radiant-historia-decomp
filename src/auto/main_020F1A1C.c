@@ -140,3 +140,30 @@ void func_020f2638(void **arg0) {
     }
 }
 
+void func_020f265c(void **arg0) {
+    if (arg0 != NULL) {
+        u8 *r4 = (u8 *)*arg0;
+        if (*(u8 **)(r4 + 0x58) != NULL) {
+            func_0210aa14(*(void **)(*(u8 **)(r4 + 0x58) + 0x14));
+            if (*(void **)(*(u8 **)(r4 + 0x58) + 0) != NULL) {
+                func_0210c5dc(*(void **)(*(u8 **)(r4 + 0x58) + 0));
+                *(void **)(*(u8 **)(r4 + 0x58) + 0) = NULL;
+            }
+            if (*(void **)(*(u8 **)(r4 + 0x58) + 8) != NULL) {
+                func_0210c5dc(*(void **)(*(u8 **)(r4 + 0x58) + 8));
+                *(void **)(*(u8 **)(r4 + 0x58) + 8) = NULL;
+            }
+            if (*(void **)(r4 + 0x58) != NULL) {
+                func_0210c5dc(*(void **)(r4 + 0x58));
+                *(void **)(r4 + 0x58) = NULL;
+            }
+        }
+        if (r4 != NULL) {
+            func_0210c5dc(r4);
+        }
+    }
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
