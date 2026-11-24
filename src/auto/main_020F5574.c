@@ -101,6 +101,11 @@ void func_020f58c0(u8 *p) {
     }
 }
 
+void func_020f5914(u8 *p, s32 a, s32 b, s32 c, s32 d, s32 e) {
+    *(s32 *)(p + 0x130) = a;
+    func_020a9830(p + 0x144, p + 0x12c, b, c, d, e);
+}
+
 s32 func_020f5948(void) {
     char buf[0x40];
     s32 index = 0;
