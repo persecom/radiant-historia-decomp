@@ -27,6 +27,25 @@ void func_020ecd10(void *, u32, void *);
 void func_020ecac8(void *, u32);
 s32 func_020ed2d0(void *, u8, s32);
 
+void func_020471b8(Obj_02046e30 *obj, u32 arg1) {
+    if (arg1 == 2000) {
+        return;
+    }
+    if (arg1 != 0 && arg1 < 700) {
+        void *r6 = func_020eca60();
+        func_020ecd10(r6, arg1, &data_021600bc->unk_a0);
+        obj->unk_108 = r6;
+    } else if (arg1 > 5000 && arg1 < 6000) {
+        void *r6 = func_020eca60();
+        func_020ecac8(r6, arg1);
+        obj->unk_108 = r6;
+    } else if (arg1 > 1000 && arg1 < 5000 && arg1 != 2000) {
+        void *r4 = func_020eca60();
+        func_020ecd10(r4, arg1, &data_021600bc->unk_a0);
+        obj->unk_108 = r4;
+    }
+}
+
 void func_020477c0(Obj_02046e30 *obj, void *arg1) {
     obj->unk_b4++;
     func_021167f0(&obj->unk_b8, arg1);
