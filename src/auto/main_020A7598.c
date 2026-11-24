@@ -113,11 +113,11 @@ void func_020a78f0(void) {
     }
 }
 
-void func_020a795c(u32 arg0, u32 *arg1, u32 *arg2) {
+void func_020a795c(u32 arg0, void **arg1, void **arg2) {
     u8 *p = data_021600e4;
     void *result = func_020a6360(p + 0x118, (arg0 - *(u32 *)(p + 0x184) + 1) & 0xff);
-    *arg1 = *(u32 *)((u8 *)result + 4);
-    *arg2 = *(u32 *)((u8 *)result + 8);
+    *arg1 = *(void **)((u8 *)result + 4);
+    *arg2 = *(void **)((u8 *)result + 8);
 }
 
 void func_020a7fe8(void) {
@@ -143,5 +143,9 @@ void func_020a83a8(void) {
 
 void func_020a83c4(void) {
     func_020c3df4(*(void **)(data_02160140 + 0x3c), 1);
+}
+
+void func_020a83e4(void) {
+    func_020c3df4(*(void **)(data_02160140 + 0x3c), 0);
 }
 
