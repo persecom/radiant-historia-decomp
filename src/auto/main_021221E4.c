@@ -5,7 +5,7 @@ extern void *data_02155ee8;
 extern void *data_02155ed8;
 extern u16 *func_02120c74(u8 *);
 extern void *func_02121090(void *, u16, u16);
-extern u8 func_02121040(void *);
+extern u8 func_02121040(void *, u8);
 extern void func_02122fa0(void *, u8, u8 *);
 extern u8 func_02121068(void *);
 void func_02008df0(u8, void *, u32);
@@ -94,5 +94,33 @@ void func_02122e70(u32 *arg0, u8 *arg1, u32 arg2) {
 
     arg0[4] = (arg0[4] & ~0xc0000000u) | 0x40000000u;
     arg0[0] |= 0x8;
+}
+
+void func_02123074(u8 *arg0, void *arg1, u32 *arg2) {
+    u16 *p;
+    u16 v, w;
+    u32 off = (arg0 != NULL) ? *(u16 *)(arg0 + 0x34) : 0;
+    if (off == 0) {
+        arg2[5] = 0;
+        return;
+    }
+    p = func_02120c74(arg0 + off);
+    v = p[0];
+    w = *(u16 *)(arg0 + 0x2c) & ~0xe0000000u;
+    if ((p[1] & 1) == 0) {
+        v = (v << 15) >> 16;
+        w = (w << 15) >> 16;
+    }
+    arg2[5] = v + w;
+}
+
+void func_02123168(u8 *arg0, u8 *arg1, u8 *arg2) {
+    u32 i;
+    *(void **)(arg0 + 0xc) = data_02155ed8;
+    arg0[0x19] = arg2[0x17];
+    *(void **)(arg0 + 8) = arg1;
+    for (i = 0; i < arg0[0x19]; i++) {
+        *(u16 *)(arg0 + 0x1a + i * 2) = (u16)(i | 0x100);
+    }
 }
 
