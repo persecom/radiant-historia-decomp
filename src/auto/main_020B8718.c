@@ -40,6 +40,41 @@ extern void func_020c83f4(u8 *, s32, s32, s32);
 extern void func_020c738c(void *, s32, s32);
 extern u16 data_02143904[];
 
+void func_020b8718(void) {
+s32 zero=0;
+u8 *p;
+s32 i;
+func_020a3b84();func_02107104();func_02112ed8();func_020a2e24();
+p=data_021601ec;
+if(p) {
+for(i=0;i<5;i++) {
+func_020a9544(*(void **)(p+0x60+i*4));
+func_020a9544(*(void **)(p+0x74+i*4));
+}
+func_020a9544(*(void **)(p+0x88));
+if(*(void **)(p+0x48)) {
+func_020c9940(*(void **)(p+0x48));
+if(*(void **)(p+0x48)) {func_0210c5dc(*(void **)(p+0x48));*(void **)(p+0x48)=0;}
+*(void **)(p+0x48)=0;
+}
+if(*(void **)(p+0x4c)) {
+func_020c9940(*(void **)(p+0x4c));
+if(*(void **)(p+0x4c)) {func_0210c5dc(*(void **)(p+0x4c));*(void **)(p+0x4c)=0;}
+*(void **)(p+0x4c)=0;
+}
+func_0210dba0(p+0x14);func_0210dbe8(p+0x28);func_0210da14(p);
+if(data_021601ec) func_0210c5dc(data_021601ec);
+data_021601ec=0;
+}
+if(*(void **)(data_02160204+0x10c)) {
+func_020de29c(*(void **)(data_02160204+0x10c));
+*(void **)(data_02160204+0x10c)=0;
+}
+func_0210e290(zero);
+data_02162858[0]=0;data_02162854=0;
+func_0210f138();
+}
+
 void func_020b8844(void) {
     *(volatile u32 *)0x0400001c = 0;
     *(volatile u32 *)0x04000000 = (*(volatile u32 *)0x04000000 & ~0x1f00) | 0x1f00;
