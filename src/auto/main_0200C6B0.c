@@ -242,6 +242,10 @@ s32 func_0200d52c(void) {
     return 0;
 }
 
+u32 func_0200d610(void *arg0, s32 arg1) {
+    return (arg1 == 1) ? 4 : 0x102;
+}
+
 s32 func_0200d624(void) {
     return 4;
 }
