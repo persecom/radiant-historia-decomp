@@ -10,6 +10,25 @@ extern void *data_021601dc;
 extern void *data_02155c3c;
 
 extern void func_0210c5dc(void *);
+void func_020aa464(void) {
+    void **list = data_021601d8;
+    void *node;
+    if (list == NULL) {
+        return;
+    }
+    node = *list;
+    while (node != NULL) {
+        void *next = *(void **)((u8 *)node + 4);
+        func_021168f8(list, node);
+        func_020aa3e0(node);
+        node = next;
+    }
+    if (data_021601d8 != NULL) {
+        func_0210c5dc(data_021601d8);
+    }
+    data_021601d8 = NULL;
+}
+
 void func_020aa710(void *arg0) {
     if (arg0 != NULL) {
         func_0210c5dc(arg0);
