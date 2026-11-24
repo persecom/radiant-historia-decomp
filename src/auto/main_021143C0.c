@@ -103,6 +103,12 @@ void func_021148bc(u8 *arg0) {
     func_021148cc(arg0, 1);
 }
 
+u32 func_02114f58(u32 arg0) {
+    u32 old = data_0216cad0[0];
+    data_0216cad0[0] = arg0;
+    return old;
+}
+
 u32 func_02114f70(void) {
     return data_0216cad0[0];
 }
