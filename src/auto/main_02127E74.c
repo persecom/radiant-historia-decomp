@@ -30,7 +30,9 @@ typedef struct {
     u8 f71;
     u8 pad72[2];
     void *f74;
-    u8 pad78[0x14];
+    void *arr78[2];
+    void *arr80[2];
+    u8 pad88[4];
     u32 f8c;
     u32 f90;
     u8 pad94[8];
@@ -84,6 +86,40 @@ extern void func_0212a9f4(void);
 extern void func_021281cc(void *);
 extern void func_0212a9f8(void);
 extern void func_02127ff4(void);
+void func_02128268(void *);
+void func_02127e74(u8 *arg0) {
+ s32 zero=0;
+ void *p;
+ s32 i;
+ if(arg0==NULL) { func_0212bda8(data_02156804); return; }
+ func_02127e38();
+ if(*(s8 *)arg0==1) func_02128268(arg0);
+ p=*(void **)(arg0+0xc);
+ if(p) { *(void **)(arg0+0xc)=NULL; func_0212eaf8(p); }
+ p=*(void **)(arg0+4);
+ if(p) { *(void **)(arg0+4)=NULL; func_0212c770(p); }
+ p=*(void **)(arg0+8);
+ if(p) { *(void **)(arg0+8)=NULL; func_0212ddb8(p,0,0); func_0212da24(p); }
+ p=*(void **)(arg0+0x94);
+ if(p) { *(void **)(arg0+0x94)=NULL; func_0212e5e8(p); }
+ func_0212a9dc();
+ p=*(void **)(arg0+0x10);
+ if(p) { *(void **)(arg0+0x10)=NULL; (*(void (**)(void *))(*(u8 **)p+0xc))(p); }
+ for(i=0;i<*(s8 *)(arg0+3);i++) {
+ p=*(void **)(arg0+i*4+0x18);
+ if(p) { *(void **)(arg0+i*4+0x18)=NULL; (*(void (**)(void *))(*(u8 **)p+0xc))(p); }
+ p=*(void **)(arg0+i*4+0x78);
+ if(p) { *(void **)(arg0+i*4+0x78)=NULL; (*(void (**)(void *))(*(u8 **)p+0xc))(p); }
+ p=*(void **)(arg0+i*4+0x80);
+ if(p) { *(void **)(arg0+i*4+0x80)=NULL; (*(void (**)(void *))(*(u8 **)p+0xc))(p); }
+ }
+ p=*(void **)(arg0+0x74);
+ if(p) { *(void **)(arg0+0x74)=NULL; func_0212e5c4(p); }
+ func_02013878(arg0,zero,0xc4);
+ *arg0=zero;
+ func_0212a9e8();
+}
+
 void func_02127fe0(void) {
     func_0212a9f4();
     func_02127ff4();
