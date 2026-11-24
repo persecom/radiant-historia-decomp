@@ -15,6 +15,7 @@ extern void func_0206e8f0(u32, void *, u32);
 extern void func_02057f5c(void);
 extern void func_0210d27c(s32);
 extern void func_021168f8(void *, void *);
+extern void func_021168f8(void *, void *);
 extern void *func_02047820(u16);
 extern void func_0210c5dc(void *);
 typedef void (*Fn_0207cc20)(u32);
