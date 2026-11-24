@@ -99,6 +99,33 @@ void func_021126fc(u8 *arg0, u32 arg1) {
     obj[0x50] = 1;
 }
 
+void *func_02112f88(u16);
+void func_02112724(u8 *arg0) {
+ u8 *table;
+ u8 *p=*(u8 **)(arg0+0x48);
+ s32 index=0;
+ u8 *node, *obj;
+ table=p+0x30;
+ func_0211137c(arg0);
+ node=func_02111d7c(*(void **)(arg0+0x48),*(u16 *)(arg0+0x3a));
+ if(node != NULL && (node[6]&1)) index=1;
+ obj=func_020c9c10(*(void **)(arg0+0x30),4);
+ if(*(u16 *)(arg0+0x3c)) *(u16 *)(obj+0x30)=((u16 *)(table+0x26))[index];
+ else *(u16 *)(obj+0x30)=((u16 *)(table+0x22))[index];
+ obj=func_020c9c10(*(void **)(arg0+0x30),5);
+ if(*(u16 *)(arg0+0x3c)) *(u16 *)(obj+0x30)=((u16 *)(table+0x26))[index];
+ else *(u16 *)(obj+0x30)=((u16 *)(table+0x22))[index];
+ if(node != NULL) {
+ void *v=func_02112f88(*(u16 *)(node+2));
+ if(v != NULL) {
+ u32 val;
+ if(func_02112620(p)&1) val=func_02113624(v);
+ else val=func_0211361c(v);
+ func_021126fc(arg0,val);
+ } else func_021126fc(arg0,0);
+ }
+}
+
 void func_021127fc(u8 *arg0) {
  u8 *p;
  s32 two=2, zero=0, eight=8, ten=10;
