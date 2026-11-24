@@ -105,6 +105,25 @@ void func_020bca10(u8 *arg0, void *arg1) {
     }
 }
 
+void func_020bcae4(u8 *arg0, void *arg1) {
+    *(u16 *)(arg0 + 0x0) = func_02092994(arg1, 0);
+    *(u16 *)(arg0 + 0x2) = func_02092994(arg1, 0);
+    *(u16 *)(arg0 + 0x4) = func_02092994(arg1, 0);
+    *(u16 *)(arg0 + 0x6) = func_02092994(arg1, 0);
+    *(u16 *)(arg0 + 0x8) = func_02092994(arg1, 0);
+    *(u16 *)(arg0 + 0xa) = func_02092994(arg1, 0);
+    *(u16 *)(arg0 + 0xc) = func_02092994(arg1, 0);
+    *(u16 *)(arg0 + 0xe) = func_02092994(arg1, 0);
+    arg0[0x19] = func_02092994(arg1, 0);
+    arg0[0x1a] = func_02092994(arg1, 0);
+    arg0[0x1b] = func_02092994(arg1, 0);
+    arg0[0x1c] = func_02092994(arg1, 0);
+    arg0[0x1d] = func_02092994(arg1, 0);
+    arg0[0x1e] = func_02092994(arg1, 0);
+    arg0[0x1f] = func_02092994(arg1, 0);
+    arg0[0x20] = func_02092994(arg1, 0);
+}
+
 extern u8 data_02151090[];
 extern u8 data_021510a4[];
 extern u8 data_021510bc[];
