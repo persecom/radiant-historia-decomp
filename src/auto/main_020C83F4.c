@@ -357,6 +357,31 @@ BOOL func_020c8bb4(u8 *arg0)
   return FALSE;
 }
 
+s32 func_020c8c08(u8 *arg0) {
+ Unk_020c8c08 buf;
+ u16 i;
+ func_020c6d78();
+ if(*(void **)(arg0+0x30)==NULL) {
+ *(void **)(arg0+0x30)=func_0210c594(8,data_02155c3c);
+ func_020c992c(*(void **)(arg0+0x30));
+ func_020c9a04(*(void **)(arg0+0x30),3);
+ }
+ buf=data_02144618;
+ for(i=0;i<3;i++) {
+ s16 type=((s16 (*)[8])buf.data)[i][0];
+ u8 *p=func_020c9b24(*(void **)(arg0+0x30),(u16)type,(u8)((s16 (*)[8])buf.data)[i][1]);
+ *(s16 *)(p+0x32)=((s16 (*)[8])buf.data)[i][2];
+ *(s16 *)(p+0x34)=((s16 (*)[8])buf.data)[i][3];
+ *(s16 *)(p+0x36)=((s16 (*)[8])buf.data)[i][4];
+ *(s16 *)(p+0x38)=((s16 (*)[8])buf.data)[i][5];
+ *(s16 *)(p+0x3e)=((s16 (*)[8])buf.data)[i][6];
+ *(s16 *)(p+0x40)=((s16 (*)[8])buf.data)[i][7];
+ (*(void (**)(u8 *,u8))(p+0x1c))(p,(u8)(p[0x43]+1));
+ if(type==2) func_020c7894(p,3);
+ }
+ return 0;
+}
+
 void func_020c8d24(u8 *arg0) {
     if (*(void **)(arg0 + 0x30) != NULL) {
         func_020c9940(*(void **)(arg0 + 0x30));
