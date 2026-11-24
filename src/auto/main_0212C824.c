@@ -16,7 +16,7 @@ extern void func_0212a9dc(void);
 extern void func_0212d288(void *);
 extern void func_0212a9e8(void);
 extern void func_0212c824(void *);
-extern void func_0212d3b4(void *);
+static void func_0212d3b4(void *);
 
 extern s32 func_02137d44(void *);
 extern s32 func_0212a1d4(void *);
