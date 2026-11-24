@@ -45,3 +45,34 @@ void func_02085f50(void) {
     data_0216010c->field_4c = func_020a94b8(data_021485bc);
 }
 
+extern void func_02080d30(void);
+extern void func_0210c5dc(void *);
+extern void func_02089a98(void);
+void func_02086030(void) {
+    u16 i;
+    void *z = NULL;
+    G_02085f50 **p;
+    func_02080d30();
+    p = &data_0216010c;
+    if ((*p)->field_58 != NULL && *(void **)(*p)->field_58 != NULL) {
+        func_020a9544((*p)->field_58);
+        (*p)->field_58 = z;
+    }
+    for (i = 0; i < 2; i++) {
+        void **v = *(void ***)((u8 *)(*p) + 0x48 + i * 4);
+        if (v != NULL && *v != NULL) {
+            func_020a9544(v);
+            *(void **)((u8 *)(*p) + 0x48 + i * 4) = z;
+        }
+    }
+    if ((*p)->field_44 != NULL) {
+        if ((*p)->field_44 != NULL) {
+            func_0210c5dc((*p)->field_44);
+            (*p)->field_44 = z;
+        }
+        (*p)->field_44 = z;
+    }
+    (*p)->pad[0x3f] = (u8)(u32)z;
+    func_02089a98();
+}
+
