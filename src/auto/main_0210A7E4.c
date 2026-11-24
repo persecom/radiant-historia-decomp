@@ -15,6 +15,20 @@ extern s32 func_0210f3ec(void *, s32);
 extern void *func_0210a7b4(void);
 extern s32 func_0210a7e4(void *, s32, s32);
 extern void func_0210f3ac(void *, void *, s32);
+extern u32 data_02155c3c;
+extern void *func_0210c518(u32, u32);
+void func_0210b0ac(u8 *);
+extern void func_0210b848(void *);
+extern void func_02006dc4(u32, u32);
+extern u32 *func_0210a4b4(void);
+extern u32 *func_0210a4c0(void);
+extern void func_0211883c(void *, u32, s32, u32);
+extern void func_02118624(void *, u32, s32, u32);
+extern s32 func_02117878(void *, u32 *);
+extern void func_02118d0c(void *, u32, s32, s32, u32);
+extern void func_02118c14(void *, s32, s32, u32);
+extern void func_02008e68(s32, void *, u32);
+extern void func_0210afcc(void *);
 
 extern void func_0210b300(void);
 void *func_0210a984(s32 arg0, s32 arg1) {
