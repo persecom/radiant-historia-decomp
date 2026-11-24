@@ -8,3 +8,12 @@ extern void func_02008e08(void *, u32, u32);
 extern void func_020030f4(void *);
 extern s32 func_0200308c(s32 *);
 extern s32 func_020030b8(s32 *);
+
+void func_020038f8(void *arg0, u32 arg1, u32 arg2) {
+    u32 base = func_02003188();
+    if (data_02145ba4 != -1 && arg2 > 0x1c) {
+        func_02008690(data_02145ba4, arg0, base + arg1, arg2, 1);
+    } else {
+        func_02008e08(arg0, base + arg1, arg2);
+    }
+}
