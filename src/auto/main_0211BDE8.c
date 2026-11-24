@@ -123,3 +123,12 @@ u32 func_0211cda0(u8 *arg0) {
     return 0;
 }
 
+void func_0211cdb4(u8 *arg0, s32 arg1, s32 arg2) {
+    if (arg1 != 0) {
+        *(s32 *)(arg0 + 0x8) = arg1;
+    }
+    if (arg2 != 0) {
+        *(s32 *)(arg0 + 0x18) = arg2;
+    }
+}
+
