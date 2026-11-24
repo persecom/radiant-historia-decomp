@@ -112,3 +112,15 @@ void func_02002bf4(void *arg0) {
     func_020055b0(arg0);
 }
 
+void func_02002d30(void) {
+    while (*(volatile u32 *)0x04000600 & 0x08000000) {
+    }
+    *(volatile u32 *)0x04000600 |= 0x8000;
+    *(volatile u16 *)0x04000060 |= 0x2000;
+    *(volatile u16 *)0x04000060 |= 0x1000;
+    func_02002e58();
+    *(volatile u32 *)0x040004a4 = 0x1f0080;
+    *(volatile u32 *)0x040004a8 = 0;
+    *(volatile u32 *)0x040004ac = 0;
+}
+
