@@ -13,7 +13,10 @@ extern void func_02005e80(char *, const char *, ...);
 extern char data_02151dc8[], data_02151dd0[];
 extern void *func_0210aad0(void **,char *,s32 *);
 extern void *func_0210aca0(void **,char *,s32 *);
-extern void func_020f2198(void *,void *);
+extern s32 func_020f2198(void *,void *);
+extern char data_02151de0[],data_02151de8[];
+extern void *func_02109c60(char *,u32 *);
+extern void func_021177c0(void *,u8 **),func_02117774(void *,u8 **);
 extern s32 func_0210ae0c(void *,void *,char *);
 extern s32 func_0210ad88(void *,void *,s32);
 
