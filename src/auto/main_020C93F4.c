@@ -128,6 +128,21 @@ void func_020c9680(u8 *arg0, s16 *arg1, s16 *arg2) {
     *arg1 = *(s16 *)(obj + 0x3a);
 }
 
+u16 func_020c9808(u8 *arg0) {
+    u16 vals[4];
+    u16 *dst = vals;
+    u16 i;
+    u16 r5 = *(u16 *)(arg0 + 0x54);
+    vals[0] = data_021445f8[0];
+    vals[1] = data_021445f8[1];
+    vals[2] = data_021445f8[2];
+    vals[3] = data_021445f8[3];
+    for (i = 0; i < 2; i++) {
+        r5 -= *(u16 *)((u8 *)func_020c9c10(*(void **)(arg0 + 0x30), dst[i * 2]) + 0x40);
+    }
+    return r5;
+}
+
 void func_020c98f8(u8 *arg0) {
     func_020c9590(arg0);
     func_020c9610(arg0);
