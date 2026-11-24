@@ -98,9 +98,9 @@ void func_020f4bd0(void *arg0) {
 s32 func_020f4be4(u32 *arg0, u32 *arg1) {
     u32 a = arg1[0];
     u32 b = arg1[1];
+    u32 e = arg1[4];
     u32 c = arg1[2];
     u32 d = arg1[3];
-    u32 e = arg1[4];
     arg0[2] = a;
     arg0[6] = e;
     arg0[3] = b;
@@ -109,6 +109,14 @@ s32 func_020f4be4(u32 *arg0, u32 *arg1) {
     arg0[0] = e | (b | (a << 10));
     *(u16 *)(arg0 + 1) = (c | 0x800) | (d << 12);
     return 1;
+}
+
+extern void func_021168f8(void *, void *);
+extern void *func_0210c518(u32, void *);
+extern void func_02008e68(u32, void *, u32);
+void func_020f4ea4(u8 *arg0, u32 arg1) {
+    *(u32 *)(arg0 + 0x10) = arg1;
+    *(u16 *)(arg0 + 4) = (*(u16 *)(arg0 + 4) & ~0x3ff) | arg1;
 }
 
 u32 func_020f53e4(void (*arg0)(void)) {
