@@ -47,15 +47,11 @@ u32 func_02085140(u32 arg0) {
 }
 
 s32 func_02085158(u32 arg0) {
-    s16 i = 0;
-    if (*(u8 *)(data_0216010c + 0x614) <= 0) return 0;
-    while (1) {
-        if (func_02085110((u8)i) == arg0) {
-            return func_02085140((u8)i);
-        }
-        i = (s16)(i + 1);
-        if (*(u8 *)(data_0216010c + 0x614) <= i) return 0;
+    s16 i;
+    for (i = 0; i < *(u8 *)(data_0216010c + 0x614); i++) {
+        if (func_02085110((u8)i) == arg0) return func_02085140((u8)(i & 0xff));
     }
+    return 0;
 }
 
 s32 func_020851bc(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u8 arg4) {
@@ -97,20 +93,19 @@ void func_02085240(void) {
 }
 
 void func_020852a0(void) {
-    u8 **pp = &data_0216010c;
-    if (*(void **)(*pp + 0x58)) {
-        if (**(void ***)(*pp + 0x58)) {
-            func_020a9544(*(void **)(*pp + 0x58));
-        }
+    G_020852a0 **g = (G_020852a0 **)&data_0216010c;
+    if ((*g)->field_58 != NULL && *(void **)(*g)->field_58 != NULL) {
+        func_020a9544((*g)->field_58);
+        (*g)->field_58 = NULL;
     }
-    *(void **)(*pp + 0x58) = NULL;
     func_02080d30();
-    if (*(void **)(*pp + 0x44)) {
-        func_0210c5dc(*(void **)(*pp + 0x44));
-        *(void **)(*pp + 0x44) = NULL;
+    g = (G_020852a0 **)&data_0216010c;
+    if ((*g)->field_44 != NULL) {
+        func_0210c5dc((*g)->field_44);
+        (*g)->field_44 = NULL;
     }
-    *(void **)(*pp + 0x44) = NULL;
-    *(u8 *)(*pp + 0x3f) = 0;
+    ((G_020852a0 *)data_0216010c)->field_44 = NULL;
+    *(u8 *)(data_0216010c + 0x3f) = 0;
     func_02089a98();
 }
 
