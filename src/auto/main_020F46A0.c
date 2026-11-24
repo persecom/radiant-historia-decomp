@@ -337,6 +337,38 @@ void func_020f5114(u8 *arg0, s32 arg1) {
     *(s32 *)(arg0 + 0x20) = arg1;
 }
 
+void func_020f5150(void) {
+s32 idx=((s32)data_02160c3c[5]+1)%3;
+u8 *p,*next,*obj; int layer;
+func_020f4d88();
+for(layer=0;layer<5;layer++) {
+p=*(u8 **)data_02160c3c[3];
+while(p) {
+next=*(u8 **)(p+0x3c);
+if(*(u16 *)(p+0x44)==layer) {
+obj=*(u8 **)p;
+if(obj) *(u32 *)(obj+4)=(*(u32 *)(obj+4)&~0xc00)|((p[0x10]&3)<<10);
+if(*(void (**)(void *))(p+0x28)) (*(void (**)(void *))(p+0x28))(p);
+if(*(u32 *)(p+0x24)) func_020f4f04(p);
+else if(*(u32 *)(p+0x20) && obj) {
+*(u32 *)obj=(*(u32 *)obj&0xfe00ff00)|(*(u32 *)(p+0xc)&255)|((*(u32 *)(p+8)&511)<<16);
+if(*(u8 **)(p+4)) func_0211809c(data_021610a4,obj,*(u16 *)(*(u8 **)(p+4)+0x48));
+else func_0211809c(data_021610a4,obj,0);
+}
+}
+p=next;
+}
+}
+p=*(u8 **)data_02160c3c[2];
+while(p) {
+next=*(u8 **)(p+0x3c);
+func_021168f8((void *)data_02160c3c[2],p);
+func_02116894(data_02160c54[idx],*(void **)data_02160c54[idx],p);
+*(void **)(p+0x34)=data_02160c54[idx];
+p=next;
+}
+}
+
 u16 func_020f52dc(void *arg0, s16 arg1, s16 arg2) {
     u16 val = *(u16 *)(data_02160204 + 0x72);
     s16 a = (val - 1) / 20 + 1;
