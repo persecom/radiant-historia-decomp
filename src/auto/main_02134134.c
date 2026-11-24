@@ -82,6 +82,23 @@ s32 func_0213443c(u8 *arg0) {
     return 0;
 }
 
+void func_02134544(u8 *arg0) {
+    s8 flag;
+    if (arg0 == NULL) {
+        func_02133dd0(0, data_0215bdd0);
+        return;
+    }
+    flag = *(s8 *)(arg0 + 1);
+    func_0213807c();
+    arg0[1] = 0;
+    *(u32 *)(arg0 + 0x50) = 0;
+    func_0213808c();
+    if (flag != 2) {
+        return;
+    }
+    func_0200b8b4(*(void **)(arg0 + 0x4c));
+}
+
 extern void func_02133dd0(s32, void *);
 extern u8 data_0215bde8[24];
 s32 func_02134590(void *arg0) {
