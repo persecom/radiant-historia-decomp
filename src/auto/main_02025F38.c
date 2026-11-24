@@ -37,3 +37,7 @@ void func_02026578(void *arg0) {
     }
 }
 
+void *func_02026c58(void **arg0) {
+    return *arg0;
+}
+
