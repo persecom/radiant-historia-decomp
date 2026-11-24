@@ -13,6 +13,22 @@ typedef struct {
     s32 m8;
 } DataStruct;
 extern void func_021205ec(s32, void *, s32);
+static inline void texcoord_0211fda4(s16 s,s16 t) {
+u32 packed=(u16)s|((u32)(u16)t<<16);
+func_021205ec(0x22,&packed,1);
+}
+static inline u8 *dict_entry_0211fda4(u8 *dict,u32 index) {
+if(dict && index<dict[1]){
+u16 offset=*(u16 *)(dict+6);
+u16 unit=*(u16 *)(dict+offset);
+return dict+offset+4+unit*index;
+}
+return 0;
+}
+static inline u8 *material_0211fda4(u8 *base,u32 index) {
+if(base){u32 *entry=(u32 *)dict_entry_0211fda4(base+4,index);if(entry)return base+*entry;}
+return 0;
+}
 extern void func_02008e50(void *, u32, u32);
 
 extern void func_02120534(u32 *, u32);
@@ -65,6 +81,85 @@ void func_0211fd3c(u8 *arg0, s32 arg1) {
     *(s32 *)arg0 += 1;
 end:
     ;
+}
+
+void func_0211fda4(u8 *p){
+s32 matrix[9];
+s32 mode,skip;
+if(!(*(u32 *)(p+8)&0x200) && (*(u32 *)(p+8)&1)){
+u8 *material=*(u8 **)(p+0xb0);
+if((*(u32 *)(material+0x10)&0xc0000000)!=0x80000000){
+*(u32 *)(material+0x10)&=~0xc0000000;
+*(u32 *)(*(u8 **)(p+0xb0)+0x10)|=0x80000000;
+data_02155f70[3]=*(u32 *)(*(u8 **)(p+0xb0)+0x10);
+func_021205ec(data_02155f70[2],data_02155f7c,1);
+}
+{u32 command=3;func_021205ec(0x10,&command,1);}
+mode=*(void **)(p+0x3c)?p[0x98]:0;
+if(mode==1){
+void (*fn)(u8 *)=*(void (**)(u8 *))(p+0x3c);
+*(u32 *)(p+8)&=~0x40;fn(p);
+mode=*(void **)(p+0x3c)?p[0x98]:0;
+skip=*(u32 *)(p+8)&0x40;
+}else skip=0;
+if(skip==0){
+s32 scale[3];
+u16 height=*(u16 *)(*(u8 **)(p+0xb0)+0x2e);
+u16 width=*(u16 *)(*(u8 **)(p+0xb0)+0x2c);
+scale[0]=width<<15;scale[1]=-height<<15;scale[2]=0x10000;
+func_021205ec(0x1b,scale,3);
+{u32 packed=((u32)(u16)(s16)(height<<3)<<16)|(u16)(s16)(width<<3);func_021205ec(0x22,&packed,1);}
+}
+if(mode==2){
+void (*fn)(u8 *)=*(void (**)(u8 *))(p+0x3c);
+*(u32 *)(p+8)&=~0x40;fn(p);
+mode=*(void **)(p+0x3c)?p[0x98]:0;
+skip=*(u32 *)(p+8)&0x40;
+}else skip=0;
+if(skip==0){
+u8 *resource=*(u8 **)(p+0xd8);
+u8 index=(*(u8 **)p)[1];
+u8 *entry=0,*data;
+if(resource){
+u8 *table=resource+4;
+if(table && index<table[1]){
+u16 offset=*(u16 *)(table+6);
+entry=table+offset+4+*(u16 *)(table+offset)*index;
+}
+if(entry)data=resource+*(u32 *)entry;else data=0;
+}else data=0;
+{
+u16 flags=*(u16 *)(data+0x1e);
+if(flags&0x2000){
+u8 *mtx=data+0x2c;
+if(!(flags&2))mtx+=8;
+if(!(flags&4))mtx+=4;
+if(!(flags&8))mtx+=8;
+func_021205ec(0x18,mtx,16);
+}}
+}
+if(mode==3){
+void (*fn)(u8 *)=*(void (**)(u8 *))(p+0x3c);
+*(u32 *)(p+8)&=~0x40;fn(p);
+
+skip=*(u32 *)(p+8)&0x40;
+}else skip=0;
+if(skip==0){
+{u32 command=2;func_021205ec(0x10,&command,1);}
+func_021206c8(0,matrix);
+{u32 command=3;func_021205ec(0x10,&command,1);}
+if(*(u32 *)(data_021701fc+0xfc)&1){
+func_021205ec(0x1a,data_02170248,9);
+func_021205ec(0x1a,data_021702b8,9);
+func_021205ec(0x1a,matrix,9);
+}else if(*(u32 *)(data_021701fc+0xfc)&2){
+func_021205ec(0x1a,data_02170248,9);
+func_021205ec(0x1a,matrix,9);
+}else func_021205ec(0x1a,matrix,9);
+}
+{u32 command=2;func_021205ec(0x10,&command,1);}
+}
+*(u8 **)p+=3;
 }
 
 void func_021204a8(void) {
