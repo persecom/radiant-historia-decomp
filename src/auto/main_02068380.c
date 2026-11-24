@@ -1,24 +1,6 @@
 /* 3 functions from 0x02068380 to 0x0206923C (main), found by ds-decomp. */
 #include "common.h"
-extern u32 data_0216263c[3];
-static inline u16 effect_random(u16 range) {
- u32 value = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
- data_0216263c[0] = value;
- return ((value >> 16) * range) >> 16;
-}
-static inline s32 effect_signed_random(u16 range) {
- u32 seed = data_0216263c[0];
- u32 multiplier = data_0216263c[1];
- u32 increment = data_0216263c[2];
- u32 next;
- s32 first;
- seed = multiplier * seed + increment;
- next = multiplier * seed + increment;
- first = (u16)(((seed >> 16) * range) >> 16) - range / 2;
- data_0216263c[0] = next;
- return first >= 0 ? (s32)(u16)(((next >> 16) * range) >> 16) - range / 2 : -((s32)(u16)(((next >> 16) * range) >> 16) - range / 2);
-}
-typedef struct { s8 xy[4][2]; } DirectionTable8;
+
 
 void func_02068380(u8 *arg0)
 {
@@ -458,13 +440,13 @@ void func_02068ac4(u8 *arg0)
                 multiplier = ((volatile u32 *)data_0216263c)[1];
                 seed = ((volatile u32 *)data_0216263c)[0];
 
-                seed = increment + multiplier * seed;
+                seed = multiplier * seed + increment;
 
                 random = (u16)(((seed >> 16) * 3) >> 16);
                 data_0216263c[0] = seed;
 
                 if (random == 0) {
-                    seed = increment + multiplier * seed;
+                    seed = multiplier * seed + increment;
 
                     random = (u16)(((seed >> 16) * 32) >> 16);
                     data_0216263c[0] = seed;
@@ -510,8 +492,8 @@ void func_02068ac4(u8 *arg0)
                 seed1 = data_0216263c[0];
                 multiplier = data_0216263c[1];
 
-                seed1 = increment + multiplier * seed1;
-                seed2 = increment + multiplier * seed1;
+                seed1 = multiplier * seed1 + increment;
+                seed2 = multiplier * seed1 + increment;
 
                 high1 = seed1 >> 16;
                 high2 = (seed2 >> 16) * 2;
@@ -521,10 +503,9 @@ void func_02068ac4(u8 *arg0)
                 direction = (u16)(high2 >> 16);
                 offset = (u16)((high1 * 3) >> 16);
 
+                if (direction == 0) offset = -offset;
                 p->y -= 0x1000;
-
-                p->x +=
-                    (direction != 0 ? offset : -offset) * 0x1000;
+                p->x += offset * 0x1000;
 
                 if (p->phase == 0) {
                     scale = p->fxScaleX + 0x800;
