@@ -43,6 +43,11 @@ void func_0212eb10(void) {
     func_02134c00();
 }
 
+extern s32 func_02134cb4(void *, void *, s32);
+s32 func_0212eb1c(void *arg0, void *arg1) {
+    return func_02134cb4(arg0, arg1, 1);
+}
+
 extern void func_02134efc(void);
 void func_0212eb2c(void) {
     func_02134efc();
