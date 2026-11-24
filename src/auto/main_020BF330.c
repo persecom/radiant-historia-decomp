@@ -9,7 +9,7 @@ extern void func_020ec9d0(s32, s32);
 extern void func_020eca2c(s32);
 extern u32 data_02155bac;
 extern u32 data_02155c3c;
-extern u8 *func_020ec294();
+extern u8 *func_020ec294(u16, u16, s32, s32);
 extern void func_020ec88c(void *, s32, s32);
 extern void func_020ec8cc(void *, s32, s32);
 extern u8 *func_0210c594(s32, u32);
