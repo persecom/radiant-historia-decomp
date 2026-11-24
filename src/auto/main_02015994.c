@@ -21,17 +21,17 @@ extern s32 func_02015994(u8 *, s32, const char *, char *);
 s32 func_02015994(u8 *buf, s32 maxlen, const char *fmt, char *vlist) {
     Unk_02015994 s;
     s32 ret;
-    s.field_0 = 0;
     s.field_4 = buf;
     s.field_8 = maxlen;
     s.field_c = 0;
+    s.field_0 = 0;
     ret = func_020150a4(func_02015950, (Unk_02015950 *)&s.field_4, fmt, vlist);
     if (buf == NULL) return ret;
     if ((u32)ret < (u32)maxlen) {
         buf[ret] = 0;
         return ret;
     }
-    if (maxlen != 0) buf[maxlen - 1] = 0;
+    if (maxlen != 0) *(buf + maxlen - 1) = 0;
     return ret;
 }
 
