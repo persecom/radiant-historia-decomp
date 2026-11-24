@@ -32,6 +32,10 @@ static inline void *get_res_data_by_idx(const u8 *dict, u32 idx) {
     }
     return NULL;
 }
+static inline u8 *get_material_0211cf5c(u8 *base, u32 idx) {
+ if (base) { u32 *entry=get_res_data_by_idx(base+4,idx); if(entry) return base+*entry; }
+ return NULL;
+}
 void func_0211cdc8(u8 *arg0, BOOL arg1) {
     u32 sz;
 
