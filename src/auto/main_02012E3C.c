@@ -2,6 +2,7 @@
 #include "common.h"
 
 extern u32 data_02145c2c;
+extern u32 data_02145c8c[];
 extern s32 func_0201f800(u32);
 
 s32 func_02013618(void) {
@@ -29,6 +30,38 @@ unsigned int func_0201363c(u64 x)
 s32 func_020136d0(s32 arg0, ...) {
     s32 *args = &arg0;
     return (args[1] & 0x80000000) != 0;
+}
+
+s32 func_020136ec(s32 arg0, ...) {
+    u32 *p = (u32 *)&arg0;
+    u32 hi = p[1];
+    switch (hi & 0x7ff00000) {
+        case 0x7ff00000:
+            if ((hi & 0x000fffff) || p[0]) {
+                return 1;
+            }
+            return 2;
+        case 0:
+            if ((hi & 0x000fffff) || p[0]) {
+                return 5;
+            }
+            return 3;
+        default:
+            return 4;
+    }
+}
+
+s32 func_02013778(u16 *pwc, const u8 *s, u32 n) {
+    if (!s) {
+        return 0;
+    }
+    if (!n) {
+        return -1;
+    }
+    if (pwc) {
+        *pwc = *s;
+    }
+    return *s ? 1 : 0;
 }
 
 extern u32 data_02145c8c[];
