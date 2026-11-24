@@ -87,6 +87,57 @@ void func_0211e180(u8 *arg0)
   *((u32 *) (arg0 + 8)) |= 0x20;
 }
 
+void func_0211e1a8(u8 *arg0) {
+    u32 flags = *(u32 *)(arg0 + 8);
+    if (!(flags & 0x200)) {
+        u32 idx = (*(u8 **)arg0)[1];
+        u32 mode;
+        u32 handled;
+
+        arg0[0xac] = (u8)idx;
+        *(u32 *)(arg0 + 8) = flags | 4;
+        *(u32 *)(arg0 + 0xb8) = (u32)(arg0 + 0x184);
+
+        mode = *(void **)(arg0 + 0x14) != NULL ? arg0[0x8e] : 0;
+        if (mode == 1) {
+            *(u32 *)(arg0 + 8) &= ~0x40;
+            (*(void (**)(void *))(arg0 + 0x14))(arg0);
+            mode = *(void **)(arg0 + 0x14) != NULL ? arg0[0x8e] : 0;
+            handled = *(u32 *)(arg0 + 8) & 0x40;
+        } else {
+            handled = 0;
+        }
+        if (!handled) {
+            u8 *ctx = *(u8 **)(arg0 + 4);
+            void *p = *(void **)(ctx + 0x18);
+            if (p == NULL || !(*(u32 *)(ctx + 0x4c + (idx >> 5) * 4) & (1 << (idx & 0x1f))) ||
+                !(*(s32 (**)(void *, void *, u32))(ctx + 0x1c))(*(void **)(arg0 + 0xb8), p, idx)) {
+                **(u32 **)(arg0 + 0xb8) = (*(u8 **)arg0)[2] & 1;
+            }
+        }
+        if (mode == 2) {
+            *(u32 *)(arg0 + 8) &= ~0x40;
+            (*(void (**)(void *))(arg0 + 0x14))(arg0);
+            mode = *(void **)(arg0 + 0x14) != NULL ? arg0[0x8e] : 0;
+            handled = *(u32 *)(arg0 + 8) & 0x40;
+        } else {
+            handled = 0;
+        }
+        if (!handled) {
+            if (**(u32 **)(arg0 + 0xb8) != 0) {
+                *(u32 *)(arg0 + 8) |= 1;
+            } else {
+                *(u32 *)(arg0 + 8) &= ~1;
+            }
+        }
+        if (mode == 3) {
+            *(u32 *)(arg0 + 8) &= ~0x40;
+            (*(void (**)(void *))(arg0 + 0x14))(arg0);
+        }
+    }
+    *(u8 **)arg0 += 3;
+}
+
 extern void func_021205ec(u32, void *, u32);
 void func_0211e320(u8 *arg0) {
  u32 flags=*(u32 *)(arg0+8);
