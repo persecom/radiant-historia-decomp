@@ -204,6 +204,17 @@ void func_0211782c(u8 *arg0) {
     *(u32 *)(arg0 + 0x14) += (u32)arg0;
 }
 
+s32 func_02117878(void *arg0, void **arg1) {
+    u8 *r4 = func_02117904(arg0, 0x50434d50);
+    if (r4 != NULL) {
+        func_021178b4(r4 + 8);
+        *arg1 = r4 + 8;
+        return 1;
+    }
+    *arg1 = NULL;
+    return 0;
+}
+
 void func_021178b4(u8 *arg0) {
     *(u32 *)(arg0 + 0x4) += (u32)arg0;
 }
