@@ -122,6 +122,16 @@ s32 func_020f25dc(void) {
     return func_0210dba0(&data_02160c20);
 }
 
+void *func_020f25f0(void) {
+    u8 *r4 = (u8 *)func_0210c594(0x1c, data_02155c3c);
+    *(u32 *)(r4 + 8) = 1;
+    *(u16 *)(r4 + 0xc) = 0xffff;
+    *(u32 *)(r4 + 0x10) = 0;
+    *(u16 *)(r4 + 0x18) = 0;
+    *(void **)(r4 + 0) = func_0210853c();
+    return r4;
+}
+
 extern void func_02108594(void *);
 void func_020f2638(void **arg0) {
     func_02108594(*arg0);
