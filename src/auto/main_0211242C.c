@@ -44,8 +44,32 @@ u16 func_02112620(u8 *arg0) {
     return *(u16 *)(arg0 + 0x9a);
 }
 
+void func_02112628(u8 *arg0, u16 arg1, u16 arg2, u16 arg3) {
+    u8 *obj = func_020c9c10(*(void **)(arg0 + 0x8c), arg1);
+    *(u16 *)(obj + 0x3e) = arg2;
+    *(u16 *)(obj + 0x40) = arg3;
+    if (((s32 (*)(u8 *))(*(void **)(obj + 0x28)))(obj) == 5) {
+        func_020c7930(obj);
+        func_020c94c8(*(void **)(arg0 + 0x6c), (u16)(arg2 - 8), (u16)(arg3 - 8));
+    }
+}
+
 void *func_02112688(u8 *arg0) {
     return *(void **)(arg0 + 0x90);
+}
+
+s32 func_02112690(u8 *arg0) {
+    u8 *obj;
+    func_02110b94(arg0);
+    *(void **)(arg0 + 0x4c) = (void *)func_02112724;
+    *(void **)(arg0 + 0x50) = (void *)func_021127fc;
+    obj = func_020c9c10(*(void **)(arg0 + 0x30), 0);
+    *(u16 *)(obj + 0x3e) = 0xc8;
+    obj = func_020c9c10(*(void **)(arg0 + 0x30), 3);
+    *(u16 *)(obj + 0x3e) = 0xc8;
+    obj = func_020c9c10(*(void **)(arg0 + 0x30), 2);
+    ((void (*)(u8 *, s32))(*(void **)(obj + 0x10)))(obj, 0x14);
+    return 0;
 }
 
 s32 func_021128c4(void) {
