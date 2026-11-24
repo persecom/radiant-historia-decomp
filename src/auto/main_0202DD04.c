@@ -10,7 +10,7 @@ s32 func_0202e260(u32 arg0) {
     s32 start = (arg0 == 0) ? 0 : 9;
     s32 end = (arg0 == 0) ? 9 : 12;
     for (i = start; i < end; i++) {
-        u8 *entry = data_02160244[8 + i];
+        u8 *entry = data_02160244[2 + i];
         u8 *sub = *(u8 **)(entry + 0x10);
         if (sub != NULL) {
             u8 *a = *(u8 **)(sub + 0);
