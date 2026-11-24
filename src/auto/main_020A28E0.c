@@ -106,11 +106,15 @@ extern u32 data_021600b0[2];
 extern void func_021167f0(void *, void *);
 extern void func_021168f8(void *, void *);
 extern void func_0210c5dc(void *);
-void func_020a37f0(u32 dst, const s8 *src, s32 size) {
-    u8 *p = (u8 *)dst;
+extern void func_020a2eb4(void);
+extern void func_020a2ee4(void);
+extern void func_0203be4c(void *);
+u8 *func_020a37f0(u8 *dst, const s8 *src, s32 size) {
+    u8 *p = dst;
     while (size > 0) {
         *p++ = *src++;
         size--;
     }
+    return dst;
 }
 
