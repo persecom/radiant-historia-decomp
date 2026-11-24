@@ -1,7 +1,9 @@
 /* 21 functions from 0x0212F760 to 0x02130300 (main), found by ds-decomp. */
 #include "common.h"
 
-extern void func_0212f558(s32, s32);
+extern s32 func_02130300(void *, void *, void *, void *, s32, s32, s32);
+extern s32 func_02139b34(s32, s32, s32, void *);
+extern s32 func_0212f558(s32, s32);
 extern void func_0213246c(void *);
 extern void func_02013878(void *, s32, u32);
 extern void func_0212f8b8(void *);
