@@ -129,6 +129,49 @@ void func_020a4f04(void) {
     data_02160134.unk00 = NULL;
 }
 
+extern void func_020a3bbc(u16);
+extern void func_021099f8(void *);
+void func_020a5138(void) {
+    u8 *node;
+    u8 *p = (u8 *)data_02160134.unk00;
+    Unk20 buf1 = data_02143388;
+    Unk18 buf2 = data_02143374;
+
+    if (p == NULL) {
+        return;
+    }
+    node = *(u8 **)(p + 0x48);
+    if (node == NULL) {
+        return;
+    }
+    while (node != NULL) {
+        if (*(u16 *)(node + 2) != 0) {
+            func_020a3bbc(*(u16 *)(node + 2));
+            buf1.unk[1] = *(s16 *)(node + 4);
+            buf1.unk[2] = *(s16 *)(node + 6);
+            buf1.unk[3] = *(s16 *)(node + 8);
+            buf1.unk[4] = *(s16 *)(node + 0xa);
+            buf1.unk[5] = *(s16 *)(node + 0xc) + *(s32 *)(p + 0x3c);
+            buf1.unk[6] = *(s16 *)(node + 0x10);
+            buf1.unk[7] = *(s16 *)(node + 0xe);
+            buf1.unk[8] = *(s16 *)(node + 0x12);
+            buf1.unk[9] = *(s16 *)(node + 0x14);
+            func_021098ac(&buf1);
+        } else {
+            buf2.unk[1] = *(s16 *)(node + 0xc) + *(s32 *)(p + 0x3c);
+            buf2.unk[2] = *(s16 *)(node + 0x10);
+            buf2.unk[3] = *(s16 *)(node + 0xe);
+            buf2.unk[4] = *(s16 *)(node + 0x12);
+            buf2.unk[5] = *(s16 *)(node + 0x14);
+            buf2.unk[6] = 0;
+            buf2.unk[7] = *(s16 *)(node + 0x12);
+            buf2.unk[8] = *(s16 *)(node + 0x14);
+            func_021099f8(&buf2);
+        }
+        node = *(u8 **)(node + 0x1c);
+    }
+}
+
 void func_020a5290(void) {
     UnkStruct_02160134 *p = &data_02160134;
     if (p->unk04 != NULL) {
