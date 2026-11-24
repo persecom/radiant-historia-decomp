@@ -59,6 +59,22 @@ s32 func_0203e5a8(Vec_0203e5a8 *a, Vec_0203e5a8 *b, Vec_0203e5a8 *c) {
     return -1;
 }
 
+void func_0203e61c(void) {
+    Global_020600a0 *g = &data_021600a0;
+    if (g->field_4 != NULL) return;
+    g->field_4 = (Unk_0203e61c *)func_0210c594(0x58, data_02155c3c);
+    func_021167ac(&g->field_4->field_28, 0x20);
+    g->field_4->field_0 = func_0203e8c0;
+    g->field_4->field_4 = 0x3f3;
+    func_0210d9e4(g->field_4);
+    g->field_4->field_34 = 0xff;
+    g->field_4->field_3a = 0xff;
+    g->field_4->field_36 = 0xff;
+    g->field_4->field_3c = 0xff;
+    g->field_4->field_38 = 0;
+    g->field_4->field_3e = 0;
+}
+
 void func_0203e6bc(void) {
     if (data_021600a0.field_4 != NULL) {
         void *node = data_021600a0.field_4->field_28;
