@@ -407,7 +407,7 @@ void func_02008690(u32 dmaNo, const void *src, void *dest, u32 size, u32 arg4) {
     }
 
     func_02008ab4(dmaNo, (u32)src, size, 0);
-    dmaReg = (volatile u32 *)(0x040000b0 + dmaNo * 12) + 2;
+    dmaReg = (volatile u32 *)0x040000b0 + dmaNo * 3 + 2;
     while (*dmaReg & 0x80000000) {
     }
 
@@ -423,12 +423,13 @@ void func_02008690(u32 dmaNo, const void *src, void *dest, u32 size, u32 arg4) {
 
 void func_0200893c(u32 dmaNo) {
     u32 enabled = func_02008128();
-    volatile u32 *dmaReg = (volatile u32 *)(0x040000b0 + dmaNo * 12);
+    volatile u32 *dmaCnt = (volatile u32 *)(0x040000b8 + dmaNo * 12);
 
-    while (dmaReg[2] & 0x80000000) {
+    while (*dmaCnt & 0x80000000) {
     }
 
     if (dmaNo == 0) {
+        volatile u32 *dmaReg = (volatile u32 *)(0x040000b0 + dmaNo * 12);
         dmaReg[0] = 0;
         dmaReg[1] = 0;
         dmaReg[2] = 0x81400001;
