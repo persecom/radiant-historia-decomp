@@ -8,7 +8,7 @@ extern void func_02008454(void);
 extern void func_020081a4(u32);
 extern u32 func_020081f0(void);
 extern void func_020059e4(u32);
-extern void func_02007ee4(void);
+extern void func_02007ee4();
 extern void func_02007dd4(u8 *);
 void func_02007d18(void) {
     u8 *p = data_0215d144;
@@ -58,16 +58,17 @@ append:
 }
 
 void func_02007dd4(u8 *arg0) {
+    u32 zero = 0;
     u8 *p = data_0215d144;
     u8 *tail = *(u8 **)(p + 0x10);
-    *(u8 **)(arg0 + 0x14) = tail;
-    *(u8 **)(arg0 + 0x18) = NULL;
-    *(u8 **)(p + 0x10) = arg0;
+    *(u32 *)(arg0 + 0x14) = (u32)tail;
+    *(u32 *)(arg0 + 0x18) = zero;
+    *(u32 *)(p + 0x10) = (u32)arg0;
     if (tail != NULL) {
-        *(u8 **)(tail + 0x18) = arg0;
+        *(u32 *)(tail + 0x18) = (u32)arg0;
         return;
     }
-    *(u8 **)(p + 0xc) = arg0;
+    *(u32 *)(p + 0xc) = (u32)arg0;
     func_02007ee4();
 }
 
