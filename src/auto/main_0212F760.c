@@ -35,6 +35,40 @@ void func_0212f79c(void) {
     }
 }
 
+u8 *func_0212f7c0(u8 *arg0, u32 arg1) {
+    u8 *aligned = (u8 *)(((u32)arg0 + 7) & ~7);
+    u8 *tmp;
+    u8 *end;
+    void *p;
+    u32 val;
+
+    func_02013878(aligned, 0, 0xa2c);
+    tmp = aligned + 0x22c + 0x800;
+    end = (u8 *)(((u32)tmp + 7) & ~7);
+    if ((u32)end + 0x81c < arg1) {
+        return NULL;
+    }
+    p = func_02132424(end, 0x81c);
+    *(void **)(arg0 + 0x1b4) = p;
+    if (p == NULL) {
+        return NULL;
+    }
+    val = (u32)(arg0 + 0x23) & ~0x1f;
+    *(u32 *)arg0 = val;
+    *(u8 *)(arg0 + 0x1e8) = 0;
+    *(u8 *)(arg0 + 0x1e9) = 0;
+    *(u8 *)(arg0 + 0x1ea) = 0;
+    *(u8 *)(arg0 + 0x1eb) = 0;
+    *(u8 *)(arg0 + 0x1ec) = 0;
+    *(u8 *)(arg0 + 0x1ed) = 0;
+    *(u8 *)(arg0 + 0x1ee) = 0;
+    *(u8 *)(arg0 + 0x1ef) = 0;
+    *(u32 *)(arg0 + 0x1a4) = data_021747a0[2];
+    *(u8 *)(arg0 + 0x1ab) = 0x10;
+    *(u8 *)(arg0 + 0x1a8) = 1;
+    return arg0;
+}
+
 void func_0212f880(u8 *a0) {
     void *ptr = *(void **)(a0 + 0x1b4);
     if (ptr != NULL) {
@@ -100,6 +134,14 @@ void func_0212fcfc(void) {
 
 s32 func_0212fd20(void) {
     return 0x60;
+}
+
+void func_0212fd28(u8 *a0, u8 *a1) {
+    s32 i;
+    u8 *dst = a0 + 0xa24;
+    for (i = 0; i < 8; i++) {
+        dst[i] = a1[i];
+    }
 }
 
 void func_0212fe50(s32 a0, s32 a1, s32 a2) {
