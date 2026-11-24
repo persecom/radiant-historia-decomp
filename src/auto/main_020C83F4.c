@@ -159,8 +159,8 @@ s32 func_020c87a4(u8 *arg0) {
     if (*(void **)(arg0 + 0x54) == NULL) {
         *(void **)(arg0 + 0x54) = func_0210c594(8, data_02155c3c);
         func_020c992c();
+        func_020c9a04(*(void **)(arg0 + 0x54), 0xc);
     }
-    func_020c9a04(*(void **)(arg0 + 0x54), 0xc);
     *(u8 *)(arg0 + 0x5c) = *(u8 *)(arg0 + 0x43) - 1;
     return 0;
 }
