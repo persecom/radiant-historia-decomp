@@ -121,6 +121,11 @@ void func_02005e80(s32 arg0, const char *arg1, ...) {
     func_02005ea8(arg0, arg1, vlist);
 }
 
+extern void func_02005ec0(void);
+void func_02005ea8(s32 arg0, const char *arg1, char *arg2) {
+    ((void (*)(s32, s32, const char *, char *))func_02005ec0)(arg0, 0x7fffffff, arg1, arg2);
+}
+
 void func_02005ec0(void) {
     func_02012e3c();
 }
