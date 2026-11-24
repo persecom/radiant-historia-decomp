@@ -297,7 +297,7 @@ u32 func_02117bd4(u32 **a0) {
     return *a0[1];
 }
 
-extern void func_02117b9c(void);
+extern BOOL func_02117b9c();
 void func_02117d74(void) {
     func_02117b9c();
 }
