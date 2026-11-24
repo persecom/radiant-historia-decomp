@@ -98,6 +98,13 @@ u16 func_020a567c(void) {
     return *(u16 *)p;
 }
 
+void func_020a5698(void) {
+    u8 *p = data_02160134.unk04;
+    if (p != NULL) {
+        *(s32 *)(p + 0x10) = 0;
+    }
+}
+
 void func_020a56b4(s32 arg0) {
     u8 *p = data_02160134.unk04;
     if (p != NULL) {
