@@ -189,6 +189,14 @@ void func_020a98a0(void) {
     func_0210da44();
 }
 
+void func_020a9a58(void) {
+    u8 *p = data_02162880;
+    u8 *obj;
+    func_020a9988();
+    obj = *(u8 **)(*(u8 **)(p + 0x18) + 4);
+    (*(void (**)(void *))(obj + 8))(obj);
+}
+
 extern void func_0210c5dc(void *);
 void func_020a9aa8(void *arg0) {
     if (arg0 != NULL) {
