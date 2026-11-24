@@ -29,22 +29,3 @@ void func_02053f94(void *arg0) {
         *(u8 *)(p + 1) = 3;
     }
 }
-
-void func_02053fdc(u8 *arg0) {
-    u16 n = *(u16 *)(arg0 + 4);
-    u8 v;
-
-    if (n > 1) return;
-    v = *(u8 *)arg0;
-    if (v != 0) {
-        *(u8 *)arg0 = v - 1;
-        return;
-    }
-    {
-        u16 x = 1;
-        if (n != 0) x = 0;
-        *(u16 *)(arg0 + 4) = x;
-    }
-    *(u8 *)arg0 = *(u8 *)(arg0 + 0x1b);
-}
-
