@@ -30,6 +30,10 @@ void func_02109c54(void) {
     func_0210a38c();
 }
 
+u32 func_0210a498(u32 *arg) {
+    return arg[2];
+}
+
 void func_0210a4a0(void) {
     *(u32 *)(data_02162610 + 4) = 0;
 }
