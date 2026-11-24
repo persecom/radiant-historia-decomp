@@ -144,6 +144,24 @@ void func_020c8ba0(void *arg0) {
     }
 }
 
+extern void func_020a8810(void *);
+extern void func_020c6dbc(void *);
+extern void func_020a30c4(u16);
+void func_020c8794(u8 *arg0);
+void func_020c8d24(u8 *arg0) {
+    if (*(void **)(arg0 + 0x30) != NULL) {
+        func_020c9940(*(void **)(arg0 + 0x30));
+        if (*(void **)(arg0 + 0x30) != NULL) {
+            func_0210c5dc(*(void **)(arg0 + 0x30));
+            *(void **)(arg0 + 0x30) = NULL;
+        }
+        *(void **)(arg0 + 0x30) = NULL;
+    }
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
 void func_020c8ec0(u8 *arg0, s32 arg1) {
     func_020c8dc0(arg0, arg1, *(s16 *)(arg0 + 0x36));
 }
