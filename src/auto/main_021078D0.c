@@ -30,6 +30,10 @@ void func_02107a24(s32 arg0, s32 arg1) {
     func_0211809c(data_02161088, arg0, arg1);
 }
 
+void func_02107a44(s32 arg0, s32 arg1) {
+    func_0211809c(data_021610a4, arg0, arg1);
+}
+
 void func_02107a64(s32 arg0) {
     func_02118178(data_02161088, arg0);
 }
