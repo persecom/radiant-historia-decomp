@@ -269,7 +269,7 @@ void func_02133804(u64 arg0) {
     data_02174d64 = arg0;
 }
 
-extern void func_02133750(void *, s32 *);
+extern u32 func_02133750(void *, void *);
 extern void func_02133134(s8 *, s8 *, void *);
 extern void *func_02132f20(s8 *, s8 *, void *);
 extern u8 data_0215b864[28];
@@ -284,6 +284,16 @@ s32 func_02133814(void *arg0) {
     s32 ret;
     func_02133750(arg0, &ret);
     return ret;
+}
+
+void *func_02133828(void) {
+    s32 i;
+    for (i = 0; i < 10; i++) {
+        if (data_02174d6c[i].field_0 == 0) {
+            return &data_02174d6c[i];
+        }
+    }
+    return NULL;
 }
 
 extern void func_02013878(void *, s32, s32);
