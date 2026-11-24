@@ -2,15 +2,7 @@
 #include "common.h"
 extern s32 data_0215118c[][7];
 void func_021098ac(void *);
-static inline void draw_020c4720(s16 sx,s16 sy,s16 w,s16 h,s16 dx,s16 dy) {
-s16 buf[10];
-buf[0]=1;buf[1]=sx;buf[2]=sy;buf[3]=w;buf[4]=h;buf[5]=dx;buf[6]=dy;buf[7]=101;buf[8]=w;buf[9]=h;
-func_021098ac(buf);
-}
-static inline void alpha_020c4720(s32 alpha) {
-if(alpha>=32)alpha=31;
-*(volatile u32 *)0x040004a4=0x10000c0|(alpha<<16);
-}
+
 typedef struct { u16 v[7]; } Unk14;
 extern const Unk14 data_021444d0;
 extern void func_021099f8(void *);
