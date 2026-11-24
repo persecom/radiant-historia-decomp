@@ -7,6 +7,11 @@ extern void func_020e86c0(s32);
 extern void func_021167ac(void *, s32);
 extern void func_020e9860(void);
 extern void func_0210dae0(void *);
+extern void func_021168f8(void *, void *);
+extern void func_021167f0(void *, void *);
+extern void func_0210db10(void *);
+extern void func_0210eb80(void *);
+extern void func_020e9684(void *);
 extern u8 *data_02160a74;
 void func_020e9354(u16 arg0) {
     u8 *ptr = data_02160a74;
