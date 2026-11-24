@@ -62,6 +62,21 @@ void func_0212d21c(u8 *arg0) {
     }
 }
 
+void func_0212d4d0(void) {
+    s32 i;
+    if (*(void (**)(void *))(data_02173df4 + 0xc) != NULL) {
+        (*(void (**)(void *))(data_02173df4 + 0xc))(*(void **)(data_02173df4 + 0x8));
+    }
+    for (i = 0; i < 4; i++) {
+        if ((s8)data_02173e08[i * 0xb4] == 1) {
+            func_0212d21c(&data_02173e08[i * 0xb4]);
+        }
+    }
+    if (*(void (**)(void *))(data_02173df4 + 0x4) != NULL) {
+        (*(void (**)(void *))(data_02173df4 + 0x4))(*(void **)(data_02173df4 + 0x0));
+    }
+}
+
 u32 func_0212d540(u8 *arg0) {
     return *(u32 *)(arg0 + 0x30);
 }
