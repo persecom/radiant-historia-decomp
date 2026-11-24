@@ -52,6 +52,60 @@ void func_02096740(u8 *p, int mode) {
  }
 }
 
+void func_02096ad4(u8 *arg0, u8 *arg1, s32 arg2) {
+    u8 *r6;
+    u16 r7;
+    u16 r8 = 0;
+
+    if (arg0 == NULL) {
+        arg0 = *(u8 **)(data_02160090 + 8);
+    }
+
+    while (arg0 != NULL) {
+        u8 *r1 = *(u8 **)(arg0 + 0x14);
+        if (r1 != NULL && r8 != 0) {
+            r6 = *(u8 **)arg0;
+            if (**(u8 **)(r6 + 0x118) == 0) {
+                r7 = **(u16 **)(r1 + 8);
+                if (arg2 == 0 && arg1 != r6) {
+                    func_0209368c(r7, 5, 0xd);
+                    func_0209368c(r7, 5, 2);
+                    func_0209368c(r7, 5, 0x7c);
+                    func_0209368c(r7, 5, 0x7d);
+                    func_0209368c(r7, *(u8 *)(r6 + 0x114) + 6, 6);
+                } else if (arg2 == 1) {
+                    func_0209368c(r7, 0, 0xd);
+                    func_0209368c(r7, 0, 2);
+                    func_0209368c(r7, 0, 0x7c);
+                    func_0209368c(r7, 0, 0x7d);
+                    func_0209368c(r7, *(u8 *)(r6 + 0x114) + 0xd, 6);
+                } else if (arg2 == 2) {
+                    func_0209368c(r7, 5, 0xd);
+                    func_0209368c(r7, 5, 2);
+                    func_0209368c(r7, 5, 0x7c);
+                    func_0209368c(r7, 5, 0x7d);
+                    func_0209368c(r7, *(u8 *)(r6 + 0x114) + 6, 6);
+                }
+            } else if (**(u8 **)(r6 + 0x118) == 1) {
+                u16 id = **(u16 **)(r1 + 8);
+                if (arg2 == 0) {
+                    func_0209368c(id, 5, 4);
+                    func_0209368c(id, 5, 5);
+                    func_0209368c(id, 5, 0x7c);
+                    func_0209368c(id, 5, 0x7d);
+                } else if (arg2 == 1) {
+                    func_0209368c(id, 0, 4);
+                    func_0209368c(id, 0, 5);
+                    func_0209368c(id, 0, 0x7c);
+                    func_0209368c(id, 0, 0x7d);
+                }
+            }
+        }
+        r8++;
+        arg0 = *(u8 **)(arg0 + 0x1c);
+    }
+}
+
 void func_02096cfc(u8 *p){
 u8 *node;
 if(*(u8 **)(data_02160110+0x104)==0){
