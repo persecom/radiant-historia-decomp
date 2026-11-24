@@ -605,10 +605,7 @@ u32 func_02133ee0(u8 *arg0) {
 }
 
 void func_02133f78(u8 *arg0) {
-    s32 cond = 0;
-    if (data_02174f9c[0x1cc] == 0) {
-        cond = (*(u32 *)(*(void **)(arg0 + 0x4c) + 0xc) & 1) ? 1 : 0;
-    }
+    s32 cond = data_02174f9c[0x1cc] == 0 ? (*(u32 *)(*(void **)(arg0 + 0x4c) + 0xc) & 1) != 0 : 0;
     if (cond != 0) {
         return;
     }
