@@ -155,3 +155,22 @@ u32 func_0209cb98(void) {
     if ((v & 2) == 0) return 0;
     return v;
 }
+
+void func_0209cbac(void) {
+ u8 *p=*(u8 **)(data_02160a74+0x94);
+ u8 **a=func_02032254((u16)(*(s16 *)(data_02160110+0xb6)-1));
+ u8 **b=func_02032254((u16)(*(s16 *)(data_02160110+0xde)+1));
+ data_02160a74[0x1c3]=0;
+ if(data_02160a74[0x1cd]==0) {
+ if(**(u8 **)(*b+0x118)==0) {
+ data_02160a74[0x1c3]=1;func_020a8810(*(u32 *)(p+4),0x17);
+ } else func_020a8810(*(u32 *)(p+4),0x14);
+ } else if(data_02160a74[0x1cd]==1) {
+ u8 *prev=*a;
+ u8 *next=*b;
+ if(**(u8 **)(next+0x118)==1 || prev==next) {
+ data_02160a74[0x1c3]=1;func_020a8810(*(u32 *)(p+4),0x17);
+ } else func_020a8810(*(u32 *)(p+4),0x14);
+ }
+}
+
