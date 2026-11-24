@@ -13,6 +13,16 @@ extern u8 *func_02021f10(u8);
 extern void func_020b3a9c(void);
 extern void func_02009008(void *, void *, s32);
 extern u8 *func_020b4044(void);
+extern s32 func_020b3f14(u32);
+extern void func_020b38c0(s32);
+extern void *func_0210c594(u32, u32);
+extern u32 data_02155c3c;
+extern void func_0210dab0(void *);
+extern void func_0210db70(void *);
+extern void func_0210dbd0(void *);
+extern void func_020b4670(void);
+extern void func_020b0cfc(void);
+extern void func_020b35e8(void);
 
 u8 *func_020b3fd8(void) {
     return func_020b3880() + 0x96c;
