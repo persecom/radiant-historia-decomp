@@ -6,6 +6,14 @@ extern u16 data_02151fca;
 extern u32 data_02151fcc;
 extern u32 *data_02155984;
 extern u8 *data_02160258;
+extern void func_020f40a4(void);
+extern void func_020f4144(void);
+extern void func_0210c5dc(void *);
+extern void func_020d9018(void);
+void func_020d907c(u32 arg0) {
+    *(u32 *)(data_02160258 + 0x54) = arg0;
+}
+
 u16 func_020d9e38(void) {
     return data_02151fc8;
 }
