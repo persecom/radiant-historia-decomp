@@ -58,6 +58,33 @@ s32 func_0207bee0(u8 *arg0) {
     return 0;
 }
 
+s32 func_0207bff0(u8 *arg0, f32 arg1) {
+    u8 *r4 = *(u8 **)(data_021600ac + 0x68);
+    s32 scale = 0x18;
+    s32 param = 0x3f800000;
+    Vec3 v0;
+    Vec3 v1;
+
+    if (*(u16 *)(r4 + 0x92) == 0x8000) {
+        scale = 0x12;
+        param = 0x3f8ccccd;
+    }
+
+    v0.x = (*(s32 *)(r4 + 0xfc) << 12) - data_0213a394[((*(u16 *)(r4 + 0x92) % 0x10000) >> 4) * 2] * 0x18;
+    v0.y = (*(s32 *)(r4 + 0x100) << 12) - scale * data_0213a394[((*(u16 *)(r4 + 0x92) % 0x10000) >> 4) * 2 + 1];
+    v1.x = *(s32 *)(arg0 + 0xfc) << 12;
+    v1.y = *(s32 *)(arg0 + 0x100) << 12;
+
+    if ((f32)func_0207be40(&v0.x, &v1.x, 0x3f19999a, param) < (f32)((*(u8 *)(arg0 + 0x9d) + 0x1c) << 12) * arg1) {
+        s32 y0 = *(s32 *)(arg0 + 4);
+        s32 y1 = *(s32 *)(r4 + 4);
+        if (y1 <= y0 + 0x20000 && y1 >= y0 - 0x20000) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
 void func_0207c124(void) {
     u8 *node = *(u8 **)(data_021600f0 + 4);
     u8 *obj = *(u8 **)(data_021600ac + 0x68);
