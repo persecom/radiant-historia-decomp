@@ -154,3 +154,7 @@ s32 func_020c7384(void) {
     return 2;
 }
 
+u16 func_020c73b8(u16 *arg0) {
+    return arg0[0x16];
+}
+
