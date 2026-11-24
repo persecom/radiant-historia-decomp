@@ -15,7 +15,7 @@ return data_02144d84[(s32)(a&0xc000)>>14][(a&0xc0000000)>>30];
 }
 static inline s32 Height_bb3c(u32 a) {
 a &= 0xc000c000;
-return data_02144d6c[(a&0xc000)>>14][(a&0xc0000000)>>30];
+return data_02144d6c[(s32)(a&0xc000)>>14][(a&0xc0000000)>>30];
 }
 static inline void Transform_bb3c(Vec2_bb3c *dst,const s32 *m,const Vec2_bb3c *src) {
 Vec2_bb3c temp;
