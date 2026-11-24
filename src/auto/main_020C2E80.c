@@ -14,6 +14,9 @@ void *func_020c30b4(u8 arg0, u8 arg1) {
     return NULL;
 }
 
+void func_020c33d4(void) {
+}
+
 void func_020c3c94(void *arg0) {
     if (arg0 != NULL) {
         func_0210c5dc(arg0);
