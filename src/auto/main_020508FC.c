@@ -11,61 +11,37 @@ static inline s16 FX_CosIdx_02050b0c(s32 idx) {
     return data_0213a394[(idx >> 4) * 2 + 1];
 }
 
-BOOL func_020508fc(register volatile s32* arg0,
-                  volatile s32* volatile arg1,
-                  register volatile s32* arg2,
-                  volatile s32* volatile arg3,
-                  s32* volatile arg4)
-{
-    volatile s32 bx;
-    volatile s32 dy;
-    volatile s32 by;
-    register f32 t;
-    register s32 ax;
-    register s32 ay;
-    register f32 det;
-    register s32 dx;
-    register f32 base;
-    volatile f32 u;
-    BOOL result;
+#pragma optimization_level 0
+BOOL func_020508fc(s32 *arg0, s32 *arg1, s32 *arg2, s32 *arg3, s32 *arg4) {
+    s32 dx;
+    s32 bx;
+    s32 dy;
+    s32 ax;
+    s32 ay;
+    s32 by;
+    f32 det;
 
     dx = arg0[0] - arg2[0];
     dy = arg0[1] - arg2[1];
-
     ax = arg1[0] - arg0[0];
     ay = arg1[1] - arg0[1];
-
     bx = arg3[0] - arg2[0];
     by = arg3[1] - arg2[1];
-
     det = (f32)(ax * by - ay * bx);
 
     if (0.0f != det) {
-        t = (f32)((dy * bx - dx * by) * 100) / det;
-        u = (f32)((dy * ax - dx * ay) * 100) / det;
+        f32 t = (f32)((dy * bx - dx * by) * 100) / det;
+        f32 u = (f32)((dy * ax - dx * ay) * 100) / det;
 
-        if ((f64)t < 0.0 ||
-            100.0 < (f64)t ||
-            (f64)u < 0.0 ||
-            100.0 < (f64)u) {
-            result = FALSE;
-        } else {
-            base = (f32)arg0[0];
-            arg4[0] = (s32)(base + ((f32)ax * t) / 100.0f);
-
-            base = (f32)arg0[1];
-            arg4[1] = (s32)(base + ((f32)ay * t) / 100.0f);
-
-            result = TRUE;
+        if (t < 0.0 || 100.0 < t || u < 0.0 || 100.0 < u) {
+            return FALSE;
         }
-    } else {
-        result = FALSE;
+        arg4[0] = (s32)((f32)arg0[0] + ((f32)ax * t) / 100.0f);
+        arg4[1] = (s32)((f32)arg0[1] + ((f32)ay * t) / 100.0f);
+        return TRUE;
     }
-
-    return result;
+    return FALSE;
 }
-
-#pragma optimization_level 0
 void func_02050b0c(u8 *arg0, s32 arg1) {
     extern struct Mgr_02046e30 *data_021600bc;
     extern u8 *data_02160aec;
