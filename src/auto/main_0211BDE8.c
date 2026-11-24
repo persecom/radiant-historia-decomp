@@ -125,6 +125,35 @@ void func_0211c79c(void *arg0) {
     }
 }
 
+void func_0211c934(s32 *arg0, s32 *arg1, s32 arg2) {
+    s32 size = (*(volatile u16 *)data_02144ee8[arg2] & 0xc000) >> 14;
+    s32 mode = (arg2 <= 3 ? *(volatile u32 *)0x04000000 : *(volatile u32 *)0x04001000) & 7;
+    s32 bg = arg2 & 3;
+    if ((bg == 2 && (mode == 2 || mode >= 4)) || (bg == 3 && mode >= 1)) {
+        s32 v = 0x10 << size;
+        *arg0 = v;
+        *arg1 = v;
+    } else {
+        *arg0 = (size & 1) ? 0x40 : 0x20;
+        *arg1 = (size & 2) ? 0x40 : 0x20;
+    }
+}
+
+s32 func_0211c9c8(u8 *arg0, u8 *arg1) {
+    if (arg0 == NULL || arg1 == NULL) {
+        return 0;
+    }
+    switch (*arg0) {
+        case 'M':
+            return (((arg1[0x18] << 1) + 0x1c) & ~3);
+        case 'J':
+        case 'V':
+            return (((arg1[0x17] << 1) + 0x1c) & ~3);
+        default:
+            return 0;
+    }
+}
+
 void func_0211cac0(u8 *arg0, u32 arg1) {
     func_02008e24(0, arg0, 0x54);
     *(u32 *)(arg0 + 0xc) = data_02155ef4;
