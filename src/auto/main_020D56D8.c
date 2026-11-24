@@ -82,6 +82,16 @@ void func_020d60b8(s32 arg0) {
     }
 }
 
+void func_020d622c(void) {
+    s32 zero = 0;
+    void *p = *(void **)(data_02160a74 + 0x94);
+    func_020b52f4(zero);
+    func_020b532c(zero);
+    func_020a5ce4(p);
+    func_020a9544(*(void **)p);
+    *(u32 *)p = zero;
+}
+
 void func_020d64c8(Struct020d64c8 *arg0) {
     s16 *p = func_02022494(arg0, 0);
     arg0->unk_52 = *p;
