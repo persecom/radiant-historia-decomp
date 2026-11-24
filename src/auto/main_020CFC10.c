@@ -68,6 +68,8 @@ s32 func_020d0000(u8 *arg0) {
     return 0;
 }
 
+s32 func_020d0200(u8 *p){switch(*(u16 *)(p+0x8e)){case 391:case 392:case 393:case 394:case 395:case 401:case 402:case 403:case 404:case 405:case 411:case 412:case 413:case 414:case 415:case 421:case 422:case 423:case 424:case 425:case 426:case 451:case 452:case 453:case 454:case 461:case 462:case 463:case 464:case 471:case 481:case 491:case 501:case 511:case 521:case 531:case 541:case 542:case 543:case 661:return 0;default:return 1;}}
+
 void func_020d069c(void) {
  extern void func_020d0838(void);
  extern void func_020d0884(void);
