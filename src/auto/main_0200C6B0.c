@@ -300,6 +300,16 @@ BOOL func_0200d4a0(u8 *arg0, void *arg1) {
     return ret;
 }
 
+void func_0200d4e0(void *arg0, void *arg1, u32 arg2) {
+    if (arg2 == 0) {
+        arg1 = NULL;
+    } else if (arg1 == NULL) {
+        arg2 = 0;
+    }
+    *(void **)((u8 *)arg0 + 0x54) = arg1;
+    *(u32 *)((u8 *)arg0 + 0x58) = arg2;
+}
+
 u8 *func_0200d500(u8 *arg0, s32 arg1) {
     return *(u8 **)(*(u8 **)(arg0 + 0x20)) + arg1;
 }
