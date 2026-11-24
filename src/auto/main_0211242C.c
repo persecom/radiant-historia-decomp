@@ -1,5 +1,9 @@
 /* 33 functions from 0x0211242C to 0x021133F8 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { u16 id; s16 x,y; } InitPosition_021128fc;
+typedef struct { InitPosition_021128fc entries[9]; } InitPositions_021128fc;
+extern const InitPositions_021128fc data_02144cc0;
+extern void func_020c87a4(void *);
 typedef struct { s16 v[9]; } InitNine;
 typedef struct { s16 v[6]; } InitSix;
 typedef struct { u32 v[2]; } InitPair;
