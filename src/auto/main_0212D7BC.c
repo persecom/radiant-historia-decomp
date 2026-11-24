@@ -99,6 +99,26 @@ void func_0212db44(s8 *arg0) {
     func_0212e588();
 }
 
+void func_0212db90(void *arg0) {
+    s8 *r6 = (s8 *)arg0;
+    func_0212dd4c(r6);
+    func_0212db28(r6);
+    while (r6[0x4d] != 0 || r6[0x4a] != 0) {
+        func_0212bfa4();
+        if (data_02173ab8[0] != 0) {
+            func_020066e0(1);
+        }
+    }
+}
+
+s32 func_0212dbe8(s8 *arg0) {
+    s32 ret;
+    func_0212e5a0();
+    ret = func_0212dc0c(arg0);
+    func_0212e5ac();
+    return ret;
+}
+
 s32 func_0212dc0c(s8 *arg0) {
     return arg0[1];
 }
