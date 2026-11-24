@@ -307,7 +307,7 @@ s32 func_0200a4f4(u8 *arg0) {
 void func_0200a4fc(u8 *arg0, s32 arg1, u32 arg2) {
     func_0200986c();
     *(u32 *)(arg0 + arg1 * 4 + 0x3c) = arg2;
-    func_02006da8(arg0 + arg1 * 4 + 0x3c, 4);
+    func_02006da8(arg0 + 0x3c + arg1 * 4, 4);
     func_02009880();
 }
 
