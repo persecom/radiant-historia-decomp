@@ -14,7 +14,7 @@ u32 size; s32 shape;
 a &= 0xc000c000;
 size=(a&0xc0000000)>>30;
 shape=(s32)(a&0xc000)>>14;
-return data_02144d84[shape][size];
+return size[data_02144d84[shape]];
 }
 static inline s32 Height_bb3c(u32 a) {
 u32 size; s32 shape;
