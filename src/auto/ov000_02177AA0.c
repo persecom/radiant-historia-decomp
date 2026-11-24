@@ -46,6 +46,18 @@ void func_ov000_021780e0(Rc4State *state, u8 *key, u32 keylen) {
     }
 }
 
+u32 func_ov000_0217816c(Rc4State *state) {
+    u32 i = (state->field_4 + 1 + state->field_0) & 0xff;
+    u32 si = state->s[i];
+    u32 j = (si + state->field_8 + state->field_0) & 0xff;
+    u32 sj = state->s[j];
+    state->field_4 = i;
+    state->field_8 = j;
+    state->s[j] = si;
+    state->s[i] = sj;
+    return state->s[(si + sj) & 0xff];
+}
+
 s32 func_ov000_021781c4(u32 *p) {
     u32 v = 0x03020100;
     u32 *end = (u32 *)((u8 *)p + 0x100);
