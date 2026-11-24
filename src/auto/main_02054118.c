@@ -198,3 +198,20 @@ void func_020544d8(void *arg0, s32 arg1) {
     }
 }
 
+void func_02054d5c(u8 *arg0) {
+    u8 *p = *(u8 **)(data_021600ac + 0x68);
+    struct { s32 x, y, z; } vec1 = { 0, 0, 0 };
+    struct { s32 x, y, z; } vec2 = { 0, 0, 0 };
+    s32 dist;
+
+    *(s32 *)(arg0 + 0x1b8) = 0;
+    func_02002128(p, arg0, &vec1);
+    dist = (func_02002388(arg0, p) >> 12) + 0x80;
+    func_02002274(&vec1, &vec1);
+    vec2.x = vec1.x * dist;
+    vec2.z = vec1.z * dist;
+    func_020020f8(arg0, &vec2, arg0 + 0x1b4);
+    *(u16 *)(arg0 + 0x92) = func_020ddc8c(arg0, arg0 + 0x1b4);
+    *(s16 *)(arg0 + 0x98) = 0;
+}
+
