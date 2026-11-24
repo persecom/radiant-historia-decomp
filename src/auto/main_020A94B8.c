@@ -406,10 +406,8 @@ s32 func_020aa1f4(u8 *arg0) {
 
 void func_020aa2b0(void) {
     u8 *node = (u8 *)func_020aa724();
-    u32 a, b;
+    u32 a = 0, b = 0;
     while (node != NULL) {
-        a = 0;
-        b = 0;
         func_020a795c(*(u32 *)node, &a, &b);
         func_020bdb30((u16) *(u32 *)node, 1);
         node = *(u8 **)(node + 8);
