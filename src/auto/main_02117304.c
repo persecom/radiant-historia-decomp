@@ -65,6 +65,16 @@ void func_021173e4(u32 *arg0, u32 arg1) {
 void func_021173f8(void) {
 }
 
+extern void func_02007320(u32, u32, u32);
+extern void *func_02117370(void *);
+void *func_021173fc(void *arg0, u32 arg1) {
+    void *p = *(void **)((u8 *)arg0 + 4);
+    if (arg1 > *(u32 *)((u8 *)p + 0x28)) {
+        return NULL;
+    }
+    return func_02117370(p);
+}
+
 extern void func_021173b0(void *, void **);
 void func_0211741c(void *arg0, void **arg1) {
     func_021173b0(*(void **)((u8 *)arg0 + 4), arg1);
