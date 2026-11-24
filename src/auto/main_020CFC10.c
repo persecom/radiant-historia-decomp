@@ -42,7 +42,8 @@ void func_020d0884(void) {
 }
 
 void func_020d09d8(u8 *arg0) {
-    *(s32 *)(*(u8 **)(arg0 + 0x128) + 0x54) = func_0202bd60(*(u8 *)(arg0 + 0x1a0), *(u8 *)(*(u8 **)(arg0 + 0x118) + 0x54));
+    u8 *r4 = *(u8 **)(arg0 + 0x128);
+    *(s32 *)(r4 + 0x54) = func_0202bd60(*(u8 *)(arg0 + 0x1a0), *(u8 *)(*(u8 **)(arg0 + 0x118) + 0x54));
     func_0202bfa8(arg0, *(u8 *)(arg0 + 0x1a0));
     if (*(u8 *)(data_02160a74 + 0x1e3) != 1) {
         func_02030b7c(arg0, 1, 0x1ff);
