@@ -199,6 +199,86 @@ UnkNode_02106aa0 *func_02106c9c(u16 arg0) {
     return NULL;
 }
 
+extern char data_02155950[];
+extern char data_02155960[];
+extern char data_02155964[];
+extern void *func_021092d8(void *);
+extern s32 func_020f685c(void *, s32);
+extern s32 func_02109444(void *);
+extern char *func_020f68bc(void *, void *);
+extern void func_021093b0(void *);
+extern void *func_02106f6c(void *, u16);
+u8 func_02106ce4(u16 arg0) {
+    char buf1[0x40];
+    char buf2[0x40];
+    u8 found = 0;
+    s32 *ptr = NULL;
+    void *csv = func_021092d8(data_02155950);
+
+    if (csv != NULL) {
+        do {
+            if (arg0 == func_020f685c(csv, 0)) {
+                found = 1;
+                break;
+            }
+        } while (func_02109444(csv) != 0);
+
+        if (found != 0) {
+            char *str;
+            ptr = (s32 *)func_0210c594(0x14, data_02155c3c);
+
+            str = func_020f68bc(csv, data_02155960);
+            if (str[0] != '!') {
+                func_02005e80(buf1, str);
+                *(char **)&ptr[0] = buf1;
+            } else {
+                found = 0;
+            }
+
+            str = func_020f68bc(csv, data_02155964);
+            if (str[0] != '!') {
+                func_02005e80(buf2, str);
+                *(char **)&ptr[1] = buf2;
+            } else {
+                found = 0;
+            }
+
+            switch (func_020f685c(csv, 0)) {
+                case 8:     ptr[2] = 0; break;
+                case 16:    ptr[2] = 1; break;
+                case 32:    ptr[2] = 2; break;
+                case 64:    ptr[2] = 3; break;
+                case 128:   ptr[2] = 4; break;
+                case 256:   ptr[2] = 5; break;
+                case 512:   ptr[2] = 6; break;
+                case 1024:  ptr[2] = 7; break;
+                default:    found = 0;  break;
+            }
+
+            switch (func_020f685c(csv, 0)) {
+                case 8:     ptr[3] = 0; break;
+                case 16:    ptr[3] = 1; break;
+                case 32:    ptr[3] = 2; break;
+                case 64:    ptr[3] = 3; break;
+                case 128:   ptr[3] = 4; break;
+                case 256:   ptr[3] = 5; break;
+                case 512:   ptr[3] = 6; break;
+                case 1024:  ptr[3] = 7; break;
+                default:    found = 0;  break;
+            }
+
+            ptr[4] = func_020f685c(csv, 0);
+        }
+
+        func_021093b0(csv);
+    }
+
+    if (found != 0) {
+        found = (u8)func_02106f6c(ptr, arg0);
+    }
+    return found;
+}
+
 void *func_02106f6c(void *arg0, u16 arg1) {
     u8 *p1;
     void *result;
