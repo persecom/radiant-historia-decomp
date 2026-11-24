@@ -7,6 +7,8 @@ typedef struct {
 extern const Unk14 data_02141328, data_02141314;
 extern const Unk14 data_021410d0, data_021412d8, data_021412c4;
 
+extern const Unk14 data_02140db0;
+extern s8 *data_021600b0;
 extern const Unk14 data_02141300;
 extern const Unk14 data_02141378;
 extern u8 *data_0216010c;
