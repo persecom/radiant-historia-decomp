@@ -6,6 +6,8 @@ extern const Params_0209ee60 data_02142bdc;
 extern const Table_0209ee60 data_02142d8c;
 extern const Params_0209ee60 data_02142d08;
 extern const Table_0209ee60 data_02142dc4;
+extern const Table_0209ee60 data_02142dfc;
+extern const Table_0209ee60 data_02142d54;
 void func_020a3bbc(s32);
 void func_021098ac(void *);
 
