@@ -372,6 +372,21 @@ void func_02138af0(u8 *arg0, void *arg1) {
     func_02139200(arg0, arg0 + 0x30);
 }
 
+void func_02138b40(u8 *arg0) {
+    if (*(u32 *)(arg0 + 0x58) == 0) {
+        func_02126c20(data_0215c994);
+        return;
+    }
+    {
+        void *obj = *(void **)(arg0 + 0x8);
+        if (((s32 (*)(void *))(*(u32 **)obj)[11])(obj) != 0) {
+            func_02126c00();
+            func_021394f8(arg0, arg0 + 0x18 + *(s32 *)(arg0 + 0x10) * 0xc, 0, 2);
+            func_02126c0c();
+        }
+    }
+}
+
 s32 func_02138c1c(u8 *arg0) {
     if (*(u32 *)(arg0 + 0x58) == 0) {
         func_02126c20(data_0215c9ec);
