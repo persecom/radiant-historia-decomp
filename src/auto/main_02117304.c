@@ -225,3 +225,9 @@ void func_02117d74(void) {
     func_02117b9c();
 }
 
+extern void func_02008e08(void *, u32, u32);
+extern void func_021178b4(u8 *);
+void func_02117e70(void *arg0, u32 arg1, u32 arg2) {
+    func_02008e08(arg0, arg1 + 0x07000000, arg2);
+}
+
