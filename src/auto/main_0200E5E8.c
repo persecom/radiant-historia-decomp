@@ -208,6 +208,16 @@ void func_0200e9a0(void) {
     }
 }
 
+void func_0200ef20(s32 arg0) {
+    if (arg0 != 1) {
+        arg0 = 0;
+        if (func_02002740() != 0) {
+            func_02002750();
+        }
+    }
+    func_0200ed20(arg0, 0, 0, 1);
+}
+
 void func_0200f084(u32 arg0) {
     func_0200ef78(data_0215f04c, arg0, 0xff, 0);
 }
