@@ -114,11 +114,9 @@ void func_02008dc4(void) {
 }
 
 void func_02008df0(u16 val, u8 *dst, s32 size) {
-    s32 i = 0;
-    while (i < size) {
-        *(u16 *)(dst + i) = val;
-        i += 2;
-    }
+ s32 i=0;
+again:
+ if (i < size) { *(u16 *)(dst+i)=val; i+=2; goto again; }
 }
 
 void func_02008e08(u8 *src, u8 *dst, s32 size) {
@@ -129,7 +127,7 @@ void func_02008e08(u8 *src, u8 *dst, s32 size) {
     }
 }
 
-void func_02008e24(u32 value,u32 *dst,u32 bytes) { s32 end=(s32)dst+bytes; again: if((s32)dst<end) { *dst=value; dst=(u32*)((s32)dst+4); goto again; } }
+void func_02008e24(u32 value, u32 *dst, u32 bytes) { u32 *end=(u32 *)((u8 *)dst+bytes); again: if((s32)dst<(s32)end) { *dst++=value; goto again; } }
 
 void func_02008e38(const u32 *src, u32 *dst, u32 size) {
     u32 *end = (u32 *)((u8 *)dst + size);
@@ -174,6 +172,133 @@ void func_02008f48(const void *src, void *dst) {
     *d = *s;
 }
 
+void func_02009008(u8 *src, u8 *dst, u32 size)
+{
+  u32 align;
+  unsigned short new_var;
+  u32 value;
+  unsigned int new_var2;
+  u32 n;
+  u8 *new_var3;
+  u8 *end;
+  if (size == 0)
+  {
+    return;
+  }
+  if (((u32) dst) & 1)
+  {
+    value = (*((volatile u16 *) (dst - 1))) & 255;
+    if (((u32) src) & 1)
+    {
+      *((volatile u32 *) dst) = value;
+      size = ((u32) (*((volatile u16 *) (src - 1)))) >> 8;
+    }
+    else
+    {
+      size = *((volatile u16 *) src);
+    }
+    *((volatile u16 *) (dst - 1)) = value | (size << 8);
+    src++;
+    dst++;
+    if ((--size) == 0)
+    {
+      return;
+    }
+  }
+  align = ((u32) dst) ^ ((u32) src);
+  new_var = 2;
+  if (align & 1)
+  {
+    src = (u8 *) (((u32) src) & (~1));
+    size = *((volatile u16 *) src);
+    src += new_var;
+    size >>= 8;
+    while (size >= 2)
+    {
+      value = *((volatile u16 *) src);
+      src += 2;
+      new_var3 = (dst += new_var);
+      value = (*((volatile u16 *) dst) = size | (value << 8));
+      size = new_var3;
+      size = value >> 16;
+    }
+
+    if (!(size & 1))
+    {
+      *((volatile u16 *) dst) = value;
+      return;
+    }
+    *((volatile u16 *) dst) = ((*((volatile u16 *) dst)) & 0xff00) | size;
+    return;
+  }
+  if (align & new_var)
+  {
+    n = size & (~1u);
+    if (n == 0)
+    {
+      goto tail;
+    }
+    value = n;
+    size -= n;
+    end = (u8 *) (value + ((u32) dst));
+    do
+    {
+      value = *((volatile u16 *) src);
+      src += new_var;
+      *((volatile u16 *) dst) = (u16) value;
+      dst += new_var;
+    }
+    while (dst < end);
+    goto tail;
+  }
+  new_var2 = *((volatile u16 *) src);
+  if (size < new_var)
+  {
+    goto tail;
+  }
+  if ((((u32) dst) & new_var) != 0)
+  {
+    value = new_var2;
+    src += new_var;
+    *((volatile u16 *) dst) = (u16) value;
+    dst += 2;
+    if ((size -= new_var) == 0)
+    {
+      return;
+    }
+  }
+  n = size & (~3u);
+  if (n != 0)
+  {
+    size -= n;
+    end = (u8 *) (n + ((u32) dst));
+    do
+    {
+      value = *((volatile u32 *) src);
+      src += 4;
+      *((volatile u32 *) dst) = value;
+      dst += 4;
+    }
+    while (dst < end);
+  }
+  if (size & new_var)
+  {
+    value = *((volatile u16 *) src);
+    src += new_var;
+    *((volatile u16 *) dst) = (u16) value;
+    dst += new_var;
+  }
+  tail:
+  if (!(size & 1))
+  {
+    return;
+  }
+
+  value = (*((volatile u16 *) dst)) & 0xff00u;
+  size = (*((volatile u16 *) src)) & 255u;
+  *((volatile u16 *) dst) = (u16) ((0, value | size));
+}
+
 void func_02009138(u32 *dst) {
     u32 i;
     for (i = 0; i < 9; i++) {
@@ -184,6 +309,54 @@ void func_02009138(u32 *dst) {
 extern u32 __swp(u32, u32 *);
 u32 func_02009148(u32 val, u32 *ptr) {
     return __swp(val, ptr);
+}
+
+void func_02009230(u8 *src,u16 *dst) {
+u32 packed=0,shift=0;
+u32 header=*(u32 *)src;
+s32 remaining=header>>8;
+int extended=(header&15)!=0;
+src+=4;
+while(remaining>0){
+u32 flags=*src++;
+s32 bit=8;
+while(--bit>=0){
+if(!(flags&128)){
+packed|=(u32)*src++<<shift;
+remaining--;
+shift^=8;
+if(!shift){*dst++=packed;packed=0;}
+}else{
+s32 b=*src;
+s32 length;
+u32 distance,offset;
+if(!extended)length=3;
+else if(b&0xe0)length=1;
+else {
+src++;
+length=(b&15)<<4;
+if(b&16){length<<=8;length+=*src++<<4;length+=0x111;}
+b=*src;
+}
+length+=b>>4;
+b=*src++;
+distance=((b&15)<<8)|*src++;
+distance++;
+offset=((8-shift)^((distance&1)<<3))^8;
+remaining-=length;
+do{
+u32 back=((distance+((8-shift)>>3))>>1)<<1;
+s32 value=*(u16 *)((u8 *)dst-back);
+value=(value&(255<<offset))>>offset;
+packed|=value<<shift;
+shift^=8;
+if(!shift){*dst++=packed;packed=0;}
+}while(--length>0);
+}
+if(remaining<=0)break;
+flags<<=1;
+}
+}
 }
 
 void func_0200942c(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
