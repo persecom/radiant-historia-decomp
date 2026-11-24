@@ -104,6 +104,14 @@ void func_020934ac(u8 *ptr) {
     }
 }
 
+void func_02093510(u8 *arg0, s32 arg1) {
+    void *node = func_020935ec(arg0, arg1);
+    if (node != NULL) {
+        func_021168f8(arg0 + 0x20, node);
+        func_020f4f04(node);
+    }
+}
+
 void func_0209353c(u16 id, s16 x, s16 y) {
     u8 *ptr = (u8 *)func_02093658(id);
     s16 oldX, oldY;
