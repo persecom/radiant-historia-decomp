@@ -152,6 +152,25 @@ u32 func_0200a068(void) {
     return *data_0215ece0;
 }
 
+void func_0200a08c(u8 *arg0) {
+    s32 i, j;
+    *(u32 *)(arg0 + 4) = 0;
+    *(u16 *)(arg0 + 8) = 0;
+    *(u16 *)(arg0 + 0xa) = 0;
+    *(u32 *)(arg0 + 0) = 0;
+    for (i = 0; i < 16; i++) {
+        u8 *p = arg0 + i * 0x24;
+        *(u32 *)(p + 0x40) = 0;
+        for (j = 0; j < 16; j++) {
+            *(s16 *)(p + 0x20 + j * 2) = -1;
+        }
+    }
+    for (i = 0; i < 16; i++) {
+        *(s16 *)(arg0 + 0x260 + i * 2) = -1;
+    }
+    func_02006dc4(arg0, 0x280);
+}
+
 extern s32 func_0200698c(void);
 void func_0200a328(u32 *arg0) {
     u32 tmp[2];
