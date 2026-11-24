@@ -184,6 +184,14 @@ s32 func_0212dc94(void *arg0) {
     return ret;
 }
 
+s32 func_0212dcb8(void *arg0) {
+    func_0212e57c();
+    func_0212dc58(arg0);
+    *(u32 *)((u8 *)arg0 + 0x60) = 0xfffff;
+    func_0212e588();
+    return 1;
+}
+
 void func_0212dce4(void *arg0) {
     func_0212e5a0();
     func_0212dd00(arg0);
