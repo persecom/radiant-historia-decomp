@@ -86,7 +86,7 @@ s32 func_02019080(const u8 *a, const u8 *b) {
     return *(const s16 *)(a + 2) < *(const s16 *)(b + 2);
 }
 
-void func_02019580(u8 *arg0, s32 arg1, s32 arg2, u8 *arg3)
+void func_02019580(u8 *arg0, double arg1, u8 *arg3)
 {
     typedef struct {
         u8 unk00[2];
@@ -102,7 +102,7 @@ void func_02019580(u8 *arg0, s32 arg1, s32 arg2, u8 *arg3)
     s32 cnt;
     s16 val;
 
-    func_02019400(arg3);
+    func_02019400(arg3, arg1);
     if (num->digits[0] > 9) {
         return;
     }
