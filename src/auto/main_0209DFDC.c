@@ -24,6 +24,28 @@ extern void func_020a5ce4(void *);
 extern void func_0209f1c4(s32, s32, s32, s32, void *, s32);
 extern void func_020a0fd4(s32, s32);
 
+extern void *func_020a583c(void);
+extern void func_0209e8a4(void *, u32);
+void func_0209e78c(void) {
+    u16 i;
+    u8 *base = data_021600b0;
+    for (i = 0; i < 0xd; i++) {
+        *(void **)(base + i * 4 + 0xe4) = func_020a583c();
+    }
+    func_0209e8a4(*(void **)(base + 0xe4), 1);
+    func_0209e8a4(*(void **)(base + 0xe8), 2);
+    func_0209e8a4(*(void **)(base + 0xec), 4);
+    func_0209e8a4(*(void **)(base + 0xf0), 2);
+    func_0209e8a4(*(void **)(base + 0xf4), 0);
+    func_0209e8a4(*(void **)(base + 0xf8), 4);
+    func_0209e8a4(*(void **)(base + 0xfc), 4);
+    func_0209e8a4(*(void **)(base + 0x100), 4);
+    func_0209e8a4(*(void **)(base + 0x104), 4);
+    func_0209e8a4(*(void **)(base + 0x108), 4);
+    func_0209e8a4(*(void **)(base + 0x10c), 4);
+    func_0209e8a4(*(void **)(base + 0x110), 4);
+}
+
 void func_0209e85c(void) {
     u16 i;
     for (i = 0; i < 0xd; i++) {
