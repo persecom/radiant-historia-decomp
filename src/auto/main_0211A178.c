@@ -125,3 +125,14 @@ void func_0211ada0(void) {
     data_021701d8[0] = 0;
 }
 
+u32 func_0211b0bc(u32 arg0) {
+    u16 val = data_02144e48[arg0];
+    if (val == 0) {
+        return arg0;
+    }
+    if (*(u16 *)(val + 0x4000000) & 0x2000) {
+        return arg0 + 2;
+    }
+    return arg0;
+}
+
