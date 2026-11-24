@@ -107,6 +107,62 @@ void func_02077110(s32 arg0) {
     }
 }
 
+void func_02077180(s32 arg0, s32 arg1) {
+    u8 *ptr = func_020764e4();
+    u16 buf[10];
+    s32 alpha;
+    u32 val;
+
+    if (arg1 < 0x3e) {
+        alpha = arg1 / 2;
+    } else if (arg1 >= 0x10e) {
+        return;
+    } else if (arg1 > 0xef) {
+        alpha = 0x10e - arg1;
+    } else {
+        alpha = 0x1f;
+    }
+    if (alpha == 0) {
+        return;
+    }
+    if (arg0 != 0) {
+        func_02076380(*(void **)(ptr + 0x64));
+    } else {
+        func_02076380(*(void **)(ptr + 0x5c));
+    }
+    val = 0x10000c0 | (alpha << 16);
+    *(volatile u32 *)0x040004a4 = val;
+    buf[0] = 1;
+    buf[1] = 0;
+    buf[2] = 0;
+    buf[3] = 0x100;
+    buf[4] = 0x80;
+    buf[5] = 0;
+    buf[6] = 0;
+    buf[7] = 0x65;
+    buf[8] = 0x100;
+    buf[9] = 0x80;
+    func_021098ac(buf);
+
+    if (arg0 != 0) {
+        func_02076380(*(void **)(ptr + 0x68));
+    } else {
+        func_02076380(*(void **)(ptr + 0x60));
+    }
+    *(volatile u32 *)0x040004a4 = val;
+    buf[0] = 1;
+    buf[1] = 0;
+    buf[2] = 0;
+    buf[3] = 0x100;
+    buf[4] = 0x40;
+    buf[5] = 0;
+    buf[6] = 0x80;
+    buf[7] = 0x65;
+    buf[8] = 0x100;
+    buf[9] = 0x40;
+    func_021098ac(buf);
+}
+
 void func_020772b8(void) {
     Unk14 buf = data_02140c40;
     *(volatile u32 *)0x040004a4 = 0x1f00c0;
