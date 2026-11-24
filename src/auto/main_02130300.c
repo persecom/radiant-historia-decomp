@@ -14,6 +14,15 @@ extern void func_0212e628(void);
 extern void func_02132568(void);
 
 extern void func_02132ae8(void);
+void func_02130858(u32 *arg0, u32 *arg1) {
+    if (arg0 != NULL) {
+        *arg0 = data_0215a0d8[0];
+    }
+    if (arg1 != NULL) {
+        *arg1 = data_0215a0d8[1];
+    }
+}
+
 void func_02130a44(void) {
     func_02132ae8();
 }
