@@ -329,7 +329,6 @@ extern u8 data_0215cd7c[];
 extern u16 data_02145ba8[];
 extern u8 data_0215cd84[];
 extern u8 data_0215cd80[];
-extern void func_020059e4(u32);
 void func_02005790(void) {
     func_020056c8(4);
 }
@@ -365,8 +364,8 @@ void func_020057e8(u32 arg0, u32 arg1) {
             *(u32 *)(data_027e0000 + i * 4) = arg1;
             if (rec != NULL) {
                 *(u32 *)(rec + 0) = arg1;
-                *(u32 *)(rec + 4) = 1;
                 *(u32 *)(rec + 8) = 0;
+                *(u32 *)(rec + 4) = 1;
             }
         }
         arg0 >>= 1;
@@ -401,11 +400,10 @@ void func_020058fc(u32 index, u32 arg1, u32 arg2) {
 }
 
 void func_02005944(s32 arg0, u32 arg1, u32 arg2) {
-    *(u32 *)((u8 *)data_0215cdac + arg0 * 12) = arg1;
-    u32 mask = 1 << (arg0 + 3);
-    *(u32 *)((u8 *)data_0215cdb4 + arg0 * 12) = arg2;
-    func_020059b4(mask);
-    *(u32 *)((u8 *)data_0215cdb0 + arg0 * 12) = 1;
+    data_0215cdac[arg0].unk0 = arg1;
+    data_0215cdb4[arg0].unk0 = arg2;
+    func_020059b4(1 << (arg0 + 3));
+    data_0215cdb0[arg0].unk0 = 1;
 }
 
 u32 func_02005988(u32 arg0) {
