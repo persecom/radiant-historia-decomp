@@ -175,6 +175,10 @@ u8 *func_021253c8(u8 *arg0) {
     return *(u8 **)(arg0 + 0) + (*(u16 *)(arg0 + 8) << 4);
 }
 
+void func_02125e48(void *arg0, void *arg1) {
+    (*(void (**)(void *))((u8 *)data_02173198 + 0x1fc))(arg1);
+}
+
 void func_02125e64(void) {
 }
 
