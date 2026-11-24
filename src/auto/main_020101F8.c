@@ -270,3 +270,10 @@ void func_0201101c(void) {
     *(u16 *)(data_0215fa2c + 6) = func_02005df8();
 }
 
+void func_02011158(s32 *arg0) {
+    arg0[0] = (*(volatile u16 *)0x4000204 & 0xc) >> 2;
+    arg0[1] = (*(volatile u16 *)0x4000204 & 0x10) >> 4;
+    *(volatile u16 *)0x4000204 = (*(volatile u16 *)0x4000204 & ~0xc) | 0xc;
+    *(volatile u16 *)0x4000204 = *(volatile u16 *)0x4000204 & ~0x10;
+}
+
