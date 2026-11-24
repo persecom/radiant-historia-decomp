@@ -51,3 +51,13 @@ void *func_0203053c(void) {
     return ptr;
 }
 
+void func_02030574(u8 *arg0) {
+    void *ptr;
+    while ((ptr = *(void **)(arg0 + 8)) != NULL) {
+        func_020305b0(arg0, ptr);
+    }
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
