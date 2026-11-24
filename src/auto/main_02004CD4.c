@@ -328,6 +328,10 @@ void func_020057b0(void) {
     func_020056c8(6);
 }
 
+void func_020057c0(void) {
+    func_020056c8(7);
+}
+
 extern u16 data_0215cddc;
 u16 func_02005a74(void) {
     return data_0215cddc;
