@@ -143,6 +143,16 @@ u32 func_0212a1e4(u8 *arg0) {
     return *(u32 *)(arg0 + 0x14);
 }
 
+s32 func_0212a1ec(u8 *arg0) {
+    extern char data_02156b08[];
+    extern void func_0212bda8(char *);
+    if (arg0 != NULL) {
+        return *(s8 *)(arg0 + 0xe);
+    }
+    func_0212bda8(data_02156b08);
+    return -1;
+}
+
 s8 func_0212a210(s8 *a0) {
     return a0[0xd];
 }
