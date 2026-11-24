@@ -10,6 +10,27 @@ extern void *func_0205bad4(void *);
 extern s32 func_020dde4c(u16);
 extern void func_02060110(void *, void *, void *, s32, void *);
 extern void func_020d4eb8(void *);
+void func_0205c65c(u8 *p, s32 state) {
+u8 *n; s32 ready;
+switch(state){
+case 910:
+(*(volatile u16 *)(p+0x10))++;
+if(*(volatile u16 *)(p+0x10)>20){*(volatile u16 *)(p+0x10)=0; *(s32 *)(p+0x24)=911;} break;
+case 911:
+*(u16 *)(p+0x1e)&=0xfff7;
+n=*(u8 **)(data_02160a6c+0xb8); ready=1;
+while(n){if(n && *(s32 *)(n+0x1c0)==1) ready=0; n=*(u8 **)(n+0x174);}
+if(ready) *(s32 *)(p+0x24)=299;
+break;
+case 912: *(s32 *)(p+0x24)=299; break;
+case 913:
+ready=1; n=func_0205bad4(p);
+while(n){if(*(u16 *)(n+0x10)!=0)ready=0; n=*(u8 **)(n+0x18);}
+if(ready){*(u16 *)(p+0x1e)&=0xffef; *(s32 *)(p+0x24)=300;}
+break;
+}
+}
+
 void func_0205ca14(u8 *arg0) {
  u8 *p=*(u8 **)(arg0+0x128);
  u8 *n;
