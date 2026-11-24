@@ -284,6 +284,28 @@ s32 func_0200d20c(u32 arg0, void *arg1) {
     return 0;
 }
 
+s32 func_0200d350(void *arg0, u32 *arg1) {
+    void *p = func_0200f998(arg0);
+    arg1[8] = 0;
+    arg1[9] = 0;
+    arg1[10] = 0;
+    arg1[11] = 0;
+    arg1[0] = *(u32 *)((u8 *)p + 0x80);
+    arg1[1] = 0;
+    arg1[2] = 0;
+    arg1[3] = 0;
+    arg1[4] = 0x7fffffff;
+    arg1[5] = 0;
+    arg1[6] = 0x7fffffff;
+    arg1[7] = 0;
+    return 0;
+}
+
+s32 func_0200d3a0(u8 *arg0, void *arg1, s32 arg2, u32 arg3) {
+    func_02009008(func_0200d500(arg0, arg2), arg1, arg3);
+    return 0;
+}
+
 extern const u8 data_0213e964[];
 extern s32 func_0200d140(void *, void *, void *);
 BOOL func_0200d460(u8 *arg0, void *arg1) {
