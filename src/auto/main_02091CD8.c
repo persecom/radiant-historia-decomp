@@ -30,7 +30,7 @@ const char *func_02092a40(u8 *arg0, const char *arg1) {
         return arg1;
     }
     if (*r4 == '\0') {
-        return arg1;
+        r4 = arg1;
     }
     return r4;
 }
