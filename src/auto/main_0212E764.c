@@ -120,9 +120,9 @@ void *func_0212f468(void *arg0) {
     return *(void **)((u8 *)arg0 + 0x10);
 }
 
-extern void func_0212f548(void);
-void func_0212f738(void) {
-    func_0212f548();
+extern void func_0212f548(u32);
+void func_0212f738(u32 arg0) {
+    func_0212f548(arg0);
 }
 
 extern u8 data_021747a0[12];
