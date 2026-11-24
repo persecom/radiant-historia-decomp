@@ -236,8 +236,8 @@ void func_02010b10(void) {
     func_0201076c();
     func_02010f58();
     func_0201082c(8);
-    **(u32 **)data_0215f120 = 0;
-    func_0200fddc();
+    *(u32 *)*(u32 **)data_0215f120 = 0;
+    func_0200fddc(data_0215f120);
 }
 s32 func_02010b40(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     s32 ret = 0;
