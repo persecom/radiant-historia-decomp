@@ -140,6 +140,17 @@ s32 func_021117b0(u8 *arg0) {
     return 0;
 }
 
+s32 func_021117dc(u8 *arg0) {
+    arg0[0x75] = 0;
+    (*(void (**)(void *))(*(u8 **)(arg0 + 0x6c) + 0xc))(*(void **)(arg0 + 0x6c));
+    func_02111ad8(arg0);
+    func_02111bf0(arg0);
+    if (func_020c9490(*(void **)(arg0 + 0x6c)) != 0) {
+        func_02111ff0(arg0);
+    }
+    return 0;
+}
+
 void func_02111828(u8 *arg0) {
     u16 i;
     u32 count;
