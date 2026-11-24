@@ -129,6 +129,25 @@ s32 func_0210cba0(u8 *arg0, s32 arg1) {
     return 0;
 }
 
+s32 func_0210cbd0(void) {
+    if (func_0210cc54(data_02155c4c)) {
+        u8 *p = data_02160204;
+        if (p[0x12a] & 0x10) {
+            p[0x12a] &= 0x10;
+        }
+        *(s32 *)((u8 *)data_021626e8.f0 + 8) = 1;
+        func_0210cef8();
+        return 1;
+    }
+    if (func_0210cc54(data_02155c50)) {
+        return 1;
+    }
+    if (func_0210cc54(data_02155c54)) {
+        return 1;
+    }
+    return 0;
+}
+
 extern s32 func_020123f0(const char *, const char *);
 extern void func_0210c5dc(void *);
 extern s32 func_021095d0(void *);
