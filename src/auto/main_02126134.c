@@ -1,5 +1,6 @@
 /* 75 functions from 0x02126134 to 0x02126F50 (main), found by ds-decomp. */
 #include "common.h"
+extern void func_02138c54(void);
 
 extern BOOL func_02127350(void *);
 extern BOOL func_0212737c(void *);
