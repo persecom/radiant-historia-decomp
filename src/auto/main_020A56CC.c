@@ -15,6 +15,7 @@ extern u32 func_020a96f0(void *);
 extern u8 **data_021600e4;
 extern void *func_020a6360(void *, u8);
 extern void func_021167ac(void *, s32);
+extern void func_020a6320(void **);
 
 typedef struct {
     s32 x;
