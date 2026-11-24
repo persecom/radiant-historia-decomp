@@ -217,3 +217,10 @@ void func_020c83b0(u8 *arg0, void *arg1) {
     *(void **)(arg0 + 0x34) = func_020a94b8(arg1);
 }
 
+void func_020c83d0(u8 *arg0, s32 arg1, s32 arg2) {
+    void *ptr = *(void **)(arg0 + 0x34);
+    if (ptr != NULL) {
+        func_020c83f4(arg0, ptr, arg1, arg2);
+    }
+}
+
