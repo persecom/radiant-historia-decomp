@@ -139,6 +139,10 @@ BOOL func_0211568c(void *arg0, void *arg1) {
     return func_02115770(arg0, 0xff, arg1, 1, NULL) == 0;
 }
 
+BOOL func_021156bc(u16 arg0, void *arg1) {
+    return func_021157d0(arg0, 0xff, arg1, 1, NULL) == 0;
+}
+
 s32 func_021156ec(void *arg0, u32 arg1, void *arg2, s32 arg3, void **arg4) {
     u8 *p = func_02114f80(arg0);
     s32 ret;
