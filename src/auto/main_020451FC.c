@@ -96,9 +96,7 @@ func_021167ac(data_021600b0+0x134,12);
 func_021167ac(data_021600b0+0x140,24);
 func_020a2850();func_020a28e0();func_020a2a08();func_020a2a98();
 obj=*(u8 **)(data_021600ac+0x68);
-x=((Vec_02045800 *)obj)->x;y=((Vec_02045800 *)obj)->y;z=((Vec_02045800 *)obj)->z;
-dest=data_0216020c;
-*(s32 *)(dest+0xa0)=x-0xc8000;*(s32 *)(dest+0xa4)=y-0xa000;*(s32 *)(dest+0xa8)=z;
+set_xyz_02045800(*(s32 *)obj-0xc8000,*(s32 *)(obj+4)-0xa000,*(s32 *)(obj+8));
 *(void **)(data_021600b0+0x1c0)=func_0209decc();
 data_021600b0[0x1ba]=data_02160204[0xd6];
 }
