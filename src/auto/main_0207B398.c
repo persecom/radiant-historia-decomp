@@ -34,3 +34,18 @@ void func_0207c124(void) {
     func_020477dc(obj, 2, 1);
 }
 
+void func_0207c2dc(void) {
+    u8 *p = *(u8 **)(data_021600f0 + 0x10);
+    u8 *node;
+    *(u8 *)(p + 0) = 0;
+    *(u16 *)(p + 2) = 0;
+    node = *(u8 **)(p + 4);
+    while (node != NULL) {
+        u8 *r1 = *(u8 **)(node + 0x2c);
+        if (r1 != NULL) {
+            *(u32 *)(r1 + 0xac) |= 0x80000;
+        }
+        node = *(u8 **)(node + 0x54);
+    }
+}
+
