@@ -260,7 +260,8 @@ void *func_020dde4c(u16 arg0) {
 
 void func_020dde88(u8 *arg0) {
     s32 dist = ((s32 (*)(void *, void *))func_0210c2f4)(data_02162440, arg0);
-    s32 diff = data_0216242c[6] - *(s32 *)(arg0 + 4);
+    s32 field = *(s32 *)(arg0 + 4);
+    s32 diff = data_0216242c[6] - field;
     s64 sq = (s64)diff * diff;
     s32 q;
     s32 v;
@@ -284,7 +285,8 @@ void func_020dde88(u8 *arg0) {
 
 void func_020ddf2c(u8 *arg0) {
     s32 dist = ((s32 (*)(void *, void *))func_0210c2f4)(data_02162440, arg0);
-    s32 diff = data_0216242c[6] - *(s32 *)(arg0 + 4);
+    s32 field = *(s32 *)(arg0 + 4);
+    s32 diff = data_0216242c[6] - field;
     s64 sq = (s64)diff * diff;
     s32 q;
     s32 v;
@@ -306,17 +308,17 @@ void func_020ddf2c(u8 *arg0) {
     *(s32 *)(arg0 + 0x54) = v - 0x600;
 }
 
-void func_020ddfd0(u8 *arg0, u8 arg1) {
+void func_020ddfd0(u8 *arg0, s32 arg1) {
     u16 v = *(u16 *)(arg0 + 0x8e);
     if (v <= 0x63) {
         UnkStruct_020ddfd0 *p = *(UnkStruct_020ddfd0 **)(*(u8 **)(arg0 + 0x108) + 0x8);
-        p->unk70_1 = arg1;
+        p->unk70_1 = (u8)arg1;
     } else if (v >= 0x64 && v <= 0x31f) {
         UnkStruct_020ddfd0 *p = *(UnkStruct_020ddfd0 **)(*(u8 **)(arg0 + 0x108) + 0x0);
-        p->unk70_1 = arg1;
+        p->unk70_1 = (u8)arg1;
     } else if (v >= 0x3e8 && v <= 0x1003) {
         UnkStruct_020ddfd0 *p = *(UnkStruct_020ddfd0 **)(*(u8 **)(arg0 + 0x108) + 0x0);
-        p->unk70_1 = arg1;
+        p->unk70_1 = (u8)arg1;
     }
 }
 
@@ -326,6 +328,32 @@ void func_020de078(void) {
         *(u8 *)(node + 0x192) = 0;
         node = *(u8 **)(node + 0x13c);
     }
+}
+
+void func_020de0a8(u8 *arg0) {
+    u8 *r5;
+    u8 *r4 = *(u8 **)(arg0 + 0x128);
+    s16 pct;
+    if (arg0 == NULL || (r5 = *(u8 **)(arg0 + 0x118)) == NULL) {
+        return;
+    }
+    pct = (s16)func_0201fb1c(*(s32 *)(r5 + 0x4) * 100, *(s32 *)(r5 + 0x8));
+    if (*(s32 *)(r5 + 0x70) == 0) {
+        return;
+    }
+    if ((*(u32 *)(r5 + 0x78) & 0x30) != 0) {
+        return;
+    }
+    if (pct <= 30 && *(u8 *)(r5 + 0x0) == 0) {
+        func_020dd810(arg0, 7, 0);
+        return;
+    }
+    if ((*(u32 *)(r4 + 0x18) & 2) != 0 && *(u8 *)(r5 + 0x0) == 0) {
+        func_020dd810(arg0, 0xd, 0);
+        return;
+    }
+    func_020dd810(arg0, 0, 0);
+    *(s32 *)(arg0 + 0xf8) = 0;
 }
 
 extern u32 data_02155c3c;
