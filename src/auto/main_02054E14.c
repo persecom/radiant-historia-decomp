@@ -3,6 +3,7 @@
 
 typedef struct { s32 x, y, z; } Vec_0205530c;
 extern s16 data_0213a394[];
+static inline void AddVec_0205530c(Vec_0205530c *dst, const Vec_0205530c *a, const Vec_0205530c *b) { dst->x = a->x+b->x; dst->y = a->y+b->y; dst->z = a->z+b->z; }
 static inline void CopyVec_0205530c(Vec_0205530c *dst, const Vec_0205530c *src) { dst->x = src->x; dst->y = src->y; dst->z = src->z; }
 
 typedef struct {
@@ -75,13 +76,13 @@ void func_0205530c(u8 *p) {
     angle = (angle % 65536) >> 4;
     *(s32 *)(p + 0x30) = (s16)config[0x1a] * data_0213a394[angle * 2];
     *(s32 *)(p + 0x38) = (s16)config[0x1a] * data_0213a394[angle * 2 + 1];
-    pos.x = *(u32 *)p; pos.y = *(u32 *)(p+4); pos.z = *(u32 *)(p+8);
+    CopyVec_0205530c(&pos, (Vec_0205530c *)p);
     next.x = *(s32 *)p + *(s32 *)(p + 0x30);
     next.y = *(s32 *)(p + 4);
     next.z = *(s32 *)(p + 8) + *(s32 *)(p + 0x38);
-    *(s32 *)(p + 0xc) = pos.x; *(s32 *)(p + 16) = pos.y; *(s32 *)(p + 20) = pos.z;
-    *(s32 *)(p + 0xd4) = pos.x; *(s32 *)(p + 216) = pos.y; *(s32 *)(p + 220) = pos.z;
-    *(s32 *)(p + 0xe0) = next.x; *(s32 *)(p + 228) = next.y; *(s32 *)(p + 232) = next.z;
+    CopyVec_0205530c((Vec_0205530c *)(p + 0xc), &pos);
+    CopyVec_0205530c((Vec_0205530c *)(p + 0xd4), &pos);
+    CopyVec_0205530c((Vec_0205530c *)(p + 0xe0), &next);
     if (id < 700) func_020477dc(p, 1, 1);
     else func_020477dc(p, 0, 1);
     if (*(u32 *)(p + 0xac) & 1) {
@@ -91,10 +92,10 @@ void func_0205530c(u8 *p) {
         func_02050b0c(p, 0);
         func_02050b0c(p, 0x8000);
         func_0205103c(p);
-        pos.x = *(u32 *)p; pos.y = *(u32 *)(p+4); pos.z = *(u32 *)(p+8);
-        next.x = *(u32 *)(p+0xc); next.y = *(u32 *)(p+0x10); next.z = *(u32 *)(p+0x14);
-        *(s32 *)(p + 0xd4) = next.x; *(s32 *)(p + 216) = next.y; *(s32 *)(p + 220) = next.z;
-        *(s32 *)(p + 0xe0) = pos.x; *(s32 *)(p + 228) = pos.y; *(s32 *)(p + 232) = pos.z;
+        CopyVec_0205530c(&pos, (Vec_0205530c *)p);
+        CopyVec_0205530c(&next, (Vec_0205530c *)(p + 0xc));
+        CopyVec_0205530c((Vec_0205530c *)(p + 0xd4), &next);
+        CopyVec_0205530c((Vec_0205530c *)(p + 0xe0), &pos);
         *(s32 *)(p + 0x30) = *(s32 *)p - *(s32 *)(p + 0xc);
         *(s32 *)(p + 0x38) = *(s32 *)(p + 8) - *(s32 *)(p + 0x14);
         if (*(s32 *)(p + 0x30) == 0 && *(s32 *)(p + 0x38) == 0) p[0xa4] |= 8;
@@ -112,7 +113,7 @@ void func_0205530c(u8 *p) {
         *(s32 *)(p + 0x30) = 0;
         *(s32 *)(p + 0x38) = 0;
         if (*(s32 *)(p + 0xec) != *(s32 *)p || *(s32 *)(p + 0xf4) != *(s32 *)(p + 8))
-        { s32 x=*(s32 *)p,y=*(s32 *)(p+4),z=*(s32 *)(p+8); *(s32 *)(p+0xec)=x; *(s32 *)(p+0xf0)=y; *(s32 *)(p+0xf4)=z; }
+            CopyVec_0205530c((Vec_0205530c *)(p + 0xec), (Vec_0205530c *)p);
     } else {
         *(s32 *)p += *(s32 *)(p + 0x30);
         *(s32 *)(p + 8) += *(s32 *)(p + 0x38);
