@@ -8,6 +8,10 @@ x-=0xc8000; y-=0xa000;
 }
 extern u32 data_02155c3c;
 extern u8 *data_0216020c;
+static inline void set_xyz_02045800(s32 x,s32 y,s32 z) {
+u8 *dest=data_0216020c;
+*(s32 *)(dest+0xa0)=x;*(s32 *)(dest+0xa4)=y;*(s32 *)(dest+0xa8)=z;
+}
 extern u8 *func_0210c594(s32,u32);
 extern void func_02045e60(void),func_020be6a0(void),func_020be704(void),func_02046238(void),func_02046370(void),func_020be764(void),func_020be774(void);
 extern u32 func_02045e28(void);
@@ -45,8 +49,8 @@ extern void func_020a98a0(void *arg0);
 
 void func_02045800(void) {
 s32 priority;
-u8 *obj,*dest;
 s32 x,y,z;
+u8 *obj,*dest;
 if(data_021600b0)return;
 data_021600b0=func_0210c594(0x4a1c,data_02155c3c);
 *(void (**)(void))data_021600b0=func_02045e60;
@@ -91,10 +95,10 @@ func_0209e78c();
 func_021167ac(data_021600b0+0x134,12);
 func_021167ac(data_021600b0+0x140,24);
 func_020a2850();func_020a28e0();func_020a2a08();func_020a2a98();
-obj=*(u8 **)(data_021600ac+0x68);dest=data_0216020c;
-x=*(s32 *)obj;y=*(s32 *)(obj+4);z=*(s32 *)(obj+8);
-x-=0xc8000;y-=0xa000;
-*(s32 *)(dest+0xa0)=x;*(s32 *)(dest+0xa4)=y;*(s32 *)(dest+0xa8)=z;
+obj=*(u8 **)(data_021600ac+0x68);
+x=((Vec_02045800 *)obj)->x;y=((Vec_02045800 *)obj)->y;z=((Vec_02045800 *)obj)->z;
+dest=data_0216020c;
+*(s32 *)(dest+0xa0)=x-0xc8000;*(s32 *)(dest+0xa4)=y-0xa000;*(s32 *)(dest+0xa8)=z;
 *(void **)(data_021600b0+0x1c0)=func_0209decc();
 data_021600b0[0x1ba]=data_02160204[0xd6];
 }
