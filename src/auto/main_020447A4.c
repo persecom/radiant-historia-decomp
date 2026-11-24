@@ -1,5 +1,24 @@
 /* 16 functions from 0x020447A4 to 0x020451FC (main), found by ds-decomp. */
 #include "common.h"
+extern u32 data_0216263c[3];
+extern u8 *data_0216009c;
+extern u8 *data_02155984;
+extern void func_02108c24(s32,s32);
+extern void func_02077688(void);
+extern void func_02044cfc(void);
+extern void func_020a4c98(s32);
+extern void func_020468b0(s32);
+extern void func_02052904(s32);
+extern void func_0207c124(void);
+extern void func_0203d970(void *);
+extern void func_0203df40(void *);
+static inline u16 random_4487c(u16 max) {
+ u32 value;
+ data_0216263c[0]=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
+ value=data_0216263c[0]>>16;
+ if(max) value=(value*max)>>16;
+ return value;
+}
 extern s32 data_02162870[2], data_02162868[2], data_02162814[2], data_02162884[2];
 extern u8 *data_021600ac;
 extern u8 *func_020f52dc(void *, s32, s32);
@@ -263,5 +282,38 @@ void func_02044fb0(u32 arg0, u32 arg1) {
     if (!(*(u32 *)(p + 0xc) & 0x40)) {
         func_02059888();
     }
+}
+
+extern void func_02045800(void);
+s32 func_02045034(void) {
+u8 *obj=NULL,*state;
+s32 result, running=1;
+func_02044e8c();
+data_02162870[0]=0;data_02162868[0]=1;data_0216bf84=0;
+func_0210968c(3,-16,1);func_02109790(3);func_020451fc();
+state=(u8 *)func_02044f70();
+if(state) {
+if(*(s32 *)(state+4)==2000)obj=func_020f52dc(data_021600b8,100,2000);
+else if(*(s32 *)(state+4)==2001)obj=func_020f52dc(data_021600b8,100,2001);
+if(obj)for(;;){if(*(s32 *)(*(u8 **)(obj+20)+8)!=0)break;func_0210dc88();}
+func_02108c24(0,0);func_02108c24(1,0);
+}
+func_02046448();
+if(obj) {
+if(obj)func_020f5364(data_021600b8,obj);
+func_02045800();data_0216bf84=1;func_020468e0(1);
+*(s32 *)(data_021600ac+16)=12;
+while((func_0210dc88(), *(s32 *)(data_021600ac+12))==0){}
+}
+fade:
+do {
+if(data_02162814[0]!=-16) {data_02162814[0]--;if(data_02162814[0]<-16)data_02162814[0]=-16;}
+if(data_02162884[0]!=-16) {data_02162884[0]--;if(data_02162884[0]<-16)data_02162884[0]=-16;}
+func_0210dc88();
+}while(data_02162814[0]!=-16||data_02162884[0]!=-16);
+result=*(s32 *)state;
+func_02045b44();func_02045a78();func_02044f48();func_0210dc88();
+data_02162868[0]=0;
+return result;
 }
 
