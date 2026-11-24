@@ -176,12 +176,16 @@ void func_020042e4(void) {
     data_0215cd24[6] = func_020054a4();
 }
 
+extern s32 func_02005418(void);
+extern void func_02005318(u32);
+extern u8 data_0213e4a8[];
+extern u8 data_0213e4aa[];
+extern u8 data_0213e4ac[];
 void func_020042fc(void *arg0, u32 arg1, u32 arg2) {
-    u32 dst = 0x068a0000 + arg1;
     if (data_02145ba4 != -1) {
-        func_02008840(data_02145ba4, arg0, dst, arg2, 0, 0, 1);
+        func_02008840(data_02145ba4, arg0, 0x068a0000 + arg1, arg2, 0, 0, 1);
     } else {
-        func_02008e38(arg0, dst, arg2);
+        func_02008e38(arg0, 0x068a0000 + arg1, arg2);
     }
 }
 
