@@ -170,8 +170,8 @@ void func_02119da4(u32 arg0) {
 }
 
 void func_02119e4c(void) {
-    u8 *p;
     u32 flags;
+    u8 *p;
     *(u32 *)0x4000448 = 1;
     p = (u8 *)data_0216f234.f8;
     flags = *(u32 *)(p + 0x7c);
