@@ -144,3 +144,11 @@ void func_020a8958(void *arg0) {
     }
 }
 
+extern void func_0210fd24(u32 *, u32);
+extern void func_0210fd38(u32 *, u32, u32, u32);
+extern void func_0210fd94(u32 *);
+extern void func_020a9068(u32);
+void func_020a9058(void) {
+    func_020a9068(0x1f);
+}
+
