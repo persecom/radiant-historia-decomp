@@ -308,14 +308,14 @@ void func_0212f0d4(void *arg0) {
     func_02013878(arg0, 0, 0x2c);
 }
 
-u32 *func_0212f0f0(u32 *arg0, void *arg1) {
+void func_0212f0f0(u32 *arg0, void *arg1) {
     s32 zero;
     s32 one;
     s32 a;
     s32 b;
     s32 sum;
     if (arg0 == NULL) {
-        return arg0;
+        return;
     }
     zero = 0;
     one = 1;
@@ -332,7 +332,6 @@ u32 *func_0212f0f0(u32 *arg0, void *arg1) {
     arg0[8] = zero;
     arg0[10] = zero;
     arg0[0] = one;
-    return arg0;
 }
 
 void func_0212f384(s32 *arg0, s32 arg1, s32 *arg2, s32 *arg3) {
@@ -351,10 +350,11 @@ void func_0212f384(s32 *arg0, s32 arg1, s32 *arg2, s32 *arg3) {
 }
 
 BOOL func_0212f3cc(u8 *arg0, s32 arg1) {
-    if (*(s32 *)(arg0 + 0xc) < arg1) {
+    s32 value = *(s32 *)(arg0 + 0xc);
+    if (value < arg1) {
         func_0212f178();
     }
-    return *(s32 *)(arg0 + 0xc) >= arg1;
+    return arg1 > *(s32 *)(arg0 + 0xc) ? 0 : 1;
 }
 
 extern void func_0212f178(void);
@@ -363,6 +363,7 @@ s32 func_0212f3fc(u8 *arg0, s32 arg1) {
     s32 value = *(s32 *)(arg0 + 0xc);
     s32 rem;
     s32 result;
+    s32 mask, tbl;
     if (value < arg1) {
         func_0212f178();
     }
@@ -373,7 +374,9 @@ s32 func_0212f3fc(u8 *arg0, s32 arg1) {
         return 0;
     }
     rem = value - arg1;
-    result = data_02145914[arg1] & (*(s32 *)(arg0 + 8) >> rem);
+    mask = *(s32 *)(arg0 + 8);
+    tbl = data_02145914[arg1];
+    result = tbl & (mask >> rem);
     *(s32 *)(arg0 + 0xc) = rem;
     *(s32 *)(arg0 + 0x10) += arg1;
     return result;
@@ -384,8 +387,10 @@ void *func_0212f468(void *arg0) {
 }
 
 BOOL func_0212f470(u8 *arg0) {
-    Unk_0212f038 *obj = *(Unk_0212f038 **)(arg0 + 4);
-    return obj->method(obj, 1) == 0 && *(u32 *)(arg0 + 0xc) == 0 && *(u32 *)(arg0 + 0x24) == 0;
+    void *obj = *(void **)(arg0 + 4);
+    Unk_0212f038 *vtbl = *(Unk_0212f038 **)obj;
+    const BOOL one = TRUE;
+    return one && vtbl->method(obj, one) == 0 && *(u32 *)(arg0 + 0xc) == 0 && *(u32 *)(arg0 + 0x24) == 0;
 }
 
 extern u32 data_0217479c;
@@ -405,6 +410,13 @@ void func_0212f548(u32 arg0) {
 s32 func_0212f558(void *arg0, u32 *arg1) {
     *arg1 = data_0217479c;
     return 0x1e;
+}
+
+extern u8 data_021747a0[];
+s32 func_0212f570(void) {
+    struct S { u32 a; u32 b; };
+    ((struct S *)data_021747a0)->b++;
+    return 0;
 }
 
 extern void func_0212f548(u32);
