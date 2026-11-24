@@ -71,14 +71,45 @@ u8 func_020ae05c(u32 arg0, u32 arg1) {
     return arg0 % 10;
 }
 
-void func_020ae0f0(u32 arg0, s16 arg1, s32 arg2, s16 arg3, s32 arg4, s32 arg5) {
-    u8 i;
-    u8 d;
-    for (i = 1; i < 10; i++) {
-        d = func_020ae05c(arg0, i);
-        if (d == 10) break;
-        if (i != 1) arg2 -= arg4;
-        func_020ae004(arg1, (s16)(arg4 * d), 0, arg4, arg5, (s16)arg2, arg3, arg4, arg5);
+void func_020ae0f0(u32 arg0, s16 arg1, s32 arg2, s16 arg3, s16 arg4, s16 arg5)
+{
+  int new_var2;
+  u8 i;
+  int new_var;
+  u8 d;
+  for (i = 1; i < 10; i++)
+  {
+    d = func_020ae05c(arg0, i);
+ do { if (d == 10) { break; } new_var2 = 1; if (i != new_var2) { arg2 -= arg4; } new_var = arg4 * d; func_020ae004(arg1, new_var, 0, arg4, arg5, arg2, arg3, arg4, arg5); } while (0);
+  }
+
+}
+
+void func_020ae35c(u8 *arg0) {
+    s32 i, j;
+    for (i = 0; i < 8; i++) {
+        u8 *node = *(u8 **)(arg0 + i * 4 + 0x13c);
+        if (node != NULL) {
+            func_020a9544(node);
+        }
+        *(u32 *)(arg0 + i * 4 + 0x13c) = 0;
+    }
+    for (j = 0; j < 8; j++) {
+        s32 off = j * 0x50;
+        func_020a994c(arg0 + 0x170 + off);
+        func_020a98a0(arg0 + 0x170 + off);
+        {
+            u8 *obj = *(u8 **)(arg0 + off + 0x16c);
+            if (obj != NULL) {
+                if (j == 0 || j == 3 || j == 5) {
+                    goto call_it;
+                }
+                goto call_it;
+call_it:
+                ((void (*)(u8 *))(*(void **)(obj + 0xc)))(obj);
+            }
+            *(u32 *)(arg0 + off + 0x16c) = 0;
+        }
     }
 }
 
