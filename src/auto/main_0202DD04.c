@@ -164,11 +164,10 @@ void func_0202e874(u8 *arg0) {
 }
 
 s32 func_0202e930(void) {
-    u8 *node = *(u8 **)(*(u8 **)data_02160a6c + 0xb8);
+    u8 *node = *(u8 **)(data_02160a6c + 0xb8);
     s32 result = 0;
     while (node != NULL) {
-        u8 *sub = *(u8 **)(node + 0x118);
-        if (sub != NULL && *(s32 *)(sub + 4) >= 1) {
+        if (node != NULL && *(u8 **)(node + 0x118) != NULL && *(s32 *)(*(u8 **)(node + 0x118) + 4) >= 1) {
             result |= func_0202e84c(node);
         }
         node = *(u8 **)(node + 0x174);
