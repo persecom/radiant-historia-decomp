@@ -31,6 +31,15 @@ void func_020a2574(void) {
     }
 }
 
+void func_020a25c8(void) {
+    u8 *r4 = data_021600b0;
+    if (*(void **)(r4 + 0x19c) != NULL) {
+        func_020ec548(*(void **)(r4 + 0x19c));
+        *(void **)(r4 + 0x19c) = NULL;
+        *(u16 *)(r4 + 0x198) = 0;
+    }
+}
+
 u8 func_020a2814(void) {
     return data_02160124;
 }
