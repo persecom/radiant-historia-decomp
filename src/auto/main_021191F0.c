@@ -51,7 +51,10 @@ extern void func_0211ab14(void);
 extern void func_02119b34(u32);
 extern void func_02119334(u8 *, s32);
 extern void func_02119448();
-extern void func_021194cc(void);
+extern void func_021194cc(u8 *,s32,s32);
+typedef struct { u32 low:10; u32 mode:2; u32 palette:4; u32 high:16; } Bits021194cc;
+extern void *func_0211a4cc(u32);
+extern u32 func_02118588(void *,u16);
 extern void func_02119694();
 
 static inline void MI_CpuFill32(void *dest, u32 data, u32 size) {
