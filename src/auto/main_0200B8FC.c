@@ -198,11 +198,37 @@ u32 func_0200bc94(u8 *arg0) {
     return *(u32 *)(arg0 + 8);
 }
 
+void func_0200bcb0(u32 *arg0) {
+    u32 a = arg0[3];
+    u32 b = arg0[0];
+    u32 c = arg0[1];
+    func_02006e00(b, c + a);
+    func_02006d8c(b, c + a);
+    func_02008f74((void *)(b + c), 0, a);
+}
+
 void func_0200bcec(FSFileID *arg0, u8 *arg1) {
     FSFileID file;
     file.arc = (void *)data_0215ef7c[0];
     file.file_id = *(u32 *)(arg1 + 0x18);
     *arg0 = file;
+}
+
+s32 func_0200be78(u8 *arg0) {
+    u8 file[0x48];
+    FSFileID id;
+    s32 ret = 0;
+    func_0200b888(file);
+    func_0200bcec(&id, arg0);
+    if (func_0200b9c8(file, id) != 0) {
+        u32 val = func_0200bc94(arg0);
+        func_0200bcb0((u32 *)arg0);
+        if (func_0200bb3c(file, *(void **)(arg0 + 4), val) == val) {
+            ret = 1;
+        }
+        func_0200baa4(file);
+    }
+    return ret;
 }
 
 extern void func_0200c0a8(void);
