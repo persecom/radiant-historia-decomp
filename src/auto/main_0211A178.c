@@ -1,5 +1,9 @@
 /* 28 functions from 0x0211A178 to 0x0211B0E8 (main), found by ds-decomp. */
 #include "common.h"
+extern u32 data_02145ba4;
+void func_02006dc4(void *, u32);
+void func_02008690(u32, void *, void *, u32, s32);
+void func_02008e08(void *, void *, u32);
 typedef struct { s32 v[6]; } Mtx23;
 typedef struct { s32 m00,m01,m10,m11,m20,m21; } Mtx23Fields;
 extern s32 data_0216f234[4];
@@ -50,23 +54,20 @@ data_0216f244[data_0216f234[3]]+=z;
 }
 
 void func_0211a3ac(s32 sine,s32 cosine) {
- s32 storage[6];
- volatile s32 *m=storage;
- s32 stride=24;
- s32 *state=data_0216f234;
- s32 index=*(volatile s32 *)&state[3];
- u16 *entry;
+ Mtx23 m;
+ s32 index=*(volatile s32 *)&data_0216f234[3];
+ volatile u16 *entry;
  s32 active;
- m[1]=sine;m[0]=cosine;m[3]=cosine;m[2]=-sine;m[4]=0;m[5]=0;
- func_0211a4e0((void *)m,(u8 *)data_0216f3c4+index*stride,(u8 *)data_0216f3c4+index*stride);
- func_0211a4e0((void *)m,(u8 *)data_0216f6c4+state[3]*stride,data_0216f6c4[data_0216f234[3]]);
+ m.v[1]=sine;m.v[0]=cosine;m.v[3]=cosine;m.v[2]=-sine;m.v[4]=0;m.v[5]=0;
+ func_0211a4e0(&m,data_0216f3c4[index],data_0216f3c4[index]);
+ func_0211a4e0(&m,data_0216f6c4[data_0216f234[3]],data_0216f6c4[data_0216f234[3]]);
  active=Active0211a3ac();
  if(!active) data_02155eb0[0]=data_0216f234[3];
  entry=data_0216f2c4[(u16)data_0216f234[3]];
  switch(entry[2]) {
  case 1: break;
  case 0: case 2: case 3:
- { u16 n=((u16 *)data_0216f234)[1]; ((u16 *)data_0216f234)[1]=n+1; entry[1]=n; }
+ { u16 n=((u16 *)data_0216f234)[1]; ((volatile u16 *)data_0216f234)[1]=n+1; entry[1]=n; }
  entry[2]=1;
  break;
  }
