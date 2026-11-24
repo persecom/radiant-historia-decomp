@@ -27,15 +27,17 @@ void func_02064a30(void) {
     node = *(u8 **)(p + 0x70);
     while (node != NULL) {
         u8 *sub = *(u8 **)(node + 0x1a4);
+        s32 z;
         if (sub == NULL) {
             *(s32 *)(node + 0x1a8) = *(s32 *)(node + 0x0);
             *(s32 *)(node + 0x1ac) = *(s32 *)(node + 0x4);
-            *(s32 *)(node + 0x1b0) = *(s32 *)(node + 0x8);
+            z = *(s32 *)(node + 0x8);
         } else {
             *(s32 *)(node + 0x1a8) = *(s32 *)(node + 0x0) + *(s32 *)(sub + 0x18);
             *(s32 *)(node + 0x1ac) = *(s32 *)(node + 0x4) + *(s32 *)(sub + 0x1c);
-            *(s32 *)(node + 0x1b0) = *(s32 *)(node + 0x8) + *(s32 *)(sub + 0x20);
+            z = *(s32 *)(node + 0x8) + *(s32 *)(sub + 0x20);
         }
+        *(s32 *)(node + 0x1b0) = z;
         node = *(u8 **)(node + 0x13c);
     }
 }
@@ -43,8 +45,8 @@ void func_02064a30(void) {
 s32 func_02064aac(s32 *rect) {
     TouchData_02064aac tp = data_02162908;
     if (tp.touch == 1) {
-        s32 x = tp.x;
         s32 y = tp.y;
+        s32 x = tp.x;
         s32 hit;
         if (x >= rect[0] && x <= rect[2] && y >= rect[1] && y <= rect[3]) {
             hit = 1;
