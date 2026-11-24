@@ -5,7 +5,7 @@ void func_02006dc4(void *, u32);
 void func_02008690(u32, void *, void *, u32, s32);
 void func_02008e08(void *, void *, u32);
 typedef struct { s32 v[6]; } Mtx23;
-typedef struct { s32 m00,m01,m10,m11,m20,m21; } Mtx23Fields;
+
 extern s32 data_0216f234[4];
 extern u16 data_02155eb0[];
 extern u16 data_0216f2c4[][4];
@@ -281,6 +281,37 @@ s32 func_0211ae38(u8 *arg0) {
         val -= 8;
     }
     return func_0200283c(val);
+}
+
+void func_0211af90(s32 bank, u32 *arg1, u8 *arg2) {
+ s32 size=bank;
+ u8 *dest;
+ u8 *map=arg2;
+ u32 *p=arg1;
+ s32 count, i;
+ func_02006dc4((void *)p[3],p[2]);
+ dest=(u8 *)0x5000000;
+ if(size>3) dest=(u8 *)0x5000400;
+ if(map){
+ switch(p[0]) {case 3:size=32;break;case 4:size=512;break;default:size=0;break;}
+ count=*(u16 *)map;
+ for(i=0;i<count;i++){
+ u32 offset=(*(u16 **)(map+4))[i]*size;
+ u32 srcOff=size*i;
+ u32 channel=data_02145ba4;
+ u8 *src=(u8 *)p[3];
+ if(channel>3) channel=-1;
+ if(channel!=-1) func_02008690(channel,src+srcOff,dest+offset,size,1);
+ else func_02008e08(src+srcOff,dest+offset,size);
+ }
+ }else{
+ u32 channel=data_02145ba4;
+ u32 n=p[2];
+ void *src=(void *)p[3];
+ if(channel>3)channel=-1;
+ if(channel!=-1)func_02008690(channel,src,dest,n,1);
+ else func_02008e08(src,dest,n);
+ }
 }
 
 u32 func_0211b0bc(u32 arg0) {
