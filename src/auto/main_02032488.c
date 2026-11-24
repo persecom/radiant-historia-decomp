@@ -354,6 +354,26 @@ void func_020331d0(u8 *arg0, u16 arg1, s32 arg2) {
     }
 }
 
+s32 func_020331f0(u8 *arg0) {
+    u8 cnt = 0;
+    s32 d;
+    func_0205bc60(arg0, &cnt, 0x14);
+    d = (*(s32 *)(arg0 + 0x28) - *(s32 *)(arg0 + 4)) >> 12;
+    if (d < 0) {
+        d = -d;
+    }
+    if (d < 10) {
+        *(s32 *)(arg0 + 4) = *(s32 *)(arg0 + 0x28);
+        *(s32 *)(arg0 + 0x34) = 0;
+        cnt++;
+    }
+    if (cnt >= 2) {
+        return 1;
+    }
+    func_020020f8(arg0, arg0 + 0x30, arg0);
+    return 0;
+}
+
 extern s32 func_02117d80(void *);
 s32 func_020332c8(void *arg0) {
     if (arg0 == NULL) {
