@@ -172,27 +172,28 @@ void func_020bf700(void) {
 }
 
 extern void func_021167f0(void *,void *);
-void func_020bfd78(s32 a,s32 b,u16 c,s32 d,s32 e,s32 owner,u16 g,u16 h) {
-u8 *p=func_0210c594(0x4c,data_02155c3c);
+void func_020bfd78(s32 a,s32 b,u16 c,s32 d,s32 e,u8 *owner,u16 g,u16 h) {
+Unk_020bfd78 *p=(Unk_020bfd78 *)func_0210c594(0x4c,data_02155c3c);
 s32 zero=0;
-*(s32 *)(p)=a;*(s32 *)(p+4)=b;
-*(u16 *)(p+8)=zero;
-*(s32 *)(p+0xc)=d;*(s32 *)(p+0x10)=zero;
-*(s32 *)(p+0x14)=e;*(s32 *)(p+0x18)=zero;
-*(s32 *)(p+0x1c)=RH_RANDOM(0x1800)-0xc00;
-*(s32 *)(p+0x20)=RH_RANDOM(0x2000)-0x1000;
-*(s32 *)(p+0x24)=RH_RANDOM(0xc00)+0x2800;
-*(s32 *)(p+0x28)=RH_RANDOM(0x1000)+0x2800;
-*(s32 *)(p+0x2c)=RH_RANDOM(200)+700;
-*(u16 *)(p+0x32)=g;*(u16 *)(p+0x34)=h;
-*(u16 *)(p+0x36)=zero;*(s32 *)(p+0x38)=zero;
-*(s32 *)(p+0x3c)=owner;
-*(u16 *)(p+0x30)=c;*(u16 *)(p+0x40)=1;
-if(owner) {
-u8 *q=*(u8 **)((u8 *)owner+0x128);
+p->a=a;p->b=b;
+p->c=zero;
+p->d=d;p->e=zero;
+p->f=e;p->g=zero;
+p->x=RH_RANDOM(0x1800)-0xc00;
+p->y=RH_RANDOM(0x2000)-0x1000;
+p->z=RH_RANDOM(0xc00)+0x2800;
+p->w=RH_RANDOM(0x1000)+0x2800;
+p->speed=RH_RANDOM(200)+700;
+p->timer=zero;p->h=g;p->j=zero;p->i=h;
+p->owner=owner;
+p->kind=c;p->state=1;
+{u8 *o=p->owner;
+if(o) {
+u8 *q=*(u8 **)(o+0x128);
 (*(s16 *)(q+0xaa))++;
-if(**(u8 **)((u8 *)owner+0x118)==0) *(s32 *)(p+4)+=10;
-*(u16 *)(p+0x40)=3;
+if(**(u8 **)(o+0x118)==0) p->b+=10;
+p->state=3;
+}
 }
 func_021167f0(data_02160214+0x28,p);
 (*(s32 *)(data_02160214+0x34))++;
