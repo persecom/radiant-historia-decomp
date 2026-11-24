@@ -226,6 +226,10 @@ void func_0212c3b0(void *arg0, void *arg1) {
     func_0212a9f8();
 }
 
+void func_0212c3d4(void *arg0, void *arg1) {
+    func_0212c3ec((u8 *)arg0, arg1, 0, 0xfffff);
+}
+
 extern void func_0212c478(void);
 void func_0212c464(void) {
     func_0212a9f4();
