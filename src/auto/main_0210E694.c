@@ -73,7 +73,8 @@ void func_0210e740(void) {
     }
 }
 
-void func_0210f170(const char *arg0, s32 arg1, s32 arg2, s32 arg3) {
+s32 func_0210f170(const char *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 ret;
     if (data_02155c94[2] != 0 && arg0 != NULL) {
         if (data_02162a80[0] == '\0') {
             func_02012210(data_02162b00, arg0);
@@ -82,7 +83,8 @@ void func_0210f170(const char *arg0, s32 arg1, s32 arg2, s32 arg3) {
         }
         data_02162a54[0] = 0;
     }
-    data_02156150(arg1, arg2, arg3);
+    ret = data_02156150(arg1, arg2, arg3);
     data_02162b00[0] = '\0';
     data_02162a54[0] = 0;
+    return ret;
 }
