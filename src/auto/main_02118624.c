@@ -1,5 +1,7 @@
 /* 33 functions from 0x02118234 to 0x021191F0 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { u16 width,height; u32 format,type,unkC,size; void *data; } Unk02118A54;
+typedef struct { u32 unk[3]; u32 height,width,format,zero,one,type; } Unk02118A54Out;
 static inline s32 has_02118f24_data(u8 *p) { s32 r = 1; if (!*(void **)(p + 12)) r = 0; return r; }
 static inline s32 has_02118f24_handle(u8 *p) { s32 r = 1; if (*(s32 *)(p + 0x38) == -1) r = 0; return r; }
 
@@ -92,6 +94,59 @@ void func_02118624(void *arg0, u32 arg1, s32 arg2, void *arg3) {
     func_021185b0((s32 *)arg3, arg2, (s32)arg1);
 }
 
+void func_02118a54(void *arg0, u32 arg1, s32 arg2, void *arg3) {
+    u32 mapType;
+    u32 zero = 0;
+
+    func_02006dc4(*(void **)((u8 *)arg0 + 0x14), *(u32 *)((u8 *)arg0 + 0x10));
+    mapType = *(u32 *)((u8 *)arg0 + 8);
+    switch (arg2) {
+        case 0:
+            break;
+        case 1:
+            *(volatile u32 *)0x04000000 = (*(volatile u32 *)0x04000000 & 0xffcfffef) | mapType;
+            break;
+        case 2:
+            *(volatile u32 *)0x04001000 = (*(volatile u32 *)0x04001000 & 0xffcfffef) | mapType;
+            break;
+    }
+
+
+    if (*(u32 *)((u8 *)arg0 + 8) == 0) {
+        u32 val;
+        switch (*(u16 *)((u8 *)arg0 + 2)) {
+            case 1: val = 0; break;
+            case 2: val = 1; break;
+            case 4: val = 2; break;
+            case 8: val = 3; break;
+            case 16: val = 4; break;
+            case 32: val = 5; break;
+            default: val = 0; break;
+        }
+        *(u32 *)((u8 *)arg3 + 0xc) = val;
+
+        switch (*(u16 *)((u8 *)arg0 + 0)) {
+            case 1: val = 0; break;
+            case 2: val = 1; break;
+            case 4: val = 2; break;
+            case 8: val = 3; break;
+            case 16: val = 4; break;
+            case 32: val = 5; break;
+            default: val = 0; break;
+        }
+        *(u32 *)((u8 *)arg3 + 0x10) = val;
+    } else {
+        *(u32 *)((u8 *)arg3 + 0xc) = *(u16 *)((u8 *)arg0 + 2);
+        *(u32 *)((u8 *)arg3 + 0x10) = *(u16 *)((u8 *)arg0 + 0);
+    }
+
+    *(u32 *)((u8 *)arg3 + 0x14) = *(u32 *)((u8 *)arg0 + 4);
+    *(u32 *)((u8 *)arg3 + 0x18) = zero;
+    *(u32 *)((u8 *)arg3 + 0x1c) = 1;
+    *(u32 *)((u8 *)arg3 + 0x20) = *(u32 *)((u8 *)arg0 + 8);
+    func_021185b0((s32 *)arg3, arg2, (s32)arg1);
+}
+
 extern void func_02004138(void);
 extern void func_02004180(void *,u32,u32);
 extern void func_020041f0(void);
@@ -113,6 +168,54 @@ case 2: if(p[1]){func_020042e4();func_020042fc(data,addr,size);func_02004364();}
 case 0: func_02004588();func_020045bc(data,addr,size);func_0200462c();break;
 }
 {u32 a=((volatile u32 *)p)[0],b=((volatile u32 *)p)[1];out[0]=a;out[1]=b;}func_021185f4(out,type,addr);
+}
+
+void func_02118d0c(u32 *p, void *arg1, u32 addr, s32 type, u32 *out) {
+    u32 unit = (p[0] == 3) ? 0x20 : 0x200;
+    u32 count = *(u16 *)arg1;
+    u32 dstOff;
+    u32 data;
+    u32 srcOff;
+    u16 i;
+
+    for (i = 0; i < count; i++) {
+        u16 idx = (*(u16 **)((u8 *)arg1 + 4))[i];
+        data = p[3];
+        dstOff = unit * i;
+        srcOff = unit * idx;
+        func_02006dc4((void *)data, p[2]);
+        switch (type) {
+        case 1:
+            if (p[1]) {
+                func_02004138();
+                func_02004180((void *)(data + dstOff), addr + srcOff, unit);
+                func_020041f0();
+            } else {
+                func_020036b8((void *)(data + dstOff), addr + srcOff, unit);
+            }
+            break;
+        case 2:
+            if (p[1]) {
+                func_020042e4();
+                func_020042fc((void *)(data + dstOff), addr + srcOff, unit);
+                func_02004364();
+            } else {
+                func_02003714((void *)(data + dstOff), addr + srcOff, unit);
+            }
+            break;
+        case 0:
+            func_02004588();
+            func_020045bc((void *)(data + dstOff), addr + srcOff, unit);
+            func_0200462c();
+            break;
+        }
+    }
+    {
+        u32 a = p[0], b = p[1];
+        out[0] = a;
+        out[1] = b;
+    }
+    func_021185f4(out, type, addr);
 }
 
 void func_02118e68(s32 *arg0) {
