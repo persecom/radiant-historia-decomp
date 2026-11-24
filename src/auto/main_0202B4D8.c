@@ -138,6 +138,25 @@ void func_0202ba04(u32 arg0) {
     *(u16 *)data_02160080 |= 1;
 }
 
+void func_0202bab8(void) { void *file; u16 *p; u32 zero; u8 name[32]; p=func_0210c594(0x40,(void *)data_02155c3c); func_02005e80(name,data_021461ec); file=func_021092d8(name); zero=0;
+p[0]=func_02092994(file,zero);
+p[1]=func_02092994(file,zero);
+p[2]=func_02092994(file,zero);
+func_02109444(file);
+p[3]=func_02092994(file,zero);
+p[4]=func_02092994(file,zero);
+p[5]=func_02092994(file,zero);
+func_02109444(file);
+p[6]=func_02092994(file,zero);
+p[7]=func_02092994(file,zero);
+p[8]=func_02092994(file,zero);
+func_02109444(file);
+p[9]=func_02092994(file,zero);
+p[10]=func_02092994(file,zero);
+p[11]=func_02092994(file,zero);
+func_02109444(file);
+*(u16 *)(data_02160244+0x140)=func_02092994(file,zero); func_02109444(file); *(u16 *)(data_02160244+0x142)=func_02092994(file,zero); func_02109444(file); if(file) func_021093b0(file); *(void **)(data_02160244+0x13c)=p; }
+
 u8 *func_0202bc44(s32 arg0) {
     u8 *p;
     s16 idx;
