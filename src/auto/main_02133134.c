@@ -269,6 +269,11 @@ void func_02133694(void) {
     func_0213808c();
 }
 
+char *func_021336a0(void) {
+    data_0215b9c0 = data_02145a20;
+    return data_0215b9c4;
+}
+
 extern void func_020182e4(void);
 void func_021336e8(void) {
     func_020182e4();
