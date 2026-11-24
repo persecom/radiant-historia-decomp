@@ -90,6 +90,23 @@ s32 func_0207708c(void *arg0, s32 arg1, s32 arg2) {
     return *(s32 *)arg0;
 }
 
+void func_02077110(s32 arg0) {
+    u8 *ptr = func_020764e4();
+    s32 y = 0;
+    s32 i;
+    func_02076380(*(void **)(ptr + 0x58));
+    *(volatile u32 *)0x040004a4 = 0x1f00c0;
+    for (i = 0; i < *(s32 *)(ptr + 0x74); i++) {
+        y += func_0207708c(*(u8 **)(ptr + 0x78) + i * 0x28, arg0, y);
+    }
+}
+
+void func_020772b8(void) {
+    Unk14 buf = data_02140c40;
+    *(volatile u32 *)0x040004a4 = 0x1f00c0;
+    func_021099f8(&buf);
+}
+
 extern void func_020a98ac(void *);
 extern void func_020a98f4(void *);
 extern void func_02076380(void *);
