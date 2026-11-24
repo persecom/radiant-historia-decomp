@@ -197,6 +197,17 @@ void func_02004364(void) {
     data_0215cd24[6] = 0;
 }
 
+void func_0200439c(void) {
+    s32 val = func_02005418();
+    u16 a = *(u16 *)(data_0213e4a8 + val * 6);
+    u16 b = *(u16 *)(data_0213e4aa + val * 6);
+    u16 c = *(u16 *)(data_0213e4ac + val * 6);
+    data_0215cd40[5] = val;
+    data_0215cd40[1] = (u32)a << 12;
+    data_0215cd40[6] = (u32)b << 12;
+    data_0215cd40[7] = (u32)c << 12;
+}
+
 extern s32 func_0200542c(void);
 extern u32 data_0215cd40[8];
 extern u16 data_0213e498[8];
@@ -204,5 +215,15 @@ void func_02004588(void) {
     s32 val = func_0200542c();
     data_0215cd40[3] = val;
     data_0215cd40[2] = (u32)data_0213e498[val >> 4] << 12;
+}
+
+extern void func_02004fc4(u32);
+void func_020047d4(void) {
+    if (data_02145ba4 != -1) {
+        func_0200893c();
+    }
+    func_02004fc4(data_0215cd40[0]);
+    data_0215cd40[0] = 0;
+    data_0215cd40[4] = 0;
 }
 
