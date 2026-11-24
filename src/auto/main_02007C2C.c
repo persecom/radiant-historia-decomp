@@ -385,8 +385,56 @@ u32 func_02008474(volatile u32 *event, u32 pattern, s32 mode, u32 clearBitPatter
     return ret;
 }
 
+extern void func_02006560(void *, u32);
+void func_0200851c(u8 *arg0, u32 arg1) {
+    u32 irq = func_02008128();
+    if (arg1 != 0) {
+        *(u32 *)arg0 |= arg1;
+        func_02006560(arg0 + 4, *(u32 *)arg0);
+    }
+    func_0200813c(irq);
+}
+
 void func_02008558(u8 arg0) {
     data_04000247 = arg0;
+}
+
+void func_02008690(u32 dmaNo, const void *src, void *dest, u32 size, u32 arg4) {
+    volatile u32 *dmaReg;
+
+    if (size == 0) {
+        return;
+    }
+
+    func_02008ab4(dmaNo, (u32)src, size, 0);
+    dmaReg = (volatile u32 *)(0x040000b0 + dmaNo * 12) + 2;
+    while (*dmaReg & 0x80000000) {
+    }
+
+    if (arg4 != 0) {
+        func_01ff845c(dmaNo, src, dest, (size >> 1) | 0x80000000, 2);
+    } else {
+        func_01ff845c(dmaNo, src, dest, size >> 1, 6);
+    }
+
+    while (*dmaReg & 0x80000000) {
+    }
+}
+
+void func_0200893c(u32 dmaNo) {
+    u32 enabled = func_02008128();
+    volatile u32 *dmaReg = (volatile u32 *)(0x040000b0 + dmaNo * 12);
+
+    while (dmaReg[2] & 0x80000000) {
+    }
+
+    if (dmaNo == 0) {
+        dmaReg[0] = 0;
+        dmaReg[1] = 0;
+        dmaReg[2] = 0x81400001;
+    }
+
+    func_0200813c(enabled);
 }
 
 extern void func_02008998(u32);
