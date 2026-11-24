@@ -13,6 +13,20 @@ extern void func_021141f8(u8 *);
 extern void func_0211497c(void);
 extern void func_021149c8(void);
 extern s32 func_0211398c(u32);
+void func_021143c0(u8 *arg0, u8 arg1) {
+    u32 old = *(u32 *)(arg0 + 4);
+    if (old != 0) {
+        func_021168f8(old, arg0);
+        *(u32 *)(arg0 + 4) = 0;
+    }
+    func_021168f8((u32)data_0216bfd8, arg0);
+    arg0[0x3d] = arg1;
+    if (old != 0) {
+        func_021141a8((void *)old, arg0);
+    }
+    func_021141f8(arg0);
+}
+
 void func_021148bc(u8 *arg0) {
     func_021148cc(arg0, 1);
 }
