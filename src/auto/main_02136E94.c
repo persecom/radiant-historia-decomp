@@ -389,6 +389,39 @@ void func_02137708(void *arg0, void *arg1, s32 arg2, s32 arg3) {
     func_021369b4();
 }
 
+void func_0213773c(void *arg0,void *arg1,s32 max,s32 arg3) {
+u8 *p=arg0; s32 mode=(s32)arg1; s32 *buf=(s32 *)arg3;
+if(!p) {func_02137250(data_0215c3c4,data_0215c3d0);return;}
+if(!*(s32 *)(p+4)) {func_02137250(data_0215c3ec,data_0215c3f8);return;}
+if(!*(s32 *)(p+0x20)) {func_02137250(data_0215c418,data_0215c424);return;}
+if(mode==0) {
+s32 n=*(s32 *)(p+0x10);
+s32 available=*(s32 *)(p+0x24)+(*(s32 *)(p+0x20)-*(s32 *)(p+0x14));
+if(n>=available)n=available;
+buf[1]=n;
+if(n>=max)n=max;
+buf[1]=n;
+buf[0]=*(s32 *)(p+0x1c)+*(s32 *)(p+0x14);
+*(s32 *)(p+0x14)=(*(s32 *)(p+0x14)+n)%*(s32 *)(p+0x20);
+*(s32 *)(p+0x10)-=buf[1];
+*(s32 *)(p+0x28)+=buf[1];
+} else if(mode==1) {
+s32 n=*(s32 *)(p+0xc);
+s32 available=*(s32 *)(p+0x24)+(*(s32 *)(p+0x20)-*(s32 *)(p+0x18));
+if(n>=available)n=available;
+buf[1]=n;
+if(n>=max)n=max;
+buf[1]=n;
+buf[0]=*(s32 *)(p+0x1c)+*(s32 *)(p+0x18);
+*(s32 *)(p+0x18)=(*(s32 *)(p+0x18)+n)%*(s32 *)(p+0x20);
+*(s32 *)(p+0xc)-=buf[1];
+*(s32 *)(p+0x30)+=buf[1];
+} else {
+buf[1]=0;buf[0]=0;
+if(*(u32 *)(p+0x38))((void (*)(u32,s32))*(u32 *)(p+0x38))(*(u32 *)(p+0x3c),-3);
+}
+}
+
 void func_021378cc(void) {
     func_021378d8();
 }
