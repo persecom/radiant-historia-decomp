@@ -27,6 +27,9 @@ extern s32 func_020a932c(void *);
 extern u32 data_021601d4;
 
 extern void func_0210da44(void);
+extern void func_020aa65c(void);
+extern void func_02066b7c(s32, s32, void *);
+extern void func_02066bdc(void);
 void *func_020a94b8(s32 arg0) {
     char buf[0x40];
     void **ptr = func_0210c594(4, data_02155c3c);
