@@ -7,3 +7,8 @@ extern s32 func_0201f800(u32);
 s32 func_02013618(void) {
     return func_0201f800(data_02145c2c);
 }
+
+s32 func_02013630(s32 x) {
+    return x < 0 ? -x : x;
+}
+
