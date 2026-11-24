@@ -14,6 +14,15 @@ typedef struct {
     u8 unk9;
 } Node_020e4a78;
 
+static inline void func_020e4a78_set(Node_020e4a78 *p) {
+    u8 v = p->unk9;
+    p->unk5 = 2;
+    if (v == 2) {
+        p->unk5 = 3;
+    }
+    p->unk4 = 0;
+}
+
 void func_020e4a78(Node_020e4a78 *p) {
     if (p->unk0 & 1) {
         return;
