@@ -48,16 +48,9 @@ void func_0210e694(void) {
 }
 
 void func_0210e6f0(void) {
-    u16 a, b;
     func_02008f74(data_02162908, 0, 8);
-    b = data_021628f8[9];
-    a = data_021628f8[8];
-    data_021628f8[4] = a;
-    data_021628f8[5] = b;
-    b = data_021628f8[11];
-    a = data_021628f8[10];
-    data_021628f8[6] = a;
-    data_021628f8[7] = b;
+    *(UnkPair *)&data_021628f8[4] = *(UnkPair *)&data_021628f8[8];
+    *(UnkPair *)&data_021628f8[6] = *(UnkPair *)&data_021628f8[10];
     data_021628f8[1] = 0;
     data_021628f8[0] = 0;
 }
