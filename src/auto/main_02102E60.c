@@ -12,29 +12,153 @@ extern s32 func_02092994(void *, s32);
 extern s32 func_02109444(void *);
 extern void func_021093b0(void *);
 
-s32 func_02103b04(s32 arg0, void *arg1) {
+s32 func_02103848(void) {
+    typedef struct {
+        s32 id;
+        s16 scene;
+        s16 angle;
+        s32 x;
+        s32 z;
+        s32 param;
+        s8 mode;
+        s8 value;
+        s8 field16;
+        s8 field17;
+        u32 field18;
+    } Entry;
+    extern u8 *data_02160204;
+    extern u8 *data_02160200;
+    extern u8 data_02152b50[];
+    extern void *func_02046f90(u16, u16);
+    extern void *func_020e9fe8(void *, u16);
+    extern s32 func_020f62f4(s32, s32);
+    extern void func_02052240(u8 *);
+    extern void func_0205440c(u8 *, s32);
+    extern void func_020477dc(void *, s32, s32);
+    s32 idB;
+    u8 *obj;
+    s32 instance;
+    Entry *entry;
+    s16 i;
+    u32 scene;
+    s16 count;
+    s32 idA;
+    s32 upper, terminator, id, v;
+    u32 type;
+    u8 *secondary;
+    Entry *table;
+    i = 0;
+    entry = (Entry *)data_02152b50;
+    scene = *(u16 *)(data_02160204 + 0x72);
+    count = i;
+
+    if (data_02160204[0x7a] == 1) return 1;
+    table = entry;
+    idA = 6001 - 0x398;
+    idB = 501 + 0x12c0;
+    upper = 6001 - 1;
+    terminator = 500 - 501;
+    do {
+        if (scene == entry->scene && data_02160204[0x7a] == 0) {
+            instance = count + 0x654;
+            count++;
+            id = entry->id;
+            *(s32 *)(data_02160200 + 0x168) = entry->param;
+            obj = func_02046f90((u16)id, (u16)instance);
+            if (id != 2000) {
+                secondary = func_020e9fe8((void *)6001, (u16)(instance + 0xbb9));
+                *(s32 *)(secondary + 0x1c) = 0;
+                *(s32 *)(secondary + 0x20) = 0;
+                *(s32 *)(secondary + 0x24) = 0x32000;
+                *(u32 *)(secondary + 0x18) &= ~1U;
+            }
+            *(u16 *)(obj + 0x92) = (u16)func_020f62f4(entry->angle, 1);
+            v = func_020f62f4(entry->x, 0);
+            *(s32 *)(obj + 0) = v;
+            *(s32 *)(obj + 0x18) = v;
+            v = func_020f62f4(entry->z, 0);
+            *(s32 *)(obj + 8) = v;
+            *(s32 *)(obj + 0x20) = v;
+            *(u16 *)(*(u8 **)(obj + 0xb0) + 0xe) = (u16)entry->param;
+            *(u16 *)(*(u8 **)(obj + 0xb0) + 0xa) = 1;
+            func_02052240(obj);
+            type = *(u16 *)(obj + 0x8e);
+            if (type != idB && type != 2000 && type != idA && type != 501) {
+                if (type > 5000 && type < (u32)upper) {
+                    v = *(u32 *)(obj + 0x80) | 0x400;
+                    *(u32 *)(obj + 0x80) = v | 2;
+                }
+            } else {
+                switch (entry->mode) {
+                default:
+                case 0:
+                    obj[0x9d] = 0;
+                    *(s32 *)*(u8 **)(obj + 0xb0) = 0;
+                    break;
+                case 1:
+                    obj[0x9d] = entry->value;
+                    break;
+                case 2:
+                    *(s32 *)*(u8 **)(obj + 0xb0) = (s32)entry->value * 4096;
+                    break;
+                }
+                obj[0xce] = entry->field16;
+                obj[0xcf] = entry->field17;
+            }
+            if (data_02160200 != NULL) {
+                *(u16 *)(*(u8 **)(obj + 0xb0) + 0x22) = (u16)*(u32 *)(data_02160200 + 0x168);
+            }
+            func_0205440c(obj, 1);
+            *(u32 *)(obj + 0x58) = 0x1000;
+            type = *(u16 *)(obj + 0x8e);
+            if (type > 1000 && type < 5000) {
+                func_020477dc(obj, 2, 0);
+            } else if (type != 0 && type < 700) {
+                func_020477dc(obj, 2, 0);
+            } else {
+                func_020477dc(obj, 0, 0);
+            }
+        }
+        i++;
+        entry = (Entry *)(data_02152b50 + (s32)i * 0x1c);
+    } while (entry->id != terminator);
+    return 1;
+}
+
+s32 func_02103b04(s32 arg0, void *arg1)
+{
     s32 result;
     void *p;
-    if (arg0 == 0) {
+    const char *key;
+
+    if (arg0 == 0)
         return -4;
-    }
-    p = func_021092d8(arg1);
-    if (p == NULL) {
+
+    p = (void *)func_021092d8(arg1);
+
+    if (p == NULL)
         return -1;
-    }
+
     result = 0;
-    if (func_02092a40(p, result) == 0) {
+
+retry:
+    key = (const char *)func_02092a40(p, (void *)result);
+
+    if (key == NULL)
         return -3;
-    }
-    if (func_020123f0(arg0) != 0) {
-        goto other;
-    }
-    result = (u16)func_02092994(p, 0);
+
+    if (func_020123f0((void *)arg0, (const void *)key) != 0)
+        goto advance;
+
+    result = (u16)func_02092994(p, result);
     goto done;
-other:
-    if (func_02109444(p) == 0) {
-        result = -2;
-    }
+
+advance:
+    if (func_02109444(p) != 0)
+        goto retry;
+
+    result = -2;
+
 done:
     func_021093b0(p);
     return result;
