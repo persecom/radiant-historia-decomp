@@ -200,3 +200,43 @@ u8 *func_02121068(u8 *arg0, u32 arg1) {
     return NULL;
 }
 
+u8 *func_02121104(u8 *arg0, u32 arg1) {
+    u8 *p = arg0 + 0xc;
+    if (p == NULL) {
+        return NULL;
+    }
+    if (arg1 >= *(u8 *)(arg0 + 0xd)) {
+        return NULL;
+    }
+    {
+        u16 off = *(u16 *)(arg0 + 0x12);
+        return p + off + 4 + *(u16 *)(p + off) * arg1;
+    }
+}
+
+void func_02121138(u8 *arg0, u8 *arg1, u8 *arg2) {
+    u32 i;
+    u8 val = *(u8 *)(arg2 + 0x17);
+    *(u32 *)(arg0 + 8) = (u32)arg1;
+    *(u32 *)(arg0 + 0xc) = data_02155edc;
+    arg0[0x19] = val;
+    func_02008df0(0, arg0 + 0x1a, (u32)val * 2);
+    for (i = 0; i < *(u16 *)(arg1 + 6); i++) {
+        u16 idx = *(u16 *)(arg1 + 0x14 + i * 2);
+        *(u16 *)(arg0 + 0x1a + i * 2) = (*(u32 *)(arg1 + idx) >> 24) | 0x100;
+    }
+}
+
+void func_021211b4(u32 *arg0, u8 *arg1, u32 arg2) {
+    u8 *ptr = *(u8 **)(arg1 + 8);
+    s32 frame = *(s32 *)(arg1 + 0);
+    s32 limit = *(u16 *)(ptr + 4) << 12;
+
+    if (frame >= limit) {
+        frame = limit - 1;
+    } else if (frame < 0) {
+        frame = 0;
+    }
+    func_02121494(ptr, arg2, frame, arg0);
+}
+
