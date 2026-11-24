@@ -7,6 +7,10 @@ typedef struct {
 
 extern const Unk20 data_02143dcc;
 extern const Unk20 data_02143e1c;
+typedef struct {
+    s32 data[8][2];
+} Unk64;
+extern const Unk64 data_02143e4c;
 s32 _s32_div_f(s32,s32);
 extern u8 *data_02160a6c;
 extern void func_020a3bbc(s32);
