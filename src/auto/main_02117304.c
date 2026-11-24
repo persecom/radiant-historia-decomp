@@ -211,6 +211,16 @@ void func_021178c4(u8 *arg0) {
     *(u32 *)(arg0 + 0xc) += (u32)arg0;
 }
 
+s32 func_021178d4(void *arg0, void **arg1) {
+    u8 *r0 = func_02117904(arg0, 0x5343524e);
+    if (r0 != NULL) {
+        *arg1 = r0 + 8;
+        return 1;
+    }
+    *arg1 = NULL;
+    return 0;
+}
+
 extern u32 data_0216e22c[];
 void func_02117a48(u32 arg0) {
     data_0216e22c[1] = arg0;
