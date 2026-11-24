@@ -99,14 +99,15 @@ case 0:
 func_020a3bbc(11);
 desc.v[0]=1;desc.v[1]=0;desc.v[2]=0;desc.v[3]=64;desc.v[4]=32;
 desc.v[5]=x-width/2;desc.v[6]=y-height/2;desc.v[8]=width;desc.v[9]=height;
+desc.v[7]=*(s16 *)(p+6);
 break;
 case 1:
 func_020a3bbc(11);
 desc.v[0]=1;desc.v[1]=0;desc.v[2]=32;desc.v[3]=64;desc.v[4]=32;
 desc.v[5]=x-width/2;desc.v[6]=y-height/2;desc.v[8]=width;desc.v[9]=height;
+desc.v[7]=*(s16 *)(p+6);
 break;
 }
-desc.v[7]=*(s16 *)(p+6);
 func_021098ac(&desc);
 }
 
