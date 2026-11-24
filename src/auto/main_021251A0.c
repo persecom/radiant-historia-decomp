@@ -222,15 +222,13 @@ s32 func_021253e8(u8 *arg0) {
     return 1;
 }
 
-#pragma opt_common_subs off
-#pragma opt_propagation off
+#pragma opt_schedule off
 void func_02125424(u32 arg0, u32 arg1) {
-    *(volatile u32 *)&data_02173180[0] = arg0;
-    *(volatile u32 *)&data_02173180[1] = arg1;
-    func_02125374((void *)data_02173180);
+ data_02173180[0]=arg0;
+ data_02173180[1]=arg1;
+ func_02125374((u8 *)&data_02173180[2]);
 }
-#pragma opt_propagation on
-#pragma opt_common_subs on
+#pragma opt_schedule reset
 void func_02125448(void) {
     u8 *p = func_021253c8((u8 *)data_02173180);
     if (!func_021253e8((u8 *)data_02173180)) {
@@ -262,6 +260,54 @@ void func_02125510(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     func_02125524(arg0, arg1, arg2, arg3, 0);
 }
 
+void func_02125524(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    if (data_02173194 != 0) {
+        data_02173194 = data_02173194 + 1;
+        return;
+    }
+    func_02008f74(data_02173198, 0, 0x200);
+    if (arg3 == 0) {
+        *(u32 *)((u8 *)data_02173198 + 0x1fc) = (u32)func_02125e64;
+    } else {
+        *(u32 *)((u8 *)data_02173198 + 0x1fc) = (u32)arg3;
+    }
+    if (arg0 == 0) {
+        s32 handler = data_021561f4[3];
+        func_02125e68((u32)func_02125e48, handler);
+        return;
+    }
+    func_0212ebd8();
+    *(u32 *)((u8 *)data_02173198 + 0x1a8) = *(u32 *)arg0;
+    *(u32 *)((u8 *)data_02173198 + 0x1ac) = *(u32 *)((u8 *)arg0 + 4);
+    if (arg4 == 0) {
+        func_0212e7f0(1, 0);
+        data_02173198[0] = 0;
+    } else {
+        s32 blk[9];
+        blk[0] = 0xc;
+        blk[1] = 0xe;
+        blk[2] = 0x18;
+        *(u32 *)((u8 *)data_02173198 + 0x1b0) = (*(s32 (**)(s32))arg0)(0x1000);
+        *(u32 *)((u8 *)data_02173198 + 0x1b4) = (*(s32 (**)(s32))arg0)(0x1000);
+        *(u32 *)((u8 *)data_02173198 + 0x1b8) = (*(s32 (**)(s32))arg0)(0x1000);
+        blk[3] = *(s32 *)((u8 *)data_02173198 + 0x1b0);
+        blk[4] = *(s32 *)((u8 *)data_02173198 + 0x1b4);
+        blk[5] = *(s32 *)((u8 *)data_02173198 + 0x1b8);
+        blk[6] = 0x1000;
+        blk[7] = 0x1000;
+        blk[8] = 0x1000;
+        func_0212e7f0(2, blk);
+        data_02173198[0] = 1;
+    }
+    func_0212c0b8();
+    func_02126844();
+    func_02126bd0();
+    func_0212e7e4(data_02156328, 0);
+    func_02134844(arg2, arg1);
+    data_02173198[2] = 2;
+    data_02173194 = 1;
+}
+
 void func_021256b4(void) {
     if (data_02173194 != 0) {
         func_0212e610();
@@ -276,6 +322,134 @@ void func_021256d4(u32 arg0, u32 arg1, u32 arg2) {
     args[3] = arg2;
     args[4] = 1;
     func_02125708(args);
+}
+
+extern char data_0215633c[];
+extern char data_0215635c[];
+extern u32 func_02126900(void *);
+extern void *func_02126868(void *, void *, u32);
+extern void func_02126a28(void *, s32);
+extern void func_02126a58(void *, s32);
+extern void func_02126a88(void *, s32);
+extern void func_02126ab8(void *, s32);
+extern void func_02126ae8(void *, s32);
+extern void func_02126b18(void *);
+extern s32 func_02126ba0(void *);
+extern void *func_02126b68(void *, s32);
+extern void func_021357dc(void *, s32);
+extern void func_0200b888(void *);
+s32 func_02125708(u32 *arg0) {
+    struct Alloc {
+        void *(*alloc)(u32);
+        void (*free)(void *);
+    };
+    struct Arg {
+        struct Alloc *f0;
+        void *f4;
+        u32 f8;
+        u32 fc;
+        u32 f10;
+    } *a = (void *)arg0;
+    struct Obj {
+        void *f0;
+        void *f4;
+        u32 f8;
+        struct Obj *fc;
+        struct Alloc alloc;
+        u32 f18;
+        u32 f1c;
+    };
+    s32 zero = 0;
+    u32 *g = data_021561f4;
+    struct Obj *obj;
+    s32 val;
+    struct {
+        u32 f0;
+        u32 f4;
+        u32 f8;
+        u32 fc;
+        u32 f10;
+        u8 f14;
+        u8 pad[3];
+        u32 f18;
+        u32 f1c;
+        u32 f20;
+        u32 f24;
+    } buf;
+    u32 size;
+    void *h;
+    s32 i;
+
+    if (data_02173194 == 0) {
+        func_02125e68(g[8], g[1]);
+        return zero;
+    }
+    if (a->f0 == NULL && a->f4 == NULL) {
+        func_02125e68(g[8], g[3]);
+        return zero;
+    }
+    if (a->f0 != NULL && (a->f0->alloc == NULL || a->f0->free == NULL)) {
+        func_02125e68(g[8], g[3]);
+        return 0;
+    }
+    if (a->f8 == 0 || a->f8 > 2) {
+        func_02125e68(g[8], (u32)data_0215633c);
+        return 0;
+    }
+    obj = (void *)func_02125dc4((void *)zero);
+    if (obj == NULL) {
+        return zero;
+    }
+    val = ((s8)data_02173198[2] + 1) * 0x1ff6;
+    func_02008f74(&buf, zero, sizeof(buf));
+    {
+        u32 a2 = a->f8;
+        u32 a3 = a->fc;
+        u32 a4 = a->f10;
+        buf.f0 = 1;
+        buf.f4 = a2;
+        buf.f8 = val;
+        buf.fc = zero;
+        buf.f10 = 1;
+        buf.f14 = 1;
+        buf.f18 = a3;
+        buf.f20 = a4;
+        buf.f1c = zero;
+    }
+    size = func_02126900(&buf);
+    if (a->f0 != NULL) {
+        obj->f4 = a->f0->alloc(size);
+    } else {
+        obj->f4 = a->f4;
+    }
+    h = func_02126868(&buf, obj->f4, size);
+    obj->f0 = h;
+    if (h == NULL) {
+        func_02125e68(g[8], (u32)data_0215635c);
+        return 0;
+    }
+    func_02126a28(h, 0x10);
+    func_02126a58(obj->f0, zero);
+    func_02126a88(obj->f0, zero);
+    func_02126ab8(obj->f0, zero);
+    func_02126ae8(obj->f0, zero);
+    if (a->f10 != 0) {
+        func_02126b18(obj->f0);
+    }
+    obj->f18 = a->f10;
+    if (a->f0 != NULL) {
+        obj->alloc = *a->f0;
+    } else {
+        obj->alloc.alloc = NULL;
+        obj->alloc.free = NULL;
+    }
+    obj->fc = obj;
+    for (i = 0; i < func_02126ba0(obj->f0); i++) {
+        func_021357dc(func_02126b68(obj->f0, i), 1);
+    }
+    func_0200b888(&obj->f1c);
+    data_02173198[1]++;
+    return (s32)&obj->f8;
 }
 
 extern u8 data_02156378[];
