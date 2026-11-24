@@ -19,6 +19,55 @@ extern void func_0210da14(void *);
 extern void func_0210dba0(void *);
 extern void func_020cf5bc(void *);
 extern void func_02031d2c(void);
+void *func_0202c5a0(void *);
+s32 func_020d0000(u8 *arg0) {
+    u8 *p = arg0;
+    s32 zero = 0;
+    u8 *node;
+    s32 *base;
+    s32 radius;
+    if (*(u16 *)(p + 0x10) != 0) return zero;
+    {
+        *(s32 *)(p + 8) -= *(s32 *)(p + 0xc);
+        *(s32 *)(p + 0xc) += 0x480;
+        if (*(s32 *)(p + 8) < 0) *(s32 *)(p + 8) = zero;
+    }
+    if (!(*(u32 *)p & 1)) {
+        for (node = *(u8 **)(data_02160a6c + 0xac); node; node = *(u8 **)(node + 0x16c)) {
+            base = func_0202c5a0(node);
+            radius = 90 - *(s32 *)(p + 4) * 90 / 20;
+            { s32 trig = ((const s16 (*)[2])data_0213a394)[func_020d9e38() >> 4][1];
+            radius = -radius;
+            *(s32 *)node = base[0] - radius * trig; }
+            *(s32 *)(node + 4) = base[1] + *(s32 *)(p + 8);
+            *(s32 *)(node + 8) = base[2] - data_0213a394[(func_020d9e38() >> 4) * 2] * radius;
+        }
+    }
+    if (++*(s32 *)(p + 4) > 20) {
+        *(s32 *)(data_02160a6c + 0x100) = 1;
+        if (!(*(u32 *)p & 1)) {
+            *(u32 *)p |= 1;
+            for (node = *(u8 **)(data_02160a6c + 0xac); node; node = *(u8 **)(node + 0x16c))
+                func_020dd810(node, 8, zero);
+        }
+    }
+    if (*(u32 *)p & 1) {
+        s16 time = *(s32 *)(p + 4);
+        if (time > 30) time = 30;
+        *(s32 *)(p + 0x14) = (time * 160 / 30 + 430) << 12;
+        *(s32 *)(p + 0x18) = 0x30000;
+        *(s32 *)(p + 0x1c) = 0x200000;
+        func_020d907c(p + 0x14);
+        func_020d9090();
+    }
+    if (*(s32 *)(p + 4) >= 45) func_020e26f0(7, 0, 999);
+    if (*(s32 *)(p + 4) > 50) {
+        *(s32 *)(p + 4) = 50;
+        return 1;
+    }
+    return 0;
+}
+
 void func_020d069c(void) {
  extern void func_020d0838(void);
  extern void func_020d0884(void);
