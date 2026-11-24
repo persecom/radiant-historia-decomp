@@ -201,6 +201,16 @@ void func_0210cd50(void) {
     func_0210cce4(0);
 }
 
+const char *func_0210cd60(const char *arg0) {
+    void *r0 = data_021626e8.f4;
+    const char *r4 = *(const char **)((u8 *)r0 + 8);
+    func_02109444(r0);
+    if (*r4 == '\0') {
+        r4 = arg0;
+    }
+    return r4;
+}
+
 extern u8 data_02155c5c[4];
 extern s32 func_021093f0(void *);
 extern void func_02012590(const char *, const char *, ...);
