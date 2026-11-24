@@ -201,6 +201,25 @@ s32 func_02125a5c(void *arg0) {
     return 0;
 }
 
+void func_02125af0(void *arg0, void *arg1) {
+    void **p;
+    if (!data_02173194) {
+        func_02125e68(data_021561f4[10], data_021561f4[1]);
+        return;
+    }
+    if (arg0 == NULL) {
+        func_02125e68(data_021561f4[10], data_021561f4[5]);
+        return;
+    }
+    if (arg1 == NULL) {
+        func_02125e68(data_021561f4[10], data_021561f4[4]);
+        return;
+    }
+    p = func_02125dc4(arg0);
+    func_02125e20(p);
+    func_02126940(*p, arg1);
+}
+
 void func_02125e48(void *arg0, void *arg1) {
     (*(void (**)(void *))((u8 *)data_02173198 + 0x1fc))(arg1);
 }
