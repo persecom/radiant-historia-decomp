@@ -399,7 +399,7 @@ void func_0200a884(u8 *arg0, u32 arg1) {
     if (func_0200a85c(id) == 0) {
         if (p != NULL) {
             *(u32 *)(p + 0x18) = id;
-            *(u32 *)(p + 0x1c) = id;
+            *(u32 *)(p + 0x1c) = arg1;
         }
     }
     flags = *(u32 *)(arg0 + 0xc) & ~0xcf;
