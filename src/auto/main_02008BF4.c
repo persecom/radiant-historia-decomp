@@ -1,16 +1,6 @@
 /* 52 functions from 0x02008BF4 to 0x02009B24 (main), found by ds-decomp. */
 #include "common.h"
 
-typedef struct {
-    u32 field_0;
-    u32 field_4;
-    u32 field_8;
-} Triple0215;
-
-typedef struct {
-    u32 field_0[9];
-} Nine0215;
-
 extern u16 data_0215d1a0;
 extern s32 data_0215d19c;
 extern u32 *data_0215d1b8[9];
