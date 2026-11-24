@@ -44,6 +44,12 @@ void func_020e9620(void *arg0) {
     func_0210db10(arg0);
 }
 
+void func_020e965c(void *arg0, void *arg1) {
+    func_021167f0((u8 *)arg0 + 0x14, arg1);
+    func_021167ac((u8 *)arg1 + 0x10, 0);
+    *(void **)((u8 *)arg1 + 8) = arg0;
+}
+
 void func_020e9714(u8 *arg0) {
     func_021168f8(*(u8 **)(arg0 + 8) + 0x4c, arg0);
 }
