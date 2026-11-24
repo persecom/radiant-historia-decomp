@@ -31,23 +31,17 @@ extern void func_02031658(void);
 void func_02031498(void) {
     s32 i;
     for (i = 0; i < 9; i++) {
-        u8 *entry = data_02160244[2 + i];
-        u8 flags;
-        if (entry == NULL) {
-            continue;
-        }
-        flags = entry[0x1c];
-        if ((flags & 8) != 0) {
+        if (data_02160244[2 + i] != NULL && (data_02160244[2 + i][0x1c] & 8) != 0) {
             func_0202e874();
         }
     }
 }
 
 void func_020314dc(void *arg0, s32 arg1) {
-    u16 val = (u16)arg1;
     u32 v0 = *(u32 *)arg0;
     u32 v4 = *(u32 *)((u8 *)arg0 + 4);
     u32 vc = *(u32 *)((u8 *)arg0 + 0xc);
+    u16 val = (u16)arg1;
     u8 *node = func_0203165c((u8)(*(u8 *)arg0 + 0xc), 0, 0, 0, val);
     node[0x18] |= 9;
     *(u16 *)(node + 0x20) = val;
