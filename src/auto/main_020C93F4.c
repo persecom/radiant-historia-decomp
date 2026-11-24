@@ -123,6 +123,13 @@ void func_020c9680(u8 *arg0, s16 *arg1, s16 *arg2) {
     *arg1 = *(s16 *)(obj + 0x3a);
 }
 
+void func_020c98f8(u8 *arg0) {
+    func_020c9590(arg0);
+    func_020c9610(arg0);
+    func_020c9348(arg0, 1);
+    ((void (*)(u8 *))func_020c9404)(arg0);
+}
+
 u16 func_020c9924(u8 *arg0) {
     return *(u16 *)(arg0 + 8);
 }
