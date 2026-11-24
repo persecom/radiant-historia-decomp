@@ -11,6 +11,7 @@ extern void *func_0211721c(void *, u32, u32);
 extern void func_021167f0(void *, void *);
 extern s32 func_021172b4(void *, u16);
 extern void func_02117304(void *, u32);
+extern u32 func_0211727c(void *, u32);
 void func_02115380(void *arg0) {
     void *node;
     BOOL flag = FALSE;
