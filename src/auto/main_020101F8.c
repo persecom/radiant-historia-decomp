@@ -24,7 +24,7 @@ extern void func_0200fc34(u32, u32);
 extern void func_0200e8a8(void);
 extern void func_02010fa8(s32, s32);
 extern void func_0201082c(u32);
-extern void func_0200fddc(void);
+extern void func_0200fddc();
 typedef struct { u32 field_0; } ZeroTarget_0215f120;
 static inline void set_zero_0210b10(ZeroTarget_0215f120 *p, u32 v) { p->field_0 = v; }
 extern void func_020059e4(u32);
@@ -231,16 +231,14 @@ void func_02010a94(u8 *arg0) {
     func_02010738(*(u32 *)(arg0 + 0xc));
 }
 
+#pragma peephole off
 void func_02010b10(void) {
-    ZeroTarget_0215f120 *z;
     func_0201076c();
     func_02010f58();
     func_0201082c(8);
-    z = *(ZeroTarget_0215f120 **)data_0215f120;
-    z->field_0 = 0;
+    **(u32 **)data_0215f120 = 0;
     func_0200fddc();
 }
-
 s32 func_02010b40(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     s32 ret = 0;
     s32 ok2 = 0;
