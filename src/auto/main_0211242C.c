@@ -72,3 +72,7 @@ s32 func_02112ce0(void *arg0) {
     return 0;
 }
 
+void func_02112d64(u8 *arg0, s32 arg1) {
+    func_02112dcc(arg0, arg1, *(s16 *)(arg0 + 0x36));
+}
+
