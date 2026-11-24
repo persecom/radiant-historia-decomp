@@ -245,12 +245,12 @@ void func_0200a248(u8 *arg0) {
     s32 i;
     func_0200986c();
     for (i = 0; i < 4; i++) {
-        u8 *node = *(u8 **)(arg0 + 0x18 + i * 8);
+        u8 *node = *(u8 **)((arg0 + i * 8) + 0x18);
         if (node != NULL) {
             u8 *cur = *(u8 **)(node + 0x18);
-            u8 *target = arg0 + 0x18 + i * 8;
+            u8 *target = (arg0 + 0x18) + i * 8;
             if (target == cur) {
-                *(u8 **)(node + 0x18) = *(u8 **)(arg0 + 0x1c + i * 8);
+                *(u8 **)(node + 0x18) = *(u8 **)((arg0 + i * 8) + 0x1c);
                 func_02006da8(node, 0x3c);
             } else {
                 while (cur != NULL) {
@@ -259,7 +259,7 @@ void func_0200a248(u8 *arg0) {
                     }
                     cur = *(u8 **)(cur + 4);
                 }
-                *(u8 **)(cur + 4) = *(u8 **)(arg0 + 0x1c + i * 8);
+                *(u8 **)(cur + 4) = *(u8 **)((arg0 + i * 8) + 0x1c);
                 func_02006da8(cur, 8);
             }
         }
@@ -294,4 +294,7 @@ s32 func_0200a4f4(u8 *arg0) {
 
 void func_0200a56c(void) {
     func_0200a578();
+}
+s32 func_0200a6c0(s32 arg0, s32 arg1) {
+    return (*(u32 *)((u8 *)0x02fffc00 + arg1 * 4 + 0x388) & (1 << arg0)) ? 1 : 0;
 }
