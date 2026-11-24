@@ -155,6 +155,23 @@ void func_0200422c(void) {
     data_0215cd24[0] = func_0200547c();
 }
 
+void func_02004244(void *arg0, u32 arg1, u32 arg2) {
+    u32 dst = arg1 + 0x98000 + 0x6800000;
+    if (data_02145ba4 != -1) {
+        func_02008840(data_02145ba4, arg0, dst, arg2, 0, 0, 1);
+    } else {
+        func_02008e38(arg0, dst, arg2);
+    }
+}
+
+void func_020042ac(void) {
+    if (data_02145ba4 != -1) {
+        func_0200893c();
+    }
+    func_02005298(data_0215cd24[0]);
+    data_0215cd24[0] = 0;
+}
+
 void func_020042e4(void) {
     data_0215cd24[6] = func_020054a4();
 }
