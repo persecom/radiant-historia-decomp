@@ -10,6 +10,8 @@ extern void *func_02109b14(char *, s32);
 extern void func_021091b4(void);
 extern void func_020a9d60(void *);
 extern void func_020a9b40(void *);
+extern s32 func_020a932c(void *);
+extern u32 data_021601d4;
 
 extern void func_0210da44(void);
 void *func_020a94b8(s32 arg0) {
@@ -104,6 +106,40 @@ s32 func_020a9648(u32 *arg0) {
         return 3;
     }
     return 4;
+}
+
+void func_020a96d4(u32 *arg0) {
+    if (func_020a9648(arg0) >= 4) {
+        return;
+    }
+}
+
+u32 func_020a96f0(u32 arg0) {
+    u32 state[2] = { arg0, 0 };
+    u32 total = 0;
+    s32 val;
+    while (1) {
+        val = func_020a9194(state);
+        if (val < 0x500) {
+            total += func_020a916c(val);
+        } else if (val == 0xff00) {
+            return total;
+        }
+    }
+}
+
+u32 func_020a97e4(void **arg0, u32 arg1) {
+    u32 state[2] = { (u32)func_020a95d0(arg0, arg1), 0 };
+    u32 total = 0;
+    s32 val;
+    while (1) {
+        val = func_020a9194(state);
+        if (val < 0x500) {
+            total += func_020a916c(val);
+        } else if (val == 0xff00) {
+            return total;
+        }
+    }
 }
 
 void func_020a98a0(void) {
