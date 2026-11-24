@@ -192,3 +192,7 @@ u16 func_02005a74(void) {
     return data_0215cddc;
 }
 
+void func_02005bfc(s32 arg0, s32 arg1, s32 arg2) {
+    func_02005bb0(arg0, arg1, arg2, 0);
+}
+
