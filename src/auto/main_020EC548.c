@@ -1,5 +1,13 @@
 /* 19 functions from 0x020EC12C to 0x020ED0BC (main), found by ds-decomp. */
 #include "common.h"
+extern char data_02151b0c[], data_02151b28[], data_02151b48[];
+extern void *func_0210957c(s32);
+extern s32 func_02092ab0(void *, s32);
+extern u32 func_0210cd20(void *, s32);
+extern s32 func_02005e80(char *, const char *, ...);
+extern s32 func_02108620(void *, char *, char *, char *, s32);
+extern u8 *func_02109f3c(void *);
+extern s32 func_021086d4(void *, u16);
 typedef struct ECModelFlags { u8 pad[0x70]; u8 unused:1; u8 flip:1; u8 rest:6; } ECModelFlags;
 extern s32 data_02162860[];
 extern u8 data_021612c8[];
