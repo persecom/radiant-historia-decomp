@@ -292,6 +292,32 @@ void *func_0210eb98(void *arg0, ...) {
     return data_02162954;
 }
 
+extern u32 func_0210ee58(s32, s32, s32);
+extern void func_0210eef8(u32);
+extern u32 func_0210ef84(s32, s32, s32);
+extern void func_0210f024(u32);
+void func_0210ebd4(void) {
+    s32 val = 1;
+    func_02124bf8(4, val);
+    func_02124eac(0x8000, val);
+    if (*(void **)((u8 *)data_02162a54 + 0xc) == NULL) {
+        *(void **)((u8 *)data_02162a54 + 0xc) = (void *)data_02156150;
+        data_02156150 = (s32 (*)(s32, s32, s32))func_0210ee58;
+    }
+    if (*(void **)((u8 *)data_02162a54 + 8) == NULL) {
+        *(void **)((u8 *)data_02162a54 + 8) = (void *)data_02156154;
+        data_02156154 = func_0210eef8;
+    }
+    if (*(void **)((u8 *)data_02162a54 + 4) == NULL) {
+        *(void **)((u8 *)data_02162a54 + 4) = (void *)data_02156158;
+        data_02156158 = (s32 (*)(s32, s32, s32))func_0210ef84;
+    }
+    if (*(void **)((u8 *)data_02162a54 + 0x14) == NULL) {
+        *(void **)((u8 *)data_02162a54 + 0x14) = (void *)data_0215615c;
+        data_0215615c = (void (*)(void *))func_0210f024;
+    }
+}
+
 void *func_0210ec9c(const char *arg0, s32 arg1, s32 arg2) {
     const char *name = arg0;
     u16 id;
