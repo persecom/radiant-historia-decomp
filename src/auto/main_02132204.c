@@ -133,6 +133,25 @@ void func_02132598(void *arg0) {
     *(u32 *)((u8 *)arg0 + 0x44) = 0;
 }
 
+extern void func_0212f0d4(void *);
+extern void func_0212f880(void *);
+void func_021326e4(void **arg0) {
+    if (arg0 == NULL) {
+        return;
+    }
+    if (arg0[1] != NULL) {
+        void *p = arg0[1];
+        arg0[1] = NULL;
+        func_0212f0d4(p);
+    }
+    if (arg0[0] != NULL) {
+        void *p = arg0[0];
+        arg0[0] = NULL;
+        func_0212f880(p);
+    }
+    func_02013878(arg0, 0, 0x5c);
+}
+
 s8 func_02132734(void *arg0) {
     return *((s8 *)arg0 + 9);
 }
