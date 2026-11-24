@@ -6,10 +6,10 @@ extern u8 *data_02160aec;
 typedef struct { s32 x,y,z; } Vec_546c0;
 typedef struct { u32 seed, multiplier, increment; } RandomState_546c0;
 static inline u16 RandomRange_546c0(u16 max) {
- RandomState_546c0 *state=(RandomState_546c0 *)data_0216263c;
+ u32 seed=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
  u32 value;
- state->seed=state->seed*state->multiplier+state->increment;
- value=state->seed>>16;
+ data_0216263c[0]=seed;
+ value=seed>>16;
  if(max) value=(value*max)>>16;
  return value;
 }
