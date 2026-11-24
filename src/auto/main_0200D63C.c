@@ -1,6 +1,6 @@
 /* 25 functions from 0x0200D63C to 0x0200E5E8 (main), found by ds-decomp. */
 #include "common.h"
-typedef struct { u8 pad0[4]; void (*callback)(s32,s32,s32); u8 pad8[8]; u16 f10, f12; u8 *entries; u16 count; u8 pad1a[0x1e]; u16 f38, f3a; } State0200dcd4;
+typedef struct { u8 pad0[4]; void (*callback)(s32,s32,s32); u8 pad8[8]; u16 f10, f12; u8 *entries; u16 count; u8 pad1a[0x1e]; volatile u16 f38, f3a; } State0200dcd4;
 
 extern u8 data_0215f000[];
 extern s32 func_0200a6e4(s32,u32,s32);
@@ -131,28 +131,25 @@ s32 func_0200a6e4(s32,u32,s32);
 void func_0200dcd4(u32 arg0,u32 arg1,void *arg2,u32 arg3) {
  u32 i;
  s32 state;
- u32 ok;
+ u8 ok;
  
- ((volatile State0200dcd4 *)data_0215f000)->entries=arg2;
- ((volatile State0200dcd4 *)data_0215f000)->f10=0;
- ((volatile State0200dcd4 *)data_0215f000)->f12=arg1;
- ((volatile State0200dcd4 *)data_0215f000)->count=arg3;
+ ((State0200dcd4 *)data_0215f000)->entries=arg2;
+ ((State0200dcd4 *)data_0215f000)->f10=0;
+ ((State0200dcd4 *)data_0215f000)->f12=arg1;
+ ((State0200dcd4 *)data_0215f000)->count=arg3;
  for(i=0;i<arg3;i++) {
- *(u16 *)(((volatile State0200dcd4 *)data_0215f000)->entries+i*8+4)=0;
+ *(u16 *)(((State0200dcd4 *)data_0215f000)->entries+i*8+4)=0;
  }
  state=func_02008128();
- ok=0;
- if(func_0200a6e4(6,(arg1&255)|0x02000100,0)>=0) {
- if(func_0200a6e4(6,arg0|0x01010000,0)>=0) ok=1;
- }
- if(!(u8)ok) {
+ ok=Send0200dcd4(arg0,arg1);
+ if(!ok) {
  func_0200813c(state);
- ((volatile State0200dcd4 *)data_0215f000)->f38|=2;
- if(((volatile State0200dcd4 *)data_0215f000)->callback)
- (((volatile State0200dcd4 *)data_0215f000)->callback)(1,4,0);
+ ((State0200dcd4 *)data_0215f000)->f38|=2;
+ if(((State0200dcd4 *)data_0215f000)->callback)
+ (((State0200dcd4 *)data_0215f000)->callback)(1,4,0);
  } else {
- ((volatile State0200dcd4 *)data_0215f000)->f3a|=2;
- ((volatile State0200dcd4 *)data_0215f000)->f38&=0xfffd;
+ ((State0200dcd4 *)data_0215f000)->f3a|=2;
+ ((State0200dcd4 *)data_0215f000)->f38&=0xfffd;
  func_0200813c(state);
  }
 }
