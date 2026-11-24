@@ -223,3 +223,32 @@ void* func_0210c594(u32 size, s32 arg1)
     return ptr;
 }
 
+void func_0210c674(void *ptr) {
+    extern u8 data_02162684;
+    extern u16 data_02162688;
+    extern void *data_02162638;
+
+    extern u32 func_02008128(void);
+    extern void func_0200813c(u32);
+    extern s32 func_02006afc(u16 *);
+    extern void func_02006b4c(void *);
+    extern void func_02117038(void *, void *);
+    extern void func_021091b4(void);
+
+    u32 irq;
+
+    if (data_02162684 != 0) {
+        irq = func_02008128();
+        func_02006afc(&data_02162688);
+    }
+
+    func_02117038(data_02162638, ptr);
+
+    if (data_02162684 != 0) {
+        func_02006b4c(&data_02162688);
+        func_0200813c(irq);
+    }
+
+    func_021091b4();
+}
+
