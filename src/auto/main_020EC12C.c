@@ -13,16 +13,17 @@ extern void func_0210dbe8(void *);
 extern void func_0210dc70(void *);
 void func_020ec548(u8 *arg0);
 void func_020ec218(void) {
-    while (*(u8 **)(data_02160ab4 + 0x50) != NULL) {
-        func_020ec548(*(u8 **)(data_02160ab4 + 0x50));
+    u8 **p = &data_02160ab4;
+    while (*(u8 **)(*p + 0x50) != NULL) {
+        func_020ec548(*(u8 **)(*p + 0x50));
     }
-    func_0210da14(data_02160ab4);
-    func_0210dba0(data_02160ab4 + 0x14);
-    func_0210dbe8(data_02160ab4 + 0x28);
-    func_0210dc70(data_02160ab4 + 0x3c);
-    if (data_02160ab4 != NULL) {
-        func_0210c5dc(data_02160ab4);
-        data_02160ab4 = NULL;
+    func_0210da14(*p);
+    func_0210dba0(*p + 0x14);
+    func_0210dbe8(*p + 0x28);
+    func_0210dc70(*p + 0x3c);
+    if (*p != NULL) {
+        func_0210c5dc(*p);
+        *p = NULL;
     }
 }
 
@@ -51,6 +52,21 @@ void func_020ec6ac(void) {
 
 void func_020ec98c(u32 arg0) {
     *(u32 *)(data_02160ab4 + 0x64) = arg0;
+}
+
+extern s32 func_02117d80(void *);
+extern s32 func_020ebd5c(void *, s32, s32);
+u32 func_020ec9a0(u8 *arg0, s32 arg1) {
+    s32 a = *(s32 *)(arg0 + 0x20);
+    void *b = *(void **)(arg0 + 8);
+    u32 ret = 0;
+    if (a != 0) {
+        ret |= 2;
+    }
+    if (arg1 == func_02117d80(b)) {
+        ret |= 1;
+    }
+    return ret;
 }
 
 void func_020ecaa4(void **arg0) {
