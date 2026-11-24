@@ -11,6 +11,8 @@ typedef struct {
 extern const Vec3_02117994 data_02144d54;
 extern const Vec3_02117994 data_02144d60;
 extern Struct60_02117a58 data_0216e234;
+extern void func_0200293c(s32, s32, s32, s32, s32, s32, s32, s32, s32);
+extern void func_020029a0(Vec3_02117994 *, Vec3_02117994 *, Vec3_02117994 *, s32, s32);
 extern void func_021178b4(u8 *);
 
 extern s32 func_021174a8();
