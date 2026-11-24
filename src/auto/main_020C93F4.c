@@ -5,3 +5,8 @@ extern void func_020c9980(void);
 void func_020c9940(void) {
     func_020c9980();
 }
+
+u16 func_020c9c34(u8 *arg0) {
+    return *(u16 *)(arg0 + 4);
+}
+
