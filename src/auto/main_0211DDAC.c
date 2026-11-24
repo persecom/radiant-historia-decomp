@@ -23,6 +23,15 @@ s32 func_0211ddac(u32 *arg0, u8 *arg1, u32 arg2) {
     return ret;
 }
 
+void func_0211de34(u8 *arg0) {
+    do {
+        u8 cmd;
+        *(u32 *)(arg0 + 8) &= ~0x40;
+        cmd = **(u8 **)arg0;
+        data_02156070[cmd & 0x1F](arg0, cmd & 0xE0);
+    } while ((*(u32 *)(arg0 + 8) & 0x20) == 0);
+}
+
 void func_0211e014(u32 *arg0, u8 *arg1) {
     while (arg1 != NULL) {
         s32 i;
