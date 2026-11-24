@@ -37,4 +37,40 @@ extern void func_02053d90(void *);
 extern void func_02053f6c(void *);
 extern void func_02053f94(void *);
 
-
+void func_02053038(void *arg0) {
+u8 *p=*(u8 **)((u8 *)arg0+0xd0);
+u16 type=*(u16 *)(p+0x26);
+if(type==0x16 || type==0xc9) return;
+if(func_02054330(arg0)) {
+if(*(u16 *)(p+0x26)>=20) { p[1]=3; return; }
+}
+if(!func_0205428c(arg0)) {
+p[1]=1;
+func_020477dc(arg0,2,1);
+return;
+}
+if(p[0xd]!=0) return;
+switch(*(u16 *)(p+0x26)%10) {
+case 1: break;
+case 2:
+if(func_02054800(arg0)==1) {
+*(u16 *)(p+4)=0;
+if(p[0x25]!=0x47 && p[0x25]!=0x51) {
+*(u16 *)(p+6)=0;
+p[1]=5;
+} else p[1]=3;
+}
+break;
+case 3: func_0205530c(arg0); break;
+case 4:
+if(func_02054a94(arg0)==1) {
+*(u16 *)(p+4)=0;
+if(p[0x25]!=0x47 && p[0x25]!=0x51) {
+*(u16 *)(p+6)=0;
+p[1]=5;
+} else p[1]=3;
+}
+break;
+default:p[1]=1;break;
+}
+}
