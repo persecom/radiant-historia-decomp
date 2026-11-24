@@ -140,6 +140,19 @@ void func_02125334(void) {
     func_02003894();
 }
 
+void func_02125340(u32 *arg0) {
+    void (*fn)(u32, u32, u32) = data_02144f70[arg0[0]];
+    func_02006dc4(arg0[1], arg0[3]);
+    fn(arg0[1], arg0[2], arg0[3]);
+}
+
+void func_02125374(u8 *arg0) {
+    *(u16 *)(arg0 + 0xa) = 0;
+    *(u16 *)(arg0 + 8) = 0;
+    *(u16 *)(arg0 + 0xc) = 0;
+    *(u32 *)(arg0 + 0x10) = 0;
+}
+
 u8 *func_021253c8(u8 *arg0) {
     return *(u8 **)(arg0 + 0) + (*(u16 *)(arg0 + 8) << 4);
 }
