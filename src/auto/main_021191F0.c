@@ -1,7 +1,7 @@
 /* 15 functions from 0x021191F0 to 0x0211A178 (main), found by ds-decomp. */
 #include "common.h"
 static inline s32 palette_021194cc(u8 *p) { return (*(volatile u16 *)(p+0x3c)&0xf000)>>12; }
-static inline void attr_021194cc(u8 *p,u32 mode,s32 palette) { u32 attr; u16 word; word=*(u16 *)(p+0x3c); attr=*(u32 *)(p+0x38); attr=(attr&~0xc00)|(mode<<10); word=(word&~0xf000)|(palette<<12); *(u32 *)(p+0x38)=attr; *(u16 *)(p+0x3c)=word; }
+static inline void attr_021194cc(u8 *p,s32 palette,u32 mode) { u32 attr; u16 word; word=*(u16 *)(p+0x3c); attr=*(u32 *)(p+0x38); attr=(attr&~0xc00)|(mode<<10); word=(word&~0xf000)|(palette<<12); *(u32 *)(p+0x38)=attr; *(u16 *)(p+0x3c)=word; }
 typedef struct {
     u16 f0;
     u16 f2;
