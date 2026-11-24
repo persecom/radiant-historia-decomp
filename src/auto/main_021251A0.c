@@ -5,6 +5,15 @@ extern void (*const data_02144f70[])(u32, u32, u32);
 extern void func_02006dc4(u32, u32);
 extern s32 func_02125074(void *);
 extern u16 func_02125054(void *, u16);
+extern u8 data_02173198[];
+extern u8 data_02173194;
+extern u32 data_021561f4[];
+extern void func_02125e68(u32, u32);
+extern void **func_02125dc4(void *);
+extern s32 func_021269c8(void *);
+extern void func_02125e20(void *);
+extern void func_02126940(void *, void *);
+extern void func_02126970(void *);
 
 extern void func_02003ab8(void);
 void func_021251a0(void) {
