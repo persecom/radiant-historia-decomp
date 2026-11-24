@@ -297,6 +297,14 @@ void func_021269bc(void) {
     func_02138ba8();
 }
 
+void *func_021269c8(void *arg0) {
+    void *ret;
+    func_02126c18();
+    ret = ((void *(*)(void *))func_021269ec)(arg0);
+    func_02126c1c();
+    return ret;
+}
+
 extern void func_02138c54(void);
 void func_021269ec(void) {
     func_02138c54();
