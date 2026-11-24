@@ -394,6 +394,13 @@ void func_020058fc(u32 index, u32 arg1, u32 arg2) {
     *(u32 *)(data_0215cd80 + index * 12) = func_020059b4(bit) & bit;
 }
 
+void func_02005944(s32 arg0, u32 arg1, u32 arg2) {
+    data_0215cdac[arg0 * 3] = arg1;
+    data_0215cdb4[arg0 * 3] = arg2;
+    func_020059b4(1 << (arg0 + 3));
+    data_0215cdb0[arg0 * 3] = 1;
+}
+
 u32 func_02005988(u32 arg0) {
     u16 ime = *(volatile u16 *)0x04000208;
     *(volatile u16 *)0x04000208 = 0;
@@ -414,9 +421,11 @@ u32 func_020059b4(u32 arg0) {
 }
 
 void func_020059e4(u32 arg0) {
+    u32 mask = ~arg0;
     u16 ime = *(volatile u16 *)0x04000208;
     *(volatile u16 *)0x04000208 = 0;
-    *(volatile u32 *)(0x04000208 + 8) &= ~arg0;
+    u32 old = *(volatile u32 *)(0x04000208 + 8);
+    *(volatile u32 *)(0x04000208 + 8) = old & mask;
     (void)*(volatile u16 *)0x04000208;
     *(volatile u16 *)0x04000208 = ime;
 }
@@ -444,8 +453,8 @@ u16 func_02005a74(void) {
     return data_0215cddc;
 }
 
-void func_02005a84(u32 arg0, u32 arg1) {
-    if (((arg1 & 0x7f00) >> 8) == 0x10) {
+void func_02005a84(u32 arg0, s32 arg1) {
+    if ((u16)((arg1 & 0x7f00) >> 8) == 0x10) {
         data_0215cddc = 1;
         return;
     }
