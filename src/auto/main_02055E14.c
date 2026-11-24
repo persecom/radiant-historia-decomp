@@ -29,6 +29,21 @@ void func_02055e14(u16 arg0) {
     }
 }
 
+void func_02056460(void) {
+ u8 i;
+ Unk_02056460 buf = data_0213f39c;
+ u8 *p = *(u8 **)(data_021600ac + 0x3a8);
+ *(volatile u32 *)0x040004a4 = 0x1f00c0;
+ for (i=0;i<4;i++) {
+  if (p[3+i] != 0) {
+   if(p[2]==i) {if(p[1]==3) func_020a3bbc(3); else func_020a3bbc(2);} else func_020a3bbc(1);
+   buf.field[5]=*(s32 *)(p+8+i*4)>>12;
+   buf.field[6]=194-(4-i)*25;
+   func_021098ac(&buf);
+  }
+ }
+}
+
 extern u8 *data_021600ac;
 extern void func_020a994c(void *);
 extern void func_020a9610(void *,s32,s32,void *,s32,s32);
