@@ -86,6 +86,26 @@ void func_02094a34(u32 *arg0, s32 arg1, s32 arg2) {
     }
 }
 
+void *func_020f4d40(u16);
+void *func_020f4c2c(u16);
+void func_02094aec(void) {
+u16 i;
+for(i=0;i<9;i++){
+u8 *p=func_020f4d40(i);
+if(p==NULL) p=func_020f4c2c(i);
+switch(i){
+case 1: *(u32 *)(p+0x20)=0x2000; *(u32 *)(p+0x24)=0x2000; *(u32 *)(p+0x28)=1; break;
+case 2: *(u32 *)(p+0x20)=0x2000; *(u32 *)(p+0x24)=0x1000; *(u32 *)(p+0x28)=1; break;
+case 3: *(u16 *)(p+0x3c)=0x8000; *(u32 *)(p+0x40)=1; break;
+case 4: *(u16 *)(p+0x3c)=0xc000; *(u32 *)(p+0x40)=1; break;
+case 7: *(u32 *)(p+0x20)=0x1800; *(u32 *)(p+0x24)=0x1000; *(u32 *)(p+0x28)=1; break;
+case 5: *(u32 *)(p+0x20)=0x1000; *(u32 *)(p+0x24)=0x1000; *(u32 *)(p+0x28)=1; break;
+case 6: *(u32 *)(p+0x20)=0x2000; *(u32 *)(p+0x24)=0x1000; *(u32 *)(p+0x28)=1; *(u16 *)(p+0x3c)=0x8000; *(u32 *)(p+0x40)=1; break;
+case 8: *(u32 *)(p+0x20)=0x16a1; *(u32 *)(p+0x24)=0x1281; *(u32 *)(p+0x28)=1; break;
+}
+}
+}
+
 void func_02094bf4(void) {
     u8 *p = data_02160110;
     u16 flags;
