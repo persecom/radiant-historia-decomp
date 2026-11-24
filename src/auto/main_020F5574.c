@@ -64,6 +64,42 @@ s32 func_020f5730(s32 arg0) {
     return (data_02160200[(u32)arg0 >> 5] & (1 << (arg0 % 32))) != 0;
 }
 
+void func_020f5760(void) {
+    void **p = data_02160c74;
+    *p = func_0210c594(0x30, data_02155c3c);
+    func_02113c0c(*p);
+    *(u8 *)((u8 *)*p + 0x24) = 0;
+}
+
+void func_020f5798(void) {
+    void *p = data_02160c74[0];
+    if (*(void **)p != NULL) {
+        func_0210d6f4(p);
+        func_0210d828();
+    }
+    func_0210d6a4(0x7f, 1);
+    if (data_02160c74[0] != NULL) {
+        func_0210c5dc(data_02160c74[0]);
+        data_02160c74[0] = NULL;
+    }
+}
+
+void func_020f58c0(u8 *p) {
+    void **q;
+    if (p[0x1f4] == 1) {
+        func_02046760();
+    }
+    func_0210da14(p);
+    q = *(void ***)(p + 0x128);
+    if (q != NULL && *q != NULL) {
+        func_020a9544(q);
+    }
+    func_0210c970(*(void **)(p + 0x14));
+    if (p != NULL) {
+        func_0210c5dc(p);
+    }
+}
+
 s32 func_020f5948(void) {
     char buf[0x40];
     s32 index = 0;
