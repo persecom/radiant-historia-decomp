@@ -14,7 +14,7 @@ extern void func_0203d970(void *);
 extern void func_0203df40(void *);
 static inline u16 random_4487c(u16 max) {
  u32 seed=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
- u32 value;
+ u16 value;
  data_0216263c[0]=seed;
  value=seed>>16;
  if(max) value=(value*max)>>16;
@@ -114,12 +114,10 @@ void func_0204487c(u8 *obj) {
  } else if(*(s8 *)(data_02160204+0xe0)==1) {
  *(u16 *)(data_02160204+0x6a)=*(u16 *)(*(u8 **)(obj+0xb0)+8);
  if((*(u8 **)(obj+0xb0))[13]!=0) {
- s32 n=0;
- u8 range=(*(u8 **)(obj+0xb0))[13];
- if(range!=0) n=random_4487c(range*2);
- n-=(*(u8 **)(obj+0xb0))[13];
- if(n<0)n=-n;
- *(u16 *)(data_02160204+0x6a)=*(u16 *)(*(u8 **)(obj+0xb0)+8)+n;
+ u32 n=0;
+ if((*(u8 **)(obj+0xb0))[13])
+ n=(s32)random_4487c((*(u8 **)(obj+0xb0))[13]*2)-(*(u8 **)(obj+0xb0))[13];
+ *(u16 *)(data_02160204+0x6a)=*(u16 *)(*(u8 **)(obj+0xb0)+8)+abs_4487c(n);
  }
  *(u16 *)(data_021600a8[1]+0x88)=*(u16 *)(obj+0x90);
  }
