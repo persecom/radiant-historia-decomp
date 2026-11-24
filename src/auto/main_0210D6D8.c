@@ -229,6 +229,16 @@ s32 func_0210e600(void) {
     return v;
 }
 
+extern void func_0210e404(void);
+extern void func_020057e8(s32, void (*)(void));
+extern void func_020059b4(s32);
+extern void func_02002708(s32, u16);
+void func_0210e620(s32 arg0) {
+    s32 tmp = func_02008128();
+    *(s32 *)(data_0216280c + 4) = arg0;
+    func_0200813c(tmp);
+}
+
 void func_0210e67c(void) {
     func_021167ac(data_021628ec, 8);
 }
