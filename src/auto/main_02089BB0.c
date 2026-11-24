@@ -37,18 +37,17 @@ void func_0208a168(u8 *arg0, s32 arg1, s32 arg2, u32 *arg3) {
 
 void func_0208a1a0(s32 arg0) {
 void *stream;
-void *name;
-if(arg0==0) name=data_021486a4;
-else if(arg0==1) name=data_021486bc;
-else name=data_021486d0;
-stream=func_021092d8(name);
+if(arg0==0) stream=func_021092d8(data_021486a4);
+else if(arg0==1) stream=func_021092d8(data_021486bc);
+else stream=func_021092d8(data_021486d0);
 do {
 s16 i=0;
 s16 id=(u16)func_02092994(stream,0);
 if(func_02022068(id)>=1 && id>0) {
+func_021093f0(stream);func_021093f0(stream);func_021093f0(stream);
+func_021093f0(stream);func_021093f0(stream);
 do {
-func_021093f0(stream);func_021093f0(stream);func_021093f0(stream);
-func_021093f0(stream);func_021093f0(stream);func_021093f0(stream);
+func_021093f0(stream);
 i++;
 }while(i<15);
 *(s16 *)(data_0216010c+*(s16 *)(data_0216010c+0x50d4)*100+0x5570)=id;
