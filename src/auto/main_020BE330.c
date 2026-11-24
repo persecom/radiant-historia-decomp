@@ -12,6 +12,28 @@ extern void func_020be9b8(s32);
 extern void func_020beb14(void);
 extern void func_020bf24c(s32, u8);
 extern void func_020c33d4(s32);
+void func_020be330(u8 *arg0) {
+    u16 flags = *(u16 *)(arg0 + 0x18);
+    s16 sp2;
+    s16 sp0;
+    u8 *node;
+
+    if ((flags & 3) == 0) {
+        return;
+    }
+    if ((flags & 4) != 0) {
+        return;
+    }
+    sp2 = *(s16 *)(arg0 + 0x1a);
+    sp0 = *(s16 *)(arg0 + 0x1c);
+    func_020be30c(&sp2, &sp0);
+    node = *(u8 **)arg0;
+    while (node != NULL) {
+        func_020be490(node, sp2, sp0);
+        node = *(u8 **)(node + 0x10);
+    }
+}
+
 void func_020be650(void) {
     *(volatile u32 *)0x0400001c = 0;
     *(volatile u32 *)0x04000000 = (*(volatile u32 *)0x04000000 & ~0x1f00) | 0x1f00;
