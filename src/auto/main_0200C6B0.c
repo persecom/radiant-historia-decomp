@@ -209,6 +209,10 @@ u8 *func_0200d500(u8 *arg0, s32 arg1) {
     return *(u8 **)(*(u8 **)(arg0 + 0x20)) + arg1;
 }
 
+s32 func_0200d510(u8 *arg0) {
+    return (*(s32 *)(arg0 + 0x14) & 4) ? 1 : 0;
+}
+
 u32 func_0200d524(u8 *arg0) {
     return *(u32 *)(arg0 + 0x24);
 }
