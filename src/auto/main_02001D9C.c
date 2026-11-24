@@ -271,6 +271,18 @@ void func_02002790(void) {
     }
 }
 
+void func_020027d4(u32 dispMode, u32 bgMode, u32 bg0_2d3d) {
+    u32 cnt = *(volatile u32 *)0x04000000;
+    data_0215cd20 = (u16)dispMode;
+    if (data_02145ba0 == 0) {
+        dispMode = 0;
+    }
+    *(volatile u32 *)0x04000000 = (cnt & 0xfff0fff0) | (dispMode << 16) | bgMode | (bg0_2d3d << 3);
+    if (data_0215cd20 == 0) {
+        data_02145ba0 = 0;
+    }
+}
+
 void func_0200283c(u32 arg0) {
     *(volatile u32 *)0x04001000 = (*(volatile u32 *)0x04001000 & ~7) | arg0;
 }
