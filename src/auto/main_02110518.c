@@ -84,9 +84,9 @@ void func_0211088c(u8 *arg0, u8 arg1) {
 }
 
 void func_02110a28(u8 *arg0) {
+    u32 count = func_020c9c34(*(void **)(arg0 + 0x30));
     u8 *obj;
     u16 i;
-    u32 count = func_020c9c34(*(void **)(arg0 + 0x30));
     for (i = 0; i < count; i++) {
         obj = func_020c9c10(*(void **)(arg0 + 0x30), i);
         {
@@ -103,9 +103,9 @@ void func_02110a28(u8 *arg0) {
 }
 
 void func_02110abc(void *arg0) {
-    u8 *p = (u8 *)arg0;
-    u16 i;
-    u32 count = func_020c9c34(*(void **)(p + 0x30));
+    register u8 *p = (u8 *)arg0;
+    register u16 i;
+    register u32 count = func_020c9c34(*(void **)(p + 0x30));
     for (i = 0; i < count; i++) {
         u8 *obj = func_020c9c10(*(void **)(p + 0x30), i);
         *(u8 **)(obj + 0x34) = p;
@@ -118,6 +118,19 @@ extern BOOL func_020c7408(void);
 u16 func_02110b20(u8 *arg0) {
     u8 *obj = func_020c9c10(*(void **)(arg0 + 0x30), arg0[0x39]);
     return *(u16 *)(obj + 0x3e);
+}
+
+u8 func_02110b38(u16 arg0) {
+    u8 i;
+    u16 lo;
+    u16 hi;
+    for (i = 0; i < 5; i++) {
+        func_0211379c(i, &hi, &lo);
+        if (arg0 >= hi && arg0 < lo) {
+            return i;
+        }
+    }
+    return 5;
 }
 
 void func_0211104c(void *arg0) {
@@ -145,6 +158,25 @@ s32 func_021110a8(u8 *arg0) {
     }
     func_020c9b64(*(void **)(arg0 + 0x30));
     return 0;
+}
+
+void func_021111f4(u8 *arg0, u32 arg1, u32 arg2) {
+    u16 vals[6];
+    u16 *dst = vals;
+    u16 i;
+    u8 *obj;
+    vals[0] = data_02144c1c[0];
+    vals[1] = data_02144c1c[1];
+    vals[2] = data_02144c1c[2];
+    vals[3] = data_02144c1c[3];
+    vals[4] = data_02144c1c[4];
+    vals[5] = data_02144c1c[5];
+    for (i = 0; i < 6; i++) {
+        obj = func_020c9c10(*(void **)(arg0 + 0x30), dst[i]);
+        if (obj != NULL) {
+            ((void (*)(u8 *, u32, u32))(*(void **)(obj + 0x24)))(obj, arg1, arg2);
+        }
+    }
 }
 
 void func_0211128c(u8 *arg0, s32 arg1) {
