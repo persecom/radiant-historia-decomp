@@ -32,8 +32,8 @@ void func_02061214(u8 *p) {
         node = *(u8 **)(*(u8 **)(t + 0xc) + 0x28);
         value = (*(u16 *)(p + 0x90) - 0x65) * 10;
     }
-    count = 0;
     i = 0;
+    count = 0;
     if (node != NULL) {
         do {
             if (func_020dde4c(value + 0x76 + 0x200 + i) != 0) {
