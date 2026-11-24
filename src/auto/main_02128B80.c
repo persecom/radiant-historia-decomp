@@ -90,6 +90,17 @@ u8 *func_0212965c(void) {
     }
 }
 
+void func_02129708(u8 *arg0, s32 arg1, s32 arg2) {
+    func_0212b3f8(arg2, arg1, arg0 + 0x30, arg0 + 0x32);
+}
+
+void func_02129724(u8 *arg0, s16 *arg1, s16 *arg2) {
+    *(s16 *)(arg0 + 0x28) = arg1[0];
+    *(s16 *)(arg0 + 0x2a) = arg2[0];
+    *(s16 *)(arg0 + 0x2c) = arg1[1];
+    *(s16 *)(arg0 + 0x2e) = arg2[1];
+}
+
 void func_0212976c(u8 *arg0, u16 arg1, u16 arg2, u16 arg3) {
     *(u16 *)(arg0 + 0x34) = arg1;
     *(u16 *)(arg0 + 0x36) = arg2;
