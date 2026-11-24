@@ -169,6 +169,13 @@ s32 func_0200cf30(void *arg0, u8 *arg1, u32 arg2, u32 arg3, u32 *arg4) {
     return res;
 }
 
+s32 func_0200cf84(void *arg0, u8 *arg1) {
+    s32 res = func_0200cb40(arg1, 8, 1);
+    *(void **)(arg1 + 4) = NULL;
+    *(u32 *)(arg1 + 0xc) &= ~0x30;
+    return res;
+}
+
 extern const u8 data_0213e964[];
 extern s32 func_0200d140(void *, void *, void *);
 BOOL func_0200d460(u8 *arg0, void *arg1) {
