@@ -362,3 +362,12 @@ void func_02115df0(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     func_0200a2e0(arg0);
 }
 
+void func_0211630c(s32 arg0) {
+    s32 i;
+    for (i = 0; i < 4; i++) {
+        if (data_0216cb40[i].flag) {
+            func_02116488(&data_0216cb40[i], arg0);
+        }
+    }
+}
+
