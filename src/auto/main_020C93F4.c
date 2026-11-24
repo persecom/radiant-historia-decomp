@@ -80,6 +80,29 @@ void func_020c94dc(u8 *arg0) {
     func_020c9590(arg0);
 }
 
+void func_020c9610(u8 *arg0) {
+    s16 a = 0;
+    s16 b = 0;
+    s32 v;
+    s32 q;
+    u8 *obj;
+    func_020c9680(arg0, &b, &a);
+    v = func_020c9888(arg0);
+    q = func_0201f8cc(*(u16 *)(arg0 + 0x3e));
+    func_020201f4(q, v);
+    a += func_0201ff0c();
+    obj = func_020c9c10(*(void **)(arg0 + 0x30), 2);
+    *(s16 *)(obj + 0x3c) = a;
+    *(s16 *)(obj + 0x3a) = b;
+    func_020c7930(obj);
+}
+
+void func_020c9680(u8 *arg0, s16 *arg1, s16 *arg2) {
+    u8 *obj = func_020c9c10(*(void **)(arg0 + 0x30), 1);
+    *arg2 = *(s16 *)(obj + 0x3c) + *(s16 *)(obj + 0x40);
+    *arg1 = *(s16 *)(obj + 0x3a);
+}
+
 u16 func_020c9924(u8 *arg0) {
     return *(u16 *)(arg0 + 8);
 }
