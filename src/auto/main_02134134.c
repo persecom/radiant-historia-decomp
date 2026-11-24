@@ -49,3 +49,11 @@ s32 func_02134efc(void *arg0) {
     return func_02136930(*(void **)((u8 *)arg0 + 0x20));
 }
 
+extern s32 func_02136944(void *);
+s32 func_02134f18(void *arg0) {
+    if (arg0 == NULL) {
+        return -1;
+    }
+    return func_02136944(*(void **)((u8 *)arg0 + 0x20));
+}
+
