@@ -243,6 +243,12 @@ u32 func_02107294(void) {
     return data_0216106c;
 }
 
+void func_021072d0(u32 arg0, u32 arg1, u32 arg2) {
+    func_021071fc();
+    data_0216106c = 1;
+    func_020105e0(arg1, arg0, arg2, 0, 0, 1, 8, 10, 2);
+}
+
 void func_021077f0(u32 arg0, u32 arg1) {
     func_02117f54(arg0, 0, 0x7f, arg1);
     func_02118008(arg0, 0, 0x1f, arg1);
