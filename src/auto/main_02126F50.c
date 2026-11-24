@@ -189,6 +189,14 @@ void func_02127600(void *arg0) {
     *(u32 *)((u8 *)arg0 + 8) = 0;
 }
 
+extern void func_02127828(void *, void *, s32, s32);
+extern void func_021278c0(void *, void *);
+void func_021277f4(void *arg0, void *arg1, s32 arg2, s32 arg3) {
+    func_0212a9f4();
+    func_02127828(arg0, arg1, arg2, arg3);
+    func_0212a9f8();
+}
+
 void func_02127828(void *arg0, void *arg1, s32 arg2, s32 arg3) {
     s32 zero = 0;
     if (arg0 == NULL || arg1 == NULL) {
