@@ -30,6 +30,11 @@ void func_021101cc(void *arg0) {
     }
 }
 
+s32 func_02110228(void *arg0) {
+    func_020c9b64(*(void **)((u8 *)arg0 + 0x30));
+    return 0;
+}
+
 extern void func_02110484(void *);
 void func_02110464(void *arg0) {
     func_02110484(arg0);
