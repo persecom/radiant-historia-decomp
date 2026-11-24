@@ -60,20 +60,58 @@ void func_020ba6d0(u32 arg0) {
 
 s32 func_020ba78c(u8 *arg0) {
     u8 *obj;
-    void *fn48 = (void *)func_020ba948;
-    void *fn74 = (void *)func_020baa74;
-    u16 val = 0x87;
-    s32 ret = 0;
     func_02110b94(arg0);
-    *(void **)(arg0 + 0x4c) = fn48;
-    *(void **)(arg0 + 0x50) = fn74;
-    obj = func_020c9c10(*(void **)(arg0 + 0x30), ret);
-    *(u16 *)(obj + 0x3e) = val;
+    *(void **)(arg0 + 0x4c) = (void *)func_020ba948;
+    *(void **)(arg0 + 0x50) = (void *)func_020baa74;
+    obj = func_020c9c10(*(void **)(arg0 + 0x30), 0);
+    *(u16 *)(obj + 0x3e) = 0x87;
     obj = func_020c9c10(*(void **)(arg0 + 0x30), 3);
-    *(u16 *)(obj + 0x3e) = val;
+    *(u16 *)(obj + 0x3e) = 0x87;
     obj = func_020c9c10(*(void **)(arg0 + 0x30), 2);
     ((void (*)(u8 *, s32))(*(void **)(obj + 0x10)))(obj, 0x23);
-    return ret;
+    return 0;
+}
+
+s32 func_020ba7f8(u8 *arg0) {
+    u8 *obj;
+    func_02110b94(arg0);
+    *(void **)(arg0 + 0x4c) = (void *)func_020ba9c4;
+    *(void **)(arg0 + 0x50) = (void *)func_020baae0;
+    obj = func_020c9c10(*(void **)(arg0 + 0x30), 0);
+    *(u16 *)(obj + 0x3e) = 0x96;
+    obj = func_020c9c10(*(void **)(arg0 + 0x30), 3);
+    *(u16 *)(obj + 0x3e) = 0x96;
+    obj = func_020c9c10(*(void **)(arg0 + 0x30), 2);
+    ((void (*)(u8 *, s32))(*(void **)(obj + 0x10)))(obj, 0x1b);
+    ((void (*)(u8 *, s32))(*(void **)(obj + 0x14)))(obj, 1);
+    return 0;
+}
+
+void func_020ba878(u8 *arg0, u32 arg1) {
+    u8 *sub = *(u8 **)(arg0 + 0x48);
+    u8 *obj = func_020c9b24(*(void **)(arg0 + 0x30), 4, 2);
+    BOOL flag;
+    *(u32 *)(obj + 0x4c) = arg1;
+    obj[0x50] = 1;
+    flag = (sub[0x74] & 1) == 0;
+    func_020c738c(obj, !flag, 1);
+}
+
+void func_020ba8c4(u8 *arg0, u32 arg1) {
+    u8 *sub = *(u8 **)(arg0 + 0x48);
+    u8 *obj = func_020c9b24(*(void **)(arg0 + 0x30), 4, 2);
+    BOOL flag = 1;
+    *(u32 *)(obj + 0x4c) = arg1;
+    obj[0x50] = 1;
+    if (sub[0x74] & 1) {
+        flag = 0;
+    }
+    func_020c738c(obj, !flag, 1);
+    obj = func_020c9b24(*(void **)(arg0 + 0x30), 5, 1);
+    if (sub[0x74] & 1) {
+        flag = 0;
+    }
+    func_020c738c(obj, !flag, 1);
 }
 
 s32 func_020baba8(u8 *arg0) {
