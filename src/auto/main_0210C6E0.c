@@ -75,3 +75,9 @@ void func_0210d448(void) {
     func_02113c18(data_0216273c);
 }
 
+extern u8 data_02162740[];
+void func_0210d46c(void) {
+    func_02113b58(data_02162740, 0);
+    func_02113c18(data_02162740);
+}
+
