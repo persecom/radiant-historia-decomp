@@ -24,8 +24,6 @@ u8 *func_0211a5e4(s32 arg0) {
     return (u8 *)data_021701cc[2] + arg0 * 0x30;
 }
 
-extern void func_02118e68(void *);
-extern void func_02118e84(void *, s32, s32);
 void func_0211ab04(u32 arg0) {
     data_021701d8[2] = arg0;
 }
