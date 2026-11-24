@@ -44,8 +44,26 @@ void func_0211078c(u8 *arg0) {
     func_021106cc(arg0, (u8 *)&buf);
 }
 
+void func_021107cc(u8 *arg0, s32 arg1, s32 arg2) {
+    u32 count = func_020c9c34(*(void **)(arg0 + 0x30));
+    u16 i;
+    for (i = 0; i < count; i++) {
+        u8 *obj = func_020c9c10(*(void **)(arg0 + 0x30), i);
+        s16 x = arg1 + (*(s16 *)(obj + 0x38) - *(s16 *)(arg0 + 0x34));
+        s16 y = arg2 + (*(s16 *)(obj + 0x3a) - *(s16 *)(arg0 + 0x36));
+        ((void (*)(u8 *, s32))(*(void **)(obj + 0x10)))(obj, x);
+        ((void (*)(u8 *, s32))(*(void **)(obj + 0x14)))(obj, y);
+    }
+    *(s16 *)(arg0 + 0x34) = arg1;
+    *(s16 *)(arg0 + 0x36) = arg2;
+}
+
 void func_02110868(u8 *arg0, s32 arg1) {
     func_021107cc(arg0, arg1, *(s16 *)(arg0 + 0x36));
+}
+
+void func_02110878(u8 *arg0, s32 arg1) {
+    func_021107cc(arg0, *(s16 *)(arg0 + 0x34), arg1);
 }
 
 void func_0211104c(void *arg0) {
