@@ -22,6 +22,9 @@ static inline u16 RandomA_02028420(u32 max) {
  if(max!=0)x=(x>>16)*max;
  return (u16)(x>>16);
 }
+static inline u8 *Pick_02028420(u8 **arr, u32 count) {
+    return arr[RandomA_02028420(count)];
+}
 extern s32 _s32_div_f(s32, s32);
 s32 func_02028420(u8 *arg0, u8 *arg1)
 {
