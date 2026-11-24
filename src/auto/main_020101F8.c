@@ -234,7 +234,7 @@ void func_02010e40(void) {
 extern u8 data_0215f78c[148];
 extern void func_0200a56c(void);
 extern void func_0200a674(s32, void (*)(void));
-extern void func_02010e80(void);
+extern void func_02010e80();
 extern void func_01ff8000(void);
 extern u32 func_02007490(void);
 extern void func_020108d8(u32, void *, u32, u32);
