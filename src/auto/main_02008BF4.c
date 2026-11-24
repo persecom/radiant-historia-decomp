@@ -221,8 +221,20 @@ void func_020096b4(u32 arg0, u32 arg1) {
     func_020097f0(0x15, arg0, arg1, 0, 0);
 }
 
+void func_020096d4(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u32 arg6, u32 arg7, u32 arg8, u32 arg9) {
+    func_020097f0(0xe,
+        arg0 | (arg9 << 16),
+        arg2,
+        arg4 | (arg7 << 24) | (arg9 << 22),
+        arg5 | (arg1 << 24) | (arg3 << 26) | (arg9 << 16));
+}
+
 void func_02009720(u32 arg0, u32 arg1) {
     func_020097f0(0x1e, arg0, arg1, 0, 0);
+}
+
+void func_02009740(u32 arg0, u32 arg1) {
+    func_020097f0(0x1f, arg0, arg1, 0, 0);
 }
 
 s32 func_0200986c(void) {
