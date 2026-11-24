@@ -250,9 +250,49 @@ void func_020077f8(s32 arg0) {
     data_0215d124 |= (u16)(1 << arg0);
 }
 
+void func_0200781c(void) {
+    if (((UnkStruct_0215d128 *)&data_0215d128)->unk00 == 0) {
+        ((UnkStruct_0215d128 *)&data_0215d128)->unk00 = 1;
+        func_020077f8(0);
+        ((UnkStruct_0215d128 *)&data_0215d128)->unk08 = 0;
+        *(volatile u16 *)0x04000102 = 0;
+        *(volatile u16 *)0x04000100 = 0;
+        *(volatile u16 *)0x04000102 = 0xc1;
+        func_020057e8(8, func_0200789c);
+        func_020059b4(8);
+        ((UnkStruct_0215d128 *)&data_0215d128)->unk04 = 0;
+    }
+}
+
 extern u16 data_0215d128;
 u16 func_0200788c(void) {
     return data_0215d128;
+}
+
+void func_0200789c(void) {
+    UnkStruct_0215d128 *s = (UnkStruct_0215d128 *)&data_0215d128;
+    s->unk08++;
+    if (s->unk04 != 0) {
+        *(volatile u16 *)0x04000102 = 0;
+        *(volatile u16 *)0x04000100 = 0;
+        *(volatile u16 *)0x04000102 = 0xc1;
+        s->unk04 = 0;
+    }
+    func_02005944(0, func_0200789c, 0);
+}
+
+u64 func_02007904(void) {
+    volatile u16 countL;
+    volatile u64 countH;
+    u32 cookie = func_02008128();
+    UnkStruct_0215d128 *s = (UnkStruct_0215d128 *)&data_0215d128;
+    countL = *(volatile u16 *)0x04000100;
+    countH = s->unk08 & 0xffffffffffffULL;
+    if ((*(volatile u32 *)0x04000214 & 8) != 0 && !(countL & 0x8000)) {
+        countH++;
+    }
+    func_0200813c(cookie);
+    return (countH << 16) | countL;
 }
 
 extern u16 data_0215d138;
