@@ -10,22 +10,18 @@ extern void func_020db35c(void *, s32);
 extern void func_020de0a8(void *);
 extern u8 *data_02160a6c;
 s32 func_020db1f4(void *arg0, u8 *arg1, s32 arg2, s32 arg3) {
-    s32 mask;
-    s32 bit;
-    u16 i;
-
-    if (arg1[7] != 8) {
-        return 0;
-    }
-
-    bit = 1 << arg2;
-    mask = func_020deaf0(arg1, arg2, 1);
-    for (i = 0; i < 9; i++) {
-        if ((mask & (1 << i)) != 0 && (arg3 & (1 << i)) != 0) {
-            func_02030878(arg0, arg1, func_0202e548(i), mask, bit, 1);
+    if (arg1[7] == 8) {
+        s32 bit = 1 << arg2;
+        s32 mask = func_020deaf0(arg1, arg2, 1);
+        u16 i;
+        for (i = 0; i < 9; i++) {
+            if ((mask & (1 << i)) != 0 && (arg3 & (1 << i)) != 0) {
+                func_02030878(arg0, arg1, func_0202e548(i), mask, bit, 1);
+            }
         }
+        return mask;
     }
-    return mask;
+    return 0;
 }
 
 void func_020db4ac(void *arg0) {
@@ -55,6 +51,40 @@ void func_020db4fc(void) {
         }
         node = *(u8 **)(node + 0x13c);
     }
+}
+
+extern void func_0206e7a0(u8, void *, void *, u16);
+extern void func_0210d27c(s32);
+s32 func_020db630(void) {
+    u8 *node = *(u8 **)(data_02160a6c + 0xb8);
+    while (node != NULL) {
+        if (*(s32 *)(*(u8 **)(node + 0x118) + 4) >= 1) {
+            if (node[0x104] != 0 && node[0x104] != 0x13) {
+                return 0;
+            }
+            node = *(u8 **)(node + 0x174);
+            if (node == NULL) {
+                return 1;
+            }
+        } else {
+            node = *(u8 **)(node + 0x174);
+        }
+    }
+    return 0;
+}
+
+s32 func_020db680(void) {
+    u8 *node = *(u8 **)(data_02160a6c + 0x70);
+    s32 result = 0;
+    while (node != NULL) {
+        u8 *sub = *(u8 **)(node + 0x118);
+        if (sub[0] == 1 && *(void **)(sub + 0x70) != NULL && *(s32 *)(sub + 4) <= 0) {
+            func_020db35c(node, 0);
+            result = 1;
+        }
+        node = *(u8 **)(node + 0x13c);
+    }
+    return result;
 }
 
 void func_020db850(void) {
