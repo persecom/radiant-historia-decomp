@@ -345,20 +345,18 @@ void func_02006510(void *arg0) {
 void func_02006560(void *arg0, u32 arg1) {
     u32 cookie = func_02008128();
     u8 **q = (u8 **)arg0;
-    if (*q == NULL) {
-        func_0200813c(cookie);
-        return;
+    if (*q != NULL) {
+        while (*q != NULL) {
+            u8 *e = (u8 *)func_02005f5c(arg0);
+            *(u32 *)(e + 0x64) = 1;
+            *(u32 *)(e + 0x78) = 0;
+            *(u32 *)(e + 0x80) = 0;
+            *(u32 *)(e + 0x7c) = 0;
+        }
+        *(u32 *)((u8 *)arg0 + 4) = 0;
+        *q = NULL;
+        func_020060b8();
     }
-    while (*q != NULL) {
-        u8 *e = (u8 *)func_02005f5c(arg0);
-        *(u32 *)(e + 0x64) = 1;
-        *(u32 *)(e + 0x78) = 0;
-        *(u32 *)(e + 0x80) = 0;
-        *(u32 *)(e + 0x7c) = 0;
-    }
-    *(u32 *)((u8 *)arg0 + 4) = 0;
-    *q = NULL;
-    func_020060b8();
     func_0200813c(cookie);
 }
 
@@ -367,6 +365,14 @@ void func_020065c8(void *arg0) {
     *(u32 *)((u8 *)arg0 + 0x64) = 1;
     func_020060b8();
     func_0200813c(cookie);
+}
+
+void func_020065f0(void) {
+    u8 *p = (u8 *)data_0215cde4[9];
+    while (p != NULL) {
+        if (*(u32 *)(p + 0x64) == 1) return;
+        p = *(u8 **)(p + 0x68);
+    }
 }
 
 extern void func_020060b8(void);
