@@ -74,6 +74,19 @@ s32 func_0200cc10(void *arg0, void *arg1, void *arg2, u32 *arg3) {
     return func_0200cb40(arg1, 0, 0);
 }
 
+s32 func_0200cc54(void *arg0, void *arg1, void *arg2, u32 *arg3) {
+    void *p = *(void **)((u8 *)arg1 + 0x4);
+    u32 req = *arg3;
+    u32 rem = *(u32 *)((u8 *)p + 0x8) - *(u32 *)((u8 *)p + 0xc);
+    if (req > rem) {
+        *arg3 = rem;
+    }
+    *(u32 *)((u8 *)arg1 + 0x34) = req;
+    *(void **)((u8 *)arg1 + 0x30) = arg2;
+    *(u32 *)((u8 *)arg1 + 0x38) = *arg3;
+    return func_0200cb40(arg1, 1, 0);
+}
+
 s32 func_0200d52c(void) {
     return 0;
 }
