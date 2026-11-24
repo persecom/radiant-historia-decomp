@@ -21,6 +21,7 @@ static inline u16 random_4487c(u16 max) {
  return value;
 }
 extern s32 data_02162870[2], data_02162868[2], data_02162814[2], data_02162884[2];
+static inline s32 abs_4487c(s32 x) { return x < 0 ? -x : x; }
 extern u8 *data_021600ac;
 extern u8 *func_020f52dc(void *, s32, s32);
 extern void func_020f5364(void *, void *);
