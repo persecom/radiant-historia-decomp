@@ -8,6 +8,11 @@ extern void func_02008e08(void *, u32, u32);
 extern void func_020030f4(void *);
 extern s32 func_0200308c(s32 *);
 extern s32 func_020030b8(s32 *);
+extern u32 func_02003420(void);
+extern void func_020085ec(s32, void *, u32, u32, s32);
+extern void func_02008e38(void *, u32, u32);
+extern void func_02008f48(void *, void *);
+extern void func_02008f08(void *, void *);
 
 void func_02002d9c(void) {
     func_020030f4((void *)0x04000400);
