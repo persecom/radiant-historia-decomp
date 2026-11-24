@@ -139,7 +139,7 @@ u32 func_020a8828(u32 arg0) {
 void func_020a8a84(void *);
 void func_020a8ab8(u8 *);
 void func_020a8958(void *);
-void func_020a8d4c(void);
+void func_020a8d4c();
 void *func_020a8844(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 u8 *p=func_0210c594(0x3c,data_02155c3c);
 u32 count=arg2*arg3;
@@ -243,6 +243,49 @@ void func_020a8ab8(u8 *p) {
  }
  }
  func_0210fd94(ctx);
+}
+
+void func_020a8ba4(u8 *p, s32 x, s32 y, s32 ch) {
+s32 zero = 0;
+
+u8 *src, *dst;
+s32 valid;
+s32 width, n, skip, row, col, pixel, shift;
+
+if(x < 0) valid = 0;
+else if(x + func_020a916c(ch) > *(s32 *)(p+0x18)) valid = 0;
+else if(y < 0) valid = 0;
+else if(y + 12 > *(s32 *)(p+0x1c)) valid = 0;
+else valid = 1;
+if(!valid) return;
+width = *(s32 *)(p+0x18);
+dst = *(u8 **)(p+0x10) + (x >> 2) + y * (width >> 2);
+shift = (x & 3)*2;
+if(ch < 0) {src = (u8 *)data_02160148[33] + (ch<<4) + (ch<<3); n=2;}
+else {src = (u8 *)data_02160148[33] + (ch<<5) + (ch<<2); n=3;}
+skip = width - n*4;
+for(row=0;row<12;row++) {
+u32 sh=shift;
+u8 value = *dst;
+for(col=zero;col<n;col++) {
+u8 bits=*src++;
+for(pixel=zero;pixel<4;pixel++) {
+u8 v=bits&3;
+bits = (u8)(bits >> 2);
+{ u8 mask = ~(3<<sh); u8 part = v<<sh;
+value &= mask;
+value |= part; }
+sh=(sh+2)&7;
+if(sh==0) { *dst=value; value=*++dst; }
+}
+}
+if(sh==0) *dst=value;
+dst += skip >> 2;
+}
+for(row=0;row<12;row++) {
+u32 line = y+row;
+(*(u32 **)(p+0x50))[2+(line>>5)] |= 1 << (line&31);
+}
 }
 
 extern void func_0210fd24(u32 *, u32);
