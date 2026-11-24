@@ -1,5 +1,7 @@
 /* 33 functions from 0x02118234 to 0x021191F0 (main), found by ds-decomp. */
 #include "common.h"
+static inline s32 has_02118f24_data(u8 *p) { return *(void **)(p + 12) != 0; }
+static inline s32 has_02118f24_handle(u8 *p) { return *(s32 *)(p + 0x38) != -1; }
 
 extern void func_02117df4(void *);
 extern s32 func_02117d80(void *);
