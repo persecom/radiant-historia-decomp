@@ -70,12 +70,13 @@ void *func_020eaa24(s32 arg0, s32 arg1) {
     return r5;
 }
 
+#pragma opt_propagation off
 void func_020eaaa0(u32 arg0) {
     data_02160a90[0] = (u32)func_020eaae0;
     data_02160a90[1] = arg0;
-    func_0210db70(&data_02160a90);
+    func_0210db70(data_02160a90);
 }
-
+#pragma opt_propagation on
 s32 func_020eaacc(void) {
     return func_0210dba0(&data_02160a90);
 }

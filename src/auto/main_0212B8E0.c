@@ -226,6 +226,36 @@ s32 func_0212c0a8(void) {
     return 0;
 }
 
+void func_0212c0b8(void) {
+    data_02156b74 = data_021458c8;
+    func_02132be0();
+    if (data_02173ac0[4] == 0) {
+        func_0212a98c();
+        func_0212a9dc();
+        func_02137eac();
+        func_02137294();
+        func_02136a24();
+        func_0212bd48();
+        func_0212d714();
+        func_0212c56c();
+        func_0212e5c8();
+        func_0212eac8();
+        func_0212e5dc();
+        func_021385d4();
+        func_0212eae0(func_0212c068, 0);
+        func_0212e5ec(func_0212c078, 0);
+        memset((u32 *)data_02173ad4, 0, sizeof(data_02173ad4));
+        func_021382fc(2, 1, func_0212c098, 0, data_02156b7c);
+        data_02173ac0[1] = func_02138190(4, func_0212c0a8, 0, data_02156b8c);
+        data_02173ac0[3] = func_02138190(5, func_0212c088, 0, data_02156b9c);
+        data_02173ac0[0] = 0;
+        data_02173ac0[2] = 0;
+        func_02128580(0x3c);
+        func_0212a9e8();
+    }
+    data_02173ac0[4]++;
+}
+
 extern s32 data_02173ac0[];
 extern char data_02156bb0[];
 extern char data_02156bfc[];

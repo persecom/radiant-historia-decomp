@@ -396,8 +396,9 @@ s32 expected;
 u8 *p = *(u8 **)(data_021626e8[0] + 0x10);
 u8 i = 0;
 func_0200c1a8(0,name);
-expected = -1;
+
 do { *(u32 *)(p+0x18c+4*i)=func_0210cd50(); i++; } while(i<2);
+expected = -1;
 if (check_f53_expected(func_ov000_02176da0,(void *)func_020f53e4,expected)) func_0210cba0(*(u32 *)(p+0x14),*(u32 *)(p+0x18c));
 if (check_f53_expected(func_ov000_02176e18,(void *)func_020f53e4,expected)) func_0210cba0(*(u32 *)(p+0x14),*(u32 *)(p+0x18c));
 if (check_f53_expected(func_ov000_02176e90,(void *)func_020f53e4,expected)) func_0210cba0(*(u32 *)(p+0x14),*(u32 *)(p+0x18c));

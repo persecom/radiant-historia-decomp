@@ -36,6 +36,7 @@
 void func_0206a854(u8 *arg0)
 {
     Effect *e = (Effect *)arg0;
+    u16 i;
     Particle *p;
     s32 flags;
     s32 bit;
@@ -51,7 +52,6 @@ void func_0206a854(u8 *arg0)
     flags = e->flags;
 
     if (!(flags & 1)) {
-        u16 i;
 
         e->flags = flags | 1;
 
@@ -68,7 +68,6 @@ void func_0206a854(u8 *arg0)
     bit = flags & 2;
 
     if (bit == 0) {
-        u16 i;
         s32 negativeWidth;
         s32 right;
         s32 upper;
@@ -133,7 +132,6 @@ void func_0206a854(u8 *arg0)
         }
     } else if (bit != 0) {
         s32 mask = 0xfffd;
-        u16 i;
         s32 limit = 8;
         s32 negativeWidth = -26;
 
@@ -181,11 +179,12 @@ void func_0206a854(u8 *arg0)
 
                 t = p->timer;
 
-                if (t == 8) {
+                if (p->timer == 8) {
                     e->flags &= mask;
                 }
 
-                goto setActive;
+                p->active = (p->timer == 8) ? inactive : active;
+                break;
 
             case 1:
                 t = p->timer;
@@ -269,7 +268,6 @@ void func_0206a854(u8 *arg0)
         s32 left;
         s32 upper;
         s32 negativeWidth;
-        u16 i;
 
         e->flags = flags | 4;
 
@@ -310,8 +308,8 @@ void func_0206a854(u8 *arg0)
         }
     } else if (bit != 0) {
         s32 heightRange = 24;
-        u16 i = 4;
         s32 otherRange = heightRange;
+        i = 4;
 
         for (; i < 6; i++) {
             s32 t;
@@ -384,7 +382,6 @@ void func_0206a854(u8 *arg0)
 
     if (bit == 0) {
         s32 depth;
-        u16 i;
 
         e->flags = flags | 8;
 
@@ -407,9 +404,9 @@ void func_0206a854(u8 *arg0)
             }
         }
     } else if (bit != 0) {
-        u16 i = 6;
         s32 initialWidth = 12;
         s32 initialHeight = 40;
+        i = 6;
 
         for (; i < 14; i++) {
             s32 timer;
@@ -438,7 +435,7 @@ void func_0206a854(u8 *arg0)
 
             timer = p->timer;
 
-            if (timer < 10) {
+            if ((u32)timer < 10) {
                 p->active = inactive;
             } else if (timer <= 25) {
                 s32 t;
@@ -501,7 +498,6 @@ void func_0206a854(u8 *arg0)
 
     if (bit == 0) {
         s32 depth;
-        u16 i;
 
         e->flags = flags | 0x10;
 
@@ -524,9 +520,9 @@ void func_0206a854(u8 *arg0)
             }
         }
     } else if (bit != 0) {
-        u16 i = 14;
         s32 initialHeight = 40;
         s32 timerRange = 12;
+        i = 14;
 
         for (; i < 18; i++) {
             s32 timer;
@@ -545,7 +541,7 @@ void func_0206a854(u8 *arg0)
 
             timer = p->timer;
 
-            if (timer < 10) {
+            if ((u32)timer < 10) {
                 p->active = inactive;
             } else if (timer <= 21) {
                 s32 t;
@@ -590,7 +586,6 @@ void func_0206a854(u8 *arg0)
 
     if (bit == 0) {
         s32 depth;
-        u16 i;
 
         e->flags = flags | 0x20;
 
@@ -614,8 +609,8 @@ void func_0206a854(u8 *arg0)
         }
     } else if (bit != 0) {
         s32 initialWidth = 12;
-        u16 i = 22;
         s32 timerRange = initialWidth;
+        i = 22;
 
         for (; i < 30; i++) {
             s32 timer;
@@ -634,7 +629,7 @@ void func_0206a854(u8 *arg0)
 
             timer = p->timer;
 
-            if (timer < 10) {
+            if ((u32)timer < 10) {
                 p->active = inactive;
             } else if (timer <= 21) {
                 s32 t;
@@ -684,7 +679,6 @@ void func_0206a854(u8 *arg0)
     }
 
     {
-        u16 i;
 
         for (i = inactive; i < 30; i++) {
             s32 alpha;

@@ -389,33 +389,31 @@ extern void func_0212a73c(u16 *, s32, s32, s32);
 extern void func_0212a774(u16 *, u32, u32, s32);
 void func_0212a788(u8 *self) {
     s32 f58 = *(s32 *)(self + 0x58);
-    s32 a = *(s32 *)(self + 0x70) + f58 - 1;
     s32 b = *(s32 *)(self + 0x54);
+    s32 a = *(s32 *)(self + 0x70) + f58 - 1;
     s32 f68 = *(s32 *)(self + 0x68);
     s32 f5c = *(s32 *)(self + 0x5c);
     s32 f40 = *(s32 *)(self + 0x40);
     s32 f44 = *(s32 *)(self + 0x44);
-    s32 c = *(s32 *)(self + 0x50);
-    s32 r4;
-    s32 n, q1, q2, pos;
+    s32 r4, n, q1, q2, c;
 
-    r4 = (f58 - 1) - (a % f58);
+    r4 = (f58 - 1) - (s32)(func_0201fb1c(a, f58) >> 32);
     n = (s32)func_0212988c(*(void **)(self + 0x8));
-    q1 = func_0201fb1c(n * f58, c);
-    q2 = func_0201fb1c(a, f58);
+    c = *(s32 *)(self + 0x50);
+    q1 = (s32)func_0201fb1c(n * f58, c);
+    q2 = (s32)func_0201fb1c(a, f58);
     if (q2 * c <= n) {
         q1 -= r4;
     }
-    pos = f68 + q1;
     *(s32 *)(self + 0x90) = q1;
     *(s32 *)(self + 0x94) = n * b;
-    if (pos < f40) {
+    if (f68 + q1 < f40) {
         return;
     }
-    if (c == 2) {
-        func_0212a73c((u16 *)f5c, f40, f44, pos - f40);
+    if (*(s32 *)(self + 0x50) == 2) {
+        func_0212a73c((u16 *)f5c, f40, f44, f68 + q1 - f40);
     } else {
-        func_0212a774((u16 *)f5c, f40, f44, pos - f40);
+        func_0212a774((u16 *)f5c, f40, f44, f68 + q1 - f40);
     }
 }
 

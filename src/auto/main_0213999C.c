@@ -131,6 +131,12 @@ void func_02139bbc(u32 arg0, u32 arg1, u32 arg2) {
     func_0212a9f8();
 }
 
+void func_0212824c(void *);
+void func_0212bda8(const char *);
+void func_0212be08(const char *, const char *);
+void func_0212bf38(u32,u32,void *,s32);
+s32 func_0212e5d4(u32,u32,u32,u32 *,u32 *,u32 *);
+void func_02128880(void *,s32);
 void func_02139be8(u32 arg0, u32 arg1, u32 arg2) {
  u8 *p=(u8 *)arg0;
  char buf[16];

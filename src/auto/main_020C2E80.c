@@ -133,7 +133,94 @@ void func_020c3244(u8 arg0) {
     } while (*(u16 *)(data_02160090 + 0x5c) != 0);
 }
 
+extern void *func_020c2584(void *, s32);
+void func_020c32e8(void *arg0, s16 arg1, u8 arg2) {
+    u8 *node = *(u8 **)(data_02160090 + 0x60);
+
+    while (node != NULL) {
+        if (*(void **)(node + 4) == arg0) {
+            break;
+        }
+        node = *(u8 **)(node + 0xc);
+    }
+
+    if (node == NULL) {
+        node = (u8 *)func_0210c594(0x10, data_02155c3c);
+        *(s16 *)node = arg1;
+        *(void **)(node + 4) = arg0;
+        func_021167f0((void **)(data_02160090 + 0x60), node);
+    } else {
+        *(u16 *)node = *(s16 *)node + arg1;
+        if (*(s16 *)node > 0x32) {
+            *(s16 *)node -= 0x32;
+            if (data_02160090[0x80] != 1) {
+                u8 *p = (u8 *)func_020c2584(arg0, 0);
+                p[0] = arg2;
+                p[0x14] = 0;
+                p[0x1a] = 0;
+                *(u16 *)(p + 0x18) |= 1;
+                func_021167f0((void **)(data_02160090 + 0x6c), p);
+            }
+        }
+    }
+}
+
 void func_020c33d4(void) {
+}
+
+void func_020c33d8(u32 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, u32 arg5, u32 arg6) {
+    u32 a = (arg1 << 8) >> 16;
+    u32 c = ((arg1 + arg3) << 20) >> 16;
+    u32 v0 = arg0[0];
+    u32 v1 = arg0[1];
+    u32 v2 = arg0[2];
+    *(volatile u32 *)0x4000444 = 0;
+    *(volatile u32 *)0x4000470 = v0;
+    *(volatile u32 *)0x4000470 = v1;
+    *(volatile u32 *)0x4000470 = v2;
+    *(volatile u32 *)0x400046c = arg5 << 12;
+    *(volatile u32 *)0x400046c = 0x1000;
+    *(volatile u32 *)0x400046c = arg6 << 12;
+    *(volatile u32 *)0x4000500 = 1;
+    *(volatile u32 *)0x4000488 = (u16)a | ((u32)(u16)((arg2 << 8) >> 16) << 16);
+    *(volatile u32 *)0x4000490 = 0x3c0003c0;
+    *(volatile u32 *)0x4000488 = (u16)a | ((u32)(u16)(((arg2 + arg4) << 20) >> 16) << 16);
+    *(volatile u32 *)0x4000490 = 0x040003c0;
+    *(volatile u32 *)0x4000488 = (u16)c | ((u32)(u16)(((arg2 + arg4) << 20) >> 16) << 16);
+    *(volatile u32 *)0x4000490 = 0x04000040;
+    *(volatile u32 *)0x4000488 = (u16)c | ((u32)(u16)((arg2 << 8) >> 16) << 16);
+    *(volatile u32 *)0x4000490 = 0x3c000040;
+    *(volatile u32 *)0x4000504 = 0;
+    *(volatile u32 *)0x4000448 = 1;
+}
+
+void func_020c34c8(u32 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, u32 arg5, u32 arg6, u16 arg7) {
+    s32 a = (arg1 << 8) >> 16;
+    s32 b = (arg2 << 8) >> 16;
+    s32 c = ((arg1 + arg3) << 20) >> 16;
+    s32 d = ((arg2 + arg4) << 20) >> 16;
+    u32 v0 = arg0[0];
+    u32 v1 = arg0[1];
+    u32 v2 = arg0[2];
+    *(volatile u32 *)0x4000444 = 0;
+    *(volatile u32 *)0x4000470 = v0;
+    *(volatile u32 *)0x4000470 = v1;
+    *(volatile u32 *)0x4000470 = v2;
+    *(volatile u32 *)0x400046c = arg5 << 12;
+    *(volatile u32 *)0x400046c = 0x1000;
+    *(volatile u32 *)0x400046c = arg6 << 12;
+    *(volatile u32 *)0x4000500 = 1;
+    *(volatile u32 *)0x4000480 = arg7;
+    *(volatile u32 *)0x4000488 = (u16)a | ((u32)(u16)b << 16);
+    *(volatile u32 *)0x4000490 = 0x3c0003c0;
+    *(volatile u32 *)0x4000488 = (u16)a | ((u32)(u16)d << 16);
+    *(volatile u32 *)0x4000490 = 0x040003c0;
+    *(volatile u32 *)0x4000488 = (u16)c | ((u32)(u16)d << 16);
+    *(volatile u32 *)0x4000490 = 0x04000040;
+    *(volatile u32 *)0x4000488 = (u16)c | ((u32)(u16)b << 16);
+    *(volatile u32 *)0x4000490 = 0x3c000040;
+    *(volatile u32 *)0x4000504 = 0;
+    *(volatile u32 *)0x4000448 = 1;
 }
 
 void func_020c35c4(u32 *arg0, u32 arg1, u32 arg2, u32 arg3, u32 unused, u32 arg4, u32 arg5, u16 arg6, u32 arg7) {

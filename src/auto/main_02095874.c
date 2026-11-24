@@ -52,6 +52,28 @@ void func_02095f68(u8 *arg0) {
     *(u8 *)(arg0 + 0x16) &= 0xfe;
 }
 
+void func_02095fe8(u8 *arg0) {
+    u8 *r4 = *(u8 **)arg0;
+    u8 *r5 = *(u8 **)(*(u8 **)(arg0 + 0x14) + 8);
+    s32 zero = 0;
+    s32 val = 0x7b;
+    s16 r8, r9;
+
+    *(u16 *)(data_02160110 + 0xce) = *(u16 *)r5;
+    data_02160110[0xd0] = r4[0x114];
+    data_02160110[0xd1] = ((u8 (*)(u8 *))func_020329d8)(arg0);
+    func_02093510(r5, 0xd);
+    func_02093510(r5, 6);
+    func_02093510(r5, 2);
+    func_0209353c(0x1e, zero, (s16)(*(s16 *)(r5 + 0xe) - 2));
+    r5 = func_02093658(0x1e);
+    r8 = *(s16 *)(r5 + 0xc);
+    r9 = *(s16 *)(r5 + 0xe);
+    func_02093424(r5, 1);
+    func_02093510(r5, val);
+    func_020938b0(func_020936f8((u16)(*(u16 *)(r4 + 0x90) + 7), 0x1e, r8, r9, zero, 4, val), 0xf, val);
+}
+
 void func_020960dc(void) {
     func_02093424(func_02093658(0x1e), 0);
 }

@@ -195,7 +195,7 @@ s32 func_021100e4(u8 *arg0) {
  func_020c9a04(*(void **)(arg0+0x30),1);
  }
  cfg[0]=data_02144bb8;
- for(i=0,p=cfg;i<1;i++,p++) {
+ i=1; p=cfg; do {
  type=p->v[1];
  obj=func_020c9b24(*(void **)(arg0+0x30),(u16)p->v[0],(u8)type);
  *(s16 *)(obj+0x32)=p->v[2];
@@ -206,7 +206,7 @@ s32 func_021100e4(u8 *arg0) {
  *(s16 *)(obj+0x40)=p->v[7];
  obj[0x43]+=(u8)p->v[9];
  if(type==5) func_020c7894(obj,(u8)p->v[8]);
- }
+ p++; } while(--i);
  return 0;
 }
 

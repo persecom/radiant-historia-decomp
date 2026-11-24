@@ -163,7 +163,5 @@ void func_02007bb0(u8 *arg0, u64 arg1, void *arg2, void *arg3) {
 }
 
 void func_02007c2c(void);
-void func_02007c1c(void) {
-    func_02007c2c();
-}
+void func_02007c1c(void) { func_02007c2c(); }
 

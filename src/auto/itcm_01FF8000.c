@@ -33,16 +33,7 @@ void func_01ff81b8(void) {
     func_01ff81e4();
 }
 
-void func_01ff82b4(u32 val, s32 dst, s32 size) {
-    s32 end = dst + size;
-    while (1) {
-        if (dst >= end) {
-            return;
-        }
-        *(volatile u32 *)dst = val;
-        dst += 4;
-    }
-}
+void func_01ff82b4(u32 val,s32 dst,s32 size) { s32 end=dst+size; again: if(dst<end) { *(u32*)dst=val;dst+=4;goto again; } }
 
 extern u32 data_02fffe60;
 void func_01ff8388(u32 arg0, u8 *arg1, s32 arg2) {

@@ -78,6 +78,59 @@ u32 func_02016da4(const char *s) {
     return len;
 }
 
+void func_02016dc0(u8 *dst, u8 *src) {
+    u8 *p = dst;
+    s32 c;
+    u32 align = (u32)src & 3;
+    if (((u32)dst & 3) != align) {
+        goto tail;
+    }
+    if (align != 0) {
+        u32 n = 3 - align;
+        c = *src;
+        *p = c;
+        if ((c & 0xff) == 0) {
+            return;
+        }
+        if (n == 0) {
+            goto word;
+        }
+        do {
+            c = *++src;
+            if ((c & 0xff) == 0) {
+                return;
+            }
+            *++p = c;
+        } while (--n != 0);
+        src++;
+        p++;
+    }
+word:
+    {
+        u32 w = *(u32 *)src;
+        if (((w + 0xfefefeffu) & ~w & 0x80808080u) != 0) {
+            goto tail;
+        }
+        p -= 4;
+        do {
+            *(u32 *)(p + 4) = w;
+            w = *(u32 *)(src + 4);
+            src += 4;
+        } while (((w + 0xfefefeffu) & ~w & 0x80808080u) == 0);
+        p += 4;
+    }
+tail:
+    do {
+        c = *src;
+        *p = c;
+        if ((c & 0xff) == 0) {
+            return;
+        }
+        c = *++src;
+        *++p = c;
+    } while ((c & 0xff) != 0);
+}
+
 char *func_02016e88(char *dst, const char *src, u32 n) {
     const u8 *p = (const u8 *)src;
     u8 *q = (u8 *)dst;

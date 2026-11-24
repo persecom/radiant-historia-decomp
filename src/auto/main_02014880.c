@@ -2,7 +2,7 @@
 #include "common.h"
 
 void func_02014880(u8 *arg0, s32 arg1) {
-    s32 up, one = 1, zero = 0;
+    s32 up, one = 1;
     u8 *digits;
     u8 *dp;
     u8 *p;
@@ -13,7 +13,7 @@ void func_02014880(u8 *arg0, s32 arg1) {
     L_reset:
         arg0[4] = one;
         arg0[5] = '0';
-        *(s16 *)(arg0 + 2) = zero;
+        *(s16 *)(arg0 + 2) = 0;
         return;
     }
     if (arg1 >= arg0[4]) {
@@ -33,20 +33,20 @@ void func_02014880(u8 *arg0, s32 arg1) {
             up = one;
         }
     } else {
-        up = d > 5 ? one : zero;
+        up = d > 5 ? one : 0;
     }
     if (arg1 != 0) {
         do {
             dig = (*--dp - '0') + up;
-            up = dig > 9 ? one : zero;
-            if (up == zero && dig != zero) {
+            up = dig > 9 ? one : 0;
+            if (up == 0 && dig != 0) {
                 *dp = dig + '0';
                 break;
             }
             arg1--;
         } while (arg1 != 0);
     }
-    if (up != zero) {
+    if (up != 0) {
         e = *(s16 *)(arg0 + 2) + 1;
         arg0[4] = one;
         arg0[5] = '1';

@@ -27,8 +27,8 @@ extern void func_020e86c0(s32);
 extern void func_020df0c0(void);
 
 void func_0203d1d4(void) {
-    u8 **ctx = &data_02160a74;
-    void *p = *(void **)(*ctx + 0x94);
+    register u8 **ctx asm("r5") = &data_02160a74;
+    register void *p asm("r4") = *(void **)(data_02160a74 + 0x94);
     if (func_020df03c(1) != 0) {
         func_020a5ce4(p);
         p = NULL;

@@ -512,16 +512,17 @@ u32 func_02115174(u32 arg0) {
 extern s32 func_0200bb10(u8 *, u32, u32);
 extern s32 func_0200bb3c(u8 *, void *, s32);
 s32 func_0211519c(u32 arg0, u8 *arg1, s32 arg2, s32 arg3) {
-    u8 *g = (u8 *)data_0216cad0[0];
-    u8 *p = *(u8 **)(g + 0x90);
-    s32 maxchunk;
-    u8 *elem;
-    s32 total = 0;
-    u8 *buf = arg1;
-    s32 off = arg3;
-    s32 chunk, written;
+    register s32 total;
+    register s32 maxchunk;
+    register s32 chunk;
+    register u8 *g;
+    register u8 *elem;
+    u8 *p;
+    s32 written;
     u32 avail;
 
+    g = (u8 *)data_0216cad0[0];
+    p = *(u8 **)(g + 0x90);
     if (arg0 >= *(u32 *)(p + 8)) {
         return -1;
     }
@@ -530,28 +531,29 @@ s32 func_0211519c(u32 arg0, u8 *arg1, s32 arg2, s32 arg3) {
         maxchunk = arg2;
     }
     elem = p + 0xc + arg0 * 16;
+    total = 0;
     while (total < arg2) {
         chunk = arg2 - total;
         if (chunk > maxchunk) {
             chunk = maxchunk;
         }
-        avail = *(u32 *)(elem + 4) - off;
-        if (chunk > (s32)avail) {
+        avail = *(u32 *)(elem + 4) - arg3;
+        if (chunk > avail) {
             chunk = avail;
         }
         if (chunk == 0) {
             break;
         }
-        if (func_0200bb10(g + 0x34, *(u32 *)(elem + 0) + off, 0) == 0) {
+        if (func_0200bb10(g + 0x34, *(u32 *)(elem + 0) + arg3, 0) == 0) {
             return -1;
         }
-        written = func_0200bb3c(g + 0x34, buf, chunk);
+        written = func_0200bb3c(g + 0x34, arg1, chunk);
         if (written < 0) {
             return written;
         }
         total += written;
-        off += written;
-        buf += written;
+        arg3 += written;
+        arg1 += written;
     }
     return total;
 }

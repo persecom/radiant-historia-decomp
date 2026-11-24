@@ -63,3 +63,38 @@ s32 func_02078d8c(Obj_02078d8c *obj, s32 arg1) {
     return 0;
 }
 
+extern u32 data_0216263c[3];
+extern u32 data_0216244c[43];
+extern u64 data_02162658[3];
+extern void func_0206e8f0(u32, void *, u32);
+void func_02079094(void) {
+    u32 x = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
+    u16 r;
+    struct {
+        s32 x;
+        s32 y;
+        s32 z;
+    } v;
+    u64 a, b, c, t, res;
+    u32 r1, r2;
+    data_0216263c[0] = x;
+    r = ((x >> 16) * 5) >> 16;
+    if (r != 0) {
+        return;
+    }
+    v = *(typeof(v) *)data_0216244c;
+    a = data_02162658[0];
+    b = data_02162658[1];
+    c = data_02162658[2];
+    t = b * a + c;
+    res = b * t + c;
+    v.y = 0;
+    r1 = (u32)(((u64)(u32)(t >> 32) * 0x180000u) >> 32);
+    data_02162658[0] = res;
+    r2 = (u32)(((u64)(u32)(res >> 32) * 0x180000u) >> 32);
+    v.x += r1 - 0x100000;
+    v.z += r2 - 0xc0000;
+    v.z -= 0x40000;
+    func_0206e8f0(0x7d, &v, 2);
+}
+

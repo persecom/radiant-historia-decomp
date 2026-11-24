@@ -24,10 +24,11 @@ extern u32 func_0210a498(u32 *);
 
 extern void func_02109c54(u8 *);
 void *func_02109c60(u8 *arg0, u32 *arg1) {
+    u32 *out = arg1;
     u8 stack[0x10];
     u8 *buf = stack;
-    u32 zero = 0;
     void *result = NULL;
+    u32 zero = 0;
     u32 size;
     if (func_02109c04(buf, arg0, zero, zero) == 1) {
         void *p;
@@ -35,8 +36,8 @@ void *func_02109c60(u8 *arg0, u32 *arg1) {
         p = func_0210c518(size, data_02155c3c);
         func_02109c24((u32)buf, (u32)p, zero, size);
         func_02109c54(buf);
-        if (arg1 != NULL) {
-            *arg1 = size;
+        if (out != NULL) {
+            *out = size;
         }
         func_02006dc4(p, size);
         result = p;

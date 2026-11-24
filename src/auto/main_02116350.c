@@ -40,6 +40,29 @@ extern void func_021167f0(void *, void *);
 extern void func_021168f8(void *, void *);
 extern s32 func_02008128(void);
 extern void func_0200813c(s32);
+#pragma peephole off
+void func_02116350(void) {
+ SndStrmPlayer *p;
+ s32 i;
+ for(i=0;i<4;i++) {
+ p=&data_0216cb40[i];
+ u32 volume;
+ if(!p->b0) continue;
+ if(!p->unk11c) {func_021164e0((u8 *)p); continue;}
+ if(p->b2 && p->unk120) {
+ func_021146b8(p); p->b1=1; p->b2=0;
+ }
+ if(!p->b1) continue;
+ func_0211677c((u8 *)p+0xf0);
+ volume=data_0213e51c[p->unk15c];
+ volume=data_0213e51c[func_02116748((s32 *)((u8 *)p+0xf0)) >> 8]+volume+data_0213e51c[p->unk160];
+ if(volume!=p->unk164) {func_02114728(p,volume);p->unk164=volume;}
+ if(!p->b3) continue;
+ if(!func_02116794((u8 *)p+0xf0)) continue;
+ func_021164e0((u8 *)p);
+ }
+}
+#pragma peephole on
 void func_0211645c(u8 *arg0) {
     typedef struct {
         u8 pad[0x118];

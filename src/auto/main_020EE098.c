@@ -76,3 +76,31 @@ void func_020eed30(s32 arg0) {
 
 void func_020eedc8(void) {
 }
+
+void func_020eedcc(void) {
+    u8 *base = data_02160aec;
+    s32 minI = *(s16 *)(base + 0x58d36);
+    s32 maxI = 0;
+    s32 minJ = *(s16 *)(base + 0x58d38);
+    s32 maxJ = 0;
+    s32 ny = minI;
+    u8 *cell = base + 0xbc8;
+    s32 j;
+    for (j = 0; j < *(s16 *)(base + 0x58d38); j++) {
+        s32 i;
+        for (i = 0; i < ny; i++) {
+            if (*cell != 0) {
+                if (minI > i) minI = i;
+                if (maxI < i) maxI = i;
+                if (minJ > j) minJ = j;
+                if (maxJ < j) maxJ = j;
+            }
+            cell += 0xc;
+        }
+    }
+    *(s32 *)(data_02160aec + 0x58bc8) = minI;
+    *(s32 *)(data_02160aec + 0x58bcc) = maxI;
+    *(s32 *)(data_02160aec + 0x58bd0) = minJ;
+    *(s32 *)(data_02160aec + 0x58bd4) = maxJ;
+}
+

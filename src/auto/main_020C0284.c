@@ -20,6 +20,31 @@ extern s32 func_020dddfc(void *, void *, s32);
 extern void func_020020f8(void *, void *, void *);
 extern void func_020c1fec(void);
 extern void func_0210d9e4(void *);
+void func_020c0588(void) {
+    Unk20 buf = data_02143dcc;
+    *(volatile u32 *)0x040004a4 = 0x001f00c0;
+    func_020a3bbc(0x64);
+    buf.unk[1] = 0;
+    buf.unk[2] = 0;
+    buf.unk[3] = 0x20;
+    buf.unk[4] = 0x20;
+    buf.unk[8] = 0x20;
+    buf.unk[9] = 0x20;
+    {
+        u8 *base = data_02160a6c;
+        u8 *obj = *(u8 **)(base + 0x70);
+        while (obj != NULL) {
+            if (*(u32 *)(obj + 0x80) & 0x4000) {
+                u32 a = *(u32 *)(obj + 0xfc);
+                buf.unk[5] = a - 0x10;
+                buf.unk[6] = *(u32 *)(obj + 0x100) - *(u32 *)(*(u8 **)(obj + 0x1a4) + 4) - 0x20;
+            }
+            func_021098ac(&buf);
+            obj = *(u8 **)(obj + 0x13c);
+        }
+    }
+}
+
 void *func_020c0924(void) {
     return func_0210c594(0x10, data_02155c3c);
 }

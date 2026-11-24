@@ -30,22 +30,25 @@ extern u32 func_0210a498(u32 *);
 void func_021098ac(s16 *arg0) {
  s32 x=arg0[1]<<12, y=arg0[2]<<12;
  s32 width=arg0[3]<<12, height=arg0[4]<<12;
+ s32 flags;
+ s32 tx=arg0[5], ty=arg0[6], tz=arg0[7];
  s32 right,bottom;
  u16 x0,y0,x1,y1;
  if(width<0) {right=x-1;width=-width;x=width+right;} else right=width+x;
  if(height<0) {bottom=y-1;height=-height;y=height+bottom;} else bottom=height+y;
- s32 tx=arg0[5], ty=arg0[6], tz=arg0[7];
  *(volatile u32 *)0x4000444=0;
+ flags=arg0[0];
  *(volatile s32 *)0x4000470=tx<<12;
  *(volatile s32 *)0x4000470=ty<<12;
  *(volatile s32 *)0x4000470=tz<<12;
- if(!(arg0[0]&1)) {
+ if(!(flags&1)) {
  *(volatile s32 *)0x400046c=width;
  *(volatile s32 *)0x400046c=height;
  }else{
- s32 sx=arg0[8],sy=arg0[9];
- *(volatile s32 *)0x400046c=sx<<12;
- *(volatile s32 *)0x400046c=sy<<12;
+ width=arg0[8]<<12;
+ height=arg0[9]<<12;
+ *(volatile s32 *)0x400046c=width;
+ *(volatile s32 *)0x400046c=height;
  }
  x0=(s16)(x>>8);y0=(s16)(y>>8);
  x1=(s16)(right>>8);y1=(s16)(bottom>>8);

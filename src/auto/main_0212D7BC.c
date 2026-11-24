@@ -62,6 +62,35 @@ extern s32 data_02156d74[];
 extern s32 data_021740d8[];
 extern s32 data_021740e4[];
 extern u8 data_021740f0[10][0x64];
+typedef s32 (*UnkFn_0212d7bc)(void *, s32);
+void func_0212d7bc(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    void *obj = (void *)arg4;
+    u8 *p = (u8 *)arg0;
+    s32 total;
+    func_0212e57c();
+    p[1] = 1;
+    p[2] = 0;
+    *(u32 *)(p + 4) = arg4;
+    *(u32 *)(p + 8) = arg1;
+    *(u32 *)(p + 0xc) = arg2;
+    *(u32 *)(p + 0x10) = arg3;
+    *(u32 *)(p + 0x14) = arg3 >> 31;
+    *(u32 *)(p + 0x18) = ((arg3 % 0x800) > 0) + (arg3 / 0x800);
+    *(u32 *)(p + 0x30) = 0x40;
+    *(u32 *)(p + 0x5c) = 0;
+    *(u32 *)(p + 0x60) = 0xfffff;
+    *(u32 *)(p + 0x34) = ((arg3 % 0x800) > 0) + (arg3 / 0x800);
+    if (*(u32 *)(p + 4) != 0) {
+        total = ((UnkFn_0212d7bc)((u32 **)obj)[0][9])(obj, 0) + ((UnkFn_0212d7bc)((u32 **)obj)[0][9])(obj, 1);
+        *(u32 *)(p + 0x44) = total;
+        *(u32 *)(p + 0x1c) = total;
+        *(u32 *)(p + 0x20) = total;
+    }
+    p[0x48] = 0;
+    p[0] = 1;
+    func_0212e588();
+}
+
 void *func_0212d89c(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     u8 *entry = NULL;
     s32 i;

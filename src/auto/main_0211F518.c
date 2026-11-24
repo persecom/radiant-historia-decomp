@@ -12,6 +12,40 @@ typedef struct {
 extern void func_021205ec(s32, void *, s32);
 extern void func_02008e50(void *, u32, u32);
 
+extern void func_02120534(u32 *, u32);
+void func_0211fc60(u8 *arg0) {
+    s32 mode;
+    s32 r1;
+    u8 *p;
+    u32 off;
+    u32 val;
+
+    mode = (*(void (**)(u8 *))(arg0 + 0x34) != NULL) ? *(u8 *)(arg0 + 0x96) : 0;
+    if (mode == 1) {
+        {
+            void (*fn)(u8 *) = *(void (**)(u8 *))(arg0 + 0x34);
+            *(u32 *)(arg0 + 8) &= ~0x40;
+            fn(arg0);
+        }
+        mode = (*(void (**)(u8 *))(arg0 + 0x34) != NULL) ? *(u8 *)(arg0 + 0x96) : 0;
+        r1 = *(u32 *)(arg0 + 8) & 0x40;
+    } else {
+        r1 = 0;
+    }
+    if (!(*(u32 *)(arg0 + 8) & 0x100) && r1 == 0) {
+        p = *(u8 **)(arg0 + 0);
+        off = (u32)p[1] | ((u32)p[2] << 8) | ((u32)p[3] << 16) | ((u32)p[4] << 24);
+        val = (u32)p[5] | ((u32)p[6] << 8) | ((u32)p[7] << 16) | ((u32)p[8] << 24);
+        func_02120534((u32 *)(p + off), val);
+    }
+    if (mode == 3) {
+        void (*fn)(u8 *) = *(void (**)(u8 *))(arg0 + 0x34);
+        *(u32 *)(arg0 + 8) &= ~0x40;
+        fn(arg0);
+    }
+    *(u8 **)(arg0 + 0) += 9;
+}
+
 void func_0211fd3c(u8 *arg0, s32 arg1) {
     s32 flags = *(s32 *)(arg0 + 8);
     s32 arr[3];

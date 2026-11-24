@@ -50,6 +50,18 @@ void func_020be330(u8 *arg0) {
     }
 }
 
+void func_020be3a8(u8 *arg0) {
+    s16 a = *(s16 *)(arg0 + 0x1a);
+    s16 b = *(s16 *)(arg0 + 0x1c);
+    s32 w = (*(s32 *)(data_021600e4 + 0x6c) << 5) / 4096;
+    func_020be30c(&a, &b);
+    func_020a9e38(&a, &b);
+    func_020a9d9c(a, b, (s16)(a + ((w << 4) >> 16)), b);
+    func_020a9d9c((s16)(a + ((w << 4) >> 16)), b, (s16)(a + ((w << 4) >> 16)), (s16)(b + ((w << 4) >> 16)));
+    func_020a9d9c(a, (s16)(b + ((w << 4) >> 16)), (s16)(a + ((w << 4) >> 16)), (s16)(b + ((w << 4) >> 16)));
+    func_020a9d9c(a, b, a, (s16)(b + ((w << 4) >> 16)));
+}
+
 void func_020be650(void) {
     *(volatile u32 *)0x0400001c = 0;
     *(volatile u32 *)0x04000000 = (*(volatile u32 *)0x04000000 & ~0x1f00) | 0x1f00;

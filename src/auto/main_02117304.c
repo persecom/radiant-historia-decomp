@@ -500,6 +500,35 @@ s32 func_02118008(u8 *arg0, u16 arg1, u16 arg2) {
     return 1;
 }
 
+s32 func_0211809c(u8 *arg0, u16 *arg1, u16 arg2) {
+    u16 end = *(u16 *)(arg0 + 6);
+    u16 cur = *(u16 *)(arg0 + 8);
+    s32 valid = 0;
+    u32 avail;
+    if (cur <= end + 1 && *(u16 *)(arg0 + 4) <= end) {
+        valid = 1;
+    }
+    avail = valid ? (u16)(end - cur + 1) : 0;
+    if (avail >= 1) {
+        u16 *oam = (u16 *)(data_0216e274 + *(s32 *)arg0 * 0x540 + 0x100 + *(u16 *)(arg0 + 8) * 8);
+        u16 a0 = arg1[0];
+        u16 a1 = arg1[1];
+        u16 a2 = arg1[2];
+        oam[0] = a0;
+        oam[1] = a1;
+        oam[2] = a2;
+        if (arg2 != 0xfffe) {
+            u32 attr = *(u32 *)oam;
+            if (((attr << 22) >> 30) & 1) {
+                *(u32 *)oam = (attr & ~0x3e000000) | (((u32)arg2 << 27) >> 2);
+            }
+        }
+        *(u16 *)(arg0 + 8) = *(u16 *)(arg0 + 8) + 1;
+        return 1;
+    }
+    return 0;
+}
+
 s32 func_02118178(u8 *arg0, s32 *arg1) {
     u16 count = *(u16 *)(arg0 + 0xc);
     u16 idx = *(u16 *)(arg0 + 0xe);

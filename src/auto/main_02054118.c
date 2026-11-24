@@ -216,21 +216,22 @@ void func_020544d8(void *arg0, s32 arg1) {
     }
 }
 
+#pragma scheduling off
 s32 func_020546c0(u8 *arg0,s32 arg1) {
  u16 tries=0;
  u32 range=(u16)(arg1*2);
  for(;;) {
+ u32 val;
  u32 seed=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
  s32 angle=(u16)(((seed>>16)*0xfffe)>>16)-65535;
  s32 radius;
  data_0216263c[0]=seed;
  if(angle<0) angle=-angle;
  if(arg1!=0) {
- s32 val;
  seed=data_0216263c[1]*seed+data_0216263c[2];
  data_0216263c[0]=seed;
  val=seed>>16;
- if(range) val=((u32)val*range)>>16;
+ if(range) val=(val*range)>>16;
  radius=-arg1+(u16)val;
  } else radius=0;
  angle >>=4;
@@ -246,7 +247,7 @@ s32 func_020546c0(u8 *arg0,s32 arg1) {
  }
  return 1;
 }
-
+#pragma scheduling reset
 void func_02054d5c(u8 *arg0) {
     u8 *p = *(u8 **)(data_021600ac + 0x68);
     struct { s32 x, y, z; } vec1 = { 0, 0, 0 };

@@ -55,7 +55,4 @@ extern u32 data_0215d084[3];
 extern s32 func_020076fc(s32);
 extern void func_0200777c(s32);
 
-s32 func_020076e8(s32 arg0) {
-    func_0200777c(func_020076fc(arg0));
-    return arg0;
-}
+s32 func_020076e8(s32 arg0) { s32 r = func_020076fc(arg0); func_0200777c(r); return arg0; }

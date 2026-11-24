@@ -385,6 +385,30 @@ s32 func_0210b130(u8 *arg0, s32 arg1) {
     return ret;
 }
 
+void func_0210b198(u8 *arg0, u16 arg1, u32 arg2, s32 arg3, s32 arg4) {
+    if (*(u32 **)(arg0 + 0xfc) != NULL) {
+        Unk_0210afcc *s = (Unk_0210afcc *)(arg0 + 0x100);
+        if (!s->flags.bit3) {
+            s->flags.bit3 = 1;
+            s->flags.bit5 = (u16)arg3;
+            s->unkA2 = arg1;
+            s->flags.bit7 = (u16)arg4;
+            **(u32 **)(arg0 + 0xfc) = arg2;
+        }
+    }
+    if (*(u32 **)(arg0 + 0x100) != NULL) {
+        Unk_0210afcc *s = (Unk_0210afcc *)(arg0 + 0x100);
+        if (!s->flags.bit4) {
+            *(u16 *)&s->flags |= 0x10;
+            s->flags.bit3 = 1;
+            s->flags.bit5 = (u16)arg3;
+            s->unkA2 = arg1;
+            s->flags.bit7 = (u16)arg4;
+            **(u32 **)(arg0 + 0x100) = arg2;
+        }
+    }
+}
+
 extern void func_0211cd24(u8 *, u8 *);
 extern void func_02120bb0(void *);
 u8 *func_0210b27c(u8 *arg0, s32 arg1) {

@@ -95,13 +95,17 @@ extern void func_021167f0(void *, void *);
 void func_020a7598(void *arg0) {
     Struct20_020a7598 s0 = data_0214364c;
     Struct108_020a7598 s1 = data_02143660;
+    u8 *p5;
+    u8 *p6;
     u8 i;
 
     for (i = 0; i < 3; i++) {
-        u8 *p5 = func_020a7460();
-        u8 *p6 = *(u8 **)(p5 + 4);
-        u32 id = ((u32 *)&s1)[i * 9 + 4];
-        u8 *p2 = func_020f4d40(id);
+        u32 id;
+        u8 *p2;
+        p5 = func_020a7460();
+        p6 = *(u8 **)(p5 + 4);
+        id = ((u32 *)&s1)[i * 9 + 4];
+        p2 = func_020f4d40(id);
         if (p2 == NULL) {
             p2 = func_020f4c2c(id);
         }
@@ -230,9 +234,9 @@ volatile char func_020a795c(u32 arg0, u32 *arg1, u32 *arg2)
   *arg2 = *((u32 *) (result + 8));
 }
 
-static s32 func_020a79a4(void) {
+s32 func_020a79a4(void) {
 s32 result;
-s32 three=3, zero=0;
+s32 zero=0, three=3;
 data_02162868=1; data_0216bf84=zero;
 func_0210968c(three,16,1);
 func_02108e54(zero); func_020a7b18(); func_02109264(zero);

@@ -22,6 +22,56 @@ extern void func_020f1fa4(u8 *);
 extern void func_0210da14(void *);
 extern void func_0210db10(void *);
 extern void func_020e972c(void *);
+extern u32 data_02160af0[];
+extern const char data_02151d9c[];
+extern const char data_02151da0[];
+extern const char data_02151da4[];
+extern const char data_02151dac[];
+extern s32 func_02109cf0(const char *);
+extern s32 func_020123f0(const char *, const char *);
+extern void *func_02109b14(const char *, s32);
+extern void func_0210b0c8(void *, void *);
+extern void func_0210b130(void *, void *);
+s32 func_020f1a1c(void *arg0, s32 arg1) {
+    char path[0x20];
+    char ext[8];
+    s32 ret = 0;
+
+    if (arg1 == 0) {
+        func_02005e80(path, data_02151d9c, data_02160af0[3]);
+    } else {
+        func_02005e80(path, data_02151da0, data_02160af0[4]);
+    }
+
+    if (func_02109cf0(path) != 0) {
+        u16 i = 0;
+        while (i < 0x20) {
+            if (path[i] == 0) {
+                u16 len = i;
+                i = len - 5;
+                while (i < len) {
+                    ext[5 - (len - i)] = path[i];
+                    i++;
+                }
+                ext[5 - (len - i)] = 0;
+                break;
+            }
+            i++;
+        }
+
+        if (func_020123f0(data_02151da4, ext) == 0 || func_020123f0(data_02151dac, ext) == 0) {
+            if (arg1 == 0) {
+                func_0210b0c8(arg0, func_02109b14(path, 0));
+            } else {
+                func_0210b130(arg0, func_02109b14(path, 0));
+            }
+            ret = 1;
+        }
+    }
+
+    return ret;
+}
+
 void func_020f1dd4(s32 *arg0, s32 arg1) {
     func_0210b198(*arg0, (u16)(arg1 + 1), 0, 1, 0);
 }

@@ -28,6 +28,49 @@ void func_020ecd10(void *, u32, void *);
 void func_020ecac8(void *, u32);
 s32 func_020ed2d0(void *, u8, s32);
 
+void func_02047490(void *);
+void func_020ecaa4(void *);
+void func_0210da14(void *);
+void func_0210db10(void *);
+void func_02046e30(void) {
+ void *outer;
+ void *zero=NULL;
+ u8 *node;
+ u8 *prev;
+ node = *(u8 **)(data_02160204+0xe8);
+ while(node) {
+  if(*(u16 *)(node+0x90)>12000 && *(u16 *)(node+0x90)<=13000) {
+   prev=*(u8 **)(node+0x130);
+   func_02047490(node);
+   node=prev;
+  } else if(*(void **)(node+0x108)) {
+   func_020ecaa4(*(void **)(node+0x108));
+   *(void **)(node+0x108)=NULL;
+  }
+  node=*(u8 **)(node+0x134);
+ }
+ while(*(void **)((u8 *)data_021600bc+0xa0)) {
+  outer=*(void **)((u8 *)data_021600bc+0xa0);
+  func_021168f8((void **)((u8 *)data_021600bc+0xa0),outer);
+  prev=*(u8 **)outer;
+  if(prev) {
+   while((node=*(u8 **)prev)!=NULL) {
+    func_021168f8((void **)prev,node);
+    if(node) func_0210c5dc(node);
+   }
+  }
+  if(*(void **)outer) {func_0210c5dc(*(void **)outer); *(void **)outer=zero;}
+  if(outer) func_0210c5dc(outer);
+ }
+ while(*(void **)((u8 *)data_021600bc+0xb8)) {
+  void *p=*(void **)((u8 *)data_021600bc+0xb8);
+  func_021168f8((void **)((u8 *)data_021600bc+0xb8),p);
+  if(p) func_0210c5dc(p);
+ }
+ func_0210da14(data_021600bc);
+ func_0210db10((u8 *)data_021600bc+0x14);
+}
+
 void func_020471b8(Obj_02046e30 *obj, u32 arg1) {
     if (arg1 == 2000) {
         return;

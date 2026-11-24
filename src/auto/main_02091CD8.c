@@ -33,14 +33,14 @@ extern void func_02012590(const char *, const char *, ...);
 void func_02092190(void) {
 }
 
-void func_02092194(s32 id,s32 x,s32 y,s32 w,s32 h,s32 tw,s32 th,s32 z,s32 edge,s32 mid){
+void func_02092194(s32 id,s32 x,s32 y,s32 w,s16 h,s16 tw,s16 th,s16 z,s32 edge,volatile s16 mid){
 Unk_02092194 buf=data_02140f2c;
 func_020a3bbc(id);
 buf.data[8]=edge;
 buf.data[2]=0;buf.data[1]=0;buf.data[3]=buf.data[8];buf.data[4]=th;buf.data[9]=h;
 buf.data[5]=x;buf.data[6]=y;buf.data[7]=z;
 func_021098ac(&buf);
-buf.data[8]=w-2*edge;
+buf.data[8]=(s16)(-2*edge+w);
 buf.data[1]=mid;buf.data[2]=0;buf.data[3]=edge;buf.data[4]=th;buf.data[9]=h;
 buf.data[5]=x+edge;buf.data[6]=y;buf.data[7]=z;
 func_021098ac(&buf);

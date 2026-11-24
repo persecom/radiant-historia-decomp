@@ -9,10 +9,16 @@ typedef struct Mtx9 {
 } Mtx9;
 
 extern void func_02000cd8(void *, void *, u32, u32, u32);
-void func_020010d8(u32 *p) {
-    p[0] = 0x1000; p[1] = 0; p[2] = 0; p[3] = 0;
-    p[4] = 0x1000; p[5] = 0; p[6] = 0; p[7] = 0;
-    p[8] = 0x1000; p[9] = 0; p[10] = 0; p[11] = 0;
+void func_020010d8(u32 *p)
+{
+    u64 *q = (u64 *)p;
+
+    *q++ = 0x1000ULL;
+    *q++ = 0ULL;
+    *q++ = 0x1000ULL;
+    *q++ = 0ULL;
+    *q++ = 0x1000ULL;
+    *q++ = 0ULL;
 }
 
 void func_02001134(u32 *in, u32 *out) {

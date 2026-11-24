@@ -220,9 +220,12 @@ s32 func_0210c0e8(Vec *arg0, Vec *arg1, Vec *arg2, Vec *arg3, Vec *arg4) {
     s32 d1;
     s32 d2;
     s32 t;
-    s32 x;
-    s32 y;
-    s32 z;
+    s64 x;
+    s64 y;
+    s64 z;
+    s32 ax;
+    s32 ay;
+    s32 az;
 
     func_02002128(arg2, arg0, &v);
     d1 = func_02002158(&v, arg3);
@@ -231,12 +234,15 @@ s32 func_0210c0e8(Vec *arg0, Vec *arg1, Vec *arg2, Vec *arg3, Vec *arg4) {
         return 0;
     }
     t = func_02001fb0(d1, d2);
-    x = (s32)(((s64)arg1->x * t + 0x800) >> 12);
-    y = (s32)(((s64)arg1->y * t + 0x800) >> 12);
-    z = (s32)(((s64)arg1->z * t + 0x800) >> 12);
-    arg4->x = arg0->x + x;
-    arg4->y = arg0->y + y;
-    arg4->z = arg0->z + z;
+    x = (s64)arg1->x * t;
+    ax = arg0->x;
+    y = (s64)arg1->y * t;
+    ay = arg0->y;
+    z = (s64)arg1->z * t;
+    az = arg0->z;
+    arg4->x = ax + (s32)((x + 0x800) >> 12);
+    arg4->y = ay + (s32)((y + 0x800) >> 12);
+    arg4->z = az + (s32)((z + 0x800) >> 12);
     return 1;
 }
 

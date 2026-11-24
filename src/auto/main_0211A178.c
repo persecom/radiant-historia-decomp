@@ -22,6 +22,25 @@ extern u32 data_02155ed0[4];
 
 
 extern void func_0211c5fc(void);
+void func_0211a178(s32 x, s32 y, s32 z) {
+volatile s32 m[6];
+if(data_0216f234[1]) {
+s32 i=data_0216f234[3];
+*(volatile s32 *)((u8 *)data_0216f3d4+i*24)+=x;
+{
+s32 a=*(volatile s32 *)((u8 *)data_0216f3d8+i*24);
+s32 b=((volatile s32 *)data_0216f244)[i];
+*(s32 *)((u8 *)data_0216f3d8+i*24)=a+y;
+data_0216f244[i]=b+z;
+}
+return;
+}
+m[0]=0x1000; m[1]=0; m[2]=0; m[3]=0x1000; m[5]=y; m[4]=x;
+{ void *p=data_0216f3c4[data_0216f234[3]]; func_0211a4e0((void *)m,p,p); }
+{ void *p=data_0216f6c4[data_0216f234[3]]; func_0211a4e0((void *)m,p,p); }
+data_0216f244[data_0216f234[3]]+=z;
+}
+
 void func_0211a4c0(void) {
     func_0211c5fc();
 }
@@ -97,15 +116,17 @@ s32 value;
 for(i=0;i<data_021701cc[1];i++){
 p=(u8 *)data_021701cc[2]+i*0x30;
 if(*(u32 *)(p+0x1c)!=0){
-for(j=0;j<3;j++){
+j=0;
+while(j<3){
 flag=0;
 if((*(u32 *)(p+0x24)&(1<<j)) && (*(u32 *)(p+0x20)&(1<<j))) flag=1;
 if(flag){
-base=j==0 ? *(u32 *)(p+0x14) : *(u32 *)(p+0x10);
 kind=data_02144d9c[j];
+base=j==0 ? *(u32 *)(p+0x14) : *(u32 *)(p+0x10);
 value=func_02118e8c(p,j);
 if(((s32 (*)(u32,s32,u32,u32))data_021701cc[0])(kind,value,base+*(u32 *)(p+0x28),*(u32 *)(p+0x2c))!=0) *(u32 *)(p+0x24)&=~(1<<j);
 }
+j++;
 }
 *(u32 *)(p+0x20)=0;
 }

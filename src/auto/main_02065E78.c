@@ -86,6 +86,43 @@ void func_020665e0(void) {
     }
 }
 
+void func_020a3bbc(s32);
+void func_021098ac(void *);
+void func_020a7194(void *);
+void func_020a72b8(void *);
+void func_020be0ec(void);
+void func_020aa94c(void);
+void func_020a638c(void *,s32,void *,s32);
+void func_020a6020(void);
+void func_02066868(void) {
+ u8 *base=data_021600e0[1];
+ s32 i;
+ Params_02066868 p=data_0213fc60;
+ *(volatile u32 *)0x40004a4= 0x1f0080;
+ *(volatile u32 *)0x4000480= 0x7fff;
+ p.v[1]=0; p.v[2]=0; p.v[3]=256; p.v[4]=256;
+ { u8 *current=*(u8 *volatile *)&data_021600e0[1];
+ p.v[8]=(*(s32 *)(current+0x6c)*256)/4096;
+ p.v[9]=(*(s32 *)(current+0x6c)*256)/4096; }
+ for(i=0;i<4;i++) {
+  s32 xy[2],scale;
+  func_020a3bbc(i);
+  xy[0]=i%2; xy[1]=i/2;
+  scale=*(s32 *)(data_021600e0[1]+0x6c);
+  xy[0]=(xy[0]<<8)-(xy[0]<<3); xy[1]=(xy[1]<<8)-(xy[1]<<3);
+  xy[0]=(xy[0] * scale)/4096;
+  xy[1]=(xy[1] * scale)/4096;
+  p.v[5]=*(s32 *)(data_021600e0[1]+0x44)+(xy[0]-32);
+  p.v[6]=*(s32 *)(data_021600e0[1]+0x48)+(xy[1]+8);
+  func_021098ac(&p);
+ }
+ func_020a7194(base+0x13d4);
+ func_020a72b8(base+0x13e0);
+ func_020be0ec(); func_020aa94c();
+ func_020a638c(base+0x118,*(s32 *)(base+0x6c),base+0x44,0);
+ func_020a6020();
+}
+
 void func_02066b7c(u32 arg0, u32 arg1, u32 arg2) {
     u8 *ptr = data_021600e0[1];
     ptr[0xe0] = 3;

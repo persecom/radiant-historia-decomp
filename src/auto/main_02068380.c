@@ -279,68 +279,67 @@ void func_02068380(u8 *arg0)
         }
     }
 
-    {
-        u16 phase = e->phase;
+    if (e->phase == 1) {
         u16 i;
+        for (i = 10; i < 16; i++) {
+            p = (Particle *)func_02067698(arg0, i);
 
-        if (phase == 1) {
-            for (i = 10; i < 16; i++) {
-                p = (Particle *)func_02067698(arg0, i);
+            p->active = 1;
+            p->flag2f = 1;
 
-                p->active = 1;
-                p->flag2f = 1;
+            p->x = 0;
+            p->y = 0;
+            p->z = 0;
 
-                p->x = 0;
-                p->y = 0;
-                p->z = 0;
+            p->scaleX = 8;
+            p->scaleY = 8;
 
-                p->scaleX = 8;
-                p->scaleY = 8;
-
-                p->fxScaleX = p->scaleX * 0x1000;
-                p->fxScaleY = p->scaleY * 0x1000;
-            }
-
-            e->velocity = -0x400;
-            e->phase++;
-        } else if (phase == 2) {
-            for (i = 10; i < 16; i++) {
-                p = (Particle *)func_02067698(arg0, i);
-
-                p->y += e->velocity;
-            }
-
-            if (p->y < -0x10000) {
-                e->velocity = 0x2000;
-                e->phase++;
-            }
-
-            e->velocity -= 0x400;
-        } else if (phase == 3) {
-            for (i = 10; i < 16; i++) {
-                s32 index;
-                s32 sx, sy;
-
-                p = (Particle *)func_02067698(arg0, i);
-
-                index = ((((i - 10) * 0x2aa8) % 0x10000) >> 4) * 2;
-
-                p->y += e->velocity;
-                p->x += ((p->fxScaleX / 3) >> 12) * ((s16 *)data_0213a394)[index];
-                p->z += ((p->fxScaleY / 3) >> 12) * ((s16 *)data_0213a394)[index + 1];
-
-                sx = (p->fxScaleX * 91) / 100;
-                p->fxScaleX = sx;
-
-                sy = (p->fxScaleY * 91) / 100;
-                p->fxScaleY = sy;
-
-                p->scaleX = sx >> 12;
-                p->scaleY = sy >> 12;
-            }
-
-            e->velocity -= 0x400;
+            p->fxScaleX = p->scaleX * 0x1000;
+            p->fxScaleY = p->scaleY * 0x1000;
         }
+
+        e->velocity = -0x400;
+        e->phase++;
+        return;
+    }
+
+    if (e->phase == 2) {
+        u16 i;
+        for (i = 10; i < 16; i++) {
+            p = (Particle *)func_02067698(arg0, i);
+
+            p->y += e->velocity;
+        }
+
+        if (p->y < -0x10000) {
+            u16 nextPhase = e->phase + 1;
+            e->velocity = 0x2000;
+            e->phase = nextPhase;
+        }
+
+        e->velocity -= 0x400;
+        return;
+    }
+
+    if (e->phase == 3) {
+        u16 i;
+        for (i = 10; i < 16; i++) {
+            s32 index;
+
+            p = (Particle *)func_02067698(arg0, i);
+            index = ((((i - 10) * 0x2aa8) % 0x10000) >> 4) * 2;
+
+            p->y += e->velocity;
+            p->x += ((p->fxScaleX / 3) >> 12) * ((s16 *)data_0213a394)[index];
+            p->z += ((p->fxScaleY / 3) >> 12) * ((s16 *)data_0213a394)[index + 1];
+
+            p->fxScaleX = (p->fxScaleX * 91) / 100;
+            p->fxScaleY = (p->fxScaleY * 91) / 100;
+            p->scaleX = p->fxScaleX >> 12;
+            p->scaleY = p->fxScaleY >> 12;
+        }
+
+        e->velocity -= 0x400;
     }
 }
     extern void *func_02067698(u8 *, u16);

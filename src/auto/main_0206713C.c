@@ -29,6 +29,27 @@ extern void func_02067744(void);
 s32 func_0210c2f4(void *,void *);
 s32 func_02002404(s32,s32);
 
+#pragma opt_common_subs off
+void func_0206713c(s32 arg0,s32 arg1) {
+ u8 *base=data_021477a0; u8 i;
+ if(arg1==0) {
+ switch(arg0) {
+ case 1: func_02067354(data_021477a0,101); break;
+ case 8: {
+ IdList6_6713c list=data_0213fc8c;
+ for(i=0;i<6;i++) func_02067294(base+list.ids[i]*20,list.ids[i]);
+ break;
+ }
+ case 2: {
+ IdList18_6713c list=data_0213fca4;
+ for(i=0;i<18;i++) {func_02067294(base+list.ids[i]*20,list.ids[i]);func_021091b4();}
+ break;
+ }
+ case 18: { const u32 list[1]={74}; func_02067294(base+list[0]*20,list[0]); break; }
+ }
+ } else func_02067294(base+arg0*20,arg0);
+}
+#pragma opt_common_subs reset
 void *func_02067294(void *arg0, u32 arg1) {
     void *result;
     u8 *p1;

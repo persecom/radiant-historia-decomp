@@ -53,8 +53,9 @@ s32 func_02022068(s32 arg0, ...) {
 
 #pragma peephole off
 void func_02022088(s32 arg0, s32 arg1, ...) {
-    u8 *p = func_02021f54(((s32 *)&arg0)[0]);
-    *p = (u8)(((s32 *)&arg0)[1] & 0xff);
+    s32 *args = &arg0;
+    u8 *p = func_02021f54(args[0]);
+    *p = (u8)(args[1] & 0xff);
 }
 #pragma peephole on
 void func_020220b0(s32 arg0, s32 arg1, ...) {

@@ -117,13 +117,14 @@ void func_0203fcc0(u16 arg0) {
     data_021600a0->unk34 = arg0;
 }
 
+#pragma peephole off
 void func_0203fcd4(s32 arg0) {
-    switch (arg0) {
-    case 0:
+    if (arg0 == 0) {
         data_021600a0->unk36 = 0;
         return;
-    default:
-        data_021600a0->unk36 |= 0x8000;
     }
+    if (arg0 == 0) {
+        return;
+    }
+    data_021600a0->unk36 |= 0x8000;
 }
-

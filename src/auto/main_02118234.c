@@ -20,14 +20,14 @@ u32 channel;
 if (*(u16 *)(p+8)<=*(u16 *)(p+6)+1 && *(u16 *)(p+4)<=*(u16 *)(p+6)) valid=1;
 if (!valid) size=0;
 else size=(u16)(*(u16 *)(p+6)-*(u16 *)(p+4)+1)*8;
-dst=(u8 *)((u32)data_0216e274+*(u32 *)p*0x540+0x100+*(u16 *)(p+4)*8);
+dst=data_0216e274+*(u32 *)p*0x540+0x100+*(u16 *)(p+4)*8;
 func_02006d8c(dst,size);
 channel=data_02145ba4;
 if(channel>3) channel=-1;
 if(channel!=-1) func_02008568(channel,dst,0xc0,size,1);
 else func_02008e24(0xc0,dst,size);
 } else {
-u8 *dst=(u8 *)((u32)data_0216e274+*(u32 *)p*0x540+0x100+*(u16 *)(p+4)*8);
+u8 *dst=data_0216e274+*(u32 *)p*0x540+0x100+*(u16 *)(p+4)*8;
 u16 count=*(u16 *)(p+6)-*(u16 *)(p+4)+1;
 u16 i;
 for(i=0;i<count;i++) { *(u16 *)dst=0xc0;dst+=8; }

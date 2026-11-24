@@ -78,8 +78,8 @@ void func_02069f80(u8 *arg0)
     } Effect;
 
     Effect *e = (Effect *)arg0;
-    register s32 posY = ((volatile Effect *)e)->y;
-    register u16 state = ((volatile Effect *)e)->state;
+    s32 posY = ((volatile Effect *)e)->y;
+    u16 state = ((volatile Effect *)e)->state;
 
     e->y = posY + 0x18000;
 

@@ -128,7 +128,8 @@ s32 func_020295f0(u8 *arg0, u8 *arg1) {
  s16 roll;
  if(sum>0) {
  u16 limit=sum;
- u32 value=data_0216263c[0]*data_0216263c[1]+data_0216263c[2];
+ u32 seed=data_0216263c[0], multiplier=data_0216263c[1], increment=data_0216263c[2];
+ u32 value=seed*multiplier+increment;
  data_0216263c[0]=value;
  value >>= 16;
  if(limit) value=(value*limit)>>16;

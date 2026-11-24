@@ -18,35 +18,34 @@ void func_020c11f4(void) {
 Unk_020c11f4 buf=data_02143e44;
 u8 *node;
 data_02160218[1]=func_0210c594(16,data_02155c3c);
-func_021167ac(data_02160218[1]+4,4);
+func_021167ac(&data_02160218[1]->head,4);
 data_02160a6c[0x121]=0;
-*(u32 *)data_02160218[1]=0;
+data_02160218[1]->count=0;
 node=*(u8 **)(data_02160a6c+0x70);
-while(node) {
+for(;node;node=*(u8 **)(node+0x13c)) {
 if(*(u16 *)(node+0x8e)==buf.a) {
-if(*(u32 *)data_02160218[1]==0) {
-u8 *entry=func_0210c594(12,data_02155c3c);
-*(u16 *)entry=buf.b;
-func_021167f0(data_02160218[1]+4,entry);
-++*(u32 *)data_02160218[1];
+Entry_020c11f4 *entry;
+if(data_02160218[1]->count==0) {
+entry=func_0210c594(12,data_02155c3c);
+entry->id=buf.b;
+func_021167f0(&data_02160218[1]->head,entry);
+++data_02160218[1]->count;
 } else {
-u8 *cur=*(u8 **)(data_02160218[1]+4);
+Entry_020c11f4 *cur=data_02160218[1]->head;
 int absent=1;
-while(cur) {
-if(*(u16 *)cur==buf.b) absent=0;
-cur=*(u8 **)(cur+8);
+for(;cur;cur=cur->next) {
+if(cur->id==buf.b) absent=0;
 }
 if(absent) {
-u8 *entry=func_0210c594(12,data_02155c3c);
-*(u16 *)entry=buf.b;
-func_021167f0(data_02160218[1]+4,entry);
-++*(u32 *)data_02160218[1];
+entry=func_0210c594(12,data_02155c3c);
+entry->id=buf.b;
+func_021167f0(&data_02160218[1]->head,entry);
+++data_02160218[1]->count;
 }
 }
 }
-node=*(u8 **)(node+0x13c);
 }
-data_02160a6c[0x121]=*(u32 *)data_02160218[1];
+data_02160a6c[0x121]=data_02160218[1]->count;
 func_020c0d98();
 func_020c0e08();
 if(data_02160218[1]) {
