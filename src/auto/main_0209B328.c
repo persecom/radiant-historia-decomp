@@ -1,5 +1,9 @@
 /* 13 functions from 0x0209B328 to 0x0209C2AC (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { u16 unk[10]; } Unk20;
+extern const Unk20 data_0214209c;
+extern void func_020a3bbc(s32);
+extern void func_021098ac(void *);
 
 extern u32 data_02155c3c;
 extern u8 *data_02160120;
