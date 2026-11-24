@@ -24,6 +24,73 @@ u8 *func_02021f10(u32);
 #pragma optimization_level 0
 void func_02081f08(u32 *,s32);
 #pragma optimization_level 0
+#pragma optimization_level 0
+extern void *func_021092d8(char *);
+extern void func_02013878(void *, s32, u32);
+extern s32 func_020f685c(void *, s32);
+extern u8 func_02022068(u16);
+extern void func_021093f0(void *);
+extern s32 func_02109444(void *);
+extern void func_021093b0(void *);
+extern s32 func_02089b38(const void *, const void *);
+extern void func_02015a3c(void *, s32, s32, s32 (*)(const void *, const void *));
+void func_0208038c(u8 arg) {
+    u8 *p0 = *(u8 **)(data_0216010c + 0x44);
+    void *csv = 0;
+    u8 *actor = 0;
+    s16 mask;
+
+    *(s16 *)(data_0216010c + 0x50d4) = 0;
+    actor = func_02021f10(func_02085110(data_0216010c[0x50dc]));
+    mask = 1 << func_02085110(data_0216010c[0x50dc]);
+
+    if (arg == 0) {
+        csv = func_021092d8(data_021484f8);
+    } else if (arg == 1) {
+        csv = func_021092d8(data_02148510);
+    } else {
+        csv = func_021092d8(data_02148524);
+    }
+
+    func_02013878(data_0216010c + 0x5570, 0, 0x2ee0);
+
+    if (csv != 0) {
+        do {
+            u16 id = func_020f685c(csv, 0);
+            if (func_02022068(id) >= 1 && id >= 1) {
+                s16 bits;
+                func_021093f0(csv);
+                func_021093f0(csv);
+                bits = func_020f685c(csv, 0);
+                if (bits & mask) {
+                    s32 i;
+                    func_021093f0(csv);
+                    func_021093f0(csv);
+                    for (i = 0; i < 0xf; i++) {
+                        *(s16 *)(data_0216010c + *(s16 *)(data_0216010c + 0x50d4) * 0x64 + i * 2 + 0x55b4) = func_020f685c(csv, 0);
+                    }
+                    *(u16 *)(data_0216010c + *(s16 *)(data_0216010c + 0x50d4) * 0x64 + 0x5570) = id;
+                    data_0216010c[*(s16 *)(data_0216010c + 0x50d4) * 0x64 + 0x5572] = func_02022068(id);
+                    *(s16 *)(data_0216010c + *(s16 *)(data_0216010c + 0x50d4) * 0x64 + 0x559a) = func_020f685c(csv, 0);
+                    (*(s16 *)(data_0216010c + 0x50d4))++;
+                }
+            }
+        } while (func_02109444(csv) != 0);
+        func_021093b0(csv);
+    }
+
+    if (*(s16 *)(data_0216010c + 0x50d4) <= 6) {
+        data_0216010c[0x50d8] = 0x4e;
+    } else {
+        data_0216010c[0x50d8] = 0x1d4 / *(s16 *)(data_0216010c + 0x50d4);
+        if (data_0216010c[0x50d8] < 8) {
+            data_0216010c[0x50d8] = 8;
+        }
+    }
+
+    func_02015a3c(data_0216010c + 0x5570, *(s16 *)(data_0216010c + 0x50d4), 0x64, func_02089b38);
+}
+
 s16 func_020806e8(u8 stat,s32 slot,u8 actor,u8 item) {
 u32 buf[25];
 Stats_020806e8 old;
