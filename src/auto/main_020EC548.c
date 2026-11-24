@@ -4,7 +4,7 @@ typedef struct ECModelFlags { u8 pad[0x70]; u8 unused:1; u8 flip:1; u8 rest:6; }
 extern s32 data_02162860[];
 extern u8 data_021612c8[];
 static inline void ECSetPolygonAttr(s32 lights,s32 mode,s32 cull,s32 id,s32 alpha,s32 misc) {
- *(volatile u32 *)0x40004a4=(alpha<<16)|((cull<<6)|(mode<<4)|lights|(id<<24)|misc);
+ *(volatile u32 *)0x40004a4=(alpha<<16)|((cull<<6)|(mode<<4)|lights|(id<<24));
 }
 
 extern void func_02108594(void *);
@@ -87,7 +87,6 @@ extern void func_02119eb8(void *);
 extern void func_0211a128(void);
 extern void func_02119e4c(void);
 #pragma optimization_level 0
-#pragma peephole off
 void func_020ec6f8(void) {
  u8 *node=0;
  u8 *obj;
@@ -122,7 +121,7 @@ draw:
     cull=1;
     flip=1;
    }
-   *(volatile u32 *)0x40004a4=(obj[0x71]<<16)|(0 | (0 | (0 | (cull<<6))));
+   ECSetPolygonAttr(0,0,cull,0,obj[0x71],0);
    *(volatile u32 *)0x4000480=*(u16 *)(node+0x3c);
    func_0211a4d4(data_021612c8,*(s32 *)(*(u8 **)(obj+0x58)+0x10),*(s32 *)(*(u8 **)(obj+0x58)+0x14));
    func_02119da4(data_021612c8);
@@ -137,7 +136,6 @@ draw:
  }
 done:;
 }
-#pragma peephole on
 #pragma optimization_level 4
 
 void func_020ec88c(u8 *arg0, s32 arg1, s32 arg2) {
