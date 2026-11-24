@@ -270,7 +270,8 @@ void func_0212c4b8(u32 arg0) {
 }
 
 s32 func_0212c4c8(void) {
-    switch (func_0212c54c(data_02156cd8[0])) {
+    s32 v = func_0212c54c(data_02156cd8[0]);
+    switch (v) {
     case -1:
     case 0:
         break;
