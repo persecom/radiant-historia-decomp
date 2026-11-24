@@ -170,6 +170,28 @@ void func_020c9980(u8 *arg0) {
     func_020c994c(arg0);
 }
 
+extern u8 *func_020c641c(s32);
+extern void func_0210968c(s32, s32, s32);
+extern void func_02108eec(s32, s32);
+extern void func_020c9cec(void);
+extern void func_02109790(s32);
+extern void func_0210dc88(void);
+extern void func_020a2c20(void);
+extern void func_020ca010(void);
+extern s32 data_02162868;
+extern s32 data_0216bf84;
+extern u8 *data_02160234;
+u8 *func_020c9b24(u8 *arg0, s32 arg1, s32 arg2) {
+    u8 *obj = (*(u8 ***)arg0)[arg1];
+    if (obj != NULL) {
+        return obj;
+    }
+    obj = func_020c641c(arg2);
+    (*(u8 ***)arg0)[arg1] = obj;
+    ((void (*)(u8 *))(*(void **)obj))(obj);
+    return obj;
+}
+
 extern u16 func_020c9c34(u8 *);
 u8 *func_020c9c10(void *arg0, s32 arg1) {
     if ((u32)arg1 >= func_020c9c34(arg0)) {
