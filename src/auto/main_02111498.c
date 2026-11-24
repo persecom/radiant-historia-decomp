@@ -244,6 +244,19 @@ void *func_02111d3c(u8 *arg0) {
     return node;
 }
 
+u8 *func_02111d7c(void *arg0, u32 arg1) {
+    u8 *node = *(u8 **)((u8 *)arg0 + 0x38);
+    if (node != NULL) {
+        do {
+            if (*(u16 *)node == arg1) {
+                return node;
+            }
+            node = *(u8 **)(node + 0x10);
+        } while (node != NULL);
+    }
+    return NULL;
+}
+
 s32 func_02111da8(u8 *arg0) {
     return *(s32 *)(arg0 + 0x38);
 }
