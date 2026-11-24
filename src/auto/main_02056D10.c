@@ -49,19 +49,6 @@ void *func_020579dc(u16 arg0) {
     return NULL;
 }
 
-extern void func_02057764(u16, s32, s16, s16, s16, s8, u16, u8, s32);
-extern void func_02056fbc(void);
-extern s32 func_020a2c5c(s32, s32, s32, s32, s32);
-extern s32 func_020a8844(s32, s32, s32, s32);
-extern void func_020a9830(void *, void *, s32, s32, s32, s32);
-extern void func_020a9610(void *, s32, s32, s32, s32, s32);
-extern void func_02044820(u32);
-extern void func_021167ac(void *, s32);
-extern u8 *func_020bd438(s32);
-extern u8 *func_02021f10(s32);
-extern void func_02057244(void);
-extern u32 data_02160204;
-extern u32 data_02160078;
 void func_02057a18(u16 arg0, s32 arg1, s32 arg2) {
     u8 *node = (u8 *)func_020579dc(arg0);
     if (node != NULL) {
