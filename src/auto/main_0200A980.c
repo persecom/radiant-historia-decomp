@@ -3,7 +3,7 @@
 
 void func_0200b888(u32 *arg0);
 u8 *func_0200b6b8(u8 *arg0);
-extern void func_0200a980(void *, s32);
+extern s32 func_0200a980(void *, s32);
 extern u32 func_02008128(void);
 extern void func_02006560(void *);
 extern void func_0200813c(u32);
