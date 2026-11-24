@@ -154,6 +154,39 @@ void func_020c7630(void *arg0) {
     }
 }
 
+extern void *func_020f4d40(s32);
+extern void *func_020f4c2c(s32);
+extern void *func_020f4ec4(void);
+extern void func_020f50bc(void *, void *, void *);
+extern void func_020f5114(void *, s32);
+extern void func_020c7760(void *, s16, s16);
+s32 func_020c7654(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8) {
+    s32 sp0[5];
+    u8 *r5;
+
+    func_020c7630(arg0 + 0x30);
+    r5 = func_020f4d40(arg1);
+    if (r5 == NULL) {
+        r5 = func_020f4c2c(arg1);
+        *(s32 *)(r5 + 0x20) = 0x1000;
+        *(s32 *)(r5 + 0x24) = 0x1000;
+    }
+    *(u8 **)(arg0 + 0x30) = func_020f4ec4();
+    *(s32 *)(*(u8 **)(arg0 + 0x30) + 0x8) = arg3;
+    *(s32 *)(*(u8 **)(arg0 + 0x30) + 0xc) = arg4;
+    *(u16 *)(*(u8 **)(arg0 + 0x30) + 0x44) = arg6;
+    *(s32 *)(*(u8 **)(arg0 + 0x30) + 0x48) = arg8;
+    sp0[0] = 0;
+    sp0[1] = arg2;
+    sp0[2] = arg5;
+    sp0[3] = arg7;
+    sp0[4] = 0x300;
+    func_020f50bc(*(void **)(arg0 + 0x30), sp0, r5);
+    func_020f5114(*(void **)(arg0 + 0x30), 1);
+    func_020c7760(arg0, (s16)arg3, (s16)arg4);
+    return 0;
+}
+
 s32 func_020c7734(u8 *arg0, s32 arg1) {
     func_020f4ea4(func_020c7754((u32 **)(arg0 + 0x30)), arg1);
     return 0;
