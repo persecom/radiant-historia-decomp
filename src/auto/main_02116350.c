@@ -344,3 +344,14 @@ void* func_0211721c(void* heap, u32 size, s32 alignment)
     }
 }
 
+void func_02117250(void* heap, u32 mode)
+{
+    if (mode & 1) {
+        func_02117198(heap);
+    }
+
+    if (mode & 2) {
+        func_021171ac(heap);
+    }
+}
+
