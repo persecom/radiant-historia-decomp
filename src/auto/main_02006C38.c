@@ -6,6 +6,11 @@ void func_02006e3c(void) {
     func_02006e48();
 }
 
+extern u32 data_0215d084[3];
+u32 func_02007664(void) {
+    return data_0215d084[2];
+}
+
 extern u16 data_0215d128;
 u16 func_0200788c(void) {
     return data_0215d128;
