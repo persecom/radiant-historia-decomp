@@ -178,6 +178,11 @@ s32 func_020c7384(void) {
     return 2;
 }
 
+void func_020c738c(void *arg0, s32 arg1, s32 arg2) {
+    *(volatile u16 *)((u8 *)arg0 + 0x2c) &= (u16)~arg2;
+    *(volatile u16 *)((u8 *)arg0 + 0x2c) |= (u16)(arg1 & arg2);
+}
+
 u16 func_020c73b8(u16 *arg0) {
     return arg0[0x16];
 }
