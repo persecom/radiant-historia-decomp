@@ -168,6 +168,27 @@ void func_0210c35c(s32 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     arg0[2] = func_02002080(arg2 - arg1, arg3);
 }
 
+extern u32 func_0200698c(void);
+extern u32 func_0200e280(void);
+extern u32 *data_0216267c;
+extern u32 data_02162834[];
+extern u32 data_0216281c;
+extern u8 func_02117090(void);
+extern void func_02109f24(void *);
+u32 func_0210c424(void) {
+    u32 val;
+    u32 base;
+    if (func_0200698c() != 0) {
+        return 0;
+    }
+    val = func_0200e280();
+    base = data_0216267c[0];
+    if (val < base || val >= base + 0x400) {
+        return 0;
+    }
+    return val - base;
+}
+
 void* func_0210c518(u32 size, s32 arg1)
 {
     extern u8 data_02162684;
