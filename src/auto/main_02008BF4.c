@@ -29,3 +29,8 @@ typedef void (*Fn_U32)(u32);
 s32 func_0200986c(void) {
     return func_02006afc(&data_0215d1a0);
 }
+
+s32 func_02009880(void) {
+    return func_02006b4c(&data_0215d1a0);
+}
+
