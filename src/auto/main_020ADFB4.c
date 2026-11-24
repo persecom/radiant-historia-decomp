@@ -70,6 +70,12 @@ u8 func_020ae05c(u32 arg0, u32 arg1) {
     return arg0 % 10;
 }
 
+void func_020ae50c(s32 arg0) {
+    u8 *base = (u8 *)func_020adda8();
+    u8 *obj = *(u8 **)(base + arg0 * 0x50 + 0x16c);
+    *(u32 *)(obj + 0x40) = 0;
+}
+
 s32 func_020ae9cc(u32 arg0, s32 arg1) {
     u8 *base = func_020adda8();
     u8 *p;
