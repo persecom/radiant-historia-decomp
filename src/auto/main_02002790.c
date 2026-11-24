@@ -187,6 +187,44 @@ void func_02002c10(void *arg0) {
     func_02008f08(arg0);
 }
 
+extern void func_02002d9c(void);
+extern void func_02002dc0(void);
+extern void func_02002fd8(void);
+void func_02002c2c(void) {
+    func_02002d9c();
+    *(volatile u32 *)0x04000504 = 0;
+    while (*(volatile u32 *)0x04000600 & 0x08000000) {
+    }
+    *(volatile u16 *)0x04000060 = 0;
+    *(volatile u32 *)0x04000600 = 0;
+    *(volatile u32 *)0x04000010 = 0;
+
+    *(volatile u16 *)0x04000060 |= 0x2000;
+    *(volatile u16 *)0x04000060 |= 0x1000;
+    *(volatile u16 *)0x04000060 &= ~0x3002;
+    *(volatile u16 *)0x04000060 = (*(volatile u16 *)0x04000060 & ~0x3000) | 0x10;
+    *(volatile u16 *)0x04000060 &= 0xcffb;
+
+    *(volatile u32 *)0x04000600 |= 0x8000;
+    *(volatile u32 *)0x04000600 = (*(volatile u32 *)0x04000600 & ~0xc0000000) | 0x80000000;
+
+    func_02002dc0();
+
+    *(volatile u32 *)0x04000350 = 0;
+    *(volatile u16 *)0x04000354 = 0x7fff;
+    *(volatile u16 *)0x04000356 = 0;
+    *(volatile u32 *)0x04000358 = 0;
+    *(volatile u16 *)0x0400035c = 0;
+
+    *(volatile u16 *)0x04000008 &= ~3;
+
+    func_02002fd8();
+
+    *(volatile u32 *)0x040004a4 = 0x001f0080;
+    *(volatile u32 *)0x040004a8 = 0;
+    *(volatile u32 *)0x040004ac = 0;
+}
+
 void func_02002d30(void) {
     while (*(volatile u32 *)0x04000600 & 0x08000000) {
     }
