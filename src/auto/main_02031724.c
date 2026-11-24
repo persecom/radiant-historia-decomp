@@ -102,3 +102,19 @@ void *func_02032254(u16 arg0) {
     return NULL;
 }
 
+s32 func_02032294(u8 *arg0) {
+    s32 a = 0;
+    s32 b = 0;
+    u8 *p = func_02030698(*(void **)(arg0 + 0x118), 8);
+    if (p != NULL) {
+        a += *(s16 *)(p + 2);
+        b += *(s16 *)(p + 4);
+    }
+    p = func_02030698(*(void **)(arg0 + 0x118), 9);
+    if (p != NULL) {
+        a -= *(s16 *)(p + 2);
+        b -= *(s16 *)(p + 4);
+    }
+    return a + b;
+}
+
