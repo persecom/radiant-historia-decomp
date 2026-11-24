@@ -12,3 +12,6 @@ void func_020a80cc(void) {
 void func_020a80d0(void) {
 }
 
+void func_020a80d4(void) {
+}
+
