@@ -82,6 +82,24 @@ s32 func_0210fe1c(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     return func_0210feb8(arg0, arg0, arg1, arg2, arg3);
 }
 
+void func_0210fe40(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
+    s32 i;
+    for (i = 0; i < 0x100; i++) {
+        Entry_94 *e = &((Entry_94 *)data_02162b84)[i];
+        if (e->field_0 == 0) {
+            e->field_0 = 1;
+            e->field_4 = arg0;
+            e->field_88 = arg1;
+            e->field_8c = arg2;
+            func_0210fdc4(e->field_8, arg3, 0x80);
+            return;
+        }
+    }
+}
+
+void func_021100c4(void) {
+}
+
 s32 func_021100c8(void) {
     func_020a8440();
     return func_020a47c8();
