@@ -12,6 +12,24 @@ extern void func_020ce170(u32, u32, u32);
 extern u8 *func_020cda08(u32, u32);
 extern void func_020a8810(void *, s32);
 
+extern void func_020cefe4(void);
+void func_020cc988(void) {
+ s32 changed=0;
+ u8 *p=data_02160238;
+ if(data_021626a8&2){func_020ccc30(0);p[0]=0;func_0210d27c(5);return;}
+ if(data_021626a8&1){func_020cefe4();return;}
+ if(data_021626a8&0x40){if(p[0x70a])p[0x70a]--;else p[0x70a]=1;changed=1;func_0210d27c(2);}
+ if(data_021626a8&0x80){p[0x70a]++;p[0x70a]=(s32)p[0x70a]%2;changed=1;func_0210d27c(2);}
+ if(data_021628f8){
+ u8 old=p[0x70a];
+ if(func_020ce9c0(7)){p[0x70a]=0;changed=1;}
+ if(func_020ce9c0(8)){p[0x70a]=1;changed=1;}
+ if(changed){if(p[0x70a]==old)func_020cefe4();else func_0210d27c(2);}
+ if(func_020ce9c0(1) && !p[0x772]){p[0x772]=4;func_0210d27c(5);}
+ }
+ if(changed)func_020ccb10();
+}
+
 void func_020ccadc(void) {
     u8 *p = data_02160238;
     u32 v;
