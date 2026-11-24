@@ -10,6 +10,10 @@ extern s16 *func_02116984(void *, u16);
 void func_020a0da8(void) {
 }
 
+void *func_020a0dac(void) {
+    return func_0210c594(0xc, data_02155c3c);
+}
+
 void func_020a0dc8(void **arg0) {
     void *ptr;
     while ((ptr = *arg0) != NULL) {
@@ -19,3 +23,17 @@ void func_020a0dc8(void **arg0) {
         }
     }
 }
+
+s32 func_020a0e08(void *arg0, s32 arg1) {
+    s32 i = 0;
+    s16 *ptr = func_02116984(arg0, i);
+    do {
+        if (ptr[0] == arg1) {
+            return ptr[1];
+        }
+        i++;
+        ptr = func_02116984(arg0, i);
+    } while (ptr != NULL);
+    return 0;
+}
+
