@@ -277,14 +277,31 @@ s32 func_0200fca4(void (*cb)(void *), s32 arg1) {
 }
 
 void func_0200fd18(void) {
-    u32 token = func_02008128();
     s32 zero = 0;
-    if (!(*(u32 *)(data_0215f120 + 4) & 8)) {
+    u8 *base = data_0215f120;
+    u32 token = func_02008128();
+    if (*(u32 *)(base + 4) & 8) {
+        func_0200813c(token);
+        func_0200fca4(*(void (**)(void *))(base + 0x4e8), zero);
+    } else {
         func_02006510((void *)zero);
-        return;
+    }
+}
+
+s32 func_0200fd64(u8 *arg0, s32 arg1, u32 arg2, u32 arg3) {
+    u32 token = func_02008128();
+    u32 flags = *(u32 *)(arg0 + 4);
+    if (flags & 4) {
+        func_02006510(arg0 + 0xf4 + 0x400);
+        flags = *(u32 *)(arg0 + 4);
+    }
+    if (!(flags & 4) && arg1 != 0) {
+        *(u32 *)(arg0 + 0x4ec) = arg2;
+        *(u32 *)(arg0 + 4) |= 4;
+        *(u32 *)(arg0 + 0x4f0) = arg3;
     }
     func_0200813c(token);
-    func_0200fca4(*(void (**)(void *))(data_0215f120 + 0x4e8), zero);
+    return **(u32 **)arg0 == 0;
 }
 
 void func_0200fddc(u8 *arg0) {
@@ -300,14 +317,8 @@ void func_0200fddc(u8 *arg0) {
 }
 
 u32 func_0200fe28(u32 arg0) {
-    u32 flag;
-    u32 result;
-    if (arg0 & 0x10) {
-        flag = 1;
-    } else {
-        flag = 0;
-    }
-    result = 0;
+    u32 flag = (arg0 & 0x10) != 0;
+    u32 result = 0;
     arg0 &= ~0x10;
     if (arg0 > 3) {
         goto end;
@@ -330,35 +341,24 @@ void func_0200fe64(u32 arg0, u32 arg1, u32 arg2) {
 }
 
 void func_0200fe80(u32 arg0, u32 arg1, u32 arg2) {
-    u32 addr = arg0;
-    u32 off = arg1;
     u32 rem;
     u32 base;
-    if (off >= arg2) {
+    if (arg1 >= arg2) {
         func_02006d58();
         return;
     }
-    rem = addr & 0x1f;
+    rem = arg0 & 0x1f;
     if (rem == 0) {
         goto end;
     }
-    base = addr - rem;
+    base = arg0 - rem;
     func_02006da8(base, 0x20);
-    func_02006da8(base + off, 0x20);
-    off += 0x20;
-    func_02006d8c(base, off);
+    func_02006da8(base + arg1, 0x20);
+    arg1 += 0x20;
+    func_02006d8c(base, arg1);
     func_02006de8();
 end:
     return;
 }
 
-void func_0200fedc(u32 arg0, u32 arg1, u32 arg2) {
-    u32 *p;
-    if (arg0 != 0xb || arg2 == 0) {
-        return;
-    }
-    p = (u32 *)data_0215f120;
-    p[1] &= ~0x20;
-    func_020065c8((void *)p[0x51c / 4]);
-}
-
+#pragma peephole off
