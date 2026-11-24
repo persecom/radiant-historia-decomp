@@ -229,6 +229,16 @@ void func_02032ff8(void) {
     data_02160090[0x7e] = 1;
 }
 
+void func_02033010(void) {
+    void *node;
+    while ((node = *(void **)(data_02160090 + 0x3c)) != NULL) {
+        func_021168f8(data_02160090 + 0x3c, node);
+        if (node != NULL) {
+            func_0210c5dc(node);
+        }
+    }
+}
+
 void func_0203305c(void) {
 }
 
