@@ -56,6 +56,11 @@ void func_0213473c(void) {
     func_02135c78();
 }
 
+extern void func_021146b8(void *);
+void func_02134bf0(u8 *arg0) {
+    func_021146b8(arg0 + 0x34);
+}
+
 s32 func_02134efc(void *arg0) {
     if (arg0 == NULL) {
         return -1;
