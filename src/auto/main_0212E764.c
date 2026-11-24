@@ -1,5 +1,6 @@
 /* 58 functions from 0x0212E764 to 0x0212F760 (main), found by ds-decomp. */
 #include "common.h"
+extern const s16 data_02145088[], data_02145288[], data_02145488[], data_02145688[];
 extern u32 data_02145910;
 extern s32 data_02174798;
 extern u8 data_02156e68[], data_02156eb8[], data_02156f08[], data_02156f38[], data_02156f3c[], data_02156f44[];
