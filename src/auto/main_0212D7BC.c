@@ -64,6 +64,12 @@ s32 func_0212d9f8(void *arg0, void *arg1) {
     return (s32)func_0212d938(0, 0, 0, (s32)arg0);
 }
 
+void func_0212da24(void *arg0) {
+    func_0212e5a0();
+    func_0212da40(arg0);
+    func_0212e5ac();
+}
+
 s32 func_0212dc0c(s8 *arg0) {
     return arg0[1];
 }
