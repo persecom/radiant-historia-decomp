@@ -3,6 +3,16 @@
 
 extern void func_02117478(void);
 extern u8 data_02173164[12];
+extern u32 data_02145ba4;
+extern u32 data_02173168;
+extern void func_021205ec(u32, void *, u32);
+extern void func_021204a8(void);
+extern void func_02008d08(u32, void *, u32, void (*)(u32 *), void *);
+extern void func_02008b08(u32, void *, u32, void (*)(u32 *), void *);
+extern s32 func_02002f3c(void *);
+extern void func_02001860(void *, void *);
+extern s32 func_02002f6c(void *);
+extern void func_021206c8(void *, void *);
 void func_02120518(u32 *arg0) {
     *arg0 = 0;
 }
