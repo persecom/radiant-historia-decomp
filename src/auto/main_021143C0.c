@@ -68,6 +68,14 @@ s32 func_02114494(u8 *arg0, s32 arg1, u8 *arg2) {
     return 1;
 }
 
+void func_021144f0(u8 *arg0) {
+    if (*(void **)(arg0 + 0x4c) != NULL) {
+        func_021139d0(*(void **)(arg0 + 0x4c));
+        *(void **)(arg0 + 0x4c) = NULL;
+        *(void **)(arg0 + 0x50) = NULL;
+    }
+}
+
 void func_021148bc(u8 *arg0) {
     func_021148cc(arg0, 1);
 }
