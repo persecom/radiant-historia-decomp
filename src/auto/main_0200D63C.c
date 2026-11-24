@@ -38,7 +38,7 @@ extern u8 data_0215f03c[];
 extern void func_0200e320(u32);
 extern void func_0200e418(u32, u32, u32);
 extern s32 func_02008128(void);
-extern void func_0200813c(s32);
+extern void func_0200813c();
 extern void func_0200e974(u32);
 
 extern u32 data_0215ef98[];
