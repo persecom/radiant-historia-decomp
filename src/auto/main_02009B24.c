@@ -385,7 +385,7 @@ extern u16 data_0215ece4;
 extern void func_02005a14(u32);
 extern void func_020057e8(u32, void *);
 extern void func_020059b4(u32);
-extern void func_0200a75c(void);
+extern void func_0200a75c();
 void func_0200a578(void) {
     struct {
         u8 pad[0x388];
@@ -530,6 +530,59 @@ s32 func_0200a6e4(s32 arg0, u32 arg1, s32 arg2) {
     *(volatile u32 *)0x4000188 = msg.raw;
     func_0200813c(irq);
     return 0;
+}
+
+void func_0200a75c(void) {
+    volatile u16 *reg = (volatile u16 *)0x04000184;
+    s32 ret;
+    u32 val;
+    u32 ch;
+    s32 irq;
+    void (**table)(u32, u32, u32) = (void (**)(u32, u32, u32))data_0215ece8;
+
+    while (1) {
+        if ((*reg & 0x4000) != 0) {
+            *reg |= 0xc000;
+            ret = -3;
+        } else {
+            irq = func_02008128();
+            if ((*reg & 0x100) != 0) {
+                func_0200813c(irq);
+                ret = -4;
+            } else {
+                val = *(volatile u32 *)0x04100000;
+                func_0200813c(irq);
+                ret = 0;
+            }
+        }
+        if (ret == -4) {
+            return;
+        }
+        if (ret == -3) {
+            continue;
+        }
+        ch = val & 0x1f;
+        if (ch == 0) {
+            continue;
+        }
+        if (table[ch] != NULL) {
+            table[ch](ch, val >> 6, (val >> 26) & 1);
+            continue;
+        }
+        if (((val >> 26) & 1) != 0) {
+            continue;
+        }
+        val |= 0x20;
+        if ((*reg & 0x4000) != 0) {
+            *reg |= 0xc000;
+            continue;
+        }
+        irq = func_02008128();
+        if ((*reg & 2) == 0) {
+            *(volatile u32 *)((u8 *)reg + 4) = val;
+        }
+        func_0200813c(irq);
+    }
 }
 
 s32 func_0200a85c(s32 c) {
