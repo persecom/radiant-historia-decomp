@@ -282,3 +282,21 @@ void func_020bb508(u8 *arg0) {
     }
 }
 
+extern void func_020bbb1c(void);
+extern void func_020bbc24(void);
+extern void func_020a98a0(void *);
+extern void func_020a9544(void *);
+extern void func_0210c5dc(void *);
+extern void func_020a9610(void *, void *, void *, void *, s32, s32);
+void func_020bb528(u8 *arg0) {
+    if (arg0 == NULL) {
+        return;
+    }
+    if (*(u32 *)(arg0 + 0x108) & 0x10) {
+        func_020bbb1c();
+    }
+    if (*(u32 *)(arg0 + 0x108) & 0x20) {
+        func_020bbc24();
+    }
+}
+
