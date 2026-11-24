@@ -4,7 +4,12 @@ extern u8 *data_02170460;
 extern s32 data_02171270[],data_02171274[],data_02171278[];
 
 typedef struct { s32 x, y, z; } Vec_02123a6c;
-static inline s32 mul_02123a6c(s32 a, s32 b) { return ((s64)a*b)>>12; }
+static inline void mul_02123a6c(Vec_02123a6c *a, Vec_02123a6c *b, Vec_02123a6c *v) {
+s32 x=((s64)a->x*b->x)>>12;
+s32 y=((s64)a->y*b->y)>>12;
+s32 z=((s64)a->z*b->z)>>12;
+v->x=x;v->y=y;v->z=z;
+}
 
 extern void func_02002058(s32, s32);
 extern s32 func_02001ff4(void);
