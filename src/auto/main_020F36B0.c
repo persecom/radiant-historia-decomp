@@ -37,7 +37,7 @@ typedef struct {
     u32 field_4;
 } Unk_02151fc8;
 
-extern Unk_02151fc8 data_02151fc8;
+extern u8 data_02151fc8[];
 
 typedef struct {
     u8 field_0;
@@ -122,8 +122,8 @@ void func_020f4174(void) {
     }
     if (*(u16 *)((u8 *)data_02160c34.field_4 + 0x1a) != 0) {
         *(u16 *)((u8 *)data_02160c34.field_4 + 0x1a) = 0;
-        *(u16 *)&data_02151fc8 = *(u16 *)((u8 *)data_02160c34.field_4 + 0x18);
-        func_02107d58(*(u32 *)((u8 *)&data_02151fc8 + 4), *(u16 *)((u8 *)&data_02151fc8 + 2), *(u16 *)&data_02151fc8);
+        *(u16 *)((u8 *)&data_02151fc8 + 0) = *(u16 *)((u8 *)data_02160c34.field_4 + 0x18);
+        func_02107d58(*(u32 *)((u8 *)&data_02151fc8 + 4), *(u16 *)((u8 *)&data_02151fc8 + 2), *(u16 *)((u8 *)&data_02151fc8 + 0));
     }
 }
 
