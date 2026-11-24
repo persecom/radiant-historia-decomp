@@ -72,28 +72,30 @@ void func_02011254(s32 arg0) {
     }
 }
 
-void func_020112a4(u32 arg0) {
+void func_020112a4(s32 arg0) {
+    s32 x = arg0;
     u32 val = func_02008128();
     s32 size;
-    data_0215fa2c = arg0;
+    s32 n = 8;
+    data_0215fa2c = (u32)x;
     if (func_02010ff8() == 0) {
         goto end;
     }
     size = 0x1000;
-    if (arg0 == 0) {
+    if (x == 0) {
         size = 0x5000;
     }
     func_02007504(0xf000, size);
-    if (arg0 != 0) {
+    if (x != 0) {
         func_02006d58();
         func_02006de8();
-        func_020074d4(8);
-        func_020074f4(8);
-        func_02007528(8);
+        func_020074d4(n);
+        func_020074f4(n);
+        func_02007528(n);
     } else {
-        func_020074c4(8);
-        func_020074e4(8);
-        func_02007518(8);
+        func_020074c4(n);
+        func_020074e4(n);
+        func_02007518(n);
     }
 end:
     func_0200813c(val);
@@ -192,5 +194,82 @@ void func_02011804(u8 *a0) {
     func_02011ef4(a0);
     *(s32 *)(a0 + 0x2c) = a;
     *(s32 *)(a0 + 0x4c) = b;
+}
+
+void func_02011830(u8 *ctx, u8 *src, u32 len) {
+    u32 offset;
+
+    if (len == 0) {
+        return;
+    }
+    do {
+        u32 chunk;
+        offset = *(u32 *)(ctx + 0x54);
+        chunk = 0x40 - offset;
+        if (chunk > len) {
+            chunk = len;
+        }
+        func_02008f74(ctx + 0x14 + offset, src, chunk);
+        offset += chunk;
+        len -= chunk;
+        *(u32 *)(ctx + 0x54) = offset;
+        if (offset >= 0x40) {
+            ((void (*)(u8 *))data_02145c24)(ctx);
+            *(u32 *)(ctx + 0x54) = 0;
+            if (++*(u32 *)(ctx + 0x58) == 0) {
+                ++*(u32 *)(ctx + 0x5c);
+            }
+        }
+    } while (len != 0);
+}
+
+u32 func_020118c0(u32 arg0) {
+    u32 old = data_02160030;
+    data_02160030 = arg0;
+    if (arg0 != 0) {
+        data_02145c24 = (void *)func_02011804;
+    } else {
+        data_02145c24 = (void *)func_02011ef4;
+    }
+    return old;
+}
+
+void func_020118fc(u8 *a0) {
+    *(u32 *)(a0 + 0x58) = 0;
+    *(u32 *)(a0 + 0x5c) = 0;
+    *(u32 *)(a0 + 0x54) = 0;
+    *(u32 *)(a0 + 0x0) = 0x67452301;
+    *(u32 *)(a0 + 0x4) = 0xefcdab89;
+    *(u32 *)(a0 + 0x8) = 0x98badcfe;
+    *(u32 *)(a0 + 0xc) = 0x10325476;
+    *(u32 *)(a0 + 0x10) = 0xc3d2e1f0;
+}
+
+void func_02011950(u8 *ctx, u8 *src, u32 len) {
+    u32 offset;
+
+    if (len == 0) {
+        return;
+    }
+    do {
+        u32 chunk;
+        offset = *(u32 *)(ctx + 0x54);
+        chunk = 0x40 - offset;
+        if (chunk > len) {
+            chunk = len;
+        }
+        func_02009008(src, ctx + 0x14 + offset, chunk);
+        src += chunk;
+        offset += chunk;
+        len -= chunk;
+        *(u32 *)(ctx + 0x54) = offset;
+        if (offset >= 0x40) {
+            ((void (*)(u8 *))data_02145c24)(ctx);
+            *(u32 *)(ctx + 0x54) = 0;
+            if (++*(u32 *)(ctx + 0x58) == 0) {
+                ++*(u32 *)(ctx + 0x5c);
+            }
+        }
+    } while (len != 0);
 }
 
