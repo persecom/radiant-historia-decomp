@@ -87,17 +87,15 @@ void func_02021340(s32 arg0) {
 }
 
 void func_0202147c(s32 arg0) {
-    s32 flag;
     func_0210da14(data_02160064);
-    flag = 0;
     data_02160054[4] = 0;
     data_02160054[3] = arg0;
     switch (arg0) {
     case 4:
-        flag = 1;
+        func_02021340(0);
         break;
     case 5:
-        flag = 1;
+        func_02021340(1);
         break;
     case 0:
     case 1:
@@ -107,7 +105,6 @@ void func_0202147c(s32 arg0) {
     default:
         break;
     }
-    func_02021340(flag);
     if (data_02160054[2] != 0) {
         data_02160054[2] = 0;
     }
