@@ -244,6 +244,11 @@ void func_02128580(void *arg0) {
     func_0212a9f8();
 }
 
+void func_0212859c(void *arg0) {
+    *(void **)(data_02173428 + 0x14) = arg0;
+    *(void **)(data_02173428 + 0x10) = arg0;
+}
+
 extern void func_021285c4(void);
 void func_021285b0(void) {
     func_0212a9f4();
