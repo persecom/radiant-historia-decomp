@@ -349,6 +349,34 @@ s32 func_020aaaec(s32 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     return 0;
 }
 
+extern f32 func_0201f884(s32);
+extern f32 func_020201f4(f32,f32), func_02020888(f32,f32), func_02020604(f32,f32), func_020203d4(f32,f32);
+extern f64 func_0201f800(f32);
+extern f64 func_0201dea0(f64), func_0201e518(f64);
+extern f32 func_0201f114(f64);
+extern s32 func_0201ff0c(f32);
+s32 func_020aab60(void *out,s32 start,s32 end,s32 duration,s32 time,s32 mode){
+s32 delta=end-start;
+f32 factor;
+if(delta<0)delta=-delta;
+if(time<duration){
+f32 t=func_0201f884(time);
+t=func_02020888(t,func_0201f884(duration));
+if(mode)factor=func_0201f114(func_0201e518(func_0201f800(func_020201f4(1.57079637f,t))));
+else factor=func_02020604(1.0f,func_0201f114(func_0201dea0(func_0201f800(func_020201f4(1.57079637f,t)))));
+if(start<end){
+f32 a=func_0201f884(start);
+*(s32 *)out=func_0201ff0c(func_020203d4(a,func_020201f4(func_0201f884(delta),factor)));
+if(*(s32 *)out>=end){*(s32 *)out=end;return 1;}
+}else{
+f32 a=func_0201f884(start);
+*(s32 *)out=func_0201ff0c(func_02020604(a,func_020201f4(func_0201f884(delta),factor)));
+if(*(s32 *)out<=end){*(s32 *)out=end;return 1;}
+}
+}else {*(s32 *)out=end;return 1;}
+return 0;
+}
+
 void func_020aac90(void) {
 s32 zero=0;
 u8 *p=func_020ade60(zero);
