@@ -324,6 +324,22 @@ void func_020a9ebc(s16 *arg0, s16 *arg1) {
     *arg1 = (*arg1 * *(s32 *)(p + 0x6c)) / 0x1000;
 }
 
+void func_020aa0f0(void) {
+    u8 *p = data_021600e4;
+    u8 *node = *(u8 **)(p + 0x13c8);
+    if (node == NULL) {
+        return;
+    }
+    while (node != NULL) {
+        u8 *next = *(u8 **)(node + 8);
+        func_021168f8(p + 0x13c8, node);
+        if (node != NULL) {
+            func_0210c5dc(node);
+        }
+        node = next;
+    }
+}
+
 extern u8 *data_021600e4;
 extern s32 func_020a9194(void *);
 extern s32 func_020a916c(s32);
