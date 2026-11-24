@@ -81,3 +81,10 @@ void *func_02030630(u8 *arg0, u16 arg1) {
     return NULL;
 }
 
+void *func_0203065c(u8 *arg0, u16 arg1) {
+    u16 *node = (u16 *)func_0210c594(0x10, data_02155c3c);
+    *node = arg1;
+    func_021167f0(arg0 + 0xc0, node);
+    return node;
+}
+
