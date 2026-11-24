@@ -360,6 +360,17 @@ void func_020079a4(u8 *arg0) {
     func_020059b4(0x10);
 }
 
+void func_02007a2c(void) {
+    u8 *p = (u8 *)&data_0215d138;
+    if (*(u16 *)p == 0) {
+        *(u16 *)p = 1;
+        func_020077f8(1);
+        *(u32 *)(p + 4) = 0;
+        *(u32 *)(p + 8) = 0;
+        func_020059e4(0x10);
+    }
+}
+
 extern u16 data_0215d138;
 u16 func_02007a68(void) {
     return data_0215d138;
