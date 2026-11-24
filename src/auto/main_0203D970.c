@@ -7,7 +7,9 @@ typedef struct {
 } Vec_0203e5a8;
 
 typedef struct {
-    u8 pad[0x28];
+    void *field_0;
+    u32 field_4;
+    u8 pad[0x20];
     void *field_28;
     u8 pad2[0x8];
     u16 field_34;
@@ -36,3 +38,41 @@ extern s32 func_0201fb1c(s32, s32);
 extern u32 func_0201f218(s32);
 extern void func_02020058(void);
 extern void func_0201ff80(void);
+
+s32 func_0203e5a8(Vec_0203e5a8 *a, Vec_0203e5a8 *b, Vec_0203e5a8 *c) {
+    s32 r4 = c->field_4 - b->field_4;
+    s32 r3 = a->field_4 - b->field_4;
+    s32 r12 = r4 * r3;
+    s32 r3b = r4 * r4;
+    s32 r2 = c->field_0 - b->field_0;
+    s32 r5 = a->field_0 - b->field_0;
+    s32 v0 = r2 * r5 + r12;
+    s32 v1 = r2 * r2 + r3b;
+    s32 ret = func_0201fb1c(v0, v1);
+    if (ret < 0) {
+        s32 t = r4 * ret;
+        func_0201f218((t - r5) * (t - r5));
+        func_02020058();
+        func_0201ff80();
+        return ret;
+    }
+    return -1;
+}
+
+void func_0203e6bc(void) {
+    if (data_021600a0.field_4 != NULL) {
+        void *node = data_021600a0.field_4->field_28;
+        if (node != NULL) {
+            do {
+                func_021168f8(&data_021600a0.field_4->field_28, node);
+                if (node != NULL) func_0210c5dc(node);
+                node = data_021600a0.field_4->field_28;
+            } while (node != NULL);
+        }
+        func_0210da14();
+    }
+    if (data_021600a0.field_4 == NULL) return;
+    func_0210c5dc(data_021600a0.field_4);
+    data_021600a0.field_4 = NULL;
+}
+
