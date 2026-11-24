@@ -62,6 +62,10 @@ u32 func_0212d540(u8 *arg0) {
     return *(u32 *)(arg0 + 0x30);
 }
 
+u32 func_0212d548(void *arg0) {
+    return *(u32 *)((u8 *)arg0 + 0x2c);
+}
+
 void func_0212d550(u8 *arg0, s32 arg1) {
     *(s32 *)(arg0 + 0x34) = arg1;
 }
