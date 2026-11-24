@@ -64,6 +64,10 @@ void func_0210fde8(void) {
     }
 }
 
+s32 func_0210fe1c(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
+    return func_0210feb8(arg0, arg0, arg1, arg2, arg3);
+}
+
 s32 func_021100c8(void) {
     func_020a8440();
     return func_020a47c8();
