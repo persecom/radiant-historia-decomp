@@ -99,6 +99,36 @@ void func_020a2a50(void) {
  }
 }
 
+void func_020a2a98(void) {
+u8 path[32];
+u8 *base=(u8 *)data_021600b0[0];
+u8 *node;
+void *file;
+u32 id;
+func_02005e80(path,data_02148aec);
+node=*(u8 **)(base+0x140);
+while(node){
+file=func_021092d8(path);
+if(func_02092ab0(file,*(u16 *)node)!=-1){
+*(u16 *)(node+2)=func_02092994(file,0);
+*(u16 *)(node+4)=func_02092994(file,0);
+*(u16 *)(node+6)=func_02092994(file,0);
+*(u16 *)(node+8)=func_02092994(file,0);
+*(u16 *)(node+10)=func_02092994(file,0);
+*(u16 *)(node+14)=func_02092994(file,0);
+*(u16 *)(node+16)=func_02092994(file,0);
+*(u16 *)(node+18)=func_02092994(file,0);
+*(u16 *)(node+20)=func_02092994(file,0);
+id=*(u16 *)node;
+if(func_020bdba0((u16)((id>=65 && id<=75)?id+0x480:id+0x11f))==1) node[12]|=1;
+id=*(u16 *)node;
+if(func_020bdba0((u16)((id>=65 && id<=75)?id+0x4e0:id+0x15f))==1) node[12]|=2;
+}
+if(file) func_021093b0(file);
+node=*(u8 **)(node+28);
+}
+}
+
 void func_020a2c20(void) {
     u16 *p = (u16 *)0x05000000;
     *p = 0;
