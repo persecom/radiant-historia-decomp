@@ -151,7 +151,7 @@ void func_0212fd28(u8 *a0, u8 *a1) {
     *(struct s8 *)(a0 + 0xa24) = *(struct s8 *)a1;
 }
 
-void func_0212fe50(s32 a0, s32 a1, s32 a2) {
-    func_0212f558(0, a2);
+s32 func_0212fe50(s32 a0, s32 a1, s32 a2) {
+    return func_0212f558(0, a2);
 }
 
