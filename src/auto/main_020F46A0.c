@@ -472,16 +472,16 @@ u32 func_020f53e4(void (*arg0)(void)) {
 
 #pragma opt_propagation off
 s32 func_020f53fc(void) {
-u8 *p = *(u8 **)(data_021626e8[0] + 0x10);
 const char *name = "";
+u8 *p = *(u8 **)(data_021626e8[0] + 0x10);
 u8 i = 0;
 func_0200c1a8(0,name);
 do { *(u32 *)(p+0x18c+4*i)=func_0210cd50(); i++; } while(i<2);
-{ u32 expected = ~0u;
-if (check_f53_expected(func_ov000_02176da0,(void *)func_020f53e4,expected)) func_0210cba0(*(u32 *)(p+0x14),*(u32 *)(p+0x18c));
-if (check_f53_expected(func_ov000_02176e18,(void *)func_020f53e4,expected)) func_0210cba0(*(u32 *)(p+0x14),*(u32 *)(p+0x18c));
-if (check_f53_expected(func_ov000_02176e90,(void *)func_020f53e4,expected)) func_0210cba0(*(u32 *)(p+0x14),*(u32 *)(p+0x18c));
-if (check_f53_expected(func_ov000_02176ddc,(void *)func_020f53e4,expected) && check_f53_expected(func_ov000_02176e54,(void *)func_020f53e4,expected) && check_f53_expected(func_ov000_02176ecc,(void *)func_020f53e4,expected)) func_0210cba0(*(u32 *)(p+0x14),*(u32 *)(p+0x190));
+{ s32 expected = -1;
+if (check_f53_result(expected,(void *)func_020f53e4,func_ov000_02176da0)) func_0210cba0(*(u32 *)(p+0x14),*(u32 *)(p+0x18c));
+if (check_f53_result(expected,(void *)func_020f53e4,func_ov000_02176e18)) func_0210cba0(*(u32 *)(p+0x14),*(u32 *)(p+0x18c));
+if (check_f53_result(expected,(void *)func_020f53e4,func_ov000_02176e90)) func_0210cba0(*(u32 *)(p+0x14),*(u32 *)(p+0x18c));
+if (check_f53_result(expected,(void *)func_020f53e4,func_ov000_02176ddc) && check_f53_result(expected,(void *)func_020f53e4,func_ov000_02176e54) && check_f53_result(expected,(void *)func_020f53e4,func_ov000_02176ecc)) func_0210cba0(*(u32 *)(p+0x14),*(u32 *)(p+0x190));
 else func_0210cba0(*(u32 *)(p+0x14),*(u32 *)(p+0x18c));
 func_0200c1fc(0,name); return 1; } }
 #pragma opt_propagation on
