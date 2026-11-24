@@ -1,5 +1,6 @@
 /* 16 functions from 0x021221E4 to 0x021231B0 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { s16 x, y; } Pair_02122b9c;
 
 extern void *data_02155ee8;
 extern void *data_02155ed8;
@@ -99,6 +100,47 @@ void func_021228d0(u8 *arg0, u8 *arg1, u8 *arg2) {
     }
 }
 
+extern u16 func_02122684(u8 *, u32, u32);
+void func_0212299c(u8 *pResult, u8 *anmObj, u32 dataIdx) {
+    u8 *res = *(u8 **)(anmObj + 8);
+    s32 frame = *(s32 *)(anmObj + 0);
+    s32 maxFrame = *(u16 *)(res + 4) << 12;
+    u32 iFrame;
+    u8 *dict;
+    u8 *data;
+    u32 diff;
+    u32 amb;
+    u32 emi;
+    u32 spec;
+    u32 alpha;
+
+    if (frame >= maxFrame) {
+        frame = maxFrame - 1;
+    } else if (frame < 0) {
+        frame = 0;
+    }
+    iFrame = frame >> 12;
+
+    dict = res + 8;
+    if (dict != NULL && (u16)dataIdx < res[9]) {
+        u8 *p = dict + *(u16 *)(res + 0xe);
+        data = (p + 4) + *(u16 *)p * (u16)dataIdx;
+    } else {
+        data = NULL;
+    }
+
+    diff = func_02122684(res, *(u32 *)(data + 0), iFrame);
+    amb = func_02122684(res, *(u32 *)(data + 4), iFrame);
+    *(u32 *)(pResult + 4) = diff | (amb << 16) | (((*(u32 *)(pResult + 4) & 0x8000) != 0) << 15);
+
+    emi = func_02122684(res, *(u32 *)(data + 0xc), iFrame);
+    spec = func_02122684(res, *(u32 *)(data + 8), iFrame);
+    *(u32 *)(pResult + 8) = spec | (emi << 16) | (((*(u32 *)(pResult + 8) & 0x8000) != 0) << 15);
+
+    alpha = func_021227e4(res, *(u32 *)(data + 0x10), iFrame);
+    *(u32 *)(pResult + 0xc) = (*(u32 *)(pResult + 0xc) & ~0x1f0000) | (alpha << 16);
+}
+
 s32 func_02122aa8(u8 *base, u32 flags, s32 offset, u32 frame) {
 u32 end, a, b;
 s32 x,y;
@@ -134,6 +176,41 @@ average:
 if (flags & 0x10000000) { x = ((s16 *)base)[frame]; y = ((s16 *)base)[frame+1]; }
 else { x = ((s32 *)base)[frame]; y = ((s32 *)base)[frame+1]; }
 return (x+y)>>1;
+}
+
+u32 func_02122b9c(u8 *base,u32 flags,u32 offset,s32 frame) {
+u32 f=(u32)frame,end,a;
+s32 x,y;
+if(flags&0x20000000) return offset;
+base+=offset;
+if(flags&0xc0000000) {
+end=(u16)flags;
+if(flags&0x40000000) {
+if(f&1) {
+if(f>end) {f=(end>>1)+1;goto sample;}
+a=f>>1;goto average;
+}
+f>>=1;
+} else {
+u32 rem=f&3;
+if(rem) {
+if(f>end) {f=(end>>2)+rem;goto sample;}
+if(f&1) {
+if(f&2) {f>>=2;a=f+1;} else {a=f>>2;f=a+1;}
+x=(3*((s16 *)base)[a*2]+((s16 *)base)[f*2])>>2;
+y=(3*((s16 *)base)[a*2+1]+((s16 *)base)[f*2+1])>>2;
+return (u16)x|((u32)y<<16);
+}
+a=f>>2;goto average;
+}
+f>>=2;
+}
+}
+sample: return ((u32 *)base)[f];
+average:
+x=(((s16 *)base)[a*2]+((s16 *)base)[a*2+2])>>1;
+y=(((s16 *)base)[a*2+1]+((s16 *)base)[a*2+3])>>1;
+return (u16)x|((u32)y<<16);
 }
 
 extern u32 func_02122b9c(u8 *, u32, u32, s32);
