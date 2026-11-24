@@ -119,6 +119,14 @@ void func_020c7818(void *arg0) {
     }
 }
 
+s32 func_020c786c(u8 *arg0) {
+    if (func_020c73c0(arg0) == 0) {
+        return 2;
+    }
+    func_020c9b64(*(void **)(arg0 + 0x4c));
+    return 0;
+}
+
 extern void func_020c7f6c(void *, s32, s16);
 void func_020c7fe4(u8 *arg0, s32 arg1) {
     func_020c7f6c(arg0, arg1, *(s16 *)(arg0 + 0x3c));
