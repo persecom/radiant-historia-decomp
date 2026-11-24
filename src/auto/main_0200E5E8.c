@@ -15,6 +15,11 @@ extern s32 func_0200e780(u32, u32, void *, void *);
 extern void func_0200f114(void);
 extern u32 data_02145c18;
 extern s32 func_0200ef5c(void);
+extern u32 data_0215f058[4];
+extern void func_0200893c(u32);
+extern void func_02008998(u32);
+extern s32 func_02002740(void);
+extern void func_02002750(void);
 s32 func_0200e5e8(u32 arg0, u32 arg1) {
     u32 buf[2];
     buf[0] = 0x03006000;
