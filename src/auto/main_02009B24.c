@@ -353,5 +353,21 @@ s32 func_0200a6c0(s32 arg0, s32 arg1) {
     } *work = (void *)0x02fffc00;
     return (work->ready[arg1] & (1 << arg0)) ? 1 : 0;
 }
-void func_0200a928(void) {
+u32 func_0200a928(u8 *arg0, u32 arg1) {
+    s32 irq;
+    u32 ret = arg1;
+    u32 flags;
+    if (arg1 == 0x100) {
+        irq = func_02008128();
+        if ((*(u32 *)(arg0 + 0xc) & 8) == 0) {
+            do {
+                func_02006510(arg0 + 0x18);
+            } while ((*(u32 *)(arg0 + 0xc) & 8) == 0);
+        }
+        func_0200813c(irq);
+        flags = *(u32 *)(arg0 + 0xc) & ~8;
+        ret = *(u32 *)(arg0 + 0x14);
+        *(u32 *)(arg0 + 0xc) = flags;
+    }
+    return ret;
 }
