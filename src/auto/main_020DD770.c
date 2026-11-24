@@ -26,6 +26,8 @@ extern const s16 data_0213a394[];
 extern void func_020de4ec(void);
 extern s32 func_0201fb1c(s32, s32);
 extern void func_020dd810(void *, s32, s32);
+extern void func_021167f0(void *, void *);
+void *func_020de33c(void *arg0, u16 arg1, u8 arg2);
 extern s32 func_02002404(s32, s32);
 extern void func_021168f8(void *, void *);
 extern void func_020ec548(void *);
@@ -259,17 +261,17 @@ void *func_020dde4c(u16 arg0) {
 }
 
 void func_020dde88(u8 *arg0) {
+    register volatile u16 *hw = (volatile u16 *)0x40002b0;
     s32 dist = ((s32 (*)(void *, void *))func_0210c2f4)(data_02162440, arg0);
-    s32 field = *(s32 *)(arg0 + 4);
-    s32 diff = data_0216242c[6] - field;
+    s32 diff = data_0216242c[6] - *(s32 *)(arg0 + 4);
     s64 sq = (s64)diff * diff;
     s32 q;
     s32 v;
 
-    *(volatile u16 *)0x40002b0 = 1;
-    *(volatile u32 *)0x40002b8 = (u32)sq;
-    *(volatile u32 *)0x40002bc = (u32)(sq >> 32);
-    while (*(volatile u16 *)0x40002b0 & 0x8000) {
+    *hw = 1;
+    *(volatile u32 *)((u8 *)hw + 8) = (u32)sq;
+    *(volatile u32 *)((u8 *)hw + 0xc) = (u32)(sq >> 32);
+    while (*hw & 0x8000) {
     }
     q = (dist + (*(volatile s32 *)0x40002b4 + 1 >> 1)) >> 12;
     v = (0xa00 - q) << 13;
