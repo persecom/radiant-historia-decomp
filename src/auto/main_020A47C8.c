@@ -23,6 +23,19 @@ extern u32 data_02155c3c;
 extern UnkStruct_02160200 *data_02160200;
 extern void func_0210c5dc(void *);
 extern void *func_0210c594(s32, u32);
+typedef struct UnkStruct_020a48d0 {
+    s16 unk0;
+    s16 unk2;
+    s16 unk4;
+    s16 unk6;
+    s16 unk8;
+    s16 unka;
+    s16 unkc;
+    s16 unke;
+} UnkStruct_020a48d0;
+
+extern const UnkStruct_020a48d0 data_02143350;
+extern void func_021098ac(void *);
 extern void func_021168f8(void *, void *);
 
 extern u32 (*data_02156150)(u32, s32, s32);
