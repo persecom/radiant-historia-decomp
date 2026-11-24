@@ -203,6 +203,11 @@ s32 func_02126804(s32 *arg0) {
     return arg0[0x15] - (arg0[0x16] * (s32)func_02126c90((void *)arg0[1])) / -arg0[0x17];
 }
 
+void func_02126844(void) {
+    data_02156580[0] = (u32)data_02145000;
+    func_02125ea4(data_02156580[1]);
+}
+
 extern s32 func_0212689c(s32, s32, s32);
 extern void func_02125ea4(u32);
 extern const u8 data_02145000[];
