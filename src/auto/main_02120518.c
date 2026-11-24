@@ -153,6 +153,17 @@ u8 *func_02120f94(u8 *arg0) {
     return arg0 + *(u32 *)(arg0 + off);
 }
 
+u8 *func_02120fa4(u8 *arg0) {
+    u32 *offs = (u32 *)(arg0 + *(u16 *)(arg0 + 0xc));
+    if (*(u16 *)(arg0 + 0xe) == 1) {
+        if (*(u32 *)arg0 == 0x30585442) {
+            return arg0 + offs[0];
+        }
+        return NULL;
+    }
+    return arg0 + offs[1];
+}
+
 u8 *func_02121040(u8 *arg0, u32 arg1) {
     if (arg0 != NULL && arg1 < *(u8 *)(arg0 + 6)) {
         return arg0 + *(u16 *)(arg0 + 8) + (arg1 << 4);
