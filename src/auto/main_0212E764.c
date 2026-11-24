@@ -2,6 +2,7 @@
 #include "common.h"
 
 extern u32 data_02156f4c[4];
+extern u8 data_0215a0d0[8];
 extern u32 data_02174524[0x100];
 extern u32 data_021744ec[5];
 extern u32 data_021744d8[4];
@@ -349,12 +350,12 @@ void func_0212f384(s32 *arg0, s32 arg1, s32 *arg2, s32 *arg3) {
     arg3[0] = (rem == 0) ? 0 : (arg2[0] + arg2[1]);
 }
 
-BOOL func_0212f3cc(u8 *arg0, s32 arg1) {
+u32 func_0212f3cc(u8 *arg0, s32 arg1) {
     s32 value = *(s32 *)(arg0 + 0xc);
     if (value < arg1) {
         func_0212f178();
     }
-    return arg1 > *(s32 *)(arg0 + 0xc) ? 0 : 1;
+    return arg1 <= *(s32 *)(arg0 + 0xc);
 }
 
 extern void func_0212f178(void);
@@ -389,8 +390,8 @@ void *func_0212f468(void *arg0) {
 BOOL func_0212f470(u8 *arg0) {
     void *obj = *(void **)(arg0 + 4);
     Unk_0212f038 *vtbl = *(Unk_0212f038 **)obj;
-    const BOOL one = TRUE;
-    return one && vtbl->method(obj, one) == 0 && *(u32 *)(arg0 + 0xc) == 0 && *(u32 *)(arg0 + 0x24) == 0;
+    BOOL one = TRUE;
+    return (vtbl->method(obj, one) == 0 && *(u32 *)(arg0 + 0xc) == 0 && *(u32 *)(arg0 + 0x24) == 0) ? TRUE : FALSE;
 }
 
 extern u32 data_0217479c;
@@ -414,8 +415,8 @@ s32 func_0212f558(void *arg0, u32 *arg1) {
 
 extern u8 data_021747a0[];
 s32 func_0212f570(void) {
-    struct S { u32 a; u32 b; };
-    ((struct S *)data_021747a0)->b++;
+    u32 *const p = (u32 *)data_021747a0;
+    p[1] += 1;
     return 0;
 }
 
