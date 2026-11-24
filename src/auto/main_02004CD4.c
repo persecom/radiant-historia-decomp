@@ -216,6 +216,41 @@ u16 func_020055a0(void) {
     return data_0215cd60[7];
 }
 
+void func_020055b0(const u32 *src, volatile u32 *dst) {
+    s32 i;
+    for (i = 0; i < 12; i++) {
+        *dst = src[i];
+    }
+}
+
+void func_020055d4(const u32 *src, volatile u32 *dst) {
+    s32 i;
+    for (i = 0; i < 16; i++) {
+        *dst = src[i];
+    }
+}
+
+void func_020055f0(void) {
+    data_0215cd60[0] = 0;
+    data_0215cd60[1] = 0;
+    data_0215cd60[2] = 0;
+    data_0215cd60[3] = 0;
+    data_0215cd60[4] = 0;
+    data_0215cd60[5] = 0;
+    data_0215cd60[6] = 0;
+    data_0215cd60[7] = 0;
+    data_0215cd60[8] = 0;
+    data_0215cd60[9] = 0;
+    data_0215cd60[10] = 0;
+    data_0215cd60[11] = 0;
+    data_0215cd60[12] = 0;
+    *(volatile u32 *)0x04000240 = 0;
+    *(volatile u8 *)0x04000244 = 0;
+    *(volatile u8 *)0x04000245 = 0;
+    *(volatile u8 *)0x04000246 = 0;
+    *(volatile u16 *)0x04000248 = 0;
+}
+
 void func_02005750(void) {
     func_020056c8(0);
 }
