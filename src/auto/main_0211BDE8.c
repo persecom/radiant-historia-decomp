@@ -127,6 +127,44 @@ void func_0211c5fc(u8 *arg0, s32 arg1, s32 arg2) {
     }
 }
 
+extern s32 func_021185c0(void *, s32);
+extern u32 func_021185b8(void *, s32);
+extern s32 func_0211860c(void *, s32);
+extern u32 func_02118600(void *, s32);
+void func_0211c624(u8 *p) {
+ u8 *texture;
+ s32 mode;
+ data_021701f8=p;
+ mode=*(s32 *)(*(u8 **)p+0x14);
+ if (mode==0) {
+  volatile s32 *regs=(volatile s32 *)0x04000440;
+  s32 x,y;
+  u8 *a;
+  u32 value=0;
+  regs[0]=0;
+  regs[1]=0;
+  x=(*(s32 **)p)[0]; y=(*(s32 **)p)[1];
+  regs[12]=-x; regs[12]=-y; regs[12]=0;
+  regs[0]=1;
+  a=*(u8 **)(data_021701f8+8);
+  if (func_021185c0(a,0)) value=func_021185b8(a,0);
+  *(u32 *)(p+0x14)=value;
+  {u8 *b=*(u8 **)(data_021701f8+12);
+  u32 value2=0;
+  if (func_0211860c(b,0)) value2=func_02118600(b,0);
+  *(u32 *)(p+0x18)=value2; }
+ } else {
+  u32 value;
+  texture=*(u8 **)(p+8);
+  if (!func_021185c0(texture,mode)) value=0;
+  else {
+   value=func_021185b8(texture,mode);
+   value >>= ((*(s32 *)(texture+0x20)&0x700000)>>20)+5;
+  }
+  *(u32 *)(data_021701f8+16)=value;
+ }
+}
+
 void func_0211c738(void) {
     if (*(s32 *)(*(u8 **)data_021701f8 + 0x14) == 0) {
         *(volatile u32 *)0x04000440 = 0;
