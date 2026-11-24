@@ -92,9 +92,9 @@ void func_020f40a4(void) {
     p = func_0210c518(0x50, (void *)data_02155c3c);
     data_02160c34.field_4 = p;
     func_02008e68(0, p, 0x50);
-    data_02151fc8.field_4 = 0x226000;
-    data_02151fc8.field_2 = 0x1555;
-    data_02151fc8.field_0 = 0x2000;
+    *(u32 *)((u8 *)&data_02151fc8 + 4) = 0x226000;
+    *(u16 *)((u8 *)&data_02151fc8 + 2) = 0x1555;
+    *(u16 *)((u8 *)&data_02151fc8 + 0) = 0x2000;
     data_02160c34.field_0 = 0;
     func_02107d58(0x226000, 0x1555, 0x2000);
     *(void **)data_02160c34.field_4 = func_020f4210;
@@ -112,8 +112,9 @@ void func_020f4144(void) {
 
 void func_020f4174(void) {
     u8 *p = (u8 *)data_02160c34.field_4;
+    u32 v = *(u32 *)(p + 0x2c) | *(u32 *)(p + 0x30) | *(u32 *)(p + 0x34);
 
-    if (*(u32 *)(p + 0x2c) | *(u32 *)(p + 0x30) | *(u32 *)(p + 0x34)) {
+    if (v != 0) {
         *(Trip *)(data_02155984 + 0x20) = *(Trip *)(p + 0x20);
         *(u32 *)(p + 0x2c) = 0;
         *(u32 *)(p + 0x30) = 0;
@@ -121,8 +122,8 @@ void func_020f4174(void) {
     }
     if (*(u16 *)((u8 *)data_02160c34.field_4 + 0x1a) != 0) {
         *(u16 *)((u8 *)data_02160c34.field_4 + 0x1a) = 0;
-        data_02151fc8.field_0 = *(u16 *)((u8 *)data_02160c34.field_4 + 0x18);
-        func_02107d58(data_02151fc8.field_4, data_02151fc8.field_2, data_02151fc8.field_0);
+        *(u16 *)&data_02151fc8 = *(u16 *)((u8 *)data_02160c34.field_4 + 0x18);
+        func_02107d58(*(u32 *)((u8 *)&data_02151fc8 + 4), *(u16 *)((u8 *)&data_02151fc8 + 2), *(u16 *)&data_02151fc8);
     }
 }
 
