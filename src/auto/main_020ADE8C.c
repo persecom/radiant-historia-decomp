@@ -17,30 +17,17 @@ extern s32 func_0203be60(u8 *, s32, s32);
 
 void func_020ade8c(s32 arg0) {
     u8 *p = func_020ade60(arg0);
-    s32 size;
+    s32 size = 0x10;
     if (p == NULL) {
         return;
     }
-    size = 0x10;
     func_02008f74(p, 0, size);
     switch (arg0) {
-    case 0:
-        *(s32 *)p = 0x100;
-        break;
-    case 1:
-        *(s32 *)(p + 4) = 0x39;
-        break;
-    case 2:
-        p[0xc] = 1;
-        p[0xd] = 1;
-        break;
-    case 3:
-        *(s32 *)p = size - 0xEC;
-        break;
-    case 4:
-        p[0xc] = 1;
-        p[0xd] = 1;
-        break;
+    case 0: *(s32 *)p = 0x100; break;
+    case 1: *(s32 *)(p + 4) = 0x39; break;
+    case 2: p[0xc] = 1; p[0xd] = 1; break;
+    case 3: *(s32 *)p = size - 0xEC; break;
+    case 4: p[0xc] = 1; p[0xd] = 1; break;
     }
 }
 
@@ -48,6 +35,23 @@ void func_020adf14(void) {
     s32 i;
     for (i = 0; i < 5; i++) {
         func_020ade8c(i);
+    }
+}
+
+void func_020adf34(void **arg0) {
+    s32 i;
+    for (i = 0; ; i++) {
+        Unk_02150788 *entry = &data_02150788[i];
+        u8 *obj;
+        if (entry->field_0 == 0) {
+            return;
+        }
+        obj = func_0203be10(1);
+        func_0203be60(obj, entry->field_0, entry->field_4 != 0 ? entry->field_4 : entry->field_0);
+        *(u32 *)(obj + 0x10) = entry->field_8;
+        *(u32 *)(obj + 0x14) = entry->field_c;
+        *(u32 *)(obj + 0x18) = entry->field_10;
+        arg0[i] = obj;
     }
 }
 
