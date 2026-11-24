@@ -133,3 +133,37 @@ void func_020988c0(void) {
     *(volatile u32 *)0x0400001c = 0;
     *(volatile u32 *)0x04000000 = (*(volatile u32 *)0x04000000 & ~0x1f00) | 0x1f00;
 }
+
+s32 func_020988e8(void) {
+s32 result=0;
+s32 three=3,one=1;
+data_02162868=one; data_0216bf84=result;
+func_0210968c(three,-16,one);
+func_02109790(three);
+func_02108e54(one);
+func_02098a28();
+data_02160204[0x123]=result;
+func_02109264(one);
+func_021089e8(one,0x15,one);
+func_0210968c(three,result,one);
+func_02109790(three);
+for(;;) { if(*(u32 *)(data_02160120+0x3c)!=0) break; func_0210dc88(); }
+{
+s32 three=3,one=1;
+func_0210968c(three,-16,one);
+func_02109790(three);
+func_02108eec(one,0x1000);
+}
+func_02099480();
+func_0210dc88();
+func_020bd608();
+func_0205295c();
+if(data_02160204[0x135]==1) result=5;
+else if(data_02160204[0x135]==0) result=2;
+if(*(void **)(data_02160204+0x10c)!=0 && func_020de3d8(*(void **)(data_02160204+0x10c))) {
+func_020b7350(result); result=30;
+}
+data_02162868=0;
+return result;
+}
+
