@@ -38,6 +38,9 @@ extern u8 *data_02155984;
 extern u32 data_02162834[];
 extern void func_02002128(Vec3 *, void *, void *);
 extern s32 func_02002080(s32, u32);
+extern void func_021167ac(void *, s32);
+extern void *data_02160c60[];
+extern void *data_02160c54[];
 s32 func_020f46a0(u16 arg0) {
     *(u16 *)data_02151fc8 += arg0;
     return func_02107d58(*(u32 *)(data_02151fc8 + 4), *(u16 *)(data_02151fc8 + 2), *(u16 *)data_02151fc8);
