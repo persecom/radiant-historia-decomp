@@ -114,3 +114,18 @@ void *func_0203065c(u8 *arg0, u16 arg1) {
     return node;
 }
 
+extern u8 *data_02160244;
+extern void func_0202e874(void *);
+void *func_02030698(u8 *arg0, u16 arg1) {
+    u8 *node = *(u8 **)(arg0 + 0xc0);
+    if (node != NULL) {
+        do {
+            if (*(u16 *)node == arg1) {
+                return node;
+            }
+            node = *(u8 **)(node + 0xc);
+        } while (node != NULL);
+    }
+    return NULL;
+}
+
