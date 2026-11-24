@@ -196,3 +196,7 @@ s32 func_020c73d8(u16 *arg0) {
     return (func_020c73b8(arg0) & 2) != 0;
 }
 
+s32 func_020c73f0(u16 *arg0) {
+    return (func_020c73b8(arg0) & 0x10) != 0;
+}
+
