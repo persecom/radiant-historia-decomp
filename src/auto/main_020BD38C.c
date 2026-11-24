@@ -265,6 +265,39 @@ s32 func_020bdf24(volatile s32 arg0, ...) {
     return 0;
 }
 
+void func_020bdf38(void){
+s32 mode=35;
+s32 zero=0,otherZero=0,two=2,arg=35;
+for(;;){
+u8 next=data_02160204[0xd8];
+if(next){mode=next;data_02160204[0xd8]=zero;func_020212fc();}
+data_02160204[0xd6]=data_02160204[0xd7];
+data_02160204[0xd7]=mode;
+*(u16*)(data_02160204+0x104)=*(u16*)(data_02160204+0x102);
+*(u16*)(data_02160204+0x102)=otherZero;
+switch(mode){
+case 1:mode=func_020dbd0c();break;
+case 2:mode=func_0203fd08();break;
+case 4:mode=func_02065cc8();break;
+case 9:mode=func_020988e8();break;
+case 11:mode=func_020824e0();break;
+case 12:mode=func_020cf464();break;
+case 13:mode=func_020cf284();break;
+case 14:mode=func_020b3778();break;
+case 15:mode=func_0203c3bc();break;
+case 35:mode=func_020a80dc();break;
+case 36:mode=func_020a79a4();break;
+case 18:mode=func_02045034();break;
+case 30:mode=func_020b72e4(two);break;
+case 31:mode=func_020764f4(arg);break;
+case 37:mode=func_020bac80();break;
+case 38:mode=func_020c9c3c();break;
+case 29:mode=func_020cbfa8();break;
+case 39:mode=func_02139fc4();break;
+}
+}
+}
+
 void func_020be30c(s16 *, s16 *);
 void func_020be0ec(void) {
 u8 **list;
