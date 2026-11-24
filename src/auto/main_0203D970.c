@@ -35,7 +35,7 @@ extern void func_0210da14(void);
 extern void func_0210c5dc(void *);
 extern void func_0203e8c0(void);
 extern s32 func_0201fb1c(s32, s32);
-extern u32 func_0201f218(s32);
+extern u32 _dflt(s32);
 extern void func_02020058(void);
 extern void func_0201ff80(void);
 
@@ -51,7 +51,7 @@ s32 func_0203e5a8(Vec_0203e5a8 *a, Vec_0203e5a8 *b, Vec_0203e5a8 *c) {
     s32 ret = func_0201fb1c(v0, v1);
     if (ret < 0) {
         s32 t = r4 * ret;
-        func_0201f218((t - r5) * (t - r5));
+        _dflt((t - r5) * (t - r5));
         func_02020058();
         func_0201ff80();
         return ret;

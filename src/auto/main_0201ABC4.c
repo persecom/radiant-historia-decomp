@@ -7,7 +7,7 @@ extern double func_02020c58(double,double);
 extern double func_0201e9fc(double,double);
 extern double func_0201edb0(double,double);
 extern double func_0201e6cc(double,double);
-extern double func_0201f218(s32);
+extern double _dflt(s32);
 
 double func_0201b2f4(double x) {
 s32 hx=((s32 *)&x)[1];

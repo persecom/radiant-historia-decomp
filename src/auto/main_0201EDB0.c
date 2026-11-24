@@ -57,7 +57,7 @@ L_440:
     return sign + ((lo | (hi << 12)) != 0);
 }
 
-u64 func_0201f218(s32 arg0) {
+u64 _dflt(s32 arg0) {
     u32 sign = (u32)arg0 & 0x80000000;
     u32 x = (u32)arg0;
     if (x & 0x80000000) {
