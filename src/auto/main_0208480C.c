@@ -1,5 +1,14 @@
 /* 17 functions from 0x0208480C to 0x02085328 (main), found by ds-decomp. */
 #include "common.h"
+extern char data_02148588[];
+void *func_021092d8(const char *);
+s32 func_02092994(void *,s32);
+s32 func_02109444(void *);
+void func_021093b0(void *);
+u8 *func_020bd438(u8);
+u8 *func_02021f10(s32);
+void func_021167f0(void *,void *);
+void func_02084fd0(void);
 typedef struct { u8 a,b; u32 value; } Entry_02084fd0;
 typedef struct { u8 bytes[7]; } Order_02084fd0;
 extern const u8 data_02140c70[7];
