@@ -412,6 +412,17 @@ void *func_020de2a8(u8 *arg0, u16 arg1, u8 arg2) {
     return node;
 }
 
+void *func_020de33c(void *arg0, u16 arg1, u8 arg2) {
+    u8 *node = *(u8 **)arg0;
+    while (node != NULL) {
+        if (arg1 == *(u16 *)(node + 0x8) && *(u8 *)(node + 0xc) == arg2) {
+            return node;
+        }
+        node = *(u8 **)(node + 0x4);
+    }
+    return NULL;
+}
+
 void func_020de374(void *arg0, void *arg1) {
     func_021168f8(arg0, arg1);
     if (arg1 != NULL) {
