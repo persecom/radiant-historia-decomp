@@ -167,6 +167,34 @@ s32 func_021110a8(u8 *arg0) {
     return 0;
 }
 
+extern const u16 data_02144c10[];
+void func_0211111c(void *arg0, s32 arg1, s32 arg2) {
+    u8 *p = (u8 *)arg0;
+    u16 vals[6];
+    u16 *dst = vals;
+    u16 i;
+    u8 *obj;
+    s16 x;
+    s16 y;
+    vals[0] = data_02144c10[0];
+    vals[1] = data_02144c10[1];
+    vals[2] = data_02144c10[2];
+    vals[3] = data_02144c10[3];
+    vals[4] = data_02144c10[4];
+    vals[5] = data_02144c10[5];
+    for (i = 0; i < 6; i++) {
+        obj = func_020c9c10(*(void **)(p + 0x30), dst[i]);
+        if (obj != NULL) {
+            x = arg1 + (*(s16 *)(obj + 0x3a) - *(s16 *)(p + 0x34));
+            y = arg2 + (*(s16 *)(obj + 0x3c) - *(s16 *)(p + 0x36));
+            ((void (*)(u8 *, s32))(*(void **)(obj + 0x10)))(obj, x);
+            ((void (*)(u8 *, s32))(*(void **)(obj + 0x14)))(obj, y);
+        }
+    }
+    *(s16 *)(p + 0x34) = arg1;
+    *(s16 *)(p + 0x36) = arg2;
+}
+
 void func_021111f4(u8 *arg0, u32 arg1, u32 arg2) {
     u16 vals[6];
     u16 *dst = vals;
