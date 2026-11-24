@@ -27,6 +27,7 @@ f64 func_02017edc(const char *str, char **endptr) {
     return value;
 }
 
+extern f64 func_02017edc(const char *, char **);
 f64 func_02017f64(const char *str) {
     return func_02017edc(str, NULL);
 }
