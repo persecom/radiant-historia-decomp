@@ -59,3 +59,21 @@ void func_020223bc(u8 *arg0, void *arg1, u16 arg2) {
     func_021167f0(arg0 + 0x64, p);
 }
 
+void func_020223f8(u8 *arg0, u16 arg1) {
+    u8 *node = *(u8 **)(arg0 + 0x64);
+    u16 i = 0;
+    while (node != NULL) {
+        if (arg1 == i) {
+            break;
+        }
+        i++;
+        node = *(u8 **)(node + 0xc);
+    }
+    if (node != NULL) {
+        func_021168f8(arg0 + 0x64, node);
+        if (node != NULL) {
+            func_0210c5dc(node);
+        }
+    }
+}
+
