@@ -20,7 +20,7 @@ void func_020a76cc(void) {
     u8 *p = data_021600e4;
     func_020a78f0();
     if (*(void **)(p + 0x154) == NULL) {
-        s32 six = 6;
+        register s32 six = 6;
         *(void **)(p + 0x154) = func_020c6d5c(six);
         func_020c7654(*(void **)(p + 0x154), 2, 0x80008000, 0, 0, 0xa0, 0, six, 0);
         func_020a7834();
@@ -30,13 +30,14 @@ void func_020a76cc(void) {
 
 void func_020a773c(void) {
     u8 *p = data_021600e4;
+    void *obj;
     u8 *node = *(u8 **)(p + 0x148);
     if (node == NULL) {
         return;
     }
     while (node != NULL) {
         s32 val = 4;
-        void *obj = *(void **)(node + 0);
+        obj = *(void **)(node + 0);
         if (func_020aa818(*(void **)(p + 0x13f4), *(u16 *)(node + 0xc)) != 0) {
             val = 6;
         }
@@ -100,6 +101,13 @@ void func_020a78f0(void) {
         func_020c6d4c(*(u8 **)(p + 0x154));
         *(void **)(p + 0x154) = NULL;
     }
+}
+
+void func_020a795c(u32 arg0, u32 *arg1, u32 *arg2) {
+    u8 *p = data_021600e4;
+    u8 *result = func_020a6360(p + 0x118, (arg0 - *(u32 *)(p + 0x184) + 1) & 0xff);
+    *arg1 = *(u32 *)(result + 4);
+    *arg2 = *(u32 *)(result + 8);
 }
 
 void func_020a7fe8(void) {
