@@ -15,6 +15,27 @@ void func_02002d9c(void) {
     }
 }
 
+void func_02002dc0(void) {
+    s32 sp4;
+    s32 sp0;
+
+    *(volatile u32 *)0x04000600 |= 0x8000;
+    while (func_0200308c(&sp4)) {
+    }
+    while (func_020030b8(&sp0)) {
+    }
+    *(volatile u32 *)0x04000440 = 3;
+    *(volatile u32 *)0x04000454 = 0;
+    *(volatile u32 *)0x04000440 = 0;
+    if (sp0 != 0) {
+        *(volatile u32 *)0x04000448 = sp0;
+    }
+    *(volatile u32 *)0x04000454 = 0;
+    *(volatile u32 *)0x04000440 = 2;
+    *(volatile u32 *)0x04000448 = sp4;
+    *(volatile u32 *)0x04000454 = 0;
+}
+
 void func_020038f8(void *arg0, u32 arg1, u32 arg2) {
     u32 base = func_02003188();
     if (data_02145ba4 != -1 && arg2 > 0x1c) {
