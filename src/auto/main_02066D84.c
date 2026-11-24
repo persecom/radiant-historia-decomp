@@ -7,7 +7,7 @@ extern const IdList18_6713c data_0213fca4;
 extern const u32 data_0213fc74;
 extern u8 data_021477a0[];
 extern void func_02067354(void *,s32);
-extern void *func_02067294(void *,u16);
+extern void *func_02067294(void *,u32);
 extern void func_021091b4(void);
 extern u8 *data_021600e0[];
 extern const s16 data_0213a394[];
@@ -75,7 +75,7 @@ void func_02066eac(s32 arg0) {
     func_0206713c(arg0, 0);
 }
 
-void *func_02067294(void *arg0, u16 arg1) {
+void *func_02067294(void *arg0, u32 arg1) {
     void *result;
     u8 *p1;
     u8 *p2;
