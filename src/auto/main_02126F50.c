@@ -73,7 +73,7 @@ void func_02127468(void *arg0) {
     }
 }
 
-extern void func_0212789c(void *);
+extern void func_0212789c();
 extern void func_02126c20(void *);
 extern u8 data_021565f0[52];
 extern u8 data_02156624[56];
