@@ -151,6 +151,75 @@ void func_020bcf78(u8 arg0) {
     }
 }
 
+void *func_020bd058(u32 id) {
+    u8 *ret = NULL;
+    if (id >= 0x1 && id <= 0x33) {
+        u8 *p = *(u8 **)((u8 *)data_021601f8.unk00 + 0x10);
+        while (p != NULL) {
+            if (*(u16 *)(p + 4) == id) {
+                ret = p;
+                break;
+            }
+            p = *(u8 **)(p + 0x1c);
+        }
+    } else if (id >= 0x65 && id <= 0xc8) {
+        u8 *p = *(u8 **)((u8 *)data_021601f8.unk00 + 0x1c);
+        while (p != NULL) {
+            if (*(u16 *)(p + 4) == id) {
+                ret = p;
+                break;
+            }
+            p = *(u8 **)(p + 0x3c);
+        }
+    } else if (id >= 0xc9 && id <= 0x10f) {
+        u8 *p = *(u8 **)((u8 *)data_021601f8.unk00 + 0x28);
+        while (p != NULL) {
+            if (*(u16 *)(p + 4) == id) {
+                ret = p;
+                break;
+            }
+            p = *(u8 **)(p + 0x18);
+        }
+    } else if (id >= 0x12d && id <= 0x1a9) {
+        u8 *p = *(u8 **)((u8 *)data_021601f8.unk00 + 0x34);
+        while (p != NULL) {
+            if (*(u16 *)(p + 4) == id) {
+                ret = p;
+                break;
+            }
+            p = *(u8 **)(p + 0x3c);
+        }
+    } else if (id >= 0x208 && id <= 0x26c) {
+        u8 *p = *(u8 **)((u8 *)data_021601f8.unk00 + 0x40);
+        while (p != NULL) {
+            if (*(u16 *)(p + 4) == id) {
+                ret = p;
+                break;
+            }
+            p = *(u8 **)(p + 0x3c);
+        }
+    } else if (id >= 0x2bd && id <= 0x31e) {
+        u8 *p = *(u8 **)((u8 *)data_021601f8.unk00 + 0x4c);
+        while (p != NULL) {
+            if (*(u16 *)(p + 4) == id) {
+                ret = p;
+                break;
+            }
+            p = *(u8 **)(p + 0x3c);
+        }
+    } else if (id >= 0x321 && id <= 0x384) {
+        u8 *p = *(u8 **)((u8 *)data_021601f8.unk00 + 0x58);
+        while (p != NULL) {
+            if (*(u16 *)(p + 4) == id) {
+                ret = p;
+                break;
+            }
+            p = *(u8 **)(p + 0x18);
+        }
+    }
+    return ret;
+}
+
 s32 func_020bd250(void) {
     u8 *p = (u8 *)&data_021601f8;
     volatile u32 buf;
