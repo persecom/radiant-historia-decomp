@@ -242,18 +242,22 @@ u16 func_0200a108(s32 arg0) {
 }
 
 void func_0200a248(u8 *arg0) {
+    struct {
+        u8 pad[0x18];
+        struct {
+            u8 *node;
+            u8 *next;
+        } links[4];
+    } *s = (void *)arg0;
     s32 i;
     func_0200986c();
     for (i = 0; i < 4; i++) {
-        u8 *node = *(u8 **)((arg0 + i * 8) + 0x18);
-        if (node == NULL) {
-            continue;
-        }
-        {
+        u8 *node = s->links[i].node;
+        if (node != NULL) {
             u8 *cur = *(u8 **)(node + 0x18);
-            u8 *target = (arg0 + 0x18) + i * 8;
+            u8 *target = (u8 *)&s->links[i];
             if (target == cur) {
-                *(u8 **)(node + 0x18) = *(u8 **)((arg0 + i * 8) + 0x1c);
+                *(u8 **)(node + 0x18) = s->links[i].next;
                 func_02006da8(node, 0x3c);
             } else {
                 while (cur != NULL) {
@@ -262,7 +266,7 @@ void func_0200a248(u8 *arg0) {
                     }
                     cur = *(u8 **)(cur + 4);
                 }
-                *(u8 **)(cur + 4) = *(u8 **)((arg0 + i * 8) + 0x1c);
+                *(u8 **)(cur + 4) = s->links[i].next;
                 func_02006da8(cur, 8);
             }
         }
