@@ -127,6 +127,19 @@ void *func_021082d0(void) {
     return NULL;
 }
 
+extern u32 data_02162860;
+extern void func_02107d84(u32, u32, u32, u32);
+extern void func_02107e4c(void *);
+extern void func_02002128(void *, void *, void *);
+extern void func_02002274(void *, void *);
+void *func_021082ec(void) {
+    u8 *p = (u8 *)data_02155984;
+    if (p != NULL) {
+        return p + 0x20;
+    }
+    return NULL;
+}
+
 extern u32 data_02155c3c;
 extern void *func_0210c594(u32, u32);
 extern void func_02008f74(void *, s32, u32);
