@@ -8,6 +8,12 @@ extern void func_021167f0(void *, void *);
 extern void func_021168f8(void *, void *);
 extern void func_0210c5dc(void *);
 
+void *func_02022ee0(void) {
+    void *ptr = func_0210c594(0xc, data_02155c3c);
+    func_021167ac(ptr, 0x18);
+    return ptr;
+}
+
 void *func_02023100(void **arg0) {
     return *arg0;
 }
