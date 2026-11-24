@@ -140,6 +140,10 @@ void func_02125334(void) {
     func_02003894();
 }
 
+u8 *func_021253c8(u8 *arg0) {
+    return *(u8 **)(arg0 + 0) + (*(u16 *)(arg0 + 8) << 4);
+}
+
 void func_02125e64(void) {
 }
 
