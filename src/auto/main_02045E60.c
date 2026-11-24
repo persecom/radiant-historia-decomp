@@ -37,6 +37,13 @@ void func_020466f4(void) {
     }
 }
 
+void func_02046760(u8 *arg0) {
+    if (data_021600b8 != NULL) {
+        func_021168f8(data_021600b8 + 0x20, arg0);
+        *(u8 *)(arg0 + 0x1f4) = 0;
+    }
+}
+
 void func_020468e0(u8 arg0) {
     u8 *node = *(u8 **)data_021600b8;
     while (node != NULL) {
