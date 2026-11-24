@@ -125,9 +125,10 @@ void func_0212299c(u8 *pResult, u8 *anmObj, u32 dataIdx) {
     if (dict != NULL && (u16)dataIdx < res[9]) {
         u8 *p = dict + *(u16 *)(res + 0xe);
         data = (p + 4) + *(u16 *)p * (u16)dataIdx;
-    } else {
-        data = NULL;
+        goto got_data;
     }
+    data = NULL;
+got_data:
 
     diff = func_02122684(res, *(u32 *)(data + 0), iFrame);
     amb = func_02122684(res, *(u32 *)(data + 4), iFrame);
@@ -197,8 +198,8 @@ if(rem) {
 if(f>end) {f=(end>>2)+rem;goto sample;}
 if(f&1) {
 if(f&2) {f>>=2;a=f+1;} else {a=f>>2;f=a+1;}
-x=(3*((s16 *)base)[a*2]+((s16 *)base)[f*2])>>2;
-y=(3*((s16 *)base)[a*2+1]+((s16 *)base)[f*2+1])>>2;
+x=3*((Pair_02122b9c *)base)[a].x; x+=((Pair_02122b9c *)base)[f].x; x>>=2;
+y=3*((Pair_02122b9c *)base)[a].y; y+=((Pair_02122b9c *)base)[f].y; y>>=2;
 return (u16)x|((u32)y<<16);
 }
 a=f>>2;goto average;
@@ -208,8 +209,8 @@ f>>=2;
 }
 sample: return ((u32 *)base)[f];
 average:
-x=(((s16 *)base)[a*2]+((s16 *)base)[a*2+2])>>1;
-y=(((s16 *)base)[a*2+1]+((s16 *)base)[a*2+3])>>1;
+x=(((Pair_02122b9c *)base)[a].x+(((Pair_02122b9c *)base)+a)[1].x)>>1;
+y=(((Pair_02122b9c *)base)[a].y+(((Pair_02122b9c *)base)+a)[1].y)>>1;
 return (u16)x|((u32)y<<16);
 }
 
