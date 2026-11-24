@@ -116,6 +116,9 @@ void func_0212884c(u32 arg0, u32 arg1, u32 arg2) {
     func_0212a9f8();
 }
 
+void func_02128878(u32 arg0, u32 arg1, u32 arg2) {
+}
+
 extern void func_021288a4(void);
 void func_02128880(void *arg0, void *arg1) {
     func_0212a9f4();
