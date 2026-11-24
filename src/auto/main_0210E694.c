@@ -2,6 +2,8 @@
 #include "common.h"
 
 extern s32 data_02155c94[];
+extern void func_02124bf8(u32, s32);
+extern void func_02124eac(u32, s32);
 extern u8 data_02162954[256];
 extern void (*data_0215615c)(void *);
 extern void func_02005ec0(void *, u32, const char *, char *);
@@ -288,6 +290,36 @@ void *func_0210eb98(void *arg0, ...) {
     char *vlist = (char *)((u32)&arg0 & ~3) + 4;
     func_02005ec0(data_02162954, 0x100, arg0, vlist);
     return data_02162954;
+}
+
+void *func_0210ec9c(const char *arg0, s32 arg1, s32 arg2) {
+    const char *name = arg0;
+    u16 id;
+    u8 *node = NULL;
+
+    if (*(s8 *)data_02162a80 != 0) {
+        name = data_02162a80;
+    }
+    id = func_0210c060((void *)name, func_02012348(name));
+    goto advance;
+body:
+    if (*(u16 *)(node + 0x18) == id) {
+        if (arg2 == 2 || ((arg1 == 0 || *(u16 *)(node + 0x16) == arg1) && *(u8 *)(node + 0xc) == arg2)) {
+            if (func_020123f0(node + 0x1a, (const u8 *)name) == 0) {
+                return node;
+            }
+        }
+    }
+advance:
+    if (node == NULL) {
+        node = *(u8 **)((u8 *)data_02162a54 + 0x20);
+    } else {
+        node = *(u8 **)((u8 *)node + *(u16 *)((u8 *)data_02162a54 + 0x2a) + 4);
+    }
+    if (node != NULL) {
+        goto body;
+    }
+    return NULL;
 }
 
 void *func_0210ed58(u32 arg0, u8 arg1) {
