@@ -58,12 +58,12 @@ BOOL func_02127404(void *arg0, void *arg1, void *arg2, s32 arg3) {
         p = func_02127a9c(*(void **)arg1, arg2, arg3 - 0xc);
     }
     *(void **)((u8 *)arg0 + 4) = p;
-    if (p == NULL) {
-        func_02126c20(data_0215665c);
-        return FALSE;
+    if (p != NULL) {
+        *(void **)((u8 *)arg0 + 8) = *(void **)arg1;
+        return TRUE;
     }
-    *(void **)((u8 *)arg0 + 8) = *(void **)arg1;
-    return TRUE;
+    func_02126c20(data_0215665c);
+    return FALSE;
 }
 
 void func_02127468(void *arg0) {
@@ -87,6 +87,14 @@ void func_0212749c(void *arg0) {
 
 void func_021274ac(void *arg0) {
     func_021277f4(*(void **)((u8 *)arg0 + 4));
+}
+
+extern void func_02139bbc(void *);
+extern void func_021278d8(void *);
+extern void func_02127988(void *);
+extern void func_0212824c(void *);
+void func_021274bc(void *arg0) {
+    func_02139bbc(*(void **)((u8 *)arg0 + 4));
 }
 
 s32 func_021275f8(s32 *arg0) {
