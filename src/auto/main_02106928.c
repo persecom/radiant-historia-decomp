@@ -314,6 +314,27 @@ s32 func_02107438(u8 *arg0, char *arg1) {
     return 1;
 }
 
+BOOL func_02107514(u8 *arg0, char *arg1) {
+    char buf[0x100];
+    u32 sp8;
+    void *sp4 = NULL;
+    void *sp0 = NULL;
+    void *p;
+
+    func_02005e80(buf, data_0215597c, arg1);
+    p = (void *)func_0210ab44(&sp4, buf, &sp8);
+    if (p == NULL) {
+        return 0;
+    }
+    if (func_02117878(p, &sp0) == 0) {
+        sp0 = NULL;
+    }
+    *(void **)(arg0 + 0) = p;
+    *(void **)(arg0 + 0x14) = sp4;
+    *(void **)(arg0 + 0x1c) = sp0;
+    return 1;
+}
+
 void func_02107774(void) {
     u32 *p = data_02161070[0];
     if (p != NULL) {
@@ -342,15 +363,18 @@ void func_02107840(void) {
 }
 
 extern u32 *data_02161070[];
-s32 func_02107860(u8 *arg0, u8 *arg1, s32 *arg2) {
-    u32 r4 = ((*(u16 *)(arg0 + 2) & 0x3f) << 2) & 0xff;
-    s32 dy = *(s32 *)(arg1 + 0x14) - arg2[1];
-    s32 dx = *(s32 *)(arg1 + 0x10) - arg2[0];
-    s32 y0 = dy + (r4 << 12);
-    s32 y1 = dy - (r4 << 12);
-    s32 x0 = dx - (r4 << 12);
-    s32 x1 = dx + (r4 << 12);
-    if (y0 > 0 && y1 < arg2[3] && x1 > 0 && x0 < arg2[2]) {
+s32 func_02107860(u8 *arg0, u8 *arg1, u8 *arg2) {
+    u8 r4 = *(u16 *)(arg0 + 2) & 0x3f;
+    s32 dy, dx;
+    s32 y0, y1, x0, x1;
+    r4 <<= 2;
+    dy = *(s32 *)(arg1 + 0x14) - *(s32 *)(arg2 + 4);
+    y0 = dy + (r4 << 12);
+    y1 = dy - (r4 << 12);
+    dx = *(s32 *)(arg1 + 0x10) - *(s32 *)(arg2 + 0);
+    x0 = dx - (r4 << 12);
+    x1 = dx + (r4 << 12);
+    if (y0 > 0 && y1 < *(s32 *)(arg2 + 0xc) && x1 > 0 && x0 < *(s32 *)(arg2 + 8)) {
         return 1;
     }
     return 0;
