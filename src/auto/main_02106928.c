@@ -308,6 +308,17 @@ s32 func_02107438(u8 *arg0, char *arg1) {
     return 1;
 }
 
+void func_02107774(void) {
+    u32 *p = data_02161070[0];
+    if (p != NULL) {
+        *(volatile u32 *)0x04001010 = (p[0] & 0x1ff) | ((p[1] << 16) & 0x01ff0000);
+    }
+    p = data_02161070[5];
+    if (p != NULL) {
+        *(volatile u32 *)0x04001014 = (p[0] & 0x1ff) | ((p[1] << 16) & 0x01ff0000);
+    }
+}
+
 void func_021077f0(u32 arg0, u32 arg1) {
     func_02117f54(arg0, 0, 0x7f, arg1);
     ((void (*)(u32, u32, u32))func_02118008)(arg0, 0, 0x1f);
