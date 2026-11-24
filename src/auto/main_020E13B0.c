@@ -113,6 +113,25 @@ void func_020e1d08(u16 arg0) {
     func_021098ac(&buf);
 }
 
+extern u32 func_020a583c(void);
+extern void func_020e1ec8(void *, s32);
+void func_020e1da0(void) {
+    u16 i;
+    for (i = 0; i < 0xe; i++) {
+        *(u32 *)(data_02160a74 + i * 4 + 0x60) = func_020a583c();
+    }
+    func_020e1ec8(*(void **)(data_02160a74 + 0x60), 0);
+    func_020e1ec8(*(void **)(data_02160a74 + 0x64), 0);
+    func_020e1ec8(*(void **)(data_02160a74 + 0x68), 0);
+    func_020e1ec8(*(void **)(data_02160a74 + 0x6c), 0);
+    func_020e1ec8(*(void **)(data_02160a74 + 0x70), 0);
+    func_020e1ec8(*(void **)(data_02160a74 + 0x74), 0);
+    func_020e1ec8(*(void **)(data_02160a74 + 0x78), 2);
+    func_020e1ec8(*(void **)(data_02160a74 + 0x7c), 0);
+    func_020e1ec8(*(void **)(data_02160a74 + 0x80), 4);
+    func_020e1ec8(*(void **)(data_02160a74 + 0x94), 0xe);
+}
+
 void func_020e1e80(void) {
     u16 i;
     for (i = 0; i < 0xe; i++) {
