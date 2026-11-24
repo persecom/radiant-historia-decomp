@@ -347,6 +347,17 @@ void func_02116a5c(void *heap, u32 signature, void *start, void *end, u16 opt) {
     func_021167f0(func_02116a34(heap), heap);
 }
 
+void func_02116ad8(void *heap) {
+    func_021168f8(func_02116a34(heap), heap);
+}
+
+void func_02116af0(void *region, void *block) {
+    u8 *b = (u8 *)block;
+    u16 offset = (*(u16 *)(b + 2) >> 8) & 0x7f;
+    *(u8 **)region = b - offset;
+    *(u8 **)((u8 *)region + 4) = (b + 0x10) + *(u32 *)(b + 4);
+}
+
 void *func_02116b1c(void *list, void *block) {
     u8 *l = (u8 *)list;
     u8 *b = (u8 *)block;
