@@ -10,6 +10,17 @@ extern u8 data_021626a0[];
 extern u8 data_021626b6[];
 extern u16 data_021626ce[];
 extern u32 data_02155c3c;
+u32 func_0210c8e8(u32 arg0) {
+    u32 ret = 0;
+    s32 i;
+    for (i = 0; i < 12; i++) {
+        if (arg0 & (1 << i)) {
+            ret |= data_021626ce[i];
+        }
+    }
+    return ret;
+}
+
 void func_0210ca6c(void) {
     u32 r4 = func_0210c924();
     func_0210c9cc();
@@ -49,5 +60,15 @@ s32 func_0210cdfc(u8 *arg0, s32 arg1) {
 extern void func_0210cd90(s32);
 void func_0210ce5c(void) {
     func_0210cd90(0);
+}
+
+extern void func_02113b58(void *, s32);
+extern void func_02113c18(void *);
+extern void func_02008f74(void *, s32, u32);
+extern void *func_0210c594(s32, u32);
+extern void *func_021092d8(void *);
+void func_0210d448(void) {
+    func_02113b58(data_0216273c, 0);
+    func_02113c18(data_0216273c);
 }
 
