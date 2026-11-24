@@ -280,6 +280,24 @@ if(res) func_0211d520(func_02120f94(first),res);
 if(second) func_0210c5dc(second);
 }
 
+void func_0210bcc8(u8 *p) {
+u32 a[9], b[9], c[9], d[9];
+func_020010d8(p+0xa0);
+*(u32 *)(p+0xa0)=*(u32 *)(p+0x78); *(u32 *)(p+0xb0)=*(u32 *)(p+0x7c); *(u32 *)(p+0xc0)=*(u32 *)(p+0x80);
+
+if(*(u32 *)(p+0xf8)) {
+func_02000da0(b,data_0213a394[(*(u16 *)(p+0x98)>>4)*2],data_0213a394[(*(u16 *)(p+0x98)>>4)*2+1]);
+func_02000dbc(c,data_0213a394[(*(u16 *)(p+0x94)>>4)*2],data_0213a394[(*(u16 *)(p+0x94)>>4)*2+1]);
+func_02000dd8(d,data_0213a394[(*(u16 *)(p+0x9c)>>4)*2],data_0213a394[(*(u16 *)(p+0x9c)>>4)*2+1]);
+func_02000df0(a,p+0x84,data_0213a394[(*(u16 *)(p+0x90)>>4)*2],data_0213a394[(*(u16 *)(p+0x90)>>4)*2+1]);
+func_02000f44(b,c,b); func_02000f44(b,d,b); func_02000f44(b,a,b);
+func_02000f44(data_02144b70,b,p+0xd0);
+func_02000f44(p+0xa0,p+0xd0,p+0xa0);
+} else func_02000f44(p+0xa0,p+0xd0,p+0xa0);
+*(u32 *)(p+0xc4)=*(u32 *)(p+0x6c); *(u32 *)(p+0xc8)=*(u32 *)(p+0x70); *(u32 *)(p+0xcc)=*(u32 *)(p+0x74);
+*(u32 *)(p+0xf4)=0;
+}
+
 void func_02008e68(u32, void *, u32);
 void func_0210be4c(void) {
 u32 *p; u64 seed;
