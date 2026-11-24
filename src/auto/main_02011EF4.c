@@ -11,6 +11,28 @@ char *func_02012210(char *dst, const char *src) {
     return p;
 }
 
+int func_02012348(const char *s) {
+    const char *p = s;
+    while (*p != 0) {
+        p++;
+    }
+    return p - s;
+}
+
+char *func_020123cc(char *dst, const char *src) {
+    func_02012210(dst + func_02012348(dst), src);
+    return dst;
+}
+
+int func_020123f0(const char *a, const char *b) {
+    while (*a == *b) {
+        if (*a == 0) return 0;
+        a++;
+        b++;
+    }
+    return *a - *b;
+}
+
 void func_02012590(s32 arg0, const char *arg1, ...) {
     char *vlist = (char *)((u32)&arg1 & ~3) + 4;
     func_02012634(arg0, arg1, vlist);
