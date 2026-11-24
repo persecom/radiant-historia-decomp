@@ -10,11 +10,14 @@ extern u32 func_020081f0(void);
 extern void func_020059e4(u32);
 extern void func_02007ee4();
 extern void func_02007dd4(u8 *);
+extern void func_02007ee4(void);
 void func_02007d18(void) {
     u8 *p = data_0215d144;
     u32 zero = 0;
+    u32 one = 1;
     if (*(u16 *)p == 0) {
-        *(u16 *)p = 1;
+        *(u16 *)p = one;
+        zero = 0;
         *(u32 *)(p + 0xc) = zero;
         *(u32 *)(p + 0x10) = zero;
         func_020059e4(4);
@@ -58,8 +61,8 @@ append:
 }
 
 void func_02007dd4(u8 *arg0) {
-    u32 zero = 0;
     u8 *p = data_0215d144;
+    u32 zero = 0;
     u8 *tail = *(u8 **)(p + 0x10);
     *(u32 *)(arg0 + 0x14) = (u32)tail;
     *(u32 *)(arg0 + 0x18) = zero;
@@ -102,6 +105,19 @@ void func_02008444(void) {
     while (1) {
         func_02008454();
     }
+}
+
+extern void func_02008414(void);
+extern u32 func_020080d8(u32 arg0);
+extern void func_0200813c(u32 arg0);
+extern void func_020057e8(u32 irq, void (*handler)(void));
+extern void func_020026e0(s32 count);
+extern void func_020059b4(u32 irq);
+extern void func_02007f24(void);
+void func_02008460(u32 *arg0) {
+    arg0[2] = 0;
+    arg0[1] = 0;
+    arg0[0] = 0;
 }
 
 void func_02008558(u8 arg0) {
