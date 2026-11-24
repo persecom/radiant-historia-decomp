@@ -128,6 +128,16 @@ void func_020ae530(void) {
     }
 }
 
+void func_020ae6e8(u8 *arg0) {
+ s32 i;
+ if (*(void **)(arg0+0x15c) != NULL) {func_020a9544(*(void **)(arg0+0x15c)); *(u32 *)(arg0+0x15c)=0;}
+ if (*(void **)(arg0+0x164) != NULL) {func_020a9544(*(void **)(arg0+0x164)); *(u32 *)(arg0+0x164)=0;}
+ if (*(void **)(arg0+0x160) != NULL) {func_020a9544(*(void **)(arg0+0x160)); *(u32 *)(arg0+0x160)=0;}
+ if (*(void **)(arg0+0x168) != NULL) {func_020a9544(*(void **)(arg0+0x168)); *(u32 *)(arg0+0x168)=0;}
+for (i=0;i<5;i++) {s32 off=i*0x50; u8 *obi; func_020a994c(arg0+0x3f0+off);func_020a98a0(arg0+0x3f0+off);obi=*(u8 **)(arg0+off+0x3ec);if(obi!=NULL){((void (*)(u8 *))(*(void **)(obi+0xc)))(obi);*(u8 **)(arg0+i*0x50+0x3ec)=NULL;}}
+for (i=0;i<2;i++) {s32 off=i*0x50; u8 *obi; func_020a994c(arg0+0x580+off);func_020a98a0(arg0+0x580+off);obi=*(u8 **)(arg0+off+0x57c);if(obi!=NULL){((void (*)(u8 *))(*(void **)(obi+0xc)))(obi);*(u8 **)(arg0+i*0x50+0x57c)=NULL;}}
+}
+
 s32 func_020ae9cc(u32 arg0, s32 arg1) {
     u8 *base = func_020adda8();
     u8 *p;
