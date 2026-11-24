@@ -174,6 +174,22 @@ void *func_02007234(void *arg0, void *arg1) {
     return arg1;
 }
 
+void *func_02007250(void *arg0, void *arg1) {
+    void *prev = *(void **)((u8 *)arg1 + 4);
+    void *next;
+
+    if (prev != NULL) {
+        next = *(void **)arg1;
+        *(void **)prev = next;
+    }
+    next = *(void **)arg1;
+    if (next == NULL) {
+        return prev;
+    }
+    *(void **)((u8 *)next + 4) = prev;
+    return arg0;
+}
+
 void func_02007428(s32 arg0, s32 arg1, void *arg2) {
     u8 *arena;
     u8 *heap;
@@ -228,6 +244,10 @@ s32 func_020076e8(s32 arg0) {
     func_020076fc(arg0);
     func_0200777c();
     return arg0;
+}
+
+void func_020077f8(s32 arg0) {
+    data_0215d124 |= (u16)(1 << arg0);
 }
 
 extern u16 data_0215d128;
