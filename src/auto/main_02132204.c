@@ -329,6 +329,10 @@ s32 func_02132ba4(u8 *arg0, s32 *arg1) {
     return 0;
 }
 
+void func_02132be0(void) {
+    *(u32 *)data_0215b618 = (u32)data_021459d8;
+}
+
 extern void func_02016dc0(s32, s32);
 void func_02132bf8(s32 arg0, s32 arg1, s32 arg2) {
     func_02016dc0(arg0, arg2);
@@ -353,9 +357,28 @@ void func_02132c68(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     func_020159f8(arg0, arg2, arg3);
 }
 
+void func_02132c7c(void) {
+    if (data_021749d0[1] != 0) {
+        ((void (*)(u32))data_021749d0[1])(data_021749d0[2]);
+    }
+}
+
 extern u8 data_021749dc[64];
 void *func_02132f14(void) {
     return data_021749dc;
+}
+
+void *func_021330e8(void) {
+    s32 i;
+    for (i = 0; i < 10; i++) {
+        if (data_021749e8[i].unk4 == 0) {
+            break;
+        }
+    }
+    if (i == 10) {
+        return NULL;
+    }
+    return &data_021749e8[i];
 }
 
 void func_02133124(u32 *arg0) {
