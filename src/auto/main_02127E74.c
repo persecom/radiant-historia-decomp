@@ -106,12 +106,12 @@ void func_02127e74(u8 *arg0) {
  p=*(void **)(arg0+0x10);
  if(p) { *(void **)(arg0+0x10)=NULL; (*(void (**)(void *))(*(u8 **)p+0xc))(p); }
  for(i=0;i<*(s8 *)(arg0+3);i++) {
- p=*(void **)(arg0+i*4+0x18);
- if(p) { *(void **)(arg0+i*4+0x18)=NULL; (*(void (**)(void *))(*(u8 **)p+0xc))(p); }
- p=*(void **)(arg0+i*4+0x78);
- if(p) { *(void **)(arg0+i*4+0x78)=NULL; (*(void (**)(void *))(*(u8 **)p+0xc))(p); }
- p=*(void **)(arg0+i*4+0x80);
- if(p) { *(void **)(arg0+i*4+0x80)=NULL; (*(void (**)(void *))(*(u8 **)p+0xc))(p); }
+ p=((Unk_02128030 *)arg0)->arr[i];
+ if(p) { ((Unk_02128030 *)arg0)->arr[i]=NULL; (*(void (**)(void *))(*(u8 **)p+0xc))(p); }
+ p=((Unk_02128030 *)arg0)->arr78[i];
+ if(p) { ((Unk_02128030 *)arg0)->arr78[i]=NULL; (*(void (**)(void *))(*(u8 **)p+0xc))(p); }
+ p=((Unk_02128030 *)arg0)->arr80[i];
+ if(p) { ((Unk_02128030 *)arg0)->arr80[i]=NULL; (*(void (**)(void *))(*(u8 **)p+0xc))(p); }
  }
  p=*(void **)(arg0+0x74);
  if(p) { *(void **)(arg0+0x74)=NULL; func_0212e5c4(p); }
