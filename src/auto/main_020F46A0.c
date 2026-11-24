@@ -1,8 +1,9 @@
 /* 30 functions from 0x020F46A0 to 0x020F5574 (main), found by ds-decomp. */
 #include "common.h"
 extern u8 *data_021626e8[];
-extern void func_0200c1a8(int, int);
-extern void func_0200c1fc(int, int);
+extern void func_0200c1a8(int, const char *);
+extern void func_0200c1fc(int, const char *);
+static inline int check_f53(s32 (*fn)(void *, int, int), void *cb) { int result = 0; if (-1 == fn(cb,0,0)) result = 1; return result; }
 extern u32 func_0210cd50(void);
 extern void func_0210cba0(u32, u32);
 extern s32 func_ov000_02176da0(void *, int, int);
@@ -387,4 +388,16 @@ u32 func_020f53e4(void (*arg0)(void)) {
     }
     return ~(u32)arg0;
 }
+
+s32 func_020f53fc(void) {
+u8 *p = *(u8 **)(data_021626e8[0] + 0x10);
+u8 i = 0;
+func_0200c1a8(0,0);
+do { *(u32 *)(p+0x18c+4*i)=func_0210cd50(); i++; } while(i<2);
+if ((u8)(func_ov000_02176da0((void *)func_020f53e4,0,0)==-1)) func_0210cba0(*(u32 *)(p+0x14),*(u32 *)(p+0x18c));
+if ((u8)(func_ov000_02176e18((void *)func_020f53e4,0,0)==-1)) func_0210cba0(*(u32 *)(p+0x14),*(u32 *)(p+0x18c));
+if ((u8)(func_ov000_02176e90((void *)func_020f53e4,0,0)==-1)) func_0210cba0(*(u32 *)(p+0x14),*(u32 *)(p+0x18c));
+if ((u8)(func_ov000_02176ddc((void *)func_020f53e4,0,0)==-1) && (u8)(func_ov000_02176e54((void *)func_020f53e4,0,0)==-1) && (u8)(func_ov000_02176ecc((void *)func_020f53e4,0,0)==-1)) func_0210cba0(*(u32 *)(p+0x14),*(u32 *)(p+0x190));
+else func_0210cba0(*(u32 *)(p+0x14),*(u32 *)(p+0x18c));
+func_0200c1fc(0,0); return 1; }
 
