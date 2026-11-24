@@ -1,5 +1,6 @@
 /* 40 functions from 0x0212B8E0 to 0x0212C824 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { s8 active; u8 rest[0xb3]; } UnkSlot_0212c660;
 extern u8 data_02173e08[720];
 extern s32 func_02137d44(void *);
 extern s32 func_02137dbc(void *);
@@ -433,6 +434,30 @@ void func_0212c624(void *arg0) {
     *(u8 *)(p + 0x3) = 0;
     *(u32 *)(p + 0xa8) = 0;
     *(u32 *)(p + 0xac) = 0;
+}
+
+u8 *func_0212c660(u32 arg0,s32 count,void **items) {
+ s32 width;
+ u8 *p=NULL;
+ s32 half;
+ s32 zero=0;
+ void *first=items[0];
+ s32 i;
+ for(i=0;i<4;i++)if(*(s8 *)(data_02173e08+i*0xb4)==0)break;
+ if(i==4)return NULL;
+ p=data_02173e08+i*0xb4;
+ width=func_02137d44(first);
+ half=func_02137dbc(first)/2;
+ *(u8 **)(p+4)=func_02129cac(count,width,half,half+func_02137e34(first)/2);
+ if(!*(u8 **)(p+4))return NULL;
+ func_0212a1c8(*(void **)(p+4),func_0212caec,p);
+ *(u32 *)(p+8)=arg0;p[2]=count;
+ for(i=0;i<count;i++)*(void **)(p+12+i*4)=items[i];
+ p[1]=zero;
+ func_0212c624(p);
+ *(s32 *)(p+0x48)=zero;*(s32 *)(p+0x4c)=zero;*(s32 *)(p+0x58)=zero;*(s32 *)(p+0x5c)=zero;
+ p[0]=1;
+ return p;
 }
 
 void func_0212c770(u8 *arg0) {
