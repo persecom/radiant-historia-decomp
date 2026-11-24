@@ -173,6 +173,13 @@ u32 func_020062c8(void) {
     return data_0215cdf0[0];
 }
 
+extern void func_020060b8(void);
+void func_0200661c(void) {
+    u32 r4 = func_02008128();
+    func_020060b8();
+    func_0200813c(r4);
+}
+
 extern void func_02008114(void);
 extern void func_02008454(void);
 extern u32 data_0215cde4[];
