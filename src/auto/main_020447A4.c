@@ -32,6 +32,12 @@ extern void func_021167f0(void *, void *);
 extern void func_020ecaa4(void *);
 extern void *func_020eca60(void);
 extern void func_020ecd10(void *, u32, u32);
+extern s16 data_02162908[2];
+extern u8 *data_021600f0;
+extern u32 data_0216bf84;
+extern u8 *data_02160204;
+extern u32 func_02109754(u32);
+extern void func_02059888(void);
 void func_020447a4(u8 *arg0) {
     u8 *node;
     if (arg0 == NULL) {
