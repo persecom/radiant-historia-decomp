@@ -175,6 +175,32 @@ u8 *func_021253c8(u8 *arg0) {
     return *(u8 **)(arg0 + 0) + (*(u16 *)(arg0 + 8) << 4);
 }
 
+s32 func_02125a5c(void *arg0) {
+    s32 ret;
+    if (!data_02173194) {
+        func_02125e68(data_021561f4[11], data_021561f4[1]);
+        return 0;
+    }
+    if (arg0 == NULL) {
+        func_02125e68(data_021561f4[11], data_021561f4[5]);
+        return 0;
+    }
+    ret = func_021269c8(*func_02125dc4(arg0));
+    if (ret == 0) {
+        return 0;
+    }
+    if (ret == 1) {
+        return 1;
+    }
+    if (ret == 2) {
+        return 2;
+    }
+    if (ret == 3) {
+        return 3;
+    }
+    return 0;
+}
+
 void func_02125e48(void *arg0, void *arg1) {
     (*(void (**)(void *))((u8 *)data_02173198 + 0x1fc))(arg1);
 }
