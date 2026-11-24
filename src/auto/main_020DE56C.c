@@ -167,7 +167,6 @@ void func_020df260(u8 *arg0, u8 *arg1) {
     func_020e2788((s16)(1U << *(u16 *)(arg0 + 0x90)));
 }
 
-extern u32 func_02022068(u32);
 extern void func_020220b0(u32, u32);
 extern void func_020e2788(u32);
 s32 func_020df38c(s32 arg0, u32 arg1) {
