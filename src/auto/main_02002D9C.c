@@ -220,6 +220,11 @@ void func_020030e4(u32 arg0) {
     *(volatile u32 *)0x04000010 = arg0;
 }
 
+u32 func_020031bc(void) {
+    u16 v = *(volatile u16 *)0x04001008;
+    return 0x06200000 + (((v & 0x1f00) >> 8) << 11);
+}
+
 s32 func_0200308c(s32 *arg0) {
     if (*(volatile u32 *)0x04000600 & 0x4000) {
         return -1;
