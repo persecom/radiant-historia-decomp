@@ -56,6 +56,31 @@ void func_020a957c(void ***arg0) {
     }
 }
 
+void *func_020a95d0(void **arg0, u32 arg1) {
+    u8 *base = *arg0;
+    u32 offset = *(u32 *)base;
+    u32 *p = (u32 *)(base + 4);
+    while (1) {
+        u32 key = p[0];
+        if (key == 0) {
+            return NULL;
+        }
+        if (key == arg1) {
+            return base + 4 + offset + p[1];
+        }
+        p += 2;
+    }
+}
+
+void func_020a9610(u32 *arg0, void **arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5) {
+    arg0[0] = (u32)arg1;
+    arg0[1] = arg3;
+    arg0[2] = arg4;
+    arg0[3] = arg5;
+    arg0[4] = (u32)func_020a95d0(arg1, arg2);
+    arg0[5] = 0;
+}
+
 void func_020a98a0(void) {
     func_0210da44();
 }
