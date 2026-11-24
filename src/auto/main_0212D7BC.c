@@ -89,6 +89,16 @@ void func_0212da40(void *arg0) {
     func_02013878(arg0, 0, 0x64);
 }
 
+void func_0212db44(s8 *arg0) {
+    func_0212dce4(arg0);
+    func_0212e57c();
+    if (arg0[0x4d] == 1) {
+        arg0[0x4a] = 1;
+    }
+    arg0[0x49] = 0;
+    func_0212e588();
+}
+
 s32 func_0212dc0c(s8 *arg0) {
     return arg0[1];
 }
