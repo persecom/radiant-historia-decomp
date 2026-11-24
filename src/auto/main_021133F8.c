@@ -284,8 +284,8 @@ void func_02113a80(void) {
     data_0216bfc0[1] = 0;
 }
 
-void func_02113a9c(s32 arg0, u16 arg1) {
-    *(u32 *)(data_0216c43c + arg0 * 0x24) = arg1;
+void func_02113a9c(s32 arg0, u32 arg1) {
+    *(u32 *)(data_0216c43c + arg0 * 0x24) = (u16)arg1;
 }
 
 void func_02113abc(s32 arg0, u32 arg1) {
