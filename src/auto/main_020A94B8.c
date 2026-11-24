@@ -81,6 +81,28 @@ void func_020a9610(u32 *arg0, void **arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg
     arg0[5] = 0;
 }
 
+s32 func_020a9648(u32 *arg0) {
+    s32 val = func_020a9194(arg0 + 4);
+    if (val < 0x500) {
+        if (val != 0) {
+            void *obj = (void *)arg0[1];
+            (*(void (**)(void *, u32, u32, s32))obj)(obj, arg0[2], arg0[3], val);
+        }
+        arg0[2] += func_020a916c(val);
+        return (val == 0) ? 1 : 2;
+    }
+    if (val == 0xff00) {
+        return 0;
+    }
+    if (val == 0xfd14) {
+        return 5;
+    }
+    if (val == 0xfd00) {
+        return 3;
+    }
+    return 4;
+}
+
 void func_020a98a0(void) {
     func_0210da44();
 }
