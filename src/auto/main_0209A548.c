@@ -86,3 +86,13 @@ void func_0209b108(u8 arg0, u16 arg1) {
     }
 }
 
+void func_0209b194(u16 arg0) {
+    Mgr_0209a548 *mgr = data_02160120;
+    if (mgr->unk_60 != arg0) {
+        mgr->unk_698 = 0;
+        mgr->unk_69a = 0;
+        mgr->unk_69c = 0;
+    }
+    mgr->unk_60 = arg0;
+}
+
