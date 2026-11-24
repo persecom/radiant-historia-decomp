@@ -241,6 +241,10 @@ void func_021139d0(u32 arg0) {
     data_0216bfc0[2] &= ~arg0;
 }
 
+void func_02113a00(u32 arg0) {
+    data_0216bfc0[0] &= ~arg0;
+}
+
 void func_02113abc(s32 arg0, u32 arg1) {
     *(u32 *)(data_0216c440 + arg0 * 0x24) = arg1;
 }
