@@ -22,6 +22,11 @@ typedef struct Unk_020895a0 {
     s32 unkc;
     s32 unk10;
 } Unk_020895a0;
+
+typedef struct Elem_02089220 {
+    s16 field;
+    u8 pad[0x3e];
+} Elem_02089220;
 #define TRUE 1
 #define FALSE 0
 #ifndef NULL
