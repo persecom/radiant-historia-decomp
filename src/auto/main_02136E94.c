@@ -280,26 +280,28 @@ void func_021375c4(void *arg0) {
     func_021369b4();
 }
 
-void func_021375e0(void *arg0) {
-    u32 zero = 0;
-    u32 v;
-    if (arg0 == NULL) {
-        func_02137250(data_0215c31c, data_0215c328);
-        return;
-    }
-    if (*(void **)((u8 *)arg0 + 4) == NULL) {
-        func_02137250(data_0215c344, data_0215c350);
-        return;
-    }
-    v = *(u32 *)((u8 *)arg0 + 0x20);
-    *(u32 *)((u8 *)arg0 + 0xc) = zero;
-    *(u32 *)((u8 *)arg0 + 0x10) = v;
-    *(u32 *)((u8 *)arg0 + 0x14) = zero;
-    *(u32 *)((u8 *)arg0 + 0x18) = zero;
-    *(u32 *)((u8 *)arg0 + 0x28) = zero;
-    *(u32 *)((u8 *)arg0 + 0x2c) = zero;
-    *(u32 *)((u8 *)arg0 + 0x30) = zero;
-    *(u32 *)((u8 *)arg0 + 0x34) = zero;
+void func_021375e0(void *arg0)
+{
+  u32 v;
+  if (arg0 == NULL)
+  {
+    func_02137250(data_0215c31c, data_0215c328);
+    return;
+  }
+  if ((*((void **) (((u8 *) arg0) + 4))) == NULL)
+  {
+    func_02137250(data_0215c344, data_0215c350);
+    return;
+  }
+  ;
+  *((u32 *) (((u8 *) arg0) + 0xc)) = 0;
+  *((u32 *) (((u8 *) arg0) + 0x10)) = *((u32 *) (((u8 *) arg0) + 0x20));
+  *((u32 *) (((u8 *) arg0) + 0x14)) = 0;
+  *((u32 *) (((u8 *) arg0) + 0x18)) = 0;
+  *((u32 *) (((u8 *) arg0) + 0x28)) = 0;
+  *((u32 *) (((u8 *) arg0) + 0x2c)) = 0;
+  *((u32 *) (((u8 *) arg0) + 0x30)) = 0;
+  *((u32 *) (((u8 *) arg0) + 0x34)) = 0;
 }
 
 extern s32 func_02137680(void *, void *);
