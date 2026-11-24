@@ -269,11 +269,31 @@ void func_0200fd18(void) {
     }
 }
 
+void func_0200fddc(u8 *arg0) {
+    void (*cb)(u32) = *(void (**)(u32))(arg0 + 0x4ec);
+    u32 cbarg = *(u32 *)(arg0 + 0x4f0);
+    u32 state = func_02008128();
+    *(u32 *)(arg0 + 4) &= ~0x4c;
+    func_02006560(arg0 + 0x4f4);
+    func_0200813c(state);
+    if (cb != NULL) {
+        cb(cbarg);
+    }
+}
+
 void func_0200fe64(u32 arg0, u32 arg1, u32 arg2) {
     if (arg1 >= arg2) {
         func_02006df4();
     } else {
         func_02006e00(arg0, arg1);
     }
+}
+
+void func_0200fedc(u32 arg0, u32 arg1, u32 arg2) {
+    if (arg0 != 0xb || arg2 == 0) {
+        return;
+    }
+    *(u32 *)(data_0215f120 + 4) &= ~0x20;
+    func_020065c8((void *)*(u32 *)(data_0215f120 + 0x51c));
 }
 
