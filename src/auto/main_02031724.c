@@ -71,6 +71,13 @@ void func_020321cc(s32 arg0) {
     }
 }
 
+void func_02032208(u8 *arg0, void *arg1) {
+    func_021168f8(arg0 + 0x28, arg1);
+    if (arg1 != NULL) {
+        func_0210c5dc(arg1);
+    }
+}
+
 void *func_0203222c(void) {
     return *(void **)((u8 *)data_02160090 + 8);
 }
