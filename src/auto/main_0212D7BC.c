@@ -289,6 +289,14 @@ void func_0212ddf0(void *arg0, void *arg1) {
     func_0212e5ac();
 }
 
+void func_0212de14(void *arg0, s32 arg1) {
+    s32 v = arg1;
+    if (v < 0) {
+        v = *(s32 *)((u8 *)arg0 + 0x18);
+    }
+    *(s32 *)((u8 *)arg0 + 0x34) = v;
+}
+
 void func_0212de24(void) {
     data_021740d8[0]++;
 }
