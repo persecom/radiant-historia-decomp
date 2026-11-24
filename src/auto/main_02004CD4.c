@@ -431,13 +431,32 @@ u32 func_02005a14(u32 arg0) {
     return old;
 }
 
+void func_02005a40(void) {
+    *(u32 *)(data_027e0000 + 0x3f7c) = 0xfddb597d;
+    *(u32 *)(data_027e0000 + 0x3b80) = 0x7bf9dd5b;
+}
+
 extern u16 data_0215cddc;
 u16 func_02005a74(void) {
     return data_0215cddc;
 }
 
+void func_02005a84(u32 arg0, u32 arg1) {
+    if (((arg1 & 0x7f00) >> 8) == 0x10) {
+        data_0215cddc = 1;
+        return;
+    }
+    func_02008414();
+}
+
 void func_02005ab4(u32 arg0) {
     while (func_0200a6e4(0xc, arg0 << 8, 0) != 0) {}
+}
+
+void func_02005bb0(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    while (func_02005c90(arg0, arg1, arg2, arg3) > 0) {
+        WaitByLoop(0x400);
+    }
 }
 
 void func_02005bfc(s32 arg0, s32 arg1, s32 arg2) {
