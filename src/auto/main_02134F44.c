@@ -119,9 +119,6 @@ void func_021357dc(u8 **arg0, u8 arg1) {
     arg0[3][4] = arg1;
 }
 
-extern void func_0212a9dc(void);
-extern void func_0212a9e8(void);
-extern void func_02114728(u8 *, s16);
 extern void func_02114794(u8 *, s32, s32);
 s32 func_02135960(u8 *arg0, s32 arg1, s32 arg2) {
     u8 *p = *(u8 **)(arg0 + 0x20 + arg1 * 4);
@@ -132,19 +129,14 @@ s32 func_02135960(u8 *arg0, s32 arg1, s32 arg2) {
 
 void func_02135984(u8 *arg0, s32 arg1, s32 arg2) {
     s32 val;
-    switch (arg2) {
-        case 0:
-            val = 0x40;
-            break;
-        case -15:
-            val = 0;
-            break;
-        case 15:
-            val = 0x7f;
-            break;
-        default:
-            val = (arg2 + 15) * 64 / 15;
-            break;
+    if (arg2 == 0) {
+        val = 0x40;
+    } else if (arg2 == -15) {
+        val = 0;
+    } else if (arg2 == 15) {
+        val = 0x7f;
+    } else {
+        val = (arg2 + 15) * 128 / 30;
     }
     *(u16 *)(*(void **)(arg0 + arg1 * 4 + 0x20) + 0x20) = (u16)val;
     func_021147e8(arg0 + 0x34);
@@ -156,15 +148,24 @@ void func_021359e4(u8 *arg0) {
     u16 b;
     func_0211470c(arg0 + 0x34);
     for (i = 0; i < *(s8 *)(arg0 + 2); i++) {
-        void *p = *(void **)(arg0 + i * 4 + 0x20);
-        if ((*(u16 *)p & 8) == 0) {
+        u16 *slot = *(u16 **)(arg0 + i * 4 + 0x20);
+        if ((*slot & 8) == 0) {
             return;
         }
-        *(u16 *)p &= 0xfff7;
-        func_02135f0c(p, &a, &b);
+        *slot &= 0xfff7;
+        func_02135f0c(slot, &a, &b);
         if (b != 0) {
-            *(u32 *)(p + 0x14) += b >> 1;
+            *(u32 *)(*(void **)(arg0 + i * 4 + 0x20) + 0x14) += (u32)b >> 1;
         }
+    }
+}
+
+void func_02135a80(u8 *arg0) {
+    s32 i;
+    for (i = 0; i < *(s8 *)(arg0 + 2); i++) {
+        u32 val = i;
+        *(u16 *)(*(void **)(arg0 + i * 4 + 0x20) + 0x24) = (u16)val;
+        *(u32 *)(*(void **)(arg0 + i * 4 + 0x20) + 0x14) = val;
     }
 }
 
