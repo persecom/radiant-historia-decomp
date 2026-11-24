@@ -22,6 +22,21 @@ void func_0208cb1c(void) {
     func_021098ac(&buf);
 }
 
+extern const Unk14 data_02141364;
+extern const Unk14 data_02141350;
+extern const Unk14 data_0214133c;
+extern void func_0209250c(s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32);
+void func_0208cbcc(void) {
+    Unk14 buf0 = data_02141364;
+    Unk14 buf1 = data_02141350;
+    Unk14 buf2 = data_0214133c;
+    func_020a3bbc(7);
+    func_021098ac(&buf0);
+    func_021098ac(&buf1);
+    func_021098ac(&buf2);
+    func_0209250c(0x10, 0, 9, 0x94, 0xee, 0x23, 8, 8, 4, 2, 4, 2, 0xb1);
+}
+
 void func_0208ce74(void) {
     Unk14 buf = data_02141300;
     if (*(s16 *)(data_0216010c + 0x51ae) & 4) {
