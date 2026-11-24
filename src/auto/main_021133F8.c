@@ -509,14 +509,12 @@ void func_021141a8(void *arg0, u8 *arg1) {
     void *obj = func_02116958(arg0, NULL);
     while (obj != NULL) {
         if (arg1[0x3d] < ((u8 *)obj)[0x3d]) {
-            goto end;
+            break;
         }
         obj = func_02116958(arg0, obj);
     }
     func_02116894(arg0, obj, arg1);
     *(u32 *)(arg1 + 4) = (u32)arg0;
-end:
-    return;
 }
 
 extern void func_02009528(u8, s32);
