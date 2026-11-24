@@ -76,11 +76,7 @@ p=*(u8 **)(p+0x16c);
 if(count==0)return 0;
 chosen=0;
 if(count!=1){
-u16 limit=count;
-u32 random=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
-data_0216263c[0]=random;
-if(limit==0)chosen=(u16)(random>>16);
-else chosen=(u16)(((random>>16)*limit)>>16);
+chosen=RandomRange_020de56c(count);
 }
 p=*(u8 **)(root+0xac);
 for(i=0;p;p=*(u8 **)(p+0x16c)){
