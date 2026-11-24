@@ -112,6 +112,21 @@ void func_0210bfec(void) {
     *(u32 *)0x04000540 = 0;
 }
 
+extern s32 func_02002080(s32, s32);
+extern void func_0210c094(void *, void *, void *, void *);
+extern s32 func_02002158(void *, void *);
+void func_0210c35c(s32 *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    arg0[1] = arg2;
+    arg0[3] = arg3;
+    if (arg3 == 0) {
+        arg0[0] = arg2;
+        arg0[2] = 0;
+        return;
+    }
+    arg0[0] = arg1;
+    arg0[2] = func_02002080(arg2 - arg1, arg3);
+}
+
 void* func_0210c518(u32 size, s32 arg1)
 {
     extern u8 data_02162684;
