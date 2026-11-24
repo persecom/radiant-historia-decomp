@@ -2,6 +2,11 @@
 #include "common.h"
 
 extern u8 *data_02160140;
+extern u32 data_02155c3c;
+extern u32 data_02162830, data_02162834[3], data_0216281c, data_02162820[4];
+extern void func_020a83a8(void),func_020a83c4(void),func_020a83e4(void);
+extern u8 *func_0210c594(u32,u32);
+extern void *func_020c3ca8(void),*func_020c3c78(void);
 extern u8 data_02150088[16];
 extern u8 data_021601d0[4];
 extern u32 data_02160148[34];
