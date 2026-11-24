@@ -382,7 +382,7 @@ void func_020aa1b4(void) {
 }
 
 s32 func_020aa1f4(u8 *arg0) {
-    s32 flag = *(s8 *)(arg0 + 0xac);
+    s32 flag = (s8) *(u32 *)(arg0 + 0xac);
     u8 *node;
     u32 a, b;
     if (flag != 0) {
