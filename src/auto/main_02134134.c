@@ -281,6 +281,23 @@ u8 func_02134884(void) {
     return result;
 }
 
+void func_02134b34(u8 *p){
+s32 i=0,j; s32 zero=0;
+if(!p)return;
+func_02134cb4(p,0,1);func_02134c00(p,0);
+for(i=0;i<*(s8 *)(p+2);i++){
+for(j=0;j<*(s32 *)(data_021756d8+0x2bc);j++){
+if(data_021756d8[0x2c0+j]==*(s16 *)(*(u8 **)(p+4*i+0x20)+2)){
+data_021756d8[0x2c8+j]=zero;break;
+}}
+if(**(u16 **)(p+4*i+0x20)!=0){
+*(u32 *)(*(u8 **)(p+4*i+0x20)+0x30)=zero;
+**(u16 **)(p+4*i+0x20)=zero;
+}
+}
+func_021144f0(p+0x34);p[0]=0;
+}
+
 extern void func_021146b8(void *);
 void func_02134bf0(u8 *arg0) {
     func_021146b8(arg0 + 0x34);
