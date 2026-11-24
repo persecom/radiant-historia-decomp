@@ -141,29 +141,29 @@ void func_02130ecc(s16 *samples, s16 *coeff, s16 *out) {
 
 void func_02131014(s16 *p, s16 *coef, s16 *out) {
 int count=32; int sum; s16 *base; int lo=-32768, hi=32767;
-for (;count>0;count--) {
+do {
 base=p; sum=0;
-sum+=coef[0]* *p++;
-sum+=coef[1]*base[96];
-sum+=coef[2]*base[128];
-sum+=coef[3]*base[224];
-sum+=coef[4]*base[256];
-sum+=coef[5]*base[352];
-sum+=coef[6]*base[384];
-sum+=coef[7]*base[480];
-sum+=coef[8]*base[512];
-sum+=coef[9]*base[608];
-sum+=coef[10]*base[640];
-sum+=coef[11]*base[736];
-sum+=coef[12]*base[768];
-sum+=coef[13]*base[864];
-sum+=coef[14]*base[896];
-sum+=coef[15]*base[-32];
-coef+=16;
+sum+=*coef++* *p++;
+sum+=*coef++*base[96];
+sum+=*coef++*base[128];
+sum+=*coef++*base[224];
+sum+=*coef++*base[256];
+sum+=*coef++*base[352];
+sum+=*coef++*base[384];
+sum+=*coef++*base[480];
+sum+=*coef++*base[512];
+sum+=*coef++*base[608];
+sum+=*coef++*base[640];
+sum+=*coef++*base[736];
+sum+=*coef++*base[768];
+sum+=*coef++*base[864];
+sum+=*coef++*base[896];
+sum+=*coef++*base[-32];
+
 if(sum>0x3fff800)*out++=hi;
 else if(sum< -0x4000000)*out++=lo;
 else *out++=sum>>11;
-}
+}while(--count>0);
 }
 
 void func_0213115c(s16 *samples, s16 *coeff, s16 *out) {
