@@ -104,6 +104,23 @@ s32 func_02138f98(u8 *arg0) {
     return *(s32 *)(arg0 + 0xa8);
 }
 
+void *func_02138fd0(void *arg0, s32 arg1) {
+    u8 *p = (u8 *)arg0;
+    void *obj;
+    if (*(u32 *)(p + 0x58) == 0) {
+        func_02126c20(data_0215cbd4);
+        return NULL;
+    }
+    if (*(s32 *)(p + 0x9c) == 0) {
+        return NULL;
+    }
+    if (arg1 < 0 || arg1 >= *(s32 *)(p + 0xa8)) {
+        return NULL;
+    }
+    obj = ((void **)p)[arg1];
+    return (*(void *(**)(void *))(*(u8 **)obj + 0x44))(obj);
+}
+
 void func_02139034(u32 *arg0, u32 arg1) {
     arg0[0x33] += arg1;
     arg0[0x34] = 1;
