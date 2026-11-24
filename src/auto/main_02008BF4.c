@@ -165,6 +165,10 @@ void func_020094e0(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     func_020097f0(2, arg0, arg1, arg2, arg3);
 }
 
+void func_02009508(u32 arg0) {
+    func_020097f0(3, arg0, 0, 0, 0);
+}
+
 void func_02009528(u32 arg0, s32 arg1) {
     func_020097a8(arg0, 6, arg1, 2);
 }
