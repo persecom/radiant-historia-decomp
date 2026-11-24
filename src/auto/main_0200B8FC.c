@@ -67,3 +67,10 @@ s32 func_0200bc08(void *arg0, void *arg1) {
 void func_0200bc18(void) {
     func_0200bab8();
 }
+
+extern void func_0200c0a8(void);
+s32 func_0200c198(void) {
+    func_0200c0a8();
+    return 1;
+}
+
