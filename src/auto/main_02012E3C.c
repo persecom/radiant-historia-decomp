@@ -33,16 +33,15 @@ s32 func_020136d0(s32 arg0, ...) {
 }
 
 s32 func_020136ec(s32 arg0, ...) {
-    u32 *p = (u32 *)&arg0;
-    u32 hi = p[1];
+    u32 hi = ((u32 *)&arg0)[1];
     switch (hi & 0x7ff00000) {
         case 0x7ff00000:
-            if ((hi & 0x000fffff) || p[0]) {
+            if ((hi & 0x000fffff) || ((u32 *)&arg0)[0]) {
                 return 1;
             }
             return 2;
         case 0:
-            if ((hi & 0x000fffff) || p[0]) {
+            if ((hi & 0x000fffff) || ((u32 *)&arg0)[0]) {
                 return 5;
             }
             return 3;
