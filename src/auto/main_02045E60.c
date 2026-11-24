@@ -10,6 +10,17 @@ extern void func_020a994c(void *);
 extern void func_020a98a0(void *);
 extern void func_02046760(u8 *);
 extern void func_020f58c0(void *);
+typedef struct {
+    u16 unk[10];
+} Unk20;
+extern const Unk20 data_0213f308;
+extern u8 *data_02160204;
+extern u8 data_021464f8[36];
+extern u8 *data_021600ac;
+extern void func_0210eb98(void *, u16, u16);
+extern u16 func_020f57e8(void);
+extern void func_021167f0(void *, void *);
+extern void func_021098ac(void *);
 extern u8 *data_021600bc;
 extern void func_0204798c(void);
 extern void func_02051ef4(void);
