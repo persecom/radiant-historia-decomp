@@ -7,7 +7,7 @@ extern void func_020c94dc(u8 *);
 extern void func_020c9348(u8 *, s32);
 extern u8 *func_020c9c10(void *, s32);
 extern void func_020c9590(u8 *);
-extern s16 func_020c9808(void);
+extern u16 func_020c9808(void);
 extern s16 func_020c9888(u8 *);
 extern s32 func_0201f8cc(u32);
 extern s32 func_020201f4(s32, s32);
