@@ -43,6 +43,20 @@ extern void func_02002750(void);
 extern void *func_02109b14(s32, void *);
 extern void *func_0210e8b4(void *, s32, s32, s32);
 extern void func_0210c5dc(void *);
+extern void (*data_02156154)(u32);
+extern s32 data_02162950;
+extern s32 func_0210f170(const char *, s32, s32, s32);
+extern s32 func_0210f20c(const char *, s32, s32, s32);
+extern s32 func_0210f2e4(void);
+extern s32 func_0210f314(void);
+extern void func_0200439c(void);
+extern void func_020043f8(void *, u32, s32);
+extern void func_02004544(void);
+extern void func_02004588(void);
+extern void func_020045bc(void *, u32, u32);
+extern void func_0200462c(void);
+extern void func_021091b4(void);
+extern s32 func_0210e93c(void *, u32, const char *, u32 *);
 void func_0210e694(void) {
     u8 buf[8];
     func_0200dadc();
@@ -108,6 +122,22 @@ void *func_0210e7f0(s32 arg0, s32 arg1) {
         func_0210c5dc(p);
     }
     return result;
+}
+
+s32 func_0210e848(const char *arg0, u32 *arg1) {
+    u32 local;
+    void *p;
+
+    p = func_02109b14((s32)arg0, &local);
+    if (p == NULL) {
+        data_02156154(arg1[0]);
+        return 0;
+    }
+    func_0210e93c(p, local, arg0, arg1);
+    if (p != NULL) {
+        func_0210c5dc(p);
+    }
+    return 1;
 }
 
 extern void (*data_02156154)(u32);
