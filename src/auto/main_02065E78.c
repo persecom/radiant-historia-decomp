@@ -1,5 +1,7 @@
 /* 13 functions from 0x02065E78 to 0x02066D84 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { s16 v[10]; } Params_02066868;
+extern const Params_02066868 data_0213fc60;
 
 extern u8 *data_021600e0[];
 extern void func_021168f8(void *, void *);
