@@ -12,6 +12,37 @@ extern void func_021254a8(u32, u32, u32, u32);
 extern void func_020bdf38(void);
 extern void func_020a8440(void);
 s32 func_020a47c8(void);
+void func_0210fcd4(u32 arg0) {
+    if (data_02162b80 != NULL) {
+        func_0210c5dc(data_02162b80);
+        data_02162b80 = NULL;
+    }
+    data_02162b80 = func_0210c518(arg0 << 4, data_02155c3c);
+    func_02125424(data_02162b80, arg0);
+}
+
+void func_0210fd24(u32 *arg0, u32 arg1) {
+    arg0[0] = arg1;
+    arg0[1] = 0;
+    arg0[2] = 0;
+    arg0[3] = 0;
+}
+
+void func_0210fd38(u32 *arg0, u32 arg1, u32 arg2, u32 arg3) {
+    u32 len = arg0[3];
+    if (len != 0) {
+        u32 off = arg0[2];
+        if (off + len == arg2 && arg1 == arg0[1] + len) {
+            arg0[3] = len + arg3;
+            return;
+        }
+        func_021254a8(arg0[0], arg0[1], off, len);
+    }
+    arg0[2] = arg2;
+    arg0[1] = arg1;
+    arg0[3] = arg3;
+}
+
 s32 func_021100c8(void) {
     func_020a8440();
     return func_020a47c8();
@@ -41,5 +72,10 @@ void func_02110464(void *arg0) {
     if (arg0 != NULL) {
         func_0210c5dc(arg0);
     }
+}
+
+s32 func_021104c0(void *arg0) {
+    func_020c9b64(*(void **)((u8 *)arg0 + 0x30));
+    return 0;
 }
 
