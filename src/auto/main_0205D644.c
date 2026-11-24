@@ -33,3 +33,25 @@ s16 func_0205de70(void) {
     }
     return count;
 }
+
+void func_0205deb4(u8 *arg0) {
+    u8 *node;
+    if (func_0205de70() < 2) {
+        return;
+    }
+    node = *(u8 **)(data_02160a6c + 0xb8);
+    while (node != NULL) {
+        if (*(u32 *)(*(u8 **)(node + 0x118) + 0x70) != 0 && func_02032c14(arg0, node) != 0) {
+            if (*(s32 *)(*(u8 **)(node + 0x118) + 4) <= 0) {
+                func_020db35c(node, 0);
+            } else {
+                func_020de0a8(node);
+            }
+        }
+        if (func_0205de70() <= 1) {
+            return;
+        }
+        node = *(u8 **)(node + 0x174);
+    }
+}
+
