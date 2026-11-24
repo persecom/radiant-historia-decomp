@@ -1,5 +1,6 @@
 /* 30 functions from 0x0211BDE8 to 0x0211CDC8 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct Unk_0211c424 { u16 x, y, z; } Unk_0211c424;
 
 extern void func_02008df0(s32, void *, s32);
 extern u8 *data_021701f8;
@@ -27,6 +28,26 @@ extern u32 data_02155eec;
 extern void func_0211c424(void *, void *);
 extern void func_0211bde8(void *, void *);
 extern const u32 data_02144ee8[8];
+
+extern void func_0211c1f8(void *);
+void func_0211c424(void *arg0, void *arg1) {
+ u8 *p=data_021701f8;
+ u16 i;
+ for(i=0;i<*(u16 *)arg1;i++) {
+  u16 *entry;
+  void (*callback)(void *,void *,u16);
+  *(s32 *)(data_021701f8+0x30)=1;
+ entry=(u16 *)(*(u8 **)((u8 *)arg1+4)+i*6);
+ callback=*(void (**)(void *,void *,u16))((u8 *)arg0+0x20);
+  *(u16 *)(p+0x38)=entry[0];
+  *(u16 *)(p+0x3a)=entry[1];
+  *(u16 *)(p+0x3c)=entry[2];
+  if(callback) callback(data_021701f8,arg1,i);
+  if(*(s32 *)(data_021701f8+0x30)) func_0211c1f8(p+0x38);
+  callback=*(void (**)(void *,void *,u16))((u8 *)arg0+0x24);
+  if(callback) callback(data_021701f8,arg1,i);
+ }
+}
 
 void func_0211c4ec(u8 *arg0) {
     func_02008df0(0, arg0, 0x70);
