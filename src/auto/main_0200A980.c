@@ -59,6 +59,16 @@ void func_0200b710(u32 *arg0, u32 arg1) {
     }
 }
 
+s32 func_0200b810(const char *str, s32 pos) {
+    for (;;) {
+        pos = func_0200b77c(str, pos);
+        if (pos < 0 || (u8)str[pos] == '/' || (u8)str[pos] == '\\') {
+            break;
+        }
+    }
+    return pos;
+}
+
 void func_0200b888(u32 *arg0) {
     arg0[2] = 0;
     arg0[1] = 0;
