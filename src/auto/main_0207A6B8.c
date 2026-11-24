@@ -13,6 +13,47 @@ typedef struct {
     s32 x, y, z;
 } Vec3_0207adbc;
 
+extern void *data_021600bc;
+extern void *data_02160a80[];
+extern u8 data_02162908[];
+extern void func_021167f0(void *, s32);
+extern s32 func_02079720(s32);
+extern void func_020ea5d4(void *, s32);
+void func_0207ace8(s32 arg0) {
+    u8 *r4 = (u8 *)data_021600ac;
+    u8 *r6;
+    s32 res;
+
+    r4[0x374] = 0;
+    *(s32 *)(r4 + 0x10) = 8;
+    *(s32 *)(r4 + 0x370) = arg0;
+    func_021167f0((u8 *)data_021600bc + 0x40, arg0);
+
+    r6 = *(u8 **)((u8 *)data_02160a80[0] + 0x3c);
+    while (r6 != NULL) {
+        if (*(u32 *)(r6 + 8) == 0x32c9) {
+            goto found;
+        }
+        r6 = *(u8 **)(r6 + 0x38);
+    }
+    r6 = NULL;
+found:
+
+    res = func_02079720(arg0);
+    if (res == 4) {
+        return;
+    }
+    if (res == 0 || res == 2) {
+        func_020ea5d4(r6, 5);
+    } else {
+        func_020ea5d4(r6, 4);
+    }
+    r4[0x374]++;
+    if (*(u16 *)(data_02162908 + 4) == 0) {
+        r4[0x374] = 0;
+    }
+}
+
 void func_0207adbc(void *arg0) {
     u8 *p = *(u8 **)((u8 *)data_021600f0 + 8);
     u8 *q;
