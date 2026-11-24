@@ -59,6 +59,14 @@ void func_0200b710(u32 *arg0, u32 arg1) {
     }
 }
 
+s32 func_0200b77c(const char *str, s32 pos) {
+    s32 i = pos - 1;
+    while (i > 0 && ((u32)(((u8)str[i - 1] ^ 0x20) - 0xa1) < 0x3c)) {
+        i--;
+    }
+    return (pos - 1) - (((pos - 1) - i) & 1);
+}
+
 s32 func_0200b810(const char *str, s32 pos) {
     for (;;) {
         pos = func_0200b77c(str, pos);
