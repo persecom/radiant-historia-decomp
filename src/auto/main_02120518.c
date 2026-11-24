@@ -2,13 +2,7 @@
 #include "common.h"
 extern const u8 data_02144f4c[], data_02144f4d[], data_02144f4e[], data_02144f4f[];
 void func_02009138(void *);
-static inline u32 *get_name_02120e30(u8 *dict, u32 i) {
-    if (dict != NULL && i < dict[1]) {
-        u8 *p = dict + *(u16 *)(dict + 6);
-        return (u32 *)(p + *(u16 *)(p + 2) + i * 16);
-    }
-    return NULL;
-}
+
 extern void (*data_0215615c)(u32);
 extern void (*data_02156154)(u32);
 extern void func_0211d5d0(void *);
