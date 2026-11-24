@@ -339,6 +339,129 @@ void func_0212de24(void) {
     data_021740d8[0]++;
 }
 
+extern char data_02156d80[];
+extern char data_02156dac[];
+extern void func_02133258(void *);
+extern void *func_02132fa4(void *, s32, s32);
+extern void func_0212be08(const char *, ...);
+extern s32 func_02133500(void *);
+extern s32 func_02133440(void *);
+extern void func_02133300(void *, s32, s32);
+extern s32 func_021332a8(void *);
+extern s32 func_021333e8(void *);
+extern void func_0212de3c(void *);
+void func_0212e204(void *arg0) {
+    s8 *p = (s8 *)arg0;
+    s32 flag;
+
+    if (p[2] != 0) {
+        goto end;
+    }
+
+    if (p[0x4c] == 1) {
+        p[0x4c] = 0;
+        if (p[0x4b] == 0) {
+            p[1] = 1;
+        }
+    }
+
+    if (p[0x4a] == 1) {
+        void *fp = *(void **)(p + 8);
+        if (fp != NULL) {
+            *(void **)(p + 8) = NULL;
+            func_02133258(fp);
+        }
+        func_0212e57c();
+        p[0x4a] = 0;
+        p[0x4d] = 0;
+        func_0212e588();
+    }
+
+    func_0212e57c();
+    flag = 0;
+    if (p[0x49] == 1) {
+        if (p[0x49] == 1 && p[0x4a] == 1) {
+            return;
+        }
+        if (p[0x4d] == 0) {
+            flag = 1;
+            p[0x4d] = 1;
+            func_0212e588();
+            if (*(void **)(p + 8) == NULL) {
+                void *fp = func_02132fa4(*(void **)(p + 0x54), *(s32 *)(p + 0x58), 0);
+                *(void **)(p + 8) = fp;
+                if (fp == NULL) {
+                    func_0212be08(data_02156d80, *(void **)(p + 0x54));
+                    p[1] = 4;
+                    p[0x4d] = 0;
+                    p[0x49] = 0;
+                    return;
+                }
+            }
+        }
+        if (p[0x4d] == 1) {
+            s64 size;
+            s32 sectors;
+            if (flag == 0) {
+                func_0212e588();
+            }
+            if (p[0x49] == 1 && p[0x4a] == 1) {
+                return;
+            }
+            if (*(s32 *)(p + 0x58) == 0) {
+                size = func_02133500(*(void **)(p + 8));
+                if (size < 0) {
+                    size = func_02133440(*(void **)(p + 0x54));
+                }
+                sectors = (size + 0x7ff) / 0x800;
+            } else {
+                func_02133300(*(void **)(p + 8), 0, 2);
+                sectors = func_021332a8(*(void **)(p + 8));
+                size = (s32)(sectors << 11);
+                func_02133300(*(void **)(p + 8), 0, 0);
+            }
+            if (*(s64 *)(p + 0x10) == 0x7ffff800) {
+                *(s64 *)(p + 0x10) = size;
+                *(s32 *)(p + 0x18) = sectors;
+            }
+            if (*(s32 *)(p + 0xc) > sectors) {
+                *(s32 *)(p + 0xc) = sectors;
+            }
+            if (*(s32 *)(p + 0x18) + *(s32 *)(p + 0xc) > sectors) {
+                s32 rem = sectors - *(s32 *)(p + 0xc);
+                *(s32 *)(p + 0x18) = rem;
+                *(s64 *)(p + 0x10) = (s64)rem << 11;
+            }
+            func_0212dc14(p, NULL);
+            p[0x49] = 0;
+            if (func_021333e8(*(void **)(p + 8)) == 3) {
+                void *fp;
+                func_0212be08(data_02156dac, *(void **)(p + 0x54));
+                fp = *(void **)(p + 8);
+                if (fp != NULL) {
+                    *(void **)(p + 8) = NULL;
+                    func_02133258(fp);
+                }
+                p[1] = 4;
+                p[0x4d] = 0;
+                p[0x49] = 0;
+                return;
+            }
+        }
+    } else {
+        func_0212e588();
+    }
+
+    if (p[0x4b] == 1) {
+        p[0x4b] = 0;
+    }
+
+end:
+    if (p[1] == 2 && p[0x4d] == 1 && p[0x49] == 0) {
+        func_0212de3c(p);
+    }
+}
+
 void func_0212e4a0(void) {
     func_0212e5a0();
     func_0212e4b4();
