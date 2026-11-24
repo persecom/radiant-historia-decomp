@@ -183,6 +183,24 @@ void* func_02117008(void* heap, u32 size, s32 alignment)
     }
 }
 
+void func_02117038(void* heap, void* mem)
+{
+    typedef struct Region {
+        u8* start;
+        u8* end;
+    } Region;
+
+    Region region;
+    register u32 regionAddr;
+    u8* block = (u8*)mem - 0x10;
+
+    regionAddr = (u32)&region;
+
+    func_02116af0((Region*)regionAddr, block);
+    func_02116b1c((u8*)heap + 0x2C, block);
+    func_02116ee0((u8*)heap + 0x24, (Region*)regionAddr);
+}
+
 u16 func_02117078(void *arg0, u16 arg1) {
     u16 old = *(u16 *)((u8 *)arg0 + 0x34);
     *(u16 *)((u8 *)arg0 + 0x34) = arg1;
