@@ -1,5 +1,10 @@
 /* 33 functions from 0x02118234 to 0x021191F0 (main), found by ds-decomp. */
 #include "common.h"
+extern u8 data_0216e274[];
+extern u32 data_02145ba4;
+extern void func_02006d8c(void *,u32);
+extern void func_02008568(u32,void *,u32,u32,u32);
+extern void func_02008e24(u32,void *,u32);
 
 extern void func_02118234(void *);
 extern void func_02118430(void *);
