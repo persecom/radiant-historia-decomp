@@ -303,53 +303,121 @@ u8 *func_0200b2ac(const char *str, u32 *arg1, u8 *arg2) {
     u32 *argp = arg1;
     u8 *buf = arg2;
     const char *p = str;
-    s32 pos = 0;
-    s32 zero2 = 0;
+    s32 len = 0;
     s32 truncated = 0;
-    u32 sp4;
-    s32 c;
+    u8 *sp4;
+    u8 c;
+    s32 pos;
     s32 step;
 
-    if (*(u32 *)((u8 *)data_0215ed68 + 4) == 0) {
-        *(u32 *)((u8 *)data_0215ed68 + 4) = *(u32 *)data_0215ed68;
-        *(u16 *)((u8 *)data_0215ed68 + 8) = 0;
-        *(u32 *)((u8 *)data_0215ed68 + 0xc) = 0;
-        *(u16 *)((u8 *)data_0215ed68 + 0xa) = 0;
-        *(u8 *)data_0215ee78 = 0;
+    if (*(u32 *)((u8 *)&data_0215ed68 + 4) == 0) {
+        *(u8 **)((u8 *)&data_0215ed68 + 4) = data_0215ed68;
+        *(u16 *)((u8 *)&data_0215ed68 + 8) = 0;
+        *(u32 *)((u8 *)&data_0215ed68 + 0xc) = 0;
+        *(u16 *)((u8 *)&data_0215ed68 + 0xa) = 0;
+        data_0215ee78[0] = 0;
     }
-    c = *(u8 *)p;
+    c = *p;
     if (c == '/' || c == '\\') {
-        sp4 = *(u32 *)((u8 *)data_0215ed68 + 4);
-        p++;
+        sp4 = *(u8 **)((u8 *)&data_0215ed68 + 4);
+        p += 1;
+        if (arg1 != 0) {
+            *arg1 = zero;
+        }
     } else {
         pos = 0;
         for (;;) {
             c = p[pos];
             if (c == 0 || c == '/' || c == '\\') {
-                sp4 = *(u32 *)((u8 *)data_0215ed68 + 4);
+                sp4 = *(u8 **)((u8 *)&data_0215ed68 + 4);
                 if (argp != 0) {
-                    *argp = *(u32 *)((u8 *)data_0215ed68 + 8);
+                    *argp = *(u32 *)((u8 *)&data_0215ed68 + 8);
+                }
+                if (buf != 0 && *(u16 *)((u8 *)&data_0215ed68 + 8) == 0 && data_0215ee78[0] != 0) {
+                    len += func_0200b24c(buf, 0x104, data_0215ee78, 0x104, &truncated);
+                    len += func_0200b24c(buf + len, 0x104 - len, data_02145c00, 1, &truncated);
                 }
                 break;
             }
             if (c == ':') {
-                sp4 = (u32)func_0200b0ec((u8 *)p, pos);
-                pos++;
-                c = p[pos];
+                sp4 = (u8 *)func_0200b0ec((u8 *)p, (s8 *)pos);
+                c = p[pos + 1];
+                p += pos + 1;
                 if (c == '/' || c == '\\') {
-                    p++;
+                    p += 1;
                 }
                 if (argp != 0) {
-                    *argp = zero2;
+                    *argp = zero;
                 }
                 break;
             }
-            step = ((u32)(((u8)c ^ 0x20) - 0xa1) < 0x3c) ? one : zero2;
-            pos += 1;
-            pos += step;
+            step = ((u32)((c ^ 0x20) - 0xa1) < 0x3c) ? one : zero;
+            pos = pos + 1 + step;
         }
     }
-    return (u8 *)sp4;
+    if (buf != 0) {
+        if (truncated == 0) {
+            s32 pos2 = 0;
+            s32 one2 = 1;
+            s32 step2;
+            s8 c2;
+            for (;;) {
+                c2 = p[pos2];
+                if (c2 == 0) {
+                    goto comp_end;
+                }
+                step2 = ((u8)c2 == '/' || (u8)c2 == '\\') ? one2 : zero;
+                if (step2 != 0) {
+                    goto comp_end;
+                }
+                if ((u32)(((u8)c2 ^ 0x20) - 0xa1) < 0x3c) {
+                    s8 next = p[pos2 + 1];
+                    if (next != 0x7f && (u8)(next - 0x40) <= 0xbc) {
+                        step2 = one2;
+                    } else {
+                        step2 = zero;
+                    }
+                    if (step2 != 0) {
+                        pos2 += 2;
+                    } else {
+                        pos2 += one2;
+                    }
+                    continue;
+                }
+                pos2 += one2;
+                continue;
+            comp_end:
+                if (pos2 != 0) {
+                    if (pos2 == 1 && p[0] == '.') {
+                        goto shared;
+                    }
+                    if (pos2 == 2 && p[0] == '.' && p[1] == '.') {
+                        if (len > 0) {
+                            len--;
+                        }
+                        len = func_0200b810(buf, len) + 1;
+                        goto shared;
+                    }
+                    len += func_0200b24c(buf + len, 0x104 - len, p, pos2, &truncated);
+                    if (c2 != 0) {
+                        len += func_0200b24c(buf + len, 0x104 - len, data_02145c00, 1, &truncated);
+                    }
+                }
+            shared:
+                if (c2 == 0) {
+                    break;
+                }
+                p += pos2 + 1;
+                pos2 = zero;
+            }
+        }
+        buf[len] = 0;
+        func_0200b844(buf);
+    }
+    if (truncated != 0) {
+        sp4 = 0;
+    }
+    return sp4;
 }
 
 void func_0200b594(u8 *arg0) {
