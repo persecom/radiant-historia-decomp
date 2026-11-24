@@ -6,6 +6,9 @@ extern u8 data_0215d144[20];
 extern u32 data_0215d15c;
 extern u16 data_0215d160[10];
 extern u32 func_02008354(u32);
+extern void *data_0215d174[2];
+extern void func_02008444(void);
+extern void func_02006510(void *);
 extern u16 data_0215d158;
 extern void func_02009008(u32, u32, u32);
 extern void func_0200a56c(void);
@@ -236,6 +239,7 @@ void func_020081fc(void) {
 }
 
 void func_02008250(u32 arg0) {
+    u32 *dst = (u32 *)0x2fffc20;
     if (*(u16 *)0x2fffc40 != 2) {
         return;
     }
@@ -244,9 +248,9 @@ void func_02008250(u32 arg0) {
     func_02005988(0x40000);
     func_02005a14(-1);
     func_02008a00();
-    *(u32 *)0x2fffc20 = arg0;
+    *dst = arg0;
     func_02005ab4(0x10);
-    *(u32 *)(0x2fffc80 + 0x37c) = func_02007664();
+    dst[0x7f] = func_02007664();
     func_01ff81b8();
 }
 
