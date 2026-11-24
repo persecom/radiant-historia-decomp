@@ -6,6 +6,7 @@ extern void func_0210c5dc(void *);
 extern u8 *data_021600e4;
 extern u32 func_020bdba0(u16);
 extern void func_020a6c44(void *, u16);
+extern u16 data_02162908[];
 void func_020a6c04(void *arg0, u16 arg1, u8 arg2);
 void func_020a6c74(void *arg0, u16 arg1, u16 arg2);
 void func_020a6a20(void *arg0) {
