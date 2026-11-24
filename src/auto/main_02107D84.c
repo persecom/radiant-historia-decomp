@@ -28,7 +28,7 @@ static inline s32 FX_Mul12(s32 a, s32 b) {
     return (s32)(((s64)a * b + 0x800) >> 12);
 }
 
-extern void func_02107d84(u32, u32, u32, u32);
+extern void func_02107d84(u32, s32, s32, s32);
 extern void func_02107e4c(void *);
 extern void func_02002128(void *, void *, void *);
 extern void func_02002274(void *, void *);
@@ -52,17 +52,17 @@ extern void func_02119c80(void *);
 extern void func_02119d38(void *, void *);
 extern void func_02107860(void);
 
-void func_02107d84(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
+void func_02107d84(u32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     u8 *p = (u8 *)arg0;
-    s32 i = (s32)arg2 >> 4;
-    s32 j = (s32)arg3 >> 4;
+    s32 i = arg2 >> 4;
+    s32 j = arg3 >> 4;
     s32 sinA = data_0213a394[i * 2 + 1];
     s32 cosA = data_0213a394[i * 2];
     s32 cosB = data_0213a394[j * 2];
     s32 sinB = data_0213a394[j * 2 + 1];
-    s32 a = (s32)(((s64)sinA * (s32)arg1 + 0x800) >> 12);
+    s32 a = (s32)(((s64)sinA * arg1 + 0x800) >> 12);
     s32 x = (s32)(((s64)a * cosB + 0x800) >> 12);
-    s32 y = (s32)(((s64)cosA * (s32)arg1 + 0x800) >> 12);
+    s32 y = (s32)(((s64)cosA * arg1 + 0x800) >> 12);
     s32 z = (s32)(((s64)a * sinB + 0x800) >> 12);
     *(s32 *)(p + 0x14) = *(s32 *)(p + 0x20) - x;
     *(s32 *)(p + 0x18) = *(s32 *)(p + 0x24) + y;
