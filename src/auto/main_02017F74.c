@@ -64,23 +64,36 @@ s32 func_02018844(u8 *arg0, s32 arg1) {
     return (prev[5] & 1) ? 1 : -1;
 }
 
-void func_020188b0(u8 *arg0, s32 arg1) {
-    u8 *data = arg0 + 5;
-    u8 *p = data + arg1;
+void func_020188b0(UnkNum_02018844 *arg0, s32 arg1) {
+    u8 *p = arg0->digits + arg1;
     p--;
-loop:
-    if (*p < 9) {
-        *p = *p + 1;
-        return;
+    for (;;) {
+        if (*p < 9) {
+            *p = *p + 1;
+            return;
+        }
+        if (p == arg0->digits) {
+            *p = 1;
+            arg0->unk02++;
+            return;
+        }
+        *p-- = 0;
     }
-    if (p == data) {
-        *p = 1;
-        *(s16 *)(arg0 + 2) = *(s16 *)(arg0 + 2) + 1;
-        return;
-    }
-    *p-- = 0;
-    goto loop;
 }
 
 void func_020188fc(void) {
 }
+
+void func_02018900(u8 *arg0, s32 arg1) {
+    s32 ret;
+    if (arg1 <= 0 || arg1 >= arg0[4]) {
+        return;
+    }
+    ret = func_02018844(arg0, arg1);
+    arg0[4] = arg1;
+    if (ret < 0) {
+        return;
+    }
+    func_020188b0((void *)arg0, arg1);
+}
+
