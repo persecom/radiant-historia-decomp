@@ -1,6 +1,9 @@
 /* 8 functions from 0x02058A08 to 0x02059888 (main), found by ds-decomp. */
 #include "common.h"
 typedef struct { s32 x,y,z; } Vec3_02059888;
+extern u8 *data_02160204;
+extern void *func_020bf308(s32);
+extern void func_020bf344(void *, Vec3_02059888 *, Vec3_02059888 *, s32);
 extern u8 *data_021600bc;
 extern s32 data_02162884[],data_02162814[];
 extern u8 *func_02044f70(void);
