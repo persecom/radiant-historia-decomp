@@ -57,6 +57,11 @@ void func_02011254(s32 arg0) {
     }
 }
 
+void func_0201164c(void) {
+    func_02011254(2);
+    func_02008414();
+}
+
 void func_02011660(void) {
     data_0215fa34[1] = 0;
 }
