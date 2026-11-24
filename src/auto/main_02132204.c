@@ -190,6 +190,21 @@ void func_0213278c(u8 *arg0) {
     *(u8 *)(arg0 + 9) = 2;
 }
 
+void func_02132a24(s32 *arg0, s32 arg1, s32 *arg2, s32 *arg3) {
+    s32 ptr = *(volatile s32 *)arg0;
+    s32 len = *(volatile s32 *)(arg0 + 1);
+    s32 rem;
+    *(volatile s32 *)arg2 = ptr;
+    *(volatile s32 *)(arg2 + 1) = len;
+    arg3[1] = len;
+    if (arg2[1] > arg1) {
+        arg2[1] = arg1;
+    }
+    rem = arg3[1] - arg2[1];
+    arg3[1] = rem;
+    arg3[0] = (rem == 0) ? 0 : (arg2[0] + arg2[1]);
+}
+
 u32 func_02132a94(u8 *arg0) {
     return *(u32 *)(arg0 + 0x24);
 }
