@@ -1,5 +1,7 @@
 /* 20 functions from 0x021231B0 to 0x021241A4 (main), found by ds-decomp. */
 #include "common.h"
+extern u8 *data_02170460;
+extern s32 data_02171270[],data_02171274[],data_02171278[];
 
 typedef struct { s32 x, y, z; } Vec_02123a6c;
 
@@ -263,11 +265,11 @@ if(!flags) func_021205ec(0x1b,arg0+0x1c,3);
 if(!(*(u32 *)arg0&4)) {
 if(flags) sendTrans=1;
 else {
-s32 v[3]; s32 x,y,z;
+s32 v[3]; s32 x,y;
 x=((s64)*(s32 *)(arg0+0x4c)**(s32 *)(arg0+0x10))>>12;
 y=((s64)*(s32 *)(arg0+0x50)**(s32 *)(arg0+0x14))>>12;
-z=((s64)*(s32 *)(arg0+0x54)**(s32 *)(arg0+0x18))>>12;
-v[2]=z;v[1]=y;v[0]=x;
+v[0]=x;v[1]=y;
+v[2]=((s64)*(s32 *)(arg0+0x54)**(s32 *)(arg0+0x18))>>12;
 func_021205ec(0x1c,v,3);
 }
 }
