@@ -86,6 +86,64 @@ u8 *func_0202c920(u32 arg0) {
     return sub ? *(u8 **)sub : NULL;
 }
 
+void func_0202c950(u32 mask, void *list, s32 filter) {
+ u8 *node;
+ u8 *actor=*(u8 **)(data_02160a6c+0xb8);
+ u32 selected;
+ u32 i,j;
+ s32 zero=0;
+ while(actor) {
+ if(actor && *(u8 **)(actor+0x118)) {
+ u8 *p=*(u8 **)(actor+0x118);
+ *(u32 *)(p+0x8c)&=~0x800;
+ }
+ actor=*(u8 **)(actor+0x174);
+ }
+ selected=0;
+ for(i=0;i<9;i++) {
+ if(mask&(1<<i)) {
+ node=*(u8 **)(data_02160244[i+2]+0x10);
+ while(node) {
+ u8 *obj=*(u8 **)node;
+ if(obj) {
+ if(node[4]==0) selected|=func_0202ea28((*(u8 **)(obj+0x118))[0x54],(s16)i);
+ else if(node[4]==1) selected|=func_0202ea28((*(u8 **)(obj+0x118))[0x54],(s16)(i+3));
+ else if(node[4]==2) selected|=func_0202ea28((*(u8 **)(obj+0x118))[0x54],(s16)(i-1));
+ else if(node[4]==3) selected|=func_0202ea28((*(u8 **)(obj+0x118))[0x54],(s16)(i+2));
+ else if(node[4]==4) selected|=0x1ff;
+ }
+ node=*(u8 **)(node+12);
+ }
+ }
+ }
+ for(j=0;j<9;j++) {
+ u8 *first;
+ s32 count=0;
+ first=NULL;
+ if(selected&(1<<j)) {
+ node=*(u8 **)(data_02160244[j+2]+0x10);
+ while(node) {
+ u8 *obj=*(u8 **)node;
+ u8 *info=*(u8 **)(obj+0x124);
+ if(filter==-1) {
+ if(obj) {
+ if(count==0) first=func_02032b98(list,obj,zero);
+ else { mark_first_c950(first);func_02032b98(list,obj,1); }
+ count++;
+ }
+ } else {
+ if(obj && *(s16 *)(info+2)==filter) {
+ if(count==0) first=func_02032b98(list,obj,zero);
+ else {mark_first_c950(first);func_02032b98(list,obj,1);}
+ count++;
+ }
+ }
+ node=*(u8 **)(node+12);
+ }
+ }
+ }
+}
+
 void func_0202cbf8(u32 arg0, void *arg1) {
     u8 *sub;
     u32 i;
