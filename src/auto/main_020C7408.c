@@ -297,6 +297,19 @@ void func_020c8278(u8 *arg0) {
     }
 }
 
+s32 func_020c82a8(u8 *arg0) {
+    if (func_020c73c0(arg0) == 0) {
+        return 2;
+    }
+    data_02162880 = *(u32 *)(arg0 + 0x30);
+    if (*(u8 *)(arg0 + 0x38) == 0) {
+        return 3;
+    }
+    func_020c8568(arg0, *(s16 *)(arg0 + 0x3a) + *(u8 *)(arg0 + 0x3e), *(s16 *)(arg0 + 0x3c) + *(u8 *)(arg0 + 0x3f));
+    func_020a9068(*(u8 *)(arg0 + 0x38));
+    return 0;
+}
+
 void func_020c83b0(u8 *arg0, void *arg1) {
     func_020c85e8(arg0);
     *(void **)(arg0 + 0x34) = func_020a94b8(arg1);
