@@ -119,26 +119,33 @@ s32 func_0200bb10(u8 *arg0, u32 arg1, u32 arg2) {
 
 s32 func_0200bb3c(u8 *arg0, void *arg1, s32 arg2) {
     u32 sp0[2];
+    s32 ret;
     *(u32 **)(arg0 + 0x10) = sp0;
     sp0[0] = (u32)arg1;
     sp0[1] = arg2;
-    if (func_0200afb4(arg0, 0, 1) == 0 && *(u32 *)(arg0 + 0x14) == 6) {
-        return -1;
+    if (func_0200afb4(arg0, 0, 1) != 0) {
+        ret = sp0[1];
+    } else if (*(u32 *)(arg0 + 0x14) == 6) {
+        ret = -1;
+    } else {
+        ret = sp0[1];
     }
-    return sp0[1];
+    return ret;
 }
 
 u32 func_0200bb90(u8 *arg0, void *arg1, u32 arg2) {
     u32 sp4;
     u32 sp0;
+    u32 *ptr;
     if (func_0200d4a0(arg0, &sp0) != 0 && func_0200d460(arg0, &sp4) != 0) {
         if (sp0 + arg2 > sp4) {
             arg2 = sp4 - sp0;
         }
     }
-    *(u32 **)(arg0 + 0x10) = (u32 *)(arg0 + 0x30);
-    *(void **)(arg0 + 0x30) = arg1;
-    *(u32 *)(arg0 + 0x34) = arg2;
+    ptr = (u32 *)(arg0 + 0x30);
+    *(u32 **)(arg0 + 0x10) = ptr;
+    ptr[0] = (u32)arg1;
+    ptr[1] = arg2;
     func_0200afb4(arg0, 0, 0);
     return arg2;
 }
@@ -160,7 +167,7 @@ extern u8 data_02145c04[];
 u32 func_0200bc94(u8 *arg0) {
     u32 val = *(u32 *)(arg0 + 0x1c);
     if ((val >> 24) & 1) {
-        return val & 0xffffff;
+        return (val << 8) >> 8;
     }
     return *(u32 *)(arg0 + 8);
 }
