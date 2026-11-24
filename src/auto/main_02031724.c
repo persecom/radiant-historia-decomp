@@ -64,6 +64,13 @@ void func_0203218c(u8 *arg0) {
     }
 }
 
+void func_020321cc(s32 arg0) {
+    void *node;
+    while ((node = *(void **)((u8 *)data_02160090 + 8)) != NULL) {
+        func_02031fcc((s32)node, arg0);
+    }
+}
+
 void *func_0203222c(void) {
     return *(void **)((u8 *)data_02160090 + 8);
 }
