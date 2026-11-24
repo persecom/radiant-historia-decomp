@@ -321,6 +321,28 @@ void func_02114ac4(void) {
     *(s32 *)(p + 0x50) = v;
 }
 
+void func_02114b44(void) {
+UnkStruct_0216c9bc *p = (UnkStruct_0216c9bc *)data_0216c9bc;
+s32 zero = 0;
+s32 valid;
+s32 saved;
+if (p->unk_00 == 0) return;
+valid = 1;
+if (p->unk_2c < 0) valid = zero;
+func_020095a8(p->unk_24,p->unk_28,valid ? (1u << p->unk_2c) : 0,0);
+if (valid) {
+saved = func_02009d2c();
+func_02009b24(1);
+func_02009cc0(saved);
+while (func_02006a38(data_0216c97c,zero,zero) != 0) {}
+}
+if (p->unk_28 != 0) func_02113a00(p->unk_28);
+if (p->unk_20 != 0) func_021139d0((void *)p->unk_20);
+if (valid) func_02113a60(p->unk_2c);
+if (p->unk_04 == 1) func_02009780(0,0,0,0);
+p->unk_00 = zero;
+}
+
 void func_02114c28(void) {
     UnkStruct_0216c9bc *p = (UnkStruct_0216c9bc *)data_0216c9bc;
     s32 tag;
@@ -485,6 +507,53 @@ u32 func_02115174(u32 arg0) {
         return 0;
     }
     return *(u32 *)(p + arg0 * 0x10 + 0x10);
+}
+
+extern s32 func_0200bb10(u8 *, u32, u32);
+extern s32 func_0200bb3c(u8 *, void *, s32);
+s32 func_0211519c(u32 arg0, u8 *arg1, s32 arg2, s32 arg3) {
+    u8 *g = (u8 *)data_0216cad0[0];
+    u8 *p = *(u8 **)(g + 0x90);
+    s32 maxchunk;
+    u8 *elem;
+    s32 total = 0;
+    u8 *buf = arg1;
+    s32 off = arg3;
+    s32 chunk, written;
+    u32 avail;
+
+    if (arg0 >= *(u32 *)(p + 8)) {
+        return -1;
+    }
+    maxchunk = *(s32 *)(g + 0x9c);
+    if (maxchunk == 0) {
+        maxchunk = arg2;
+    }
+    elem = p + 0xc + arg0 * 16;
+    while (total < arg2) {
+        chunk = arg2 - total;
+        if (chunk > maxchunk) {
+            chunk = maxchunk;
+        }
+        avail = *(u32 *)(elem + 4) - off;
+        if (chunk > (s32)avail) {
+            chunk = avail;
+        }
+        if (chunk == 0) {
+            break;
+        }
+        if (func_0200bb10(g + 0x34, *(u32 *)(elem + 0) + off, 0) == 0) {
+            return -1;
+        }
+        written = func_0200bb3c(g + 0x34, buf, chunk);
+        if (written < 0) {
+            return written;
+        }
+        total += written;
+        off += written;
+        buf += written;
+    }
+    return total;
 }
 
 u32 func_02115264(u32 arg0) {
