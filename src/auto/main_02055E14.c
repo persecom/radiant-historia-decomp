@@ -38,6 +38,29 @@ void func_02055e14(u16 arg0) {
     }
 }
 
+void func_02055ebc(void) {
+ Unk_02055ebc buf = data_0213f344;
+ u8 i;
+ for(i=0;i<4;i++) {
+  u8 *p=func_0210c594(0x34,data_02155c3c);
+  s32 idx=i*11;
+*(s16 *)(p+4)=buf.field[idx+0];
+*(s16 *)(p+6)=buf.field[idx+1];
+*(s16 *)(p+8)=buf.field[idx+2];
+*(s16 *)(p+10)=buf.field[idx+3];
+*(s16 *)(p+16)=buf.field[idx+4];
+*(s16 *)(p+18)=buf.field[idx+5];
+*(s16 *)(p+12)=buf.field[idx+6];
+*(s16 *)(p+14)=buf.field[idx+7];
+*(s16 *)(p+0x24)=buf.field[idx+8]+101;
+p[2]=0;
+*(s16 *)(p)=buf.field[idx+10];
+p[3]=buf.field[idx+9];
+p[0x26]=31;
+func_021167f0(data_021600c0+0x34,p);
+}
+}
+
 void func_02056460(void) {
  u8 i;
  Unk_02056460 buf = data_0213f39c;
