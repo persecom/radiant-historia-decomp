@@ -24,19 +24,14 @@ static inline void func_020e4a78_set(Node_020e4a78 *p) {
 }
 
 void func_020e4a78(Node_020e4a78 *p) {
-    u8 v;
     if (p->unk0 & 1) return;
-    v = p->unk9;
-    if (v == 0) goto common;
-    if (v == 2) goto common;
-    goto check1;
-common:
-    p->unk5 = 2;
-    if (p->unk9 == 2) p->unk5 = 3;
-    p->unk4 = 0;
-    return;
-check1:
-    if (v == 1) {
+    if (p->unk9 == 0 || p->unk9 == 2) {
+        p->unk5 = 2;
+        if (p->unk9 == 2) p->unk5 = 3;
+        p->unk4 = 0;
+        return;
+    }
+    if (p->unk9 == 1) {
         p->unk5 = 3;
         p->unk4 = 3;
         p->unk2 = 3;
