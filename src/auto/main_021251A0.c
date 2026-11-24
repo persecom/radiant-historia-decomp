@@ -187,6 +187,15 @@ u8 *func_021253d8(u8 *arg0) {
     return *(u8 **)(arg0 + 0) + (*(u16 *)(arg0 + 0xa) << 4);
 }
 
+s32 func_021253e8(u8 *arg0) {
+    if (func_0212508c(arg0) != 0) {
+        return 0;
+    }
+    *(u16 *)(arg0 + 8) = func_02125054(arg0, *(u16 *)(arg0 + 8));
+    *(u16 *)(arg0 + 0xc) -= 1;
+    return 1;
+}
+
 s32 func_02125a5c(void *arg0) {
     s32 ret;
     if (!data_02173194) {
