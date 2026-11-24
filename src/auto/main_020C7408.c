@@ -74,6 +74,13 @@ void func_020c760c(u8 *arg0) {
     }
 }
 
+void func_020c7630(void *arg0) {
+    if (*(void **)arg0 != NULL) {
+        func_020f4f04(*(void **)arg0);
+        *(void **)arg0 = NULL;
+    }
+}
+
 u32 func_020c7754(u32 **arg0) {
     return **arg0;
 }
