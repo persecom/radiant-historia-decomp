@@ -253,6 +253,18 @@ s32 func_0200d15c(void *arg0, void *arg1, void *arg2) {
     return 0;
 }
 
+void func_0200d178(u8 *arg0) {
+    u32 *p = *(u32 **)(arg0 + 0x20);
+    func_0200d510(arg0);
+    p[0] = 0;
+    p[1] = 0;
+    p[2] = 0;
+    p[3] = 0;
+    p[4] = 0;
+    p[5] = 0;
+    p[6] = 0;
+}
+
 void func_0200d1a8(u32 arg0, u32 *ptr) {
     *ptr = 0;
 }
