@@ -196,7 +196,7 @@ void *func_020a6168(void) {
 
 extern char data_0214ff00[32];
 extern char data_0214ff20[32];
-extern void func_02005e80(char *, const char *);
+extern void func_02005e80(char *, const char *, ...);
 extern void *func_021092d8(const char *);
 extern s32 func_02092994(void *, s32);
 extern void *func_020a6168(void);
