@@ -51,15 +51,15 @@ void func_02054118(void *arg0) {
 }
 
 s32 func_020541d8(void *arg0) {
-    u8 *obj;
     u8 *s;
+    u8 *obj;
     s32 r;
     if (data_021600ac == NULL) return 0;
     obj = *(u8 **)(data_021600ac + 0x68);
     if (obj == NULL) return 0;
     s = *(u8 **)((u8 *)arg0 + 0xd0);
     if (s == NULL) return 0;
-    if (*(u32 *)(data_02160200 + 0x160) & 0x400) goto fail;
+    if (*(u32 *)(data_02160200 + 0x160) & 0x400) return 0;
     r = func_0210c2f4(obj, arg0);
     if (r >= (*(u16 *)(s + 0x1e) << 12)) goto fail;
     if (*(u32 *)(obj + 0xac) & 0x2000) goto fail;
