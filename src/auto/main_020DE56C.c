@@ -61,20 +61,23 @@ BOOL func_020df03c(s32 arg0) {
     volatile s16 *v = (volatile s16 *)(ptr + 0xae);
     if (arg0 == 0) {
         *v = *v + 0x10;
-        if (*v > 0x1e) {
-            *v = 0x1e;
+        if (*v <= 0x1e) {
+            goto fail;
         }
+        *v = 0x1e;
         return TRUE;
     }
     if (arg0 == 1) {
         *v = *v - 0x10;
-        if (*v < 0) {
-            *v = 0;
+        if (*v >= 0) {
+            goto fail;
         }
+        *v = 0;
         *(u32 *)(ptr + 0x58) &= ~0x2;
         *(u32 *)(ptr + 0x58) &= ~0x800;
         return TRUE;
     }
+fail:
     return FALSE;
 }
 
