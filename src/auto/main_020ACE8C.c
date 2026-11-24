@@ -37,3 +37,23 @@ u8 *func_020adda8(void) {
     return func_020b3880() + 0x3C;
 }
 
+s32 func_020addb8(void) {
+    u8 *p = func_020adda8();
+    func_02008f74(p, 0, 0x6CC);
+    func_020adf34(p);
+    func_020ae180(p);
+    func_020ae560(p);
+    func_020adf14();
+    *(s32 *)(p + 0x6C0) = -1;
+    *(s32 *)(p + 0x6BC) = -1;
+    *(s32 *)(p + 0x6C4) = 0;
+    return 1;
+}
+
+void func_020ade0c(void) {
+    u8 *p = func_020adda8();
+    func_020adfb4(p);
+    func_020ae35c(p);
+    func_020ae6e8(p);
+}
+
