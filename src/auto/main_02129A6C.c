@@ -293,14 +293,16 @@ void *func_0212a58c(u8 *arg0) {
 
 void func_0212a594(u8 *arg0, u32 arg1) {
     u8 *p = *(u8 **)(arg0 + 8);
-    func_021297c0(p, *(u32 *)(arg0 + 0x48), arg1, *(u32 *)(arg0 + 0x5c) + *(u32 *)(arg0 + 0x68) * 2, 0);
+    u32 v = *(u32 *)(arg0 + 0x5c) + *(u32 *)(arg0 + 0x68) * 2;
+    func_021297c0(p, *(u32 *)(arg0 + 0x48), arg1, v, 0);
     func_02129830(p);
 }
 
 void func_0212a5d4(u8 *arg0, u32 arg1) {
     u8 *p = *(u8 **)(arg0 + 8);
-    u32 v = *(u32 *)(arg0 + 0x5c) + *(u32 *)(arg0 + 0x68) * 2 + *(u32 *)(arg0 + 0x64) * 2;
-    func_021297f8(p, *(u32 *)(arg0 + 0x48), arg1 * 2, v, v);
+    u32 v1 = *(u32 *)(arg0 + 0x5c) + *(u32 *)(arg0 + 0x68) * 2;
+    u32 v2 = v1 + *(u32 *)(arg0 + 0x64) * 2;
+    func_021297f8(p, *(u32 *)(arg0 + 0x48), arg1 * 2, v1, v2);
     func_02129830(p);
 }
 
