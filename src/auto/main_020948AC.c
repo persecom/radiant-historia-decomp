@@ -196,3 +196,17 @@ void *func_020952f8(u16 arg0) {
     return NULL;
 }
 
+void func_0209532c(void) {
+    u8 *node;
+    s32 i = 0;
+    node = (u8 *)func_0203222c();
+    while (node != NULL) {
+        func_02095374(*(u32 *)node, node, i, 0);
+        i++;
+        if (i >= 10) {
+            return;
+        }
+        node = *(u8 **)(node + 0x1c);
+    }
+}
+
