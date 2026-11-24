@@ -380,6 +380,33 @@ void func_0210d27c(s32 arg0) {
     slot[1] = 6;
 }
 
+void func_0210d314(s32 arg0, u8 arg1) {
+    s16 *slot;
+    s32 i;
+    if (arg0 < 0) {
+        return;
+    }
+    slot = NULL;
+    for (i = 0; i < 8; i++) {
+        if (arg0 == data_0216274c[i * 2]) {
+            slot = NULL;
+            break;
+        }
+        if (slot == NULL && data_0216274c[i * 2] == -1) {
+            slot = &data_0216274c[i * 2];
+        }
+    }
+    if (slot == NULL) {
+        return;
+    }
+    if (!(*(s32 (**)(void *, s32))(data_02155c7c + 4))(data_0216273c, arg0)) {
+        return;
+    }
+    func_02113ce8(data_0216273c, arg1);
+    slot[0] = (s16)arg0;
+    slot[1] = 6;
+}
+
 void func_0210d3b0(s32 arg0) {
     s16 *slot;
     s32 i;
