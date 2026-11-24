@@ -495,7 +495,7 @@ s32 func_020ab024(u8 *arg0) {
     } else if (data_021626a8 & 2) {
         func_0210d27c(5);
         *(s32 *)(arg0 + 0x3438) = 2;
-        func_020ade30();
+        func_020ade30(2);
         return 3;
     }
     if (dir != 0) {
