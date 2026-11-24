@@ -83,6 +83,11 @@ void func_02132c1c(s32 arg0, s32 arg1, s32 arg2) {
     func_02016ed8(arg0, arg2);
 }
 
+extern void func_02016f08(s32, s32, s32);
+void func_02132c2c(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    func_02016f08(arg0, arg2, arg3);
+}
+
 extern u8 data_021749dc[64];
 void *func_02132f14(void) {
     return data_021749dc;
