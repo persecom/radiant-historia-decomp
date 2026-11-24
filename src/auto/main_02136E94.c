@@ -28,6 +28,15 @@ typedef struct {
     u8 data[1728];
 } Block_02175d40;
 
+extern u8 data_0215c55c[12];
+extern u8 data_0215c568[28];
+extern u8 data_0215c584[12];
+extern u8 data_0215c590[32];
+extern u8 data_0215c5b0[12];
+extern u8 data_0215c5bc[28];
+extern u8 data_0215c5d8[12];
+extern u8 data_0215c5e4[32];
+
 extern void func_021378d8(void);
 extern void func_021369a8(void);
 extern void func_02137470(void *);
