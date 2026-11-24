@@ -1,8 +1,8 @@
 /* 21 functions from 0x020B8718 to 0x020B967C (main), found by ds-decomp. */
 #include "common.h"
 typedef struct { u16 values[8]; } Unk_020b8aacIds;
-extern u16 data_021438e8[],data_021438fc[],data_021438dc[];
-extern Unk_020b8aacIds data_021439a4;
+extern const u16 data_021438e8[],data_021438fc[],data_021438dc[];
+extern const Unk_020b8aacIds data_021439a4;
 extern void func_020b8c44(void);
 extern void func_020b92d4(void);
 extern void func_020b948c(void);
@@ -180,6 +180,35 @@ if(*(s32 *)(p+0x90)<-0x37000) {
 }
 break;
 }
+}
+
+void func_020b8aac(void){
+u8 *p=data_021601ec;
+u16 arr[4];
+u16 *q;
+Unk_020b8aacIds ids;
+u16 i;
+arr[1]=data_021438e8[0];
+func_020c738c(func_020c9c10(*(void **)(p+0x4c),arr[1]),4,4);
+q=arr+2;
+arr[2]=data_021438fc[0];arr[3]=data_021438fc[1];
+for(i=0;i<2;i++)func_020c738c(func_020c9c10(*(void **)(p+0x48),q[i]),1,1);
+*((u8 *)func_020c9c10(*(void **)(p+0x4c),2)+0x73)=0;
+arr[0]=data_021438dc[0];
+func_020c738c(func_020c9c10(*(void **)(p+0x4c),arr[0]),0,1);
+ids=data_021439a4;
+q=ids.values;
+for(i=0;i<8;i++)func_020c738c(func_020c9c10(*(void **)(p+0x4c),q[i]),1,1);
+switch(*(u32 *)(p+0x40)){
+case 0:func_020b8c44();break;
+case 1:func_020b92d4();break;
+case 2:func_020b948c();break;
+case 3:func_020b9990();break;
+case 5:func_020b9ad8();break;
+case 4:func_020b9b78();break;
+case 6:func_020ba118();break;
+}
+p[0x44]=0;
 }
 
 void func_020b8d94(void);
