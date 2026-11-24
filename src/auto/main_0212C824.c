@@ -1,5 +1,6 @@
 /* 37 functions from 0x0212C824 to 0x0212D7BC (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { s8 unk00[2]; s8 count; u8 unk03[9]; void *objs[4]; u8 unk1c[0x90]; s32 remaining; } Unk0212D3B4;
 
 extern u8 data_02173df4[20];
 extern u8 data_02173e08[720];
