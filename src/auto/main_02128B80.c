@@ -101,6 +101,13 @@ void func_02129724(u8 *arg0, s16 *arg1, s16 *arg2) {
     *(s16 *)(arg0 + 0x2e) = arg2[1];
 }
 
+void func_02129748(u8 *arg0, s16 *arg1, s16 *arg2) {
+    arg1[0] = *(s16 *)(arg0 + 0x28);
+    arg2[0] = *(s16 *)(arg0 + 0x2a);
+    arg1[1] = *(s16 *)(arg0 + 0x2c);
+    arg2[1] = *(s16 *)(arg0 + 0x2e);
+}
+
 void func_0212976c(u8 *arg0, u16 arg1, u16 arg2, u16 arg3) {
     *(u16 *)(arg0 + 0x34) = arg1;
     *(u16 *)(arg0 + 0x36) = arg2;
