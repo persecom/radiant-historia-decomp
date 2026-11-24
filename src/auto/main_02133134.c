@@ -424,6 +424,14 @@ s32 func_02133bf0(void *arg0) {
     return 0;
 }
 
+s32 func_02133c1c(u8 *arg0) {
+    if (arg0 != NULL) {
+        return *(s32 *)(arg0 + 4);
+    }
+    func_021336c0(0, data_0215bb6c);
+    return 0;
+}
+
 void func_02133dd0(u32 arg0, u32 arg1) {
     if (data_02174f9c[0x1ca] != 0) {
         ((void (*)(u32, u32, u32))data_02174f9c[0x1ca])(data_02174f9c[0x1cb], arg1, arg0);
