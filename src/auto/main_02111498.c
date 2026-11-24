@@ -333,8 +333,8 @@ s32 func_02112110(u8 *arg0) {
         ((void (*)(void *))*(void **)p)(p);
         ((void (*)(void *, s32))*(void **)(p + 0x10))(p, 5);
         ((void (*)(void *, s32))*(void **)(p + 0x14))(p, 3);
-        func_0211078c(*(void **)(arg0 + 0x90));
     }
+    func_0211078c(*(void **)(arg0 + 0x90));
     return 0;
 }
 
