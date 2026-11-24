@@ -28,5 +28,6 @@
   "src/auto/main_0212B8E0.c": "dsi/1.1p1",
   "src/auto/main_0212E764.c": "dsi/1.1p1",
   "src/auto/ov000_02176A00.c": "2.0/sp1p5",
-  "src/auto/ov000_02177AA0.c": "2.0/sp1p5"
+  "src/auto/ov000_02177AA0.c": "2.0/sp1p5",
+  "src/auto/main_020D9CC0.c": "2.0/sp1p5"
 }

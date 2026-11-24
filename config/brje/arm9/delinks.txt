@@ -779,7 +779,10 @@ src/auto/main_020D7E7C.c:
     .text start:0x020d7e7c end:0x020d8e5c
 
 src/auto/main_020D8E5C.c:
-    .text start:0x020d8e5c end:0x020d9e48
+    .text start:0x020d8e5c end:0x020d9cc0
+
+src/auto/main_020D9CC0.c:
+    .text start:0x020d9cc0 end:0x020d9e48
 
 src/auto/main_020D9E48.c:
     .text start:0x020d9e48 end:0x020daa60
