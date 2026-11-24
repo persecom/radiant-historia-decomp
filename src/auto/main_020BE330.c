@@ -284,12 +284,12 @@ void func_020bf24c(s32 arg0, u8 arg1) {
         p = func_020bf408();
         q = func_020bed34();
         *(s32 *)(p + 0x4) = *(s32 *)(q + 0x4);
+    }
 
-        if (arg0 == 0) {
-            p = func_020bf408();
-            q = func_020bed44();
-            *(s32 *)(p + 0x4) = *(s32 *)(p + 0x4) + *(s32 *)(q + 0x4);
-        }
+    if (arg0 == 0) {
+        p = func_020bf408();
+        q = func_020bed44();
+        *(s32 *)(p + 0x4) = *(s32 *)(p + 0x4) + *(s32 *)(q + 0x4);
     }
     func_02108240();
 }
