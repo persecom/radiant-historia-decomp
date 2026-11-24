@@ -151,6 +151,39 @@ volatile char func_020a795c(u32 arg0, u32 *arg1, u32 *arg2)
   *arg2 = *((u32 *) (result + 8));
 }
 
+void func_020a7ec8(void){
+s32 zero,one;
+if(data_0216013c==NULL)return;
+zero=0;
+data_0216bf84=zero;
+func_020c470c();
+func_020a3b84();
+one=1;
+func_020f0090(one);
+func_0210e290(zero);
+data_02162858[0]=zero;
+data_02162854=zero;
+data_02155984=data_0216242c;
+data_02162850=one;
+func_0210b894();
+data_02162850=zero;
+if(data_0216013c){
+func_020c3cd4(*(void **)(data_0216013c+0x8c));
+*(u32 *)(data_0216013c+0x8c)=zero;
+func_020c3c94(*(void **)(data_0216013c+0x90));
+*(u32 *)(data_0216013c+0x90)=zero;
+func_0210da14(data_0216013c);
+func_0210da14(data_0216013c+0x64);
+func_0210dac8(data_0216013c+0x78);
+func_0210dba0(data_0216013c+0x14);
+func_0210dbe8(data_0216013c+0x28);
+func_0210db10(data_0216013c+0x3c);
+func_0210db58(data_0216013c+0x50);
+if(data_0216013c){func_0210c5dc(data_0216013c);data_0216013c=NULL;}
+}
+func_0210f138();
+}
+
 void func_020a7fe8(void) {
     *(volatile u32 *)0x0400001c = 0;
     *(volatile u32 *)0x04000000 = (*(volatile u32 *)0x04000000 & ~0x1f00) | 0x1f00;
