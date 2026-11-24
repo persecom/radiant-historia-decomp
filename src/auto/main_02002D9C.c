@@ -2,7 +2,7 @@
 #include "common.h"
 
 typedef struct Unk_020030f4 {
-    u32 data[0x80];
+    u32 a, b, c, d;
 } Unk_020030f4;
 
 extern s32 data_02145ba4;
