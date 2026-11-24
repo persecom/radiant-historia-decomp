@@ -3,6 +3,7 @@
 
 extern s32 func_0200c248(void *, void *, u32);
 extern s32 func_0200cb40(void *, s32, s32);
+extern void func_0200b888(void *);
 s32 func_0200ca2c(void *arg0) {
     void *r3 = *(void **)((u8 *)arg0 + 0x8);
     u32 r4 = *(u32 *)((u8 *)arg0 + 0x34);
