@@ -64,6 +64,10 @@ void func_0200f974(u32 arg0) {
     data_0215f0a0[0] = arg0;
 }
 
+u32 func_0200f984(void) {
+    return **(u32 **)data_0215f120;
+}
+
 void *func_0200f998(void) {
     return (void *)0x02fffa80;
 }
