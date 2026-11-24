@@ -374,8 +374,8 @@ s32 func_0212f3fc(u8 *arg0, s32 arg1) {
     }
     rem = value - arg1;
     result = data_02145914[arg1] & (*(s32 *)(arg0 + 8) >> rem);
-    *(s32 *)(arg0 + 0x10) += arg1;
     *(s32 *)(arg0 + 0xc) = rem;
+    *(s32 *)(arg0 + 0x10) += arg1;
     return result;
 }
 
