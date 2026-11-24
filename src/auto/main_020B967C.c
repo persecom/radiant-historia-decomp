@@ -5,6 +5,14 @@ extern u8 *data_021601ec;
 extern u16 data_021438e0;
 extern u16 data_021626a8;
 extern u8 *func_020c9c10(void *, u32);
+extern u32 func_021136b0(u16);
+extern u8 *func_02111da8(u8 *);
+extern u8 *func_02112048(u8 *);
+extern u32 func_02022068(u16);
+extern void func_020220b0(u16, u32);
+extern void func_020b8aac(void);
+extern u8 *data_02160204;
+extern void func_020de394(u32, u16);
 
 void func_020b9930(void) {
     u8 *obj = func_020c9c10(*(void **)(data_021601ec + 0x4c), 2);
@@ -76,22 +84,32 @@ void func_020ba3f8(void) {
     s32 flag = func_020c73d8(obj);
     u16 prev = *(u16 *)(obj + 0x30);
     u8 i;
+    u16 val;
+    u32 id;
     *(u16 *)(obj + 0x30) = flag != 0 ? 0xd : 0xc;
     if (*(u16 *)(obj + 0x30) != prev) {
         func_020c7930(obj);
     }
     for (i = 0; i < 2; i++) {
-        u8 *sub = func_020c9c10(*(void **)(p + 0x4c), i != 0 ? 6 : 5);
-        u16 subPrev = *(u16 *)(sub + 0x30);
-        if (flag == 0) {
-            *(u16 *)(sub + 0x30) = 0x12;
+        id = 5;
+        if (i != 0) {
+            id = 6;
         }
-        if (*(u16 *)(sub + 0x30) != subPrev) {
-            func_020c7930(sub);
+        obj = func_020c9c10(*(void **)(p + 0x4c), id);
+        prev = *(u16 *)(obj + 0x30);
+        if (flag == 0) {
+            *(u16 *)(obj + 0x30) = 0x12;
+        }
+        if (*(u16 *)(obj + 0x30) != prev) {
+            func_020c7930(obj);
         }
     }
     obj = func_020c9c10(*(void **)(p + 0x4c), 4);
-    *(u16 *)(obj + 0x30) = flag != 0 ? 0xf : 0xe;
+    val = 0xf;
+    if (flag == 0) {
+        val = 0xe;
+    }
+    *(u16 *)(obj + 0x30) = val;
 }
 
 s32 func_020ba504(u8 *arg0) {
