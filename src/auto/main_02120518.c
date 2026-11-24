@@ -164,6 +164,25 @@ u8 *func_02120fa4(u8 *arg0) {
     return arg0 + offs[1];
 }
 
+u8 *func_02120fe4(u8 *arg0, u32 arg1) {
+    if (arg0 != NULL) {
+        u8 *mdlSet = arg0 + *(u32 *)(arg0 + *(u16 *)(arg0 + 0xc));
+        u8 *dict = mdlSet + 8;
+        u32 *entry;
+        if (dict != NULL && arg1 < *(u8 *)(mdlSet + 9)) {
+            u16 off = *(u16 *)(mdlSet + 0xe);
+            u16 size = *(u16 *)(dict + off);
+            entry = (u32 *)(dict + off + 4 + size * arg1);
+        } else {
+            entry = NULL;
+        }
+        if (entry != NULL) {
+            return mdlSet + *entry;
+        }
+    }
+    return NULL;
+}
+
 u8 *func_02121040(u8 *arg0, u32 arg1) {
     if (arg0 != NULL && arg1 < *(u8 *)(arg0 + 6)) {
         return arg0 + *(u16 *)(arg0 + 8) + (arg1 << 4);
