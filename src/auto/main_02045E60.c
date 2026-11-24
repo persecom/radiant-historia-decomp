@@ -10,3 +10,11 @@ extern void func_020a994c(void *);
 extern void func_020a98a0(void *);
 extern void func_02046760(u8 *);
 extern void func_020f58c0(void *);
+
+void func_020468e0(u8 arg0) {
+    u8 *node = *(u8 **)data_021600b8;
+    while (node != NULL) {
+        *(u8 *)(node + 0x1e8) = arg0;
+        node = *(u8 **)(node + 0x1dc);
+    }
+}
