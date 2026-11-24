@@ -42,6 +42,22 @@ u32 func_0200f94c(void) {
     return data_0215f0a0[0];
 }
 
+extern void func_02008414(void);
+extern void func_02008460(void *);
+extern void func_02007e44(void *);
+extern void func_0200f83c(void);
+extern void func_0200f7e4(void *);
+extern void func_02008474(void *, s32, s32, s32);
+extern void func_02005d88(void);
+extern void func_0200faec(u32, s32);
+extern s32 func_020106ac(void);
+extern void func_020106a0(void);
+void func_0200f95c(void) {
+    if (func_0200f94c() == 0) {
+        func_02008414();
+    }
+}
+
 extern s32 func_0200a6e4(s32, s32, s32);
 s32 func_0200f6fc(s32 arg0);
 void func_0200f974(u32 arg0) {
