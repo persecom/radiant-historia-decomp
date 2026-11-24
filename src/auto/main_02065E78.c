@@ -40,3 +40,21 @@ s32 func_02066bc4(void) {
     data_021600e0[1][0xe0] = 0;
     return 0;
 }
+
+extern void *func_020aa19c(void);
+extern void func_020a6ca0(u16);
+extern void func_020a9af0(void *, s16, s16);
+extern void func_020a9d60(void *);
+extern void func_020aa1b4(void);
+extern s32 func_020aa144(void);
+s32 func_02066bdc(void) {
+    u8 *ptr = data_021600e0[1];
+    u8 *node = *(u8 **)(*(u8 **)func_020aa19c() + 0xc);
+    while (node != NULL) {
+        func_020a6ca0(*(u16 *)(*(u8 **)node + 4));
+        node = *(u8 **)(node + 8);
+    }
+    ptr[0xe0] = 4;
+    return 0;
+}
+
