@@ -182,6 +182,19 @@ void func_02010bf4(u8 *arg0) {
     **(u32 **)data_0215f120 = 0;
 }
 
+void func_02010dc8(void) {
+    ((u32 *)data_0215f760)[3] = (u32)func_020108d8;
+    if (func_020081e0() == 1) {
+        if (*(u32 *)(func_0200f9a4() + 0x80) != 0) {
+            u16 id = (u16)func_02005df8();
+            func_0200f9b0(id);
+            func_020108d8(0, data_0215f78c, *(u32 *)(func_0200f9a4() + 0x80), 0x88);
+            func_0200fa20(id);
+            func_02005e50(id);
+        }
+    }
+}
+
 void func_02010e40(void) {
     func_0200fb84();
 }
