@@ -4,6 +4,66 @@
 extern u8 *data_021600e0[];
 extern void func_021168f8(void *, void *);
 extern void func_0210c5dc(void *);
+extern void func_020a3b84(void);
+extern void func_020e9f44(void);
+extern void func_020a7494(void *);
+extern void func_020a62d8(void *);
+extern void func_020a5ed4(void *);
+extern void func_020665e0(void);
+extern void func_020a5858(void *);
+extern void func_020aa464(void);
+extern void func_020aa0f0(void);
+extern void func_020aa76c(void *);
+extern void func_02066c8c(void);
+extern void func_020a78f0(void);
+extern void func_0210da14(void *);
+extern void func_0210dba0(void *);
+extern void func_02066594(void);
+extern void func_020a6e90(void *);
+extern void func_020f4a24(void);
+extern void func_0210f138(void);
+extern void *func_02003454(void);
+extern void func_02008e68(s32, void *, s32);
+extern void *func_020031bc(void);
+void func_0206643c(void) {
+    if (*(void **)data_021600e0[1] != NULL) {
+        func_0210c5dc(*(void **)data_021600e0[1]);
+        *(void **)data_021600e0[1] = NULL;
+    }
+    func_020a3b84();
+    func_020e9f44();
+    func_020a7494(data_021600e0[1] + 0x130);
+    func_020a62d8(data_021600e0[1] + 0x118);
+    func_020a5ed4(data_021600e0[1] + 0x124);
+    func_020665e0();
+    func_020a5858(*(void **)(data_021600e0[1] + 0x190));
+    func_020a5858(*(void **)(data_021600e0[1] + 0x194));
+    func_020aa464();
+    func_020aa0f0();
+    if (*(void **)(data_021600e0[1] + 0x13f4) != NULL) {
+        func_020aa76c(*(void **)(data_021600e0[1] + 0x13f4));
+        *(void **)(data_021600e0[1] + 0x13f4) = NULL;
+    }
+    func_02066c8c();
+    if (data_021600e0[1] != NULL) {
+        func_020a78f0();
+        func_0210da14(data_021600e0[1] + 8);
+        func_0210dba0(data_021600e0[1] + 0x1c);
+        func_020a5858(*(void **)(data_021600e0[1] + 0x18c));
+        func_02066594();
+        func_020a6e90(data_021600e0[1] + 0x13d4);
+        func_020a6e90(data_021600e0[1] + 0x13e0);
+        if (data_021600e0[1] != NULL) {
+            func_0210c5dc(data_021600e0[1]);
+            data_021600e0[1] = NULL;
+        }
+    }
+    func_020f4a24();
+    func_0210f138();
+    func_02008e68(0, func_02003454(), 0x8000);
+    func_02008e68(0, func_020031bc(), 0x4000);
+}
+
 void func_02066594(void) {
     void *node;
     while ((node = *(void **)(data_021600e0[1] + 0x10c)) != NULL) {
