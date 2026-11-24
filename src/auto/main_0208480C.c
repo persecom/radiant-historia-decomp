@@ -32,7 +32,6 @@ typedef struct UnkNode_02084a70 {
     s32 unk1c;
     s32 unk20;
     s16 unk24;
-    u8 pad26[2];
     u8 unk26;
     u8 pad27[3];
     s8 unk2a;
@@ -48,6 +47,34 @@ typedef struct {
 } G_020852a0;
 void func_0208480c(void) {
     data_0216010c[0x50b4] = 1;
+}
+
+void func_02084a70(UnkNode_02084a70 *arg0) {
+    UnkNode_02084a70 *node;
+    s16 sp[10];
+
+    node = arg0;
+    if (node == NULL) {
+        return;
+    }
+    do {
+        if (node->unk02 != 0 && node->unk26 != 0) {
+            *(volatile u32 *)0x040004a4 = (u32)(node->unk26 << 16) | 0xc0;
+            func_020a3bbc(node->unk03);
+            sp[0] = 1;
+            sp[1] = node->unk04;
+            sp[2] = node->unk06;
+            sp[3] = node->unk08;
+            sp[4] = node->unk0a;
+            sp[5] = node->unk0c + (node->unk14 >> 12) + node->unk2a;
+            sp[6] = node->unk0e + (node->unk18 >> 12) + node->unk2a;
+            sp[7] = node->unk24;
+            sp[8] = node->unk10 + (node->unk1c >> 12);
+            sp[9] = node->unk12 + (node->unk20 >> 12);
+            func_021098ac(sp);
+        }
+        node = node->next;
+    } while (node != NULL);
 }
 
 u8 func_02084f80(u16 arg0) {
