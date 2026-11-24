@@ -8,11 +8,10 @@ extern void func_021098ac(void *);
 extern u32 data_0216263c[3];
 static inline u16 RandomRange_bedf8(u32 limit) {
 u32 max=(u16)limit;
-u32 value;
 data_0216263c[0]=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
-value=data_0216263c[0]>>16;
-if(max) value=(value*max)>>16;
-return value;
+limit=data_0216263c[0]>>16;
+if(max) limit=(limit*max)>>16;
+return limit;
 }
 
 typedef struct { s32 x, y, z; } VecBf118;
