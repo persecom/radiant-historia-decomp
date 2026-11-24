@@ -19,6 +19,16 @@ void func_020bf344(u8 *arg0, void *arg1, void *arg2, s32 arg3) {
     func_02009008(arg0 + 8, arg0 + 0x20, 0xc);
 }
 
+s32 func_020bf3a0(u8 *arg0, f32 arg1) {
+    u8 buf[0xc];
+    if (arg1 > 1.0f) {
+        return 0;
+    }
+    func_020bf00c(buf, arg0 + 8, arg0 + 0x14, arg1);
+    func_02009008(buf, arg0 + 0x20, 0xc);
+    return 1;
+}
+
 void func_020bf3fc(void) {
     func_021082d0();
 }
