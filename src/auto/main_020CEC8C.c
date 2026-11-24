@@ -72,6 +72,27 @@ void func_020cecfc(void) {
     }
 }
 
+void func_020cef00(void) {
+u8 *p=data_02160238;
+if (p[0x70a]==0) {
+func_0210d27c(11);
+if (data_021512f0 != 0) return;
+func_020cda64(0,0x12000,0x2d000,30,0,2,0,0,0);
+*(u32 *)(*(u8 **)(data_02160238+0x60)+0x40)=1;
+func_020a994c(p+0xb4);
+func_020a994c(p+0x104);
+func_020cda08(2,7)[2]=0;
+func_020cda08(2,8)[2]=0;
+p[0x70b]=4;
+p[0]=2;
+} else {
+((void (*)(s32))func_020ccc30)(0);
+p[0x70b]=0;
+p[0]=0;
+func_0210d27c(5);
+}
+}
+
 void func_020cf228(void) {
     s32 x = 0;
     func_02021a3c();
