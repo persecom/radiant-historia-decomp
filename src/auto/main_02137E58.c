@@ -1,6 +1,8 @@
 /* 53 functions from 0x02137E58 to 0x02138E00 (main), found by ds-decomp. */
 #include "common.h"
 typedef struct { s32 v[10]; } InitParams;
+typedef struct { s32 a,b,c; } InitConfig;
+static inline void InitConfigZero(InitConfig *p) {p->b=0;p->a=0;p->c=0;}
 extern u8 data_0215c840[], data_0215c870[], data_0215c8a8[], data_0215c8e0[], data_0215c91c[];
 extern void *func_021273a8(void *, s32);
 extern void *func_02126c2c(void *, s32);
@@ -414,6 +416,50 @@ void func_021386f0(void *arg0) {
     if (arg0 != NULL) {
         func_021390fc(arg0);
     }
+}
+
+void func_02138a60(u8 *);
+s32 func_02138704(u8 *a, InitParams *p, u8 *buf, s32 capacity) {
+s32 i;
+s32 used=0;
+
+if (*(s32 *)(a+0x58)==1 || *(s32 *)(a+0x5c)==1) {func_02126c20(data_0215c840); return 0;}
+func_021390fc(a);
+*(s32 *)(a+0x5c)=1;
+*(InitParams *)(a+0x80)=*p;
+{
+s32 cfg[3]; cfg[1]=0; cfg[0]=0; cfg[2]=0;
+if(p->v[7]==1) cfg[1]=p->v[3]; else cfg[1]=1;
+cfg[0]=p->v[1]; cfg[2]=p->v[9];
+if(p->v[6]==1){*(s32 *)(a+0xa8)=2;*(volatile s32 *)(a+0x64)=1;}
+else {*(s32 *)(a+0xa8)=1;*(volatile s32 *)(a+0x64)=0;}
+for(i=0;i<*(s32 *)(a+0xa8);i++){
+if(p->v[7]==0){
+void *obj; s32 size;
+obj=func_021273a8(buf+used,12);
+*(void **)(a+i*4)=obj;
+if(!obj){func_02126c20(data_0215c870);func_02138a60(a);return 0;}
+used+=12;
+if(p->v[9]) size=0x2900+p->v[4]*((((p->v[0]+1)*((p->v[2]/1000*2500)/16)+2048)/2048)*2048+36);
+else size=64+p->v[1]*5216*2+p->v[4]*((((p->v[0]+1)*((p->v[2]/1000*(p->v[1]*2500))/16)+2048)/2048)*2048+36);
+if(!((s32 (*)(void *,void *,void *,s32))(*(u32 **)obj)[0])(obj,cfg,buf+used,size)){func_02126c20(data_0215c8a8);func_02138a60(a);return 0;}
+*(void **)(a+i*12+0x18)=*(void **)(a+i*4);
+used+=size;
+}
+*(void **)(a+i*12+0x20)=func_02126c2c(buf+used,68);
+if(!*(void **)(a+i*12+0x20)){func_02126c20(data_0215c8e0);func_02138a60(a);return 0;}
+used+=68;
+}
+}
+i=0; *(s32 *)(a+0x10)=i;
+*(void **)(a+8)=*(void **)(a+i*12+0x18);
+if(p->v[8]==1){*(void **)(a+0x74)=buf+used;used+=*(s32 *)(a+0xa8)*0x1800;}
+*(void **)(a+0x78)=buf+used;
+*(void **)(a+0x34)=buf+used;
+used+=256;
+if(p->v[7]==1){*(void **)(a+0xc8)=buf+used;used+=p->v[3]*4;func_02013878(*(void **)(a+0xc8),0,p->v[3]*4);}
+if(used<=capacity){*(s32 *)(a+0x58)=1;*(s32 *)(a+0x5c)=0;return 1;}
+func_02126c20(data_0215c91c);func_02138a60(a);return 0;
 }
 
 void func_02138a60(u8 *arg0) {
