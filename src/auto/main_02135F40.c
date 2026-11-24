@@ -7,7 +7,7 @@ extern void func_02136a3c(void);
 extern void func_02136ab4(void);
 extern void func_02136d54(void *);
 extern void func_021369cc(void);
-extern void *memset(void *, int, unsigned int);
+extern void *memset(void *, int, unsigned long);
 extern s32 data_02175c60;
 extern u32 data_02175c64[6][9];
 extern u32 data_0215beb0[];
