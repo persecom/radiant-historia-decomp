@@ -13,6 +13,10 @@ void func_02129588(void *arg0) {
     func_0212a9f8();
 }
 
+u32 func_021297b8(void *arg0) {
+    return *(u32 *)((u8 *)arg0 + 0xc);
+}
+
 void *func_0212988c(void *arg0) {
     return *(void **)((u8 *)arg0 + 0x10);
 }
