@@ -137,7 +137,7 @@ void func_0213800c(s32 arg0) {
         }
         ((volatile u32 *)data_02176644)[1] = 0;
     }
-    ((void (*)(u32, u32))data_02176644[6])(data_02176644[7], data_02176644[6]);
+    ((void (*)(u32, u32))data_02176644[6])(data_02176644[6], data_02176644[7]);
 }
 
 void func_0213807c(void) {
@@ -289,6 +289,22 @@ void func_02138408(u32 arg0, u32 arg1) {
     data_02176644[7] = arg1;
 }
 
+s32 func_0213841c(s32 arg0) {
+    s32 ret = 0;
+    u8 *base = data_021767bc + arg0 * 0x48;
+    s32 i;
+    for (i = 0; i < 6; i++) {
+        u32 *entry = (u32 *)(base + i * 0xc);
+        if (*entry != 0) {
+            data_0217667c[arg0] = 1;
+            ret |= ((s32 (*)(u32))entry[0])(entry[1]);
+            data_0217667c[arg0] = 0;
+        }
+    }
+    data_0217669c[arg0]++;
+    return ret;
+}
+
 void func_021384a0(void) {
     func_0213841c(0);
 }
@@ -355,6 +371,35 @@ void func_02138618(void) {
     }
 }
 
+s32 func_02138658(s32 *arg0) {
+    s32 ret;
+    if (data_02176644[2] != 0) {
+        ret = ((s32 (*)(void))data_02176644[2])();
+    } else {
+        func_0213807c();
+        ret = 1;
+        if (*arg0 == 1) {
+            ret = 0;
+        }
+        *arg0 = 1;
+        func_0213808c();
+    }
+    return ret;
+}
+
+void *func_021386a8(void *arg0, u32 arg1) {
+    if (arg0 == NULL) {
+        func_02126c20(data_0215c7d8);
+        return NULL;
+    }
+    if (arg1 < 0xe4) {
+        func_02126c20(data_0215c80c);
+        return NULL;
+    }
+    func_021390fc(arg0);
+    return arg0;
+}
+
 void func_021386f0(void *arg0) {
     if (arg0 != NULL) {
         func_021390fc(arg0);
@@ -418,6 +463,29 @@ s32 func_02138c1c(u8 *arg0) {
 
 s8 func_02138d60(u8 *arg0) {
     return *(s8 *)(arg0 + 0x94);
+}
+
+extern u8 data_0215ca80[48];
+extern void func_02139664(void *, void *, s32, s32, s32);
+void func_02138d68(u8 *arg0, s32 arg1) {
+    struct Item {
+        u32 a;
+        s8 b;
+        u8 pad[7];
+    };
+    if (*(u32 *)(arg0 + 0x58) == 0) {
+        func_02126c20(data_0215ca80);
+        return;
+    }
+    func_02126c00();
+    *(s32 *)(arg0 + 0xc4) = arg1;
+    {
+        struct Item *arr = (struct Item *)(arg0 + 0x18);
+        if (arr[*(volatile s32 *)(arg0 + 0x10)].b != 1) {
+            func_02139664(arg0, &arr[*(volatile s32 *)(arg0 + 0x10)], 0, 0, arg1);
+        }
+    }
+    func_02126c0c();
 }
 
 void func_02138dd8(u8 *arg0, u32 arg1) {
