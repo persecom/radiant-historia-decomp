@@ -43,6 +43,33 @@ extern void func_020026e0(s32 count);
 extern void func_020059b4(u32 irq);
 extern void func_02007f24(void);
 extern void func_02007dd4(u8 *);
+void func_02007c2c(void) {
+u8 *node;
+u8 *next;
+u64 now;
+void (*callback)(void *);
+*(volatile u16 *)0x04000106=0;
+func_020059e4(0x10);
+*(volatile u32 *)((u32)data_027e0000+0x3ff8)|=0x10;
+now=func_02007904();
+node=*(u8 **)((u8 *)&data_0215d138+4);
+if(!node) return;
+if(now < *(u64 *)(node+0xc)) {func_020079a4(node);return;}
+next=*(u8 **)(node+0x18);
+*(u8 **)((u8 *)&data_0215d138+4)=next;
+if(!next) *(u8 **)((u8 *)&data_0215d138+8)=NULL;
+else *(u32 *)(next+0x14)=0;
+callback=*(void (**)(void *))node;
+if(*(u64 *)(node+0x1c)==0) *(u32 *)node=0;
+if(callback) callback(*(void **)(node+4));
+if(*(u64 *)(node+0x1c)!=0) {
+*(void (**)(void *))node=callback;
+func_02007a88(node,0);
+}
+node=*(u8 **)((u8 *)&data_0215d138+4);
+if(node) func_020079a4(node);
+}
+
 void func_02007d18(void) {
     u8 *p = data_0215d144;
     u32 zero = 0;
