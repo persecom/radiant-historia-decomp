@@ -385,6 +385,31 @@ void func_02011950(u8 *ctx, u8 *src, u32 len) {
     } while (len != 0);
 }
 
+void func_020119e4(u32 *ctx, void *digest) {
+    u32 len[2];
+    u32 lo = (ctx[22] << 9) + (ctx[21] << 3);
+    u32 hi;
+
+    len[1] = ((lo >> 24) & 0xff) | ((lo >> 8) & 0xff00) | ((lo << 8) & 0xff0000) | ((lo << 24) & 0xff000000);
+    hi = (ctx[23] << 9) + (ctx[22] >> 23);
+    len[0] = ((hi >> 24) & 0xff) | ((hi >> 8) & 0xff00) | ((hi << 8) & 0xff0000) | ((hi << 24) & 0xff000000);
+
+    func_02011950((u8 *)ctx, data_0213ea6c, 1);
+    if (0x40 - ctx[21] < 8) {
+        func_02011950((u8 *)ctx, data_0213ea6d, 0x40 - ctx[21]);
+    }
+    func_02011830((u8 *)ctx, 0, 0x38 - ctx[21]);
+    func_02011950((u8 *)ctx, (u8 *)len, 8);
+
+    ctx[0] = ((ctx[0] >> 24) & 0xff) | ((ctx[0] >> 8) & 0xff00) | ((ctx[0] << 8) & 0xff0000) | ((ctx[0] << 24) & 0xff000000);
+    ctx[1] = ((ctx[1] >> 24) & 0xff) | ((ctx[1] >> 8) & 0xff00) | ((ctx[1] << 8) & 0xff0000) | ((ctx[1] << 24) & 0xff000000);
+    ctx[2] = ((ctx[2] >> 24) & 0xff) | ((ctx[2] >> 8) & 0xff00) | ((ctx[2] << 8) & 0xff0000) | ((ctx[2] << 24) & 0xff000000);
+    ctx[3] = ((ctx[3] >> 24) & 0xff) | ((ctx[3] >> 8) & 0xff00) | ((ctx[3] << 8) & 0xff0000) | ((ctx[3] << 24) & 0xff000000);
+    ctx[4] = ((ctx[4] >> 24) & 0xff) | ((ctx[4] >> 8) & 0xff00) | ((ctx[4] << 8) & 0xff0000) | ((ctx[4] << 24) & 0xff000000);
+
+    func_02009008(ctx, digest, 0x14);
+}
+
 extern void func_020119e4(u32 *, void *);
 extern s32 func_02011c70(s32, s32, s32, s32, s32, void *);
 s32 func_02011bdc(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
