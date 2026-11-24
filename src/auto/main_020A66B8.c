@@ -88,17 +88,16 @@ void *func_020a6ca0(u16 arg0) {
 
 void func_020a6cdc(void *arg0) {
     u8 *node = *(u8 **)arg0;
-    u32 one = 1;
     while (node != NULL) {
         u16 v = *(u16 *)node;
         if (v >= 1 && v <= 0x14) {
             if (func_020bdba0((u16)(v + 0xbf)) == 1) {
-                *(u32 *)(node + 0xa8) = one;
+                *(u32 *)(node + 0xa8) = 1;
             }
             if (*(u32 *)(node + 0xa8) != 0) {
                 *(u8 *)(node + 0xb0) |= 2;
             } else {
-                *(u32 *)(node + 0xa8) = one;
+                *(u32 *)(node + 0xa8) = 1;
                 *(u8 *)(node + 0xb0) |= 1;
             }
         }
