@@ -103,6 +103,22 @@ void func_020961f8(u8 *arg0) {
     func_02093510(p, 2);
 }
 
+void func_0209625c(void) {
+u8 *node; u16 i=0; node=*(u8 **)(data_02160090+8);
+while(node) {
+u8 *q=*(u8 **)(node+0x14);
+if(q) {
+u8 *p=*(u8 **)(q+8);
+s32 x,y; u16 id;
+func_02093510(p,0x7c);func_02093510(p,0x7d);
+x=*(s16 *)(p+0xc);y=*(s16 *)(p+0xe);id=*(u16 *)p;
+if(i+1<=9) func_020938b0(func_020936f8((u16)((i+1)%10+0x55),id,x,y,0,4,0x7c),1,0x7c);
+else func_020938b0(func_020936f8(0x5f,id,x,y,0,4,0x7d),1,0x7d);
+}
+i++;node=*(u8 **)(node+0x1c);
+}
+}
+
 extern void *func_020936f8(s32, s32, s32, s32, s32, s32, s32);
 extern void func_020938b0(void *, s32, s32);
 extern void func_020932a8(s32, s16);
