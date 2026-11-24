@@ -126,6 +126,21 @@ void func_020d914c(s32 arg0) {
     }
 }
 
+void func_020d9cc0(void *arg0) {
+    s32 *p = (s32 *)arg0;
+    if (func_020e27ec() != 0) {
+        p[1] -= 0x5000;
+        if ((p[1] >> 12) < 0x30) {
+            p[1] = 0x30000;
+        }
+    } else {
+        p[1] += 0x5000;
+        if ((p[1] >> 12) > 0x41) {
+            p[1] = 0x41000;
+        }
+    }
+}
+
 void *func_020d9df4(void) {
     return *(void **)(data_02160258 + 0x80);
 }
