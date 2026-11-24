@@ -27,8 +27,12 @@ void func_02138e00(u8 *arg0) {
         return;
     }
     for (i = 0; i < *(s32 *)(arg0 + 0xa8); i++) {
-        p = (*(s32 *)(arg0 + 0x9c) == 1) ? func_02138fd0(arg0, i) : func_02138f34(arg0, i);
-        func_02130880(p, *(u8 **)(arg0 + 0x74) + i * 0x1800, 0x1800);
+        if (*(s32 *)(arg0 + 0x9c) == 1) {
+            func_02138fd0(arg0, i);
+        } else {
+            p = func_02138f34(arg0, i);
+        }
+        func_02130880(p, (u8 *)(*(u32 *)(arg0 + 0x74) + i * 0x1800), 0x1800);
     }
 }
 
@@ -84,14 +88,6 @@ void func_021396e8(u8 *arg0, u32 arg1) {
     *(u8 *)(arg0 + 0xac) = arg1;
 }
 
-extern char data_0215cba0[];
-extern char data_0215cbd4[];
-extern char data_0215cc04[];
-extern void func_02126c00(void);
-extern void func_02126c0c(void);
-extern void func_02139804(void *);
-extern void func_021398d0(void *);
-extern void func_0213999c(void *, void *);
 void func_02139a9c(void *arg0) {
     if (arg0 != NULL) {
         void (*func)(void) = *(void (**)(void))((u8 *)arg0 + 0xe0);
