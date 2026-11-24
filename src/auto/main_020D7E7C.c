@@ -55,13 +55,12 @@ void func_020d8558(void) {
 
 void func_020d85f4(u16 *arg) {
     u16 *dst = func_0210c594(0x14, data_02155c3c);
-    u16 i = 0;
-    while (i < 3) {
+    u16 i;
+    for (i = 0; i < 3; i++) {
         dst[i] = arg[i];
         dst[i + 3] = arg[i + 3];
-        i++;
     }
-    func_021167f0(data_02160248.unk08);
+    func_021167f0(data_02160248.unk08, dst);
 }
 
 s32 func_020d8c30(void) {
