@@ -114,6 +114,32 @@ void func_020e4c38(void) {
     }
 }
 
+void func_020e4c80(void *arg0, u8 arg1) {
+    func_020e4c38();
+    if (*((u8 *)arg0 + 7) == 8) {
+        return;
+    }
+    if (func_02065c44(arg0) != 0) {
+        u32 mask = func_020deaf0(arg0, arg1, 1);
+        u16 i;
+        for (i = 0; i < 9; i++) {
+            if (mask & (1 << i)) {
+                u8 *obj = func_0202c820((u8)i);
+                if (obj != NULL) {
+                    *(u32 *)(obj + 0x80) |= 0x1000;
+                    func_0202eac4(0, *(u16 *)(obj + 0x8e));
+                }
+            }
+        }
+    } else {
+        u8 *obj = func_0202c920(arg1);
+        if (obj != NULL) {
+            *(u32 *)(obj + 0x80) |= 0x1000;
+            func_0202eac4(0, *(u16 *)(obj + 0x8e));
+        }
+    }
+}
+
 void func_020e57e8(void *arg0) {
     s32 val = func_020e55d8((u8)*(u16 *)((u8 *)arg0 + 0x90));
     func_02064cb8(*(void **)((u8 *)arg0 + 0x11c), val);
