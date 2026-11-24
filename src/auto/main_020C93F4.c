@@ -144,6 +144,20 @@ void func_020c9940(void) {
     func_020c9980();
 }
 
+extern void func_0210c5dc(void *);
+extern void func_020c99e4(u8 *, void *);
+void func_020c994c(u8 *arg0) {
+    if (*(void **)arg0 == NULL) {
+        return;
+    }
+    if (*(void **)arg0 != NULL) {
+        func_0210c5dc(*(void **)arg0);
+        *(void **)arg0 = NULL;
+    }
+    *(void **)arg0 = NULL;
+    *(u16 *)(arg0 + 4) = 0;
+}
+
 extern u16 func_020c9c34(u8 *);
 u8 *func_020c9c10(void *arg0, s32 arg1) {
     if ((u32)arg1 >= func_020c9c34(arg0)) {
