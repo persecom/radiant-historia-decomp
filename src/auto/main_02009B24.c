@@ -525,7 +525,7 @@ extern u16 data_0215ece4;
 extern void func_02005a14(u32);
 extern void func_020057e8(u32, void *);
 extern void func_020059b4(u32);
-extern void func_0200a75c();
+extern void func_0200a75c(void);
 void func_0200a578(void) {
     struct {
         u8 pad[0x388];
