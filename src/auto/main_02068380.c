@@ -7,9 +7,16 @@ static inline u16 effect_random(u16 range) {
  return ((value >> 16) * range) >> 16;
 }
 static inline s32 effect_signed_random(u16 range) {
- s32 first = effect_random(range) - range / 2;
- u16 second = effect_random(range);
- return first >= 0 ? second - range / 2 : -(second - range / 2);
+ u32 seed = data_0216263c[0];
+ u32 multiplier = data_0216263c[1];
+ u32 increment = data_0216263c[2];
+ u32 next;
+ s32 first;
+ seed = multiplier * seed + increment;
+ next = multiplier * seed + increment;
+ first = (u16)(((seed >> 16) * range) >> 16) - range / 2;
+ data_0216263c[0] = next;
+ return first >= 0 ? (s32)(u16)(((next >> 16) * range) >> 16) - range / 2 : -((s32)(u16)(((next >> 16) * range) >> 16) - range / 2);
 }
 typedef struct { s8 xy[4][2]; } DirectionTable8;
 
