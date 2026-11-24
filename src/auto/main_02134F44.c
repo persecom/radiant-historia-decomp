@@ -75,3 +75,9 @@ void func_02135c18(void) {
     data_021759ac[0] = 0;
 }
 
+void func_02135c48(void) {
+    func_02013878(data_021759b4, 0, 0x100);
+    data_021759ac[1] = 0;
+    data_021759ac[0] = 0;
+}
+
