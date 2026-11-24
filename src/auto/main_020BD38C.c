@@ -93,6 +93,17 @@ void func_020bd608(void) {
     }
 }
 
+s8 func_020bdd40(void) {
+    u8 i;
+    u32 mask = *(u32 *)(data_02160200 + 0x1c);
+    for (i = 0; i < 32; i++) {
+        if (mask & (1 << i)) {
+            return i;
+        }
+    }
+    return -1;
+}
+
 void func_020bdd80(void) {
 }
 
