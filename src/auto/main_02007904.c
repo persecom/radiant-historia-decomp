@@ -119,6 +119,36 @@ void func_02007a78(u32 *arg0) {
     arg0[2] = 0;
 }
 
+void func_02007a88(void *arg0, u64 time) {
+ u8 *p=arg0;
+ u8 *q;
+ if(*(u64 *)(p+0x1c)!=0) {
+ u64 now=func_02007904();
+ u64 start=*(u64 *)(p+0x24);
+ time=start;
+ if(start<now) time=start+*(u64 *)(p+0x1c)*((now-start)/ *(u64 *)(p+0x1c)+1);
+ }
+ *(u64 *)(p+0xc)=time;
+ for(q=*(u8 **)((u8 *)&data_0215d138+4);q;q=*(u8 **)(q+0x18)) {
+ if((s64)(time-*(u64 *)(q+0xc))<0) {
+ *(u8 **)(p+0x14)=*(u8 **)(q+0x14);
+ *(u8 **)(q+0x14)=p;
+ *(u8 **)(p+0x18)=q;
+ if(*(u8 **)(p+0x14)) {*(u8 **)(*(u8 **)(p+0x14)+0x18)=p;return;}
+ *(u8 **)((u8 *)&data_0215d138+4)=p;
+ func_020079a4(p);return;
+ }
+ }
+ *(u8 **)(p+0x18)=0;
+ q=*(u8 **)((u8 *)&data_0215d138+8);
+ *(u8 **)((u8 *)&data_0215d138+8)=p;
+ *(u8 **)(p+0x14)=q;
+ if(q) {*(u8 **)(q+0x18)=p;return;}
+ *(u8 **)((u8 *)&data_0215d138+8)=p;
+ *(u8 **)((u8 *)&data_0215d138+4)=p;
+ func_020079a4(p);
+}
+
 void func_02007bb0(u8 *arg0, u64 arg1, void *arg2, void *arg3) {
     u32 cookie;
     if (arg0 == NULL || *(void **)arg0 != NULL) {
