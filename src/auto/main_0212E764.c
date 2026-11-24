@@ -34,6 +34,28 @@ void func_0212e7e4(void) {
     func_021383cc();
 }
 
+s32 func_0212e7f0(u32 arg0, void *arg1) {
+    data_02174524[8] = arg0;
+    data_021744ec[0] = 0;
+    data_021744ec[1] = 0;
+    data_021744ec[2] = 0;
+    data_021744ec[3] = 0;
+    data_021744ec[4] = 0;
+    if (arg0 <= 1) {
+        func_0212c4b8(1);
+        return 1;
+    }
+    if (arg0 == 2) {
+        func_0212c4b8(2);
+    }
+    func_0212e860(arg1);
+    return 1;
+}
+
+BOOL func_0212ea3c(void) {
+    return func_0212ea54() != 0;
+}
+
 extern u32 data_021744d8[4];
 u32 func_0212ea54(void) {
     return data_021744d8[0];
