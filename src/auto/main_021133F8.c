@@ -448,7 +448,7 @@ void func_02113da8(void) {
     }
 }
 
-extern void func_021142f0(void);
+extern void func_021142f0();
 void func_0211405c(void) {
     func_021142f0();
 }
