@@ -369,6 +369,17 @@ void *func_021338c8(void *arg0, s32 arg1, s32 arg2) {
     return p;
 }
 
+void func_0213395c(u8 *arg0) {
+    if (arg0 == NULL) {
+        return;
+    }
+    func_02133bbc(arg0);
+    if (*(s8 *)arg0 == 1) {
+        *(s8 *)arg0 = 0;
+        func_02133864(arg0);
+    }
+}
+
 s32 func_02133a1c(u8 *arg0) {
     if (arg0 != NULL) {
         return *(s32 *)(arg0 + 0x10);
