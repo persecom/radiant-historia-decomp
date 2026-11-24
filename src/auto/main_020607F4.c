@@ -39,6 +39,32 @@ x=*(volatile u32 *)(p+0x18);y=*(volatile u32 *)(p+0x1c);z=*(volatile u32 *)(p+0x
 }
 }
 
+void func_02060db4(u8 *p){
+u8 *r=*(u8 **)(p+0x128);
+u32 v[3];
+if(*(s16 *)(r+0x1c)==0){
+u32 x,y,z;
+s32 zero=0,one=1;
+func_0202bcd4(v,r[0x74]);
+x=v[0];*(u32 *)(p+0x18)=x;
+y=v[1];*(u32 *)(p+0x1c)=y;
+z=v[2];*(u32 *)(p+0x20)=z;
+*(u32 *)(p+0x24)=x;*(u32 *)(p+0x28)=y;*(u32 *)(p+0x2c)=z;
+*(u16 *)(p+0x92)=func_020ddc8c(p,p+0x24);
+*(u32 *)(p+0x30)=zero;*(u32 *)(p+0x34)=zero;*(u32 *)(p+0x38)=zero;
+func_020ddcd4(p);
+func_020d56d8(p,zero,zero,one);func_020d5fd0(p);
+*(u16 *)(r+0x1c)=one;
+}
+if(!func_0205ba98(p,10))return;
+*(u32 *)(p+0x30)=0;*(u32 *)(p+0x34)=0;*(u32 *)(p+0x38)=0;
+func_0202bcd4(v,r[0x74]);
+*(u32 *)p=v[0];*(u32 *)(p+4)=v[1];*(u32 *)(p+8)=v[2];
+func_0202c328(p,r[0x74]);
+func_02030b7c(p,1,511);
+*(u32 *)(r+0x24)=0x270f;
+}
+
 void func_02060ec8(u8 *p) {
     s32 zero = 0;
     func_020d56d8(p, zero, zero, 1);
