@@ -10,6 +10,11 @@ extern void func_02004544(void);
 extern void func_02004588(void);
 extern void func_020045bc(void *, u32, u32);
 extern void func_0200462c(void);
+extern void func_021205ec(u32, void *, s32);
+extern s32 func_0211d144(void *, void *);
+extern s32 func_0211d3a0(void *, void *);
+void func_0211d238(u8 *);
+void func_0211d49c(u8 *arg0);
 void func_0211cdc8(u8 *arg0, BOOL arg1) {
     u32 sz;
 
@@ -62,6 +67,78 @@ u32 func_0211ced0(u8 *arg0) {
 
 void func_0211cee4(u8 *arg0, u32 arg1) {
     *(u32 *)(arg0 + 0x2c) = arg1;
+}
+
+void func_0211ceec(u8 *arg0, BOOL arg1) {
+    u32 a, b;
+    if (arg1) {
+        func_02004588();
+        a = *(u32 *)(arg0 + 0x2c);
+        b = *(u16 *)(arg0 + 0x30);
+        a = (a & 0xffff) << 3;
+        b = b << 3;
+        func_020045bc(arg0 + *(u32 *)(arg0 + 0x38), a, b);
+    }
+    *(u16 *)(arg0 + 0x32) |= 1;
+    if (arg1) {
+        func_0200462c();
+    }
+}
+
+u32 func_0211cf3c(u8 *arg0) {
+    u16 flag = *(u16 *)(arg0 + 0x32);
+    u32 key = *(u32 *)(arg0 + 0x2c);
+    flag &= ~1;
+    *(u16 *)(arg0 + 0x32) = flag;
+    *(u32 *)(arg0 + 0x2c) = 0;
+    return key;
+}
+
+void func_0211d08c(u8 *arg0, u8 *arg1) {
+    u16 ofs = *(u16 *)arg1;
+    u8 *base = arg0 + ofs;
+    u32 n = *(u8 *)(arg1 + 2);
+    u32 i;
+    if (n <= 0) goto done;
+    for (i = 0; i < n; i++) {
+        u8 v = *(u8 *)(base + i);
+        u8 *p = NULL;
+        if (arg0 != NULL && arg0 + 4 != NULL && v < *(u8 *)(arg0 + 5)) {
+            u16 idx = *(u16 *)(arg0 + 0xa);
+            u8 *b2 = arg0 + 4 + idx;
+            p = *(u16 *)b2 * v + b2 + 4;
+        }
+        if (p != NULL) {
+            u8 *q = arg0 + *(u32 *)p;
+            *(u32 *)(q + 0x14) &= 0xc00f0000;
+            *(u32 *)(q + 0x24) = 0x1000;
+            *(u32 *)(q + 0x28) = 0x1000;
+        }
+    }
+done:
+    *(u8 *)(arg1 + 3) &= ~1;
+}
+
+void func_0211d238(u8 *arg0) {
+    u32 i;
+    u8 *p, *name, *q;
+    if (arg0 != NULL && *(u32 *)(arg0 + 8) != 0) {
+        p = arg0 + *(u32 *)(arg0 + 8);
+    } else {
+        p = NULL;
+    }
+    q = p + *(u16 *)p;
+    if (*(u8 *)(q + 1) <= 0) return;
+    for (i = 0; i < *(u8 *)(q + 1); i++) {
+        name = NULL;
+        if (i < *(u8 *)(q + 1)) {
+            u8 *base = q + *(u16 *)(q + 6);
+            name = *(u16 *)base * i + (base + 4);
+        }
+        if (*(u8 *)(name + 3) & 1) {
+            func_0211d08c(p, name);
+        }
+    }
 }
 
 void *func_0211d878(void) {
