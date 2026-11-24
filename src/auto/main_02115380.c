@@ -123,3 +123,15 @@ void *func_02115b10(void *arg0, void *arg1, s32 arg2) {
     return r4;
 }
 
+extern void func_02115dc0(void);
+void *func_02115b7c(void *arg0, void *arg1, s32 arg2) {
+    void *r4 = func_02115264(arg0);
+    if (r4 == NULL) {
+        r4 = func_02115994(arg0, func_02115dc0, arg2 != 0 ? func_02114f70() : NULL, arg0, arg1);
+        if (arg2 != 0 && r4 != NULL) {
+            func_0211528c(arg0, r4);
+        }
+    }
+    return r4;
+}
+
