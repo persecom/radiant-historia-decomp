@@ -61,6 +61,10 @@ u32 func_0212ea54(void) {
     return data_021744d8[0];
 }
 
+void func_0212ea64(void) {
+    data_021744d8[0]++;
+}
+
 void func_0212ea7c(void) {
     data_02174524[3] = 1;
 }
@@ -180,19 +184,23 @@ void func_0212ebc8(void *arg0, void *arg1) {
     func_0212bda8(arg1);
 }
 
-void func_0212f384(s32 *arg0, s32 arg1, s32 *arg2, s32 *arg3) {
-    arg2[0] = arg0[0];
-    arg2[1] = arg0[1];
-    arg3[1] = arg0[1];
-    if (arg2[1] > arg1) {
-        arg2[1] = arg1;
+void func_0212f384(void *p0, s32 arg1, void *p2, void *p3) {
+    struct Buf { u8 *ptr; s32 len; };
+    struct Buf *arg0 = (struct Buf *)p0;
+    struct Buf *arg2 = (struct Buf *)p2;
+    struct Buf *arg3 = (struct Buf *)p3;
+    u8 *ptr = arg0->ptr;
+    s32 len = arg0->len;
+    s32 rem;
+    arg2->ptr = ptr;
+    arg2->len = len;
+    arg3->len = len;
+    if (arg2->len > arg1) {
+        arg2->len = arg1;
     }
-    arg3[1] -= arg2[1];
-    if (arg3[1] != 0) {
-        arg3[0] = arg2[0] + arg2[1];
-    } else {
-        arg3[0] = 0;
-    }
+    rem = arg3->len - arg2->len;
+    arg3->len = rem;
+    arg3->ptr = (rem == 0) ? NULL : (arg2->ptr + arg2->len);
 }
 
 void *func_0212f468(void *arg0) {
