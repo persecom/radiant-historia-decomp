@@ -50,6 +50,7 @@ extern void func_0212dde4(void *, u32, u32);
 extern s32 data_02173ab8[];
 extern s32 data_02156d74[];
 extern s32 data_021740d8[];
+extern s32 data_021740e4[];
 extern u8 data_021740f0[10][0x64];
 void *func_0212d89c(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     u8 *entry = NULL;
@@ -200,17 +201,18 @@ s32 func_0212dc40(void *arg0, s32 arg1) {
 }
 
 void func_0212dc58(void *arg0) {
-    if (*(s32 *)((u8 *)arg0 + 0x18) == 0) {
-        *(u8 *)((u8 *)arg0 + 0x1) = 3;
+    UnkStruct_0212dc58 *p = arg0;
+    if (p->unk18 == 0) {
+        p->unk01 = 3;
     } else {
-        *(u8 *)((u8 *)arg0 + 0x1) = 2;
+        p->unk01 = 2;
     }
-    *(s32 *)((u8 *)arg0 + 0x38) = 0;
-    *(s32 *)((u8 *)arg0 + 0x50) = 0;
-    *(u8 *)((u8 *)arg0 + 0x2) = NULL;
-    *(s32 *)((u8 *)arg0 + 0x28) = 0;
-    *(s32 *)((u8 *)arg0 + 0x2c) = 0;
-    *(u8 *)((u8 *)arg0 + 0x4b) = 1;
+    p->unk38 = 0;
+    p->unk50 = 0;
+    p->unk02 = 0;
+    p->unk28 = 0;
+    p->unk2c = 0;
+    p->unk4b = 1;
 }
 
 s32 func_0212dc94(void *arg0) {
