@@ -292,6 +292,21 @@ void func_021073d0(void **arg0) {
     }
 }
 
+s32 func_02107438(u8 *arg0, char *arg1) {
+    char buf[0x100];
+    u32 sp4;
+    u32 sp0 = 0;
+    void *res;
+    func_02005e80(buf, data_0215596c, arg1);
+    res = func_0210aa5c(&sp0, buf, &sp4);
+    if (res == NULL) {
+        return 0;
+    }
+    *(void **)(arg0 + 8) = res;
+    *(u32 *)(arg0 + 0xc) = sp0;
+    return 1;
+}
+
 void func_021077f0(u32 arg0, u32 arg1) {
     func_02117f54(arg0, 0, 0x7f, arg1);
     func_02118008(arg0, 0, 0x1f, arg1);
