@@ -157,6 +157,17 @@ u8 *func_020aa818(u8 **arg0, u16 arg1) {
     return NULL;
 }
 
+void func_020aa850(void) {
+    u32 local;
+    u8 *p = data_021600e4;
+    u16 *r4 = func_02103c6c(&local, func_020bdd40());
+    if (r4 != NULL) {
+        void *list = func_020aa740();
+        *(void **)(p + 0x13f4) = list;
+        func_020aa894(func_020aa7c0(list, *r4));
+    }
+}
+
 extern void func_020ade8c(s32);
 void func_020aad6c(void) {
     func_020ade8c(1);
