@@ -139,6 +139,14 @@ void func_0211106c(void *arg0) {
     }
 }
 
+s32 func_021110a8(u8 *arg0) {
+    if (func_020c73c0(arg0) == 0) {
+        return 2;
+    }
+    func_020c9b64(*(void **)(arg0 + 0x30));
+    return 0;
+}
+
 void func_0211128c(u8 *arg0, s32 arg1) {
     func_0211111c(arg0, arg1, *(s16 *)(arg0 + 0x36));
 }
