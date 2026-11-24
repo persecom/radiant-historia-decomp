@@ -76,6 +76,70 @@ void func_02046e30(void) {
  func_0210db10((u8 *)data_021600bc+0x14);
 }
 
+void *func_02046f90(u16 arg0, u16 arg1) {
+    u32 r6 = 2;
+    void *r7 = NULL;
+    u8 *r8;
+
+    func_02108ffc();
+    if (arg0 > 0 && arg0 < 700) {
+        r7 = func_020eca60();
+        func_020ecd10(r7, arg0, (u8 *)data_021600bc + 0xa0);
+        r6 |= 1;
+    } else if (arg0 > 5000 && arg0 < 6000) {
+        r7 = func_020eca60();
+        func_020ecac8(r7, arg0);
+    } else if (arg0 > 1000 && arg0 < 5000 && arg0 != 2000) {
+        r7 = func_020eca60();
+        func_020ecd10(r7, arg0, (u8 *)data_021600bc + 0xa0);
+        r6 |= 1;
+    }
+    func_02108ffc();
+    r8 = (u8 *)func_0210c594(0x1c8, data_02155c3c);
+    func_02108ffc();
+
+    if (arg0 > 0 && arg0 < 700) {
+        func_021167f0((void **)((u8 *)data_021600bc + 0x40), r8);
+        func_021167f0((void **)((u8 *)data_021600bc + 0x64), r8);
+    } else if (arg0 > 5000 && arg0 < 6000) {
+        if (arg0 > 5500) {
+            func_021167f0((void **)((u8 *)data_021600bc + 0x4c), r8);
+        } else {
+            func_021167f0((void **)((u8 *)data_021600bc + 0x70), r8);
+        }
+        func_021167f0((void **)((u8 *)data_021600bc + 0x64), r8);
+    } else if (arg0 > 1000 && arg0 < 5000 && arg0 != 2000) {
+        func_021167f0((void **)((u8 *)data_021600bc + 0x40), r8);
+        func_021167f0((void **)((u8 *)data_021600bc + 0x64), r8);
+    } else if (arg0 == 2000) {
+        func_021167f0((void **)((u8 *)data_021600bc + 0x40), r8);
+        r6 = 0x400;
+    } else if (arg0 > 10000 && arg0 < 11009) {
+        func_021167f0((void **)((u8 *)data_021600bc + 0x70), r8);
+        r6 = 0;
+    }
+
+    if (arg1 > 4000 && arg1 < 5000) {
+        func_021167f0((void **)((u8 *)data_021600bc + 0xd0), r8);
+    }
+    func_021167f0((void **)(data_02160204 + 0xe8), r8);
+
+    *(u16 *)(r8 + 0x8e) = arg0;
+    *(u32 *)(r8 + 0x80) = r6;
+    *(void **)(r8 + 0x108) = r7;
+    r8[0x104] = 0xe7;
+    *(u16 *)(r8 + 0x90) = arg1;
+    *(u32 *)(r8 + 0x64) = 0;
+    *(u32 *)(r8 + 0xc8) = 0;
+    *(u32 *)(r8 + 0x118) = 0;
+    *(u16 *)(r8 + 0xcc) = 0;
+    *(u32 *)(r8 + 0xac) |= 1;
+    *(u32 *)(r8 + 0xb0) = 0;
+    func_021167ac(r8 + 0xb8, 0x24);
+    func_02047278(r8);
+    return r8;
+}
+
 void func_020471b8(Obj_02046e30 *obj, u32 arg1) {
     if (arg1 == 2000) {
         return;
