@@ -78,6 +78,14 @@ void func_020c85ac(u8 *arg0, s32 arg1) {
     *(s32 *)(*(u8 **)(arg0 + 0x30) + 0x4c) = arg1 << 12;
 }
 
+u8 func_020c85cc(u8 *arg0) {
+    u8 *p = *(u8 **)(arg0 + 0x30);
+    if (p == NULL) {
+        return 0x2d;
+    }
+    return *(s32 *)(p + 0x4c) >> 12;
+}
+
 s32 func_020c8624(void) {
     return 4;
 }
