@@ -221,7 +221,7 @@ s32 func_020215bc(void) {
 }
 
 s32 func_02021a28(void) {
-    return func_02021428(&func_02021618);
+    return func_02021428((u16 *)&func_02021618);
 }
 
 extern u16 func_020217b4;
