@@ -4,6 +4,7 @@
 typedef struct {
     u16 data[10];
 } Unk14;
+extern const Unk14 data_02141328, data_02141314;
 extern const Unk14 data_021410d0, data_021412d8, data_021412c4;
 
 extern const Unk14 data_02141300;
