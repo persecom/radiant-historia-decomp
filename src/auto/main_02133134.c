@@ -408,6 +408,35 @@ void func_0213395c(u8 *arg0) {
     }
 }
 
+s32 func_0213398c(u8 *arg0, s32 arg1, s32 arg2) {
+    s32 max;
+    s32 val;
+    if (arg0 == NULL) {
+        func_021336c0(0, data_0215baa4);
+        return 0;
+    }
+    func_02133688();
+    if (arg2 == 0) {
+        *(s32 *)(arg0 + 0x10) = arg1;
+    } else if (arg2 == 2) {
+        *(s32 *)(arg0 + 0x10) = *(s32 *)(arg0 + 0xc) + arg1;
+    } else if (arg2 == 1) {
+        *(s32 *)(arg0 + 0x10) += arg1;
+    }
+    max = *(s32 *)(arg0 + 0xc);
+    val = *(s32 *)(arg0 + 0x10);
+    if (val >= max) {
+        val = max;
+    }
+    *(s32 *)(arg0 + 0x10) = val;
+    if (val <= 0) {
+        val = 0;
+    }
+    *(s32 *)(arg0 + 0x10) = val;
+    func_02133694();
+    return *(s32 *)(arg0 + 0x10);
+}
+
 s32 func_02133a1c(u8 *arg0) {
     if (arg0 != NULL) {
         return *(s32 *)(arg0 + 0x10);
