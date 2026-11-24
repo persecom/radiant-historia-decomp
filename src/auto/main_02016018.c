@@ -36,9 +36,9 @@ s32 func_02016c84(void *p, s32 ch, s32 act) {
 }
 
 s32 func_02016cfc(s32 s_arg, const char *fmt, char *arg) {
-    const char *s = (const char *)s_arg;
+    const u8 *s = (const u8 *)s_arg;
     struct {
-        const char *str;
+        const u8 *str;
         s32 eof;
     } isc;
     isc.str = s;
