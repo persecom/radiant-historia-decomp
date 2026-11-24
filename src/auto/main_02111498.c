@@ -52,6 +52,10 @@ void func_02111db0(u8 *arg0, u32 arg1, u32 arg2) {
     *(u32 *)(arg0 + 0x78 + (arg2 << 2)) = arg1;
 }
 
+u32 func_02111dbc(u8 *arg0, u32 arg1) {
+    return *(u32 *)(arg0 + 0x78 + (arg1 << 2));
+}
+
 void func_02112038(MainSub_6C *arg0) {
     func_020c9490(arg0->field);
 }
