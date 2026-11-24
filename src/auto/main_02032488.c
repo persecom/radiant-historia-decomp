@@ -105,6 +105,13 @@ void *func_02032c44(void) {
     return ptr;
 }
 
+s32 func_02032c80(void) {
+    func_02031c60(1, 0x64);
+    func_0209568c(0, 1);
+    func_0209625c();
+    return 1;
+}
+
 void func_02032ff8(void) {
     data_02160090[0x7e] = 1;
 }
@@ -140,5 +147,13 @@ void func_020331b0(u16 *arg0, u16 arg1) {
     arg0[3] = 0;
     arg0[4] = 0;
     arg0[5] = 0;
+}
+
+void func_020331d0(u8 *arg0, u16 arg1, s32 arg2) {
+    if (arg2 != 0) {
+        *(u16 *)(arg0 + 8) |= arg1;
+    } else {
+        *(u16 *)(arg0 + 8) &= ~arg1;
+    }
 }
 
