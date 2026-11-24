@@ -235,3 +235,11 @@ s32 func_0212d714(void) {
     return 1;
 }
 
+extern void *memset(void *, int, unsigned long);
+void func_0212d76c(void) {
+    if (--data_021740d8[5] != 0) {
+        return;
+    }
+    memset(data_021740f0, 0, sizeof(data_021740f0));
+}
+
