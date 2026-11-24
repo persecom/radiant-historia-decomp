@@ -127,6 +127,14 @@ s32 func_020c6fe4(u8 *arg0) {
     return inside ? 0 : 1;
 }
 
+s32 func_020c7048(u8 *arg0) {
+    if (arg0[0x46] != 0) {
+        arg0[0x46]--;
+        return 0;
+    }
+    return 1;
+}
+
 void func_020c706c(u8 *arg0, u8 arg1) {
     arg0[0x42] = arg1;
 }
@@ -152,6 +160,12 @@ void func_020c7090(u8 *arg0) {
 void func_020c70a0(u8 *arg0, u8 arg1) {
     func_020c738c(arg0, 2, 2);
     arg0[0x46] = arg1;
+}
+
+s32 func_020c71bc(u8 *arg0) {
+    func_020c6dbc(arg0);
+    *(s32 *)(arg0 + 0x4c) = 1;
+    return 0;
 }
 
 void func_020c71d8(void *arg0) {
