@@ -93,6 +93,39 @@ void func_020bd608(void) {
     }
 }
 
+BOOL func_020bdb30(s32 arg0, s32 arg1) {
+    if (data_02160200 != NULL) {
+        if (arg1 != 0) {
+            ((u32 *)data_02160200)[(u32)arg0 >> 5] |= 1 << (arg0 % 32);
+        } else {
+            ((u32 *)data_02160200)[(u32)arg0 >> 5] &= ~(1 << (arg0 % 32));
+        }
+        return 1;
+    }
+    return 0;
+}
+
+s8 func_020bdba0(s32 arg0) {
+    s8 ret = -1;
+    if (data_02160200 != NULL) {
+        ret = (((u32 *)data_02160200)[(u32)arg0 >> 5] & (1 << (arg0 % 32))) != 0;
+    }
+    return ret;
+}
+
+s32 func_020bdcc0(u32 arg0) {
+    u8 *table = data_02160200;
+    u16 v = *(u16 *)(table + arg0 * 2 + 0x17c);
+    if (v == 0 || *(void **)(table + arg0 * 4 + 0x184) == NULL) {
+        return 0;
+    }
+    *(u16 *)(data_02160204 + 0x72) = v;
+    *(u16 *)(data_02160204 + 0x74) = *(u16 *)(table + arg0 * 4 + 0x170);
+    *(u16 *)(data_02160204 + 0x76) = *(u16 *)(table + arg0 * 4 + 0x172);
+    table[0x16c] = table[arg0 + 1 + 0x16c];
+    return 1;
+}
+
 s8 func_020bdd40(void) {
     u8 i;
     u32 mask = *(u32 *)(data_02160200 + 0x1c);
