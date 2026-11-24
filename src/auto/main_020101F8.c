@@ -131,43 +131,53 @@ void func_0201076c(void) {
 }
 
 u32 func_020107c4(void) {
-    volatile u32 *p = (volatile u32 *)0x2fffc00;
-    if ((*p & 0x20000000) == 0) {
+    u32 zero = 0;
+    u32 *p = (u32 *)0x2fffc00;
+    if ((*(volatile u32 *)p & 0x20000000) == 0) {
         return 0x20;
     }
+    func_020106b8(0xd6, zero);
     {
-        u32 zero = 0;
-        func_020106b8(0xd6, zero);
-        {
-            u32 v = p[-0x48];
-            v = (v & ~0x07000000) | 0xa7000000;
-            *(volatile u32 *)0x40001a4 = v & (zero - 0x2000);
-        }
-        while ((*(volatile u32 *)0x40001a4 & 0x800000) == 0) {
-        }
-        return *(volatile u32 *)0x4100010;
+        u32 v = *(volatile u32 *)(p - 0x48);
+        v = (v & ~0x07000000) | 0xa7000000;
+        *(volatile u32 *)0x40001a4 = v & (zero - 0x2000);
     }
+    while ((*(volatile u32 *)0x40001a4 & 0x800000) == 0) {
+    }
+    return *(volatile u32 *)0x4100010;
 }
 
-void func_0201082c(u32 arg0) {
-    u32 status = func_020107c4();
-    if ((arg0 & status) == 0) {
-        return;
-    }
-    func_0201088c();
-    status = func_020107c4();
-    if (status & 0x20) {
-        return;
-    }
+void func_0201082c(u32 arg0)
+{
+  unsigned int new_var;
+  u32 status = func_020107c4();
+  if ((arg0 & status) == 0)
+  {
+    return;
+  }
+  func_0201088c();
+  status = func_020107c4();
+  if (status & 0x20)
+  {
+    if (!data_0215cdf0)
     {
-        u32 one = 1;
-        do {
-            if (data_0215cdf0[0] == 0) break;
-            if (func_02007a68() == 0) break;
-            func_020066e0(one);
-            status = func_020107c4();
-        } while ((status & 0x20) == 0);
     }
+    return;
+  }
+  {
+    u32 one = 1;
+    new_var = 0;
+    while (1)
+    {
+ do { if (data_0215cdf0[new_var] == new_var) { break; } if (func_02007a68() == new_var) { break; } func_020066e0(one); } while (0);
+      status = func_020107c4();
+      if (status & 0x20)
+      {
+        break;
+      }
+    }
+
+  }
 }
 
 void func_0201088c(void) {
@@ -397,8 +407,8 @@ void func_02011158(s32 *arg0) {
 }
 
 void func_020111a0(u32 *arg0) {
-    u16 reg = *(volatile u16 *)0x4000204;
-    *(volatile u16 *)0x4000204 = (reg & ~0xc) | (arg0[0] << 2);
+    u16 reg = (*(volatile u16 *)0x4000204 & ~0xc) | (arg0[0] << 2);
+    *(volatile u16 *)0x4000204 = reg;
     *(volatile u16 *)0x4000204 = (*(volatile u16 *)0x4000204 & ~0x10) | (arg0[1] << 4);
 }
 
