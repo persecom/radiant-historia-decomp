@@ -530,6 +530,53 @@ void func_02126d1c(void *arg0) {
     func_0212737c(arg0);
 }
 
+extern s32 func_02126f50(void *, s32);
+extern void func_02126c98(void *, s32);
+void func_02126d40(u8 *arg0) {
+    s32 state = func_02126c88((s8 *)arg0);
+    if (state == 0) {
+        return;
+    }
+    *(s32 *)(arg0 + 8) += 1;
+    if (*(s32 *)(arg0 + 8) < *(s32 *)(arg0 + 0x10)) {
+        return;
+    }
+    if (state == 1) {
+        state = 2;
+        arg0[0] = 2;
+        func_02127350(arg0);
+    }
+    if (state == 2) {
+        s32 v = *(s32 *)(arg0 + 0x20) + *(s32 *)(arg0 + 4);
+        *(s32 *)(arg0 + 0x20) = v;
+        if (v <= 0) {
+            v = 0;
+        }
+        *(s32 *)(arg0 + 0x20) = v;
+        if (v >= 0x316938) {
+            v = 0x316938;
+        }
+        *(s32 *)(arg0 + 0x20) = v;
+        *(s32 *)(arg0 + 0x1c) = func_02126f50(arg0, v);
+        if ((*(s32 *)(arg0 + 4) > 0 && *(s32 *)(arg0 + 0x1c) >= *(s32 *)(arg0 + 0x24)) ||
+            (*(s32 *)(arg0 + 4) < 0 && *(s32 *)(arg0 + 0x1c) <= *(s32 *)(arg0 + 0x24)) ||
+            *(s32 *)(arg0 + 4) == 0) {
+            func_02126c98(arg0, *(s32 *)(arg0 + 0x24));
+            *(s32 *)(arg0 + 0xc) = *(s32 *)(arg0 + 8);
+            state = 3;
+            arg0[0] = 3;
+        }
+    }
+    if (state != 3) {
+        return;
+    }
+    if (*(s32 *)(arg0 + 8) - *(s32 *)(arg0 + 0xc) < *(s32 *)(arg0 + 0x14)) {
+        return;
+    }
+    arg0[0] = 0;
+    func_0212737c(arg0);
+}
+
 void func_02126e50(void *arg0, u32 arg1, u32 arg2, u32 arg3) {
     *(u32 *)((u8 *)arg0 + 0x2c) = arg1;
     *(u32 *)((u8 *)arg0 + 0x30) = arg2;
