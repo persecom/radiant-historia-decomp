@@ -183,7 +183,7 @@ s32 func_02028420(u8 *arg0, u8 *arg1) {
             if (v1 == 32) {
                 is32 = 1;
             } else {
-                mask |= (1U << v1);
+                mask = zero | (1U << v1);
             }
             node = *(u8 **)(data_02160a6c + 0xac);
             while (node != NULL) {
