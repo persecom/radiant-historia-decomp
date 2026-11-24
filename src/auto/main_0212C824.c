@@ -22,6 +22,46 @@ void func_0212d168(u8 *arg0) {
     *(s32 *)(arg0 + 0x34) += b;
 }
 
+void func_0212d1b0(u8 *arg0) {
+    u8 *p = *(u8 **)(arg0 + 4);
+    if (func_0212a4b8(p) == 0) {
+        func_0212cbb8(arg0);
+        func_0212a904(p);
+    }
+    if (func_0212a4b8(p) == 3) {
+        func_0212cfc4(arg0);
+    }
+    switch (*(s16 *)(p + 0x98)) {
+    case 0xa:
+    case 0x14:
+    case 0xb:
+    case 0xc:
+    case 0xf:
+        func_0212d168(arg0);
+        break;
+    }
+}
+
+void func_0212d21c(u8 *arg0) {
+    s8 type;
+    if (*(s32 *)(arg0 + 0xa8) > 0) {
+        func_0212a9dc();
+        func_0212d288(arg0);
+        func_0212a9e8();
+    }
+    type = *(s8 *)(arg0 + 1);
+    if (type == 2) {
+        func_0212d1b0(arg0);
+    } else if (type == 1) {
+        func_0212c824(arg0);
+    }
+    if (*(s32 *)(arg0 + 0xac) > 0) {
+        func_0212a9dc();
+        func_0212d3b4(arg0);
+        func_0212a9e8();
+    }
+}
+
 u32 func_0212d540(u8 *arg0) {
     return *(u32 *)(arg0 + 0x30);
 }
