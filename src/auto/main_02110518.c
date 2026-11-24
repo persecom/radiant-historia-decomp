@@ -73,7 +73,7 @@ void func_0211088c(u8 *arg0, u8 arg1) {
     u32 count = func_020c9c34(*(void **)(arg0 + 0x30));
     for (i = 0; i < count; i++) {
         u8 *obj = func_020c9c10(*(void **)(arg0 + 0x30), i);
-        u8 delta = obj[0x3c] - arg0[0x38];
+        s32 delta = obj[0x3c] - arg0[0x38];
         ((void (*)(u8 *, u8))(*(void **)(obj + 0x1c)))(obj, arg1 + delta);
     }
     arg0[0x38] = arg1;
