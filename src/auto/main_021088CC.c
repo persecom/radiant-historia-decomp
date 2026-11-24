@@ -210,6 +210,20 @@ void func_02108eec(u32 arg0, u32 arg1) {
 void func_021091b0(void) {
 }
 
+void func_021091b4(void) {
+    if (data_021624f8 == NULL) {
+        return;
+    }
+    if ((data_021624f8->unk_18[0] & 1) == 0 && (data_021624f8->unk_18[1] & 1) == 0) {
+        return;
+    }
+    if (data_02162870 != 1) {
+        return;
+    }
+    *(u64 *)((u8 *)&data_021624f8 + 4) = func_02007904();
+    func_021256b4();
+}
+
 extern void func_02125c38(u32);
 extern void func_021089e8(u32, s32, u32);
 s32 func_0210920c(u32 arg0) {
