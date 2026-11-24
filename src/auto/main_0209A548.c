@@ -1,5 +1,19 @@
 /* 10 functions from 0x0209A548 to 0x0209B328 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct Draw20 { s16 v[10]; } Draw20;
+typedef struct Draw14 { s16 v[7]; } Draw14;
+extern const Draw20 data_02142074;
+extern const Draw14 data_02142054;
+u8 *func_0209c8dc(u8);
+void func_0209ca84(u16, s16, s16, s32);
+void func_0209bfa0(u16, s16, s16, s32, u8);
+void func_0209beb8(s16, s16, s16, s32);
+void func_0209bca0(s16, s16, s16, void *, s32, s32);
+s32 func_0209cb14(s32, s32);
+void func_020a3c54(u16);
+void func_020a3bbc(u16);
+void func_021098ac(void *);
+void func_021099f8(void *);
 
 typedef struct Node_0209b108 {
     u8 unk_0;
