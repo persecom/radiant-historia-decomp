@@ -1,5 +1,41 @@
 /* 32 functions from 0x020C93F4 to 0x020CA10C (main), found by ds-decomp. */
 #include "common.h"
+extern u8 *data_02160a80;
+extern u8 *data_0216020c;
+extern u16 data_02151fc8;
+extern u32 data_02162830,data_02162834[],data_0216281c,data_02162820[];
+extern u8 *func_020ea100(void);
+extern void func_020ea188(void *,s32,s32);
+extern void func_02108680(void *,s32,s32);
+extern void func_021167f0(void *,void *);
+extern void func_02002fb0(s32,s32,s32,s32,s32);
+extern void func_020ca10c(void);
+extern void func_020be6a0(void);
+extern void func_020be704(void);
+extern void func_020cb1f4(void);
+extern void func_020cb1f8(void);
+extern void func_020be764(void);
+extern void func_020be774(void);
+extern void func_020be650(void);
+extern void func_020be678(void);
+extern void func_0210f6d4(void);
+extern void func_0210b894(void);
+extern void func_020f40a4(void);
+extern void func_020be784(void);
+extern void func_020be874(void);
+extern void func_020e9eb0(void);
+extern void func_021070c4(void);
+extern void func_0210d9e4(void *);
+extern void func_0210dab0(void *);
+extern void func_0210db70(void *);
+extern void func_0210dbd0(void *);
+extern void func_0210dae0(void *);
+extern void func_0210db40(void *);
+extern void func_0210b750(s32);
+extern void func_020bf414(s32);
+extern void func_02120524(s32);
+extern void func_020eff5c(s32);
+
 extern u8 *data_02160234;
 extern u32 data_02162858[], data_02162854, data_02162850;
 extern u8 data_0216242c[];
