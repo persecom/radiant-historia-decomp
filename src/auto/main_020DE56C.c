@@ -1,5 +1,9 @@
 /* 14 functions from 0x020DE56C to 0x020DF56C (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { u16 ids[9]; } TargetOrder;
+extern const TargetOrder data_02144948,data_02144934,data_0214495c;
+extern s32 func_0202c658(void *);
+extern u8 *func_0202c920(u8);
 extern u8 *data_02160244,*data_02160260;
 extern u32 data_0216263c[3];
 extern u8 *func_02032240(void);
