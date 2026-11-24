@@ -365,13 +365,11 @@ u8 *func_0210b27c(u8 *arg0, s32 arg1) {
         func_0211cd24(arg0, *(u8 **)(arg0 + 0x100));
     }
     if (arg1 != 0) {
-        u32 field = *(u32 *)(arg0 + 0xfc);
-        if (field != 0) {
-            func_02120bb0(data_02162648);
+        if (*(u8 **)(arg0 + 0xfc) != NULL) {
+            ((void (*)(void *, u8 *))func_02120bb0)(data_02162648, *(u8 **)(arg0 + 0xfc));
         }
-        field = *(u32 *)(arg0 + 0x100);
-        if (field != 0) {
-            func_02120bb0(data_02162648);
+        if (*(u8 **)(arg0 + 0x100) != NULL) {
+            ((void (*)(void *, u8 *))func_02120bb0)(data_02162648, *(u8 **)(arg0 + 0x100));
         }
     }
     {
