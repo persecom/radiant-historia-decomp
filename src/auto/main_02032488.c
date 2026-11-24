@@ -126,7 +126,7 @@ void func_02032cf4(void *arg0) {
     if (arg0 != NULL) {
         node = *(u8 **)(data_02160090 + 8);
         while (node != NULL) {
-            node[0x41] &= ~2;
+            node[0x41] &= 0xfd;
             if (*(void **)node == arg0) {
                 node[0x41] |= 2;
             }
@@ -135,7 +135,7 @@ void func_02032cf4(void *arg0) {
     } else {
         node = *(u8 **)(data_02160090 + 8);
         while (node != NULL) {
-            node[0x41] &= ~2;
+            node[0x41] &= 0xfd;
             node = *(u8 **)(node + 0x1c);
         }
     }
