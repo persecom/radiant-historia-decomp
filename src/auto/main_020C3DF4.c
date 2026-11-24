@@ -44,6 +44,10 @@ void func_020c4c1c(void *arg0) {
     }
 }
 
+void *func_020c4c30(void) {
+    return func_0210c594(0x80, data_02155c3c);
+}
+
 extern void func_020a5858(void *);
 void func_020c4c4c(void *arg0) {
     if (arg0 != NULL) {
