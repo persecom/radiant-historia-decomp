@@ -215,6 +215,13 @@ void func_0212a27c(u8 *arg0) {
     func_0212977c(*(void **)(arg0 + 8), arg0 + 0xa6, arg0 + 0xa8, arg0 + 0xaa);
 }
 
+void func_0212a2ac(u8 *arg0) {
+    extern void func_02129724(void *, void *, void *);
+    extern void func_0212976c(void *, s32, s32, s32);
+    func_02129724(*(void **)(arg0 + 8), arg0 + 0xb0, arg0 + 0xb4);
+    func_0212976c(*(void **)(arg0 + 8), *(s16 *)(arg0 + 0xa6), *(s16 *)(arg0 + 0xa8), *(s16 *)(arg0 + 0xaa));
+}
+
 extern char data_02156b08[];
 extern void func_0212bda8(char *);
 extern void func_02129748(void *, void *, void *);
