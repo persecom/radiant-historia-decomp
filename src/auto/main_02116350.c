@@ -359,6 +359,18 @@ void *func_02116b44(void *list, void *target, void *prev) {
     return t;
 }
 
+void *func_02116b74(void *region, u16 signature) {
+    u8 *r = (u8 *)region;
+    u8 *block = *(u8 **)(r + 0);
+    u8 *end = *(u8 **)(r + 4);
+    *(u16 *)(block + 0) = signature;
+    *(u16 *)(block + 2) = 0;
+    *(u32 *)(block + 4) = (u32)(end - (block + 0x10));
+    *(void **)(block + 8) = NULL;
+    *(void **)(block + 0xc) = NULL;
+    return block;
+}
+
 void* func_02116d7c(void* heap, u32 size, s32 alignment)
 {
     typedef struct Block {
