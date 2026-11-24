@@ -533,6 +533,19 @@ void func_0210f38c(void) {
     data_02162a54[0] = 0;
 }
 
+s32 func_0210f3ac(const char *arg0, s32 arg1, s32 arg2) {
+    u8 *p = func_0210ec9c(arg0, 0, arg2);
+    if (p == NULL) {
+        return 0;
+    }
+    if (*(void **)(p + 0x10) != NULL) {
+        func_0210c5dc(*(void **)(p + 0x10));
+        *(void **)(p + 0x10) = NULL;
+    }
+    *(s32 *)(p + 0x10) = arg1;
+    return 1;
+}
+
 void *func_0210f3ec(void *arg0, s32 arg1) {
     void *ret = func_0210ec9c((const char *)arg0, 0, arg1);
     if (ret == NULL) {
