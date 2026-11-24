@@ -103,6 +103,26 @@ void func_0209eae0(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 mode) {
     *(u32 *)(obj + 0x4c) = arg3 << 12;
 }
 
+void func_0209ed34(u32 arg0, u32 arg1);
+void func_0209ebec(u32 arg0, u32 arg1, u32 arg2, s32 arg3, u16 arg4) {
+    u8 *base = data_021600b0;
+
+    func_0209eae0(*(u32 *)(base + 0xe4), 0x40, 0xb, 0x69, arg0, 1);
+    func_0209eae0(*(u32 *)(base + 0xec), 0x40, 0x21, 0x69, arg1, 1);
+    func_0209eae0(*(u32 *)(base + 0xe8), 0x17, 0x3c, 0x69, arg2, 3);
+    if (arg4 != 0) {
+        func_0209eae0(*(u32 *)(base + 0xf0), 0x17, (s16)(0x74 - arg3 * 0xe), 0x69, arg4, 3);
+    } else {
+        func_020a5ce4(*(void **)(base + 0xf0));
+    }
+    func_0209ed34(0, 0x1a);
+    func_0209ed34(1, 0x1e);
+    func_0209ed34(2, 0x1a);
+    if (arg4 != 0) {
+        func_0209ed34(3, 0x1e);
+    }
+}
+
 void func_0209ed00(void) {
     u8 *base = data_021600b0;
     func_020a5ce4(*(void **)(base + 0xe4));
