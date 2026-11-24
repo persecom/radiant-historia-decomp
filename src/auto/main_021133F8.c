@@ -258,6 +258,10 @@ s32 func_02113a1c(void) {
     return -1;
 }
 
+void func_02113a60(s32 arg0) {
+    data_0216bfc0[1] &= ~(1 << arg0);
+}
+
 void func_02113abc(s32 arg0, u32 arg1) {
     *(u32 *)(data_0216c440 + arg0 * 0x24) = arg1;
 }
