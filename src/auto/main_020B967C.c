@@ -163,7 +163,9 @@ void func_020ba520(void) {
 
 s32 func_020ba5d4(void) {
     s32 ret = 0;
-    if ((func_021136b0(*(u16 *)(data_021601ec + 0xa2)) & 2) == 0) {
+    u32 x = 0;
+    x |= func_021136b0(*(u16 *)(data_021601ec + 0xa2));
+    if ((x & 2) == 0) {
         ret = 1;
     }
     return ret;
