@@ -347,6 +347,14 @@ u32 func_02115174(u32 arg0) {
     return *(u32 *)(p + arg0 * 0x10 + 0x10);
 }
 
+u32 func_02115264(u32 arg0) {
+    u8 *p = *(u8 **)(data_0216cad0[0] + 0x90);
+    if (arg0 >= *(u32 *)(p + 8)) {
+        return 0;
+    }
+    return *(u32 *)(p + arg0 * 0x10 + 0x14);
+}
+
 void func_0211528c(u32 arg0, u32 arg1) {
     u8 *base = *(u8 **)(data_0216cad0[0] + 0x90);
     *(u32 *)(base + arg0 * 0x10 + 0x14) = arg1;
