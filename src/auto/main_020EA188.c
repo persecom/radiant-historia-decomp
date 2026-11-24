@@ -1,2 +1,46 @@
 /* 10 functions from 0x020EA188 to 0x020EB180 (main), found by ds-decomp. */
 #include "common.h"
+
+extern u8 data_02160a90[20];
+extern u8 data_021518c0[8];
+extern s32 func_0210dba0(void *);
+extern s32 func_021086d4(void *);
+extern void func_02108680(void *, u32, s32);
+extern void *func_0210a4cc(void);
+extern s32 func_020f1ffc(void *, s32, s32, s32);
+extern void func_0210c5dc(void *);
+extern void *func_0210eb98(void *, s32);
+extern void func_0210f3ac(void *, void *, s32);
+s32 func_020ea574(u8 *arg0, u32 arg1, s32 arg2) {
+    u8 *r0 = *(u8 **)arg0;
+    if (*(u16 *)(*(u8 **)(*(u8 **)(r0 + 0x58) + 0xc)) <= arg1) {
+        return 0;
+    }
+    if ((func_021086d4(r0) == 0) != 0) {
+        return 0;
+    }
+    func_02108680(*(u8 **)arg0, arg1, arg2);
+    return 1;
+}
+
+s32 func_020ea5d4(u8 *arg0, s32 arg1) {
+    u8 *r2 = *(u8 **)arg0;
+    u8 *r3 = *(u8 **)(arg0 + 0xc);
+    if (*(u16 *)(*(u8 **)(*(u8 **)(r2 + 0x58) + 0xc)) <= arg1 * 2) {
+        return 0;
+    }
+    switch (r3[arg1 * 4]) {
+    case 0:
+        return 0;
+    case 1:
+        return func_020ea574(arg0, *(u16 *)(r3 + arg1 * 4 + 2), 1);
+    case 3:
+        return func_020ea574(arg0, *(u16 *)(r3 + arg1 * 4 + 2), 1);
+    default:
+        return 0;
+    }
+}
+
+s32 func_020eaacc(void) {
+    return func_0210dba0(&data_02160a90);
+}
