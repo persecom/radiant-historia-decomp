@@ -89,14 +89,14 @@ void func_02117448(u32 *arg0, u32 arg1) {
     func_02007428(arg0[2], arg0[1], arg1);
 }
 
-void func_02117464(void *arg0) {
+void func_02117464(void *arg0, void *arg1) {
     void *p = *(void **)arg0;
-    (*(void (**)(void *))p)(arg0);
+    (*(void (**)(void *, void *))p)(arg0, arg1);
 }
 
 void func_02117478(void *arg0) {
     void *p = *(void **)arg0;
-    (*(void (**)(void *))((u8 *)p + 4))(arg0);
+    (*(void (**)(void))((u8 *)p + 4))();
 }
 
 void func_021174e4(void) {
