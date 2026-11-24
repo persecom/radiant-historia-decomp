@@ -96,6 +96,17 @@ s32 func_021136e4(s32 arg0) {
     }
     return sum;
 }
+
+#pragma optimization_level 0
+void func_0211379c(s32 arg0, u16 *arg1, u16 *arg2) {
+    UnkStruct20_u16 tbl = data_02144d20;
+    if ((u32)arg0 < 5) {
+        *arg1 = tbl.a[arg0][0];
+        *arg2 = tbl.a[arg0][1];
+    }
+}
+#pragma optimization_level 4
+
 #pragma optimization_level 4
 
 #pragma optimization_level 4
