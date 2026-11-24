@@ -28,6 +28,7 @@ extern void func_02008dc4(void);
 typedef void (*Fn_U32)(u32);
 extern void func_02008558(s32);
 extern void func_02008998(s32);
+extern void func_020097a8(u32, s32, s32, s32);
 typedef struct { u32 a[8]; } Copy32B;
 typedef struct { u32 a[9]; } Copy36B;
 typedef struct { u32 a[12]; } Copy48B;
@@ -112,6 +113,18 @@ void func_02008e08(u8 *src, u8 *dst, s32 size) {
         *(u16 *)(dst + i) = *(u16 *)(src + i);
         i += 2;
     }
+}
+
+void func_02008eec(const Copy32B *src, Copy32B *dst) {
+    *dst = *src;
+}
+
+void func_02008f08(const Copy36B *src, Copy36B *dst) {
+    *dst = *src;
+}
+
+void func_02008f24(const Copy48B *src, Copy48B *dst) {
+    *dst = *src;
 }
 
 void func_02009138(u32 *dst) {
