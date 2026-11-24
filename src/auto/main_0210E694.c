@@ -94,6 +94,22 @@ void func_0210e7d0(void) {
     *(volatile u32 *)0x04001000 &= ~0x10000;
 }
 
+void *func_0210e7f0(s32 arg0, s32 arg1) {
+    s32 local;
+    void *p;
+    void *result;
+
+    p = func_02109b14(arg0, &local);
+    if (p == NULL) {
+        return NULL;
+    }
+    result = func_0210e8b4(p, local, arg0, arg1);
+    if (p != NULL) {
+        func_0210c5dc(p);
+    }
+    return result;
+}
+
 s32 func_0210f170(const char *arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 ret;
     if (data_02155c94[2] != 0 && arg0 != NULL) {
