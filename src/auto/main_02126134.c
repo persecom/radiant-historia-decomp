@@ -422,6 +422,14 @@ s32 func_02126b94(void *arg0, void *arg1) {
     return func_02138f34(arg0, arg1);
 }
 
+void *func_02126ba0(void *arg0) {
+    void *ret;
+    func_02126c18();
+    ret = ((void *(*)(void *))func_02126bc4)(arg0);
+    func_02126c1c();
+    return ret;
+}
+
 extern void func_02138f98(void);
 void func_02126bc4(void) {
     func_02138f98();
