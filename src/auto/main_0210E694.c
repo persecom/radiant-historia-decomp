@@ -359,6 +359,26 @@ u32 func_0210ef84(s32 arg0, s32 arg1, s32 arg2) {
     return ret;
 }
 
+void func_0210f024(u32 arg0) {
+    u8 *p = func_0210ed58(arg0, 1);
+    if (p != NULL) {
+        if (*(s32 *)((u8 *)data_02162a54 + 0x10) != 0) {
+            *(u16 *)(p + 0x14) -= 1;
+        }
+        if (*(u16 *)(p + 0x14) == 0) {
+            func_021168f8(data_02162a74, p);
+            if (*(void **)(p + 0x10) != NULL) {
+                func_0210c5dc(*(void **)(p + 0x10));
+                *(void **)(p + 0x10) = NULL;
+            }
+            if (p != NULL) {
+                func_0210c5dc(p);
+            }
+        }
+    }
+    (*(void (**)(u32))((u8 *)data_02162a54 + 0x14))(arg0);
+}
+
 s32 func_0210f170(const char *arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 ret;
     if (data_02155c94[2] != 0 && arg0 != NULL) {
