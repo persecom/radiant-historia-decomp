@@ -78,6 +78,23 @@ void func_0203c0f4(u8 *arg0) {
     *(u16 *)(arg0 + 0x3c) = 0;
 }
 
+void func_0203c168(u8 *arg0) {
+    if (arg0 == NULL) {
+        return;
+    }
+    func_0203be4c(*(void **)(arg0 + 0x30));
+    func_0203c0f4(arg0);
+    if (*(void **)(arg0 + 4) != NULL) {
+        func_0210da14(arg0 + 4);
+    }
+    if (*(void **)(arg0 + 0x18) != NULL) {
+        func_0210dba0(arg0 + 0x18);
+    }
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
 void func_0203c1c0(u8 *arg0, void *arg1, s32 arg2) {
     func_0203c1f0(arg0, arg2);
     *(void **)(arg0 + 4) = (void *)func_0203c20c;
