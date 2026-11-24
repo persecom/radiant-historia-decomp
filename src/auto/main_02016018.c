@@ -136,3 +136,15 @@ s32 func_02016f58(const char *str1, const char *str2, u32 n) {
     return 0;
 }
 
+char *func_02016f8c(const char *str, s32 chr) {
+    const u8 *p = (const u8 *)str;
+    u8 c = (u8)chr;
+    u8 ch;
+    while ((ch = *p++) != 0) {
+        if (ch == c) {
+            return (char *)(p - 1);
+        }
+    }
+    return c ? NULL : (char *)(p - 1);
+}
+
