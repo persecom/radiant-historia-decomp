@@ -106,7 +106,7 @@ u8 *func_02031ec8(s32 arg0, s32 arg1, u8 *arg2, s32 arg3, u16 arg4) {
     }
     if (cur == NULL) {
         func_021167f0((u8 *)data_02160090 + 8, node);
-    } else if (*(u8 **)((u8 *)data_02160090 + 8) == cur) {
+    } else if (cur == *(u8 ** volatile)((u8 *)data_02160090 + 8)) {
         func_02116844((u8 *)data_02160090 + 8, node);
     } else {
         func_02116894((u8 *)data_02160090 + 8, cur, node);
