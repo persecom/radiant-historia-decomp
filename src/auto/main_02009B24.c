@@ -3,6 +3,11 @@
 
 extern u32 data_0215d1b8[9];
 extern u8 data_0215ec80[0x60];
+
+typedef struct Unk_0200a328 {
+    u32 field_0;
+    u32 field_4;
+} Unk_0200a328;
 extern s32 func_02008128(void);
 extern void func_0200813c(s32);
 extern s32 func_02009964(s32);
