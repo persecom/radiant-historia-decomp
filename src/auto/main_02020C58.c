@@ -220,6 +220,44 @@ s32 func_020215bc(void) {
     return res;
 }
 
+void func_02021618(void) {
+u32 *p=data_02160078;
+switch(data_02160054[1]) {
+case 0:
+if(func_02021344(0)==0) {
+func_0202153c(3);
+data_02160204[0x14c]|=0x10;
+data_02160204[0x14c]|=8;
+return;
+}
+p[9]=func_0210e600();
+p[2]=func_02021368((u8 *)(p+4),0x1688);
+data_02160054[2]=1;
+func_02021514();
+func_021072d0(data_02160204[0x7f]*0x4800,(u32)p,0x1698);
+data_02160054[1]++;
+return;
+case 1:
+if(func_02107294()!=0)return;
+if(func_0200f984()==0) {
+func_021072d0(data_02160204[0x7f]*0x4800+0x2400,(u32)p,0x1698);
+data_02160054[1]++;
+return;
+}
+data_02160204[0x14c]|=0x10;
+data_02160204[0x14c]|=8;
+func_0202153c(4);
+return;
+case 2:
+if(func_02107294()!=0)return;
+if(func_0200f984()==0){func_0202153c(0);return;}
+data_02160204[0x14c]|=0x10;
+data_02160204[0x14c]|=8;
+func_0202153c(4);
+return;
+}
+}
+
 s32 func_02021a28(void) {
     return func_02021428((u16 *)&func_02021618);
 }
