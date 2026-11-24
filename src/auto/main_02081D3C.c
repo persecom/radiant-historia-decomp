@@ -34,13 +34,9 @@ void func_02081e78(void) {
 }
 
 void func_02081f08(u32 *dst, s32 idx) {
-    Block_02081f08 *src = (Block_02081f08 *)(data_0216010c + idx * 0x64 + 0x5570);
-    Block_02081f08 *d = (Block_02081f08 *)dst;
-    s32 i;
-    for (i = 6; i != 0; i--) {
-        *d++ = *src++;
-    }
-    *(u32 *)d = *(u32 *)src;
+    Data_02081f08 *src = (Data_02081f08 *)(data_0216010c + idx * 0x64 + 0x5570);
+    Data_02081f08 *d = (Data_02081f08 *)dst;
+    *d = *src;
 }
 
 u16 func_020824e0(void) {
