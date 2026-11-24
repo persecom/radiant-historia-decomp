@@ -425,6 +425,15 @@ u32 func_020035b0(void) {
     return 0;
 }
 
+void func_020035f8(void *src, u32 offset, u32 size) {
+    s32 dma = data_02145ba4;
+    if (dma != -1 && size > 0x1c) {
+        func_02008690(dma, src, 0x05000000 + offset, size, 1);
+    } else {
+        func_02008e08(src, 0x05000000 + offset, size);
+    }
+}
+
 s32 func_0200308c(s32 *arg0) {
     if (*(volatile u32 *)0x04000600 & 0x4000) {
         return -1;
