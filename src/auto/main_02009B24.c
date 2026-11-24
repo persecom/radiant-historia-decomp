@@ -144,6 +144,14 @@ u32 func_02009fcc(s32 arg0, u32 arg1, u32 arg2) {
     return ++p[8];
 }
 
+extern u32 *data_0215ece0;
+extern void func_02006d8c(void *, s32);
+extern void func_02006dc4(void *, s32);
+u32 func_0200a068(void) {
+    func_02006d8c(data_0215ece0, 4);
+    return *data_0215ece0;
+}
+
 extern s32 func_0200698c(void);
 void func_0200a328(u32 *arg0) {
     u32 tmp[2];
