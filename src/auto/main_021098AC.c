@@ -40,8 +40,48 @@ void func_02109c54(void) {
     func_0210a38c();
 }
 
+void *func_02109c60(u8 *arg0, u32 *arg1) {
+    u8 buf[0x10];
+    void *p;
+    u32 size;
+    if (func_02109c04(buf, arg0, 0, 0) != 1) {
+        return NULL;
+    }
+    size = func_0210a498((u32 *)buf);
+    p = func_0210c518(size, data_02155c3c);
+    func_02109c24((u32)buf, (u32)p, 0, size);
+    func_02109c54();
+    if (arg1 != NULL) {
+        *arg1 = size;
+    }
+    func_02006dc4(p, size);
+    return p;
+}
+
 s32 func_02109cf0(s8 *arg0) {
     return *arg0 != '-';
+}
+
+void func_02109ea8(void *arg0) {
+    u8 *p = arg0;
+    u16 count = *(u16 *)(p + 0x14);
+    *(u16 *)(p + 0x14) = count - 1;
+    if (*(u16 *)(p + 0x14) != 0) {
+        return;
+    }
+    if (data_02162564[1] != 0) {
+        return;
+    }
+    if (((*(u32 *)(p + 0xc) << 7) >> 31) != 0) {
+        return;
+    }
+    func_021168f8(data_0216256c, p);
+    func_0210c674(*(void **)(p + 8));
+    if (*(void **)(p + 0x10) != NULL) {
+        func_0210c5dc(*(void **)(p + 0x10));
+        *(void **)(p + 0x10) = NULL;
+    }
+    func_0210c674(p);
 }
 
 void func_02109f24(void) {
