@@ -1,5 +1,6 @@
 {
   "src/auto/main_02001D9C.c": "dsi/1.1",
+  "src/auto/main_02002708.c": "dsi/1.1",
   "src/auto/main_02002D9C.c": "dsi/1.1",
   "src/auto/main_02003D58.c": "dsi/1.1",
   "src/auto/main_02004CD4.c": "dsi/1.1",
@@ -191,5 +192,5 @@
   "src/auto/main_02137E58.c": "dsi/1.1",
   "src/auto/main_02138E00.c": "dsi/1.1",
   "src/auto/main_02139CDC.c": "dsi/1.1",
-  "src/auto/main_02002708.c": "dsi/1.1"
+  "src/auto/main_02002790.c": "dsi/1.1"
 }
