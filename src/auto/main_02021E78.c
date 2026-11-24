@@ -11,12 +11,17 @@ extern u32 func_02092994(u32, u32);
 extern void func_02022088(u32, u32);
 extern s32 func_02109444(void *);
 extern void func_0210c970(void *);
+extern void func_021167f0(void *, void *);
+extern void func_021168f8(void *, void *);
+extern void func_0210c5dc(void *);
 
 void func_02021e78(void) {
+    register char *bp asm("r4");
+    register void *p asm("r6");
+    register u32 zero asm("r5");
     char buf[0x14];
-    char *bp = buf;
-    void *p;
-    u32 res, a, b, zero;
+    u32 res, a, b;
+    bp = buf;
     func_02005e80(bp, data_02145fdc);
     p = func_0210c594(0x60, data_02155c3c);
     res = func_021092d8(bp);
