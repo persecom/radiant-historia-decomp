@@ -79,6 +79,11 @@ s32 func_020137b0(u8 *arg0, u8 arg1) {
     return 1;
 }
 
+u32 func_020137c4(u32 *out, u16 code) {
+    u32 **fn = (u32 **)(data_02145c8c[2] + 4);
+    return ((u32 (*)(u32 *, u16))*fn)(out, code);
+}
+
 extern void func_020138f8(void *);
 void *func_02013878(void *arg0) {
     func_020138f8(arg0);
