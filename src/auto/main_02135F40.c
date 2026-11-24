@@ -65,6 +65,12 @@ void func_021369c0(void *arg0) {
     func_02138130(arg0);
 }
 
+extern u8 data_0215bee0[12];
+extern void func_02008f74(void *, s32, u32);
+void func_021369cc(void) {
+    func_021369c0(&data_0215bee0);
+}
+
 void func_02136a24(void) {
     func_02136958();
     func_021369a8();
