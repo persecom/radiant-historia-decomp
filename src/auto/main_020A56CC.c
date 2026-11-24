@@ -76,6 +76,10 @@ void func_020a5ed4(void **arg0) {
     }
 }
 
+void *func_020a6168(void) {
+    return func_0210c594(0x14, data_02155c3c);
+}
+
 void func_020a6320(void **arg0) {
     void *ptr;
     while ((ptr = *arg0) != NULL) {
