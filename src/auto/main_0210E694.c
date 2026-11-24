@@ -209,6 +209,31 @@ s32 func_0210e9e8(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     return 1;
 }
 
+s32 func_0210ea6c(void *arg0, u32 arg1, const char *arg2, u32 *arg3) {
+    u32 size;
+    s32 flag;
+
+    if (arg1 < 8) {
+        arg1 = 8;
+    } else if (arg1 < 0x20) {
+        arg1 = 0x20;
+    }
+    size = (arg1 + 3) & ~3;
+    flag = (arg1 <= 8) ? 1 : 0;
+    arg3[0] = func_0210f20c(arg2, size, flag, 0);
+    if (arg3[0] == 0) {
+        data_02156154(arg3[0]);
+        return 0;
+    }
+    arg3[1] = (u16)arg3[0] << 3;
+    if (!func_0210f314(arg3[0])) {
+        func_02004588();
+        func_020045bc(arg0, arg3[1], size);
+        func_0200462c();
+    }
+    return 1;
+}
+
 extern void func_0210eb14(void *);
 extern void func_0210eb4c(void *);
 void func_0210eb80(u8 *arg0) {
