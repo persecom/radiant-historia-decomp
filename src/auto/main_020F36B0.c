@@ -134,6 +134,6 @@ void func_020f4640(void) {
 
 void func_020f4668(void *arg0) {
     *(Trip *)(data_02155984 + 0x20) = *(Trip *)arg0;
-    func_02107d58(*(u32 *)((u8 *)&data_02151fc8 + 4), *(u16 *)((u8 *)&data_02151fc8 + 2), *(u16 *)((u8 *)&data_02151fc8 + 0));
+    func_02107d58(*(u32 *)(data_02151fc8 + 4), *(u16 *)(data_02151fc8 + 2), *(u16 *)data_02151fc8);
 }
 
