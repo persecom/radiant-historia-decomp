@@ -109,3 +109,10 @@ void func_0211cd78(u8 *arg0) {
     arg0[0x25] = 0;
 }
 
+u32 func_0211cd8c(u8 *arg0) {
+    if (arg0 != NULL) {
+        return (u32)*(u16 *)(arg0 + 0xc) << 3;
+    }
+    return 0;
+}
+
