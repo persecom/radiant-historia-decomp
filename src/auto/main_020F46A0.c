@@ -169,6 +169,16 @@ s32 func_020f5068(u8 *arg0, void *arg1, u32 arg2) {
     return 1;
 }
 
+s32 func_020f50bc(u8 *arg0, u32 *arg1, u32 arg2) {
+    u32 *obj = (u32 *)func_020f4bb4();
+    if (!func_020f4be4(obj, arg1)) {
+        func_020f4bd0(obj);
+        return 0;
+    }
+    func_020f4f38(arg0, arg1);
+    return func_020f5068(arg0, obj, arg2);
+}
+
 u32 func_020f53e4(void (*arg0)(void)) {
     if (arg0 != NULL) {
         arg0();
