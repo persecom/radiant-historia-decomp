@@ -836,7 +836,10 @@ src/auto/main_021088CC.c:
     .text start:0x021088cc end:0x021098ac
 
 src/auto/main_021098AC.c:
-    .text start:0x021098ac end:0x0210a7e4
+    .text start:0x021098ac end:0x02109c60
+
+src/auto/main_02109C60.c:
+    .text start:0x02109c60 end:0x0210a7e4
 
 src/auto/main_0210A7E4.c:
     .text start:0x0210a7e4 end:0x0210b7a4
