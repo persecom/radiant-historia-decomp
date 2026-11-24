@@ -318,6 +318,12 @@ void func_020a9e38(volatile s16 *arg0, volatile s16 *arg1) {
     *arg1 = *(s32 *)(p + 0x48) + *arg1;
 }
 
+void func_020a9ebc(s16 *arg0, s16 *arg1) {
+    u8 *p = data_021600e4;
+    *arg0 = (*arg0 * *(s32 *)(p + 0x6c)) / 0x1000;
+    *arg1 = (*arg1 * *(s32 *)(p + 0x6c)) / 0x1000;
+}
+
 extern u8 *data_021600e4;
 extern s32 func_020a9194(void *);
 extern s32 func_020a916c(s32);
