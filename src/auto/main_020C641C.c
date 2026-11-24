@@ -250,6 +250,32 @@ void func_020c71d8(void *arg0) {
     }
 }
 
+s32 func_020c71ec(u8 *p) {
+s32 n=*(s32*)(p+0x4c);
+u8 count=0;
+Unk_020c71ec_Rect src,dst;
+u32 i;
+if(n!=0) { while(n!=0){count++;n/=10;} } else count=1;
+src=*(Unk_020c71ec_Rect*)(p+0x32);
+dst=*(Unk_020c71ec_Rect*)(p+0x3a);
+*(volatile u32*)0x40004a4=(p[0x42]<<16)|0xc0;
+n=*(s32*)(p+0x4c); if(n<0)n=-n;
+for(i=0;i<count;i++){
+u8 digit=n%10;
+n/=10;
+*(s16*)(p+0x32)=src.x+digit*src.w;
+switch(p[0x50]){
+case 0:*(s16*)(p+0x3a)=dst.x+dst.w*(count-i-1);break;
+case 1:*(s16*)(p+0x3a)=dst.x-i*dst.w;break;
+case 2:*(s16*)(p+0x3a)=dst.x-i*dst.w;if(i!=0)(*(s16*)(p+0x3a))++;break;
+}
+func_020c6e2c(p,p+0x30);
+}
+*(s16*)(p+0x32)=src.x;
+*(s16*)(p+0x3a)=dst.x;
+return 0;
+}
+
 s32 func_020c7384(void) {
     return 2;
 }
