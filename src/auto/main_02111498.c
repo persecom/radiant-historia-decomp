@@ -57,6 +57,10 @@ void func_02112094(MainSub_6C *arg0) {
     func_020c8ee4(arg0->field);
 }
 
+u8 func_021120a4(u8 *arg) {
+    return arg[0x75];
+}
+
 extern void func_021121b8(void *);
 void func_02112198(void *arg0) {
     func_021121b8(arg0);
