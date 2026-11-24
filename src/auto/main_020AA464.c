@@ -207,6 +207,29 @@ void func_020aa8e8(void) {
     }
 }
 
+void func_020aa94c(void) {
+    u8 *p = data_021600e4;
+    Unk20 buf = data_0214386c;
+    u8 *node;
+
+    *(volatile u32 *)0x040004A4 = 0x001F00C0;
+    func_020a3bbc(0xa);
+    node = func_020aa7fc(*(void **)(p + 0x13f4));
+    while (node != NULL) {
+        buf.unk[1] = 0;
+        buf.unk[2] = 0;
+        buf.unk[3] = 0x13;
+        buf.unk[4] = 0x15;
+        buf.unk[5] = *(s16 *)(node + 0x10) - 9;
+        buf.unk[6] = *(s16 *)(node + 0x12) - 26;
+        buf.unk[8] = 0x13;
+        buf.unk[9] = 0x15;
+        buf.unk[7] = 10;
+        func_021098ac(&buf);
+        node = *(u8 **)(node + 0x18);
+    }
+}
+
 s32 func_020aaa20(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 ret;
     if (arg2 == 0) {
