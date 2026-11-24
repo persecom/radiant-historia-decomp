@@ -179,6 +179,22 @@ void func_020a30c4(u16 arg0) {
     func_020a3128(func_020a30d4(arg0));
 }
 
+u16 func_020a30d4(u16 arg0) {
+    u8 *p = (u8 *)data_02160128;
+    u8 *node;
+    if (p == NULL) {
+        return 1;
+    }
+    node = *(u8 **)(p + 4);
+    while (node != NULL) {
+        if (arg0 >= *(u16 *)node && arg0 <= *(u16 *)(node + 2)) {
+            return *(u16 *)(node + 4);
+        }
+        node = *(u8 **)(node + 0xc);
+    }
+    return 0;
+}
+
 extern u32 data_02155c3c;
 extern void *func_0210c594(u32, u32);
 extern u32 data_021600b0[2];
