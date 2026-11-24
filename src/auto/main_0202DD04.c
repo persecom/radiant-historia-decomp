@@ -61,10 +61,10 @@ void func_0202e4cc(void) {
 
 extern void func_0202bcd4();
 extern void func_0202eac4(u32, u16);
-void func_0202e518(u8 *arg0) {
+void func_0202e518(u8 *arg0, s32 arg1) {
     u8 *p = *(u8 **)(*(u8 **)(arg0 + 0x128) + 0x54);
     if (arg0 != NULL && **(u8 **)(arg0 + 0x118) == 0) {
-        func_0202bcd4(p + 0x18);
+        func_0202bcd4(p + 0x18, arg1);
     }
 }
 
