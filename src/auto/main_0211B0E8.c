@@ -1,10 +1,10 @@
 /* 18 functions from 0x0211B0E8 to 0x0211BDE8 (main), found by ds-decomp. */
 #include "common.h"
 static inline s32 tile_offset(s32 x, s32 y, s32 width, s32 height) {
-    s32 bx = x / 32;
     s32 by = y / 32;
-    s32 rx = x % 32;
     s32 ry = y % 32;
+    s32 bx = x / 32;
+    s32 rx = x % 32;
     s32 bw = bx == width / 32 ? width % 32 : 32;
     s32 bh = by == height / 32 ? height % 32 : 32;
     return rx + (by * (width * 32) + bx * (bh * 32) + bw * ry);
@@ -179,8 +179,8 @@ void func_0211b584(s32 arg0, s32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u
 
 void func_0211b614(void *dst, void *src, s32 sx, s32 sy, s32 dx, s32 dy, s32 dw, s32 dh, s32 w, s32 h) {
  s32 sh,sw;
- sw=(u32)*(u16 *)src>>3;
  sh=(u32)*((u16 *)src+1)>>3;
+ sw=(u32)*(u16 *)src>>3;
  u16 *p=(u16 *)src+6;
  s32 ex=sx+w, ey=sy+h;
  s32 yy=dy;
