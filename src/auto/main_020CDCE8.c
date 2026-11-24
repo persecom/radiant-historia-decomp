@@ -108,6 +108,37 @@ void func_020cea64(u8 arg0) {
     data_021512f0 = arg0;
 }
 
+void func_020cea74(u8 *arg0) {
+s32 i=1; u8 *p = data_02160078; s32 n=0; u8 *entries; u8 *obj;
+arg0[0] = 0; arg0[1] = 0; arg0[2] = 0;
+arg0[n] = p[0x7b];
+arg0[n+3] = 1;
+n++;
+*(u32 *)(arg0+8) = *(u32 *)(p+0x24);
+for (; i<7; i++) {
+entries = p + 0x14d0;
+if (*(u16 *)(entries+i*4) & 1) {
+obj = func_02021f10(entries[i*4+2]);
+if (obj != NULL) {
+arg0[n] = obj[0x43];
+arg0[n+3] = obj[0x42];
+n++;
+if (n == 3) break;
+}
+}
+}
+arg0[6] = 1;
+for (i=0;i<15;i++) {
+u32 bit = i+0xe0;
+if ((*(u32 *)(p+0x14f4+(bit>>5)*4)) & (1u << (bit&31))) {
+arg0[6]=i+1;
+break;
+}
+}
+arg0[7] = (*(u32 *)(p+0x1650) & 0x40000000) != 0;
+*(u32 *)(arg0+12) = *(u16 *)(p+0x20);
+}
+
 void func_020ceb74(s32 *arg0, s32 *arg1, s32 *arg2, s32 arg3) {
     s32 q = arg3 / 60;
     *arg0 = q / 3600;
