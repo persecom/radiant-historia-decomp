@@ -16,7 +16,7 @@ s32 func_02134134(u8 *arg0) {
 s32 func_0213413c(u32 arg0, u32 *arg1, u32 *arg2, u32 *arg3) {
     if (func_020138b8(data_0215bc4c, arg0, 7) != 0) goto fail;
     if (func_02016d50(arg0, data_0215bc54, arg1, arg2, arg3) != 3) goto fail;
-    if (*arg3 == 0) *arg3 = 0x7fffffff;
+    if (*arg3 == 0) *arg3 = 7 - (s32)0x80000008;
     return 1;
 fail:
     *arg1 = 0;
