@@ -133,6 +133,57 @@ void *func_02064cb8(u8 *arg0, s32 arg1) {
     return NULL;
 }
 
+void *func_02064ce4(u8 *list, u16 kind, s32 index, u16 arg3) {
+char path[64];
+void *file;
+u8 *p = 0;
+s32 id, value;
+u16 sound;
+s16 variant;
+s32 extra;
+func_02005e80(path,data_02146654);
+file=func_021092d8(path);
+id=func_02092ab0(file,kind);
+if(id!=-1) {
+value=func_02092994(file,0);
+while(value!=index) {
+func_02109444(file);
+id=func_02092ab0(file,kind);
+if(id==-1) break;
+value=(u16)func_02092994(file,0);
+}
+}
+if(id==kind && value==index) {
+p=(u8 *)func_0210c594(0x40,data_02155c3c);
+*(u8 *)(p+0)=func_02092994(file,0);
+*(u16 *)(p+2)=func_02092994(file,0);
+*(u16 *)(p+4)=func_02092994(file,0);
+*(u8 *)(p+6)=func_02092994(file,0);
+*(u8 *)(p+7)=func_02092994(file,0);
+*(u16 *)(p+22)=func_02092994(file,0);
+*(u16 *)(p+24)=func_02092994(file,0);
+*(u8 *)(p+26)=func_02092994(file,0);
+*(u16 *)(p+28)=func_02092994(file,0);
+*(u8 *)(p+20)=func_02092994(file,0);
+*(u32 *)(p+8)=func_02092994(file,0);
+sound=func_02092994(file,0);variant=func_02092994(file,0);extra=(u16)func_02092994(file,0);
+*(u8 *)(p+30)=func_02092994(file,0);
+*(u8 *)(p+36)=func_02092994(file,0);
+*(u16 *)(p+56)=func_02092994(file,0);
+*(u8 *)(p+58)=func_02092994(file,0);
+*(u16 *)(p+32)=func_02092994(file,0);
+*(u16 *)(p+34)=func_02092994(file,0);
+*(u16 *)(p+38)=func_02092994(file,0);
+*(u8 *)(p+40)=func_02092994(file,0);
+p[1]=index;*(u16 *)(p+60)=arg3;
+if(list)func_021167f0(list+4,p);
+{void *v=func_02022ee0();*(void **)(p+44)=v;func_02022f0c(v,sound,variant,0);}
+if(extra)func_02022f0c(*(void **)(p+44),(u8)(extra/10)+210,(u8)(extra%10),5);
+}
+if(file)func_021093b0(file);
+return p;
+}
+
 void *func_02022ee0(void);
 void func_02022f0c(void *, u16, s16, s32);
 void *func_02064fd0(u8 *list, u16 kind, s32 index, u16 arg3, void *file) {
