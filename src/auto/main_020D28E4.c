@@ -50,7 +50,7 @@ typedef struct {
 typedef struct {
     u8 pad[0x68];
     s32 unk68;
-    u16 pad2;
+    u8 pad2[4];
     u16 unk70;
 } UnkE;
 
@@ -142,9 +142,11 @@ s32 func_020d2e14(s32 arg0, s32 arg1) {
     case 2:
         if (g->unk68 & arg1) return 1;
         break;
-    case 3:
-        g->unk70 &= ~arg1;
+    case 3: {
+        u16 mask = ~arg1;
+        g->unk70 &= mask;
         break;
+    }
     case 4:
         g->unk70 |= (u16)arg1;
         break;
