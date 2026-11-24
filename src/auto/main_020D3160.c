@@ -167,14 +167,14 @@ void *func_020d3fac(u8 arg0) {
 
 void func_020d3fe8(u8 *p,u8 *list,u8 *arg2) {
 s32 found=0;
-u8 *node=list;
+ObjectList_020d3fe8 *node=(ObjectList_020d3fe8 *)list;
 Mgr_020d3160 *mgr;
 u16 count;
 func_020d3160(6,**(u8 **)(p+0x118),0,*(u16 *)(p+0x90)&255);
 mgr=data_02160244;
 count=mgr->unk_168;
-if (node) do {
-void *obj=*(void **)node;
+while(node) {
+void *obj=node->object;
 if(obj) {
 u8 *entry=mgr->unk_160;
 while(entry) {
@@ -183,8 +183,8 @@ entry=*(u8 **)(entry+8);
 }
 }
 if(found) break;
-node=*(u8 **)(node+0x18);
-} while(node);
+node=node->next;
+}
 if(arg2[7]!=8) {
 func_020d0884();
 while(list) {
