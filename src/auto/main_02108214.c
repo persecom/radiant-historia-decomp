@@ -220,6 +220,50 @@ u16 func_021086d4(u8 *arg0, s32 arg1) {
     return **(u16 **)(*(u8 **)(p + 0xc) + (idx << 3));
 }
 
+extern void func_02107aec(void);
+extern void func_0211ad90(void (*)(void));
+extern void func_0211a4d4(void *,void *,void *);
+extern void func_02119da4(void *);
+extern void func_02119f1c(void);
+extern void func_0211a178(s32,s32,s32);
+extern void func_0211a3ac(s32,s32);
+extern void func_0211a26c(s32,s32,s32);
+extern void func_02119eb8(void *);
+extern void func_0211a128(void);
+extern void func_02119e4c(void);
+extern void func_02119110(void *,u32);
+extern void func_0211ada0(void);
+void func_021086f8(u8 *p) {
+void *resource;
+s32 flip=0,mode=2;
+u8 alpha;
+s32 scale;
+switch(*(u32 *)(p+0x78)) {
+case 0: resource=data_021612c8; break;
+case 1: resource=data_02161230; break;
+case 2: resource=data_02161198; break;
+}
+alpha=p[0x71];
+if(!((RenderFlags *)(p+0x70))->visible || !alpha) return;
+scale=0x1000;
+if(((RenderFlags *)(p+0x70))->flip) {
+scale*=-1; mode=3; flip=1;
+func_0211ad90(func_02107aec);
+}
+*(volatile u32 *)0x40004a4=(alpha<<16)|(mode<<6);
+func_0211a4d4(resource,*(void **)(*(u8 **)(p+0x58)+0x10),*(void **)(*(u8 **)(p+0x58)+0x14));
+func_02119da4(resource);
+func_02119f1c();
+func_0211a178(*(s32 *)(p+0x64),*(s32 *)(p+0x68),*(s32 *)(p+0x6c));
+func_0211a3ac(FX_SinIdx(*(u16 *)(p+0x5e)),FX_CosIdx(*(u16 *)(p+0x5e)));
+func_0211a26c(scale,0x1000,0x1000);
+func_02119eb8(p);
+func_0211a128();
+func_02119e4c();
+func_02119110(p,*(u32 *)(p+0x60)<<data_02162834[0]);
+if(flip) func_0211ada0();
+}
+
 void *func_02108844(void) {
     u8 *p = (u8 *)func_0210c518(0x88, data_02155c3c);
     func_02008e68(0, p, 0x88);
