@@ -322,24 +322,15 @@ u32 func_021336f4(void *arg0, s8 **arg1, s32 arg2) {
     u32 ret = 0;
     while (1) {
         s32 c = *p;
-        if (c < '0') {
-            break;
-        }
-        if (c <= '9') {
+        if (c >= '0' && c <= '9') {
             c -= '0';
-            goto accum;
-        } else if (c < 'a') {
-            goto upper;
-        } else if (c <= 'f') {
+        } else if (c >= 'a' && c <= 'f') {
             c -= 0x57;
-            goto accum;
-        }
-upper:
-        if (c < 'A' || c > 'F') {
+        } else if (c >= 'A' && c <= 'F') {
+            c -= 0x37;
+        } else {
             break;
         }
-        c -= 0x37;
-accum:
         ret = arg2 * ret + c;
         p++;
     }
