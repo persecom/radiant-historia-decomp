@@ -11,6 +11,15 @@ extern void func_02022454(void *arg0);
 extern void func_0202bdbc(void *arg0);
 extern void func_0203319c(void *arg0);
 
+void *func_020d413c(void) {
+    u8 *p = func_0210c594(0xb0, data_02155c3c);
+    func_021167ac(p + 0x64, 8);
+    func_021167ac(p + 0x58, 0xc);
+    *(u32 *)(p + 0x24) = 0;
+    *(u32 *)(p + 0x4) = 0;
+    return p;
+}
+
 void func_020d4e90(u8 *arg0, void *arg1) {
     func_021168f8(*(u8 **)(arg0 + 0x128) + 0x58, arg1);
     if (arg1 != NULL) {
