@@ -14,6 +14,17 @@ void *func_02022ee0(void) {
     return ptr;
 }
 
+void func_02022f0c(void *arg0, u16 arg1, u16 arg2, u8 arg3) {
+    u8 *ptr = func_0210c594(0x20, data_02155c3c);
+    *(u16 *)(ptr + 0x0) = arg1;
+    *(u16 *)(ptr + 0x2) = arg2;
+    *(u8 *)(ptr + 0xe) = arg3;
+    *(u16 *)(ptr + 0x6) = 0;
+    *(u16 *)(ptr + 0x8) = 0;
+    *(u16 *)(ptr + 0xa) = 0;
+    func_021167f0(arg0, ptr);
+}
+
 void *func_02023100(void **arg0) {
     return *arg0;
 }
