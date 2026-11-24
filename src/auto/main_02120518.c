@@ -90,6 +90,12 @@ got_node:
     return 0;
 }
 
+void func_02120800(void) {
+    func_02002c2c();
+    func_0211d664();
+    *(volatile u32 *)0x4000600 = (*(volatile u32 *)0x4000600 & ~0xc0000000) | 0x80000000;
+}
+
 void func_02120b8c(void *arg0, void *arg1, void *arg2) {
     func_02117464(arg0, func_0211c9c8(arg1, arg2));
 }
