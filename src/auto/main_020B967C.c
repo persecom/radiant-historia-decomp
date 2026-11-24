@@ -52,6 +52,54 @@ void func_020b9af0(void) {
     }
 }
 
+extern u16 data_02143948[6];
+void func_020b9f6c(void) {
+    struct {
+        u16 id;
+        s16 type;
+    } arr[3];
+    struct S {
+        u16 a[6];
+    };
+    u8 *p = data_021601ec;
+    u16 i;
+
+    *(struct S *)arr = *(struct S *)data_02143948;
+
+    for (i = 0; i < 3; i++) {
+        u8 *obj = func_020c9c10(*(void **)(p + 0x4c), arr[i].id);
+        if (arr[i].type == 0) {
+            ((void (*)(u8 *, s16))(*(void **)(obj + 0x10)))(obj, (*(s32 *)(p + 0x94) >> 12) + 0xa0);
+        } else if (arr[i].type == 1) {
+            ((void (*)(u8 *, s16))(*(void **)(obj + 0x10)))(obj, -(*(s32 *)(p + 0x94) >> 12));
+        }
+    }
+}
+
+void func_020c8640(s32, s32);
+void func_020ba034(void) {
+u16 vals[4];
+u8 *p=data_021601ec;
+u16 i;
+u8 *obj;
+s32 v;
+s32 mode;
+u16 *table=vals;
+u16 prev;
+vals[0]=data_02143914[0]; vals[1]=data_02143914[1]; vals[2]=data_02143914[2]; vals[3]=data_02143914[3];
+
+for(i=0;i<2;i++){
+obj=func_020c9c10(*(void **)(p+0x4c),table[i*2]);
+v=func_020c8adc(obj);
+prev=*(u16 *)(obj+0x30);
+if(p[0x98]==i){ *(u16 *)(obj+0x30)=0x11; func_020c8640(v,0x13); }
+else { *(u16 *)(obj+0x30)=0x10; func_020c8640(v,0x14); }
+
+if(func_020c73d8(obj)==0) ((void (*)(u8 *,s32,s32))(*(void **)(obj+0x24)))(obj,0,0);
+if(prev!=*(u16 *)(obj+0x30)) func_020c7930(obj);
+}
+}
+
 void func_020ba214(void) {
     u8 *p = data_021601ec;
     u8 *obj;
