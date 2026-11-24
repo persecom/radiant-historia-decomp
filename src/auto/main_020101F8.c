@@ -18,7 +18,10 @@ extern void func_0200fa20(u16);
 extern void func_02005e50(u16);
 
 extern void func_0201076c(void);
-extern void func_02010f58(void);
+extern void func_02010f58();
+extern void func_0200fc34(u32, u32);
+extern void func_0200e8a8(void);
+extern void func_02010fa8(s32, s32);
 extern void func_0201082c(u32);
 extern void func_0200fddc(void);
 extern void func_020059e4(u32);
