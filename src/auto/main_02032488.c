@@ -142,6 +142,29 @@ void func_02032cf4(void *arg0) {
     }
 }
 
+void func_02032d74(void *arg0) {
+    u8 *node;
+    if (arg0 != NULL) {
+        return;
+    }
+    node = *(u8 **)(data_02160090 + 8);
+    while (node != NULL) {
+        node[0x41] &= ~4;
+        node = *(u8 **)(node + 0x1c);
+    }
+}
+
+void *func_02032e34(u32 arg0) {
+    u8 *node = *(u8 **)(data_02160090 + 0x24);
+    while (node != NULL) {
+        if (*(u32 *)node == arg0) {
+            return node;
+        }
+        node = *(u8 **)(node + 0x14);
+    }
+    return NULL;
+}
+
 void func_02032ff8(void) {
     data_02160090[0x7e] = 1;
 }
