@@ -238,6 +238,27 @@ void func_0200462c(void) {
     data_0215cd40[2] = 0;
 }
 
+void func_02004668(void) {
+    s32 val = func_02005440();
+    data_0215cd40[0] = val;
+    switch (val) {
+    case 2:
+    case 3:
+        data_0215cd40[4] = 0x06800000;
+        break;
+    case 8:
+    case 0xc:
+        data_0215cd40[4] = 0x06840000;
+        break;
+    case 1:
+        data_0215cd40[4] = 0x067e0000;
+        break;
+    case 4:
+        data_0215cd40[4] = 0x06820000;
+        break;
+    }
+}
+
 void func_020046f8(void *arg0, u32 arg1) {
     u32 dst = data_0215cd40[4];
     if (data_02145ba4 != -1) {
