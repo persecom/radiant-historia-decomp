@@ -34,6 +34,26 @@ u32 func_02009d2c(void) {
     return ret;
 }
 
+s32 func_02009d58(u32 arg0) {
+    s32 irq = func_02008128();
+    u32 cur = data_0215d1b8[1];
+    s32 ret;
+    if (arg0 > cur) {
+        if (arg0 - cur < 0x80000000U) {
+            ret = 0;
+        } else {
+            ret = 1;
+        }
+    } else {
+        ret = 1;
+        if (cur - arg0 >= 0x80000000U) {
+            ret = 0;
+        }
+    }
+    func_0200813c(irq);
+    return ret;
+}
+
 s32 func_0200a4f4(u8 *arg0) {
     return *(s32 *)(arg0 + 0x38);
 }
