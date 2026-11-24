@@ -147,7 +147,7 @@ s32 func_02028420(u8 *arg0, u8 *arg1) {
             u32 x;
             u16 idx;
             node = *(u8 **)(data_02160a6c + 0xb8);
-            mask = zero | (1U << v1);
+            mask |= (1U << v1);
             while (node != NULL) {
                 u8 *info = *(u8 **)(node + 0x118);
                 if (*(u32 *)(info + 0x70) != zero) {
