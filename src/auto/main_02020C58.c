@@ -130,6 +130,22 @@ void func_0202153c(s32 arg0) {
     func_0202147c(arg0);
 }
 
+s32 func_02021570(u32 *arg0, u32 arg1, u32 arg2) {
+    if (arg0[0] != 0x6d63) {
+        return 0;
+    }
+    if (arg0[1] != 0) {
+        return 0;
+    }
+    if (((u16 *)arg0)[6] != arg1) {
+        return 0;
+    }
+    if (((u16 *)arg0)[7] != arg2) {
+        return 0;
+    }
+    return 1;
+}
+
 s32 func_02021a28(void) {
     return func_02021428(&func_02021618);
 }
