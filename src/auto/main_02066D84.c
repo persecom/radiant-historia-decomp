@@ -17,6 +17,30 @@ extern void func_0210dbd0(void *);
 extern void func_0206713c(s32, s32);
 extern void func_0206ed38(void);
 extern void func_02067744(void);
+s32 func_0210c2f4(void *,void *);
+s32 func_02002404(s32,s32);
+void func_02066d84(void) {
+u8 *p=data_021600e0[1];
+switch(p[0xe0]) { case 3: case 4:
+*(s32 *)(p+0xfc)=*(s32 *)(p+0x16c);
+*(s32 *)(p+0x100)=*(s32 *)(p+0x174);
+if(func_0210c2f4(p+0x16c,p+0x160)>3) {
+s32 a=func_02002404(*(s32 *)(p+0x160)-*(s32 *)(p+0x16c),*(s32 *)(p+0x168)-*(s32 *)(p+0x174));
+a=(a%65536)>>4;
+s32 x=data_0213a394[a*2], y=data_0213a394[a*2+1];
+*(s32 *)(p+0x16c)+=(x*3)>>12;
+*(s32 *)(p+0x174)+=(y*3)>>12;
+} else {
+*(UnkVec66 *)(p+0x16c)=*(UnkVec66 *)(p+0x160);
+(*(void (**)(void))(p+0x178))();
+}
+break; default:
+*(UnkVec66 *)(p+0xfc)=*(UnkVec66 *)(p+0x50);
+}
+*(s32 *)(p+0x44)=(*(s32 *)(p+0xfc) * *(s32 *)(p+0x6c))/4096+160;
+*(s32 *)(p+0x48)=(*(s32 *)(p+0x100) * *(s32 *)(p+0x6c))/4096+88;
+}
+
 void func_02066eac(s32 arg0) {
     s32 val = 0x3f6;
     if (data_021600e8 != NULL) {
