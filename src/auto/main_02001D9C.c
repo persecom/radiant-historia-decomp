@@ -84,7 +84,9 @@ void func_02002194(const s32 *a, const s32 *b, s32 *ab) {
 }
 
 s32 func_02002214(const s32 *v) {
-    s64 sum = (s64)v[0] * v[0] + (s64)v[1] * v[1] + (s64)v[2] * v[2];
+    s64 sum = (s64)v[1] * v[1];
+    sum += (s64)v[0] * v[0];
+    sum += (s64)v[2] * v[2];
     *(volatile u16 *)0x040002b0 = 1;
     *(volatile u64 *)0x040002b8 = (u64)sum << 2;
     while (*(volatile u16 *)0x040002b0 & 0x8000) {
@@ -214,6 +216,15 @@ void func_02002594(void) {
 void func_020026e0(s32 arg0) {
     u32 v = (u32)arg0 << 24;
     *(volatile u16 *)0x4000004 = (*(volatile u16 *)0x4000004 & 0x3f) | (v >> 16) | ((arg0 & 0x100) >> 1);
+}
+
+void func_02002708(s32 arg0) {
+    volatile u16 *reg = (volatile u16 *)0x4000004;
+    if (arg0 != 0) {
+        *reg |= 8;
+    } else {
+        *reg &= 0xfff7;
+    }
 }
 
 extern u16 data_02145ba0;
