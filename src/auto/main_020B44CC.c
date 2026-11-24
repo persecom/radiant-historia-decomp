@@ -211,7 +211,7 @@ s32 func_020b4c60(u32 arg0, u32 arg1, u32 arg2, void *arg3, u8 arg4, u8 arg5) {
 }
 
 void func_020b4cd8(u32 arg0, s32 arg1) {
-    u8 *p = *(u8 **)(*(u8 **)data_021626e8 + 0x10);
+    u8 *p = *(u8 **)(data_021626e8 + 0x10);
     if (arg1 == 1) {
         *(u32 *)(p + 0x1c) |= arg0;
         return;
@@ -247,11 +247,12 @@ void func_020b52f4(s32 arg0) {
 }
 
 void func_020b532c(u32 arg0) {
-    u8 *p = *(u8 **)(data_021601e8 + 0x14);
+    u8 *p = *(u8 **)(*(u8 **)data_021601e8 + 0x14);
+    volatile u32 *field = (volatile u32 *)(p + 0x108);
     if (arg0 != 0) {
-        *(u32 *)(p + 0x108) |= 0x20;
+        *field |= 0x20;
         return;
     }
-    *(u32 *)(p + 0x108) &= ~0x20;
+    *field &= ~0x20;
 }
 
