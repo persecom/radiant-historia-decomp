@@ -116,15 +116,19 @@ void func_02118ed0(u8 *arg0, u32 arg1, u32 arg2) {
 }
 
 extern void func_02118efc(void *);
+extern void func_02008df0(s32, void *, s32);
+extern void func_02117d9c(void *);
+extern void func_0211a5fc(void *, s32, s32, s32, u32, s32, s32, s32);
+extern void func_021190bc(void *, void *);
 void func_02118eec(u32 *arg0, u32 arg1) {
     *arg0 = arg1;
     func_02118efc(arg0);
 }
 
-extern void func_02117e4c(void *);
+extern void func_02117e4c(void *, void *);
 extern void func_02118f24(void *);
-void func_021190bc(void *arg0) {
-    func_02117e4c(arg0);
+void func_021190bc(void *arg0, void *arg1) {
+    func_02117e4c(arg0, arg1);
     func_02118f24(arg0);
 }
 
