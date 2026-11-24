@@ -4,6 +4,7 @@ typedef struct { u8 pad0[4]; void (*callback)(s32,s32,s32); u8 pad8[8]; u16 f10,
 
 extern u8 data_0215f000[];
 extern s32 data_0215f01c[];
+typedef struct { u16 x,y,z,w; } Coord0200e138;
 extern s32 func_0200a6e4(s32,u32,s32);
 static inline s32 Send0200dcd4(u32 a, u32 b) {
  if(func_0200a6e4(6,(b&255)|0x02000100,0)<0) return 0;
