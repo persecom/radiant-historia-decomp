@@ -1,5 +1,13 @@
 /* 52 functions from 0x02008BF4 to 0x02009B24 (main), found by ds-decomp. */
 #include "common.h"
+extern u8 data_0215d480[];
+extern u8 data_0215e480[];
+extern u32 data_0215ec68[];
+extern u32 data_0215d200[];
+extern u32 *data_0215ece0;
+extern void func_02009e60(void);
+extern void func_0200a08c(void);
+extern void func_02009b24(s32);
 
 extern u16 data_0215d1a0;
 extern s32 data_0215d19c;
@@ -145,6 +153,13 @@ void func_02008e50(u32 *src, u32 *dst, s32 size) {
             return;
         }
         *dst = *src++;
+    }
+}
+
+void func_02008eb4(u32 *src, u32 *dst, u32 bytes) {
+    u32 *end = (u32 *)((u8 *)dst + bytes);
+    while (dst < end) {
+        *dst++ = *src++;
     }
 }
 
