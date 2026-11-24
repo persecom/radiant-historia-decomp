@@ -125,6 +125,11 @@ u32 func_02009148(u32 val, u32 *ptr) {
     return __swp(val, ptr);
 }
 
+void func_020094a8(void) {
+    func_02008558(3);
+    func_02008998(0);
+}
+
 s32 func_0200986c(void) {
     return func_02006afc(&data_0215d1a0);
 }
