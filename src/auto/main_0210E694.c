@@ -2,6 +2,10 @@
 #include "common.h"
 
 extern s32 data_02155c94[];
+extern u8 data_02162954[256];
+extern void (*data_0215615c)(void *);
+extern void func_02005ec0(void *, u32, const char *, char *);
+extern int func_020123f0(const u8 *, const u8 *);
 extern char data_02162a80[];
 extern char data_02162b00[];
 extern u16 data_02162a54[];
@@ -287,6 +291,26 @@ void *func_0210edac(u32 arg0, u8 arg1) {
         func_021167f0(data_02162a74, p);
     }
     return p;
+}
+
+u32 func_0210ee58(s32 arg0, s32 arg1, s32 arg2) {
+    u8 *p;
+    u32 ret;
+
+    if (data_02162b00[0] == '\0') {
+        return (*(u32 (**)(s32, s32, s32))((u8 *)data_02162a54 + 0xc))(arg0, arg1, arg2);
+    }
+    data_02162a54[0]++;
+    p = func_0210ec9c(data_02162b00, data_02162a54[0], 0);
+    if (p != NULL) {
+        *(u16 *)(p + 0x14) += 1;
+        return *(u32 *)(p + 8);
+    }
+    ret = (*(u32 (**)(s32, s32, s32))((u8 *)data_02162a54 + 0xc))(arg0, arg1, arg2);
+    if (ret != 0) {
+        func_0210edac(ret, 0);
+    }
+    return ret;
 }
 
 s32 func_0210f170(const char *arg0, s32 arg1, s32 arg2, s32 arg3) {
