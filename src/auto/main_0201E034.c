@@ -8,6 +8,46 @@ typedef union {
     u64 d;
     struct { u32 lo, hi; } w;
 } DoubleBits;
+double func_0201e034(double x) {
+s32 hi=((s32 *)&x)[1];
+s32 exp=((hi>>20)&0x7ff)-1023;
+u32 lo=((u32 *)&x)[0];
+s32 mask;
+u32 old;
+if(exp<20) {
+if(exp<0) {
+if(1.0e300+x>0.0) {
+if(hi>=0) {lo=0;hi=0;}
+else if(((hi&0x7fffffff)|lo)!=0) {lo=0;hi=0xbff00000;}
+}
+} else {
+mask=0xfffff;
+if(((hi&(mask>>exp))|lo)==0)return x;
+if(1.0e300+x>0.0) {
+if(hi<0)hi+=0x100000>>exp;
+hi&=~(mask>>exp);lo=0;
+}
+}
+} else if(exp>51) {
+if(exp==1024)return x+x;
+return x;
+} else {
+u32 m=0xffffffff;
+s32 shift=exp-20;
+old=lo;
+if(!(lo&(m>>shift)))return x;
+if(1.0e300+x>0.0) {
+if(hi<0) {
+if(exp==20)hi++;
+else {lo+=1U<<(52-exp);if(lo<old)hi++;}
+}
+lo&=~(m>>shift);
+}
+}
+((s32 *)&x)[1]=hi;((u32 *)&x)[0]=lo;
+return x;
+}
+
 u64 func_0201e1f8(u64 x, s32 *exp, ...) {
     union { u64 d; struct { u32 lo, hi; } w; } u;
     u32 hx;
