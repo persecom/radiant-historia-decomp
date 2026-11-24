@@ -8,6 +8,17 @@ extern s32 func_02021428(u16 *);
 extern void (*ARM9_CTOR_START[])(void);
 extern u32 *data_02162730;
 extern u32 func_021155c8(u32);
+extern void func_0210d85c(s32);
+extern u32 func_021154a4(u32);
+extern void func_021154f4(u32, u32);
+extern void func_021156bc(s32, u32);
+extern void func_021160c0(void *, s32, s32);
+extern void func_0210d114(u32, void *);
+extern void func_0211568c(s32, u32);
+extern u8 data_02145fc8[];
+extern void *data_02155c80;
+extern s32 data_02160050;
+void func_020211f0(void *arg0, s32 arg1);
 void func_0202119c(void) {
 }
 
