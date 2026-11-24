@@ -108,19 +108,19 @@ void func_0211ceec(u8 *arg0, BOOL arg1) {
 
 #pragma schedule off
 u32 func_0211cf3c(u8 *arg0) {
-    u32 key = *(u32 *)(arg0 + 0x2c);
-    u16 flag = *(u16 *)(arg0 + 0x32);
-    *(u16 *)(arg0 + 0x32) = flag & ~1;
-    *(u32 *)(arg0 + 0x2c) = 0;
-    return key;
+u32 key;
+*(u16 *)(arg0+0x32)&=~1;
+key=*(u32 *)(arg0+0x2c);
+*(u32 *)(arg0+0x2c)=0;
+return key;
 }
 
 s32 func_02001fb0(s32,s32);
-#pragma schedule off
+#pragma schedule on
 void func_0211cf5c(void *arg0,void *arg1,void *arg2,void *arg3){
  u8 *base=arg0,*desc=arg1,*tex=arg2;
  u32 *info=arg3;
- u32 i=0;
+ u32 i;
  u32 addr;
  u8 *indices=base+*(u16 *)desc;
  u32 key;
@@ -128,6 +128,7 @@ void func_0211cf5c(void *arg0,void *arg1,void *arg2,void *arg3){
  else key=*(u32 *)(tex+0x18);
  addr=(u16)key;
  addr &=~0xe0000000;
+ i=0;
  for(;i<desc[2];i++){
  u32 h;
  u8 *mat;
