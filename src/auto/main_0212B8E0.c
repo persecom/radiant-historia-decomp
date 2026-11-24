@@ -325,3 +325,10 @@ void func_0212c7e0(void *arg0) {
     func_02129a2c(*(void **)((u8 *)arg0 + 4));
 }
 
+void func_0212c624(void *);
+void func_0212a53c(void *);
+void func_0212c7f0(u8 *arg0) {
+    func_0212c624(arg0);
+    arg0[1] = 1;
+}
+
