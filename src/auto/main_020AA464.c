@@ -142,6 +142,21 @@ void *func_020aa7fc(void **arg0) {
     return *arg0;
 }
 
+u8 *func_020aa818(u8 **arg0, u16 arg1) {
+    u8 *node;
+    if (arg0 == NULL) {
+        return NULL;
+    }
+    node = *arg0;
+    while (node != NULL) {
+        if (*(u16 *)node == arg1) {
+            return node;
+        }
+        node = *(u8 **)(node + 0x18);
+    }
+    return NULL;
+}
+
 extern void func_020ade8c(s32);
 void func_020aad6c(void) {
     func_020ade8c(1);
