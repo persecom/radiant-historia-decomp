@@ -138,6 +138,21 @@ void func_0209353c(u16 id, s16 x, s16 y) {
     }
 }
 
+void *func_020935ec(void *arg0, s32 arg1) {
+    u8 *node;
+    if (arg0 == NULL) {
+        return NULL;
+    }
+    node = *(u8 **)((u8 *)arg0 + 0x20);
+    while (node != NULL) {
+        if (*(s32 *)(node + 0x48) == arg1) {
+            return node;
+        }
+        node = *(u8 **)(node + 0x50);
+    }
+    return NULL;
+}
+
 void *func_02092c1c(void);
 void *func_02092c38(void);
 u8 *func_02093624(s32 arg0) {
