@@ -1,7 +1,7 @@
 /* 4 functions from 0x020DB864 to 0x020DC7EC (main), found by ds-decomp. */
 #include "common.h"
 extern u8 *data_02160204, *data_02160258, *data_02160a6c, *data_02160244;
-extern u32 data_0216025c[];
+extern volatile u32 data_0216025c[];
 extern u8 *func_020f0a5c(u16);
 extern u8 *func_020ddb90(u16);
 extern u8 *func_020bf4dc(s32);
@@ -156,20 +156,20 @@ u16 id;
 s32 one=1, zero=0;
 p=func_020f0a5c(*(u16 *)(data_02160204+0x7c));
 if(p){
-*(u32 *)(p+0x14)|=1;
-q=*(u8 **)p; r=data_0216025c[1];
+q=*(u8 **)p;
+*(u32 *)(p+0x14)|=1; r=((u8 *)data_0216025c[1]);
 *(u32 *)(q+0x6c)=*(u32 *)(r+0x6c);
 *(u32 *)(q+0x70)=*(u32 *)(r+0x70);
 *(u32 *)(q+0x74)=*(u32 *)(r+0x74);
 *(u32 *)(q+0xf4)=one;
 if(*(u16 *)(data_02160204+0x7c)==15){
-*(u32 *)(data_0216025c[1]+0x6c)=0x160000;
-*(u32 *)(data_0216025c[1]+0x74)=0x1ba000;
+*(u32 *)(((u8 *)data_0216025c[1])+0x6c)=0x160000;
+*(u32 *)(((u8 *)data_0216025c[1])+0x74)=0x1ba000;
 *(u16 *)(data_02160258+0x8e)=0x400;
 *(u16 *)(data_02160258+0x90)=0x400;
 *(u16 *)(data_02160258+0x92)=0x100;
 *(u16 *)(data_02160258+0x94)=0x80;
-r=data_0216025c[1];
+r=((u8 *)data_0216025c[1]);
 *(u32 *)(q+0x6c)=*(u32 *)(r+0x6c);
 *(u32 *)(q+0x70)=*(u32 *)(r+0x70);
 *(u32 *)(q+0x74)=*(u32 *)(r+0x74);
