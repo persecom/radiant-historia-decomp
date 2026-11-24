@@ -113,6 +113,30 @@ call_it:
     }
 }
 
+void func_020ae3f8(s32 index,s32 arg1,s32 arg2,s16 x,s16 y,s8 z){
+u8 *p;
+u32 data=0;
+s32 off;
+p=func_020adda8();
+off=index*0x50;
+func_020a994c(p+0x170+off);
+*(u32 *)(*(u8 **)(p+0x16c+off)+0x40)=1;
+func_020a8810(*(u8 **)(p+0x16c+off),arg1);
+*(s32 *)(*(u8 **)(p+0x16c+off)+0x4c)=z<<12;
+*(s32 *)(*(u8 **)(p+0x16c+off)+0x44)=x<<12;
+*(s32 *)(*(u8 **)(p+0x16c+off)+0x48)=y<<12;
+if(index<5)data=*(u32 *)(p+0x13c+index*4);
+else if(index==5)data=*(u32 *)(p+0x14c);
+else if(index==6)data=*(u32 *)(p+0x13c);
+else if(index==7){
+if((u32)(func_020b3f14((u16)arg2)-1)<=2)data=*(u32 *)(p+0x160);
+else data=*(u32 *)(p+0x15c);
+}
+func_020a9610(p+0x1a4+index*0x50U,data,arg2,*(u8 **)(p+0x16c+off),0,0);
+func_020a98ac(p+0x170+index*0x50U);
+func_020a98f4(p+0x170+index*0x50U);
+}
+
 void func_020ae50c(s32 arg0) {
     u8 *base = (u8 *)func_020adda8();
     u8 *obj = *(u8 **)(base + arg0 * 0x50 + 0x16c);
