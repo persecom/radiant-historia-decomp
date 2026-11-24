@@ -1,6 +1,11 @@
 /* 10 functions from 0x02046E30 to 0x0204798C (main), found by ds-decomp. */
 #include "common.h"
 extern u8 *data_02160204;
+extern void *data_02155c3c;
+extern void func_02108ffc(void);
+extern void *func_0210c594(s32, void *);
+extern void func_021167ac(void *, u32);
+extern void func_02047278(u8 *);
 
 typedef struct Obj_02046e30 {
     u8 pad_00[0xb4];
