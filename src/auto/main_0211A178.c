@@ -1,6 +1,6 @@
 /* 28 functions from 0x0211A178 to 0x0211B0E8 (main), found by ds-decomp. */
 #include "common.h"
-extern const u32 data_02144d9c[5];
+extern u32 data_02144d9c[5];
 extern u32 data_021701d8[4];
 extern u32 data_021701cc[3];
 extern u16 data_02144e48[8];
@@ -77,6 +77,30 @@ void func_0211a698(u32 arg0, u32 count, u32 arg2) {
         *(u32 *)(p + 0x2c) = 0;
         i++;
     } while (i < count);
+}
+
+void func_0211a700(void) {
+u32 i;
+s32 j;
+u8 *p;
+u32 base;
+u32 kind;
+s32 flag;
+for(i=0;i<data_021701cc[1];i++){
+p=(u8 *)data_021701cc[2]+i*0x30;
+if(*(u32 *)(p+0x1c)!=0){
+for(j=0;j<3;j++){
+flag=0;
+if((*(u32 *)(p+0x24)&(1<<j)) && (*(u32 *)(p+0x20)&(1<<j))) flag=1;
+if(flag){
+base=j==0 ? *(u32 *)(p+0x14) : *(u32 *)(p+0x10);
+kind=data_02144d9c[j];
+if(((s32 (*)(u32,s32,u32,u32))data_021701cc[0])(kind,func_02118e8c(p,j),base+*(u32 *)(p+0x28),*(u32 *)(p+0x2c))!=0) *(u32 *)(p+0x24)&=~(1<<j);
+}
+}
+*(u32 *)(p+0x20)=0;
+}
+}
 }
 
 void func_0211a7ec(s32 arg0, u32 arg1, u32 arg2) {
