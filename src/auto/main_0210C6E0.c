@@ -2,9 +2,14 @@
 #include "common.h"
 
 extern void func_0210cce4(s32);
-extern u32 func_0210c924(void);
-extern void func_0210c970(u32);
+extern void *func_0210c924();
+extern void func_0210c970(void *);
 extern void func_0210c9cc(void);
+extern u8 data_0216273c[];
+extern u8 data_021626a0[];
+extern u8 data_021626b6[];
+extern u16 data_021626ce[];
+extern u32 data_02155c3c;
 void func_0210ca6c(void) {
     u32 r4 = func_0210c924();
     func_0210c9cc();
