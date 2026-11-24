@@ -323,6 +323,14 @@ void *func_021287d0(void *arg0) {
     return ret;
 }
 
+void *func_021287f4(void *arg0) {
+    if (arg0 == NULL) {
+        func_0212bda8(data_021569b8);
+        return NULL;
+    }
+    return (void *)func_0212eba4(*(void **)((u8 *)arg0 + 0xc));
+}
+
 extern void func_02128878(u32, u32, u32);
 void func_02128820(u32 arg0, u32 arg1, u32 arg2) {
     func_0212a9f4();
