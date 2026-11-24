@@ -13,6 +13,17 @@ typedef struct Callbacks_0211c424 { u8 pad[0x20]; void (*before)(void *, void *,
 
 extern void func_02008df0(s32, void *, s32);
 extern u8 *data_021701f8;
+s32 func_0211c5d4(u8 *);
+static inline u16 FlipX_0211c1f8(u32 *p, s32 shape) {
+    u16 x;
+        if(func_0211c5d4(data_021701f8)) {
+            s16 tx=ObjX_0211c1f8((Obj_0211c1f8 *)p);
+            x=(u16)-(tx+data_02144d84[(shape&0xc000)>>14][(shape&0xc0000000)>>30]);
+        }
+        else x=(u16)ObjX_0211c1f8((Obj_0211c1f8 *)p);
+
+    return x;
+}
 extern s32 func_0211ccb0(u8 *, u8 *);
 
 typedef struct Unk_02155ef8 {
