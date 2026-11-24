@@ -15,3 +15,6 @@ void AutoloadCallback(void) {
 void func_02000b60(void) {
 }
 
+void func_02000b64(void) {
+}
+
