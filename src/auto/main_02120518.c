@@ -464,6 +464,7 @@ got_node:
 void func_02121314(u8 *arg0) {
 u8 index=data_02170460->unk00[1];
 u8 *dict=data_02170460->unkd4;
+s32 axis;
 u8 *node;
 u16 flags;
 s16 *v;
@@ -483,13 +484,13 @@ v=(s16 *)(node+4);
 if(!(flags&1)) v+=6;
 if(!(flags&2)) {
 if(flags&8) {
-s32 axis=(flags&0xf0)>>4;
+axis=(flags&0xf0)>>4;
+s32 b;
 s32 a=v[0];
-s32 b=v[1];
+b=v[1];
 s32 unit;
 func_02009138(arg0+0x28);
-unit=0x1000;
-if(*(u16 *)node&0x100) unit=-unit;
+unit=(*(u16 *)node&0x100) ? -0x1000 : 0x1000;
 *(s32 *)(arg0+axis*4+0x28)=unit;
 *(s32 *)(arg0+data_02144f4c[axis*4]*4+0x28)=a;
 *(s32 *)(arg0+data_02144f4d[axis*4]*4+0x28)=b;
