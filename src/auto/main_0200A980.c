@@ -70,6 +70,46 @@ void func_0200af30(u8 *s) {
     func_0200aeac((void *)next);
 }
 
+s32 func_0200afb4(void *arg0,s32 arg1,s32 arg2) {
+u8 *p=arg0;
+u8 *arc;
+u32 irq;
+u32 zero=0;
+s32 ret=zero;
+arc=*(u8 **)(p+8);
+u32 busy=(*(u32 *)(p+12)&1)?1:ret;
+u8 *next;
+if(busy) func_02008414();
+if(!arc){*(s32 *)(p+20)=6; return 0;}
+*(s32 *)(p+20)=2;
+*(u32 *)(p+12)=(*(u32 *)(p+12)&~0xff00)|(arg1<<8);
+*(u32 *)(p+12)|=1;
+*(u32 *)p=zero;
+if(arg2) *(u32 *)(p+12)|=4;
+irq=func_02008128();
+if(*(u32 *)(arc+20)&0x80) func_0200a884(p,3);
+else {
+u8 **tail=(u8 **)(arc+8);
+while(*tail) tail=(u8 **)*tail;
+*tail=p;
+}
+zero=0;
+if(*(u8 **)(arc+8)==p && !(*(u32 *)(arc+20)&0x10)) zero=1;
+func_0200813c(irq);
+if(*(s32 *)(p+20)!=3) {
+next=(u8 *)func_0200ad00(arc,zero);
+if(arg2) {
+func_0200af30(p);
+ret=1;
+if(*(s32 *)(p+20)!=0) ret=0;
+} else {
+if(next) func_0200aeac(next);
+ret=1;
+}
+}
+return ret;
+}
+
 u8 *func_0200b0ec(u8 *arg0, s8 *arg1) {
     u32 r6 = func_02008128();
     u8 *r7 = data_0215ed68;
@@ -144,6 +184,52 @@ void func_0200b594(u8 *arg0) {
     func_02008f74(arg0, r4, 0x5c);
     *(u32 *)(r5 + 0x10) = r4;
     *(u32 *)(r5 + 0xc) = r4;
+}
+
+s32 func_0200b5b8(u8 *arg0, s8 *arg1, u32 arg2) {
+    u32 lock;
+    s32 ret = 0;
+    u32 a2 = arg2;
+    s8 *a1 = arg1;
+    u8 *a0 = arg0;
+    lock = func_02008128();
+    void *found = func_0200b0ec(a1, a2);
+    if (found != NULL) goto fail;
+    {
+        u8 **slot = &data_0215ed68;
+        u8 *cur = data_0215ed68;
+        while (cur != NULL) {
+            slot = (u8 **)(cur + 4);
+            cur = *slot;
+        }
+        *slot = a0;
+    }
+    if (a2 <= 3) {
+        *(u32 *)a0 = 0;
+        func_02012244(a0, a1, a2 + 1);
+        goto done;
+    }
+    if (a2 > 0xf) goto fail;
+    {
+        register s8 *table = data_0215ed78;
+        ret = 0;
+        while (ret < 0x10) {
+            if (table[ret << 4] == 0) {
+                u8 *p = (u8 *)table + (ret << 4);
+                func_02012244(p, a1, a2 + 1);
+                *(void **)a0 = p;
+                goto done;
+            }
+            ret++;
+        }
+    }
+fail:
+    func_02008414();
+    *(u32 *)(a0 + 0x14) |= 1;
+    ret = 1;
+done:
+    func_0200813c(lock);
+    return ret;
 }
 
 u8 *func_0200b6b8(u8 *arg0) {
