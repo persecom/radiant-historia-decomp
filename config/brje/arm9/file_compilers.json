@@ -1,4 +1,5 @@
 {
+  "src/auto/itcm_01FF8000.c": "dsi/1.1",
   "src/auto/main_02001D9C.c": "dsi/1.1",
   "src/auto/main_02002708.c": "dsi/1.1",
   "src/auto/main_02002790.c": "dsi/1.1",
