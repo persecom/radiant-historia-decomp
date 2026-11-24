@@ -181,7 +181,7 @@ void func_020042e4(void) {
 
 extern s32 func_02005418(void);
 extern void func_02005318(u32);
-extern u16 data_0213e4a8[][3];
+extern u8 data_0213e4a8[];
 extern u8 data_0213e4aa[];
 extern u8 data_0213e4ac[];
 void func_020042fc(void *arg0, u32 arg1, u32 arg2) {
