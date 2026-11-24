@@ -88,6 +88,42 @@ void func_0212d21c(u8 *arg0) {
     }
 }
 
+extern void func_02013878(void *, s32, s32);
+void func_0212d288(void *arg0) {
+    u8 *p = (u8 *)arg0;
+    s32 buf[2];
+    s32 minBytes = *(s32 *)(p + 0xa8) * 2;
+    s32 i;
+    s32 samples;
+    s32 bytes;
+
+    for (i = 0; i < *(s8 *)(p + 2); i++) {
+        void *obj = *(void **)(p + 0xc + i * 4);
+        (*(void (**)(void *, s32, s32, void *))(*(u8 **)obj + 0x18))(obj, 0, 0x7fffffff, buf);
+        if (minBytes >= buf[1]) {
+            minBytes = buf[1];
+        }
+        obj = *(void **)(p + 0xc + i * 4);
+        (*(void (**)(void *, s32, void *))(*(u8 **)obj + 0x1c))(obj, 0, buf);
+    }
+
+    samples = minBytes / 2;
+    bytes = samples * 2;
+    if (bytes <= 0) {
+        return;
+    }
+
+    for (i = 0; i < *(s8 *)(p + 2); i++) {
+        void *obj = *(void **)(p + 0xc + i * 4);
+        (*(void (**)(void *, s32, s32, void *))(*(u8 **)obj + 0x18))(obj, 0, bytes, buf);
+        func_02013878((void *)buf[0], 0, bytes);
+        obj = *(void **)(p + 0xc + i * 4);
+        (*(void (**)(void *, s32, void *))(*(u8 **)obj + 0x20))(obj, 1, buf);
+    }
+
+    *(s32 *)(p + 0xa8) -= samples;
+}
+
 void func_0212d4d0(void) {
     s32 i;
     if (*(void (**)(void *))(data_02173df4 + 0xc) != NULL) {
@@ -148,7 +184,7 @@ extern void func_0212a9dc(void);
 extern void func_0212d288(void *);
 extern void func_0212a9e8(void);
 extern void func_0212c824(void *);
-extern void func_0212d3b4(void *);
+static void func_0212d3b4(void *);
 void func_0212d590(void *arg0) {
     func_0212a1dc(*(void **)((u8 *)arg0 + 4));
 }
