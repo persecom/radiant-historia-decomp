@@ -110,3 +110,13 @@ void *func_0203165c(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u16 arg4) {
     return node;
 }
 
+void func_020316d8(void) {
+    void *node;
+    while ((node = *(void **)&data_0216008c->unk2c) != NULL) {
+        func_021168f8(&data_0216008c->unk2c, node);
+        if (node != NULL) {
+            func_0210c5dc(node);
+        }
+    }
+}
+
