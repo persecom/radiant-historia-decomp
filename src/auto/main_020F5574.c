@@ -1,5 +1,7 @@
 /* 17 functions from 0x020F5574 to 0x020F6458 (main), found by ds-decomp. */
 #include "common.h"
+extern const char data_02152030[],data_02152034[],data_02152038[],data_0215203c[];
+extern const char *func_0210cd20(s32,s32);
 extern s32 func_ov000_02176da0(void *, s32, s32);
 static inline s32 check_02176da0(void *callback) { s32 ok=0; if (-1 == func_ov000_02176da0(callback,0,0)) ok=1; return ok; }
 extern s32 func_ov000_02176e18(void *, s32, s32);
