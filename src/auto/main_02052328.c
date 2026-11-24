@@ -63,10 +63,19 @@ void func_02052904(s32 arg0) {
     }
 }
 
+void func_0205295c(void) {
+    u8 *p = func_02047820(0);
+    if (p != NULL) {
+        *(u32 *)(p + 0xac) |= 0x2000;
+        *(u8 *)(p + 0xa3) = 0x2d;
+    }
+}
+
 u32 func_02052a54(void *arg0, s32 arg1) {
-    u32 ret = 0;
     s32 val;
-    if (func_020dd9b4(arg0, &val), val != 0) {
+    u32 ret = 0;
+    func_020dd9b4(arg0, &val);
+    if (val != 0) {
         ret |= 2;
     }
     if (arg1 == func_02117d80()) {
