@@ -89,26 +89,27 @@ u8 func_02084fa8(u16 arg0) {
 }
 
 void func_02084fd0(void) {
- u8 order[7]; Entry_02084fd0 entries[7];
- s16 n=0,i,j;
+ s16 i,j,n=0;
+ Order_02084fd0 order=*(const Order_02084fd0 *)data_02140c70; Entry_02084fd0 entries[7];
  u8 *base;
- for(i=0;i<7;i++) order[i]=data_02140c70[i];
+ s16 k;
+
  base=data_0216010c;
  for(i=0;i<7;i++) {
   for(j=0;j<7;j++) {
-   u8 *p=base+j*8;
-   if(order[i]==p[0x618]+1) {
-    entries[n].a=p[0x618]; entries[n].b=p[0x619]; entries[n].value=*(u32 *)(p+0x61c); n++;
+   u8 *p=data_0216010c+(u32)j*8;
+   if(order.bytes[(u32)i]==p[0x618]+1) {
+    entries[(u32)n].a=p[0x618]; entries[(u32)n].b=p[0x619]; entries[(u32)n].value=*(u32 *)(p+0x61c); n++;
    }
   }
  }
- n=0;
+ k=0;
  for(i=0;i<7;i++) {
-  if(entries[i].a || entries[i].b) {
-   data_0216010c[n*8+0x618]=entries[i].a;
-   data_0216010c[n*8+0x619]=entries[i].b;
-   *(u32 *)(data_0216010c+n*8+0x61c)=entries[i].value;
-   n++;
+  if(entries[(u32)i].a || entries[(u32)i].b) {
+   data_0216010c[(u32)k*8+0x618]=entries[(u32)i].a;
+   data_0216010c[(u32)k*8+0x619]=entries[(u32)i].b;
+   *(u32 *)(data_0216010c+(u32)k*8+0x61c)=entries[(u32)i].value;
+   k++;
   }
  }
 }
