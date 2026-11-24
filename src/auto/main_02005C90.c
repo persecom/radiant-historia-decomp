@@ -35,6 +35,10 @@ s32 func_02005c90(u16 arg0, void *arg1, void (*arg2)(void), BOOL arg3) {
     return r4;
 }
 
+s32 func_02005cfc(u16 arg0, void *arg1, void *arg2) {
+    return func_02005c90(arg0, arg1, (void (*)(void))arg2, 0);
+}
+
 s32 func_02005d0c(u16 arg0) {
     return func_02005c0c(arg0, (void *)0x02ffffe8, func_02005d70, 1);
 }
