@@ -11,6 +11,17 @@ extern void func_0210da14(void *);
 extern void func_0210dba0(void *);
 extern void func_0210dbe8(void *);
 extern void func_0210dc70(void *);
+extern u8 data_02160ad8[];
+extern u8 data_02160ac4[];
+extern u8 data_02160ab8[];
+extern void *data_02155c3c;
+extern void func_0210db10(void *);
+extern void func_0210db58(void *);
+extern void func_0210dae0(void *);
+extern void func_0210db40(void *);
+extern void func_020ed0bc(void);
+extern void *func_0210c594(s32, void *);
+extern void *func_0210853c(void);
 void func_020ec548(u8 *arg0);
 void func_020ec218(void) {
     u8 **p = &data_02160ab4;
