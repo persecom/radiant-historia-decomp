@@ -166,6 +166,25 @@ void *func_02095228(u32 arg0, u16 arg1, u32 arg2) {
     return node;
 }
 
+extern void *func_0203222c(void);
+extern void func_02095374(u32, void *, s32, s32);
+void func_020952b4(u8 *arg0) {
+    s16 idx;
+    u8 *cur;
+    if (arg0 == NULL) {
+        return;
+    }
+    idx = *(s16 *)(arg0 + 0x10);
+    cur = (u8 *)func_02095198();
+    while (cur != NULL) {
+        if (*(u16 *)(cur + 0x10) > idx) {
+            *(u16 *)(cur + 0x10) -= 1;
+        }
+        cur = *(u8 **)(cur + 4);
+    }
+    func_020951e8(arg0);
+}
+
 void *func_020952f8(u16 arg0) {
     u8 *node = (u8 *)func_02095198();
     while (node != NULL) {
