@@ -73,6 +73,34 @@ void func_02106aa0(void) {
     }
 }
 
+void func_02106bec(s16 *arg0) {
+    UnkNode_02106aa0 *node;
+    if (data_02161064 == NULL) {
+        return;
+    }
+    node = func_0210c594(0x34, data_02155c3c);
+    node->unk03 = arg0[0];
+    node->unk04 = arg0[1];
+    node->unk06 = arg0[2];
+    node->unk08 = arg0[3];
+    node->unk0a = arg0[4];
+    node->unk0c = arg0[5];
+    node->unk0e = arg0[6];
+    node->unk10 = arg0[7];
+    node->unk12 = arg0[8];
+    node->unk24 = arg0[9] + 0x65;
+    node->unk26 = arg0[10];
+    node->unk00 = arg0[11];
+    node->unk02 = 1;
+    func_021167f0(&data_02161064->unk34, node);
+}
+
 void func_021071fc(void) {
     func_0200fa3c((u16)data_02155968);
 }
+
+extern void func_0200fa4c(u16);
+void func_0210721c(void) {
+    func_0200fa4c((u16)data_02155968);
+}
+
