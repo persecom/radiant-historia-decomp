@@ -26,6 +26,21 @@ void func_0209b570(void) {
     }
 }
 
+s32 func_0201fd28(s32,s32);
+void func_021099f8(void *);
+void func_0209b974(s32 x,s32 y,s32 a,s32 b,u16 *p,u8 flag) {
+u16 value;
+*(volatile u32 *)0x40004a4=0x1f0080;
+value=func_0201fd28(a*83,b);
+if(flag==0){
+p[4]=value; p[5]=4; p[6]=0x33f7; p[1]=x+1; p[2]=y+1; p[3]=24;
+func_021099f8(p);
+} else if(*(s8 *)(data_02160120+0x69a)<2){
+p[4]=value; p[5]=4; p[6]=0x33f7; p[1]=x+1; p[2]=y+1; p[3]=24;
+func_021099f8(p);
+}
+}
+
 void *func_0209c0d0(void) {
     void *ptr = func_0210c594(0xc, data_02155c3c);
     func_021167ac(ptr, 0x24);
