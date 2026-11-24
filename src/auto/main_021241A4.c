@@ -2,6 +2,8 @@
 #include "common.h"
 
 extern void func_02003c78(void);
+extern void func_02002058(s32, s32);
+extern s32 func_02001ff4(void);
 void func_021241a4(s32 *arg0, u8 *arg1) {
     s32 r2 = *(s32 *)(arg1 + 0x24);
     u16 r3 = *(u16 *)(arg1 + 0x2c);
