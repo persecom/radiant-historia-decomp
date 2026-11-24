@@ -69,7 +69,11 @@ typedef struct {
     Flags_0210afcc flags;
 } Unk_0210afcc;
 
-extern void func_0210b300(void);
+extern void func_0210b300();
+extern u8 data_02170248[];
+extern void func_02120754(void *,s32,s32,u32);
+extern void func_021205ec(u32,const void *,u32);
+extern void func_0211e078(void *);
 s32 func_0210a7e4(void *arg0,s32 arg1,s32 arg2) {
 void *allocation; u32 *p=arg0; u32 zero; u32 *info; u32 extra; u32 size; u8 name[256];
 func_02005e80(name,data_02155c00,arg1);
