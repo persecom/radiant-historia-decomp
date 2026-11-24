@@ -9,6 +9,9 @@ typedef struct {
 } TouchData_02064aac;
 
 extern u8 *data_02160a6c;
+extern char data_02146654[];
+extern void *func_021092d8(void *);
+extern void func_02005e80(void *, const char *, ...);
 extern TouchData_02064aac data_02162908;
 extern void *data_02155c3c;
 extern u16 data_021628f8;
