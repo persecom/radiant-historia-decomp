@@ -15,7 +15,7 @@ extern u8 *data_02160238;
 extern u32 data_0216023c;
 extern u8 data_021512f0;
 extern u8 *func_020cda08(u32, u16);
-extern void func_020ccc30(void);
+extern void func_020ccc30();
 extern void func_02021a3c(void);
 extern void func_0210dc88(void);
 extern s32 func_02021a50(void);
