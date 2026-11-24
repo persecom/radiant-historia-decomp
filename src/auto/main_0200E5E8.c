@@ -133,11 +133,11 @@ s32 func_0200e85c(void) {
     return result;
 }
 
-s32 func_0200e8e4(u16 arg0) {
+s32 func_0200e8e4(u32 arg0) {
     if (func_0200ef5c() == 0) {
         return 0;
     }
-    return func_0200e6bc(0x10, arg0, NULL);
+    return func_0200e6bc(0x10, (u16)arg0, NULL);
 }
 
 s32 func_0200e914(s32 *arg0, s32 *arg1) {
