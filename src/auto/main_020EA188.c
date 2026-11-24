@@ -11,6 +11,11 @@ extern s32 func_020f1ffc(void *, s32, s32, s32);
 extern void func_0210c5dc(void *);
 extern void *func_0210eb98(void *, s32);
 extern void func_0210f3ac(void *, void *, s32);
+extern s32 func_0210db70(u32 *);
+extern s32 func_020eaae0(void);
+extern s32 func_020ebddc(void *, s32);
+extern void func_020dd810(void *, s32, s32);
+extern u32 data_02160a6c;
 s32 func_020ea574(u8 *arg0, u32 arg1, s32 arg2) {
     s32 res;
     if (*(u16 *)(*(u8 **)(*(u8 **)(*(u8 **)arg0 + 0x58) + 0xc)) <= arg1) {
