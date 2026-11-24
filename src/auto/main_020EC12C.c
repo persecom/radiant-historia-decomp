@@ -11,6 +11,10 @@ extern void func_0210da14(void *);
 extern void func_0210dba0(void *);
 extern void func_0210dbe8(void *);
 extern void func_0210dc70(void *);
+void func_020ec98c(u32 arg0) {
+    *(u32 *)(data_02160ab4 + 0x64) = arg0;
+}
+
 void func_020ecaa4(void **arg0) {
     func_02108594(*arg0);
     if (arg0 != NULL) {
