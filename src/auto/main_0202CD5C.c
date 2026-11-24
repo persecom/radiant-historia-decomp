@@ -289,3 +289,25 @@ void func_0202dacc(void *arg0, u8 *arg1, u16 arg2, s32 *arg3) {
     }
 }
 
+void func_0202dbc8(void *arg0,u8 *arg1,u16 arg2) {
+s32 col=(s8)arg1[0]%3;
+s32 row;
+s32 visited[9];
+s32 i;
+if(col==(s8)arg1[2]%3){
+func_0202d998(arg0,arg1,(u16)col);
+func_0202d998(arg0,arg1,(u16)(col+3));
+func_0202d998(arg0,arg1,(u16)(col+6));
+}
+row=(s8)arg1[0]/3;
+if(row==(s8)arg1[2]/3) {
+s32 pos=row*3;
+func_0202d998(arg0,arg1,(u16)pos);
+func_0202d998(arg0,arg1,(u16)(pos+1));
+func_0202d998(arg0,arg1,(u16)(pos+2));
+}
+if((s8)arg1[3]==-1) return;
+for(i=0;i<9;i++) visited[i]=0;
+func_0202dacc(arg0,arg1,arg2,visited);
+}
+
