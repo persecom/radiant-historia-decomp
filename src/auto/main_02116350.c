@@ -319,6 +319,24 @@ void *func_021169cc(void *list, const void *memBlock) {
     return NULL;
 }
 
+void *func_02116b1c(void *list, void *block) {
+    u8 *l = (u8 *)list;
+    u8 *b = (u8 *)block;
+    u8 *prev = *(u8 **)(b + 8);
+    u8 *next = *(u8 **)(b + 0xc);
+    if (prev != NULL) {
+        *(u8 **)(prev + 0xc) = next;
+    } else {
+        *(u8 **)(l + 0) = next;
+    }
+    if (next != NULL) {
+        *(u8 **)(next + 8) = prev;
+    } else {
+        *(u8 **)(l + 4) = prev;
+    }
+    return prev;
+}
+
 void* func_02116d7c(void* heap, u32 size, s32 alignment)
 {
     typedef struct Block {
