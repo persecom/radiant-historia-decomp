@@ -18,6 +18,11 @@ extern u32 data_02155c3c;
 extern void func_02008f74(void *, s32, u32);
 extern void *func_0210c594(s32, u32);
 extern void *func_021092d8(void *);
+extern void func_0210c5dc(void *);
+extern s32 func_021095d0(void *);
+extern void func_021093b0(void *);
+extern s32 func_02109444(void *);
+extern void *func_0210ca88(void *, s32);
 void func_0210c898(void) {
     *(u16 *)(data_021626a0 + 0xc) = 0;
     *(u16 *)(data_021626a0 + 0xe) = 0;
