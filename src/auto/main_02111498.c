@@ -223,6 +223,19 @@ void func_02111ccc(u8 *arg0) {
     }
 }
 
+u16 func_02111d10(u8 *arg0) {
+    u16 count = 0;
+    u8 *node = *(u8 **)(arg0 + 0x38);
+    if (node == NULL) {
+        return 0;
+    }
+    do {
+        count++;
+        node = *(u8 **)(node + 0x10);
+    } while (node != NULL);
+    return count;
+}
+
 s32 func_02111da8(u8 *arg0) {
     return *(s32 *)(arg0 + 0x38);
 }
