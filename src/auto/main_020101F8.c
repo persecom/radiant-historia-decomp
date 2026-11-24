@@ -60,6 +60,21 @@ void func_020106ac(void) {
     func_0200fba4();
 }
 
+void func_020106b8(u32 arg0, u32 arg1) {
+    u32 cmd0 = (arg0 << 24) | (arg1 >> 8);
+    u32 cmd1 = arg1 << 24;
+    while (*(volatile u32 *)0x40001a4 & 0x80000000) {
+    }
+    *(volatile u16 *)0x40001a0 = (*(volatile u16 *)0x40001a0 & ~0x2000) | 0xc000;
+    *(volatile u32 *)0x40001a8 = ((cmd0 & 0xff000000) >> 24) | ((cmd0 & 0x00ff0000) >> 8) | ((cmd0 & 0x0000ff00) << 8) | (cmd0 << 24);
+    *(volatile u32 *)0x40001ac = ((cmd1 & 0xff000000) >> 24) | ((cmd1 & 0x00ff0000) >> 8) | ((cmd1 & 0x0000ff00) << 8) | (cmd1 << 24);
+}
+
+void func_02010738(u32 arg0) {
+    func_020106b8(0xb7, arg0);
+    *(volatile u32 *)0x40001a4 = (*(volatile u32 *)0x2fffae0 & ~0x07000000) | 0xa1000000;
+}
+
 void func_02010e40(void) {
     func_0200fb84();
 }
