@@ -1,5 +1,6 @@
 /* 8 functions from 0x0208038C to 0x02080E00 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { s16 value[17]; } Stats_020806e8;
 
 extern void func_02080e00(void);
 extern void *data_02155c3c;
