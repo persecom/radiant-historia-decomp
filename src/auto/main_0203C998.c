@@ -10,3 +10,7 @@ extern void func_021168f8(void *, void *);
 extern void func_0210c5dc(void *);
 extern void func_020020f8(void *, void *, void *);
 extern void func_020f4668(void *);
+
+s32 func_0203d960(s32 arg0) {
+    return arg0 == 1;
+}
