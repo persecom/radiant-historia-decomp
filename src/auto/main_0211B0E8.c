@@ -24,6 +24,7 @@ shape=(s32)(a&0xc000)>>14;
 return size[data_02144d6c[shape]];
 }
 static inline s32 Double_bb3c(u32 a) { return Mode_bb3c(a)==0x300; }
+static inline void GetDouble_bb3c(u32 a,s32 *result) { *result=Double_bb3c(a); }
 static inline void SetMode_bb3c(u32 *p,s32 mode) {
 if(mode==0x100) { *(volatile u32 *)p=(*p&0xc1fffcff)|mode; }
 else { *(volatile u32 *)p=(*p&0xc1fffcff)|mode; }
@@ -318,7 +319,6 @@ y=*sprite&255;
 if(y>127)y|=0xff00;
 pos.y=y<<12;
 if(Mode_bb3c(*sprite)==0x300) {
-u16 w,h;
 u32 attr=*sprite&0xc000c000;
 u32 size=(attr&0xc0000000)>>30;
 s32 shape=(s32)(attr&0xc000)>>14;
@@ -341,7 +341,12 @@ s32 shape=(s32)(attr&0xc000)>>14;
 w=(s32)data_02144d84[shape][size]>>1;
 h=(s32)data_02144d6c[shape][size]>>1;
 }
-Offset_bb3c(&pos,m,w,h);
+{
+s32 ox=-(w<<12),oy=-(h<<12);
+ox+=m[0]*w;oy+=m[1]*w;
+ox+=m[2]*h;oy+=m[3]*h;
+pos.y+=oy;pos.x+=ox;
+}
 if(mode){pos.x-=w<<12;pos.y-=h<<12;}
 pos.x+=translation->x;pos.y+=translation->y;
 *sprite=(*sprite&0xfe00ff00)|((pos.y>>12)&255)|(((pos.x>>12)&511)<<16);
