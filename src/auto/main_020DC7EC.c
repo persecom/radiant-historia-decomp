@@ -7,3 +7,6 @@ void func_020dc994(void) {
 void func_020dc998(void) {
 }
 
+void func_020dc99c(void) {
+}
+
