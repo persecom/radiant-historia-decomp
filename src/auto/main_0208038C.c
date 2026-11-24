@@ -7,6 +7,35 @@ extern u8 *data_0216010c;
 extern void *func_0210c594(u32, void *);
 extern void func_020ec548(void *);
 #pragma optimization_level 0
+void func_02080c68(void);
+void func_02080d30(void);
+extern u16 func_0208a318(u32);
+extern u8 *func_020ec294(u16, s32, s32, s32);
+extern void func_020ec8cc(void *, s32, s32);
+extern void func_020ec88c(void *, s32, s32);
+extern void func_0208a4ac(void);
+#pragma optimization_level 0
+void func_02080b58(u32 arg0) {
+    u8 *p = NULL;
+    func_02080d30();
+    p = func_020ec294(func_0208a318(arg0), 1, 0x4000, 0);
+    func_020ec8cc(p, 1, 0);
+    func_020ec88c(p, 0, 0);
+    *(u32 *)(p + 0x1c) = 0xaf000;
+    *(u32 *)(p + 0x18) = 0;
+    *(void **)(data_0216010c + 0x5564) = p;
+    *(u8 *)(data_0216010c + 0x556c) = 0xa;
+    p = func_020ec294(func_0208a318(arg0) + 1, 1, 0x2000, 0x4000);
+    func_020ec8cc(p, 1, 0);
+    func_020ec88c(p, 0, 0);
+    *(u32 *)(p + 0x1c) = 0xaf000;
+    *(u32 *)(p + 0x18) = 0x60000;
+    *(void **)(data_0216010c + 0x5568) = p;
+    func_02080c68();
+    func_0208a4ac();
+    *(s8 *)(data_0216010c + 0x556d) = (s8)arg0;
+}
+
 void func_02080c68(void) {
     void *p = NULL;
     if (*(void **)(data_0216010c + 0x5000 + 0x564)) {
