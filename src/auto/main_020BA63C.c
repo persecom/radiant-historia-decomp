@@ -147,3 +147,9 @@ void func_020bafb4(void) {
 void func_020bafdc(void) {
     func_020c52c0();
 }
+
+void func_020bafe8(void) {
+    u8 *p = *(u8 **)(&data_021601f0 + 4);
+    func_020c4c60(*(void **)(p + 0x3c), 10);
+}
+
