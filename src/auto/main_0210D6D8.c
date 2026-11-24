@@ -223,6 +223,13 @@ void func_0210e3dc(void) {
     func_020081c0();
 }
 
+s32 func_0210e600(void) {
+    s32 irq = func_02008128();
+    s32 v = *(s32 *)(data_0216280c + 4);
+    func_0200813c(irq);
+    return v;
+}
+
 void func_0210e67c(void) {
     func_021167ac(data_021628ec, 8);
 }
