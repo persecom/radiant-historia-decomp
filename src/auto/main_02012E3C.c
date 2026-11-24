@@ -123,9 +123,9 @@ void func_02013858(u8 *dst, const u8 *src, u32 n) {
     } while (--n != 0);
 }
 
-extern void func_020138f8(void *);
-void *func_02013878(void *arg0) {
-    func_020138f8(arg0);
+extern void func_020138f8(void *, s32, u32);
+void *func_02013878(void *arg0, s32 arg1, u32 arg2) {
+    func_020138f8(arg0, arg1, arg2);
     return arg0;
 }
 
