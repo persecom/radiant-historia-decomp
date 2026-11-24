@@ -165,7 +165,7 @@ void func_02136a24(void) {
 
 void func_02136a3c(void) {
     if (data_02175c60 == 0) {
-        __builtin_memset(data_02175c64, 0, sizeof(data_02175c64));
+        memset(data_02175c64, 0, sizeof(data_02175c64));
     }
     data_02175c60++;
 }
@@ -177,6 +177,13 @@ void func_02136a9c(void) {
     func_02136980();
 }
 
+void func_02136ab4(void) {
+    data_02175c60--;
+    if (data_02175c60 == 0) {
+        memset(data_02175c64, 0, sizeof(data_02175c64));
+    }
+}
+
 extern s32 func_02136b34(void *, void *);
 s32 func_02136b08(void *arg0, void *arg1) {
     s32 ret;
@@ -184,6 +191,29 @@ s32 func_02136b08(void *arg0, void *arg1) {
     ret = func_02136b34(arg0, arg1);
     func_021369b4();
     return ret;
+}
+
+int func_02136b34(void *arg0, void *arg1) {
+    s32 i;
+    u32 *p;
+    for (i = 0; i < 6; i++) {
+        if (data_02175c64[i][1] == 0) {
+            break;
+        }
+    }
+    if (i == 6) {
+        return 0;
+    }
+    p = data_02175c64[i];
+    p[1] = 1;
+    p[0] = (u32)data_0215beb0;
+    p[5] = (u32)arg0;
+    p[6] = (u32)arg1;
+    p[2] = (u32)data_02145ae8;
+    p[7] = (u32)func_021369cc;
+    p[8] = (u32)p;
+    func_02136d54(p);
+    return (int)p;
 }
 
 extern void func_02136be4(void *);
