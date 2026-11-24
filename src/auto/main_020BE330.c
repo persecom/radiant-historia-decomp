@@ -12,6 +12,15 @@ extern void func_020be9b8(s32);
 extern void func_020beb14(void);
 extern void func_020bf24c(s32, u8);
 extern void func_020c33d4(s32);
+extern void func_02008f74(void *, s32, s32);
+extern u32 data_02155c3c;
+extern u8 *func_0210c594(s32, u32);
+extern void func_020bed10(void);
+extern void func_0210c5dc(void *);
+extern s32 data_0216242c[10];
+extern s32 *data_02155984;
+extern s32 data_02151fcc;
+extern void func_02108240(void);
 void func_020be330(u8 *arg0) {
     u16 flags = *(u16 *)(arg0 + 0x18);
     s16 sp2;
