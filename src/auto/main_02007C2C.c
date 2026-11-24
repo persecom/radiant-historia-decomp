@@ -381,3 +381,12 @@ void func_02008558(u8 arg0) {
     data_04000247 = arg0;
 }
 
+extern void func_02008998(u32);
+extern void func_02006560(void *, u32);
+void func_02008a00(void) {
+    func_02008998(0);
+    func_02008998(1);
+    func_02008998(2);
+    func_02008998(3);
+}
+
