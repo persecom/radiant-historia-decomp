@@ -210,6 +210,41 @@ void *func_020f4d40(u32 arg0) {
     return NULL;
 }
 
+void func_020f4d88(void) {
+ u8 *p=*(u8 **)data_02160c3c[0];
+ s32 zero=0;
+ s32 clear=0;
+ while(p) {
+ s32 scale=*(s32 *)(p+0x28);
+ s32 rotate;
+ u8 *next=*(u8 **)(p+0x50);
+ rotate=*(s32 *)(p+0x40);
+ if(scale) {
+ s32 x=*(s32 *)(p+0x20);
+ s32 y;
+ s32 a,b;
+ if(x>0x3000)x=0x3000;else if(x<0x100)x=0x100;
+ *(s32 *)(p+0x20)=x;
+ y=*(s32 *)(p+0x24);
+ if(y>0x3000)y=0x3000;else if(y<0x100)y=0x100;
+ *(s32 *)(p+0x24)=y;
+ a=func_02001fc0(*(s32 *)(p+0x20));
+ b=func_02001fc0(*(s32 *)(p+0x24));
+ *(s32 *)(p+0x10)=a;*(s32 *)(p+0x14)=zero;*(s32 *)(p+0x18)=zero;*(s32 *)(p+0x1c)=b;
+ }
+ if(rotate) {
+ s32 index=(*(u16 *)(p+0x3c)>>4)*2;
+ s32 c=*(const s16 *)((const u8 *)data_0213a394+index*2+2);
+ s32 s=data_0213a394[index];
+ *(s32 *)(p+0x2c)=c;*(s32 *)(p+0x30)=s;*(s32 *)(p+0x34)=-s;*(s32 *)(p+0x38)=c;
+ }
+ if(scale||rotate)func_02000c04(p+0x10,p+0x2c,p);
+ *(s32 *)(p+0x28)=clear;*(s32 *)(p+0x40)=clear;
+ *(u16 *)(p+0x48)=func_02118178(data_021610a4,p);
+ p=next;
+ }
+}
+
 extern void func_021168f8(void *, void *);
 extern void *func_0210c518(u32, void *);
 extern void func_02008e68(u32, void *, u32);
