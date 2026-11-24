@@ -89,6 +89,39 @@ void func_02106928(void) {
     func_021167ac(&data_02161064->unk34, 0x2c);
 }
 
+extern void func_0210eb80(void *);
+extern void func_0210da14(void *);
+void func_021069c4(void) {
+    if (data_02161064 == NULL) {
+        return;
+    }
+    while (*(void **)data_02161064->unk28 != NULL) {
+        void *node = *(void **)data_02161064->unk28;
+        func_021168f8(data_02161064->unk28, node);
+        func_0210eb80(*(void **)node);
+        if (*(void **)node != NULL) {
+            func_0210c5dc(*(void **)node);
+            *(void **)node = NULL;
+        }
+        if (node != NULL) {
+            func_0210c5dc(node);
+        }
+    }
+    while (data_02161064->unk34 != NULL) {
+        void *node = data_02161064->unk34;
+        func_021168f8(&data_02161064->unk34, node);
+        if (node != NULL) {
+            func_0210c5dc(node);
+        }
+    }
+    func_0210da14(data_02161064);
+    func_0210da14(&data_02161064->unk14);
+    if (data_02161064 != NULL) {
+        func_0210c5dc(data_02161064);
+        data_02161064 = NULL;
+    }
+}
+
 void func_02106aa0(void) {
     UnkNode_02106aa0 *node = data_02161064->unk34;
     while (node != NULL) {
