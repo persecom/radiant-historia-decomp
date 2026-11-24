@@ -23,3 +23,20 @@ void func_02055e14(u16 arg0) {
         if (node == NULL) return;
     }
 }
+
+extern u8 *data_021600ac;
+extern void func_020a994c(void *);
+extern void func_020a9610(void *,s32,s32,void *,s32,s32);
+extern void func_020a98ac(void *);
+extern void func_020a98f4(void *);
+void func_0205654c(s32 n,s32 x){
+s32 off=n*0x50;
+func_020a994c(data_021600ac+0xb8+off);
+func_020a9610(data_021600ac+0xec+off,*(s32 *)(data_021600ac+0xac),n+1,*(void **)(data_021600ac+off+0xb4),0,0);
+func_020a98ac(data_021600ac+0xb8+off);
+func_020a98f4(data_021600ac+0xb8+off);
+*(s32 *)(*(u8 **)(data_021600ac+off+0xb4)+0x4c)=0x2bc000;
+*(s32 *)(*(u8 **)(data_021600ac+off+0xb4)+0x44)=x;
+*(s32 *)(*(u8 **)(data_021600ac+off+0xb4)+0x48)=(0xc5-(4-n)*25)<<12;
+}
+
