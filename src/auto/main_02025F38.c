@@ -88,6 +88,12 @@ void func_02026cac(u8 *arg0) {
     }
 }
 
+void func_02026cec(void) {
+    u8 *p = func_0210c594(0x44, data_02155c3c);
+    data_0216007c[1] = p;
+    func_021167ac(p + 0x18, 0x14);
+}
+
 void func_02026e40(u16 arg0) {
     void *p = func_0210c594(0x28, data_02155c3c);
     *(u16 *)p = arg0;
