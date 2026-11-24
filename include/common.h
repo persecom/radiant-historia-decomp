@@ -14,6 +14,14 @@ typedef unsigned long long u64;
 typedef float f32;
 typedef double f64;
 typedef int BOOL;
+
+typedef struct Unk_020895a0 {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+    s32 unkc;
+    s32 unk10;
+} Unk_020895a0;
 #define TRUE 1
 #define FALSE 0
 #ifndef NULL
