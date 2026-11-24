@@ -333,6 +333,34 @@ u64 func_02007904(void) {
     return (countH << 16) | countL;
 }
 
+extern void func_020059e4(u32);
+extern void func_02007c1c(void);
+extern void func_02008414(void);
+extern void func_02007a88(void *, u64);
+void func_020079a4(u8 *arg0) {
+    s64 delta;
+    u16 count;
+    volatile u16 *tmr;
+    u64 now = func_02007904();
+
+    *(volatile u16 *)0x04000106 = 0;
+    delta = *(s64 *)(arg0 + 0xc) - (s64)now;
+    func_02005944(1, func_02007c1c, 0);
+
+    if (delta < 0) {
+        count = 0xfffe;
+    } else if (delta < 0x10000) {
+        count = (u16)(~delta);
+    } else {
+        count = 0;
+    }
+
+    tmr = (volatile u16 *)0x04000104;
+    tmr[0] = count;
+    tmr[1] = 0xc1;
+    func_020059b4(0x10);
+}
+
 extern u16 data_0215d138;
 u16 func_02007a68(void) {
     return data_0215d138;
