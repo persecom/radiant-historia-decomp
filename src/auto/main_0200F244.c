@@ -52,3 +52,8 @@ void *func_0200f9a4(void) {
     return (void *)0x02fffe00;
 }
 
+extern void func_0200fa74(void *, s32);
+void func_0200fa3c(void *arg0) {
+    func_0200fa74(arg0, 2);
+}
+
