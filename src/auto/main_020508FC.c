@@ -2,6 +2,7 @@
 #include "common.h"
 
 extern s16 data_0213a394[];
+extern u8 *data_02160aec;
 
 static inline s16 FX_SinIdx_02050b0c(s32 idx) {
     return data_0213a394[(idx >> 4) * 2];
