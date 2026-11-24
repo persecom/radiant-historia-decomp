@@ -16,6 +16,41 @@ extern u8 *data_0215ed68;
 extern s32 func_02012348(const char *);
 s32 func_0200b77c(const char *str, s32 pos);
 
+void func_0200aeac(u8 *arg0) {
+    u8 *r4;
+    u8 *cur;
+    s32 r6;
+    u8 *next;
+    cur = arg0;
+    r4 = *(u8 **)(cur + 8);
+    if (cur == NULL) {
+        return;
+    }
+    next = NULL;
+    r6 = 1;
+    for (;;) {
+        u32 r8 = func_02008128();
+        u32 t = *(u32 *)(cur + 0xc);
+        t |= 0x40;
+        *(u32 *)(cur + 0xc) = t;
+        if (t & 4) {
+            func_02006560(cur + 0x18);
+            cur = next;
+        }
+        func_0200813c(r8);
+        if (cur == NULL) {
+            return;
+        }
+        if (func_0200a980(cur, (*(u32 *)(cur + 0xc) >> 8) & 0xff) == 0x100) {
+            return;
+        }
+        cur = (u8 *)func_0200ad00(r4, r6);
+        if (cur == NULL) {
+            return;
+        }
+    }
+}
+
 s32 func_0200b24c(char *dst, s32 dst_len, const char *src, s32 src_len, s32 *truncated) {
     s32 i;
     s32 max_len = (dst_len - 1 < src_len) ? (dst_len - 1) : src_len;
