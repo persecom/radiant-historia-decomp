@@ -102,16 +102,21 @@ extern s32 func_0200818c(void);
 extern s32 func_02008180(void);
 extern void func_0200a75c(void);
 void func_0200e290(void) {
-    while (data_0215f068 != 0) {
+    register u32 *flag = &data_0215f068;
+    register volatile u16 *reg = (volatile u16 *)0x4000208;
+    while (*flag != 0) {
         if ((data_02145c18 & 0x2) != 0 && func_0200818c() == 0x12) {
-            func_0200a75c();
+            goto call;
         }
         if ((data_02145c18 & 0x4) != 0 && func_02008180() == 0x80) {
-            func_0200a75c();
+            goto call;
         }
-        if ((data_02145c18 & 0x8) != 0 && *(u16 *)0x4000208 == 0) {
-            func_0200a75c();
+        if ((data_02145c18 & 0x8) != 0 && *reg == 0) {
+            goto call;
         }
+        continue;
+    call:
+        func_0200a75c();
     }
 }
 
