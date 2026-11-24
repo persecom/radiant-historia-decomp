@@ -153,6 +153,16 @@ void func_020a2ee4(void) {
     }
 }
 
+s32 func_020a2fa0(void) {
+    void **p = (void **)data_02160128;
+    if (p == NULL) {
+        return 1;
+    }
+    func_020a2eb4();
+    *p = func_020a3814(data_02148ee0, 0x21, data_02149174);
+    return 0;
+}
+
 s32 func_020a30c4(void) {
     func_020a30d4();
     return func_020a3128();
