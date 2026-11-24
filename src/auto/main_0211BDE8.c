@@ -34,20 +34,20 @@ extern const u32 data_02144ee8[8];
 
 extern void func_0211c1f8(void *);
 void func_0211c424(void *arg0, void *arg1) {
- u8 *p=data_021701f8;
+ State_0211c424 *p=(State_0211c424 *)data_021701f8;
  u16 i;
  for(i=0;i<((List_0211c424 *)arg1)->count;i++) {
   Unk_0211c424 *entry;
 
   void (*callback)(void *,void *,u16);
-  *(s32 *)(data_021701f8+0x30)=1;
+  ((State_0211c424 *)data_021701f8)->enabled=1;
  entry=((List_0211c424 *)arg1)->entries+i;
-  *(u16 *)(p+0x38)=entry->x;
-  *(u16 *)(p+0x3a)=entry->y;
-  *(u16 *)(p+0x3c)=entry->z;
+  p->x=entry->x;
+  p->y=entry->y;
+  p->z=entry->z;
   callback=((Callbacks_0211c424 *)arg0)->before;
   if(callback) callback(data_021701f8,arg1,i);
-  if(*(s32 *)(data_021701f8+0x30)) func_0211c1f8(p+0x38);
+  if(((State_0211c424 *)data_021701f8)->enabled) func_0211c1f8(&p->x);
   callback=((Callbacks_0211c424 *)arg0)->after;
   if(callback) callback(data_021701f8,arg1,i);
  }
@@ -165,6 +165,28 @@ void func_0211c79c(void *arg0) {
     if (*(void (**)(void *, void *))(r4 + 0x1c) != NULL) {
         (*(void (**)(void *, void *))(r4 + 0x1c))(data_021701f8, arg0);
     }
+}
+
+u8 *func_0211a5e4(s32);
+void func_0211c850(void *arg0, s32 arg1) {
+ u32 bit;
+ u8 *p=*(u8 **)data_021701f8;
+ if(*(s32 *)(p+0x10)==0) return;
+ *(s32 *)(data_021701f8+0x30)=1;
+ if(*(void (**)(void *,void *))(p+0x18)) (*(void (**)(void *,void *))(p+0x18))(data_021701f8,arg0);
+ if(*(s32 *)(data_021701f8+0x30)) {
+ if(arg1!=-1) {
+ bit=*(u32 *)(p+0x14);
+ u8 *q=func_0211a5e4(arg1);
+ *(u32 *)(q+0x20)=(*(u32 *)(q+0x20)&~(1<<bit))|(1<<bit);
+ }
+ switch(*(u32 *)(p+0x14)) {
+ case 0:func_0211c424(p,arg0);break;
+ case 1:case 2:func_0211bde8(p,arg0);break;
+ case 3:break;
+ }
+ }
+ if(*(void (**)(void *,void *))(p+0x1c)) (*(void (**)(void *,void *))(p+0x1c))(data_021701f8,arg0);
 }
 
 void func_0211c934(s32 *arg0, s32 *arg1, s32 arg2) {
