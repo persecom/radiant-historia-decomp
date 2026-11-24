@@ -13,6 +13,7 @@ extern void func_02005d70(void);
 extern s32 func_02005c0c(u16, void *, void (*)(void), BOOL);
 extern s32 func_02005d0c(u16);
 extern void func_02005ea8(s32, const char *, char *);
+extern u32 data_0215cde4[];
 s32 func_02005c90(u16 arg0, void *arg1, void (*arg2)(void), BOOL arg3) {
     u32 r5;
     s32 r4;
