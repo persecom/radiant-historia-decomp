@@ -106,6 +106,13 @@ void func_02136958(void) {
     }
 }
 
+void func_02136980(void) {
+    data_02175c58[1]--;
+    if (data_02175c58[1] == 0) {
+        data_02175c58[0] = 0;
+    }
+}
+
 void func_021369a8(void) {
     func_0213807c();
 }
