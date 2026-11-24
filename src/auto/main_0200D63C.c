@@ -12,6 +12,10 @@ extern s32 func_0200a6c0(s32, s32);
 extern void func_0200a674(s32, void *);
 extern void func_0200d868(void);
 
+u32 func_0200e26c(u32 arg0) {
+    return *(u16 *)(data_0215f000 + 0x38) & arg0;
+}
+
 u32 func_0200e280(void) {
     return *(u32 *)0x02ffff90;
 }
