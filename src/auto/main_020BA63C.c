@@ -89,11 +89,13 @@ s32 func_020ba7f8(u8 *arg0) {
 
 void func_020ba878(u8 *arg0, u32 arg1) {
     u8 *sub = *(u8 **)(arg0 + 0x48);
+    BOOL flag = 1;
     u8 *obj = func_020c9b24(*(void **)(arg0 + 0x30), 4, 2);
-    BOOL flag;
     *(u32 *)(obj + 0x4c) = arg1;
-    obj[0x50] = 1;
-    flag = (sub[0x74] & 1) == 0;
+    obj[0x50] = flag;
+    if (sub[0x74] & 1) {
+        flag = 0;
+    }
     func_020c738c(obj, !flag, 1);
 }
 
