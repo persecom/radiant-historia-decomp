@@ -51,7 +51,7 @@ void func_02108bb8(u32 arg0, u32 arg1, u32 arg2) {
     if (data_021624f8->unk_18[arg0] & 8) {
         return;
     }
-    func_02125d00(*ptr);
+    func_02125d00(*ptr, arg1, arg2);
     func_02125b78(*ptr);
 }
 
