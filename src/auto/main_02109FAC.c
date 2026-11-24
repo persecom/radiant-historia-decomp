@@ -39,11 +39,12 @@ extern u8 data_02162580[];
 extern u8 data_021625c8[];
 
 void *func_02109fac(void *arg0) {
+    register u8 *buf asm("r5");
+    register void *src asm("r4") = arg0;
     u8 stack[0x48];
-    u8 *buf = stack;
-    void *src = arg0;
     u32 size;
     void *p;
+    buf = stack;
     func_0200b888(buf);
     func_0200bc08(buf, src);
     size = func_0200bc18(buf);
@@ -54,10 +55,11 @@ void *func_02109fac(void *arg0) {
 }
 
 void func_0210a014(void) {
-    void *a = data_021625c8;
     void *p = ((void *(*)(void *, u32))func_02109fac)(data_02155bb0, 0);
+    void *a;
     *(u32 *)(data_02162578 + 4) = (u32)p;
     *(u32 *)(data_02162578 + 0) = *(u32 *)p;
+    a = data_021625c8;
     func_0200b888(a);
     func_0200bc08(a, data_02155bc0);
     a = data_02162580;
