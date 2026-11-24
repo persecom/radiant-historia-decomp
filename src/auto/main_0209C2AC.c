@@ -69,6 +69,54 @@ unsigned int func_0209c920(u8 *arg0)
   while ((*((u32 *) new_var)) != 0);
 }
 
+void func_0209c970(void) {
+    u8 *r9 = func_0209ac14();
+    while (r9 != NULL) {
+        u8 *r10;
+        if (func_020bd490(2, *r9) != 0) {
+            r10 = func_02021f10(func_020bd490(1, *r9) - 1);
+        } else {
+            r10 = func_02021f10(func_020bd490(3, *r9));
+        }
+        if (r10 != NULL) {
+            *(u32 *)(r10 + 4) = *(u32 *)(r9 + 4);
+            *(u32 *)(r10 + 8) = 0;
+            if (func_020bd490(4, *r9) == 0) {
+                r10[0x44] = 1;
+            } else {
+                r10[0x44] = 0;
+            }
+        }
+        r9 = *(u8 **)(r9 + 0x38);
+    }
+    func_02022100(*(void **)(data_02160204 + 0x108));
+}
+
+void func_0209ca18(u8 *arg0, u32 arg1, u32 arg2, s16 arg3, s16 arg4, s16 arg5) {
+    (*(void (**)(u8 *))(arg0 + 4))(arg0);
+    func_0203bc34(arg1, arg0, arg2, 0, 0, 0);
+    func_020a899c(arg0);
+    *(s32 *)(arg0 + 0x44) = arg3 << 12;
+    *(s32 *)(arg0 + 0x48) = arg4 << 12;
+    *(s32 *)(arg0 + 0x4c) = arg5 << 12;
+}
+
+void func_0209ca84(u32 arg0, u16 arg1, u16 arg2, u16 arg3) {
+    Unk20 buf = data_02142bb4;
+    *(volatile u32 *)0x040004a4 = 0x001f0080;
+    func_020a30c4(arg0);
+    buf.unk[1] = 0;
+    buf.unk[2] = 0;
+    buf.unk[3] = 0x10;
+    buf.unk[4] = 0x10;
+    buf.unk[8] = 0x10;
+    buf.unk[9] = 0x10;
+    buf.unk[5] = arg1;
+    buf.unk[6] = arg2;
+    buf.unk[7] = arg3;
+    func_021098ac(&buf);
+}
+
 u32 func_0209cb98(void) {
     u32 v = func_021136b0();
     if ((v & 2) == 0) return 0;
