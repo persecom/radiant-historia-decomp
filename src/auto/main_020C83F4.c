@@ -154,6 +154,17 @@ void func_020c8794(u8 *arg0) {
     func_020a30c4(*(u16 *)(arg0 + 0x4c));
 }
 
+s32 func_020c87a4(u8 *arg0) {
+    func_020c77d8(arg0);
+    if (*(void **)(arg0 + 0x54) == NULL) {
+        *(void **)(arg0 + 0x54) = func_0210c594(8, data_02155c3c);
+        func_020c992c();
+    }
+    func_020c9a04(*(void **)(arg0 + 0x54), 0xc);
+    *(u8 *)(arg0 + 0x5c) = *(u8 *)(arg0 + 0x43) - 1;
+    return 0;
+}
+
 extern void func_020c8818(void *);
 void func_020c87f8(void *arg0) {
     func_020c8818(arg0);
@@ -384,45 +395,49 @@ void func_020c8ed0(u8 *arg0, s32 arg1) {
 }
 
 extern void func_020c9610(u8 *);
-void func_020c8ee4(u8 *arg0, u16 *arg1) {
-    u16 v0 = arg1[0];
-    u16 v1 = arg1[1];
-    u16 v2 = arg1[2];
-    u16 v3 = arg1[3];
-    u16 v4 = arg1[4];
-    u16 v5 = arg1[5];
-    *(u16 *)(arg0 + 0x46) = v0;
-    *(u16 *)(arg0 + 0x48) = v1;
-    *(u16 *)(arg0 + 0x4a) = v2;
-    *(u16 *)(arg0 + 0x4c) = v3;
-    *(u16 *)(arg0 + 0x4e) = v4;
-    *(u16 *)(arg0 + 0x50) = v5;
-    func_020c8f20(arg0);
+void func_020c8ee4(u8 *arg0, u16 *arg1)
+{
+  u16 v0 = arg1[0];
+  u16 v1 = arg1[1];
+  u16 new_var;
+  u16 v2 = arg1[2];
+  u16 v3 = arg1[3];
+  u16 v4 = arg1[4];
+  u16 v5 = arg1[5];
+  u16 *new_var2;
+  *((u16 *) (arg0 + 0x4c)) = v3;
+  *((u16 *) (arg0 + 0x46)) = v0;
+  *((u16 *) (arg0 + 0x48)) = v1;
+  *((u16 *) (arg0 + 0x4a)) = v2;
+  new_var2 = (u16 *) (arg0 + 0x50);
+  *((u16 *) (arg0 + 0x4c)) = v3;
+  new_var = v4;
+  *((u16 *) (arg0 + 0x4e)) = new_var;
+  *new_var2 = v5;
+  func_020c8f20(arg0);
 }
 
 void func_020c9348(u8 *arg0, s32 arg1) {
     u16 cur = *(u16 *)(arg0 + 0x3e);
+    s16 val = (s16)cur;
     u16 end = *(u16 *)(arg0 + 0x3a);
     u16 step = *(u16 *)(arg0 + 0x40);
     u16 limit = *(u16 *)(arg0 + 0x42);
-    s16 val = (s16)cur;
     if (end < cur) {
-        if (arg1 == 0) {
-            val = (s16)(end - step + 1);
-        } else if (arg1 == 1) {
-            val = (s16)end;
+        switch (arg1) {
+        case 0: val = (s16)(end - step + 1); break;
+        case 1: val = (s16)end; break;
         }
     }
     if (end >= cur + step) {
-        if (arg1 == 0) {
-            val = (s16)(end - step + 1);
-        } else if (arg1 == 1) {
-            val = (s16)end;
+        switch (arg1) {
+        case 0: val = (s16)(end - step + 1); break;
+        case 1: val = (s16)end; break;
         }
     }
     if (val < 0) val = 0;
     if (limit >= step) {
-        s16 max = (s16)(limit - step);
+        s16 max = limit - step;
         if (val > max) val = max;
     }
     *(u16 *)(arg0 + 0x3e) = val;
