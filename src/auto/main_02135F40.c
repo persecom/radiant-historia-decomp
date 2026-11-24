@@ -1,5 +1,6 @@
 /* 32 functions from 0x02135F40 to 0x02136E94 (main), found by ds-decomp. */
 #include "common.h"
+extern void func_02008f74(void *, s32, u32);
 
 extern void func_02136958(void);
 extern void func_02136a3c(void);
@@ -49,6 +50,20 @@ u32 func_021361bc(u8 *arg0, u16 *arg1, u16 *arg2) {
         *arg2 = 0;
     }
     return a;
+}
+
+u32 func_02136930(u8 *arg0) {
+    if (arg0 == NULL) {
+        return 0;
+    }
+    return *(u16 *)(arg0 + 0x1c) >> 1;
+}
+
+u32 func_02136944(u8 *arg0) {
+    if (arg0 == NULL) {
+        return 0;
+    }
+    return *(u16 *)(arg0 + 0x1e) >> 1;
 }
 
 void func_021369a8(void) {
