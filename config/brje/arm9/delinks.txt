@@ -113,7 +113,10 @@ src/auto/main_02017F74.c:
     .text start:0x02017f74 end:0x02018c20
 
 src/auto/main_02018C20.c:
-    .text start:0x02018c20 end:0x02019c20
+    .text start:0x02018c20 end:0x02018fa0
+
+src/auto/main_02018FA0.c:
+    .text start:0x02018fa0 end:0x02019c20
 
 src/auto/main_02019C20.c:
     .text start:0x02019c20 end:0x0201abc4
