@@ -231,3 +231,12 @@ void func_020bafe8(void) {
     func_020c4c60(*(void **)(p + 0x3c), 10);
 }
 
+void func_020bb508(u8 *arg0) {
+    if (arg0 == NULL) {
+        return;
+    }
+    if (*(u32 *)(arg0 + 0x108) & 1) {
+        func_020bb558(arg0);
+    }
+}
+
