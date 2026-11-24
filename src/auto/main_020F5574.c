@@ -60,6 +60,10 @@ void *func_020f5724(void) {
     return data_02160c9c;
 }
 
+s32 func_020f5730(s32 arg0) {
+    return (data_02160200[(u32)arg0 >> 5] & (1 << (arg0 % 32))) != 0;
+}
+
 s32 func_020f5948(void) {
     char buf[0x40];
     s32 index = 0;
