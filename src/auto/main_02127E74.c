@@ -335,6 +335,9 @@ void func_021285c4(void) {
 }
 
 extern void func_021286c0(Unk_02128030 *, s32);
+extern s32 func_0212d63c(void *);
+extern s32 func_0201fb1c(s32, s32);
+extern u8 data_0215698c[44];
 void func_0212869c(void *arg0, void *arg1) {
     func_0212a9f4();
     ((void (*)(void *, void *))func_021286c0)(arg0, arg1);
