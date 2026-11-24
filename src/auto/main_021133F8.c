@@ -24,6 +24,13 @@ extern void func_021167f0(void *, void *);
 extern s32 func_02109444(void *);
 extern void func_021093b0(void *);
 extern s32 func_020a94b8(s32);
+extern u32 data_0216bfc0[];
+extern void func_02114c28(void);
+extern s32 func_02009d2c(void);
+extern void func_02009b24(s32);
+extern void func_02009cc0(s32);
+extern void func_0200964c(u32, s32);
+extern void func_0200966c(u32, s32);
 
 typedef struct {
     s8 unk_00;
@@ -178,12 +185,15 @@ void func_02113844(void) {
 }
 
 void func_021138c0(void) {
-    if (func_02009964(0) == 0) {
-        func_02113e5c();
-        func_02114ac4();
-        func_02116350();
-        func_02009b24(0);
+    if (func_02009964(0) != 0) {
+        goto end;
     }
+    func_02113e5c();
+    func_02114ac4();
+    func_02116350();
+    func_02009b24(0);
+end:
+    return;
 }
 
 void func_021138f0(void) {
