@@ -259,6 +259,76 @@ return;
 }
 }
 
+extern void func_0200f998(void);
+extern s32 func_020215bc(void);
+extern void func_0210e620(u32);
+void func_020217b4(void) {
+    u32 *buf = data_02160078;
+    switch ((s32)data_02160054[1]) {
+    case 0:
+        func_0200f998();
+        if (!func_02021344(1)) {
+            func_0202147c(3);
+            data_02160204[0x14c] |= 1;
+            data_02160204[0x14c] |= 8;
+            return;
+        }
+        func_02107334(data_02160204[0x7f] * 0x4800, (u32)buf, 0x1698);
+        data_02160054[1]++;
+        break;
+    case 1:
+        if (func_02107294()) return;
+        if (func_0200f984() == 0) {
+            if (func_020215bc()) {
+                data_02160054[1] = 999;
+                return;
+            }
+            func_02107334(data_02160204[0x7f] * 0x4800 + 0x2400, (u32)buf, 0x1698);
+            data_02160054[1]++;
+            return;
+        }
+        func_0202147c(5);
+        break;
+    case 2:
+        if (func_02107294()) return;
+        if (func_0200f984() == 0) {
+            if (func_020215bc()) {
+                data_02160054[1]++;
+                data_02160204[0x14c] |= 2;
+                data_02160204[0x14c] |= 8;
+                func_02021bd0(data_02160204[0x7f] * 0x4800);
+                return;
+            }
+            if (*data_02160078 == 0x6d63) {
+                data_02160204[0x14c] |= 4;
+                data_02160204[0x14c] |= 8;
+                func_02021bd0(data_02160204[0x7f] * 0x4800);
+                func_02021bd0(data_02160204[0x7f] * 0x4800 + 0x2400);
+            }
+            func_0202147c(6);
+            return;
+        }
+        func_0202147c(5);
+        break;
+    case 3:
+        data_02160054[2] = 1;
+        func_02021514();
+        func_021072d0(data_02160204[0x7f] * 0x4800, (u32)buf, 0x1698);
+        data_02160054[1]++;
+        break;
+    case 4:
+        if (func_02107294()) return;
+        if (func_0200f984() == 0) {
+            data_02160054[1] = 0;
+        }
+        break;
+    case 999:
+        func_0210e620(buf[9]);
+        func_0202147c(0);
+        break;
+    }
+}
+
 s32 func_02021a28(void) {
     return func_02021428((u16 *)&func_02021618);
 }
