@@ -7,8 +7,8 @@ extern u8 *data_02160a6c;
 extern u8 *data_02160a74;
 
 void func_020220b0(u32, u32);
-void func_02065c44(void *);
-void func_020de56c(void *);
+s32 func_02065c44(void *);
+void *func_020de56c(void *);
 void func_020df224(void *, u8 *);
 void func_020e2788(u32);
 u8 *func_020de810(void) {
@@ -126,5 +126,31 @@ void func_020df260(u8 *arg0, u8 *arg1) {
     }
     *(s16 *)(p + 0x5a) = 100;
     func_020e2788((s16)(1U << *(u16 *)(arg0 + 0x90)));
+}
+
+extern u32 func_02022068(u32);
+extern void func_020220b0(u32, u32);
+extern void func_020e2788(u32);
+s32 func_020df38c(s32 arg0, u32 arg1) {
+    u8 *base = data_02160a74;
+    if (arg0 == 0) {
+        *(u32 *)(base + 0x144) = 0;
+        goto end;
+    }
+    if (arg0 == 1) {
+        *(u32 *)(base + 0x144) |= arg1;
+        goto end;
+    }
+    if (arg0 == 2) {
+        *(u32 *)(base + 0x144) &= ~arg1;
+        goto end;
+    }
+    if (arg0 == 3) {
+        if (*(u32 *)(base + 0x144) & arg1) {
+            return 1;
+        }
+    }
+end:
+    return 0;
 }
 
