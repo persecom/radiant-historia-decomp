@@ -2,6 +2,13 @@
 #include "common.h"
 
 extern void func_02135c78(void);
+extern s32 func_02136930(void *);
+extern void func_0200baa4(void *);
+extern void func_02013878(void *, u32, u32);
+extern s32 func_020138b8(void *, u32, u32);
+extern s32 func_02016d50(u32, void *, u32 *, u32 *, u32 *);
+extern u8 data_0215bc4c[];
+extern u8 data_0215bc54[];
 s32 func_021346bc(void) {
     return 0;
 }
