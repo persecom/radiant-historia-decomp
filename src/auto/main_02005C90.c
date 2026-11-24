@@ -450,14 +450,15 @@ void func_0200683c(u8 *arg0, u32 arg1) {
 }
 
 void func_02006844(u32 *arg0, u32 arg1, u32 arg2) {
-    arg0[16] = arg1 + 4;
+    arg1 += 4;
+    arg0[16] = arg1;
     arg0[17] = arg2;
     arg2 -= 0x40;
     if (arg2 & 4) {
         arg2 -= 4;
     }
     arg0[14] = arg2;
-    arg0[0] = ((arg1 + 4) & 1) ? 0x3f : 0x1f;
+    arg0[0] = (arg1 & 1) ? 0x3f : 0x1f;
     arg0[1] = 0;
     arg0[2] = 0;
     arg0[3] = 0;
@@ -472,6 +473,15 @@ void func_02006844(u32 *arg0, u32 arg1, u32 arg2) {
     arg0[12] = 0;
     arg0[13] = 0;
     arg0[15] = 0;
+}
+
+u32 func_02006940(void) {
+    if (data_02145bb8[1] != -1) {
+        return data_02145bb8[1];
+    }
+    data_02145bb8[1] = 0x80000001;
+    data_02145bb8[1] |= func_02006974();
+    return data_02145bb8[1];
 }
 
 extern u32 func_02006940(void);
