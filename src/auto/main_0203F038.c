@@ -23,6 +23,7 @@ typedef struct UnkStruct_0203fc18 {
     UnkNode_0203fb58 *unk28;
     u8 unk2c[8];
     u16 unk34;
+    u16 unk36;
 } UnkStruct_0203fc18;
 
 typedef struct UnkEntry_0203faf4 {
