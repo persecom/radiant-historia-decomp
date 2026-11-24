@@ -92,3 +92,27 @@ s32 func_0211b334(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     }
 }
 
+s32 func_0211b36c(s32 arg0, s32 *arg1, u16 *arg2, s32 arg3) {
+    u16 h6 = arg2[3];
+    if (h6 == 0 && arg2[2] == 1) {
+        u32 reg = (arg0 <= 3) ? *(volatile u32 *)0x04000000 : *(volatile u32 *)0x04001000;
+        return func_0211b334(arg0, (reg & 0x40000000) ? 1 : 0, (s32)arg1, arg3);
+    } else {
+        return func_0211b334(arg0, (*arg1 != 3 && h6 != 1) ? 1 : 0, (s32)arg1, arg3);
+    }
+}
+
+void func_0211b584(s32 arg0, s32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u32 arg6) {
+    switch (arg1) {
+        case 0:
+            func_0211b274(arg0, arg2, arg3, arg4, arg5, arg6);
+            break;
+        case 1:
+            func_0211b2b4(arg0, arg3, arg4, arg5, arg6);
+            break;
+        case 2:
+            func_0211b2f4(arg0, arg3, arg4, arg5, arg6);
+            break;
+    }
+}
+
