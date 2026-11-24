@@ -1,6 +1,11 @@
 /* 28 functions from 0x0200B8FC to 0x0200C6B0 (main), found by ds-decomp. */
 #include "common.h"
 
+typedef struct {
+    void *arc;
+    u32 file_id;
+} FSFileID;
+
 extern void func_0200bab8(void);
 extern s32 func_0200ba20(void *, void *, s32);
 extern void *func_0200b2ac(const char *, u32 *, u8 *);
