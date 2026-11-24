@@ -1,5 +1,7 @@
 /* 10 functions from 0x0212A9FC to 0x0212B8E0 (main), found by ds-decomp. */
 #include "common.h"
+extern f64 func_02020058(f64);
+extern f64 func_0201dea0(f64);
 
 extern s32 data_0217397c;
 s32 func_0212afc0(s32, s32, s32, s32, s32, s32, s16, s16, s32, s16, s16);
