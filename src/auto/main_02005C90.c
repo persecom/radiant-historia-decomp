@@ -1,6 +1,7 @@
 /* 59 functions from 0x02005C90 to 0x02006C38 (main), found by ds-decomp. */
 #include "common.h"
-extern u8 data_0215ce04[], data_0215ced0[], data_0215d058[], data_027e0000[];
+extern u8 data_0215ce04[], data_0215d058[], data_027e0000[];
+extern u32 data_0215ced0[];
 extern u8 SDK_SYS_STACKSIZE[], SDK_IRQ_STACKSIZE[];
 extern void func_020067c8(void);
 extern s32 func_020067a0(s32);
@@ -340,6 +341,30 @@ void func_020060b8(void) {
 
     data_0215cde4[8] = (u32)r5;
     func_020068fc(r5);
+}
+
+void func_0200617c(void) {
+ u8 *p; u32 end,start; s32 size;
+ if(data_0215cde4[3]) return;
+ data_0215cde4[3]=1;
+ data_0215cde4[2]=(u32)data_0215ce04;
+ p=data_0215ced0;
+ *(u32 *)(p+0x70)=16; *(u32 *)(p+0x6c)=0;
+ *(u32 *)(p+0x64)=1; *(u32 *)(p+0x68)=0; *(u32 *)(p+0x74)=0;
+ data_0215cde4[9]=(u32)p; data_0215cde4[8]=(u32)p;
+ size=(s32)SDK_SYS_STACKSIZE;
+ start=(size<=0?0x027e0080:(u32)(data_027e0000+0x3f80)-(u32)SDK_IRQ_STACKSIZE)-size;
+ end=(u32)(data_027e0000+0x3f80)-(u32)SDK_IRQ_STACKSIZE;
+ *(u32 *)(p+0x94)=end; *(u32 *)(p+0x90)=start; *(u32 *)(p+0x98)=0;
+ *(u32 *)(end-8)=0xfddb597d;
+ **(u32 **)(p+0x90)=0x7bf9dd5b;
+ *(u32 *)(p+0xa0)=0; *(u32 *)(p+0x9c)=0;
+ *(u16 *)((u8 *)data_0215cde4+0x1c)=0; *(u16 *)((u8 *)data_0215cde4+0x1e)=0;
+ *(u32 *)0x02ffffa0=(u32)data_0215ce00;
+ func_020067a0(0);
+ func_020062d8(data_0215ce10,(void (*)(void *))func_020067c8,0,data_0215d058,200,31);
+ *(u32 *)(data_0215ce10+0x70)=32;
+ *(u32 *)(data_0215ce10+0x64)=1;
 }
 
 extern u32 data_0215cdf0[4];
