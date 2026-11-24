@@ -1,5 +1,11 @@
 /* 20 functions from 0x0202B4D8 to 0x0202C328 (main), found by ds-decomp. */
 #include "common.h"
+extern u8 data_021461ec[];
+extern void func_02005e80(void *,void *,...);
+extern void *func_021092d8(void *);
+extern s32 func_02092994(void *,s32);
+extern s32 func_02109444(void *);
+extern void func_021093b0(void *);
 
 extern u8 *data_02160080;
 extern u8 *data_02160a6c;
