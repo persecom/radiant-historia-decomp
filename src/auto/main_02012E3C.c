@@ -113,15 +113,15 @@ u32 func_020137e0(u8 *dst, u16 *src, u32 maxLen) {
     return pos;
 }
 
-void func_02013858(u8 *dst, const u8 *src, u32 n) {
+u8 *func_02013858(u8 *dst, const u8 *src, u32 n) {
     u8 *p = dst;
-    const u8 *q = src;
     if (n == 0) {
-        return;
+        return dst;
     }
     do {
-        *p++ = *q++;
+        *p++ = *src++;
     } while (--n != 0);
+    return dst;
 }
 
 extern void func_020138f8(void *, s32, u32);
