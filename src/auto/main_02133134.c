@@ -7,6 +7,10 @@ extern char *data_0215b9c0;
 extern char data_0215b9c4[104];
 extern char data_0215b994[44];
 extern u64 data_02174d64;
+typedef struct {
+    u32 fn;
+    u32 arg;
+} Unk_02174d64;
 extern s32 func_02016da4(void *);
 extern void func_02013858(u8 *, void *, s32);
 extern void func_02132ca0(void *);
@@ -299,6 +303,13 @@ char *func_021336a0(void) {
     return data_0215b9c4;
 }
 
+void func_021336c0(s32 arg0, void *arg1) {
+    u32 *p = (u32 *)&data_02174d64;
+    if (p[0] != 0) {
+        ((void (*)(u32, void *, s32))p[0])(p[1], arg1, arg0);
+    }
+}
+
 extern void func_020182e4(void);
 void func_021336e8(void) {
     func_020182e4();
@@ -513,25 +524,32 @@ void *func_02133df8(void) {
     return data_0215bbb8;
 }
 
+extern void *memset(void *, int, u32);
 void func_02133e04(void) {
+    s32 i;
     data_0215bbb4 = data_02145a60;
-    __builtin_memset(data_02174f9c, 0, 0x738);
+    for (i = 0; i < 0x738 / 4; i++) {
+        data_02174f9c[i] = 0;
+    }
 }
 
 void func_02133e54(s8 *arg0, s8 *arg1) {
-    if (arg1 != NULL && arg1[0] != 0) {
-        if (arg1[0] == '\\') {
-            arg0[0] = ((s8 *)data_02174f9c)[0x528];
-            arg0[1] = ((s8 *)data_02174f9c)[0x529];
-            arg0[2] = 0;
-        } else if (arg1[1] == ':') {
-            arg0[0] = 0;
-        } else {
-            func_02016dc0(arg0, data_021754c4);
+    if (arg1 != NULL) {
+        if (arg1[0] != 0) {
+            if (arg1[0] == '\\') {
+                arg0[0] = ((s8 *)data_02174f9c)[0x528];
+                arg0[1] = ((s8 *)data_02174f9c)[0x529];
+                arg0[2] = 0;
+                goto done;
+            }
+            if (arg1[1] == ':') {
+                arg0[0] = 0;
+                goto done;
+            }
         }
-    } else {
-        func_02016dc0(arg0, data_021754c4);
     }
+    func_02016dc0(arg0, data_021754c4);
+done:
     if (arg1 != NULL) {
         func_02016ed8(arg0, arg1);
     }
