@@ -113,6 +113,14 @@ void func_0202e5d8(u32 arg0) {
     }
 }
 
+s32 func_0202e84c(u8 *arg0) {
+    u8 *p = *(u8 **)(*(u8 **)(arg0 + 0x128) + 0x54);
+    if (arg0 == NULL) {
+        return 0;
+    }
+    return func_0202e98c(*(s8 *)(p + 1), *(s8 *)(p + 0));
+}
+
 void func_0202e874(u8 *arg0) {
     u8 *node;
     u8 *sub;
