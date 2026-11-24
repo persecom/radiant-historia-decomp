@@ -18,3 +18,8 @@ u8 *func_020b3fd8(void) {
     return func_020b3880() + 0x96c;
 }
 
+extern void func_02008f74(void *, s32, s32);
+void func_020b3fec(void) {
+    func_02008f74(func_020b3fd8(), 0, 0x2ab8);
+}
+
