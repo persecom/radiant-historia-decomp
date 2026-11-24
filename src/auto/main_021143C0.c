@@ -207,19 +207,25 @@ void func_021148bc(u8 *arg0) {
     func_021148cc(arg0, 1);
 }
 
-void func_021148cc(u8 *arg0p, s32 arg1) {
-    UnkStruct_02114728 *arg0 = (UnkStruct_02114728 *)arg0p;
-    s32 stride = func_0201fd28(arg0->unk_30, arg0->unk_34);
-    s32 offset = stride * arg0->unk_40;
-    s32 i;
-    for (i = 0; i < arg0->unk_50; i++) {
-        data_0216c8b4[i] = *(s32 *)(data_0216c8f4 + arg0->unk_54[i] * 8) + offset;
-    }
-    arg0->unk_38(arg1, arg0->unk_50, data_0216c8b4, stride, arg0->unk_28, arg0->unk_3c);
-    arg0->unk_40++;
-    if (arg0->unk_40 >= arg0->unk_34) {
-        arg0->unk_40 = 0;
-    }
+void func_021148cc(u8 *arg0p, s32 arg1)
+{
+  UnkStruct_02114728 *arg0 = (UnkStruct_02114728 *) arg0p;
+  u8 *new_var;
+  u32 stride = func_0201fd28(arg0->unk_30, arg0->unk_34);
+  u32 offset = stride * arg0->unk_40;
+  s32 i;
+  for (i = 0; i < arg0->unk_50; i++)
+  {
+    new_var = data_0216c8f4 + (arg0->unk_54[i] * 8);
+    data_0216c8b4[i] = (*((u32 *) new_var)) + offset;
+  }
+
+  arg0->unk_38(arg1, arg0->unk_50, data_0216c8b4, stride, arg0->unk_28, arg0->unk_3c);
+  arg0->unk_40++;
+  if (arg0->unk_40 >= arg0->unk_34)
+  {
+    arg0->unk_40 = 0;
+  }
 }
 
 void func_0211497c(u8 *arg0) {
