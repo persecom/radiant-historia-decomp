@@ -107,6 +107,16 @@ void func_020772b8(void) {
     func_021099f8(&buf);
 }
 
+void func_02077440(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, u32 arg4, u16 arg5) {
+    if (arg5 == 0) {
+        return;
+    }
+    *(s32 *)(*(u8 **)arg0 + 0x4c) = (arg3 + 0x65) << 12;
+    *(s32 *)(*(u8 **)arg0 + 0x44) = arg1 << 12;
+    *(s32 *)(*(u8 **)arg0 + 0x48) = arg2 << 12;
+    func_020a9610(arg0 + 0x38, arg4, arg5, *(void **)arg0, 0, 0);
+}
+
 extern void func_020a98ac(void *);
 extern void func_020a98f4(void *);
 extern void func_02076380(void *);
