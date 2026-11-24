@@ -204,8 +204,8 @@ void func_02135a80(u8 *arg0) {
 }
 
 void func_02135abc(u8 *arg0, s16 *arg1, s32 arg2) {
-    s32 idx = *(u16 *)(arg0 + 0xa8) + *(u16 *)(arg0 + 0x98);
     s32 i;
+    s32 idx = *(u16 *)(arg0 + 0xa8) + *(u16 *)(arg0 + 0x98);
     if (idx >= *(s32 *)(arg0 + 0xa4)) {
         idx -= *(s32 *)(arg0 + 0xa4);
     }
