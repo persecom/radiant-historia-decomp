@@ -293,6 +293,22 @@ void func_02117a58(Struct60_02117a58 *arg0) {
     data_0216e234 = *arg0;
 }
 
+BOOL func_02117b9c(arg0, arg1)
+void *arg0;
+u32 arg1;
+{
+    u32 *t = *(u32 **)((u8 *)arg0 + 0x1c);
+    if (arg1 < *(u16 *)t) {
+        u8 *p = *(u8 **)(t + 3) + arg1 * 8;
+        *(u8 **)arg0 = p;
+        if (*(u16 *)(p + 4) != 0) {
+            *(u8 **)((u8 *)arg0 + 4) = p;
+        }
+        return TRUE;
+    }
+    return FALSE;
+}
+
 u32 func_02117bd4(u32 **a0) {
     return *a0[1];
 }
