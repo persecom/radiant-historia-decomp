@@ -10,6 +10,29 @@ extern void func_0210da14(void *), func_0210db10(void *), func_0210dba0(void *),
 extern void func_0210a76c(void *), func_0210c5dc(void *);
 extern void func_021168f8(void *, void *);
 
+void func_020dc7ec(void){
+s32 zero;
+func_02063f20();func_0202f3c4();func_020bc844();func_020b48bc();func_02092bac();func_020f4a24();func_020c0d68();func_020a3b84();func_020df824();func_020bf700();
+func_020d8e5c(1);func_020eaacc();func_020f25dc();func_020d8f50();func_020dcca4();func_020ec218();
+zero=0;
+func_020f0090(zero);func_02065b80();func_02065c08();func_020d3dd8();func_020d069c();func_020eb344(zero,zero);func_02107104();func_02026d20();func_020de488();func_020a2e24();func_020e9d44();func_020972cc();func_020d8558();func_0203160c();func_0202f594();
+func_020bb234(*(void**)(data_0216025c[1]+0x4c));
+data_02160204[0x89]=zero;
+if(data_0216025c[1]){
+func_0210da14(data_0216025c[1]);func_0210dba0(data_0216025c[1]+0x14);func_0210db10(data_0216025c[1]+0x28);
+if(data_0216025c[1]){func_0210c5dc(data_0216025c[1]);data_0216025c[1]=NULL;}
+}
+func_0210f138();
+func_02008e68(0,func_02003454(),0xc000);
+func_02008e68(0,func_020034a8(),0xc000);
+func_02008e68(0,func_02003518(),0xc000);
+func_02008e68(0,func_020035b0(),0xc000);
+func_02008e68(0,func_020031bc(),0x4000);
+func_02008e68(0,func_02003210(),0x4000);
+func_02008e68(0,func_020032b4(),0x4000);
+func_02008e68(0,func_020033ac(),0x4000);
+}
+
 void func_020dc994(void) {
 }
 
