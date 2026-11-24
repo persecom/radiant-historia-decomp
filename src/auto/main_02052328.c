@@ -32,6 +32,21 @@ void func_02052328(void) {
     data_02155984[1] = 0xff0;
 }
 
+extern void func_020ea5d4(void *, s32);
+static void func_020526f0(Vec2_02052844 pos, u16 id, s32 mode, s32 enable) {
+ u8 *node = find_node_02052844(id);
+ if (!node) return;
+ *(s32 *)(node+0x1c)=pos.x<<12;
+ *(s32 *)(node+0x20)=(pos.y-48)<<12;
+ if (*(u32 *)(node+0x18)&1) {
+ void *obj = *(void **)node;
+ if(mode==0) {if(func_02117d80(obj)==9) *(u32 *)(node+0x18)&=~1;}
+ else if(mode==1) {if(func_02117d80(obj)==10) *(u32 *)(node+0x18)&=~1;}
+ else if(mode==2) {if(func_02117d80(obj)==12) *(u32 *)(node+0x18)&=~1;}
+ else if(mode==3) {if(func_02117d80(obj)==15) *(u32 *)(node+0x18)&=~1;}
+ } else if(enable) {*(u32 *)(node+0x18)|=1; func_020ea5d4(node,mode);}
+}
+
 void func_02052844(u8 *arg0, s32 arg1, s32 arg2) {
     u8 *node;
 
