@@ -113,10 +113,10 @@ extern void func_02092ca0(void);
 extern void func_020948ac(void);
 extern void func_0210da14(void *);
 u32 func_02092c1c(void) {
-    if (data_02160110 == NULL) {
-        return 0;
+    if (data_02160110 != NULL) {
+        return *(u32 *)(data_02160110 + 0x84);
     }
-    return *(u32 *)(data_02160110 + 0x84);
+    return 0;
 }
 
 u32 func_02092c38(void) {
