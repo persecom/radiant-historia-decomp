@@ -7,6 +7,19 @@ extern u8 data_0216c8f8[];
 extern s32 func_0200a108(s32);
 extern void func_0200968c(u32, u32, s32);
 extern void func_020096b4(u32, s32);
+extern void func_02115380(void *);
+extern void func_02117210(void *);
+extern void func_020095a8(void *, s32, u32, s32);
+extern void func_0200f0e4(void *);
+extern void func_0200f0fc(void *);
+extern s32 func_02009d2c(void);
+extern void func_02009b24(s32);
+extern void func_02009cc0(s32);
+extern void func_0211488c(void *);
+extern void func_02113a60(s32);
+extern u8 data_0216c8a8[];
+extern u32 data_0216c8b4[];
+extern u32 func_0201fd28(u32, u32);
 typedef struct {
     u8 unk_00[0x44];
     s32 unk_44;
@@ -60,24 +73,17 @@ void func_021143c0(u8 *arg0, u8 arg1) {
 
 void func_02114420(u8 *arg0) {
     u32 *flag = &data_0216c8a4;
+    u32 zero = 0;
     u32 flags;
-    u32 zero;
-    u32 fn1;
-    u32 fn2;
     if (*flag != 0) {
         return;
     }
     func_021167ac((u32)data_0216c8a8, 0);
     *flag = 1;
-    flags = *(u32 *)(arg0 + 0x2c);
-    zero = 0;
-    fn1 = (u32)func_0211497c;
-    fn2 = (u32)func_021149c8;
-    flags &= ~1;
-    flags &= ~2;
-    *(u32 *)(arg0 + 8) = fn1;
+    flags = *(u32 *)(arg0 + 0x2c) & ~1 & ~2;
+    *(u32 *)(arg0 + 8) = (u32)func_0211497c;
     *(u32 *)(arg0 + 0xc) = (u32)arg0;
-    *(u32 *)(arg0 + 0x18) = fn2;
+    *(u32 *)(arg0 + 0x18) = (u32)func_021149c8;
     *(u32 *)(arg0 + 0x1c) = (u32)arg0;
     *(u32 *)(arg0 + 0x4c) = zero;
     *(u32 *)(arg0 + 0x50) = zero;
@@ -125,10 +131,10 @@ void func_0211470c(u8 *arg0) {
 }
 
 void func_02114728(UnkStruct_02114728 *arg0, s32 arg1) {
-    s32 i;
+    s32 i = 0;
     arg0->unk_44 = arg1;
-    for (i = 0; i < arg0->unk_50; i++) {
-        u8 ch = arg0->unk_54[i];
+    for (; i < arg0->unk_50; i++) {
+        s32 ch = arg0->unk_54[i];
         s32 val = func_0200a108(arg0->unk_44 + *(s32 *)(data_0216c8f4 + ch * 8 + 4));
         func_0200968c(1u << ch, val & 0xff, val >> 8);
     }
