@@ -22,6 +22,15 @@ extern s32 func_0211d144(void *, void *);
 extern s32 func_0211d3a0(void *, void *);
 void func_0211d238(u8 *);
 void func_0211d49c(u8 *arg0);
+
+static inline void *get_res_data_by_idx(const u8 *dict, u32 idx) {
+    if (dict != NULL && idx < *(const u8 *)(dict + 1)) {
+        u16 ofs = *(const u16 *)(dict + 6);
+        u16 unit = *(const u16 *)(dict + ofs);
+        return (void *)((dict + ofs + 4) + unit * idx);
+    }
+    return NULL;
+}
 void func_0211cdc8(u8 *arg0, BOOL arg1) {
     u32 sz;
 
@@ -184,12 +193,11 @@ s32 func_0211d520(u8 *arg0, void *arg1) {
             }
             if (entry != NULL) {
                 mdl = arg0 + *entry;
-            } else {
-                mdl = NULL;
+                goto got_mdl;
             }
-        } else {
-            mdl = NULL;
         }
+        mdl = NULL;
+    got_mdl:
         ret &= func_0211d144(mdl, arg1);
         ret &= func_0211d3a0(mdl, arg1);
     }
@@ -212,12 +220,11 @@ void func_0211d5d0(u8 *arg0) {
             }
             if (entry != NULL) {
                 mdl = arg0 + *entry;
-            } else {
-                mdl = NULL;
+                goto got_mdl;
             }
-        } else {
-            mdl = NULL;
         }
+        mdl = NULL;
+    got_mdl:
         func_0211d238(mdl);
         func_0211d49c(mdl);
     }
@@ -237,6 +244,13 @@ void *func_0211d7d4(void) {
         *(u32 *)(p + 0xfc) |= 0x8;
     }
     return data_021702fc;
+}
+
+void func_0211d814(void) {
+    u8 *p = data_0217032c;
+    func_02001508(data_021702b8, data_02170248, p);
+    func_02001160(p, p, *(u32 *)(data_021701fc + 0xec), *(u32 *)(data_021701fc + 0xf0), *(u32 *)(data_021701fc + 0xf4));
+    func_02001194(p, data_0217035c);
 }
 
 void *func_0211d878(void) {
@@ -284,13 +298,21 @@ s32 func_0211d8e0(u32 *arg0, u8 *arg1, u32 arg2) {
 
 void func_0211d94c(s32 *arg0, s32 *arg1, s32 arg2, s32 arg3) {
     if (arg3 != 0) {
-        arg0[0] += arg2;
-        arg0[1] += arg2;
-        arg0[2] += arg2;
+        s32 a = arg0[0], b = arg0[1], c = arg0[2];
+        a += arg2;
+        b += arg2;
+        c += arg2;
+        arg0[0] = a;
+        arg0[1] = b;
+        arg0[2] = c;
     } else {
-        arg0[0] += (arg1[0] * arg2) >> 12;
-        arg0[1] += (arg1[1] * arg2) >> 12;
-        arg0[2] += (arg1[2] * arg2) >> 12;
+        s32 a = arg0[0], b = arg0[1], c = arg0[2];
+        a += (arg1[0] * arg2) >> 12;
+        b += (arg1[1] * arg2) >> 12;
+        c += (arg1[2] * arg2) >> 12;
+        arg0[0] = a;
+        arg0[1] = b;
+        arg0[2] = c;
     }
 }
 
