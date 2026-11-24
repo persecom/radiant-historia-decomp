@@ -141,8 +141,38 @@ void func_020d9cc0(void *arg0) {
     }
 }
 
+void func_020d9d10(u32 arg0, s16 arg1, s16 arg2) {
+    u8 *p = data_02160258;
+    *(s16 *)(p + 0x78) = 0;
+    switch (arg0) {
+        case 0:
+            *(s16 *)(p + 0x76) = arg1;
+            break;
+        case 1:
+            *(s16 *)(p + 0x76) += arg1;
+            if (*(s16 *)(p + 0x76) > 0x1e) {
+                *(s16 *)(p + 0x76) = 0x1e;
+            }
+            break;
+        case 2:
+            *(s16 *)(p + 0x76) = 0;
+            break;
+        case 3:
+            *(s16 *)(p + 0x76) = -1;
+            break;
+    }
+    *(s16 *)(p + 0x78) = arg2;
+    if (arg2 == 0) {
+        *(s16 *)(p + 0x78) = *(s16 *)(p + 0x76);
+    }
+}
+
 void func_020d9d8c(u32 arg0) {
     *(u32 *)(data_02160258 + 0x7c) |= arg0;
+}
+
+void func_020d9da8(u32 arg0) {
+    *(u32 *)(data_02160258 + 0x7c) &= ~arg0;
 }
 
 void *func_020d9df4(void) {
