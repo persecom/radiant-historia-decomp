@@ -175,6 +175,36 @@ void func_0208c788(s32 arg0, s32 arg1, s32 *arg2, s32 *arg3) {
     }
 }
 
+void func_0208c8b8(s32 id) {
+Unk14 a=data_021413c8,b=data_021413b4,c=data_021413a0,d=data_0214138c;
+*(volatile u32 *)0x40004a4=0x1f00c0;
+func_020a3bbc(2);func_021098ac(&a);
+b.data[5]=(s16)a.data[5]+8;func_021098ac(&b);
+c.data[2]=id*13;
+if(id==2)c.data[2]=(id+1)*13;
+if(id==3)c.data[2]=(id-1)*13;
+if(id==5)c.data[2]=(id+1)*13;
+func_020a3bbc(3);func_021098ac(&c);
+a.data[4]=a.data[9]=8;
+a.data[5]=52;a.data[6]=29;
+func_020a3bbc(4);func_021098ac(&a);
+b.data[5]=(s16)a.data[5]+8;b.data[6]=29;
+b.data[4]=b.data[9]=8;
+func_021098ac(&b);
+func_020a3bbc(5);
+a.data[1]=0;a.data[2]=0;
+a.data[3]=a.data[8]=16;
+a.data[4]=a.data[9]=14;a.data[5]=75;a.data[6]=34;
+func_021098ac(&a);
+b.data[1]=10;b.data[2]=0;b.data[3]=6;b.data[4]=b.data[9]=14;b.data[5]=91;b.data[6]=34;b.data[8]=200;
+func_021098ac(&b);
+func_020a3bbc(9);func_021098ac(&d);
+func_020a3bbc(id+10);
+b.data[5]=5;b.data[6]=4;b.data[1]=0;b.data[2]=0;
+b.data[3]=b.data[8]=32;b.data[4]=b.data[9]=32;b.data[7]=144;
+func_021098ac(&b);
+}
+
 void func_0208cb1c(void) {
     Unk14 buf = data_02141378;
     func_02092814(6, 0, 0, 0x38, 0xef, 0x2d, 0x8d);
