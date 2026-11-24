@@ -125,10 +125,8 @@ void func_020f4d0c(void *arg0) {
 }
 
 void *func_020f4d40(u32 arg0) {
-    u32 *head = (u32 *)data_02160c3c;
-    u8 *p;
-    for (p = NULL;
-         (p = (p != NULL) ? *(u8 **)(p + *(u16 *)((u8 *)head + 0xa) + 4) : *(u8 **)head) != NULL;) {
+    u8 *p = NULL;
+    for (; (p = (p != NULL) ? *(u8 **)(p + *(u16 *)((u8 *)data_02160c3c[0] + 0xa) + 4) : *(u8 **)data_02160c3c[0]) != NULL;) {
         if (*(u32 *)(p + 0x44) == arg0) {
             return p;
         }
