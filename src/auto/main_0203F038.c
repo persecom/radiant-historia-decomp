@@ -42,7 +42,7 @@ extern UnkData_0203faf4 data_0213f0d0;
 extern UnkStruct_0203fc18 *data_021600a0;
 
 extern void *func_0203be60(void *, void *, void *);
-extern void func_0203fb58(void *, u16);
+extern void *func_0203fb58(void *, u16);
 extern void *func_0210c594(s32, u32);
 extern void func_0210c5dc(void *);
 extern void func_021167f0(void *, void *);
