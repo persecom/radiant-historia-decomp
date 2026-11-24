@@ -11,6 +11,14 @@ void *func_0212a220(void *arg0) {
     return *(void **)((u8 *)arg0 + 0x10);
 }
 
+extern void func_02129624(void);
+extern void func_02129a50(void);
+extern void *memset(void *, int, u32);
+extern u8 data_021735a4[976];
+u32 func_0212a250(u8 *arg0) {
+    return *(u32 *)(arg0 + 0x30);
+}
+
 s32 func_0212a4b8(s32 *arg0) {
     return arg0[1];
 }
