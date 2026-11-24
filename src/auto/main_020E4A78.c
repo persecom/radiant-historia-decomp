@@ -165,8 +165,7 @@ void func_020e57e8(void *arg0, s32 arg1) {
 }
 
 s32 func_020e580c(void *arg0, void *arg1, s32 arg2) {
-    u8 *p = *(u8 **)arg0;
-    u8 *sub = *(u8 **)(p + 0x118);
+    u8 *sub = *(u8 **)(*(u8 **)arg0 + 0x118);
     s32 rem = *(s16 *)(sub + 0xc) - *(s16 *)((u8 *)arg1 + 0x1c);
     if (rem >= 0) {
         if (arg2 != 0) {
@@ -185,9 +184,9 @@ s32 func_020e580c(void *arg0, void *arg1, s32 arg2) {
 
 u8 func_020e586c(void *arg0, s32 arg1, u16 arg2) {
     s32 id;
-    u8 *p;
-    u16 count;
     u16 i;
+    u16 count;
+    u8 *p;
     if (func_020bd490(2, arg1) != 0) {
         id = func_020bd490(1, arg1) - 1;
     } else {
@@ -196,10 +195,10 @@ u8 func_020e586c(void *arg0, s32 arg1, u16 arg2) {
     p = func_02021f10(id);
     count = 0;
     for (i = 1; i < 0x1e; i++) {
-        if (p[i + 0x4e] != 0) {
-            if (func_02064cb8(*(void **)((u8 *)arg0 + 0x11c), p[i + 0x4e]) != 0) {
+        if ((p + i)[0x4e] != 0) {
+            if (func_02064cb8(*(void **)((u8 *)arg0 + 0x11c), (p + i)[0x4e]) != 0) {
                 if (count == arg2) {
-                    return p[i + 0x4e];
+                    return (p + i)[0x4e];
                 }
                 count++;
             }
