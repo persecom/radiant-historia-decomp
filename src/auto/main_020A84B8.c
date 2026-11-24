@@ -292,3 +292,36 @@ s32 func_020a916c(s32 arg0) {
     return v + data_02160144;
 }
 
+u16 func_020a932c(u8 **p) {
+s32 c;
+if (*p == 0) return 0xff00;
+for (;;) {
+c = *(*p)++;
+if (c < 0xfd || c == 0xfe || ((u32)(c - 0xfa) <= 2)) {
+switch(c) {
+case 0xfe: c = *(*p)++ | 0x100; break;
+case 0xfc: c = *(*p)++ | 0x200; break;
+case 0xfb: c = *(*p)++ | 0x300; break;
+case 0xfa: c = *(*p)++ | 0x400; break;
+}
+break;
+}
+if(c == 0xff) continue;
+c = *(*p)++ | ((u16)c << 8);
+if(c >= 0xfd10 && c <= 0xfd13) {
+p[1] = *p;
+switch(c) {
+case 0xfd10: *p = data_02160078+0x12; break;
+case 0xfd11: *p = data_02160204+2; break;
+case 0xfd12: *p = data_02160204+0x22; break;
+case 0xfd13: *p = data_02160204+0x42; break;
+}
+continue;
+}
+if (c == 0xfd14) c = 0xfd14;
+else if (c == 0xfd00) c = 0xfd00;
+break;
+}
+return c;
+}
+
