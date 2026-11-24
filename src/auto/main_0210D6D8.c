@@ -164,3 +164,7 @@ void func_0210dc58(s32 arg0) {
     func_0210d92c(data_021628bc, arg0);
 }
 
+void func_0210dc70(s32 arg0) {
+    func_021168f8(data_021628bc, arg0);
+}
+
