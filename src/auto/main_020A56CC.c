@@ -37,6 +37,35 @@ typedef struct {
     s32 y;
     s32 z;
 } Vec3s32_020A56CC;
+void func_020a56cc(void) {
+Unk20 box=data_021433b0;
+u8 *p;
+func_020a3bbc(0x27);
+p=data_02160134[1];
+if(!(*(s16 *)(p+10)&8)) {
+if(p[5]>=20) {
+p[5]=0;
+data_02160134[1][4]=func_020851bc(data_02160134[1][4],1,2,0,2);
+} else data_02160134[1][5]=func_020851bc(p[5],1,20,0,1);
+} else if(*(s16 *)(p+10)&16) {
+*(s16 *)(p+6)=260+(*(s16 *)(p+12)*-80)/4;
+p=data_02160134[1];
+if(*(s16 *)(p+12)>=4){
+*(s16 *)(p+10)&=~8;
+*(s16 *)(data_02160134[1]+12)=0;
+p=data_02160134[1];
+*(s16 *)(p+8)=*(s16 *)(p+6);
+} else *(s16 *)(data_02160134[1]+12)=func_020851bc(*(s16 *)(p+12),1,4,0,1);
+}
+box.unk[1]=0;
+box.unk[2]=(s16)data_02160134[1][4]*18;
+box.unk[3]=box.unk[8]=64;
+box.unk[4]=box.unk[9]=18;
+box.unk[5]=*(s16 *)(data_02160134[1]+6);
+box.unk[6]=164;
+func_021098ac(&box);
+}
+
 void *func_020a583c(void) {
     return func_0210c594(0x80, data_02155c3c);
 }
