@@ -83,6 +83,21 @@ void func_0212a0d0(u8 *arg0) {
     func_0212a0e4(arg0, v);
 }
 
+void func_0212a180(void *arg0, u8 *arg1, u32 arg2) {
+    u16 v;
+    func_02129c6c(arg0);
+    v = arg1[0] | (arg1[1] << 8);
+    if (v != 0x8000) {
+        return;
+    }
+    func_02129db4(arg0, arg1, arg2);
+}
+
+void func_0212a1c8(u8 *arg0, u32 arg1, u32 arg2) {
+    *(u32 *)(arg0 + 0x78) = arg1;
+    *(u32 *)(arg0 + 0x7c) = arg2;
+}
+
 void *func_0212a220(void *arg0) {
     return *(void **)((u8 *)arg0 + 0x10);
 }
@@ -101,6 +116,13 @@ s32 func_0212a4b8(s32 *arg0) {
 
 void *func_0212a58c(u8 *arg0) {
     return *(void **)(arg0 + 0x90);
+}
+
+void func_0212a98c(void) {
+    data_02173974[1]++;
+    if (data_02173974[1] == 1) {
+        data_02173974[0] = 0;
+    }
 }
 
 void func_0212a9dc(void) {
