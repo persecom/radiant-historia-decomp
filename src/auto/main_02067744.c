@@ -40,6 +40,16 @@ typedef struct { Pair values[4]; } Directions_02067de0;
 typedef struct { Spawn values[7]; } Spawns_02067de0;
 typedef struct { Directions_02067de0 directions; Spawns_02067de0 spawn, temp; } Tables_02067de0;
 
+static inline void Spawn_02067de0(Particle *p, const Spawn *entry, const Pair *dir) {
+ s32 x=dir->x*(entry->x*2);
+ s16 sx=entry->sx*dir->x;
+ s16 sy=entry->sy*dir->y;
+ s32 y=dir->y*(entry->y*2);
+ p->scaleX=sx; p->scaleY=sy;
+ p->fxScaleX=p->scaleX*4096;
+ p->fxScaleY=p->scaleY*4096;
+ p->x=x*4096; p->y=y*4096;
+}
 static inline u16 Random_02067de0(u32 limit) {
     u32 seed=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
     data_0216263c[0]=seed;
