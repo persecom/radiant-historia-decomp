@@ -252,6 +252,27 @@ void func_0203c20c(void) {
     }
 }
 
+void func_0203c2b8(void) {
+ u8 *p=data_02160a74;
+ *(u32 *)(p+0x58)|=0x2000;
+ func_020df3f4(func_020e84c0(0),1);
+ *(u32 *)(p+0x58)|=6;
+ if(func_020e8410(0,2,0)) {
+ *(u32 *)(p+0x58)|=0x4000;
+ *(u16 *)(p+0x170)=0;
+ *(u16 *)(p+0x172)=9999;
+ func_020e26f0(7,1,999);
+ } else {
+ *(u32 *)(p+0x58)&=~0x4000;
+ func_020e25fc(8,0,0);
+ func_020e26f0(7,0,999);
+ func_020e26f0(1<<*(u16 *)(func_020e84c0(0)+0x90),3,999);
+ }
+ func_020e86c0(5);
+ func_020e2be4(*(void **)(p+0xa0),*(u16 *)(p+0xbc),2);
+ *(u32 *)(data_02160a6c+0x100)=0;
+}
+
 void func_0203c780(void) {
 void *p;
 func_020eaacc(); func_020f4144(); func_020a3b84(); func_020dcca4(); func_020eb344(0,0);
