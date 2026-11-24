@@ -1,5 +1,11 @@
 /* 19 functions from 0x020F1A1C to 0x020F26FC (main), found by ds-decomp. */
 #include "common.h"
+extern char data_02151dc8[], data_02151dd0[];
+extern void *func_0210aad0(void **,char *,s32 *);
+extern void *func_0210aca0(void **,char *,s32 *);
+extern void func_020f2198(void *,void *);
+extern s32 func_0210ae0c(void *,void *,char *);
+extern s32 func_0210ad88(void *,void *,s32);
 
 extern s32 func_020f1ffc();
 extern void func_0210b198(s32, u16, s32, s32, s32);
@@ -29,6 +35,37 @@ void func_020f1dfc(s32 arg0, s32 arg1) {
     } else {
         ptr[5] &= ~1;
     }
+}
+
+void func_020f1e2c(void) {
+    s32 i;
+    s32 j;
+    s32 off;
+
+    if (data_02160c10 == NULL) {
+        return;
+    }
+    for (i = 0; i < 6; i++) {
+        off = i * 12;
+        while (*(u16 *)(data_02160c10 + off + 8) != 0) {
+            func_020f1f28(*(u8 **)(data_02160c10 + off));
+        }
+    }
+    for (j = 0; j < 6; j++) {
+        off = j * 12;
+        while (*(u16 *)(data_02160c10 + off + 0x50) != 0) {
+            func_020f1fa4(*(u8 **)(data_02160c10 + off + 0x48));
+        }
+    }
+    func_0210da14(data_02160c10 + 0x9c);
+    func_0210dba0(data_02160c10 + 0xb0);
+    func_0210db10(data_02160c10 + 0xc4);
+    func_020e972c(*(void **)(data_02160c10 + 0xd8));
+    if (data_02160c10 == NULL) {
+        return;
+    }
+    func_0210c5dc(data_02160c10);
+    data_02160c10 = NULL;
 }
 
 void func_020f1f28(u8 *arg0) {
