@@ -58,3 +58,26 @@ s32 func_020f6458(void) {
     }
     return 0;
 }
+
+void func_020f6614(s32 *p, u32 op, s32 v) {
+s32 *ctx = *(s32 **)(data_021626e8[0] + 0x10);
+switch(op) {
+case 1: *p += v; break;
+case 2: *p -= v; break;
+case 3: *p *= v; break;
+case 4: *p /= v; break;
+case 5: *p %= v; break;
+case 6: *p = v; break;
+case 7: *p &= v; break;
+case 8: *p |= v; break;
+case 9: *p ^= v; break;
+case 10: *p = ~v; break;
+case 11: ctx[0x49] = *p == v; break;
+case 12: ctx[0x49] = *p != v; break;
+case 13: ctx[0x49] = *p > v; break;
+case 14: ctx[0x49] = *p >= v; break;
+case 15: ctx[0x49] = *p < v; break;
+case 16: ctx[0x49] = *p <= v; break;
+}
+}
+
