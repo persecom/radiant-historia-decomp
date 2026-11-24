@@ -447,9 +447,64 @@ void func_0200683c(u8 *arg0, u32 arg1) {
     *(u32 *)(arg0 + 0xb4) = arg1;
 }
 
+void func_02006844(u32 *arg0, u32 arg1, u32 arg2) {
+    arg0[16] = arg1 + 4;
+    arg0[17] = arg2;
+    arg2 -= 0x40;
+    if (arg2 & 4) {
+        arg2 -= 4;
+    }
+    arg0[14] = arg2;
+    arg0[0] = ((arg1 + 4) & 1) ? 0x3f : 0x1f;
+    arg0[1] = 0;
+    arg0[2] = 0;
+    arg0[3] = 0;
+    arg0[4] = 0;
+    arg0[5] = 0;
+    arg0[6] = 0;
+    arg0[7] = 0;
+    arg0[8] = 0;
+    arg0[9] = 0;
+    arg0[10] = 0;
+    arg0[11] = 0;
+    arg0[12] = 0;
+    arg0[13] = 0;
+    arg0[15] = 0;
+}
+
 extern u32 func_02006940(void);
 BOOL func_0200698c(void) {
     return (func_02006940() & 0x10000000) != 0;
+}
+
+BOOL func_020069a4(Unk69A4 *arg0, void *arg1, s32 arg2) {
+    u32 enabled = func_02008128();
+    s32 lastIndex;
+
+    while (arg0->msgCount <= arg0->usedCount) {
+        if (!(arg2 & 1)) {
+            func_0200813c(enabled);
+            return 0;
+        }
+        func_02006510(arg0);
+    }
+
+    lastIndex = (arg0->firstIndex + arg0->usedCount) % arg0->msgCount;
+    arg0->msgArray[lastIndex] = arg1;
+    arg0->usedCount++;
+    ((void (*)(void *))func_02006560)(&arg0->unk8);
+    func_0200813c(enabled);
+    return 1;
+}
+
+extern u32 data_02145bb8[2];
+extern u32 func_02006974(void);
+void func_02006ad8(Unk6AD8 *arg0) {
+    arg0->unkC_0 = 0;
+    arg0->unkC_24 = 0;
+    arg0->unk4 = 0;
+    arg0->unk0 = 0;
+    arg0->unk8 = 0;
 }
 
 extern void func_02006c38(void *, u32);
