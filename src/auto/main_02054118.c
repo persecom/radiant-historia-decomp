@@ -174,3 +174,26 @@ void func_0205443c(s32 arg0) {
     }
 }
 
+void func_020544d8(void *arg0, s32 arg1) {
+    if (arg0 == NULL) {
+        return;
+    }
+    if (arg1 != 0) {
+        u8 *s = *(u8 **)((u8 *)arg0 + 0xd0);
+        if (s == NULL) {
+            return;
+        }
+        if (s[0xc] != 0) {
+            return;
+        }
+        s[0xc] = s[1];
+        (*(u8 **)((u8 *)arg0 + 0xd0))[1] = 0;
+    } else {
+        u8 *s = *(u8 **)((u8 *)arg0 + 0xd0);
+        if (s != NULL && s[0xc] != 0) {
+            s[1] = s[0xc];
+            (*(u8 **)((u8 *)arg0 + 0xd0))[0xc] = 0;
+        }
+    }
+}
+
