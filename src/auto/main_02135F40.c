@@ -55,6 +55,7 @@ u32 func_021361bc(u8 *arg0, u16 *arg1, u16 *arg2) {
 u16 func_0213689c(u8 *arg0) {
     u16 sp2;
     u16 sp0;
+    u16 r4;
     u16 r3;
     u16 r2;
     u16 r7;
@@ -63,23 +64,24 @@ u16 func_0213689c(u8 *arg0) {
         return 0;
     }
     func_02135f0c(arg0, &sp2, &sp0);
-    if (sp2 == 0) {
+    r4 = sp2;
+    if (r4 == 0) {
         return 0;
     }
     r3 = *(u16 *)(arg0 + 0x1a);
-    if (r3 + sp2 <= 0x1800) {
-        r2 = sp2;
+    if (r3 + r4 <= 0x1800) {
+        r2 = r4;
         r7 = 0;
     } else {
         r2 = 0x1800 - r3;
-        r7 = (r3 + sp2) - 0x1800;
+        r7 = (r3 + r4) - 0x1800;
     }
     func_02008f74(*(u8 **)(arg0 + 4) + r3, 0, r2);
     if (r7 != 0) {
         func_02008f74(*(u8 **)(arg0 + 4), 0, r7);
     }
     *(u16 *)(arg0 + 0x2a) = 0;
-    return sp2;
+    return r4;
 }
 
 u32 func_02136930(u8 *arg0) {
