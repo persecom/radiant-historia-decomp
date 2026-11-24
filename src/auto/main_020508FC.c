@@ -169,28 +169,40 @@ BOOL func_02050e2c(s32* arg0, s32* arg1, s32* arg2)
 }
 
 #pragma optimization_level 4
-BOOL func_0205103c(u8 *arg0) {
-    u8 *p = data_02160aec;
-    u8 type;
-    if (p == NULL) {
-        return FALSE;
-    }
-    if (*(u32 *)(arg0 + 0xac) & 0x1000000) {
-        return FALSE;
-    }
-    type = *(p + 0xbc8 + ((*(s32 *)(arg0 + 8) / 0x10000) * *(s16 *)(p + 0x58d36) + *(s32 *)arg0 / 0x10000) * 0xc);
-    switch (type) {
+BOOL func_0205103c(u8 *arg0)
+{
+  u8 *p = data_02160aec;
+  u8 type;
+  if (p == NULL)
+  {
+    return FALSE;
+  }
+  if ((*((u32 *) (arg0 + 0xac))) & 0x1000000)
+  {
+    return FALSE;
+  }
+  type = *((p + 0xbc8) + (((((*((s32 *) (arg0 + 8))) / 0x10000) * (*((s16 *) (p + 0x58d36)))) + ((*((s32 *) arg0)) / 0x10000)) * 0xc));
+  switch (type)
+  {
     case 1:
+
     case 6:
+
     case 7:
-    case 26: {
-        u32 b = *(u32 *)(arg0 + 0x14);
-        u32 a = *(u32 *)(arg0 + 0xc);
-        *(u32 *)(arg0 + 0) = a;
-        *(u32 *)(arg0 + 8) = b;
-        return TRUE;
+
+    case 26:
+    {
+      u32 a = *((u32 *) (arg0 + 0xc));
+      u32 b = *((u32 *) (arg0 + 0x14));
+      *((u32 *) (arg0 + 0)) = a;
+      *((u32 *) (arg0 + 0)) = a;
+      *((u32 *) (arg0 + 8)) = b;
+      return TRUE;
     }
+
     default:
-        return FALSE;
-    }
+      return FALSE;
+
+  }
+
 }
