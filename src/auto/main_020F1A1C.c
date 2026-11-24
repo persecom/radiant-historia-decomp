@@ -44,3 +44,8 @@ BOOL func_020f24f4(s32 arg0) {
     return func_020f1ffc(arg0) != 0;
 }
 
+extern s32 func_020f2104(s32);
+BOOL func_020f250c(s32 arg0) {
+    return func_020f2104(arg0) != 0;
+}
+
