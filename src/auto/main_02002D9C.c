@@ -234,6 +234,10 @@ s32 func_0200308c(s32 *arg0) {
 }
 
 s32 func_020030b8(s32 *arg0) {
+    if (*(volatile u32 *)0x04000600 & 0x4000) {
+        return -1;
+    }
+    *arg0 = (*(volatile u32 *)0x04000600 & 0x2000) >> 13;
     return 0;
 }
 
