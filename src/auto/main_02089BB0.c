@@ -14,7 +14,7 @@ extern void func_02015a3c(void *, u32, u32, int (*)(const void *, const void *))
 extern u8 *data_021600b0;
 extern u8 *data_0216010c;
 extern s32 func_02092ab0();
-extern u16 func_02092994(void *, s32);
+extern u32 func_02092994(void *, s32);
 extern void func_020a3b84(void);
 extern void func_020a0da8(void);
 extern void func_020a0dc8(void *);
@@ -33,6 +33,40 @@ void func_0208a168(u8 *arg0, s32 arg1, s32 arg2, u32 *arg3) {
         return;
     }
     *(u16 *)(arg0 + 0x26) = func_02092994(arg3, 0);
+}
+
+void func_0208a1a0(s32 arg0) {
+void *stream;
+void *name;
+if(arg0==0) name=data_021486a4;
+else if(arg0==1) name=data_021486bc;
+else name=data_021486d0;
+stream=func_021092d8(name);
+do {
+s16 i=0;
+s16 id=(u16)func_02092994(stream,0);
+if(func_02022068(id)>=1 && id>0) {
+do {
+func_021093f0(stream);func_021093f0(stream);func_021093f0(stream);
+func_021093f0(stream);func_021093f0(stream);func_021093f0(stream);
+i++;
+}while(i<15);
+*(s16 *)(data_0216010c+*(s16 *)(data_0216010c+0x50d4)*100+0x5570)=id;
+{
+u8 *p=data_0216010c;
+u32 result=func_02022068(id);
+*(u8 *)(p+*(s16 *)(p+0x50d4)*100+0x5572)=result;
+}
+{
+u8 *p=data_0216010c;
+u16 result=func_02092994(stream,0);
+*(u16 *)(p+*(s16 *)(p+0x50d4)*100+0x559a)=result;
+}
+*(s16 *)(data_0216010c+0x50d4)+=1;
+}
+}while(func_02109444(stream)!=0);
+func_021093b0(stream);
+func_02015a3c(data_0216010c+0x5570,*(s16 *)(data_0216010c+0x50d4),100,func_02089b38);
 }
 
 s32 func_0208a318(s32 arg0) {
