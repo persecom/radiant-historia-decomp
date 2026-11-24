@@ -78,6 +78,21 @@ u32 func_02016da4(const char *s) {
     return len;
 }
 
+char *func_02016e88(char *dst, const char *src, u32 n) {
+    const u8 *p = (const u8 *)src;
+    u8 *q = (u8 *)dst;
+    while (n) {
+        if (!(*q++ = *p++)) {
+            while (--n) {
+                *q++ = 0;
+            }
+            break;
+        }
+        n--;
+    }
+    return dst;
+}
+
 char *func_02016ed8(char *dst, const char *src) {
     const u8 *p = (const u8 *)src;
     u8 *q = (u8 *)dst;
