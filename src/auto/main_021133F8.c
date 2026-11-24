@@ -59,9 +59,11 @@ extern s32 func_02110b38(u16);
 extern s32 func_021136e4(s32);
 #pragma optimization_level 0
 s32 func_021136b0(u16 arg0, ...) {
+    s32 x;
     s32 ret = 0;
-    s32 x = func_02110b38(arg0);
-    s32 y = func_021136e4(x);
+    s32 y;
+    x = func_02110b38(arg0);
+    y = func_021136e4(x);
     return ret;
 }
 #pragma optimization_level 4
