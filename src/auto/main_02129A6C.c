@@ -175,6 +175,10 @@ u32 func_0212a250(u8 *arg0) {
     return *(u32 *)(arg0 + 0x30);
 }
 
+s32 func_0212a258(s32 *arg0) {
+    return arg0[13];
+}
+
 s32 func_0212a4b8(s32 *arg0) {
     return arg0[1];
 }
