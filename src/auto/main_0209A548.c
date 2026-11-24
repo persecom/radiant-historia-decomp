@@ -66,6 +66,29 @@ u16 func_0209ac28(u8 *arg0, s32 arg1) {
     return ret;
 }
 
+extern const char data_02148910[];
+void func_0209b03c(void) {
+    char buf[0x20];
+    void *r5;
+    u16 i, j;
+    func_02005e80(buf, data_02148910);
+    r5 = func_021092d8(buf);
+    if (r5 == NULL) {
+        return;
+    }
+    for (i = 0; i < 30; i++) {
+        *(u16 *)((u8 *)data_02160120 + 0x742 + i * 2) = 0;
+    }
+    for (j = 0; j < 11; j++) {
+        func_02092994(r5, 0);
+        *(u16 *)((u8 *)data_02160120 + 0x742 + j * 2) = func_02092994(r5, 0);
+        func_02109444(r5);
+    }
+    if (r5 != NULL) {
+        func_021093b0(r5);
+    }
+}
+
 void func_0209b108(u8 arg0, u16 arg1) {
     Node_0209b108 *cur = data_02160120->unk_6ec;
     s32 found = 0;
