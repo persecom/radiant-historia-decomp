@@ -67,6 +67,12 @@ void func_021155ec(void *arg0) {
     func_021167ac(arg0, NULL);
 }
 
+s32 func_021155fc(void *arg0, void *arg1) {
+    func_021167ac((u8 *)arg0 + 4, (void *)0xc);
+    *(void **)arg0 = arg1;
+    return func_02115630(arg0) != 0;
+}
+
 extern void *func_02115264(void *);
 extern void *func_02114f70(void);
 extern void *func_02115994(void *, void *, void *, void *, void *);
