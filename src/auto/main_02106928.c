@@ -249,6 +249,12 @@ void func_021072d0(u32 arg0, u32 arg1, u32 arg2) {
     func_020105e0(arg1, arg0, arg2, 0, 0, 1, 8, 10, 2);
 }
 
+void func_02107334(u32 arg0, u32 arg1, u32 arg2) {
+    func_021071fc();
+    data_0216106c = 1;
+    func_020105e0(arg0, arg1, arg2, 0, 0, 1, 6, 1, 0);
+}
+
 extern char data_0215596c[];
 extern void func_02005e80(char *, char *, ...);
 extern void *func_0210aa5c(u32 *, char *, u32 *);
