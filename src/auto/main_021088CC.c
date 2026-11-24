@@ -28,6 +28,8 @@ extern s32 data_02162814;
 extern s32 data_02162878;
 
 void func_02008f74(void *, s32, s32);
+extern void func_0210c35c(s32 *, s32, s32, s32);
+extern void func_0210d9e4(u8 *);
 s32 func_02109f84(void *);
 s32 func_0210c398(void *);
 void func_0210da14(void *);
