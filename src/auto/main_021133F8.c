@@ -55,6 +55,17 @@ void func_02113630(s32 *arg0, s32 *arg1) {
     }
 }
 
+extern s32 func_02110b38(u16);
+extern s32 func_021136e4(s32);
+#pragma optimization_level 0
+s32 func_021136b0(u16 arg0, ...) {
+    s32 ret = 0;
+    s32 x = func_02110b38(arg0);
+    s32 y = func_021136e4(x);
+    return ret;
+}
+#pragma optimization_level 4
+
 s32 func_02113824(void) {
     func_02112f88();
     return 0;
@@ -71,6 +82,10 @@ void func_02113980(void) {
 
 void func_02113b58(void **arg0, s32 arg1) {
     func_021140b8(*arg0, arg1);
+}
+
+void func_02113c0c(u32 *arg0) {
+    *arg0 = 0;
 }
 
 extern void func_021142f0(void);
