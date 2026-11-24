@@ -16,6 +16,12 @@ extern s32 func_0201f884(s32);
 extern s32 func_02020888(s32, s32);
 extern s32 func_020201f4(s32, s32);
 extern s32 func_0201ff0c(s32);
+extern u8 *data_02155984;
+extern u8 *data_021600bc;
+extern u32 data_02162834;
+extern u8 *data_02160210;
+extern u32 data_02162860;
+extern void func_020ed4c4(void *, void *, u32, u32, u32, u32);
 
 extern s32 func_020ed270(void *, u16, s32);
 s32 func_020ed2d0(u8 *arg0, s32 arg1) {
