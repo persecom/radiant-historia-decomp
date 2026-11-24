@@ -319,3 +319,14 @@ s32 func_02112214(u8 *arg0) {
     return 0;
 }
 
+s32 func_0211223c(u8 *arg0) {
+    if (func_020c7408(arg0)) {
+        return 1;
+    }
+    func_021117dc(arg0);
+    func_020c9bb8(*(void **)(arg0 + 0x8c));
+    u8 *obj = *(u8 **)(arg0 + 0x90);
+    ((void (*)(u8 *))*(void **)(obj + 0xc))(obj);
+    return 0;
+}
+
