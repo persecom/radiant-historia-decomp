@@ -16,6 +16,7 @@ void func_02075c98(void) {
 }
 
 extern u32 data_021600ec[4];
+extern u8 data_0213a394[];
 u32 func_020764e4(void) {
     return data_021600ec[0];
 }
