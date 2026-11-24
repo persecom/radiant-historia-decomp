@@ -87,3 +87,14 @@ void *func_020d3e60(u32 arg0) {
     return NULL;
 }
 
+void *func_020d3fac(u8 arg0) {
+    Node_020d3fac *node = data_02160244->unk_150;
+    while (node != NULL) {
+        if (node->unk_6 == arg0) {
+            return node;
+        }
+        node = node->next;
+    }
+    return NULL;
+}
+
