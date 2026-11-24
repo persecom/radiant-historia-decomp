@@ -41,6 +41,7 @@ u64 func_02007904(void);
 void func_021256b4(void);
 void func_02125c38(u32);
 void func_021089e8(u32, s32, u32);
+extern void func_0210c5dc(u32);
 extern s32 func_0201f884(s32);
 extern s32 func_020201f4(s32, s32);
 extern s32 func_02020604(s32, s32);
@@ -220,6 +221,22 @@ void func_02108eec(u32 arg0, u32 arg1) {
     func_02109264(arg0);
 }
 
+void func_02108f58(u32 arg0) {
+    u16 i;
+    u16 j;
+    if (arg0 >= 2) {
+        return;
+    }
+    for (i = 0; i < 100; i++) {
+        func_02108d34(arg0, func_02020604(0x3f800000, func_020201f4(0x3dcccccd, func_0201f884(i / 10))));
+        func_02108ffc();
+    }
+    for (j = 0; j < 5; j++) {
+        func_02108c24(arg0, j);
+        func_02108ffc();
+    }
+}
+
 void func_02109040(void) {
     u32 i;
     Unk021624F8 *p;
@@ -310,14 +327,14 @@ s32 func_021093f0(u8 *arg0) {
 }
 
 s32 func_02109444(Unk02109444 *arg0) {
+    u8 *end = arg0->buf;
     u8 *cur = arg0->cur;
-    u8 *end = arg0->buf + arg0->size;
-    u8 c;
+    end += arg0->size;
     if (cur == end) {
         return 0;
     }
     while (cur < end) {
-        c = *cur++;
+        u8 c = *cur++;
         if (c == '\n') {
             break;
         }
