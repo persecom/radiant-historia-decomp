@@ -93,8 +93,8 @@ void func_021274ac(void *arg0) {
 }
 
 extern void func_02139bbc(void *);
-extern void func_021278d8(void *);
-extern void func_02127988(void *);
+extern void func_021278d8();
+extern void func_02127988();
 extern void func_02127904(void *, u32, s32);
 extern void func_021279b4(void *, u32, s32);
 extern void func_0212824c(void *);
