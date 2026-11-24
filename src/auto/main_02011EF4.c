@@ -14,9 +14,9 @@ char *func_02012210(char *dst, const char *src) {
 }
 
 int func_02012348(const char *s) {
+    const u32 *p;
     u32 i = 0;
     u32 mask = 0x7f7f7f7f;
-    const u32 *p;
     if (((u32)s & 3) != 0) {
         do {
             if (s[i] == 0) return i;
@@ -26,11 +26,13 @@ int func_02012348(const char *s) {
     p = (const u32 *)(s + i);
     for (;;) {
         u32 w = *p;
-        u32 t = ((w & mask) + mask) | w | mask;
-        if ((~t) == 0) { p++; i += 4; } else break;
+        u32 t = w | ((w & mask) + mask) | mask;
+        u32 z = ~t;
+        if (z == 0) { p++; i += 4; } else break;
     }
-    if (s[i] == 0) return i;
+    if (s[i] == 0) goto done;
     do { i++; } while (s[i] != 0);
+done:
     return i;
 }
 
@@ -78,29 +80,25 @@ void func_02012590(s32 arg0, const char *arg1, ...) {
 }
 
 s32 func_020125b8(s32 c) {
-    switch (c) {
-        case '\t':
-        case '\n':
-        case '\v':
-        case '\f':
-        case '\r':
-        case ' ':
-            return 1;
-        default:
-            return 0;
+    u32 d = c - 9;
+    if (d <= 0x17 && (0x80001f & (1 << d))) {
+        return 1;
     }
+    return 0;
 }
 
 void func_020125e0(u32 *bits, u32 start, u32 end) {
-    u32 endMask;
+    u32 mask, endMask;
     if (start >= end) {
         return;
     }
     endMask = (1U << (end & 0x1f)) - 1;
     do {
-        u32 word = start >> 5;
-        u32 mask = ~0U << (start & 0x1f);
-        u32 next = (word + 1) << 5;
+        u32 word;
+        u32 next;
+        mask = ~0U << (start & 0x1f);
+        word = start >> 5;
+        next = (word + 1) << 5;
         if (end < next) {
             mask &= endMask;
         }
@@ -118,7 +116,7 @@ void func_02012d64(u32 *arg0, u8 arg1) {
 }
 
 void func_02012d90(u32 *arg0, u8 arg1, s32 arg2) {
-    u32 n, i;
+    u32 i, n;
     if (arg2 <= 0) {
         return;
     }
