@@ -56,46 +56,39 @@ void func_02006c38(u8 *arg0, u32 arg1) {
     u32 cookie = func_02008128();
     u32 flag = 0;
     u32 list = data_0215ce00[1];
+    u32 cnt;
     if (arg1 != 0 && arg1 != (*(u32 *)(arg0 + 0xc) & 0xff000000)) {
         func_0200813c(cookie);
         return;
     }
-    {
-        u32 cnt = *(u32 *)(arg0 + 0xc);
-        switch (cnt & 0xff000000) {
-        case 0x10000000:
-        case 0x30000000:
-            if (*(u32 *)(arg0 + 8) != list) {
-                goto tail;
-            }
-            cnt = *(u32 *)(arg0 + 0xc);
-            cnt = ((cnt - 1) & ~0xff000000u) | (cnt & 0xff000000);
-            *(u32 *)(arg0 + 0xc) = cnt;
-            if ((cnt & ~0xff000000u) == 0) {
-                flag = 1;
-            }
-            break;
-        case 0x20000000:
-            cnt = ((cnt - 1) & ~0xff000000u) | (cnt & 0xff000000);
-            *(u32 *)(arg0 + 0xc) = cnt;
-            if ((cnt & ~0xff000000u) == 0) {
-                flag = 1;
-            }
-            break;
-        default:
-            func_0200813c(cookie);
-            return;
+    cnt = *(u32 *)(arg0 + 0xc);
+    switch (cnt & 0xff000000) {
+    case 0x10000000:
+    case 0x30000000:
+        if (*(u32 *)(arg0 + 8) != list) {
+            goto done;
         }
-    }
-tail:
-    if (flag == 0) {
+        cnt = *(u32 *)(arg0 + 0xc);
+        goto do_count;
+    case 0x20000000:
+    do_count:
+        cnt = ((cnt - 1) & ~0xff000000u) | (cnt & 0xff000000);
+        *(u32 *)(arg0 + 0xc) = cnt;
+        if ((cnt & ~0xff000000u) == 0) {
+            flag = 1;
+        }
+        break;
+    default:
         func_0200813c(cookie);
         return;
     }
-    func_02006d34((u8 *)list, arg0);
-    *(u32 *)(arg0 + 8) = 0;
-    *(u32 *)(arg0 + 0xc) &= ~0xff000000u;
-    func_02006560(arg0, *(u32 *)(arg0 + 0xc));
+done:
+    if (flag != 0) {
+        func_02006d34((u8 *)list, arg0);
+        *(u32 *)(arg0 + 8) = 0;
+        *(u32 *)(arg0 + 0xc) &= ~0xff000000u;
+        func_02006560(arg0, *(u32 *)(arg0 + 0xc));
+    }
     func_0200813c(cookie);
 }
 
@@ -310,6 +303,61 @@ void *func_02007278(void *arg0, void *arg1) {
     return arg0;
 ret_new:
     return arg1;
+}
+
+void *func_02007320(s32 arena, s32 heap, u32 size) {
+    u8 *hd;
+    u8 *cell;
+    u8 *newCell;
+    s32 leftover;
+    u32 enabled = func_02008128();
+    u8 *info = data_0215d060[arena];
+
+    if (info == NULL) {
+        func_0200813c(enabled);
+        return NULL;
+    }
+
+    if (heap < 0) {
+        heap = *(s32 *)info;
+    }
+
+    hd = *(u8 **)(info + 0x10) + heap * 0xc;
+    size = (size + 0x3f) & ~0x1f;
+
+    for (cell = *(u8 **)(hd + 4); cell != NULL; cell = *(u8 **)(cell + 4)) {
+        if ((s32)size <= *(s32 *)(cell + 8)) {
+            break;
+        }
+    }
+
+    if (cell == NULL) {
+        func_0200813c(enabled);
+        return NULL;
+    }
+
+    leftover = *(s32 *)(cell + 8) - size;
+    if ((u32)leftover < 0x40) {
+        *(void **)(hd + 4) = func_02007250(*(void **)(hd + 4), cell);
+    } else {
+        *(u32 *)(cell + 8) = size;
+        newCell = cell + size;
+        *(s32 *)(newCell + 8) = leftover;
+        *(void **)newCell = *(void **)cell;
+        *(void **)(newCell + 4) = *(void **)(cell + 4);
+        if (*(void **)(newCell + 4) != NULL) {
+            *(void **)*(void **)(newCell + 4) = newCell;
+        }
+        if (*(void **)newCell != NULL) {
+            *(void **)((u8 *)*(void **)newCell + 4) = newCell;
+        } else {
+            *(void **)(hd + 4) = newCell;
+        }
+    }
+
+    *(void **)(hd + 8) = func_02007234(*(void **)(hd + 8), cell);
+    func_0200813c(enabled);
+    return cell + 0x20;
 }
 
 void func_02007428(s32 arg0, s32 arg1, void *arg2) {
