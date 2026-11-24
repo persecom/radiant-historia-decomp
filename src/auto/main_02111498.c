@@ -43,6 +43,11 @@ void func_02112038(MainSub_6C *arg0) {
     func_020c9490(arg0->field);
 }
 
+extern void func_020c8ee4(void *);
+void func_02112094(MainSub_6C *arg0) {
+    func_020c8ee4(arg0->field);
+}
+
 extern void func_021121b8(void *);
 void func_02112198(void *arg0) {
     func_021121b8(arg0);
