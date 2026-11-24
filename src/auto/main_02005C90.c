@@ -298,8 +298,8 @@ void func_02006440(void *arg0) {
         *(void (**)(void *))(p + 0xb4) = NULL;
         fn(arg0);
         func_02008128();
-        func_02006478();
     }
+    func_02006478();
 }
 
 extern void func_020060b8(void);
