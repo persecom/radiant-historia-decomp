@@ -1,7 +1,8 @@
 /* 35 functions from 0x02115380 to 0x02116350 (main), found by ds-decomp. */
 #include "common.h"
 typedef struct { void *base; u16 ids[4]; } Entry021157d0;
-extern u8 data_0216cad4[60];
+typedef struct { u8 header[0x38]; u32 count; } Header_0216cad4;
+extern Header_0216cad4 data_0216cad4;
 extern void func_02115df0(void *,s32,s32,s32);
 extern void func_02009008(void *,void *,u32);
 extern void func_02008f74(void *,s32,u32);
@@ -390,18 +391,17 @@ void *func_02115b7c(void *arg0, void *arg1, s32 arg2) {
 }
 
 #pragma opt_propagation off
-#pragma opt_cse off
 void *func_02115be8(void *arg0,void *arg1,s32 arg2) {
 u32 total; u8 *p=func_02115264(arg0); u32 size; void *ctx;
 if(!p) {
 ctx=0;
 if((s32)func_0211519c(arg0,&data_0216cad4,(void *)0x3c,0)!=0x3c)return 0;
-size=*(u32 *)(data_0216cad4+0x38)*4;total=size*2;
+size=((u32 *)&data_0216cad4)[14]*4;total=size*2;
 if(!arg1)return 0;
 if(arg2)ctx=func_02114f70();
 p=func_0211543c(arg1,total+0x5c,func_02115df0,(u32)ctx,(u32)arg0);
 if(!p)return 0;
-if((s32)(size+0x3c)!=(s32)func_0211519c(arg0,p,(void *)(size+0x3c),0))return 0;
+{s32 got=(s32)func_0211519c(arg0,p,(void *)(size+0x3c),0); if(got!=(s32)size+0x3c)return 0;}
 func_02009008(p+0x3c,p+0x3c+*(u32 *)(p+0x38)*4,size);
 func_02008f74(p+0x3c,0,size);
 func_02006da8(p,(void *)(total+0x3c));
@@ -410,7 +410,6 @@ if(arg2)func_0211528c(arg0,p);
 return p;
 }
 #pragma opt_propagation on
-#pragma opt_cse on
 void func_02115d10(void *arg0, s32 arg1, s32 arg2)
 {
   void *r5;
