@@ -1,17 +1,15 @@
 /* 15 functions from 0x020A47C8 to 0x020A56CC (main), found by ds-decomp. */
 #include "common.h"
 
-typedef struct UnkStruct_02160134 {
-    void *unk00;
-    void *unk04;
-} UnkStruct_02160134;
-
-typedef struct UnkStruct_020a4f04 UnkStruct_020a4f04;
-
 typedef struct UnkStruct_020a4f04 {
     u8 unk00[0x48];
     void *unk48;
 } UnkStruct_020a4f04;
+
+typedef struct UnkStruct_02160134 {
+    UnkStruct_020a4f04 *unk00;
+    void *unk04;
+} UnkStruct_02160134;
 
 typedef struct UnkStruct_02160200 {
     u8 unk00[0x15c];
