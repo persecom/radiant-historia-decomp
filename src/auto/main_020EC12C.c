@@ -62,6 +62,32 @@ void func_020ec88c(u8 *arg0, s32 arg1, s32 arg2) {
     }
 }
 
+void func_020ec8cc(u8 *arg0, s32 arg1, u32 arg2) {
+    if (arg0 == NULL) {
+        return;
+    }
+    if (arg1 == 1) {
+        *(u32 *)(arg0 + 0x38) = arg2;
+        *(u32 *)(arg0 + 0x4) |= 1;
+        return;
+    }
+    if (arg1 == 0) {
+        *(u32 *)(arg0 + 0x4) &= ~1;
+        *(u32 *)(arg0 + 0x38) = 1;
+    }
+}
+
+void *func_020ec908(u32 arg0) {
+    u8 *node = *(u8 **)(data_02160ab4 + 0x50);
+    while (node != NULL) {
+        if (*(u32 *)(node + 0x8) == arg0 && (*(u32 *)(node + 0x4) & 1) == 0) {
+            return node;
+        }
+        node = *(u8 **)(node + 0x48);
+    }
+    return NULL;
+}
+
 void func_020ec98c(u32 arg0) {
     *(u32 *)(data_02160ab4 + 0x64) = arg0;
 }
