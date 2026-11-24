@@ -3,6 +3,10 @@
 
 extern void func_0212f738(void);
 extern u32 data_021749ac[4];
+void func_0213234c(u32 arg0) {
+    data_021749ac[5] = arg0;
+}
+
 void func_0213235c(u32 arg0) {
     data_021749ac[0] = arg0;
 }
