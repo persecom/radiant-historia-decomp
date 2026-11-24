@@ -392,3 +392,18 @@ s32 func_0211223c(u8 *arg0) {
     return 0;
 }
 
+void func_02112388(u8 *arg0, u16 *arg1) {
+    Unk_02144c84 tbl[2] = {
+        { 0, 0, 1 },
+        { 1, 1, 1 },
+    };
+    u16 i;
+    for (i = 0; i < 2; i++) {
+        u8 *obj = func_020c9c10(*(void **)(arg0 + 0x8c), tbl[i].f0);
+        *(u16 *)(obj + 0x30) = arg1[tbl[i].f2];
+        if (tbl[i].f4 == 1) {
+            func_020c7930(obj);
+        }
+    }
+}
+
