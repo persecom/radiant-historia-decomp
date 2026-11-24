@@ -1,5 +1,9 @@
 /* 32 functions from 0x020C93F4 to 0x020CA10C (main), found by ds-decomp. */
 #include "common.h"
+extern u8 *data_02160234;
+extern u32 data_02162858[], data_02162854, data_02162850;
+extern u8 data_0216242c[];
+extern void *data_02155984;
 
 extern void func_020c9980();
 extern void func_020c9404(u8 *, u16);
@@ -126,6 +130,40 @@ void func_020c9680(u8 *arg0, s16 *arg1, s16 *arg2) {
     u8 *obj = func_020c9c10(*(void **)(arg0 + 0x30), 1);
     *arg2 = *(s16 *)(obj + 0x3c) + *(s16 *)(obj + 0x40);
     *arg1 = *(s16 *)(obj + 0x3a);
+}
+
+void func_020c96b4(u8 *arg0, u8 *arg1) {
+    s16 b = 0;
+    s16 a = 0;
+    s32 sum;
+    func_020c9680(arg0, &b, &a);
+    sum = a + func_020c9808(arg0);
+    *(volatile s16 *)(arg1 + 0x3c) = *(s16 *)(arg0 + 0x5a) + (s16)(data_02162908[1] - *(s16 *)(arg0 + 0x5e));
+    if (*(s16 *)(arg1 + 0x3c) < a) {
+        *(volatile s16 *)(arg1 + 0x3c) = a;
+    }
+    if (*(s16 *)(arg1 + 0x3c) + *(s16 *)(arg1 + 0x40) > (s16)sum) {
+        *(volatile s16 *)(arg1 + 0x3c) = (s16)sum - *(s16 *)(arg1 + 0x40);
+    }
+    func_020c7930(arg1);
+}
+
+u16 func_020c9744(u8 *arg0, u8 *arg1) {
+ s16 x=0,y=0;
+ s16 delta;
+ s32 scale, value;
+ u16 result;
+ s16 quotient, remainder;
+ func_020c9680(arg0,&x,&y);
+ delta=*(s16 *)(arg1+0x3c)-y;
+ func_020201f4(0x447a0000,func_020c9888(arg0));
+ scale=func_0201ff0c();
+ value=delta*1000;
+ quotient=(s16)(value/scale);
+ remainder=(s16)((value%scale)/1000);
+ result=quotient;
+ if(remainder > (scale/1000)/2) result++;
+ return result;
 }
 
 u16 func_020c9808(u8 *arg0) {
