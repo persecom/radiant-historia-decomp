@@ -84,6 +84,24 @@ void func_021164e0(u8 *arg0) {
     }
 }
 
+void func_02116578(u8 *arg0) {
+    typedef struct {
+        u8 pad[0x118];
+        s32 b0 : 1;
+    } SndStrmPlayer;
+    SndStrmPlayer *p = (SndStrmPlayer *)arg0;
+    if (!p->b0) {
+        return;
+    }
+    func_021165e0(arg0);
+    ((void (*)(u8 *))(*(void **)(arg0 + 0x170)))(arg0);
+    func_02116604(data_0216e210, arg0);
+    if (data_0216cb10[1] != NULL) {
+        func_02116604(data_0216cb10[1] + 0x10e0, arg0);
+    }
+    func_0211645c(arg0);
+}
+
 void func_021165e0(u8 *arg0) {
     if (*(s32 *)(arg0 + 0x128) == 0) {
         return;
