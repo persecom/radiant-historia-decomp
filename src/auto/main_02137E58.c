@@ -8,6 +8,8 @@ extern void func_02138280(void);
 extern void func_02137fc8(s32);
 extern void func_02136958(void);
 extern void func_02137ec4(void);
+extern void func_02137f34(void);
+extern void func_0213841c(s32);
 extern void func_02137250(void *, void *);
 extern u8 data_0215c604[12];
 extern u8 data_0215c610[28];
@@ -33,6 +35,13 @@ void func_02137eac(void) {
     func_021369a8();
     func_02137ec4();
     func_021369b4();
+}
+
+void func_02137ec4(void) {
+    if (data_02176400 == 0) {
+        memset(data_02176404, 0, sizeof(data_02176404));
+    }
+    data_02176400++;
 }
 
 void func_02137f1c(void) {
