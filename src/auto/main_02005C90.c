@@ -434,6 +434,21 @@ s32 func_02006638(void *arg0, s32 arg1) {
     return 1;
 }
 
+void func_020066e0(u32 arg0) {
+    u32 buf[11];
+    void *var;
+    func_02007a78(buf);
+    var = *(void **)data_0215cde4[2];
+    u32 irq = func_02008128();
+    *(u32 *)((u8 *)var + 0xb0) = (u32)buf;
+    func_02007bb0(buf, (u64)arg0 * 0x82ea >> 6, func_02006780, &var);
+    void *r4 = NULL;
+    while (var != NULL) {
+        func_02006510(r4);
+    }
+    func_0200813c(irq);
+}
+
 void func_02006780(void *arg0) {
     void *r2 = *(void **)arg0;
     *(void **)arg0 = NULL;
