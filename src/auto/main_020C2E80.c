@@ -124,6 +124,12 @@ void func_020c3c94(void *arg0) {
     }
 }
 
+void *func_020c3ca8(void) {
+    void *ptr = func_0210c594(0xc, data_02155c3c);
+    func_021167ac(ptr, 0x2c);
+    return ptr;
+}
+
 extern void func_021168f8(void *, void *);
 void func_020c3cd4(void **arg0) {
     void *ptr;
