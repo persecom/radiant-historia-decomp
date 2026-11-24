@@ -70,6 +70,16 @@ void func_0212da24(void *arg0) {
     func_0212e5ac();
 }
 
+void func_0212da40(void *arg0) {
+    if (arg0 == NULL) {
+        return;
+    }
+    func_0212dd4c(arg0);
+    func_0212db74(arg0);
+    *(u8 *)arg0 = 0;
+    func_02013878(arg0, 0, 0x64);
+}
+
 s32 func_0212dc0c(s8 *arg0) {
     return arg0[1];
 }
