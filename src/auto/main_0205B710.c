@@ -30,6 +30,7 @@ extern void func_020d2b78(void *arg0, void *arg1, s32 arg2, s32 arg3);
 extern void *func_02022494(void *arg0, s32 arg1);
 extern s32 func_020dddfc(void *arg0, void *arg1, s32 arg2);
 extern void func_020020f8(void *arg0, void *arg1, void *arg2);
+extern void func_020bfd78(s32, s32, s32, s32, s32, void *, s32, s32);
 extern u8 *data_02160a6c;
 s32 func_0205ba98(void *arg0, s32 arg1) {
     if (func_020dddfc(arg0, (u8 *)arg0 + 0x24, arg1 << 12) != 0) {
