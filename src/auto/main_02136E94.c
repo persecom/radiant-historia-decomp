@@ -134,6 +134,22 @@ void *func_021374d0(void *arg0) {
     return ret;
 }
 
+extern u8 data_0215c274[];
+extern u8 data_0215c280[];
+extern u8 data_0215c29c[];
+extern u8 data_0215c2a8[];
+void *func_021374f4(void *arg0) {
+    if (arg0 == NULL) {
+        func_02137250(data_0215c274, data_0215c280);
+        return NULL;
+    }
+    if (*(void **)((u8 *)arg0 + 4) == NULL) {
+        func_02137250(data_0215c29c, data_0215c2a8);
+        return NULL;
+    }
+    return *(void **)((u8 *)arg0 + 8);
+}
+
 extern void func_02137574(u32, u32, u32);
 void func_02137548(u32 arg0, u32 arg1, u32 arg2) {
     func_021369a8();
