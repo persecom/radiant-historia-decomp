@@ -235,6 +235,21 @@ void func_021284bc(void *arg0, void *arg1) {
     func_0212a9f8();
 }
 
+void func_021284e0(u8 *arg0, s16 arg1) {
+    s32 offset;
+    if (arg0 == NULL) {
+        func_0212bda8(data_02156934);
+        return;
+    }
+    *(s16 *)(arg0 + 0x40) = arg1;
+    if (*(s8 *)(arg0 + 0xa9) == 1) {
+        offset = func_0212d64c(*(void **)(arg0 + 4));
+    } else {
+        offset = 0;
+    }
+    func_0212eb74(*(void **)(arg0 + 0xc), *(s16 *)(arg0 + 0x40) + offset);
+}
+
 extern void *func_02128554(void *);
 void *func_02128530(void *arg0) {
     void *ret;
