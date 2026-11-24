@@ -151,3 +151,21 @@ void func_020de374(void *arg0, void *arg1) {
     }
 }
 
+void func_020de404(arg0)
+void **arg0;
+{
+    void *ptr;
+    if (arg0 == NULL) {
+        return;
+    }
+    while ((ptr = *arg0) != NULL) {
+        func_021168f8(arg0, ptr);
+        if (ptr != NULL) {
+            func_0210c5dc(ptr);
+        }
+    }
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
