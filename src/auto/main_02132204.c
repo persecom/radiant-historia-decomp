@@ -43,6 +43,7 @@ extern u8 data_021459d8[];
 extern u32 data_0215b618;
 extern u32 data_021749d0[3];
 extern u32 data_021749d8;
+extern void func_020159f8(s32, s32, s32);
 
 extern void func_0212f738(void);
 extern u32 data_021749ac[4];
