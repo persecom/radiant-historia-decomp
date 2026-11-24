@@ -20,12 +20,7 @@ extern Unk_021756d8 data_021756d8[4];
 extern void func_0213807c(void);
 void func_0213545c(u8 *arg0) {
     s32 i = 0;
-    s32 n;
-    if ((s8)arg0[4] >= 1 && (s8)arg0[3] >= 1 && (s8)arg0[2] == 2) {
-        n = 2;
-    } else {
-        n = (s8)arg0[3];
-    }
+    s32 n = ((s8)arg0[4] >= 1 && (s8)arg0[3] == 1 && (s8)arg0[2] == 2) ? 2 : (s8)arg0[3];
     for (; i < n; i++) {
         func_0213689c(((void **)(arg0 + 0x20))[i]);
     }
