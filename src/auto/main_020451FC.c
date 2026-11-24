@@ -1,11 +1,5 @@
 /* 6 functions from 0x020451FC to 0x02045E60 (main), found by ds-decomp. */
 #include "common.h"
-typedef struct { s32 x,y,z; } Vec_02045800;
-static inline void set_pos_02045800(const Vec_02045800 *src, u8 *dest) {
-s32 x=src->x, y=src->y, z=src->z;
-x-=0xc8000; y-=0xa000;
-*(s32 *)(dest+0xa0)=x; *(s32 *)(dest+0xa4)=y; *(s32 *)(dest+0xa8)=z;
-}
 extern u32 data_02155c3c;
 extern u8 *data_0216020c;
 static inline void set_xyz_02045800(s32 x,s32 y,s32 z) {
