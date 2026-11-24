@@ -262,6 +262,24 @@ s32 func_020aaaec(s32 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     return 0;
 }
 
+void func_020aac90(void) {
+s32 zero=0;
+u8 *p=func_020ade60(zero);
+if(p[13]==0){
+if(func_020aab60(p,256,zero,30,*(s32 *)(p+8),1)){
+*(s32 *)(p+8)=60;
+p[13]=1;
+}else {*(s32 *)(p+8)+=1;}
+}else if(p[13]==1){
+if(*(s32 *)(p+8)>0) *(s32 *)(p+8)-=1;
+else {*(s32 *)(p+8)=zero; p[13]=2;}
+}else if(p[13]==2){
+if(func_020aab60(p,zero,zero-100,30,*(s32 *)(p+8),zero)){
+p[13]=zero; *(s32 *)(p+8)=zero;
+}else {*(s32 *)(p+8)+=1;}
+}
+}
+
 extern void func_020ade8c(s32);
 void func_020aad6c(void) {
     func_020ade8c(1);
