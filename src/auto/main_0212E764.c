@@ -69,6 +69,12 @@ void func_0212ea90(void) {
     data_02174524[3] = 0;
 }
 
+void func_0212eaa4(void) {
+    if (data_021744d8[7] != 0) {
+        ((void (*)(u32))data_021744d8[7])(data_021744d8[8]);
+    }
+}
+
 extern void func_02134748(void);
 void func_0212eac8(void) {
     func_02134748();
