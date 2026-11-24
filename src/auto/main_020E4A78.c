@@ -165,11 +165,9 @@ void func_020e57e8(void *arg0, s32 arg1) {
 }
 
 s32 func_020e580c(void *arg0, void *arg1, s32 arg2) {
-    u8 *sub = *(u8 **)(*(u8 **)arg0 + 0x118);
-    s32 rem = *(s16 *)(sub + 0xc) - *(s16 *)((u8 *)arg1 + 0x1c);
-    if (rem >= 0) {
+    if (*(s16 *)(*(u8 **)(*(u8 **)arg0 + 0x118) + 0xc) - *(s16 *)((u8 *)arg1 + 0x1c) >= 0) {
         if (arg2 != 0) {
-            *(s16 *)(sub + 0xc) = rem;
+            *(s16 *)(*(u8 **)(*(u8 **)arg0 + 0x118) + 0xc) -= *(s16 *)((u8 *)arg1 + 0x1c);
         }
         *(void **)((u8 *)arg0 + 8) = arg1;
         if (*((u8 *)arg1 + 0x14) == 1) {
