@@ -93,11 +93,10 @@ void func_020f40a4(void) {
     data_02151fc8.field_2 = 0x1555;
     data_02151fc8.field_0 = 0x2000;
     data_02160c34.field_0 = 0;
-    func_02107d58(data_02151fc8.field_4, data_02151fc8.field_2, data_02151fc8.field_0);
-    p = data_02160c34.field_4;
-    *(void **)p = func_020f4210;
-    *(u32 *)((u8 *)p + 4) = 0x3f8;
-    func_0210d9e4(p);
+    func_02107d58(0x226000, 0x1555, 0x2000);
+    *(void **)data_02160c34.field_4 = func_020f4210;
+    *(u32 *)((u8 *)data_02160c34.field_4 + 4) = 0x3f8;
+    func_0210d9e4(data_02160c34.field_4);
 }
 
 void func_020f4144(void) {
@@ -110,9 +109,10 @@ void func_020f4144(void) {
 
 void func_020f4640(void) {
     u32 buf[3];
-    buf[0] = 0;
-    buf[1] = 0;
-    buf[2] = 0;
-    func_020f4668(buf);
+    u32 *p = buf;
+    p[0] = 0;
+    p[1] = 0;
+    p[2] = 0;
+    func_020f4668(p);
 }
 
