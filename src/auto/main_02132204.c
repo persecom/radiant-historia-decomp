@@ -209,6 +209,11 @@ u32 func_02132a94(u8 *arg0) {
     return *(u32 *)(arg0 + 0x24);
 }
 
+void func_02132aac(u8 *a0, s32 a1, s32 a2) {
+    *(s32 *)(a0 + 0x54) = a1;
+    *(s32 *)(a0 + 0x58) = a2;
+}
+
 extern void func_0212fcf0(void *, s32);
 void func_02132ab8(void **arg0, s32 arg1) {
     func_0212fcf0(*arg0, arg1);
