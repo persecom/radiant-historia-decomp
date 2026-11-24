@@ -194,6 +194,38 @@ func_020938b0(node,1,6);
 }
 }
 
+extern void *func_02093658(int);
+extern void func_02093424(void *, int);
+void func_02096e94(void) {
+    void *p;
+    p = func_020936f8(0x13, 0x1e, 0, 0, 1, 2, 0x60);
+    func_020938b0(p, 0xf, 0x60);
+    p = func_020936f8(0x14, 0x1e, 0, 0, 1, 4, 0x61);
+    func_020938b0(p, 0xf, 0x61);
+    p = func_020936f8(0x15, 0x1e, 0, 0, 2, 2, 0x62);
+    func_020938b0(p, 0xf, 0x62);
+    p = func_020936f8(0x17, 0x1e, 0, 0, 2, 2, 0x66);
+    func_020938b0(p, 0xf, 0x66);
+    p = func_020936f8(0x15, 0x1e, 0, 0, 2, 4, 0x63);
+    func_020938b0(p, 0xf, 0x63);
+    p = func_020936f8(0x17, 0x1e, 0, 0, 2, 4, 0x67);
+    func_020938b0(p, 0xf, 0x67);
+    p = func_020936f8(0x15, 0x1e, 0, 0, 2, 4, 0x64);
+    func_020938b0(p, 0xf, 0x64);
+    p = func_020936f8(0x17, 0x1e, 0, 0, 2, 4, 0x68);
+    func_020938b0(p, 0xf, 0x68);
+    p = func_020936f8(0x16, 0x1e, 0, 0, 2, 4, 0x65);
+    func_020938b0(p, 0xf, 0x65);
+    p = func_020936f8(0x18, 0x1e, 0, 0, 2, 4, 0x69);
+    func_020938b0(p, 0xf, 0x69);
+    p = func_020936f8(0x1e, 0x1e, 0, 0, 0, 4, 0x74);
+    func_020938b0(p, 0xf, 0x74);
+    p = func_020936f8(0x1f, 0x1e, 0, 0, 0, 4, 0x75);
+    func_020938b0(p, 0xf, 0x75);
+    p = func_02093658(0x1e);
+    func_02093424(p, 0);
+}
+
 void func_02097114(void){
 u8 *p;
 u16 i;
