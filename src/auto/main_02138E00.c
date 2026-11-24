@@ -268,11 +268,11 @@ s32 func_02139a34(u8 *arg0) {
     return ret;
 }
 
-void func_02139a9c(void *arg0) {
+void func_02139a9c(void *arg0, void *arg1) {
     if (arg0 != NULL) {
-        void (*f)(void *) = *(void (**)(void *))((u8 *)arg0 + 0xe0);
+        void (*f)(void *, void *) = *(void (**)(void *, void *))((u8 *)arg0 + 0xe0);
         if (f != NULL) {
-            f(arg0);
+            f(arg0, arg1);
         }
     }
 }
