@@ -131,6 +131,25 @@ void func_0213904c(u32 *arg0) {
     arg0[0x34] = 0;
 }
 
+void func_0213905c(u8 *arg0) {
+    s32 i;
+    if (*(u32 *)(arg0 + 0x58) == 0) {
+        func_02126c20(data_0215cc04);
+        return;
+    }
+    func_02126c00();
+    if (*(s8 *)(arg0 + 0xac) == 1) {
+        func_02139804(arg0);
+    }
+    for (i = 0; i < *(s32 *)(arg0 + 0xa8); i++) {
+        if (*(s32 *)(arg0 + 0xd0) == 1 || *(s8 *)(arg0 + i * 0xc + 0x1c) != 0) {
+            func_0213999c(arg0, arg0 + 0x18 + i * 0xc);
+        }
+    }
+    func_021398d0(arg0);
+    func_02126c0c();
+}
+
 void func_021396e8(u8 *arg0, u32 arg1) {
     *(u8 *)(arg0 + 0xac) = arg1;
 }
