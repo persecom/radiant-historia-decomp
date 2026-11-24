@@ -94,6 +94,24 @@ void func_021324a8(void) {
     func_0212f760();
 }
 
+void func_021324b4(void) {
+    void *a;
+    void *b;
+    data_0215b1cc = data_02145998;
+    if (data_021749c4 == 0) {
+        func_0212efe8(&a, &b);
+        ((void (*)(void *, void *))func_02132484)(a, b);
+        func_0212f010(&a, &b);
+        ((void (*)(void *, void *))func_02132490)(a, b);
+        func_02130858(&a, &b);
+        ((void (*)(void *, void *))func_0213249c)(a, b);
+        func_02132b10(&a, &b);
+        ((void (*)(void *, void *))func_021324a8)(a, b);
+        func_0212f76c();
+    }
+    data_021749c4++;
+}
+
 void func_02132598(void *arg0) {
     *(u32 *)((u8 *)arg0 + 0xc) = 0;
     *(u32 *)((u8 *)arg0 + 0x1c) = 0;
