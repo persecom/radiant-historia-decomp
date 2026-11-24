@@ -271,6 +271,24 @@ void func_020f4f04(u8 *arg0) {
     }
 }
 
+void func_020f4f38(void *arg0,void *arg1) {
+ s32 *p=arg0;
+ switch(*(s32 *)((u8 *)arg1+4)) {
+ case 0:p[5]=8;p[6]=8;break;
+ case 0x4000:p[5]=16;p[6]=8;break;
+ case 0x40000000:p[5]=16;p[6]=16;break;
+ case 0x40004000:p[5]=32;p[6]=8;break;
+ case 0x8000:p[5]=8;p[6]=16;break;
+ case 0x40008000:p[5]=8;p[6]=32;break;
+ case (s32)0x80000000:p[5]=32;p[6]=32;break;
+ case (s32)0x80004000:p[5]=32;p[6]=16;break;
+ case (s32)0x80008000:p[5]=16;p[6]=32;break;
+ case (s32)0xc0000000:p[5]=64;p[6]=64;break;
+ case (s32)0xc0004000:p[5]=64;p[6]=32;break;
+ case (s32)0xc0008000:p[5]=32;p[6]=64;break;
+ }
+}
+
 s32 func_020f5068(u8 *arg0, void *arg1, u32 arg2) {
     *(void **)arg0 = arg1;
     *(u32 *)(arg0 + 4) = arg2;
