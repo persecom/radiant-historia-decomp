@@ -262,3 +262,19 @@ void func_02139804(void *arg0) {
         }
     }
 }
+
+void func_021398d0(void *arg) {
+ u8 *arg0=arg; s32 i; u8 *p; void *obj,*state;
+ if(*(s8 *)(arg0+0xac)!=1) return;
+ for(i=0;i<*(s32 *)(arg0+0xa8);i++) {
+ p=arg0+0x18+i*12; obj=((void **)arg0)[i]; state=*(void **)(p+8);
+ if((*(s32 (**)(void *))(*(u8 **)obj+0x2c))(obj)==3) func_02126d1c(state);
+ if(func_02126c88(state)==0 && *(s8 *)(p+4)!=0) {
+ p[4]=0; func_021396f0(arg0,p);
+ }
+ }
+ if(func_02139a34(arg0)!=1) return;
+ if(*(void **)(arg0+0xe0)) (*(void (**)(void *,s32))(arg0+0xe0))(arg0,6);
+ func_021396e8(arg0,0);
+}
+
