@@ -109,6 +109,21 @@ s32 func_02112ae0(void) {
     return 0x13;
 }
 
+extern void func_020c9940(void *);
+void func_02112c94(u8 *arg0) {
+    if (*(void **)(arg0 + 0x30) != NULL) {
+        func_020c9940(*(void **)(arg0 + 0x30));
+        if (*(void **)(arg0 + 0x30) != NULL) {
+            func_0210c5dc(*(void **)(arg0 + 0x30));
+            *(void **)(arg0 + 0x30) = NULL;
+        }
+        *(void **)(arg0 + 0x30) = NULL;
+    }
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
 extern void func_020c9b64(void *);
 s32 func_02112ce0(void *arg0) {
     func_020c9b64(*(void **)((u8 *)arg0 + 0x30));
