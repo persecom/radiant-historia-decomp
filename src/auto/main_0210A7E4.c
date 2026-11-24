@@ -70,6 +70,34 @@ typedef struct {
 } Unk_0210afcc;
 
 extern void func_0210b300(void);
+s32 func_0210a7e4(void *arg0,s32 arg1,s32 arg2) {
+void *allocation; u32 *p=arg0; u32 zero; u32 *info; u32 extra; u32 size; u8 name[256];
+func_02005e80(name,data_02155c00,arg1);
+zero=0;info=0;extra=0;
+allocation=func_0210ab44(&info,(s32)name,(s32)&size);
+if(!allocation)return zero;
+if(!func_02117878(allocation,&extra))extra=zero;
+func_02006dc4(info[3],info[2]);
+if(arg2==0) {
+p[5]=func_0210f20c(name,(size+3)&~3,size<=8,zero);
+if(p[5]==0) {
+data_02156154(p[5]);
+if(allocation)func_0210c5dc(allocation);
+return 0;
+}
+p[6]=(u16)p[5]*8;
+func_0210e3dc();
+if(extra)func_02118d0c(info,extra,p[6],zero,(u32)p);
+else func_02118c14(info,p[6],zero,(u32)p);
+if(func_0211860c(p,zero))p[7]=func_02118600(p,zero);
+} else {
+if(extra)func_02118d0c(info,extra,0,arg2,(u32)p);
+else func_02118c14(info,0,arg2,(u32)p);
+}
+if(allocation)func_0210c5dc(allocation);
+return 1;
+}
+
 void *func_0210a984(s32 arg0, s32 arg1) {
     void *p;
     void *obj;
