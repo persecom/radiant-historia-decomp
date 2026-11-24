@@ -1,5 +1,6 @@
 /* 16 functions from 0x021221E4 to 0x021231B0 (main), found by ds-decomp. */
 #include "common.h"
+extern const u8 data_02144f4c[], data_02144f4d[], data_02144f4e[], data_02144f4f[];
 typedef struct { s16 x, y; } Pair_02122b9c;
 
 extern void *data_02155ee8;
@@ -12,6 +13,31 @@ extern u8 func_02121068(void *);
 void func_02008df0(u8, void *, u32);
 s32 func_02120e30(void *, void *);
 #pragma opt_propagation off
+u16 func_02122684(u8 *base, u32 flags, u32 frame) {
+u16 *p; u32 limit,a,b,x,y;
+if(flags&0x20000000) return (u16)flags;
+p=(u16 *)(base+(u16)flags);
+if(!(flags&0xc0000000)) return p[frame];
+limit=(flags&0x1fff0000)>>16;
+if(flags&0x40000000) {
+if(frame&1) {if(frame>limit) return (p+(limit>>1))[1]; a=frame>>1; goto average;}
+return p[frame>>1];
+}
+if(frame&3) {
+if(frame>limit) return (p+(limit>>2))[frame&3];
+if(frame&1) {
+if(frame&2) {b=frame>>2;a=b+1;} else {a=frame>>2;b=a+1;}
+x=p[a]; y=p[b];
+return (u16)((((3*(x&0x7c1f)+(y&0x7c1f))>>2)&0x7c1f)|(((3*(x&0x3e0)+(y&0x3e0))>>2)&0x3e0));
+}
+a=frame>>2;goto average;
+}
+return p[frame>>2];
+average:
+x=p[a]; y=(p+a)[1];
+return (u16)(((((x&0x7c1f)+(y&0x7c1f))>>1)&0x7c1f)|((((x&0x3e0)+(y&0x3e0))>>1)&0x3e0));
+}
+
 u16 func_021227e4(u8 *base, u32 flags, u32 frame)
 {
   u8 *p;
