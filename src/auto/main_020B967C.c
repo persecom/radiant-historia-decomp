@@ -14,6 +14,7 @@ extern void func_020220b0(u16, u32);
 extern void func_020b8aac(void);
 extern u8 *data_02160204;
 extern void func_020de394(u32, u16);
+void func_020ba2d0(void);
 void func_020ba4b4(void);
 void func_020ba520(void);
 void func_020ba604(void);
@@ -120,6 +121,23 @@ else { *(u16 *)(obj+0x30)=0x10; func_020c8640(v,0x14); }
 if(func_020c73d8(obj)==0) ((void (*)(u8 *,s32,s32))(*(void **)(obj+0x24)))(obj,0,0);
 if(prev!=*(u16 *)(obj+0x30)) func_020c7930(obj);
 }
+}
+
+void func_020ba118(void) {
+u16 arr[5] = {11,16,13,15,12};
+u8 *p = data_021601ec;
+u16 i;
+u8 *obj;
+for (i=0;i<5;i++) func_020c738c(func_020c9c10(*(void **)(p+0x4c),arr[i]),0,1);
+func_020ba63c(1);
+obj = func_020c9c10(*(void **)(data_021601ec+0x4c),13);
+obj = (u8 *)func_020c8adc(obj);
+func_020c83f4(obj,*(void **)(data_021601ec+0x88),2,0);
+{ u16 arr2[1] = {1};
+func_020c738c(func_020c9c10(*(void **)(p+0x4c),arr2[0]),1,1);
+}
+*(u32 *)(p+0x94)=0x5a000;
+func_020b8d94(); func_020b90f0(); func_020b91a8(); func_020ba2d0();
 }
 
 void func_020ba214(void) {
