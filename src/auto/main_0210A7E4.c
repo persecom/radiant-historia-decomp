@@ -45,7 +45,10 @@ typedef struct {
     u16 bit1 : 1;
     u16 bit2 : 1;
     u16 bit3 : 1;
-    u16 pad4 : 4;
+    u16 bit4 : 1;
+    u16 bit5 : 1;
+    u16 bit6 : 1;
+    u16 bit7 : 1;
     u16 bit8 : 1;
     u16 pad9 : 7;
 } Flags_0210afcc;
