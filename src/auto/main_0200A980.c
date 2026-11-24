@@ -68,12 +68,11 @@ s32 func_0200b77c(const char *str, s32 pos) {
 }
 
 s32 func_0200b7bc(const char *str, s32 pos) {
-    for (;;) {
-        char c = str[pos];
-        if (c == '\0' || (u8)c == '/' || (u8)c == '\\') {
-            break;
-        }
-        pos += 1 + ((u32)(((u8)c ^ 0x20) - 0xa1) < 0x3c);
+    s32 c;
+    while ((c = str[pos]) != '\0' && (u8)c != '/' && (u8)c != '\\') {
+        s32 step = ((u32)(((u8)c ^ 0x20) - 0xa1) < 0x3c) ? 1 : 0;
+        pos += 1;
+        pos += step;
     }
     return pos;
 }
