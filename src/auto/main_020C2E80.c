@@ -16,6 +16,76 @@ struct UnkB0 {
 };
 extern const struct UnkB0 data_02144318;
 extern void *func_020c3d24(void *);
+extern void func_02116844(void *, void *);
+extern void func_02116894(void *, void *, void *);
+void func_020c2e80(u8 *a, u8 *b) {
+    u8 *next = NULL;
+    s32 adjacent;
+
+    if (a == NULL || b == NULL) {
+        return;
+    }
+    if (a[0] == b[0]) {
+        u8 tmp = a[1];
+        a[1] = b[1];
+        b[1] = tmp;
+    } else {
+        u8 tmp1, tmp0;
+        *(u16 *)(a + 0x18) |= 1;
+        *(u16 *)(b + 0x18) |= 1;
+        tmp1 = a[1];
+        a[1] = b[1];
+        b[1] = tmp1;
+        tmp0 = a[0];
+        a[0] = b[0];
+        b[0] = tmp0;
+    }
+    adjacent = 0;
+    if (a == *(u8 **)(b + 0x20) || a == *(u8 **)(b + 0x24)) {
+        adjacent = 1;
+    }
+    if (adjacent == 1) {
+        u8 *p;
+        next = *(u8 **)(b + 0x24);
+        func_021168f8(data_02160090 + 0x48, b);
+        p = data_02160090;
+        if (a == NULL) {
+            func_021167f0(p + 0x48, b);
+        } else if (a == *(u8 **)(p + 0x48)) {
+            func_02116844(p + 0x48, b);
+        } else {
+            func_02116894(p + 0x48, a, b);
+        }
+    } else if (adjacent == 0) {
+        u8 *p;
+        next = *(u8 **)(b + 0x24);
+        func_021168f8(data_02160090 + 0x48, b);
+        p = data_02160090;
+        if (a == NULL) {
+            func_021167f0(p + 0x48, b);
+        } else if (a == *(u8 **)(p + 0x48)) {
+            func_02116844(p + 0x48, b);
+        } else {
+            func_02116894(p + 0x48, a, b);
+        }
+    }
+    if (adjacent != 0) {
+        return;
+    }
+    {
+        u8 *p;
+        func_021168f8(data_02160090 + 0x48, a);
+        p = data_02160090;
+        if (next == NULL) {
+            func_021167f0(p + 0x48, a);
+        } else if (next == *(u8 **)(p + 0x48)) {
+            func_02116844(p + 0x48, a);
+        } else {
+            func_02116894(p + 0x48, next, a);
+        }
+    }
+}
+
 void func_020c3020(void *arg0) {
     u8 *node = *(u8 **)(data_02160090 + 0x48);
     u8 *next;
