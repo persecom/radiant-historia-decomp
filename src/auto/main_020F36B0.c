@@ -110,8 +110,29 @@ void func_020f4144(void) {
     }
 }
 
+void func_020f4174(void) {
+    u8 *p = (u8 *)data_02160c34.field_4;
+
+    if (*(u32 *)(p + 0x2c) | *(u32 *)(p + 0x30) | *(u32 *)(p + 0x34)) {
+        *(Trip *)(data_02155984 + 0x20) = *(Trip *)(p + 0x20);
+        *(u32 *)(p + 0x2c) = 0;
+        *(u32 *)(p + 0x30) = 0;
+        *(u32 *)(p + 0x34) = 0;
+    }
+    if (*(u16 *)((u8 *)data_02160c34.field_4 + 0x1a) != 0) {
+        *(u16 *)((u8 *)data_02160c34.field_4 + 0x1a) = 0;
+        data_02151fc8.field_0 = *(u16 *)((u8 *)data_02160c34.field_4 + 0x18);
+        func_02107d58(data_02151fc8.field_4, data_02151fc8.field_2, data_02151fc8.field_0);
+    }
+}
+
 void func_020f4640(void) {
     u32 buf[3] = {0, 0, 0};
     func_020f4668(buf);
+}
+
+void func_020f4668(void *arg0) {
+    *(Trip *)(data_02155984 + 0x20) = *(Trip *)arg0;
+    func_02107d58(data_02151fc8.field_4, data_02151fc8.field_2, data_02151fc8.field_0);
 }
 
