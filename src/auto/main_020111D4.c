@@ -98,33 +98,37 @@ end:
 }
 
 void func_02011334(void) {
-    if (data_0215fa34[2] != 0) {
+    u32 *p = data_0215fa34;
+    s32 mode = 0xd;
+    s32 val = 1;
+    if (p[2] != 0) {
         return;
     }
-    data_0215fa34[2] = 1;
+    p[2] = 1;
     func_0201101c();
-    data_0215fa34[3] = 0;
+    p[3] = 0;
     func_0200a56c();
-    if (func_0200a6c0(0xd, 1) == 0) {
+    if (func_0200a6c0(mode, val) == 0) {
         goto end;
     }
-    func_0200a674(0xd, (void *)func_020115c8);
+    func_0200a674(mode, (void *)func_020115c8);
     func_020113e4();
-    func_0200a674(0xd, NULL);
-    func_0200a674(0xd, (void *)func_020115f0);
-    data_0215fa34[6] = 0;
+    val = 0;
+    func_0200a674(mode, (void *)val);
+    func_0200a674(mode, (void *)func_020115f0);
+    p[6] = (u32)val;
     func_02011674(data_0215fb20);
     func_0200a674(0x11, (void *)func_02011660);
 end:
-    func_020112a4(0);
+    func_020112a4(val);
 }
 
 void func_020115c8(u32 arg0, u32 arg1) {
-    if ((arg1 & 0x3f) == 1) {
-        data_0215fa30 = 1;
-    } else {
+    if ((arg1 & 0x3f) != 1) {
         func_02008414();
+        return;
     }
+    data_0215fa30 = 1;
 }
 
 void func_0201164c(void) {
@@ -138,5 +142,16 @@ void func_02011660(void) {
 
 void func_02011700(void *arg0) {
     func_02008f74(arg0, 0, 0x24);
+}
+
+void func_02011804(u8 *a0) {
+    u32 a = *(u32 *)(a0 + 0x2c);
+    u32 b = *(u32 *)(a0 + 0x4c);
+
+    *(u32 *)(a0 + 0x2c) = 0;
+    *(u32 *)(a0 + 0x4c) = 0;
+    func_02011ef4(a0);
+    *(u32 *)(a0 + 0x2c) = a;
+    *(u32 *)(a0 + 0x4c) = b;
 }
 
