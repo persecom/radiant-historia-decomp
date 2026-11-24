@@ -129,6 +129,47 @@ void func_0201076c(void) {
     (void)*(volatile u32 *)0x4100010;
 }
 
+u32 func_020107c4(void) {
+    u32 *p = (u32 *)0x2fffc00;
+    if ((*(volatile u32 *)p & 0x20000000) == 0) {
+        return 0x20;
+    }
+    {
+        u32 zero = 0;
+        func_020106b8(0xd6, zero);
+        {
+            u32 v = *(volatile u32 *)((u8 *)p - 0x120);
+            v = (v & ~0x07000000) | 0xa7000000;
+            *(volatile u32 *)0x40001a4 = v & (zero - 0x2000);
+        }
+        while ((*(volatile u32 *)0x40001a4 & 0x800000) == 0) {
+        }
+        return *(volatile u32 *)0x4100010;
+    }
+}
+
+void func_0201082c(u32 arg0) {
+    u32 status = func_020107c4();
+    if ((arg0 & status) == 0) {
+        return;
+    }
+    func_0201088c();
+    status = func_020107c4();
+    if (status & 0x20) {
+        return;
+    }
+    {
+        u32 one = 1;
+        while (1) {
+            if (data_0215cdf0[0] == 0) break;
+            if (func_02007a68() == 0) break;
+            func_020066e0(one);
+            status = func_020107c4();
+            if (status & 0x20) break;
+        }
+    }
+}
+
 void func_0201088c(void) {
     u32 zero = 0;
     u32 mask = zero - 0x2000;
@@ -265,6 +306,34 @@ void func_02010e4c(void) {
     data_0215fa20[2] = 0;
 }
 
+void func_02010e80(u32 arg0, u32 arg1, u32 arg2) {
+    s32 ret;
+    u32 code = arg1 & 0x3f;
+    if (code == 0x11) {
+        if (data_0215fa20[1] != 0) {
+            return;
+        }
+        ret = 1;
+        data_0215fa20[1] = 1;
+        func_0200fc34(1, 0);
+        if (data_0215fa20[2] != 0) {
+            ret = ((s32 (*)(void))data_0215fa20[2])();
+        }
+        if (ret == 0) {
+            return;
+        }
+        func_02010f20();
+    } else {
+        if (code != 0x2) {
+            func_02008414();
+            return;
+        }
+        data_0215fa20[0] += 1;
+        data_0215fa20[1] = 0;
+        func_0200fc34(2, 0);
+    }
+}
+
 extern u32 data_0215fa20[3];
 extern u8 data_0215f660[256];
 extern u8 data_0215f120[1312];
@@ -278,6 +347,18 @@ extern void func_02010060(void);
 extern void func_0200fca4(void (*)(void), u32);
 u32 func_02010f10(void) {
     return data_0215fa20[1];
+}
+
+void func_02010f58(u32 arg0) {
+    volatile u32 id = *(u32 *)0x02fffc00;
+    if (arg0 == id) {
+        return;
+    }
+    {
+        u32 bak = func_02008128();
+        func_02010e80(0xe, 0x11, 0);
+        func_0200813c(bak);
+    }
 }
 
 void func_02010fa8(s32 arg0, s32 arg1) {
@@ -306,5 +387,10 @@ void func_02011158(s32 *arg0) {
     arg0[1] = (*(volatile u16 *)0x4000204 & 0x10) >> 4;
     *(volatile u16 *)0x4000204 = (*(volatile u16 *)0x4000204 & ~0xc) | 0xc;
     *(volatile u16 *)0x4000204 = *(volatile u16 *)0x4000204 & ~0x10;
+}
+
+void func_020111a0(u32 *arg0) {
+    *(volatile u16 *)0x4000204 = (*(volatile u16 *)0x4000204 & ~0xc) | (arg0[0] << 2);
+    *(volatile u16 *)0x4000204 = (*(volatile u16 *)0x4000204 & ~0x10) | (arg0[1] << 4);
 }
 
