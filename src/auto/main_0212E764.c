@@ -35,7 +35,7 @@ extern void func_0212c4b8(s32);
 extern void func_0212e860(void *);
 extern u32 func_0212ea54(void);
 extern void func_02013878(void *, s32, u32);
-extern void func_0212f178(void);
+extern void func_0212f178();
 extern u32 data_02145914[];
 
 typedef struct {
@@ -91,7 +91,7 @@ void func_0212ea64(void);
 void func_0212ea90(void);
 void func_0212e764(void);
 void func_0212e860(void *arg) {
- u32 value; u32 stack,base;
+ u32 value; s32 stack; u32 base;
  Config_0212e860 *p=arg;
  u32 zero,one;
  (void)*(volatile const u32 *)&data_0214590c;
@@ -110,8 +110,8 @@ void func_0212e860(void *arg) {
  zero=0;one=1;
  data_02174524[6]=zero;data_02174524[7]=zero;data_02174524[2]=one;
  func_0212ea90();
- stack=(((volatile Config_0212e860 *)p)->words[3]+3)&~3;
- base=((volatile Config_0212e860 *)p)->words[6]; stack+=base;
+ stack=p->words[3];
+ base=*(volatile u32 *)((u8 *)p+0x18); stack=((stack+3)>>2<<2)+base;
  func_020062d8(data_02174548,func_0212e69c,zero,stack,base,data_021744d8[10]);
  data_02174524[4]=one;data_02174524[5]=zero;
  func_020062d8(data_02174608,func_0212e70c,zero,((p->words[4]+3)&~3)+p->words[7],p->words[7],data_021744d8[11]);
