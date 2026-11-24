@@ -78,6 +78,19 @@ s32 func_02103c2c(s32 arg0, s32 arg1, void *arg2) {
     return result;
 }
 
+s32 func_02103d30(void) {
+    u8 *p = data_02160c74;
+    if (p == NULL) {
+        return 2;
+    }
+    if (*(s32 *)(p + 0x28) != 0) {
+        return 1;
+    }
+    *(s32 *)(p + 0x28) = 0x4a1;
+    *(s32 *)(data_02160c74 + 0x2c) = 0x80;
+    return 0;
+}
+
 s32 func_02103d78(s32 arg0)
 {
   int new_var;
