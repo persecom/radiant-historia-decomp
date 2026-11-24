@@ -20,6 +20,7 @@ extern void func_02008128(void);
 extern void func_0200813c(void);
 extern void func_020081a4(u32);
 extern s32 func_0200e808(u32, u32);
+extern void func_0200e350(void);
 s32 func_0200ef5c(void) {
     return (*(volatile u16 *)0x4000304 & 1) ? 1 : 0;
 }
