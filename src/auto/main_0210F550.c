@@ -88,12 +88,12 @@ s32 func_0210fe1c(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
 void func_0210fe40(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     s32 i;
     for (i = 0; i < 0x100; i++) {
-        if (((Entry_94 *)data_02162b84)[i].field_0 == 0) {
-            ((Entry_94 *)data_02162b84)[i].field_0 = 1;
-            ((Entry_94 *)data_02162b84)[i].field_4 = arg0;
-            ((Entry_94 *)data_02162b84)[i].field_88 = arg1;
-            ((Entry_94 *)data_02162b84)[i].field_8c = arg2;
-            func_0210fdc4(((Entry_94 *)data_02162b84)[i].field_8, arg3, 0x80);
+        if (data_02162b84[i].field_0 == 0) {
+            data_02162b84[i].field_0 = 1;
+            data_02162b84[i].field_4 = arg0;
+            data_02162b84[i].field_88 = arg1;
+            data_02162b84[i].field_8c = arg2;
+            func_0210fdc4(data_02162b84[i].field_8, arg3, 0x80);
             return;
         }
     }
