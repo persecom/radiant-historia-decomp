@@ -8,9 +8,10 @@ extern void func_020895a0();
 extern void func_020a994c(void *);
 
 typedef struct {
-    u8 pad[0x2a];
+    u32 pad[10];
+    u32 pad28;
     s16 field_2a;
-    u8 pad2[0x38];
+    u32 pad2[14];
 } Unk_02089b38;
 
 s32 func_02089220(s32 arg0, s16 arg1) {
@@ -58,12 +59,37 @@ void func_020899e8(s32 arg0) {
     func_020895a0(8, 0x14000, 0x98000, n, 9, v, zero, zero, zero);
 }
 
+void func_02089a98(void) {
+    u8 **pp = &data_0216010c;
+    s32 i;
+    func_020a994c(*pp + 0x2f4);
+    func_020a994c(*pp + 0x344);
+    for (i = 0; i < 7; i++) {
+        func_020a994c(*pp + 0x74 + i * 0x50);
+    }
+}
+
 BOOL func_02089ae4(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 x1 = arg0 + arg2;
     s32 y1 = arg1 + arg3;
     u16 x = data_02162908[0];
     u16 y = data_02162908[1];
-    s32 ret = (x >= arg0 && x <= x1 && y >= arg1 && y <= y1);
+    s32 ret = 0;
+    if (x >= arg0 && x <= x1 && y >= arg1 && y <= y1) {
+        ret = 1;
+    }
     return !!ret;
+}
+
+s32 func_02089b38(Unk_02089b38 *arg0, Unk_02089b38 *arg1) {
+    Unk_02089b38 a = *arg0;
+    Unk_02089b38 b = *arg1;
+    if (a.field_2a < b.field_2a) {
+        return -1;
+    }
+    if (a.field_2a > b.field_2a) {
+        return 1;
+    }
+    return 0;
 }
 
