@@ -8,7 +8,7 @@ extern void func_0210a014(void);
 extern u32 data_0216256c[];
 extern void func_021167ac(void *, s32);
 extern void func_0210a2f0(u8 *);
-extern void func_0210a348(u32, u32);
+extern s32 func_0210a348(u8 *, s32);
 extern s32 func_0210a30c(u32 *, u32, s32);
 extern void func_0210a3d8(u32, u32, u32);
 extern void *func_0210c518(u32, void *);
@@ -125,6 +125,24 @@ s32 func_0210a30c(u32 *arg0, u32 arg1, s32 arg2) {
 s32 func_0210a38c(u8 *arg0) {
     *(s32 *)arg0 = -1;
     return 1;
+}
+
+s32 func_0210a39c(u32 *arg0, s32 arg1, u32 *arg2) {
+    u32 cur = arg0[0];
+    u32 max = arg0[2];
+    *arg2 = cur + arg0[1];
+    if (cur >= max) {
+        return 0;
+    }
+    {
+        u32 next = cur + arg1;
+        if (next > max) {
+            arg0[0] = max;
+            return max - cur;
+        }
+        arg0[0] = next;
+        return arg1;
+    }
 }
 
 u32 func_0210a498(u32 *arg) {
