@@ -87,3 +87,16 @@ BOOL func_0207b32c(void) {
     return (*(u8 **)((u8 *)data_021600f0 + 4))[0] != 0;
 }
 
+BOOL func_0207b35c(void *arg0) {
+    u8 *p = *(u8 **)((u8 *)arg0 + 0xd0);
+    if (p == NULL) {
+        return FALSE;
+    }
+    if (p[0x25] == 0x47 || p[0x25] == 0x51) {
+        if (*(u16 *)(p + 6) == 0) {
+            return TRUE;
+        }
+    }
+    return FALSE;
+}
+
