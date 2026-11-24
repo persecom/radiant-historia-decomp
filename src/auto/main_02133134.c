@@ -50,6 +50,10 @@ extern u8 data_0215ba2c[36];
 extern u8 data_0215ba50[36];
 extern u8 data_0215ba74[48];
 extern void func_02133bbc(void *);
+extern u8 data_0215bb6c[24];
+extern u8 data_0215baa4[28];
+extern u8 data_0215bb3c[24];
+extern u8 data_0215bb84[24];
 typedef struct {
     void (**fn)(void);
     u32 pad[3];
