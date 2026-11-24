@@ -66,3 +66,7 @@ void func_0211ad90(u32 arg0) {
     data_021701d8[0] = arg0;
 }
 
+void func_0211ada0(void) {
+    data_021701d8[0] = 0;
+}
+
