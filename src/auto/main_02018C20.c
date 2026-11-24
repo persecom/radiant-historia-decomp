@@ -86,6 +86,52 @@ s32 func_02019080(const u8 *a, const u8 *b) {
     return *(const s16 *)(a + 2) < *(const s16 *)(b + 2);
 }
 
+extern s32 func_020136d0(double);
+extern s32 func_020136ec(double);
+extern double func_0201e1f8(double, s32 *);
+extern s32 func_0201363c(u64);
+extern void func_02018c20(void *, s32);
+extern double func_0201e2b8(double, s32);
+extern void func_02018940(void *, u64);
+extern void func_02018a04(void *, void *, void *);
+void func_02019400(void *arg0, double x) {
+    u8 *dec = (u8 *)arg0;
+    u8 sign;
+    s32 exp;
+    s32 shift;
+    u64 m;
+    double tmp;
+    u8 buf1[0x26];
+    u8 buf2[0x26];
+
+    sign = func_020136d0(x) ? 1 : 0;
+    if (0.0 == x) {
+        dec[0] = sign;
+        *(s16 *)(dec + 2) = 0;
+        dec[4] = 1;
+        dec[5] = 0;
+        return;
+    }
+    if (func_020136ec(x) <= 2) {
+        dec[0] = sign;
+        *(s16 *)(dec + 2) = 0;
+        dec[4] = 1;
+        dec[5] = (func_020136ec(x) == 1) ? 'N' : 'I';
+        return;
+    }
+    if (sign != 0) {
+        x = 0.0 - x;
+    }
+    x = func_0201e1f8(x, &exp);
+    tmp = x;
+    m = (*(u64 *)&tmp) | 0x0010000000000000ULL;
+    shift = 53 - func_0201363c((m & -m) - 1);
+    func_02018c20(buf2, exp - shift);
+    func_02018940(buf1, (u64)func_0201e2b8(x, shift));
+    func_02018a04(dec, buf1, buf2);
+    dec[0] = sign;
+}
+
 void func_02019580(u8 *arg0, double arg1, u8 *arg3)
 {
     typedef struct {
