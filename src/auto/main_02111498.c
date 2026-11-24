@@ -143,13 +143,15 @@ void func_02111a28(u8 *arg0, s32 arg1) {
 }
 
 void func_02111a3c(u8 *arg0, u8 arg1) {
-    u16 i;
     u32 count = func_020c9c34(*(void **)(arg0 + 0x34));
+    u16 i;
+    u8 *obj;
+
     for (i = 0; i < count; i++) {
-        u8 *obj = func_020c9c10(*(void **)(arg0 + 0x34), i);
+        obj = func_020c9c10(*(void **)(arg0 + 0x34), i);
         ((void (*)(u8 *, u8))*(void **)(obj + 0x1c))(obj, (u8)(arg1 + (obj[0x38] - arg0[0x48])));
     }
-    u8 *obj = *(u8 **)(arg0 + 0x6c);
+    obj = *(u8 **)(arg0 + 0x6c);
     ((void (*)(u8 *, u8))*(void **)(obj + 0x1c))(obj, (u8)(arg1 + (obj[0x38] - arg0[0x48])));
     arg0[0x48] = arg1;
 }
