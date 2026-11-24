@@ -47,7 +47,7 @@ extern void func_02137fc8(s32);
 extern void func_02136958(void);
 extern void func_02137ec4(void);
 extern void func_02137f34(void);
-extern void func_0213841c(s32);
+extern s32 func_0213841c(s32);
 extern void func_02137250(void *, void *);
 extern u8 data_0215c604[12];
 extern u8 data_0215c610[28];
