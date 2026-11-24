@@ -9,6 +9,19 @@ extern void func_0210b4cc(void *);
 extern void func_0210c5dc(void *);
 extern void func_0210b860(void **);
 extern void func_0210db10(void *, void *, u32);
+extern void *data_02162638;
+extern u32 data_02155c2c;
+extern u32 data_02162648[];
+extern u8 data_02144b94[];
+extern u32 func_02007008(u32);
+extern u32 func_02006ff4(u32);
+extern u32 func_020071c8(u32, u32, u32);
+extern u32 func_02116fd0(u32, u32, u32);
+extern void func_0211748c(u32 *, u32, u32);
+extern void *func_0210c518(u32, s32);
+extern void func_02002c2c(void);
+extern void func_02002dc0(void);
+extern void func_02120800(void);
 
 void func_0210b7a4(void) {
     void *p = *(void **)data_02162618;
