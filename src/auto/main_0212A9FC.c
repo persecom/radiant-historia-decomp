@@ -2,6 +2,11 @@
 #include "common.h"
 extern f64 func_02020058(f64);
 extern f64 func_0201dea0(f64);
+extern f32 func_0201f884(s32);
+extern f32 func_020201f4(f32,f32), func_02020888(f32,f32), func_02020604(f32,f32), func_020203d4(f32,f32);
+extern f64 func_0201f800(f32);
+extern f32 func_0201f114(f64);
+extern s32 func_0201ff0c(f32);
 
 extern s32 data_0217397c;
 s32 func_0212afc0(s32, s32, s32, s32, s32, s32, s16, s16, s32, s16, s16);
