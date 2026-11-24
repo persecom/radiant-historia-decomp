@@ -94,6 +94,51 @@ s32 func_02092ab0(u8 *arg0, s32 arg1) {
     return val;
 }
 
+void func_02092b04(void) {
+    u8 *p;
+    if (data_02160110 != NULL) {
+        return;
+    }
+    p = func_0210c594(0x10c, data_02155c3c);
+    data_02160110 = p;
+    func_02094700();
+    func_021167ac(p + 0x84, 0x3c);
+    func_021167ac(p + 0x90, 0x18);
+    func_021167ac(p + 0x9c, 0);
+    func_020949f4();
+    *(u32 *)(p + 0x6c) = 0;
+    *(u16 *)(p + 0x70) = 0;
+    *(s16 *)(p + 0xce) = -1;
+    func_02094aec();
+    *(void **)p = func_02094cc0;
+    *(u32 *)(p + 4) = 0x3fa;
+    func_0210d9e4(p);
+    func_02092cec();
+    func_02096e94();
+    func_020947e8();
+}
+
+void func_02092bac(void) {
+    if (data_02160110 == NULL) {
+        return;
+    }
+    func_02094774();
+    func_020951b4();
+    if (*(void **)(data_02160110 + 0x104) != NULL) {
+        func_020934ac();
+    }
+    func_02092c54();
+    func_02092ca0();
+    func_020948ac();
+    if (data_02160110 != NULL) {
+        func_0210da14(data_02160110);
+        if (data_02160110 != NULL) {
+            func_0210c5dc(data_02160110);
+            data_02160110 = NULL;
+        }
+    }
+}
+
 extern void *data_02155c3c;
 extern void *func_0210c594(u32, void *);
 extern void func_02094700(void);
@@ -120,10 +165,10 @@ u32 func_02092c1c(void) {
 }
 
 u32 func_02092c38(void) {
-    if (data_02160110 == NULL) {
-        return 0;
+    if (data_02160110 != NULL) {
+        return *(u32 *)(data_02160110 + 0x90);
     }
-    return *(u32 *)(data_02160110 + 0x90);
+    return 0;
 }
 
 extern u8 *data_02160110;
