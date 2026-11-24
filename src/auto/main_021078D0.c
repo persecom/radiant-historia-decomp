@@ -216,6 +216,18 @@ void func_02108378(void **arg0) {
     }
 }
 
+void func_02108594(u8 *arg0) {
+    if (arg0 == NULL) {
+        return;
+    }
+    if (arg0[0x74] != 0) {
+        func_02108378(*(void ***)(arg0 + 0x58));
+    }
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
 extern void *func_02117630(void *, s32);
 extern void *func_0210c518(u32, u32);
 extern void func_02008e68(s32, void *, u32);
