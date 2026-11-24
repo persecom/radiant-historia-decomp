@@ -231,7 +231,10 @@ void func_020030f4(void *arg0) {
 u32 func_02003188(void) {
     u16 b = *(volatile u16 *)0x04000008;
     u32 a = (*(volatile u32 *)0x04000000 & 0x38000000) >> 27;
-    return 0x06000000 + (a << 16) + (((b & 0x1f00) >> 8) << 11);
+    u32 v = a << 16;
+    v += 0x06000000;
+    v += ((b & 0x1f00) >> 8) << 11;
+    return v;
 }
 
 u32 func_020031bc(void) {
@@ -299,6 +302,11 @@ u32 func_020032b4(void) {
     default:
         return 0;
     }
+}
+
+u32 func_02003454(void) {
+    s32 offset = (*(volatile u16 *)0x04001008 & 0x3c) >> 2;
+    return 0x06200000 + (offset << 14);
 }
 
 s32 func_0200308c(s32 *arg0) {
