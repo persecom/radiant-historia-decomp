@@ -12,8 +12,9 @@ extern u32 data_0216263c[3];
 static inline u16 Random_02028420(u16 max) {
  u32 x=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
  data_0216263c[0]=x;
- if(max==0)return (u16)(x>>16);
- return (u16)(((x>>16)*max)>>16);
+ x >>= 16;
+ if(max!=0)x=(x*max)>>16;
+ return (u16)x;
 }
 extern char data_02146164[];
 extern s32 _s32_div_f(s32, s32);
