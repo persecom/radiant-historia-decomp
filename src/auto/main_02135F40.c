@@ -4,6 +4,14 @@ extern void func_02008f74(void *, s32, u32);
 
 extern void func_02136958(void);
 extern void func_02136a3c(void);
+extern void func_02136ab4(void);
+extern void func_02136d54(void *);
+extern void func_021369cc(void);
+extern void *memset(void *, int, unsigned int);
+extern s32 data_02175c60;
+extern u32 data_02175c64[6][9];
+extern u32 data_0215beb0[];
+extern const u32 data_02145ae8[];
 extern s16 *func_02136210(void *, void *, u32);
 extern void func_02135f0c(void *, u16 *, u16 *);
 
@@ -153,6 +161,13 @@ void func_02136a24(void) {
     func_021369a8();
     func_02136a3c();
     func_021369b4();
+}
+
+void func_02136a3c(void) {
+    if (data_02175c60 == 0) {
+        __builtin_memset(data_02175c64, 0, sizeof(data_02175c64));
+    }
+    data_02175c60++;
 }
 
 void func_02136a9c(void) {
