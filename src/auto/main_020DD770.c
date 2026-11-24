@@ -106,6 +106,18 @@ void *func_020ddab4(u8 arg0) {
     return NULL;
 }
 
+void *func_020ddb00(u8 arg0) {
+    u8 *node = *(u8 **)(data_02160a68.unk04 + 0xac);
+    while (node != NULL) {
+        u8 *sub = *(u8 **)(node + 0x118);
+        if (*(s32 *)(sub + 0x4) >= 1 && (*(u32 *)(sub + 0x78) & 0x20) == 0 && *(u8 *)(sub + 0x0) == arg0) {
+            return node;
+        }
+        node = *(u8 **)(node + 0x16c);
+    }
+    return NULL;
+}
+
 void *func_020ddb54(u16 arg0) {
     u8 *node = *(u8 **)(data_02160a68.unk04 + 0x64);
     while (node != NULL) {
@@ -130,6 +142,12 @@ void *func_020ddc08(u16 arg0) {
 
 void func_020dddf0(void) {
     func_0210c2f4();
+}
+
+extern u32 data_02155c3c;
+extern void *func_0210c594(s32, u32);
+void *func_020de160(void) {
+    return func_0210c594(0x24, data_02155c3c);
 }
 
 extern void func_0210c5dc(void *);
