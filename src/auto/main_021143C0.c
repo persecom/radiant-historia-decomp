@@ -197,3 +197,8 @@ void func_021152e8(s32 a0, s32 a1, u8 *a2) {
     *(s32 *)(a2 + 0x94) = 0;
 }
 
+void func_02115368(void **arg0) {
+    func_02115380(arg0);
+    func_02117210(*arg0);
+}
+
