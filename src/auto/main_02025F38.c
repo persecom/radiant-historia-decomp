@@ -18,7 +18,7 @@ extern char data_021460e8[];
 extern char data_021460ec[];
 extern void func_02005e80(char *, const char *, ...);
 extern s32 func_02022558(void *);
-extern void func_020226c0(void *);
+extern void func_020226c0(void *, ...);
 void func_02025f38(void *arg0, void *arg1, s32 arg2) {
     func_02022584(
         *(void **)((u8 *)(*(void **)((u8 *)arg0 + 0x118)) + 0x60),
@@ -29,6 +29,31 @@ void func_02025f38(void *arg0, void *arg1, s32 arg2) {
         *(s16 *)((u8 *)arg1 + 0xa),
         *(s16 *)((u8 *)arg1 + 0x10)
     );
+}
+
+void func_020263b4(void *arg0, u32 arg1) {
+    u32 mask = 0;
+    u8 *p;
+    void *obj;
+
+    switch (arg1) {
+    case 0xa2: mask = 0x1; break;
+    case 0xa3: mask = 0x2; break;
+    case 0xa4: mask = 0x10; break;
+    case 0xa6: mask = 0x20; break;
+    case 0xa7: mask = 0x40; break;
+    case 0xa8: mask = 0x80; break;
+    case 0xa9: mask = 0x100; break;
+    case 0xaa: mask = 0x200; break;
+    }
+    p = *(u8 **)((u8 *)arg0 + 0x118);
+    obj = *(void **)(p + 0x60);
+    if (obj == NULL) return;
+    if ((*(u32 *)(p + 0x8c) & mask) == 0) return;
+    if (func_02022558(obj)) {
+        func_020226c0(obj);
+    }
+    *(u32 *)(p + 0x8c) &= ~mask;
 }
 
 void *func_02026548(void) {
