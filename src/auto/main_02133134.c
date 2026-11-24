@@ -577,6 +577,40 @@ s32 func_02133cac(u8 *arg0) {
     return 0;
 }
 
+s32 func_02133cd8(u8 *arg0, s32 arg1) {
+    if (arg0 == NULL) {
+        return 0;
+    }
+    switch (arg1) {
+        case 0x12c:
+            return *(s32 *)(arg0 + 8);
+        case 0x12d:
+            return 0;
+        case 0x12e:
+            return *(s32 *)(arg0 + 8);
+        case 0xc8:
+            return 0;
+        case 0xc9:
+            return func_02133cac(arg0);
+        case 0xca:
+            return 0;
+        case 0xcb:
+            return func_02133814(arg0);
+        case 0xcc:
+            return 0;
+        case 0xcd:
+            return func_02133814(arg0);
+        case 0x12b:
+            return 0;
+        case 0x258:
+            return 1;
+        case 0x190:
+            return 0;
+        default:
+            return -1;
+    }
+}
+
 void func_02133dd0(u32 arg0, u32 arg1) {
     if (data_02174f9c[0x1ca] != 0) {
         ((void (*)(u32, u32, u32))data_02174f9c[0x1ca])(data_02174f9c[0x1cb], arg1, arg0);
