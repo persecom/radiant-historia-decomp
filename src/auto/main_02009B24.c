@@ -673,12 +673,11 @@ s32 func_0200a6e4(s32 arg0, u32 arg1, s32 arg2) {
 }
 
 void func_0200a75c(void) {
-    void (**table)(u32, u32, u32) = (void (**)(u32, u32, u32))data_0215ece8;
     volatile u16 *reg = (volatile u16 *)0x04000184;
-    volatile u32 uninit;
+    ChanCmd cmd;
     s32 ret;
     s32 irq;
-    u32 val = uninit;
+    u32 val = cmd.raw;
     u32 ch;
 
     while (1) {
@@ -702,12 +701,13 @@ void func_0200a75c(void) {
         if (ret == -3) {
             continue;
         }
-        ch = (ChanCmd){val}.bits.ch;
+        cmd.raw = val;
+        ch = cmd.bits.ch;
         if (ch == 0) {
             continue;
         }
-        if (table[ch] != NULL) {
-            table[ch](ch, val >> 6, (val << 26) >> 31);
+        if (((void (**)(u32, u32, u32))data_0215ece8)[ch] != NULL) {
+            ((void (**)(u32, u32, u32))data_0215ece8)[ch](ch, val >> 6, (val << 26) >> 31);
             continue;
         }
         if (((val << 26) >> 31) != 0) {
@@ -719,10 +719,10 @@ void func_0200a75c(void) {
             continue;
         }
         irq = func_02008128();
-        if ((*reg & 2) == 0) {
-            *(volatile u32 *)((u8 *)reg + 4) = val;
+        if ((*reg & 2) != 0) {
             func_0200813c(irq);
         } else {
+            *(volatile u32 *)((u8 *)reg + 4) = val;
             func_0200813c(irq);
         }
     }
