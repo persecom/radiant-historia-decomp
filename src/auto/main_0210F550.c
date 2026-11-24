@@ -250,3 +250,15 @@ s32 func_021104c0(void *arg0) {
     return 0;
 }
 
+s32 func_021104d4(u8 *arg0) {
+    if (func_020c7408() != 0) {
+        return 1;
+    }
+    func_02110518(arg0);
+    func_02110a28(arg0);
+    if (arg0[0x76] != 0) {
+        func_02110abc(arg0);
+    }
+    return 0;
+}
+
