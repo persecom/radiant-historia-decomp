@@ -132,6 +132,13 @@ void func_02116674(void *arg0) {
     func_0200813c(irq);
 }
 
+void func_021166a0(void) {
+    if (data_02155dc4[0] == 1) {
+        func_020097d0(0);
+    }
+    func_02114a38();
+}
+
 void* func_02116d7c(void* heap, u32 size, s32 alignment)
 {
     typedef struct Block {
