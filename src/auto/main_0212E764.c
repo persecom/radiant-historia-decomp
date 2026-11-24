@@ -65,6 +65,10 @@ void func_0212ea7c(void) {
     data_02174524[3] = 1;
 }
 
+void func_0212ea90(void) {
+    data_02174524[3] = 0;
+}
+
 extern void func_02134748(void);
 void func_0212eac8(void) {
     func_02134748();
