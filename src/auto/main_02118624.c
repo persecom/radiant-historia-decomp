@@ -234,5 +234,3 @@ void func_02119150(void) {
     }
     data_0216f244[index] = 0;
 }
-static inline s32 has_02118f24_data(u8 *p) { return *(void **)(p + 12) != 0; }
-static inline s32 has_02118f24_handle(u8 *p) { return *(s32 *)(p + 0x38) != -1; }
