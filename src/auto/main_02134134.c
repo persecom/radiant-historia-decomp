@@ -48,6 +48,10 @@ s32 func_021346bc(void) {
     return 0;
 }
 
+s32 func_021346c4(u8 *arg0) {
+    return *(s32 *)(arg0 + 0x68);
+}
+
 void func_0213473c(void) {
     func_02135c78();
 }
