@@ -509,6 +509,32 @@ BOOL func_020069a4(Unk69A4 *arg0, void *arg1, s32 arg2) {
     return 1;
 }
 
+extern u32 data_0215ce00[];
+extern void func_02006d10(u8 *, u8 *);
+extern s32 func_0201fb1c(s32, s32);
+s32 func_02006a38(u8 *arg0, u32 *arg1, u32 arg2) {
+    u32 cookie = func_02008128();
+    if (*(u32 *)(arg0 + 0x1c) == 0) {
+        if ((arg2 & 1) == 0) {
+            func_0200813c(cookie);
+            return 0;
+        }
+        func_02006510(arg0 + 8);
+        if (*(u32 *)(arg0 + 0x1c) == 0) {
+            func_0200813c(cookie);
+            return 0;
+        }
+    }
+    if (arg1 != NULL) {
+        *arg1 = *(u32 *)(arg0 + 0x10 + *(u32 *)(arg0 + 0x18) * 4);
+    }
+    *(u32 *)(arg0 + 0x18) = func_0201fb1c(*(u32 *)(arg0 + 0x18) + 1, *(u32 *)(arg0 + 0x14));
+    *(u32 *)(arg0 + 0x1c) -= 1;
+    func_02006560(arg0, 0);
+    func_0200813c(cookie);
+    return 1;
+}
+
 extern u32 data_02145bb8[2];
 extern u32 func_02006974(void);
 void func_02006ad8(Unk6AD8 *arg0) {
@@ -519,8 +545,42 @@ void func_02006ad8(Unk6AD8 *arg0) {
     arg0->unkC_24 = 0;
 }
 
+void func_02006afc(u8 *arg0) {
+    u32 cookie = func_02008128();
+    u8 *p = (u8 *)data_0215ce00[1];
+    if (func_02006ba4(arg0) == 0) {
+        *(void **)(p + 0x84) = arg0;
+        func_02006510(arg0);
+        *(void **)(p + 0x84) = NULL;
+    }
+    func_0200813c(cookie);
+}
+
 extern void func_02006c38(void *, u32);
 void func_02006b4c(void *arg0) {
     func_02006c38(arg0, 0x10000000);
+}
+
+BOOL func_02006ba4(u8 *arg0) {
+    u32 cookie = func_02008128();
+    u32 v = *(u32 *)(arg0 + 8);
+    u32 p = data_0215ce00[1];
+    BOOL ret;
+    if (v == 0) {
+        u32 c = *(u32 *)(arg0 + 0xc) & 0x00ffffff;
+        c |= 0x10000000;
+        *(u32 *)(arg0 + 8) = p;
+        *(u32 *)(arg0 + 0xc) = (c & 0xff000000) | ((c + 1) & 0x00ffffff);
+        func_02006d10((u8 *)p, arg0);
+        ret = TRUE;
+    } else if (v == p) {
+        u32 c = *(u32 *)(arg0 + 0xc);
+        *(u32 *)(arg0 + 0xc) = (c & 0xff000000) | ((c + 1) & 0x00ffffff);
+        ret = TRUE;
+    } else {
+        ret = FALSE;
+    }
+    func_0200813c(cookie);
+    return ret;
 }
 
