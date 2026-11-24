@@ -115,11 +115,12 @@ u32 func_020137e0(u8 *dst, u16 *src, u32 maxLen) {
 
 void func_02013858(u8 *dst, const u8 *src, u32 n) {
     u8 *p = dst;
+    const u8 *q = src;
     if (n == 0) {
         return;
     }
     do {
-        *p++ = *src++;
+        *p++ = *q++;
     } while (--n != 0);
 }
 
@@ -151,5 +152,51 @@ s32 func_020138b8(const void *src1, const void *src2, u32 n) {
         n--;
     }
     return 0;
+}
+
+void func_020138f8(void *dst, s32 val, u32 n) {
+    u32 v = (u8)val;
+    u32 i;
+    u8 *p = (u8 *)dst;
+
+    if (n >= 32) {
+        i = (-(u32)p) & 3;
+        if (i) {
+            n -= i;
+            do {
+                *p++ = v;
+            } while (--i);
+        }
+        if (v) {
+            v |= (v << 24) | (v << 16) | (v << 8);
+        }
+        i = n >> 5;
+        if (i) {
+            do {
+                ((u32 *)p)[0] = v;
+                ((u32 *)p)[1] = v;
+                ((u32 *)p)[2] = v;
+                ((u32 *)p)[3] = v;
+                ((u32 *)p)[4] = v;
+                ((u32 *)p)[5] = v;
+                ((u32 *)p)[6] = v;
+                ((u32 *)p)[7] = v;
+                p += 32;
+            } while (--i);
+        }
+        i = (n & 31) >> 2;
+        if (i) {
+            do {
+                *(u32 *)p = v;
+                p += 4;
+            } while (--i);
+        }
+        n &= 3;
+    }
+    if (n) {
+        do {
+            *p++ = v;
+        } while (--n);
+    }
 }
 
