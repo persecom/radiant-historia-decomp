@@ -1,9 +1,9 @@
 /* 20 functions from 0x0202B4D8 to 0x0202C328 (main), found by ds-decomp. */
 #include "common.h"
-extern u32 data_0216263c[3];
 typedef struct { u32 seed, multiplier, increment; } RandomState_0202b4d8;
+extern RandomState_0202b4d8 data_0216263c;
 static inline u16 RandomRange_0202b4d8(u16 max) {
- RandomState_0202b4d8 *state=(RandomState_0202b4d8 *)data_0216263c;
+ RandomState_0202b4d8 *state=&data_0216263c;
  u32 value=state->multiplier*state->seed+state->increment;
  state->seed=value;
  if(max==0) return (u16)(value>>16);
