@@ -99,16 +99,17 @@ void func_020c0d98(void) {
 }
 
 void func_020c0e08(void) {
-    u8 *p = *(u8 **)((u8 *)&data_02160218 + 4);
-    u8 *q = *(u8 **)(p + 4);
+    u8 *g = (u8 *)&data_02160218;
+    u8 *q = *(u8 **)(*(u8 **)(g + 4) + 4);
     while (q != NULL) {
+        u8 *next = *(u8 **)(q + 8);
         func_020ddb54(*(u16 *)q);
         func_020dd51c();
-        func_021168f8(p + 4, q);
+        func_021168f8(*(u8 **)(g + 4) + 4, q);
         if (q != NULL) {
             func_0210c5dc(q);
         }
-        q = *(u8 **)(q + 8);
+        q = next;
     }
 }
 
