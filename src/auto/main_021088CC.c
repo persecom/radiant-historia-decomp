@@ -24,6 +24,8 @@ void func_0210950c(u32);
 s32 func_021090f4(u32, s32);
 void func_02108ffc(void);
 void func_02109264(u32);
+extern u64 func_02007904(void);
+extern void func_021256b4(void);
 s32 func_02125a5c(u32);
 u64 func_02007904(void);
 void func_021256b4(void);
