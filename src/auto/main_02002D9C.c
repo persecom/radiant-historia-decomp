@@ -249,6 +249,57 @@ u32 func_02003210(void) {
     return 0x06200000 + (offset << 11);
 }
 
+u32 func_02003230(void) {
+    volatile u8 *reg = (volatile u8 *)0x04000000;
+    u32 mode = *(volatile u32 *)reg & 7;
+    u16 cnt = *(volatile u16 *)(reg + 0xc);
+    u32 base = ((*(volatile u32 *)reg & 0x38000000) >> 27) << 16;
+    u32 offset = (u32)(cnt & 0x1f00) >> 8;
+    switch (mode) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+        return 0x06000000 + base + (offset << 11);
+    case 5:
+        if (cnt & 0x80) {
+            return 0x06000000 + (offset << 14);
+        } else {
+            return 0x06000000 + base + (offset << 11);
+        }
+    case 6:
+        return 0x06000000;
+    default:
+        return 0;
+    }
+}
+
+u32 func_020032b4(void) {
+    volatile u8 *reg = (volatile u8 *)0x04001000;
+    u32 mode = *(volatile u32 *)reg & 7;
+    u16 cnt = *(volatile u16 *)(reg + 0xc);
+    u32 offset = (cnt & 0x1f00) >> 8;
+    switch (mode) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+        return 0x06200000 + (offset << 11);
+    case 5:
+        if (cnt & 0x80) {
+            return 0x06200000 + (offset << 14);
+        } else {
+            return 0x06200000 + (offset << 11);
+        }
+    case 6:
+        return 0;
+    default:
+        return 0;
+    }
+}
+
 s32 func_0200308c(s32 *arg0) {
     if (*(volatile u32 *)0x04000600 & 0x4000) {
         return -1;
