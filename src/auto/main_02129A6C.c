@@ -271,6 +271,14 @@ void func_0212a53c(u8 *arg0) {
     *(s32 *)(arg0 + 0x4) = 0;
 }
 
+void func_0212a558(u8 *arg0) {
+    if (*(s32 *)(arg0 + 0x4) == 3) {
+        func_02129878(*(void **)(arg0 + 0x8));
+        *(s32 *)(arg0 + 0x8c) = 0;
+        *(s32 *)(arg0 + 0x4) = 0;
+    }
+}
+
 s32 func_0212a584(s32 *arg0) {
     return arg0[0x25];
 }
