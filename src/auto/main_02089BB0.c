@@ -27,6 +27,42 @@ extern u8 data_0214871c[24];
 extern void *func_0210c594(s32, void *);
 extern void *func_020a94b8(void *);
 extern void func_020a994c(void *);
+extern void func_021091b4(void);
+s32 func_02089f94(u8 *arg0, s32 arg1, s32 arg2, u32 *arg3) {
+s32 id, value;
+arg3[2]=arg3[0];
+id=func_02092ab0(arg3);
+if(id!=-1) {
+value=func_02092994(arg3,0);
+while(value!=arg2) {
+func_02109444(arg3);
+id=func_02092ab0(arg3,arg1);
+if(id==-1) break;
+value=(u16)func_02092994(arg3,0);
+}
+}
+if(id!=arg1 || value!=arg2) return 0;
+func_021091b4();
+*(u8 *)(arg0+0)=func_02092994(arg3,0);
+*(u16 *)(arg0+2)=func_02092994(arg3,0);
+*(u16 *)(arg0+4)=func_02092994(arg3,0);
+*(u8 *)(arg0+6)=func_02092994(arg3,0);
+*(u8 *)(arg0+7)=func_02092994(arg3,0);
+*(u16 *)(arg0+22)=func_02092994(arg3,0);
+*(u16 *)(arg0+24)=func_02092994(arg3,0);
+*(u8 *)(arg0+26)=func_02092994(arg3,0);
+*(u16 *)(arg0+28)=func_02092994(arg3,0);
+*(u8 *)(arg0+20)=func_02092994(arg3,0);
+*(u32 *)(arg0+8)=func_02092994(arg3,0);
+*(u16 *)(arg0+4)=func_02092994(arg3,0);
+*(u16 *)(arg0+2)=func_02092994(arg3,0);
+*(u8 *)(arg0+30)=func_02092994(arg3,0);
+*(u8 *)(arg0+36)=func_02092994(arg3,0);
+*(u16 *)(arg0+32)=func_02092994(arg3,0);
+*(u16 *)(arg0+34)=func_02092994(arg3,0);
+{u32 v=func_02092994(arg3,0); arg0[1]=arg1; *(u16 *)(arg0+38)=v;} *(u16 *)(arg0+56)=0; arg0[58]=0;
+}
+
 void func_0208a168(u8 *arg0, s32 arg1, s32 arg2, u32 *arg3) {
     arg3[2] = arg3[0];
     if (func_02092ab0(arg3, arg1) == -1) {
