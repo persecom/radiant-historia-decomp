@@ -81,6 +81,79 @@ extern s32 func_02138190(s32, void *, s32, void *);
 extern void func_02128580(s32);
 extern s32 data_02173ac0[];
 extern s8 data_02173ad4[4][196];
+extern s32 func_0212b72c(u8 *, s32, u8 *, u8 *);
+s32 func_0212b8e0(u8 *p, s32 len, s32 *arg2, s16 *arg3, s16 *arg4, s32 *arg5, s32 *arg6, s32 *arg7, s32 *arg8) {
+    u8 type;
+    u8 other;
+    s32 err;
+    s32 minLen;
+    s32 off;
+    u16 v;
+    s16 sv;
+    s16 sw;
+    s32 w;
+    u8 *q;
+
+    *arg3 = 0;
+    err = func_0212b72c(p, len, &type, &other);
+    if (err != 0) {
+        return err;
+    }
+
+    minLen = 0x18;
+    minLen += 0x18;
+    if (type == 4) {
+        minLen += 0xc;
+    }
+    if (len < minLen) {
+        return -1;
+    }
+
+    v = *(u16 *)p;
+    sw = ((v >> 8) & 0xff) | ((v << 8) & 0xff00);
+    if ((u16)sw != 0x8000) {
+        return -2;
+    }
+
+    sv = *(s16 *)(p + 2);
+    sw = ((sv >> 8) & 0xff) | ((sv << 8) & 0xff00);
+    if (sw < minLen - 4) {
+        return -1;
+    }
+
+    off = 0x14;
+    if (type == 4) {
+        off += 0xc;
+    }
+    q = p + off;
+
+    sv = *(s16 *)q;
+    *arg2 = (s16)(((sv >> 8) & 0xff) | ((sv << 8) & 0xff00));
+
+    sv = *(s16 *)(q + 2);
+    *arg3 = ((sv >> 8) & 0xff) | ((sv << 8) & 0xff00);
+    if (*arg3 != 1) {
+        return -2;
+    }
+
+    sv = *(s16 *)(q + 6);
+    *arg4 = ((sv >> 8) & 0xff) | ((sv << 8) & 0xff00);
+
+    w = *(s32 *)(q + 8);
+    *arg5 = ((w >> 24) & 0xff) | ((w >> 8) & 0xff00) | ((w << 8) & 0xff0000) | (w << 24);
+
+    w = *(s32 *)(q + 0xc);
+    *arg6 = ((w >> 24) & 0xff) | ((w >> 8) & 0xff00) | ((w << 8) & 0xff0000) | (w << 24);
+
+    w = *(s32 *)(q + 0x10);
+    *arg7 = ((w >> 24) & 0xff) | ((w >> 8) & 0xff00) | ((w << 8) & 0xff0000) | (w << 24);
+
+    w = *(s32 *)(q + 0x14);
+    *arg8 = ((w >> 24) & 0xff) | ((w >> 8) & 0xff00) | ((w << 8) & 0xff0000) | (w << 24);
+
+    return 0;
+}
+
 s32 func_0212bcd0(s16 *arg0, s32 arg1, s16 *arg2) {
     u16 v0;
     s16 swapped;
