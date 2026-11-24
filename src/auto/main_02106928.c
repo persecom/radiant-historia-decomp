@@ -67,7 +67,7 @@ extern s32 func_020106a0(void);
 extern s32 func_020106ac(void);
 extern char data_02155974[];
 extern char data_0215597c[];
-extern void *func_0210ad14(void *, s32, s32);
+extern void *func_0210ad14(void *, void *, void *);
 extern s32 func_0210ab44(void **, char *, s32 *);
 extern s32 func_021177fc(void *, void **);
 extern s32 func_02117878(void *, void **);
@@ -350,6 +350,17 @@ BOOL func_02107594(u8 *arg0, char *arg1, char *arg2, char *arg3) {
         }
     }
     return 1;
+}
+
+void func_021075fc(void *arg0, s32 arg1) {
+    if (arg1 == 0) {
+        data_02161070[0] = NULL;
+    } else if (arg1 == 1) {
+        data_02161070[5] = NULL;
+    }
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
 }
 
 void func_02107774(void) {
