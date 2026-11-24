@@ -19,6 +19,28 @@ void func_02060ec8(u8 *p) {
     func_020d4eb8(p);
 }
 
+void func_02060f0c(u8 *p){
+u8 *r=*(u8 **)(p+0x128);
+s32 flags;
+if(*(s16 *)(r+0x1c)==0){
+*(s16 *)(r+0x1c)=1;
+func_020d56d8(p,0,0,1);
+func_020d5fd0(p);
+}
+if(*(s32 *)(r+0x30)>-1){
+++*(s32 *)(r+0x14);
+if(*(s32 *)(r+0x14)>*(s32 *)(r+0x30))func_020d4eb8(p);
+}else if(*(s32 *)(r+0x34)>-1){
+flags=func_0205bcb0(p,(u16)*(s32 *)(r+0x34));
+if((flags&1) && *(s32 *)(r+0x14)==0){
+*(s32 *)(r+0x14)=1;
+if(*(s16 *)(r+0x90)!=0){func_0210d27c(*(s16 *)(r+0x90));*(s16 *)(r+0x90)=0;}
+func_020d56d8(p,0,0,1);func_020d5fd0(p);
+}
+if(flags&2)func_020d4eb8(p);
+}
+}
+
 void func_02061214(u8 *p) {
     u8 *r = *(u8 **)(p + 0x128);
     u16 value;
