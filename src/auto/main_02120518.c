@@ -14,3 +14,18 @@ void func_02120524(s32 arg0) {
 void func_02120bb0(void) {
     func_02117478();
 }
+
+extern u32 data_02145ba4;
+extern u32 data_02173168;
+extern void func_021205ec(u32, void *, u32);
+extern void func_021204a8(void);
+extern void func_02008d08(u32, void *, u32, void (*)(u32 *), void *);
+extern void func_02008b08(u32, void *, u32, void (*)(u32 *), void *);
+extern s32 func_02002f3c(void *);
+extern void func_02001860(void *, void *);
+extern s32 func_02002f6c(void *);
+u8 *func_02120f94(u8 *arg0) {
+    u16 off = *(u16 *)(arg0 + 0xc);
+    return arg0 + *(u32 *)(arg0 + off);
+}
+
