@@ -54,6 +54,19 @@ s32 func_02009d58(u32 arg0) {
     return ret;
 }
 
+u32 func_02009da8(void) {
+    s32 irq = func_02008128();
+    u32 count = 0;
+    u8 *p = (u8 *)data_0215d1b8[0];
+
+    while (p != NULL) {
+        p = *(u8 **)p;
+        count++;
+    }
+    func_0200813c(irq);
+    return count;
+}
+
 extern u32 func_02009da8(void);
 extern u32 func_02009de4(void);
 extern void func_02009ffc(u32);
