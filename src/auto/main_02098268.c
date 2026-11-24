@@ -31,6 +31,27 @@ extern Pair16 data_02141fdc[6];
 extern Pair16 data_0214200c[8];
 extern Pair16 data_0214202c[10];
 
+void func_02098268(void) {
+u8 *p=(u8 *)data_0216011c;
+switch(*(u16 *)(p+0x2c)) {
+case 0: break;
+case 1: p[0x44]=1; *(u16 *)(p+0x38)=5; *(u16 *)(p+0x42)=0; break;
+case 2: *(u16 *)(p+0x38)=1; *(u16 *)(data_02160a74+0x1b6)=2; break;
+case 3: *(u16 *)(p+0x38)=2; *(u16 *)(data_02160a74+0x1b8)=1; break;
+case 4: *(u16 *)(p+0x38)=3; *(u16 *)(data_02160a74+0x1ba)=2; break;
+case 5: *(u16 *)(p+0x38)=5; p[0x45]=2; break;
+case 6:
+*(u16 *)(data_02160a74+0x1b6)=0xffff;
+*(u16 *)(data_02160a74+0x1b0)=*(u16 *)(data_02160a74+0x1b6);
+*(u16 *)(data_02160a74+0x1b8)=255;
+*(u16 *)(data_02160a74+0x1ba)=7;
+*(u32 *)(data_02160a74+0x58)&=~0x40000;
+*(u16 *)(p+0x38)=0;
+*(u16 *)(data_02160244+0xf4)=0;
+break;
+}
+}
+
 void func_020983ac(void) {
 u8 *p=(u8 *)data_0216011c;
 u8 **q=&data_02160a74;
