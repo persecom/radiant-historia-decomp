@@ -8,6 +8,10 @@ void func_0208480c(void) {
     data_0216010c[0x50b4] = 1;
 }
 
+u8 func_02084f80(u16 arg0) {
+    return ((u8 *)func_02116984(data_0216010c + 0x608, arg0))[0];
+}
+
 u8 func_02085110(u32 arg0) {
     return data_0216010c[arg0 * 8 + 0x618];
 }
