@@ -187,6 +187,19 @@ void func_0212ebc8(void *arg0, void *arg1) {
     func_0212bda8(arg1);
 }
 
+void func_0212ecb0(u8 *arg0, u8 *arg1) {
+    s8 *src = (s8 *)arg0;
+    arg1[0] = src[0];
+    arg1[1] = src[1];
+    arg1[2] = src[2];
+    arg1[3] = src[3];
+    *(u32 *)(arg1 + 4) = (arg0[4] << 24) | (arg0[5] << 16) | (arg0[6] << 8) | arg0[7];
+    *(u32 *)(arg1 + 8) = (arg0[8] << 24) | (arg0[9] << 16) | (arg0[10] << 8) | arg0[11];
+    *(u16 *)(arg1 + 0xc) = (arg0[0xc] << 8) | arg0[0xd];
+    arg1[0x3c] = src[0xe];
+    arg1[0x3d] = src[0xf];
+}
+
 void func_0212f384(s32 *arg0, s32 arg1, s32 *arg2, s32 *arg3) {
     s32 ptr = arg0[0];
     s32 len = arg0[1];
