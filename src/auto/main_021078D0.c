@@ -116,6 +116,10 @@ void func_02107d58(u32 arg0, u32 arg1, u32 arg2) {
     func_02107d84(data_02155984, arg0, arg1, arg2);
 }
 
+void func_02108214(void) {
+    func_02107e4c((data_02162860 == 0) ? data_0216242c : data_02162360);
+}
+
 extern u32 data_02155984;
 extern s32 func_02108258(u32);
 s32 func_02108240(void) {
