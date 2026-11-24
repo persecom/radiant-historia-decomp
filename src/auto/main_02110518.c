@@ -39,6 +39,11 @@ void func_02110754(u8 *arg0, u16 *arg1) {
     func_02110abc(arg0);
 }
 
+void func_0211078c(u8 *arg0) {
+    Unk40 buf = data_02144bd8;
+    func_021106cc(arg0, (u8 *)&buf);
+}
+
 void func_02110868(u8 *arg0, s32 arg1) {
     func_021107cc(arg0, arg1, *(s16 *)(arg0 + 0x36));
 }
