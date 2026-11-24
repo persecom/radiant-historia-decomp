@@ -5,6 +5,9 @@ extern void func_0210c5dc(void *);
 extern u32 func_020c73b8(void);
 extern void func_020c74fc(void *);
 extern void func_020c753c(void *);
+extern void func_020c7630(void *);
+extern void func_020c7f6c(void *, s32, s16);
+extern void func_020f4f04(void *);
 BOOL func_020c7408(void) {
     return (func_020c73b8() & 4) != 0;
 }
