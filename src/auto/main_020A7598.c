@@ -203,3 +203,9 @@ void func_020a83e4(void) {
     func_020c3df4(*(void **)(data_02160140 + 0x3c), 0);
 }
 
+void func_020a8404(void) {
+    data_02160148[33] = func_02109c60(data_02150088, data_021601d0);
+    func_020a8440();
+    data_02160144 = 0;
+}
+
