@@ -91,3 +91,17 @@ void func_02055c90(s32 arg0) {
     func_0212501c(unk0);
 }
 
+extern void *func_0203be60(void *, void *, void *);
+extern void func_021167f0(void *, void *);
+extern void func_0210c5dc(void *);
+void *func_02055dd8(u16 arg0) {
+    u8 *node = *(u8 **)(data_021600c0 + 0x34);
+    while (node != NULL) {
+        if (*(u16 *)node == arg0) {
+            return node;
+        }
+        node = *(u8 **)(node + 0x30);
+    }
+    return NULL;
+}
+
