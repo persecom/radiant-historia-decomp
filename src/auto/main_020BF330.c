@@ -162,8 +162,8 @@ void func_020bffb8(u32 arg0) {
     }
 }
 
-void func_020bfff4(u16 arg0) {
-    u8 *p = func_020bff74(arg0, 1);
+void func_020bfff4(s32 arg0) {
+    u8 *p = func_020bff74((u16)arg0, 1);
     if (p != NULL) {
         *(u32 *)(p + 0x38) = 1;
     }
