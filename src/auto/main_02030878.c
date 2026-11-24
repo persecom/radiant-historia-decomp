@@ -28,6 +28,66 @@ extern void func_021167ac(void *, s32);
 extern void func_02031724(void);
 extern void func_02031658(void);
 
+s32 func_02031384(u8 *arg0, u32 arg1, s32 arg2) {
+    s16 table[36] = {
+        0, 1, 4, 5,
+        4, 5, 8, 9,
+        8, 9, 12, 13,
+        1, 2, 5, 6,
+        5, 6, 9, 10,
+        9, 10, 13, 14,
+        2, 3, 6, 7,
+        6, 7, 10, 11,
+        10, 11, 14, 15,
+    };
+    u16 idx;
+    s32 x, y, z;
+    u8 *res;
+    u16 val;
+
+    idx = (u16)(*arg0 * 4 + arg1);
+    if (arg2 == -1) {
+        res = func_02031c24((u8)table[idx]);
+        if (res != NULL) {
+            res[0x18] |= 2;
+        }
+        return 0;
+    }
+    x = *(s32 *)(arg0 + 4);
+    y = *(s32 *)(arg0 + 8);
+    z = *(s32 *)(arg0 + 0xc);
+    switch (arg1) {
+        case 0:
+            x -= 0x11000;
+            z -= 0x18000;
+            y += 0x10000;
+            break;
+        case 1:
+            x += 0x11000;
+            z -= 0x18000;
+            y += 0x10000;
+            break;
+        case 2:
+            x -= 0x11000;
+            z += 0x18000;
+            y += 0x10000;
+            break;
+        case 3:
+            x += 0x11000;
+            z += 0x18000;
+            y += 0x10000;
+            break;
+    }
+    val = (u16)arg2;
+    res = func_0203165c((u8)table[idx], 0, 0, 0, val);
+    res[0x18] = 0;
+    *(u16 *)(res + 0x20) = val;
+    *(s32 *)(res + 0xc) = x;
+    *(s32 *)(res + 0x10) = y;
+    *(s32 *)(res + 0x14) = z;
+    return 0;
+}
+
 void func_02031498(void) {
     s32 i;
     for (i = 0; i < 9; i++) {
