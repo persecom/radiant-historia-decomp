@@ -36,6 +36,7 @@ void func_02066b7c(u32 arg0, u32 arg1, u32 arg2) {
     *(u16 *)(ptr + 0x19c) = 0;
 }
 
-void func_02066bc4(void) {
+s32 func_02066bc4(void) {
     data_021600e0[1][0xe0] = 0;
+    return 0;
 }
