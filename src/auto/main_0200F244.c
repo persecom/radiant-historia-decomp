@@ -261,14 +261,14 @@ void func_0200fc34(u32 arg0, u32 arg1) {
 
 s32 func_0200fca4(void (*cb)(void *), s32 arg1) {
     u8 *base = data_0215f120;
-    if (arg1 == 0) {
-        cb(base);
-        func_0200fddc(base);
-    } else {
+    if (arg1 != 0) {
         func_02006638(base + 0x28, *(u32 *)(base + 8));
         *(void (**)(void *))(base + 0x4e8) = cb;
         *(u32 *)(base + 4) |= 8;
         func_020065c8(base + 0x28);
+    } else {
+        cb(base);
+        func_0200fddc(base);
     }
     if (arg1 != 0) {
         return 1;
@@ -300,20 +300,24 @@ void func_0200fddc(u8 *arg0) {
 }
 
 u32 func_0200fe28(u32 arg0) {
-    u32 result = 0;
-    u32 flag = 0;
+    u32 flag;
+    u32 result;
     if (arg0 & 0x10) {
         flag = 1;
+    } else {
+        flag = 0;
     }
+    result = 0;
     arg0 &= ~0x10;
     if (arg0 > 3) {
-        return result;
+        goto end;
     }
     if (flag == 0) {
         result = (u32)data_0213ea64;
-    } else {
-        func_02008414();
+        goto end;
     }
+    func_02008414();
+end:
     return result;
 }
 
@@ -326,33 +330,35 @@ void func_0200fe64(u32 arg0, u32 arg1, u32 arg2) {
 }
 
 void func_0200fe80(u32 arg0, u32 arg1, u32 arg2) {
+    u32 addr = arg0;
+    u32 off = arg1;
     u32 rem;
     u32 base;
-    if (arg1 >= arg2) {
+    if (off >= arg2) {
         func_02006d58();
         return;
     }
-    rem = arg0 & 0x1f;
+    rem = addr & 0x1f;
     if (rem == 0) {
         goto end;
     }
-    base = arg0 - rem;
+    base = addr - rem;
     func_02006da8(base, 0x20);
-    func_02006da8(base + arg1, 0x20);
-    arg1 += 0x20;
-    func_02006d8c(base, arg1);
+    func_02006da8(base + off, 0x20);
+    off += 0x20;
+    func_02006d8c(base, off);
     func_02006de8();
 end:
     return;
 }
 
 void func_0200fedc(u32 arg0, u32 arg1, u32 arg2) {
-    u8 *p;
+    u32 *p;
     if (arg0 != 0xb || arg2 == 0) {
         return;
     }
-    p = data_0215f120;
-    *(u32 *)(p + 4) &= ~0x20;
-    func_020065c8((void *)*(u32 *)(p + 0x51c));
+    p = (u32 *)data_0215f120;
+    p[1] &= ~0x20;
+    func_020065c8((void *)p[0x51c / 4]);
 }
 
