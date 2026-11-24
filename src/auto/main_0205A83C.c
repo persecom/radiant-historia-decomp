@@ -120,6 +120,38 @@ void func_0205b4e0(void) {
     }
 }
 
+void func_0205b524(void) {
+u8 *p=*data_02160244;
+if(*(u32 *)(p+4)==0) {
+u8 *cur=*(u8 **)(data_02160a6c+0xac);
+int one=1,zero=0;
+while(cur) {
+if(*(u32 *)(*(u8 **)(cur+0x118)+0x70)) {
+func_020dd810(cur,one,zero);
+func_020ddfd0(cur,one);
+}
+cur=*(u8 **)(cur+0x16c);
+}
+} else if(*(u32 *)(p+4)<15) {
+u8 *cur=*(u8 **)(data_02160a6c+0xac);
+while(cur) {
+if(*(u32 *)(*(u8 **)(cur+0x118)+0x70)) {
+*(s32 *)cur+=((const s16 (*)[2])data_0213a394)[func_020d9e38()>>4][1]*3;
+*(s32 *)(cur+8)+=data_0213a394[(func_020d9e38()>>4)*2]*3;
+}
+cur=*(u8 **)(cur+0x16c);
+}
+if(*(u32 *)(p+4)%6==0)func_0210d27c(35);
+} else if(*(u32 *)(p+4)<30) func_020d0a40(12);
+if(*(u32 *)(p+4)>5) {
+data_02162814[0]-=2;
+if(data_02162814[0]<-16)data_02162814[0]=-16;
+data_02162884[0]-=2;
+if(data_02162884[0]<-16)data_02162884[0]=-16;
+}
+(*(u32 *)(p+4))++;
+}
+
 void func_0205b6bc(void) {
     u8 *p = *data_02160244;
     if (*(u8 *)(p + 0x3a) == 0) {
