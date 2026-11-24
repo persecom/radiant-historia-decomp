@@ -18,6 +18,8 @@ extern u8 data_02156624[56];
 
 extern void func_02127600(void *);
 extern double func_0201e690(double);
+extern double func_0201e518(double);
+extern double func_0201dea0(double);
 extern double func_0201e69c(double);
 extern double func_0201e6b4(double);
 extern double func_0201e6c0(double, double);
