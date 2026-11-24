@@ -1,6 +1,7 @@
 /* 11 functions from 0x020E3A9C to 0x020E4A78 (main), found by ds-decomp. */
 #include "common.h"
 typedef struct { u8 flags, unk1; s8 row, col; u8 pad[5]; u8 side; u8 pad2[10]; u8 active; } TargetState;
+static inline void SetTargetPosition(TargetState *dst, s8 row, s8 col, u8 side) { dst->col=col; dst->row=row; dst->side=side; }
 extern u8 *data_02160a6c;
 void func_0202e568(u16);
 void func_0202e5d8(u16);
@@ -230,17 +231,18 @@ void func_020e43e4(u16 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     func_021098ac(arg0);
 }
 
-void func_020e47cc(u8 *dst,u8 *arg) {
+void func_020e47cc(TargetState *out,u8 *arg) {
 u8 *p=*(u8 **)(arg+8);
-u8 i;
-dst[0]=0;dst[0x14]=0;
+u8 i=0;
+TargetState *dst=out;
+dst->flags=0;dst->active=0;
 if(p[6]==7 || p[6]==12){
 switch(p[7]){
 case 1:case 2:case 3:case 4:
-dst[0]|=1;dst[3]=0;dst[2]=0;dst[9]=0;
+dst->flags|=1;dst->col=dst->row=dst->side=0;
 func_0202e568(*(u16 *)(p+0x38));return;
 case 5:case 6:case 9:case 11:
-dst[0]|=1;dst[3]=0;dst[2]=0;dst[9]=1;dst[0x14]=1;
+dst->flags|=1;dst->col=dst->row=0;dst->side=dst->active=1;
 if(p[6]==12)func_0202e5d8(0xe00);else func_0202e5d8(*(u16 *)(p+0x38));
 return;
 }
@@ -251,20 +253,20 @@ u8 *e=func_020de810();if(!e)return;
 e=*(u8 **)(e+0x128);
 if(e){
 s32 n=**(s8 **)(e+0x54);
-dst[3]=2-n%3;dst[2]=2-(n/3)%3;
+dst->col=2-n%3;dst->row=2-(n/3)%3;
 }
-dst[9]=0;
-if(p[7]==8)dst[0]|=2;
-func_020e4c80(p,(u16)((2-(s8)dst[2])*3+(2-(s8)dst[3])));
+dst->side=i;
+if(p[7]==8)dst->flags|=2;
+func_020e4c80(p,(u16)((2-(s8)dst->row)*3+(2-(s8)dst->col)));
 break;
 }
 case 5:case 6:case 9:case 11: {
 u8 *e;
-for(i=0;i<3;i++){
+for(;i<3;i++){
 e=func_0202c920(i+9);
 if(e){
 e=*(u8 **)(e+0x128);
-dst[3]=**(s8 **)(e+0x54)-9;dst[2]=3;dst[9]=1;break;
+dst->col=**(s8 **)(e+0x54)-9;dst->row=3;dst->side=1;break;
 }
 }
 e=*(u8 **)(data_02160a6c+0xac);
@@ -273,12 +275,12 @@ e[0x192]=0;*(u32 *)(e+0x80)&=~0x1000;
 func_0202eac4(1,*(u16 *)(e+0x8e));
 e=*(u8 **)(e+0x16c);
 }
-func_020e4c80(p,(u16)((s8)dst[3]+9));break;
+func_020e4c80(p,(u16)((s8)dst->col+9));break;
 }
 case 7: {
-u8 *e=func_020de844(0);if(!e)return;
+u8 *e=func_020de844(i);if(!e)return;
 e=*(u8 **)(e+0x128);
-dst[3]=**(s8 **)(e+0x54)-8;dst[2]=3;dst[9]=2;break;
+dst->col=**(s8 **)(e+0x54)-8;dst->row=3;dst->side=2;break;
 }
 }
 }
