@@ -79,3 +79,7 @@ void func_02135c48(void) {
 void func_02135d20(void) {
 }
 
+s16 func_02135d94(u8 *arg0) {
+    return *(s16 *)(arg0 + 0x26);
+}
+
