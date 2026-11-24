@@ -179,6 +179,10 @@ s32 func_0212a258(s32 *arg0) {
     return arg0[13];
 }
 
+s32 func_0212a260(s32 *arg0) {
+    return arg0[0x31];
+}
+
 s32 func_0212a4b8(s32 *arg0) {
     return arg0[1];
 }
