@@ -83,6 +83,65 @@ void func_0209e85c(void) {
     }
 }
 
+void func_0209e8a4(void *arg0,u32 mode) {
+s32 depth=0x2d0000, zero=0;
+u8 *p=arg0;
+s32 one=1;
+switch(mode) {
+case 0:
+*(void **)(p+4)=func_020a8604(3,one);
+func_020a8810(*(void **)(p+4),one);
+*(void **)p=func_020a94b8(data_02148964);
+*(s32*)(*(u8 **)(p+4)+0x44)=zero;
+*(s32*)(*(u8 **)(p+4)+0x48)=zero;
+*(s32*)(*(u8 **)(p+4)+0x4c)=0x2bc000;
+break;
+case 1:
+*(void **)(p+4)=func_020a84b8(4,one);
+func_020a8810(*(void **)(p+4),one);
+*(void **)p=func_020a94b8(data_02148978);
+*(s32*)(*(u8 **)(p+4)+0x44)=zero;
+*(s32*)(*(u8 **)(p+4)+0x48)=zero;
+*(s32*)(*(u8 **)(p+4)+0x4c)=depth;
+break;
+case 2:
+*(void **)(p+4)=func_020a84b8(5,3);
+func_020a8810(*(void **)(p+4),one);
+*(void **)p=func_020a94b8(data_02148994);
+*(s32*)(*(u8 **)(p+4)+0x44)=zero;
+*(s32*)(*(u8 **)(p+4)+0x48)=zero;
+*(s32*)(*(u8 **)(p+4)+0x4c)=depth;
+break;
+case 3:
+*(void **)(p+4)=func_020a84b8(5,3);
+func_020a8810(*(void **)(p+4),one);
+*(void **)p=func_020a94b8(data_021489ac);
+*(s32*)(*(u8 **)(p+4)+0x44)=zero;
+*(s32*)(*(u8 **)(p+4)+0x48)=zero;
+*(s32*)(*(u8 **)(p+4)+0x4c)=depth;
+break;
+case 4:
+*(void **)(p+4)=func_020a84b8(4,one);
+func_020a8810(*(void **)(p+4),one);
+*(void **)p=func_020a94b8(data_021489c4);
+*(s32*)(*(u8 **)(p+4)+0x44)=zero;
+*(s32*)(*(u8 **)(p+4)+0x48)=zero;
+*(s32*)(*(u8 **)(p+4)+0x4c)=depth;
+break;
+case 5:
+*(void **)(p+4)=func_020a8604(5,3);
+func_020a9830(p+0xc,p+0x40,240,64,zero,zero);
+func_020a8810(*(void **)(p+4),7);
+*(void **)p=func_020a94b8(data_021489e0);
+func_020a9610(p+0x40,*(void **)p,4,*(void **)(p+4),zero,zero);
+*(s32*)(*(u8 **)(p+4)+0x44)=0x1a000;
+*(s32*)(*(u8 **)(p+4)+0x48)=0x14000;
+*(s32*)(*(u8 **)(p+4)+0x4c)=depth;
+*(u16*)(p+0x5c)|=1;
+break;
+}
+}
+
 extern void func_0203bc34(void *, void *, void *, s32, s32, s32);
 extern void func_0203bcf8(void *, void *, void *, s32, s32, s32, s32, s32);
 extern void func_020a899c(void *);
