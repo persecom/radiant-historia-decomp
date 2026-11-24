@@ -100,9 +100,8 @@ void func_020606bc(u8 *arg0) {
  if(data_02160244[0x10d]==1) return;
  src=func_0202c5a0(arg0);
  pos[0]=src[0]; pos[1]=src[1]; pos[2]=src[2];
- switch(*(s32 *)(p+0x24)) {case 0x13ee: y=1200; break; default: y=2400; break;}
- *(s32 *)(arg0+0x78)=y;
- func_020ddd5c(arg0);
+ if(*(s32 *)(p+0x24)==0x13ee) {*(s32 *)(arg0+0x78)=1200; func_020ddd5c(arg0);}
+ else {*(s32 *)(arg0+0x78)=2400; func_020ddd5c(arg0);}
  dir=func_0202c5d8(arg0);
  if(dir==0) dir=1;
  y=(dir*8192)%65536;
