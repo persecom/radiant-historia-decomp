@@ -14,6 +14,9 @@ typedef struct {
     s32 z;
 } Vec3n;
 
+extern u16 data_02145ba0;
+extern u16 data_0215cd20;
+extern void func_0200f1bc(void);
 void func_02002058(s32 arg0, s32 arg1);
 void func_02002028(u32 arg0);
 s32 func_02001ff4(void);
