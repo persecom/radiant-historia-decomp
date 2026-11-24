@@ -38,6 +38,24 @@ extern u8 data_02162648[];
 extern u8 *func_02120fe4(s32, s32);
 extern u8 *func_02120b8c(void *, u8 *, u32);
 
+typedef struct {
+    u16 bit0 : 1;
+    u16 bit1 : 1;
+    u16 bit2 : 1;
+    u16 bit3 : 1;
+    u16 pad4 : 4;
+    u16 bit8 : 1;
+    u16 pad9 : 7;
+} Flags_0210afcc;
+
+typedef struct {
+    u8 pad[0x80];
+    u16 arr[0x10];
+    u16 pad_a0;
+    u16 unkA2;
+    Flags_0210afcc flags;
+} Unk_0210afcc;
+
 extern void func_0210b300(void);
 void *func_0210a984(s32 arg0, s32 arg1) {
     void *p;
@@ -260,6 +278,29 @@ void *func_0210af8c(void) {
     return p;
 }
 
+void func_0210afcc(void *arg) {
+    u8 *arg0 = arg;
+    u16 *p = (u16 *)(arg0 + 0x1a4);
+    s32 i;
+    *p &= ~8;
+    *p &= ~2;
+    *p = (*p & ~4) | ((*p & 1) << 2);
+    *(u32 *)(arg0 + 0x104) = 0x1000;
+    *(u8 *)(arg0 + 0x128) = 0;
+    *p = (*p & ~1) | 1;
+    *(u32 *)(arg0 + 0x12c) = 0;
+    *(u32 *)(arg0 + 0x130) = 2;
+    *(u8 *)(arg0 + 0x134) = 0;
+    *(u8 *)(arg0 + 0x135) = 0x1f;
+    *(u32 *)(arg0 + 0x138) = 0;
+    *p &= ~0x100;
+    *(void **)(arg0 + 0x1a8) = func_0210af80;
+    *(u16 *)(arg0 + 0x1a2) = 0x3e7;
+    for (i = 0; i < 0x10; i++) {
+        *(u16 *)(arg0 + 0x180 + i * 2) = 0x3e7;
+    }
+}
+
 void func_0210b080(u8 *arg0) {
     void **p;
     func_0210b0ac(arg0);
@@ -276,6 +317,34 @@ extern s32 func_021174e4(void *, void *);
 void func_0210b0ac(u8 *arg0) {
     func_0211cac0(arg0, *(u32 *)(arg0 + 0x54));
     func_0211cd78(arg0);
+}
+
+s32 func_0210b0c8(u8 *arg0, s32 arg1) {
+    s32 ret = 0;
+    u8 *x = func_02120fe4(arg1, 0);
+    if (x != NULL) {
+        u8 *y = func_02120b8c(data_02162648, x, *(u32 *)(arg0 + 0x54));
+        *(u8 **)(arg0 + 0xfc) = y;
+        func_0211ca28(y, x, *(u32 *)(arg0 + 0x54), *(u32 *)(arg0 + 0x58));
+        func_0211cc30(arg0, y);
+        *(u32 *)(arg0 + 0x120) = arg1;
+        ret = 1;
+    }
+    return ret;
+}
+
+s32 func_0210b130(u8 *arg0, s32 arg1) {
+    s32 ret = 0;
+    u8 *x = func_02120fe4(arg1, 0);
+    if (x != NULL) {
+        u8 *y = func_02120b8c(data_02162648, x, *(u32 *)(arg0 + 0x54));
+        *(u8 **)(arg0 + 0x100) = y;
+        func_0211ca28(y, x, *(u32 *)(arg0 + 0x54), *(u32 *)(arg0 + 0x58));
+        func_0211cc30(arg0, y);
+        *(u32 *)(arg0 + 0x124) = arg1;
+        ret = 1;
+    }
+    return ret;
 }
 
 extern void func_021167ac(void *, s32);
