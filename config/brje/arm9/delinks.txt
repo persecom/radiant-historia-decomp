@@ -854,7 +854,10 @@ src/auto/main_02117304.c:
     .text start:0x02117304 end:0x02118234
 
 src/auto/main_02118234.c:
-    .text start:0x02118234 end:0x021191f0
+    .text start:0x02118234 end:0x02118624
+
+src/auto/main_02118624.c:
+    .text start:0x02118624 end:0x021191f0
 
 src/auto/main_021191F0.c:
     .text start:0x021191f0 end:0x0211a178

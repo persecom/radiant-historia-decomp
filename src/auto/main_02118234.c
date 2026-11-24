@@ -27,25 +27,9 @@ s32 func_021185b8(s32 *arg0, s32 arg1) {
     return arg0[arg1];
 }
 
-void func_02118e68(s32 *arg0) {
-    s32 i;
-    for (i = 0; i < 3; i++) {
-        arg0[i] = -1;
-    }
-}
-
-void func_02118e84(s32 *arg0, s32 arg1, s32 arg2) {
-    arg0[arg1] = arg2;
-}
-
-s32 func_02118e8c(s32 *arg0, s32 arg1) {
-    return arg0[arg1];
-}
-
-extern void func_02117e4c(void *);
-extern void func_02118f24(void *);
-void func_021190bc(void *arg0) {
-    func_02117e4c(arg0);
-    func_02118f24(arg0);
-}
-
+extern void func_02006dc4(void *, u32);
+extern void func_0200439c(void);
+extern void func_020043f8(void *, u32, u32);
+extern void func_02004544(void);
+extern void func_02003830(void *, u32, u32);
+extern void func_02003894(void *, u32, u32);
