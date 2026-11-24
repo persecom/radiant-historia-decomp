@@ -397,8 +397,6 @@ void func_02068380(u8 *arg0)
     }
 }
 #pragma peephole on
-void func_02068ac4(u8 *arg0)
-{
     extern void *func_02067698(u8 *, u16);
     extern u8 data_0213a394[];
     extern u32 data_0216263c[3];
@@ -427,6 +425,9 @@ void func_02068ac4(u8 *arg0)
         s32 finished;
     } Effect;
 
+
+void func_02068ac4(u8 *arg0)
+{
     Effect *e = (Effect *)arg0;
     register Particle *anchor;
 
