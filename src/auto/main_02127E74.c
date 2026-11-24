@@ -546,7 +546,7 @@ extern void func_0212d578(void *, s32);
 extern void func_0212d588(void *, s32);
 extern void func_0212d550(void *, s32);
 extern void func_0212d56c(void *, void *, void *);
-extern void func_02128944(void);
+void func_02128944(u8 *);
 extern s32 func_0212d540(void *);
 void func_021288c0(u8 *arg0) {
     void *p = *(void **)(arg0 + 4);
