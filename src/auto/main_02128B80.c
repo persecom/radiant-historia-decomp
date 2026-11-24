@@ -37,7 +37,7 @@ void func_021294c8(void *arg0) {
     u32 p1 = *(u32 *)(p + 8);
     if (p1 != 0) {
         if (func_0212dbe8(p1) == 4) {
-            *(u16 *)(p + 0x60) = 0xffff;
+            *(s16 *)(p + 0x60) = -1;
             p[1] = 6;
         }
     }
@@ -45,7 +45,7 @@ void func_021294c8(void *arg0) {
         u32 p2 = *(u32 *)(p + 0x94);
         if (p2 != 0) {
             if (func_0212e5f0(p2) == 3) {
-                *(u16 *)(p + 0x60) = 0xffff;
+                *(s16 *)(p + 0x60) = -1;
                 p[1] = 6;
             }
         }
@@ -102,9 +102,14 @@ void func_021295a4(void *arg0) {
 }
 
 void func_02129624(void) {
-    u32 i;
-    for (i = 0; i < 60; i++) {
-        data_0217348c[i] = 0;
+    u32 *p = (u32 *)data_0217348c;
+    s32 i;
+    for (i = 0; i < 15; i++) {
+        p[0] = 0;
+        p[1] = 0;
+        p[2] = 0;
+        p[3] = 0;
+        p += 4;
     }
 }
 
@@ -244,16 +249,16 @@ void func_0212999c(u8 *arg0, s32 arg1) {
 }
 
 void func_021299c0(u8 *arg0, s32 arg1) {
-    s32 val;
-    s32 cb_arg = *(s32 *)(arg0 + 0xb8);
-    if (cb_arg != 0) {
-        ((void (*)(s32))data_0217357c[1])(cb_arg);
+    if (*(s32 *)(arg0 + 0xb8) != 0) {
+        ((void (*)(s32))data_0217357c[1])(*(s32 *)(arg0 + 0xb8));
     }
-    val = arg1 / 0x60;
-    *(s32 *)(arg0 + 0xc0) = val;
-    *(s32 *)(arg0 + 0xbc) = arg1;
-    if (val <= 0) {
-        *(s32 *)(arg0 + 0xc0) = 1;
+    {
+        s32 val = arg1 / 0x60;
+        *(s32 *)(arg0 + 0xc0) = val;
+        *(s32 *)(arg0 + 0xbc) = arg1;
+        if (val <= 0) {
+            *(s32 *)(arg0 + 0xc0) = 1;
+        }
     }
 }
 
