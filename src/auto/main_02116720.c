@@ -2,6 +2,10 @@
 #include "common.h"
 
 extern void func_02116ad8();
+typedef struct {
+    u8 *start;
+    u8 *end;
+} Region;
 extern u32 data_0216e21c;
 extern u8 data_0216e220[12];
 extern void *func_021169cc(void *, const void *);
