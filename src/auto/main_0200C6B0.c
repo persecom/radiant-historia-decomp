@@ -155,6 +155,20 @@ s32 func_0200cee8(void *arg0, u8 *arg1, u32 arg2) {
     return res;
 }
 
+s32 func_0200cf30(void *arg0, u8 *arg1, u32 arg2, u32 arg3, u32 *arg4) {
+    s32 res;
+    *(u32 *)(arg1 + 0x30) = arg2;
+    *(u32 *)(arg1 + 0x34) = arg3;
+    *(u32 *)(arg1 + 0x38) = *arg4;
+    res = func_0200cb40(arg1, 7, 1);
+    if (res == 0) {
+        *(u32 *)(arg1 + 0xc) = (*(u32 *)(arg1 + 0xc) | 0x10) & ~0x20;
+        *(void **)(arg1 + 4) = arg1 + 0x20;
+        *(void **)(arg1 + 8) = arg0;
+    }
+    return res;
+}
+
 extern const u8 data_0213e964[];
 extern s32 func_0200d140(void *, void *, void *);
 BOOL func_0200d460(u8 *arg0, void *arg1) {
