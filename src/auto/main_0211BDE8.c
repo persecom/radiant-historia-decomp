@@ -262,19 +262,23 @@ void func_0211cc30(u8 *arg0, u8 *arg1) {
         return;
     }
     switch (*p) {
-    case 0x4a:
-        func_0211cbcc((u32 *)(arg0 + 0x3c), arg1);
-        func_0211cb14((u8 **)(arg0 + 8), arg1);
-        break;
     case 0x4d:
         func_0211cbcc((u32 *)(arg0 + 0x44), arg1);
         func_0211cb14((u8 **)(arg0 + 0x10), arg1);
+        break;
+    case 0x4a:
+        func_0211cbcc((u32 *)(arg0 + 0x3c), arg1);
+        func_0211cb14((u8 **)(arg0 + 8), arg1);
         break;
     case 0x56:
         func_0211cbcc((u32 *)(arg0 + 0x4c), arg1);
         func_0211cb14((u8 **)(arg0 + 0x18), arg1);
         break;
     }
+}
+
+s32 func_0211ccb0(u8 *arg0, u8 *arg1) {
+    return 0;
 }
 
 void func_0211cd24(u8 *arg0, u8 *arg1) {
