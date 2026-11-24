@@ -132,6 +132,53 @@ void func_020a4f04(void) {
     data_02160134.unk00 = NULL;
 }
 
+s32 func_020a4f70(void) {
+    u8 *p = (u8 *)data_02160134.unk00;
+    s32 zero = 0;
+    s32 timer;
+    switch (*(u16 *)p) {
+    case 0:
+        *(s32 *)(p + 0x3c) = -180;
+        *(s16 *)(p + 2) = zero;
+        *(u16 *)p = 1;
+        *(s16 *)(p + 0x54) = zero;
+        break;
+    case 1:
+        *(s16 *)(p + 2) = (s16)(*(s16 *)(p + 2) + 1);
+        if (*(volatile s16 *)(p + 2) > 8) *(s16 *)(p + 2) = 8;
+        *(s32 *)(p + 0x3c) = *(s16 *)(p + 2) * 440 / 8 - 180;
+        if (data_02162884 != -16) data_02162884 = -(*(s16 *)(p + 2) * 16) / 8;
+        if ((u16)(s16)(*(s16 *)(p + 2) - 7) <= 1) data_02162814 = -16;
+        *(s16 *)(p + 0x54) = (s16)(*(s16 *)(p + 0x54) + 1);
+        timer = *(volatile s16 *)(p + 0x54);
+        switch (timer) {
+        case 1: func_0210d27c(78); break;
+        default: if (timer > 20) func_0210d27c(61); break;
+        }
+        if (*(s16 *)(p + 2) == 8) {
+            *(s16 *)(p + 2) = zero;
+            return 1;
+        }
+        break;
+    case 3:
+        *(s16 *)(p + 2) = zero;
+        *(u16 *)p = 4;
+        break;
+    case 4:
+        data_02162814 = zero;
+        *(s16 *)(p + 2) = (s16)(*(s16 *)(p + 2) + 1);
+        if (*(volatile s16 *)(p + 2) > 8) *(s16 *)(p + 2) = 8;
+        data_02162884 = (*(s16 *)(p + 2) * 16) / 8 - 16;
+        *(s32 *)(p + 0x3c) = *(s16 *)(p + 2) * 420 / 8 - 260;
+        if (*(s16 *)(p + 2) == 8) {
+            *(s16 *)(p + 2) = zero;
+            return 1;
+        }
+        break;
+    }
+    return 0;
+}
+
 extern void func_020a3bbc(u16);
 extern void func_021099f8(void *);
 void func_020a5138(void) {
