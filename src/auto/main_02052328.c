@@ -109,3 +109,57 @@ u32 func_02052a54(void *arg0, s32 arg1) {
     }
     return ret;
 }
+
+extern void func_02053824(void *);
+extern void func_02052d30(void *);
+extern void func_02053038(void *);
+extern void func_0205317c(void *);
+extern void func_0205366c(void *);
+extern void func_02053d90(void *);
+extern void func_02053f6c(void *);
+extern void func_02053f94(void *);
+u32 func_02052a88(u8 *arg0, s32 arg1) {
+    u8 *p = *(u8 **)(arg0 + 0x108);
+    u32 ret = 0;
+    if (*(s32 *)(p + 0x14) != 0) {
+        ret |= 2;
+    }
+    if (arg1 == func_02117d80(*(void **)p)) {
+        ret |= 1;
+    }
+    return ret;
+}
+
+void func_02052abc(u8 *arg0) {
+    u8 *p;
+    if (arg0 == NULL || (p = *(u8 **)(arg0 + 0xd0)) == NULL) {
+        return;
+    }
+    if (*(u8 *)(p + 1) != 0) {
+        func_02053824(arg0);
+    }
+    switch (*(u8 *)(p + 1)) {
+        case 1:
+            func_02052d30(arg0);
+            break;
+        case 2:
+            func_02053038(arg0);
+            break;
+        case 3:
+            func_0205317c(arg0);
+            break;
+        case 4:
+            func_0205366c(arg0);
+            break;
+        case 5:
+            func_02053d90(arg0);
+            break;
+        case 7:
+            func_02053f6c(arg0);
+            break;
+        case 8:
+            func_02053f94(arg0);
+            break;
+    }
+}
+
