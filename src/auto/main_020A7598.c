@@ -56,6 +56,52 @@ void func_020a779c(void) {
     func_020c7760(*(void **)(p + 0x154), (s16)(x - 8), (s16)(y - 0x18));
 }
 
+void func_020a7834(void) {
+    u8 *p = data_021600e4;
+    *(s8 *)(p + 0x158) += (*(u8 *)(p + 0x159) == 0) ? 1 : -1;
+    if (*(s8 *)(p + 0x158) < 0) {
+        *(u8 *)(p + 0x159) = 0;
+        func_020a7834();
+        return;
+    }
+    if (*(s8 *)(p + 0x158) < 8) {
+        func_020c7734(*(void **)(p + 0x154), 0);
+        return;
+    }
+    if (*(s8 *)(p + 0x158) < 0x10) {
+        func_020c7734(*(void **)(p + 0x154), 6);
+        return;
+    }
+    if (*(s8 *)(p + 0x158) < 0x18) {
+        func_020c7734(*(void **)(p + 0x154), 2);
+        return;
+    }
+    if (*(s8 *)(p + 0x158) < 0x20) {
+        func_020c7734(*(void **)(p + 0x154), 4);
+        return;
+    }
+    *(s8 *)(p + 0x158) = 0;
+    func_020a7834();
+}
+
+void func_020a78f0(void) {
+    u8 *p = data_021600e4;
+    u8 *q = *(u8 **)(p + 0x148);
+    while (q != NULL) {
+        u8 *next = *(u8 **)(q + 8);
+        func_021168f8(p + 0x148, q);
+        func_020c6d4c(*(u8 **)(q + 0));
+        if (q != NULL) {
+            func_0210c5dc(q);
+        }
+        q = next;
+    }
+    if (*(void **)(p + 0x154) != NULL) {
+        func_020c6d4c(*(u8 **)(p + 0x154));
+        *(void **)(p + 0x154) = NULL;
+    }
+}
+
 void func_020a7fe8(void) {
     *(volatile u32 *)0x0400001c = 0;
     *(volatile u32 *)0x04000000 = (*(volatile u32 *)0x04000000 & ~0x1f00) | 0x1f00;
