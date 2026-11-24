@@ -7,6 +7,7 @@ typedef struct { u32 v; } OneWord;
 typedef struct { u32 a, b, c, d; } FourWords;
 typedef struct { s32 v[4]; } Mat4;
 typedef struct { s32 v[4]; } MatA;
+typedef struct { s32 v[9]; } Mtx9;
 typedef struct { u32 x, y; } Pair;
 typedef union { u32 u; struct { u32 pad : 12; u32 val : 20; } b; } FX;
 
@@ -73,7 +74,7 @@ void func_02000cb4(u64 *p) {
 }
 
 void func_02000da0(s32 *p, s32 a, s32 b) {
-    p[0] = (u32)((u64)1 << 12);
+    p[0] = 1 << 12;
     p[1] = 0;
     p[2] = 0;
     p[3] = 0;
@@ -93,6 +94,18 @@ void func_02000dbc(s32 *p, s32 a, s32 b) {
     p[7] = 0;
     p[6] = a;
     p[2] = -a;
-    p[4] = (u32)((u64)1 << 12);
+    p[4] = 1 << 12;
+}
+
+void func_02000dd8(s32 *p, s32 a, s32 b) {
+    *p++ = b;
+    *p++ = a;
+    *p++ = 0;
+    *p++ = -a;
+    *p++ = b;
+    p[0] = 0;
+    p[1] = 0;
+    p[2] = 0;
+    p[3] = 1 << 12;
 }
 
