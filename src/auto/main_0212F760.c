@@ -30,7 +30,7 @@ void func_0212f76c(void) {
 }
 
 void func_0212f79c(void) {
-    if (--*(s32 *)data_021747a0 == 0) {
+    if (--data_021747a0[0] == 0) {
         func_0213240c();
     }
 }
