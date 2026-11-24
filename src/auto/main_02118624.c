@@ -133,11 +133,12 @@ void func_02118efc(void *arg0) {
 }
 
 void func_02119000(u8 *arg0, void *arg1, void *arg2) {
-    *(void **)(arg0 + 0x34) = arg2;
-    *(s32 *)(arg0 + 0x38) = -1;
-    func_02118eec((u32 *)(arg0 + 0x3c), 1);
-    func_02117d9c(arg0);
-    func_021190bc(arg0, arg1);
+    u8 *p = arg0;
+    *(void **)(p + 0x34) = arg2;
+    *(s32 *)(p + 0x38) = -1;
+    func_02118eec((u32 *)(p + 0x3c), 1);
+    func_02117d9c(p);
+    func_021190bc(p, arg1);
 }
 
 void func_0211903c(u8 *arg0, void *arg1, u8 *arg2, void *arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8, s32 arg9) {
