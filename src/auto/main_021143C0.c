@@ -291,19 +291,16 @@ void func_02114c28(void) {
 }
 
 void func_02114c80(void) {
-    if (*(s32 *)(data_0216c9bc + 0) == 0) {
+    UnkStruct_0216c9bc *p = (UnkStruct_0216c9bc *)data_0216c9bc;
+    if (p->unk_00 == 0) {
         return;
     }
-    *(s32 *)(data_0216c9bc + 0x1c) = 0;
-    func_02008e24(0, *(void **)(data_0216c9bc + 0xc), *(u32 *)(data_0216c9bc + 0x14));
-    func_02008e24(0, *(void **)(data_0216c9bc + 0x10), *(u32 *)(data_0216c9bc + 0x14));
-    func_02006dc4(*(void **)(data_0216c9bc + 0xc), *(u32 *)(data_0216c9bc + 0x14));
-    func_02006dc4(*(void **)(data_0216c9bc + 0x10), *(u32 *)(data_0216c9bc + 0x14));
-    func_02009580(
-        *(void **)(data_0216c9bc + 0x24),
-        *(s32 *)(data_0216c9bc + 0x28),
-        *(s32 *)(data_0216c9bc + 0x2c) >= 0 ? (1u << *(s32 *)(data_0216c9bc + 0x2c)) : 0,
-        0);
+    p->unk_1c = 0;
+    func_02008e24(0, p->unk_0c, p->unk_14);
+    func_02008e24(0, p->unk_10, p->unk_14);
+    func_02006dc4(p->unk_0c, p->unk_14);
+    func_02006dc4(p->unk_10, p->unk_14);
+    func_02009580(p->unk_24, p->unk_28, p->unk_2c >= 0 ? (1u << p->unk_2c) : 0, 0);
 }
 
 void func_02114d00(u8 *arg0, void *arg1, s32 arg2, s32 arg3) {
