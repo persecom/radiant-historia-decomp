@@ -259,9 +259,39 @@ void *func_02117904(void *arg0, u32 arg1) {
     return NULL;
 }
 
+void func_0211794c(void *arg0) {
+    u16 i;
+    *(u32 *)((u8 *)arg0 + 4) += (u32)arg0;
+    for (i = 0; i < *(u16 *)arg0; i++) {
+        u32 *arr = *(u32 **)((u8 *)arg0 + 4);
+        arr[i] = (u32)arg0 + arr[i];
+    }
+}
+
+void func_02117994(void) {
+    Vec3_02117994 vec0;
+    Vec3_02117994 vec2;
+    Vec3_02117994 vec1;
+
+    *(volatile u32 *)0x04000580 = 0xbfff0000;
+    func_0200293c(0, 0xc0000, 0, 0x100000, -0x400000, 0x400000, 0x400000, 1, 0);
+    *(volatile u32 *)0x0400044c = 0;
+    vec0.x = 0;
+    vec0.y = 0;
+    vec0.z = 0;
+    vec2 = data_02144d54;
+    vec1 = data_02144d60;
+    func_020029a0(&vec0, &vec2, &vec1, 1, 0);
+    *(volatile u32 *)0x04000440 = 1;
+}
+
 extern u32 data_0216e22c[];
 void func_02117a48(u32 arg0) {
     data_0216e22c[1] = arg0;
+}
+
+void func_02117a58(Struct60_02117a58 *arg0) {
+    data_0216e234 = *arg0;
 }
 
 u32 func_02117bd4(u32 **a0) {
