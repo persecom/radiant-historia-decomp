@@ -115,6 +115,31 @@ s32 func_02135744(u8 *arg0) {
     return (arg0[1] & 8) == 8;
 }
 
+extern void func_0212a9dc(void);
+extern void func_0212a9e8(void);
+extern void func_02114728(u8 *, s16);
+void func_0213575c(u8 *arg0, s32 arg1) {
+    u8 val;
+    if (arg0 == NULL) {
+        return;
+    }
+    val = arg0[6];
+    if (arg1 == ((arg0[1] & 8) == 8)) {
+        return;
+    }
+    func_0212a9dc();
+    arg0[1] = (arg0[1] & ~8) | (arg1 << 3);
+    func_0212a9e8();
+    if (val != 2) {
+        return;
+    }
+    if (arg1 == 1) {
+        func_02134cb4(arg0, 0, 0);
+    } else {
+        func_02134cb4(arg0, 1, 0);
+    }
+}
+
 void func_021357dc(u8 **arg0, u8 arg1) {
     arg0[3][4] = arg1;
 }
@@ -128,17 +153,16 @@ s32 func_02135960(u8 *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_02135984(u8 *arg0, s32 arg1, s32 arg2) {
-    s32 val;
     if (arg2 == 0) {
-        val = 0x40;
+        arg2 = 0x40;
     } else if (arg2 == -15) {
-        val = 0;
+        arg2 = 0;
     } else if (arg2 == 15) {
-        val = 0x7f;
+        arg2 = 0x7f;
     } else {
-        val = (arg2 + 15) * 128 / 30;
+        arg2 = (arg2 + 15) * 128 / 30;
     }
-    *(u16 *)(*(void **)(arg0 + arg1 * 4 + 0x20) + 0x20) = (u16)val;
+    *(u16 *)(*(void **)(arg0 + arg1 * 4 + 0x20) + 0x20) = (u16)arg2;
     func_021147e8(arg0 + 0x34);
 }
 
@@ -148,12 +172,12 @@ void func_021359e4(u8 *arg0) {
     u16 b;
     func_0211470c(arg0 + 0x34);
     for (i = 0; i < *(s8 *)(arg0 + 2); i++) {
-        u16 *slot = *(u16 **)(arg0 + i * 4 + 0x20);
-        if ((*slot & 8) == 0) {
+        u16 v = *(u16 *)(*(void **)(arg0 + i * 4 + 0x20));
+        if ((v & 8) == 0) {
             return;
         }
-        *slot &= 0xfff7;
-        func_02135f0c(slot, &a, &b);
+        *(u16 *)(*(void **)(arg0 + i * 4 + 0x20)) = v & 0xfff7;
+        func_02135f0c(*(void **)(arg0 + i * 4 + 0x20), &a, &b);
         if (b != 0) {
             *(u32 *)(*(void **)(arg0 + i * 4 + 0x20) + 0x14) += (u32)b >> 1;
         }
@@ -161,11 +185,13 @@ void func_021359e4(u8 *arg0) {
 }
 
 void func_02135a80(u8 *arg0) {
-    s32 i;
-    for (i = 0; i < *(s8 *)(arg0 + 2); i++) {
+    s32 i = 0;
+    while (i < *(s8 *)(arg0 + 2)) {
         u32 val = i;
-        *(u16 *)(*(void **)(arg0 + i * 4 + 0x20) + 0x24) = (u16)val;
-        *(u32 *)(*(void **)(arg0 + i * 4 + 0x20) + 0x14) = val;
+        void **slot = (void **)(arg0 + i * 4 + 0x20);
+        i++;
+        *(u16 *)(*slot + 0x24) = (u16)val;
+        *(u32 *)(*slot + 0x14) = val;
     }
 }
 
