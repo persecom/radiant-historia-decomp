@@ -8,15 +8,16 @@ typedef struct { u32 a, b, c, d; } FourWords;
 typedef struct { s32 v[4]; } Mat4;
 typedef struct { s32 v[4]; } MatA;
 typedef struct { u32 x, y; } Pair;
+typedef union { u32 u; struct { u32 pad : 12; u32 val : 20; } b; } FX;
 
 void func_02110000(void);
 void func_021100d8(void);
 void func_02008414(void);
-void func_0200093c(u32 data, OneWord *dest, u32 size) {
-    OneWord *end = (OneWord *)((u8 *)dest + size);
-    while (dest < end) {
-        dest->v = data;
-        dest++;
+void func_0200093c(u32 data, void *dest, u32 size) {
+    u32 *p = (u32 *)dest;
+    u32 *end = (u32 *)((u8 *)dest + size);
+    while (p < end) {
+        *p++ = data;
     }
 }
 
@@ -44,19 +45,54 @@ void func_02000bec(FourWords *p) {
     p->d = 0x1000;
 }
 
-void func_02000c04(const s32 *a, s32 *b, s32 *out) {
+void func_02000c04(const MatA *a, Mat4 *b, Mat4 *out) {
     Mat4 tmp;
-    s32 val0;
-    s32 *dst;
-    val0 = (s32)(((s64)a[0] * b[0] + (s64)a[1] * b[2]) >> 12);
-    dst = (s32 *)&tmp;
+    Mat4 *dst;
+    s32 av0, av1, av2, av3;
+    av1 = *(const s32 *)((const u8 *)a + 4);
+    av0 = *(const s32 *)((const u8 *)a + 0);
+    av3 = *(const s32 *)((const u8 *)a + 12);
+    av2 = *(const s32 *)((const u8 *)a + 8);
+    dst = &tmp;
     if (out != b) dst = out;
-    dst[0] = val0;
-    dst[1] = (s32)(((s64)a[0] * b[1] + (s64)a[1] * b[3]) >> 12);
-    dst[2] = (s32)(((s64)a[2] * b[0] + (s64)a[3] * b[2]) >> 12);
-    dst[3] = (s32)(((s64)a[2] * b[1] + (s64)a[3] * b[3]) >> 12);
-    if (dst == (s32 *)&tmp) {
-        (*(Mat4 *)out) = tmp;
+    dst->v[0] = (s32)(((s64)av0 * b->v[0] + (s64)av1 * b->v[2]) >> 12);
+    dst->v[1] = (s32)(((s64)av0 * b->v[1] + (s64)av1 * b->v[3]) >> 12);
+    dst->v[2] = (s32)(((s64)av2 * b->v[0] + (s64)av3 * b->v[2]) >> 12);
+    dst->v[3] = (s32)(((s64)av2 * b->v[1] + (s64)av3 * b->v[3]) >> 12);
+    if (dst == &tmp) {
+        *out = tmp;
     }
+}
+
+void func_02000cb4(u64 *p) {
+    p[4] = 0x1000ULL;
+    p[0] = 0x0000000000001000ULL;
+    p[1] = 0;
+    p[2] = 0x0000000000001000ULL;
+    p[3] = 0;
+}
+
+void func_02000da0(s32 *p, s32 a, s32 b) {
+    p[0] = (u32)((u64)1 << 12);
+    p[1] = 0;
+    p[2] = 0;
+    p[3] = 0;
+    p[4] = b;
+    p[5] = a;
+    p[6] = 0;
+    p[7] = -a;
+    p[8] = b;
+}
+
+void func_02000dbc(s32 *p, s32 a, s32 b) {
+    p[0] = b;
+    p[8] = b;
+    p[1] = 0;
+    p[3] = 0;
+    p[5] = 0;
+    p[7] = 0;
+    p[6] = a;
+    p[2] = -a;
+    p[4] = (u32)((u64)1 << 12);
 }
 
