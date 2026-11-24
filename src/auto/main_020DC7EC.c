@@ -13,7 +13,7 @@ void func_020dc99c(void) {
 extern u8 *data_02160204;
 extern u8 *data_0216025c[2];
 extern u8 *data_02160a74;
-extern void func_020f0154(void);
+extern void func_020f0154(s32);
 extern void func_020dc4b8(void);
 extern void func_020d914c(s32);
 extern void func_020d0a40(s32);
@@ -23,7 +23,7 @@ void func_020dc9a0(s32 arg0, s32 arg1) {
     switch (arg0) {
     case 0:
         *(u16 *)(data_02160204 + 0x7c) = (u16)arg1;
-        func_020f0154();
+        func_020f0154((u16)arg1);
         if (*(u16 *)(data_02160204 + 0x7c) == 0x18) {
             *(u16 *)(data_0216025c[1] + 0x8e) = 1;
         }
