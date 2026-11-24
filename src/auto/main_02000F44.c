@@ -94,3 +94,28 @@ void func_02001860(const s32 (*src)[4], s32 (*dst)[3]) {
     }
 }
 
+s32 func_02001fb0(s32, s32);
+s64 func_02001fd0(void);
+s32 func_02001ff4(void);
+void func_02001c50(s32 a, s32 b, s32 c, s32 d, s32 e, s32 scale, s32 *m) {
+s32 cot = func_02001fb0(b,a);
+s64 inv;
+s32 twice;
+*(u64 *)0x4000290 = (u64)0x1000 << 32;
+*(s64 *)0x4000298 = (u32)(d-e);
+if(scale != 4096) cot = cot * scale / 4096;
+m[1]=0;m[2]=0;m[3]=0;m[4]=0;
+m[5]=cot;
+m[6]=0;m[7]=0;m[8]=0;m[9]=0;
+m[11]=-scale;
+m[12]=0;m[13]=0;m[15]=0;
+inv=func_02001fd0();
+*(s64 *)0x4000290 = (s64)cot << 32;
+*(s64 *)0x4000298 = (u32)c;
+if(scale != 4096) inv=inv*scale/4096;
+twice=d+d;
+m[10]=(inv*(e+d)+0x80000000LL)>>32;
+m[14]=(inv*(s32)(((s64)twice*e+0x800)>>12)+0x80000000LL)>>32;
+m[0]=func_02001ff4();
+}
+
