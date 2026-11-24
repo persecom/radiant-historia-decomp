@@ -73,6 +73,16 @@ s32 func_021155fc(void *arg0, void *arg1) {
     return func_02115630(arg0) != 0;
 }
 
+s32 func_02115630(void *arg0) {
+    void *r4 = func_0211721c(*(void **)arg0, 0x14, 4);
+    if (r4 == NULL) {
+        return 0;
+    }
+    func_021155ec(r4);
+    func_021167f0((u8 *)arg0 + 4, r4);
+    return 1;
+}
+
 extern void *func_02115264(void *);
 extern void *func_02114f70(void);
 extern void *func_02115994(void *, void *, void *, void *, void *);
