@@ -7,6 +7,10 @@ extern char data_02162b00[];
 extern u16 data_02162a54[];
 extern s32 (*data_02156150)(s32, s32, s32);
 typedef struct {
+    u16 a;
+    u16 b;
+} UnkPair;
+typedef struct {
     u16 x;
     u16 y;
     u16 touch;
@@ -44,11 +48,16 @@ void func_0210e694(void) {
 }
 
 void func_0210e6f0(void) {
+    u16 a, b;
     func_02008f74(data_02162908, 0, 8);
-    data_021628f8[4] = data_021628f8[8];
-    data_021628f8[5] = data_021628f8[9];
-    data_021628f8[6] = data_021628f8[10];
-    data_021628f8[7] = data_021628f8[11];
+    b = data_021628f8[9];
+    a = data_021628f8[8];
+    data_021628f8[4] = a;
+    data_021628f8[5] = b;
+    b = data_021628f8[11];
+    a = data_021628f8[10];
+    data_021628f8[6] = a;
+    data_021628f8[7] = b;
     data_021628f8[1] = 0;
     data_021628f8[0] = 0;
 }
@@ -66,10 +75,14 @@ void func_0210e740(void) {
         data_021628f8[8] = data_021628f8[4];
         data_021628f8[9] = data_021628f8[5];
     } else {
-        data_021628f8[4] = data_021628f8[8];
-        data_021628f8[5] = data_021628f8[9];
+        u16 y = data_021628f8[9];
+        u16 x = data_021628f8[8];
+        u16 v;
+        data_021628f8[4] = x;
+        data_021628f8[5] = y;
+        v = data_021628f8[11];
         data_021628f8[6] = cur;
-        data_021628f8[7] = data_021628f8[11];
+        data_021628f8[7] = v;
     }
 }
 
