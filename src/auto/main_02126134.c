@@ -180,6 +180,56 @@ void func_021265d4(s32 *arg0, s32 arg1) {
     *arg0 = arg1;
 }
 
+extern s32 func_02138c1c(void *);
+extern s32 func_021267c8(s32 *);
+extern s32 func_02126804(s32 *);
+extern s32 func_02126c88(s8 *);
+extern void func_021267c0(void *, u8);
+extern void func_02126d40(u8 *);
+void func_021265dc(void *arg0) {
+ s32 i;
+ s32 found=0;
+ for (i=0;i<4;i++) {
+  void *obj = (*(void ***)arg0)[i];
+  if (obj && func_02138ae8(obj) && func_02138d60(obj)==2) {
+   switch(((s32 (*)(void *))func_02138c54)(obj)) {
+   case 0: break;
+   case 1: case 2: if (func_02138c1c(obj)==0) found=1; break;
+   case 3: case 4: break;
+   }
+  }
+ }
+ switch(*(s8 *)((u8 *)arg0+0x50)) {
+ case 0:
+  if (found==1) {
+   func_02126cb0(((void **)arg0)[1],-((s32 *)arg0)[0x17],((s32 *)arg0)[0x15],0,0);
+   func_021267c0(arg0,1);
+  }
+  break;
+ case 1:
+  if (found==0) {
+   s32 n=func_021267c8(arg0);
+   func_02126cb0(((void **)arg0)[1],0,n,0,0);
+   func_021267c0(arg0,3);
+  } else if (func_02126c88(((void **)arg0)[1])==0) func_021267c0(arg0,2);
+  break;
+ case 2:
+  if (found==0) {
+   func_02126cb0(((void **)arg0)[1],0,((s32 *)arg0)[0x16],0,0);
+   func_021267c0(arg0,3);
+  }
+  break;
+ case 3:
+  if (found==1) {
+   s32 n=func_02126804(arg0);
+   func_02126cb0(((void **)arg0)[1],-((s32 *)arg0)[0x17],n,0,0);
+   func_021267c0(arg0,1);
+  } else if (func_02126c88(((void **)arg0)[1])==0) func_021267c0(arg0,0);
+  break;
+ }
+ func_02126d40(((void **)arg0)[1]);
+}
+
 void func_02126778(void *arg0) {
     *(void **)((u8 *)arg0 + 0x00) = NULL;
     *(void **)((u8 *)arg0 + 0x04) = NULL;
