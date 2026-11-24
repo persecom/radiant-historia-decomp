@@ -77,6 +77,25 @@ void func_02055804(s32 arg0) {
     func_02055ebc();
 }
 
+void func_020558b4(void) {
+void *node;
+void **entry;
+if (data_021600c0 == NULL) return;
+while ((node = *(void **)(data_021600c0 + 0x34)) != NULL) {
+func_021168f8(data_021600c0 + 0x34, node);
+if (node != NULL) func_0210c5dc(node);
+}
+while ((entry = *(void ***)(data_021600c0 + 0x40)) != NULL) {
+func_021168f8(data_021600c0 + 0x40, entry);
+func_0210eb80(*entry);
+if (*entry != NULL) { func_0210c5dc(*entry); *entry = NULL; }
+if (entry != NULL) func_0210c5dc(entry);
+}
+func_0210da14(data_021600c0 + 0xc);
+func_0210da14(data_021600c0 + 0x20);
+if (data_021600c0 != NULL) {func_0210c5dc(data_021600c0); data_021600c0 = NULL;}
+}
+
 void func_02055c90(s32 arg0) {
     UnkData_02055c90 buf;
     u8 unk8[0x28];
