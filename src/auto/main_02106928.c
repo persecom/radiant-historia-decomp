@@ -110,3 +110,8 @@ void func_0210721c(void) {
     func_0200fa4c((u16)data_02155968);
 }
 
+void func_02107820(void) {
+    func_02118234(data_02161088);
+    func_02118570(data_02161088);
+}
+
