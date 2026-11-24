@@ -140,6 +140,23 @@ void func_02133804(u64 arg0) {
     data_02174d64 = arg0;
 }
 
+extern void func_02133750(void *, s32 *);
+extern void func_02133134(s8 *, s8 *, void *);
+extern void *func_02132f20(s8 *, s8 *, void *);
+extern u8 data_0215b864[28];
+extern u8 data_0215b880[28];
+extern u8 data_0215b89c[40];
+extern u8 data_0215b8c4[40];
+extern u8 data_0215b8ec[36];
+extern u8 data_0215b910[32];
+extern u8 data_0215b930[48];
+extern u8 data_0215b960[44];
+s32 func_02133814(void *arg0) {
+    s32 ret;
+    func_02133750(arg0, &ret);
+    return ret;
+}
+
 extern void func_02013878(void *, s32, s32);
 void func_02133864(void *arg0) {
     func_02013878(arg0, 0, 0x38);
