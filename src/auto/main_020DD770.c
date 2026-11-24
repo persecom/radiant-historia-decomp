@@ -378,6 +378,23 @@ void func_020de17c(void *arg0) {
     }
 }
 
+void func_020de190(s32 *arg0, s32 arg1) {
+void *p = func_021092d8(data_02151510);
+if (func_02092ab0(p,arg1) != -1) {
+s32 zero = 0;
+arg0[0]=func_02092994(p,zero);
+arg0[1]=func_02092994(p,zero);
+arg0[2]=func_02092994(p,zero);
+arg0[3]=func_02092994(p,zero);
+arg0[4]=func_02092994(p,zero);
+arg0[5]=func_02092994(p,zero);
+arg0[6]=func_02092994(p,zero)<<12;
+arg0[7]=func_02092994(p,zero)<<12;
+arg0[8]=func_02092994(p,zero)<<12;
+}
+if(p != NULL) func_021093b0(p);
+}
+
 extern void func_021167ac(void *, s32);
 extern const s16 data_0213a394[];
 void *func_020de270(void) {
