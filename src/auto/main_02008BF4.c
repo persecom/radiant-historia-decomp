@@ -14,8 +14,8 @@ typedef struct {
     u32 field_1c;
 } Data_215d17c;
 extern Data_215d17c data_0215d17c;
-extern void func_020058fc(void *, u32, u32);
-extern void func_01ff845c(void *, u32, u32, u32);
+extern void func_020058fc(u32, u32, u32);
+extern void func_01ff845c(u32, u32, u32, u32, u32);
 extern void func_02005a14(u32);
 extern void func_020059e4(u32);
 extern void func_020057e8(u32, u32);
