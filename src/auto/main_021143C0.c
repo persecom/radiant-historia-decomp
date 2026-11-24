@@ -40,9 +40,13 @@ extern void func_021167ac(u32, s32);
 extern void func_021168f8(u32, u8 *);
 extern void func_021141a8(void *, u8 *);
 extern void func_021141f8(u8 *);
-extern void func_0211497c(void);
-extern void func_021149c8(void);
+extern void func_0211497c(u8 *);
+extern void func_021149c8(u8 *);
 extern s32 func_0211398c(u32);
+extern u8 data_0216c9bc[84];
+extern u32 func_02008128(void);
+extern void func_0200813c(u32);
+extern void func_02114b44(void);
 
 typedef struct {
     u8 unk_00[8];
@@ -162,7 +166,7 @@ void func_02114818(void *arg0p) {
     u8 *arg0 = (u8 *)arg0p;
     if (((*(s32 *)(arg0 + 0x2c) << 30) >> 31) != 0) {
         s32 tag;
-        func_020095a8(*(void **)(arg0 + 0x4c), 0, 1u << *(s32 *)(arg0 + 0x48), 0);
+        func_020095a8(*(void **)(arg0 + 0x4c), 0, 1 << *(s32 *)(arg0 + 0x48), 0);
         func_0200f0e4(arg0 + 8);
         func_0200f0fc(arg0 + 0x18);
         *(u32 *)(arg0 + 0x2c) &= ~2u;
@@ -182,6 +186,21 @@ void func_0211488c(void *arg0p) {
 
 void func_021148bc(u8 *arg0) {
     func_021148cc(arg0, 1);
+}
+
+void func_021148cc(u8 *arg0, s32 arg1) {
+    u32 stride = func_0201fd28(*(u32 *)(arg0 + 0x30), *(u32 *)(arg0 + 0x34));
+    u32 offset = stride * *(u32 *)(arg0 + 0x40);
+    s32 i;
+    for (i = 0; i < *(s32 *)(arg0 + 0x50); i++) {
+        data_0216c8b4[i] = *(u32 *)(data_0216c8f4 + (arg0 + i)[0x54] * 8) + offset;
+    }
+    (*(void (**)(s32, s32, u32 *, u32, u32, u32))(arg0 + 0x38))(
+        arg1, *(s32 *)(arg0 + 0x50), data_0216c8b4, stride, *(u32 *)(arg0 + 0x28), *(u32 *)(arg0 + 0x3c));
+    *(s32 *)(arg0 + 0x40) += 1;
+    if (*(s32 *)(arg0 + 0x40) >= *(s32 *)(arg0 + 0x34)) {
+        *(s32 *)(arg0 + 0x40) = 0;
+    }
 }
 
 u32 func_02114f58(u32 arg0) {
