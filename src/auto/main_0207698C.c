@@ -47,6 +47,64 @@ extern FontGlyph data_02148384[];
 extern void func_02076380(void *);
 extern void func_021099f8(void *);
 extern void func_020a9610(void *, u32, u16, void *, u32, u32);
+void func_0207698c(void) {
+s32 zero=0,one=1;
+u8 *p=func_020764e4(); s32 changed=0;
+if(data_021626a8&64) {
+if(*(s32 *)(p+168)) --*(s32 *)(p+168); else *(s32 *)(p+168)=one;
+changed=1;
+func_0210d27c(2);
+} else if(data_021626a8&128) {
+*(s32 *)(p+168)=(*(s32 *)(p+168)+1)%2;
+changed=one;func_0210d27c(2);
+}
+if(!changed) {
+if(func_02076914(zero) && *(s32 *)(p+168)==1) {*(s32 *)(p+168)=zero;changed=1;func_0210d27c(2);}
+else if(func_02076914(one) && *(s32 *)(p+168)==0) {*(s32 *)(p+168)=one;changed=one;func_0210d27c(2);}
+}
+if(changed) {
+if(*(s32 *)(p+168)==0) {func_020a8810(*(void **)(p+184),19);func_020a8810(*(void **)(p+264),20);}
+else {func_020a8810(*(void **)(p+184),20);func_020a8810(*(void **)(p+264),19);}
+return;
+}
+switch(*(s32 *)(p+164)) {
+case 0:
+if(data_021626a8&1) {
+if(*(s32 *)(p+168)==0) {
+func_020775e8();p[84]=3;*(s32 *)(p+80)=29;func_020cea64(0);func_0210d27c(11);
+} else {
+*(s32 *)(p+164)=one;
+func_020a994c(p+348);func_02077440(p+344,16,44,102,*(u32 *)(p+424),13);
+func_020a98ac(p+348);func_020a98f4(p+348);func_0210d27c(11);
+}
+} else if(func_02076914(zero) && *(s32 *)(p+168)==0) {
+func_020775e8();p[84]=3;*(s32 *)(p+80)=29;func_020cea64(zero);func_0210d27c(11);
+} else if(func_02076914(one) && *(s32 *)(p+168)==1) {
+*(s32 *)(p+164)=one;
+func_020a994c(p+348);func_02077440(p+344,16,44,102,*(u32 *)(p+424),13);
+func_020a98ac(p+348);func_020a98f4(p+348);func_0210d27c(11);
+}
+break;
+case 1:
+if(data_021626a8&1) {
+if(*(s32 *)(p+168)==0) {
+func_020775e8();p[84]=3;*(s32 *)(p+80)=36;func_0210d27c(11);
+} else {
+*(s32 *)(p+164)=zero;
+func_020a994c(p+348);func_02077440(p+344,16,44,102,*(u32 *)(p+424),12);
+func_020a98ac(p+348);func_020a98f4(p+348);func_0210d27c(11);
+}
+} else if(func_02076914(0) && *(s32 *)(p+168)==0) {
+func_020775e8();p[84]=3;*(s32 *)(p+80)=36;func_0210d27c(11);
+} else if(func_02076914(1) && *(s32 *)(p+168)==1) {
+*(s32 *)(p+164)=zero;
+func_020a994c(p+348);func_02077440(p+344,16,44,102,*(u32 *)(p+424),12);
+func_020a98ac(p+348);func_020a98f4(p+348);func_0210d27c(11);
+}
+break;
+}
+}
+
 void func_02076d6c(void) {
     u8 *ptr = func_020764e4();
     switch (*(u8 *)(ptr + 0x54)) {
