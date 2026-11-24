@@ -9,6 +9,7 @@ int func_02109754(int);
 extern s32 data_0215118c[][7];
 void func_021098ac(void *);
 
+typedef struct { s32 x, y; } Unk8;
 typedef struct { u16 v[7]; } Unk14;
 typedef struct { u16 v[10]; } Unk20;
 extern const Unk14 data_021444d0;
@@ -33,6 +34,54 @@ extern u8 data_021512a0[];
 extern u8 *func_0203be10(s32);
 extern void func_0203be60(void *, void *, void *);
 extern void func_0203be4c(void *);
+void func_020c3df4(u8 **arg0, s32 arg1) {
+    Unk20 buf1 = data_021444f0;
+    Unk14 buf2 = data_021444e0;
+    u8 *p = *arg0;
+
+    while (p != NULL) {
+        if ((arg1 == 1 && (*(u16 *)(p + 0x2a) & 2)) || (arg1 == 0 && !(*(u16 *)(p + 0x2a) & 2))) {
+            if (*(u16 *)(p + 0x2a) & 1) {
+                if (!(*(u16 *)(p + 0x2a) & 8)) {
+                    *(volatile u32 *)0x040004a4 = 0x20000880 | ((*(s8 *)(p + 0x18)) << 16);
+                    if (*(u16 *)(p + 0x2a) & 4) {
+                        func_020a3c54(*(u16 *)(p + 0x14));
+                    } else {
+                        func_020a3bbc(*(u16 *)(p + 0x14));
+                    }
+                    buf1.v[1] = *(s16 *)(p + 0x22);
+                    buf1.v[2] = *(s16 *)(p + 0x24);
+                    buf1.v[3] = *(s16 *)(p + 0x26);
+                    buf1.v[4] = *(s16 *)(p + 0x28);
+                    {
+                        u64 xy = *(u64 *)p;
+                        buf1.v[6] = xy >> 32;
+                        buf1.v[5] = xy;
+                    }
+                    buf1.v[7] = *(s32 *)(p + 0x8);
+                    {
+                        s32 h = (*(s16 *)(p + 0x28) * *(s32 *)(p + 0x10)) >> 12;
+                        s32 w = (*(s16 *)(p + 0x26) * *(s32 *)(p + 0xc)) >> 12;
+                        buf1.v[8] = w;
+                        buf1.v[9] = h;
+                    }
+                    func_021098ac(&buf1);
+                } else {
+                    *(volatile u32 *)0x040004a4 = 0x20000880 | ((*(s8 *)(p + 0x18)) << 16);
+                    buf2.v[1] = *(s32 *)(p + 0x0);
+                    buf2.v[2] = *(s32 *)(p + 0x4);
+                    buf2.v[3] = *(s32 *)(p + 0x8);
+                    buf2.v[4] = *(s16 *)(p + 0x1e);
+                    buf2.v[5] = *(s16 *)(p + 0x20);
+                    buf2.v[6] = *(u16 *)(p + 0x14);
+                    func_021099f8(&buf2);
+                }
+            }
+        }
+        p = *(u8 **)(p + 0x30);
+    }
+}
+
 void func_020c4454(void) {
 data_02155984=data_0216242c;
 func_02107c70(data_0216242c);
