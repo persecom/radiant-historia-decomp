@@ -1,6 +1,60 @@
 /* 40 functions from 0x02127E74 to 0x02128B80 (main), found by ds-decomp. */
 #include "common.h"
 
+typedef struct {
+    s8 field_0;
+    u8 field_1[0xc3];
+} Unk_02173ad4;
+
+extern Unk_02173ad4 data_02173ad4[4];
+extern void func_02127e74(u8 *);
+
+typedef struct {
+    u8 f0;
+    u8 f1;
+    s8 f2;
+    s8 f3;
+    void *f4;
+    void *f8;
+    u8 padc[4];
+    void *f10;
+    u8 pad14[4];
+    u32 f14;
+    void *arr[4];
+    u8 pad28[0x14];
+    s16 f3c;
+    s16 f3e;
+    u8 pad40[0xc];
+    u32 f4c;
+    u8 pad50[0x21];
+    u8 f71;
+    u8 pad72[2];
+    void *f74;
+    u8 pad78[0x14];
+    u32 f8c;
+    u32 f90;
+    u8 pad94[8];
+    u32 f9c;
+    u32 fa0;
+    u32 fa4;
+    u8 padA8[0x18];
+    u32 fc0;
+} Unk_02128030;
+
+extern void *data_02173ac0;
+extern void *data_0215677c;
+extern void func_0212c7b8(void *, void *);
+extern void func_0212c7f0(void *);
+extern void func_0212e5b8(void *);
+extern void func_0212e538(void *, s32, s32);
+extern void func_0212ddf0(void *, void *);
+extern void func_0212ddb8(void *, u32, u32);
+extern void func_0212dc14(void *, void *);
+extern void func_0212dce4(void *);
+extern void func_0212db28(void *);
+extern void func_0212da70(void *, u32, u32, u32, u64);
+extern s32 func_0212dc94(void *);
+
 extern void func_0212a9f4(void);
 extern void func_021281cc(void *);
 extern void func_0212a9f8(void);
