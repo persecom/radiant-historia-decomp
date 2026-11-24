@@ -1,6 +1,12 @@
 /* 52 functions from 0x02008BF4 to 0x02009B24 (main), found by ds-decomp. */
 #include "common.h"
 
+typedef struct {
+    u32 field_0;
+    u32 field_4;
+    u32 field_8;
+} Triple0215;
+
 extern u16 data_0215d1a0;
 extern s32 data_0215d19c;
 extern u32 *data_0215d1b8[9];
@@ -362,19 +368,21 @@ u32 *func_02009a64(s32 arg0) {
     return cmd;
 }
 
-void func_02009aec(u32 *arg0) {
-    s32 irq = func_02008128();
-    u32 *tail;
-    u32 **q;
-    q = data_0215d1b8;
-    tail = q[3];
-    if (tail == NULL) {
-        q[2] = arg0;
-    } else {
-        tail[0] = (u32)arg0;
-    }
-    q[3] = arg0;
-    arg0[0] = 0;
-    func_0200813c(irq);
+void func_02009aec(u32 *arg0)
+{
+  s32 irq = func_02008128();
+  u32 **q = data_0215d1b8;
+  u32 *tail = q[3];
+  if (tail == NULL)
+  {
+    q[2] = arg0;
+  }
+  else
+  {
+  }
+  tail[0] = (u32) arg0;
+  q[3] = arg0;
+  arg0[0] = 0;
+  func_0200813c(irq);
 }
 
