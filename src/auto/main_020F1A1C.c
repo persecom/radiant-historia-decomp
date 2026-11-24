@@ -73,7 +73,10 @@ BOOL func_020f2104(void *arg0, s32 arg1, s32 arg2, void *arg3) {
     if (arg3 != NULL) {
         func_020f242c(sp4, arg3);
     }
-    return func_0210aee0(arg0, sp4, arg2, r4) != 0;
+    if (func_0210aee0(arg0, sp4, arg2, r4) == 0) {
+        return 0;
+    }
+    return 1;
 }
 
 BOOL func_020f24f4(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
