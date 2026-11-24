@@ -93,6 +93,17 @@ void *func_02138f34(void *arg0, s32 arg1) {
     return (*(void *(**)(void *))(*(u8 **)obj + 0x44))(obj);
 }
 
+s32 func_02138f98(u8 *arg0) {
+    if (*(u32 *)(arg0 + 0x58) == 0) {
+        func_02126c20(data_0215cba0);
+        return 0;
+    }
+    if (*(s32 *)(arg0 + 0x9c) == 1) {
+        return 0;
+    }
+    return *(s32 *)(arg0 + 0xa8);
+}
+
 void func_02139034(u32 *arg0, u32 arg1) {
     arg0[0x33] += arg1;
     arg0[0x34] = 1;
@@ -108,10 +119,11 @@ void func_021396e8(u8 *arg0, u32 arg1) {
 }
 
 void func_02139a9c(void *arg0) {
+    void (**p)(void);
     if (arg0 != NULL) {
-        void (*func)(void) = *(void (**)(void))((u8 *)arg0 + 0xe0);
-        if (func != NULL) {
-            func();
+        p = (void (**)(void))((u8 *)arg0 + 0xe0);
+        if (*p != NULL) {
+            (*p)();
         }
     }
 }
