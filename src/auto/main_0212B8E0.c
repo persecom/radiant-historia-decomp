@@ -286,6 +286,23 @@ s32 func_0212c4c8(void) {
     return 0;
 }
 
+extern void func_021384a0(void);
+extern void func_021384b0(void);
+extern void func_021384c0(void);
+extern void func_021384d0(void);
+extern void func_021384e0(void);
+s32 func_0212c520(void) {
+    func_021384a0();
+    func_021384b0();
+    func_021384c0();
+    func_021384d0();
+    func_021384f0();
+    func_02138500();
+    func_02138510();
+    func_021384e0();
+    return 0;
+}
+
 s32 func_0212c7b0(s8 *arg0) {
     return arg0[1];
 }
