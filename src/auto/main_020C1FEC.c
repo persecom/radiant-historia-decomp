@@ -5,6 +5,7 @@ extern u8 *data_02160090;
 extern u8 *data_02160a6c;
 
 extern u8 *func_020c2584(u8 *, u32);
+extern u8 *func_020ddb90(u16);
 extern void func_020c27b4(u8, s8, u32);
 extern void func_021167f0(u8 *, u8 *);
 
