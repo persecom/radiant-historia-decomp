@@ -290,8 +290,7 @@ void func_0211af90(s32 bank, u32 *arg1, u8 *arg2) {
  u32 *p=arg1;
  s32 count, i;
  func_02006dc4((void *)p[3],p[2]);
- dest=(u8 *)0x5000000;
- if(size>3) dest=(u8 *)0x5000400;
+  if(size<=3) dest=(u8 *)0x5000000; else dest=(u8 *)0x5000400;
  if(map){
  switch(p[0]) {case 3:size=32;break;case 4:size=512;break;default:size=0;break;}
  count=*(u16 *)map;
