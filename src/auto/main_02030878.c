@@ -92,13 +92,8 @@ void func_02031498(void) {
     s32 i;
     for (i = 0; i < 9; i++) {
         u8 *entry = data_02160244[2 + i];
-        s32 flags;
-        if (entry == NULL) {
-            continue;
-        }
-        flags = entry[0x1c];
-        if ((flags & 8) != 0) {
-            func_0202e874();
+        if (entry != NULL && (entry[0x1c] & 8) != 0) {
+            func_0202e874(entry);
         }
     }
 }
