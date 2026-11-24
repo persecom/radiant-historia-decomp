@@ -18,5 +18,32 @@ extern void func_02139ee4(void);
 extern void func_0210dc88(void);
 extern s32 func_0210723c(void);
 
+s32 func_02139fc4(void) {
+    data_02162868 = 1;
+    data_0216bf84 = 0;
+    func_0210968c(3, 16, 1);
+    func_02139cdc();
+    func_0210968c(3, 0, 30);
+    func_02109790(3);
+    while (data_021769fc->field_3c == 0) {
+        func_0210dc88();
+    }
+    func_0210968c(3, -16, 20);
+    func_02109790(3);
+    func_02139ee4();
+    func_0210dc88();
+    data_02162868 = 0;
+    return 36;
+}
+
+void func_0213a06c(void) {
+    if (data_021769fc->field_184 != 0) return;
+    if (func_0210723c() == 0) {
+        data_021769fc->field_184++;
+    } else {
+        data_021769fc->field_3c = 1;
+    }
+}
+
 void func_0213a0b0(void) {
 }
