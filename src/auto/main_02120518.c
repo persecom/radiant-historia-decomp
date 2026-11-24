@@ -153,3 +153,10 @@ u8 *func_02120f94(u8 *arg0) {
     return arg0 + *(u32 *)(arg0 + off);
 }
 
+u8 *func_02121040(u8 *arg0, u32 arg1) {
+    if (arg0 != NULL && arg1 < *(u8 *)(arg0 + 6)) {
+        return arg0 + *(u16 *)(arg0 + 8) + (arg1 << 4);
+    }
+    return NULL;
+}
+
