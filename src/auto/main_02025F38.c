@@ -49,6 +49,21 @@ void *func_02026c58(void **arg0) {
     return *arg0;
 }
 
+void *func_02026c60(void *arg0, u32 arg1) {
+    u8 *node = *(u8 **)arg0;
+    u8 i = 0;
+    if (node != NULL) {
+        do {
+            if (i == arg1) {
+                return node;
+            }
+            node = *(u8 **)(node + 0x20);
+            i++;
+        } while (node != NULL);
+    }
+    return NULL;
+}
+
 void func_02026c94(u16 *arg0) {
     arg0[6]++;
 }
