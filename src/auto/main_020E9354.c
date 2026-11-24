@@ -15,6 +15,10 @@ void func_020e9354(u16 arg0) {
     *(u16 *)(ptr + 0x14a) = arg0;
 }
 
+void func_020e95d0(void) {
+    *(u16 *)(data_02160a74 + 0x1b0) = 0;
+}
+
 void func_020ea164(void **arg0) {
     func_02108594(*arg0);
     if (arg0 != NULL) {
