@@ -70,6 +70,21 @@ void func_020a5cd4(void *arg0) {
     *(s32 *)((u8 *)arg0 + 0x6c) = -0x5000;
 }
 
+void func_020a5ce4(void *arg0) {
+    void *p = *(void **)((u8 *)arg0 + 4);
+    if (p == NULL) {
+        return;
+    }
+    ((void (*)(void))(*(void **)((u8 *)p + 4)))();
+    func_020a899c(p);
+}
+
+void func_020a5d0c(void *arg0) {
+    *(s32 *)((u8 *)*(void **)((u8 *)arg0 + 4) + 0x44) = *(s32 *)((u8 *)arg0 + 0x60) + *(s32 *)((u8 *)arg0 + 0x6c);
+    *(s32 *)((u8 *)*(void **)((u8 *)arg0 + 4) + 0x48) = *(s32 *)((u8 *)arg0 + 0x64) + *(s32 *)((u8 *)arg0 + 0x70);
+    *(s32 *)((u8 *)*(void **)((u8 *)arg0 + 4) + 0x4c) = *(s32 *)((u8 *)arg0 + 0x68) + *(s32 *)((u8 *)arg0 + 0x74);
+}
+
 void func_020a5ed4(void **arg0) {
     void *ptr;
     while ((ptr = *arg0) != NULL) {
