@@ -280,24 +280,24 @@ void *func_0210af8c(void) {
 
 void func_0210afcc(void *arg) {
     u8 *arg0 = arg;
-    u16 *p = (u16 *)(arg0 + 0x1a4);
+    Unk_0210afcc *s = (Unk_0210afcc *)(arg0 + 0x100);
     s32 i;
-    *p &= ~8;
-    *p &= ~2;
-    *p = (*p & ~4) | ((*p & 1) << 2);
+    s->flags.bit3 = 0;
+    s->flags.bit1 = 0;
+    s->flags.bit2 = s->flags.bit0;
     *(u32 *)(arg0 + 0x104) = 0x1000;
     *(u8 *)(arg0 + 0x128) = 0;
-    *p = (*p & ~1) | 1;
+    s->flags.bit0 = 1;
     *(u32 *)(arg0 + 0x12c) = 0;
     *(u32 *)(arg0 + 0x130) = 2;
     *(u8 *)(arg0 + 0x134) = 0;
     *(u8 *)(arg0 + 0x135) = 0x1f;
     *(u32 *)(arg0 + 0x138) = 0;
-    *p &= ~0x100;
+    s->flags.bit8 = 0;
     *(void **)(arg0 + 0x1a8) = func_0210af80;
-    *(u16 *)(arg0 + 0x1a2) = 0x3e7;
+    s->unkA2 = 0x3e7;
     for (i = 0; i < 0x10; i++) {
-        *(u16 *)(arg0 + 0x180 + i * 2) = 0x3e7;
+        s->arr[i] = 0x3e7;
     }
 }
 
@@ -320,13 +320,15 @@ void func_0210b0ac(u8 *arg0) {
 }
 
 s32 func_0210b0c8(u8 *arg0, s32 arg1) {
-    s32 ret = 0;
-    u8 *x = func_02120fe4(arg1, 0);
+    u8 *x;
+    s32 ret;
+    ret = 0;
+    x = func_02120fe4(arg1, 0);
     if (x != NULL) {
         u8 *y = func_02120b8c(data_02162648, x, *(u32 *)(arg0 + 0x54));
         *(u8 **)(arg0 + 0xfc) = y;
         func_0211ca28(y, x, *(u32 *)(arg0 + 0x54), *(u32 *)(arg0 + 0x58));
-        func_0211cc30(arg0, y);
+        func_0211cc30(arg0, *(u8 **)(arg0 + 0xfc));
         *(u32 *)(arg0 + 0x120) = arg1;
         ret = 1;
     }
@@ -357,7 +359,7 @@ extern u8 *func_02120fe4(s32, s32);
 extern u8 *func_02120b8c(void *, u8 *, u32);
 void func_0210b750(u32 arg0) {
     u32 f;
-    func_021167ac(data_02162618, 4);
+    func_021167ac(&data_02162618, 4);
     f = data_02155c18[0];
     if (f == 0) {
         f = (u32)func_0210af80;
