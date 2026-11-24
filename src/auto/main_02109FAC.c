@@ -154,3 +154,10 @@ void func_0210a4cc(void) {
     }
 }
 
+void *func_0210a7b4(void) {
+    u8 *p = func_0210c594(0x24, data_02155c3c);
+    func_021185d4(p);
+    *(u32 *)(p + 0x14) = 0;
+    return p;
+}
+
