@@ -8,6 +8,26 @@ extern void func_02138280(void);
 extern void func_02137fc8(s32);
 extern void func_02136958(void);
 extern void func_02137ec4(void);
+extern void func_02137250(void *, void *);
+extern u8 data_0215c604[12];
+extern u8 data_0215c610[28];
+extern u8 data_0215c62c[12];
+extern u8 data_0215c638[32];
+extern s32 data_02176400;
+extern u32 data_02176404[144];
+extern void *memset(void *, int, unsigned long);
+void *func_02137e58(void *arg0) {
+    if (arg0 == NULL) {
+        func_02137250(data_0215c604, data_0215c610);
+        return NULL;
+    }
+    if (*(void **)((u8 *)arg0 + 4) == NULL) {
+        func_02137250(data_0215c62c, data_0215c638);
+        return NULL;
+    }
+    return *(void **)((u8 *)arg0 + 0x24);
+}
+
 void func_02137eac(void) {
     func_02136958();
     func_021369a8();
