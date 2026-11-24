@@ -1,5 +1,6 @@
 /* 17 functions from 0x020F5574 to 0x020F6458 (main), found by ds-decomp. */
 #include "common.h"
+extern const char data_02152020[], data_02152024[], data_02152028[], data_0215202c[];
 extern const char data_02152030[],data_02152034[],data_02152038[],data_0215203c[];
 extern const char *func_0210cd20(s32,s32);
 extern s32 func_ov000_02176da0(void *, s32, s32);
