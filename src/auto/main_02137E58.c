@@ -20,6 +20,8 @@ extern u8 data_0215c960[52];
 extern u8 data_0215c994[44];
 extern u8 data_0215c9c0[44];
 extern u8 data_0215c9ec[52];
+extern u8 data_0215c7d8[52];
+extern u8 data_0215c80c[52];
 extern u32 data_0217667c[8];
 extern u32 data_02176654[2];
 extern u32 data_02176674[2];
