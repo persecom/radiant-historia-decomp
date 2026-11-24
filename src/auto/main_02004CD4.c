@@ -406,6 +406,7 @@ u32 func_02005988(u32 arg0) {
     *(volatile u16 *)0x04000208 = 0;
     u32 old = *(volatile u32 *)0x04000210;
     *(volatile u32 *)0x04000210 = arg0;
+    *(volatile u16 *)0x04000208;
     *(volatile u16 *)0x04000208 = ime;
     return old;
 }
@@ -444,8 +445,9 @@ u32 func_02005a14(u32 arg0) {
 }
 
 void func_02005a40(void) {
-    *(u32 *)(data_027e0000 + 0x3f7c) = 0xfddb597d;
-    *(u32 *)(data_027e0000 + 0x3b80) = 0x7bf9dd5b;
+    u8 *dtcm = data_027e0000;
+    *(u32 *)(dtcm + 0x3f7c) = 0xfddb597d;
+    *(u32 *)(dtcm + 0x3f80 - 0x400) = 0x7bf9dd5b;
 }
 
 extern u16 data_0215cddc;
