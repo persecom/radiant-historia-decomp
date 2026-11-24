@@ -127,6 +127,16 @@ void func_020c2be4(void) {
     }
 }
 
+void func_020c2c30(void) {
+    void *node;
+    while ((node = *(void **)(data_02160090 + 0x6c)) != NULL) {
+        func_021168f8(data_02160090 + 0x6c, node);
+        if (node != NULL) {
+            func_0210c5dc(node);
+        }
+    }
+}
+
 void *func_020c2d80(void) {
     return *(void **)(data_02160090 + 0x48);
 }
