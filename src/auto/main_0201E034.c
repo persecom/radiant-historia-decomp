@@ -73,6 +73,39 @@ u64 func_0201e1f8(u64 x, s32 *exp, ...) {
     return u.d;
 }
 
+extern int func_020136ec(double);
+extern double func_0201de78(double, double);
+double func_0201e2b8(double x, int n) {
+    int k, hx, lx;
+    if (func_020136ec(x) <= 2 || x == 0.0) {
+        return x;
+    }
+    hx = ((int *)&x)[1];
+    lx = ((int *)&x)[0];
+    k = (hx & 0x7ff00000) >> 20;
+    if (k == 0) {
+        if ((lx | (hx & 0x7fffffff)) == 0) return x;
+        x *= 1.80143985094819840000e+16;
+        hx = ((int *)&x)[1];
+        k = ((hx & 0x7ff00000) >> 20) - 54;
+        if (n < -50000) return 1.0e-300 * x;
+    }
+    if (k == 0x7ff) return x + x;
+    k = k + n;
+    if (k > 0x7fe) return 1.0e300 * func_0201de78(1.0e300, x);
+    if (k > 0) {
+        ((int *)&x)[1] = (hx & 0x800fffff) | (k << 20);
+        return x;
+    }
+    if (k <= -54) {
+        if (n > 50000) return 1.0e300 * func_0201de78(1.0e300, x);
+        else return 1.0e-300 * func_0201de78(1.0e-300, x);
+    }
+    k += 54;
+    ((int *)&x)[1] = (hx & 0x800fffff) | (k << 20);
+    return x * 5.55111512312578270212e-17;
+}
+
 double func_0201dbfc(double, double, int);
 double func_0201cd34(double, double);
 double func_0201e9fc(double, double);
