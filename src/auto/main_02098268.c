@@ -16,18 +16,23 @@ void func_02098694(u32 arg0) {
     u16 buf[16];
     u16 *src = (u16 *)data_0214200c;
     u16 *dst = buf;
-    s32 n = 8;
+    u32 n = 8;
     u32 idx;
+    s16 v0, v1;
     do {
         dst[1] = src[1];
-        *dst++ = *src++;
+        dst[0] = src[0];
+        src += 2;
+        dst += 2;
     } while (--n != 0);
     if (arg0 == 4 || arg0 == 6) {
         return;
     }
     idx = (arg0 << 17) >> 16;
-    *(s16 *)(out + 0x3a) = ((s16 *)buf)[idx];
-    *(s16 *)(out + 0x3c) = ((s16 *)buf)[idx + 1];
+    v0 = ((s16 *)buf)[idx];
+    v1 = ((s16 *)buf)[idx + 1];
+    *(s16 *)(out + 0x3a) = v0;
+    *(s16 *)(out + 0x3c) = v1;
 }
 
 void func_02098710(u32 arg0) {
@@ -35,31 +40,30 @@ void func_02098710(u32 arg0) {
     u16 buf[20];
     u16 *src = (u16 *)data_0214202c;
     u16 *dst = buf;
-    s32 n = 10;
+    u32 n = 10;
     u32 idx;
+    s16 v0, v1;
     do {
         dst[1] = src[1];
-        *dst++ = *src++;
+        dst[0] = src[0];
+        src += 2;
+        dst += 2;
     } while (--n != 0);
     idx = (arg0 << 17) >> 16;
-    *(s16 *)(out + 0x3a) = ((s16 *)buf)[idx];
-    *(s16 *)(out + 0x3c) = ((s16 *)buf)[idx + 1];
+    v0 = ((s16 *)buf)[idx];
+    v1 = ((s16 *)buf)[idx + 1];
+    *(s16 *)(out + 0x3a) = v0;
+    *(s16 *)(out + 0x3c) = v1;
 }
 
-void func_0209877c(u32 arg0) {
+void func_0209877c(u16 arg0) {
     u8 *out = (u8 *)data_0216011c;
-    u16 buf[12];
-    u16 *src = (u16 *)data_02141fdc;
-    u16 *dst = buf;
-    s32 n = 6;
-    u32 idx;
-    do {
-        dst[1] = src[1];
-        *dst++ = *src++;
-    } while (--n != 0);
-    idx = (arg0 << 17) >> 16;
-    *(s16 *)(out + 0x3a) = ((s16 *)buf)[idx];
-    *(s16 *)(out + 0x3c) = ((s16 *)buf)[idx + 1];
+    struct Table24 { s16 v[12]; } buf = *(const struct Table24 *)data_02141fdc;
+    u16 idx = arg0 * 2;
+    s16 v0 = buf.v[idx];
+    s16 v1 = buf.v[idx + 1];
+    *(s16 *)(out + 0x3a) = v0;
+    *(s16 *)(out + 0x3c) = v1;
 }
 
 void func_020988c0(void) {
