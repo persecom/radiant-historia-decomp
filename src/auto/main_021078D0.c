@@ -193,6 +193,10 @@ void func_02108308(u8 *arg0) {
     arg0[0x15] = 0x1f;
 }
 
+void *func_0210835c(void) {
+    return func_0210c594(0x18, data_02155c3c);
+}
+
 extern u32 data_02155c3c;
 extern void *func_0210c594(u32, u32);
 extern void func_02008f74(void *, s32, u32);
