@@ -34,6 +34,16 @@ typedef struct UnkStruct_020a48d0 {
     s16 unke;
 } UnkStruct_020a48d0;
 
+typedef struct Unk20 {
+    u16 unk[10];
+} Unk20;
+
+typedef struct Unk18 {
+    u16 unk[9];
+} Unk18;
+
+extern const Unk20 data_02143388;
+extern const Unk18 data_02143374;
 extern const UnkStruct_020a48d0 data_02143350;
 extern void func_021098ac(void *);
 extern void func_021168f8(void *, void *);
