@@ -230,3 +230,10 @@ void func_020befc4(void *arg0) {
     func_02008f74(arg0, 0, 0x38);
 }
 
+void *func_020bf308(u32 arg0) {
+    if (arg0 >= 3) {
+        return NULL;
+    }
+    return func_020becfc() + 0x54 + arg0 * 0x2c;
+}
+
