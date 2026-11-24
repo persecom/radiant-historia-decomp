@@ -203,6 +203,10 @@ void func_0211782c(u8 *arg0) {
     *(u32 *)(arg0 + 0x14) += (u32)arg0;
 }
 
+void func_021178b4(u8 *arg0) {
+    *(u32 *)(arg0 + 0x4) += (u32)arg0;
+}
+
 extern u32 data_0216e22c[];
 void func_02117a48(u32 arg0) {
     data_0216e22c[1] = arg0;
