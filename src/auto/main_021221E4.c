@@ -138,11 +138,11 @@ return (x+y)>>1;
 
 extern u32 func_02122b9c(u8 *, u32, u32, s32);
 void func_02122ca8(u8 *arg0, u16 arg1, s32 arg2, u32 *arg3) {
-    u32 *r4;
     u32 flag;
     s32 v1;
     s32 v2;
     u32 rot;
+    u32 *r4;
 
     if ((arg0 + 8) != NULL && (u32)arg1 < arg0[9]) {
         u8 *p = (arg0 + 8) + *(u16 *)((arg0 + 8) + 6);
