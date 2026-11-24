@@ -1,5 +1,6 @@
 /* 57 functions from 0x02129A6C to 0x0212A9FC (main), found by ds-decomp. */
 #include "common.h"
+extern void func_0212bda8(char *);
 extern s32 data_02156a80;
 extern char data_02156b30[];
 extern char data_02156b38[];
