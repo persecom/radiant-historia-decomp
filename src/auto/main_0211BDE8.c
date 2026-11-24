@@ -17,7 +17,7 @@ typedef struct Unk_02155efc {
     u32 pad;
 } Unk_02155efc;
 
-extern u32 data_02155ed4;
+extern s32 data_02155ed4;
 extern Unk_02155ef8 data_02155ef8[];
 extern Unk_02155efc data_02155efc[];
 extern void func_02008e24(s32, void *, s32);
