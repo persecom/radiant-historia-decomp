@@ -30,6 +30,27 @@ extern void func_021141f8(u8 *);
 extern void func_0211497c(void);
 extern void func_021149c8(void);
 extern s32 func_0211398c(u32);
+
+typedef struct {
+    u8 unk_00[8];
+    u32 unk_08;
+    u32 unk_0c;
+    u8 unk_10[8];
+    u32 unk_18;
+    u32 unk_1c;
+    u8 unk_20[0x10];
+    u32 unk_30;
+    u32 unk_34;
+    u32 unk_38;
+    u32 unk_3c;
+    u32 unk_40;
+    u32 unk_44;
+    u32 unk_48;
+    u32 unk_2c;
+    u8 unk_30pad[0x1c];
+    u32 unk_4c;
+    u32 unk_50;
+} Unk_02114420;
 void func_021143c0(u8 *arg0, u8 arg1) {
     u32 old = *(u32 *)(arg0 + 4);
     if (old != 0) {
