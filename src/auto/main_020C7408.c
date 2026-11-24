@@ -210,6 +210,21 @@ void func_020c805c(u8 *arg0, s32 arg1) {
     }
 }
 
+void func_020c80ac(u8 *arg0, u8 arg1, u8 arg2) {
+    u16 i;
+    u32 count;
+    if (*(u8 *)(arg0 + 0x44) == arg1 && *(u8 *)(arg0 + 0x45) == arg2) {
+        return;
+    }
+    count = func_020c9c34(*(void **)(arg0 + 0x4c));
+    for (i = 0; i < count; i++) {
+        u8 *obj = func_020c9c10(*(void **)(arg0 + 0x4c), i);
+        ((void (*)(u8 *, u8, u8))(*(void **)(obj + 0x24)))(obj, arg1, arg2);
+    }
+    *(u8 *)(arg0 + 0x44) = arg1;
+    *(u8 *)(arg0 + 0x45) = arg2;
+}
+
 s32 func_020c8124(void) {
     return 5;
 }
