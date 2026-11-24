@@ -9,6 +9,11 @@ extern u32 data_02155c3c;
 extern void *data_0216007c[];
 extern void func_021168f8(void *, void *);
 extern void func_021167ac(void *, s32);
+extern void func_021093b0(void *);
+extern void *func_02032c44(void);
+extern void func_021167f0(void *, void *);
+extern void func_0203218c(void *);
+extern void func_02026ddc(void *);
 void func_02025f38(void *arg0, void *arg1, s32 arg2) {
     func_02022584(
         *(void **)((u8 *)(*(void **)((u8 *)arg0 + 0x118)) + 0x60),
