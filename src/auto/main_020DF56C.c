@@ -32,15 +32,22 @@ void func_020df56c(void *arg0, s32 arg1) {
 }
 
 void *func_020df944(void *arg0, u16 arg1, u32 arg2) {
+    s32 zero = 0;
     u8 *ptr = func_0210c594(0x18, data_02155c3c);
 
     *(u32 *)(ptr + 0) = arg2;
-    *(u16 *)(ptr + 4) = 0;
-    *(u16 *)(ptr + 6) = -17;
-    *(u16 *)(ptr + 8) = 0;
+    *(u16 *)(ptr + 4) = zero;
+    *(u16 *)(ptr + 6) = zero - 17;
+    *(u16 *)(ptr + 8) = zero;
     *(u16 *)(ptr + 0xa) = arg1;
     func_021167f0(arg0, ptr);
     return ptr;
+}
+
+void func_020df99c(void **arg0) {
+    while (*arg0 != NULL) {
+        func_020df9dc(arg0, *arg0);
+    }
 }
 
 void func_020df9c8(u32 arg0) {
