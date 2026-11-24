@@ -149,3 +149,8 @@ s32 func_020c8268(u8 *arg0) {
     return 0;
 }
 
+void func_020c83b0(u8 *arg0, void *arg1) {
+    func_020c85e8(arg0);
+    *(void **)(arg0 + 0x34) = func_020a94b8(arg1);
+}
+
