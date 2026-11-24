@@ -185,6 +185,23 @@ u32 func_020a97e4(void **arg0, u32 arg1) {
     }
 }
 
+void func_020a9830(u8 *arg0, u8 *arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5) {
+    *(u8 **)(arg0 + 0x18) = arg1;
+    *(void (**)(void))(arg0 + 0) = func_020a9a58;
+    *(u32 *)(arg0 + 4) = 1000;
+    *(u8 **)(arg0 + 8) = arg0;
+    func_0210d9e4(arg0);
+    *(u32 *)(arg0 + 0x20) = arg2;
+    *(u32 *)(arg0 + 0x24) = arg3;
+    *(u32 *)(arg0 + 0x28) = arg4;
+    *(u32 *)(arg0 + 0x2c) = arg5;
+    *(u32 *)(*(u8 **)(arg0 + 0x18) + 8) = arg4;
+    *(u32 *)(*(u8 **)(arg0 + 0x18) + 0xc) = arg5;
+    *(u32 *)(arg0 + 0x1c) = 0xe;
+    *(u32 *)(arg0 + 0x30) = 0;
+    *(u32 *)(arg0 + 0x14) = 0;
+}
+
 void func_020a98a0(void) {
     func_0210da44();
 }
