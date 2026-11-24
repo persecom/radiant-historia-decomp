@@ -17,41 +17,19 @@ extern s32 func_02020888(s32, s32);
 extern s32 func_020201f4(s32, s32);
 extern s32 func_0201ff0c(s32);
 
-void func_020ed3a4(void *arg0, s32 arg1, s32 arg2) {
-    u8 *a;
-    u8 *c;
-    u8 *d;
-    UnkE_020ed3a4 *e;
-    UnkF_020ed3a4 *f;
-    u16 count;
-    u16 n;
+void func_020ed3a4(u8 *arg0, s32 arg1, s32 arg2) {
     s32 i;
-    u16 j;
-    s32 base;
-    s32 tmp;
+    s32 j;
     s32 v;
+    UnkF_020ed3a4 *f;
 
-    a = arg0;
-    base = arg1 + (arg2 << 5);
-    c = *(u8 **)(*(u8 **)a + 0x58);
-    d = *(u8 **)(c + 4);
-    count = *(u16 *)d;
-    if ((s32)count <= 0) return;
-    for (i = 0; i < (s32)count; i++) {
-        e = (UnkE_020ed3a4 *)(*(u8 **)(d + 4) + i * 8);
-        n = e->count;
-        if ((s32)n <= 0) continue;
-        for (j = 0; j < n; j++) {
-            f = e->items + j;
-            f->unk04 = (u16)(f->unk04 + (u16)base);
-            tmp = f->unk04;
-            tmp = tmp % 0x1000;
-            tmp = tmp % 0x400;
-            tmp = tmp / 0x10;
-            func_0201f884(tmp);
-            func_02020888(0x40000000, 0);
-            v = func_0201ff0c(func_020201f4(0x42000000, 0));
-            f->unk04 = (u16)(f->unk04 + (u16)(v - base));
+    for (i = 0; i < *(u16 *)(*(u8 **)(*(u8 **)(*(u8 **)arg0 + 0x58) + 4)); i++) {
+        for (j = 0; j < (*(UnkE_020ed3a4 **)(*(u8 **)(*(u8 **)(*(u8 **)arg0 + 0x58) + 4) + 4))[i].count; j++) {
+            f = &(*(UnkE_020ed3a4 **)(*(u8 **)(*(u8 **)(*(u8 **)arg0 + 0x58) + 4) + 4))[i].items[j];
+            f->unk04 += (u16)(arg1 + (arg2 << 5));
+            f = &(*(UnkE_020ed3a4 **)(*(u8 **)(*(u8 **)(*(u8 **)arg0 + 0x58) + 4) + 4))[i].items[j];
+            v = func_0201ff0c(func_020201f4(0x42000000, func_02020888(func_0201f884((f->unk04 % 0x1000 % 0x400) / 0x10), 0x40000000)));
+            f->unk04 += (u16)(v - (arg1 + (arg2 << 5)));
         }
     }
 }
