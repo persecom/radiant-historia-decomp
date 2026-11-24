@@ -235,6 +235,10 @@ void func_02132ae8(u8 *arg0, s32 arg1) {
     *(s32 *)(arg0 + 0x34) = arg1;
 }
 
+void func_02132af0(u32 *arg0) {
+    arg0[3] = 1;
+}
+
 void func_02132b10(void **arg0, void **arg1) {
     if (arg0 != NULL) {
         *arg0 = (void *)data_0215b1d0[0];
