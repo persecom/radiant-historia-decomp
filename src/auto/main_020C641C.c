@@ -144,6 +144,11 @@ void func_020c7088(u8 *arg0, u8 arg1) {
     arg0[0x43] = arg1;
 }
 
+void func_020c70a0(u8 *arg0, u8 arg1);
+void func_020c7090(u8 *arg0) {
+    func_020c70a0(arg0, 4);
+}
+
 void func_020c70a0(u8 *arg0, u8 arg1) {
     func_020c738c(arg0, 2, 2);
     arg0[0x46] = arg1;
