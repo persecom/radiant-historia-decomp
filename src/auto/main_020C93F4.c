@@ -14,8 +14,8 @@ void func_020c93f4(u8 *arg0, u16 arg1) {
 
 void func_020c9404(u8 *arg0, u16 arg1) {
     u16 max = *(u16 *)(arg0 + 0x42);
-    u16 old = *(u16 *)(arg0 + 0x3a);
     s16 diff = max - *(u16 *)(arg0 + 0x40);
+    u16 old = *(u16 *)(arg0 + 0x3a);
     if (max != 0) {
         if (old >= max) {
             *(u16 *)(arg0 + 0x3a) = max - 1;
