@@ -48,6 +48,37 @@ void func_02060328(u8 *arg0)
     *(u32 *)(*(u8 **)(arg0 + 0x118) + 4) = zero;
 }
 
+void func_02060408(u8 *arg0) {
+func_02025f84(arg0,0x85);
+func_02025f84(arg0,0x86);
+func_02025f84(arg0,0x87);
+func_02025f84(arg0,0x88);
+func_02025f84(arg0,0x89);
+func_02025f84(arg0,0x8a);
+func_02025f84(arg0,0x8c);
+func_02025f84(arg0,0x8d);
+func_02025f84(arg0,0x8e);
+func_02025f84(arg0,0x8f);
+func_02025f84(arg0,0x90);
+func_02025f84(arg0,0x91);
+func_02025f84(arg0,0x92);
+func_02025f84(arg0,0x93);
+func_02025f84(arg0,0x94);
+func_02025f84(arg0,0x95);
+func_02025f84(arg0,0x96);
+func_02025f84(arg0,0x97);
+func_02025f84(arg0,0x98);
+func_02025f84(arg0,0x99);
+func_02025f84(arg0,0x9a);
+func_02025f84(arg0,0x9b);
+func_02025f84(arg0,0x9c);
+func_02025f84(arg0,0x9e);
+func_02025f84(arg0,0x9d);
+func_02025f84(arg0,0xa5);
+func_02025f84(arg0,0xad);
+func_02025f84(arg0,0xae);
+}
+
 void func_02060560(u8 *arg0) {
     func_02025f84(arg0, 0x85);
     func_02025f84(arg0, 0x86);
