@@ -133,13 +133,13 @@ void func_0205c404(u8 *arg0) {
     }
 }
 
-void func_0205c490(u8 *arg0) {
-    u8 *p = *(u8 **)(arg0 + 0x128);
-    func_020d2b78(arg0, *(void **)p, ((((*(s16 *)(p + 0x52) % 2) << 10) + 0x7000) % 0x10000), 100);
-    *(s32 *)(arg0 + 0x28) += (*(s16 *)(p + 0x2e) << 12);
-    *(s32 *)(arg0 + 0x34) = (*(s32 *)(arg0 + 0x28) - *(s32 *)(arg0 + 4)) / 16;
-    *(s32 *)(arg0 + 0x30) /= 2;
-    *(s32 *)(arg0 + 0x38) /= 2;
+void func_0205c490(Unk0205B710 *arg0) {
+    Unk0205B710_Sub *p = arg0->unk128;
+    func_020d2b78(arg0, p->unk00, (((p->unk52 % 2) << 10) + 0x7000) % 0x10000, 100);
+    arg0->unk28 += (p->unk2e << 12);
+    arg0->unk34 = (arg0->unk28 - arg0->unk04) / 16;
+    arg0->unk30 /= 2;
+    arg0->unk38 /= 2;
     func_020d4eb8(arg0);
 }
 
