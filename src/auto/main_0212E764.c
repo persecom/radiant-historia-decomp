@@ -205,11 +205,11 @@ void func_0212ed3c(u8 *arg0, u8 *arg1) {
 }
 
 void func_0212f384(s32 *arg0, s32 arg1, s32 *arg2, s32 *arg3) {
-    s32 ptr = arg0[0];
-    s32 len = arg0[1];
+    s32 ptr = *(volatile s32 *)arg0;
+    s32 len = *(volatile s32 *)(arg0 + 1);
     s32 rem;
-    arg2[0] = ptr;
-    arg2[1] = len;
+    *(volatile s32 *)arg2 = ptr;
+    *(volatile s32 *)(arg2 + 1) = len;
     arg3[1] = len;
     if (arg2[1] > arg1) {
         arg2[1] = arg1;
