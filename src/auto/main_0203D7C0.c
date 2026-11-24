@@ -1,10 +1,6 @@
 /* 9 functions from 0x0203C998 to 0x0203D970 (main), found by ds-decomp. */
 #include "common.h"
 
-static inline void InitPosition_0203d8a8(u32 *dst, u32 x, u32 y, u32 z) {
- dst[0]=x; dst[1]=y; dst[2]=z;
-}
-
 extern u8 *data_02160098[2];
 extern u32 data_02155c3c;
 
@@ -87,7 +83,7 @@ void func_0203d8a8(u32 *arg0) {
  p[4]=value; x=arg0[0];
  p=(u32 *)((u8 *volatile *)data_02160098)[1];
  p[5]=zero; value=arg0[2];
- args[0]=x; args[1]=zero; args[2]=value;
+ InitPosition_0203d8a8(args,x,zero,value);
  func_0203d864(&args[zero]);
  *(u16 *)(((u8 *volatile *)data_02160098)[1]+0x60)=zero;
  }
