@@ -279,15 +279,12 @@ void func_02114a38(void) {
 }
 
 void func_02114c28(void) {
+    UnkStruct_0216c9bc *p = (UnkStruct_0216c9bc *)data_0216c9bc;
     s32 tag;
-    if (*(s32 *)(data_0216c9bc + 0) == 0) {
+    if (p->unk_00 == 0) {
         return;
     }
-    func_020095a8(
-        *(void **)(data_0216c9bc + 0x24),
-        *(s32 *)(data_0216c9bc + 0x28),
-        *(s32 *)(data_0216c9bc + 0x2c) >= 0 ? (1u << *(s32 *)(data_0216c9bc + 0x2c)) : 0,
-        0);
+    func_020095a8(p->unk_24, p->unk_28, p->unk_2c >= 0 ? (1u << p->unk_2c) : 0, 0);
     tag = func_02009d2c();
     func_02009b24(1);
     func_02009cc0(tag);
