@@ -2,6 +2,8 @@
 #include "common.h"
 
 extern void func_021390fc(void *);
+extern void func_02126c74(void *);
+extern void func_021273f0(void *);
 extern void func_02138338(u32, u32, u32, u32, u32);
 extern u8 data_0215c74c[];
 extern u8 data_0215c770[];
@@ -123,18 +125,17 @@ void func_02137fc8(s32 arg0) {
 }
 
 void func_0213800c(s32 arg0) {
-    volatile u32 *p = data_02176644;
-    if (p[6] == 0) {
+    if (data_02176644[6] == 0) {
         return;
     }
-    p[3]--;
-    if (p[3] == 0) {
-        if (p[1] != (u32)arg0) {
-            func_021380bc(data_0215c65c, p[1], arg0);
+    ((volatile u32 *)data_02176644)[3] = ((volatile u32 *)data_02176644)[3] - 1;
+    if (((volatile u32 *)data_02176644)[3] == 0) {
+        if (((volatile u32 *)data_02176644)[1] != (u32)arg0) {
+            func_021380bc(data_0215c65c, ((volatile u32 *)data_02176644)[1], arg0);
         }
-        p[1] = 0;
+        ((volatile u32 *)data_02176644)[1] = 0;
     }
-    ((void (*)(u32, u32))p[6])(p[7], p[6]);
+    ((void (*)(u32, u32))data_02176644[6])(data_02176644[7], data_02176644[6]);
 }
 
 void func_0213807c(void) {
