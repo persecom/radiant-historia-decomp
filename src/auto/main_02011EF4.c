@@ -2,6 +2,15 @@
 #include "common.h"
 
 extern void func_02012634(s32, const char *, char *);
+char *func_02012210(char *dst, const char *src) {
+    char *p = dst;
+    while (*src != 0) {
+        *dst++ = *src++;
+    }
+    *dst = 0;
+    return p;
+}
+
 void func_02012590(s32 arg0, const char *arg1, ...) {
     char *vlist = (char *)((u32)&arg1 & ~3) + 4;
     func_02012634(arg0, arg1, vlist);
