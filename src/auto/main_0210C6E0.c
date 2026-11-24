@@ -3,6 +3,22 @@
 extern s32 func_021093f0(void *);
 extern void func_02012590(const char *, const char *, ...);
 extern char data_02155c58[];
+extern char data_02155c60[];
+extern u32 data_021626f0[];
+extern u8 data_021626f4[];
+extern u8 data_021626fc[];
+extern u8 data_0216270c[];
+extern u8 data_0216271c[];
+extern s32 func_02113c34(s32);
+extern void func_02005e80(char *, const char *, const char *);
+extern void func_0210d03c(void);
+extern void func_0210cfc4(void);
+extern void func_0210cfc8(void);
+extern void func_0210d014(void);
+extern void func_0200f084(void *);
+extern void func_0200f0c4(void *);
+extern void func_0210d9e4(void *);
+extern s32 func_0200ef20(s32);
 extern u8 data_02162740[];
 
 
