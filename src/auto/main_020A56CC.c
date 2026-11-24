@@ -104,6 +104,34 @@ void *func_020a5d4c(void) {
     return func_0210c594(0xb4, data_02155c3c);
 }
 
+extern char *func_02092a40(void *,char *);
+void func_020a5d68(void *out,s32 type) {
+char buf[32];
+u8 *entry;
+void *file;
+u16 i=0;
+if(type==0)func_02005e80(buf,data_0214feb0);
+else if(type==1)func_02005e80(buf,data_0214fed0);
+file=func_021092d8(buf);
+if(!file)return;
+do {
+entry=func_020a5d4c();
+*(u16 *)(entry)=func_02092994(file,0);
+*(u16 *)(entry+2)=i;
+*(u16 *)(entry+6)=func_02092994(file,0);
+*(u16 *)(entry+8)=func_02092994(file,0);
+entry[0x18]=func_02092994(file,0);
+entry[0x19]=func_02092994(file,0);
+entry[0x1a]=func_02092994(file,0);
+entry[0x1b]=func_02092994(file,0);
+func_02005e80(entry+0x1c,data_0214fef4,func_02092a40(file,data_0214fef0));
+func_02005e80(entry+0x5c,data_0214fefc,func_02092a40(file,data_0214fef8));
+func_021167f0(out,entry);
+i++;
+}while(func_02109444(file));
+if(file)func_021093b0(file);
+}
+
 void func_020a5ed4(void **arg0) {
     void *ptr;
     while ((ptr = *arg0) != NULL) {
