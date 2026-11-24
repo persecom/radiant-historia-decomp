@@ -10,7 +10,7 @@ extern void func_021099f8(void *);
 extern u8 *func_020b3890(void);
 extern void func_020ae3f8(s32, s32, s32, s32, s32, s32);
 
-void func_020b0b0c() {
+void func_020b0b0c(u8 *unused0, u32 unused1) {
     u8 *p = func_020b3890();
     u8 val = ((u8 *)(*(u32 *)(p + 0x250) + (u32)func_020b3890()))[0x25c];
     func_020ae3f8(3, 0x18, val + 1, 0x80, 0x25, 0x6b);
