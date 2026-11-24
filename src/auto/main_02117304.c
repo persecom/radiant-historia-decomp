@@ -157,18 +157,16 @@ void func_021174e4(void) {
 }
 
 void func_021174f0(void *arg) {
+u16 i,j;
 u8 *p=arg;
-u8 *a=(u8 *)(*(u32 *)(p+4)+(u32)p);
+RelocEntry174 *a=(RelocEntry174 *)(*(u32 *)(p+4)+(u32)p);
 u8 *b=(u8 *)(*(u32 *)(p+8)+(u32)p);
 u8 *c=(u8 *)(*(u32 *)(p+12)+(u32)p);
-u16 i,j;
-*(u8 **)(p+4)=a;*(u8 **)(p+8)=b;*(u8 **)(p+12)=c;
+*(RelocEntry174 **)(p+4)=a;*(u8 **)(p+8)=b;*(u8 **)(p+12)=c;
 for(i=0;i<*(u16 *)p;i++){
-u8 *entry=a+i*16;
-*(u8 **)(entry+12)=b+*(u32 *)(entry+12);
-for(j=0;j<*(u16 *)entry;j++){
-u32 *v=(u32 *)(*(u8 **)(entry+12)+j*8);
-*v=(u32)c+*v;
+a[i].pairs=(RelocPair174 *)(b+(u32)a[i].pairs);
+for(j=0;j<a[i].count;j++){
+a[i].pairs[j].offset=(u32)(c+a[i].pairs[j].offset);
 }
 }
 if(*(u32 *)(p+20)) {
