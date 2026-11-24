@@ -26,7 +26,6 @@ extern void func_0200893c(u32);
 extern void func_02008ca8(void);
 extern void func_02008dc4(void);
 typedef void (*Fn_U32)(u32);
-typedef struct { u32 a, b, c; } Triple0215;
 
 void func_02008bf4(void) {
     u32 base;
