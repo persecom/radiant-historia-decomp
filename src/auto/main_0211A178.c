@@ -24,6 +24,26 @@ u8 *func_0211a5e4(s32 arg0) {
     return (u8 *)data_021701cc[2] + arg0 * 0x30;
 }
 
+extern void func_02118e68(void *);
+extern void func_02118e84(void *, s32, s32);
+void func_0211a5fc(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u32 arg4, u32 arg5, u32 arg6, u32 arg7) {
+    u8 *ptr = (u8 *)data_021701cc[2] + arg0 * 0x30;
+    func_02118e68(ptr);
+    if (arg1 != -1) {
+        func_02118e84(ptr, 0, arg1);
+    }
+    if (arg2 != -1) {
+        func_02118e84(ptr, 1, arg2);
+    }
+    if (arg3 != -1) {
+        func_02118e84(ptr, 2, arg3);
+    }
+    *(u32 *)(ptr + 0xc) = arg4;
+    *(u32 *)(ptr + 0x10) = arg5;
+    *(u32 *)(ptr + 0x14) = arg6;
+    *(u32 *)(ptr + 0x18) = arg7;
+}
+
 void func_0211ab04(u32 arg0) {
     data_021701d8[2] = arg0;
 }
