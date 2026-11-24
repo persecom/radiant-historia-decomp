@@ -113,3 +113,45 @@ s32 func_020e27ec(void) {
     return 0;
 }
 
+extern u32 data_02155c3c;
+extern void *func_0210c594(u32, u32);
+extern void func_021167f0(void *, void *);
+void func_020e2834(u8 *arg0, u32 arg1, u32 arg2) {
+    u8 *p;
+    u8 *q;
+
+    if (arg0 == NULL) {
+        return;
+    }
+
+    p = func_0210c594(0x2c, data_02155c3c);
+    q = func_0210c594(0x2c, data_02155c3c);
+
+    *(u32 *)(p + 0x0) = 1;
+    *(s32 *)(p + 0x4) = *(u16 *)(arg0 + 0x8c) - 1;
+    *(u8 **)(p + 0x18) = arg0;
+
+    *(u32 *)(q + 0x0) = arg2 + 0x86;
+    *(u32 *)(q + 0x4) = 0;
+    *(u32 *)(q + 0x8) = 4;
+    *(u32 *)(q + 0xc) = 0x23;
+    *(u32 *)(q + 0x10) = 0x24;
+    *(u32 *)(q + 0x14) = arg1;
+    *(u16 *)(q + 0x18) = 0;
+    *(u16 *)(q + 0x1a) = 0;
+    *(u16 *)(q + 0x1c) = 0;
+    *(u32 *)(q + 0x20) = 0;
+    *(u32 *)(q + 0x24) = 0x1f;
+
+    *(u16 *)(p + 0x10) = 0;
+    *(u16 *)(p + 0x12) = 0;
+    *(u16 *)(p + 0x14) = 0;
+    *(u16 *)(p + 0xa) = arg2 * 0x53 + 5;
+    *(u16 *)(p + 0xc) = 0xc1;
+    *(u16 *)(p + 0xe) = 0;
+    *(u8 **)(p + 0x1c) = q;
+    *(u8 *)(p + 0x28) = 1 << arg2;
+
+    func_021167f0((u8 *)data_02160a74[0] + 0x40, p);
+}
+
