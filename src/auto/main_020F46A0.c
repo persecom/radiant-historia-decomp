@@ -97,8 +97,8 @@ void func_020f4bd0(void *arg0) {
 
 s32 func_020f4be4(u32 *arg0, u32 *arg1) {
     u32 a = arg1[0];
-    u32 b = arg1[1];
     u32 e = arg1[4];
+    u32 b = arg1[1];
     u32 c = arg1[2];
     u32 d = arg1[3];
     arg0[2] = a;
