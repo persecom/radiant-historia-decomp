@@ -6,6 +6,7 @@ typedef struct {
 } Unk20;
 
 extern const Unk20 data_02143dcc;
+extern const Unk20 data_02143df4;
 extern const Unk20 data_02143e1c;
 typedef struct {
     s32 data[8][2];
@@ -169,6 +170,58 @@ void func_020c0e08(void) {
             func_0210c5dc(q);
         }
         q = next;
+    }
+}
+
+extern void func_021167ac(void *, s32);
+extern void func_021167f0(void *, void *);
+void func_020c1038(void) {
+    Unk64 table = data_02143e4c;
+    s32 i;
+    u8 *mgr = (u8 *)func_0210c594(0x10, data_02155c3c);
+
+    ((u8 **)&data_02160218)[1] = mgr;
+    func_021167ac(mgr + 4, 4);
+    data_02160a6c[0x11f] = 0;
+    *(u32 *)(((u8 **)&data_02160218)[1]) = 0;
+
+    for (i = 0; i < 8; i++) {
+        u8 *node = *(u8 **)(data_02160a6c + 0x70);
+        while (node != NULL) {
+            if (*(u16 *)(node + 0x8e) == table.data[i][0] || table.data[i][0] == -1) {
+                u8 *list_mgr = ((u8 **)&data_02160218)[1];
+                if (*(u32 *)list_mgr == 0) {
+                    u8 *item = (u8 *)func_0210c594(0xc, data_02155c3c);
+                    *(u16 *)item = table.data[i][1];
+                    func_021167f0(((u8 **)&data_02160218)[1] + 4, item);
+                    *(u32 *)(((u8 **)&data_02160218)[1]) += 1;
+                } else {
+                    u8 *it = *(u8 **)(list_mgr + 4);
+                    s32 add = 1;
+                    while (it != NULL) {
+                        if (*(u16 *)it == table.data[i][1]) {
+                            add = 0;
+                        }
+                        it = *(u8 **)(it + 8);
+                    }
+                    if (add != 0) {
+                        u8 *item = (u8 *)func_0210c594(0xc, data_02155c3c);
+                        *(u16 *)item = table.data[i][1];
+                        func_021167f0(((u8 **)&data_02160218)[1] + 4, item);
+                        *(u32 *)(((u8 **)&data_02160218)[1]) += 1;
+                    }
+                }
+            }
+            node = *(u8 **)(node + 0x13c);
+        }
+    }
+
+    data_02160a6c[0x11f] = *(u32 *)(((u8 **)&data_02160218)[1]);
+    func_020c0d98();
+    func_020c0e08();
+    if (((u8 **)&data_02160218)[1] != NULL) {
+        func_0210c5dc(((u8 **)&data_02160218)[1]);
+        ((u8 **)&data_02160218)[1] = NULL;
     }
 }
 
