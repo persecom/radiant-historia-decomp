@@ -283,6 +283,38 @@ s32 func_0211ae38(u8 *arg0) {
     return func_0200283c(val);
 }
 
+void func_02003ff8(void);
+void func_02004084(void *, u32, u32);
+void func_020040f8(void);
+void func_0200422c(void);
+void func_02004244(void *, u32, u32);
+void func_020042ac(void);
+void func_0211ae60(s32 bank,u32 *p,u8 *map){
+ u32 src;
+ u32 offset=bank<<13;
+ s32 i;
+ u32 index;
+ u32 size;
+ void (*begin)(void);
+ void (*end)(void);
+ void (*copy)(void *,u32,u32);
+ func_02006dc4((void *)p[3],p[2]);
+ if(bank<=3){begin=func_02003ff8;copy=func_02004084;end=func_020040f8;}
+ else {begin=func_0200422c;copy=func_02004244;end=func_020042ac;offset-=0x8000;}
+ if(map){
+ s32 count;
+ switch(p[0]){case 3:size=32;break;case 4:size=512;break;default:size=0;break;}
+ count=*(u16 *)map;
+ for(i=0;i<count;i++){
+ index=(*(u16 **)(map+4))[i];
+ src=p[3];
+ begin();
+ copy((void *)(size*i+src),size*index+offset,size);
+ end();
+ }
+ }else {begin();copy((void *)p[3],offset,p[2]);end();}
+}
+
 void func_0211af90(s32 bank, u32 *arg1, u8 *arg2) {
  s32 size=bank;
  u8 *dest;
