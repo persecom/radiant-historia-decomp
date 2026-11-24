@@ -265,24 +265,34 @@ void func_0211497c(u8 *arg0) {
 }
 
 void func_021149c8(u8 *arg0) {
-    s32 one = 1;
+    s32 one;
     s32 v = *(s32 *)(arg0 + 0x2c);
     if (((v << 30) >> 31) == 0) {
         return;
     }
     if (*(u32 *)(arg0 + 0x40) != 0) {
-        u32 irq = func_02008128();
+        u32 irq;
+        one = 1;
+        irq = func_02008128();
         func_021148cc(arg0, one);
         func_0200813c(irq);
     }
     if (*(u32 *)(arg0 + 0x40) == 0) {
-        func_02009580((void *)(*(u32 *)(arg0 + 0x4c)), 0, one << *(u32 *)(arg0 + 0x48), 0);
+        func_02009580(*(void **)(arg0 + 0x4c), 0, 1u << *(u32 *)(arg0 + 0x48), 0);
     }
 }
 
 void func_02114a38(void) {
     if (*(u32 *)data_0216c9bc != 0 && *(u32 *)(data_0216c9bc + 4) == 1) {
         func_02114b44();
+    }
+}
+
+void func_02114a64(void) {
+    if (data_0216c974 != NULL) {
+        data_0216c974 = NULL;
+        func_020069a4(&data_0216c97c, NULL, 1);
+        func_020064d4(&data_0216ca10);
     }
 }
 
@@ -349,14 +359,10 @@ u32 func_02114f70(void) {
 
 void *func_02114f80(s32 arg0) {
     u8 *base = (u8 *)data_0216cad0[0];
-    u8 *tbl = *(u8 **)(base + 0x98);
-    u32 off = *(u32 *)(tbl + 8);
+    u8 *hdr = *(u8 * volatile *)(base + 0x98);
+    u32 off = *(u32 *)(hdr + 8);
+    u8 *tbl = off == 0 ? NULL : hdr + off;
     u32 entryOff;
-    if (off == 0) {
-        tbl = NULL;
-    } else {
-        tbl += off;
-    }
     if (tbl == NULL) {
         return NULL;
     }
@@ -367,19 +373,15 @@ void *func_02114f80(s32 arg0) {
         return NULL;
     }
     entryOff = *(u32 *)(tbl + arg0 * 4 + 4);
-    return entryOff == 0 ? NULL : *(u8 **)(base + 0x98) + entryOff;
+    return entryOff == 0 ? NULL : *(u8 * volatile *)(base + 0x98) + entryOff;
 }
 
 void *func_02114fe4(s32 arg0) {
     u8 *base = (u8 *)data_0216cad0[0];
-    u8 *tbl = *(u8 **)(base + 0x98);
-    u32 off = *(u32 *)(tbl + 0xc);
+    u8 *hdr = *(u8 * volatile *)(base + 0x98);
+    u32 off = *(u32 *)(hdr + 0xc);
+    u8 *tbl = off == 0 ? NULL : hdr + off;
     u32 entryOff;
-    if (off == 0) {
-        tbl = NULL;
-    } else {
-        tbl += off;
-    }
     if (tbl == NULL) {
         return NULL;
     }
@@ -390,19 +392,15 @@ void *func_02114fe4(s32 arg0) {
         return NULL;
     }
     entryOff = *(u32 *)(tbl + arg0 * 4 + 4);
-    return entryOff == 0 ? NULL : *(u8 **)(base + 0x98) + entryOff;
+    return entryOff == 0 ? NULL : *(u8 * volatile *)(base + 0x98) + entryOff;
 }
 
 void *func_02115048(s32 arg0) {
     u8 *base = (u8 *)data_0216cad0[0];
-    u8 *tbl = *(u8 **)(base + 0x98);
-    u32 off = *(u32 *)(tbl + 0x10);
+    u8 *hdr = *(u8 * volatile *)(base + 0x98);
+    u32 off = *(u32 *)(hdr + 0x10);
+    u8 *tbl = off == 0 ? NULL : hdr + off;
     u32 entryOff;
-    if (off == 0) {
-        tbl = NULL;
-    } else {
-        tbl += off;
-    }
     if (tbl == NULL) {
         return NULL;
     }
@@ -413,7 +411,7 @@ void *func_02115048(s32 arg0) {
         return NULL;
     }
     entryOff = *(u32 *)(tbl + arg0 * 4 + 4);
-    return entryOff == 0 ? NULL : *(u8 **)(base + 0x98) + entryOff;
+    return entryOff == 0 ? NULL : *(u8 * volatile *)(base + 0x98) + entryOff;
 }
 
 u32 func_02115174(u32 arg0) {
