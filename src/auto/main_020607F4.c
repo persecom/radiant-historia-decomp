@@ -6,7 +6,7 @@ extern void func_020d5fd0(u8 *);
 extern void func_020d4eb8(u8 *);
 extern void *func_0205bad4(void *);
 extern s32 func_020dde4c(u32);
-extern void func_020de0a8(void);
+extern void func_020de0a8();
 extern void func_020bfff4(u16);
 extern void func_020223f8(void *, s32);
 extern void func_0205aa34(void *, s32);
@@ -23,8 +23,7 @@ void func_02061214(u8 *p) {
     u8 *r = *(u8 **)(p + 0x128);
     u16 value;
     u8 *node;
-    u16 count = 0;
-    u16 i = 0;
+    u16 count, i;
     if ((r[0x76] & 1) == 0) {
         node = func_0205bad4(r);
         value = (*(u16 *)(p + 0x90) - 0x65) * 10;
@@ -33,6 +32,8 @@ void func_02061214(u8 *p) {
         node = *(u8 **)(*(u8 **)(t + 0xc) + 0x28);
         value = (*(u16 *)(p + 0x90) - 0x65) * 10;
     }
+    count = 0;
+    i = 0;
     if (node != NULL) {
         do {
             if (func_020dde4c(value + 0x76 + 0x200 + i) != 0) {
