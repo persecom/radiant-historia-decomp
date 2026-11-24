@@ -4,6 +4,28 @@
 extern void func_021254a8(void);
 extern u8 data_02161088[28];
 extern void func_02118178(void *, s32);
+extern u8 data_021610a4[28];
+extern void func_0211809c(void *, s32, s32);
+extern void func_02119d48(void *);
+extern void func_02119c80(void *);
+extern void func_02119d38(void *, void *);
+extern void func_02107860(void);
+void func_021078d0(void *arg0, void *arg1) {
+    u32 val = 0xc0000;
+    func_02119d48(arg1);
+    *(u32 *)((u8 *)arg1 + 0x0) = 0;
+    *(u32 *)((u8 *)arg1 + 0x4) = 0;
+    *(u32 *)((u8 *)arg1 + 0x8) = 0x100000;
+    *(u32 *)((u8 *)arg1 + 0xc) = val;
+    *(u32 *)((u8 *)arg1 + 0x28) = 0;
+    *(u32 *)((u8 *)arg1 + 0x2c) = 0;
+    *(void **)((u8 *)arg1 + 0x34) = func_02107860;
+    *(u32 *)((u8 *)arg1 + 0x14) = 0;
+    func_02119c80(arg0);
+    func_02119d38(arg0, arg1);
+    *(u32 *)((u8 *)arg0 + 0x80) = val - 0xc1000;
+}
+
 void func_02107a64(s32 arg0) {
     func_02118178(data_02161088, arg0);
 }
