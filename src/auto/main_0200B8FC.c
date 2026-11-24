@@ -1,5 +1,7 @@
 /* 28 functions from 0x0200B8FC to 0x0200C6B0 (main), found by ds-decomp. */
 #include "common.h"
+extern u32 data_0215ef80[];
+extern u32 data_0215ef88[];
 
 typedef struct {
     void *arc;
