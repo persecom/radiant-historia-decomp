@@ -207,6 +207,18 @@ void func_0212ebc8(void *arg0, void *arg1) {
     func_0212bda8(arg1);
 }
 
+void func_0212ebd8(void) {
+if (func_0200788c(data_02145910) != 0 && func_02007a68() != 1) { func_0212bda8(data_02156e68); return; }
+if (func_020062c8() != 1) { func_0212bda8(data_02156eb8); return; }
+if (data_02174798 == 1) { func_0212bda8(data_02156f08); return; }
+func_02133e04();
+func_02133578(func_0212ebc8, 0);
+func_02132cbc(data_02156f38, func_021336a0, 0);
+func_02132cbc(data_02156f3c, func_02133df8, 0);
+func_02132e4c(data_02156f44);
+data_02174798 = 1;
+}
+
 void func_0212ecb0(u8 *arg0, u8 *arg1) {
     s8 *src = (s8 *)arg0;
     arg1[0] = src[0];
