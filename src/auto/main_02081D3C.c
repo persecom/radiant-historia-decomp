@@ -15,20 +15,25 @@ extern u8 *data_0216010c;
 extern u8 *data_02160204;
 
 void func_02081e78(void) {
+    u8 **p = &data_0216010c;
     u16 i;
-    u8 **base = &data_0216010c;
-    if (*(void **)(*base + 0x44) != NULL) {
-        func_0210c5dc(*(void **)(*base + 0x44));
-        *(void **)(*base + 0x44) = NULL;
+    u8 **q;
+    void *z;
+    if (*(void **)(*p + 0x44) != NULL) {
+        func_0210c5dc(*(void **)(*p + 0x44));
+        *(void **)(*p + 0x44) = 0;
     }
-    *(void **)(*base + 0x44) = NULL;
-    (*base)[0x3f] = 0;
+    q = &data_0216010c;
+    i = 0;
+    *(void **)(*q + 0x44) = i;
+    (*q)[0x3f] = i;
     func_02089a98();
-    for (i = 0; i < 2; i++) {
-        void **p = *(void ***)(*base + 0x48 + i * 4);
-        if (p != NULL && *p != NULL) {
-            func_020a9544(p);
-            *(void **)(*base + 0x48 + i * 4) = NULL;
+    z = i;
+    for (; i < 2; i++) {
+        void **v = *(void ***)(*q + 0x48 + i * 4);
+        if (v != NULL && *v != NULL) {
+            func_020a9544(v);
+            *(void **)(*q + 0x48 + i * 4) = z;
         }
     }
 }
