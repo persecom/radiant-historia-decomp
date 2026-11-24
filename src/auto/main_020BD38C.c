@@ -106,11 +106,10 @@ BOOL func_020bdb30(s32 arg0, s32 arg1) {
 }
 
 s8 func_020bdba0(s32 arg0) {
-    s8 ret = -1;
     if (data_02160200 != NULL) {
-        ret = (((u32 *)data_02160200)[(u32)arg0 >> 5] & (1 << (arg0 % 32))) != 0;
+        return (((u32 *)data_02160200)[(u32)arg0 >> 5] & (1 << (arg0 % 32))) != 0;
     }
-    return ret;
+    return -1;
 }
 
 s32 func_020bdcc0(u32 arg0) {
