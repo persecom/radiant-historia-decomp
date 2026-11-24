@@ -519,3 +519,15 @@ end:
     return;
 }
 
+extern void func_02009528(u8, s32);
+extern void func_020094c0(u8);
+extern void *func_02114284(s32);
+extern void func_021141a8(void *, u8 *);
+void func_0211424c(u8 *arg0) {
+    if (arg0[0x2c] == 2) {
+        func_02009528(arg0[0x3c], -0x2d3);
+    }
+    func_020094c0(arg0[0x3c]);
+    func_021142f0(arg0);
+}
+
