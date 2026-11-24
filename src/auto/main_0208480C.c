@@ -61,6 +61,30 @@ s32 func_020851bc(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u8 arg4) {
     return sum;
 }
 
+s32 func_020851f8(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u8 arg4) {
+    s32 diff = arg0 - arg1;
+    if (arg4 == 0) {
+        return (s16)diff;
+    }
+    if (arg2 <= diff) {
+        return (s16)diff;
+    }
+    return (arg4 == 1) ? arg2 : arg3;
+}
+
 void func_02085234(void) {
     func_02085328();
 }
+
+void func_02085240(void) {
+    s32 i = 0;
+    u8 unused[4];
+    *(void **)(data_0216010c + 0x44) = func_0210c594(0x1c, data_02155c3c);
+    if (*(void **)(data_0216010c + 0x58)) {
+        if (**(void ***)(data_0216010c + 0x58)) {
+            func_020a9544(*(void **)(data_0216010c + 0x58));
+        }
+    }
+    *(void **)(data_0216010c + 0x58) = func_020a94b8(data_021485a0);
+}
+
