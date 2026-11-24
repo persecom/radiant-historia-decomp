@@ -9,6 +9,26 @@ extern void func_0200813c(u32);
 extern void WaitByLoop(s32);
 extern void func_02005d2c(s32);
 extern s32 func_0200a6e4(s32, s32, s32);
+extern void func_02008414(void);
+extern u32 data_0215fa2c;
+extern s32 func_02010ff8(void);
+extern void func_02007504(u32, u32);
+extern void func_02006d58(void);
+extern void func_02006de8(void);
+extern void func_020074d4(s32);
+extern void func_020074f4(s32);
+extern void func_02007528(s32);
+extern void func_020074c4(s32);
+extern void func_020074e4(s32);
+extern void func_02007518(s32);
+extern void func_0201101c(void);
+extern void func_0200a56c(void);
+extern s32 func_0200a6c0(s32, s32);
+extern void func_0200a674(s32, void *);
+extern void func_020113e4(void);
+extern void func_02011674(void *);
+extern u8 data_0215fb20[232];
+extern u16 data_0215fa30;
 void func_020111d4(s32 arg0, u32 *arg1) {
     for (;;) {
         arg1[1] = func_02008128();
