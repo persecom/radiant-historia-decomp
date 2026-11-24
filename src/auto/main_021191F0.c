@@ -37,12 +37,16 @@ extern u8 data_0216f3d8[];
 extern u32 data_02155eb8[];
 extern void func_02008e68(s32, void *, s32);
 
+static inline void MI_CpuFill32(void *dest, u32 data, u32 size) {
+    func_02008e68((s32)data, dest, (s32)size);
+}
+
 void func_021191f0(void) {
     Struct0216f2c4 *entry;
     u16 f2;
     u16 f0;
-    f32 *src;
-    f32 (*tbl)[8];
+    u32 *src;
+    u32 (*tbl)[8];
     u16 k;
     s32 i;
     s32 idx;
@@ -64,19 +68,19 @@ void func_021191f0(void) {
 
     idx = data_0216f234.fc;
     if (data_0216f234.f4 == 0) {
-        src = (f32 *)(data_0216f6c4 + idx * 0x18);
+        src = (u32 *)(data_0216f6c4 + idx * 0x18);
     } else {
         *(volatile u32 *)(data_02155eb0 + 0x18) = *(volatile u32 *)(data_0216f3d4 + idx * 0x18);
         *(volatile u32 *)(data_02155eb0 + 0x1c) = *(volatile u32 *)(data_0216f3d8 + idx * 0x18);
-        src = (f32 *)data_02155eb8;
+        src = data_02155eb8;
     }
 
-    tbl = (f32 (*)[8])data_0216f9c4;
+    tbl = (u32 (*)[8])data_0216f9c4;
     k = data_0216f2c4[(u16)idx].f0;
-    tbl[k][0] = src[0];
-    tbl[k][1] = src[1];
-    tbl[k][2] = src[2];
-    tbl[k][3] = src[3];
+    tbl[k][0] = *src++;
+    tbl[k][1] = *src++;
+    tbl[k][2] = *src++;
+    tbl[k][3] = *src++;
 
     i = (u16)data_0216f234.fc;
     while (i >= 0) {
