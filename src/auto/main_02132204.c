@@ -328,16 +328,16 @@ void func_02132aac(u8 *a0, s32 a1, s32 a2) {
     *(s32 *)(a0 + 0x58) = a2;
 }
 
-extern void func_0212fcf0(void *, s32);
-void func_02132ab8(void **arg0, s32 arg1) {
-    func_0212fcf0(*arg0, arg1);
+extern s32 func_0212fcf0(void *);
+s32 func_02132ab8(void **arg0) {
+    return func_0212fcf0(*arg0);
 }
 
-extern void func_0212fcfc(void *, s32);
+extern s32 func_0212fcfc(void *);
 extern void func_0212f79c(void);
 extern s32 data_021749c4;
-void func_02132ac8(void **arg0, s32 arg1) {
-    func_0212fcfc(*arg0, arg1);
+s32 func_02132ac8(void **arg0) {
+    return func_0212fcfc(*arg0);
 }
 
 extern void func_0212fd28(void *, s32);
