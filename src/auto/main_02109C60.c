@@ -48,3 +48,63 @@ void *func_02109c60(u8 *arg0, u32 *arg1) {
 s32 func_02109cf0(s8 *arg0) {
     return *arg0 != '-';
 }
+
+extern u32 func_02012348(const char *);
+extern u32 func_0210c060(const char *, u32);
+extern u32 func_02007904(void);
+extern void func_02108ffc(void);
+extern s32 func_020123f0(const char *, const char *);
+extern void *func_0210c594(u32, void *);
+extern void func_02012210(char *, const char *);
+extern void func_021167f0(void *, void *, s32);
+#pragma schedule off
+void *func_02109d04(const char *name) {
+    u32 hash;
+    u32 len;
+    u64 tick = 0;
+    u8 *node;
+    u8 *entry;
+    void *data;
+    u32 size;
+
+    len = func_02012348(name);
+    hash = func_0210c060(name, len);
+    node = NULL;
+
+    while ((node = (node != NULL ? *(u8 **)(node + *(u16 *)((u8 *)data_02162564 + 0x12) + 4) : *(u8 **)((u8 *)data_02162564 + 8))) != NULL) {
+        if (((u32)((u64)func_02007904() - tick) * 64) / 33514 > 40) {
+            func_02108ffc();
+            tick = func_02007904();
+        }
+        if (*(u16 *)(node + 0x16) == hash && func_020123f0((char *)(node + 0x18), name) == 0) {
+            if (data_02162564[1] != 0) {
+                if (*(u16 *)(node + 0x14) == 0) {
+                    *(u16 *)(node + 0x14) = 0x2710;
+                }
+            }
+            *(u16 *)(node + 0x14) += 1;
+            return node;
+        }
+    }
+
+    entry = func_0210c594(len + 0x1c, data_02155c3c);
+    if (entry == NULL) {
+        return NULL;
+    }
+    *(u32 *)(entry + 0xc) = (*(u32 *)(entry + 0xc) & ~0x01000000) | ((data_02162564[0] & 1) << 24);
+    data = func_02109c60((u8 *)name, &size);
+    *(void **)(entry + 8) = data;
+    *(u32 *)(entry + 0xc) = (*(u32 *)(entry + 0xc) & 0xff000000) | (size & 0x00ffffff);
+    if (data == NULL) {
+        func_0210c674(entry);
+        return NULL;
+    }
+    func_02012210((char *)(entry + 0x18), name);
+    *(u16 *)(entry + 0x16) = hash;
+    *(u16 *)(entry + 0x14) = 1;
+    *(u32 *)(entry + 0x10) = 0;
+    func_021167f0(data_0216256c, entry, 0);
+    func_02108ffc();
+    return entry;
+}
+#pragma schedule on
