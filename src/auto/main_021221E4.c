@@ -2,6 +2,12 @@
 #include "common.h"
 
 extern void *data_02155ee8;
+extern void *data_02155ed8;
+extern u16 *func_02120c74(u8 *);
+extern void *func_02121090(void *, u16, u16);
+extern u8 func_02121040(void *);
+extern void func_02122fa0(void *, u8, u8 *);
+extern u8 func_02121068(void *);
 void func_02008df0(u8, void *, u32);
 s32 func_02120e30(void *, void *);
 void func_021228d0(u8 *arg0, u8 *arg1, u8 *arg2) {
