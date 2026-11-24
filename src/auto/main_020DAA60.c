@@ -42,6 +42,21 @@ void func_020db4ac(void *arg0) {
     }
 }
 
+void func_020db4fc(void) {
+    u8 *node = *(u8 **)(data_02160a6c + 0x70);
+    while (node != NULL) {
+        u8 *sub = *(u8 **)(node + 0x118);
+        if (sub[0] == 1) {
+            if (*(s32 *)(sub + 0x70) != 0 && *(s32 *)(sub + 4) <= 0) {
+                func_020db35c(node, 0);
+            } else {
+                func_020de0a8(node);
+            }
+        }
+        node = *(u8 **)(node + 0x13c);
+    }
+}
+
 void func_020db850(void) {
     func_020321cc(0);
     func_020951b4();
