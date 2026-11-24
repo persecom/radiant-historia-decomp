@@ -161,15 +161,21 @@ void func_02010b10(void) {
     func_02010f58();
     func_0201082c(8);
     {
-        u32 zero = 0;
-        u32 *p = *(u32 **)data_0215f120;
-        *p = zero;
+        u32 **p = (u32 **)data_0215f120;
+        **p = 0;
     }
     func_0200fddc();
 }
 
+s32 func_02010b40(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
+    return (arg0 <= 3) && (arg3 != 0) && ((arg1 & 0x1f) == 0) &&
+           (((arg1 + arg3) <= (u32)func_01ff8000) || (arg1 >= 0x02000000)) &&
+           (((arg1 + arg3) <= func_02007490()) || (arg1 >= func_02007490() + 0x4000)) &&
+           (((arg2 | arg3) & 0x1ff) == 0);
+}
+
 void func_02010bf4(u8 *arg0) {
-    ((void (*)(u32, u32, u32, u32))data_0215f760[3])(0, *(u32 *)(arg0 + 0x500), *(u32 *)(arg0 + 0x4fc), *(u32 *)(arg0 + 0x504));
+    ((void (*)(u32, u32, u32, u32))((u32 *)data_0215f760)[3])(0, *(u32 *)(arg0 + 0x500), *(u32 *)(arg0 + 0x4fc), *(u32 *)(arg0 + 0x504));
     func_0201076c();
     func_02010f58();
     func_0201082c(8);
