@@ -77,6 +77,45 @@ s32 func_0200cb38(void) {
     return 0;
 }
 
+typedef s32 (*CmdFunc_0200cb40)(void *);
+extern CmdFunc_0200cb40 data_0213e930[];
+extern s32 func_0200a928(void *, s32);
+s32 func_0200cb40(void *arg0, s32 arg1, s32 arg2) {
+    void *r6 = *(void **)((u8 *)*(void **)((u8 *)arg0 + 0x8) + 0x20);
+    s32 res = 0x101;
+
+    if (*(u32 *)((u8 *)r6 + 0x30) & (1 << arg1)) {
+        res = (*(s32 (**)(void *, s32))((u8 *)r6 + 0x2c))(arg0, arg1);
+        switch (res) {
+        case 0:
+        case 1:
+        case 4:
+        case 0x100:
+            break;
+        case 0x102:
+            *(u32 *)((u8 *)r6 + 0x30) &= ~(1 << arg1);
+            res = 0x101;
+            break;
+        default:
+            break;
+        }
+    }
+
+    if (res == 0x101) {
+        if ((u32)arg1 >= 0xd) {
+            res = 4;
+        } else {
+            res = data_0213e930[arg1](arg0);
+        }
+    }
+
+    if (arg2 != 0) {
+        res = func_0200a928(arg0, res);
+    }
+
+    return res;
+}
+
 s32 func_0200cc10(void *arg0, void *arg1, void *arg2, u32 *arg3) {
     void *p = *(void **)((u8 *)arg1 + 0x4);
     u32 req = *arg3;
@@ -319,19 +358,16 @@ s32 func_0200d3c8(u8 *arg0, void *arg1, s32 arg2, u32 arg3) {
     return 0;
 }
 
-s32 func_0200d3f4(u32 *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u32 arg6, u32 arg7) {
-    *(u32 *)((u8 *)arg0 + 0x28) = arg1;
-    *(u32 *)((u8 *)arg0 + 0x2c) = arg2;
-    *(u32 *)((u8 *)arg0 + 0x30) = arg3;
-    *(u32 *)((u8 *)arg0 + 0x34) = arg4;
-    *(u32 *)((u8 *)arg0 + 0x38) = arg5;
-    *(u32 *)((u8 *)arg0 + 0x3c) = arg2;
-    *(u32 *)((u8 *)arg0 + 0x40) = arg4;
-    *(u32 *)((u8 *)arg0 + 0x44) = 0;
-    *(u32 *)((u8 *)arg0 + 0x48) = arg6 != 0 ? arg6 : (u32)func_0200d3a0;
-    *(u32 *)((u8 *)arg0 + 0x4c) = arg7 != 0 ? arg7 : (u32)func_0200d3c8;
-    func_0200b6c8(arg0, (u32)((u8 *)arg0 + 0x28), (u32)data_0213e964);
-    return 0;
+void func_0200d3f4(u32 *p, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u32 arg6, u32 arg7) {
+    p[16] = p[13] = arg4;
+    p[10] = arg1;
+    p[12] = arg3;
+    p[15] = p[11] = arg2;
+    p[14] = arg5;
+    p[18] = arg6 ? arg6 : (u32)func_0200d3a0;
+    p[19] = arg7 ? arg7 : (u32)func_0200d3c8;
+    p[17] = 0;
+    func_0200b6c8(p, (u32)&p[10], (u32)data_0213e964);
 }
 
 extern const u8 data_0213e964[];
