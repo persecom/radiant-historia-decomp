@@ -431,8 +431,7 @@ return p;
 }
 for(i=0;i<4;i++){
 if(arg0[i]==NULL){
-p=func_021386a8(arg2,arg3);
-arg0[i]=p;
+p=arg0[i]=func_021386a8(arg2,arg3);
 arg2+=0xe4;
 arg3-=0xe4;
 break;
