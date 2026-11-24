@@ -5,8 +5,8 @@ extern void *data_02155ee8;
 void func_02008df0(u8, void *, u32);
 s32 func_02120e30(void *, void *);
 void func_021228d0(u8 *arg0, u8 *arg1, u8 *arg2) {
-    u8 *r8;
     u32 i;
+    u8 *r8;
 
     if (arg2 != NULL && *(u32 *)(arg2 + 8) != 0) {
         r8 = arg2 + *(u32 *)(arg2 + 8);
@@ -21,7 +21,7 @@ void func_021228d0(u8 *arg0, u8 *arg1, u8 *arg2) {
     for (i = 0; i < arg1[9]; i++) {
         void *name;
         s32 idx;
-        if ((arg1 + 8) != NULL && i < (arg1 + 8)[1]) {
+        if ((arg1 + 8) != NULL && i < *(u8 *)(arg1 + 9)) {
             u8 *p = (arg1 + 8) + *(u16 *)((arg1 + 8) + 6);
             name = p + *(u16 *)(p + 2) + i * 0x10;
         } else {
