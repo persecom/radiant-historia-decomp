@@ -1,5 +1,6 @@
 /* 25 functions from 0x0200D63C to 0x0200E5E8 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { u8 pad0[4]; void (*callback)(s32,s32,s32); u8 pad8[8]; u16 f10, f12; u8 *entries; u16 count; u8 pad1a[0x1e]; u16 f38, f3a; } State0200dcd4;
 
 extern u8 data_0215f000[];
 extern u8 data_0215efa0[];
@@ -117,6 +118,35 @@ while(*(volatile u16 *)0x4000280 & 0x8000){}
 }
 func_0200813c(state);
 *(u16 *)(data_0215f000+0x34)=1;
+}
+
+s32 func_0200a6e4(s32,u32,s32);
+void func_0200dcd4(u32 arg0,u32 arg1,void *arg2,u32 arg3) {
+ u32 i;
+ s32 state;
+ u8 ok;
+ *(void **)(data_0215f000+0x14)=arg2;
+ *(u16 *)(data_0215f000+0x10)=0;
+ *(u16 *)(data_0215f000+0x12)=arg1;
+ *(u16 *)(data_0215f000+0x18)=arg3;
+ for(i=0;i<arg3;i++) {
+ *(u16 *)(*(u8 **)(data_0215f000+0x14)+i*8+4)=0;
+ }
+ state=func_02008128();
+ ok=0;
+ if(func_0200a6e4(6,(arg1&255)|0x02000100,0)>=0) {
+ if(func_0200a6e4(6,arg0|0x01010000,0)>=0) ok=1;
+ }
+ if(!ok) {
+ func_0200813c(state);
+ *(u16 *)(data_0215f000+0x38)|=2;
+ if(*(void (**)(s32,s32,s32))(data_0215f000+4))
+ (*(void (**)(s32,s32,s32))(data_0215f000+4))(1,4,0);
+ } else {
+ *(u16 *)(data_0215f000+0x3a)|=2;
+ *(u16 *)(data_0215f000+0x38)&=0xfffd;
+ func_0200813c(state);
+ }
 }
 
 void func_0200df30(u32 arg0) {
