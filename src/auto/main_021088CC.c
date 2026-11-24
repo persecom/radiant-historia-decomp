@@ -296,18 +296,17 @@ s32 func_0210922c(u32 arg0) {
 
 s32 func_02109264(u32 arg0) {
     u32 *ptr = NULL;
-    s32 ret = 0;
-    if (arg0 < 2 && !(data_021624f8->unk_18[arg0] & 8)) {
-        if (arg0 == 0) {
-            ptr = &data_021624f8->unk_08;
-        } else if (arg0 == 1) {
-            ptr = &data_021624f8->unk_0c;
-        }
-        func_02125994(*ptr);
-        data_021624f8->unk_18[arg0] |= 8;
-        ret = 1;
+    if (arg0 >= 2 || (data_021624f8->unk_18[arg0] & 8)) {
+        return 0;
     }
-    return ret;
+    if (arg0 == 0) {
+        ptr = &data_021624f8->unk_08;
+    } else if (arg0 == 1) {
+        ptr = &data_021624f8->unk_0c;
+    }
+    func_02125994(*ptr);
+    data_021624f8->unk_18[arg0] |= 8;
+    return 1;
 }
 
 void func_021093b0(u32 arg0) {
@@ -459,6 +458,15 @@ void func_021097f4(void) {
 void func_02109828(void) {
     *(u32 *)(data_02162510 + 0x34) = 0x8000;
     *(u32 *)(data_02162510 + 0x44) = 0x8000;
+}
+
+void func_02109840(void) {
+    s32 i;
+    for (i = 0; i < 2; i++) {
+        *(s32 *)(data_02162544 + i * 0x10 + 0xc) = 0;
+    }
+    func_0210da14(data_02162510);
+    *(s32 *)data_02162510 = 0;
 }
 
 void func_02109884(u32 arg0, u32 arg1) {
