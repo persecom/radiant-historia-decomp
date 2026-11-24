@@ -86,21 +86,21 @@ void func_0205c314(void) {
     func_020d4eb8();
 }
 
-void func_0205c320(u8 *arg0) {
+void func_0205c320(Unk0205B710 *arg0) {
     u8 flag = 0;
-    func_0205bc60(arg0, &flag, 0x14);
-    *(s32 *)(arg0 + 4) += *(s32 *)(arg0 + 0x34);
-    if (*(s32 *)(arg0 + 4) < *(s32 *)(arg0 + 0x28)) {
-        *(s32 *)(arg0 + 0x34) = 0;
-        *(s32 *)(arg0 + 4) = *(s32 *)(arg0 + 0x28);
+    func_0205bc60((s32 *)arg0, &flag, 0x14);
+    arg0->unk04 += arg0->unk34;
+    if (arg0->unk04 < arg0->unk28) {
+        arg0->unk34 = 0;
+        arg0->unk04 = arg0->unk28;
         flag++;
     } else {
-        *(s32 *)(arg0 + 0x34) -= 0xa00;
+        arg0->unk34 -= 0xa00;
     }
     if (flag >= 2) {
         func_020d4eb8(arg0);
     } else {
-        func_020020f8(arg0, arg0 + 0x30, arg0);
+        func_020020f8(arg0, &arg0->unk30, arg0);
     }
 }
 
