@@ -31,7 +31,7 @@ s32 func_020bd490(s32, u8);
 void func_02005e80(char *, const char *, ...);
 void *func_021092d8(char *);
 s32 func_02092ab0(void *, s32);
-u16 func_02092994(void *, s32);
+s32 func_02092994(void *, s32);
 void func_021093b0(void *);
 Node_0209b108 *func_0210c594(s32, s32);
 void func_021167f0(Node_0209b108 **, Node_0209b108 *);
