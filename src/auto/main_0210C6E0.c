@@ -108,6 +108,19 @@ void func_0210ca6c(void) {
     func_0210c970(r4);
 }
 
+s32 func_0210cba0(u8 *arg0, s32 arg1) {
+    void *res;
+    if (arg1 == 0) {
+        return 0;
+    }
+    res = func_0210ca88(arg0, arg1);
+    if (res != NULL) {
+        *(void **)((u8 *)*(void **)arg0 + 8) = res;
+        return 1;
+    }
+    return 0;
+}
+
 extern s32 func_020123f0(const char *, const char *);
 extern void func_0210c5dc(void *);
 extern s32 func_021095d0(void *);
