@@ -11,6 +11,15 @@ BOOL func_02127350(void *arg0) {
     return TRUE;
 }
 
+BOOL func_0212737c(void *arg0) {
+    void (*cb)(void *, void *) = *(void (**)(void *, void *))((u8 *)arg0 + 0x38);
+    if (cb == NULL) {
+        return FALSE;
+    }
+    cb(*(void **)((u8 *)arg0 + 0x3c), *(void **)((u8 *)arg0 + 0x40));
+    return TRUE;
+}
+
 void func_021273f0(void *arg0) {
     if (arg0 != NULL) {
         func_02127600(arg0);
