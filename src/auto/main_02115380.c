@@ -122,11 +122,13 @@ s32 func_021154a4(void *arg0) {
 }
 
 void func_021154f4(void *arg0, s32 arg1) {
+void *node;
+BOOL flag;
 void *sub = NULL;
-BOOL flag = FALSE;
+flag = FALSE;
 if (arg1 == 0) { func_02115380(arg0); return; }
 while (arg1 < *(u16 *)((u8 *)arg0+0xc)) {
-void *node = func_02116970((u8 *)arg0+4,NULL);
+node = func_02116970((u8 *)arg0+4,NULL);
 sub = func_02116970(node, sub);
 while (sub != NULL) {
 void (*cb)(void *,u32,u32,u32) = *(void (**)(void *,u32,u32,u32))((u8 *)sub+0xc);
@@ -396,6 +398,41 @@ void func_02115e10(s32 arg0, s32 arg1, void *arg2, s32 arg3) {
     }
     func_0200a4fc(arg2, arg3, 0);
     func_02009760((void *)arg0, (void *)(arg0 + arg1));
+}
+
+extern s32 func_0200a4f4(void *);
+s32 func_02115e58(s32 arg0, u16 arg1, s32 arg2, s32 arg3) {
+    u8 *obj = (u8 *)arg0;
+    u8 *entry;
+    u32 val;
+    s32 len;
+    u32 field3c;
+    void *buf;
+
+    if (func_0200a530(obj, arg1) != 0) {
+        return 1;
+    }
+    entry = obj + (*(u32 *)(obj + 0x38) + arg1) * 4;
+    if (arg1 < func_0200a4f4(obj) - 1) {
+        val = *(u32 *)(entry + 0x40);
+    } else {
+        val = *(u32 *)(obj + 8);
+    }
+    field3c = *(u32 *)(entry + 0x3c);
+    len = val - field3c;
+    if (arg3 == 0) {
+        return 0;
+    }
+    buf = func_0211543c((void *)arg3, len + 0x20, (void *)func_02115e10, arg0, arg1);
+    if (buf == NULL) {
+        return 0;
+    }
+    if ((s32)func_0211519c((void *)arg2, buf, (void *)len, (void *)field3c) != len) {
+        return 0;
+    }
+    func_02006da8(buf, (void *)len);
+    func_0200a4fc(obj, arg1, buf);
+    return 1;
 }
 
 s32 func_02115f20(s32 arg0, void *arg1, u16 arg2, s32 arg3, s32 arg4) {
