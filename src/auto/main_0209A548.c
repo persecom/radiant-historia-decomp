@@ -96,3 +96,22 @@ void func_0209b194(u16 arg0) {
     mgr->unk_60 = arg0;
 }
 
+void func_0209b2b4(void) {
+    Mgr_0209a548 *mgr = data_02160120;
+    mgr->unk_698++;
+    if (mgr->unk_698 > 30) {
+        s32 found = 0;
+        u8 *node = func_0209ac14();
+        while (node != NULL) {
+            if (*(s32 *)(node + 8) > 0) {
+                found = 1;
+            }
+            node = *(u8 **)(node + 0x38);
+        }
+        if (found != 0) {
+            func_0210d27c(0x99);
+        }
+        func_0209b194(2);
+    }
+}
+
