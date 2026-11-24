@@ -2,6 +2,8 @@
 #include "common.h"
 
 extern void (*data_02156070[])(void *, u32);
+extern void (*data_02155f80[])(void *);
+extern void (*data_02155f90[])(void *);
 s32 func_0211ddac(u32 *arg0, u8 *arg1, u32 arg2) {
     s32 ret = 0;
     *arg0 = 0;
@@ -50,5 +52,16 @@ void func_0211e158(u8 *arg0) {
         fn(arg0);
     }
     *(u8 **)arg0 += 1;
+}
+
+void func_0211e180(u8 *arg0) {
+    void (*fn)(void *) = *(void (**)(void *))(arg0 + 0x10);
+    do {
+        if (fn == NULL) {
+            break;
+        }
+        fn(arg0);
+        *(u32 *)(arg0 + 8) |= 0x20;
+    } while (0);
 }
 
