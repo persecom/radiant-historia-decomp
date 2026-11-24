@@ -166,6 +166,21 @@ void func_02005ee4(void **arg0, u8 *arg1) {
     }
 }
 
+void *func_02005f5c(void **arg0) {
+    void *r2 = arg0[0];
+    if (r2 != NULL) {
+        void *r1 = *(void **)((u8 *)r2 + 0x80);
+        arg0[0] = r1;
+        if (r1 != NULL) {
+            *(void **)((u8 *)r1 + 0x7c) = NULL;
+        } else {
+            arg0[1] = NULL;
+            *(void **)((u8 *)r2 + 0x78) = NULL;
+        }
+    }
+    return r2;
+}
+
 extern u32 data_0215cdf0[4];
 extern s32 func_02005c80(u16, void *, void *);
 extern void func_02005dd8(void);
