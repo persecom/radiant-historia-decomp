@@ -7,7 +7,7 @@ extern void func_020dd810(void *, s32, s32);
 extern void func_0205aa34(void *, s32);
 extern void func_020020f8(void *, void *, void *);
 extern void *func_0205bad4(void *);
-extern s32 func_020dde4c(u16);
+extern s32 func_020dde4c(s32);
 extern void func_02060110(void *, void *, void *, s32, void *);
 extern void func_020d4eb8(void *);
 void func_0205c65c(u8 *p, s32 state) {
@@ -104,5 +104,78 @@ if(*(u16 *)(p+0x8e)!=91)return;
 (*(volatile s8 *)(q+0xa6))++;
 if(*(s8 *)(q+0xa6)==1) {func_0210d27c(98);return;}
 if(*(s8 *)(q+0xa6)>5) q[0xa6]=0;
+}
+
+extern s32 func_020dddfc(void *, void *, s32);
+void func_0205cd64(u8 *p) {
+    u8 *q = *(u8 **)(p + 0x128);
+    u8 *r = *(u8 **)q;
+    u8 *obj;
+    u16 i;
+    s32 zero = 0;
+
+    if (*(u16 *)(p + 0x8e) == 91) {
+        (*(volatile s8 *)(q + 0xa6))++;
+        if (*(s8 *)(q + 0xa6) == 1) {
+            func_0210d27c(97);
+        }
+    } else if (*(u16 *)(p + 0x8e) == 81) {
+        (*(volatile s8 *)(q + 0xa6))++;
+        if (*(s8 *)(q + 0xa6) == 1) {
+            func_0210d27c(99);
+        }
+    } else if (*(u16 *)(p + 0x8e) == 32) {
+        (*(volatile s8 *)(q + 0xa6))++;
+        if (*(s8 *)(q + 0xa6) == 1) {
+            func_0210d27c(120);
+        }
+    }
+
+    obj = (u8 *)func_020dde4c((u16)(*(u16 *)(p + 0x90) + 600));
+    if (!obj) return;
+
+    *(u32 *)(obj + 0x80) |= 2;
+    if (func_020dddfc(obj, obj + 0x24, 0xa000)) {
+        func_020d4eb8(p);
+        return;
+    }
+
+    (*(u16 *)*(u8 **)(obj + 0x19c))++;
+    func_020020f8(obj, obj + 0x30, obj);
+
+    (*(s32 *)(q + 0x14))++;
+    if (*(s32 *)(q + 0x14) > 1) {
+        *(s32 *)(q + 0x14) = zero;
+    }
+    if (*(s32 *)(q + 0x14) == 0) {
+        s32 pos[3];
+        pos[0] = *(s32 *)p + 0x1e000;
+        pos[1] = *(s32 *)(p + 4) + 0x1e000;
+        pos[2] = *(s32 *)(p + 8);
+        if (*(s16 *)(q + 0x1c) < 7) {
+            u8 *obj2;
+            if ((*(s16 *)(q + 0x1c) % 2) == 0) {
+                obj2 = func_020c17bc(pos, (u16)*(u32 *)(q + 0x34), (u16)(*(s16 *)(q + 0x1c) + 1100), 12, zero);
+            } else {
+                obj2 = func_020c17bc(pos, (u16)*(u32 *)(q + 0x34), (u16)(*(s16 *)(q + 0x1c) + 1100), 13, zero);
+            }
+            *(u32 *)(obj2 + 0x78) = 64;
+            *(u16 *)*(u8 **)(obj2 + 0x19c) = 0;
+            pos[0] = *(s32 *)(r + 0x1a8);
+            pos[1] = *(s32 *)(r + 0x1ac) + 0x10000;
+            pos[2] = *(s32 *)(r + 0x1b0);
+            func_020d2bf0(obj2, pos, 0, 0);
+            func_0205baf8(obj2);
+            (*(s16 *)(q + 0x1c))++;
+        }
+    }
+
+    for (i = 0; i < 7; i++) {
+        u8 *e = (u8 *)func_020dde4c((u16)(i + 1100));
+        if (e) {
+            (*(u16 *)*(u8 **)(e + 0x19c))++;
+            func_020020f8(e, e + 0x30, e);
+        }
+    }
 }
 
