@@ -13,6 +13,7 @@ extern void func_0200aeac();
 extern void func_02008f74(void *, s32, s32);
 extern s32 func_020124a8(s32, u8 *, s8 *);
 extern u8 *data_0215ed68;
+extern s8 data_0215ed78[0x100];
 extern s32 func_02012348(const char *);
 s32 func_0200b77c(const char *str, s32 pos);
 
