@@ -2,6 +2,29 @@
 #include "common.h"
 
 extern u8 *data_02160140;
+extern u8 data_02150088[16];
+extern u8 data_021601d0[4];
+extern u32 data_02160148[34];
+extern u32 data_02160144;
+extern u32 data_0216bf84;
+extern u32 data_02162858[2];
+extern u32 data_02162854;
+extern u8 data_021436cc[264];
+extern u32 (*data_02156158)(s32, s32, s32);
+extern u32 func_02109c60(void *, void *);
+extern void func_020a8440(void);
+extern void func_020a3b84(void);
+extern void func_0210e290(s32);
+extern void func_020c3cd4(void *);
+extern void func_020c3c94(void *);
+extern void func_0210da14(void *);
+extern void func_0210dba0(void *);
+extern void func_0210dbe8(void *);
+extern void func_0210c5dc(void *);
+extern void func_0210f138(void);
+extern void func_02004588(void);
+extern void func_020045bc(void *, u32, s32);
+extern void func_0200462c(void);
 extern u8 *data_0216013c;
 extern void func_020c3df4(void *, s32);
 extern void func_020c49ec(void *);
@@ -113,11 +136,13 @@ void func_020a78f0(void) {
     }
 }
 
-void func_020a795c(u32 arg0, void **arg1, void **arg2) {
+void func_020a795c(u32 arg0, u32 *arg1, u32 *arg2) {
     u8 *p = data_021600e4;
-    void *result = func_020a6360(p + 0x118, (arg0 - *(u32 *)(p + 0x184) + 1) & 0xff);
-    *arg1 = *(void **)((u8 *)result + 4);
-    *arg2 = *(void **)((u8 *)result + 8);
+    u8 *result = func_020a6360(p + 0x118, (arg0 - *(u32 *)(p + 0x184) + 1) & 0xff);
+    u32 v = *(u32 *)(result + 4);
+    *arg1 = v;
+    v = *(u32 *)(result + 8);
+    *arg2 = v;
 }
 
 void func_020a7fe8(void) {
