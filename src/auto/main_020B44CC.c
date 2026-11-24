@@ -83,3 +83,8 @@ void func_020b4af0(void *arg0) {
         func_020ec548(arg0);
     }
 }
+
+void func_020b52e0(u32 arg0) {
+    *(u32 *)(data_021601e8 + 0x14) = arg0;
+}
+
