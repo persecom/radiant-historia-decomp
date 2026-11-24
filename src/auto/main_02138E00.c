@@ -213,6 +213,25 @@ void func_021396f0(u8 *arg0, u8 *arg1) {
     }
 }
 
+void func_02139784(u8 *arg0) {
+    s32 idx;
+    func_02126c00();
+    if (*(s32 *)(arg0 + 0x68) == 0 && *(s32 *)(arg0 + 0x6c) == 1) {
+        void **p = *(void ***)(arg0 + 8);
+        (*(void (**)(void *, s32))(*(u8 **)p + 0x24))(p, 0);
+    }
+    idx = *(s32 *)(arg0 + 0x10);
+    *(s32 *)(arg0 + 0x14) = idx;
+    idx++;
+    *(s32 *)(arg0 + 0x10) = idx;
+    if (idx >= *(s32 *)(arg0 + 0xa8)) {
+        *(s32 *)(arg0 + 0x10) = 0;
+    }
+    *(void **)(arg0 + 0xc) = *(void **)(arg0 + *(s32 *)(arg0 + 0x14) * 0xc + 0x18);
+    *(void **)(arg0 + 8) = *(void **)(arg0 + *(s32 *)(arg0 + 0x10) * 0xc + 0x18);
+    func_02126c0c();
+}
+
 s32 func_02139a34(u8 *arg0) {
     s32 i;
     s32 ret = 0;
