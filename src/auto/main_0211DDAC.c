@@ -115,6 +115,36 @@ advance:
     *(u8 **)arg0 += 2;
 }
 
+extern void func_02120534(void *, u32);
+void func_0211e910(u8 *arg0, u32 arg1, u8 *arg2) {
+    u32 mode = *(void **)(arg0 + 0x20) != NULL ? arg0[0x91] : 0;
+    u32 handled;
+
+    (void)arg1;
+    if (mode == 1) {
+        *(u32 *)(arg0 + 8) &= ~0x40;
+        (*(void (**)(void *))(arg0 + 0x20))(arg0);
+        mode = *(void **)(arg0 + 0x20) != NULL ? arg0[0x91] : 0;
+        handled = *(u32 *)(arg0 + 8) & 0x40;
+    } else {
+        handled = 0;
+    }
+    if (!handled) {
+        if (!(*(u32 *)(arg0 + 8) & 0x100)) {
+            func_02120534(arg2 + *(u32 *)(arg2 + 8), *(u32 *)(arg2 + 0xc));
+        }
+    }
+    if (mode == 2) {
+        *(u32 *)(arg0 + 8) &= ~0x40;
+        (*(void (**)(void *))(arg0 + 0x20))(arg0);
+        mode = *(void **)(arg0 + 0x20) != NULL ? arg0[0x91] : 0;
+    }
+    if (mode == 3) {
+        *(u32 *)(arg0 + 8) &= ~0x40;
+        (*(void (**)(void *))(arg0 + 0x20))(arg0);
+    }
+}
+
 void func_0211e9e4(u8 *arg0) {
     u32 flags = *(u32 *)(arg0 + 8);
     u8 *p;
