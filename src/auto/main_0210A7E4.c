@@ -519,6 +519,22 @@ func_021205ec(0x29,&attr,1);
 func_0211e078(p);
 }
 
+static inline void FreeArrays_0210b4cc(u8 *p, s32 count) { s32 i;
+i=0;
+
+for(;i<count;i++) {
+if((*(void ***)(p+0x140))[i]) {((void (*)(void *,void *))func_02120bb0)(data_02162648,(*(void ***)(p+0x140))[i]);(*(void ***)(p+0x140))[i]=0;}
+if((*(void ***)(p+0x144))[i]) {((void (*)(void *,void *))func_02120bb0)(data_02162648,(*(void ***)(p+0x144))[i]);(*(void ***)(p+0x144))[i]=0;}
+if((*(void ***)(p+0x148))[i]) {((void (*)(void *,void *))func_02120bb0)(data_02162648,(*(void ***)(p+0x148))[i]);(*(void ***)(p+0x148))[i]=0;}
+if((*(void ***)(p+0x14c))[i]) {((void (*)(void *,void *))func_02120bb0)(data_02162648,(*(void ***)(p+0x14c))[i]);(*(void ***)(p+0x14c))[i]=0;}
+if((*(void ***)(p+0x150))[i]) {((void (*)(void *,void *))func_02120bb0)(data_02162648,(*(void ***)(p+0x150))[i]);(*(void ***)(p+0x150))[i]=0;}
+if((*(void ***)(p+0x154))[i]) {func_0210c5dc((*(void ***)(p+0x154))[i]);(*(void ***)(p+0x154))[i]=0;}
+if((*(void ***)(p+0x158))[i]) {func_0210c5dc((*(void ***)(p+0x158))[i]);(*(void ***)(p+0x158))[i]=0;}
+if((*(void ***)(p+0x15c))[i]) {func_0210c5dc((*(void ***)(p+0x15c))[i]);(*(void ***)(p+0x15c))[i]=0;}
+if((*(void ***)(p+0x160))[i]) {func_0210c5dc((*(void ***)(p+0x160))[i]);(*(void ***)(p+0x160))[i]=0;}
+if((*(void ***)(p+0x164))[i]) {func_0210c5dc((*(void ***)(p+0x164))[i]);(*(void ***)(p+0x164))[i]=0;}
+}
+}
 void func_0210b4cc(u8 *p) {
 s32 i;
 s32 count;
