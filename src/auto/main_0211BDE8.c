@@ -103,3 +103,9 @@ void func_0211cbcc(u32 *arg0, u8 *arg1) {
     }
 }
 
+void func_0211cd78(u8 *arg0) {
+    *(s32 *)(arg0 + 0x20) = 0;
+    arg0[0x24] = 0;
+    arg0[0x25] = 0;
+}
+
