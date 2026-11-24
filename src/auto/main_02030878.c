@@ -98,7 +98,7 @@ void func_02031498(void) {
     }
 }
 
-void func_020314dc(void *arg0, s32 arg1) {
+u8 *func_020314dc(void *arg0, s32 arg1) {
     u32 v4 = *(u32 *)((u8 *)arg0 + 4);
     u32 v8 = *(u32 *)((u8 *)arg0 + 8);
     u32 vc = *(u32 *)((u8 *)arg0 + 0xc);
@@ -109,6 +109,7 @@ void func_020314dc(void *arg0, s32 arg1) {
     *(u32 *)(node + 0xc) = v4;
     *(u32 *)(node + 0x10) = v8 + 0x40000;
     *(u32 *)(node + 0x14) = vc;
+    return node;
 }
 
 void func_02031534(u8 *arg0) {
