@@ -8,6 +8,15 @@ extern void func_020c753c(void *);
 extern void func_020c7630(void *);
 extern void func_020c7f6c(void *, s32, s16);
 extern void func_020f4f04(void *);
+extern void func_020c85e8(void *);
+extern void *func_020a94b8(void *);
+extern s32 func_020c73c0(void *);
+extern void func_020c9b64(void *);
+extern void func_020c9a04(void *, s32);
+extern u32 func_020c9c34(void *);
+extern u8 *func_020c9c10(void *, u32);
+extern void func_020c9b24(void *, u32, s32);
+extern void func_020c7930(void *);
 BOOL func_020c7408(void) {
     return (func_020c73b8() & 4) != 0;
 }
