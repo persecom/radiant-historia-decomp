@@ -4,8 +4,11 @@
 extern u32 data_02160a74[];
 extern void *data_02160a6c;
 
-s32 func_020e55d8(u8);
-void func_02064cb8(void *, s32);
+u8 func_020e55d8();
+s32 func_02064cb8(void *, s32);
+s32 func_020bd490(s32, s32);
+u8 *func_02021f10(s32);
+s32 func_02032c80(void *, s32);
 void func_0202eac4(s32, u16);
 s32 func_02065c44(void *);
 u32 func_020deaf0(void *, u8, s32);
