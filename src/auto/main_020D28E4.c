@@ -163,3 +163,27 @@ void func_020d30a0(void) {
     }
 }
 
+extern void func_020c3020(void *);
+extern void func_02026578(void *);
+void func_020d30d4(void) {
+    u8 *node;
+    u8 *next;
+
+    if (data_02160a6c == NULL) {
+        return;
+    }
+    node = (u8 *)data_02160a6c->unk64;
+    while (node != NULL) {
+        next = *(u8 **)(node + 0x134);
+        if (*(u8 *)(node + 0xa5) == 1) {
+            if (*(u32 *)(node + 0x80) & 1) {
+                *(u32 *)((u8 *)data_02160a6c + 0x124) += *(u32 *)(*(u8 **)(node + 0x118) + 0x50);
+                *(u32 *)((u8 *)data_02160a6c + 0x128) += *(u32 *)(*(u8 **)(node + 0x118) + 0x80);
+            }
+            ((void (*)(void *))func_020d2f44)(node);
+            func_020c3020(node);
+        }
+        node = next;
+    }
+}
+
