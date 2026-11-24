@@ -52,7 +52,7 @@ extern void func_020075d4(s32, u32, s32);
 
 extern u32 data_0215d084[3];
 
-extern void func_020076fc(s32);
+extern s32 func_020076fc(s32);
 extern void func_0200777c(void);
 
 s32 func_020076e8(s32 arg0) {
