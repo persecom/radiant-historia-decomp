@@ -10,6 +10,10 @@ extern void *data_02155c3c;
 extern void *func_0210c594(s32, void *);
 extern void func_021167ac(void *, s32);
 s32 func_02032c14(u8 *, void *);
+extern void func_02031c60(s32, s32);
+extern void func_0209568c(s32, s32);
+extern void func_0209625c(void);
+extern void func_02031fcc(void *, s32);
 
 extern void func_020c2e80(void);
 void func_020328fc(void) {
