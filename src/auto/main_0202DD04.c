@@ -60,15 +60,11 @@ void func_0202e4cc(void) {
 
 extern void func_0202bcd4(u8 *);
 extern void func_0202eac4(u32, u16);
-void func_0202e518(u8 *arg0, u32 arg1) {
+void func_0202e518(u8 *arg0) {
     u8 *p = *(u8 **)(*(u8 **)(arg0 + 0x128) + 0x54);
-    if (arg0 == NULL) {
-        return;
+    if (arg0 != NULL && **(u8 **)(arg0 + 0x118) == 0) {
+        func_0202bcd4(p + 0x18);
     }
-    if (**(u8 **)(arg0 + 0x118) != 0) {
-        return;
-    }
-    func_0202bcd4(p + 0x18);
 }
 
 u8 *func_0202e548(u32 arg0) {
@@ -92,24 +88,24 @@ void func_0202e568(u32 arg0) {
 
 u32 func_0202e98c(u32 arg0, u32 arg1) {
     switch (arg0) {
-    case 1: {
+    case 0: {
         u32 mask = 0;
         mask |= 1 << arg1;
         return mask;
     }
-    case 2: {
+    case 1: {
         u32 mask = 0;
         mask |= 1 << arg1;
         mask |= 1 << (arg1 + 1);
         return mask;
     }
-    case 3: {
+    case 2: {
         u32 mask = 0;
         mask |= 1 << arg1;
         mask |= 1 << (arg1 - 3);
         return mask;
     }
-    case 4: {
+    case 3: {
         u32 mask = 0;
         mask |= 1 << arg1;
         mask |= 1 << (arg1 + 1);
@@ -117,9 +113,9 @@ u32 func_0202e98c(u32 arg0, u32 arg1) {
         mask |= 1 << (arg1 - 2);
         return mask;
     }
-    default:
+    case 4:
         return 0x1ff;
-    case 0:
+    default:
         return 0;
     }
 }
