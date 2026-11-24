@@ -98,6 +98,14 @@ void func_0211c738(void) {
     data_021701f8 = NULL;
 }
 
+void func_0211cac0(u8 *arg0, u32 arg1) {
+    func_02008e24(0, arg0, 0x54);
+    *(u32 *)(arg0 + 0xc) = data_02155ef4;
+    *(u32 *)(arg0 + 0x14) = data_02155ef0;
+    *(u32 *)(arg0 + 0x1c) = data_02155eec;
+    *(u32 *)(arg0 + 0x4) = arg1;
+}
+
 void func_0211cbcc(u32 *arg0, u8 *arg1) {
     while (arg1 != NULL) {
         s32 i;
