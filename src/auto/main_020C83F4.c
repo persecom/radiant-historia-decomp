@@ -18,6 +18,11 @@ extern u32 func_020c9c34(void *);
 extern void *func_020c9c10(void *, u16);
 extern void func_020c7f6c(void *, s32, s32);
 extern void func_020c8008(void *, u8);
+extern void func_020c9bb8(void *);
+extern void func_020c9000(u8 *);
+extern void func_020c8f20(u8 *);
+extern void func_020c80ac(u8 *, s32, s32);
+extern u8 *func_020c9b24(void *, s32, s32);
 void func_020c83f4(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     (*(void (**)(void *))(*(u8 **)(arg0 + 0x30) + 4))(*(void **)(arg0 + 0x30));
     (*(void (**)(void *))(*(u8 **)(arg0 + 0x30) + 8))(*(void **)(arg0 + 0x30));
@@ -260,9 +265,8 @@ void func_020c8ba0(void *arg0) {
 }
 
 BOOL func_020c8bb4(u8 *arg0) {
-    s32 cur = *(s32 *)(arg0 + 0x4c);
     s32 delta = *(s32 *)(arg0 + 0x58);
-    s32 next = cur + delta;
+    s32 next = *(s32 *)(arg0 + 0x4c) + delta;
     *(s32 *)(arg0 + 0x4c) = next;
     if (delta > 0) {
         if (next >= *(s32 *)(arg0 + 0x54)) {
