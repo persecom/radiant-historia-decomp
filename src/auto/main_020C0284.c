@@ -12,6 +12,10 @@ typedef struct {
     s32 data[16];
 } Unk64;
 extern const Unk64 data_02143e4c;
+typedef struct {
+    s32 data[286];
+} Unk1144;
+extern const Unk1144 data_02143e8c;
 s32 _s32_div_f(s32,s32);
 extern u8 *data_02160a6c;
 extern void func_020a3bbc(s32);
@@ -32,18 +36,19 @@ Unk20 buf=data_02143df4;
 s16 center,padding;
 s32 divisor;
 s16 index,width,height,digit;
+s32 growth;
 *(volatile u32 *)0x40004a4=0x1f0080;
 if(value<=6)func_020a3bbc(0x70);
 else if(value<=12)func_020a3bbc(0x71);
 else if(value<=18)func_020a3bbc(0x72);
 else if(value<=24)func_020a3bbc(0x73);
 else func_020a3bbc(0x74);
-width=15+size*3;height=16+size*3;
+growth=size*3; width=15+growth; height=16+growth;
 buf.unk[1]=0;buf.unk[2]=0;
 if(size==0){buf.unk[3]=width;buf.unk[4]=height;}
 else {buf.unk[3]=15;buf.unk[4]=16;}
-padding=size*3;
 buf.unk[7]=arg2+0x2bf;buf.unk[8]=width;buf.unk[9]=height;
+padding=growth;
 digit=value%10;
 center=y-(padding>>1);
 divisor=1;index=0;
