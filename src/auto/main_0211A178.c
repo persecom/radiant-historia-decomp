@@ -6,6 +6,9 @@ typedef union {
  u32 tile:10; u32 unused2:2; u32 palette:4; u32 unused3:16; } bits;
 } SpriteOam_1a8ac;
 typedef struct { s32 width,height,format,palette,transparent,mapping; } SpriteTex_1a8ac;
+static inline void set_tex_1a8ac(s32 format, u32 address, s32 width, s32 height, s32 transparent) {
+ *(volatile u32 *)0x40004a8 = (format<<26)|(address>>3)|0x40000000|(width<<20)|(height<<23)|(transparent<<29);
+}
 extern u16 data_02144d84[][4];
 extern u16 data_02144d6c[][4];
 extern s32 data_02144db8[8];
@@ -254,42 +257,46 @@ void func_0211a860(u32 arg0) {
 }
 
 void func_0211a8ac(void *oam0, void *tex0, void *image, void *palette, s32 *uv) {
- u32 *oam=oam0;
- u32 *tex=tex0;
- u32 attr=oam[0]&0xc000c000;
- s32 shape=(s32)(attr&0xc000)>>14;
+ SpriteOam_1a8ac *oam=oam0;
+ SpriteTex_1a8ac *tex=tex0;
+ u16 tile=oam->bits.tile;
+ u32 attr=oam->word[0]&0xc000c000;
  u32 size=(attr&0xc0000000)>>30;
- u16 tile=oam[1]&0x3ff;
- u32 mapping=tex[5];
+ s32 shape=(s32)(attr&0xc000)>>14;
+ u32 mapping=tex->mapping;
  u32 address=(u32)image;
- u32 pal=(u32)palette;
+ 
  u32 fx,fy;
  u16 index;
  s32 format;
- uv[4]=data_02144d84[shape][size];
- uv[5]=data_02144d6c[shape][size];
+ { u16 w=data_02144d84[shape][size];
+ u16 h=data_02144d6c[shape][size];
+ uv[4]=w;uv[5]=h; }
  if(mapping==0) {
- *(volatile u32 *)0x40004a8=(tex[2]<<26)|(address>>3)|0x40000000|(tex[0]<<20)|(tex[1]<<23)|(tex[4]<<29);
- if(tex[2]==4) tile>>=1;
- uv[0]=(tile&(data_02144db8[tex[0]]-1))<<15;
- uv[1]=((s32)tile>>tex[0])<<15;
+ s32 fmt=tex->format;
+ *(volatile u32 *)0x40004a8=(fmt<<26)|(address>>3)|0x40000000|(tex->width<<20)|(tex->height<<23)|(tex->transparent<<29);
+ if(fmt==4) tile>>=1;
+ { s32 width=tex->width;
+ s32 v=(s32)tile>>width;
+ s32 u=tile&(data_02144db8[width]-1);
+ uv[0]=u<<15; uv[1]=v<<15; }
  } else {
  address+=tile<<(((s32)(mapping&0x700000)>>20)+5);
- *(volatile u32 *)0x40004a8=(address>>3)|(tex[2]<<26)|0x40000000|(data_02144dd8[(u16)shape][(u16)size]<<20)|(data_02144e08[(u16)shape][(u16)size]<<23)|(tex[4]<<29);
+ *(volatile u32 *)0x40004a8=(address>>3)|(tex->format<<26)|0x40000000|(data_02144dd8[(u16)shape][(u16)size]<<20)|(data_02144e08[(u16)shape][(u16)size]<<23)|(tex->transparent<<29);
  uv[0]=0;uv[1]=0;
  }
  uv[2]=uv[0]+(uv[4]<<12);
  uv[3]=uv[1]+(uv[5]<<12);
- fx=(oam[0]>>28)&1;fy=(oam[0]>>29)&1;
+ fx=oam->bits.flipX;fy=oam->bits.flipY;
  if(fx) { s32 tmp=uv[0];uv[0]=uv[2];uv[2]=tmp; }
  if(fy) { s32 tmp=uv[1];uv[1]=uv[3];uv[3]=tmp; }
  if(data_021701d8[0]) ((void (*)(s32 *,s32 *,s32 *,s32 *,u32,u32))data_021701d8[0])(uv,uv+1,uv+2,uv+3,fx,fy);
- index=(oam[1]>>12)&15;
- format=data_02144db0[(oam[0]>>13)&1];
- if(tex[3]) address=index<<9;
+ index=oam->bits.palette;
+ format=data_02144db0[oam->bits.format];
+ if(tex->palette) address=index<<9;
  else if(format==4) address=0;
  else address=index<<5;
- *(volatile u32 *)0x40004ac=(pal+address)>>(4-(format==2));
+ *(volatile u32 *)0x40004ac=((u32)palette+address)>>(4-(format==2));
 }
 
 void func_0211ab04(u32 arg0) {
@@ -326,8 +333,8 @@ void func_0211ab48(s32 x, s32 y, s32 z, u32 *oam, void *pTex, void *pPltt, void 
     }
     if (mode == 0x300) {
         u32 shape_size = attr & 0xc000c000;
-        u32 size = (shape_size & 0xc0000000) >> 30;
         s32 shape = (s32)(shape_size & 0xc000) >> 14;
+        u32 size = (shape_size & 0xc0000000) >> 30;
         u16 w = data_02144d84[shape][size];
         u16 h = data_02144d6c[shape][size];
         s32 zz = data_021701d8[2] ? ((s32)data_021701d8[1] + (z << 12)) : (z << 12);
