@@ -8,6 +8,9 @@ extern void func_0210c5dc(void *);
 extern void *func_0210c518(u32, void *);
 extern void func_02125424(void *, u32);
 extern void func_021254a8(u32, u32, u32, u32);
+extern void func_020c6d78(void *);
+extern void func_020c992c(void);
+extern void *func_0210c594(u32, void *);
 
 extern void func_020bdf38(void);
 extern void func_020a8440(void);
