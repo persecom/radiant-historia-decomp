@@ -162,6 +162,12 @@ void *func_020ddc08(u16 arg0) {
     return NULL;
 }
 
+void func_020ddd5c(u8 *arg0) {
+    s32 a = *(s32 *)data_02160a68.unk00;
+    s32 b = *(s32 *)(arg0 + 0x78) << 12;
+    *(s32 *)(arg0 + 0x4c) = (s32)(((s64)a * b + 0x800) >> 12);
+}
+
 void func_020dddf0(void) {
     func_0210c2f4();
 }
