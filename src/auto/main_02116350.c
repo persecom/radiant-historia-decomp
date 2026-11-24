@@ -14,6 +14,8 @@ void func_02116578(u8 *arg0);
 void func_021165e0(u8 *arg0);
 void func_02116604(void *arg0, void *arg1);
 void func_02116674(void *arg0);
+void func_02116720(s32 *arg0, s32 arg1, s32 arg2);
+s32 func_02116748(s32 *arg0);
 extern void func_021167f0(void *, void *);
 extern s32 func_02008128(void);
 extern void func_0200813c(s32);
