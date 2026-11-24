@@ -300,6 +300,18 @@ void *func_02137d44(void *arg0) {
     return ret;
 }
 
+void *func_02137d68(void *arg0) {
+    if (arg0 == NULL) {
+        func_02137250(data_0215c55c, data_0215c568);
+        return NULL;
+    }
+    if (*(void **)((u8 *)arg0 + 4) == NULL) {
+        func_02137250(data_0215c584, data_0215c590);
+        return NULL;
+    }
+    return *(void **)((u8 *)arg0 + 0x1c);
+}
+
 extern void *func_02137de0(void *);
 void *func_02137dbc(void *arg0) {
     void *ret;
