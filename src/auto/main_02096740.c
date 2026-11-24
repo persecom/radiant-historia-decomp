@@ -44,6 +44,30 @@ void func_02096740(u8 *p, int mode) {
  }
 }
 
+void func_02096cfc(u8 *p){
+u8 *node;
+if(*(u8 **)(data_02160110+0x104)==0){
+node=func_020936f8(14,0x321,0,0,3,2,13);
+func_020938b0(node,1,13);
+node=func_020936f8(16,0x321,0,0,4,4,2);
+func_020938b0(node,1,2);
+node=func_020936f8((u16)(p[0x114]+1),0x321,0,0,2,4,6);
+func_020938b0(node,1,6);
+*(u8 **)(node+8)=p;
+*(u8 **)(data_02160110+0x104)=node;
+}else{
+func_020934ac(*(u8 **)(data_02160110+0x104));
+node=func_020936f8(14,0x321,0,0,3,2,13);
+func_020938b0(node,1,13);
+node=func_020936f8(16,0x321,0,0,4,4,2);
+func_020938b0(node,1,2);
+node=func_020936f8((u16)(p[0x114]+1),0x321,0,0,2,4,6);
+func_020938b0(node,1,6);
+*(u8 **)(node+8)=p;
+*(u8 **)(data_02160110+0x104)=node;
+}
+}
+
 void func_020972cc(void) {
     Unk_0206011c **g = &data_0216011c;
     if (*g == NULL) {
