@@ -284,21 +284,23 @@ void func_021211b4(u32 *arg0, u8 *arg1, u32 arg2) {
 
 void func_021211f0(u8 *arg0) {
     Unk_02170460 *p = data_02170460;
+    u8 index = *(u8 *)(p->unk00 + 1);
     u8 *dict = p->unkd4;
     u8 *node;
-    u8 index = *(u8 *)(p->unk00 + 1);
-    u32 *entry;
     u16 flags;
-    if (dict != NULL && index < *(u8 *)(dict + 1)) {
-        u16 off = *(u16 *)(dict + 6);
-        u16 size = *(u16 *)(dict + off);
-        entry = (u32 *)(dict + off + 4 + size * index);
-    } else {
-        entry = NULL;
-    }
-    if (entry != NULL) {
-        node = dict + *entry;
-        goto got_node;
+    if (dict != NULL) {
+        u32 *entry;
+        if (dict != NULL && index < *(u8 *)(dict + 1)) {
+            u16 off = *(u16 *)(dict + 6);
+            u16 size = *(u16 *)(dict + off);
+            entry = (u32 *)(dict + off + 4 + size * index);
+        } else {
+            entry = NULL;
+        }
+        if (entry != NULL) {
+            node = dict + *entry;
+            goto got_node;
+        }
     }
     node = NULL;
 got_node:
@@ -314,29 +316,30 @@ got_node:
 
 void func_02121284(void) {
     Unk_02170460 *p = data_02170460;
+    u8 index = *(u8 *)(p->unk00 + 1);
     u8 *dict = p->unkd4;
     u8 *node;
-    u8 index = *(u8 *)(p->unk00 + 1);
-    u32 *entry;
-    u16 *wp;
     u16 flags;
     u8 *v;
-    if (dict != NULL && index < *(u8 *)(dict + 1)) {
-        u16 off = *(u16 *)(dict + 6);
-        u16 size = *(u16 *)(dict + off);
-        entry = (u32 *)(dict + off + 4 + size * index);
-    } else {
-        entry = NULL;
-    }
-    if (entry != NULL) {
-        node = dict + *entry;
-        goto got_node;
+    if (dict != NULL) {
+        u32 *entry;
+        if (dict != NULL && index < *(u8 *)(dict + 1)) {
+            u16 off = *(u16 *)(dict + 6);
+            u16 size = *(u16 *)(dict + off);
+            entry = (u32 *)(dict + off + 4 + size * index);
+        } else {
+            entry = NULL;
+        }
+        if (entry != NULL) {
+            node = dict + *entry;
+            goto got_node;
+        }
     }
     node = NULL;
 got_node:
-    wp = (u16 *)node;
-    flags = *wp++;
-    v = (u8 *)wp;
+    flags = *(u16 *)node;
+    node += 4;
+    v = node;
     if (!(flags & 1)) {
         v += 0xc;
     }
