@@ -67,6 +67,10 @@ s32 func_02005da4(u16 arg0) {
     return func_02005cfc(arg0, (void *)0x02ffffe0, func_02005dc0);
 }
 
+void func_02005dc0(void) {
+    *(volatile u16 *)0x04000204 &= ~0x800;
+}
+
 u16 func_02005df0(u8 *arg0) {
     return *(u16 *)(arg0 + 4);
 }
