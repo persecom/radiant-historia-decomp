@@ -13,6 +13,12 @@ extern void func_020c7894(void *);
 extern u16 data_02143954[];
 extern void func_020c52c0(void);
 extern u8 data_021601f0;
+s32 func_020baba8(u8 *arg0) {
+    func_02110b94(arg0);
+    *(void **)(arg0 + 0x4c) = (void *)func_020babe8;
+    return 0;
+}
+
 void func_020bac70(u8 arg0) {
     data_021601f0 = arg0;
 }
