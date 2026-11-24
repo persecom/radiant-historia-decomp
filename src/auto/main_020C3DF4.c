@@ -54,9 +54,10 @@ void func_020c3df4(u8 **arg0, s32 arg1) {
                     buf1.v[3] = *(s16 *)(p + 0x26);
                     buf1.v[4] = *(s16 *)(p + 0x28);
                     {
-                        u64 xy = *(u64 *)p;
-                        buf1.v[6] = xy >> 32;
-                        buf1.v[5] = xy;
+                        s32 x = *(s32 *)(p + 0x0);
+                        s32 y = *(s32 *)(p + 0x4);
+                        buf1.v[5] = x;
+                        buf1.v[6] = y;
                     }
                     buf1.v[7] = *(s32 *)(p + 0x8);
                     {
