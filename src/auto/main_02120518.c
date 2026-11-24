@@ -190,3 +190,10 @@ u8 *func_02121040(u8 *arg0, u32 arg1) {
     return NULL;
 }
 
+u8 *func_02121068(u8 *arg0, u32 arg1) {
+    if (arg0 != NULL && arg1 < *(u8 *)(arg0 + 7)) {
+        return arg0 + *(u16 *)(arg0 + 0xa) + (arg1 << 4);
+    }
+    return NULL;
+}
+
