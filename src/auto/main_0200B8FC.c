@@ -283,6 +283,21 @@ s32 func_0200c1fc(void *arg0, void *arg1) {
     return 0;
 }
 
+s32 func_0200c248(u32 *arg0, void *arg1, u32 arg2) {
+    u8 *p = (u8 *)arg0[0];
+    u8 *v = *(u8 **)(p + 0x20);
+    s32 ret;
+    if (*(u32 *)(v + 0x1c) != 0) {
+        func_02009008((void *)arg0[1], arg1, arg2);
+        ret = 0;
+    } else {
+        s32 res = ((s32 (*)(u8 *, void *, u32, u32))(*(void **)(v + 0x20)))(p, arg1, arg0[1], arg2);
+        ret = func_0200a928(*(void **)(p + 8), res);
+    }
+    arg0[1] += arg2;
+    return ret;
+}
+
 s32 func_0200c2a8(u8 *arg0, u16 arg1) {
     *(u32 *)(arg0 + 0x30) = *(u32 *)(arg0 + 8);
     *(u16 *)(arg0 + 0x34) = arg1;
