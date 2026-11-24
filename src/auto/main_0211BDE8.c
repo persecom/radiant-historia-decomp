@@ -61,3 +61,15 @@ s32 func_0211c5d4(u8 *arg0) {
     return (*(s32 *)(arg0 + 0x24) & 1) ? 1 : 0;
 }
 
+void func_0211cbcc(u32 *arg0, u8 *arg1) {
+    while (arg1 != NULL) {
+        s32 i;
+        for (i = 0; i < *(u8 *)(arg1 + 0x19); i++) {
+            if (*(u16 *)(arg1 + 0x1A + i * 2) & 0x100) {
+                arg0[i >> 5] |= 1 << (i & 0x1F);
+            }
+        }
+        arg1 = *(u8 **)(arg1 + 0x10);
+    }
+}
+
