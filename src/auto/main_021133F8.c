@@ -427,6 +427,19 @@ void func_0211405c(void) {
     func_021142f0();
 }
 
+void *func_02114108(u32 arg0, u8 *arg1) {
+    u8 *base = (u8 *)data_0216c424 + arg0 * 0x24;
+    void *obj = func_02116958(base + 0xc, NULL);
+    if (obj == NULL) {
+        return NULL;
+    }
+    func_021168f8(base + 0xc, obj);
+    *(u32 *)((u8 *)obj + 0xc) = (u32)arg1;
+    *(u32 *)(arg1 + 8) = (u32)obj;
+    func_02115380(*(u32 *)((u8 *)obj + 8));
+    return *(void **)((u8 *)obj + 8);
+}
+
 void func_02114160(u8 *arg0) {
     *(u8 *)(arg0 + 0x2e) = 0;
     *(u8 *)(arg0 + 0x2d) = 0;
