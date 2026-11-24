@@ -386,3 +386,27 @@ void func_02113048(void) {
     }
 }
 
+void func_02113130(void) {
+ void *file=func_021092d8(data_02155d6c);
+ if(file!=NULL) {
+ do {
+ u8 *entry=(u8 *)func_0210c594(0x2c,data_02155c3c);
+ *(u16 *)(entry)=func_020f685c(file,0);
+ *(s32 *)(entry+4)=func_020f685c(file,0);
+ *(u16 *)(entry+8)|=(u16)(func_020f685c(file,0)!=0?1:0);
+ *(s32 *)(entry+0xc)=func_020f685c(file,0);
+ func_021093f0(file); func_021093f0(file);
+ *(u16 *)(entry+0x12)=func_020f685c(file,0);
+*(u16 *)(entry+0x14)=func_020f685c(file,0);
+*(u16 *)(entry+0x16)=func_020f685c(file,0);
+*(u16 *)(entry+0x18)=func_020f685c(file,0);
+*(u16 *)(entry+0x1a)=func_020f685c(file,0);
+*(u16 *)(entry+0x1c)=func_020f685c(file,0);
+*(u16 *)(entry+0x1e)=func_020f685c(file,0);
+*(u16 *)(entry+0x20)=func_020f685c(file,0);
+ func_021167f0(data_0216bf88+0xc,entry);
+ } while(func_02109444(file)!=0);
+ }
+ if(file!=NULL) func_021093b0(file);
+}
+
