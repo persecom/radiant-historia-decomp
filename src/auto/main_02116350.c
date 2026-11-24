@@ -1,6 +1,22 @@
 /* 54 functions from 0x02116350 to 0x02117304 (main), found by ds-decomp. */
 #include "common.h"
 
+typedef struct {
+ u8 pad[0x118];
+ s32 b0:1; s32 b1:1; s32 b2:1; s32 b3:1;
+ s32 unk11c, unk120;
+ u8 pad124[0x30];
+ void **unk154;
+ s32 unk158, unk15c, unk160, unk164;
+ u8 pad168[0x14];
+} SndStrmPlayer;
+extern SndStrmPlayer data_0216cb40[4];
+extern s16 data_0213e51c[128];
+void func_021146b8(void *);
+void func_02114728(void *, s32);
+void func_0211677c(void *);
+s32 func_02116794(void *);
+
 extern void func_02116ad8();
 extern u32 data_0216e21c;
 extern u8 data_0216e220[12];
