@@ -144,10 +144,6 @@ void func_020c8ba0(void *arg0) {
     }
 }
 
-extern void func_020a8810(void *);
-extern void func_020c6dbc(void *);
-extern void func_020a30c4(u16);
-void func_020c8794(u8 *arg0);
 void func_020c8d24(u8 *arg0) {
     if (*(void **)(arg0 + 0x30) != NULL) {
         func_020c9940(*(void **)(arg0 + 0x30));
