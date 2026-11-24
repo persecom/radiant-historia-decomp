@@ -31,3 +31,8 @@ void func_02008444(void) {
         func_02008454();
     }
 }
+
+void func_02008558(u8 arg0) {
+    data_04000247 = arg0;
+}
+
