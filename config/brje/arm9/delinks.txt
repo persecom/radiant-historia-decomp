@@ -683,7 +683,10 @@ src/auto/main_020D9E48.c:
     .text start:0x020d9e48 end:0x020daa60
 
 src/auto/main_020DAA60.c:
-    .text start:0x020daa60 end:0x020db1f4
+    .text start:0x020daa60 end:0x020daefc
+
+src/auto/main_020DAEFC.c:
+    .text start:0x020daefc end:0x020db1f4
 
 src/auto/main_020DB1F4.c:
     .text start:0x020db1f4 end:0x020db4ac
