@@ -19,6 +19,7 @@ extern void func_02005e50(u16);
 
 extern void func_0201076c(void);
 extern void func_02010f58();
+extern void func_02010f20(void);
 extern void func_0200fc34(u32, u32);
 extern void func_0200e8a8(void);
 extern void func_02010fa8(s32, s32);
@@ -130,15 +131,15 @@ void func_0201076c(void) {
 }
 
 u32 func_020107c4(void) {
-    u32 *p = (u32 *)0x2fffc00;
-    if ((*(volatile u32 *)p & 0x20000000) == 0) {
+    volatile u32 *p = (volatile u32 *)0x2fffc00;
+    if ((*p & 0x20000000) == 0) {
         return 0x20;
     }
     {
         u32 zero = 0;
         func_020106b8(0xd6, zero);
         {
-            u32 v = *(volatile u32 *)((u8 *)p - 0x120);
+            u32 v = p[-0x48];
             v = (v & ~0x07000000) | 0xa7000000;
             *(volatile u32 *)0x40001a4 = v & (zero - 0x2000);
         }
