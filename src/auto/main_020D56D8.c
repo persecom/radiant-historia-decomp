@@ -139,7 +139,7 @@ void func_020d64e4(void *arg0) {
         goto end;
     }
     *(u16 *)(sub + 0x22) |= 1;
-    func_020d626c();
+    func_020d626c(arg0);
     flag = *(u32 *)(sub + 0x18) & 8;
     if ((*(u32 *)(*(void **)((u8 *)arg0 + 0x118) + 0x78) & 0x30) != 0) {
         goto end;
