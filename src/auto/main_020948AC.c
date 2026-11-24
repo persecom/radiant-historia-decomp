@@ -126,3 +126,14 @@ void func_020951b4(void) {
     }
 }
 
+void *func_020952f8(u16 arg0) {
+    u8 *node = (u8 *)func_02095198();
+    while (node != NULL) {
+        if (*(u16 *)(node + 0x10) == arg0) {
+            return node;
+        }
+        node = *(u8 **)(node + 4);
+    }
+    return NULL;
+}
+
