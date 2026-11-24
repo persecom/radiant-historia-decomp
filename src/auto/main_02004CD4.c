@@ -1,7 +1,6 @@
 /* 55 functions from 0x02004CD4 to 0x02005C90 (main), found by ds-decomp. */
 #include "common.h"
 
-typedef struct { u32 words[8]; } FifoBlock32;
 
 extern u32 func_02008128(void);
 extern void func_0200813c(u32);
