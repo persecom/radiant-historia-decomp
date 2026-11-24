@@ -142,7 +142,11 @@ s32 func_021381cc(u8 *arg0, s32 arg1, s32 arg2, s32 *arg3) {
         if (entry[0] == 0) {
             entry[0] = (u32)arg1;
             entry[1] = (u32)arg2;
-            entry[2] = (arg3 != NULL) ? (u32)arg3 : (u32)data_0215c6cc;
+            if (arg3 != NULL) {
+                entry[2] = (u32)arg3;
+            } else {
+                entry[2] = (u32)data_0215c6cc;
+            }
             break;
         }
     }
@@ -168,9 +172,9 @@ void func_02138280(u32 arg0, u32 arg1) {
         func_02138130(data_0215c724);
         return;
     }
-    *(u32 *)((data_021767bc + arg0 * 0x48) + arg1 * 0xc) = 0;
-    *(u32 *)((data_021767c0 + arg0 * 0x48) + arg1 * 0xc) = 0;
-    *(u32 *)((data_021767c4 + arg0 * 0x48) + arg1 * 0xc) = 0;
+    ((u32 *)(data_021767bc + arg0 * 0x48 + arg1 * 0xc))[0] = 0;
+    ((u32 *)(data_021767c0 + arg0 * 0x48 + arg1 * 0xc))[0] = 0;
+    ((u32 *)(data_021767c4 + arg0 * 0x48 + arg1 * 0xc))[0] = 0;
 }
 
 extern void func_02138338(u32, u32, u32, u32, u32);
