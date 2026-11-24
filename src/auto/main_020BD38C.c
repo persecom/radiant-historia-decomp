@@ -13,6 +13,12 @@ extern u8 *data_02160078;
 extern u8 *func_020bd438(u8);
 extern void func_020bd3b8(u8, u16, u8, u8);
 
+void *func_020bd38c(void) {
+    void *ptr = func_0210c594(0xc, data_02155c3c);
+    func_021167ac(ptr, 8);
+    return ptr;
+}
+
 void func_020bd574(void) {
     u8 i;
     for (i = 0; i < 7; i++) {
@@ -32,10 +38,34 @@ void func_020bd574(void) {
     }
 }
 
+void func_020bd608(void) {
+    u8 i;
+    for (i = 0; i < 3; i++) {
+        u8 *p = func_020bd438(i);
+        if (*(u16 *)p & 8) {
+            *(u16 *)p |= 1;
+            *(u16 *)p &= ~8;
+        }
+        if (*(u16 *)p & 2) {
+            *(u16 *)p &= ~2;
+            p[3] = 0;
+        }
+        if (*(u16 *)p & 0x10) {
+            *(u16 *)p &= ~1;
+            *(u16 *)p &= ~0x10;
+        }
+    }
+}
+
 void func_020bdd80(void) {
 }
 
 void func_020bdd84(void) {
+}
+
+void func_020bddb0(u8 *arg0) {
+    *(u32 *)(arg0 + 0) = 0;
+    *(u16 *)(arg0 + 4) = 1;
 }
 
 s32 func_020bdf24(void *arg0, ...) {
