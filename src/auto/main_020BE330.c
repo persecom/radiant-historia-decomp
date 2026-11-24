@@ -25,6 +25,9 @@ extern u16 data_02151fc8;
 extern const s16 data_0213a394[];
 extern s32 data_02162360[];
 extern void func_02108240(void);
+extern void func_020a9e38(volatile s16 *, volatile s16 *);
+extern void func_020a9d9c(s32, s32, s32, s32);
+extern u8 *data_021600e4;
 void func_020be330(u8 *arg0) {
     u16 flags = *(u16 *)(arg0 + 0x18);
     s16 sp2;
