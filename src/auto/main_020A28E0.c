@@ -80,13 +80,14 @@ s32 func_020a2dd0(void) {
 }
 
 void func_020a2e24(void) {
-    if (data_02160128 == 0) {
+    u32 *p = &data_02160128;
+    if (*p == 0) {
         return;
     }
     func_020a2eb4();
     func_020a2ee4();
-    if (data_02160128 != 0) {
-        func_0210c5dc((void *)data_02160128);
+    if (*p != 0) {
+        func_0210c5dc((void *)*p);
     }
     data_02160128 = 0;
 }
