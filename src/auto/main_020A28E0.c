@@ -62,12 +62,13 @@ void func_020a2c38(u16 arg0, u32 arg1) {
 }
 
 s32 func_020a2dd0(void) {
+    u32 *ptr = &data_02160128;
     void *p;
-    if (data_02160128 != 0) {
+    if (*ptr != 0) {
         return 1;
     }
     p = func_0210c594(0x10, data_02155c3c);
-    data_02160128 = (u32)p;
+    *ptr = (u32)p;
     if (p == NULL) {
         return 2;
     }
