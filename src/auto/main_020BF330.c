@@ -80,8 +80,6 @@ void func_020bf414(s32 arg0) {
 
 u8 *func_020bf458(s32 arg0, s32 arg1) {
     u8 *p;
-    s32 scale = 0x1800;
-    s32 val = scale * arg1;
     data_02155bac = 0;
     p = func_020ec294((u16)arg0, (u16)(arg1 + 2), 0x1800, arg1 * 0x1800);
     data_02155bac = 1;
