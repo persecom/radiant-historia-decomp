@@ -398,6 +398,42 @@ s32 func_0200d20c(u32 arg0, void *arg1) {
     return 0;
 }
 
+extern void func_02008f74(void *, s32, u32);
+s32 func_0200d224(void *arg0, u16 arg1, void *arg2, void *arg3) {
+    u32 id = 0;
+    s32 res = 5;
+
+    func_02008f74(arg3, 0, 0x54);
+    if (func_0200ce18(arg0, arg1, arg2, &id, 1) == 0) {
+        *(u32 *)((u8 *)arg3 + 0x0) = 0x100;
+        *(u32 *)((u8 *)arg3 + 0x50) = id;
+        res = 0;
+    } else if (func_0200ce18(arg0, arg1, arg2, &id, 0) == 0) {
+        void *r3;
+        u32 r2;
+        *(u32 *)((u8 *)arg3 + 0x0) = 0;
+        *(u32 *)((u8 *)arg3 + 0x50) = id;
+        *(u32 *)((u8 *)arg3 + 0x4c) = 0;
+        r3 = *(void **)((u8 *)arg0 + 0x20);
+        r2 = id * 8;
+        if (r2 < *(u32 *)((u8 *)r3 + 0x8)) {
+            struct { u32 a; u32 b; } spc;
+            struct { void *a; u32 b; } sp4;
+            sp4.a = arg0;
+            sp4.b = *(u32 *)((u8 *)r3 + 0x4) + r2;
+            if (func_0200c248(&sp4, &spc, 8) == 0) {
+                *(u32 *)((u8 *)arg3 + 0x4c) = spc.b - spc.a;
+                if (func_0200d52c(arg0, spc.a) != 0) {
+                    *(u32 *)((u8 *)arg3 + 0x0) |= 0x400;
+                }
+            }
+        }
+        res = 0;
+    }
+    *(u32 *)((u8 *)arg3 + 0x0) |= 0x200;
+    return res;
+}
+
 s32 func_0200d350(void *arg0, u32 *arg1) {
     void *p = func_0200f998(arg0);
     arg1[8] = 0;
