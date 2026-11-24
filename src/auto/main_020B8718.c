@@ -88,3 +88,7 @@ s32 func_020b8d60(void) {
     return func_020de3d8() == 0;
 }
 
+void func_020b9250(void) {
+    func_020c8488(func_020c9c10(*(void **)(data_021601ec + 0x48), 10));
+}
+
