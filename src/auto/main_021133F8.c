@@ -347,6 +347,17 @@ void func_02113c18(void ***arg0) {
     }
 }
 
+s32 func_02113c34(u32 arg0) {
+    s32 count = 0;
+    void *obj = NULL;
+    while ((obj = func_02116958(data_0216bfd8, obj)) != NULL) {
+        if (*(u16 *)((u8 *)obj + 0x34) == 2 && *(u16 *)((u8 *)obj + 0x38) == arg0) {
+            count++;
+        }
+    }
+    return count;
+}
+
 void func_02113ce8(u8 **arg0, u8 arg1) {
     if (*arg0 != NULL) {
         (*arg0)[0x41] = arg1;
