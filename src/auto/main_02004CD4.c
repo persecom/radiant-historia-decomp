@@ -387,18 +387,16 @@ u32 func_02005870(u32 arg0) {
 }
 
 void func_020058fc(u32 index, u32 arg1, u32 arg2) {
-    u32 bit = 1 << (index + 8);
-    u8 *dst = data_0215cd7c;
-    *(u32 *)(dst + index * 12) = arg1;
+    *(u32 *)(data_0215cd7c + index * 12) = arg1;
     *(u32 *)(data_0215cd84 + index * 12) = arg2;
-    *(u32 *)(data_0215cd80 + index * 12) = func_020059b4(bit) & bit;
+    *(u32 *)(data_0215cd80 + index * 12) = func_020059b4(1 << (index + 8)) & (1 << (index + 8));
 }
 
 void func_02005944(s32 arg0, u32 arg1, u32 arg2) {
-    data_0215cdac[arg0 * 3] = arg1;
-    data_0215cdb4[arg0 * 3] = arg2;
+    *(u32 *)((u8 *)data_0215cdac + arg0 * 12) = arg1;
+    *(u32 *)((u8 *)data_0215cdb4 + arg0 * 12) = arg2;
     func_020059b4(1 << (arg0 + 3));
-    data_0215cdb0[arg0 * 3] = 1;
+    *(u32 *)((u8 *)data_0215cdb0 + arg0 * 12) = 1;
 }
 
 u32 func_02005988(u32 arg0) {
@@ -422,13 +420,12 @@ u32 func_020059b4(u32 arg0) {
 }
 
 void func_020059e4(u32 arg0) {
-    u32 mask = ~arg0;
-    u16 ime = *(volatile u16 *)0x04000208;
-    *(volatile u16 *)0x04000208 = 0;
-    u32 old = *(volatile u32 *)(0x04000208 + 8);
-    *(volatile u32 *)(0x04000208 + 8) = old & mask;
-    (void)*(volatile u16 *)0x04000208;
-    *(volatile u16 *)0x04000208 = ime;
+    register volatile u16 *reg = (volatile u16 *)0x04000208;
+    u16 ime = *reg;
+    *reg = 0;
+    *(volatile u32 *)((u8 *)reg + 8) &= ~arg0;
+    (void)*reg;
+    *reg = ime;
 }
 
 u32 func_02005a14(u32 arg0) {
@@ -442,9 +439,9 @@ u32 func_02005a14(u32 arg0) {
 }
 
 void func_02005a40(void) {
-    u8 *dtcm = data_027e0000;
-    *(u32 *)(dtcm + 0x3f7c) = 0xfddb597d;
-    *(u32 *)(dtcm + 0x3f80 - 0x400) = 0x7bf9dd5b;
+    u32 dtcm = (u32)data_027e0000;
+    *(volatile u32 *)(dtcm + 0x3f7c) = 0xfddb597d;
+    *(volatile u32 *)(dtcm + 0x3f80 - 0x400) = 0x7bf9dd5b;
 }
 
 extern u16 data_0215cddc;
@@ -474,7 +471,7 @@ void func_02005bfc(s32 arg0, s32 arg1, s32 arg2) {
     func_02005bb0(arg0, arg1, arg2, 0);
 }
 
-extern void func_02005c0c(s32, s32, s32, s32);
+extern s32 func_02005c0c();
 void func_02005c80(s32 arg0, s32 arg1, s32 arg2) {
     func_02005c0c(arg0, arg1, arg2, 0);
 }
