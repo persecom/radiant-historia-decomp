@@ -58,3 +58,19 @@ void func_020e269c(u32 arg0, u8 *arg1, u32 arg2) {
     }
 }
 
+s32 func_020e27ec(void) {
+    u8 *base = (u8 *)data_02160a74[0];
+    u8 *node;
+    if (base == NULL) {
+        return 0;
+    }
+    node = *(u8 **)(base + 0x40);
+    while (node != NULL) {
+        if (*(s32 *)node == 0) {
+            return 1;
+        }
+        node = *(u8 **)(node + 0x24);
+    }
+    return 0;
+}
+
