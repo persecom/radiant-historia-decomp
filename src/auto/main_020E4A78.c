@@ -14,22 +14,24 @@ typedef struct {
     u8 unk9;
 } Node_020e4a78;
 
-void func_020e4a78(u8 *p) {
-    if (*p & 1) {
+void func_020e4a78(Node_020e4a78 *p) {
+    if (p->unk0 & 1) {
         return;
     }
-    if (*(p + 9) == 0 || *(p + 9) == 2) {
-        *(p + 5) = 2;
-        if (*(p + 9) == 2) {
-            *(p + 5) = 3;
+    switch (p->unk9) {
+    case 0:
+    case 2:
+        p->unk5 = 2;
+        if (p->unk9 == 2) {
+            p->unk5 = 3;
         }
-        *(p + 4) = 0;
-        return;
-    }
-    if (*(p + 9) == 1) {
-        *(p + 5) = 3;
-        *(p + 4) = 3;
-        *(p + 2) = 3;
+        p->unk4 = 0;
+        break;
+    case 1:
+        p->unk5 = 3;
+        p->unk4 = 3;
+        p->unk2 = 3;
+        break;
     }
 }
 
@@ -68,9 +70,9 @@ u8 func_020e4b88(void) {
 
 u16 func_020e4ba8(void) {
     u8 *p = *(u8 **)((u8 *)data_02160a74[0] + 0xc0);
-    if (p == NULL) {
-        return 1;
+    if (p != NULL) {
+        return *(u16 *)(p + 0x38);
     }
-    return *(u16 *)(p + 0x38);
+    return 1;
 }
 
