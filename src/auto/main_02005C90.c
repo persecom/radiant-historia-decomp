@@ -398,6 +398,11 @@ void func_0200683c(u8 *arg0, u32 arg1) {
     *(u32 *)(arg0 + 0xb4) = arg1;
 }
 
+extern u32 func_02006940(void);
+BOOL func_0200698c(void) {
+    return (func_02006940() & 0x10000000) != 0;
+}
+
 extern void func_02006c38(void *, u32);
 void func_02006b4c(void *arg0) {
     func_02006c38(arg0, 0x10000000);
