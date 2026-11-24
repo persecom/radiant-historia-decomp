@@ -185,6 +185,15 @@ void func_02124e68(u32 *arg0) {
     }
 }
 
+void func_02124eac(u32 arg0, s32 arg1) {
+    data_02173174[2] = arg0;
+    func_02125038();
+    if (arg1 != 0) {
+        data_02156158 = func_02124ef8;
+        data_0215615c = func_02125014;
+    }
+}
+
 s32 func_02125014(void) {
     return 0;
 }
