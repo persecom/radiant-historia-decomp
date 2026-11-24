@@ -23,8 +23,8 @@
         s32 y;
         s32 z;
         u8 pad0c[4];
-        s16 scaleX;
-        s16 scaleY;
+        volatile s16 scaleX;
+        volatile s16 scaleY;
         s32 fxScaleX;
         s32 fxScaleY;
         u8 pad1c[0xa];
