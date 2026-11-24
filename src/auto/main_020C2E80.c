@@ -76,6 +76,41 @@ void func_020c3134(void *arg0) {
 void func_020c33d4(void) {
 }
 
+void func_020c35c4(u32 *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u16 arg6, u32 arg7) {
+    volatile u32 *base = (volatile u32 *)0x40004a8;
+    volatile u32 *p;
+    base[0] = 0;
+    *(volatile u32 *)((u8 *)base - 0x64) = 0;
+    p = (volatile u32 *)((u8 *)base - 0x38);
+    p[0] = arg0[0];
+    p[0] = arg0[1];
+    p[0] = arg0[2];
+    p = (volatile u32 *)((u8 *)base - 0x3c);
+    p[0] = arg4 << 12;
+    p[0] = 0x1000;
+    p[0] = arg5 << 12;
+    base[0x58 / 4] = 1;
+    *(volatile u32 *)((u8 *)base - 0x28) = arg6;
+    p = (volatile u32 *)((u8 *)base - 0x18);
+    p[0] = 0x3c0003c0;
+    p[0] = 0x040003c0;
+    p[0] = 0x04000040;
+    p[0] = 0x3c000040;
+    base[0x5c / 4] = 0;
+    *(volatile u32 *)((u8 *)base - 0x60) = 1;
+}
+
+void *func_020c3810(u16 arg0) {
+    u8 *node = *(u8 **)(data_02160140 + 0x3c);
+    while (node != NULL) {
+        if (*(u16 *)(node + 0x16) == arg0) {
+            return node;
+        }
+        node = *(u8 **)(node + 0x30);
+    }
+    return NULL;
+}
+
 void *func_020c3c78(void) {
     return func_0210c594(0x28, data_02155c3c);
 }
@@ -98,5 +133,13 @@ void func_020c3cd4(void **arg0) {
     if (arg0 != NULL) {
         func_0210c5dc(arg0);
     }
+}
+
+void *func_020c3d24(void *arg0) {
+    void *p = func_0210c594(0x34, data_02155c3c);
+    *(u32 *)((u8 *)p + 0xc) = 0x1000;
+    *(u32 *)((u8 *)p + 0x10) = 0x1000;
+    func_021168f0(arg0, p);
+    return p;
 }
 
