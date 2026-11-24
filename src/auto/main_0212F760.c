@@ -85,7 +85,6 @@ void func_0212f97c(u8 *a0, u32 a1) {
     *(u32 *)(a0 + 0x1b0) = a1;
 }
 
-extern void func_0212f558(s32, s32);
 extern void func_0213246c(void *);
 extern void func_0212f8b8(void *);
 extern s32 func_0212f4b0(void *);
