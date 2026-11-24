@@ -26,6 +26,10 @@ void func_021324a8(void) {
     func_0212f760();
 }
 
+void func_02132ae8(u8 *arg0, s32 arg1) {
+    *(s32 *)(arg0 + 0x34) = arg1;
+}
+
 extern u8 data_021749dc[64];
 void *func_02132f14(void) {
     return data_021749dc;
