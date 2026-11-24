@@ -15,6 +15,8 @@ typedef struct UnkStruct_020d60248 {
 extern UnkStruct_020d60248 data_02160248;
 extern u32 data_02155c3c;
 extern s32 data_02162814;
+extern s32 data_02162884;
+extern u8 *data_02160260;
 extern u8 *data_02160244;
 
 void func_020d850c(void) {
