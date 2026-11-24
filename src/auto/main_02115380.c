@@ -1,5 +1,6 @@
 /* 35 functions from 0x02115380 to 0x02116350 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { void *base; u16 ids[4]; } Entry021157d0;
 extern u8 data_0216cad4[60];
 extern void func_02115df0(void *,s32,s32,s32);
 extern void func_02009008(void *,void *,u32);
@@ -246,6 +247,39 @@ s32 func_02115770(void *arg0, u32 arg1, void *arg2, s32 arg3, void **arg4) {
     return 0;
 }
 
+u8 *func_02115048(u16);
+void *func_02115b10(void *, void *, s32);
+s32 func_02115910(void *,u32,void *,s32,void **);
+s32 func_02115f20(s32,void *,u16,s32,s32);
+void func_0200a178(void *,s32,void *);
+s32 func_021157d0(u16 id, u32 flags, void *arg2, s32 arg3, void *out) {
+ u8 *entry;
+ u8 *p;
+ void *val;
+ s32 i;
+ p=func_02115048(id);
+ if(!p) return 4;
+ if(flags&2) {
+ val=func_02115b10(*(void **)p,arg2,arg3);
+ if(!val) return 8;
+ } else val=func_02115264(*(void **)p);
+ for(i=0;i<4;i++) {
+ void *child;
+ s32 result;
+ if(*(u16 *)(p+4+i*2)==0xffff) continue;
+ entry=func_021150ac((void *)(u32)*(u16 *)(p+4+i*2));
+ if(!entry) return 5;
+ result=func_02115910((void *)(u32)*(u16 *)(p+4+i*2),flags,arg2,arg3,&child);
+ if(result) return result;
+ if(((*(u32 *)entry>>24)&1) && (flags&4)) {
+ if(!func_02115f20((s32)child,val,i,(*(u32 *)entry<<8)>>8,(s32)arg2)) return 9;
+ }
+ if(val && child) func_0200a178(val,i,child);
+ }
+ if(out) *(void **)out=val;
+ return 0;
+}
+
 s32 func_02115910(void *arg0, u32 arg1, void *arg2, s32 arg3, void **arg4) {
     u8 *p = func_021150ac(arg0);
     u32 v;
@@ -355,7 +389,28 @@ void *func_02115b7c(void *arg0, void *arg1, s32 arg2) {
     return r4;
 }
 
-#pragma peephole off
+#pragma opt_propagation off
+#pragma opt_cse off
+void *func_02115be8(void *arg0,void *arg1,s32 arg2) {
+u32 total; u8 *p=func_02115264(arg0); u32 size; void *ctx;
+if(!p) {
+ctx=0;
+if((s32)func_0211519c(arg0,&data_0216cad4,(void *)0x3c,0)!=0x3c)return 0;
+size=*(u32 *)(data_0216cad4+0x38)*4;total=size*2;
+if(!arg1)return 0;
+if(arg2)ctx=func_02114f70();
+p=func_0211543c(arg1,total+0x5c,func_02115df0,(u32)ctx,(u32)arg0);
+if(!p)return 0;
+if((s32)(size+0x3c)!=(s32)func_0211519c(arg0,p,(void *)(size+0x3c),0))return 0;
+func_02009008(p+0x3c,p+0x3c+*(u32 *)(p+0x38)*4,size);
+func_02008f74(p+0x3c,0,size);
+func_02006da8(p,(void *)(total+0x3c));
+if(arg2)func_0211528c(arg0,p);
+}
+return p;
+}
+#pragma opt_propagation on
+#pragma opt_cse on
 void func_02115d10(void *arg0, s32 arg1, s32 arg2)
 {
   void *r5;
