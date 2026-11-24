@@ -95,6 +95,34 @@ s32 func_02021344(u32 arg0) {
     return ret;
 }
 
+u32 func_02021368(u8 *data, u32 len) {
+    u32 hash = 0x12345678;
+    u32 i;
+    for (i = 0; i < len; i++) {
+        u32 v = hash + data[i];
+        u32 shift = (v + i) & 0x1f;
+        hash += (v << shift) | (v >> (0x20 - shift));
+    }
+    return hash != 0 ? hash : 0xaaaaaaaa;
+}
+
+void func_020213c4(void *ptr, s32 len, u32 key) {
+    u8 *p = (u8 *)ptr;
+    u8 *end = p + len;
+    u8 *kb = (u8 *)&key;
+    u8 k = kb[0] + kb[1] + kb[2] + kb[3];
+    if (k == 0) {
+        k = 0xaa;
+    }
+    if (p >= end) {
+        return;
+    }
+    do {
+        *p = *p ^ k;
+        p++;
+    } while (p < end);
+}
+
 extern s32 func_0210723c(void);
 extern void func_0210d9e4(u8 *);
 s32 func_02021428(u16 *arg) {
