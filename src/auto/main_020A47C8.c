@@ -47,9 +47,10 @@ void func_020a4f04(void) {
             }
         }
     }
-    if (data_02160134.unk00 != NULL) {
-        func_0210c5dc(data_02160134.unk00);
+    if (data_02160134.unk00 == NULL) {
+        return;
     }
+    func_0210c5dc(data_02160134.unk00);
     data_02160134.unk00 = NULL;
 }
 
