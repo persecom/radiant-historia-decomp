@@ -132,7 +132,8 @@ void *func_0202f5fc(u32 arg0) {
 
 void func_0202f63c(Node_0202f5fc *arg0) {
     void **p = &data_02160088;
-    Node_0202f5fc *node = *(Node_0202f5fc **)p;
+    Node_0202f5fc *base = *(Node_0202f5fc **)p;
+    Node_0202f5fc *node = *(Node_0202f5fc **)base;
     while (node != NULL) {
         if (node->unk10 != NULL && node != arg0) {
             if (arg0->unk8 <= node->unk8) {
