@@ -27,6 +27,76 @@ extern void func_020a6c44(void *, u16);
 extern u16 data_02162908[];
 void func_020a6c04(void *arg0, u16 arg1, u8 arg2);
 void func_020a6c74(void *arg0, u16 arg1, u16 arg2);
+extern char data_0214ff40[];
+extern char data_0214ff58[];
+extern char data_0214ff78[];
+extern char data_0214ff80[];
+void func_020a6888(s32 arg0, s32 arg1, void *arg2) {
+    char buf1[0x20];
+    char buf2[0x20];
+    void *file;
+    u8 *node;
+    u16 val;
+    u16 idx;
+
+    if (arg0 == 0) {
+        func_02005e80(buf1, data_0214ff40, arg1);
+    } else if (arg0 == 1) {
+        func_02005e80(buf1, data_0214ff58, 1);
+    }
+
+    file = func_021092d8(buf1);
+    if (file == NULL) {
+        return;
+    }
+
+    node = *(u8 **)arg2;
+    idx = 1;
+    while (node != NULL) {
+        val = func_02092994(file, 0);
+        if (arg0 == 0) {
+            if (val == 0) {
+                *(u32 *)(node + 0x18) = 0;
+            } else if (val == 1) {
+                *(u32 *)(node + 0x18) = 1;
+            }
+        } else if (arg0 == 1) {
+            val = 0;
+        }
+        func_02109444(file);
+
+        if (arg0 == 0) {
+            func_02005e80(buf2, data_0214ff78, idx);
+        } else if (arg0 == 1) {
+            func_02005e80(buf2, data_0214ff80, idx);
+        }
+
+        if (arg0 == 0) {
+            func_020bdb30((u16)(idx + 0x7f), (u8)val);
+        } else if (arg0 == 1) {
+            s32 id = idx + 0xbf;
+            if (val != 1 && val == 0) {
+                if (func_020bdba0((u16)id) == 1) {
+                    *(u32 *)(node + 0x18) = 1;
+                }
+            }
+            if (*(u32 *)(node + 0x18) != 0) {
+                node[0x20] |= 2;
+            } else {
+                *(u32 *)(node + 0x18) = 1;
+                node[0x20] |= 1;
+            }
+        }
+
+        node = *(u8 **)(node + 0x14);
+        idx++;
+    }
+
+    if (file != NULL) {
+        func_021093b0(file);
+    }
+}
+
 void func_020a6a20(void *arg0) {
     u8 *node = *(u8 **)arg0;
     s32 i = 0;
