@@ -245,7 +245,6 @@ u32 arg1, arg2;
 
 void func_02127904(void *arg0, u32 arg1, s32 arg2) {
     s32 ret;
-    u8 val;
     if (arg0 == NULL || arg1 == 0 || arg2 < 0) {
         func_0212bda8(data_021566c8);
         return;
@@ -258,9 +257,8 @@ void func_02127904(void *arg0, u32 arg1, s32 arg2) {
         func_0212bda8(data_021566f4);
         return;
     }
-    val = 2;
-    *(u8 *)((u8 *)arg0 + 2) = val;
-    func_02128030(arg0);
+    *(u8 *)((u8 *)arg0 + 2) = 2;
+    func_02128030(arg0, ret);
     func_02128880(arg0, 0);
     func_0212a9e8();
 }
