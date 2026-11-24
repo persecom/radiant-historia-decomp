@@ -102,6 +102,12 @@ s32 func_02115630(void *arg0) {
     return 1;
 }
 
+void func_0211566c(void) {
+    u32 ret = func_02009d2c();
+    func_02009b24(1);
+    func_02009cc0(ret);
+}
+
 extern u32 func_02009d2c(void);
 extern void func_02009b24(s32);
 extern void func_02009cc0(u32);
