@@ -1,5 +1,12 @@
 /* 12 functions from 0x020CDCE8 to 0x020CEC8C (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { s16 entries[12][14]; } SpriteTable12_020cdf18;
+typedef struct { s16 entries[11][14]; } SpriteTable11_020cdf18;
+extern const SpriteTable12_020cdf18 data_021447c0;
+extern const SpriteTable11_020cdf18 data_0214468c;
+extern u32 data_02155c3c;
+extern void *func_0210c594(u32, u32);
+extern void func_021167f0(void *, void *);
 typedef struct { s16 field[10]; } DigitSprite;
 extern const DigitSprite data_02144678;
 extern void func_020a3bbc(void);
@@ -26,6 +33,42 @@ extern void func_020a994c(void *);
 extern void func_020a9610(void *, s32, s32, s32, s32, s32);
 extern void func_020a98ac(void *);
 extern void func_020a98f4(void *);
+void func_020cdce8(s32 value, s16 x, s16 y, s16 z, s8 spacing, u16 kind, s32 align, u8 count) {
+ DigitSprite sprite=data_02144678;
+ s32 n=value;
+ s8 width,height;
+ u8 digits=0, i;
+ s16 padding;
+ switch(kind) {
+ case 7: width=6; height=8; break;
+ case 18: case 19: width=8; height=10; break;
+ }
+ for(;;) { if(n==0) break; digits++; n/=10; }
+ if(digits==0) digits=1;
+ func_020a3bbc();
+ padding=count-digits;
+ for(i=0;i<padding;i++) {
+ sprite.field[1]=0; sprite.field[2]=0;
+ sprite.field[3]=width; sprite.field[4]=height;
+ sprite.field[8]=width; sprite.field[9]=height;
+ sprite.field[6]=y; sprite.field[5]=x+(-(width+spacing))*(digits+i);
+ sprite.field[7]=z+101;
+ func_021098ac(&sprite);
+ }
+ *(volatile u32 *)0x40004a4=0x1f00c0;
+ for(i=0;i<digits;i++) {
+ sprite.field[3]=width; sprite.field[4]=height;
+ sprite.field[8]=width; sprite.field[9]=height;
+ sprite.field[2]=0; sprite.field[6]=y;
+ sprite.field[1]=(u8)(value%10)*width;
+ value/=10;
+ if(align) sprite.field[5]=x+i*(-(width+spacing));
+ else { s32 left=(digits-1)*(width+spacing); sprite.field[5]=i*(-(width+spacing))+left+x; }
+ sprite.field[7]=z+101;
+ func_021098ac(&sprite);
+ }
+}
+
 void func_020ce664(s32 arg0, s16 arg1, s16 arg2, s16 arg3, u8 arg4) {
     s32 idx = arg0 * 100;
 
