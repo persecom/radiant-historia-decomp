@@ -30,6 +30,11 @@ void func_02109c54(void) {
     func_0210a38c();
 }
 
+s32 func_0210a38c(u8 *arg0) {
+    *(s32 *)arg0 = -1;
+    return 1;
+}
+
 u32 func_0210a498(u32 *arg) {
     return arg[2];
 }
