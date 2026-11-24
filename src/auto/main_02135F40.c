@@ -326,6 +326,29 @@ s32 func_02136dac(void *arg0, void *arg1) {
     return ret;
 }
 
+extern void func_021369e0(void *, void *);
+extern u8 data_0215c03c[];
+extern u8 data_0215c048[];
+extern u8 data_0215c064[];
+extern u8 data_0215c070[];
+s32 func_02136dd8(void *arg0, void *arg1) {
+    s32 mode = (s32)arg1;
+    if (arg0 == NULL) {
+        func_021369e0(data_0215c03c, data_0215c048);
+        return 0;
+    }
+    if (*(u32 *)((u8 *)arg0 + 4) == 0) {
+        func_021369e0(data_0215c064, data_0215c070);
+        return 0;
+    }
+    if (mode == 1) return *(s32 *)((u8 *)arg0 + 0xc);
+    if (mode == 0) return 0;
+    if (*(void **)((u8 *)arg0 + 0x1c) != NULL) {
+        ((void (*)(s32, s32))(*(u32 *)((u8 *)arg0 + 0x1c)))(*(u32 *)((u8 *)arg0 + 0x20), -3);
+    }
+    return 0;
+}
+
 extern void func_02136e60();
 extern void func_02136e94(void *, void *, s32, s32);
 void func_02136e60(void *arg0, void *arg1, s32 arg2, s32 arg3) {
