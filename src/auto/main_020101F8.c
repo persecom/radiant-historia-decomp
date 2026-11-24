@@ -116,6 +116,19 @@ void func_02010738(u32 arg0) {
     *(volatile u32 *)0x40001a4 = (*(volatile u32 *)0x2fffae0 & ~0x07000000) | 0xa1000000;
 }
 
+void func_0201076c(void) {
+    u32 zero = 0;
+    func_020106b8(0xb8, zero);
+    {
+        u32 v = *(volatile u32 *)0x2fffae0;
+        v = (v & ~0x07000000) | 0xa7000000;
+        *(volatile u32 *)0x40001a4 = v & (zero - 0x2000);
+    }
+    while ((*(volatile u32 *)0x40001a4 & 0x800000) == 0) {
+    }
+    (void)*(volatile u32 *)0x4100010;
+}
+
 void func_0201088c(void) {
     u32 zero = 0;
     u32 mask = zero - 0x2000;
