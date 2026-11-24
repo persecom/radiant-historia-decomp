@@ -194,6 +194,34 @@ void func_0211129c(u8 *arg0, s32 arg1) {
     func_0211111c(arg0, *(s16 *)(arg0 + 0x34), arg1);
 }
 
+extern const u16 data_02144c28[];
+extern u32 func_020c85cc(u8 *);
+void func_021112b0(u8 *arg0, u8 arg1) {
+    u16 vals[6];
+    u16 *dst = vals;
+    u8 *obj;
+    u16 i;
+    vals[0] = data_02144c28[0];
+    vals[1] = data_02144c28[1];
+    vals[2] = data_02144c28[2];
+    vals[3] = data_02144c28[3];
+    vals[4] = data_02144c28[4];
+    vals[5] = data_02144c28[5];
+    for (i = 0; i < 6; i++) {
+        obj = func_020c9c10(*(void **)(arg0 + 0x30), dst[i]);
+        if (obj != NULL) {
+            u32 val;
+            if (((u32 (*)(u8 *))(*(void **)(obj + 0x28)))(obj) == 4) {
+                val = func_020c85cc(obj);
+            } else {
+                val = *(u8 *)(obj + 0x43);
+            }
+            ((void (*)(u8 *, u8))(*(void **)(obj + 0x1c)))(obj, arg1 + (val - *(u8 *)(arg0 + 0x38)));
+        }
+    }
+    *(u8 *)(arg0 + 0x38) = arg1;
+}
+
 void func_02111374(u8 *arg0, u32 arg1) {
     *(u32 *)(arg0 + 0x48) = arg1;
 }
