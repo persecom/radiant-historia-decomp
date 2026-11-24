@@ -70,30 +70,28 @@ void func_02011254(s32 arg0) {
     }
 }
 
-void func_020112a4(s32 arg0) {
-    s32 x = arg0;
+void func_020112a4(u32 arg0) {
     u32 val = func_02008128();
     s32 size;
-    s32 n = 8;
-    data_0215fa2c = (u32)x;
+    data_0215fa2c = arg0;
     if (func_02010ff8() == 0) {
         goto end;
     }
     size = 0x1000;
-    if (x == 0) {
+    if (arg0 == 0) {
         size = 0x5000;
     }
     func_02007504(0xf000, size);
-    if (x != 0) {
+    if (arg0 != 0) {
         func_02006d58();
         func_02006de8();
-        func_020074d4(n);
-        func_020074f4(n);
-        func_02007528(n);
+        func_020074d4(8);
+        func_020074f4(8);
+        func_02007528(8);
     } else {
-        func_020074c4(n);
-        func_020074e4(n);
-        func_02007518(n);
+        func_020074c4(8);
+        func_020074e4(8);
+        func_02007518(8);
     }
 end:
     func_0200813c(val);
@@ -134,22 +132,22 @@ void func_020115c8(u32 arg0, u32 arg1) {
 }
 
 void func_020115f0(u32 arg0, u32 arg1) {
-    s32 ret = 0;
-
-    if ((arg1 & 0x3f) != 0x11) {
+    if ((arg1 & 0x3f) == 0x11) {
+        s32 ret;
+        if (data_0215fa34[3] != 0) {
+            return;
+        }
+        ret = 0;
+        if (data_0215fa34[6] != 0) {
+            ret = ((s32 (*)(void))data_0215fa34[6])();
+        }
+        if (ret != 0) {
+            func_0201164c();
+        }
+        data_0215fa34[3] = 1;
+    } else {
         func_02008414();
-        return;
     }
-    if (data_0215fa34[3] != 0) {
-        return;
-    }
-    if (data_0215fa34[6] != 0) {
-        ret = ((s32 (*)(void))data_0215fa34[6])();
-    }
-    if (ret != 0) {
-        func_0201164c();
-    }
-    data_0215fa34[3] = 1;
 }
 
 void func_0201164c(void) {
@@ -182,10 +180,11 @@ void func_02011700(void *arg0) {
 
 void func_02011804(u8 *a0) {
     u32 a = *(u32 *)(a0 + 0x2c);
+    u32 zero = 0;
     u32 b = *(u32 *)(a0 + 0x4c);
 
-    *(u32 *)(a0 + 0x2c) = 0;
-    *(u32 *)(a0 + 0x4c) = 0;
+    *(u32 *)(a0 + 0x2c) = zero;
+    *(u32 *)(a0 + 0x4c) = zero;
     func_02011ef4(a0);
     *(u32 *)(a0 + 0x2c) = a;
     *(u32 *)(a0 + 0x4c) = b;
