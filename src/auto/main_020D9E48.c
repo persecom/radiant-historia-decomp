@@ -62,6 +62,31 @@ void func_020da0c8(s32 arg0) {
     data_02151fcc = arg0 << 12;
 }
 
+BOOL func_020da4f0(u8 *arg0, s32 arg1) {
+    u8 *p = *(u8 **)(arg0 + 0x118);
+    s32 val;
+    u32 x;
+    u16 r;
+    if (*p != 0) {
+        val = 0;
+    } else {
+        val = *(s16 *)(p + 0xba) / 30 + *(s8 *)(p + 0x36) + arg1 + 5;
+    }
+    if (val >= 75) {
+        val = 74;
+    }
+    x = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
+    data_0216263c[0] = x;
+    r = ((x >> 16) * 100) >> 16;
+    return val >= r;
+}
+
+void func_020da870(u8 *arg0, s32 arg1) {
+    *(u8 *)(arg0 + 0x9c) = 0;
+    func_020dd810(arg0, arg1, 0);
+    *(s32 *)(arg0 + 0xf8) = (*(u32 *)(*(u8 **)(arg0 + 0x118) + 0x78) & 0x10) ? 1 : 0;
+}
+
 void func_020da8a4(u8 *arg0) {
     u8 *p = *(u8 **)(arg0 + 0x118);
     *(s32 *)(arg0 + 0xf8) = (*(u32 *)(p + 0x78) & 0x10) ? 1 : 0;
