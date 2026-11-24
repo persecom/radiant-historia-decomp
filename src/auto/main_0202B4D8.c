@@ -7,6 +7,13 @@ extern u8 *data_02160244;
 extern void func_02026fbc(void);
 extern void func_02027004(void *, void *);
 extern u8 *func_0203222c(void);
+extern u32 data_0214618c[];
+extern void *func_0210c594(s32, void *);
+extern u32 data_02155c3c;
+extern void func_021167ac(void *, s32);
+extern void func_021168f8(void *, void *);
+extern void func_0210c5dc(void *);
+extern void func_0202e874(void *);
 
 void func_0202b694(void) {
     u8 *node;
