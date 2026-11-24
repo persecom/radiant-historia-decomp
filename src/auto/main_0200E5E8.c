@@ -15,6 +15,9 @@ extern s32 func_0200e780(u32, u32, void *, void *);
 extern void func_0200f114(void);
 extern u32 data_02145c18;
 extern s32 func_0200ef5c(void);
+s32 func_0200ef5c(void) {
+    return (*(volatile u16 *)0x4000304 & 1) ? 1 : 0;
+}
 extern u32 data_0215f058[4];
 extern void func_0200893c(u32);
 extern void func_02008998(u32);
@@ -179,6 +182,30 @@ s32 func_0200e914(s32 *arg0, s32 *arg1) {
 
 void func_0200e974(u32 arg0) {
     while (func_0200a6e4(8, arg0, 0) != 0) {}
+}
+
+void func_0200e9a0(void) {
+    u32 i;
+    for (i = 0; i <= 3; i++) {
+        volatile u32 *reg = (volatile u32 *)(0x040000b8 + i * 0xc);
+        data_0215f058[i] = *reg;
+        switch (*reg & 0x38000000) {
+        case 0x28000000:
+            while (*(volatile u32 *)0x040001a4 & 0x80000000) {}
+            break;
+        case 0x18000000:
+        case 0x20000000:
+            func_0200893c(i);
+            break;
+        default:
+            if (*reg & 0x02000000) {
+                func_02008998(i);
+            } else {
+                func_0200893c(i);
+            }
+            break;
+        }
+    }
 }
 
 void func_0200f084(u32 arg0) {
