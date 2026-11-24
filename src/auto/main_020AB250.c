@@ -35,6 +35,24 @@ void *func_020abf3c(void) {
     return p;
 }
 
+s32 func_020abf5c(s32 x,s32 y,s32 w,s32 h,s32 mode){
+s32 right=x+w,bottom=y+h;
+s32 px,py,inside;
+if(mode==0 || mode==1 || mode==3){
+px=data_02162908[0];py=data_02162908[1];
+if(px>=x && px<=right && py>=y && py<=bottom)inside=1;else inside=0;
+if(inside==1){
+if(mode==0){if(data_02162908[2])return 1;}
+else if((data_021628f8&1) && !(data_021628fa[0]&1))return 1;
+}
+}else if(mode==2){
+px=data_02162900[0];py=data_02162900[1];
+if(px>=x && px<=right && py>=y && py<=bottom)inside=1;else inside=0;
+if(inside==1 && !(data_021628f8&1) && (data_021628fa[0]&1) && data_02162908[2]==0)return 1;
+}
+return 0;
+}
+
 void func_020ac094(s32 *arg0, s32 *arg1) {
     *arg0 = data_02162908[0];
     *arg1 = data_02162908[1];
