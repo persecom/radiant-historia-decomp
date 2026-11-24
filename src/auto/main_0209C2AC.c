@@ -51,11 +51,22 @@ void *func_0209c8dc(u32 arg0) {
     return NULL;
 }
 
-void func_0209c920(S_0209c920 *arg0) {
-    if (arg0->flag == 0) return;
-    do {
-        func_0209c94c(arg0);
-    } while (arg0->flag != 0);
+unsigned int func_0209c920(u8 *arg0)
+{
+  u8 *new_var;
+  new_var = arg0 + 0x3c;
+  if ((*((u32 *) new_var)) == 0)
+  {
+    return;
+  }
+  do
+  {
+    if (1)
+    {
+    }
+    func_0209c94c(arg0);
+  }
+  while ((*((u32 *) new_var)) != 0);
 }
 
 u32 func_0209cb98(void) {
