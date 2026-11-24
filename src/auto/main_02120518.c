@@ -61,6 +61,37 @@ void func_02120534(u32 *arg0, u32 arg1) {
     }
 }
 
+extern void func_02008eb4(void *, void *, u32);
+extern void func_02120500(void);
+extern void func_02008e50(void *, volatile void *, u32);
+void func_021205ec(u32 arg0, void *arg1, u32 arg2) {
+    u32 *buf = *(u32 **)(data_02173164 + 0);
+
+    if (buf != NULL) {
+        if (*(volatile u32 *)(data_02173164 + 4) != 0 && buf[0] + 1 + arg2 <= 0xc0) {
+            u32 idx = buf[0];
+            buf[0] = idx + 1;
+            ((u32 *)((u8 *)(*(u32 **)(data_02173164 + 0)) + 4))[idx] = arg0;
+            if (arg2 == 0) {
+                return;
+            }
+            buf = *(u32 **)(data_02173164 + 0);
+            func_02008eb4(arg1, &buf[1] + buf[0], arg2 * 4);
+            (*(u32 **)(data_02173164 + 0))[0] += arg2;
+            return;
+        }
+        if (buf[0] != 0) {
+            func_021204a8();
+        } else if (*(volatile u32 *)(data_02173164 + 4) != 0) {
+            func_02120500();
+        }
+    } else if (*(volatile u32 *)(data_02173164 + 4) != 0) {
+        func_02120500();
+    }
+    *(volatile u32 *)0x04000400 = arg0;
+    func_02008e50(arg1, (volatile void *)0x04000400, arg2 * 4);
+}
+
 void func_021206c8(void *arg0, void *arg1) {
     u8 mtx[0x40];
     func_021204a8();
@@ -315,9 +346,8 @@ got_node:
 }
 
 void func_02121284(void) {
-    Unk_02170460 *p = data_02170460;
-    u8 index = *(u8 *)(p->unk00 + 1);
-    u8 *dict = p->unkd4;
+    u8 index = *(u8 *)(data_02170460->unk00 + 1);
+    u8 *dict = data_02170460->unkd4;
     u8 *node;
     u16 flags;
     u8 *v;
@@ -350,6 +380,6 @@ got_node:
             v += 0x10;
         }
     }
-    p->unke8(v);
+    data_02170460->unke8(v);
 }
 
