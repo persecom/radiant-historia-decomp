@@ -92,6 +92,14 @@ s32 func_02118e8c(s32 *arg0, s32 arg1) {
     return arg0[arg1];
 }
 
+void func_02118e94(u8 *arg0, u16 arg1, u16 arg2) {
+    if (*(s32 *)arg0 == 1) {
+        *(u16 *)(arg0 + 0xc) = arg1;
+        *(u16 *)(arg0 + 0xe) = arg2;
+        *(u16 *)(arg0 + 0x12) |= 8;
+    }
+}
+
 extern void func_02118efc(void *);
 void func_02118eec(u32 *arg0, u32 arg1) {
     *arg0 = arg1;
