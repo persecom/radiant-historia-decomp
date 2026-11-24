@@ -31,3 +31,8 @@ void func_020b38a4(s32 arg0) {
 void func_020b3908(void) {
     func_020b3890();
 }
+
+u8 *func_020b3914(void) {
+    return func_020b3890() + 0x128;
+}
+
