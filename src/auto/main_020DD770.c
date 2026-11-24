@@ -394,7 +394,7 @@ void func_020de29c(void) {
 void *func_020de2a8(u8 *arg0, u16 arg1, u8 arg2) {
     u8 *node = func_020de33c(arg0, arg1, arg2);
     if (node != NULL) {
-        *(u16 *)(node + 0xa) += 1;
+        (*(u16 *)(node + 0xa))++;
         if (*(u16 *)(node + 0xa) >= 99) {
             *(u16 *)(node + 0xa) = 99;
         }
@@ -404,7 +404,7 @@ void *func_020de2a8(u8 *arg0, u16 arg1, u8 arg2) {
         *(u8 *)(node + 0xc) = arg2;
         *(u16 *)(node + 0xa) = 1;
         func_021167f0(arg0, node);
-        *(u16 *)(arg0 + 0xc) += 1;
+        (*(u16 *)(arg0 + 0xc))++;
         if (*(u16 *)(arg0 + 0xc) >= 99) {
             *(u16 *)(arg0 + 0xc) = 99;
         }
