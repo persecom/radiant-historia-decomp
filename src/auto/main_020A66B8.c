@@ -35,6 +35,31 @@ extern char data_0214ff40[];
 extern char data_0214ff58[];
 extern char data_0214ff78[];
 extern char data_0214ff80[];
+s32 func_020a66b8(s32 *a, s32 *b, void *c, void *d, s32 step, s32 start, s32 val, s32 flag) {
+s32 len, pos, x, y, angle;
+s32 pt[2];
+Unk_020a7194 draw;
+angle=func_02002404(b[0]-a[0],b[1]-a[1])>>4;
+x=data_0213a394[angle*2]; y=data_0213a394[angle*2+1];
+len=func_0210c28c(a,b); pos=start;
+if(len<pos) return pos-len;
+draw=data_02143590;
+*(volatile u32*)0x40004a4=0x1f0080;
+*(volatile u32*)0x4000480=0x7fff;
+draw.data[1]=0;draw.data[2]=0;draw.data[3]=4;draw.data[4]=5;
+draw.data[8]=4;draw.data[9]=5;draw.data[10]=val;
+if(flag) func_020a3bbc(25); else func_020a3bbc(24);
+do {
+pt[0]=a[0]+(s32)(((long long)x*pos+0x800)>>12);
+pt[1]=a[1]+(s32)(((long long)y*pos+0x800)>>12);
+draw.data[5]=((pt[0]>>11)-4)>>1;
+draw.data[6]=((pt[1]>>11)-5)>>1;
+if(func_0210c28c(pt,c)>0x4000 && func_0210c28c(pt,d)>0x4000) func_021098ac(&draw);
+pos+=step;
+}while(pos<=len);
+return pos-len;
+}
+
 void func_020a6888(s32 arg0, s32 arg1, void *arg2) {
     char buf1[0x20];
     char buf2[0x20];
