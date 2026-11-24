@@ -336,13 +336,15 @@ s32 func_0210b0c8(u8 *arg0, s32 arg1) {
 }
 
 s32 func_0210b130(u8 *arg0, s32 arg1) {
-    s32 ret = 0;
-    u8 *x = func_02120fe4(arg1, 0);
+    u8 *x;
+    s32 ret;
+    ret = 0;
+    x = func_02120fe4(arg1, 0);
     if (x != NULL) {
         u8 *y = func_02120b8c(data_02162648, x, *(u32 *)(arg0 + 0x54));
         *(u8 **)(arg0 + 0x100) = y;
         func_0211ca28(y, x, *(u32 *)(arg0 + 0x54), *(u32 *)(arg0 + 0x58));
-        func_0211cc30(arg0, y);
+        func_0211cc30(arg0, *(u8 **)(arg0 + 0x100));
         *(u32 *)(arg0 + 0x124) = arg1;
         ret = 1;
     }
