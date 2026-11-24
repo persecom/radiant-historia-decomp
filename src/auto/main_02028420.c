@@ -12,20 +12,19 @@ extern u32 data_0216263c[3];
 extern char data_02146164[];
 extern s32 func_0201fb1c(s32, s32);
 s32 func_02028420(u8 *arg0, u8 *arg1) {
-    s32 zero = 0;
     u8 *src = arg1;
     u8 *self = arg0;
-    u32 mask = 0;
     const char *s;
-    s16 cmd, v1, v2;
+    s16 v1, cmd, v2;
+    u32 mask = 0;
+    s32 is32 = 0;
     u8 *node;
-    s = func_020929f4(src, zero);
-    if (func_02026e9c(2, s, data_02146164) != zero) {
-        u8 **holder = (u8 **)((u8 *)&data_0216007c + 4);
+    s = func_020929f4(src, 0);
+    if (func_02026e9c(2, s, data_02146164) != 0) {
         cmd = func_02026f38((char *)s);
-        func_02092994(src, zero);
-        v1 = (s16)func_02092994(src, zero);
-        v2 = (s16)func_02092994(src, zero);
+        func_02092994(src, 0);
+        v1 = (s16)func_02092994(src, 0);
+        v2 = (s16)func_02092994(src, 0);
         switch (cmd) {
         case 1:
             return func_0202b4d8(2, self);
@@ -37,7 +36,7 @@ s32 func_02028420(u8 *arg0, u8 *arg1) {
             do {
                 if (*(u32 *)(*(u8 **)(node + 0x118) + 0x70) != 0 &&
                     *(u16 *)(node + 0x8c) == v1) {
-                    *(u8 **)(*holder + 0x38) = node;
+                    *(u8 **)(*((u8 **)((u8 *)&data_0216007c + 4)) + 0x38) = node;
                     return (s32)node;
                 }
                 node = *(u8 **)(node + 0x174);
@@ -49,25 +48,25 @@ s32 func_02028420(u8 *arg0, u8 *arg1) {
             do {
                 if (*(u32 *)(*(u8 **)(node + 0x118) + 0x70) != 0 &&
                     *(u16 *)(node + 0x8c) == v1) {
-                    *(u8 **)(*holder + 0x3c) = node;
+                    *(u8 **)(*((u8 **)((u8 *)&data_0216007c + 4)) + 0x3c) = node;
                     return (s32)node;
                 }
                 node = *(u8 **)(node + 0x16c);
             } while (node != NULL);
             break;
         case 5:
-            node = *(u8 **)(*holder + 0x38);
+            node = *(u8 **)(*((u8 **)((u8 *)&data_0216007c + 4)) + 0x38);
             if (node != NULL) return (s32)node;
             break;
         case 6:
-            node = *(u8 **)(*holder + 0x3c);
+            node = *(u8 **)(*((u8 **)((u8 *)&data_0216007c + 4)) + 0x3c);
             if (node != NULL) return (s32)node;
             break;
         case 7:
         case 11: {
             u8 *list = *(u8 **)(*(u8 **)(self + 0x12c) + 0x1c);
             u8 *obj = NULL;
-            s32 found = zero;
+            s32 found = 0;
             u8 *n = NULL;
             if (list == NULL) break;
             n = *(u8 **)(list + 0x18);
@@ -76,14 +75,14 @@ s32 func_02028420(u8 *arg0, u8 *arg1) {
                 if (*(u8 *)(*(u8 **)(obj + 0x118)) == 1 && self != obj) {
                     found = 1;
                     if (cmd == 7) {
-                        *(u8 **)(*holder + 0x38) = obj;
+                        *(u8 **)(*((u8 **)((u8 *)&data_0216007c + 4)) + 0x38) = obj;
                         return (s32)obj;
                     }
                 }
                 n = *(u8 **)(n + 0x18);
             }
             if (found == 1 && obj != NULL) {
-                *(u8 **)(*holder + 0x38) = obj;
+                *(u8 **)(*((u8 **)((u8 *)&data_0216007c + 4)) + 0x38) = obj;
                 return (s32)obj;
             }
             break;
@@ -92,7 +91,7 @@ s32 func_02028420(u8 *arg0, u8 *arg1) {
         case 13: {
             u8 *list = *(u8 **)(*(u8 **)(self + 0x12c) + 0x1c);
             u8 *obj = NULL;
-            s32 found = zero;
+            s32 found = 0;
             u8 *n = NULL;
             if (list == NULL) break;
             n = *(u8 **)(list + 0x1c);
@@ -101,14 +100,14 @@ s32 func_02028420(u8 *arg0, u8 *arg1) {
                 if (*(u8 *)(*(u8 **)(obj + 0x118)) == 1 && self != obj) {
                     found = 1;
                     if (cmd == 9) {
-                        *(u8 **)(*holder + 0x38) = obj;
+                        *(u8 **)(*((u8 **)((u8 *)&data_0216007c + 4)) + 0x38) = obj;
                         return (s32)obj;
                     }
                 }
                 n = *(u8 **)(n + 0x1c);
             }
             if (found == 1 && obj != NULL) {
-                *(u8 **)(*holder + 0x38) = obj;
+                *(u8 **)(*((u8 **)((u8 *)&data_0216007c + 4)) + 0x38) = obj;
                 return (s32)obj;
             }
             break;
@@ -117,7 +116,7 @@ s32 func_02028420(u8 *arg0, u8 *arg1) {
         case 23: {
             u8 *list = *(u8 **)(*(u8 **)(self + 0x12c) + 0x1c);
             u8 *obj = NULL;
-            s32 found = zero;
+            s32 found = 0;
             u8 *n = NULL;
             if (list == NULL) break;
             n = *(u8 **)(list + 0x1c);
@@ -126,7 +125,7 @@ s32 func_02028420(u8 *arg0, u8 *arg1) {
                 if (*(u8 *)(*(u8 **)(obj + 0x118)) == 0) {
                     found = 1;
                     if (cmd == 21) {
-                        *(u8 **)(*holder + 0x3c) = obj;
+                        *(u8 **)(*((u8 **)((u8 *)&data_0216007c + 4)) + 0x3c) = obj;
                         return (s32)obj;
                     }
                 } else if (found == 1) {
@@ -135,7 +134,7 @@ s32 func_02028420(u8 *arg0, u8 *arg1) {
                 n = *(u8 **)(n + 0x1c);
             }
             if (found == 1 && obj != NULL) {
-                *(u8 **)(*holder + 0x3c) = obj;
+                *(u8 **)(*((u8 **)((u8 *)&data_0216007c + 4)) + 0x3c) = obj;
                 return (s32)obj;
             }
             break;
@@ -143,14 +142,14 @@ s32 func_02028420(u8 *arg0, u8 *arg1) {
         case 26:
         case 28: {
             u8 *arr[9] = { NULL };
-            u8 cnt = zero;
+            u8 cnt = 0;
             u32 x;
-            u16 idx;
+            u32 idx;
             node = *(u8 **)(data_02160a6c + 0xb8);
-            mask = zero | (1U << v1);
+            mask |= (1U << v1);
             while (node != NULL) {
                 u8 *info = *(u8 **)(node + 0x118);
-                if (*(u32 *)(info + 0x70) != zero) {
+                if (*(u32 *)(info + 0x70) != 0) {
                     if (cmd == 26) {
                         if (*(u32 *)(info + 0x78) & mask) arr[cnt++] = node;
                     } else if (cmd == 28) {
@@ -159,36 +158,39 @@ s32 func_02028420(u8 *arg0, u8 *arg1) {
                 }
                 node = *(u8 **)(node + 0x174);
             }
-            if (cnt == zero) return 0;
+            if (cnt == 0) return 0;
             if (cnt == 1) {
                 node = arr[0];
-                *(u8 **)(*holder + 0x38) = node;
+                *(u8 **)(*((u8 **)((u8 *)&data_0216007c + 4)) + 0x38) = node;
                 return (s32)node;
             }
             if (cnt < 2 || cnt > 9) break;
             x = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
             data_0216263c[0] = x;
-            idx = (cnt != 0) ? (u16)(((x >> 16) * cnt) >> 16) : (u16)(x >> 16);
+            if (cnt != 0) {
+                x = (x >> 16) * cnt;
+            }
+            idx = (u16)(x >> 16);
             node = arr[idx];
-            *(u8 **)(*holder + 0x38) = node;
+            *(u8 **)(*((u8 **)((u8 *)&data_0216007c + 4)) + 0x38) = node;
             return (s32)node;
         }
         case 27:
         case 29: {
             u8 *arr[3] = { NULL };
-            u8 cnt = 0;
-            s32 is32 = zero;
+            u8 cnt;
             u32 x;
-            u16 idx;
+            u32 idx;
             if (v1 == 32) {
                 is32 = 1;
             } else {
-                mask = zero | (1U << v1);
+                mask |= (1U << v1);
             }
+            cnt = 0;
             node = *(u8 **)(data_02160a6c + 0xac);
             while (node != NULL) {
                 u8 *info = *(u8 **)(node + 0x118);
-                if (*(u32 *)(info + 0x70) != zero) {
+                if (*(u32 *)(info + 0x70) != 0) {
                     if (cmd == 27) {
                         if (is32 == 0) {
                             if (*(u32 *)(info + 0x78) & mask) arr[cnt++] = node;
@@ -208,15 +210,18 @@ s32 func_02028420(u8 *arg0, u8 *arg1) {
             if (cnt == 0) return 0;
             if (cnt == 1) {
                 node = arr[0];
-                *(u8 **)(*holder + 0x38) = node;
+                *(u8 **)(*((u8 **)((u8 *)&data_0216007c + 4)) + 0x38) = node;
                 return (s32)node;
             }
             if (cnt < 2 || cnt > 3) break;
             x = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
             data_0216263c[0] = x;
-            idx = (cnt != 0) ? (u16)(((x >> 16) * cnt) >> 16) : (u16)(x >> 16);
+            if (cnt != 0) {
+                x = (x >> 16) * cnt;
+            }
+            idx = (u16)(x >> 16);
             node = arr[idx];
-            *(u8 **)(*holder + 0x38) = node;
+            *(u8 **)(*((u8 **)((u8 *)&data_0216007c + 4)) + 0x38) = node;
             return (s32)node;
         }
         case 30:
@@ -227,7 +232,7 @@ s32 func_02028420(u8 *arg0, u8 *arg1) {
                 if (*(u32 *)(info + 0x70) != 0) {
                     s32 pct = func_0201fb1c(*(s32 *)(info + 4) * 100, *(s32 *)(info + 8));
                     if (v1 <= pct && pct <= v2) {
-                        *(u8 **)(*holder + 0x38) = node;
+                        *(u8 **)(*((u8 **)((u8 *)&data_0216007c + 4)) + 0x38) = node;
                         return (s32)node;
                     }
                 }
@@ -242,7 +247,7 @@ s32 func_02028420(u8 *arg0, u8 *arg1) {
                 if (*(u32 *)(info + 0x70) != 0) {
                     s32 pct = func_0201fb1c(*(s32 *)(info + 4) * 100, *(s32 *)(info + 8));
                     if (v1 <= pct && pct <= v2) {
-                        *(u8 **)(*holder + 0x3c) = node;
+                        *(u8 **)(*((u8 **)((u8 *)&data_0216007c + 4)) + 0x3c) = node;
                         return (s32)node;
                     }
                 }
@@ -252,8 +257,8 @@ s32 func_02028420(u8 *arg0, u8 *arg1) {
         case 0x20: case 0x22: case 0x24: case 0x26: case 0x28: case 0x2a:
         case 0x2c: case 0x2e: case 0x30: case 0x32: case 0x34: case 0x36:
         case 0x38: case 0x3a: case 0x3c: case 0x3e: {
+            s32 lim = 0;
             u8 *best = NULL;
-            s32 lim = zero;
             if (cmd == 0x20) lim = 1000;
             else if (cmd == 0x24) lim = 1000;
             else if (cmd == 0x28) lim = 1000;
@@ -265,7 +270,7 @@ s32 func_02028420(u8 *arg0, u8 *arg1) {
             node = *(u8 **)(data_02160a6c + 0xb8);
             while (node != NULL) {
                 u8 *info = *(u8 **)(node + 0x118);
-                if (*(u32 *)(info + 0x70) != zero) {
+                if (*(u32 *)(info + 0x70) != 0) {
                     switch (cmd) {
                     case 0x20: if (*(s32 *)(info + 4) <= lim) { lim = *(s32 *)(info + 4); best = node; } break;
                     case 0x22: if (*(s32 *)(info + 4) >= lim) { lim = *(s32 *)(info + 4); best = node; } break;
@@ -289,14 +294,14 @@ s32 func_02028420(u8 *arg0, u8 *arg1) {
                 node = *(u8 **)(node + 0x174);
             }
             if (best == NULL) break;
-            *(u8 **)(*holder + 0x38) = best;
+            *(u8 **)(*((u8 **)((u8 *)&data_0216007c + 4)) + 0x38) = best;
             return (s32)best;
         }
         case 0x21: case 0x23: case 0x25: case 0x27: case 0x29: case 0x2b:
         case 0x2d: case 0x2f: case 0x31: case 0x33: case 0x35: case 0x37:
         case 0x39: case 0x3b: case 0x3d: case 0x3f: {
+            s32 lim = 0;
             u8 *best = NULL;
-            s32 lim = zero;
             if (cmd == 0x21) lim = 1000;
             else if (cmd == 0x25) lim = 1000;
             else if (cmd == 0x29) lim = 1000;
@@ -308,7 +313,7 @@ s32 func_02028420(u8 *arg0, u8 *arg1) {
             node = *(u8 **)(data_02160a6c + 0xac);
             while (node != NULL) {
                 u8 *info = *(u8 **)(node + 0x118);
-                if (*(u32 *)(info + 0x70) != zero) {
+                if (*(u32 *)(info + 0x70) != 0) {
                     switch (cmd) {
                     case 0x21: if (*(s32 *)(info + 4) <= lim) { lim = *(s32 *)(info + 4); best = node; } break;
                     case 0x23: if (*(s32 *)(info + 4) >= lim) { lim = *(s32 *)(info + 4); best = node; } break;
@@ -332,7 +337,7 @@ s32 func_02028420(u8 *arg0, u8 *arg1) {
                 node = *(u8 **)(node + 0x16c);
             }
             if (best == NULL) break;
-            *(u8 **)(*holder + 0x3c) = best;
+            *(u8 **)(*((u8 **)((u8 *)&data_0216007c + 4)) + 0x3c) = best;
             return (s32)best;
         }
         case 0x40: {
@@ -340,9 +345,9 @@ s32 func_02028420(u8 *arg0, u8 *arg1) {
             u8 *obj = *(u8 **)(p + 0x14);
             if (obj == NULL) break;
             if (*(u8 *)(*(u8 **)(obj + 0x118)) == 0) {
-                *(u8 **)(*holder + 0x3c) = obj;
+                *(u8 **)(*((u8 **)((u8 *)&data_0216007c + 4)) + 0x3c) = obj;
             } else if (*(u8 *)(*(u8 **)(obj + 0x118)) == 1) {
-                *(u8 **)(*holder + 0x38) = obj;
+                *(u8 **)(*((u8 **)((u8 *)&data_0216007c + 4)) + 0x38) = obj;
             }
             return (s32)*(u8 **)(p + 0x14);
         }
@@ -368,7 +373,7 @@ s32 func_02028420(u8 *arg0, u8 *arg1) {
             node = *(u8 **)(data_02160a6c + 0xb8);
             while (node != NULL) {
                 u8 *info = *(u8 **)(node + 0x118);
-                if (*(u32 *)(info + 0x70) != zero && self != node) {
+                if (*(u32 *)(info + 0x70) != 0 && self != node) {
                     s32 val = *(s32 *)(info + 4);
                     if (lim >= val) { lim = val; best = node; }
                 }
@@ -378,11 +383,11 @@ s32 func_02028420(u8 *arg0, u8 *arg1) {
         }
         case 0x44: {
             u8 *best = NULL;
-            s32 lim = zero;
+            s32 lim = 0;
             node = *(u8 **)(data_02160a6c + 0xb8);
             while (node != NULL) {
                 u8 *info = *(u8 **)(node + 0x118);
-                if (*(u32 *)(info + 0x70) != zero && self != node) {
+                if (*(u32 *)(info + 0x70) != 0 && self != node) {
                     s32 val = *(s32 *)(info + 4);
                     if (lim <= val) { lim = val; best = node; }
                 }
@@ -396,7 +401,7 @@ s32 func_02028420(u8 *arg0, u8 *arg1) {
             node = *(u8 **)(data_02160a6c + 0xac);
             while (node != NULL) {
                 u8 *info = *(u8 **)(node + 0x118);
-                if (*(u32 *)(info + 0x70) != zero) {
+                if (*(u32 *)(info + 0x70) != 0) {
                     s32 val = *(s16 *)(info + 0x5a);
                     if (lim <= val) { lim = val; best = node; }
                 }
@@ -406,11 +411,11 @@ s32 func_02028420(u8 *arg0, u8 *arg1) {
         }
         case 0x46: {
             u8 *best = NULL;
-            s32 lim = zero;
+            s32 lim = 0;
             node = *(u8 **)(data_02160a6c + 0xac);
             while (node != NULL) {
                 u8 *info = *(u8 **)(node + 0x118);
-                if (*(u32 *)(info + 0x70) != zero) {
+                if (*(u32 *)(info + 0x70) != 0) {
                     s32 val = *(s16 *)(info + 0x5a);
                     if (lim <= val) { lim = val; best = node; }
                 }
