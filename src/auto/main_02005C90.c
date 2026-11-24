@@ -12,6 +12,7 @@ extern void func_02012e3c(void);
 extern void func_02005d70(void);
 extern s32 func_02005c0c(u16, void *, void (*)(void), BOOL);
 extern s32 func_02005d0c(u16);
+extern void func_02005ea8(s32, const char *, char *);
 s32 func_02005c90(u16 arg0, void *arg1, void (*arg2)(void), BOOL arg3) {
     u32 r5;
     s32 r4;
@@ -81,6 +82,38 @@ void func_02005dd8(void) {
 
 u16 func_02005df0(u8 *arg0) {
     return *(u16 *)(arg0 + 4);
+}
+
+s32 func_02005df8(void) {
+    volatile u32 *p = (volatile u32 *)0x02ffffb0;
+    u32 lz;
+    s32 id;
+
+    lz = __clz(*p);
+    if (lz != 32) {
+        id = 0x40;
+    } else {
+        p++;
+        lz = __clz(*p);
+        if (lz == 32) {
+            return -3;
+        }
+        id = 0x60;
+    }
+    id += lz;
+    *p &= ~(0x80000000U >> lz);
+    return id;
+}
+
+void func_02005e50(s32 id) {
+    volatile u32 *p = (volatile u32 *)0x02ffffb0;
+    if (id >= 0x60) {
+        p++;
+        id -= 0x60;
+    } else {
+        id -= 0x40;
+    }
+    *p |= (0x80000000U >> id);
 }
 
 void func_02005ec0(void) {
