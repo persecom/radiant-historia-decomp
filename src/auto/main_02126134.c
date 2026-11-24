@@ -493,3 +493,7 @@ s32 func_02126c88(s8 *arg0) {
     return *arg0;
 }
 
+u32 func_02126c90(void *arg0) {
+    return *(u32 *)((u8 *)arg0 + 0x1c);
+}
+
