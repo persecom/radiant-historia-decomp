@@ -78,6 +78,27 @@ void func_020a4898(u32 arg0) {
     *(u32 *)(ptr + 0x1c) = (u16)(*(u32 *)(ptr + arg0 * 4 + 0x14)) & 0x1fffffff;
 }
 
+void func_020a48d0(u32 arg0, s32 arg1, s16 arg2, s16 arg3, s16 arg4, s32 arg5, s32 arg6) {
+    UnkStruct_020a48d0 sp = data_02143350;
+    s32 i;
+
+    sp.unka = arg2;
+    sp.unkc = arg3;
+    sp.unke = arg4;
+
+    for (i = 0; i < arg1; i++) {
+        sp.unk2 = (arg0 % 10) * 6;
+        func_021098ac(&sp);
+        if (arg0 != 0) {
+            arg0 /= 10;
+        }
+        if (arg6 == 0 && arg0 == 0) {
+            return;
+        }
+        sp.unka -= (s16)arg5;
+    }
+}
+
 void func_020a4f04(void) {
     if (data_02160134.unk00 == NULL) {
         return;
