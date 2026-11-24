@@ -49,6 +49,9 @@ s32 func_02002080(s32 arg0, u32 arg1) {
     return *(volatile s32 *)0x040002a0;
 }
 
+void func_02002594(void) {
+}
+
 extern u16 data_02145ba0;
 extern void func_02002028(u32);
 extern s32 func_02001ff4(void);
