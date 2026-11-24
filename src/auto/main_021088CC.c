@@ -257,3 +257,12 @@ void func_02109828(void) {
     *(u32 *)(data_02162510 + 0x44) = 0x8000;
 }
 
+void func_02109884(u32 arg0, u32 arg1) {
+    if (arg0 & 1) {
+        *(u32 *)(data_02162510 + 0x34) = arg1 << 0xc;
+    }
+    if (arg0 & 2) {
+        *(u32 *)(data_02162510 + 0x44) = arg1 << 0xc;
+    }
+}
+
