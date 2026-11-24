@@ -133,3 +133,8 @@ void func_020be2d8(s16 *arg0, s16 *arg1) {
     *arg1 = (*arg1 - 0x28) / 32;
 }
 
+void func_020be30c(s16 *arg0, s16 *arg1) {
+    *arg0 = (*arg0 << 5) + 0x38;
+    *arg1 = (*arg1 << 5) + 0x28;
+}
+
