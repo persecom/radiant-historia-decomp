@@ -419,3 +419,10 @@ s32 func_0210d548(void) {
 void func_0210d6a4(void) {
 }
 
+void func_0210d6a8(void *arg0, s32 arg1) {
+    if (!(*(s32 (**)(void *, s32))(data_02155c7c + 4))(arg0, arg1)) {
+        return;
+    }
+    func_02113ce8(arg0, data_02155c7c[0]);
+}
+
