@@ -335,6 +335,23 @@ BOOL func_02107514(u8 *arg0, char *arg1) {
     return 1;
 }
 
+BOOL func_02107594(u8 *arg0, char *arg1, char *arg2, char *arg3) {
+    if (!func_02107438(arg0, arg1)) {
+        return 0;
+    }
+    if (arg2 != NULL) {
+        if (!func_02107494(arg0, arg2)) {
+            return 0;
+        }
+    }
+    if (arg3 != NULL) {
+        if (!func_02107514(arg0, arg3)) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
 void func_02107774(void) {
     u32 *p = data_02161070[0];
     if (p != NULL) {
