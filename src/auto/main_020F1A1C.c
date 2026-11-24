@@ -51,7 +51,7 @@ extern u8 data_02151dd8[8];
 extern s32 data_02155c3c;
 extern void func_02005e80(char *, const char *, ...);
 extern s32 func_0210ab44(void **, char *, s32 *);
-extern void func_020f242c(void *, void *);
+extern BOOL func_020f242c(void *, void *);
 extern s32 func_0210aee0(void *, void *, s32, s32);
 extern void **func_0210c594(s32, s32);
 extern void func_0210a4a0(void);
