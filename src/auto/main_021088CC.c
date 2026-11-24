@@ -417,4 +417,18 @@ s32 func_021090f4(u32 arg0, s32 arg1) {
     }
 }
 void func_0210950c(u32 arg0) {
+    Unk02109444 *s = (Unk02109444 *)arg0;
+    u8 *p = s->buf;
+    s->cur = p;
+    if (func_02109f84(p) != 0) {
+        return;
+    }
+    while (*p != 0) {
+        if (*p == ',' || *p == '\r') {
+            *p = 0;
+        } else if ((*p >= 0x81 && *p <= 0x9f) || (*p >= 0xe0 && *p <= 0xfc)) {
+            p++;
+        }
+        p++;
+    }
 }
