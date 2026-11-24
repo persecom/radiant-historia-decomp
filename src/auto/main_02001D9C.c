@@ -1,6 +1,10 @@
 /* 40 functions from 0x02001D9C to 0x02002D9C (main), found by ds-decomp. */
 #include "common.h"
 
+typedef struct {
+    s32 x, y, z;
+} Vec3;
+
 void func_02002058(s32 arg0, s32 arg1);
 void func_02002028(u32 arg0);
 s32 func_02001ff4(void);
