@@ -22,6 +22,14 @@ extern void func_021168f8(void *, void *);
 extern void func_02113d10(s32, s32, s32);
 extern void func_02113b58(void *, s32);
 extern void func_02113c18(void *);
+
+extern u8 data_021628ec[];
+extern u16 data_021626b0;
+extern u8 *data_02160204;
+extern void func_02008250(u32);
+extern void func_020081c0(void);
+extern s32 func_02008128(void);
+extern void func_0200813c(s32);
 void func_0210d6d8(s32 arg0, s32 arg1, s32 arg2) {
     func_02113d10(arg0, arg1, arg2 >> data_02162834[0]);
 }
