@@ -1,5 +1,7 @@
 /* 19 functions from 0x020BF330 to 0x020C0284 (main), found by ds-decomp. */
 #include "common.h"
+extern u32 data_0216263c[3];
+#define RH_RANDOM(n) ((u16)((((data_0216263c[0] = data_0216263c[1] * data_0216263c[0] + data_0216263c[2]) >> 16) * (n)) >> 16))
 extern u8 *data_02160244;
 extern u8 *func_020ec950(s32);
 extern void func_020ec548(void *);
