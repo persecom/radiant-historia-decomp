@@ -500,6 +500,11 @@ u32 func_02126c90(void *arg0) {
     return *(u32 *)((u8 *)arg0 + 0x1c);
 }
 
+void func_02126c98(void *arg0, s32 arg1) {
+    *(s32 *)((u8 *)arg0 + 0x1c) = arg1;
+    *(s32 *)((u8 *)arg0 + 0x20) = func_0212716c((s32)arg0, arg1);
+}
+
 void func_02126e50(void *arg0, u32 arg1, u32 arg2, u32 arg3) {
     *(u32 *)((u8 *)arg0 + 0x2c) = arg1;
     *(u32 *)((u8 *)arg0 + 0x30) = arg2;
