@@ -96,6 +96,56 @@ void func_020922bc(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s16 arg4, s16 arg5, s
     func_02092194(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, 5, 5);
 }
 
+void func_02092814(s32 arg0, s32 arg1, s16 x, s16 y, s16 w, s16 h, s16 z) {
+    Unk_02092194 s1 = data_021412ec;
+    Unk_02092194 s0 = data_021413dc;
+
+    func_020a3bbc(arg0);
+    s1.data[7] = z;
+    s0.data[7] = z;
+    if (arg1 != 2) {
+        s1.data[6] = y;
+        s1.data[5] = x + w;
+        func_021098ac(&s1);
+
+        s0.data[5] = x + w;
+        s0.data[6] = y + 8;
+        s0.data[8] = 8;
+        s0.data[9] = h - 0x10;
+        func_021098ac(&s0);
+
+        s1.data[6] = (y + h) - 8;
+        s1.data[4] = -8;
+        func_021098ac(&s1);
+    }
+    if (arg1 != 0) {
+        s1.data[3] = 8;
+        s1.data[4] = 8;
+        s1.data[5] = x;
+        s1.data[6] = y;
+        func_021098ac(&s1);
+
+        s0.data[5] = x;
+        s0.data[6] = y + 8;
+        s0.data[8] = 8;
+        s0.data[9] = h - 0x10;
+        func_021098ac(&s0);
+
+        s1.data[6] = (y + h) - 8;
+        s1.data[4] = -8;
+        func_021098ac(&s1);
+    }
+    s0.data[5] = x + 8;
+    s0.data[6] = y;
+    s0.data[8] = w - 8;
+    s0.data[9] = h;
+    if (arg1 == 0) {
+        s0.data[5] = x;
+        s0.data[8] = w;
+    }
+    func_021098ac(&s0);
+}
+
 s32 func_02092994(u8 *arg0, s32 arg1) {
     const char *r4 = *(const char **)(arg0 + 8);
     if (!func_021093f0(arg0)) {
