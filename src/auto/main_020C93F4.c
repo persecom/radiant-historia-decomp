@@ -82,7 +82,7 @@ void func_020c94dc(u8 *arg0) {
 }
 
 void func_020c9590(u8 *arg0) {
-    s16 v = func_020c9808();
+    s16 v = ((u16 (*)(u8 *))func_020c9808)(arg0);
     s16 diff = (s16)(*(u16 *)(arg0 + 0x42) - *(u16 *)(arg0 + 0x40));
     u8 *obj1 = func_020c9c10(*(void **)(arg0 + 0x30), 1);
     s16 v1 = *(s16 *)(obj1 + 0x3e);
@@ -193,7 +193,7 @@ u8 *func_020c9b24(u8 *arg0, s32 arg1, s32 arg2) {
 }
 
 u32 func_020c9b64(u8 *arg0) {
-    u32 ret = 0;
+    register u32 ret = 0;
     u16 count = *(u16 *)(arg0 + 4);
     u16 i;
     for (i = 0; i < count; i++) {
@@ -206,7 +206,7 @@ u32 func_020c9b64(u8 *arg0) {
 }
 
 u32 func_020c9bb8(u8 *arg0) {
-    u32 ret = 0;
+    register u32 ret = 0;
     u16 count = *(u16 *)(arg0 + 4);
     u16 i;
     for (i = 0; i < count; i++) {
