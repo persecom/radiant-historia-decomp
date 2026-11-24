@@ -227,6 +227,64 @@ void func_02120c34(u8 *arg0, u32 arg1) {
     }
 }
 
+void *func_02120c74(u8 *dict, u32 *name) {
+    u32 i;
+    u32 *entry;
+    if (name == NULL) return NULL;
+    if (dict[1] < 16) {
+        u32 a = name[0], b = name[1], c = name[2], d = name[3];
+        i = 0;
+        if (i < (u32)dict[1]) do {
+            if (dict != NULL && i < *(volatile u8 *)(dict + 1)) {
+                u8 *p = dict + *(u16 *)(dict + 6);
+                entry = (u32 *)(p + *(u16 *)(p + 2) + i * 16);
+            } else {
+                entry = NULL;
+            }
+            if (entry[0] == a && entry[1] == b && entry[2] == c && entry[3] == d) {
+                if (dict != NULL && i < dict[1]) {
+                    u8 *p = dict + *(u16 *)(dict + 6);
+                    return p + 4 + *(u16 *)p * i;
+                }
+                return NULL;
+            }
+            i++;
+        } while (i < *(volatile u8 *)(dict + 1));
+    } else {
+        u8 *nodes = dict + 8;
+        u8 *prev;
+        u32 idx = nodes[1];
+        u8 *node;
+        s32 bit;
+        if (idx != 0) {
+            node = nodes + idx * 4;
+            bit = node[0];
+            prev = nodes;
+            while (prev[0] > (u32)bit) {
+                idx = node[1 + ((name[bit >> 5] >> (bit & 31)) & 1)];
+                prev = node;
+                node = nodes + idx * 4;
+                bit = node[0];
+            }
+            i = node[3];
+            if (dict != NULL && i < dict[1]) {
+                u8 *p = dict + *(u16 *)(dict + 6);
+                entry = (u32 *)(p + *(u16 *)(p + 2) + i * 16);
+            } else {
+                entry = NULL;
+            }
+            if (entry[0] == name[0] && entry[1] == name[1] && entry[2] == name[2] && entry[3] == name[3]) {
+                if (dict != NULL && i < dict[1]) {
+                    u8 *p = dict + *(u16 *)(dict + 6);
+                    return p + 4 + *(u16 *)p * i;
+                }
+                return NULL;
+            }
+        }
+    }
+    return NULL;
+}
+
 s32 func_02120e30(u8 *dict, u32 *name) {
 u32 i;
 u32 *entry;
