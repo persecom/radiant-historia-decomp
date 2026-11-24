@@ -49,6 +49,20 @@ void func_0202f41c(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, u8 arg5, u8
     func_021167f0(data_02160084, node);
 }
 
+void *func_0202f484(s32 arg0, s32 arg1) {
+    u8 *node = *(u8 **)data_02160084;
+    while (node != NULL) {
+        if (arg0 == 0 && *(s32 *)(node + 0) == arg1) {
+            return node;
+        }
+        if (arg0 == 1 && *(s32 *)(node + 4) == arg1) {
+            return node;
+        }
+        node = *(u8 **)(node + 0x18);
+    }
+    return NULL;
+}
+
 void func_0202f4d8(void *arg0) {
     void **p = &data_02160084;
     func_021168f8(*p, arg0);
@@ -56,3 +70,12 @@ void func_0202f4d8(void *arg0) {
         func_0210c5dc(arg0);
     }
 }
+
+void *func_0202fa9c(void) {
+    u8 *ptr = NULL;
+    ptr = (u8 *)func_0210c594(0xcc, data_02155c3c);
+    *(void **)(ptr + 0x60) = func_020224cc();
+    func_021167ac(ptr + 0xc0, 8);
+    return ptr;
+}
+
