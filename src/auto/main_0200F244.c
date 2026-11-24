@@ -218,7 +218,7 @@ extern void *data_0215f640[];
 extern void func_02008e68(s32, void *, s32);
 extern void func_02006dc4(void *, s32);
 extern void func_0200a674(s32, void *);
-extern void func_0200fedc(void);
+extern void func_0200fedc(u32, u32, u32);
 BOOL func_0200fba4(void) {
     return (*(u32 *)(data_0215f120 + 4) & 4) == 0;
 }
@@ -257,6 +257,16 @@ void func_0200fc34(u32 arg0, u32 arg1) {
         node = *prev;
     }
     func_0200813c(irq);
+}
+
+void func_0200fd18(void) {
+    u32 token = func_02008128();
+    if (*(u32 *)(data_0215f120 + 4) & 8) {
+        func_0200813c(token);
+        func_0200fca4(*(void (**)(void *))(data_0215f120 + 0x4e8), 0);
+    } else {
+        func_02006510(NULL);
+    }
 }
 
 void func_0200fe64(u32 arg0, u32 arg1, u32 arg2) {
