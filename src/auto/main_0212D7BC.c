@@ -470,11 +470,11 @@ void func_0212e634(void) {
     data_021744d8[1]++;
 }
 
-u16 func_0212e670(void) {
+void func_0212e670(void) {
     if (--data_021744d8[1] == 0) {
-        u16 ime = *(volatile u16 *)0x04000208;
-        *(volatile u16 *)0x04000208 = data_021744d8[2];
-        return ime;
+        u32 saved = ((volatile u32 *)data_021744d8)[2];
+        (void)*(volatile u16 *)0x04000208;
+        *(volatile u16 *)0x04000208 = saved;
     }
 }
 
