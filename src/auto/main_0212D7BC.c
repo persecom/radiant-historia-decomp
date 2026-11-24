@@ -176,6 +176,14 @@ void func_0212dc58(void *arg0) {
     *(u8 *)((u8 *)arg0 + 0x4b) = 1;
 }
 
+s32 func_0212dc94(void *arg0) {
+    s32 ret;
+    func_0212e5a0();
+    ret = func_0212dcb8(arg0);
+    func_0212e5ac();
+    return ret;
+}
+
 void func_0212dce4(void *arg0) {
     func_0212e5a0();
     func_0212dd00(arg0);
