@@ -243,6 +243,39 @@ void *func_0210a4cc(void) {
     return p;
 }
 
+s32 func_0210a4fc(void *arg0, s32 arg1, s32 arg2) {
+u32 *p=arg0; void *allocation; u32 offset; u32 *info; u32 unused; u8 name[256];
+if(arg2==0) {
+func_02005e80(name,data_02155be0,arg1);
+allocation=func_0210aad0(&info,name,&unused);
+if(!allocation) return 0;
+func_02006dc4((void *)info[5],info[4]);
+offset=0;
+p[9]=func_0210f170(name,info[4],offset,offset);
+if(!p[9]) { if(allocation) func_0210c5dc(allocation); return 0; }
+p[10]=(u16)p[9]*8;
+func_0210e3dc(p[10]);
+if(info[2]==0) {
+func_0211883c(info,p[10],offset,p);
+if(func_021185c0(p,offset)) offset=func_021185b8(p,offset);
+p[11]=(offset>>3)|(p[5]<<26)|0x40000000|(p[3]<<20)|(p[4]<<23)|(p[7]<<29);
+} else func_02118624(info,p[10],offset,p);
+} else {
+u32 *next;
+func_02005e80(name,data_02155be8,arg1);
+allocation=func_0210aca0(&info,name,&unused);
+if(!allocation) return 0;
+func_02006dc4((void *)info[5],info[4]);
+next=(u32 *)data_02162610;
+if(arg2!=1) next=(u32 *)data_02162614;
+if(info[2]==0) func_0211883c(info,*next,arg2,p);
+else func_02118624(info,*next,arg2,p);
+*next+=info[4];
+}
+if(allocation) func_0210c5dc(allocation);
+return 1;
+}
+
 extern u8 data_02155bf0[8];
 extern u8 data_02155bf8[8];
 extern void *func_0210eb98(void *, s32);
