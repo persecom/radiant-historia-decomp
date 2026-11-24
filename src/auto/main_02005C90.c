@@ -14,6 +14,8 @@ extern s32 func_02005c0c(u16, void *, void (*)(void), BOOL);
 extern s32 func_02005d0c(u16);
 extern void func_02005ea8(s32, const char *, char *);
 extern u32 data_0215cde4[];
+extern u32 data_0215ce00[];
+extern u8 *func_020065f0(void);
 extern void func_02007a78(u32 *);
 extern void func_02007bb0(void *, u64, void (*)(void *), void **);
 extern u16 func_020081e0(void);
