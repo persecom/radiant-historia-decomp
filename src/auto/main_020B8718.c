@@ -297,6 +297,48 @@ val=(*(s32 *)(p+0x5c)*60)/100;
 return *(s32 *)(p+0x5c)>=0x800;
 }
 
+void func_020b8ef4(void) {
+s32 one=1;
+u8 *p=data_021601ec;
+u8 *obj;
+s32 accept=0;
+s32 cancel=0;
+u8 *button;
+u8 a,b;
+Unk_020b8ef4Entry *entry;
+func_020b8dbc();
+obj=func_020c9c10(*(void **)(p+0x4c),2);
+if(func_02112038(obj)) {
+a=p[0x99];b=p[0x9a];
+p[0x9a]=func_020c94a8(*(void **)(obj+0x6c));
+p[0x99]=func_020c94b0(*(void **)(obj+0x6c));
+func_020b91a8();
+if(a!=p[0x99] || b!=p[0x9a]) func_0210d27c(2);
+}
+entry=func_02112048(obj);
+if(data_021626a8&1) func_020c7090(func_020c9c10(*(void **)(p+0x4c),3));
+if(data_021626a8&2) func_020c7090(func_020c9c10(*(void **)(p+0x4c),1));
+button=func_020c9c10(*(void **)(p+0x4c),one);
+if(!((s32 (*)(void *))(*(void **)(button+0x18)))(button) && !func_020c73d8(button)) cancel=one;
+button=func_020c9c10(*(void **)(p+0x4c),3);
+if(!((s32 (*)(void *))(*(void **)(button+0x18)))(button) && !func_020c73d8(button)) accept=1;
+if(func_021120a4(func_020c9c10(*(void **)(p+0x4c),2))) accept=1;
+if(cancel) {
+if(*(u16 *)(data_02160204+0x104)&2) {cancel=0;func_0210d27c(7);} else func_0210d27c(5);
+if(cancel) *(s32 *)(p+0x40)=7;
+}
+if(!accept) return;
+if(entry) {
+*(Unk_020b8ef4Entry *)(p+0xa0)=*entry;
+func_0210d27c(11);
+if(func_020ba5d4()) {func_020ba604();func_020b8aac();return;}
+*(s32 *)(p+0x40)=one;
+func_020b8aac();
+obj=func_020c9c10(*(void **)(p+0x4c),2);
+*(u16 *)(p+0x9c)=func_020c94a0(*(void **)(obj+0x6c));
+} else func_0210d27c(7);
+}
+
 void func_020b90f0(void) {
     void *obj;
     u8 *item = NULL;
