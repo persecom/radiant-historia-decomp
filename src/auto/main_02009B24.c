@@ -120,7 +120,8 @@ extern s32 func_0200a6c0(s32, s32);
 extern void func_020081a4(s32);
 extern s32 func_0200a6e4(s32, s32, s32);
 void func_02009fac(s32 arg0) {
-    data_0215ec80[arg0 * 12 + 8]++;
+    u8 *p = data_0215ec80 + arg0 * 12;
+    p[8]++;
 }
 
 s32 func_0200a4f4(u8 *arg0) {
