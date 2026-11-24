@@ -156,6 +156,15 @@ void func_020c87f8(void *arg0) {
     }
 }
 
+s32 func_020c885c(u8 *arg0) {
+    if (func_020c73c0(arg0) == 0) {
+        return 2;
+    }
+    func_020c786c(arg0);
+    func_020c9b64(*(void **)(arg0 + 0x54));
+    return 0;
+}
+
 void func_020c888c(u8 *arg0, s32 arg1, s32 arg2) {
     u8 *obj;
     s16 y;
