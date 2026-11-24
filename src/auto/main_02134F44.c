@@ -293,10 +293,6 @@ u8 *func_02135d9c(s32 arg0, s32 arg1, u16 arg2) {
     return entry;
 }
 
-extern void func_02016e88(void *, void *, s32);
-extern void func_02135d4c(s32, s32);
-extern void func_02135d24(u16);
-extern s32 data_02175ab4;
 void func_02135f0c(void *arg0, u16 *arg1, u16 *arg2) {
     u16 ime = *(volatile u16 *)0x04000208;
     *(volatile u16 *)0x04000208 = 0;
