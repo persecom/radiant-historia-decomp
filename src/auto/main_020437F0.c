@@ -1,5 +1,8 @@
 /* 15 functions from 0x020437F0 to 0x020447A4 (main), found by ds-decomp. */
 #include "common.h"
+extern u16 data_021626a8,data_021626a6;
+extern void func_020447a4(void *);
+extern void func_02046794(void);
 
 extern u8 *data_021600bc;
 extern u8 *data_02160204;
@@ -121,6 +124,70 @@ u16 func_02043964(u16 arg0) {
         return *(u16 *)(*(u8 **)(node + 0xb0) + 8);
     }
     return 0;
+}
+
+extern u32 data_02146324[4];
+extern u16 data_02160098;
+extern void func_0207af60(void);
+extern void func_0207c2dc(void);
+u32 func_020439a8(void) {
+    u8 *node, *pos;
+    u32 ret = 0;
+    s32 one = 1;
+    s32 zero = 0;
+
+    pos = *(u8 **)(*(u8 **)(data_021600a8 + 4) + 0x68);
+    node = *(u8 **)(data_021600bc + 0x88);
+    if (node == NULL) {
+        goto end;
+    }
+    do {
+        s32 z = *(s32 *)(pos + 8);
+        s32 x = *(s32 *)(pos + 0);
+        s32 hit;
+        if (x >= *(s32 *)(node + 0) && x <= *(s32 *)(node + 8) &&
+            z >= *(s32 *)(node + 4) && z <= *(s32 *)(node + 0xc)) {
+            hit = 1;
+        } else {
+            hit = 0;
+        }
+        if (hit != 0) {
+            u16 val = *(u16 *)(node + 0x14);
+            if (val != 0 && val != *(u16 *)(data_02160204 + 0x72)) {
+                *(u16 *)(data_02160204 + 0x72) = val;
+                data_02146324[3] = 2;
+                ret = one;
+                *(u32 *)(*(u8 **)(data_021600a8 + 4) + 0xc) = one;
+                *(u32 *)(*(u8 **)(data_021600a8 + 4) + 0x10) = zero;
+                *(u16 *)(data_02160204 + 0x74) = zero;
+                *(u16 *)(data_02160204 + 0x76) = zero;
+                *(u8 *)(data_02160204 + 0x7a) = zero;
+                *(u8 *)(data_02160204 + 0x85) = one;
+                goto call;
+            } else {
+                if (*(u16 *)(data_02160204 + 0x72) == 500 || val != 0) {
+                    goto stores;
+                }
+                ret = 1;
+                data_02146324[3] = 4;
+                *(u32 *)(*(u8 **)(data_021600a8 + 4) + 0xc) = ret;
+call:
+                func_0207af60();
+stores:
+                *(u16 *)(data_02160204 + 0x74) = *(u32 *)(node + 0x18);
+                *(u16 *)(data_02160204 + 0x76) = *(u32 *)(node + 0x1c);
+                data_02160098 = *(u16 *)(node + 0x12);
+                *(u8 *)(data_02160204 + 0x7a) = zero;
+                func_0207c2dc();
+            }
+        }
+        node = *(u8 **)(node + 0x28);
+    } while (node != NULL);
+end:
+    if (ret != 0) {
+        *(u16 *)(data_02160204 + 0x78) = *(u16 *)(pos + 0x92);
+    }
+    return ret;
 }
 
 extern u8 *data_0216009c;
