@@ -224,6 +224,10 @@ s32 func_02126868(s32 arg0, s32 arg1, s32 arg2) {
     return ret;
 }
 
+s32 func_0212689c(s32 arg0, s32 arg1, s32 arg2) {
+    return func_02126010(data_02156580[1], arg0, arg1, arg2);
+}
+
 extern void func_02126c18(void);
 extern void func_021268e4(void *);
 extern void func_02126c1c(void);
