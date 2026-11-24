@@ -109,3 +109,8 @@ void func_02129878(u8 *arg0) {
 void *func_0212988c(void *arg0) {
     return *(void **)((u8 *)arg0 + 0x10);
 }
+
+void func_02129894(void) {
+    data_02173488 = 1;
+}
+
