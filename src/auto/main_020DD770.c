@@ -22,6 +22,8 @@ extern void func_020ec548(void *);
 extern void func_0210c5dc(void *);
 
 extern void func_0210c2f4(void);
+extern s32 data_02162440[];
+extern s32 data_0216242c[];
 void func_020dd770(UnkStruct_020dd770 *arg0) {
     if (arg0->unk00 != NULL) {
         func_020ec548(arg0->unk00);
@@ -196,8 +198,10 @@ void func_020ddcd4(u8 *arg0) {
     s32 val = *(s32 *)(arg0 + 0x78);
     s32 angle = (s32)(((s64)(val << 12) * scale + 0x800) >> 12);
     s32 idx = *(u16 *)(arg0 + 0x92) >> 4;
-    *(s32 *)(arg0 + 0x30) = (s32)(((s64)data_0213a394[idx * 4] * angle + 0x800) >> 12);
-    *(s32 *)(arg0 + 0x38) = (s32)(((s64)data_0213a394[idx * 4 + 2] * angle + 0x800) >> 12);
+    s32 j = idx * 2;
+    s32 k = j + 1;
+    *(s32 *)(arg0 + 0x30) = (s32)(((s64)data_0213a394[j * 2] * angle + 0x800) >> 12);
+    *(s32 *)(arg0 + 0x38) = (s32)(((s64)data_0213a394[k * 2] * angle + 0x800) >> 12);
 }
 
 void func_020ddd5c(u8 *arg0) {
