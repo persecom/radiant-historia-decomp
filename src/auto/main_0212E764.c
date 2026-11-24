@@ -238,6 +238,11 @@ void func_0212f548(u32 arg0) {
     data_0217479c = arg0;
 }
 
+s32 func_0212f558(void *arg0, u32 *arg1) {
+    *arg1 = data_0217479c;
+    return 0x1e;
+}
+
 extern void func_0212f548(u32);
 void func_0212f738(u32 arg0) {
     func_0212f548(arg0);
