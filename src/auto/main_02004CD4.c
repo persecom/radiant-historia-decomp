@@ -24,6 +24,11 @@ extern void func_02005bb0(s32, s32, s32, s32);
 extern s32 func_02005398(u16 *);
 extern void func_02004810(s32);
 extern void func_020056c8(s32);
+extern s32 func_0200a6e4(s32, u32, s32);
+extern u16 data_0215cddc;
+extern void func_02008414(void);
+extern s32 func_02005c90(s32, s32, s32, s32);
+extern void WaitByLoop(s32);
 void func_02004cd4(s32 arg0) {
     data_0215cd60[0] = (data_0215cd60[0] | data_0215cd60[8]) & ~arg0;
     data_0215cd60[8] = arg0;
