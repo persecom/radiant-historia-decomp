@@ -76,6 +76,31 @@ extern s16 func_020ddcb0(void *, void *);
 extern void func_020ddd8c(void *);
 extern void func_02026578(void *);
 
+void func_020d2ac4(Unk3 *);
+void func_020d28e4(void) {
+UnkC *p=data_02160244;
+Unk20 buf;
+func_020a5138();
+func_020bb508(*(void **)(data_02160260+0x4c));
+func_020bb528(*(void **)(data_02160260+0x4c));
+func_020d2ac4((Unk3 *)p->ptrFc);
+func_020d2ac4((Unk3 *)p->ptr100);
+func_020d3160(3,0,0,0);
+if(p && !(*(u32 *)(data_02160a74+0x58)&0x4000) && !*(u16 *)(data_02160a74+0x1e0) && !data_02160a74[0x1e2]) {
+void *q=*(void **)((u8 *)p+0xec);
+if(q) func_020c0454(q,1);
+}
+func_020c0588();
+if(data_02160204[0x121]&1) {
+buf=data_02144920;
+if(!(data_02160204[0x121]&2)) func_020a3bbc(0x67); else func_020a3bbc(0x68);
+buf.unk[1]=0; buf.unk[2]=0; buf.unk[3]=40; buf.unk[4]=14;
+buf.unk[7]=700; buf.unk[8]=40; buf.unk[9]=14; buf.unk[5]=216; buf.unk[6]=4;
+func_021098ac(&buf);
+data_02160204[0x121]=0;
+}
+}
+
 void func_020d2a44(s8 arg0, u8 arg1, s16 arg2) {
     Unk14 buf = data_02144910;
     if (arg1 == 0) {
