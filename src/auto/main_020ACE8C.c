@@ -85,3 +85,10 @@ void func_020ade44(s32 arg0) {
     *(s32 *)(p + 0x6C0) = -1;
 }
 
+void *func_020ade60(s32 arg0) {
+    if (arg0 >= 0 && arg0 < 5) {
+        return func_020adda8() + 0xEC + arg0 * 0x10;
+    }
+    return NULL;
+}
+
