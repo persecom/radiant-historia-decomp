@@ -46,3 +46,7 @@ extern void func_021167ac(void *, s32);
 extern void func_021167f0(void *, void *);
 extern void func_02106aa0(void);
 extern void func_02106b18(void);
+
+void func_021071fc(void) {
+    func_0200fa3c((u16)data_02155968);
+}
