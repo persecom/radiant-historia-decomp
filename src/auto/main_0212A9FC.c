@@ -9,6 +9,8 @@ extern f32 func_0201f114(f64);
 extern s32 func_0201ff0c(f32);
 
 extern s32 data_0217397c;
+extern s32 data_02173980;
+extern const s32 data_02145888[];
 s32 func_0212afc0(s32, s32, s32, s32, s32, s32, s16, s16, s32, s16, s16);
 s32 func_0212abac(s32, s32, s32, s32, s32, s32, s16, s16, s32, s16, s16);
 s32 func_0212b354(s32 a0, s32 a1, s32 a2, s32 a3, s32 a4, s32 a5, s16 a6, s16 a7, s32 a8, s16 a9, s16 a10) {
