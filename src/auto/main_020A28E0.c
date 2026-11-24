@@ -2,7 +2,11 @@
 #include "common.h"
 
 extern u32 data_02155c3c;
+extern u32 data_02160128;
 extern u32 data_021600b0[2];
+extern s32 func_020a2f34(void);
+extern s32 func_020a2fe4(void);
+extern void func_021167ac(void *, u32);
 extern void *func_0210c594(u32, u32);
 extern void func_021167f0(void *, void *);
 extern void func_021168f8(void *, void *);
@@ -33,7 +37,11 @@ void func_020a2a50(void) {
     if (node != NULL) {
         func_0210c5dc(node);
     }
-    while (*(void **)(base + 0x140) != NULL) {
+    while (1) {
+        node = *(void **)(base + 0x140);
+        if (node == NULL) {
+            break;
+        }
     }
 }
 
@@ -48,8 +56,8 @@ extern u32 data_021600b0[2];
 extern void func_021167f0(void *, void *);
 extern void func_021168f8(void *, void *);
 extern void func_0210c5dc(void *);
-void func_020a37f0(u8 *dst, const s8 *src, s32 size) {
-    u8 *p = dst;
+void func_020a37f0(u32 dst, const s8 *src, s32 size) {
+    u8 *p = (u8 *)dst;
     while (size > 0) {
         *p++ = *src++;
         size--;
