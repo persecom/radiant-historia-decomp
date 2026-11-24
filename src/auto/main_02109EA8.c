@@ -29,6 +29,14 @@ extern u32 func_0200bc18(void *);
 extern void func_0200bb3c(void *, void *, u32);
 extern void func_0200baa4(void *);
 extern void *func_0210c594(u32, void *);
+extern void func_02118594(void);
+extern void *func_02109fac(void *);
+extern u8 data_02155bb0[];
+extern u8 data_02155bc0[];
+extern u8 data_02155bd0[];
+extern u32 data_02162578[];
+extern u8 data_02162580[];
+extern u8 data_021625c8[];
 
 void func_02109ea8(void *arg0) {
     u8 *p = arg0;
@@ -84,7 +92,8 @@ s32 func_02109f84(void) {
 }
 
 void *func_02109fac(void *arg0) {
-    u8 buf[0x48];
+    u8 stack[0x48];
+    u8 *buf = stack;
     u32 size;
     void *p;
     func_0200b888(buf);
