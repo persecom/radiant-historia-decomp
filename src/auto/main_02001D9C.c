@@ -5,6 +5,15 @@ typedef struct {
     s32 x, y, z;
 } Vec3;
 
+typedef struct {
+    s32 x, y;
+} Vec2;
+
+typedef struct {
+    Vec2 xy;
+    s32 z;
+} Vec3n;
+
 void func_02002058(s32 arg0, s32 arg1);
 void func_02002028(u32 arg0);
 s32 func_02001ff4(void);
