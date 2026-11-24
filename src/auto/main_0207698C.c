@@ -13,6 +13,9 @@ extern void func_0207763c(void);
 extern void func_0207698c(void);
 extern void func_021098ac(void *);
 extern s32 func_02076df4(s8, s32, s32, s32);
+extern void func_02076380(void *);
+extern void func_021099f8(void *);
+extern void func_020a9610(void *, u32, u16, void *, u32, u32);
 void func_02076d6c(void) {
     u8 *ptr = func_020764e4();
     switch (*(u8 *)(ptr + 0x54)) {
