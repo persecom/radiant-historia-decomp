@@ -26,6 +26,22 @@ extern void func_02010fa8(s32, s32);
 extern void func_0201082c(u32);
 extern void func_0200fddc();
 typedef struct { u32 field_0; } ZeroTarget_0215f120;
+typedef struct {
+    u16 field_0;
+    u8 pad_2[3];
+    u8 b0 : 1;
+    u8 b1 : 1;
+    u8 pad_6[2];
+    u32 field_8;
+} CtrdgInfo_02011054;
+typedef struct {
+    u8 pad_0[0xac];
+    u32 field_ac;
+    u8 pad_b0[2];
+    u8 field_b2;
+    u8 pad_b3[0xb];
+    u16 field_be;
+} CtrdgRom_02011054;
 static inline void set_zero_0210b10(ZeroTarget_0215f120 *p, u32 v) { p->field_0 = v; }
 extern void func_020059e4(u32);
 extern void func_02005a14(u32);
@@ -396,6 +412,42 @@ void func_0201101c(void) {
     u32 zero = 0;
     CpuSet(&zero, data_0215fa30, 0x05000001);
     *(u16 *)(data_0215fa2c + 6) = func_02005df8();
+}
+
+extern u8 data_0215fa2c[];
+extern BOOL func_02010ff8(void);
+extern void func_020111d4(u16, void *);
+extern void func_02011158(s32 *);
+extern s32 func_020111a0(u32 *);
+extern void func_02011230(u16, void *);
+BOOL func_02011054(void) {
+    BOOL ret = TRUE;
+    u32 buf2[2];
+    u32 buf1[2];
+    u8 val;
+
+    if (!func_02010ff8()) {
+        return FALSE;
+    }
+    if ((((u32)((u8 *)0x02fffc30)[5] << 30) >> 31) == 1) {
+        return FALSE;
+    }
+
+    func_020111d4(*(u16 *)(data_0215fa2c + 6), buf2);
+    func_02011158((s32 *)buf1);
+
+    val = ((u8 *)0x08000000)[0xb2];
+    if ((val == 0x96 && *(u16 *)((u8 *)0x02fffc30 + 0) != *(u16 *)((u8 *)0x08000000 + 0xbe)) ||
+        (val != 0x96 && *(u16 *)((u8 *)0x02fffc30 + 0) != *(u16 *)0x0801fffe) ||
+        (*(u32 *)((u8 *)0x02fffc30 + 8) != *(u32 *)((u8 *)0x08000000 + 0xac) &&
+         (((u32)((u8 *)0x02fffc30)[5] << 31) >> 31) != 0)) {
+        ret = FALSE;
+        ((u8 *)0x02fffc30)[5] |= 2;
+    }
+
+    func_020111a0(buf1);
+    func_02011230(*(u16 *)(data_0215fa2c + 6), buf2);
+    return ret;
 }
 
 void func_02011158(s32 *arg0) {
