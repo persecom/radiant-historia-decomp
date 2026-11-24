@@ -24,6 +24,18 @@ void func_020665e0(void) {
     }
 }
 
+void func_02066b7c(u32 arg0, u32 arg1, u32 arg2) {
+    u8 *ptr = data_021600e0[1];
+    ptr[0xe0] = 3;
+    *(u32 *)(ptr + 0x160) = arg0;
+    *(u32 *)(ptr + 0x164) = 0;
+    *(u32 *)(ptr + 0x168) = arg1;
+    *(u32 *)(ptr + 0x16c) = *(u32 *)(ptr + 0xfc);
+    *(u32 *)(ptr + 0x174) = *(u32 *)(ptr + 0x100);
+    *(u32 *)(ptr + 0x178) = arg2;
+    *(u16 *)(ptr + 0x19c) = 0;
+}
+
 void func_02066bc4(void) {
     data_021600e0[1][0xe0] = 0;
 }
