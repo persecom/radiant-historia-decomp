@@ -1,5 +1,10 @@
 /* 7 functions from 0x0205FA44 to 0x020607F4 (main), found by ds-decomp. */
 #include "common.h"
+extern u8 *data_02160244;
+extern s32 *func_0202c5a0(u8 *);
+extern s32 func_0202c5d8(u8 *);
+extern s16 func_020265cc(void *);
+extern void func_020d2bf0(u8 *, s32 *, s32, s32);
 
 extern u8 *data_02160a6c;
 extern u8 *data_02160a74;
@@ -57,8 +62,8 @@ void func_02060560(u8 *arg0) {
 
 void func_02060604(void) {
     s32 x, y, z;
-    s16 n;
     u8 *node;
+    s16 n;
 
     if (*(u16 *)(data_02160a6c + 0xc0) == 0) {
         return;
@@ -77,9 +82,10 @@ void func_02060604(void) {
         node = *(u8 **)(node + 0x174);
     }
 
-    *(s32 *)(data_02160a74 + 0x1e8) = func_0201fb1c(x, n);
-    *(s32 *)(data_02160a74 + 0x1ec) = func_0201fb1c(y, n) + 0x8000;
-    *(s32 *)(data_02160a74 + 0x1f0) = func_0201fb1c(z, n);
+    node = data_02160a74;
+    *(s32 *)(node + 0x1e8) = func_0201fb1c(x, n);
+    *(s32 *)(node + 0x1ec) = func_0201fb1c(y, n) + 0x8000;
+    *(s32 *)(node + 0x1f0) = func_0201fb1c(z, n);
     func_020d907c((u32)(data_02160a74 + 0x1e8));
     func_020d9090();
 }
