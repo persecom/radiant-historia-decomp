@@ -1,5 +1,18 @@
 /* 17 functions from 0x020F5574 to 0x020F6458 (main), found by ds-decomp. */
 #include "common.h"
+extern s32 func_ov000_02176da0(void *, s32, s32);
+static inline s32 check_02176da0(void *callback) { s32 ok=0; if (-1 == func_ov000_02176da0(callback,0,0)) ok=1; return ok; }
+extern s32 func_ov000_02176e18(void *, s32, s32);
+static inline s32 check_02176e18(void *callback) { s32 ok=0; if (-1 == func_ov000_02176e18(callback,0,0)) ok=1; return ok; }
+extern s32 func_ov000_02176e90(void *, s32, s32);
+static inline s32 check_02176e90(void *callback) { s32 ok=0; if (-1 == func_ov000_02176e90(callback,0,0)) ok=1; return ok; }
+extern s32 func_ov000_02176ddc(void *, s32, s32);
+static inline s32 check_02176ddc(void *callback) { s32 ok=0; if (-1 == func_ov000_02176ddc(callback,0,0)) ok=1; return ok; }
+extern s32 func_ov000_02176e54(void *, s32, s32);
+static inline s32 check_02176e54(void *callback) { s32 ok=0; if (-1 == func_ov000_02176e54(callback,0,0)) ok=1; return ok; }
+extern s32 func_ov000_02176ecc(void *, s32, s32);
+static inline s32 check_02176ecc(void *callback) { s32 ok=0; if (-1 == func_ov000_02176ecc(callback,0,0)) ok=1; return ok; }
+
 
 extern u8 data_02160c9c[64];
 extern void *data_02160204;
@@ -38,6 +51,24 @@ extern s32 func_020201f4(s32, s32);
 extern s32 func_020203d4(s32, s32);
 extern s32 func_02020604(s32, s32);
 extern s32 func_0201ff0c(s32);
+void func_020f56a4(void);
+extern void func_020f53e4(void);
+s32 func_020f5574(void) {
+ s32 ret; u8 flag;
+ void *lock=(void *)0;
+ flag=0;
+ func_0200c1a8(0,lock);
+flag=0; if(-1==func_ov000_02176da0(func_020f53e4,0,0)) flag=1; if(flag) func_020f56a4();
+flag=0; if(-1==func_ov000_02176e18(func_020f53e4,0,0)) flag=1; if(flag) func_020f56a4();
+flag=0; if(-1==func_ov000_02176e90(func_020f53e4,0,0)) flag=1; if(flag) func_020f56a4();
+flag=0; if(-1==func_ov000_02176ddc(func_020f53e4,0,0)) flag=1; if(!flag) goto failed;
+flag=0; if(-1==func_ov000_02176e54(func_020f53e4,0,0)) flag=1; if(!flag) goto failed;
+flag=0; if(-1==func_ov000_02176ecc(func_020f53e4,0,0)) flag=1; if(!flag) goto failed;
+func_020cea64(1); ret=29; goto done;
+failed: func_020f56a4(); ret=2;
+done: func_0200c1fc(0,lock); return ret;
+}
+
 void func_020f56a4(void) {
     *(u16 *)((u8 *)data_02160204 + 0x72) = 0x14b;
     *(u16 *)((u8 *)data_02160204 + 0xdc) = 0xe7;
