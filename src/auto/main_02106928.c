@@ -200,6 +200,14 @@ void func_02107168(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     func_021167f0(data_02161068 + 4, node);
 }
 
+void func_021071cc(void *arg0) {
+    func_0200f858();
+    data_02155968 = func_02005df8();
+    func_021071fc();
+    func_0201064c(arg0);
+    func_0210721c();
+}
+
 void func_021071fc(void) {
     func_0200fa3c((u16)data_02155968);
 }
