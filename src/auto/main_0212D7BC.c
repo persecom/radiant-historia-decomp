@@ -382,6 +382,9 @@ void func_0212e5c4(void) {
 void func_0212e5c8(void) {
 }
 
+void func_0212e5cc(void) {
+}
+
 s32 func_0212e5d4(void) {
     return 0;
 }
