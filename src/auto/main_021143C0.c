@@ -40,23 +40,27 @@ void func_021143c0(u8 *arg0, u8 arg1) {
 void func_02114420(u8 *arg0) {
     u32 *flag = &data_0216c8a4;
     u32 flags;
-    do {
-        if (*flag != 0) {
-            break;
-        }
-        func_021167ac((u32)data_0216c8a8, 0);
-        *flag = 1;
-        flags = *(u32 *)(arg0 + 0x2c);
-        flags &= ~1;
-        flags &= ~2;
-        *(u32 *)(arg0 + 8) = (u32)func_0211497c;
-        *(u32 *)(arg0 + 0xc) = (u32)arg0;
-        *(u32 *)(arg0 + 0x18) = (u32)func_021149c8;
-        *(u32 *)(arg0 + 0x1c) = (u32)arg0;
-        *(u32 *)(arg0 + 0x4c) = 0;
-        *(u32 *)(arg0 + 0x50) = 0;
-        *(u32 *)(arg0 + 0x2c) = flags;
-    } while (0);
+    u32 zero;
+    u32 fn1;
+    u32 fn2;
+    if (*flag != 0) {
+        return;
+    }
+    func_021167ac((u32)data_0216c8a8, 0);
+    *flag = 1;
+    flags = *(u32 *)(arg0 + 0x2c);
+    zero = 0;
+    fn1 = (u32)func_0211497c;
+    fn2 = (u32)func_021149c8;
+    flags &= ~1;
+    flags &= ~2;
+    *(u32 *)(arg0 + 8) = fn1;
+    *(u32 *)(arg0 + 0xc) = (u32)arg0;
+    *(u32 *)(arg0 + 0x18) = fn2;
+    *(u32 *)(arg0 + 0x1c) = (u32)arg0;
+    *(u32 *)(arg0 + 0x4c) = zero;
+    *(u32 *)(arg0 + 0x50) = zero;
+    *(u32 *)(arg0 + 0x2c) = flags;
 }
 
 s32 func_02114494(u8 *arg0, s32 arg1, u8 *arg2) {
@@ -97,6 +101,37 @@ void func_0211470c(u8 *arg0) {
     if (((*(s32 *)(arg0 + 0x2c) << 31) >> 31) != 0) {
         func_02114818(arg0);
     }
+}
+
+void func_02114728(u8 *arg0, s32 arg1) {
+    u8 ch;
+    s32 i;
+    *(s32 *)(arg0 + 0x44) = arg1;
+    for (i = 0; i < *(s32 *)(arg0 + 0x50); i++) {
+        s32 val;
+        ch = (arg0 + i)[0x54];
+        val = func_0200a108(*(s32 *)(arg0 + 0x44) + *(s32 *)(data_0216c8f4 + ch * 8 + 4));
+        func_0200968c(1u << ch, val & 0xff, val >> 8);
+    }
+}
+
+void func_02114794(u8 *arg0, s32 arg1, s32 arg2) {
+    u8 ch;
+    s32 val;
+    if (arg1 > *(s32 *)(arg0 + 0x50) - 1) {
+        return;
+    }
+    ch = (arg0 + arg1)[0x54];
+    *(s32 *)(data_0216c8f8 + ch * 8) = arg2;
+    val = func_0200a108(*(s32 *)(arg0 + 0x44) + arg2);
+    func_0200968c(1u << ch, val & 0xff, val >> 8);
+}
+
+void func_021147e8(u8 *arg0, s32 arg1, s32 arg2) {
+    if (arg1 > *(s32 *)(arg0 + 0x50) - 1) {
+        return;
+    }
+    func_020096b4(1u << (arg0 + arg1)[0x54], arg2);
 }
 
 void func_021148bc(u8 *arg0) {
