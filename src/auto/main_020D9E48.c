@@ -62,6 +62,53 @@ void func_020da0c8(s32 arg0) {
     data_02151fcc = arg0 << 12;
 }
 
+extern s32 func_020d2e14(s32, s32);
+extern void func_0202b6ec(void);
+extern void func_0202b398(void);
+extern void func_0202b41c(void);
+extern void func_0202e4cc(void);
+extern s32 func_020981fc(u16);
+extern void func_02108ffc(void);
+extern u16 func_020329d8(void *);
+extern void func_020d0a40(s32);
+extern u8 *data_0216011c;
+extern u8 *data_02160244;
+extern u8 *data_02160090;
+void func_020da0dc(void) {
+    u8 *node;
+    u8 *obj;
+    u8 flag;
+
+    func_020d2e14(3, 1);
+    func_0202b6ec();
+    func_0202b398();
+    func_0202b41c();
+    func_0202e4cc();
+    if (func_020981fc(6) != 0) {
+        *(u16 *)(data_0216011c + 0x2c) = *(u16 *)(data_0216011c + 0x3e);
+        *(u16 *)(data_0216011c + 0x38) = *(u16 *)(data_0216011c + 0x40);
+    }
+    *(u16 *)(data_02160244 + 0x108) = 0;
+    *(u16 *)(data_02160244 + 0x108) = 1;
+    func_02108ffc();
+    node = *(u8 **)(data_02160090 + 0x30);
+    while (node != NULL) {
+        obj = *(u8 **)(node + 0);
+        if (obj != NULL) {
+            flag = *(u8 *)(obj + 0x17);
+            if (flag == 0) {
+                *(u16 *)(node + 4) = func_020329d8(*(void **)(obj + 0xc));
+            } else if (flag == 3) {
+                *(u16 *)(node + 4) = func_020329d8(*(void **)(obj + 0xc));
+            } else {
+                *(u16 *)(node + 4) = 99;
+            }
+        }
+        node = *(u8 **)(node + 0xc);
+    }
+    func_020d0a40(4);
+}
+
 BOOL func_020da4f0(u8 *arg0, s32 arg1) {
     u8 *p = *(u8 **)(arg0 + 0x118);
     s32 val;
