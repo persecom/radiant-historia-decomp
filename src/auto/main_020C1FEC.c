@@ -88,6 +88,16 @@ void *func_020c2adc(u8 arg0) {
     return NULL;
 }
 
+void func_020c2b98(void) {
+    void *node;
+    while ((node = *(void **)(data_02160090 + 0x48)) != NULL) {
+        func_021168f8(data_02160090 + 0x48, node);
+        if (node != NULL) {
+            func_0210c5dc(node);
+        }
+    }
+}
+
 void *func_020c2d80(void) {
     return *(void **)(data_02160090 + 0x48);
 }
