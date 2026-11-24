@@ -178,6 +178,18 @@ void func_02132770(u8 *arg0) {
     *(u8 *)(arg0 + 9) = 0;
 }
 
+void func_0213278c(u8 *arg0) {
+    void *p = *(void **)(arg0 + 0x10);
+    s32 ret;
+    ret = (*(s32 (**)(void *, s32))((u8 *)*(void **)p + 0x24))(p, 1);
+    if (ret < 0x24) {
+        return;
+    }
+    func_0212f994(*(void **)(arg0 + 0));
+    func_0212fb8c(*(void **)(arg0 + 0));
+    *(u8 *)(arg0 + 9) = 2;
+}
+
 u32 func_02132a94(u8 *arg0) {
     return *(u32 *)(arg0 + 0x24);
 }
