@@ -13,6 +13,17 @@ extern void func_020c2b98(void);
 extern void func_020c2be4(void);
 extern void func_020c2c30(void);
 extern void func_0210c5dc(void *);
+void *func_02031c24(u32 arg0) {
+    void *node = *(void **)((u8 *)data_0216008c + 0x2c);
+    while (node != NULL) {
+        if (*(u8 *)((u8 *)node + 0x8) == arg0) {
+            return node;
+        }
+        node = *(void **)((u8 *)node + 0x4);
+    }
+    return NULL;
+}
+
 void func_02031fbc(s32 arg0, s32 arg1, s32 arg2) {
     func_02031fcc(arg0, arg2);
 }
