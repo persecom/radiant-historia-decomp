@@ -42,6 +42,22 @@ void *func_020c61cc(u16 arg0) {
     return NULL;
 }
 
+void func_020c6208(void) {
+    void *base = (void *)0x1b5b;
+    u16 idx = 0;
+    u8 *obj;
+    func_020c6160(base, idx);
+    obj = func_020c61cc(idx);
+    *(u32 *)(obj + 0x1c) = 0xc8000;
+    *(u32 *)(obj + 0x20) = 0x79000;
+    *(u32 *)(obj + 0x24) = 0x14000;
+    base = (void *)((u32)base - 0x3e0);
+    func_020c6160(base, 1);
+    func_020c6160(base, 2);
+    func_020c6160(base, 3);
+    func_020c6160(base, 4);
+}
+
 s32 func_020c6324(void) {
     func_020c6dbc();
     return 0;
