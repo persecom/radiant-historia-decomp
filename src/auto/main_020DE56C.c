@@ -17,18 +17,16 @@ u8 *func_020de810(void) {
 }
 
 u8 *func_020de844(s32 arg0) {
-    u8 i;
-    if (arg0 != 0) {
-        return NULL;
+    if (arg0 == 0) {
+        u8 i = 0;
+        do {
+            u8 *res = func_0202c7d8((s8)(u8)(i + 9));
+            if (res != NULL) {
+                return res;
+            }
+            i++;
+        } while (i < 3);
     }
-    i = 9;
-    do {
-        u8 *res = func_0202c7d8((s8)i);
-        if (res != NULL) {
-            return res;
-        }
-        i++;
-    } while (i < 3);
     return NULL;
 }
 
@@ -54,17 +52,18 @@ void *func_020defcc(u16 arg0) {
 
 BOOL func_020df03c(s32 arg0) {
     u8 *ptr = data_02160a74;
+    volatile s16 *v = (volatile s16 *)(ptr + 0xae);
     if (arg0 == 0) {
-        *(s16 *)(ptr + 0xae) = *(s16 *)(ptr + 0xae) + 0x10;
-        if (*(s16 *)(ptr + 0xae) > 0x1e) {
-            *(s16 *)(ptr + 0xae) = 0x1e;
+        *v = *v + 0x10;
+        if (*v > 0x1e) {
+            *v = 0x1e;
         }
         return TRUE;
     }
     if (arg0 == 1) {
-        *(s16 *)(ptr + 0xae) = *(s16 *)(ptr + 0xae) - 0x10;
-        if (*(s16 *)(ptr + 0xae) < 0) {
-            *(s16 *)(ptr + 0xae) = 0;
+        *v = *v - 0x10;
+        if (*v < 0) {
+            *v = 0;
         }
         *(u32 *)(ptr + 0x58) &= ~0x2;
         *(u32 *)(ptr + 0x58) &= ~0x800;
