@@ -94,6 +94,15 @@ s32 func_0213723c(void) {
     return func_021369c0(data_0215c214);
 }
 
+extern void func_02132bf8(void *, s32, void *);
+extern void func_02132c1c(void *, s32, void *);
+void func_02137250(void *arg0, void *arg1) {
+    u8 buf[0x40];
+    func_02132bf8(buf, 0x40, arg0);
+    func_02132c1c(buf, 0x40, arg1);
+    func_021369c0(buf);
+}
+
 void func_02137318(void) {
     func_021369a8();
     func_02137330();
