@@ -43,29 +43,30 @@ func_021098ac(&b); break;
 
 void func_0208bff0(s32 index,s32 start,s32 end,s32 y) {
 Draw_0208bda0 d=data_02140d74;
+u8 *p=data_021600b0;
 s16 x;
-*(s8*)(data_021600b0+index*12+0x206)&=~1;
-x=start+(end-start)* *(s16*)(data_021600b0+index*12+0x204)/7;
-if(*(s32*)(data_021600b0+index*12+0x200)==1) {
-if(*(s16*)(data_021600b0+index*12+0x204)<7) ++*(s16*)(data_021600b0+index*12+0x204);
-else *(s8*)(data_021600b0+index*12+0x206)|=1;
-} else if(*(s32*)(data_021600b0+index*12+0x200)==0) {
-if(*(s16*)(data_021600b0+index*12+0x204)>0) --*(s16*)(data_021600b0+index*12+0x204);
+*(s8*)(p+0x206+index*12)&=~1;
+x=start+(end-start)* *(s16*)(p+0x204+index*12)/7;
+if(*(s32*)(p+0x200+index*12)==1) {
+if(*(s16*)(p+0x204+index*12)<7) ++*(s16*)(p+0x204+index*12);
+else *(s8*)(p+0x206+index*12)|=1;
+} else if(*(s32*)(p+0x200+index*12)==0) {
+if(*(s16*)(p+0x204+index*12)>0) --*(s16*)(p+0x204+index*12);
 }
-s8 *flags=(s8*)(data_021600b0+0x206);
+s8 *flags=(s8*)(p+0x206);
 if((flags[index*12]&2)||(flags[index*12]&4)) func_020922bc(34,x,y,86,16,32,16,55);
 else func_020922bc(33,x,y,86,16,32,16,55);
 if((flags[index*12]&2)||(flags[index*12]&4)) func_020a3bbc(36); else func_020a3bbc(35);
 if(index==0) {d.v[2]=0;d.v[1]=0;}
 else if(index==1) {d.v[1]=12;d.v[2]=11;}
 d.v[3]=12;d.v[4]=11;
-d.v[5]=x+2; d.v[6]=y+2;
+d.v[5]=x+2; s32 py=y+2; d.v[6]=py;
 d.v[7]=56; d.v[8]=12; d.v[9]=11;
 func_021098ac(&d);
 if((flags[index*12]&2)||(flags[index*12]&4)) func_020a3bbc(20); else func_020a3bbc(19);
 if(index==0) {d.v[1]=58;d.v[3]=57;d.v[5]=x+20;d.v[8]=57;}
 else if(index==1) {d.v[1]=8;d.v[3]=45;d.v[5]=x+18;d.v[8]=45;}
-d.v[2]=12;d.v[4]=12;d.v[6]=y+2;d.v[7]=56;d.v[9]=12;
+d.v[2]=12;d.v[4]=12;d.v[6]=py;d.v[7]=56;d.v[9]=12;
 func_021098ac(&d);
 if(flags[index*12]&4) flags[index*12]&=~4;
 }
