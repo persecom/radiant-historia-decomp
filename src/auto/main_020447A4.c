@@ -138,6 +138,52 @@ void func_02044c48(u32 arg0) {
     func_020ecd10(*(void **)(r5 + 0x108), arg0, 0);
 }
 
+u8 func_02044c98(void) {
+    u8 *p = data_021600a8[1];
+    s32 x = data_02162908[0];
+    u8 *q = *(u8 **)(p + 0x68);
+    s32 y = data_02162908[1];
+    s32 a = *(s32 *)(q + 0xfc);
+    s32 b = *(s32 *)(q + 0x100);
+    return x >= a - 0x10 && x <= a + 0x10 && y >= b - 0x20 && y <= b;
+}
+
+u32 func_02044dd0(void) {
+    u8 *p = data_021600a8[1];
+    void *base = data_021600f0;
+    u32 val = data_0216bf84;
+    u8 *q = *(u8 **)(p + 0x68);
+    u8 *s;
+    u32 mode;
+    if (val != 1) return 0;
+    s = *(u8 **)((u8 *)base + 4);
+    if ((*(u32 *)(q + 0xac) & 0x800) && *s == 0) return 0;
+    if (func_02109754(3) == 1) return 0;
+    mode = *(u32 *)(p + 0x10);
+    if (mode != 0) {
+        if (mode != 8) return 0;
+    }
+    if (*(u8 *)(data_02160204 + 0x85) != 0) return 0;
+    if (*(u32 *)(q + 0xac) & 0x400) return 0;
+    return 1;
+}
+
+void func_02044e8c(void) {
+    data_021600b0[1] = (u32)func_0210c594(0x14, data_02155c3c);
+    *(u32 *)((u8 *)data_021600b0[1] + 0x4) = 0x7d0;
+    *(u32 *)((u8 *)data_021600b0[1] + 0x8) = 0;
+    *(u32 *)((u8 *)data_021600b0[1] + 0x10) = 0;
+    *(u32 *)((u8 *)data_021600b0[1] + 0x0) = 1;
+    *(u32 *)((u8 *)data_021600b0[1] + 0xc) = 0;
+    if (*(u32 *)(data_02160200 + 0x15c) & 0x80000000) {
+        *(u32 *)((u8 *)data_021600b0[1] + 0xc) |= 1;
+        if ((*(u32 *)(data_02160200 + 0x160) & 1) == 0) {
+            *(u32 *)((u8 *)data_021600b0[1] + 0xc) |= 2;
+        }
+    }
+    *(u32 *)((u8 *)data_021600b0[1] + 0x4) = (*(u32 *)((u8 *)data_021600b0[1] + 0xc) == 0) ? 0x7d0 : 0x7d1;
+}
+
 void func_02044f48(void) {
     if (data_021600b0[1] != 0) {
         func_0210c5dc((void *)data_021600b0[1]);
@@ -156,5 +202,24 @@ void func_02044f80(void) {
         *(u32 *)(p + 0xc) |= 9;
     }
     func_0205a3cc(p);
+}
+
+void func_02044fb0(u32 arg0, u32 arg1) {
+    u8 *p = (u8 *)func_02044f70();
+    if (*(u32 *)(data_02160200 + 0x15c) & 0x80000000) {
+        *(u32 *)(p + 0xc) = 0;
+        *(u32 *)(p + 0xc) |= 5;
+        if (arg0 == 1) {
+            *(u32 *)(p + 0xc) |= 0x10;
+        } else if (arg0 == 2) {
+            *(u32 *)(p + 0xc) |= 0x20;
+            if (arg1 != 0) {
+                *(u32 *)(p + 0xc) |= 0x40;
+            }
+        }
+    }
+    if (!(*(u32 *)(p + 0xc) & 0x40)) {
+        func_02059888();
+    }
 }
 
