@@ -228,3 +228,7 @@ s32 func_0200308c(s32 *arg0) {
     return 0;
 }
 
+s32 func_020030b8(s32 *arg0) {
+    return 0;
+}
+
