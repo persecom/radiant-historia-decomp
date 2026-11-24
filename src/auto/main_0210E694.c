@@ -268,6 +268,15 @@ void func_0210eb14(void *arg0) {
     p[1] = 0;
 }
 
+void func_0210eb4c(void *arg0) {
+    if (*(void **)arg0 == NULL) {
+        return;
+    }
+    data_0215615c(*(void **)arg0);
+    *(void **)arg0 = NULL;
+    *(void **)((u8 *)arg0 + 4) = NULL;
+}
+
 extern void func_0210eb14(void *);
 extern void func_0210eb4c(void *);
 void func_0210eb80(u8 *arg0) {
