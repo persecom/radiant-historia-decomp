@@ -2,6 +2,12 @@
 #include "common.h"
 extern u8 *data_02160244,*data_02160260;
 extern u32 data_0216263c[3];
+static inline u16 random_020de888(u16 limit) {
+u32 value=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
+u16 result=(value>>16)*limit>>16;
+data_0216263c[0]=value;
+return result;
+}
 extern u8 *func_02032240(void);
 
 extern u8 *func_0202c7d8(s32);
@@ -37,6 +43,72 @@ u8 *func_020de844(s32 arg0) {
         } while (i < 3);
     }
     return NULL;
+}
+
+void func_020de888(void) {
+u8 *node;
+u8 expected;
+u8 *info,*base,*obj,*info2,*obj2,*state,*state2;
+s32 index=0;
+base=*(u8 **)data_02160244;
+node=func_02032240();
+while(node) {
+if(index==0) {
+*(u8 **)(base+0x10+index*4)=node;
+obj=*(u8 **)node;
+base[0x38]=**(u8 **)(obj+0x118);
+info=*(u8 **)(node+8);
+if(info[0]==4 && *(s32 *)(data_02160260+0x88)==0) {
+s32 sum=0,other;
+u16 random;
+u8 *root=data_02160a6c;
+u8 *p=*(u8 **)(root+0xac);
+while(p) {sum+=*(s16 *)(*(u8 **)(p+0x118)+0xba);p=*(u8 **)(p+0x16c);}
+other=0;
+p=*(u8 **)(root+0xb8);
+while(p) {other+=*(s16 *)(*(u8 **)(p+0x118)+0xba);p=*(u8 **)(p+0x174);}
+other/=*(u16 *)(root+0xc0);
+random=(u16)((((data_0216263c[0]=data_0216263c[1]*data_0216263c[0]+data_0216263c[2])>>16)*100)>>16);
+if(sum/3-other*5+60 >= random) {
+*(u32 *)(*(u8 **)(obj+0x128)+0x18)|=4;
+}
+}
+if(*(u16 *)(node+0xe)&2)return;
+state=*(u8 **)(obj+0x128);
+(*(s8 *)(state+0x50))++;
+*(u32 *)(state+0x18)|=1;
+*(u32 *)(state+0x18)&=~0x10;
+if(info[0]==3)*(u32 *)(state+0x18)|=0x10;
+}else if(index>=1) {
+s32 kind,valid,i;
+obj2=*(u8 **)node;
+expected=base[0x38];
+info2=*(u8 **)(node+8);
+kind=**(u8 **)(obj2+0x118);
+if(kind!=expected)return;
+if(kind==1 && info2[0x14]==1)return;
+if(*(u16 *)(node+0xe)&2)return;
+valid=1;
+if(kind==1) {
+for(i=0;i<*(s8 *)(base+0x39);i++) {
+if(obj2==**(u8 ***)(base+0x10+i*4))valid=0;
+}
+}
+if(!valid)return;
+if(kind==expected) {
+state2=*(u8 **)(obj2+0x128);
+(*(s8 *)(state2+0x50))++;
+*(u32 *)(state2+0x18)|=1;
+*(u32 *)(state2+0x18)&=~0x10;
+if(info2[0]==3)*(u32 *)(state2+0x18)|=0x10;
+}
+}
+(*(s8 *)(base+0x39))++;
+*(u8 **)(base+0x10+index*4)=node;
+if(*(s8 *)(base+0x39)>=10)return;
+index++;
+node=*(u8 **)(node+0x24);
+}
 }
 
 void *func_020defcc(u16 arg0) {
