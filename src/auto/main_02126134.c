@@ -442,6 +442,11 @@ void func_02126bd0(void) {
     func_02126c1c();
 }
 
+void func_02126be4(void) {
+    func_0212642c((void *)data_02156580[1]);
+    ((void (*)(void))func_021265a8)();
+}
+
 extern void func_0213809c(void);
 void func_02126c00(void) {
     func_0213809c();
