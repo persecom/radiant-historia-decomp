@@ -48,11 +48,6 @@ extern void func_02006dc4(void *, s32);
 extern void func_0200a674(s32, void *);
 extern void func_0200fedc(u32, u32, u32);
 
-typedef struct UnkStruct_0215f120 {
-    u8 unk0[0x51c];
-    u32 unk51c;
-} UnkStruct_0215f120;
-
 #pragma peephole off
 
 void func_0200fedc(u32 arg0, u32 arg1, u32 arg2) {
