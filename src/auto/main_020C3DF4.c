@@ -10,6 +10,14 @@ extern u8 data_021512a0[];
 extern u8 *func_0203be10(s32);
 extern void func_0203be60(void *, void *, void *);
 extern void func_0203be4c(void *);
+u8 *func_020c46ac(void) {
+    return *(u8 **)(data_0216013c + 0x90) + 8;
+}
+
+void *func_020c4bd0(void) {
+    return func_0210c594(0x10, data_02155c3c);
+}
+
 void func_020c4bec(void *arg0) {
     if (arg0 != NULL) {
         func_0210c5dc(arg0);
