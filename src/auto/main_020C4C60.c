@@ -48,6 +48,7 @@ void func_020c4c60(s16 *arg0, s16 arg1) {
 void func_020c4e00(s16 *p,s16 val) {
 Unk_020c4fa4_10 other=data_0214452c;
 Unk_020c4e00_27 buf=data_02144540;
+s16 *table;
 u16 i;
 s16 total=0;
 *(volatile u32*)0x40004a4=0x1f00c0;
@@ -57,11 +58,12 @@ for(i=0;i<3;i++){
 u16 idx=i*9;
 other.data[1]=buf.data[idx];other.data[2]=buf.data[idx+1];
 other.data[3]=buf.data[idx+2];other.data[4]=buf.data[idx+3];
-if(i==0){other.data[5]=p[6]+(256-p[1]+buf.data[idx+4]);} else if((u16)(i-1)<=1){other.data[5]=p[6]+(total+(256-p[1]));}
+if(i==0){other.data[5]=p[6]+(256-p[1]+buf.data[idx+4]);} else if((u16)(i+65535)<=1){other.data[5]=p[6]+(total+(256-p[1]));}
 other.data[6]=buf.data[idx+5];other.data[7]=val;
-other.data[8]=p[0]*other.data[3]/100;
+{ s16 width=p[0]*buf.data[idx+2]/100;
+other.data[8]=width;
 other.data[9]=p[4];
-total+=other.data[8];
+total+=width; }
 func_021098ac(&other);
 }
 }
