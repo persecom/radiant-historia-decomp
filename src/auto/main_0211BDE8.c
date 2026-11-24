@@ -181,7 +181,7 @@ void func_0211ca28(u8 *arg0, u8 *arg1, u32 arg2, s32 arg3) {
     *(u32 *)(arg0 + 0x14) = arg3;
     arg0[0x19] = 0;
     *(u32 *)(arg0 + 0xc) = 0;
-    if ((s32)data_02155ed4 <= 0) {
+    if (data_02155ed4 <= 0) {
         return;
     }
     for (i = 0; i < (u32)data_02155ed4; i++) {
@@ -211,32 +211,31 @@ void func_0211cb14(u8 **arg0, u8 *arg1) {
     }
     cur = *(u8 **)(head + 0x10);
     if (cur == NULL) {
-        if (head[0x18] <= arg1[0x18]) {
-            *(u8 **)(head + 0x10) = arg1;
-        } else {
+        if (head[0x18] > arg1[0x18]) {
             tail = arg1;
             while (*(u8 **)(tail + 0x10) != NULL) {
                 tail = *(u8 **)(tail + 0x10);
             }
             *(u8 **)(tail + 0x10) = head;
             *arg0 = arg1;
+        } else {
+            *(u8 **)(head + 0x10) = arg1;
         }
         return;
     }
     prev = head;
     while (cur != NULL) {
-        if (cur[0x18] < arg1[0x18]) {
-            prev = cur;
-            cur = *(u8 **)(cur + 0x10);
-            continue;
+        if (cur[0x18] >= arg1[0x18]) {
+            tail = arg1;
+            while (*(u8 **)(tail + 0x10) != NULL) {
+                tail = *(u8 **)(tail + 0x10);
+            }
+            *(u8 **)(prev + 0x10) = arg1;
+            *(u8 **)(tail + 0x10) = cur;
+            return;
         }
-        tail = arg1;
-        while (*(u8 **)(tail + 0x10) != NULL) {
-            tail = *(u8 **)(tail + 0x10);
-        }
-        *(u8 **)(prev + 0x10) = arg1;
-        *(u8 **)(tail + 0x10) = cur;
-        return;
+        prev = cur;
+        cur = *(u8 **)(cur + 0x10);
     }
     *(u8 **)(prev + 0x10) = arg1;
 }
