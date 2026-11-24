@@ -79,3 +79,35 @@ void func_020f07b0(Unk_Vec3_020f07b0 arg0, u32 arg1, u16 arg2) {
     func_021167f0(data_02160af0 + 0x70, r3);
 }
 
+void func_020f0898(Unk_Vec3_020f07b0 arg0, u32 arg1, u16 arg2) {
+    u8 *r12 = NULL;
+    u8 *node = *(u8 **)(data_02160af0 + 0x64);
+    u8 *r4;
+
+    while (node != NULL) {
+        if (*(u16 *)(*(u8 **)node + 0x1b8) == arg1) {
+            break;
+        }
+        node = *(u8 **)(node + 0x4c);
+    }
+
+    if (node == NULL) {
+        return;
+    }
+
+    r4 = *(u8 **)node;
+    if (arg1 > 0x2710 && arg1 < 0x2af7) {
+        r12 = func_0210c594(0x58, data_02155c3c);
+        *(Unk_Vec3_020f07b0 *)(r12 + 4) = arg0;
+        *(u32 *)(r12 + 0x2c) = arg2;
+        if (*(u32 *)(r4 + 0xfc) != 0) {
+            *(u32 *)(r12 + 0x18) = 1;
+        }
+        if (*(u32 *)(r4 + 0x100) != 0) {
+            *(u32 *)(r12 + 0x1c) = 1;
+        }
+        *(u8 **)r12 = r4;
+    }
+    func_021167f0(data_02160af0 + 0x70, r12);
+}
+
