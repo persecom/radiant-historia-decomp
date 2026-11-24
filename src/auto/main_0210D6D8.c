@@ -193,6 +193,36 @@ void func_0210dc70(s32 arg0) {
     func_021168f8(data_021628bc, arg0);
 }
 
+void func_0210dc88(void) {
+    u16 val;
+    if (*(s32 *)(data_0216280c + 0x6c) != 0) {
+        return;
+    }
+    *(s32 *)(data_0216280c + 0x6c) = 1;
+    ((void (*)(void))(*(void **)(data_0216280c + 0x1c)))();
+    val = *(u16 *)data_021626b0;
+    *(s32 *)(data_0216280c + 0x6c) = 0;
+    if ((val & 8) == 0 || (val & 4) == 0 || (val & 0x200) == 0) {
+        return;
+    }
+    if ((val & 0x100) != 0) {
+        u8 *p = *(u8 **)data_02160204;
+        u8 b = p[0xd7];
+        if (b == 0xc || b == 0xd || b == 0x1d || b == 0x27) {
+            return;
+        }
+    }
+    func_02008250(*(u32 *)0x02fffc20 + 1);
+}
+
+void func_0210e3dc(void) {
+    s32 v = *(s32 *)(data_0216280c + 8);
+    if (v <= -0x10 || v >= 0x10) {
+        return;
+    }
+    func_020081c0();
+}
+
 void func_0210e67c(void) {
     func_021167ac(data_021628ec, 8);
 }
