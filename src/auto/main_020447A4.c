@@ -23,6 +23,15 @@ extern void func_020a9610(void *, u32, u32, u32, u32, u32);
 extern void func_020a98ac(void *);
 extern void func_020a98f4(void *);
 extern void func_02044aec(void *, u16);
+extern u8 *data_02160200;
+extern void *data_02155c3c;
+extern void func_0205a3cc(void *);
+extern void *func_0210c594(u32, void *);
+extern void *func_0203be60(void *, void *, void *);
+extern void func_021167f0(void *, void *);
+extern void func_020ecaa4(void *);
+extern void *func_020eca60(void);
+extern void func_020ecd10(void *, u32, u32);
 void func_020447a4(u8 *arg0) {
     u8 *node;
     if (arg0 == NULL) {
@@ -56,9 +65,10 @@ void func_02044820(u32 arg0) {
 }
 
 void func_02044a98(s32 arg0) {
+    u8 *p = data_021600a8[1];
     S_02044a98 local[1];
     local[0] = data_0213f2d0;
-    func_02044aec(&local[arg0], *(u16 *)(data_021600a8[1] + 0x8b4));
+    func_02044aec(&local[arg0], *(u16 *)(p + 0x8b4));
 }
 
 void func_02044f48(void) {
