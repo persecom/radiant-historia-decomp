@@ -1,6 +1,10 @@
 /* 22 functions from 0x02021C48 to 0x02022A48 (main), found by ds-decomp. */
 #include "common.h"
 
+typedef struct {
+    u32 b0 : 8;
+} Byte021f54;
+
 extern u32 data_02160078;
 extern void *data_02155c3c;
 extern void *func_0210c594(s32, void *);
@@ -46,24 +50,21 @@ s32 func_02022068(s32 arg0, ...) {
     return *(u8 *)func_02021f54(((s32 *)&arg0)[0]);
 }
 
+#pragma peephole off
 void func_02022088(s32 arg0, s32 arg1, ...) {
-    s32 *args = &arg0;
-    u8 *p = func_02021f54(args[0]);
-    u8 val = args[1];
-    *(u8 *)p = val;
+    u8 *p = func_02021f54(((s32 *)&arg0)[0]);
+    *p = (u8)(((s32 *)&arg0)[1] & 0xff);
 }
-
+#pragma peephole on
 void func_020220b0(s32 arg0, s32 arg1, ...) {
-    s32 *args = &arg0;
-    u8 *p = func_02021f54(args[0]);
-    s32 r4 = p[0] + args[1];
+    u8 *p = func_02021f54(((s32 *)&arg0)[0]);
+    s32 r4 = p[0] + ((s32 *)&arg0)[1];
     if (r4 > 99) {
         r4 = 99;
     } else if (r4 < 0) {
         r4 = 0;
     }
-    u8 val = r4;
-    *(u8 *)p = val;
+    *p = r4 & 0xff;
 }
 
 void func_02022100(s32 arg0) {
