@@ -38,6 +38,12 @@ void func_0212bd48(void) {
     data_02173984[1] = 0;
 }
 
+void func_0212bd78(void) {
+    func_02013878(data_021739ac, 0, 0x100);
+    data_02173984[0] = 0;
+    data_02173984[1] = 0;
+}
+
 void func_0212bda8(void *arg0) {
     if (arg0 == NULL) {
         func_021380bc(data_02156b60);
