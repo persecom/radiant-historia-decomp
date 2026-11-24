@@ -45,9 +45,12 @@ u32 func_020bc954(u32 arg0) {
 s32 func_020bd250(void) {
     u8 *p = (u8 *)&data_021601f8;
     volatile u32 buf;
-    if (*(void **)(p + 4) != NULL) return 0;
-    *(void **)(p + 4) = func_02109b14(data_021510fc, (void *)&buf);
-    return 1;
+    s32 ret = 0;
+    if (*(void **)(p + 4) == NULL) {
+        *(void **)(p + 4) = func_02109b14(data_021510fc, (void *)&buf);
+        ret = 1;
+    }
+    return ret;
 }
 
 s32 func_020bd294(u32 arg0) {
