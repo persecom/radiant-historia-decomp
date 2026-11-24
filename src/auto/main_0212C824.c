@@ -186,3 +186,29 @@ void func_0212d63c(void *arg0) {
     func_0212a258(*(void **)((u8 *)arg0 + 4));
 }
 
+s32 func_0212d64c(void *arg0) {
+    if (func_0212a260(*(void **)((u8 *)arg0 + 4)) > 0) {
+        switch (*(s8 *)((u8 *)arg0 + 1)) {
+            case 2:
+            case 3:
+                return func_0212a268(*(void **)((u8 *)arg0 + 4));
+        }
+    }
+    return 0;
+}
+
+s32 func_0212d694(void *arg0, s32 arg1) {
+    if (func_0212a260(*(void **)((u8 *)arg0 + 4)) > 0) {
+        switch (*(s8 *)((u8 *)arg0 + 1)) {
+            case 2:
+            case 3:
+                return func_0212a270(*(void **)((u8 *)arg0 + 4), arg1);
+        }
+    }
+    return -0x80;
+}
+
+void *func_0212d6e4(void *arg0) {
+    return (u8 *)arg0 + 0x60;
+}
+
