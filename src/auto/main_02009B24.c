@@ -246,7 +246,10 @@ void func_0200a248(u8 *arg0) {
     func_0200986c();
     for (i = 0; i < 4; i++) {
         u8 *node = *(u8 **)((arg0 + i * 8) + 0x18);
-        if (node != NULL) {
+        if (node == NULL) {
+            continue;
+        }
+        {
             u8 *cur = *(u8 **)(node + 0x18);
             u8 *target = (arg0 + 0x18) + i * 8;
             if (target == cur) {
@@ -296,5 +299,9 @@ void func_0200a56c(void) {
     func_0200a578();
 }
 s32 func_0200a6c0(s32 arg0, s32 arg1) {
-    return (*(u32 *)((u8 *)0x02fffc00 + arg1 * 4 + 0x388) & (1 << arg0)) ? 1 : 0;
+    struct {
+        u8 pad[0x388];
+        u32 ready[2];
+    } *work = (void *)0x02fffc00;
+    return (work->ready[arg1] & (1 << arg0)) ? 1 : 0;
 }
