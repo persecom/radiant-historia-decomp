@@ -548,13 +548,14 @@ if(dir){
 *(FSFilePos *)(p+0x30)=*(FSFilePos *)buf;
 path+=len;func_0200cb40(p,2,1);
 }else{
-u32 *out;
+FSFileID *out;
 if(want)return 11;
-out=*(u32 **)(p+0x44);out[0]=*(u32 *)buf;out[1]=*(u32 *)(buf+4);return 0;
+out=*(FSFileID **)(p+0x44);*out=*(FSFileID *)buf;return 0;
 }
 next:path+=*path!=0;
 }
-if(want){**(FSFilePos **)(p+0x44)=*(FSFilePos *)(p+0x20);return 0;}
-return 11;
+{s32 ret;if(want==0){ret=11;goto quit;}
+**(FSFilePos **)(p+0x44)=*(FSFilePos *)(p+0x20);ret=0;
+quit:return ret;}
 }
 
