@@ -299,6 +299,18 @@ void func_0212e4a0(void) {
     func_0212e5ac();
 }
 
+void func_0212e4b4(void) {
+    s32 i;
+    if (func_0212e594(data_021740e4) != 0) {
+        for (i = 0; i < 10; i++) {
+            if ((s8)data_021740f0[i][0] == 1) {
+                func_0212e204(&data_021740f0[i][0]);
+            }
+        }
+    }
+    data_021740d8[3] = 0;
+}
+
 void func_0212e514(void) {
     func_0212e5a0();
     func_0212e528();
@@ -307,6 +319,9 @@ void func_0212e514(void) {
 
 void func_0212e528(void) {
     func_021333b0();
+}
+
+void func_0212e534(void) {
 }
 
 extern s32 func_0212e56c(s32, s32, s32);
