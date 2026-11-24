@@ -90,15 +90,15 @@ void func_020e9e0c(void) {
     if (*(u32 *)(p + 0x14) & 1) {
         u32 flag = *(u32 *)(p + 0x14) & 2;
         if (flag == 0) {
-            *(s8 *)(p + 0x1a) += 1;
-            if (*(s8 *)(p + 0x1a) > 0xf) {
-                *(s8 *)(p + 0x1a) = 0xf;
+            *(volatile s8 *)(p + 0x1a) += 1;
+            if (*(volatile s8 *)(p + 0x1a) > 0xf) {
+                *(volatile s8 *)(p + 0x1a) = 0xf;
                 *(u32 *)(p + 0x14) |= 2;
             }
         } else if (flag != 0) {
-            *(s8 *)(p + 0x1a) -= 1;
-            if (*(s8 *)(p + 0x1a) < 0) {
-                *(s8 *)(p + 0x1a) = 0;
+            *(volatile s8 *)(p + 0x1a) -= 1;
+            if (*(volatile s8 *)(p + 0x1a) < 0) {
+                *(volatile s8 *)(p + 0x1a) = 0;
                 *(u32 *)(p + 0x14) &= ~2;
             }
         }
