@@ -66,19 +66,18 @@ void func_02045d84(void) {
     s32 offset;
     void *obj;
     void (*fn)(void *);
-    G **g = (G **)&data_021600ac;
 
-    func_020a9544((*g)->field_9c);
-    func_020a9544((*g)->field_a0);
-    func_020a9544((*g)->field_a4);
-    func_020a9544((*g)->field_a8);
-    func_020a9544((*g)->field_ac);
-    func_020a9544((*g)->field_b0);
+    func_020a9544(((G *)data_021600ac)->field_9c);
+    func_020a9544(((G *)data_021600ac)->field_a0);
+    func_020a9544(((G *)data_021600ac)->field_a4);
+    func_020a9544(((G *)data_021600ac)->field_a8);
+    func_020a9544(((G *)data_021600ac)->field_ac);
+    func_020a9544(((G *)data_021600ac)->field_b0);
     for (i = 0; i < 6; i++) {
         offset = i * 0x50;
-        func_020a994c((*g)->field_b8 + offset);
-        func_020a98a0((*g)->field_b8 + offset);
-        obj = *(void **)((u8 *)*g + offset + 0xb4);
+        func_020a994c(((G *)data_021600ac)->field_b8 + offset);
+        func_020a98a0(((G *)data_021600ac)->field_b8 + offset);
+        obj = *(void **)((u8 *)data_021600ac + offset + 0xb4);
         fn = *(void (**)(void *))((u8 *)obj + 0xc);
         fn(obj);
     }
