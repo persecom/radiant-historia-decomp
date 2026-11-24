@@ -113,7 +113,7 @@ void func_02050b0c(u8 *arg0, s32 arg1) {
 BOOL func_02050e2c(s32* arg0, s32* arg1, s32* arg2)
 {
     extern s32 func_02002404(s32, s32);
-    extern s32 func_0201fb1c_tmp(s32, s32);
+    extern s32 func_0201fb1c(s32, s32);
     extern s16 data_0213a394[];
 
     struct {
@@ -134,7 +134,7 @@ BOOL func_02050e2c(s32* arg0, s32* arg1, s32* arg2)
     local.relative[0] = arg0[0] - arg1[0];
     local.relative[1] = arg0[1] - arg1[1];
 
-    percent = func_0201fb1c_tmp(
+    percent = func_0201fb1c(
         (local.direction[0] * local.relative[0] + local.direction[1] * local.relative[1]) * 100,
         local.direction[0] * local.direction[0] + local.direction[1] * local.direction[1]);
 
