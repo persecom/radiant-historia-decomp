@@ -23,6 +23,12 @@ void func_02130858(u32 *arg0, u32 *arg1) {
     }
 }
 
+void func_021309c8(u32 arg0) {
+    if (data_02173434[0] != NULL) {
+        data_02173434[0](arg0);
+    }
+}
+
 void func_02130a44(void) {
     func_02132ae8();
 }
