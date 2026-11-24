@@ -112,6 +112,13 @@ void func_021324b4(void) {
     data_021749c4++;
 }
 
+void func_02132568(void) {
+    if (data_021749c4 == 1) {
+        func_0212f79c();
+    }
+    data_021749c4--;
+}
+
 void func_02132598(void *arg0) {
     *(u32 *)((u8 *)arg0 + 0xc) = 0;
     *(u32 *)((u8 *)arg0 + 0x1c) = 0;
