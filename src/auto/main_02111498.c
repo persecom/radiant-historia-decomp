@@ -419,6 +419,16 @@ u32 func_02111dbc(u8 *arg0, u32 arg1) {
     return *(u32 *)(arg0 + 0x78 + (arg1 << 2));
 }
 
+extern s32 func_02022068(u32);
+void func_02111dc8(u8 *p,u32 flags) {
+func_02111ccc(p);
+if(flags&1){u16 i;for(i=1;i<51;i++){s32 n=func_02022068(i);if(n){u8 *q=func_02111d3c(p);*(u16 *)(q+2)=i;*(s32 *)(q+8)=n;*(u16 *)(q+4)=0;}}}
+if(flags&2){u16 k; s32 n; u16 i;for(i=301;i<425;i++){n=func_02022068(i);if(n){for(k=0;k<n;k++){u8 *q=func_02111d3c(p);*(u16 *)(q+2)=i;*(s32 *)(q+8)=1;*(u16 *)(q+4)=1;q[6]|=4;}}}}
+if(flags&4){s32 n; u16 i; u16 k;for(i=520;i<620;i++){n=func_02022068(i);if(n){for(k=0;k<n;k++){u8 *q=func_02111d3c(p);*(u16 *)(q+2)=i;*(s32 *)(q+8)=1;*(u16 *)(q+4)=2;q[6]|=4;}}}}
+if(flags&8){s32 n; u16 i; u16 k;for(i=701;i<798;i++){n=func_02022068(i);if(n){for(k=0;k<n;k++){u8 *q=func_02111d3c(p);*(u16 *)(q+2)=i;*(s32 *)(q+8)=1;*(u16 *)(q+4)=3;q[6]|=4;}}}}
+if(flags&16){u16 i;for(i=201;i<271;i++){s32 n=func_02022068(i);if(n){u8 *q=func_02111d3c(p);*(u16 *)(q+2)=i;*(s32 *)(q+8)=n;*(u16 *)(q+4)=4;}}}
+*(u16 *)(p+0x70)=flags;func_02111ff0(p);}
+
 void func_02111ff0(u8 *arg0) {
     u32 count = func_020c9c34(*(void **)(arg0 + 0x34));
     u16 i;
