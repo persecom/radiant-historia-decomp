@@ -347,6 +347,15 @@ u32 func_02010f10(void) {
     return data_0215fa20[1];
 }
 
+void func_02010f20(void) {
+    if ((*(volatile u16 *)0x02ffffa8 & 0x8000) >> 15) {
+        func_0200e8a8();
+    }
+    func_02010fa8(1, 1);
+    func_02008a00();
+    func_02008414();
+}
+
 void func_02010f58(u32 arg0) {
     volatile u32 id = *(u32 *)0x02fffc00;
     if (arg0 == id) {
