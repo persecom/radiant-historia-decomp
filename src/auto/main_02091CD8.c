@@ -24,6 +24,13 @@ s32 func_02092994(u8 *arg0, s32 arg1) {
     return arg1;
 }
 
+extern u8 data_02148750[4];
+extern s32 func_020123f0(const char *, const char *);
+extern s32 func_02109444(void *);
+BOOL func_02092a28(const char *arg0, const char *arg1) {
+    return func_020123f0(arg0, arg1) == 0;
+}
+
 const char *func_02092a40(u8 *arg0, const char *arg1) {
     const char *r4 = *(const char **)(arg0 + 8);
     if (!func_021093f0(arg0)) {
