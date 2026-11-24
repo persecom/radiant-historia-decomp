@@ -32,3 +32,8 @@ s32 func_02021a28(void) {
     return func_02021428(&func_02021618);
 }
 
+extern u16 func_020217b4;
+s32 func_02021a3c(void) {
+    return func_02021428(&func_020217b4);
+}
+
