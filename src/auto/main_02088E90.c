@@ -9,7 +9,7 @@ extern void func_020a994c(void *);
 
 typedef struct {
     u32 pad[10];
-    u32 pad28;
+    u16 pad28;
     s16 field_2a;
     u32 pad2[14];
 } Unk_02089b38;
@@ -74,16 +74,20 @@ BOOL func_02089ae4(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 y1 = arg1 + arg3;
     u16 x = data_02162908[0];
     u16 y = data_02162908[1];
-    s32 ret = 0;
+    s32 ret;
     if (x >= arg0 && x <= x1 && y >= arg1 && y <= y1) {
         ret = 1;
+    } else {
+        ret = 0;
     }
     return !!ret;
 }
 
 s32 func_02089b38(Unk_02089b38 *arg0, Unk_02089b38 *arg1) {
-    Unk_02089b38 a = *arg0;
-    Unk_02089b38 b = *arg1;
+    Unk_02089b38 b;
+    Unk_02089b38 a;
+    a = *arg0;
+    b = *arg1;
     if (a.field_2a < b.field_2a) {
         return -1;
     }
