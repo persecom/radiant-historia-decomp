@@ -93,6 +93,21 @@ void func_02009e3c(u32 arg0, u32 arg1) {
     func_0200813c(irq);
 }
 
+void func_02009ec4(void) {
+    while (func_0200a6e4(7, 0, 0) < 0) {
+    }
+}
+
+extern u8 data_0215ec80[0x60];
+extern void func_0200a674(s32, void *);
+extern s32 func_02009f34(void);
+extern s32 func_0200a6c0(s32, s32);
+extern void func_020081a4(s32);
+extern s32 func_0200a6e4(s32, s32, s32);
+void func_02009fac(s32 arg0) {
+    data_0215ec80[arg0 * 12 + 8]++;
+}
+
 s32 func_0200a4f4(u8 *arg0) {
     return *(s32 *)(arg0 + 0x38);
 }
