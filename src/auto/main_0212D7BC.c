@@ -447,6 +447,11 @@ void func_0212e628(void) {
 }
 
 extern u32 data_02174524[0x100];
+extern u32 data_021744d8[];
+extern u8 data_02174608[];
+extern void func_021384b0(void);
+extern void func_021384c0(void);
+extern void func_0212ea7c(void);
 extern void func_020065c8(u32);
 extern void func_021384e0(void);
 extern void func_02006510(s32);
