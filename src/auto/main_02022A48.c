@@ -57,3 +57,15 @@ u8 *func_020230c8(u8 **arg0, u16 arg1) {
 void *func_02023100(void **arg0) {
     return *arg0;
 }
+
+u8 *func_02023108(u8 **arg0) {
+    u8 i;
+    for (i = 0; i < 3; i++) {
+        u8 *res = func_020230c8(arg0, (u16)(i + 0xd3));
+        if (res != NULL) {
+            return res;
+        }
+    }
+    return NULL;
+}
+
