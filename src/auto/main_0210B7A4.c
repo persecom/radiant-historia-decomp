@@ -105,6 +105,13 @@ void func_0210bf68(void) {
     *(u32 *)((u8 *)&data_02162638 + 0x10) = (u32)data_02144b94;
 }
 
+void func_0210bfec(void) {
+    func_02002c2c();
+    func_02002dc0();
+    func_02120800();
+    *(u32 *)0x04000540 = 0;
+}
+
 void* func_0210c518(u32 size, s32 arg1)
 {
     extern u8 data_02162684;
