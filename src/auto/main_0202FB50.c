@@ -80,6 +80,17 @@ void func_020305b0(void *arg0, void *arg1) {
     }
 }
 
+void func_020305e4(u8 *arg0, u16 arg1) {
+    u16 *node;
+    if (func_02030630(arg0, arg1) != NULL) {
+        return;
+    }
+    node = (u16 *)func_0210c594(0xc, data_02155c3c);
+    *node = arg1;
+    func_021167f0(arg0 + 8, node);
+    arg0[4]++;
+}
+
 extern void func_021168f8(void *, void *);
 extern void func_021167f0(void *, void *);
 extern void *func_02030630(u8 *, u16);
