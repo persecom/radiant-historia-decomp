@@ -94,6 +94,54 @@ void func_020665e0(void) {
     }
 }
 
+void func_0206662c(void) {
+u8 *p=data_021600e0[1];
+Vec_6662c dest,cur;
+s32 angle,sine,cosine;
+*(s32 *)(p+0x70)=*(s32 *)(p+0x6c)/4096;
+func_020c55bc();
+if(!(*(u32 *)(p+0x3c)&2) && *(s8 *)(p+0x68)==1) {
+if(*(s32 *)(p+0x88)) {
+*(s32 *)(p+0xc0)=*(s32 *)(p+0x50)-*(s32 *)(p+0x9c)/2;
+*(s32 *)(p+0xc4)=*(s32 *)(p+0x54)-*(s32 *)(p+0xa0)/2;
+}
+*(u32 *)(p+0x88)&=~16;
+*(u32 *)(p+0x88)&=~32;
+if(*(s32 *)(p+0x50)>-64)*(s32 *)(p+0x50)=-64;
+if(*(s32 *)(p+0x50)<-432)*(s32 *)(p+0x50)=-432;
+if(*(s32 *)(p+0x54)>-52)*(s32 *)(p+0x54)=-52;
+if(*(s32 *)(p+0x54)<-432)*(s32 *)(p+0x54)=-432;
+*(u32 *)(p+0x88)&=~64;
+}
+func_02066d84();
+if(*(s32 *)(p+0x40)) {
+if(!*(s32 *)(p+0x38)) {
+*(s32 *)(p+0x34)=1;*(s32 *)(p+0x38)=1;
+}
+}
+func_020c627c();
+dest=*(Vec_6662c *)(data_021600e0[1]+0xe4);
+cur.x=-*(s32 *)(data_021600e0[1]+0xf0);
+cur.z=-*(s32 *)(data_021600e0[1]+0xf8);
+func_0210c2f4(&cur,&dest);
+if(func_0210c2f4(&cur,&dest)>0x3000) {
+angle=func_02002404(cur.x-dest.x,cur.z-dest.z);
+angle=(angle%65536)>>4;
+sine=data_0213a394[angle*2];
+cosine=data_0213a394[angle*2+1];
+*(s32 *)((*(u8 *volatile *)&data_021600e0[1])+0xf0)+=sine*2;
+*(s32 *)((*(u8 *volatile *)&data_021600e0[1])+0xf8)+=cosine*2;
+{u8 *q=*(u8 *volatile *)&data_021600e0[1];*(s32 *)(q+0x50)=*(s32 *)(q+0xf0)>>12;}
+{u8 *q=*(u8 *volatile *)&data_021600e0[1];*(s32 *)(q+0x54)=*(s32 *)(q+0xf8)>>12;}
+}
+func_020a6ed0(1);func_020669e0(1);
+{
+s32 *v=*(s32 **)p;
+*(volatile u32 *)0x4001010=(v[0]&0x1ff)|((v[1]<<16)&0x1ff0000);
+}
+func_020a779c();func_020a7834();func_02066ce8();func_020aa8e8();
+}
+
 void func_020a3bbc(s32);
 void func_021098ac(void *);
 void func_020a7194(void *);
