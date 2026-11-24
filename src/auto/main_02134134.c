@@ -46,6 +46,42 @@ void func_02134368(u8 *arg0) {
     func_02013878(arg0, 0, 0x84);
 }
 
+s32 func_021343a0(u8 *arg0, s32 arg1, s32 arg2) {
+    s32 val = 0;
+    s32 max;
+    if (arg0 == NULL) {
+        func_02133dd0(0, data_0215bd14);
+        return 0;
+    }
+    func_0213807c();
+    if (arg2 == 0) {
+        val = arg1;
+    } else if (arg2 == 2) {
+        val = *(s32 *)(arg0 + 0x60) + arg1;
+    } else if (arg2 == 1) {
+        val = *(s32 *)(arg0 + 0x64) + arg1;
+    }
+    max = *(s32 *)(arg0 + 0x60);
+    if (val >= max) {
+        val = max;
+    }
+    if (val <= 0) {
+        val = 0;
+    }
+    *(s32 *)(arg0 + 0x64) = val;
+    func_0213808c();
+    func_0200bb10(*(void **)(arg0 + 0x4c), *(s32 *)(arg0 + 0x58) * val + *(s32 *)(arg0 + 0x80), 0);
+    return val;
+}
+
+s32 func_0213443c(u8 *arg0) {
+    if (arg0 != NULL) {
+        return *(s32 *)(arg0 + 0x64);
+    }
+    func_02133dd0(0, data_0215bd2c);
+    return 0;
+}
+
 extern void func_02133dd0(s32, void *);
 extern u8 data_0215bde8[24];
 s32 func_02134590(void *arg0) {
