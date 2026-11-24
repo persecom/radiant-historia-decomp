@@ -40,6 +40,35 @@ void func_020b9af0(void) {
     }
 }
 
+void func_020ba214(void) {
+    u8 *p = data_021601ec;
+    u8 *obj;
+    s32 done = 0;
+    func_020b8dbc();
+    func_020ba2d0();
+    *(s32 *)(p + 0x94) = (*(s32 *)(p + 0x94) * 50) / 100;
+    obj = func_020c9c10(*(void **)(p + 0x4c), 3);
+    if (((s32 (*)(u8 *))(*(void **)(obj + 0x18)))(obj) == 0) {
+        if (func_020c73d8(obj) == 0) {
+            done = 1;
+        }
+    }
+    if (data_021626a8 & 1) {
+        func_020c7090(func_020c9c10(*(void **)(p + 0x4c), 3));
+    }
+    if (done != 0) {
+        *(s32 *)(p + 0x40) = 0;
+        p[0x44] = 1;
+        func_020b8aac();
+        func_0210d27c(0xb);
+    }
+}
+
+void func_020ba3c0(void) {
+    u8 *obj = func_020c9c10(*(void **)(data_021601ec + 0x4c), 1);
+    *(u16 *)(obj + 0x30) = func_020c73d8(obj) != 0 ? 0x1a : 0x19;
+}
+
 s32 func_020ba504(u8 *arg0) {
     s32 ret = 0;
     ret |= func_02113824(*(u16 *)(arg0 + 2));
