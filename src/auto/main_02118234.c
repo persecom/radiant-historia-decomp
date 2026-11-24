@@ -8,6 +8,10 @@ void func_02118570(void *arg0) {
     func_02118430(arg0);
 }
 
+u16 func_02118588(u16 *arg0, s32 arg1) {
+    return arg0[arg1];
+}
+
 void func_021185b0(s32 *arg0, s32 arg1, s32 arg2) {
     arg0[arg1] = arg2;
 }
