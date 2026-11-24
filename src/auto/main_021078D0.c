@@ -90,6 +90,10 @@ void func_02107cb8(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
     *(u32 *)(data_02155984 + 0x10) = arg4;
 }
 
+void func_02107cf4(void) {
+    func_02107cb8(0x165, 0xff0, 0x1555, 0x64000, 0x800000);
+}
+
 extern u32 data_02155984;
 extern s32 func_02108258(u32);
 s32 func_02108240(void) {
