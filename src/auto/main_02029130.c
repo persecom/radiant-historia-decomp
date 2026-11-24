@@ -11,8 +11,7 @@ extern char data_02146168[];
 extern u32 data_0216263c[3];
 typedef struct {u32 seed, multiplier, increment;} RandomState_020295f0;
 static inline u16 RandomRange_020295f0(u16 max) {
- RandomState_020295f0 state=*(RandomState_020295f0 *)data_0216263c;
- u32 value = state.multiplier * state.seed + state.increment;
+ u32 value = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
  data_0216263c[0] = value;
  value >>= 16;
  if(max) value = (value * max) >> 16;
