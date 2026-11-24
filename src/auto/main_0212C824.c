@@ -17,6 +17,31 @@ extern void func_0212a9e8(void);
 extern void func_0212c824(void *);
 extern void func_0212d3b4(void *);
 
+extern s32 func_02137d44(void *);
+extern s32 func_0212a1d4(void *);
+s32 func_0212caec(u8 *arg0, s32 *arg1, s32 *arg2, s32 *arg3) {
+    void *first = *(void **)(arg0 + 0xc);
+    s32 i;
+
+    for (i = 0; i < func_0212a1ec(*(void **)(arg0 + 4)); i++) {
+        void *obj = *(void **)(arg0 + 0xc + i * 4);
+        (*(void (**)(void *, s32, s32, void *))(*(u8 **)obj + 0x18))(obj, 0, 0x4000, arg0 + 0x1c + i * 8);
+    }
+
+    *arg1 = (*(s32 *)(arg0 + 0x1c) - func_02137d44(first)) / 2;
+    {
+        s32 half = *(s32 *)(arg0 + 0x20) / 2;
+        s32 v = *(s32 *)(arg0 + 0x38);
+        *arg2 = v > half ? half : v;
+    }
+    if (*(s32 *)(arg0 + 0x3c) >= 0) {
+        *arg3 = *(s32 *)(arg0 + 0x3c) - *(s32 *)(arg0 + 0x40);
+    } else {
+        *arg3 = 0x1fffffff;
+    }
+    return func_0212a1d4(*(void **)(arg0 + 4));
+}
+
 void func_0212d168(u8 *arg0) {
     void *p = *(void **)(arg0 + 4);
     s32 a = func_0212a584(p);
