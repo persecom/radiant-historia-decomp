@@ -12,6 +12,30 @@ void func_020c93f4(u8 *arg0, u16 arg1) {
     func_020c9404(arg0, arg1);
 }
 
+void func_020c9404(u8 *arg0, u16 arg1) {
+    u16 max = *(u16 *)(arg0 + 0x42);
+    u16 old = *(u16 *)(arg0 + 0x3a);
+    s16 diff = max - *(u16 *)(arg0 + 0x40);
+    if (max != 0) {
+        if (old >= max) {
+            *(u16 *)(arg0 + 0x3a) = max - 1;
+        }
+    } else {
+        *(u16 *)(arg0 + 0x3a) = 0;
+    }
+    if (diff > 0) {
+        if (*(u16 *)(arg0 + 0x3e) > diff) {
+            *(u16 *)(arg0 + 0x3e) = diff;
+        }
+    } else {
+        *(u16 *)(arg0 + 0x3e) = 0;
+    }
+    if (old != *(u16 *)(arg0 + 0x3a)) {
+        func_020c9348(arg0, 1);
+        *(u8 *)(arg0 + 0x44) = 1;
+    }
+}
+
 u8 func_020c9488(u8 *arg0) {
     return *(u8 *)(arg0 + 0x44);
 }
@@ -26,6 +50,10 @@ u16 func_020c94a0(u8 *arg0) {
 
 u16 func_020c94a8(u8 *arg0) {
     return *(u16 *)(arg0 + 0x3e);
+}
+
+s16 func_020c94b0(u8 *arg0) {
+    return *(u16 *)(arg0 + 0x3a) - *(u16 *)(arg0 + 0x3e);
 }
 
 void func_020c94c8(u8 *arg0, u16 arg1, u16 arg2) {
