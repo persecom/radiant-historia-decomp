@@ -76,6 +76,8 @@ void func_0203e61c(void) {
 }
 
 void func_0203e6bc(void) {
+    Global_020600a0 *g;
+    Unk_0203e61c *ptr;
     if (data_021600a0.field_4 != NULL) {
         void *node = data_021600a0.field_4->field_28;
         if (node != NULL) {
@@ -87,8 +89,10 @@ void func_0203e6bc(void) {
         }
         func_0210da14();
     }
-    if (data_021600a0.field_4 == NULL) return;
-    func_0210c5dc(data_021600a0.field_4);
-    data_021600a0.field_4 = NULL;
+    g = &data_021600a0;
+    ptr = g->field_4;
+    if (ptr == NULL) return;
+    func_0210c5dc(ptr);
+    g->field_4 = NULL;
 }
 
