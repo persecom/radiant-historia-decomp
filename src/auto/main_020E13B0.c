@@ -64,6 +64,36 @@ void func_020e18b4(void) {
     }
 }
 
+void func_020e1998(void) {
+u8 *node;
+u16 i;
+if (data_02160244 == NULL || *((u8 *)data_02160244 + 0x15c) == 1) return;
+*(volatile u32 *)0x040004a4 = 0x1f00c0;
+func_020a3bbc(0x7a);
+for (i=0;i<9;i++) {
+node = data_02160244[i+2];
+if (node != NULL && node[0x38] != 0) {
+u32 args[3];
+switch(node[0x38]) {
+case 1: func_020a3bbc(122); break;
+case 2: func_020a3bbc(125); break;
+case 3: func_020a3bbc(127); break;
+case 4: func_020a3bbc(126); break;
+case 5: func_020a3bbc(129); break;
+case 6: func_020a3bbc(131); break;
+case 7: func_020a3bbc(130); break;
+case 8: func_020a3bbc(128); break;
+case 9: func_020a3bbc(124); break;
+case 10: func_020a3bbc(132); break;
+case 11: func_020a3bbc(123); break;
+case 12: func_020a3bbc(133); break;
+}
+args[0]=*(u32 *)(node+4); args[1]=0x24000; args[2]=*(u32 *)(node+12);
+func_020c33d8(args,0,0,0x1f,0x1f,0x11,0x18);
+}
+}
+}
+
 extern u8 **data_02160244;
 extern void func_020c34c8(u32 *, u32, u32, u32, u32, u32, u32, u32);
 void func_020e1b00(void) {
