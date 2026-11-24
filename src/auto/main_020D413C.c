@@ -20,6 +20,27 @@ void *func_020d413c(void) {
     return p;
 }
 
+void func_020d4184(u8 *arg0) {
+    func_02022454(arg0);
+    while (*(void **)(arg0 + 0x58) != NULL) {
+        void *node = *(void **)(arg0 + 0x58);
+        func_021168f8(arg0 + 0x58, node);
+        if (node != NULL) {
+            func_0210c5dc(node);
+        }
+    }
+    if (*(void **)(arg0 + 0x54) != NULL) {
+        func_0202bdbc(*(void **)(arg0 + 0x54));
+        *(void **)(arg0 + 0x54) = NULL;
+    }
+    if (*(void **)(arg0 + 0x8c) != NULL) {
+        func_0203319c(*(void **)(arg0 + 0x8c));
+    }
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
 void func_020d4e90(u8 *arg0, void *arg1) {
     func_021168f8(*(u8 **)(arg0 + 0x128) + 0x58, arg1);
     if (arg1 != NULL) {
