@@ -18,7 +18,7 @@ static inline u8 *find_node_02052844(u16 id) {
     return NULL;
 }
 
-extern s32 func_020dd9b4(void *, s32 *);
+extern void func_020dd9b4(void *, s32 *);
 extern s32 func_02117d80(void);
 extern u32 *data_02155984;
 extern u8 *data_02160a80;
@@ -83,7 +83,7 @@ u32 func_02052a54(void *arg0, s32 arg1) {
     s32 val;
     u32 ret = 0;
     func_020dd9b4(arg0, &val);
-    if (val != 0) {
+    if (val) {
         ret |= 2;
     }
     if (arg1 == func_02117d80()) {
