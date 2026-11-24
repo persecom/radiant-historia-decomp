@@ -436,3 +436,36 @@ quit:
     return ret;
 }
 
+s32 func_0200c370(u8 *p) {
+u8 *out=*(u8 **)(p+0x30);
+u32 pos[2];
+u8 header;
+u16 id;
+s32 ret;
+pos[0]=*(u32 *)(p+8);pos[1]=*(u32 *)(p+0x28);
+ret=func_0200c248(pos,&header,1);
+if(ret)return ret;
+*(u32 *)(out+0x10)=header&0x7f;
+*(u32 *)(out+0xc)=(header>>7)&1;
+if(!*(u32 *)(out+0x10))return 1;
+if(!*(u32 *)(p+0x34)) {
+ret=func_0200c248(pos,out+0x14,*(u32 *)(out+0x10));
+if(ret)return ret;
+(out+*(u32 *)(out+0x10))[0x14]=0;
+} else pos[1]+=*(u32 *)(out+0x10);
+if(!*(u32 *)(out+0xc)) {
+*(u32 *)out=*(u32 *)(p+8);
+*(u32 *)(out+4)=*(u16 *)(p+0x26);
+++*(u16 *)(p+0x26);
+} else {
+ret=func_0200c248(pos,&id,2);
+if(!ret) {
+*(u32 *)out=*(u32 *)(p+8);
+*(u16 *)(out+4)=id&0xfff;
+*(u16 *)(out+6)=0;*(u32 *)(out+8)=0;
+}
+}
+if(!ret) *(u32 *)(p+0x28)=pos[1];
+return ret;
+}
+
