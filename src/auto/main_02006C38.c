@@ -28,6 +28,20 @@ extern void func_0200813c(u32);
 extern void *func_02007250(void *, void *);
 extern void *func_02007278(void *, void *);
 extern void func_02007538(s32, u32);
+typedef struct UnkStruct_0215d128 {
+    u16 unk00;
+    u16 unk02;
+    u32 unk04;
+    u64 unk08;
+} UnkStruct_0215d128;
+
+extern u16 data_0215d124;
+extern u16 data_0215d128;
+extern void func_020077f8(s32);
+extern void func_0200789c(void);
+extern void func_020057e8(u32, void (*)(void));
+extern void func_020059b4(u32);
+extern void func_02005944(u32, void (*)(void), u32);
 extern void func_02007674(void);
 extern u32 func_0200701c(s32);
 extern void func_020071a0(s32, u32);
@@ -178,7 +192,7 @@ void func_020075d4(s32 arg0, u32 arg1, s32 arg2) {
 
 void func_020075fc(void) {
     s32 inRange = 0;
-    u32 v = *(u32 *)0x02fffd9c;
+    u32 v = *(volatile u32 *)0x02fffd9c;
     data_0215d084[2] = v;
     if (v >= 0x02600000 && v < 0x02800000) {
         inRange = 1;
@@ -188,9 +202,8 @@ void func_020075fc(void) {
     }
     data_0215d084[0] = v;
     if (v == 0) {
-        u32 addr = 0x02fffd9c;
-        *(u32 *)addr = (u32)func_02007674;
-        *(u32 *)(addr & ~0x800000) = (u32)func_02007674;
+        *(volatile u32 *)0x02fffd9c = (u32)func_02007674;
+        *(volatile u32 *)0x027ffd9c = (u32)func_02007674;
     }
     data_0215d084[3] = 0;
 }
