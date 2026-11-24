@@ -2,6 +2,10 @@
 #include "common.h"
 
 extern u32 data_0215f0a0[4];
+extern u8 data_0215f120[1312];
+extern s32 func_02005da4(u16);
+extern void func_0200851c(void *, s32);
+extern void func_02007e58(void *, s32, s32, void *, void *);
 u32 func_0200f684(u32 arg0) {
     u32 result = 0;
     s32 i;
