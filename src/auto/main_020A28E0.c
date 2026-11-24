@@ -95,6 +95,21 @@ s32 func_020a2e8c(void) {
     return 1;
 }
 
+void func_020a2ee4(void) {
+    u8 *p = (u8 *)data_02160128;
+    if (p != NULL) {
+        u8 *node = *(u8 **)(p + 4);
+        while (node != NULL) {
+            u8 *next = *(u8 **)(node + 0xc);
+            func_021168f8(p + 4, node);
+            if (node != NULL) {
+                func_0210c5dc(node);
+            }
+            node = next;
+        }
+    }
+}
+
 s32 func_020a30c4(void) {
     func_020a30d4();
     return func_020a3128();
