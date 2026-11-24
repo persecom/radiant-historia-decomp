@@ -63,6 +63,23 @@ u32 arg1;
     return r4;
 }
 
+void func_0210c970(void *arg0) {
+    u8 *p = (u8 *)arg0;
+    if (*(void **)(p + 0x18) != NULL) {
+        func_0210c5dc(*(void **)(p + 0x18));
+        *(void **)(p + 0x18) = NULL;
+    }
+    if (func_021095d0(*(void **)p) == 0) {
+        if (*(void **)p != NULL) {
+            func_021093b0(*(void **)p);
+            *(void **)p = NULL;
+        }
+    }
+    if (p != NULL) {
+        func_0210c5dc(p);
+    }
+}
+
 void func_0210c9cc(arg0)
 u8 *arg0;
 {
