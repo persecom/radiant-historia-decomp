@@ -1,5 +1,7 @@
 /* 27 functions from 0x02020C58 to 0x02021C48 (main), found by ds-decomp. */
 #include "common.h"
+extern u8 *data_02160204;
+typedef struct { u8 value:1; u8 rest:7; } SaveFlag_02021ac4;
 
 extern void func_021072d0(u32, u32, u32);
 extern u32 func_02107294(void);
