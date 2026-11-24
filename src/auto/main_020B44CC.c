@@ -27,6 +27,10 @@ void func_020b453c(void) {
     *(volatile u32 *)0x04000000 = (*(volatile u32 *)0x04000000 & ~0x1f00) | 0x1f00;
 }
 
+void func_020b459c(void) {
+    func_02022160(*(void **)(func_020b3890() + 0x258));
+}
+
 void func_020b4af0(void *arg0) {
     if (arg0 != NULL) {
         func_020ec548(arg0);
