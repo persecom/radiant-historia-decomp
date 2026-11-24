@@ -53,6 +53,10 @@ void *func_020c2a98(u8 arg0, u8 arg1) {
     return NULL;
 }
 
+void *func_020c2d80(void) {
+    return *(void **)(data_02160090 + 0x48);
+}
+
 void *func_020c2d94(u8 arg0, u8 arg1) {
     u8 *node = *(u8 **)(data_02160090 + 0x48);
     while (node != NULL) {
