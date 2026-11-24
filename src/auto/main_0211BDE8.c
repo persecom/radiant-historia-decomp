@@ -278,25 +278,23 @@ void func_0211cc30(u8 *arg0, u8 *arg1) {
 }
 
 s32 func_0211ccb0(u8 *arg0, u8 *arg1) {
-    u8 *prev = *(u8 **)arg0;
     u8 *cur;
+    u8 *prev = *(u8 **)arg0;
     if (prev == NULL) {
         return 0;
     }
     if (prev == arg1) {
-        *(void **)arg0 = *(void **)(arg1 + 0x10);
+        *(void **)arg0 = *(void **)(prev + 0x10);
         *(void **)(arg1 + 0x10) = NULL;
         return 1;
     }
-    cur = *(u8 **)(prev + 0x10);
-    while (cur != NULL) {
+    while ((cur = *(u8 **)(prev + 0x10)) != NULL) {
         if (cur == arg1) {
             *(void **)(prev + 0x10) = *(void **)(cur + 0x10);
             *(void **)(cur + 0x10) = NULL;
             return 1;
         }
         prev = cur;
-        cur = *(u8 **)(cur + 0x10);
     }
     return 0;
 }
