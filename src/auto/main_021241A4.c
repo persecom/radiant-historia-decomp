@@ -228,6 +228,10 @@ u16 func_02125054(u32 *arg0, u32 arg1) {
     return (arg1 + 1) % arg0[1];
 }
 
+s32 func_0212508c(u8 *arg0) {
+    return *(u16 *)(arg0 + 0xc) == 0;
+}
+
 extern void func_0200439c(void);
 extern void func_020043f8(u32, u32, u32);
 extern void func_02004544(void);
