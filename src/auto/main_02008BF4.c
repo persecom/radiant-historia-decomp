@@ -185,7 +185,6 @@ void func_02009580(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     func_020097f0(0xc, arg0, arg1, arg2, arg3);
 }
 
-extern void func_02009fac(s32);
 void func_0200964c(u32 arg0, u32 arg1) {
     func_020097f0(0x1a, arg0, arg1, 0, 0);
 }
