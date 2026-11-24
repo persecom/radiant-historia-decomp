@@ -11,8 +11,9 @@ extern void func_02004544(void);
 extern void func_02003830(void *, u32, u32);
 extern void func_02003894(void *, u32, u32);
 
-void func_02118624(void *arg0, u32 arg1, s32 arg2, s32 *arg3) {
+void func_02118624(void *arg0, u32 arg1, s32 arg2, void *arg3) {
     u32 mapType = *(u32 *)((u8 *)arg0 + 8);
+    u32 zero = 0;
 
     switch (arg2) {
         case 0:
@@ -42,7 +43,7 @@ void func_02118624(void *arg0, u32 arg1, s32 arg2, s32 *arg3) {
     }
 
     if (*(u32 *)((u8 *)arg0 + 8) == 0) {
-        s32 val;
+        u32 val;
         switch (*(u16 *)((u8 *)arg0 + 2)) {
             case 1: val = 0; break;
             case 2: val = 1; break;
@@ -52,7 +53,7 @@ void func_02118624(void *arg0, u32 arg1, s32 arg2, s32 *arg3) {
             case 32: val = 5; break;
             default: val = 0; break;
         }
-        arg3[3] = val;
+        *(u32 *)((u8 *)arg3 + 0xc) = val;
 
         switch (*(u16 *)((u8 *)arg0 + 0)) {
             case 1: val = 0; break;
@@ -63,17 +64,17 @@ void func_02118624(void *arg0, u32 arg1, s32 arg2, s32 *arg3) {
             case 32: val = 5; break;
             default: val = 0; break;
         }
-        arg3[4] = val;
+        *(u32 *)((u8 *)arg3 + 0x10) = val;
     } else {
-        arg3[3] = *(u16 *)((u8 *)arg0 + 2);
-        arg3[4] = *(u16 *)((u8 *)arg0 + 0);
+        *(u32 *)((u8 *)arg3 + 0xc) = *(u16 *)((u8 *)arg0 + 2);
+        *(u32 *)((u8 *)arg3 + 0x10) = *(u16 *)((u8 *)arg0 + 0);
     }
 
-    arg3[5] = *(s32 *)((u8 *)arg0 + 4);
-    arg3[6] = 0;
-    arg3[7] = 1;
-    arg3[8] = *(s32 *)((u8 *)arg0 + 8);
-    func_021185b0(arg3, arg2, (s32)arg1);
+    *(u32 *)((u8 *)arg3 + 0x14) = *(u32 *)((u8 *)arg0 + 4);
+    *(u32 *)((u8 *)arg3 + 0x18) = zero;
+    *(u32 *)((u8 *)arg3 + 0x1c) = 1;
+    *(u32 *)((u8 *)arg3 + 0x20) = *(u32 *)((u8 *)arg0 + 8);
+    func_021185b0((s32 *)arg3, arg2, (s32)arg1);
 }
 
 void func_02118e68(s32 *arg0) {
@@ -89,6 +90,12 @@ void func_02118e84(s32 *arg0, s32 arg1, s32 arg2) {
 
 s32 func_02118e8c(s32 *arg0, s32 arg1) {
     return arg0[arg1];
+}
+
+extern void func_02118efc(void *);
+void func_02118eec(u32 *arg0, u32 arg1) {
+    *arg0 = arg1;
+    func_02118efc(arg0);
 }
 
 extern void func_02117e4c(void *);
