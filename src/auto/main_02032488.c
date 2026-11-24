@@ -14,6 +14,7 @@ extern void func_02031c60(s32, s32);
 extern void func_0209568c(s32, s32);
 extern void func_0209625c(void);
 extern void func_02031fcc(void *, s32);
+extern void *func_020de56c(void *);
 
 extern void func_020c2e80(void);
 void func_020328fc(void) {
