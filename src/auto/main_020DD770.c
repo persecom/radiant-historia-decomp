@@ -15,6 +15,7 @@ typedef struct UnkStruct_020dd770 {
 } UnkStruct_020dd770;
 
 extern UnkStruct_02160a68 data_02160a68;
+extern s32 func_02002404(s32, s32);
 extern void func_021168f8(void *, void *);
 extern void func_020ec548(void *);
 extern void func_0210c5dc(void *);
@@ -170,6 +171,17 @@ void func_020ddd5c(u8 *arg0) {
 
 void func_020dddf0(void) {
     func_0210c2f4();
+}
+
+s32 func_020dddfc(s32 *arg0, s32 *arg1, s32 arg2) {
+    s32 minX = arg0[0] - arg2;
+    s32 maxX = arg0[0] + arg2;
+    s32 minZ = arg0[2] - arg2;
+    s32 maxZ = arg0[2] + arg2;
+    if (arg1[0] >= minX && arg1[0] <= maxX && arg1[2] >= minZ && arg1[2] <= maxZ) {
+        return 1;
+    }
+    return 0;
 }
 
 extern u32 data_02155c3c;
