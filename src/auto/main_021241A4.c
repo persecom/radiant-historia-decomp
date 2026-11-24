@@ -195,6 +195,13 @@ s32 func_02125014(void) {
     return 0;
 }
 
+extern void func_02124cf8(void);
+extern int func_02124e60(void);
+void func_0212501c(u32 *arg0) {
+    arg0[0] = data_02173174[0];
+    arg0[1] = data_02173174[1];
+}
+
 extern void func_0200439c(void);
 extern void func_020043f8(u32, u32, u32);
 extern void func_02004544(void);
