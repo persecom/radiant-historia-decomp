@@ -64,6 +64,20 @@ void func_0210ca6c(void) {
     func_0210c970(r4);
 }
 
+extern s32 func_020123f0(const char *, const char *);
+extern void func_0210c5dc(void *);
+extern s32 func_021095d0(void *);
+extern void func_021093b0(void *);
+extern s32 func_02109444(void *);
+extern void *func_0210ca88(void *, s32);
+s32 func_0210cc54(const char *arg0) {
+    if (func_020123f0(arg0, *(const char **)((u8 *)data_021626e8.f4 + 8)) != 0) {
+        return 0;
+    }
+    func_021093f0(data_021626e8.f4);
+    return 1;
+}
+
 const char *func_0210cd20(u8 *arg0, const char *arg1) {
     const char *r4 = *(const char **)(arg0 + 8);
     if (!func_021093f0(arg0)) {
