@@ -70,9 +70,6 @@ void func_02135650(u8 *arg0) {
         return;
     }
     func_02135920();
-    if (*(s8 *)(arg0 + 2) <= 0) {
-        return;
-    }
     for (i = 0; i < *(s8 *)(arg0 + 2); i++) {
         func_02135960(arg0, i, 0);
     }
@@ -83,19 +80,22 @@ void func_02135698(u8 *arg0, s32 arg1, s32 arg2) {
     if (arg0 == NULL || arg1 >= *(s8 *)(arg0 + 2)) {
         return;
     }
-    if (arg2 > 15) {
+    if (arg2 >= 15) {
         arg2 = 15;
     }
     val = (s16)arg2;
-    if (val <= -15) {
+    if (-15 >= val) {
         val = -15;
     }
-    *(s16 *)(arg0 + arg1 * 2 + 0x1a) = val;
-    if (*(s8 *)(arg0 + 4) >= 1 && *(s8 *)(arg0 + 3) >= 1 && *(s8 *)(arg0 + 2) == 2) {
-        func_02135984(arg0, 0, -15);
-        func_02135984(arg0, 1, 15);
-    } else {
-        func_02135984(arg0, arg1, *(s16 *)(arg0 + arg1 * 2 + 0x1a));
+    {
+        s16 *dst = (s16 *)(arg0 + arg1 * 2 + 0x1a);
+        *dst = val;
+        if (*(s8 *)(arg0 + 4) >= 1 && *(s8 *)(arg0 + 3) == 1 && *(s8 *)(arg0 + 2) == 2) {
+            func_02135984(arg0, 0, -15);
+            func_02135984(arg0, 1, 15);
+        } else {
+            func_02135984(arg0, arg1, *dst);
+        }
     }
 }
 
