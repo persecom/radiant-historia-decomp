@@ -2,6 +2,11 @@
 #include "common.h"
 
 extern u32 data_0216cad0[4];
+extern void func_021148cc(u8 *, s32);
+void func_021148bc(u8 *arg0) {
+    func_021148cc(arg0, 1);
+}
+
 u32 func_02114f70(void) {
     return data_0216cad0[0];
 }
