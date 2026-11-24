@@ -68,20 +68,38 @@ void func_020c6e2c(void *arg0, void *arg1) {
 }
 
 s32 func_020c6e40(void *arg0, u8 *arg1, s32 arg2, s32 arg3) {
+    s16 v2, v4, v6, v8, va, vc, ve, v10;
+    u8 v13, v14, v15;
+    s32 s5, s6;
     if (func_020c73c0() == 0) {
         return 2;
     }
     (*(void (**)(void *))(arg1 + 0x18))(arg0);
+    v2 = *(s16 *)(arg1 + 2);
     data_02160220[0] = 1;
-    data_02160220[1] = *(s16 *)(arg1 + 2);
-    data_02160220[2] = *(s16 *)(arg1 + 4);
-    data_02160220[3] = *(s16 *)(arg1 + 6);
-    data_02160220[4] = *(s16 *)(arg1 + 8);
-    data_02160220[5] = arg2 + (*(s16 *)(arg1 + 0xa) + arg1[0x14]);
-    data_02160220[6] = arg3 + (*(s16 *)(arg1 + 0xc) + arg1[0x15]);
-    data_02160220[7] = arg1[0x13];
-    data_02160220[8] = *(s16 *)(arg1 + 0xe);
-    data_02160220[9] = *(s16 *)(arg1 + 0x10);
+    v4 = *(s16 *)(arg1 + 4);
+    data_02160220[1] = v2;
+    v6 = *(s16 *)(arg1 + 6);
+    data_02160220[2] = v4;
+    va = *(s16 *)(arg1 + 0xa);
+    v14 = arg1[0x14];
+    v8 = *(s16 *)(arg1 + 8);
+    data_02160220[3] = v6;
+    s5 = va + v14;
+    vc = *(s16 *)(arg1 + 0xc);
+    v15 = arg1[0x15];
+    data_02160220[4] = v8;
+    s5 = arg2 + s5;
+    s6 = vc + v15;
+    v13 = arg1[0x13];
+    data_02160220[5] = s5;
+    s6 = arg3 + s6;
+    data_02160220[6] = s6;
+    ve = *(s16 *)(arg1 + 0xe);
+    data_02160220[7] = v13;
+    v10 = *(s16 *)(arg1 + 0x10);
+    data_02160220[8] = ve;
+    data_02160220[9] = v10;
     func_021098ac(data_02160220);
     return 0;
 }
@@ -96,6 +114,21 @@ void func_020c6f04(u8 *arg0, u16 arg1) {
 
 void func_020c6f0c(u8 *arg0, u16 arg1) {
     *(u16 *)(arg0 + 0x3c) = arg1;
+}
+
+s32 func_020c6fe4(u8 *arg0) {
+    s32 y = *(s16 *)(arg0 + 0x3c);
+    s32 y2 = y + *(s16 *)(arg0 + 0x40);
+    s32 x = *(s16 *)(arg0 + 0x3a);
+    s32 x2 = x + *(s16 *)(arg0 + 0x3e);
+    s32 px = data_02162908[0];
+    s32 py = data_02162908[1];
+    u8 inside = (px >= x && px <= x2 && py >= y && py <= y2);
+    return inside ? 0 : 1;
+}
+
+void func_020c706c(u8 *arg0, u8 arg1) {
+    arg0[0x42] = arg1;
 }
 
 s32 func_020c7080(void) {
