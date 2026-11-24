@@ -204,3 +204,43 @@ s32 func_020f62f4(s32 arg0, s32 arg1) {
     }
 }
 
+extern const char data_02152040[], data_02152044[];
+void *func_020f635c(void)
+{
+  u8 *p;
+  char *new_var;
+  char buf[0x40];
+  s32 i;
+  s8 ch;
+  s32 val = 0;
+  p = *((u8 **) (((u8 *) data_021626e8.f0) + 0x10));
+  func_02005e80(buf, data_02152040, func_0210cce4(NULL));
+  new_var = buf;
+  ch = new_var[0];
+  for (i = 0; i < 0x3f; i++)
+  {
+    buf[i] = new_var[i + 1];
+  }
+
+  func_02012590(new_var, data_02152044, &val);
+  switch (ch)
+  {
+    case 'b':
+      return (p + 0x44) + val;
+
+    case 'n':
+      return ((u32 *) (p + 0x64)) + val;
+
+    case 'l':
+      return ((u32 *) (p + 0xe4)) + val;
+
+    case 'a':
+      return p + 0x124;
+
+    default:
+      return NULL;
+
+  }
+
+}
+
