@@ -3,6 +3,9 @@
 
 extern void func_021168f8(void *, void *);
 extern void func_0210c5dc(void *);
+extern void *func_0210c594(s32, void *);
+extern void *data_02155c3c;
+extern void func_021167f0(void *, void *);
 extern u8 *data_021600e4;
 extern u32 func_020bdba0(u16);
 extern void func_020a6c44(void *, u16);
