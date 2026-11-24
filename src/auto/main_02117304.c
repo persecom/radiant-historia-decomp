@@ -189,6 +189,16 @@ s32 func_021177c0(void *arg0, void **arg1) {
     return 0;
 }
 
+s32 func_021177fc(void *arg0, void **arg1) {
+    u8 *r0 = func_02117904(arg0, 0x43504f53);
+    if (r0 != NULL) {
+        *arg1 = r0 + 8;
+        return 1;
+    }
+    *arg1 = NULL;
+    return 0;
+}
+
 void func_0211782c(u8 *arg0) {
     *(u32 *)(arg0 + 0x14) += (u32)arg0;
 }
