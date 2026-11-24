@@ -61,6 +61,39 @@ void *func_020bd450(u8 arg0) {
     return NULL;
 }
 
+extern u8 *func_02021f10(u8);
+u16 func_020bd490(u32 arg0, u8 arg1) {
+    u8 *p = func_020bd438(arg1);
+    if (p == NULL) {
+        return 0;
+    }
+    switch (arg0) {
+        case 0:
+            if (p == NULL) {
+                return 0;
+            }
+            return (*(u16 *)p & 1) ? 1 : 0;
+        case 1:
+            if (*(u16 *)p & 2) {
+                return p[3];
+            }
+            return func_02021f10(p[2])[0x42];
+        case 2:
+            return (*(u16 *)p & 2) ? 1 : 0;
+        case 3:
+            if (p == NULL) {
+                break;
+            }
+            return p[2];
+        case 4:
+            return (*(u16 *)p & 4) ? 1 : 0;
+        case 5:
+            *(u16 *)p |= 4;
+            break;
+    }
+    return 0;
+}
+
 void func_020bd574(void) {
     u8 i;
     for (i = 0; i < 7; i++) {
@@ -116,6 +149,22 @@ s8 func_020bdba0(s32 arg0) {
         return (((u32 *)data_02160200)[(u32)arg0 >> 5] & (1 << (arg0 % 32))) != 0;
     }
     return -1;
+}
+
+void func_020bdbe8(s32 arg0, volatile s32 x, s32 unused, volatile s32 arg3, ...) {
+u32 index=data_02151118[2];
+u32 bits=((u32 *)data_02160200)[index];
+s32 y=arg3;
+u8 i;
+for(i=0;i<32;i++) { if(bits & (1<<i)) break; }
+*(u16 *)(data_02160200+arg0*2+0x17c)=*(u16 *)(data_02160204+0x72);
+*(u16 *)(data_02160200+arg0*4+0x170)=x>>12;
+*(u16 *)(data_02160200+arg0*4+0x172)=y>>12;
+*(u16 *)(data_02160204+0x74)=0;
+*(u16 *)(data_02160204+0x76)=0;
+(data_02160200+(arg0+1))[0x16c]=data_02160200[0x16c];
+*(u32 *)(data_02160200+arg0*4+0x184)=((u32 *)data_02160200)[index];
+
 }
 
 s32 func_020bdcc0(s32 arg0) {
