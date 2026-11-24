@@ -40,3 +40,12 @@ void func_020b9af0(void) {
     }
 }
 
+s32 func_020ba504(u8 *arg0) {
+    s32 ret = 0;
+    ret |= func_02113824(*(u16 *)(arg0 + 2));
+    if (ret != 0) {
+        return ret;
+    }
+    return 0;
+}
+
