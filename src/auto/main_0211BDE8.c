@@ -3,6 +3,23 @@
 
 extern void func_02008df0(s32, void *, s32);
 extern u8 *data_021701f8;
+extern s32 func_0211ccb0(u8 *, u8 *);
+
+typedef struct Unk_02155ef8 {
+    u8 code;
+    u8 pad[1];
+    u16 id;
+    u32 pad2;
+} Unk_02155ef8;
+
+typedef struct Unk_02155efc {
+    void (*func)(void);
+    u32 pad;
+} Unk_02155efc;
+
+extern u32 data_02155ed4;
+extern Unk_02155ef8 data_02155ef8[];
+extern Unk_02155efc data_02155efc[];
 extern void func_02008e24(s32, void *, s32);
 extern u32 data_02155ef4;
 extern u32 data_02155ef0;
@@ -127,8 +144,14 @@ void func_0211c79c(void *arg0) {
 
 void func_0211c934(s32 *arg0, s32 *arg1, s32 arg2) {
     s32 size = (*(volatile u16 *)data_02144ee8[arg2] & 0xc000) >> 14;
-    s32 mode = (arg2 <= 3 ? *(volatile u32 *)0x04000000 : *(volatile u32 *)0x04001000) & 7;
     s32 bg = arg2 & 3;
+    s32 mode;
+    if (arg2 <= 3) {
+        mode = *(volatile u32 *)0x04000000;
+    } else {
+        mode = *(volatile u32 *)0x04001000;
+    }
+    mode &= 7;
     if ((bg == 2 && (mode == 2 || mode >= 4)) || (bg == 3 && mode >= 1)) {
         s32 v = 0x10 << size;
         *arg0 = v;
