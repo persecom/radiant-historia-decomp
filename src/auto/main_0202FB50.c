@@ -129,3 +129,14 @@ void *func_02030698(u8 *arg0, u16 arg1) {
     return NULL;
 }
 
+void func_020306c4(u8 *arg0, u16 arg1) {
+    void *node = func_02030698(arg0, arg1);
+    if (node == NULL) {
+        return;
+    }
+    func_021168f8(arg0 + 0xc0, node);
+    if (node != NULL) {
+        func_0210c5dc(node);
+    }
+}
+
