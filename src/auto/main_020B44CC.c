@@ -138,6 +138,17 @@ void func_020b4af0(void *arg0) {
     }
 }
 
+void *func_020b4b04(u16 arg0) {
+    u8 *node = *(u8 **)data_021601e8;
+    while (node != NULL) {
+        if (*(u16 *)(node + 0x4c) == arg0) {
+            return node;
+        }
+        node = *(u8 **)(node + 0x64);
+    }
+    return NULL;
+}
+
 void func_020b52e0(u32 arg0) {
     *(u32 *)(data_021601e8 + 0x14) = arg0;
 }
