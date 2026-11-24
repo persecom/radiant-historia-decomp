@@ -49,6 +49,15 @@ s32 func_02002080(s32 arg0, u32 arg1) {
     return *(volatile s32 *)0x040002a0;
 }
 
+s32 func_020020bc(s32 arg0, u32 arg1) {
+    *(volatile u16 *)0x04000280 = 0;
+    *(volatile u32 *)0x04000290 = arg0;
+    *(volatile u64 *)0x04000298 = arg1;
+    while (*(volatile u16 *)0x04000280 & 0x8000) {
+    }
+    return *(volatile s32 *)0x040002a8;
+}
+
 u16 func_02002404(s32 y, s32 x)
 {
     extern s32 func_02001fb0(s32, s32);
