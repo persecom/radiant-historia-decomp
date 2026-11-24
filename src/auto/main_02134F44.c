@@ -161,7 +161,6 @@ s32 func_02135960(u8 *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_02135984(u8 *arg0, s32 arg1, s32 arg2) {
-    void **slot;
     if (arg2 == 0) {
         arg2 = 0x40;
     } else if (arg2 == -15) {
@@ -171,8 +170,7 @@ void func_02135984(u8 *arg0, s32 arg1, s32 arg2) {
     } else {
         arg2 = (arg2 + 15) * 128 / 30;
     }
-    slot = (void **)(arg0 + arg1 * 4 + 0x20);
-    *(u16 *)(*slot + 0x20) = (u16)arg2;
+    *(u16 *)(*(void **)(arg0 + arg1 * 4 + 0x20) + 0x20) = (u16)arg2;
     func_021147e8(arg0 + 0x34);
 }
 
@@ -197,11 +195,11 @@ void func_021359e4(u8 *arg0) {
 void func_02135a80(u8 *arg0) {
     s32 i = 0;
     while (i < *(s8 *)(arg0 + 2)) {
-        s32 val = i;
+        u32 val = i;
         void **slot = (void **)(arg0 + i * 4 + 0x20);
         i++;
         *(u16 *)(*slot + 0x24) = (u16)val;
-        *(u32 *)(*slot + 0x14) = (u32)val;
+        *(u32 *)(*slot + 0x14) = val;
     }
 }
 
@@ -243,5 +241,18 @@ void func_02135d24(u16 arg0) {
 
 s16 func_02135d94(u8 *arg0) {
     return *(s16 *)(arg0 + 0x26);
+}
+
+extern void func_02016e88(void *, void *, s32);
+extern void func_02135d4c(s32, s32);
+extern void func_02135d24(u16);
+extern s32 data_02175ab4;
+void func_02135f0c(void *arg0, u16 *arg1, u16 *arg2) {
+    u16 ime = *(volatile u16 *)0x04000208;
+    *(volatile u16 *)0x04000208 = 0;
+    *arg1 = *(u16 *)((u8 *)arg0 + 0x1e);
+    *arg2 = *(u16 *)((u8 *)arg0 + 0x1c);
+    (void)*(volatile u16 *)0x04000208;
+    *(volatile u16 *)0x04000208 = ime;
 }
 
