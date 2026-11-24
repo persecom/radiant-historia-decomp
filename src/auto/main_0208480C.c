@@ -4,6 +4,14 @@
 extern void func_02085328(void);
 extern u8 *data_0216010c;
 extern s16 *func_02116984(void *, u16);
+void func_0208480c(void) {
+    data_0216010c[0x50b4] = 1;
+}
+
+u8 func_02085110(u32 arg0) {
+    return data_0216010c[arg0 * 8 + 0x618];
+}
+
 void func_02085234(void) {
     func_02085328();
 }
