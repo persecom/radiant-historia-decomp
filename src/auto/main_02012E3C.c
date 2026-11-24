@@ -50,6 +50,10 @@ s32 func_020136ec(s32 arg0, ...) {
     }
 }
 
+s32 func_0201375c(s32 a, s32 b, s32 c) {
+    return ((s32 (*)(s32, s32, s32))(*(u32 *)data_02145c8c[2]))(a, b, c);
+}
+
 s32 func_02013778(u16 *pwc, const u8 *s, u32 n) {
     if (!s) {
         return 0;
@@ -60,7 +64,7 @@ s32 func_02013778(u16 *pwc, const u8 *s, u32 n) {
     if (pwc) {
         *pwc = *s;
     }
-    return *s ? 1 : 0;
+    return *s == 0 ? 0 : 1;
 }
 
 extern u32 data_02145c8c[];
