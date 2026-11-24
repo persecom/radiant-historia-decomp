@@ -66,6 +66,32 @@ s32 func_021136b0(u16 arg0, ...) {
     y = func_021136e4(x);
     return ret;
 }
+
+extern void func_0211379c(s32, u16 *, u16 *);
+extern s32 func_02022068(u16);
+#pragma optimization_level 0
+s32 func_021136e4(s32 arg0) {
+    u16 sum = 0;
+    u16 i;
+    s32 count = 0;
+    u16 start;
+    u16 end;
+
+    func_0211379c(arg0, &start, &end);
+    for (i = start; i < end; i++) {
+        count = func_02022068(i);
+        if (count != 0) {
+            if ((arg0 == 1 ? 1 : (arg0 == 2 ? 1 : (arg0 == 3 ? 1 : 0))) != 0) {
+                sum += count;
+            } else {
+                sum++;
+            }
+        }
+    }
+    return sum;
+}
+#pragma optimization_level 4
+
 #pragma optimization_level 4
 
 s32 func_02113824(void) {
