@@ -81,7 +81,8 @@ void func_020ebc94(u8 *arg0, u32 arg1, s32 arg2) {
 
 s32 func_020ebcfc(u8 *arg0, u32 arg1, s32 arg2) {
     u8 *r0 = *(u8 **)(arg0 + 8);
-    u32 count = *(u16 *)(*(u8 **)(*(u8 **)(r0 + 0x58) + 0xc));
+    u8 *p58 = *(u8 **)(r0 + 0x58);
+    u32 count = *(u16 *)(*(u8 **)(p58 + 0xc));
     s32 res;
     if (count <= arg1) {
         return 0;
@@ -96,23 +97,19 @@ s32 func_020ebcfc(u8 *arg0, u32 arg1, s32 arg2) {
 
 s32 func_020ebd5c(u8 *arg0, s32 arg1) {
     u8 *r3 = *(u8 **)(arg0 + 0xc);
-    u8 *p8;
-    if (r3 == NULL) {
-        return 0;
+    if (r3 != NULL) {
+        if (*(u16 *)(*(u8 **)(*(u8 **)(*(u8 **)(arg0 + 8) + 0x58) + 0xc)) <= arg1 * 2) {
+            return 0;
+        }
+        switch (r3[arg1 * 4]) {
+        case 0:
+            return 0;
+        case 1:
+            return func_020ebcfc(arg0, *(u16 *)(r3 + arg1 * 4 + 2), 1);
+        case 3:
+            return func_020ebcfc(arg0, *(u16 *)(r3 + arg1 * 4 + 2), 1);
+        }
     }
-    p8 = *(u8 **)(arg0 + 8);
-    if (*(u16 *)(*(u8 **)(*(u8 **)(p8 + 0x58) + 0xc)) <= arg1 * 2) {
-        return 0;
-    }
-    switch (r3[arg1 * 4]) {
-    case 0:
-        return 0;
-    case 1:
-        return func_020ebcfc(arg0, *(u16 *)(r3 + arg1 * 4 + 2), 1);
-    case 3:
-        return func_020ebcfc(arg0, *(u16 *)(r3 + arg1 * 4 + 2), 1);
-    default:
-        return 0;
-    }
+    return 0;
 }
 
