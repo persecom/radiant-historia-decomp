@@ -24,7 +24,42 @@ extern void func_02008a28(u32, u32);
 extern void func_02008ab4(u32, u32, u32, u32);
 extern void func_0200893c(u32);
 extern void func_02008ca8(void);
+extern void func_02008dc4(void);
 typedef void (*Fn_U32)(u32);
+
+void func_02008bf4(void) {
+    u32 base;
+    u32 size;
+    u32 remaining;
+    size = data_0215d17c.field_c;
+    if (size == 0) return;
+    base = data_0215d17c.field_8;
+    if (size >= 0x1d8) size = 0x1d8;
+    remaining = data_0215d17c.field_c - size;
+    data_0215d17c.field_c = remaining;
+    data_0215d17c.field_8 = base + size;
+    if (remaining == 0) {
+        func_020058fc(data_0215d17c.field_4, (u32)func_02008ca8, 0);
+        func_01ff845c(data_0215d17c.field_4, base, 0x4000400, (-0x3bc00000) | (size >> 2), 0);
+    } else {
+        func_01ff845c(data_0215d17c.field_4, base, 0x4000400, 0x84400000 | (size >> 2), 0);
+    }
+    func_02005a14(0x200000);
+}
+
+void func_02008ca8(void) {
+    Fn_U32 fn;
+    u32 arg;
+    func_020059e4(0x200000);
+    *(volatile u32 *)0x04000600 = (*(volatile u32 *)0x04000600 & 0x3fffffff) | (data_0215d17c.field_18 << 30);
+    func_020057e8(0x200000, data_0215d17c.field_1c);
+    data_0215d17c.field_0 = 0;
+    fn = (Fn_U32)data_0215d17c.field_10;
+    arg = data_0215d17c.field_14;
+    if (fn != NULL) {
+        fn(arg);
+    }
+}
 
 void func_02008dc4(void) {
     void (*cb)(u32);
@@ -34,6 +69,22 @@ void func_02008dc4(void) {
     arg = data_0215d17c.field_14;
     if (cb != NULL) {
         cb(arg);
+    }
+}
+
+void func_02008df0(u16 val, u8 *dst, s32 size) {
+    s32 i = 0;
+    while (i < size) {
+        *(u16 *)(dst + i) = val;
+        i += 2;
+    }
+}
+
+void func_02008e08(u8 *src, u8 *dst, s32 size) {
+    s32 i = 0;
+    while (i < size) {
+        *(u16 *)(dst + i) = *(u16 *)(src + i);
+        i += 2;
     }
 }
 
