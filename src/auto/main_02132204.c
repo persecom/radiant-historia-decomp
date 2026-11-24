@@ -385,6 +385,38 @@ void func_02132cbc(const char *arg0, void *(*arg1)(void)) {
     }
 }
 
+void *func_02132d2c(const char *arg0, void *(*arg1)(void)) {
+    s32 i;
+    void *res;
+    func_02132e0c();
+    res = arg1();
+    if (func_02132dbc(arg0) != NULL) {
+        return res;
+    }
+    for (i = 0; i < 32; i++) {
+        if (data_02174b64[i].name[0] == '\0') {
+            break;
+        }
+    }
+    if (i == 32) {
+        return NULL;
+    }
+    data_02174b64[i].ptr = res;
+    func_02013858(data_02174b64[i].name, arg0, func_02016da4(arg0) + 1);
+    return res;
+}
+
+void *func_02132dbc(const char *arg0) {
+    u32 len = func_02016da4(arg0);
+    u32 i;
+    for (i = 0; i < 32; i++) {
+        if (func_02016f58(arg0, data_02174b64[i].name, len) == 0) {
+            return data_02174b64[i].ptr;
+        }
+    }
+    return NULL;
+}
+
 extern u8 data_021749dc[64];
 void *func_02132f14(void) {
     return data_021749dc;
