@@ -87,6 +87,21 @@ void func_02022454(u8 *arg0) {
     }
 }
 
+void *func_02022494(u8 *arg0, u16 arg1) {
+    u8 *node = *(u8 **)(arg0 + 0x64);
+    u16 i = 0;
+    if (node != NULL) {
+        do {
+            if (i == arg1) {
+                return node;
+            }
+            node = *(u8 **)(node + 0xc);
+            i++;
+        } while (node != NULL);
+    }
+    return NULL;
+}
+
 extern void func_021167ac(void *, u32);
 void *func_02022558(u8 *arg0, u16 arg1) {
     u8 *node = *(u8 **)(arg0 + 4);
