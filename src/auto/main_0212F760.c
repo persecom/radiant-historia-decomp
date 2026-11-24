@@ -189,6 +189,28 @@ void func_0212fd28(u8 *a0, u8 *a1) {
     *(struct s8 *)(a0 + 0xa24) = *(struct s8 *)a1;
 }
 
+extern s32 func_0212f3fc(u8 *, s32);
+s32 func_0212fd54(void *arg0, void *arg1) {
+    u8 *a0 = arg0;
+    u8 *a1 = arg1;
+    *(s32 *)(a1 + 0x00) = func_0212f3fc(a0, 1);
+    *(s32 *)(a1 + 0x04) = 4 - func_0212f3fc(a0, 2);
+    *(s32 *)(a1 + 0x08) = func_0212f3fc(a0, 1) == 0;
+    *(s32 *)(a1 + 0x0c) = func_0212f3fc(a0, 4);
+    *(s32 *)(a1 + 0x10) = func_0212f3fc(a0, 2);
+    *(s32 *)(a1 + 0x14) = func_0212f3fc(a0, 1);
+    *(s32 *)(a1 + 0x18) = func_0212f3fc(a0, 1);
+    *(s32 *)(a1 + 0x1c) = func_0212f3fc(a0, 2);
+    *(s32 *)(a1 + 0x20) = func_0212f3fc(a0, 2);
+    *(s32 *)(a1 + 0x24) = func_0212f3fc(a0, 1);
+    *(s32 *)(a1 + 0x28) = func_0212f3fc(a0, 1);
+    *(s32 *)(a1 + 0x2c) = func_0212f3fc(a0, 2);
+    if (*(s32 *)(a1 + 0x1c) != 3 || *(s32 *)(a1 + 0x20) != 0) {
+        return -1;
+    }
+    return 0;
+}
+
 s32 func_0212fe50(s32 a0, s32 a1, s32 a2) {
     return func_0212f558(0, a2);
 }
