@@ -37,6 +37,10 @@ typedef struct Mgr_020d3160 {
     u8 unk_144;
     u8 pad_145[0xb];
     Node_020d3fac *unk_150;
+    u8 pad_154[0xc];
+    void *unk_160;
+    u32 unk_164;
+    u16 unk_168;
 } Mgr_020d3160;
 
 extern Mgr_020d3160 *data_02160244;
@@ -169,11 +173,12 @@ func_020d3160(6,**(u8 **)(p+0x118),0,*(u16 *)(p+0x90)&255);
 mgr=(u8 *)data_02160244;
 count=*(u16 *)(mgr+0x168);
 while(node) {
+u8 *entry;
 void *obj=*(void **)node;
 if(obj) {
-u8 *entry=*(u8 **)(mgr+0x160);
+entry=*(u8 **)(mgr+0x160);
 while(entry) {
-if(*(void **)entry==obj) {found=1;break;}
+if(obj==*(void **)entry) {found=1;break;}
 entry=*(u8 **)(entry+8);
 }
 }
@@ -192,16 +197,15 @@ func_021167f0((u8 *)data_02160244+0x160,entry);
 list=*(u8 **)(list+0x18);
 }
 }
-{u8 *mgr2=(u8 *)data_02160244;
-if(mgr2[0x144]==4 && count==0) found=1;
-if(found) mgr2[0x144]=*(s16 *)(arg2+0x16);
+mgr=(u8 *)data_02160244;
+if(mgr[0x144]==4 && count==0) found=1;
+if(found) mgr[0x144]=*(s16 *)(arg2+0x16);
 else {
 s32 value=*(s16 *)(arg2+0x16);
 s32 zero=0;
-mgr2[0x144]=value;
+mgr[0x144]=value;
 func_020d3160(7,zero,zero,zero);
 func_020d3160(zero,zero,zero,zero);
-}
 }
 }
 
