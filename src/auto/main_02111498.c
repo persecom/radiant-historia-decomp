@@ -129,6 +129,17 @@ void func_02111728(void *arg0) {
     func_02111ccc(p);
 }
 
+extern void func_020c9b64(void *);
+extern void func_02111ad8(u8 *);
+extern void func_02111bf0(u8 *);
+extern void func_02111ff0(u8 *);
+s32 func_021117b0(u8 *arg0) {
+    func_020c9b64(*(void **)(arg0 + 0x30));
+    func_020c9b64(*(void **)(arg0 + 0x34));
+    (*(void (**)(void *))(*(u8 **)(arg0 + 0x6c) + 8))(*(void **)(arg0 + 0x6c));
+    return 0;
+}
+
 void func_02111828(u8 *arg0) {
     u16 i;
     u32 count;
