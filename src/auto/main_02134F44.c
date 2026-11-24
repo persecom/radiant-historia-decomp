@@ -245,7 +245,7 @@ void func_02135c78(u32 arg0, u32 arg1) {
 }
 
 extern void func_02016e88(void *, void *, s32);
-extern void func_02135d4c(s32, s32);
+extern void func_02135d4c(s32, u16);
 extern void func_02135d24(u16);
 extern s32 data_02175ab4;
 void func_02135c8c(void *arg0) {
@@ -253,6 +253,14 @@ void func_02135c8c(void *arg0) {
     if (data_021759ac[1] != 0) {
         ((void (*)(u32, void *))data_021759ac[1])(data_021759ac[0], data_021759b4);
     }
+}
+
+extern void *memset(void *, int, unsigned long);
+void func_02135ccc(void) {
+    memset(data_02175ab8, 0, 0x1a0);
+    data_02175ab4 = 0;
+    func_02135d4c(0, 1);
+    func_02135d24(2);
 }
 
 void func_02135d20(void) {
@@ -265,7 +273,7 @@ void func_02135d24(u16 arg0) {
     }
 }
 
-void func_02135d4c(s32 arg0, s32 arg1) {
+void func_02135d4c(s32 arg0, u16 arg1) {
     s32 i;
     if (arg0 == 0) {
         for (i = 0; i < 8; i++) {
