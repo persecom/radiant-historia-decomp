@@ -274,6 +274,12 @@ void func_020befd8(u8 *arg0, s32 arg1, s32 arg2) {
     *(s32 *)(arg0 + 0x4) = 0;
 }
 
+void func_020bf00c(s32 *out, s32 *a, s32 *b, s32 t) {
+out[0] = func_0201ff0c(func_020203d4(func_020201f4(func_02020604(0x3f800000,t),func_0201f884(a[0])),func_020201f4(t,func_0201f884(b[0]))));
+out[1] = func_0201ff0c(func_020203d4(func_020201f4(func_02020604(0x3f800000,t),func_0201f884(a[1])),func_020201f4(t,func_0201f884(b[1]))));
+out[2] = func_0201ff0c(func_020203d4(func_020201f4(func_02020604(0x3f800000,t),func_0201f884(a[2])),func_020201f4(t,func_0201f884(b[2]))));
+}
+
 void func_020bf24c(s32 arg0, u8 arg1) {
     u8 *p;
     u8 *q;
