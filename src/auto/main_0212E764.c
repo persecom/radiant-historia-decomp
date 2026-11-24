@@ -1,6 +1,7 @@
 /* 58 functions from 0x0212E764 to 0x0212F760 (main), found by ds-decomp. */
 #include "common.h"
 
+extern u32 data_02156f4c[4];
 extern u32 data_02174524[0x100];
 extern u32 data_021744ec[5];
 extern u32 data_021744d8[4];
