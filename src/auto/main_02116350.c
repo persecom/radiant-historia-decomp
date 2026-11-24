@@ -82,6 +82,15 @@ void func_021164e0(u8 *arg0) {
     }
 }
 
+void func_021165e0(u8 *arg0) {
+    if (*(s32 *)(arg0 + 0x128) == 0) {
+        return;
+    }
+    if (--(*(s32 *)(arg0 + 0x128)) == 0) {
+        func_021144f0(arg0);
+    }
+}
+
 void func_02116674(void *arg0) {
     s32 irq = func_02008128();
     func_021167f0(data_0216cb1c, arg0);
