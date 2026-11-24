@@ -146,20 +146,21 @@ void func_0202cbf8(u32 arg0, void *arg1) {
 }
 
 u32 func_0202cc74(u32 arg0) {
-    u32 ret = 0;
+    u8 *node;
     u32 i;
+    u32 ret = 0;
     for (i = 9; i <= 11; i++) {
         if (arg0 & (1 << i)) {
-            u8 *node = *(u8 **)(*(u8 **)((u8 *)data_02160244 + i * 4 + 8) + 0x10);
+            node = *(u8 **)(data_02160244[2 + i] + 0x10);
             while (node != NULL) {
                 u8 *obj = *(u8 **)node;
-                node = *(u8 **)(node + 0xc);
                 if (obj != NULL) {
                     u8 *p = *(u8 **)(obj + 0x118);
                     if (*(u32 *)(p + 0x70) != 0) {
                         ret |= (u16)(1 << (i - 9));
                     }
                 }
+                node = *(u8 **)(node + 0xc);
             }
         }
     }
