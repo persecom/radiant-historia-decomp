@@ -73,6 +73,12 @@ s32 func_02112690(u8 *arg0) {
     return 0;
 }
 
+void func_021126fc(u8 *arg0, u32 arg1) {
+    u8 *obj = func_020c9b24(*(void **)(arg0 + 0x30), 4, 2);
+    *(u32 *)(obj + 0x4c) = arg1;
+    obj[0x50] = 1;
+}
+
 s32 func_021128c4(void) {
     func_02112110();
     return 0;
