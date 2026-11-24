@@ -22,6 +22,10 @@ void func_020be678(void) {
     *(volatile u32 *)0x04000000 = (*(volatile u32 *)0x04000000 & ~0x1f00) | 0x1f00;
 }
 
+void func_020be764(void) {
+    func_020c33d4(0);
+}
+
 extern void func_020c33d4(s32);
 void func_020be774(void) {
     func_020c33d4(1);
