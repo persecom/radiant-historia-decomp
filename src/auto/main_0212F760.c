@@ -312,3 +312,66 @@ void func_0212ff10(void *arg0, void *arg1, void *arg2) {
  }
 }
 
+void func_02130018(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4) {
+    s32 (*bit_alloc)[32] = (s32 (*)[32])arg2;
+    s32 (*scfsi)[32] = (s32 (*)[32])arg3;
+    s32 sblimit = *(s32 *)((u8 *)arg1 + 0x10);
+    s32 stereo = *(s32 *)((u8 *)arg1 + 0x4);
+    s32 i, j;
+    s16 val;
+
+    if (bit_alloc[0][0] != 0) {
+        scfsi[0][0] = func_0212f3fc((u8 *)arg0, 2);
+    } else {
+        scfsi[0][0] = 0;
+    }
+
+    val = ((s16 *)((u8 *)arg1 + 0x34))[scfsi[0][0]];
+    for (i = 1; i < sblimit; i++) {
+        if (bit_alloc[0][i] != 0) {
+            s32 tmp = func_0212f3fc((u8 *)arg0, 2);
+            scfsi[0][i] = tmp ^ (val & 3);
+        }
+        val >>= 2;
+    }
+
+    for (i = sblimit; i < 32; i++) {
+        for (j = 0; j < stereo; j++) {
+            scfsi[j][i] = 0;
+        }
+    }
+
+    for (i = 0; i < sblimit; i++) {
+        for (j = 0; j < stereo; j++) {
+            if (bit_alloc[j][i] != 0) {
+                switch (scfsi[j][i]) {
+                    case 0:
+                        ((s32 (*)[3][32])arg4)[j][0][i] = func_0212f3fc((u8 *)arg0, 6);
+                        ((s32 (*)[3][32])arg4)[j][1][i] = func_0212f3fc((u8 *)arg0, 6);
+                        ((s32 (*)[3][32])arg4)[j][2][i] = func_0212f3fc((u8 *)arg0, 6);
+                        break;
+                    case 1:
+                        ((s32 (*)[3][32])arg4)[j][0][i] = ((s32 (*)[3][32])arg4)[j][1][i] = func_0212f3fc((u8 *)arg0, 6);
+                        ((s32 (*)[3][32])arg4)[j][2][i] = func_0212f3fc((u8 *)arg0, 6);
+                        break;
+                    case 3:
+                        ((s32 (*)[3][32])arg4)[j][0][i] = func_0212f3fc((u8 *)arg0, 6);
+                        ((s32 (*)[3][32])arg4)[j][1][i] = ((s32 (*)[3][32])arg4)[j][2][i] = func_0212f3fc((u8 *)arg0, 6);
+                        break;
+                    case 2:
+                        ((s32 (*)[3][32])arg4)[j][0][i] = ((s32 (*)[3][32])arg4)[j][1][i] = ((s32 (*)[3][32])arg4)[j][2][i] = func_0212f3fc((u8 *)arg0, 6);
+                        break;
+                }
+            } else {
+                ((s32 (*)[3][32])arg4)[j][0][i] = ((s32 (*)[3][32])arg4)[j][1][i] = ((s32 (*)[3][32])arg4)[j][2][i] = 63;
+            }
+        }
+    }
+
+    for (i = sblimit; i < 32; i++) {
+        for (j = 0; j < stereo; j++) {
+            ((s32 (*)[3][32])arg4)[j][0][i] = ((s32 (*)[3][32])arg4)[j][1][i] = ((s32 (*)[3][32])arg4)[j][2][i] = 63;
+        }
+    }
+}
+
