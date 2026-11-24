@@ -6,6 +6,9 @@ extern void func_02006dc4(u32, u32);
 extern s32 func_02125074(void *);
 extern u16 func_02125054(void *, u16);
 extern u32 data_02173180[5];
+typedef struct {
+    u32 f0, f4, f8, fc, f10;
+} Header_02173180;
 extern void func_02125524(s32, s32, s32, s32, s32);
 extern void func_0212e610(void);
 extern s32 func_02125708(u32 *);
@@ -206,10 +209,9 @@ s32 func_021253e8(u8 *arg0) {
 }
 
 void func_02125424(u32 arg0, u32 arg1) {
-    u32 *p = data_02173180;
-    p[0] = arg0;
-    p[1] = arg1;
-    func_02125374((u8 *)data_02173180);
+    data_02173180[0] = arg0;
+    data_02173180[1] = arg1;
+    func_02125374(&data_02173180[0]);
 }
 
 void func_02125448(void) {
@@ -219,7 +221,7 @@ void func_02125448(void) {
     }
     func_02125340((u32 *)p);
     do {
-        *(u32 *)((u8 *)data_02173180 + 0x10) -= *(u32 *)(p + 0xc);
+        data_02173180[4] -= *(u32 *)(p + 0xc);
         p = func_021253c8((u8 *)data_02173180);
     } while (func_021253e8((u8 *)data_02173180));
 }
