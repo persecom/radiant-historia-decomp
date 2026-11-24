@@ -234,3 +234,19 @@ void func_020a8404(void) {
     data_02160144 = 0;
 }
 
+void func_020a8440(void) {
+    s32 i;
+    u32 *dst = data_02160148;
+    u8 *src = data_021436cc;
+    u32 (**fp)(s32, s32, s32);
+    func_02004588();
+    fp = &data_02156158;
+    for (i = 0; i < 0x21; i++) {
+        u32 key = (*fp)(8, 1, 0);
+        dst[i] = key;
+        func_020045bc(src, (u32)(u16)key << 3, 8);
+        src += 8;
+    }
+    func_0200462c();
+}
+
