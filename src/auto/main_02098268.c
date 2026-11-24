@@ -66,6 +66,17 @@ void func_0209877c(u16 arg0) {
     *(s16 *)(out + 0x3c) = v1;
 }
 
+extern Pair16 data_02141ff4[6];
+void func_020987e8(u16 arg0) {
+    u8 *out = (u8 *)data_0216011c;
+    struct Table24 { s16 v[12]; } buf = *(const struct Table24 *)data_02141ff4;
+    u16 idx = arg0 * 2;
+    s16 v0 = buf.v[idx];
+    s16 v1 = buf.v[idx + 1];
+    *(s16 *)(out + 0x3a) = v0;
+    *(s16 *)(out + 0x3c) = v1;
+}
+
 void func_020988c0(void) {
     *(volatile u32 *)0x0400001c = 0;
     *(volatile u32 *)0x04000000 = (*(volatile u32 *)0x04000000 & ~0x1f00) | 0x1f00;
