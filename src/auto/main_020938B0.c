@@ -32,7 +32,7 @@ void func_020947a0(void) {
     u8 *p = data_02160110;
     if (p != NULL) {
         u32 *q = *(u32 **)(p + 0x14);
-        *(volatile u32 *)0x04001010 = (q[0] & 0x1ff) | ((q[1] & 0x1ff) << 16);
+        *(volatile u32 *)0x04001010 = (q[0] & 0x1ff) | ((q[1] << 16) & 0x01ff0000);
     }
 }
 
