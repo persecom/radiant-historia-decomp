@@ -116,7 +116,6 @@ void func_02022508(u8 *arg0) {
     }
 }
 
-extern void func_021167ac(void *, s32);
 void *func_02022558(u8 *arg0, u16 arg1) {
     u8 *node = *(u8 **)(arg0 + 4);
     while (node != NULL) {
