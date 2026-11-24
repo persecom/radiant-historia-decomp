@@ -40,8 +40,8 @@ void func_021115bc(u8 *arg0, u16 arg1) {
 }
 
 void func_021115f8(u8 *arg0, u32 arg1, u16 arg2) {
-    int result = 0;
     void *p = func_020c9c10(*(void **)(arg0 + 0x30), arg1);
+    int result = 0;
     result |= (*(u16 *)((u8 *)p + 0x30) != arg2);
     *(u16 *)((u8 *)p + 0x30) = arg2;
     if (result) {
