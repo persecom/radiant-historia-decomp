@@ -170,20 +170,12 @@ void func_0211d49c(u8 *arg0) {
 }
 
 s32 func_0211d520(u8 *arg0, void *arg1) {
-    s32 ret = 1;
     u32 i;
+    s32 ret = 1;
     for (i = 0; i < *(u8 *)(arg0 + 9); i++) {
-        u8 *mdl;
+        u8 *mdl = NULL;
         if (arg0 != NULL) {
-            u8 *dict = arg0 + 8;
-            u32 *entry;
-            if (dict != NULL && i < *(u8 *)(arg0 + 9)) {
-                u16 ofs = *(u16 *)(arg0 + 0xe);
-                u16 unit = *(u16 *)(dict + ofs);
-                entry = (u32 *)((dict + ofs + 4) + unit * i);
-            } else {
-                entry = NULL;
-            }
+            u32 *entry = (u32 *)get_res_data_by_idx(arg0 + 8, i);
             if (entry != NULL) {
                 mdl = arg0 + *entry;
                 goto got_mdl;
