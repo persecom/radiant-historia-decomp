@@ -264,7 +264,7 @@ void func_0211794c(void *arg0) {
     *(u32 *)((u8 *)arg0 + 4) += (u32)arg0;
     for (i = 0; i < *(u16 *)arg0; i++) {
         u32 *arr = *(u32 **)((u8 *)arg0 + 4);
-        arr[i] = (u32)arg0 + arr[i];
+        arr[i] = (u32)((u8 *)arg0 + arr[i]);
     }
 }
 
