@@ -47,7 +47,6 @@ extern void func_02008e68(s32, void *, s32);
 extern void func_02006dc4(void *, s32);
 extern void func_0200a674(s32, void *);
 extern void func_0200fedc(u32, u32, u32);
-typedef struct { u32 f0; u32 f4; u8 pad[0x514]; u32 f51c; } Data_215f120;
 
 #pragma peephole off
 
