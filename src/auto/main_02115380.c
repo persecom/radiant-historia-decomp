@@ -13,10 +13,10 @@ extern s32 func_021172b4(void *, u16);
 extern void func_02117304(void *, u32);
 void func_02115380(void *arg0) {
     void *node;
-    void *sub;
     BOOL flag = FALSE;
-    while ((node = func_02116970((u8 *)arg0 + 4, NULL)) != NULL) {
-        sub = func_02116970(node, NULL);
+    node = func_02116970((u8 *)arg0 + 4, NULL);
+    while (node != NULL) {
+        void *sub = func_02116970(node, NULL);
         while (sub != NULL) {
             void (*cb)(void *, u32, u32, u32) = *(void (**)(void *, u32, u32, u32))((u8 *)sub + 0xc);
             if (cb != NULL) {
@@ -26,6 +26,7 @@ void func_02115380(void *arg0) {
             sub = func_02116970(node, sub);
         }
         func_021168f8((u8 *)arg0 + 4, node);
+        node = func_02116970((u8 *)arg0 + 4, NULL);
     }
     func_02117250(*(void **)arg0, 3);
     if (flag) {
@@ -53,11 +54,11 @@ s32 func_021154a4(void *arg0) {
     if (!func_021172b4(*(void **)arg0, *(u16 *)((u8 *)arg0 + 0xc))) {
         return -1;
     }
-    if (func_02115630(arg0)) {
-        return *(u16 *)((u8 *)arg0 + 0xc) - 1;
+    if (!func_02115630(arg0)) {
+        func_02117304(*(void **)arg0, 0);
+        return -1;
     }
-    func_02117304(*(void **)arg0, 0);
-    return -1;
+    return *(u16 *)((u8 *)arg0 + 0xc) - 1;
 }
 
 void func_021155ec(void *arg0) {
