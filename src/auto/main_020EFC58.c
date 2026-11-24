@@ -11,69 +11,30 @@ extern void func_0210b860(void **);
 void func_020eff58(void) {
 }
 
-void func_020f0984(u32 *arg0) {
-    func_021168f8(data_02160af0 + 0x64, arg0);
-    if (*(u32 *)((u8 *)arg0 + 0x10) < 0x2710) {
-        func_0210b4cc(*(void **)arg0);
+extern void func_020f09d4(void *);
+extern void func_020f0984(u32 *);
+extern void func_0210da14(void *);
+extern void func_0210db10(void *);
+extern void func_0210db58(void *);
+void func_020f0090(s32 arg0) {
+    if (data_02160af0 == NULL) {
+        return;
     }
-    if (arg0 != NULL) {
-        func_0210c5dc(arg0);
+    while (*(void **)(data_02160af0 + 0x70) != NULL) {
+        func_020f09d4(*(void **)(data_02160af0 + 0x70));
     }
-}
-
-void func_020f09d4(void *arg0) {
-    void *head;
-    void *p;
-    register void *q;
-    func_021168f8(data_02160af0 + 0x70, arg0);
-    head = *(void **)data_02162618;
-    p = head;
-    while (p != NULL) {
-        u16 off = *(u16 *)(data_02162618 + 0xa);
-        q = (p != NULL) ? *(void **)((u8 *)p + off + 4) : head;
-        if (*(void **)p == *(void **)arg0) {
-            func_0210b860((void **)q);
-            break;
-        }
-        p = q;
+    while (*(u32 **)(data_02160af0 + 0x64) != NULL) {
+        func_020f0984(*(u32 **)(data_02160af0 + 0x64));
     }
-    if (arg0 != NULL) {
-        func_0210c5dc(arg0);
+    func_0210da14(data_02160af0);
+    func_0210db10(data_02160af0 + 0x14);
+    func_0210db10(data_02160af0 + 0x3c);
+    if (arg0 == 1) {
+        func_0210db58(data_02160af0 + 0x28);
+        func_0210db58(data_02160af0 + 0x50);
+    }
+    if (data_02160af0 != NULL) {
+        func_0210c5dc(data_02160af0);
+        data_02160af0 = NULL;
     }
 }
-
-void func_020f0a58(void) {
-}
-
-u32 *func_020f0a5c(s32 arg0) {
-    u8 *base = data_02160af0;
-    u32 *node;
-    if (base == NULL) {
-        return NULL;
-    }
-    node = *(u32 **)(base + 0x64);
-    while (node != NULL) {
-        if (*(s32 *)((u8 *)node + 0x10) == arg0) {
-            return node;
-        }
-        node = *(u32 **)((u8 *)node + 0x4c);
-    }
-    return NULL;
-}
-
-u32 *func_020f0aa4(s32 arg0) {
-    u8 *base = data_02160af0;
-    u32 *node;
-    if (base == NULL) {
-        return NULL;
-    }
-    node = *(u32 **)(base + 0x70);
-    while (node != NULL) {
-        if (*(s32 *)((u8 *)node + 0x2c) == arg0) {
-            return node;
-        }
-        node = *(u32 **)((u8 *)node + 0x54);
-    }
-    return NULL;
-}
-
