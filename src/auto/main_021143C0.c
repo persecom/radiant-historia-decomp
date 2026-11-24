@@ -220,6 +220,11 @@ u32 func_02114f70(void) {
     return data_0216cad0[0];
 }
 
+void func_0211528c(u32 arg0, u32 arg1) {
+    u8 *base = *(u8 **)(data_0216cad0[0] + 0x90);
+    *(u32 *)(base + arg0 * 0x10 + 0x14) = arg1;
+}
+
 void *func_021152a8(void) {
     return *(void **)(data_0216cad0[0] + 0x9c);
 }
