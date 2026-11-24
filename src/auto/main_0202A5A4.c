@@ -17,3 +17,7 @@ typedef struct {
 } Unk_0202B3D4;
 
 extern Unk_02160244 *data_02160244;
+
+void func_0202b398(void) {
+    data_02160244->field_70 = 0;
+}
