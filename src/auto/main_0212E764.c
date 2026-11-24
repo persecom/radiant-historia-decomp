@@ -107,6 +107,10 @@ s32 func_0212ebc0(void) {
     return 0;
 }
 
+void func_0212ebc8(void *arg0, void *arg1) {
+    func_0212bda8(arg1);
+}
+
 void *func_0212f468(void *arg0) {
     return *(void **)((u8 *)arg0 + 0x10);
 }
