@@ -7,6 +7,10 @@ void func_020b3744(u8 arg0) {
     data_021601e0 = arg0;
 }
 
+u8 func_020b3754(void) {
+    return data_021601e0;
+}
+
 void func_020b3908(void) {
     func_020b3890();
 }
