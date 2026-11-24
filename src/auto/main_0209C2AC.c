@@ -37,6 +37,40 @@ typedef struct {
     u32 flag;
 } S_0209c920;
 
+void func_0209c778(void) {
+u8 *base=data_02160120;
+u8 *list=*(u8 **)(data_02160204+0x10c);
+u8 *node;
+u16 i;
+if(!list)return;
+node=*(u8 **)list;
+i=0;
+while(node){
+if(node){
+u8 *n=func_0210c594(16,data_02155c3c);
+*(u16 *)n=i;
+*(u16 *)(n+2)=*(u16 *)(node+8);
+*(u16 *)(n+4)=*(u16 *)(node+10);
+n[6]=node[12];
+++*(u16 *)(base+0x714);
+func_021167f0(base+0x708,n);
+i++;
+}
+node=*(u8 **)(node+4);
+}
+node=*(u8 **)list;
+while(node){
+u8 *next=*(u8 **)(node+4);
+if(!func_0209cb98(*(u16 *)(node+8))){
+func_020220b0(*(u16 *)(node+8),*(u16 *)(node+10));
+func_020de374(list,node);
+}
+node=next;
+}
+func_020de404(list);
+*(u32 *)(data_02160204+0x10c)=0;
+}
+
 void *func_0209c888(u32 arg0, u32 arg1) {
     u8 *node = *(u8 **)(data_02160120 + 0x708);
     if (node != NULL) {
