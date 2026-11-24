@@ -1,5 +1,10 @@
 /* 6 functions from 0x0203D970 to 0x0203E8C0 (main), found by ds-decomp. */
 #include "common.h"
+void func_020ec548(void *);
+u8 *func_020ec294(u32,u32,int,int);
+void func_020ec88c(void *,int,int);
+void func_020ec8cc(void *,int,int);
+void func_021167f0(void *,void *);
 
 typedef struct {
     s32 field_0;
