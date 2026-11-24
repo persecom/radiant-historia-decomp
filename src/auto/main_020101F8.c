@@ -1,6 +1,9 @@
 /* 34 functions from 0x020101F8 to 0x020111D4 (main), found by ds-decomp. */
 #include "common.h"
 
+extern s32 func_0200a6e4(s32, s32, s32);
+extern void WaitByLoop(s32);
+
 extern u8 data_0215f78c[148];
 extern void func_01ff8000(void);
 extern u32 func_02007490(void);
