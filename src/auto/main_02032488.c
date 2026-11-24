@@ -279,6 +279,27 @@ void func_02033060(void) {
     }
 }
 
+void *func_020330b8(u8 *arg0) {
+    s32 id;
+    u8 *p;
+    void *res;
+    if (func_020bd490(2, *(u16 *)(arg0 + 0x90)) != 0) {
+        id = func_020bd490(1, *(u16 *)(arg0 + 0x90)) - 1;
+    } else {
+        id = func_020bd490(3, *(u16 *)(arg0 + 0x90));
+    }
+    p = func_02021f10(id);
+    if (p != NULL) {
+        res = func_02064cb8(*(void **)(arg0 + 0x11c), p[0x4e]);
+    } else {
+        res = func_02064cb8(*(void **)(arg0 + 0x11c), 0xb);
+    }
+    if (res == NULL) {
+        return NULL;
+    }
+    return res;
+}
+
 void func_0203312c(void) {
     func_020c2e80();
 }
