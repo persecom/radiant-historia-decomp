@@ -80,6 +80,8 @@ extern void func_021382fc(s32, s32, void *, s32, void *);
 extern s32 func_02138190(s32, void *, s32, void *);
 extern void func_02128580(s32);
 extern void *memset(void *, int, unsigned long);
+extern s32 data_02173ac0[];
+extern s8 data_02173ad4[4][196];
 s32 func_0212bcd0(s16 *arg0, s32 arg1, s16 *arg2) {
     u16 v0;
     s16 swapped;
