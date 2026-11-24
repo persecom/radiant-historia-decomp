@@ -210,3 +210,38 @@ void func_0209532c(void) {
     }
 }
 
+extern void *func_02032254(u16);
+void func_0209568c(u32 arg0, u16 arg1) {
+    u8 *node;
+
+    if (arg0 == 0 || arg0 == 3) {
+        node = (u8 *)func_02032254(arg1);
+        if (node == NULL) {
+            return;
+        }
+        do {
+            if (*(u32 *)(node + 0x14) == 0 && arg1 < 10) {
+                if (arg0 == 3) {
+                    func_02095374(*(u32 *)node, node, arg1, 3);
+                } else {
+                    func_02095374(*(u32 *)node, node, arg1, 0);
+                }
+            }
+            arg1 = (u16)(arg1 + 1);
+            node = *(u8 **)(node + 0x1c);
+        } while (node != NULL);
+    } else if (arg0 == 1) {
+        node = (u8 *)func_02032254(arg1);
+        if (node == NULL) {
+            return;
+        }
+        do {
+            if (*(u32 *)(node + 0x14) == 0 && arg1 < 10) {
+                func_02095374(*(u32 *)node, node, arg1, 1);
+            }
+            arg1 = (u16)(arg1 + 1);
+            node = *(u8 **)(node + 0x1c);
+        } while (node != NULL);
+    }
+}
+
