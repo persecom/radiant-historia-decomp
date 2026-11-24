@@ -7,6 +7,13 @@ void func_02129bb8(s32 arg0) {
     *(s32 *)(data_0217358c + 8) = arg0;
 }
 
+u32 func_02129c20(u8 *arg0, u32 *arg1, u32 *arg2, u32 *arg3) {
+    *arg1 = *(u32 *)(arg0 + 0x8c);
+    *arg2 = *(u32 *)(arg0 + 0x40) - *(u32 *)(arg0 + 0x8c);
+    *arg3 = *(u32 *)(arg0 + 0x18) - *(u32 *)(arg0 + 0x88);
+    return *(u32 *)(arg0 + 0x3c);
+}
+
 void *func_0212a220(void *arg0) {
     return *(void **)((u8 *)arg0 + 0x10);
 }
