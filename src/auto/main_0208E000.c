@@ -27,3 +27,9 @@ void func_0208e000(u32 id, s16 x, s16 y, s16 width, s16 z) {
  }
  func_021098ac(&b);
 }
+extern u8 *data_0216010c;
+void func_0209250c(s32,s32,s32,s16,s32,s32,s32,s32,s32,s32,s32,s32,s32);
+void func_020a8810(void *,s32);
+u32 func_02085110(u32);
+void func_020895a0(s32,s32,s32,s32,s32,s32,s32,s32,s32);
+void func_0208d5c0(u8,s16,s16,s32);
