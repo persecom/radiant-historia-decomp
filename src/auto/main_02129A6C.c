@@ -208,6 +208,13 @@ s16 func_0212a270(u8 *a0, s32 a1) {
     return *(s16 *)(a0 + a1 * 2 + 0xda);
 }
 
+void func_0212a27c(u8 *arg0) {
+    extern void func_02129748(void *, void *, void *);
+    extern void func_0212977c(void *, void *, void *, void *);
+    func_02129748(*(void **)(arg0 + 8), arg0 + 0xb0, arg0 + 0xb4);
+    func_0212977c(*(void **)(arg0 + 8), arg0 + 0xa6, arg0 + 0xa8, arg0 + 0xaa);
+}
+
 extern char data_02156b08[];
 extern void func_0212bda8(char *);
 extern void func_02129748(void *, void *, void *);
