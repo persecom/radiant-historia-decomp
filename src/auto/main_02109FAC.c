@@ -148,7 +148,8 @@ s32 func_0210a38c(u8 *arg0) {
 s32 func_0210a39c(u32 *arg0, s32 arg1, u32 *arg2) {
     Unk_0210a39c *p = (Unk_0210a39c *)arg0;
     s32 ret = arg1;
-    *arg2 = p->field_0 + p->field_4;
+    u32 sum = p->field_4 + p->field_0;
+    *arg2 = sum;
     {
         u32 max = p->field_8;
         u32 cur = p->field_0;
