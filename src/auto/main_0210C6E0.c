@@ -550,6 +550,30 @@ void func_0210d5a0(void) {
     *(s32 *)(data_02162730 + 0xc) = -1;
 }
 
+void func_0210d5dc(s32 arg0) {
+    void *p = data_02162744;
+    func_0210d5a0();
+    if (arg0 > -1) {
+        func_02116078(p, arg0);
+        func_02113ce8(p, 0x7f);
+        func_02113d10(p, data_02155c7c[1], 0);
+    }
+    *(s32 *)(data_02162730 + 0xc) = arg0;
+    *(s32 *)(data_02162730 + 8) = -1;
+}
+
+void func_0210d648(s32 arg0, s32 arg1) {
+    if (arg1 == 0) {
+        func_0210d5dc(arg0);
+        return;
+    }
+    func_02113b58(data_02162744, arg1 >> data_02162834);
+    *(s32 *)(data_02162730 + 8) = arg0;
+    if (arg0 < 0) {
+        *(s32 *)(data_02162730 + 0xc) = -1;
+    }
+}
+
 void func_0210d6a4(void) {
 }
 
