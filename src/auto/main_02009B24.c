@@ -353,3 +353,5 @@ s32 func_0200a6c0(s32 arg0, s32 arg1) {
     } *work = (void *)0x02fffc00;
     return (work->ready[arg1] & (1 << arg0)) ? 1 : 0;
 }
+void func_0200a928(void) {
+}
