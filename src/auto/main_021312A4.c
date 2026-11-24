@@ -93,13 +93,13 @@ void func_0213167c(s16 *samples, s16 *coeff, s16 *out) {
         sum += *coeff++ * base[256];
         sum += *coeff++ * base[352];
         sum += *coeff++ * base[384];
-        sum += *coeff++ * base[448];
+        sum += *coeff++ * base[480];
         sum += *coeff++ * base[512];
         sum += *coeff++ * base[608];
         sum += *coeff++ * base[-384];
         sum += *coeff++ * base[-288];
         sum += *coeff++ * base[-256];
-        sum += *coeff++ * base[-192];
+        sum += *coeff++ * base[-160];
         sum += *coeff++ * base[-128];
         sum += *coeff++ * base[-32];
         if (sum > 0x3fff800) *out++ = max;
