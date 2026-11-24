@@ -205,6 +205,10 @@ BOOL func_0200d4a0(u8 *arg0, void *arg1) {
     return ret;
 }
 
+u8 *func_0200d500(u8 *arg0, s32 arg1) {
+    return *(u8 **)(*(u8 **)(arg0 + 0x20)) + arg1;
+}
+
 u32 func_0200d524(u8 *arg0) {
     return *(u32 *)(arg0 + 0x24);
 }
