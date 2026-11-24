@@ -170,9 +170,10 @@ void func_0200e384(void) {
 }
 
 void func_0200e418(u32 arg0, u32 arg1, u32 arg2) {
-    u16 v = (u16)(arg1 & 0x7f00) >> 8;
-    u8 b = arg1 & 0xff;
-    if (arg2 != 0) {
+    u8 b = (u8)arg1;
+    u32 v = ((arg1 & 0x7f00) << 8) >> 16;
+    u32 cond = arg2;
+    if (cond != 0) {
         func_0200e320((v == 0x61 || v == 0x62) ? 1 : 2);
         return;
     }
@@ -195,5 +196,28 @@ void func_0200e418(u32 arg0, u32 arg1, u32 arg2) {
         break;
     }
     func_0200e320(b);
+}
+
+extern s32 func_02008128(void);
+extern void func_0200813c(s32);
+extern void func_0200e974(u32);
+s32 func_0200e4a0(u32 *arg0, s32 arg1, u32 arg2, u32 arg3, u32 arg4) {
+    s32 irq = func_02008128();
+    if (*(u32 *)(data_0215f03c + 0x2c) != 0) {
+        func_0200813c(irq);
+        return 1;
+    }
+    *(u32 *)(data_0215f03c + 0x2c) = 1;
+    *(u32 *)(data_0215f03c + 0x38) = arg2;
+    *(u32 *)(data_0215f03c + 0x30) = arg3;
+    *(u32 *)(data_0215f03c + 0x34) = arg4;
+    {
+        s32 i;
+        for (i = 0; i < arg1; i++) {
+            func_0200e974(arg0[i]);
+        }
+    }
+    func_0200813c(irq);
+    return 0;
 }
 
