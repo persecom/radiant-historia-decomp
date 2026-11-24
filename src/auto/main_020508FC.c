@@ -1,2 +1,227 @@
 /* 5 functions from 0x020508FC to 0x02051344 (main), found by ds-decomp. */
 #include "common.h"
+
+extern s16 data_0213a394[];
+
+static inline s16 FX_SinIdx_02050b0c(s32 idx) {
+    return data_0213a394[(idx >> 4) * 2];
+}
+
+static inline s16 FX_CosIdx_02050b0c(s32 idx) {
+    return data_0213a394[(idx >> 4) * 2 + 1];
+}
+
+BOOL func_020508fc(register volatile s32* arg0,
+                  volatile s32* volatile arg1,
+                  register volatile s32* arg2,
+                  volatile s32* volatile arg3,
+                  s32* volatile arg4)
+{
+    volatile s32 bx;
+    volatile s32 dy;
+    volatile s32 by;
+    register f32 t;
+    register s32 ax;
+    register s32 ay;
+    register f32 det;
+    register s32 dx;
+    register f32 base;
+    volatile f32 u;
+    BOOL result;
+
+    dx = arg0[0] - arg2[0];
+    dy = arg0[1] - arg2[1];
+
+    ax = arg1[0] - arg0[0];
+    ay = arg1[1] - arg0[1];
+
+    bx = arg3[0] - arg2[0];
+    by = arg3[1] - arg2[1];
+
+    det = (f32)(ax * by - ay * bx);
+
+    if (0.0f != det) {
+        t = (f32)((dy * bx - dx * by) * 100) / det;
+        u = (f32)((dy * ax - dx * ay) * 100) / det;
+
+        if ((f64)t < 0.0 ||
+            100.0 < (f64)t ||
+            (f64)u < 0.0 ||
+            100.0 < (f64)u) {
+            result = FALSE;
+        } else {
+            base = (f32)arg0[0];
+            arg4[0] = (s32)(base + ((f32)ax * t) / 100.0f);
+
+            base = (f32)arg0[1];
+            arg4[1] = (s32)(base + ((f32)ay * t) / 100.0f);
+
+            result = TRUE;
+        }
+    } else {
+        result = FALSE;
+    }
+
+    return result;
+}
+
+#pragma optimization_level 0
+void func_02050b0c(u8 *arg0, s32 arg1) {
+    extern struct Mgr_02046e30 *data_021600bc;
+    extern u8 *data_02160aec;
+    extern s16 data_0213a394[];
+
+    void *manager = data_021600bc;
+    s32 rect[4];
+    struct {
+        s32 x, y, z;
+    } pos;
+    s32 startX, endX, startZ, endZ;
+    s32 x, z;
+    struct {
+        u8 v;
+    } type;
+
+    if (!data_02160aec) {
+        return;
+    }
+    if ((*(u32 *)(arg0 + 0xac) & 0x1000000) != 0) {
+        return;
+    }
+
+    pos.x = *(s32 *)(arg0 + 0x0);
+    pos.y = *(s32 *)(arg0 + 0x4);
+    pos.z = *(s32 *)(arg0 + 0x8);
+
+    {
+        s16 s = data_0213a394[(((*(u16 *)(arg0 + 0x92) + arg1) % 0x10000) >> 4) * 2 + 1];
+        pos.x += -(s * 2);
+    }
+    {
+        s16 s = data_0213a394[(((*(u16 *)(arg0 + 0x92) + arg1) % 0x10000) >> 4) * 2];
+        pos.z += s * 2;
+    }
+
+    startX = pos.x / 0x10000 - 1;
+    endX = startX + 2;
+    startZ = pos.z / 0x10000 - 1;
+    endZ = startZ + 2;
+
+    if (startX < *(s32 *)(data_02160aec + 0x58bc8)) {
+        startX = *(s32 *)(data_02160aec + 0x58bc8);
+    }
+    if (endX >= *(s32 *)(data_02160aec + 0x58bcc)) {
+        endX = *(s32 *)(data_02160aec + 0x58bcc);
+    }
+    if (startZ < *(s32 *)(data_02160aec + 0x58bd0)) {
+        startZ = *(s32 *)(data_02160aec + 0x58bd0);
+    }
+    if (endZ >= *(s32 *)(data_02160aec + 0x58bd4)) {
+        endZ = *(s32 *)(data_02160aec + 0x58bd4);
+    }
+
+    for (z = endZ; z >= startZ; z--) {
+        for (x = endX; x >= startX; x--) {
+            type.v = *(data_02160aec + 0xbc8 + (x + z * *(s16 *)(data_02160aec + 0x58d36)) * 0xc);
+            rect[0] = x << 16;
+            rect[2] = (x << 16) + 0x10000;
+            rect[1] = z << 16;
+            rect[3] = (z << 16) + 0x10000;
+            if (rect[0] <= pos.x && pos.x <= rect[2] && rect[1] <= pos.z && pos.z <= rect[3]) {
+                switch (type.v) {
+                case 1:
+                case 6:
+                case 7:
+                    {
+                        s16 s = data_0213a394[(((*(u16 *)(arg0 + 0x92) + arg1) % 0x10000) >> 4) * 2 + 1];
+                        *(s32 *)(arg0 + 0x0) -= -(s * 2);
+                    }
+                    {
+                        s16 s = data_0213a394[(((*(u16 *)(arg0 + 0x92) + arg1) % 0x10000) >> 4) * 2];
+                        *(s32 *)(arg0 + 0x8) -= s * 2;
+                    }
+                    return;
+                }
+            }
+        }
+    }
+}
+#pragma optimization_level reset
+BOOL func_02050e2c(s32* arg0, s32* arg1, s32* arg2)
+{
+    extern s32 func_02002404(s32, s32);
+    extern s16 data_0213a394[];
+
+    volatile struct {
+        s32 projected[2];
+        s32 scaled[2];
+        s32 relative[2];
+        s32 direction[2];
+        s32 cross;
+    } local;
+
+    register s32 percent;
+    register s32 angle;
+    register s32 normalX;
+    register s32 normalY;
+    s32 numerator;
+    s32 denominator;
+
+    local.direction[0] = ((volatile s32*)arg2)[0] -
+                         ((volatile s32*)arg1)[0];
+
+    local.direction[1] = ((volatile s32*)arg2)[1] -
+                         ((volatile s32*)arg1)[1];
+
+    local.relative[0] = ((volatile s32*)arg0)[0] -
+                        ((volatile s32*)arg1)[0];
+
+    local.relative[1] = ((volatile s32*)arg0)[1] -
+                        ((volatile s32*)arg1)[1];
+
+    numerator = (local.direction[0] * local.relative[0] +
+                 local.direction[1] * local.relative[1]) * 100;
+
+    denominator = local.direction[0] * local.direction[0] +
+                  local.direction[1] * local.direction[1];
+
+    percent = numerator / denominator;
+
+    if ((f64)percent < 0.0 || (f64)percent > 100.0) {
+        return FALSE;
+    }
+
+    local.scaled[0] = (local.direction[0] * percent) / 100;
+    local.scaled[1] = (local.direction[1] * percent) / 100;
+
+    local.projected[0] = ((volatile s32*)arg1)[0] +
+                         local.scaled[0];
+
+    local.projected[1] = ((volatile s32*)arg1)[1] +
+                         local.scaled[1];
+
+    angle = func_02002404(local.direction[0],
+                          local.direction[1]);
+
+    normalX = ((volatile s16*)data_0213a394)[
+        (((angle + 0x8000) % 0x10000) >> 4) * 2 + 1
+    ] >> 12;
+
+    normalY = ((volatile s16*)data_0213a394)[
+        (((angle + 0x8000) % 0x10000) >> 4) * 2
+    ] >> 12;
+
+    local.cross = local.direction[0] * local.relative[1] -
+                  local.direction[1] * local.relative[0];
+
+    if (local.cross < 0) {
+        ((volatile s32*)arg0)[0] = local.projected[0] + normalX;
+        ((volatile s32*)arg0)[1] = local.projected[1] - normalY;
+    } else {
+        ((volatile s32*)arg0)[0] = local.projected[0] - normalX;
+        ((volatile s32*)arg0)[1] = local.projected[1] + normalY;
+    }
+
+    return TRUE;
+}
+
