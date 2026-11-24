@@ -9,6 +9,36 @@ extern void func_020d907c(u32);
 extern void func_020d9090(void);
 extern u8 *data_02160260;
 
+extern void func_02060408(u8 *);
+extern void func_020dd810(u8 *, s32, s32);
+void func_02060328(u8 *arg0)
+{
+    u8 *r4 = *(u8 **)(arg0 + 0x128);
+    u32 flags = *(u32 *)(arg0 + 0x80);
+    s32 zero = 0;
+
+    if (flags & 0x20000) {
+        *(u32 *)(arg0 + 0x80) = flags & ~0x20000;
+        *(u16 *)(*(u8 **)(arg0 + 0x118) + 0xbc) = zero;
+    }
+    if (*(u32 *)(*(u8 **)(arg0 + 0x118) + 0x78) != 0) {
+        func_02060408(arg0);
+        *(u16 *)(arg0 + 0x8a) = 0x7fff;
+        func_020dd810(arg0, 6, zero);
+        *(u32 *)(arg0 + 0xf8) = zero;
+    }
+    if (*(data_02160260 + 0x8c) != 1 || *(u16 *)(arg0 + 0x8c) != 1) {
+        if (*(u8 *)(arg0 + 0x104) != 6) {
+            *(u32 *)(*(u8 **)(arg0 + 0x118) + 0x70) = 1;
+            func_020dd810(arg0, 6, zero);
+            *(u32 *)(*(u8 **)(arg0 + 0x118) + 0x70) = zero;
+        }
+    }
+    *(u32 *)(r4 + 0x18) &= ~2;
+    *(u32 *)(*(u8 **)(arg0 + 0x118) + 0x70) = zero;
+    *(u32 *)(*(u8 **)(arg0 + 0x118) + 4) = zero;
+}
+
 void func_02060560(u8 *arg0) {
     func_02025f84(arg0, 0x85);
     func_02025f84(arg0, 0x86);
