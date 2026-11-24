@@ -59,6 +59,36 @@ void *func_020d3cb0(s32 arg0) {
     return NULL;
 }
 
+extern void func_02005e80(void *, void *);
+extern void *func_021092d8(void *);
+extern void *func_0210c594(s32, void *);
+extern s32 func_02092994(void *, s32);
+extern void func_021167f0(void *, void *);
+extern s32 func_02109444(void *);
+extern void func_021093b0(void *);
+extern u8 data_02151390[];
+extern void *data_02155c3c;
+void func_020d3cec(void) {
+    u8 buf[0x40];
+    void *file;
+
+    func_02005e80(buf, data_02151390);
+    file = func_021092d8(buf);
+    do {
+        u8 *entry = func_0210c594(0x14, data_02155c3c);
+        *(u8 *)(entry + 0x0) = func_02092994(file, 0);
+        *(u16 *)(entry + 0x2) = func_02092994(file, 0);
+        *(u16 *)(entry + 0x4) = func_02092994(file, 0);
+        *(u16 *)(entry + 0x6) = func_02092994(file, 0);
+        *(u16 *)(entry + 0x8) = func_02092994(file, 0);
+        *(u16 *)(entry + 0xa) = func_02092994(file, 0);
+        func_021167f0(&data_02160244->unk_120, entry);
+    } while (func_02109444(file) != 0);
+    if (file != NULL) {
+        func_021093b0(file);
+    }
+}
+
 void func_020d3dd8(void) {
     while (data_02160244->unk_120 != NULL) {
         Node120_020d3160 *node = data_02160244->unk_120;
