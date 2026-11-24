@@ -16,18 +16,15 @@ extern void func_021167ac(void *, u32);
 extern void func_021091b4(void);
 extern void *func_02109b14(void *, void *);
 void func_020bc794(void) {
-    UnkStruct_02160134 *p = (UnkStruct_02160134 *)&data_021601f8;
-    s32 n38 = 0x38;
-    s32 n14 = 0x14;
-    p->unk00 = func_0210c594(0x64, data_02155c3c);
-    func_021167ac((u8 *)p->unk00 + 4, 0xc);
-    func_021167ac((u8 *)p->unk00 + 0x10, 0x18);
-    func_021167ac((u8 *)p->unk00 + 0x1c, n38);
-    func_021167ac((u8 *)p->unk00 + 0x28, n14);
-    func_021167ac((u8 *)p->unk00 + 0x34, n38);
-    func_021167ac((u8 *)p->unk00 + 0x40, n38);
-    func_021167ac((u8 *)p->unk00 + 0x4c, n38);
-    func_021167ac((u8 *)p->unk00 + 0x58, n14);
+    data_021601f8.unk00 = func_0210c594(0x64, data_02155c3c);
+    func_021167ac((u8 *)data_021601f8.unk00 + 4, 0xc);
+    func_021167ac((u8 *)data_021601f8.unk00 + 0x10, 0x18);
+    func_021167ac((u8 *)data_021601f8.unk00 + 0x1c, 0x38);
+    func_021167ac((u8 *)data_021601f8.unk00 + 0x28, 0x14);
+    func_021167ac((u8 *)data_021601f8.unk00 + 0x34, 0x38);
+    func_021167ac((u8 *)data_021601f8.unk00 + 0x40, 0x38);
+    func_021167ac((u8 *)data_021601f8.unk00 + 0x4c, 0x38);
+    func_021167ac((u8 *)data_021601f8.unk00 + 0x58, 0x14);
     func_021091b4();
 }
 
