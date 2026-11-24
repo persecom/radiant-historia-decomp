@@ -100,6 +100,7 @@ void *func_020bf4dc(s32 arg0) {
 }
 
 void func_020bf65c(void) {
+    s32 val = 0x3f6;
     if (data_02160214 != NULL) {
         return;
     }
@@ -107,10 +108,10 @@ void func_020bf65c(void) {
     func_021167ac(((Unk_020bf65c *)data_02160214)->unk28, 0x44);
     ((Unk_020bf65c *)data_02160214)->unk34 = 0;
     ((Unk_020bf65c *)data_02160214)->unk00 = func_020bf768;
-    ((Unk_020bf65c *)data_02160214)->unk04 = 0x3f6;
+    ((Unk_020bf65c *)data_02160214)->unk04 = val;
     func_0210d9e4(data_02160214);
     ((Unk_020bf65c *)data_02160214)->unk14 = func_020bfb44;
-    ((Unk_020bf65c *)data_02160214)->unk18 = ((Unk_020bf65c *)data_02160214)->unk04 - 0xc;
+    ((Unk_020bf65c *)data_02160214)->unk18 = val - 0xc;
     func_0210db70(data_02160214 + 0x14);
     func_02066eac(1);
 }
