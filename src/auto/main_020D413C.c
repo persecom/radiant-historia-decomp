@@ -10,3 +10,10 @@ extern void func_021168f8(void *arg0, void *arg1);
 extern void func_02022454(void *arg0);
 extern void func_0202bdbc(void *arg0);
 extern void func_0203319c(void *arg0);
+
+void func_020d4e90(u8 *arg0, void *arg1) {
+    func_021168f8(*(u8 **)(arg0 + 0x128) + 0x58, arg1);
+    if (arg1 != NULL) {
+        func_0210c5dc(arg1);
+    }
+}
