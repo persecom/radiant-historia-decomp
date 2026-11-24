@@ -20,7 +20,7 @@ extern u32 func_02008128(void);
 extern void func_0200813c(u32);
 extern void func_02006510(void *);
 extern void func_02006560(void *);
-extern s32 func_0200fd64(void *, s32, u32, u32);
+extern s32 func_0200fd64(u8 *, s32, u32, u32);
 extern s32 func_02005da4(u16);
 extern void func_0200851c(void *, s32);
 extern void func_02007e58(void *, s32, s32, void *, void *);
@@ -259,14 +259,32 @@ void func_0200fc34(u32 arg0, u32 arg1) {
     func_0200813c(irq);
 }
 
+s32 func_0200fca4(void (*cb)(void *), s32 arg1) {
+    u8 *base = data_0215f120;
+    if (arg1 == 0) {
+        cb(base);
+        func_0200fddc(base);
+    } else {
+        func_02006638(base + 0x28, *(u32 *)(base + 8));
+        *(void (**)(void *))(base + 0x4e8) = cb;
+        *(u32 *)(base + 4) |= 8;
+        func_020065c8(base + 0x28);
+    }
+    if (arg1 != 0) {
+        return 1;
+    }
+    return **(u32 **)base == 0;
+}
+
 void func_0200fd18(void) {
     u32 token = func_02008128();
-    if (*(u32 *)(data_0215f120 + 4) & 8) {
-        func_0200813c(token);
-        func_0200fca4(*(void (**)(void *))(data_0215f120 + 0x4e8), 0);
-    } else {
-        func_02006510(NULL);
+    s32 zero = 0;
+    if (!(*(u32 *)(data_0215f120 + 4) & 8)) {
+        func_02006510((void *)zero);
+        return;
     }
+    func_0200813c(token);
+    func_0200fca4(*(void (**)(void *))(data_0215f120 + 0x4e8), zero);
 }
 
 void func_0200fddc(u8 *arg0) {
@@ -292,10 +310,10 @@ u32 func_0200fe28(u32 arg0) {
         return result;
     }
     if (flag == 0) {
-        result = data_0213ea64[0];
-        return result;
+        result = (u32)data_0213ea64;
+    } else {
+        func_02008414();
     }
-    func_02008414();
     return result;
 }
 
@@ -315,21 +333,26 @@ void func_0200fe80(u32 arg0, u32 arg1, u32 arg2) {
         return;
     }
     rem = arg0 & 0x1f;
-    if (rem != 0) {
-        base = arg0 - rem;
-        func_02006da8(base, 0x20);
-        func_02006da8(base + arg1, 0x20);
-        arg1 += 0x20;
-        func_02006d8c(base, arg1);
-        func_02006de8();
+    if (rem == 0) {
+        goto end;
     }
+    base = arg0 - rem;
+    func_02006da8(base, 0x20);
+    func_02006da8(base + arg1, 0x20);
+    arg1 += 0x20;
+    func_02006d8c(base, arg1);
+    func_02006de8();
+end:
+    return;
 }
 
 void func_0200fedc(u32 arg0, u32 arg1, u32 arg2) {
+    u8 *p;
     if (arg0 != 0xb || arg2 == 0) {
         return;
     }
-    *(u32 *)(data_0215f120 + 4) &= ~0x20;
-    func_020065c8((void *)*(u32 *)(data_0215f120 + 0x51c));
+    p = data_0215f120;
+    *(u32 *)(p + 4) &= ~0x20;
+    func_020065c8((void *)*(u32 *)(p + 0x51c));
 }
 
