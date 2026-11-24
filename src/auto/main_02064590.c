@@ -10,6 +10,13 @@ typedef struct {
 
 extern u8 *data_02160a6c;
 extern TouchData_02064aac data_02162908;
+extern void *data_02155c3c;
+extern u16 data_021628f8;
+extern void *func_0210c594(s32, void *);
+extern void func_021167ac(void *, s32);
+extern void func_021168f8(void *, void *);
+extern void func_02022f60(void **);
+extern void func_0210c5dc(void *);
 
 void func_02064a30(void) {
     u8 *p = data_02160a6c;
