@@ -140,7 +140,12 @@ void func_0200e320(u32 unused) {
 
 void func_0200e350(void) {
     volatile u32 v = *(volatile u32 *)0x02fffc3c;
-    while (v == *(volatile u32 *)0x02fffc3c) {
+    u32 cur;
+    for (;;) {
+        cur = *(volatile u32 *)0x02fffc3c;
+        if (v != cur) {
+            break;
+        }
     }
 }
 
@@ -165,32 +170,30 @@ void func_0200e384(void) {
 }
 
 void func_0200e418(u32 arg0, u32 arg1, u32 arg2) {
-    void (*call)(u32) = (void (*)(u32))func_0200e320;
-    u16 v = (arg1 >> 8) & 0x7f;
+    u16 v = (u16)(arg1 & 0x7f00) >> 8;
     u8 b = arg1 & 0xff;
     if (arg2 != 0) {
-        call((v == 0x61 || v == 0x62) ? 1 : 2);
+        func_0200e320((v == 0x61 || v == 0x62) ? 1 : 2);
         return;
     }
     switch (v) {
     case 0x60:
-        call(0);
+        b = 0;
         break;
     case 0x61: {
         u8 *p = *(u8 **)(data_0215f03c + 0x38);
         if (p != NULL) {
             *(u16 *)p = b;
         }
-        call(0);
+        b = 0;
         break;
     }
     case 0x62:
-        call(b);
         break;
     case 0x63:
         *(u32 *)(data_0215f03c + 0xc) = 1;
-        call(b);
         break;
     }
+    func_0200e320(b);
 }
 
