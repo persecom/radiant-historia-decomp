@@ -68,6 +68,17 @@ void func_020bf700(void) {
     func_02066f9c();
 }
 
+void *func_020bff74(u16 arg0, u16 arg1) {
+    u8 *node = *(u8 **)(data_02160214 + 0x28);
+    while (node != NULL) {
+        if (*(u16 *)(node + 0x32) == arg0 && *(u16 *)(node + 0x34) == arg1) {
+            return node;
+        }
+        node = *(u8 **)(node + 0x48);
+    }
+    return NULL;
+}
+
 extern u8 *data_02160214;
 extern void func_0210da14(void *);
 extern void func_0210dba0(void *);
