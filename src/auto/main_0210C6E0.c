@@ -327,6 +327,21 @@ void func_0210cfcc(s32 arg0) {
     }
 }
 
+void func_0210d220(void) {
+    if (data_02162730 == NULL) {
+        return;
+    }
+    func_021138f0(data_02162730);
+    if (*(void **)data_02162730 != NULL) {
+        func_02115368(*(void **)data_02162730);
+        *(void **)data_02162730 = NULL;
+    }
+    if (*(void **)(data_02162730 + 0x14) != NULL) {
+        func_021166a0(*(void **)(data_02162730 + 0x14));
+        func_02114a64();
+    }
+}
+
 extern s16 data_0216274c[];
 extern u8 data_02155c7c[];
 extern char data_02155c4c[];
