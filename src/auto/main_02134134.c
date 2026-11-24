@@ -67,6 +67,76 @@ fail:
     return 0;
 }
 
+extern u8 data_0215bc6c[];
+extern u8 data_0215bc94[];
+extern u8 data_02174f9c[];
+extern u8 data_0215bcbc[];
+extern u8 data_0215bcf0[];
+extern void func_02133e54(void *, const void *);
+void *func_021341cc(const void *arg0, s32 arg1, s32 arg2) {
+    u8 buf[0x200];
+    u32 sp8;
+    u32 sp4;
+    u32 sp0;
+    s32 i;
+    u8 *entry;
+    s32 size;
+    s32 rem;
+    s32 q;
+
+    if (arg0 == NULL) {
+        func_02133dd0(0, data_0215bc6c);
+        return NULL;
+    }
+    if (arg2 != 0) {
+        func_02133dd0(0, data_0215bc94);
+        return NULL;
+    }
+
+    for (i = 0; i < 10; i++) {
+        entry = &data_02174f9c[i * 0x84];
+        if ((s8)entry[0] == 0) {
+            break;
+        }
+    }
+    if (i == 10) {
+        func_02133dd0(0, data_0215bcbc);
+        return NULL;
+    }
+
+    *(s32 *)(entry + 0x7c) = i;
+    func_02133e54(buf, arg0);
+
+    if (func_0213413c((u32)arg0, &sp8, &sp4, &sp0) == 1) {
+        *(u32 *)(entry + 0x4c) = sp8;
+        *(u32 *)(entry + 0x80) = sp4;
+        size = sp0;
+    } else {
+        func_0200b888((u32 *)(entry + 4));
+        *(void **)(entry + 0x4c) = entry + 4;
+        if (func_0200bc08((u32 *)(entry + 4), (u32)buf) == 0) {
+            func_02133dd0(0, data_0215bcf0);
+            return NULL;
+        }
+        *(u32 *)(entry + 0x80) = 0;
+        size = func_0200bc18(*(u32 **)(entry + 0x4c));
+    }
+
+    *(s32 *)(entry + 0x5c) = size;
+    *(s32 *)(entry + 0x58) = 0x800;
+    rem = (*(s32 *)(entry + 0x5c) % *(s32 *)(entry + 0x58) > 0) ? 1 : 0;
+    q = *(s32 *)(entry + 0x5c) / *(s32 *)(entry + 0x58);
+    *(s32 *)(entry + 0x60) = q + rem;
+    *(s32 *)(entry + 0x64) = 0;
+    *(s32 *)(entry + 0x54) = 0;
+    *(s32 *)(entry + 0x6c) = 0;
+    *(s32 *)(entry + 0x68) = 0;
+    entry[1] = 0;
+    entry[0] = 1;
+    *(s32 *)(entry + 0x50) = 0;
+    return entry;
+}
+
 void func_02134368(u8 *arg0) {
     if (arg0 == NULL) return;
     if (*(void **)(arg0 + 0x4c) == arg0 + 4) {
