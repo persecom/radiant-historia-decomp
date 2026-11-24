@@ -59,3 +59,8 @@ void func_021088b4(void *arg0) {
     }
 }
 
+void func_021088c8(void) {
+    while (1) {
+    }
+}
+
