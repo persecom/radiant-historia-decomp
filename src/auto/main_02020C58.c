@@ -35,6 +35,7 @@ extern void func_0210da14(void *);
 void func_020211f0(void *arg0, s32 arg1);
 void func_0202147c(s32 arg0);
 void func_02021514(void);
+void func_02021bd0(s32);
 void func_0202119c(void) {
 }
 
