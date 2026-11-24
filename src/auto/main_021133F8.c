@@ -390,16 +390,16 @@ void func_02113d10(void *arg0, u32 arg1, s32 arg2) {
 }
 
 void func_02113d3c(void *arg0) {
-    if (*(void **)arg0 == NULL) {
+    if (*(void * volatile *)arg0 == NULL) {
         return;
     }
-    func_02009540(*(u8 *)((u8 *)*(void **)arg0 + 0x3c));
+    func_02009540(*(u8 *)((u8 *)*(void * volatile *)arg0 + 0x3c));
 }
 
 void func_02113d5c(void *arg0, u16 arg1) {
-    if (*(void **)arg0 != NULL) {
-        *(u16 *)((u8 *)*(void **)arg0 + 0x34) = 1;
-        *(u16 *)((u8 *)*(void **)arg0 + 0x38) = arg1;
+    if (*(void * volatile *)arg0 != NULL) {
+        *(u16 *)((u8 *)*(void * volatile *)arg0 + 0x34) = 1;
+        *(u16 *)((u8 *)*(void * volatile *)arg0 + 0x38) = arg1;
     }
 }
 
