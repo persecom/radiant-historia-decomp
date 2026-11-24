@@ -33,6 +33,23 @@ s32 func_020ad26c(u8 *arg0) {
     return 0;
 }
 
+s32 func_020ad2dc(u8 *arg0) {
+    u8 *p = func_020b442c();
+    if (func_020abf5c(0, 0, 0x100, 0xC0, 1) != 0) {
+        *arg0 = 0;
+        func_020ae50c(6);
+        func_020abf3c();
+        return 2;
+    }
+    if (*(u16 *)(data_02162908 + 4) == 0) {
+        *(s32 *)(p + 4) = 0;
+        *(s32 *)(p + 8) = 1;
+    } else {
+        *(s32 *)(p + 8) = 0;
+    }
+    return 0;
+}
+
 u8 *func_020adda8(void) {
     return func_020b3880() + 0x3C;
 }
