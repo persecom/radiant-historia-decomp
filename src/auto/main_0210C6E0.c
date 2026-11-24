@@ -10,6 +10,9 @@ extern u8 data_021626a0[];
 extern u8 data_021626b6[];
 extern u16 data_021626ce[];
 extern u32 data_02155c3c;
+extern void func_02008f74(void *, s32, u32);
+extern void *func_0210c594(s32, u32);
+extern void *func_021092d8(void *);
 u32 func_0210c8e8(u32 arg0) {
     u32 ret = 0;
     s32 i;
