@@ -212,6 +212,10 @@ u16 func_0200558c(void) {
     return func_020054cc(data_0215cd60);
 }
 
+u16 func_020055a0(void) {
+    return data_0215cd60[7];
+}
+
 void func_02005750(void) {
     func_020056c8(0);
 }
