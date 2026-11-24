@@ -24,6 +24,13 @@ void func_020111d4(s32 arg0, u32 *arg1) {
     }
 }
 
+void func_02011230(s32 arg0, u32 *arg1) {
+    if (arg1[0] == 0) {
+        func_02005d2c(arg0);
+    }
+    func_0200813c(arg1[1]);
+}
+
 void func_02011660(void) {
     data_0215fa34[1] = 0;
 }
