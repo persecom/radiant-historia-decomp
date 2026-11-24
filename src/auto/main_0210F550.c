@@ -213,6 +213,15 @@ void func_021103c0(u8 *arg0, s32 arg1) {
     *(Pair_021103c0 *)(obj + 0x36) = *(Pair_021103c0 *)(entry + 0x22);
 }
 
+u32 func_02110428(u8 *arg0) {
+    func_020c6d78(arg0);
+    if (*(u32 *)(arg0 + 0x30) == 0) {
+        *(u32 *)(arg0 + 0x30) = (u32)func_0210c594(8, data_02155c3c);
+        func_020c992c();
+    }
+    return 0;
+}
+
 extern void func_02110484(void *);
 void func_02110464(void *arg0) {
     func_02110484(arg0);
