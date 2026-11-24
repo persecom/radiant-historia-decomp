@@ -131,6 +131,11 @@ void func_020c706c(u8 *arg0, u8 arg1) {
     arg0[0x42] = arg1;
 }
 
+void func_020c7074(u8 *arg0, u8 arg1, u8 arg2) {
+    arg0[0x44] = arg1;
+    arg0[0x45] = arg2;
+}
+
 s32 func_020c7080(void) {
     return 1;
 }
