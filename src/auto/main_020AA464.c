@@ -75,6 +75,12 @@ void *func_020aa724(void) {
     return *(void **)p;
 }
 
+void *func_020aa740(void) {
+    void *ptr = func_0210c594(0xc, data_02155c3c);
+    func_021167ac(ptr, 0x14);
+    return ptr;
+}
+
 extern void func_021168f8(void *, void *);
 extern void func_020aa3e0(void *);
 extern void *func_0210c594(u32, void *);
