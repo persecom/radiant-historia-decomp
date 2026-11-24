@@ -71,6 +71,14 @@ void func_0205295c(void) {
     }
 }
 
+void func_02052984(u8 val) {
+    u8 *p = func_02047820(0);
+    if (p != NULL) {
+        *(u32 *)(p + 0xac) |= 0x2000;
+        *(u8 *)(p + 0xa3) = val;
+    }
+}
+
 u32 func_02052a54(void *arg0, s32 arg1) {
     s32 val;
     u32 ret = 0;
