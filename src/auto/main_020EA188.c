@@ -41,6 +41,22 @@ s32 func_020ea5d4(u8 *arg0, s32 arg1) {
     }
 }
 
+void *func_020eaa24(s32 arg0, s32 arg1) {
+    void *r5 = func_0210a4cc();
+    if (r5 == NULL) {
+        return NULL;
+    }
+    if (!func_020f1ffc(r5, arg0, 0, arg1)) {
+        if (r5 != NULL) {
+            func_0210c5dc(r5);
+        }
+        return NULL;
+    }
+    func_0210f3ac(func_0210eb98(&data_021518c0, arg0), r5, 0);
+    *(s32 *)((u8 *)r5 + 0x30) = 1;
+    return r5;
+}
+
 s32 func_020eaacc(void) {
     return func_0210dba0(&data_02160a90);
 }
