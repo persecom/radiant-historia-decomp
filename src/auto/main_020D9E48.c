@@ -1,5 +1,7 @@
 /* 15 functions from 0x020D9E48 to 0x020DAA60 (main), found by ds-decomp. */
 #include "common.h"
+u8 *func_02064cb8(u32,s32);
+u8 *func_02026d70(u8 *,u8 *,s32);
 extern u8 *data_02160080;
 
 extern u8 *data_02160258;
@@ -112,6 +114,48 @@ void func_020da0dc(void) {
         node = *(u8 **)(node + 0xc);
     }
     func_020d0a40(4);
+}
+
+void func_020da1c0(void) {
+    u8 *node;
+    u8 *next;
+    if (*(u16 *)(data_02160080 + 0x14) == 0) {
+        return;
+    }
+    for (node = *(u8 **)(data_02160080 + 0x18); node != NULL; node = next) {
+        u8 *obj = *(u8 **)(node + 0);
+        u8 *sub;
+        next = *(u8 **)(node + 0x18);
+        if (obj != NULL && (sub = *(u8 **)(obj + 0x128)) != NULL) {
+            switch (*(s16 *)(node + 0x10)) {
+            case 0:
+                *(u8 *)(sub + 0x76) |= 1;
+                *(void **)(sub + 0x78) = node;
+                *(s16 *)(node + 0x10) = 1;
+                break;
+            case 1:
+                if (*(u16 *)(data_02160080 + 0x14) == 2) {
+                    *(u32 *)(sub + 0x24) = 0x3f2;
+                    func_020d626c(obj, sub);
+                    *(s16 *)(node + 0x10) = 2;
+                }
+                break;
+            case 2:
+                if (*(u32 *)(sub + 0x24) == 0) {
+                    *(void **)(sub + 0x78) = NULL;
+                    *(u8 *)(sub + 0x76) = 0;
+                    if (*(u8 *)(node + 0x12) & 1) {
+                        func_020223f8(sub, 0);
+                    }
+                    func_02026ddc(node);
+                }
+                break;
+            }
+        }
+    }
+    if (*(u16 *)(data_02160080 + 0x16) == 0) {
+        *(u16 *)(data_02160080 + 0x14) = 0;
+    }
 }
 
 void func_0202ba04(u8 *);
