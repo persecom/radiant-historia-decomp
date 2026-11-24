@@ -65,6 +65,15 @@ s32 func_020212ec(void) {
     return func_02021284();
 }
 
+s32 func_020212fc(void) {
+    if (data_02160050 <= 0) {
+        return 0;
+    }
+    func_021154f4(data_02162730[0], data_02160050);
+    data_02162730[4] = 0;
+    return 1;
+}
+
 void func_02021340(void) {
 }
 
