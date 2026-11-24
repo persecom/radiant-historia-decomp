@@ -104,6 +104,39 @@ void func_02004084(void *arg0, u32 arg1, u32 arg2) {
     }
 }
 
+void func_020040f8(void) {
+    if (data_02145ba4 == -1) {
+        return;
+    }
+    func_0200893c();
+    func_02004bdc(data_0215cd24[5]);
+    data_0215cd24[5] = 0;
+    data_0215cd24[4] = 0;
+    data_0215cd24[3] = 0;
+}
+
+void func_02004138(void) {
+    u32 v = func_020053f4();
+    data_0215cd24[2] = v;
+    if (v == 0) {
+        return;
+    }
+    if (v == 0x20) {
+        data_0215cd24[1] = 0x06890000;
+    } else if (v == 0x40) {
+        data_0215cd24[1] = 0x06894000;
+    }
+}
+
+void func_02004180(void *arg0, u32 arg1, u32 arg2) {
+    u32 dst = data_0215cd24[1] + arg1;
+    if (data_02145ba4 != -1) {
+        func_02008840(data_02145ba4, arg0, dst, arg2, 0, 0, 1);
+    } else {
+        func_02008e38(arg0, dst, arg2);
+    }
+}
+
 void func_0200422c(void) {
     data_0215cd24[0] = func_0200547c();
 }
