@@ -315,6 +315,11 @@ void func_0212c7b8(void *arg0, u32 arg1) {
     func_0212999c(*(void **)((u8 *)arg0 + 4), arg1);
 }
 
+void func_0212c7cc(u8 *arg0, u32 arg1) {
+    *(u32 *)(arg0 + 0x38) = arg1;
+    func_021299c0(*(void **)(arg0 + 4), arg1);
+}
+
 extern void func_02129a2c(void *);
 void func_0212c7e0(void *arg0) {
     func_02129a2c(*(void **)((u8 *)arg0 + 4));
