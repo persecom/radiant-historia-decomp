@@ -348,3 +348,33 @@ void func_020a9b28(void *arg0) {
     func_020a9d60(arg0);
     func_020a9b40(arg0);
 }
+
+void func_020a9b40(void *arg) {
+u8 *p=arg; u32 n;
+n=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
+data_0216263c[0]=n;
+switch((s16)(u16)(((n>>16)*3)>>16)){
+case 0: { Table6_020a9b40 t=data_02143804; u16 i;
+for(i=0;i<6;i++){
+u8 *q=func_020a9a80();
+*(s16 *)(q)=t.v[i][0]; *(s16 *)(q+2)=t.v[i][1]; q[4]=t.v[i][2];
+*(s16 *)(q+6)=*(s16 *)(p+0x1c)*10+80+t.v[i][3];
+func_021167f0(p,q);
+} break; }
+case 1: { Table7_020a9b40 t=data_02143834; u16 i;
+for(i=0;i<7;i++){
+u8 *q=func_020a9a80();
+*(s16 *)(q)=t.v[i][0]; *(s16 *)(q+2)=t.v[i][1]; q[4]=t.v[i][2];
+*(s16 *)(q+6)=*(s16 *)(p+0x1c)*10+80+t.v[i][3];
+func_021167f0(p,q);
+} break; }
+case 2: { Table6_020a9b40 t=data_021437d4; u16 i;
+for(i=0;i<6;i++){
+u8 *q=func_020a9a80();
+*(s16 *)(q)=t.v[i][0]; *(s16 *)(q+2)=t.v[i][1]; q[4]=t.v[i][2];
+*(s16 *)(q+6)=*(s16 *)(p+0x1c)*10+80+t.v[i][3];
+func_021167f0(p,q);
+} break; }
+}
+}
+
