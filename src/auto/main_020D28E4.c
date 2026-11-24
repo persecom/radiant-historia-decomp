@@ -40,7 +40,7 @@ extern void func_021099f8(void *);
 extern s16 func_020ddcb0(void *, void *);
 extern void func_020ddd8c(void *);
 
-void func_020d2a44(u8 arg0, s8 arg1, s16 arg2) {
+void func_020d2a44(s8 arg0, u8 arg1, s16 arg2) {
     Unk14 buf = data_02144910;
     if (arg1 == 0) {
         buf.unk[6] = 0x7fff;
