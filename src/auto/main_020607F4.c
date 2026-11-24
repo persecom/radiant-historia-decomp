@@ -52,7 +52,7 @@ void func_020614e0(u8 *p) {
     u8 *r = *(u8 **)(p + 0x128);
     s32 zero = 0;
     if (*(s16 *)(p + 0x98) == 0) {
-        func_020de0a8();
+        func_020de0a8(p);
     }
     func_020bfff4(*(u16 *)(p + 0x90));
     if ((r[0x76] & 1) == 0) {
