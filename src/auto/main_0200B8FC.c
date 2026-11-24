@@ -450,7 +450,7 @@ s32 func_0200c248(u32 *arg0, void *arg1, u32 arg2) {
     return ret;
 }
 
-s32 func_0200c2a8(u8 *arg0, u16 arg1) {
+s32 func_0200c2a8(u8 *arg0, u32 arg1) {
     *(u32 *)(arg0 + 0x30) = *(u32 *)(arg0 + 8);
     *(u16 *)(arg0 + 0x34) = arg1;
     *(u16 *)(arg0 + 0x36) = 0;
@@ -512,5 +512,49 @@ if(!ret) {
 }
 if(!ret) *(u32 *)(p+0x28)=pos[1];
 return ret;
+}
+
+extern s32 func_0200b7bc(const char *,s32);
+s32 func_0200c49c(u8 *p){
+u8 buf[0x94];s32 want=*(s32 *)(p+0x40);char *path=*(char **)(p+0x3c);
+s32 one=1,zero=0;
+func_0200cb40(p,2,1);
+while(*path){
+s32 len=func_0200b7bc(path,zero);s32 dir=1;
+if(path[len]==0 && want==0)dir=zero;
+if(len==0)return 6;
+if(path[0]=='.'){
+if(len==1){path++;goto next;}
+if(len==2 && path[1]=='.'){
+if(*(u16 *)(p+0x24))func_0200c2a8(p,*(u32 *)(p+0x2c));
+path+=2;goto next;
+}
+}else if(path[0]=='*')break;
+if(len>127)return 11;
+*(void **)(p+0x30)=buf;*(s32 *)(p+0x34)=zero;
+for(;;){
+s32 cmp;u32 i;
+if(func_0200cb40(p,3,one)!=0)return 11;
+if(dir!=*(s32 *)(buf+12)||len!=*(s32 *)(buf+16))continue;
+cmp=zero;i=zero;
+while(i<(u32)len){
+u32 a=(u8)(path[i]-'A');u32 b=(u8)((s8)buf[i+20]-'A');
+if(a<=25)a+=32;if(b<=25)b+=32;cmp=a-b;if(cmp)break;i++;
+}
+if(cmp)continue;
+break;
+}
+if(dir){
+*(FSFilePos *)(p+0x30)=*(FSFilePos *)buf;
+path+=len;func_0200cb40(p,2,1);
+}else{
+u32 *out;
+if(want)return 11;
+out=*(u32 **)(p+0x44);out[0]=*(u32 *)buf;out[1]=*(u32 *)(buf+4);return 0;
+}
+next:path+=*path!=0;
+}
+if(want){**(FSFilePos **)(p+0x44)=*(FSFilePos *)(p+0x20);return 0;}
+return 11;
 }
 
