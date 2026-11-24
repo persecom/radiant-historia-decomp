@@ -19,7 +19,7 @@ static inline u8 *find_node_02052844(u16 id) {
 }
 
 extern void func_020dd9b4(void *, s32 *);
-extern s32 func_02117d80(void);
+extern s32 func_02117d80();
 extern u32 *data_02155984;
 extern u8 *data_02160a80;
 extern u8 *data_021600bc;
@@ -79,11 +79,29 @@ void func_02052984(u8 val) {
     }
 }
 
+s32 func_020529ac(void *arg0, s32 arg1, s32 arg2) {
+    s32 base = func_020ddc8c(arg0, arg2);
+    s16 lo = (s16)(base + 0x3ffc);
+    if ((u32)base >= 0x3ffc) {
+        if (arg1 >= lo) {
+            if (arg1 > base - 0x3ffc) return 1;
+            if ((u32)base > 0xc004) {
+                if (arg1 > base + (s16)0xc004) return 1;
+            }
+            return 0;
+        }
+        return arg1 > base - 0x3ffc ? 1 : 0;
+    }
+    if (arg1 < base + 0x3ffc) return 0;
+    if (arg1 <= base + (s16)0xc004) return 0;
+    return 1;
+}
+
 u32 func_02052a54(void *arg0, s32 arg1) {
     s32 val;
     u32 ret = 0;
     func_020dd9b4(arg0, &val);
-    if (val) {
+    if (val != 0) {
         ret |= 2;
     }
     if (arg1 == func_02117d80()) {
