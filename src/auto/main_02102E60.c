@@ -85,3 +85,14 @@ s32 func_02103d78(s32 arg0)
   new_var = (arg0 - (*((s32 *) (data_02160c74 + 0x2c)))) + (*((s32 *) (new_var2 = data_02160c74 + 0x28)));
   return new_var;
 }
+
+extern s32 func_020bdba0(u16);
+extern void func_020aa6bc(s32);
+s32 func_02103d98(s32 arg0) {
+    if (func_020bdba0((u16)arg0) != 0) {
+        return 0;
+    }
+    func_020aa6bc(arg0);
+    return 1;
+}
+
