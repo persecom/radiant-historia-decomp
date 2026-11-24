@@ -8,6 +8,10 @@ extern u32 func_020c9c34(void *);
 extern u8 *func_020c9c10(void *, u16);
 typedef struct { u16 v[20]; } Unk40;
 extern const Unk40 data_02144bd8;
+extern const u16 data_02144c1c[6];
+extern u32 func_020c73c0(void *);
+extern void func_020c9b64(void *);
+extern void func_0211379c(u32, u16 *, u16 *);
 
 extern void func_0210c5dc(void *);
 extern void func_0211106c(void *);
@@ -80,18 +84,32 @@ void func_0211088c(u8 *arg0, u8 arg1) {
 }
 
 void func_02110a28(u8 *arg0) {
+    u8 *obj;
     u16 i;
     u32 count = func_020c9c34(*(void **)(arg0 + 0x30));
     for (i = 0; i < count; i++) {
-        u8 *obj = func_020c9c10(*(void **)(arg0 + 0x30), i);
-        s32 flag = func_020c73d8((u16 *)obj);
-        s32 on = func_020c7408() == 0 ? 1 : 0;
-        flag = flag & on;
-        if (flag != 0) {
-            ((void (*)(u8 *, s32, s32))(*(void **)(obj + 0x24)))(obj, 1, 1);
-        } else {
-            ((void (*)(u8 *, s32, s32))(*(void **)(obj + 0x24)))(obj, 0, 0);
+        obj = func_020c9c10(*(void **)(arg0 + 0x30), i);
+        {
+            s32 flag = func_020c73d8((u16 *)obj);
+            s32 on = func_020c7408() == 0 ? 1 : 0;
+            flag = flag & on;
+            if (flag != 0) {
+                ((void (*)(u8 *, s32, s32))(*(void **)(obj + 0x24)))(obj, 1, 1);
+            } else {
+                ((void (*)(u8 *, s32, s32))(*(void **)(obj + 0x24)))(obj, 0, 0);
+            }
         }
+    }
+}
+
+void func_02110abc(void *arg0) {
+    u8 *p = (u8 *)arg0;
+    u16 i;
+    u32 count = func_020c9c34(*(void **)(p + 0x30));
+    for (i = 0; i < count; i++) {
+        u8 *obj = func_020c9c10(*(void **)(p + 0x30), i);
+        *(u8 **)(obj + 0x34) = p;
+        func_021103c0(obj, (u8)(i == p[0x39]));
     }
 }
 
