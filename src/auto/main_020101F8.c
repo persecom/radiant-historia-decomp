@@ -43,6 +43,8 @@ typedef struct {
     u16 field_be;
 } CtrdgRom_02011054;
 static inline void set_zero_0210b10(ZeroTarget_0215f120 *p, u32 v) { p->field_0 = v; }
+extern u8 data_0215f120[1312];
+static inline void set_status_020101f8(u32 status) { (*(ZeroTarget_0215f120 **)data_0215f120)->field_0 = status; }
 extern void func_020059e4(u32);
 extern void func_02005a14(u32);
 extern void func_020059b4(u32);
@@ -70,6 +72,51 @@ extern void func_0200fca4(void (*)(void), u32);
 extern void func_020101f8(void *);
 
 extern void func_0200fb84(void);
+void func_020101f8(void *arg){
+u8 *p=*(u8 **)data_0215f120;
+s32 value=(s32)arg;
+u32 flag,kind,version;
+func_02008f74(p+0x18,0,0x48);
+*(s32 *)(p+4)=value;*(u32 *)(p+0x58)=0x203f;
+if(value==0)return;
+flag=1<<((value>>8)&255);kind=value&255;version=(value>>16)&255;
+*(u32 *)(p+0x18)=flag;p[0x54]=255;
+if(kind==1){
+switch(flag){
+case 0x200:*(u32 *)(p+0x24)=16;*(u32 *)(p+0x28)=1;*(u32 *)(p+0x2c)=5;p[0x54]=240;break;
+case 0x2000:*(u32 *)(p+0x24)=32;*(u32 *)(p+0x28)=2;*(u32 *)(p+0x2c)=5;p[0x54]=0;break;
+case 0x10000:*(u32 *)(p+0x24)=128;*(u32 *)(p+0x28)=2;*(u32 *)(p+0x2c)=10;p[0x54]=0;break;
+case 0x20000:*(u32 *)(p+0x24)=256;*(u32 *)(p+0x28)=3;*(u32 *)(p+0x2c)=5;p[0x54]=0;break;
+default:goto invalid;
+}
+*(u32 *)(p+0x1c)=*(u32 *)(p+0x24);
+*(u32 *)(p+0x58)|=0x140;*(u32 *)(p+0x58)|=0x4200;return;
+}else if(kind==2){
+switch(flag){
+case 0x40000:case 0x80000:case 0x100000:
+*(u32 *)(p+0x30)=25;*(u32 *)(p+0x34)=300;*(u32 *)(p+0x50)=300;*(u32 *)(p+0x40)=5000;*(u32 *)(p+0x58)|=0x480;break;
+case 0x200000:
+*(u32 *)(p+0x30)=23;*(u32 *)(p+0x34)=300;*(u32 *)(p+0x40)=500;*(u32 *)(p+0x44)=5000;
+*(u32 *)(p+0x38)=10000;*(u32 *)(p+0x3c)=60000;p[0x54]=0;*(u32 *)(p+0x58)|=0x480;*(u32 *)(p+0x58)|=0x5000;break;
+case 0x400000:
+*(u32 *)(p+0x40)=600;*(u32 *)(p+0x44)=3000;*(u32 *)(p+0x48)=70;*(u32 *)(p+0x4c)=150;
+*(u32 *)(p+0x38)=23000;*(u32 *)(p+0x3c)=800000;p[0x54]=0;*(u32 *)(p+0x20)=4096;*(u32 *)(p+0x58)|=0xd000;break;
+case 0x800000:
+if(version==0){
+*(u32 *)(p+0x40)=1000;*(u32 *)(p+0x44)=3000;*(u32 *)(p+0x38)=68000;*(u32 *)(p+0x3c)=160000;p[0x54]=0;*(u32 *)(p+0x58)|=0x5000;
+}else if(version==1){
+*(u32 *)(p+0x40)=1000;*(u32 *)(p+0x44)=3000;*(u32 *)(p+0x38)=68000;*(u32 *)(p+0x3c)=160000;p[0x54]=0x84;*(u32 *)(p+0x58)|=0x5000;
+}break;
+default:goto invalid;
+}
+*(u32 *)(p+0x1c)=0x10000;*(u32 *)(p+0x24)=256;*(u32 *)(p+0x28)=3;*(u32 *)(p+0x2c)=5;*(u32 *)(p+0x58)|=0xb40;return;
+}else if(kind==3){
+if(flag==0x2000||flag==0x8000){
+*(u32 *)(p+0x24)=flag;*(u32 *)(p+0x1c)=flag;*(u32 *)(p+0x28)=2;p[0x54]=0;*(u32 *)(p+0x58)|=0x140;*(u32 *)(p+0x58)|=0x4200;return;
+}}
+invalid:*(u32 *)(p+4)=0;*(u32 *)(p+0x18)=0;set_zero_0210b10(*(ZeroTarget_0215f120 **)data_0215f120,3);
+}
+
 void func_02010540(u32 **arg0) {
     func_0200ff10(arg0, 2, 1);
     (*arg0)[3] = 0;
