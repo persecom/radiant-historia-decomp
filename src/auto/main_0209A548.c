@@ -119,6 +119,34 @@ void func_0209b194(u16 arg0) {
     mgr->unk_60 = arg0;
 }
 
+extern u8 *data_02160a6c;
+void func_020dd810(void *, s32, s32);
+void func_0209b1c4(void) {
+    Mgr_0209a548 *mgr = data_02160120;
+    u8 *node = *(u8 **)(data_02160a6c + 0xac);
+
+    while (node != NULL) {
+        *(s32 *)node -= 10;
+        if (*(s32 *)node < 50) {
+            *(s32 *)node = 50;
+            *(s32 *)(node + 0x64) = *(u16 *)(node + 0x90) * 40 + 500;
+            if (*(u8 *)(node + 0x104) == 1) {
+                func_020dd810(node, 8, 0);
+            }
+            if (*(u8 *)(node + 0x104) != 8) {
+                func_020dd810(node, 12, 0);
+            }
+        }
+        *(s32 *)(node + 4) = *(u16 *)(node + 0x90) * 56 + 68;
+        node = *(u8 **)(node + 0x16c);
+    }
+
+    mgr->unk_698++;
+    if (mgr->unk_698 > 50) {
+        func_0209b194(1);
+    }
+}
+
 void func_0209b2b4(void) {
     Mgr_0209a548 *mgr = data_02160120;
     mgr->unk_698++;
