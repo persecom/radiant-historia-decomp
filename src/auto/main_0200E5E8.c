@@ -250,3 +250,23 @@ void func_0200f1bc(void) {
     data_0215f03c[2] = *(volatile u32 *)0x02fffc3c;
 }
 
+extern u8 data_0215f078[40];
+extern void func_0200a56c(void);
+extern s32 func_0200a6c0(s32, s32);
+extern void func_0200a674(s32, void *);
+extern void func_0200f244(void);
+void func_0200f1d8(void) {
+    if (*(u16 *)(data_0215f078 + 0) != 0) {
+        return;
+    }
+    *(u16 *)(data_0215f078 + 0) = 1;
+    *(u32 *)(data_0215f078 + 4) = 0;
+    *(u32 *)(data_0215f078 + 8) = 0;
+    *(u32 *)(data_0215f078 + 0x20) = 0;
+    *(u32 *)(data_0215f078 + 0xc) = 0;
+    *(u32 *)(data_0215f078 + 0x10) = 0;
+    func_0200a56c();
+    while (func_0200a6c0(5, 1) == 0) {}
+    func_0200a674(5, func_0200f244);
+}
+
