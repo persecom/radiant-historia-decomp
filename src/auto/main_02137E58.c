@@ -218,6 +218,11 @@ void func_021383cc(u32 arg0, u32 arg1) {
     func_0213808c();
 }
 
+void func_021383f4(u32 arg0, u32 arg1) {
+    data_02176644[0xc] = arg0;
+    data_02176644[0xd] = arg1;
+}
+
 void func_02138408(u32 arg0, u32 arg1) {
     data_02176644[6] = arg0;
     data_02176644[7] = arg1;
