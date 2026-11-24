@@ -5,7 +5,8 @@ typedef struct { u16 count, pad; u32 unk4, unk8; RelocPair174 *pairs; } RelocEnt
 extern u8 data_0216e274[];
 extern u16 data_0216e270;
 extern void func_02008df0(s32, void *, s32);
-extern s32 func_02117be0(void *);
+extern s32 func_02117be0();
+extern s32 func_02013630(s32);
 
 extern void func_02117ddc(u32 *);
 typedef struct {
