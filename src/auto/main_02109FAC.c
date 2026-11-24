@@ -229,6 +229,30 @@ void func_0210a4cc(void) {
     }
 }
 
+extern void *data_02156154;
+extern u8 data_02155bf0[8];
+extern u8 data_02155bf8[8];
+extern void *func_0210eb98(void *, s32);
+extern void *func_0210f3ec(void *, s32);
+extern s32 func_0210a4fc(void *, s32, s32);
+extern void func_0210f3ac(void *, void *, s32);
+void func_0210a76c(void *arg0) {
+    void *p;
+    if (arg0 == NULL) {
+        return;
+    }
+    if (*(s32 *)((u8 *)arg0 + 0x30) != 0) {
+        return;
+    }
+    p = *(void **)((u8 *)arg0 + 0x24);
+    if (p != NULL) {
+        ((void (*)(void *))data_02156154)(p);
+    }
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
 void *func_0210a7b4(void) {
     u8 *p = func_0210c594(0x24, data_02155c3c);
     func_021185d4(p);
