@@ -404,12 +404,12 @@ void func_02113d5c(void *arg0, u16 arg1) {
 }
 
 void func_02113d7c(void *arg0, u16 arg1, u16 arg2) {
-    if (*(void **)arg0 == NULL) {
+    if (*(void * volatile *)arg0 == NULL) {
         return;
     }
-    *(u16 *)((u8 *)*(void **)arg0 + 0x34) = 2;
-    *(u16 *)((u8 *)*(void **)arg0 + 0x38) = arg1;
-    *(u16 *)((u8 *)*(void **)arg0 + 0x3a) = arg2;
+    *(u16 *)((u8 *)*(void * volatile *)arg0 + 0x34) = 2;
+    *(u16 *)((u8 *)*(void * volatile *)arg0 + 0x38) = arg1;
+    *(u16 *)((u8 *)*(void * volatile *)arg0 + 0x3a) = arg2;
 }
 
 extern void func_021142f0(void);
