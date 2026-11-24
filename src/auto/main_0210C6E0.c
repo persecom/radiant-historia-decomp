@@ -563,11 +563,12 @@ void func_0210d5dc(s32 arg0) {
 }
 
 void func_0210d648(s32 arg0, s32 arg1) {
+    void *p = data_02162744;
     if (arg1 == 0) {
         func_0210d5dc(arg0);
         return;
     }
-    func_02113b58(data_02162744, arg1 >> data_02162834);
+    func_02113b58(p, arg1 >> data_02162834);
     *(s32 *)(data_02162730 + 8) = arg0;
     if (arg0 < 0) {
         *(s32 *)(data_02162730 + 0xc) = -1;
