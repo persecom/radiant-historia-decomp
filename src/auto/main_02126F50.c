@@ -175,6 +175,17 @@ s32 func_021275f8(s32 *arg0) {
     return arg0[1];
 }
 
+extern u8 data_02145040[];
+extern u8 data_02156698[48];
+extern void func_0212bda8(void *);
+extern void func_02132bf8(void *, s32, void *);
+extern void func_02128880(void *);
+void func_02127600(void *arg0) {
+    *(void **)arg0 = data_02145040;
+    *(u32 *)((u8 *)arg0 + 4) = 0;
+    *(u32 *)((u8 *)arg0 + 8) = 0;
+}
+
 extern void func_0212a9f4(void);
 extern void func_02127e74(void *);
 extern void func_0212a9f8(void);
