@@ -83,7 +83,7 @@ u8 *func_020bf458(s32 arg0, s32 arg1) {
     s32 scale = 0x1800;
     s32 val = scale * arg1;
     data_02155bac = 0;
-    p = func_020ec294((u16)arg0, (u16)(arg1 + 2), val);
+    p = func_020ec294((u16)arg0, (u16)(arg1 + 2), 0x1800, arg1 * 0x1800);
     data_02155bac = 1;
     *(u16 *)(p + 0x10) = 0;
     *(u32 *)(p + 0x14) = 0x80000;
