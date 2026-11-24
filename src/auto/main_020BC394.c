@@ -72,6 +72,14 @@ void func_020bd2cc(void) {
     data_021601f8.unk04 = NULL;
 }
 
+void func_020bd2fc(u32 arg0, u16 arg1, u8 arg2, u8 arg3)
+{
+  *((u16 *) ((data_02160078 + 0x14d0) + ((arg0 & 0xFFFFFFFFFFFFFFFFu) * 4))) = 0;
+  *((u16 *) ((data_02160078 + 0x14d0) + (arg0 * 4))) |= arg1;
+  *((u8 *) (((data_02160078 + 0x14d0) + (arg0 * 4)) + 2)) = arg2;
+  *((u8 *) (((data_02160078 + 0x14d0) + (arg0 * 4)) + 3)) = arg3;
+}
+
 void func_020bd35c(u32 arg0, u16 arg1) {
     *(u16 *)(data_02160078 + 0x14d0 + arg0 * 4) &= (u16)~arg1;
 }
