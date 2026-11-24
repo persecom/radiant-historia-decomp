@@ -261,6 +261,13 @@ void func_0212efe8(u32 *arg0, u32 *arg1) {
     }
 }
 
+void func_0212f0d4(void *arg0) {
+    if (arg0 == NULL) {
+        return;
+    }
+    func_02013878(arg0, 0, 0x2c);
+}
+
 void func_0212f384(s32 *arg0, s32 arg1, s32 *arg2, s32 *arg3) {
     s32 ptr = *(volatile s32 *)arg0;
     s32 len = *(volatile s32 *)(arg0 + 1);
