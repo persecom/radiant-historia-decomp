@@ -139,6 +139,27 @@ void func_0211ada0(void) {
     data_021701d8[0] = 0;
 }
 
+u8 *func_0211adb4(u8 *arg0, u32 arg1, u32 arg2) {
+    u32 i;
+    for (i = 0; i < 4; i++) {
+        u8 *p = arg0 + i * 6;
+        if (arg1 <= *(u16 *)p && arg2 <= *(u16 *)(p + 2)) {
+            return p;
+        }
+    }
+    return arg0 + 0x12;
+}
+
+s32 func_0211ae38(u8 *arg0) {
+    u32 idx = *(volatile u32 *)0x04001000 & 7;
+    s32 val = arg0[idx];
+
+    if (val >= 8) {
+        val -= 8;
+    }
+    return func_0200283c(val);
+}
+
 u32 func_0211b0bc(u32 arg0) {
     u16 val = data_02144e48[arg0];
     if (val == 0) {
