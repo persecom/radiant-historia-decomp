@@ -348,6 +348,13 @@ void func_0210d014(void) {
     }
 }
 
+void func_0210d03c(void) {
+    if (((*(volatile u16 *)0x02ffffa8 & 0x8000) >> 15) == 1) {
+        func_0200ea34(0xc, 0, 0);
+        func_0210cfcc(0);
+    }
+}
+
 void func_0210d220(void) {
     if (data_02162730 == NULL) {
         return;
