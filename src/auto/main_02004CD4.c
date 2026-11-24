@@ -277,13 +277,13 @@ void func_020056c4(void) {
 }
 
 void func_020056c8(s32 index) {
-    void (*fp)(void *) = *(void (**)(void *))(data_0215cd7c + index * 12);
     u32 bit = 1 << data_02145ba8[index];
+    void (*fp)(void *) = *(void (**)(void *))(data_0215cd7c + index * 12);
     *(void (**)(void *))(data_0215cd7c + index * 12) = NULL;
     if (fp != NULL) {
         fp(*(void **)(data_0215cd84 + index * 12));
     }
-    *(volatile u32 *)(data_027e0000 + 0x3ff8) |= bit;
+    *(volatile u32 *)((u32)data_027e0000 + 0x3ff8) |= bit;
     if (*(u32 *)(data_0215cd80 + index * 12) == 0) {
         func_020059e4(bit);
     }
