@@ -94,10 +94,11 @@ void func_02002f9c(void *arg0) {
     func_02008eec(arg0, (void *)0x04000360);
 }
 
-extern void func_02008eec(void *, void *);
-extern void func_02008738(s32, void *, u32, u32, s32, s32, s32);
-extern void func_02008568(s32, void *, u32, u32, s32);
-extern void func_02008e24(s32, void *, u32);
+void func_02002fb0(u32 arg0, u32 arg1, u16 arg2, u32 arg3, s32 arg4) {
+    *(volatile u32 *)0x04000350 = arg0 | (arg1 << 16) | (arg3 << 24) | (arg4 ? 0x8000 : 0);
+    *(volatile u16 *)0x04000354 = arg2;
+}
+
 void func_02002fd8(void) {
     s32 i;
     if (data_02145ba4 != -1) {
