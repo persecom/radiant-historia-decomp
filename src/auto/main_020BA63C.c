@@ -213,6 +213,19 @@ s32 func_020babc8(u8 *arg0) {
 void func_020babe8(void) {
 }
 
+void func_020babec(u8 *arg0, u32 arg1, u8 *arg2) {
+    u8 *obj = func_020c9c10(*(void **)(arg0 + 0x30), 2);
+    func_020c8640(obj, 0x16);
+    func_020c83f4(obj, arg1, *(u16 *)(arg2 + 2), 0);
+    obj = func_020c9c10(*(void **)(arg0 + 0x30), 1);
+    if (arg2 != NULL) {
+        func_020c738c(obj, 0, 1);
+        *(u16 *)(obj + 0x4c) = *(u16 *)(arg2 + 2);
+    } else {
+        func_020c738c(obj, 1, 1);
+    }
+}
+
 void func_020bac70(u8 arg0) {
     data_021601f0 = arg0;
 }
