@@ -121,6 +121,26 @@ void func_020e9eb0(void) {
     func_0210dbd0(data_02160a80 + 0x28);
 }
 
+void func_020e9f44(void) {
+    if (data_02160a80 == NULL) {
+        return;
+    }
+    while (*(void **)(data_02160a80 + 0x48) != NULL) {
+        func_021168f8(data_02160a80 + 0x48, *(void **)(data_02160a80 + 0x48));
+    }
+    while (*(void **)(data_02160a80 + 0x3c) != NULL) {
+        void **node = *(void ***)(data_02160a80 + 0x3c);
+        func_021168f8(data_02160a80 + 0x3c, node);
+        func_020ea164(node);
+    }
+    func_0210dba0(data_02160a80 + 0x14);
+    func_0210dbe8(data_02160a80 + 0x28);
+    if (data_02160a80 != NULL) {
+        func_0210c5dc(data_02160a80);
+        data_02160a80 = NULL;
+    }
+}
+
 u32 *func_020ea0b8(s32 arg0) {
     u8 *base = data_02160a80;
     u32 *node;
