@@ -45,6 +45,26 @@ extern void func_021167f0(void *, void *);
 extern s32 func_021172b4(void *, u16);
 extern void func_02117304(void *, u32);
 extern u32 func_0211727c(void *, u32);
+
+typedef struct {
+    u8 pad[0x118];
+    s32 flag : 1;
+    u8 pad2[0x60];
+} Unk_0216cb40;
+
+extern Unk_0216cb40 data_0216cb40[4];
+extern void func_02116488(Unk_0216cb40 *, s32);
+extern s32 func_0200a530(void *, s32);
+extern void func_0200a4fc(void *, s32, s32);
+extern void func_0200a328(void *);
+extern s32 func_0200a348(void *, void *, void *);
+extern s32 func_02115e58(s32, u16, s32, s32);
+extern void *func_02114f70(void);
+extern void *func_02115110(s32);
+extern void func_02113a9c(s32, u8);
+extern void func_02113abc(s32, u16);
+extern s32 func_02113ad4(s32, void *, void *);
+
 void func_02115380(void *arg0) {
     void *node;
     BOOL flag = FALSE;
@@ -220,15 +240,18 @@ s32 func_02115910(void *arg0, u32 arg1, void *arg2, s32 arg3, void **arg4) {
 }
 
 void *func_02115994(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4) {
-    u8 *p = func_02115174(arg0);
+    void *p;
     void *buf;
+    void *q;
+    p = func_02115174(arg0);
     if (p == NULL) {
         return NULL;
     }
     if (arg4 == NULL) {
         return NULL;
     }
-    buf = func_0211543c(p, (u32)(p + 0x20), arg1, (u32)arg2, (u32)arg3);
+    q = (u8 *)p + 0x20;
+    buf = func_0211543c(p, (u32)q, arg1, (u32)arg2, (u32)arg3);
     if (buf == NULL) {
         return NULL;
     }
@@ -307,11 +330,14 @@ void func_02115d10(void *arg0, s32 arg1, s32 arg2) {
     }
     r5 = func_02008128();
     r4 = func_02114f58((void *)arg1);
-    if (arg0 == func_02115264((void *)arg2)) {
-        func_0211528c((void *)arg2, NULL);
-        func_02114f58(r4);
-        func_0200813c(r5);
+    if (arg0 != func_02115264((void *)arg2)) {
+        goto done;
     }
+    func_0211528c((void *)arg2, NULL);
+    func_02114f58(r4);
+    func_0200813c(r5);
+done:
+    return;
 }
 
 void func_02115d68(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
