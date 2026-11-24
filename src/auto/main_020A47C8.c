@@ -56,7 +56,7 @@ typedef struct S16x10_020a49a4 { s16 m[10]; } S16x10_020a49a4;
 
 extern const Unk20 data_02143388;
 extern const Unk20 data_0214339c;
-extern const Unk20 data_02143360;
+extern const S16x10_020a49a4 data_02143360;
 extern u8 *data_021600bc;
 extern s32 func_02109754(s32);
 extern void func_02109840(void),func_020a56cc(void);
@@ -128,115 +128,118 @@ void func_020a48d0(u32 arg0, s32 arg1, s16 arg2, s16 arg3, s16 arg4, s32 arg5, s
     }
 }
 
-void func_020a49a4(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s16 arg4,
+void func_020a49a4(s16 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4,
                    s32 arg5, s32 arg6, s16 arg7, s16 arg8) {
-    Unk20 buf = data_02143360;
+    S16x10_020a49a4 buf = *(const S16x10_020a49a4 *)&data_02143360;
     s16 dx = arg3 / 3;
     s16 dy = arg4 / 3;
     s16 wl, hl;
+    s16 a7, a8;
 
     if (arg3 > arg7)
         dx = arg7 / 3;
-    wl = arg7 - dx * 2;
-    hl = arg8 - dy * 2;
+    a7 = arg7;
+    a8 = arg8;
+    wl = a7 - dx * 2;
+    hl = a8 - dy * 2;
 
-    buf.unk[2] = arg2;
-    buf.unk[3] = dx;
-    buf.unk[4] = dy;
-    buf.unk[6] = arg6;
-    buf.unk[1] = arg1;
-    buf.unk[5] = arg5;
-    buf.unk[8] = dx;
-    buf.unk[9] = dy;
-    buf.unk[7] = arg0;
+    buf.m[2] = arg2;
+    buf.m[3] = dx;
+    buf.m[4] = dy;
+    buf.m[6] = arg6;
+    buf.m[1] = arg1;
+    buf.m[5] = arg5;
+    buf.m[8] = dx;
+    buf.m[9] = dy;
+    buf.m[7] = arg0;
     func_021098ac(&buf);
 
-    buf.unk[2] = arg2;
-    buf.unk[3] = dx;
-    buf.unk[4] = dy;
-    buf.unk[6] = arg6;
-    buf.unk[8] = wl;
-    buf.unk[1] = arg1 + dx;
-    buf.unk[5] = arg5 + dx;
-    buf.unk[9] = dy;
-    buf.unk[7] = arg0;
+    buf.m[2] = arg2;
+    buf.m[3] = dx;
+    buf.m[4] = dy;
+    buf.m[6] = arg6;
+    buf.m[8] = wl;
+    buf.m[1] = arg1 + dx;
+    buf.m[5] = arg5 + dx;
+    buf.m[9] = dy;
+    buf.m[7] = arg0;
     func_021098ac(&buf);
 
-    buf.unk[1] = arg1 + arg3 - dx;
-    buf.unk[5] = arg5 + arg7 - dx;
-    buf.unk[3] = dx;
-    buf.unk[4] = dy;
-    buf.unk[8] = dx;
-    buf.unk[2] = arg2;
-    buf.unk[6] = arg6;
-    buf.unk[9] = dy;
-    buf.unk[7] = arg0;
+    buf.m[1] = arg1 + arg3 - dx;
+    buf.m[5] = arg5 + a7 - dx;
+    buf.m[3] = dx;
+    buf.m[4] = dy;
+    buf.m[8] = dx;
+    buf.m[2] = arg2;
+    buf.m[6] = arg6;
+    buf.m[9] = dy;
+    buf.m[7] = arg0;
     func_021098ac(&buf);
 
-    buf.unk[1] = arg1;
-    buf.unk[3] = dx;
-    buf.unk[4] = dy;
-    buf.unk[5] = arg5;
-    buf.unk[8] = dx;
-    buf.unk[9] = hl;
-    buf.unk[2] = arg2 + dy;
-    buf.unk[6] = arg6 + dy;
-    buf.unk[7] = arg0;
+    buf.m[1] = arg1;
+    buf.m[3] = dx;
+    buf.m[4] = dy;
+    buf.m[5] = arg5;
+    buf.m[8] = dx;
+    buf.m[9] = hl;
+    buf.m[2] = arg2 + dy;
+    buf.m[6] = arg6 + dy;
+    buf.m[7] = arg0;
     func_021098ac(&buf);
 
-    buf.unk[3] = dx;
-    buf.unk[1] = arg1 + dx;
-    buf.unk[4] = dy;
-    buf.unk[2] = arg2 + dy;
-    buf.unk[5] = arg5 + dx;
-    buf.unk[6] = arg6 + dy;
-    buf.unk[8] = wl;
-    buf.unk[9] = hl;
-    buf.unk[7] = arg0;
+    buf.m[3] = dx;
+    buf.m[1] = arg1 + dx;
+    buf.m[4] = dy;
+    buf.m[2] = arg2 + dy;
+    buf.m[5] = arg5 + dx;
+    buf.m[6] = arg6 + dy;
+    buf.m[8] = wl;
+    buf.m[9] = hl;
+    buf.m[7] = arg0;
     func_021098ac(&buf);
 
-    buf.unk[2] = arg2 + dy;
-    buf.unk[6] = arg6 + dy;
-    buf.unk[9] = hl;
-    buf.unk[1] = arg1 + arg3 - dx;
-    buf.unk[5] = arg5 + arg7 - dx;
-    buf.unk[3] = dx;
-    buf.unk[4] = dy;
-    buf.unk[8] = dx;
-    buf.unk[7] = arg0;
+    buf.m[2] = arg2 + dy;
+    buf.m[6] = arg6 + dy;
+    buf.m[9] = hl;
+    buf.m[1] = arg1 + arg3 - dx;
+    buf.m[5] = arg5 + a7 - dx;
+    buf.m[3] = dx;
+    buf.m[4] = dy;
+    buf.m[8] = dx;
+    buf.m[7] = arg0;
     func_021098ac(&buf);
 
-    buf.unk[1] = arg1;
-    buf.unk[5] = arg5;
-    buf.unk[2] = arg2 + arg4 - dy;
-    buf.unk[3] = dx;
-    buf.unk[4] = dy;
-    buf.unk[6] = arg6 + arg8 - dy;
-    buf.unk[8] = dx;
-    buf.unk[9] = dy;
-    buf.unk[7] = arg0;
+    buf.m[1] = arg1;
+    buf.m[5] = arg5;
+    buf.m[2] = arg2 + arg4 - dy;
+    buf.m[3] = dx;
+    buf.m[4] = dy;
+    buf.m[6] = arg6 + a8 - dy;
+    buf.m[8] = dx;
+    buf.m[9] = dy;
+    buf.m[7] = arg0;
     func_021098ac(&buf);
 
-    buf.unk[2] = arg2 + arg4 - dy;
-    buf.unk[1] = arg1 + dx;
-    buf.unk[3] = dx;
-    buf.unk[4] = dy;
-    buf.unk[6] = arg6 + arg8 - dy;
-    buf.unk[5] = arg5 + dx;
-    buf.unk[8] = wl;
-    buf.unk[9] = dy;
-    buf.unk[7] = arg0;
+    buf.m[2] = arg2 + arg4 - dy;
+    buf.m[1] = arg1 + dx;
+    buf.m[3] = dx;
+    buf.m[4] = dy;
+    buf.m[6] = arg6 + a8 - dy;
+    buf.m[5] = arg5 + dx;
+    buf.m[8] = wl;
+    buf.m[9] = dy;
+    buf.m[7] = arg0;
     func_021098ac(&buf);
 
-    buf.unk[1] = arg1 + arg3 - dx;
-    buf.unk[2] = arg2 + arg4 - dy;
-    buf.unk[3] = dx;
-    buf.unk[4] = dy;
-    buf.unk[5] = arg5 + arg7 - dx;
-    buf.unk[6] = arg6 + arg8 - dy;
-    buf.unk[8] = dx;
-    buf.unk[9] = dy;
-    buf.unk[7] = arg0;
+    buf.m[1] = arg1 + arg3 - dx;
+    buf.m[2] = arg2 + arg4 - dy;
+    buf.m[3] = dx;
+    buf.m[4] = dy;
+    buf.m[5] = arg5 + a7 - dx;
+    buf.m[6] = arg6 + a8 - dy;
+    buf.m[8] = dx;
+    buf.m[9] = dy;
+    buf.m[7] = arg0;
     func_021098ac(&buf);
 }
 
