@@ -101,15 +101,14 @@ void func_0211ceec(u8 *arg0, BOOL arg1) {
     }
 }
 
+#pragma schedule off
 u32 func_0211cf3c(u8 *arg0) {
-    u16 flag = *(u16 *)(arg0 + 0x32);
     u32 key = *(u32 *)(arg0 + 0x2c);
-    flag &= ~1;
-    *(u16 *)(arg0 + 0x32) = flag;
+    u16 flag = *(u16 *)(arg0 + 0x32);
+    *(u16 *)(arg0 + 0x32) = flag & ~1;
     *(u32 *)(arg0 + 0x2c) = 0;
     return key;
 }
-
 void func_0211d08c(u8 *arg0, u8 *arg1) {
     u16 ofs = *(u16 *)arg1;
     u8 *base = arg0 + ofs;
@@ -135,6 +134,42 @@ done:
     *(u8 *)(arg1 + 3) &= ~1;
 }
 
+void *func_02120c74(void *, void *);
+void func_0211cf5c(void *, void *, void *, void *);
+#pragma opt_propagation off
+#pragma opt_common_subs off
+#pragma opt_strength_reduction off
+s32 func_0211d144(void *arg0, void *arg1) {
+s32 zero=0;
+u8 *dict;
+u32 i;
+s32 result;
+u8 *p;
+if(arg0 && *(u32 *)((u8 *)arg0+8)) p=(u8 *)arg0+*(u32 *)((u8 *)arg0+8);
+else p=NULL;
+dict=p+*(u16 *)p;
+result=1;
+for(i=0;i<dict[1];i++){
+u8 *name;
+void *found;
+if(dict && i<dict[1]) {
+u8 *base=dict+*(u16 *)(dict+6);
+name=base+*(u16 *)(base+2)+i*16;
+} else name=(u8 *)zero;
+if(arg1) found=func_02120c74((u8 *)arg1+0x3c,name);
+else found=(void *)zero;
+if(found){
+u8 *entry;
+if(dict && i<dict[1]) { u16 unit; entry=dict+*(u16 *)(dict+6); unit=*(u16 *)entry; entry=entry+4+unit*i; }
+else entry=(u8 *)zero;
+if(!(entry[3]&1)) func_0211cf5c(p,entry,arg1,found);
+} else result=zero;
+}
+return result;
+}
+#pragma opt_strength_reduction on
+#pragma opt_common_subs on
+#pragma opt_propagation on
 void func_0211d238(u8 *arg0) {
     u32 i;
     u8 *p, *name, *q;
@@ -157,6 +192,69 @@ void func_0211d238(u8 *arg0) {
     }
 }
 
+#pragma scheduling off
+void func_0211d2c4(u8 *arg0, u8 *arg1, u8 *arg2, u16 *arg3) {
+u16 ofs, key;
+BOOL flag;
+u8 *indices;
+u32 i;
+key = (u16)*(u32 *)(arg2 + 0x2c);
+flag = arg3[1] & 1;
+key &= ~0xe0000000;
+ofs = arg3[0];
+indices = arg0 + *(u16 *)arg1;
+if (!flag) { ofs >>= 1; key >>= 1; }
+for (i=0; i<arg1[2]; i++) {
+u8 *mat;
+u32 idx = indices[i];
+if (arg0 != NULL) {
+u32 *entry = (u32 *)get_res_data_by_idx(arg0+4,idx);
+if (entry != NULL) { mat=arg0+*entry; goto got_mat; }
+}
+mat=NULL;
+got_mat:
+*(u16 *)(mat+0x1c) = ofs + key;
+}
+arg1[3] |= 1;
+}
+
+s32 func_0211d3a0(void *arg0_v, void *arg1_v) {
+    u8 *arg0 = (u8 *)arg0_v;
+    u8 *arg1 = (u8 *)arg1_v;
+    u8 *r8 = (arg0 != NULL && *(u32 *)(arg0 + 8) != 0) ? (arg0 + *(u32 *)(arg0 + 8)) : NULL;
+    u8 *r5 = r8 + *(u16 *)(r8 + 2);
+    u32 i;
+    s32 ret = 1;
+
+    for (i = 0; i < r5[1]; i++) {
+        u8 *name;
+        u16 *res;
+        if (r5 != NULL && i < *(volatile u8 *)(r5 + 1)) {
+            u8 *p = r5 + *(u16 *)(r5 + 6);
+            name = (p + *(u16 *)(p + 2)) + (i << 4);
+        } else {
+            name = NULL;
+        }
+        res = (arg1 != NULL && *(u16 *)(arg1 + 0x34) != 0) ? (u16 *)func_02120c74(arg1 + *(u16 *)(arg1 + 0x34), name) : NULL;
+        if (res != NULL) {
+            u8 *entry;
+            if (r5 != NULL && i < r5[1]) {
+                u16 stride = *(u16 *)(r5 + *(u16 *)(r5 + 6));
+                entry = (r5 + *(u16 *)(r5 + 6) + 4) + stride * i;
+            } else {
+                entry = NULL;
+            }
+            if (!(entry[3] & 1)) {
+                func_0211d2c4(r8, entry, arg1, res);
+            }
+        } else {
+            ret = 0;
+        }
+    }
+    return ret;
+}
+
+#pragma scheduling reset
 void func_0211d49c(u8 *arg0) {
     u8 *mat = (arg0 != NULL && *(u32 *)(arg0 + 8) != 0) ? (arg0 + *(u32 *)(arg0 + 8)) : NULL;
     u8 *dict = mat + *(u16 *)(mat + 2);
