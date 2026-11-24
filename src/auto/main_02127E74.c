@@ -208,6 +208,10 @@ void func_0212879c(void *arg0, void *arg1) {
     func_0212a9f8();
 }
 
+void func_021287c0(void *arg0) {
+    func_0212ebb0(*(void **)((u8 *)arg0 + 0xc));
+}
+
 extern void *func_021287f4(void *);
 void *func_021287d0(void *arg0) {
     void *ret;
