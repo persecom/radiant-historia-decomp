@@ -3,6 +3,24 @@
 
 extern u8 *data_02160110;
 extern void func_0210c5dc(void *);
+extern void *data_02155c3c;
+extern void *func_0210c594(u32, void *);
+extern void func_02094700(void);
+extern void func_021167ac(void *, s32);
+extern void func_020949f4(void);
+extern void func_02094aec(void);
+extern void func_02094cc0(void);
+extern void func_0210d9e4(void *);
+extern void func_02092cec(void);
+extern void func_02096e94(void);
+extern void func_020947e8(void);
+extern void func_02094774(void);
+extern void func_020951b4(void);
+extern void func_020934ac(void);
+extern void func_02092c54(void);
+extern void func_02092ca0(void);
+extern void func_020948ac(void);
+extern void func_0210da14(void *);
 
 extern u8 data_0214874c[4];
 extern s32 func_021093f0(void *);
@@ -74,6 +92,38 @@ s32 func_02092ab0(u8 *arg0, s32 arg1) {
         }
     }
     return val;
+}
+
+extern void *data_02155c3c;
+extern void *func_0210c594(u32, void *);
+extern void func_02094700(void);
+extern void func_021167ac(void *, s32);
+extern void func_020949f4(void);
+extern void func_02094aec(void);
+extern void func_02094cc0(void);
+extern void func_0210d9e4(void *);
+extern void func_02092cec(void);
+extern void func_02096e94(void);
+extern void func_020947e8(void);
+extern void func_02094774(void);
+extern void func_020951b4(void);
+extern void func_020934ac(void);
+extern void func_02092c54(void);
+extern void func_02092ca0(void);
+extern void func_020948ac(void);
+extern void func_0210da14(void *);
+u32 func_02092c1c(void) {
+    if (data_02160110 == NULL) {
+        return 0;
+    }
+    return *(u32 *)(data_02160110 + 0x84);
+}
+
+u32 func_02092c38(void) {
+    if (data_02160110 == NULL) {
+        return 0;
+    }
+    return *(u32 *)(data_02160110 + 0x90);
 }
 
 extern u8 *data_02160110;
