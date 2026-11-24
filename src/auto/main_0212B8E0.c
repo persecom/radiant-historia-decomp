@@ -110,3 +110,7 @@ void func_0212c4b8(u32 arg0) {
     data_02156cd8[0] = arg0;
 }
 
+s32 func_0212c7b0(s8 *arg0) {
+    return arg0[1];
+}
+
