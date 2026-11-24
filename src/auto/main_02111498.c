@@ -1,6 +1,11 @@
 /* 45 functions from 0x02111498 to 0x0211242C (main), found by ds-decomp. */
 #include "common.h"
 
+typedef struct {
+    u8 pad[0x6c];
+    void *field;
+} MainSub_6C;
+
 extern void func_0210c5dc(void *);
 extern void func_020c9490(void *);
 extern void *func_020c9c10(void *, u32);
@@ -11,6 +16,16 @@ void func_02111594(void) {
 
 void func_021115b0(u8 *arg0, u32 arg1) {
     *(u16 *)(arg0 + 0x3c) = (u8)arg1;
+}
+
+void func_021115bc(u8 *arg0, u16 arg1) {
+    void *p = func_020c9c10(*(void **)(arg0 + 0x30), 0);
+    u16 old = *(u16 *)((u8 *)p + 0x30);
+    int changed = (old != arg1);
+    *(u16 *)((u8 *)p + 0x30) = arg1;
+    if (changed) {
+        func_020c7930(p);
+    }
 }
 
 void func_02111708(void *arg0) {
