@@ -151,6 +151,52 @@ void func_020f4928(void) {
     func_020f48b8(0x3fb);
 }
 
+extern void func_020f4d0c(void *);
+extern void func_020f4f04(u8 *);
+void func_020f4a24(void) {
+ s32 zero=0;
+ void **base;
+ void **list;
+ s32 i;
+ func_020f48fc();
+ base=(void **)data_02160c3c;
+ if(base[4]) {
+ func_0210c5dc((void *)base[4]);
+ base[4]=(void *)zero;
+ }
+ while(*(void **)base[0])func_020f4d0c(*(void **)base[0]);
+ list=(void **)base[2];
+ while(*list)func_020f4f04(*list);
+ {
+ void **list;
+ s32 i;
+ for(i=0;i<5;i++) {
+ list=data_02160c60[i];
+ while(*list)func_020f4f04(*list);
+ }
+ }
+ {
+ void **list;
+ s32 i;
+ for(i=0;i<3;i++) {
+ list=data_02160c54[i];
+ while(*list)func_020f4f04(*list);
+ }
+ }
+ if(base[0]){func_0210c5dc((void *)base[0]);base[0]=(void *)zero;}
+ if(base[2]){func_0210c5dc((void *)base[2]);base[2]=(void *)zero;}
+ for(i=0;i<5;i++) {
+ if(data_02160c60[i]){func_0210c5dc(data_02160c60[i]);data_02160c60[i]=(void *)zero;}
+ }
+ for(i=0;i<3;i++) {
+ if(data_02160c54[i]){func_0210c5dc(data_02160c54[i]);data_02160c54[i]=(void *)zero;}
+ }
+ list=(void **)base[3];
+ while(*list)func_020f4f04(*list);
+ if(base[3]){func_0210c5dc((void *)base[3]);base[3]=(void *)zero;}
+ func_020f4870();
+}
+
 void *func_020f4bb4(void) {
     return func_0210c594(0x1c, data_02155c3c);
 }
