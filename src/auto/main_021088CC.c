@@ -232,7 +232,8 @@ void func_02108f58(u32 arg0) {
         func_02108ffc();
     }
     for (j = 0; j < 5; j++) {
-        func_02108c24(arg0, j);
+        u32 k = j;
+        func_02108c24(arg0, k);
         func_02108ffc();
     }
 }
@@ -338,14 +339,12 @@ s32 func_021093f0(u8 *arg0) {
 }
 
 s32 func_02109444(Unk02109444 *arg0) {
-    u8 *end = arg0->buf;
     u8 *cur = arg0->cur;
-    end += arg0->size;
-    if (cur == end) {
+    if (cur == arg0->buf + arg0->size) {
         return 0;
     }
-    while (cur < end) {
-        u8 c = *cur++;
+    while (cur < arg0->buf + arg0->size) {
+        u32 c = *cur++;
         if (c == '\n') {
             break;
         }
