@@ -75,6 +75,37 @@ void func_0208480c(void) {
     data_0216010c[0x50b4] = 1;
 }
 
+void func_02084828(void) {
+Init_02084828 init=data_02140ca0;
+UnkNode_02084a70 *p;
+u8 i;
+for(i=0;i<3;i++) {
+p=func_0210c594(0x34,data_02155c3c);
+s16 n=i*12;
+p->unk04=init.v[n];p->unk06=init.v[n+1];p->unk08=init.v[n+2];p->unk0a=init.v[n+3];
+p->unk10=init.v[n+4];p->unk12=init.v[n+5];p->unk0c=init.v[n+6];p->unk0e=init.v[n+7];
+p->unk24=init.v[n+8]+140;
+p->unk02=1;
+*(s16*)p=init.v[n+11];
+p->unk03=init.v[n+9];
+p->unk26=31;
+if(init.v[n+10]==1) func_021167f0(data_0216010c+0x5f0,p);
+else if(init.v[n+10]==2) func_021167f0(data_0216010c+0x5fc,p);
+if(i<=2) p->unk24=50;
+}
+for(i=0;i<32;i++) {
+UnkNode_02084a70 *p=func_0210c594(0x34,data_02155c3c);
+UnkNode_02084a70 *q=func_0210c594(0x34,data_02155c3c);
+p->unk04=1;p->unk06=1;p->unk08=46;p->unk0a=44;
+p->unk0c=i%6*42;p->unk0e=i/6*44;
+p->unk10=46;p->unk12=44;p->unk24=51;p->unk02=1;
+*(s16*)p=i+0xbb8;p->unk03=1;p->unk26=31;
+*q=*p;
+func_021167f0(data_0216010c+0x5f0,p);
+func_021167f0(data_0216010c+0x5fc,q);
+}
+}
+
 void func_02084a70(UnkNode_02084a70 *arg0) {
     UnkNode_02084a70 *node;
     s16 sp[10];
