@@ -1,6 +1,8 @@
 /* 12 functions from 0x020CDCE8 to 0x020CEC8C (main), found by ds-decomp. */
 #include "common.h"
 
+extern u8 *data_02160078;
+extern u8 *func_02021f10(u32);
 extern u8 data_021512f0;
 extern u8 *data_02160238;
 extern s16 data_02162908[4];
