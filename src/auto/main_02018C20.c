@@ -16,33 +16,40 @@ s32 func_02018fa0(u8 *arg0, u8 *arg1)
     UnkNum *b = (UnkNum *)arg1;
     s32 i;
     s32 n;
-    u8 *p;
+    UnkNum *p;
 
     if (a->digits[0] == 0) {
         return b->digits[0] == 0;
     }
     if (b->digits[0] == 0) {
-        return a->digits[0] == 0;
-    }
-    if (a->unk02 != b->unk02) {
-        return 0;
-    }
-    n = a->unk04;
-    if (n > b->unk04) {
-        n = b->unk04;
-    }
-    for (i = 0; i < n; i++) {
-        if (a->digits[i] != b->digits[i]) {
-            return 0;
+        s32 ret = 1;
+        if (a->digits[0] != 0) {
+            ret = 0;
         }
+        return ret;
     }
-    p = (n == a->unk04) ? arg1 : arg0;
-    for (; i < *(u8 *)(p + 4); i++) {
-        if (p[5 + i] != 0) {
-            return 0;
+    if (a->unk02 == b->unk02) {
+        n = a->unk04;
+        if (n > b->unk04) {
+            n = b->unk04;
         }
+        for (i = 0; i < n; i++) {
+            if (a->digits[i] != b->digits[i]) {
+                return 0;
+            }
+        }
+        p = a;
+        if (n == a->unk04) {
+            p = b;
+        }
+        for (; i < ((volatile UnkNum *)p)->unk04; i++) {
+            if (p->digits[i] != 0) {
+                return 0;
+            }
+        }
+        return 1;
     }
-    return 1;
+    return 0;
 }
 
 s32 func_02019080(const u8 *a, const u8 *b) {
