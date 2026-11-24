@@ -13,9 +13,10 @@ extern void func_0207c124(void);
 extern void func_0203d970(void *);
 extern void func_0203df40(void *);
 static inline u16 random_4487c(u16 max) {
+ u32 seed=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
  u32 value;
- data_0216263c[0]=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
- value=data_0216263c[0]>>16;
+ data_0216263c[0]=seed;
+ value=seed>>16;
  if(max) value=(value*max)>>16;
  return value;
 }
@@ -92,6 +93,53 @@ void func_02044820(u32 arg0) {
     func_020a9610(p + 0x2e8, *(u32 *)(p + 0xa8), arg0, r4, 0, 0);
     func_020a98ac(p + 0x300);
     func_020a98f4(p + 0x300);
+}
+
+void func_0204487c(u8 *obj) {
+ u8 *p=data_021600a8[1];
+ u8 *actor=*(u8 **)(p+0x68);
+ s32 one=1,zero=0;
+ *(s32 *)(p+0x10)=one;
+ *(u16 *)(*(u8 **)(actor+0xb0)+4)=zero;
+ if(*(u16 *)(*(u8 **)(obj+0xb0)+10)==0) {
+ if(*(s8 *)(data_02160204+0xe0)==0) {
+ func_02108c24(zero,zero);
+ data_02160204[0x124]=one;
+ func_02077688();func_02044cfc();
+ } else if(*(s8 *)(data_02160204+0xe0)==1) {
+ *(u16 *)(data_02160204+0x6a)=*(u16 *)(*(u8 **)(obj+0xb0)+8);
+ if((*(u8 **)(obj+0xb0))[13]!=0) {
+ s32 n=0;
+ u8 range=(*(u8 **)(obj+0xb0))[13];
+ if(range!=0) n=random_4487c(range*2);
+ n-=(*(u8 **)(obj+0xb0))[13];
+ if(n<0)n=-n;
+ *(u16 *)(data_02160204+0x6a)=*(u16 *)(*(u8 **)(obj+0xb0)+8)+n;
+ }
+ *(u16 *)(data_021600a8[1]+0x88)=*(u16 *)(obj+0x90);
+ }
+ } else {
+ data_02160204[0xe0]=one;data_02160204[0x89]=one;
+ *(u16 *)(data_02160204+0xd4)=*(u16 *)(*(u8 **)(obj+0xb0)+10);
+ *(u16 *)(data_02160204+0x8a)=*(u16 *)(*(u8 **)(obj+0xb0)+8);
+ *(u16 *)(data_021600a8[1]+0x88)=*(u16 *)(obj+0x90);
+ func_020a4c98(zero);
+ *(s32 *)(data_021600a8[1]+0x10)=10;
+ }
+ *(u16 *)(data_02160204+0x74)=*(s32 *)(actor+0)>>12;
+ *(u16 *)(data_02160204+0x76)=*(s32 *)(actor+8)>>12;
+ data_02160204[0x7a]=1;
+ func_020468b0(1);func_02052904(2);func_0207c124();
+ func_0203d970(actor);func_0203df40(actor);
+ if(*(u16 *)(data_0216009c+0x60)==0)return;
+ if(*(u16 *)(data_0216009c+0x60)==5) {
+ data_02160204[0x84]=0;
+ *(s32 *)(data_02160204+0x80)=*(s32 *)(actor+8)-*(s32 *)(data_02155984+0x28);
+ } else if(*(u16 *)(data_0216009c+0x60)==6) {
+ data_02160204[0x84]=1;
+ *(s32 *)(data_02160204+0x80)=*(s32 *)(actor+0)-*(s32 *)(data_02155984+0x20);
+ }
+ data_02160204[0x85]=5;
 }
 
 void func_02044a98(s32 arg0) {
