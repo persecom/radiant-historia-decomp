@@ -203,3 +203,23 @@ void func_02026e64(u8 *arg0) {
     }
 }
 
+s32 func_02026e9c(u32 arg0, char *arg1, char *arg2) {
+    u8 i;
+    u8 j;
+    s32 result;
+    char buf1[32];
+    char buf2[32];
+
+    for (i = 0; i < 32; i++) {
+        buf1[i] = 0;
+        buf2[i] = 0;
+    }
+    func_02005e80(buf1, data_021460e8, arg2);
+    func_02005e80(buf2, data_021460ec, arg1);
+    result = 1;
+    for (j = 0; j < arg0; j++) {
+        if ((s8)buf1[j] != (s8)buf2[j]) result = 0;
+    }
+    return result;
+}
+
