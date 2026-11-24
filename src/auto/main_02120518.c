@@ -209,17 +209,12 @@ void *func_02121090(u8 *arg0, u16 arg1, u16 arg2) {
     u32 v = (u32)(scale * (s32)arg2) >> 12;
     u16 count;
 
-    for (;;) {
-        if (v == 0) {
-            break;
-        }
-        if (*(u16 *)(arr + v * 4) < arg2) {
-            break;
-        }
+    while (v != 0 && *(u16 *)(arr + v * 4) >= arg2) {
         v--;
     }
     count = *(u16 *)(p + 0);
-    for (; v + 1 < count && *(u16 *)(arr + v * 4 + 4) <= arg2; v++) {
+    while (v + 1 < count && *(u16 *)(arr + v * 4 + 4) <= arg2) {
+        v++;
     }
     return arr + v * 4;
 }
