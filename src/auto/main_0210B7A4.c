@@ -22,6 +22,8 @@ extern void *func_0210c518(u32, s32);
 extern void func_02002c2c(void);
 extern void func_02002dc0(void);
 extern void func_02120800(void);
+extern u32 data_02162834[];
+extern u32 data_0216281c;
 
 void func_0210b7a4(void) {
     void *p = *(void **)data_02162618;
@@ -242,6 +244,36 @@ void* func_0210c594(u32 size, s32 arg1)
     func_021091b4();
 
     return ptr;
+}
+
+void func_0210c5dc(void *arg0) {
+    extern u8 data_02162684;
+    extern u16 data_02162688;
+    extern void *data_02162638;
+    extern u32 func_02008128(void);
+    extern void func_0200813c(u32);
+    extern s32 func_02006afc(u16 *);
+    extern void func_02006b4c(void *);
+    extern void func_02117038(void *, void *);
+    extern void func_021091b4(void);
+
+    u8 result = func_02117090();
+    u32 irq;
+
+    if (data_02162684 != 0) {
+        irq = func_02008128();
+        func_02006afc(&data_02162688);
+    }
+    if ((result & 1) == 0) {
+        func_02117038(data_02162638, arg0);
+    } else {
+        func_02109f24(arg0);
+    }
+    if (data_02162684 != 0) {
+        func_02006b4c(&data_02162688);
+        func_0200813c(irq);
+    }
+    func_021091b4();
 }
 
 void func_0210c674(void *ptr) {
