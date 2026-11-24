@@ -1,5 +1,6 @@
 /* 7 functions from 0x020B0B0C to 0x020B1790 (main), found by ds-decomp. */
 #include "common.h"
+void func_020ae004(s32, s32, s32, s32, s32, s16, s16, s32, s32);
 
 typedef struct {
     u16 unk[7];
