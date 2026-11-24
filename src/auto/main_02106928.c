@@ -374,10 +374,12 @@ BOOL func_02107594(u8 *arg0, char *arg1, char *arg2, char *arg3) {
 }
 
 void func_021075fc(void *arg0, s32 arg1) {
-    if (arg1 == 0) {
+    if (arg1 != 0) {
+        if (arg1 == 1) {
+            data_02161070[5] = NULL;
+        }
+    } else {
         data_02161070[0] = NULL;
-    } else if (arg1 == 1) {
-        data_02161070[5] = NULL;
     }
     if (arg0 != NULL) {
         func_0210c5dc(arg0);
