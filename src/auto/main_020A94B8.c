@@ -275,6 +275,15 @@ void func_020a9ac8(u8 **arg0) {
     }
 }
 
+void func_020a9af0(u8 *arg0, u16 arg1, u16 arg2) {
+    *(u16 *)(arg0 + 0x1a) = arg1;
+    *(u16 *)(arg0 + 0x1c) = arg2;
+    *(u16 *)(arg0 + 0x18) = 0;
+    func_021167ac(arg0, 0xc);
+    func_021167ac(arg0 + 0xc, 4);
+    func_020a9b28(arg0);
+}
+
 void func_020a9b28(void *arg0) {
     func_020a9d60(arg0);
     func_020a9b40(arg0);
