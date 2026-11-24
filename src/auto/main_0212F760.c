@@ -23,10 +23,10 @@ void func_0212f760(void) {
 }
 
 void func_0212f76c(void) {
-    if (*(s32 *)data_021747a0 == 0) {
+    if (data_021747a0[0] == 0) {
         func_0213236c();
     }
-    *(s32 *)data_021747a0 += 1;
+    data_021747a0[0]++;
 }
 
 void func_0212f79c(void) {
