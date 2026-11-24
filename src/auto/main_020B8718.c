@@ -136,9 +136,8 @@ void func_020b88a4(void) {
 
 void func_020b8944(void) {
 u8 *p=data_021601ec;
-s32 three=3;
 s32 v;
-s16 pos;
+s16 pos=3;
 u8 *obj;
 switch(p[0x8c]) {
 case 0:
@@ -148,7 +147,7 @@ break;
 case 1:
 v=(*(s32 *)(p+0x90)*80)/100;
 *(s32 *)(p+0x90)=v;
-pos=three+(s16)(v>>12);
+pos+=(s16)(v>>12);
 obj=func_020c9c10(*(void **)(p+0x4c),7);
 ((void (*)(u8 *,s32))(*(void **)(obj+0x10)))(obj,pos);
 ((void (*)(u8 *,s32))(*(void **)(obj+0x14)))(obj,0xb1);
@@ -159,14 +158,14 @@ break;
 case 2:
 (*(s32 *)(p+0x90))++;
 if(*(s32 *)(p+0x90)>=60) {
-*(s32 *)(p+0x90)=-4096;p[0x8c]=three;
+*(s32 *)(p+0x90)=-4096;p[0x8c]=pos;
 }
 break;
 case 3:
 v=*(s32 *)(p+0x90);
 v+=v*35/100;
 *(s32 *)(p+0x90)=v;
-pos=three+(s16)(v>>12);
+pos+=(s16)(v>>12);
 obj=func_020c9c10(*(void **)(p+0x4c),7);
 ((void (*)(u8 *,s32))(*(void **)(obj+0x10)))(obj,pos);
 ((void (*)(u8 *,s32))(*(void **)(obj+0x14)))(obj,0xb1);
