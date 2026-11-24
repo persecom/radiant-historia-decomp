@@ -168,9 +168,70 @@ void func_020aa850(void) {
     }
 }
 
+void func_020aa8e8(void) {
+    u8 *p = data_021600e4;
+    u8 *node = func_020aa7fc(*(void **)(p + 0x13f4));
+    while (node != NULL) {
+        u32 scale = *(u32 *)(p + 0x70);
+        u32 a = *(u32 *)node * scale;
+        u32 b = *(u32 *)(node + 4) * scale;
+        *(u16 *)(node + 0x10) = *(u32 *)(p + 0x44) + a - 0x20;
+        *(u16 *)(node + 0x12) = *(u32 *)(p + 0x48) + b + 0xc;
+        node = *(u8 **)(node + 0x18);
+    }
+}
+
+s32 func_020aaa20(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    if (arg2 == 0) {
+        return arg1;
+    }
+    if (arg3 <= 0) {
+        return arg0;
+    }
+    if (arg3 >= arg2) {
+        return arg1;
+    }
+    return func_0201fb1c((arg1 - arg0) * arg3, arg2) + arg0;
+}
+
+s32 func_020aaa60(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    s32 done = 0;
+    *arg0 = func_020aaa20(arg1 * 100, arg2 * 100, arg3, arg4) / 100;
+    if (arg4 == arg3) {
+        done = 1;
+    }
+    if (arg2 - arg1 > 0) {
+        if (*arg0 >= arg2) {
+            done = 1;
+        }
+    } else {
+        if (*arg0 <= arg2) {
+            done = 1;
+        }
+    }
+    if (done != 0) {
+        *arg0 = arg2;
+        return 1;
+    }
+    return 0;
+}
+
 extern void func_020ade8c(s32);
 void func_020aad6c(void) {
     func_020ade8c(1);
+}
+
+extern s32 func_020aaa20(s32, s32, s32, s32);
+extern u8 *func_020ade60(s32);
+extern s32 func_020aae98(void);
+s32 func_020aad7c(void) {
+    u8 *p = func_020ade60(1);
+    if (func_020aaaec((s32 *)(p + 4), 0x39, 0, 4, *(s32 *)(p + 8)) != 0) {
+        *(s32 *)(p + 8) = 0;
+        return 1;
+    }
+    *(s32 *)(p + 8) += 1;
+    return 0;
 }
 
 extern void *func_020a5f14(u8 *, u16);
