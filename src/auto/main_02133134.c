@@ -35,6 +35,13 @@ extern void *func_02132f14(void);
 extern void func_02132bf8(void *, s32, void *);
 extern void func_02132c40(void *, s32, void *, void *, void *);
 typedef struct {
+    s8 field_0;
+    u8 pad[0x37];
+} UnkStruct_02174d6c;
+extern UnkStruct_02174d6c data_02174d6c[10];
+extern u32 func_021336f4(void *, s8 **, s32);
+extern void func_021337c4();
+typedef struct {
     void (**fn)(void);
     u32 pad[3];
 } UnkEntry_021333b0;
