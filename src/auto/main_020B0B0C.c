@@ -23,3 +23,26 @@ void func_020b0ca0(void) {
     func_021099f8(&buf);
 }
 
+extern u8 *func_020b3880(void);
+extern u8 *func_020adda8(void);
+void func_020b0cfc(void) {
+ u8 *a=func_020b3880();
+ u8 *b=func_020adda8();
+ func_020b3fd8();
+ switch(*(u32 *)(a+0x3434)) {
+ case 0: case 1: case 2:
+ func_020aedc0(a,b); func_020af170(b); func_020aeab0(a,b,1); break;
+ case 3: case 4:
+ func_020aedc0(a,b); func_020af170(b); func_020aeab0(a,b,0);
+ if(func_020b3d88()) {
+ if(*(u32 *)(b+0x6c8)) func_020af2dc(b);
+ if(func_020b3890()[0x263]==1) { func_020b0ca0();
+ func_020b0b78(b); }
+ func_020b0b0c(b,*(u32 *)(a+0x3438));
+ } break;
+ case 5:
+ func_020aedc0(a,b); func_020af170(b); func_020aeab0(a,b,1); break;
+ case 6: break;
+ }
+}
+
