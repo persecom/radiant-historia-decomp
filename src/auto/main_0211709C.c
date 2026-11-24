@@ -27,31 +27,13 @@ extern void func_0200813c(s32);
 
 extern void func_02116a5c(void *, u32, void *, void *, u16);
 
-void *func_0211709c(void *heap, void *end, u16 opt)
-{
-  u8 *new_var2;
-  u8 *new_var4;
-  void **new_var3;
-  u8 *start;
-  u8 *new_var;
-  start = heap;
-  new_var = (0, (u8 *) start);
-  new_var = new_var + 0x30;
-  func_02116a5c(heap, 0x46524D48, new_var, end, opt);
-  heap = (u8 *) heap;
-  if (1)
-  {
-    if (heap)
-    {
-    }
-    start = *((u8 **) (heap + 0x18));
-    new_var3 = (void **) (heap + 0x2C);
-    new_var4 = (new_var2 = (u8 *) heap);
-    *((u8 **) (new_var2 + 0x28)) = (heap = *((u8 **) (((u8 *) heap) + 0x1C)));
-    *((u8 **) (new_var4 + 0x24)) = start;
-  }
-  *new_var3 = NULL;
-  return heap;
+void *func_0211709c(void *heap, void *end, u16 opt) {
+    u32 *h = (u32 *)heap;
+    func_02116a5c(heap, 0x46524D48, (u8 *)heap + 0x30, end, opt);
+    h[9] = h[6];
+    h[10] = h[7];
+    h[11] = 0;
+    return heap;
 }
 
 void* func_021170e4(void* heap, u32 size, s32 alignment)
