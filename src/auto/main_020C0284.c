@@ -22,8 +22,8 @@ void func_020c0940(void *arg0) {
 }
 
 s16 func_020c0954(u8 *arg0) {
-    u32 sp0;
-    func_020dd9b4(arg0, &sp0);
+    u32 tmp;
+    func_020dd9b4(arg0, &tmp);
     if (*(s32 *)(*(u8 **)(arg0 + 0x108) + 0x14) != 0) {
         *(u32 *)(arg0 + 0x80) &= ~2;
         *(s32 *)(arg0 + 0xf8) = 1;
@@ -34,26 +34,26 @@ s16 func_020c0954(u8 *arg0) {
 }
 
 s32 func_020c09b0(u8 *arg0, s32 arg1, s32 arg2) {
-    u16 count = 0;
-    s32 diff;
+    u16 cnt = 0;
+    s32 d;
     if (func_020dddfc(arg0, arg0 + 0x24, arg1 << 12) != 0) {
         *(s32 *)(arg0 + 0x30) = 0;
         *(s32 *)(arg0 + 0x38) = 0;
-        count++;
+        cnt++;
         if (*(s32 *)(arg0 + 0x34) == 0) {
-            count++;
+            cnt++;
         }
     }
-    diff = (*(s32 *)(arg0 + 0x28) - *(s32 *)(arg0 + 4)) >> 12;
-    if (diff < 0) {
-        diff = -diff;
+    d = (*(s32 *)(arg0 + 0x28) - *(s32 *)(arg0 + 4)) >> 12;
+    if (d < 0) {
+        d = -d;
     }
-    if (diff < arg2) {
+    if (d < arg2) {
         *(s32 *)(arg0 + 4) = *(s32 *)(arg0 + 0x28);
         *(s32 *)(arg0 + 0x34) = 0;
-        count++;
+        cnt++;
     }
-    if (count >= 2) {
+    if (cnt >= 2) {
         return 1;
     }
     func_020020f8(arg0, arg0 + 0x30, arg0);
