@@ -44,6 +44,11 @@ void func_02111708(void *arg0) {
     }
 }
 
+extern void func_0211192c(u8 *, s32, s32);
+void func_02111a18(u8 *arg0, s32 arg1) {
+    func_0211192c(arg0, arg1, *(s16 *)(arg0 + 0x46));
+}
+
 s32 func_02111da8(u8 *arg0) {
     return *(s32 *)(arg0 + 0x38);
 }
