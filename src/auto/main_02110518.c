@@ -84,14 +84,14 @@ void func_0211088c(u8 *arg0, u8 arg1) {
 }
 
 void func_02110a28(u8 *arg0) {
-    u32 count = func_020c9c34(*(void **)(arg0 + 0x30));
     u8 *obj;
+    u32 count = func_020c9c34(*(void **)(arg0 + 0x30));
     u16 i;
     for (i = 0; i < count; i++) {
         obj = func_020c9c10(*(void **)(arg0 + 0x30), i);
         {
             s32 flag = func_020c73d8((u16 *)obj);
-            s32 on = func_020c7408() == 0 ? 1 : 0;
+            s32 on = func_020c7408((u16 *)obj) == 0 ? 1 : 0;
             flag = flag & on;
             if (flag != 0) {
                 ((void (*)(u8 *, s32, s32))(*(void **)(obj + 0x24)))(obj, 1, 1);
@@ -103,13 +103,15 @@ void func_02110a28(u8 *arg0) {
 }
 
 void func_02110abc(void *arg0) {
-    register u8 *p = (u8 *)arg0;
-    register u16 i;
-    register u32 count = func_020c9c34(*(void **)(p + 0x30));
+    u8 *p = (u8 *)arg0;
+    u16 i;
+    u32 count = func_020c9c34(*(void **)(p + 0x30));
     for (i = 0; i < count; i++) {
         u8 *obj = func_020c9c10(*(void **)(p + 0x30), i);
+        u8 flag;
         *(u8 **)(obj + 0x34) = p;
-        func_021103c0(obj, (u8)(i == p[0x39]));
+        flag = (u8)(i == p[0x39]);
+        func_021103c0(obj, flag);
     }
 }
 
@@ -126,9 +128,13 @@ u8 func_02110b38(u16 arg0) {
     u16 hi;
     for (i = 0; i < 5; i++) {
         func_0211379c(i, &hi, &lo);
-        if (arg0 >= hi && arg0 < lo) {
-            return i;
+        if (arg0 < hi) {
+            continue;
         }
+        if (arg0 >= lo) {
+            continue;
+        }
+        return i;
     }
     return 5;
 }
