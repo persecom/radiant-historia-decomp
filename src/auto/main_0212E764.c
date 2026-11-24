@@ -61,6 +61,10 @@ u32 func_0212ea54(void) {
     return data_021744d8[0];
 }
 
+void func_0212ea7c(void) {
+    data_02174524[3] = 1;
+}
+
 extern void func_02134748(void);
 void func_0212eac8(void) {
     func_02134748();
@@ -164,6 +168,21 @@ s32 func_0212ebc0(void) {
 
 void func_0212ebc8(void *arg0, void *arg1) {
     func_0212bda8(arg1);
+}
+
+void func_0212f384(s32 *arg0, s32 arg1, s32 *arg2, s32 *arg3) {
+    arg2[0] = arg0[0];
+    arg2[1] = arg0[1];
+    arg3[1] = arg0[1];
+    if (arg2[1] > arg1) {
+        arg2[1] = arg1;
+    }
+    arg3[1] -= arg2[1];
+    if (arg3[1] != 0) {
+        arg3[0] = arg2[0] + arg2[1];
+    } else {
+        arg3[0] = 0;
+    }
 }
 
 void *func_0212f468(void *arg0) {
