@@ -139,6 +139,21 @@ void func_021166a0(void) {
     func_02114a38();
 }
 
+void *func_021166c8(u8 *arg0, s32 arg1) {
+    u8 *entry;
+    if (arg1 < 0) {
+        return NULL;
+    }
+    if ((u32)arg1 >= *(u32 *)(arg0 + 0x1c)) {
+        return NULL;
+    }
+    entry = arg0 + 0x20 + arg1 * 0xc;
+    if (*(s32 *)entry == -1) {
+        return NULL;
+    }
+    return entry;
+}
+
 void* func_02116d7c(void* heap, u32 size, s32 alignment)
 {
     typedef struct Block {
