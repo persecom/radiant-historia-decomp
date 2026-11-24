@@ -11,6 +11,13 @@ void func_020d9e48(u32 *arg0, u32 *arg1) {
     *(u16 *)(data_02160258 + 0x48) = func_02002404(dy, dx);
 }
 
+void func_020d9e7c(void) {
+    u8 *p = data_02160258;
+    *(u32 *)(p + 0x7c) &= ~1;
+    *(u32 *)(p + 0x88) &= ~2;
+    *(u32 *)(p + 0x88) &= ~8;
+}
+
 void func_020da0c8(s32 arg0) {
     data_02151fcc = arg0 << 12;
 }
