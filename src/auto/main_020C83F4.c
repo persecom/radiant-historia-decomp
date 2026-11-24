@@ -1,5 +1,6 @@
 /* 52 functions from 0x020C83F4 to 0x020C93F4 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct Row_020c9000 { u16 id; s16 dir; u16 mask; } Row_020c9000;
 typedef struct Table_020c9000 { u16 v[6]; } Table_020c9000;
 extern const Table_020c9000 data_0214460c;
 extern u16 data_021626a6;
@@ -496,6 +497,59 @@ u16 *p=ptrs[i];
 if ((func_020c73d8(obj) != 0 || func_020c7420(obj) != 0) && (i==2 || func_020c73f0(obj) != 0)) *(u16 *)(obj+0x30)=p[1];
 else *(u16 *)(obj+0x30)=p[0];
 }
+}
+
+void func_020c9000(u8 *p) {
+Table_020c9000 t=data_0214460c;
+s32 action=0;
+u16 count=*(u16 *)(p+0x42),i;
+u8 *obj;
+for(i=0;i<2;i++) {
+u16 *row=&t.v[i*3];
+if(func_020c70c0(func_020c9c10(*(void **)(p+0x30),row[0]),row[2])) {
+s16 old=*(u16 *)(p+0x3e), pos=*(s16 *)(p+0x3a);
+if((s16)row[1]==1) ++*(u16 *)(p+0x3e);
+else if((s16)row[1]==2 && *(u16 *)(p+0x3e)) --*(u16 *)(p+0x3e);
+p[0x45]=1; func_020c9404(p);
+if(old!=*(u16 *)(p+0x3e)) *(s16 *)(p+0x3a)=pos+(s16)(*(u16 *)(p+0x3e)-old);
+func_020c9610(p);
+}
+}
+obj=func_020c9c10(*(void **)(p+0x30),2);
+p[0x45]=0;
+if(data_021628fa && func_020c7420(obj)) {
+func_020c738c(obj,0,8); func_020c8f20(p); func_020c9610(p);
+}
+if(((u16 *)data_02162908)[2]) {
+if(data_021628f8) {
+if(!func_020c6fe4(obj)) {
+func_020c738c(obj,8,8);
+*(u16 *)(p+0x5c)=((u16 *)data_02162908)[0]; *(u16 *)(p+0x5e)=((u16 *)data_02162908)[1];
+*(s16 *)(p+0x58)=*(s16 *)(obj+0x3a); *(s16 *)(p+0x5a)=*(s16 *)(obj+0x3c);
+}
+} else if(func_020c7420(obj)) {
+u16 delta=0,newpos;
+func_020c96b4(p,obj); newpos=func_020c9744(p,obj);
+p[0x45]=1;
+if(*(u16 *)(p+0x3a)>=*(u16 *)(p+0x3e)) delta=*(u16 *)(p+0x3a)-*(u16 *)(p+0x3e);
+*(u16 *)(p+0x3e)=newpos;
+*(u16 *)(p+0x3a)=newpos+delta;
+}
+}
+if(data_021626a6&0x40) {obj=func_020c9c10(*(void **)(p+0x30),1); action=2; func_020c7090(obj,action);}
+if(data_021626a6&0x80) {obj=func_020c9c10(*(void **)(p+0x30),0); action=1; func_020c7090(obj,action);}
+p[0x44]=0; p[0x56]=action;
+if(action==1) {
+++*(u16 *)(p+0x3a);
+if(count) {if(*(u16 *)(p+0x3a)>=count) {*(u16 *)(p+0x3a)=count-1; p[0x44]|=1;}}
+else *(u16 *)(p+0x3a)=0;
+} else if(action==2) {
+if(*(u16 *)(p+0x3a)) --*(u16 *)(p+0x3a);
+else {*(u16 *)(p+0x3a)=0; p[0x44]|=1;}
+}
+p[0x44]|=(u8)(*(u16 *)(p+0x3c)!=*(u16 *)(p+0x3a));
+if(p[0x44]) func_020c9348(p,*(u16 *)(p+0x3c)>*(u16 *)(p+0x3a));
+*(u16 *)(p+0x3c)=*(u16 *)(p+0x3a);
 }
 
 void func_020c9348(u8 *arg0, s32 arg1) {
