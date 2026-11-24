@@ -1,5 +1,21 @@
 /* 23 functions from 0x02075C08 to 0x0207698C (main), found by ds-decomp. */
 #include "common.h"
+extern u32 data_02155c3c;
+extern void func_02076dcc(void);
+extern void func_02076d6c(void);
+extern void func_020767a0(void);
+extern void func_020767fc(void);
+extern void func_020a2c20(void);
+extern void func_021070c4(void);
+extern void func_0210f6d4(void);
+extern void *func_0210c594(u32, u32);
+extern void func_0210d9e4(void *);
+extern void func_0210db70(void *);
+extern void func_0210dbd0(void *);
+extern void func_0210dc00(void *);
+extern void func_02077314(void);
+extern void func_020774a4(void);
+extern void func_02075ca4(void);
 extern u8 data_0213a394[];
 extern u32 func_020764e4(void);
 typedef struct { u32 a, b, c; } Unk_02075c08;
