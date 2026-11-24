@@ -185,3 +185,13 @@ void func_0200fb84(void) {
     func_0200fd64(data_0215f120, 0, 0, 0);
 }
 
+extern u8 data_0215f0c0[];
+extern void *data_0215f640[];
+extern void func_02008e68(s32, void *, s32);
+extern void func_02006dc4(void *, s32);
+extern void func_0200a674(s32, void *);
+extern void func_0200fedc(void);
+BOOL func_0200fba4(void) {
+    return (*(u32 *)(data_0215f120 + 4) & 4) == 0;
+}
+
