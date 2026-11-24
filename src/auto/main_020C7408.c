@@ -114,6 +114,11 @@ void func_020c7630(void *arg0) {
     }
 }
 
+s32 func_020c7734(u8 *arg0, s32 arg1) {
+    func_020f4ea4(func_020c7754((u32 **)(arg0 + 0x30)), arg1);
+    return 0;
+}
+
 u32 func_020c7754(u32 **arg0) {
     return **arg0;
 }
