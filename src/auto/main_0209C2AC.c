@@ -44,6 +44,38 @@ typedef struct {
     u32 flag;
 } S_0209c920;
 
+void func_0209c510(s32 arg0,s32 arg1){
+char buf[32];
+void *fp;
+s32 offset;
+u8 i;
+func_02005e80(buf,data_02148928,arg1);
+fp=func_021092d8(buf);
+if(!fp)return;
+*(u32 *)(data_02160120+0x64)=0;
+*(u32 *)(data_02160120+0x1f0)=0;
+*(u32 *)(data_02160120+0x37c)=0;
+offset=arg0*99;
+for(i=1;i<99;i++){
+s32 val;
+func_02092994(fp,0);
+func_02092994(fp,0);
+func_02092994(fp,0);
+func_02092994(fp,0);
+func_02092994(fp,0);
+func_02092994(fp,0);
+func_02092994(fp,0);
+func_02092994(fp,0);
+func_02092994(fp,0);
+func_02092994(fp,0);
+
+val=func_02092994(fp,0);
+*(s32 *)(data_02160120+offset*4+i*4+0x64)=val+*(s32 *)(data_02160120+offset*4+i*4+0x60);
+func_02109444(fp);
+}
+if(fp)func_021093b0(fp);
+}
+
 void func_0209c64c(s32 arg0,s32 arg1){
 char buf[32];
 void *fp;
