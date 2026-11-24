@@ -72,6 +72,22 @@ u16 func_02026ca4(u16 *arg0) {
     return arg0[6];
 }
 
+void func_02026cac(u8 *arg0) {
+    void *node;
+    if (arg0 == NULL || *(u16 *)(arg0 + 0xe) == 0) {
+        return;
+    }
+    node = *(void **)arg0;
+    if (node == NULL) {
+        return;
+    }
+    *(u16 *)(arg0 + 0xe) -= 1;
+    func_021168f8(arg0, node);
+    if (node != NULL) {
+        func_0210c5dc(node);
+    }
+}
+
 void func_02026e40(u16 arg0) {
     void *p = func_0210c594(0x28, data_02155c3c);
     *(u16 *)p = arg0;
