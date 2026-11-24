@@ -163,6 +163,21 @@ void *func_020ddc08(u16 arg0) {
     return NULL;
 }
 
+void *func_020ddc44(u16 arg0) {
+    u8 *node = data_02160a68.unk04;
+    if (node == NULL) {
+        return NULL;
+    }
+    node = *(u8 **)(node + 0xb8);
+    while (node != NULL) {
+        if (*(u16 *)(node + 0x90) == arg0) {
+            return node;
+        }
+        node = *(u8 **)(node + 0x174);
+    }
+    return NULL;
+}
+
 s32 func_020ddc8c(u32 *arg0, u32 *arg1) {
     s32 dx = (s32)arg1[0] - (s32)arg0[0];
     s32 dy = (s32)arg1[2] - (s32)arg0[2];
