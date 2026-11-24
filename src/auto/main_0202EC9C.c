@@ -117,11 +117,32 @@ void func_0202f594(void) {
     data_02160088 = NULL;
 }
 
-void *func_0202fa9c(void) {
-    u8 *ptr = NULL;
-    ptr = (u8 *)func_0210c594(0xcc, data_02155c3c);
-    *(void **)(ptr + 0x60) = func_020224cc();
-    func_021167ac(ptr + 0xc0, 8);
-    return ptr;
+void *func_0202f5fc(u32 arg0) {
+    void **p = &data_02160088;
+    Node_0202f5fc *node = *(Node_0202f5fc **)p;
+    if (node == NULL) {
+        return NULL;
+    }
+    while (node != NULL) {
+        if (arg0 == 0 && node->unk10 == NULL) {
+            return node;
+        }
+        node = node->next;
+    }
+    return NULL;
 }
 
+void func_0202f63c(Node_0202f5fc *arg0) {
+    void **p = &data_02160088;
+    Node_0202f5fc *node = *(Node_0202f5fc **)p;
+    while (node != NULL) {
+        if (node->unk10 != NULL && node != arg0) {
+            if (arg0->unk8 <= node->unk8) {
+                arg0->unkc++;
+            } else {
+                node->unkc++;
+            }
+        }
+        node = node->next;
+    }
+}
