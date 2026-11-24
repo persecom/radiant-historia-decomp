@@ -118,3 +118,8 @@ void func_0212d5a0(void *arg0) {
     func_0212a1e4(*(void **)((u8 *)arg0 + 4));
 }
 
+extern void func_0212a1ec(void *);
+void func_0212d5b0(void *arg0) {
+    func_0212a1ec(*(void **)((u8 *)arg0 + 4));
+}
+
