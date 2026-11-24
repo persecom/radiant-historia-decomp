@@ -16,6 +16,35 @@ extern s32 func_0201f884(s32);
 extern s32 func_02020888(s32, s32);
 extern s32 func_020201f4(s32, s32);
 extern s32 func_0201ff0c(s32);
+
+extern void func_020f4668(void *);
+extern s32 func_020f3fcc(u8 *, s32, s32);
+extern void *func_0210c518(u32, void *);
+extern void func_02008e68(s32, void *, s32);
+extern s32 func_02107d58(u32, u16, u16);
+extern void func_0210d9e4(void *);
+extern void func_0210da14(void *);
+extern void func_0210c5dc(void *);
+
+extern u32 data_02155c3c;
+
+typedef struct {
+    u16 field_0;
+    u16 field_2;
+    u32 field_4;
+} Unk_02151fc8;
+
+extern Unk_02151fc8 data_02151fc8;
+
+typedef struct {
+    u8 field_0;
+    u8 pad[3];
+    void *field_4;
+} Unk_02160c34;
+
+extern Unk_02160c34 data_02160c34;
+
+extern void func_020f4210(void);
 void func_020f36b0(u8 *arg0, s32 arg1, s32 arg2) {
     s32 i;
     s32 j;
