@@ -4,6 +4,7 @@
 extern u8 *data_02160a6c;
 extern u8 **data_02160244;
 extern u8 *func_0202c5a0(u8 *);
+extern u32 func_0202e98c(u32, u32);
 
 s32 func_0202e260(u32 arg0) {
     u32 i;
@@ -110,6 +111,59 @@ void func_0202e5d8(u32 arg0) {
             }
         }
     }
+}
+
+void func_0202e874(u8 *arg0) {
+    u8 *sub;
+    u8 *node;
+    if (arg0 == NULL) {
+        return;
+    }
+    if (arg0[0x30] & 1) {
+        arg0[0x30] &= 0xfe;
+        sub = *(u8 **)(arg0 + 0x20);
+        func_0202fad8(*(u32 *)(sub + 0x118));
+        if (sub != NULL) {
+            func_0210c5dc(sub);
+        }
+    }
+    if (arg0[0x30] & 2) {
+        arg0[0x30] &= 0xfd;
+        func_02064c80(*(u32 *)(arg0 + 0x24));
+    }
+    func_02031534(arg0);
+    *(u16 *)(arg0 + 0x28) = 0;
+    *(u16 *)(arg0 + 0x1e) = 0;
+    *(u8 *)(arg0 + 0x1c) = 0;
+    *(u32 *)(arg0 + 0x2c) = 0;
+    *(u32 *)(arg0 + 0x20) = 0;
+    *(u32 *)(arg0 + 0x24) = 0;
+    *(u32 *)(arg0 + 0x34) = 0;
+    *(u8 *)(arg0 + 0x38) = 0;
+    node = *(u8 **)(arg0 + 0x10);
+    if (node == NULL) {
+        return;
+    }
+    sub = (u8 *)1;
+    while (node != NULL) {
+        if (*(u32 *)(node + 0) != 0) {
+            func_02030b7c(arg0[0], (u32)sub);
+        }
+        node = *(u8 **)(node + 0xc);
+    }
+}
+
+s32 func_0202e930(void) {
+    u8 *node = *(u8 **)(*(u8 **)data_02160a6c + 0xb8);
+    s32 result = 0;
+    while (node != NULL) {
+        u8 *sub = *(u8 **)(node + 0x118);
+        if (sub != NULL && *(s32 *)(sub + 4) >= 1) {
+            result |= func_0202e84c(node);
+        }
+        node = *(u8 **)(node + 0x174);
+    }
+    return result;
 }
 
 u32 func_0202e98c(u32 arg0, u32 arg1) {
