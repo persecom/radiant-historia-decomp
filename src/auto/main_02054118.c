@@ -4,6 +4,16 @@ extern const s16 data_0213a394[];
 extern u32 data_0216263c[3];
 extern u8 *data_02160aec;
 typedef struct { s32 x,y,z; } Vec_546c0;
+static inline void CopyVec_546c0(Vec_546c0 *dst, const Vec_546c0 *src) {
+    dst->x = src->x;
+    dst->y = src->y;
+    dst->z = src->z;
+}
+static inline void SetVec_546c0(Vec_546c0 *dst, s32 x, s32 y, s32 z) {
+    dst->x = x;
+    dst->y = y;
+    dst->z = z;
+}
 typedef struct { u32 seed, multiplier, increment; } RandomState_546c0;
 static inline u16 RandomRange_546c0(u16 max) {
  u32 seed=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
@@ -216,6 +226,65 @@ void func_020544d8(void *arg0, s32 arg1) {
     }
 }
 
+s32 func_0205453c(u8 *arg0) {
+    u16 count = 0;
+    u8 *s = *(u8 **)(arg0 + 0xd0);
+    if (data_02160aec == NULL) {
+        return 0;
+    }
+    while (1) {
+        s32 angle;
+        s32 dist;
+        s32 idx;
+        s32 d;
+        u32 half;
+        u16 r;
+
+        data_0216263c[0] = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
+        r = ((data_0216263c[0] >> 16) * 0xfffe) >> 16;
+        angle = (s32)r - 0xffff;
+        if (angle < 0) {
+            angle = -angle;
+        }
+
+        half = (u32)*(u16 *)(s + 0x1c) >> 1;
+        if (half != 0) {
+            u16 max = half * 2;
+            data_0216263c[0] = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
+            if (max == 0) {
+                r = data_0216263c[0] >> 16;
+            } else {
+                r = ((data_0216263c[0] >> 16) * max) >> 16;
+            }
+            dist = (s32)r - (s32)((u32)*(u16 *)(s + 0x1c) >> 1);
+        } else {
+            dist = 0;
+        }
+        if (dist < 0) {
+            dist = -dist;
+        }
+        idx = (angle >> 4) * 2;
+        d = dist + 0x20;
+        *(s32 *)(arg0 + 0x24) = d * data_0213a394[idx] + *(s32 *)(arg0 + 0);
+        *(s32 *)(arg0 + 0x2c) = d * data_0213a394[idx + 1] + *(s32 *)(arg0 + 8);
+        if (func_0210c2f4(arg0 + 0x18, arg0 + 0x24) < (*(u16 *)(s + 0x1c) << 12)) {
+            s32 tileZ = *(s32 *)(arg0 + 0x2c) / 0x10000;
+            s32 tileX = *(s32 *)(arg0 + 0x24) / 0x10000;
+            u8 *map = data_02160aec;
+            s16 width = *(s16 *)(map + 0x58d36);
+            if (map[(tileZ * width + tileX) * 0xc + 0xbc8] == 0xff) {
+                break;
+            }
+        }
+        if (count > 3) {
+            *(Vec_546c0 *)(arg0 + 0x24) = *(Vec_546c0 *)arg0;
+            return 0;
+        }
+        count++;
+    }
+    return 1;
+}
+
 #pragma scheduling off
 s32 func_020546c0(u8 *arg0,s32 arg1) {
  u16 tries=0;
@@ -247,6 +316,104 @@ s32 func_020546c0(u8 *arg0,s32 arg1) {
  }
  return 1;
 }
+
+extern void func_020477dc(void *, s32, s32);
+extern void func_020495fc(void *, s32);
+extern void func_02050b0c(void *, s32);
+extern void func_0205103c(void *);
+extern void func_020510e8(void *);
+extern void func_02051344(void *);
+extern void func_0205196c(void *);
+s32 func_02054800(u8 *arg0) {
+    u8 *s = *(u8 **)(arg0 + 0xd0);
+    u16 val8e;
+    s32 idx;
+    s16 sinVal, cosVal;
+
+    *(u16 *)(arg0 + 0x92) = func_020ddc8c(arg0, *(u8 **)(data_021600ac + 0x68));
+    val8e = *(u16 *)(arg0 + 0x8e);
+    idx = (((s32)*(u16 *)(arg0 + 0x92) % 0x10000) >> 4) * 2;
+    sinVal = data_0213a394[idx];
+    cosVal = data_0213a394[idx + 1];
+    *(s32 *)(arg0 + 0x30) = s[0x1a] * sinVal;
+    *(s32 *)(arg0 + 0x38) = s[0x1a] * cosVal;
+
+    *(s32 *)(arg0 + 0xc) = *(s32 *)(arg0 + 0);
+    *(s32 *)(arg0 + 0x10) = *(s32 *)(arg0 + 4);
+    *(s32 *)(arg0 + 0x14) = *(s32 *)(arg0 + 8);
+    *(s32 *)(arg0 + 0xd4) = *(s32 *)(arg0 + 0);
+    *(s32 *)(arg0 + 0xd8) = *(s32 *)(arg0 + 4);
+    *(s32 *)(arg0 + 0xdc) = *(s32 *)(arg0 + 8);
+    *(s32 *)(arg0 + 0xe0) = *(s32 *)(arg0 + 0) + *(s32 *)(arg0 + 0x30);
+    *(s32 *)(arg0 + 0xe4) = *(s32 *)(arg0 + 4);
+    *(s32 *)(arg0 + 0xe8) = *(s32 *)(arg0 + 8) + *(s32 *)(arg0 + 0x38);
+
+    if (val8e < 700) {
+        func_020477dc(arg0, 1, 1);
+    } else {
+        func_020477dc(arg0, 0, 1);
+    }
+
+    if (*(u32 *)(arg0 + 0xac) & 1) {
+        u8 *p;
+        *(u16 *)(*(u8 **)(arg0 + 0xb0) + 4) = 0;
+        func_020495fc(arg0, 0);
+        func_02050b0c(arg0, 0);
+        func_02050b0c(arg0, 0x8000);
+        func_0205103c(arg0);
+
+        *(s32 *)(arg0 + 0xd4) = *(s32 *)(arg0 + 0xc);
+        *(s32 *)(arg0 + 0xd8) = *(s32 *)(arg0 + 0x10);
+        *(s32 *)(arg0 + 0xdc) = *(s32 *)(arg0 + 0x14);
+        *(s32 *)(arg0 + 0xe0) = *(s32 *)(arg0 + 0);
+        *(s32 *)(arg0 + 0xe4) = *(s32 *)(arg0 + 4);
+        *(s32 *)(arg0 + 0xe8) = *(s32 *)(arg0 + 8);
+        *(s32 *)(arg0 + 0x30) = *(s32 *)(arg0 + 0) - *(s32 *)(arg0 + 0xc);
+        *(s32 *)(arg0 + 0x38) = *(s32 *)(arg0 + 8) - *(s32 *)(arg0 + 0x14);
+        if (*(s32 *)(arg0 + 0x30) == 0 && *(s32 *)(arg0 + 0x38) == 0) {
+            *(u8 *)(arg0 + 0xa4) |= 8;
+        }
+        func_020510e8(arg0);
+        *(u8 *)(arg0 + 0xa4) &= 0xfe;
+        *(u8 *)(arg0 + 0xa4) &= 0xfd;
+        *(u8 *)(arg0 + 0xa4) &= 0xfb;
+
+        p = *(u8 **)(data_021600ac + 0x68);
+        if (p != NULL) {
+            if (*(u16 *)(arg0 + 0x90) == *(u16 *)(*(u8 **)(p + 0xb0) + 4)) {
+                *(u16 *)(*(u8 **)(arg0 + 0xb0) + 4) = 0;
+                *(u16 *)(*(u8 **)(p + 0xb0) + 4) = 0;
+            }
+        }
+        func_02051344(arg0);
+        func_0205196c(arg0);
+        *(s32 *)(arg0 + 0x30) = 0;
+        *(s32 *)(arg0 + 0x38) = 0;
+        if (*(s32 *)(arg0 + 0xec) != *(s32 *)(arg0 + 0) || *(s32 *)(arg0 + 0xf4) != *(s32 *)(arg0 + 8)) {
+            *(s32 *)(arg0 + 0xec) = *(s32 *)(arg0 + 0);
+            *(s32 *)(arg0 + 0xf0) = *(s32 *)(arg0 + 4);
+            *(s32 *)(arg0 + 0xf4) = *(s32 *)(arg0 + 8);
+        }
+    } else {
+        *(s32 *)(arg0 + 0) += *(s32 *)(arg0 + 0x30);
+        *(s32 *)(arg0 + 8) += *(s32 *)(arg0 + 0x38);
+    }
+
+    if (*(u8 *)(arg0 + 0xa4) & 8) {
+        *(s16 *)(arg0 + 0x98) += 1;
+    } else if (*(u8 *)(arg0 + 0xa4) & 4) {
+        *(s16 *)(arg0 + 0x98) += 1;
+    } else {
+        *(s16 *)(arg0 + 0x98) = 0;
+    }
+
+    if (*(s16 *)(arg0 + 0x98) > 60) {
+        *(s16 *)(arg0 + 0x98) = 0;
+        return 1;
+    }
+    return 0;
+}
+
 #pragma scheduling reset
 void func_02054d5c(u8 *arg0) {
     u8 *p = *(u8 **)(data_021600ac + 0x68);
