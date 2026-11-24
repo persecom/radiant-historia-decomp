@@ -278,6 +278,46 @@ u32 func_0210c424(void) {
     return val - base;
 }
 
+extern u32 func_0210c424(void);
+void func_0210c470(void) {
+    u32 *obj;
+    u8 *str;
+    u32 offset;
+    u32 idx;
+    s32 count;
+
+    if (func_0200698c() != 0) {
+        return;
+    }
+    obj = data_0216267c;
+    if (obj == NULL || obj[8] == 0 || obj[9] == 0) {
+        *(u32 *)((u8 *)&data_0216267c + 4) = 0;
+        return;
+    }
+    str = (u8 *)obj[0];
+    offset = func_0210c424();
+    idx = (offset - 0x40) & 0x3ff;
+    count = 0;
+    if (idx == offset) {
+        goto done;
+    }
+    do {
+        s8 c = (s8)str[idx];
+        if (c >= 123) {
+            goto inc;
+        }
+        if (c >= -123) {
+            goto advance;
+        }
+    inc:
+        count++;
+    advance:
+        idx = (idx + 1) & 0x3ff;
+    } while (idx != offset);
+done:
+    *(u32 *)((u8 *)&data_0216267c + 4) = (count > 0x18);
+}
+
 void* func_0210c518(u32 size, s32 arg1)
 {
     extern u8 data_02162684;
