@@ -24,6 +24,9 @@ void *func_02031c24(u32 arg0) {
     return NULL;
 }
 
+void func_02031c60(void) {
+}
+
 void func_02031fbc(s32 arg0, s32 arg1, s32 arg2) {
     func_02031fcc(arg0, arg2);
 }
