@@ -163,11 +163,7 @@ void func_021091b0(void) {
 extern void func_02125c38(u32);
 extern void func_021089e8(u32, s32, u32);
 s32 func_0210920c(u32 arg0) {
-    s32 ret = -1;
-    if (arg0 < 2) {
-        ret = data_021624f8->unk_1a[arg0];
-    }
-    return ret;
+    return arg0 >= 2 ? -1 : data_021624f8->unk_1a[arg0];
 }
 
 u32 func_0210957c(s32 arg0) {
