@@ -144,6 +144,10 @@ void func_020beb14(void) {
     func_02108240();
 }
 
+void func_020bebc8(s32 arg0) {
+    data_02151fc8 = (u16)((((s64)(arg0 << 12) * 0xb60b60b60bLL) + 0x80000000000LL) >> 44);
+}
+
 void func_020bed94(void) {
     func_020becfc();
 }
