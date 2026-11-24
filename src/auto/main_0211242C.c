@@ -34,6 +34,36 @@ typedef struct UnkFuncTable20 {
 extern UnkFuncTable20 data_02155d1c;
 
 extern void func_02112110(void);
+void func_0211192c(u8 *, s32, s32);
+void func_0211242c(void *arg, s32 arg1, s32 arg2) {
+ u8 *arg0=arg;
+ s16 x,y;
+ u32 count=func_020c9c34(*(void **)(arg0+0x8c));
+ u16 i;
+ for(i=0;i<count;i++) {
+  u8 *obj=func_020c9c10(*(void **)(arg0+0x8c),i);
+  if(obj) {
+   x=arg1+(*(s16 *)(obj+0x3a)-*(s16 *)(arg0+0x94));
+   y=arg2+(*(s16 *)(obj+0x3c)-*(s16 *)(arg0+0x96));
+   ((void (*)(u8 *,s32))(*(void **)(obj+0x10)))(obj,x);
+   ((void (*)(u8 *,s32))(*(void **)(obj+0x14)))(obj,y);
+  }
+ }
+ {
+  u8 *obj=*(u8 **)(arg0+0x90);
+  s16 x,y;
+  x=arg1+(*(s16 *)(obj+0x34)-*(s16 *)(arg0+0x94));
+  y=arg2+(*(s16 *)(obj+0x36)-*(s16 *)(arg0+0x96));
+  ((void (*)(u8 *,s32))(*(void **)(obj+0x10)))(obj,x);
+  ((void (*)(u8 *,s32))(*(void **)(obj+0x14)))(obj,y);
+ }
+ x=arg1+(*(s16 *)(arg0+0x44)-*(s16 *)(arg0+0x94));
+ y=arg2+(*(s16 *)(arg0+0x46)-*(s16 *)(arg0+0x96));
+ *(s16 *)(arg0+0x94)=arg1;
+ *(s16 *)(arg0+0x96)=arg2;
+ func_0211192c(arg0,x,y);
+}
+
 void func_02112554(u8 *arg0, s32 arg1) {
     func_0211242c(arg0, arg1, *(s16 *)(arg0 + 0x96));
 }
