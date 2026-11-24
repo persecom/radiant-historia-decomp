@@ -184,6 +184,13 @@ void func_020bec5c(s32 arg0) {
     }
 }
 
+void func_020bec90(void) {
+    u16 idx = data_02151fc8;
+    *(s32 *)(data_0216020c + 0xc) = *(s16 *)(data_0216020c + 0x8e) * data_0213a394[(idx >> 4) * 2 + 1];
+    *(s32 *)(data_0216020c + 0x14) = *(s16 *)(data_0216020c + 0x8e) * data_0213a394[(idx >> 4) * 2];
+    func_020f4668(data_0216020c + 0xc);
+}
+
 extern void func_020f4668(void *);
 u8 *func_020becfc(void) {
     return data_0216020c + 0xdc;
