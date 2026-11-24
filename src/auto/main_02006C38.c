@@ -2,6 +2,33 @@
 #include "common.h"
 
 extern void func_02006e48(void);
+void func_02006d10(u8 *arg0, u8 *arg1) {
+    u8 *tail = *(u8 **)(arg0 + 0x8c);
+    if (tail == NULL) {
+        *(u8 **)(arg0 + 0x88) = arg1;
+    } else {
+        *(u8 **)(tail + 0x10) = arg1;
+    }
+    *(u8 **)(arg1 + 0x14) = tail;
+    *(u8 **)(arg1 + 0x10) = NULL;
+    *(u8 **)(arg0 + 0x8c) = arg1;
+}
+
+void func_02006d34(u8 *arg0, u8 *arg1) {
+    u8 *next = *(u8 **)(arg1 + 0x10);
+    u8 *prev = *(u8 **)(arg1 + 0x14);
+    if (next == NULL) {
+        *(u8 **)(arg0 + 0x8c) = prev;
+    } else {
+        *(u8 **)(next + 0x14) = prev;
+    }
+    if (prev == NULL) {
+        *(u8 **)(arg0 + 0x88) = next;
+    } else {
+        *(u8 **)(prev + 0x10) = next;
+    }
+}
+
 void func_02006e3c(void) {
     func_02006e48();
 }
