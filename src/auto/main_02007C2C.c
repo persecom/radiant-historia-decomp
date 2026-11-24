@@ -591,3 +591,26 @@ void func_02008ab4(s32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     func_02008414();
 }
 
+void func_02008b08(s32 channel, u32 src, u32 size, void (*callback)(void *), void *arg) {
+u32 state;
+if (size == 0) { if(callback) callback(arg); return; }
+while(data_0215d17c[0]) {}
+while (!(((*(volatile u32 *)0x04000600 & 0x07000000) >> 24) & 2)) {}
+data_0215d17c[0]=1;
+data_0215d17c[1]=channel;
+data_0215d17c[2]=src;
+data_0215d17c[3]=size;
+data_0215d17c[4]=(u32)callback;
+data_0215d17c[5]=(u32)arg;
+func_02008ab4(channel,src,size,0);
+func_0200893c(channel);
+state=func_02008128();
+data_0215d17c[6]=(*(volatile u32 *)0x04000600 & 0xc0000000)>>30;
+data_0215d17c[7]=func_02005870(0x200000);
+*(volatile u32 *)0x04000600=(*(volatile u32 *)0x04000600 & ~0xc0000000)|0x40000000;
+func_020057e8(0x200000,func_02008bf4);
+func_020059b4(0x200000);
+func_02008bf4();
+func_0200813c(state);
+}
+
