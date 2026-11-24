@@ -184,6 +184,18 @@ void func_021267c0(void *arg0, u8 arg1) {
     *(u8 *)((u8 *)arg0 + 0x50) = arg1;
 }
 
+extern s32 func_0212689c(s32, s32, s32);
+extern void func_02125ea4(u32);
+extern const u8 data_02145000[];
+extern u32 data_02156580[2];
+s32 func_02126868(s32 arg0, s32 arg1, s32 arg2) {
+    s32 ret;
+    func_02126c18();
+    ret = func_0212689c(arg0, arg1, arg2);
+    func_02126c1c();
+    return ret;
+}
+
 extern void func_02126c18(void);
 extern void func_021268e4(void *);
 extern void func_02126c1c(void);
