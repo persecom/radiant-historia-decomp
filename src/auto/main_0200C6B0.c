@@ -197,6 +197,13 @@ s32 func_0200d01c(void *arg0) {
     return func_0200cb40(buf, 0xb, 0);
 }
 
+s32 func_0200d050(void *arg0) {
+    u32 buf[0x12];
+    func_0200b888(buf);
+    buf[2] = (u32)arg0;
+    return func_0200cb40(buf, 0xc, 0);
+}
+
 void func_0200d1a8(u32 arg0, u32 *ptr) {
     *ptr = 0;
 }
