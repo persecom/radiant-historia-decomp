@@ -216,11 +216,36 @@ void func_0200a08c(u8 *arg0) {
     func_02006dc4(arg0, 0x280);
 }
 
+extern const u8 data_0213e61c[724];
+extern void func_0200986c(void);
+extern void func_02009880(void);
+extern void func_02006da8(void *, s32);
+u16 func_0200a108(s32 arg0) {
+    u32 val;
+    s32 shift;
+    if (arg0 < -723) {
+        arg0 = -723;
+    } else if (arg0 > 0) {
+        arg0 = 0;
+    }
+    val = data_0213e61c[arg0 + 723];
+    if (arg0 < -240) {
+        shift = 3;
+    } else if (arg0 < -120) {
+        shift = 2;
+    } else if (arg0 < -60) {
+        shift = 1;
+    } else {
+        shift = 0;
+    }
+    return (u16)(val | (shift << 8));
+}
+
 extern s32 func_0200698c(void);
 void func_0200a328(u32 *arg0) {
-    Unk_0200a328 tmp = {0, 0};
-    arg0[0] = tmp.field_0;
-    arg0[1] = tmp.field_4;
+    u32 tmp[2] = {0};
+    arg0[0] = tmp[0];
+    arg0[1] = tmp[1];
 }
 
 s32 func_0200a4f4(u8 *arg0) {
