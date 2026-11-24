@@ -273,6 +273,10 @@ void func_02010fa8(s32 arg0, s32 arg1) {
     }
 }
 
+s32 func_02010ff8(void) {
+    return (*(volatile u16 *)0x2fffc30 != 0xffff) ? 1 : 0;
+}
+
 extern u8 data_0215fa30[4];
 extern u8 data_0215fa2c[4];
 extern void CpuSet(const void *, void *, u32);
