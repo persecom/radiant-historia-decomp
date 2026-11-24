@@ -398,6 +398,16 @@ void func_0210f024(u32 arg0) {
     (*(void (**)(u32))((u8 *)data_02162a54 + 0x14))(arg0);
 }
 
+void func_0210f138(void) {
+    if (*(void (**)(void))((u8 *)data_02162a54 + 0x1c) != NULL) {
+        (*(void (**)(void))((u8 *)data_02162a54 + 0x1c))();
+    }
+    func_0210f0b0();
+    if (*(void (**)(void))((u8 *)data_02162a54 + 0x18) != NULL) {
+        (*(void (**)(void))((u8 *)data_02162a54 + 0x18))();
+    }
+}
+
 s32 func_0210f170(const char *arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 ret;
     if (data_02155c94[2] != 0 && arg0 != NULL) {
