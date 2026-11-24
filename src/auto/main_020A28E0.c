@@ -46,6 +46,29 @@ extern void func_020a2eb4(void);
 extern void func_020a2ee4(void);
 extern void func_0203be4c(void *);
 extern void func_020a3128(u16);
+void func_020a28e0(void) {
+u8 path[32],buf[32];
+u8 *base=(u8 *)data_021600b0[0];
+u8 *node;
+void *file;
+s32 flag=0;
+func_02005e80(path,data_02148ac8);
+node=*(u8 **)(base+0x134);
+while(node){
+file=func_021092d8(path);
+if(func_02092ab0(file,*(u16 *)node)!=-1){
+*(u16 *)(node+2)=func_02092994(file,0);
+*(u16 *)(node+6)=func_02092994(file,0);
+*(u16 *)(node+8)=func_02092994(file,0);
+func_02005e80(buf,data_02148ae4,*(u16 *)node);
+if(*(u16 *)node!=32) flag=*(u16 *)node+0x19f;
+if(func_020bdba0((u16)flag)==1) node[4]|=1;
+}
+if(file) func_021093b0(file);
+node=*(u8 **)(node+16);
+}
+}
+
 void func_020a29dc(u16 arg0) {
     void *p = func_0210c594(0x20, data_02155c3c);
     *(u16 *)p = arg0;
