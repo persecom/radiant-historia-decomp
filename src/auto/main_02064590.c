@@ -43,7 +43,14 @@ void func_02064a30(void) {
 s32 func_02064aac(s32 *rect) {
     TouchData_02064aac tp = data_02162908;
     if (tp.touch == 1) {
-        s32 hit = (tp.x >= rect[0] && tp.x <= rect[2] && tp.y >= rect[1] && tp.y <= rect[3]);
+        s32 x = tp.x;
+        s32 y = tp.y;
+        s32 hit;
+        if (x >= rect[0] && x <= rect[2] && y >= rect[1] && y <= rect[3]) {
+            hit = 1;
+        } else {
+            hit = 0;
+        }
         if (hit) {
             return 1;
         }
@@ -58,6 +65,12 @@ s32 func_02064b3c(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     rect[2] = arg0 + arg2;
     rect[3] = arg1 + arg3;
     return func_02064aac(rect);
+}
+
+void *func_02064be8(void) {
+    u8 *ptr = (u8 *)func_0210c594(0x10, data_02155c3c);
+    func_021167ac(ptr + 0x4, 0x30);
+    return ptr;
 }
 
 void *func_02064cb8(u8 *arg0, s32 arg1) {
