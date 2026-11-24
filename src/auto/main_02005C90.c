@@ -512,27 +512,28 @@ BOOL func_020069a4(Unk69A4 *arg0, void *arg1, s32 arg2) {
 extern u32 data_0215ce00[];
 extern void func_02006d10(u8 *, u8 *);
 extern s32 func_0201fb1c(s32, s32);
-s32 func_02006a38(u8 *arg0, u32 *arg1, u32 arg2) {
+s32 func_02006a38(Unk69A4 *arg0, u32 *arg1, s32 arg2) {
     u32 cookie = func_02008128();
-    if (*(u32 *)(arg0 + 0x1c) == 0) {
-        if ((arg2 & 1) == 0) {
-            func_0200813c(cookie);
-            return 0;
-        }
-        func_02006510(arg0 + 8);
-        if (*(u32 *)(arg0 + 0x1c) == 0) {
-            func_0200813c(cookie);
-            return 0;
-        }
-    }
+    if (arg0->usedCount != 0) goto work;
+    arg2 &= 1;
+    if (arg2 == 0) goto fail;
+    func_02006510(&arg0->unk8);
+    if (arg0->usedCount == 0) goto fail;
+work:
     if (arg1 != NULL) {
-        *arg1 = *(u32 *)(arg0 + 0x10 + *(u32 *)(arg0 + 0x18) * 4);
+        *arg1 = arg0->msgArray[arg0->firstIndex];
     }
-    *(u32 *)(arg0 + 0x18) = func_0201fb1c(*(u32 *)(arg0 + 0x18) + 1, *(u32 *)(arg0 + 0x14));
-    *(u32 *)(arg0 + 0x1c) -= 1;
-    func_02006560(arg0, 0);
+    {
+        u32 next = func_0201fb1c(arg0->firstIndex + 1, arg0->msgCount);
+        arg0->firstIndex = next;
+        arg0->usedCount -= 1;
+        func_02006560(arg0, next);
+    }
     func_0200813c(cookie);
     return 1;
+fail:
+    func_0200813c(cookie);
+    return 0;
 }
 
 extern u32 data_02145bb8[2];
@@ -569,7 +570,7 @@ void func_02006b5c(void *arg0) {
         p->unkC_0 = 0;
         p->unk8 = 0;
         p->unkC_24 = 0;
-        func_02006560(p, 0);
+        ((void (*)(void *))func_02006560)(p);
     }
 }
 
