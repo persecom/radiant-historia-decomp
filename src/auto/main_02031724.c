@@ -50,3 +50,8 @@ void func_02031d2c(void) {
 void func_02031fbc(s32 arg0, s32 arg1, s32 arg2) {
     func_02031fcc(arg0, arg2);
 }
+
+void *func_0203222c(void) {
+    return *(void **)((u8 *)data_02160090 + 8);
+}
+
