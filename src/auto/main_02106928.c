@@ -314,6 +314,27 @@ s32 func_02107438(u8 *arg0, char *arg1) {
     return 1;
 }
 
+BOOL func_02107494(u8 *arg0, char *arg1) {
+    char buf[0x100];
+    u32 sp8;
+    void *sp4 = NULL;
+    void *sp0 = NULL;
+    void *p;
+
+    func_02005e80(buf, data_02155974, arg1);
+    p = func_0210ad14(&sp4, buf, &sp8);
+    if (p == NULL) {
+        return 0;
+    }
+    if (func_021177fc(p, &sp0) == 0) {
+        sp0 = NULL;
+    }
+    *(void **)(arg0 + 4) = p;
+    *(void **)(arg0 + 0x10) = sp4;
+    *(void **)(arg0 + 0x18) = sp0;
+    return 1;
+}
+
 BOOL func_02107514(u8 *arg0, char *arg1) {
     char buf[0x100];
     u32 sp8;
