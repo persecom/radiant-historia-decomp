@@ -116,6 +116,10 @@ s32 func_02110228(void *arg0) {
     return 0;
 }
 
+void func_021103a8(void *arg0) {
+    func_020c7090(func_020c9c10(*(void **)((u8 *)arg0 + 0x30), 0));
+}
+
 extern void func_02110484(void *);
 void func_02110464(void *arg0) {
     func_02110484(arg0);
