@@ -1,5 +1,6 @@
 /* 38 functions from 0x021078D0 to 0x021088CC (main), found by ds-decomp. */
 #include "common.h"
+extern char data_021559b0[], data_021559b8[];
 extern u8 data_02161198[], data_021612c8[], data_02161230[];
 extern u32 data_02162834[];
 typedef struct { unsigned char bit0:1; unsigned char flip:1; unsigned char visible:1; unsigned char rest:5; } RenderFlags;
