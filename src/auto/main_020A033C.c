@@ -7,6 +7,9 @@ extern void func_021168f8(void *, void *);
 extern void func_0210c5dc(void *);
 extern s16 *func_02116984(void *, u16);
 
+void func_020a0da8(void) {
+}
+
 void func_020a0dc8(void **arg0) {
     void *ptr;
     while ((ptr = *arg0) != NULL) {
