@@ -402,3 +402,45 @@ s32 func_020332c8(void *arg0) {
     return func_02117d80(*(void **)(*(void **)arg0 + 8));
 }
 
+extern u8 *data_02160a6c;
+struct Vec3_020332e8 { s32 x; s32 y; s32 z; } func_020332e8(void) {
+    s32 max_x, min_x, max_y, min_y, max_z, min_z;
+    u8 *node = *(u8 **)(data_02160a6c + 0xb8);
+    s32 first = 1;
+    struct Vec3_020332e8 ret;
+
+    while (node != NULL) {
+        if (first != 0) {
+            min_x = max_x = *(s32 *)(node + 0);
+            min_y = max_y = *(s32 *)(node + 4);
+            min_z = max_z = *(s32 *)(node + 8);
+            first = 0;
+        } else {
+            if (*(s32 *)(node + 0) > max_x) {
+                max_x = *(s32 *)(node + 0);
+            }
+            if (*(s32 *)(node + 0) < min_x) {
+                min_x = *(s32 *)(node + 0);
+            }
+            if (*(s32 *)(node + 4) > max_y) {
+                max_y = *(s32 *)(node + 4);
+            }
+            if (*(s32 *)(node + 4) < min_y) {
+                min_y = *(s32 *)(node + 4);
+            }
+            if (*(s32 *)(node + 8) > max_z) {
+                max_z = *(s32 *)(node + 8);
+            }
+            if (*(s32 *)(node + 8) < min_z) {
+                min_z = *(s32 *)(node + 8);
+            }
+        }
+        node = *(u8 **)(node + 0x174);
+    }
+
+    ret.x = (max_x + min_x) >> 1;
+    ret.y = (max_y + min_y) >> 1;
+    ret.z = (max_z + min_z) >> 1;
+    return ret;
+}
+
