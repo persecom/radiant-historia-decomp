@@ -75,6 +75,47 @@ typedef struct {
 extern UnkEntry_021333b0 data_02174b64[32];
 
 extern void func_0213807c(void);
+extern void func_02132e0c(s8 *);
+void func_02133134(s8 *dst1, s8 *dst2, void *src_ptr) {
+    s8 *src = (s8 *)src_ptr;
+    s32 i;
+    s32 j;
+
+    if (src == NULL) {
+        return;
+    }
+
+    for (i = 0; i < 0x129; i++) {
+        if (src[i] == ':' || src[i] == '\0') {
+            break;
+        }
+        dst1[i] = src[i];
+    }
+
+    if (src[i] == '\0') {
+        dst1[i] = '\0';
+        func_02013858((u8 *)dst2, dst1, func_02016da4(dst1) + 1);
+        dst1[0] = '\0';
+        return;
+    }
+
+    dst1[i] = '\0';
+    i++;
+    if (i == 2) {
+        i = 0;
+        dst1[0] = '\0';
+    }
+
+    for (j = i; j < 0x129; j++) {
+        if (src[j] == '\0') {
+            break;
+        }
+        dst2[j - i] = src[j];
+    }
+    dst2[j - i] = '\0';
+    func_02132e0c(dst1);
+}
+
 void func_0213320c(u8 *arg0) {
     void *p = data_021749dc;
     s32 v = func_02016da4(p);
