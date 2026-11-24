@@ -25,6 +25,15 @@ extern void func_0210c5dc(void *);
 extern void *func_0210c594(s32, u32);
 extern void func_021168f8(void *, void *);
 
+void func_020a4898(u32 arg0) {
+    u8 *ptr = data_02160130;
+    if (ptr[0x20] == arg0) {
+        return;
+    }
+    ptr[0x20] = arg0;
+    *(u32 *)(ptr + 0x1c) = (u16)(*(u32 *)(ptr + arg0 * 4 + 0x14)) & 0x1fffffff;
+}
+
 void func_020a5338(void) {
     if (data_02160134.unk04 == NULL) {
         return;
