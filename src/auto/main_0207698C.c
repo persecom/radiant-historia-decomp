@@ -213,6 +213,23 @@ void func_02077440(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, u32 arg4, u16 arg5) {
     func_020a9610(arg0 + 0x38, arg4, arg5, *(void **)arg0, 0, 0);
 }
 
+void func_020774a4(void) {
+ u8 *ptr = func_020764e4();
+ *(u32 *)(ptr+0x1a8)=func_020a94b8(data_02148460);
+ *(void **)(ptr+0xb8)=func_020a8604(5,2);
+ func_020a8810(*(void **)(ptr+0xb8),19);
+ func_020a9830(ptr+0xbc,ptr+0xf0,240,16,0,0);
+ func_02077440(ptr+0xb8,146,134,102,*(u32 *)(ptr+0x1a8),101);
+ *(void **)(ptr+0x108)=func_020a8604(5,2);
+ func_020a8810(*(void **)(ptr+0x108),20);
+ func_020a9830(ptr+0x10c,ptr+0x140,240,16,0,0);
+ func_02077440(ptr+0x108,146,154,102,*(u32 *)(ptr+0x1a8),102);
+ *(void **)(ptr+0x158)=func_020a8604(5,2);
+ func_020a8810(*(void **)(ptr+0x158),22);
+ func_020a9830(ptr+0x15c,ptr+0x190,240,16,0,0);
+ func_02077440(ptr+0x158,16,44,102,*(u32 *)(ptr+0x1a8),12);
+}
+
 extern void func_020a994c(void *);
 extern void func_020a98a0(void *);
 extern void func_020a9544(void *);
