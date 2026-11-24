@@ -511,7 +511,7 @@ BOOL func_020069a4(Unk69A4 *arg0, void *arg1, s32 arg2) {
 
 extern u32 data_0215ce00[];
 extern void func_02006d10(u8 *, u8 *);
-extern s32 func_0201fb1c(s32, s32);
+extern u64 func_0201fb1c(u32, u32);
 s32 func_02006a38(Unk69A4 *arg0, u32 *arg1, s32 arg2) {
     u32 cookie = func_02008128();
     if (arg0->usedCount != 0) goto work;
