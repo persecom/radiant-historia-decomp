@@ -3,6 +3,7 @@
 typedef struct { u16 unk[10]; } Unk20;
 typedef struct { s16 data[1080]; } Unk870;
 extern const Unk20 data_0214209c;
+extern const Unk20 data_021420c4;
 extern const Unk20 data_021420d8;
 extern const Unk870 data_02142344;
 extern void func_021167f0(void *, void *);
@@ -21,6 +22,92 @@ extern void func_0209acdc(void *, s32);
 
 extern void func_021168f8(void *, void *);
 extern void func_0210c5dc(void *);
+extern u16 func_0209ac28(void *, u16);
+extern void func_0210d448(void);
+void func_0209b328(void) {
+    u8 *r9 = data_02160120;
+    u8 *r10 = func_0209ac14();
+
+    while (r10 != NULL) {
+        s16 lv = *(s16 *)(r10 + 0x10);
+        if (lv > 50) {
+            *(s32 *)(r10 + 0x14) += lv * 8;
+        } else if (lv > 10) {
+            *(s32 *)(r10 + 0x14) += lv * 4;
+        } else {
+            *(s32 *)(r10 + 0x14) += lv * 2;
+        }
+
+        if (*(s32 *)(r10 + 0x14) >= *(s32 *)(r10 + 8)) {
+            *(s32 *)(r10 + 4) += *(s32 *)(r10 + 8);
+            *(s32 *)(r10 + 8) = 0;
+            *(s32 *)(r10 + 0x14) = 0;
+            if (*(s32 *)(r10 + 0xc) == 0) {
+                *(s16 *)(r9 + 0x698) += 1;
+            }
+        }
+
+        if (r10[0x2a] == 0) {
+            r10[0x2a] |= 1;
+        } else if (r10[0x2a] & 1) {
+            *(s16 *)(r10 + 0x2c) += 5;
+            if (*(s16 *)(r10 + 0x2c) > 17) {
+                r10[0x2a] = 0;
+                r10[0x2a] |= 2;
+                *(s16 *)(r10 + 0x2c) = 31;
+            }
+        } else if (r10[0x2a] & 2) {
+            *(s16 *)(r10 + 0x2c) -= 2;
+            if (*(s16 *)(r10 + 0x2c) < 1) {
+                *(s16 *)(r10 + 0x2c) = 0;
+                *(s32 *)(r10 + 8) += *(s32 *)(r10 + 0xc);
+                *(s32 *)(r10 + 0xc) = 0;
+            }
+        }
+
+        {
+            s16 lv2 = *(s16 *)(r10 + 0x10);
+            if ((u32)(*(s32 *)(r10 + 4) + *(s32 *)(r10 + 0x14)) >= *(u32 *)(r9 + (r10[0] * 99 + lv2) * 4 + 0x64)) {
+                if (lv2 < 99) {
+                    u16 skill;
+                    *(s16 *)(r10 + 0x10) = lv2 + 1;
+                    *(u16 *)(r10 + 0x12) |= 1;
+                    skill = func_0209ac28(r10, *(u16 *)(r10 + 0x10));
+                    if (skill != 0) {
+                        u16 *node = (u16 *)func_0210c594(0xc, data_02155c3c);
+                        *node = skill;
+                        func_021167f0(r10 + 0x3c, node);
+                        *(u16 *)(r10 + 0x12) |= 2;
+                    }
+                }
+            }
+        }
+
+        r10 = *(u8 **)(r10 + 0x38);
+    }
+
+    if (r9[0x694] == *(s16 *)(r9 + 0x698)) {
+        s16 count = 0;
+        u8 *r5 = func_0209ac14();
+        func_0210d448();
+        while (r5 != NULL) {
+            if (*(u16 *)(r5 + 0x12) & 1) {
+                u8 *p = (u8 *)func_0209c14c((u16)(r5[0] + 0x34));
+                *(u16 *)(p + 2) |= 1;
+                count++;
+            }
+            r5 = *(u8 **)(r5 + 0x38);
+        }
+        if (count != 0) {
+            func_0209b194(4);
+            func_0210d27c(0x9a);
+        } else {
+            func_0209b194(7);
+        }
+    }
+    *(s16 *)(r9 + 0x698) = 0;
+}
+
 void func_0209b570(void) {
     u8 *base = data_02160120;
     *(s8 *)(base + 0x69a) += 1;
