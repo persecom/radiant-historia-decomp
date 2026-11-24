@@ -64,19 +64,19 @@ void func_020d2ac4(Unk3 *arg) {
     func_020d2a44(arg->unk1, arg->unk0, arg->unk2);
 }
 
-s32 func_020d2af4(s32 arg0, s8 arg1, s8 arg2, u8 arg3, s16 arg4) {
+s32 func_020d2af4(s32 arg0, s32 arg1, s8 arg2, u8 arg3, s16 arg4) {
     u8 *p = NULL;
     s8 cur;
     if (arg0 == 0) {
-        p = *(u8 **)data_02160244 + 0xfc;
+        p = data_02160244->ptrFc;
     } else if (arg0 == 1) {
-        p = *(u8 **)data_02160244 + 0x100;
+        p = data_02160244->ptr100;
     }
     p[0] = arg3;
     *(s16 *)(p + 2) = arg4;
     cur = (s8)p[1];
-    p[1] = cur + arg1;
-    cur = (s8)p[1];
+    p[1] = cur + (s8)arg1;
+    cur = *(volatile s8 *)(p + 1);
     if (arg1 > 0) {
         if (cur > arg2) {
             p[1] = arg2;
