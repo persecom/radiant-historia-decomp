@@ -45,3 +45,7 @@ void *func_02026c58(void **arg0) {
     return *arg0;
 }
 
+u16 func_02026ca4(u16 *arg0) {
+    return arg0[6];
+}
+
