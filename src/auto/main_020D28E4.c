@@ -34,7 +34,13 @@ typedef struct {
 } UnkB;
 
 extern const Unk14 data_02144910;
-extern void *data_02160244;
+typedef struct {
+    u8 pad[0xfc];
+    u8 *ptrFc;
+    u8 *ptr100;
+} UnkC;
+
+extern UnkC *data_02160244;
 extern const s16 data_0213a394[];
 extern void func_021099f8(void *);
 extern s16 func_020ddcb0(void *, void *);
@@ -56,6 +62,33 @@ void func_020d2ac4(Unk3 *arg) {
     if (arg == NULL) return;
     if (arg->unk1 < 1 || arg->unk1 > 0x1f) return;
     func_020d2a44(arg->unk0, arg->unk1, arg->unk2);
+}
+
+s32 func_020d2af4(s32 arg0, s8 arg1, s8 arg2, u8 arg3, s16 arg4) {
+    u8 *p = NULL;
+    s8 cur;
+    if (arg0 == 0) {
+        p = *(u8 **)data_02160244 + 0xfc;
+    } else if (arg0 == 1) {
+        p = *(u8 **)data_02160244 + 0x100;
+    }
+    p[0] = arg3;
+    *(s16 *)(p + 2) = arg4;
+    cur = (s8)p[1];
+    p[1] = cur + arg1;
+    cur = (s8)p[1];
+    if (arg1 > 0) {
+        if (cur > arg2) {
+            p[1] = arg2;
+            return 1;
+        }
+    } else {
+        if (cur < arg2) {
+            p[1] = arg2;
+            return 1;
+        }
+    }
+    return 0;
 }
 
 void func_020d2b78(UnkA *a, UnkB *b, s32 c, s32 d) {
