@@ -49,3 +49,11 @@ BOOL func_020f250c(s32 arg0) {
     return func_020f2104(arg0) != 0;
 }
 
+extern void func_02108594(void *);
+void func_020f2638(void **arg0) {
+    func_02108594(*arg0);
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
