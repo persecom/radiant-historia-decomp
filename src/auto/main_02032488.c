@@ -44,6 +44,19 @@ u8 func_020329a0(void) {
     return count;
 }
 
+u16 func_020329d8(void *arg0) {
+    u16 i = 0;
+    u8 *node = func_0203222c();
+    while (node != NULL) {
+        if (node == arg0) {
+            return i;
+        }
+        i++;
+        node = *(u8 **)(node + 0x1c);
+    }
+    return 0x100;
+}
+
 void func_02032ff8(void) {
     data_02160090[0x7e] = 1;
 }
