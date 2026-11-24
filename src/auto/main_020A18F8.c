@@ -8,6 +8,9 @@ extern void func_0209ed58(s32, s32);
 extern void func_0209f010(s32);
 extern void func_0209edc8(s32, s32);
 extern void func_020ec548(void *);
+extern u32 data_02155c3c;
+extern void *func_0210c594(u32, u32);
+extern void func_021167f0(void *, void *);
 void func_020a2534(void) {
     u8 *r4 = data_021600b0;
     if (*(u16 *)(r4 + 0xe0) & 1) {
