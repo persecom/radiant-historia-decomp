@@ -184,6 +184,12 @@ s32 func_020ddc8c(u32 *arg0, u32 *arg1) {
     return func_02002404(dx, dy);
 }
 
+s32 func_020ddcb0(u32 *arg0, u32 *arg1) {
+    s32 dy = (s32)arg1[2] - (s32)arg0[2];
+    s32 dx = (s32)arg1[0] - (s32)arg0[0];
+    return func_02002404(dy, dx);
+}
+
 void func_020ddd5c(u8 *arg0) {
     s32 a = *(s32 *)data_02160a68.unk00;
     s32 b = *(s32 *)(arg0 + 0x78) << 12;
