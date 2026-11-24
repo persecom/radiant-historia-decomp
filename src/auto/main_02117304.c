@@ -308,6 +308,19 @@ s32 func_02117d80(void *arg0) {
     return (diff << 13) >> 16;
 }
 
+void func_02117d9c(void *arg0) {
+    u32 *p = arg0;
+    func_02117ddc(p + 8);
+    p[0] = 0;
+    p[1] = 0;
+    p[2] = 0;
+    p[3] = 1;
+    p[4] = 0;
+    p[5] = 0x1000;
+    p[6] = 0;
+    p[7] = 0;
+}
+
 void func_02117ddc(u32 *arg0) {
     arg0[0] = 0;
     arg0[1] = 0;
