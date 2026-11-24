@@ -134,8 +134,6 @@ void func_0212fcfc(void) {
     func_0212fd20();
 }
 
-extern void func_02130300(void *, void *, void *, void *, s32, s32, s32);
-extern void func_02139b34(s32, s32, s32, void *);
 u32 func_0212fd08(u8 *a0) {
     if (*(s8 *)(a0 + 0x1a9) == 0) {
         return 0;
