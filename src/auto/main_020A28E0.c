@@ -45,6 +45,19 @@ void func_020a2a50(void) {
     }
 }
 
+void func_020a2c20(void) {
+    u16 *p = (u16 *)0x05000000;
+    *p = 0;
+    *(p + 0x200) = 0;
+}
+
+s32 func_020a2e64(void) {
+    if (func_020a2f34() != 0) {
+        return 1;
+    }
+    return func_020a2fe4() != 0;
+}
+
 s32 func_020a30c4(void) {
     func_020a30d4();
     return func_020a3128();
