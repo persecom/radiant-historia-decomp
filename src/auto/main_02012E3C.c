@@ -31,3 +31,12 @@ s32 func_020136d0(s32 arg0, ...) {
     return (args[1] & 0x80000000) != 0;
 }
 
+extern u32 data_02145c8c[];
+s32 func_020137b0(u8 *arg0, u8 arg1) {
+    if (arg0 == 0) {
+        return 0;
+    }
+    *arg0 = arg1;
+    return 1;
+}
+
