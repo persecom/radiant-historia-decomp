@@ -56,6 +56,39 @@ extern void func_020159f8(s32, s32, s32);
 
 extern void func_0212f738(void);
 extern u32 data_021749ac[4];
+void func_02132204(s16 *arg0, s16 *arg1, s16 *arg2) {
+    s32 hi = 0x7fff;
+    s32 lo = -0x8000;
+    s32 n = 0x20;
+    do {
+        s16 *s = arg0;
+        s32 acc = 0;
+        acc += *arg1++ * *arg0++;
+        acc += *arg1++ * s[-0x3a0];
+        acc += *arg1++ * s[-0x380];
+        acc += *arg1++ * s[-0x320];
+        acc += *arg1++ * s[-0x300];
+        acc += *arg1++ * s[-0x2a0];
+        acc += *arg1++ * s[-0x280];
+        acc += *arg1++ * s[-0x220];
+        acc += *arg1++ * s[-0x200];
+        acc += *arg1++ * s[-0x1a0];
+        acc += *arg1++ * s[-0x180];
+        acc += *arg1++ * s[-0x120];
+        acc += *arg1++ * s[-0x100];
+        acc += *arg1++ * s[-0xa0];
+        acc += *arg1++ * s[-0x80];
+        acc += *arg1++ * s[-0x20];
+        if (acc > 0x3fff800) {
+            *arg2++ = hi;
+        } else if (acc < (s32)0xfc000000) {
+            *arg2++ = lo;
+        } else {
+            *arg2++ = acc >> 11;
+        }
+    } while (--n > 0);
+}
+
 void func_0213234c(u32 arg0) {
     data_021749ac[5] = arg0;
 }
