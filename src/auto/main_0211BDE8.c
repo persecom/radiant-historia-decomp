@@ -19,6 +19,11 @@ void func_0211c52c(u8 *arg0, s32 arg1, s32 arg2) {
     *(s32 *)(arg0 + 0xc) = arg2;
 }
 
+void func_0211c538(u8 *arg0, s32 arg1, s32 arg2) {
+    *(s32 *)(arg0 + 0x1c) = arg1;
+    *(s32 *)(arg0 + 0x20) = arg2;
+}
+
 void func_0211c5c4(u8 *arg0, s32 arg1) {
     *(s32 *)(arg0 + 0x34) = arg1;
 }
