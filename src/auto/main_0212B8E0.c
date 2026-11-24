@@ -230,6 +230,21 @@ void func_0212c3d4(void *arg0, void *arg1) {
     func_0212c3ec((u8 *)arg0, arg1, 0, 0xfffff);
 }
 
+void func_0212c3ec(u8 *arg0, void *arg1, s32 arg2, s32 arg3) {
+    u32 lock;
+    if (arg0 == NULL || arg1 == NULL) {
+        func_0212bda8(data_02156ca4);
+        return;
+    }
+    func_02132bf8(*(void **)(arg0 + 0xac), 0x100, arg1);
+    *(void **)(arg0 + 0xb0) = *(void **)(arg0 + 0xac);
+    lock = *(u32 *)(arg0 + 0x94);
+    func_0212e5fc(lock);
+    func_0212c2d8(arg0, *(void **)(arg0 + 0xb0), arg2, arg3);
+    func_0212e60c(lock, 1);
+    func_0212c338(arg0);
+}
+
 extern void func_0212c478(void);
 void func_0212c464(void) {
     func_0212a9f4();
