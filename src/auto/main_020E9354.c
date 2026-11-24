@@ -140,6 +140,20 @@ void func_020e97ec(u8 *arg0) {
     }
 }
 
+extern void func_0210d9e4(void *);
+extern void func_02002ee8(s32, u32, u32, u16);
+extern void func_02002f9c(void *);
+void func_020e9dc0(void);
+void func_020e9e0c(void);
+void func_020e9d0c(void *arg0) {
+    if (data_02160a7c == NULL) {
+        return;
+    }
+    *(void **)(data_02160a7c + 0) = (void *)func_020e9e0c;
+    *(void **)(data_02160a7c + 4) = arg0;
+    func_0210d9e4(data_02160a7c);
+}
+
 void func_020e9d44(void) {
     void *p = data_02160a7c;
     if (p != NULL) {
