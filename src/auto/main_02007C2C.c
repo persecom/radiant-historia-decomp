@@ -1,5 +1,10 @@
 /* 48 functions from 0x02007C2C to 0x02008BF4 (main), found by ds-decomp. */
 #include "common.h"
+extern u8 data_027e0000[];
+extern u16 data_0215d138;
+extern u64 func_02007904(void);
+extern void func_020079a4(u8 *);
+extern void func_02007a88(void *, u64);
 
 extern u8 data_04000247;
 extern u8 data_0215d144[20];
@@ -479,6 +484,21 @@ void func_0200893c(u32 dmaNo) {
     }
 
     func_0200813c(enabled);
+}
+
+void func_02008998(u32 arg0) {
+    s32 irq = func_02008128();
+    u32 *p = (u32 *)(0x4000000 + arg0 * 0xc);
+    u32 *q;
+    p[0xb8 / 4] &= ~0x3a000000;
+    p[0xb8 / 4] &= ~0x80000000;
+    if (arg0 == 0) {
+        q = (u32 *)(0x4000000 + arg0 * 0xc + 0xb0);
+        q[0] = 0;
+        q[1] = 0;
+        q[2] = 0x81400001;
+    }
+    func_0200813c(irq);
 }
 
 extern void func_02008998(u32);
