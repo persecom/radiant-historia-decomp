@@ -46,6 +46,42 @@ extern u32 func_021265c4(void *);
 extern void func_02139034(void *, u32);
 extern void func_0213905c(void *);
 extern void func_021263ac(void *, void *);
+void *func_02126134(u32 unused, void *arg) {
+ s32 *p=arg;
+ s32 total=0;
+ s32 base=0;
+ base+=0xe4;
+ s32 size;
+ if (p[7]) {
+  total+=0x10;
+  if (p[9]) {
+   size = (((((p[0]+1) * (((p[2]/1000)*2500)/16)+2048)/2048)*2048)+0x24);
+   size = p[3]*(size+0x28c0);
+   total+=size+0x40;
+  } else {
+   size = p[3] * (((((p[0]+1) * (((p[2]/1000)*(p[1]*2500))/16)+2048)/2048)*2048)+0x24+((p[1]*0x1460)<<1));
+   total+=size+0x40;
+  }
+ } else {
+  total+=0xc;
+  if(p[9]) {
+   size=p[4]*(((((p[0]+1)*(((p[2]/1000)*2500)/16)+2048)/2048)*2048)+0x24)+0x2900;
+   total+=size;
+  } else {
+   size=p[4]*(((((p[0]+1)*(((p[2]/1000)*(p[1]*2500))/16)+2048)/2048)*2048)+0x24)+((p[1]*0x1460)<<1);
+   total+=size+0x40;
+  }
+ }
+
+ if(p[8]) total+=0x1800;
+ total+=0x44;
+ if(p[6]) total*=2;
+ base+=total;
+ base+=0x100;
+ if(p[7]) base+=p[3]*4;
+ return (void *)base;
+}
+
 void func_02126330(void *arg0) {
     s32 i;
     if (!func_0212646c(arg0)) {
