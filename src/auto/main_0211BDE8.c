@@ -1,5 +1,10 @@
 /* 30 functions from 0x0211BDE8 to 0x0211CDC8 (main), found by ds-decomp. */
 #include "common.h"
+extern const u16 data_02144d84[3][4], data_02144d6c[3][4];
+extern void func_02002bd8(void *);
+extern void func_0211ab48(s32, s32, s32, void *, void *, u32, u32);
+static inline s16 ObjX_0211c1f8(u32 a) { s16 x=(a >> 16)&511; if(x>255)x |= 0xff00; return x; }
+static inline s16 ObjY_0211c1f8(u32 a) { s16 y=a&255; if(y>127)y |= 0xff00; return y; }
 typedef struct Unk_0211c424 { u16 x, y, z; } Unk_0211c424;
 typedef struct State_0211c424 { u8 pad[0x30]; s32 enabled; u32 unk34; u16 x, y, z; } State_0211c424;
 typedef struct List_0211c424 { u16 count; u16 pad; Unk_0211c424 *entries; } List_0211c424;
