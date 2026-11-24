@@ -1,5 +1,13 @@
 /* 38 functions from 0x021078D0 to 0x021088CC (main), found by ds-decomp. */
 #include "common.h"
+extern u8 data_021612c8[152], data_02161150[72], data_02161360[1024], data_02161760[3072];
+void func_02117e80(void);
+void func_021077f0(void *, s32);
+void func_02117a48(s32);
+void func_0211ad90(void *);
+void func_0210d07c(void);
+void func_02125424(void *, s32);
+void func_0211a698(void *, s32, void (*)(void));
 
 extern void func_021190bc(void *, void *);
 extern void func_021190d4(void *, void *);
@@ -65,6 +73,48 @@ void func_021078d0(void *arg0, void *arg1) {
     func_02119c80(arg0);
     func_02119d38(arg0, arg1);
     *(u32 *)((u8 *)arg0 + 0x80) = val - 0xc1000;
+}
+
+extern u8 data_021610c0[72];
+extern u8 data_02161108[72];
+extern u8 data_02161230[152];
+extern u8 data_02161198[152];
+extern void func_02107a24(s32, s32);
+extern void func_02107a64(s32);
+extern void func_02107a44(s32, s32);
+extern void func_02107a7c(s32);
+void func_02107938(void) {
+    u8 *s0;
+    func_02119d48(data_021610c0);
+    func_02119d48(data_02161108);
+
+    *(u32 *)(data_021610c0 + 0x8) = 0x100000;
+    *(u32 *)(data_021610c0 + 0x0) = 0;
+    *(u32 *)(data_021610c0 + 0x4) = 0;
+    *(u32 *)(data_021610c0 + 0xc) = 0xc0000;
+    *(void **)(data_021610c0 + 0x28) = (void *)func_02107a24;
+    *(void **)(data_021610c0 + 0x2c) = (void *)func_02107a64;
+    *(u32 *)(data_021610c0 + 0x14) = 1;
+
+    *(u32 *)(data_02161108 + 0x0) = 0;
+    *(u32 *)(data_02161108 + 0x8) = 0x100000;
+    *(u32 *)(data_02161108 + 0x4) = 0;
+    *(u32 *)(data_02161108 + 0xc) = 0xc0000;
+    *(void **)(data_02161108 + 0x28) = (void *)func_02107a44;
+    *(void **)(data_02161108 + 0x2c) = (void *)func_02107a7c;
+
+    {
+        u32 sp8[2] = {0, 0};
+        u32 sp0[2] = {0, 0};
+        *(u32 *)(data_02161108 + 0x14) = 2;
+
+        s0 = data_02161230;
+        func_02119c80(s0);
+        func_02119c80(data_02161198);
+        func_02119d38(s0, data_021610c0);
+        func_02119d38(data_02161198, data_02161108);
+        *(s32 *)(s0 + 0x80) = -0x1000;
+    }
 }
 
 void func_02107a24(s32 arg0, s32 arg1) {
