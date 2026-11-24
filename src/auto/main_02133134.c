@@ -27,6 +27,13 @@ extern u8 data_0215b930[48];
 extern u8 data_0215b960[44];
 extern void func_02133134(s8 *, s8 *, void *);
 extern void *func_02132f20(s8 *, s8 *, void *);
+extern u32 data_02174f9c[];
+extern u8 data_02174a38[300];
+extern u8 data_0215b98c[8];
+extern void *func_02132dbc(void *);
+extern void *func_02132f14(void);
+extern void func_02132bf8(void *, s32, void *);
+extern void func_02132c40(void *, s32, void *, void *, void *);
 typedef struct {
     void (**fn)(void);
     u32 pad[3];
