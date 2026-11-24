@@ -87,3 +87,15 @@ void func_02022454(u8 *arg0) {
     }
 }
 
+extern void func_021167ac(void *, u32);
+void *func_02022558(u8 *arg0, u16 arg1) {
+    u8 *node = *(u8 **)(arg0 + 4);
+    while (node != NULL) {
+        if (*(u16 *)node == arg1) {
+            return node;
+        }
+        node = *(u8 **)(node + 0x14);
+    }
+    return NULL;
+}
+
