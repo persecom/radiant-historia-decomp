@@ -34,3 +34,7 @@ void func_0202b3d4(Unk_0202B3D4 *arg0, u8 arg1) {
     data_02160244->field_70 |= 1 << arg1;
 }
 
+void func_0202b3fc(s32 arg0) {
+    data_02160244->field_70 |= 1 << arg0;
+}
+
