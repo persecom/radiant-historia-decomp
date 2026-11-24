@@ -42,8 +42,6 @@ extern s32 func_0210a0f4(s32, void *, void *);
 extern u32 func_02007904(void);
 extern void func_0200bb10(void *, u32, u32);
 extern void func_021091b4(void);
-extern s32 func_0210a39c(u32 *, s32, u32 *);
-
 typedef struct Unk_0210a39c {
     u32 field_0;
     u32 field_4;
