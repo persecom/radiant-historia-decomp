@@ -151,17 +151,19 @@ u32 func_020071c8(s32 arg0, u32 arg1, u32 arg2) {
     return aligned;
 }
 
-void func_02007428(s32 arg0, s32 arg1, u8 *arg2) {
-    u32 cookie = func_02008128();
-    u8 *arena = data_0215d060[arg0];
+void func_02007428(s32 arg0, s32 arg1, void *arg2) {
+    u8 *arena;
     u8 *heap;
+    u8 *cell;
+    u32 cookie = func_02008128();
+    arena = data_0215d060[arg0];
     if (arg1 < 0) {
         arg1 = *(s32 *)(arena + 0x0);
     }
     heap = *(u8 **)(arena + 0x10) + arg1 * 0xc;
-    arg2 -= 0x20;
-    *(void **)(heap + 0x8) = func_02007250(*(void **)(heap + 0x8), arg2);
-    *(void **)(heap + 0x4) = func_02007278(*(void **)(heap + 0x4), arg2);
+    cell = (u8 *)arg2 - 0x20;
+    *(void **)(heap + 0x8) = func_02007250(*(void **)(heap + 0x8), cell);
+    *(void **)(heap + 0x4) = func_02007278(*(void **)(heap + 0x4), cell);
     func_0200813c(cookie);
 }
 
@@ -172,6 +174,25 @@ void func_02007538(s32 arg0, u32 arg1) {
 void func_020075d4(s32 arg0, u32 arg1, s32 arg2) {
     u32 mask = (u32)(-0x1000) << ((u32)(arg2 - 0x16) >> 1);
     func_02007538(arg0, arg2 | (arg1 & mask) | 1);
+}
+
+void func_020075fc(void) {
+    s32 inRange = 0;
+    u32 v = *(u32 *)0x02fffd9c;
+    data_0215d084[2] = v;
+    if (v >= 0x02600000 && v < 0x02800000) {
+        inRange = 1;
+    }
+    if (!inRange) {
+        v = 0;
+    }
+    data_0215d084[0] = v;
+    if (v == 0) {
+        u32 addr = 0x02fffd9c;
+        *(u32 *)addr = (u32)func_02007674;
+        *(u32 *)(addr & ~0x800000) = (u32)func_02007674;
+    }
+    data_0215d084[3] = 0;
 }
 
 extern u32 data_0215d084[3];
