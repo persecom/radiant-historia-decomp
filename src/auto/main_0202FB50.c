@@ -65,3 +65,19 @@ void func_02030574(u8 *arg0) {
     }
 }
 
+extern void func_021168f8(void *, void *);
+extern void func_021167f0(void *, void *);
+extern void *func_02030630(u8 *, u16);
+void *func_02030630(u8 *arg0, u16 arg1) {
+    u8 *node = *(u8 **)(arg0 + 8);
+    if (node != NULL) {
+        do {
+            if (*(u16 *)node == arg1) {
+                return node;
+            }
+            node = *(u8 **)(node + 8);
+        } while (node != NULL);
+    }
+    return NULL;
+}
+
