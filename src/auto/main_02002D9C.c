@@ -90,6 +90,10 @@ s32 func_02002f6c(void *arg0) {
     return 0;
 }
 
+void func_02002f9c(void *arg0) {
+    func_02008eec(arg0, (void *)0x04000360);
+}
+
 extern void func_02008eec(void *, void *);
 extern void func_02008738(s32, void *, u32, u32, s32, s32, s32);
 extern void func_02008568(s32, void *, u32, u32, s32);
