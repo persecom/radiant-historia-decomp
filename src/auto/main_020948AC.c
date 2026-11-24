@@ -119,7 +119,7 @@ void func_02094c74(u8 *arg0) {
     if (*(u8 *)(res + 0x14) == 1) {
         *(u16 *)(arg0 + 0xe) |= 2;
     } else {
-        *(u16 *)(arg0 + 0xe) &= ~2;
+        *(u16 *)(arg0 + 0xe) &= 0xfffd;
     }
     func_02032c80(arg0, 6);
 }
