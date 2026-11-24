@@ -3,6 +3,12 @@
 extern s32 data_02162884;
 extern s32 data_02162814;
 extern void func_0210d27c(s32);
+typedef struct { s16 v[11]; } Rec11_020a4c98;
+typedef struct { Rec11_020a4c98 rec[10]; } Buf220_020a4c98;
+extern const Buf220_020a4c98 data_021434a0;
+extern const Buf220_020a4c98 data_021433c4;
+extern void func_021167ac(void *, s32);
+extern void func_021167f0(void *, void *);
 
 typedef struct UnkStruct_020a4f04 {
     u8 unk00[0x48];
