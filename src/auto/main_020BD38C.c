@@ -3,3 +3,7 @@
 
 void func_020bdd80(void) {
 }
+
+void func_020bdd84(void) {
+}
+
