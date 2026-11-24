@@ -290,14 +290,16 @@ void func_02138408(u32 arg0, u32 arg1) {
 }
 
 s32 func_0213841c(s32 arg0) {
+    s32 i;
     s32 ret = 0;
     u8 *base = data_021767bc + arg0 * 0x48;
-    s32 i;
     for (i = 0; i < 6; i++) {
         u32 *entry = (u32 *)(base + i * 0xc);
-        if (*entry != 0) {
+        u32 cb = entry[0];
+        u32 arg = entry[1];
+        if (cb != 0) {
             data_0217667c[arg0] = 1;
-            ret |= ((s32 (*)(u32))entry[0])(entry[1]);
+            ret |= ((s32 (*)(u32))cb)(arg);
             data_0217667c[arg0] = 0;
         }
     }
@@ -507,8 +509,9 @@ void func_02138d68(u8 *arg0, s32 arg1) {
     *(s32 *)(arg0 + 0xc4) = arg1;
     {
         struct Item *arr = (struct Item *)(arg0 + 0x18);
-        if (arr[*(volatile u32 *)(arg0 + 0x10)].b != 1) {
-            func_02139664(arg0, &arr[*(volatile u32 *)(arg0 + 0x10)], 0, 0, arg1);
+        if (arr[*(volatile s32 *)(arg0 + 0x10)].b == 1) {
+        } else {
+            func_02139664(arg0, &arr[*(volatile s32 *)(arg0 + 0x10)], 0, 0, arg1);
         }
     }
     func_02126c0c();
