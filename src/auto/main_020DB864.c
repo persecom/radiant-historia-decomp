@@ -149,8 +149,11 @@ s32 func_020db864(u8 *arg0, u8 *arg1, s32 arg2) {
     return 0;
 }
 
+extern s32 func_020bd490(s32, u8);
+extern void func_020e2834(u8 *, u8, u8);
 void func_020dc4b8(void) {
-u8 *p, *q, *r;
+s32 kind=3;
+u8 *p, *q, *r, *node;
 s8 i;
 u16 id;
 s32 one=1, zero=0;
@@ -185,8 +188,8 @@ func_020d67f8(); func_020d708c((u16)((*(u16 *)(data_02160204+0x72)-1)/20+1),0,*(
 func_020d67f8(); func_020d7e7c((u16)((*(u16 *)(data_02160204+0x72)-1)/20+1),0,*(u16 *)(data_02160204+0x6a));
 }
 func_020d2e98(); func_020d91bc(1); func_020d08d0();
-p=*(u8 **)(data_02160a6c+0xac);
-while(p){id=*(u16 *)(p+0x90); func_020e2834(p,(u8)func_020bd490(3,(u8)id),(u8)id); p=*(u8 **)(p+0x16c);}
+node=*(u8 **)(data_02160a6c+0xac);
+while(node){id=*(u16 *)(node+0x90); func_020e2834(node,func_020bd490(kind,id),id); node=*(u8 **)(node+0x16c);}
 func_02092b04();func_020c0e64();func_020c1038();func_020c11f4();func_0202b398();func_0202b41c();func_0202b694();func_020a31c8(1);
 p=*(u8 **)(data_02160a6c+0xb8);
 while(p){if(*(u32 *)(*(u8 **)(p+0x118)+0x8c)&8)data_02160244[0x170]=one;p=*(u8 **)(p+0x174);}
