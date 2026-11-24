@@ -40,25 +40,26 @@ u32 func_02085140(u32 arg0) {
 }
 
 s32 func_02085158(u32 arg0) {
-    u8 *base = data_0216010c;
     s16 i = 0;
-    s32 n = base[0x614];
-    if (n <= 0) return 0;
+    if (*(u8 *)(data_0216010c + 0x614) <= 0) return 0;
     while (1) {
         if (func_02085110((u8)i) == arg0) {
             return func_02085140((u8)i);
         }
         i = (s16)(i + 1);
-        if (n <= i) return 0;
+        if (*(u8 *)(data_0216010c + 0x614) <= i) return 0;
     }
 }
 
 s32 func_020851bc(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u8 arg4) {
     s32 sum = arg0 + arg1;
     if (arg4 == 0) return (s16)sum;
-    if (arg2 >= sum) return (s16)sum;
-    if (arg4 != 1) return arg3;
-    return sum;
+    if (arg2 < sum) {
+        if (arg4 != 1) return arg3;
+        return sum;
+    } else {
+        return (s16)sum;
+    }
 }
 
 s32 func_020851f8(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u8 arg4) {
@@ -66,10 +67,10 @@ s32 func_020851f8(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u8 arg4) {
     if (arg4 == 0) {
         return (s16)diff;
     }
-    if (arg2 <= diff) {
-        return (s16)diff;
+    if (arg2 > diff) {
+        return (arg4 == 1) ? arg2 : arg3;
     }
-    return (arg4 == 1) ? arg2 : arg3;
+    return (s16)diff;
 }
 
 void func_02085234(void) {
@@ -86,5 +87,22 @@ void func_02085240(void) {
         }
     }
     *(void **)(data_0216010c + 0x58) = func_020a94b8(data_021485a0);
+}
+
+void func_020852a0(void) {
+    if (*(void **)(data_0216010c + 0x58)) {
+        if (**(void ***)(data_0216010c + 0x58)) {
+            func_020a9544(*(void **)(data_0216010c + 0x58));
+        }
+    }
+    *(void **)(data_0216010c + 0x58) = NULL;
+    func_02080d30();
+    if (*(void **)(data_0216010c + 0x44)) {
+        func_0210c5dc(*(void **)(data_0216010c + 0x44));
+        *(void **)(data_0216010c + 0x44) = NULL;
+    }
+    *(void **)(data_0216010c + 0x44) = NULL;
+    *(u8 *)(data_0216010c + 0x3f) = 0;
+    func_02089a98();
 }
 
