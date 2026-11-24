@@ -366,6 +366,11 @@ u32 func_02003454(void) {
     return 0x06200000 + (offset << 14);
 }
 
+u32 func_020034a8(void) {
+    s32 offset = (*(volatile u16 *)0x0400100a & 0x3c) >> 2;
+    return 0x06200000 + (offset << 14);
+}
+
 s32 func_0200308c(s32 *arg0) {
     if (*(volatile u32 *)0x04000600 & 0x4000) {
         return -1;
