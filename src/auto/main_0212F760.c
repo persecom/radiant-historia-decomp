@@ -137,11 +137,8 @@ s32 func_0212fd20(void) {
 }
 
 void func_0212fd28(u8 *a0, u8 *a1) {
-    s32 i;
-    u8 *dst = a0 + 0xa24;
-    for (i = 0; i < 8; i++) {
-        dst[i] = a1[i];
-    }
+    struct s8 { u8 data[8]; };
+    *(struct s8 *)(a0 + 0xa24) = *(struct s8 *)a1;
 }
 
 void func_0212fe50(s32 a0, s32 a1, s32 a2) {
