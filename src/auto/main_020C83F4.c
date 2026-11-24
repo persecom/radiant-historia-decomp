@@ -154,6 +154,10 @@ void func_020c8a08(void) {
     func_020c6f14();
 }
 
+s32 func_020c8b88(void) {
+    return 0x12;
+}
+
 extern void func_020c71bc(void);
 s32 func_020c8b90(void) {
     func_020c71bc();
