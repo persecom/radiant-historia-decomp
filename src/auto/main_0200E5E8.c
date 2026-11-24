@@ -116,6 +116,11 @@ s32 func_0200e808(u32 arg0, u32 arg1) {
     return result;
 }
 
+s32 func_0200e830(u32 arg0, u32 arg1) {
+    func_0200f114();
+    return func_0200e674(0xe, 0, NULL, (void *)arg0, (void *)arg1);
+}
+
 void func_0200f084(u32 arg0) {
     func_0200ef78(data_0215f04c, arg0, 0xff, 0);
 }
