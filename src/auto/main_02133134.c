@@ -16,6 +16,11 @@ void func_021336e8(void) {
     func_020182e4();
 }
 
+extern void func_02013878(void *, s32, s32);
+void func_02133864(void *arg0) {
+    func_02013878(arg0, 0, 0x38);
+}
+
 extern u8 data_0215bbb8[64];
 void *func_02133df8(void) {
     return data_0215bbb8;
