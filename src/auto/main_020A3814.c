@@ -18,21 +18,26 @@ void func_020a3bb8(void) {
 
 void func_020a3bbc(s32 arg0) {
     u8 *base = *(u8 **)((u8 *)*data_0216012c + 0x30);
-    u8 *d = base + arg0 * 0x1c;
-    *(volatile u32 *)0x040004a8 = (*(u32 *)(d + 4) >> 3) | (*(u32 *)(d + 0x18) << 26) |
-                                  0x40000000 | (*(u32 *)(d + 0x10) << 20) |
-                                  (*(u32 *)(d + 0x14) << 23) | 0x20000000;
-    *(volatile u32 *)0x040004ac = *(u32 *)(d + 0xc) >> (4 - (*(u32 *)(d + 0x18) == 2));
+    *(volatile u32 *)0x040004a8 = (*(u32 *)(base + arg0 * 0x1c + 4) >> 3) |
+                                  (*(u32 *)(base + arg0 * 0x1c + 0x18) << 26) |
+                                  0x40000000 |
+                                  (*(u32 *)(base + arg0 * 0x1c + 0x10) << 20) |
+                                  (*(u32 *)(base + arg0 * 0x1c + 0x14) << 23) |
+                                  0x20000000;
+    *(volatile u32 *)0x040004ac = *(u32 *)(base + arg0 * 0x1c + 0xc) >>
+                                  (4 - (*(u32 *)(base + arg0 * 0x1c + 0x18) == 2));
     *(volatile u32 *)0x04000480 = 0x7fff;
 }
 
 void func_020a3c54(s32 arg0) {
     u8 *base = *(u8 **)((u8 *)*data_0216012c + 0x30);
-    u8 *d = base + arg0 * 0x1c;
-    *(volatile u32 *)0x040004a8 = (*(u32 *)(d + 4) >> 3) | (*(u32 *)(d + 0x18) << 26) |
-                                  0x40000000 | (*(u32 *)(d + 0x10) << 20) |
-                                  (*(u32 *)(d + 0x14) << 23);
-    *(volatile u32 *)0x040004ac = *(u32 *)(d + 0xc) >> (4 - (*(u32 *)(d + 0x18) == 2));
+    *(volatile u32 *)0x040004a8 = (*(u32 *)(base + arg0 * 0x1c + 4) >> 3) |
+                                  (*(u32 *)(base + arg0 * 0x1c + 0x18) << 26) |
+                                  0x40000000 |
+                                  (*(u32 *)(base + arg0 * 0x1c + 0x10) << 20) |
+                                  (*(u32 *)(base + arg0 * 0x1c + 0x14) << 23);
+    *(volatile u32 *)0x040004ac = *(u32 *)(base + arg0 * 0x1c + 0xc) >>
+                                  (4 - (*(u32 *)(base + arg0 * 0x1c + 0x18) == 2));
     *(volatile u32 *)0x04000480 = 0x7fff;
 }
 
