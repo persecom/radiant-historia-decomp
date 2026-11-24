@@ -55,6 +55,11 @@ void func_02094990(s32 arg0, s32 arg1) {
     }
 }
 
+void func_020949f4(void) {
+    Unk_020949f4 buf = data_021413f0;
+    func_02094a34(buf.data, 0x5e, 8);
+}
+
 u32 func_02095198(void) {
     if (data_02160110 != NULL) {
         return *(u32 *)(data_02160110 + 0x9c);
