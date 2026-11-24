@@ -47,3 +47,21 @@ void *func_020eb400(void) {
     return p;
 }
 
+void func_020ebc24(u8 *arg0) {
+    if (*(void **)arg0 != NULL) {
+        func_0210c5dc(*(void **)arg0);
+        *(void **)arg0 = NULL;
+    }
+    *(u32 *)(arg0 + 4) = 0;
+    if ((*(u16 *)(arg0 + 0x14) & 1) && *(void **)(arg0 + 0xc) != NULL) {
+        func_0210c5dc(*(void **)(arg0 + 0xc));
+        *(void **)(arg0 + 0xc) = NULL;
+    }
+    *(void **)(arg0 + 0xc) = NULL;
+    func_0211a860(*(void **)(arg0 + 0x10));
+    func_02108594(*(void **)(arg0 + 8));
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
