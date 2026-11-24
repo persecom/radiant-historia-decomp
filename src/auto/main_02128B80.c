@@ -28,6 +28,12 @@ u32 func_021297b8(void *arg0) {
     return *(u32 *)((u8 *)arg0 + 0xc);
 }
 
+void func_02129878(u8 *arg0) {
+    if (*(s32 *)(arg0 + 0xc) == 3) {
+        *(s32 *)(arg0 + 0xc) = 0;
+    }
+}
+
 void *func_0212988c(void *arg0) {
     return *(void **)((u8 *)arg0 + 0x10);
 }
