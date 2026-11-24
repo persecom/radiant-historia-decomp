@@ -92,9 +92,9 @@ void func_020f40a4(void) {
     p = func_0210c518(0x50, (void *)data_02155c3c);
     data_02160c34.field_4 = p;
     func_02008e68(0, p, 0x50);
-    *(u32 *)((u8 *)&data_02151fc8 + 4) = 0x226000;
-    *(u16 *)((u8 *)&data_02151fc8 + 2) = 0x1555;
-    *(u16 *)((u8 *)&data_02151fc8 + 0) = 0x2000;
+    *(u32 *)(data_02151fc8 + 4) = 0x226000;
+    *(u16 *)(data_02151fc8 + 2) = 0x1555;
+    *(u16 *)data_02151fc8 = 0x2000;
     data_02160c34.field_0 = 0;
     func_02107d58(0x226000, 0x1555, 0x2000);
     *(void **)data_02160c34.field_4 = func_020f4210;
