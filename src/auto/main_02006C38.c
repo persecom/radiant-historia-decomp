@@ -165,6 +165,15 @@ u32 func_020071c8(s32 arg0, u32 arg1, u32 arg2) {
     return aligned;
 }
 
+void *func_02007234(void *arg0, void *arg1) {
+    *(void **)((u8 *)arg1 + 4) = arg0;
+    *(void **)arg1 = NULL;
+    if (arg0 != NULL) {
+        *(void **)arg0 = arg1;
+    }
+    return arg1;
+}
+
 void func_02007428(s32 arg0, s32 arg1, void *arg2) {
     u8 *arena;
     u8 *heap;
@@ -211,6 +220,14 @@ void func_020075fc(void) {
 extern u32 data_0215d084[3];
 u32 func_02007664(void) {
     return data_0215d084[2];
+}
+
+extern void func_020076fc(s32);
+extern void func_0200777c(void);
+s32 func_020076e8(s32 arg0) {
+    func_020076fc(arg0);
+    func_0200777c();
+    return arg0;
 }
 
 extern u16 data_0215d128;
