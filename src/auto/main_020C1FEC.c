@@ -139,6 +139,27 @@ void func_020c2c30(void) {
     }
 }
 
+u8 func_020c2c7c(void) {
+ s16 ids[10]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
+ u16 i,used;
+ u32 count=0;
+ u8 *node=*(u8 **)(data_02160090+0x48);
+ while(node) {
+ u8 id=node[0]; s32 found=0;
+ for(i=0;i<10;i++) {
+ if(id==ids[i]) {found=1;break;}
+ }
+ if(!found) {
+ ids[count]=id; count=(u16)(count+1);
+ if(count>10) break;
+ }
+ node=*(u8 **)(node+0x24);
+ }
+ used=0;
+ for(i=0;i<10;i++) if(ids[i]!=-1) used++;
+ return used;
+}
+
 void *func_020c2d80(void) {
     return *(void **)(data_02160090 + 0x48);
 }
@@ -152,5 +173,29 @@ void *func_020c2d94(u8 arg0, u8 arg1) {
         node = *(u8 **)(node + 0x24);
     }
     return NULL;
+}
+
+void func_020c2dd8(u16 arg0) {
+    s16 i = 0;
+    u16 x = 0;
+    u16 count = 0;
+    u16 y = 1;
+
+    while ((s16)(++i) <= 50) {
+        i = 0;
+        func_02108ffc();
+        if (func_020c2d94((u8)x, (u8)y) != NULL) {
+            if (count == arg0) return;
+            count = (u16)(count + 1);
+            y = (u16)(y + 1);
+        } else {
+            y = (u16)(y + 1);
+            if (y > 30) {
+                x = (u16)(x + 1);
+                y = 1;
+                if (x > 30) x = 0;
+            }
+        }
+    }
 }
 
