@@ -128,6 +128,13 @@ void func_021174e4(void) {
     func_021174a8();
 }
 
+void *func_02117630(u8 *arg0, u32 arg1) {
+    if (*(u16 *)arg0 > arg1) {
+        return *(u8 **)(arg0 + 4) + arg1 * 0x10;
+    }
+    return NULL;
+}
+
 s32 func_02117774(void *arg0, void **arg1) {
     u8 *r4 = func_02117904(arg0, 0x43484152);
     if (r4 != NULL) {
