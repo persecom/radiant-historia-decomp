@@ -46,6 +46,17 @@ void func_02107a94(void) {
     func_021254a8();
 }
 
+void func_02107aa0(s32 *arg0, s32 *arg1, s32 *arg2, s32 *arg3, s32 arg4, s32 arg5) {
+    if (arg4 != 0) {
+        (*arg0)--;
+        (*arg2)--;
+    }
+    if (arg5 != 0) {
+        (*arg1)--;
+        (*arg3)--;
+    }
+}
+
 extern u32 data_02155984;
 extern s32 func_02108258(u32);
 s32 func_02108240(void) {
