@@ -9,6 +9,10 @@ extern void func_02111728(void *);
 void func_02111594(void) {
 }
 
+void func_021115b0(u8 *arg0, u32 arg1) {
+    *(u16 *)(arg0 + 0x3c) = (u8)arg1;
+}
+
 void func_02111708(void *arg0) {
     func_02111728(arg0);
     if (arg0 != NULL) {
