@@ -246,6 +246,51 @@ u16 func_0200a108(s32 arg0) {
     return (u16)(val | (shift << 8));
 }
 
+void func_0200a178(u8 *arg0, s32 arg1, u8 *arg2) {
+    struct {
+        u8 pad[0x18];
+        struct {
+            u8 *node;
+            u8 *next;
+        } links[4];
+    } *s = (void *)arg0;
+    u8 *node;
+    func_0200986c();
+    node = s->links[arg1].node;
+    if (node != NULL) {
+        if (arg2 == node) {
+            func_02009880();
+            return;
+        }
+        {
+            u8 *cur = *(u8 **)(node + 0x18);
+            u8 *target = (u8 *)&s->links[arg1];
+            if (target == cur) {
+                *(u8 **)(node + 0x18) = s->links[arg1].next;
+                func_02006da8(s->links[arg1].node, 0x3c);
+            } else {
+                while (cur != NULL) {
+                    if (target == *(u8 **)(cur + 4)) {
+                        break;
+                    }
+                    cur = *(u8 **)(cur + 4);
+                }
+                *(u8 **)(cur + 4) = s->links[arg1].next;
+                func_02006da8(cur, 8);
+            }
+        }
+    }
+    {
+        u8 *old = *(u8 **)(arg2 + 0x18);
+        *(u8 **)(arg2 + 0x18) = (u8 *)&s->links[arg1];
+        s->links[arg1].next = old;
+        s->links[arg1].node = arg2;
+    }
+    func_02009880();
+    func_02006da8(arg0, 0x3c);
+    func_02006da8(arg2, 0x3c);
+}
+
 void func_0200a248(u8 *arg0) {
     struct {
         u8 pad[0x18];
