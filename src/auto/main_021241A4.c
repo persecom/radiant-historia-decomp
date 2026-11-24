@@ -28,6 +28,15 @@ void func_021243ac(s32 *arg0, u8 *arg1) {
     arg0[4] = 0;
 }
 
+void func_021243f4(s32 *arg0) {
+    arg0[0] = 0x1000;
+    arg0[1] = 0;
+    arg0[4] = 0;
+    arg0[5] = 0x1000;
+    arg0[12] = 0;
+    arg0[13] = 0;
+}
+
 void func_02124788(s32 *arg0, u8 *arg1) {
     s32 ty = *(s32 *)(arg1 + 0x28);
     s32 sy = *(s32 *)(arg1 + 0x1c);
@@ -42,6 +51,21 @@ void func_02124788(s32 *arg0, u8 *arg1) {
     arg0[1] = 0;
     arg0[12] = (w * (-t2)) << 4;
     arg0[13] = ((-h) * (sy + t1 - 0x1000)) << 4;
+    arg0[4] = 0;
+}
+
+void func_02124800(s32 *arg0, u8 *arg1) {
+    u16 h = *(u16 *)(arg1 + 0x2e);
+    s32 ty = *(s32 *)(arg1 + 0x28);
+    s32 tx = *(s32 *)(arg1 + 0x24);
+    u16 w = *(u16 *)(arg1 + 0x2c);
+    s32 s = w * (-tx);
+    s32 t = (-(s32)h) * (-ty);
+    arg0[5] = 0x1000;
+    arg0[0] = 0x1000;
+    arg0[1] = 0;
+    arg0[12] = s << 4;
+    arg0[13] = t << 4;
     arg0[4] = 0;
 }
 
