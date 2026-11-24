@@ -81,3 +81,12 @@ fail:
     return FALSE;
 }
 
+void func_020df0c0(void) {
+    u8 **pp = &data_02160a74;
+    u8 *base = *pp;
+    *(s16 *)(base + 0xa4) = (s16)(*(s16 *)(base + 0xae) * 0x18 / 30 + 0x32);
+    *(s16 *)(base + 0xa6) = (s16)(0x6 - *(s16 *)(base + 0xae) * 0x6 / 30);
+    *(s16 *)(base + 0xaa) = (s16)(*(s16 *)(base + 0xae) * 0xb4 / 30);
+    *(s16 *)(base + 0xac) = (s16)(*(s16 *)(base + 0xae) * 0x8e / 30);
+}
+
