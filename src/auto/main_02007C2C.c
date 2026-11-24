@@ -499,6 +499,22 @@ void func_02008690(u32 dmaNo, const void *src, void *dest, u32 size, u32 arg4) {
     }
 }
 
+extern void func_0200893c(u32);
+extern void func_020058fc(u32, void (*)(void *), void *);
+void func_02008840(u32 channel, const void *src, void *dst, u32 size, void (*callback)(void *), void *arg, u32 start) {
+func_02008ab4(channel,(u32)src,size,0);
+if(size==0) { if(callback) callback(arg); return; }
+func_0200893c(channel);
+if(callback) {
+func_020058fc(channel,callback,arg);
+if(start) func_01ff845c(channel,src,dst,(size>>2)|0xc4000000,0);
+else func_01ff845c(channel,src,dst,(size>>2)|0x44000000,4);
+} else {
+if(start) func_01ff845c(channel,src,dst,(size>>2)|0x84000000,0);
+else func_01ff845c(channel,src,dst,(size>>2)|0x04000000,4);
+}
+}
+
 void func_0200893c(u32 dmaNo) {
     u32 enabled = func_02008128();
     volatile u32 *dmaCnt = (volatile u32 *)(0x040000b8 + dmaNo * 12);
