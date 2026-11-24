@@ -11,6 +11,8 @@ extern s32 func_0212fd54(void *, void *);
 extern void func_0212fe64(void *, void *);
 extern void func_0212ff10(void *, void *, void *);
 extern void func_02130018(void *, void *, void *, void *, void *);
+extern u32 data_0215a0a0[3][4];
+extern u32 data_0215a05c[2][4];
 
 extern void func_0213235c(void);
 extern u32 data_021747a0[3];
