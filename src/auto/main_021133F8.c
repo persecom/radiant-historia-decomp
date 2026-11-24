@@ -25,6 +25,41 @@ extern s32 func_02109444(void *);
 extern void func_021093b0(void *);
 extern s32 func_020a94b8(s32);
 
+typedef struct {
+    s8 unk_00;
+    u8 pad_01[3];
+    u32 unk_04;
+    u32 unk_08;
+    u32 unk_0c;
+    u32 unk_10;
+    u32 unk_14;
+    u32 unk_18;
+    u32 unk_1c;
+    u32 unk_20;
+    u32 unk_24;
+} Unk_0216bf90;
+extern Unk_0216bf90 data_0216bf90;
+extern u8 data_0216bfa0[16];
+extern u8 data_0216bfb0[16];
+extern void func_02009834(void);
+extern void func_0200f0a4(u32);
+extern void func_0200f0c4(u32);
+extern void func_02113a80(void);
+extern void func_02114aa4(void);
+extern void func_02113da8(void);
+extern s32 func_02009964(s32);
+extern void func_02113e5c(void);
+extern void func_02114ac4(void);
+extern void func_02116350(void);
+extern void func_02009b24(s32);
+extern void func_02113bcc(s32);
+extern void func_0211630c(s32);
+extern void func_02114b44(void);
+extern void func_020097d0(s32);
+extern void func_020095a8(u32, u32, u32, s32);
+extern s32 func_02009d2c(void);
+extern void func_02009cc0(s32);
+
 extern void func_02114c80(void);
 extern void func_02112f88(void);
 void func_0211355c(void) {
