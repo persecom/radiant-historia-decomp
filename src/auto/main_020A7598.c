@@ -6,7 +6,7 @@ extern void func_02108e54(s32);
 extern void func_0210968c(s32,s32,s32);
 extern void func_02109790(s32);
 extern void func_0210dc88(void);
-extern void func_020a7ec8(void);
+static void func_020a7ec8(void);
 
 extern u8 *data_02160140;
 extern u32 data_02155c3c;
