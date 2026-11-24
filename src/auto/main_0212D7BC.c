@@ -6,6 +6,7 @@ extern void func_0212e5a0(void);
 extern void func_0212e5ac(void);
 extern void func_0212e4b4(void);
 extern void func_0212e528(void);
+extern void func_0212e204(void *);
 extern void func_0212da40(void *);
 extern void func_0212dd4c(void *);
 extern void func_0212db74(void *);
