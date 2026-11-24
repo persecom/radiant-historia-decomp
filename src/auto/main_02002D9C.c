@@ -234,11 +234,10 @@ void func_020030f4(void *arg0) {
 
 u32 func_02003188(void) {
     u16 b = *(volatile u16 *)0x04000008;
-    u32 a = (*(volatile u32 *)0x04000000 & 0x38000000) >> 27;
-    u32 v = a << 16;
-    v += 0x06000000;
-    v += ((b & 0x1f00) >> 8) << 11;
-    return v;
+    u32 a = *(volatile u32 *)0x04000000;
+    a = (a & 0x38000000) >> 27;
+    a = (a << 16) + 0x06000000;
+    return a + (((b & 0x1f00) >> 8) << 11);
 }
 
 u32 func_020031bc(void) {
@@ -440,6 +439,15 @@ void func_0200365c(void *src, u32 offset, u32 size) {
         func_02008690(dma, src, 0x05000400 + offset, size, 1);
     } else {
         func_02008e08(src, 0x05000400 + offset, size);
+    }
+}
+
+void func_020036b8(void *src, u32 offset, u32 size) {
+    s32 dma = data_02145ba4;
+    if (dma != -1 && size > 0x1c) {
+        func_02008690(dma, src, 0x05000200 + offset, size, 1);
+    } else {
+        func_02008e08(src, 0x05000200 + offset, size);
     }
 }
 
