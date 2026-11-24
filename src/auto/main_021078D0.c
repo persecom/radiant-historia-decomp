@@ -222,6 +222,16 @@ void func_02108378(void **arg0) {
     }
 }
 
+void *func_0210853c(void) {
+    u8 *p = (u8 *)func_0210c518(0x88, data_02155c3c);
+    func_02008e68(0, p, 0x88);
+    *(u32 *)(p + 0x58) = 0;
+    *(u32 *)(p + 0x78) = 0;
+    *(void **)(p + 0x7c) = (void *)func_021086f8;
+    func_02108308(p + 0x5c);
+    return p;
+}
+
 void func_02108594(u8 *arg0) {
     if (arg0 == NULL) {
         return;
