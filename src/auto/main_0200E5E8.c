@@ -37,6 +37,29 @@ s32 func_0200e6bc(u32 arg0, u32 arg1, void *arg2) {
     return result;
 }
 
+extern void func_0200ef78(void *, u32, u32, u32);
+s32 func_0200e6f4(u32 arg0, void *arg1, void *arg2) {
+    u32 val;
+    switch (arg0) {
+    case 1:
+        val = 1;
+        break;
+    case 3:
+        val = 2;
+        break;
+    case 2:
+        val = 3;
+        break;
+    default:
+        val = 0;
+        break;
+    }
+    if (val == 0) {
+        return 0xffff;
+    }
+    return func_0200e674(val, 0, NULL, arg1, arg2);
+}
+
 void func_0200f0e4(s32 arg0) {
     func_0200f004(data_0215f04c, arg0);
 }
