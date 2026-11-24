@@ -161,3 +161,7 @@ u16 func_02002740(void) {
     return data_02145ba0;
 }
 
+void func_0200283c(u32 arg0) {
+    *(volatile u32 *)0x04001000 = (*(volatile u32 *)0x04001000 & ~7) | arg0;
+}
+
