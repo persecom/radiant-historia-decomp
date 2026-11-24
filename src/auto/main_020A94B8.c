@@ -364,6 +364,23 @@ u32 func_020aa19c(void) {
     return *(u32 *)(data_021600e4 + 0x13c8);
 }
 
+extern void func_020aa334(void *);
+extern u32 func_020aa19c(void);
+extern void *func_020aa724(void);
+extern volatile char func_020a795c(u32, u32 *, u32 *);
+extern BOOL func_020bdb30(s32, s32);
+void func_020aa1b4(void) {
+    u8 *base = data_021600e4;
+    void *node = (void *)func_020aa19c();
+    if (node == NULL) {
+        return;
+    }
+    func_021168f8(base + 0x13c8, node);
+    if (node != NULL) {
+        func_0210c5dc(node);
+    }
+}
+
 void *func_020aa318(void) {
     return func_0210c594(0xc, data_02155c3c);
 }
