@@ -160,3 +160,27 @@ void *func_0211d8ac(void) {
     return data_0217035c;
 }
 
+extern u8 data_02170248[];
+extern u8 data_021702fc[];
+extern void func_02001194(u8 *, u8 *);
+extern u8 data_021702b8[];
+extern void func_02001508(u8 *, u8 *, u8 *);
+extern void func_02001160(u8 *, u8 *, u32, u32, u32);
+s32 func_0211d8e0(u32 *arg0, u8 *arg1, u32 arg2) {
+    s32 ret = 0;
+    while (arg1 != NULL) {
+        if (arg2 < *(u8 *)(arg1 + 0x19)) {
+            u16 val = *(u16 *)(arg1 + 0x1A + arg2 * 2);
+            if ((val & 0x300) == 0x100) {
+                void (*fn)(u32 *, u8 *, u32) = *(void (**)(u32 *, u8 *, u32))(arg1 + 0xC);
+                if (fn != NULL) {
+                    fn(arg0, arg1, val & 0xFF);
+                    ret = 1;
+                }
+            }
+        }
+        arg1 = *(u8 **)(arg1 + 0x10);
+    }
+    return ret;
+}
+
