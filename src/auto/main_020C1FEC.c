@@ -88,10 +88,39 @@ void *func_020c2adc(u8 arg0) {
     return NULL;
 }
 
+void *func_020c2b20(u8 arg0) {
+    u8 *best = NULL;
+    u8 *node = *(u8 **)(data_02160090 + 0x48);
+    while (node != NULL) {
+        if (node[0] == arg0 && node[1] == 0xff) {
+            if (best == NULL) {
+                best = node;
+            } else if (*(s16 *)(node + 0x10) > *(s16 *)(best + 0x10)) {
+                best = node;
+            } else if (*(s16 *)(node + 0x10) == *(s16 *)(best + 0x10) &&
+                       *(s8 *)(node + 0x14) < *(s8 *)(best + 0x14)) {
+                best = node;
+            }
+        }
+        node = *(u8 **)(node + 0x24);
+    }
+    return best;
+}
+
 void func_020c2b98(void) {
     void *node;
     while ((node = *(void **)(data_02160090 + 0x48)) != NULL) {
         func_021168f8(data_02160090 + 0x48, node);
+        if (node != NULL) {
+            func_0210c5dc(node);
+        }
+    }
+}
+
+void func_020c2be4(void) {
+    void *node;
+    while ((node = *(void **)(data_02160090 + 0x60)) != NULL) {
+        func_021168f8(data_02160090 + 0x60, node);
         if (node != NULL) {
             func_0210c5dc(node);
         }
