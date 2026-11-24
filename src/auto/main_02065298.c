@@ -49,6 +49,30 @@ void func_02065c08(void) {
     }
 }
 
+s32 func_02065c44(void *arg0) {
+    if (arg0 == NULL) {
+        return -1;
+    }
+    switch (*(u8 *)((u8 *)arg0 + 7)) {
+    case 8:
+        return -1;
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+        return 1;
+    case 5:
+    case 6:
+    case 9:
+    case 11:
+        return 0;
+    case 7:
+        return 2;
+    default:
+        return -1;
+    }
+}
+
 void func_02065cb8(u8 arg0) {
     data_021600e0 = arg0;
 }
