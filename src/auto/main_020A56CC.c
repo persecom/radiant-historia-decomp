@@ -1,5 +1,6 @@
 /* 24 functions from 0x020A56CC to 0x020A66B8 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { s32 x, y; } Vec2s32_020A56CC;
 extern void *func_021092d8(const char *);
 extern void func_02005e80(char *, const char *, ...);
 extern s32 func_02092994(void *, s32);
@@ -357,6 +358,45 @@ void *func_020a6360(void *arg0, u8 arg1) {
     return NULL;
 }
 
+extern s32 func_020a66b8(s32 *,s32 *,s32 *,s32 *,s32,s32,s32,s32);
+#pragma optimization_level 3
+void func_020a638c(u8 **list,s32 scale,s32 *offset,s32 arg) {
+ u8 *next;
+ u8 *line=*list;
+ s32 a[2],b[2],first[2],last[2];
+ s32 unit;
+ if(!line)return;
+ do {
+ u8 *point=*(u8 **)(line+4);
+ unit=0x1000;
+ if(point) {
+ first[0]=offset[0]+(*(s16 *)(point+6)*scale)/0x1000-32;
+ first[1]=offset[1]+(*(s16 *)(point+8)*scale)/0x1000+8;
+ first[0]<<=12;first[1]<<=12;
+ }
+ next=*(u8 **)(line+8);
+ if(next) {
+ last[0]=offset[0]+(*(s16 *)(next+6)*scale)/0x1000-32;
+ last[1]=offset[1]+(*(s16 *)(next+8)*scale)/0x1000+8;
+ last[0]<<=12;last[1]<<=12;
+ }
+ while(point) {
+ next=*(u8 **)(point+0x10);
+ if(next) {
+ a[0]=offset[0]+(*(s16 *)(point+6)*scale)/0x1000-32;
+ a[1]=offset[1]+(*(s16 *)(point+8)*scale)/0x1000+8;
+ a[0]<<=12;a[1]<<=12;
+ b[0]=offset[0]+(*(s16 *)(next+6)*scale)/0x1000-32;
+ b[1]=offset[1]+(*(s16 *)(next+8)*scale)/0x1000+8;
+ b[0]<<=12;b[1]<<=12;
+ unit=func_020a66b8(a,b,first,last,0x8000,unit,arg,*(s32 *)(line+0x18));
+ }
+ point=next;
+ }
+ line=*(u8 **)(line+0x14);
+ }while(line);
+}
+#pragma optimization_level 4
 extern const s16 data_0213a394[];
 void func_020a655c(s32 *a,s32 *b,s32 angle,s32 color,s32 z) {
 s32 y,x;
