@@ -166,6 +166,10 @@ void *func_02128530(void *arg0) {
     return ret;
 }
 
+void func_02128578(u8 *arg0, u8 arg1) {
+    arg0[0xa9] = arg1;
+}
+
 extern void func_0212859c(void *);
 void func_02128580(void *arg0) {
     func_0212a9f4();
