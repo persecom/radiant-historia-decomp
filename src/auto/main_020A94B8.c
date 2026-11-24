@@ -124,9 +124,11 @@ s32 func_020a9648(u32 *arg0) {
     return 4;
 }
 
-void func_020a96d4(u32 *arg0) {
-    while (func_020a9648(arg0) >= 4) {
+s32 func_020a96d4(u32 *arg0) {
+    s32 res;
+    while ((res = func_020a9648(arg0)) >= 4) {
     }
+    return res;
 }
 
 u32 func_020a96f0(u32 arg0) {
