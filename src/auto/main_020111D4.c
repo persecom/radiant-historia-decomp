@@ -385,7 +385,7 @@ void func_02011950(u8 *ctx, u8 *src, u32 len) {
     } while (len != 0);
 }
 
-extern void func_020119e4(void);
+extern void func_020119e4(u32 *, void *);
 extern s32 func_02011c70(s32, s32, s32, s32, s32, void *);
 s32 func_02011bdc(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     u8 buf1[0x60];
