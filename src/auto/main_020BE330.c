@@ -212,6 +212,16 @@ void func_020beda0(void *arg0) {
     func_02008f74(arg0, 0, 0x1c);
 }
 
+void func_020bedb4(u8 *arg0, s32 arg1, u16 arg2, u16 arg3, s32 arg4, s32 arg5) {
+    *(u16 *)(arg0 + 0x10) = arg2;
+    *(u16 *)(arg0 + 0xe) = 0;
+    *(u16 *)(arg0 + 0xc) = 0;
+    *(u16 *)(arg0 + 0x12) = arg3;
+    *(s32 *)(arg0 + 0x14) = -arg4;
+    *(s32 *)(arg0 + 0x18) = arg5;
+    func_02009008(arg1, arg0, 0xc);
+}
+
 u8 *func_020befb4(void) {
     return func_020becfc() + 0x1c;
 }
