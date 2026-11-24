@@ -36,6 +36,16 @@ void func_0209491c(s32 arg0, u32 arg1, s32 arg2) {
     func_020a8ab8(obj);
 }
 
+void func_02094990(s32 arg0, s32 arg1) {
+    u8 *p = data_02160110;
+    func_020a9544(*(void **)(p + arg0 * 4 + 0x18));
+    if (arg1 == 0) {
+        *(void **)(p + arg0 * 4 + 0x18) = func_020a94b8(data_021488b0);
+    } else if (arg1 == 1) {
+        *(void **)(p + arg0 * 4 + 0x18) = func_020a94b8(data_021488bc);
+    }
+}
+
 u32 func_02095198(void) {
     if (data_02160110 != NULL) {
         return *(u32 *)(data_02160110 + 0x9c);
