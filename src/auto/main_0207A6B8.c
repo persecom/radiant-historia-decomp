@@ -66,9 +66,13 @@ void func_0207b218(void) {
     if (arr[2] == 0 && arr[3] == 0 && arr[1] == 0 && arr[0] == 0) {
         return;
     }
-    while (arr[*(u8 *)data_021600f0] == 0) {
-        if (*(u8 *)data_021600f0 != 0) {
-            (*(u8 *)data_021600f0)--;
+    while (1) {
+        u8 idx = *(u8 *)data_021600f0;
+        if (arr[idx] != 0) {
+            return;
+        }
+        if (idx != 0) {
+            *(u8 *)data_021600f0 = idx - 1;
         } else {
             *(u8 *)data_021600f0 = 3;
         }
