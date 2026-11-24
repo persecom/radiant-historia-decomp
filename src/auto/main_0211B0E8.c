@@ -15,8 +15,8 @@ extern void func_0211b0e8(s32, u32, u32, u32, u32);
 extern void func_0211b17c(s32, u32, u32, u32, u32);
 
 void func_0211b0e8(s32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
-    u32 idx;
     u32 flag;
+    u32 idx;
     u32 val;
     u16 *reg;
     u32 bits;
