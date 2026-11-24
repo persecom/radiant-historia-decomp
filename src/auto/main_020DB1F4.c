@@ -30,3 +30,29 @@ s32 func_020db1f4(void *arg0, u8 *arg1, s32 arg2, s32 arg3) {
     }
     return 0;
 }
+
+s32 func_020db298(void *arg0, u8 *arg1, s32 arg2, s32 arg3) {
+    if (arg1[7] == 8) {
+        s32 mask;
+        s32 bit;
+        u16 i;
+        u16 count;
+        bit = 1 << arg2;
+        mask = func_020deaf0(arg1, arg2, 1);
+        count = 0;
+        for (i = 0; i < 9; i++) {
+            if ((mask & (1 << i)) != 0 && (arg3 & (1 << i)) != 0) {
+                u8 *unit = (u8 *)func_0202e548((u8)i);
+                if (*(u16 *)(unit + 0x28) == 0) {
+                    func_02030878(arg0, arg1, unit, mask, bit, 1);
+                    count++;
+                }
+            }
+        }
+        if (count != 0) {
+            return mask;
+        }
+    }
+    return -1;
+}
+
