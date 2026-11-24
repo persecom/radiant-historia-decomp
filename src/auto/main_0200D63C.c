@@ -53,6 +53,29 @@ void func_0200dadc(void) {
     func_0200a674(6, (void *)func_0200d868);
 }
 
+s32 func_0200db50(u16 *arg0) {
+    volatile u8 *g = (volatile u8 *)0x02fffc80;
+    if (*(u16 *)(g + 0x58) != 0 && *(u16 *)(g + 0x5e) != 0 && *(u16 *)(g + 0x5a) != 0 && *(u16 *)(g + 0x60) != 0) {
+        if (func_0200df4c(arg0, *(u16 *)(g + 0x58), *(u16 *)(g + 0x5a), g[0x5c], g[0x5d], *(u16 *)(g + 0x5e), *(u16 *)(g + 0x60), g[0x62], g[0x63]) == 0) {
+            arg0[0] = 0;
+            arg0[1] = 0;
+            arg0[2] = 0;
+            arg0[3] = 0;
+        }
+    }
+    return 1;
+}
+
+void func_0200df30(u32 arg0) {
+    func_0200dddc();
+    func_0200e138(arg0, arg0);
+}
+
+void func_0200e254(u16 arg0) {
+    while (*(u16 *)(data_0215f000 + 0x3a) & arg0) {
+    }
+}
+
 u32 func_0200e26c(u32 arg0) {
     return *(u16 *)(data_0215f000 + 0x38) & arg0;
 }
