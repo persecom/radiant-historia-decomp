@@ -293,3 +293,131 @@ void func_020226c0(u8 *arg0, void *arg1) {
     }
 }
 
+extern void func_020305e4(u16 *, s32);
+extern void *func_020ddb90(u16);
+extern void func_020d2f44(void);
+extern void func_020c3020(void *);
+extern void func_020c17bc(u8 *, s32, u16, s32, s32);
+void func_020226ec(u8 *p, u32 flag) {
+    u16 *a0 = *(u16 **)(*(u8 **)(p + 0x118) + 0xa0);
+    s32 id = 0;
+
+    switch (flag) {
+    case 0x1:
+        a0[0] = 0;
+        a0[1] = 0x53;
+        func_020305e4(a0, 0x53);
+        id = 0xbba;
+        break;
+    case 0x2:
+        a0[0] = 0;
+        a0[1] = 0x54;
+        func_020305e4(a0, 0x54);
+        id = 0xbbb;
+        break;
+    case 0x4:
+        a0[0] = 0;
+        a0[1] = 0x55;
+        func_020305e4(a0, 0x55);
+        id = 0xbbc;
+        break;
+    case 0x8:
+        a0[0] = 0;
+        a0[1] = 0x56;
+        func_020305e4(a0, 0x56);
+        id = 0xbbd;
+        break;
+    case 0x10:
+        a0[0] = 0;
+        a0[1] = 0x57;
+        func_020305e4(a0, 0x57);
+        id = 0xbbe;
+        break;
+    case 0x20:
+        a0[0] = 0;
+        a0[1] = 0x58;
+        func_020305e4(a0, 0x58);
+        id = 0xbbf;
+        break;
+    case 0x80:
+    case 0x200:
+    case 0x800:
+    case 0x2000:
+    case 0x8000:
+    case 0x20000:
+    case 0x80000:
+    case 0x100000:
+    case 0x200000:
+    case 0x800000:
+    case 0x1000000:
+    case 0x2000000:
+    case 0x20000000:
+        a0[0] = 0;
+        a0[1] = 0x59;
+        func_020305e4(a0, 0x59);
+        id = 0xbc1;
+        break;
+    case 0x40:
+    case 0x100:
+    case 0x400:
+    case 0x1000:
+    case 0x4000:
+    case 0x10000:
+    case 0x40000:
+    case 0x400000:
+        a0[0] = 0;
+        a0[1] = 0x5a;
+        func_020305e4(a0, 0x5a);
+        id = 0xbc2;
+        break;
+    case 0x4000000:
+        a0[0] = 0;
+        a0[1] = 0x5b;
+        func_020305e4(a0, 0x5b);
+        id = 0xbc3;
+        break;
+    case 0x8000000:
+        a0[0] = 0;
+        a0[1] = 0x5c;
+        func_020305e4(a0, 0x5c);
+        id = 0xbc4;
+        break;
+    case 0x10000000:
+        a0[0] = 0;
+        a0[1] = 0x5d;
+        func_020305e4(a0, 0x5d);
+        id = 0xbc5;
+        break;
+    case 0x40000000:
+        a0[0] = 0;
+        a0[1] = 0x59;
+        func_020305e4(a0, 0x59);
+        id = 0xbc1;
+        break;
+    case 0x80000000:
+        a0[0] = 0;
+        a0[1] = 0x59;
+        func_020305e4(a0, 0x59);
+        id = 0xbc1;
+        break;
+    }
+
+    if (id != 0) {
+        u16 idx;
+        u8 type = **(u8 **)(p + 0x118);
+        if (type == 0) {
+            idx = *(u16 *)(p + 0x90) + 0x190;
+        } else if (type == 1) {
+            idx = *(u16 *)(p + 0x90) + 0x135;
+        }
+        {
+            void *res = func_020ddb90(idx);
+            if (res != 0) {
+                func_020d2f44();
+                func_020c3020(res);
+            }
+        }
+        func_020c17bc(p, id, idx, 0, 0);
+    }
+}
+
