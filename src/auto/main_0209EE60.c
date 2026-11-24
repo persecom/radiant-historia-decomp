@@ -74,6 +74,45 @@ void func_0209f010(s16 arg1) {
  }
 }
 
+void func_0209f1c4(s32 mode,s16 arg1,s16 x,s16 y,s16 *p,s16 color) {
+ *(volatile u32 *)0x040004a4=0x1f00c0;
+ func_020a3bbc(4);
+ *(volatile u32 *)0x04000480=(u16)(color|(color<<5)|(color<<10));
+ if(mode==0) {
+ Table_0209ee60 buf=data_02142dfc;
+ u16 i;
+ for(i=0;i<3;i++) {
+ u16 idx=i*9;
+ p[1]=buf.data[idx];
+ p[2]=buf.data[idx+1];
+ p[3]=buf.data[idx+2];
+ p[4]=buf.data[idx+3];
+ p[5]=x+buf.data[idx+4];
+ p[6]=y+buf.data[idx+5];
+ p[7]=arg1;
+ p[8]=buf.data[idx+7];
+ p[9]=buf.data[idx+8];
+ func_021098ac(p);
+ }
+ } else if(mode==1) {
+ Table_0209ee60 buf=data_02142d54;
+ u16 i;
+ for(i=0;i<3;i++) {
+ u16 idx=i*9;
+ p[1]=buf.data[idx];
+ p[2]=buf.data[idx+1];
+ p[3]=buf.data[idx+2];
+ p[4]=buf.data[idx+3];
+ p[5]=x+buf.data[idx+4];
+ p[6]=y+buf.data[idx+5];
+ p[7]=arg1;
+ p[8]=buf.data[idx+7];
+ p[9]=buf.data[idx+8];
+ func_021098ac(p);
+ }
+ }
+}
+
 void func_0209f3a0(s32 mode) {
     u8 *p = data_021600b0;
     if (mode == 0) {
