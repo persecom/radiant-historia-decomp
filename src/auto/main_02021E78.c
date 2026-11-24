@@ -69,18 +69,23 @@ void func_02022088(s32 arg0, s32 arg1, ...) {
     u8 *p = func_02021f54(args[0]);
     *p = (u8)(args[1] & 0xff);
 }
-#pragma peephole on
-void func_020220b0(s32 arg0, s32 arg1, ...) {
+#pragma optimization_level 0
+void func_020220b0(s32 arg0, s32 arg1, ...)
+{
     u8 *p = func_02021f54(((s32 *)&arg0)[0]);
-    s32 r4 = p[0] + ((s32 *)&arg0)[1];
-    if (r4 > 99) {
-        r4 = 99;
-    } else if (r4 < 0) {
-        r4 = 0;
-    }
-    *p = r4 & 0xff;
-}
+    s32 value = p[0];
 
+    value += ((s32 *)&arg0)[1];
+
+    if (value > 99) {
+        value = 99;
+    } else if (value < 0) {
+        value = 0;
+    }
+
+    p[0] = value & 0xff;
+}
+#pragma optimization_level 4
 void func_02022100(s32 arg0) {
     u32 *base = (u32 *)data_02160078;
     *(u32 *)((u8 *)base + 0x28) += arg0;
