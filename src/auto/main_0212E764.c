@@ -1,5 +1,18 @@
 /* 58 functions from 0x0212E764 to 0x0212F760 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { u32 words[9]; } Config_0212e860;
+extern const u32 data_0214590c;
+extern u8 data_02156e0c[], data_02156e4c[];
+extern u32 data_0215ce00[], data_02156dd8;
+extern Config_0212e860 data_02174500;
+extern u8 data_02174548[],data_02174608[],data_021746c8[];
+extern void func_021380bc(void *);
+extern void func_021385d4(void);
+extern void func_021383f4(void (*)(void),s32);
+extern void func_02138408(void (*)(void),s32);
+extern s32 func_02132ba4(void *,u32 *);
+extern void func_0212e634(void),func_0212e670(void),func_0212e69c(void),func_0212e70c(void);
+extern void func_020062d8(void *,void (*)(void),s32,u32,u32,u32);
 extern const s16 data_02145088[], data_02145288[], data_02145488[], data_02145688[];
 extern u32 data_02145910;
 extern s32 data_02174798;
@@ -273,6 +286,34 @@ void func_0212ee04(u8 *arg0, u8 *arg1) {
     if (c > 0) {
         arg1[11] = src[11];
     }
+}
+
+s32 func_0212ee80(u8 *src, s32 size, s32 *length, u8 *out) {
+ s32 left, i;
+ if (length) *length = 0;
+ if (size < 4) return -1;
+ if ((u16)((src[0] << 8) | src[1]) != 0x8000) return -4;
+ left = (src[2] << 8) | src[3];
+ if (length) *length = left;
+ if (!out) return 0;
+ if (size < left + 4) return -2;
+ if (left - 6 < 16) return -2;
+ func_0212ecb0(src + 4, out);
+ src += 0x14;
+ left -= 0x16;
+ if (*(s8 *)(out + 0x3c) == 4) {src += 12; left -= 12;}
+ if (left < 4) return 0;
+ func_0212ed3c(src, out);
+ src += 4;
+ if (left < *(s16 *)(out+14) * 20) return 0;
+ for (i=0; i<*(s16 *)(out+14); i++) func_0212ed50(src, out+16+i*20);
+ left -= *(s16 *)(out+14) * 20U;
+ for (i=0; i<*(s8 *)(out+3); i++) {
+  if (left < 12) return 0;
+  func_0212ee04(src, out+36+i*12);
+  src += 12; left -= 12;
+ }
+ return 0;
 }
 
 void func_0212efe8(u32 *arg0, u32 *arg1) {
