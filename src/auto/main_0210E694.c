@@ -83,6 +83,12 @@ void func_0210e740(void) {
     }
 }
 
+void func_0210e7ac(void) {
+    func_020081c0();
+    func_02002790();
+    *(volatile u32 *)0x04001000 |= 0x10000;
+}
+
 s32 func_0210f170(const char *arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 ret;
     if (data_02155c94[2] != 0 && arg0 != NULL) {
