@@ -505,24 +505,29 @@ void func_0200a884(u8 *arg0, u32 arg1) {
     func_0200813c(irq);
 }
 
-s32 func_0200a6e4(s32 arg0, s32 arg1, u32 arg2, s32 arg3) {
-    u32 v = (arg3 & ~0x1f) | (arg0 & 0x1f);
-    u32 val;
-    volatile u16 *reg = (volatile u16 *)0x4000184;
+s32 func_0200a6e4(s32 arg0, u32 arg1, s32 arg2) {
+    union {
+        struct {
+            u32 tag : 5;
+            u32 err : 1;
+            u32 data : 26;
+        } e;
+        u32 raw;
+    } msg;
     s32 irq;
-    v &= ~0x20;
-    v = (v | ((arg2 << 31) >> 26)) & 0x3f;
-    val = v | (arg1 << 6);
-    if ((*reg & 0x4000) != 0) {
-        *reg |= 0xc000;
+    msg.e.tag = arg0;
+    msg.e.err = arg2;
+    msg.e.data = arg1;
+    if ((*(volatile u16 *)0x4000184 & 0x4000) != 0) {
+        *(volatile u16 *)0x4000184 |= 0xc000;
         return -1;
     }
     irq = func_02008128();
-    if ((*reg & 2) != 0) {
+    if ((*(volatile u16 *)0x4000184 & 2) != 0) {
         func_0200813c(irq);
         return -2;
     }
-    *(volatile u32 *)((u8 *)reg + 4) = val;
+    *(volatile u32 *)0x4000188 = msg.raw;
     func_0200813c(irq);
     return 0;
 }
