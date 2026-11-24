@@ -1,6 +1,7 @@
 /* 19 functions from 0x020F1A1C to 0x020F26FC (main), found by ds-decomp. */
 #include "common.h"
 typedef struct { u32 type:8; u32 size:24; } Header_020f1b70;
+typedef struct { u32 unknown; Header_020f1b70 header; } Info_020f1b70;
 static inline void Extension_020f1b70(char *path, char *ext, u16 n) {
     u16 i;
     for(i=0;i<32;i++) {
@@ -97,7 +98,7 @@ s32 func_020f1b70(void *obj, s32 mode) {
     for (i=0; i<32; i++) {
         if (path[i] == 0) {
             u16 len=i;
-            i=len-3;
+            i-=3;
             while (i<len) { ext3[3-(len-i)]=path[i]; i++; }
             ext3[3-(len-i)]=0;
             break;
@@ -109,7 +110,7 @@ s32 func_020f1b70(void *obj, s32 mode) {
         compressed=func_02109b14(path,(s32)info);
         data_02155bac=1;
         header=*(u32 *)compressed;
-        header=((header>>8)<<8) | (info[1]&255);
+        header=((info[1]&255) | ((header>>8)<<8));
         buffer=func_0210c594(header>>8,data_02155c3c);
         func_02009230(compressed,buffer);
         if(compressed)func_0210c5dc(compressed);
@@ -120,7 +121,7 @@ s32 func_020f1b70(void *obj, s32 mode) {
         for (i=0; i<32; i++) {
             if (path[i] == 0) {
                 u16 len=i;
-                i=len-5;
+                i-=5;
                 while(i<len) { ext5[5-(len-i)]=path[i]; i++; }
                 ext5[5-(len-i)]=0;
                 break;
