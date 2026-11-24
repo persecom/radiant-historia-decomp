@@ -147,6 +147,18 @@ s32 func_0210ccbc(const char *arg0) {
     return func_020123f0(arg0, *(const char **)((u8 *)data_021626e8.f4 + 8)) == 0;
 }
 
+const char *func_0210cce4(const char *arg0) {
+    void *r0 = data_021626e8.f4;
+    const char *r4 = *(const char **)((u8 *)r0 + 8);
+    if (!func_021093f0(r0)) {
+        return arg0;
+    }
+    if (*r4 == '\0') {
+        r4 = arg0;
+    }
+    return r4;
+}
+
 const char *func_0210cd20(u8 *arg0, const char *arg1) {
     const char *r4 = *(const char **)(arg0 + 8);
     if (!func_021093f0(arg0)) {
