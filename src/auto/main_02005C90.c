@@ -3,6 +3,11 @@
 extern u8 data_0215ce04[], data_0215d058[], data_027e0000[];
 extern u32 data_0215ced0[];
 extern u8 SDK_SYS_STACKSIZE[], SDK_IRQ_STACKSIZE[];
+static inline u32 thread_stack_top(void) { return (u32)data_027e0000+0x3f80-(u32)SDK_IRQ_STACKSIZE; }
+static inline u32 thread_stack_bottom(void) {
+ s32 size=(s32)SDK_SYS_STACKSIZE;
+ return (size<=0?0x027e0080:thread_stack_top())-size;
+}
 extern void func_020067c8(void);
 extern s32 func_020067a0(s32);
 void func_020062d8(u8 *, void (*)(void *), void *, u8 *, u32, u32);
@@ -344,17 +349,17 @@ void func_020060b8(void) {
 }
 
 void func_0200617c(void) {
- u8 *p; u32 end,start; s32 size;
- if(data_0215cde4[3]) return;
- data_0215cde4[3]=1;
- data_0215cde4[2]=(u32)data_0215ce04;
- p=data_0215ced0;
+ u8 *p; volatile u32 *info=data_0215cde4; u32 end,start; s32 size;
+ if(info[3]) return;
+ info[3]=1;
+ info[2]=(u32)data_0215ce04;
+ p=(u8 *)data_0215ced0;
  *(u32 *)(p+0x70)=16; *(u32 *)(p+0x6c)=0;
  *(u32 *)(p+0x64)=1; *(u32 *)(p+0x68)=0; *(u32 *)(p+0x74)=0;
- data_0215cde4[9]=(u32)p; data_0215cde4[8]=(u32)p;
+ info[9]=(u32)p; info[8]=(u32)p;
  size=(s32)SDK_SYS_STACKSIZE;
- start=(size<=0?0x027e0080:(u32)(data_027e0000+0x3f80)-(u32)SDK_IRQ_STACKSIZE)-size;
- end=(u32)(data_027e0000+0x3f80)-(u32)SDK_IRQ_STACKSIZE;
+ start=(size<=0?0x027e0080:((u32)data_027e0000+0x3f80)-(u32)SDK_IRQ_STACKSIZE)-size;
+ end=((u32)data_027e0000+0x3f80)-(u32)SDK_IRQ_STACKSIZE;
  *(u32 *)(p+0x94)=end; *(u32 *)(p+0x90)=start; *(u32 *)(p+0x98)=0;
  *(u32 *)(end-8)=0xfddb597d;
  **(u32 **)(p+0x90)=0x7bf9dd5b;
