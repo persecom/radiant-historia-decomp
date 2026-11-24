@@ -40,6 +40,13 @@ void func_020c84ac(u8 *arg0) {
     }
 }
 
+void func_020c84e8(u8 *arg0, s32 arg1, s32 arg2) {
+    func_020c84ac(arg0);
+    *(void **)(arg0 + 0x40) = func_0210c594(0x34, data_02155c3c);
+    *(void **)(arg0 + 0x48) = *(void **)(arg0 + 0x30);
+    func_020a9830(*(void **)(arg0 + 0x40), arg0 + 0x44, arg1, arg2, 0, 0);
+}
+
 void func_020c8548(u8 *arg0, s32 arg1) {
     *(s32 *)(*(u8 **)(arg0 + 0x30) + 0x44) = arg1 << 12;
 }
