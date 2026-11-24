@@ -1,5 +1,7 @@
 /* 12 functions from 0x02017F74 to 0x02018C20 (main), found by ds-decomp. */
 #include "common.h"
+extern const u16 data_0213eb14[];
+extern const u8 data_0213ea94[];
 
 extern s32 func_02018378(const char *, char **, s32);
 typedef struct { const char *p; s32 n; } Input_02018378;
@@ -138,6 +140,42 @@ void func_02018940(UnkNum_02018844 *p, unsigned long long n)
   }
 
   p->unk02 = p->unk04 - 1;
+}
+
+void func_02018a04(UnkNum_02018844 *out, const UnkNum_02018844 *a, const UnkNum_02018844 *b) {
+u8 buf[64];
+u32 carry=0;
+s32 k=a->unk04+b->unk04-1;
+u8 *end=buf+k+1;
+u8 *p=end;
+s32 n,i,j;
+const u8 *y,*x;
+out->unk00[0]=0;
+while(k>0) {
+j=b->unk04-1;
+i=k-j-1;
+if(i<0) {i=0;j=k-1;}
+n=j+1;
+if(n>a->unk04-i) n=a->unk04-i;
+x=a->digits+i; y=b->digits+j;
+while(n>0) {u32 digit=*x++; carry+=digit * *y--; n--;}
+*--p=carry%10;
+carry/=10;
+k--;
+}
+out->unk02=a->unk02+b->unk02;
+if(carry) {*--p=carry;out->unk02++;}
+i=0;
+while(i<32 && p<end) {out->digits[i++]=*p++;}
+out->unk04=i;
+if(p>=end) return;
+if(*p<5) return;
+if(*p==5) {
+u8 *q=p+1;
+while(q<end) {if(*q) goto round_up;q++;}
+if(!(p[-1]&1)) return;
+}
+round_up: func_020188b0(out,out->unk04);
 }
 
 void func_02018b84(u8 *arg0, u8 *arg1, u16 arg2) {
