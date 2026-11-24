@@ -1,5 +1,12 @@
 /* 7 functions from 0x02056D10 to 0x02057AE4 (main), found by ds-decomp. */
 #include "common.h"
+extern u8 data_0214656c[], data_0214658c[], data_021465b4[], data_021465dc[], data_02146608[], data_0214662c[];
+extern void *func_021092d8(void *);
+extern int func_020f685c(void *, int);
+extern int func_02109444(void *);
+extern void func_021093b0(void *);
+extern void func_02005e80(void *, void *, ...);
+extern void func_020f2524(void *, void *, int, void *, void *);
 
 extern u8 *data_021600ac;
 extern u8 *func_02057764(u16, s32, s16, s16, s16, s8, u16, u8, s32);
@@ -77,6 +84,67 @@ void func_02056f2c(void) {
         if (node != NULL) func_0210c5dc(node);
         node = next;
     }
+}
+
+u8 *func_02057764(u16 a0, s32 a1, s16 a2, s16 a3, s16 a4, s8 a5, u16 a6, u8 a7, s32 a8) {
+    s32 v = a1;
+    u8 count;
+    u32 local[5] = {0, 0, 0, 0, 0};
+    u8 *node;
+    u8 *buf;
+    u8 *p;
+    u8 *result;
+    u8 j;
+    u8 digit;
+
+    p = func_0210c594(0x28, data_02155c3c);
+    func_021167ac(p + 0x14, 8);
+    *(u16 *)(p + 0) = a0;
+    *(u32 *)(p + 4) = a1;
+    *(u16 *)(p + 8) = a2;
+    *(u16 *)(p + 0xa) = a3;
+    *(s16 *)(p + 0xc) = a4;
+    *(u8 *)(p + 0xe) = a5;
+    *(u16 *)(p + 0x10) = a6;
+    *(u8 *)(p + 0x12) = a7;
+    count = 0;
+    for (; v != 0; v = v / 10) {
+        count++;
+    }
+    if (count == 0) {
+        count = 1;
+    }
+    buf = func_020f4d40(0);
+    if (buf == 0) {
+        buf = func_020f4c2c(0);
+        *(u32 *)(buf + 0x20) = 0x1000;
+        *(u32 *)(buf + 0x24) = 0x1000;
+    }
+    for (j = 0; j < count; j++) {
+        result = func_020f4ec4();
+        node = func_0210c594(0x10, data_02155c3c);
+        digit = (u8)(a1 % 10);
+        a1 /= 10;
+        *(s32 *)(result + 8) = (a7 != 0) ? (a2 - j * a5) : (a5 * (count - 1 - j) + a2);
+        *(s32 *)(result + 0xc) = (a8 != 0) ? a3 : a3 - 1;
+        *(u16 *)(result + 0x44) = a4;
+        *(u32 *)(result + 0x48) = a0;
+        local[1] = 0x8000;
+        if (a8 != 0) {
+            local[1] = 0;
+        }
+        local[3] = 0;
+        local[2] = a6 + digit * data_02146568;
+        if (func_020f50bc(result, local, buf, local[2]) == 0) {
+            return 0;
+        }
+        func_020f5114(result, 1);
+        *(u32 *)(node + 4) = result;
+        *(u8 *)(node + 0) = j;
+        func_021167f0(p + 0x14, node);
+    }
+    func_021167f0(data_021600ac + 0x8d0, p);
+    return p;
 }
 
 void *func_020579dc(u16 arg0) {
