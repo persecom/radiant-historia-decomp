@@ -70,6 +70,9 @@ extern void func_0212eb74(void *, s32);
 extern void func_0212e5fc(void *);
 extern u8 data_0215682c[40];
 extern u8 data_02156854[40];
+extern void func_0212d558(void *);
+extern u8 data_021569b8[];
+extern s32 func_0212eba4(void *);
 extern s32 func_0212d5b0(void *);
 
 extern void func_0212869c(void *, void *);
