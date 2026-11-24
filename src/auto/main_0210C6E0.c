@@ -361,12 +361,24 @@ void func_0210d07c(void) {
         void *ptr;
         u32 unk10, unk14;
         u16 unk18, unk1a;
-        u32 unk1c, unk20, unk24, unk28, unk2c;
-        u8 unk30[4];
+        u32 unk1c, unk20, unk24, unk28, unk2c, unk30;
         u16 unk34, unk36, unk38, unk3a;
-        u8 unk3b;
-    } unk = {0};
+    } unk;
+    unk.unk1c = 0;
+    unk.unk24 = 0;
+    unk.unk20 = 0;
+    unk.unk28 = 0;
+    unk.unk2c = 0;
+    unk.unk30 = 0;
+    unk.unk34 = 0;
+    unk.unk36 = 0;
+    unk.unk38 = 0;
+    unk.unk3a = 0;
     unk.ptr = &data_02155c64;
+    unk.unk10 = 0;
+    unk.unk14 = 0;
+    unk.unk18 = 0;
+    unk.unk1a = 0;
     func_02117a58(&unk);
 }
 
