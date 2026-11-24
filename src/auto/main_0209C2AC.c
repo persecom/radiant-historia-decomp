@@ -20,12 +20,13 @@ void *func_0209c888(u32 arg0, u32 arg1) {
 void *func_0209c8dc(u32 arg0) {
     u8 *node = *(u8 **)(data_02160120 + 0x708);
     u8 i = 0;
-    if (node == NULL) return NULL;
-    do {
-        if (i == arg0) return node;
-        node = *(u8 **)(node + 0xc);
-        i++;
-    } while (node != NULL);
+    if (node != NULL) {
+        do {
+            if (i == arg0) return node;
+            node = *(u8 **)(node + 0xc);
+            i++;
+        } while (node != NULL);
+    }
     return NULL;
 }
 
