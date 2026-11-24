@@ -58,22 +58,40 @@ void func_0210aa14(void *arg0) {
     }
 }
 
-void *func_0210aad0(void *arg0, s32 arg1, s32 arg2) {
+void *func_0210aa5c(void *arg0, s32 arg1, s32 arg2) {
     void *p;
     p = func_02109b14(arg1, arg2);
     if (p == NULL) {
         return p;
     }
     if (func_02109f84(p) != 0) {
-        *(void **)arg0 = (u8 *)func_02117904(p, 0x43484152) + 8;
+        *(void **)arg0 = (u8 *)func_02117904(p, 0x4e534352) + 8;
         return p;
     }
-    if (func_02117774(p, arg0) != 0) {
+    if (func_021178d4(p, arg0) != 0) {
         return p;
     }
     if (p != NULL) {
         func_0210c5dc(p);
         p = NULL;
+    }
+    return p;
+}
+
+void *func_0210aad0(void *arg0, s32 arg1, s32 arg2) {
+    void *p;
+    p = func_02109b14(arg1, arg2);
+    if (p != NULL) {
+        if (func_02109f84(p) == 0) {
+            if (func_02117774(p, arg0) == 0) {
+                if (p != NULL) {
+                    func_0210c5dc(p);
+                    p = NULL;
+                }
+            }
+        } else {
+            *(void **)arg0 = (u8 *)func_02117904(p, 0x43484152) + 8;
+        }
     }
     return p;
 }
