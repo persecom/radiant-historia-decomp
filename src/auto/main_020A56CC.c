@@ -18,6 +18,41 @@ typedef struct {
     s32 y;
     s32 z;
 } Vec3s32_020A56CC;
+void *func_020a583c(void) {
+    return func_0210c594(0x80, data_02155c3c);
+}
+
+void func_020a5858(u8 *arg0) {
+    if (arg0 == NULL) {
+        return;
+    }
+    if (*(u16 *)(arg0 + 0x5c) & 1) {
+        func_020a994c(arg0 + 0xc);
+    }
+    func_020a98a0(arg0 + 0xc);
+    func_020a9544(*(void **)(arg0 + 0));
+    *(void **)(arg0 + 0) = NULL;
+    if (*(u8 **)(arg0 + 4) != NULL) {
+        (*(void (**)(void *))(*(u8 **)(arg0 + 4) + 0xc))(*(void **)(arg0 + 4));
+        *(void **)(arg0 + 4) = NULL;
+    }
+    if (*(u8 **)(arg0 + 8) != NULL) {
+        (*(void (**)(void *))(*(u8 **)(arg0 + 8) + 0xc))(*(void **)(arg0 + 8));
+        *(void **)(arg0 + 8) = NULL;
+    }
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
+void func_020a5bf4(u8 *arg0, void *arg1) {
+    (*(void (**)(void *))(*(u8 **)(arg0 + 4) + 4))(*(void **)(arg0 + 4));
+    if (arg1 != NULL) {
+        func_0203bc34(*(void **)(arg0 + 0), *(void **)(arg0 + 4), arg1, 0, 0, 0);
+    }
+    func_020a899c(*(void **)(arg0 + 4));
+}
+
 void func_020a5ed4(void **arg0) {
     void *ptr;
     while ((ptr = *arg0) != NULL) {
