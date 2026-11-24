@@ -24,3 +24,8 @@ void *func_020abf3c(void) {
     return p;
 }
 
+void func_020ac094(s32 *arg0, s32 *arg1) {
+    *arg0 = data_02162908[0];
+    *arg1 = data_02162908[1];
+}
+
