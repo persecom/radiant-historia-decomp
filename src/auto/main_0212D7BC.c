@@ -10,6 +10,48 @@ extern void func_0212d7bc(void *, s32, s32, s32, s32);
 extern s32 data_02156d74[];
 extern s32 data_021740d8[];
 extern u8 data_021740f0[10][0x64];
+void *func_0212d89c(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    u8 *entry = NULL;
+    s32 i;
+    for (i = 0; i < data_02156d74[2]; i++) {
+        entry = data_021740f0[data_021740d8[4] + i];
+        if ((s8)entry[0] == 0) {
+            break;
+        }
+    }
+    if (i == data_02156d74[2]) {
+        return NULL;
+    }
+    func_0212d7bc(entry, arg0, arg1, arg2, arg3);
+    entry[3] = 1;
+    return entry;
+}
+
+void *func_0212d938(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    u8 *entry = NULL;
+    s32 i;
+    for (i = 0; i < data_02156d74[0]; i++) {
+        entry = data_021740f0[data_02156d74[1] + i];
+        if ((s8)entry[0] == 0) {
+            break;
+        }
+    }
+    if (i == data_02156d74[0]) {
+        return NULL;
+    }
+    func_0212d7bc(entry, arg0, arg1, arg2, arg3);
+    entry[3] = 0;
+    return entry;
+}
+
+s32 func_0212d9cc(void *arg0, void *arg1) {
+    s32 ret;
+    func_0212e5a0();
+    ret = func_0212d9f8(arg0, arg1);
+    func_0212e5ac();
+    return ret;
+}
+
 s32 func_0212dc0c(s8 *arg0) {
     return arg0[1];
 }
