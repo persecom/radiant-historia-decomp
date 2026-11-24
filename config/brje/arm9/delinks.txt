@@ -653,7 +653,10 @@ src/auto/main_020B9F6C.c:
     .text start:0x020b9f6c end:0x020ba63c
 
 src/auto/main_020BA63C.c:
-    .text start:0x020ba63c end:0x020bb558
+    .text start:0x020ba63c end:0x020baeb0
+
+src/auto/main_020BAEB0.c:
+    .text start:0x020baeb0 end:0x020bb558
 
 src/auto/main_020BB558.c:
     .text start:0x020bb558 end:0x020bbd2c
