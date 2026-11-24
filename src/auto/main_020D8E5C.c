@@ -108,6 +108,24 @@ s32 func_020d90bc(s32 arg0) {
     return 0;
 }
 
+void func_020d914c(s32 arg0) {
+    Unk3Words v;
+    switch (arg0) {
+        case 0:
+            v.unk0 = 0x260000;
+            v.unk4 = 0x30000;
+            v.unk8 = 0x1e0000;
+            func_020d9058(&v);
+            break;
+        case 1:
+            v.unk0 = 0x1f0000;
+            v.unk4 = 0x30000;
+            v.unk8 = 0x1e0000;
+            func_020d9058(&v);
+            break;
+    }
+}
+
 void *func_020d9df4(void) {
     return *(void **)(data_02160258 + 0x80);
 }
