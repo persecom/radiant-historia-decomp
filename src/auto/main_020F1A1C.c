@@ -1,5 +1,12 @@
 /* 19 functions from 0x020F1A1C to 0x020F26FC (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { u32 type:8; u32 size:24; } Header_020f1b70;
+static inline void Extension_020f1b70(char *path, char *ext, u16 n) {
+    u16 i;
+    for(i=0;i<32;i++) {
+        if(path[i]==0) { u16 len=i; i=len-n; while(i<len) { ext[n-(len-i)]=path[i]; i++; } ext[n-(len-i)]=0; break; }
+    }
+}
 extern void func_02005e80(char *, const char *, ...);
 extern char data_02151dc8[], data_02151dd0[];
 extern void *func_0210aad0(void **,char *,s32 *);
@@ -73,6 +80,58 @@ s32 func_020f1a1c(void *arg0, s32 arg1) {
         }
     }
 
+    return ret;
+}
+
+s32 func_020f1b70(void *obj, s32 mode) {
+    char path[32];
+    char ext3[8];
+    char ext5[8];
+    s32 info[2];
+    s32 ret = 0;
+    void *compressed = NULL, *buffer = NULL;
+    u16 i;
+    if (!mode) func_02005e80(path, data_02151db4, data_02160af0[3]);
+    else func_02005e80(path, data_02151db8, data_02160af0[4]);
+    if (path[0] == '-') return 0;
+    for (i=0; i<32; i++) {
+        if (path[i] == 0) {
+            u16 len=i;
+            i=len-3;
+            while (i<len) { ext3[3-(len-i)]=path[i]; i++; }
+            ext3[3-(len-i)]=0;
+            break;
+        }
+    }
+    if (func_020123f0(data_02151dbc, ext3)==0) {
+        u32 header;
+        data_02155bac=0;
+        compressed=func_02109b14(path,(s32)info);
+        data_02155bac=1;
+        header=*(u32 *)compressed;
+        header=((header>>8)<<8) | (info[1]&255);
+        buffer=func_0210c594(header>>8,data_02155c3c);
+        func_02009230(compressed,buffer);
+        if(compressed)func_0210c5dc(compressed);
+        if(!mode)func_0210b0c8(obj,buffer);
+        else func_0210b130(obj,buffer);
+        ret=1;
+    } else {
+        for (i=0; i<32; i++) {
+            if (path[i] == 0) {
+                u16 len=i;
+                i=len-5;
+                while(i<len) { ext5[5-(len-i)]=path[i]; i++; }
+                ext5[5-(len-i)]=0;
+                break;
+            }
+        }
+        if(func_020123f0(data_02151dc0,ext5)==0) {
+            if(!mode)func_0210b0c8(obj,func_02109b14(path,0));
+            else func_0210b130(obj,func_02109b14(path,0));
+            ret=1;
+        }
+    }
     return ret;
 }
 
