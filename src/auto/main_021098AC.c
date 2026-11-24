@@ -20,6 +20,7 @@ extern void *func_02109f3c(void);
 extern void func_02109ea8(void *);
 extern void *data_02155c3c;
 extern u32 data_02162564[];
+extern u32 func_0210a498(u32 *);
 void func_02109af8(void) {
     func_0210a014();
     func_021167ac(data_0216256c, 0);
