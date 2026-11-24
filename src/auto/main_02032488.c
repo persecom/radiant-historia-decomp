@@ -37,7 +37,7 @@ extern void func_020020f8(void *, void *, void *);
 
 extern void func_020c2e80(void);
 void func_020327b4(void) {
-u16 i, count;
+u16 count, i;
 u8 *p;
 func_020321cc(4);
 if (*(u16 *)(data_02160090+0x50)==0) {
