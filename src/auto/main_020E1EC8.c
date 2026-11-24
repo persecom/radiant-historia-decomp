@@ -13,8 +13,8 @@ extern void func_020b52f4(u32);
 void func_020e25c4(void) {
     s32 i;
     for (i = 0; i < 0xe; i++) {
-        u8 *base = (u8 *)data_02160a74[0];
-        void *p = *(void **)(base + (i << 2) + 0x60);
+        void **arr = (void **)data_02160a74[0];
+        void *p = arr[i + 0x18];
         if (p != NULL) {
             func_020a5ce4(p);
         }
