@@ -262,6 +262,12 @@ u32 func_02010f10(void) {
     return data_0215fa20[1];
 }
 
+void func_02010fa8(s32 arg0, s32 arg1) {
+    while (func_0200a6e4(0xe, arg0, 0) != 0) {
+        WaitByLoop(arg1);
+    }
+}
+
 extern u8 data_0215fa30[4];
 extern u8 data_0215fa2c[4];
 extern void CpuSet(const void *, void *, u32);
