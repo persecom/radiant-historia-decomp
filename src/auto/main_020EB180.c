@@ -1,7 +1,6 @@
 /* 11 functions from 0x020EB180 to 0x020EC12C (main), found by ds-decomp. */
 #include "common.h"
 static inline s32 has_02118f24_data(u8 *p) { s32 r = 1; if (!*(void **)(p + 12)) r = 0; return r; }
-static inline s32 has_02118f24_handle(u8 *p) { s32 r = 1; if (*(s32 *)(p + 0x38) == -1) r = 0; return r; }
 extern s32 data_02162834[3];
 void func_02117be0(void *, s32);
 void *func_021176b0(void *, u16);
