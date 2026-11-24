@@ -84,9 +84,57 @@ u32 func_020137c4(u32 *out, u16 code) {
     return ((u32 (*)(u32 *, u16))*fn)(out, code);
 }
 
+u32 func_020137e0(u8 *dst, u16 *src, u32 maxLen) {
+    u32 pos;
+    u32 tmp;
+    u16 code;
+    u32 len;
+
+    pos = 0;
+    if (dst == 0 || src == 0) {
+        return 0;
+    }
+    while (pos <= maxLen) {
+        if (*src == 0) {
+            dst[pos] = 0;
+            return pos;
+        }
+        code = *src++;
+        len = func_020137c4(&tmp, code);
+        if (pos + len > maxLen) {
+            return pos;
+        }
+        func_02016e88((char *)dst + pos, (const char *)&tmp, len);
+        pos += len;
+    }
+    return pos;
+}
+
+void func_02013858(u8 *dst, const u8 *src, u32 n) {
+    u8 *p = dst;
+    if (n == 0) {
+        return;
+    }
+    do {
+        *p++ = *src++;
+    } while (--n != 0);
+}
+
 extern void func_020138f8(void *);
 void *func_02013878(void *arg0) {
     func_020138f8(arg0);
     return arg0;
+}
+
+void *func_0201388c(const void *src, s32 val, u32 n) {
+    const u8 *p = (const u8 *)src;
+    u8 v = val;
+    while (n) {
+        if (*p++ == v) {
+            return (void *)(p - 1);
+        }
+        n--;
+    }
+    return 0;
 }
 
