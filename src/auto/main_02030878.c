@@ -31,7 +31,13 @@ extern void func_02031658(void);
 void func_02031498(void) {
     s32 i;
     for (i = 0; i < 9; i++) {
-        if (data_02160244[2 + i] != NULL && (data_02160244[2 + i][0x1c] & 8) != 0) {
+        u8 *entry = data_02160244[2 + i];
+        s32 flags;
+        if (entry == NULL) {
+            continue;
+        }
+        flags = entry[0x1c];
+        if ((flags & 8) != 0) {
             func_0202e874();
         }
     }
@@ -80,15 +86,16 @@ extern void func_0210da14(void *);
 extern void func_0210dba0(void *);
 extern void func_021167f0(void *, void *);
 void func_0203160c(void) {
-    if (data_0216008c == NULL) {
+    UnkStruct_0203157c **ptr = &data_0216008c;
+    if (*ptr == NULL) {
         return;
     }
     func_020316d8();
-    func_0210da14(data_0216008c);
-    func_0210dba0(&data_0216008c->unk14);
-    if (data_0216008c != NULL) {
-        func_0210c5dc(data_0216008c);
-        data_0216008c = NULL;
+    func_0210da14(*ptr);
+    func_0210dba0(&(*ptr)->unk14);
+    if (*ptr != NULL) {
+        func_0210c5dc(*ptr);
+        *ptr = NULL;
     }
 }
 
