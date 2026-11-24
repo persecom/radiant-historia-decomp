@@ -20,6 +20,7 @@ void func_0207d3cc(void) {
 #pragma optimization_level 0
 void func_0207d3d8(void) {
     s32 i = 0;
+    u8 unused[4];
     *(void **)(data_0216010c + 0x44) = func_0210c594(0x20, data_02155c3c);
     if (*(void **)(data_0216010c + 0x58)) {
         if (**(void ***)(data_0216010c + 0x58)) {
