@@ -112,6 +112,24 @@ void func_0210bfec(void) {
     *(u32 *)0x04000540 = 0;
 }
 
+extern void func_0210c094(void *, void *, void *, void *);
+s32 func_0210c1dc(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4) {
+    s32 vec[3];
+    func_0210c094(arg3, arg0, arg1, vec);
+    if (func_02002158(vec, arg4) < 0) {
+        return 0;
+    }
+    func_0210c094(arg3, arg1, arg2, vec);
+    if (func_02002158(vec, arg4) < 0) {
+        return 0;
+    }
+    func_0210c094(arg3, arg2, arg0, vec);
+    if (func_02002158(vec, arg4) >= 0) {
+        return 1;
+    }
+    return 0;
+}
+
 s32 func_0210c28c(s32 *arg0, s32 *arg1) {
     s32 dx = arg0[0] - arg1[0];
     s32 dy = arg0[1] - arg1[1];
