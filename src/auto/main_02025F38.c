@@ -70,9 +70,9 @@ void func_020265d4(u8 *arg0, s32 arg1) {
 }
 
 void func_02026608(u8 *arg0) {
+    *(s32 *)(arg0 + 0xc) = -0x1000;
     *(u16 *)(arg0 + 0) = 1;
     *(u32 *)(arg0 + 8) |= 0x40;
-    *(s32 *)(arg0 + 0xc) = -0x1000;
 }
 
 void func_02026c00(void **arg0) {
