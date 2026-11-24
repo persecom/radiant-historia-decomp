@@ -48,7 +48,7 @@ extern void *func_020c9c10(void *, u32);
 extern void func_020c7090(void *);
 extern u32 func_020c73b8(void *);
 extern void func_020c738c(void *, u32, u32);
-extern void func_0210fdc4(void *, u32, u32);
+extern u8 *func_0210fdc4(u8 *, u32, s32);
 typedef struct {
     u32 field_0;
     u32 field_4;
@@ -73,14 +73,14 @@ void func_0210fd94(u32 *arg0) {
     }
 }
 
-void func_0210fdc4(void *dst, u32 src, u32 size) {
+u8 *func_0210fdc4(u8 *dst, u32 src, s32 size) {
     u8 *p = dst;
     const s8 *s = (const s8 *)src;
-    s32 n = size;
-    while (n > 0) {
+    while (size > 0) {
         *p++ = *s++;
-        n--;
+        size--;
     }
+    return dst;
 }
 
 void func_0210fde8(void) {
