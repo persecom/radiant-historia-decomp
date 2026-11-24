@@ -61,7 +61,9 @@ void func_02002858(volatile u16 *reg, s32 brightness) {
 }
 
 extern void func_02001d9c(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 *arg7);
-void func_02002880(u32 *reg, const s32 *mtx, s32 centerX, s32 centerY, s32 x1, s32 y1) {
+extern void func_02002bbc();
+extern void func_02002e58(void);
+void func_02002880(volatile u32 *reg, const s32 *mtx, s32 centerX, s32 centerY, s32 x1, s32 y1) {
     s32 dx = mtx[0] * (x1 - centerX) + mtx[1] * (y1 - centerY);
     s32 dy = mtx[2] * (x1 - centerX) + mtx[3] * (y1 - centerY);
     s32 x2 = dx + (centerX << 12);
@@ -77,6 +79,18 @@ void func_02002920(u32 *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
     *arg0 = (arg1 | 0x40) | (arg2 << 8) | ((arg3 | (arg4 << 8)) << 16);
 }
 
+void func_0200293c(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 *mtx) {
+    s32 tmp[16];
+    if (mtx == NULL) {
+        mtx = tmp;
+    }
+    func_02001d9c(arg0, arg1, arg2, arg3, arg4, arg5, arg6, mtx);
+    if (arg7 != 0) {
+        *(volatile u32 *)0x04000440 = 0;
+        func_02002bbc(mtx);
+    }
+}
+
 extern void func_020055d4(void);
 void func_02002bbc(void)
 {
@@ -90,6 +104,11 @@ extern void func_0200f1bc(void);
 extern u16 data_0215cd20;
 void func_02002bd8(void *arg0) {
     *(volatile u32 *)0x04000400 = 0x17;
+    func_020055b0(arg0);
+}
+
+void func_02002bf4(void *arg0) {
+    *(volatile u32 *)0x04000400 = 0x19;
     func_020055b0(arg0);
 }
 
