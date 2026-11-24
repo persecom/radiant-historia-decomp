@@ -283,7 +283,7 @@ void func_02112038(MainSub_6C *arg0) {
 }
 
 void func_02112048(u8 *arg0) {
-    func_02111d7c(*(void **)(arg0 + 0x6c), func_020c94a0(*(u8 **)(arg0 + 0x6c)));
+    func_02111d7c(arg0, func_020c94a0(*(u8 **)(arg0 + 0x6c)));
 }
 
 extern void func_020c8ee4(void *);
