@@ -188,6 +188,27 @@ s32 func_0210e93c(void *arg0, u32 arg1, const char *arg2, u32 *arg3) {
     return 1;
 }
 
+s32 func_0210e9e8(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    u32 *out = (u32 *)arg3;
+    u32 val;
+
+    if (data_02162950 != 0) {
+        arg1 = data_02162950;
+    }
+    val = func_0210f170((const char *)arg2, arg1, 0, 0);
+    out[0] = val;
+    if (val == 0) {
+        return 0;
+    }
+    out[1] = (u16)val << 3;
+    if (!func_0210f2e4(val)) {
+        func_0200439c();
+        func_020043f8(arg0, out[1], arg1);
+        func_02004544();
+    }
+    return 1;
+}
+
 extern void func_0210eb14(void *);
 extern void func_0210eb4c(void *);
 void func_0210eb80(u8 *arg0) {
