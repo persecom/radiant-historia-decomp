@@ -39,6 +39,54 @@ extern void func_020bad3c(void);
 extern void func_020baeb0(void);
 extern void func_0210dc88(void);
 
+extern u32 data_02162858[2];
+extern u32 data_02162854;
+extern u8 data_0216242c[20];
+extern void *data_02155984;
+extern void func_020a3b84(void);
+extern void func_020eb344(u32, u32);
+extern void func_020ec218(void);
+extern void func_0210e290(u32);
+extern void func_020c4bec(void *);
+extern void func_020c4c1c(void *);
+extern void func_020c4c4c(void *);
+extern void func_0210da14(void *);
+extern void func_0210dba0(void *);
+extern void func_0210dbe8(void *);
+extern void func_0210f138(void);
+void func_020baeb0(void) {
+    u8 **pp = (u8 **)&data_021601f0;
+    if (pp[1] == NULL) {
+        return;
+    }
+    data_0216bf84 = 0;
+    func_020a3b84();
+    func_020eb344(3, 1);
+    func_020ec218();
+    func_0210e290(0);
+    data_02162858[0] = 0;
+    data_02162854 = 0;
+    data_02155984 = data_0216242c;
+    if (pp[1] != NULL) {
+        func_020c4bec(*(void **)(pp[1] + 0x40));
+        *(void **)(pp[1] + 0x40) = NULL;
+        func_020c4c1c(*(void **)(pp[1] + 0x3c));
+        *(void **)(pp[1] + 0x3c) = NULL;
+        func_020c4c4c(*(void **)(pp[1] + 0x44));
+        *(void **)(pp[1] + 0x44) = NULL;
+        func_020c4c4c(*(void **)(pp[1] + 0x4c));
+        *(void **)(pp[1] + 0x4c) = NULL;
+        func_0210da14(pp[1]);
+        func_0210dba0(pp[1] + 0x14);
+        func_0210dbe8(pp[1] + 0x28);
+        if (pp[1] != NULL) {
+            func_0210c5dc(pp[1]);
+            pp[1] = NULL;
+        }
+    }
+    func_0210f138();
+}
+
 void func_020bafb4(void) {
     *(volatile u32 *)0x0400001c = 0;
     *(volatile u32 *)0x04000000 = (*(volatile u32 *)0x04000000 & ~0x1f00) | 0x1f00;
