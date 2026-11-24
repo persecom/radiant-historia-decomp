@@ -175,6 +175,35 @@ void func_020d2c54(UnkA *a, Unk_020895a0 *b) {
     func_020ddd8c(a);
 }
 
+s32 func_02065c44(void *);
+s32 func_02065840(s32,s32);
+void func_020e26f0(s32,s32,s32);
+void func_020d2c8c(u8 *p,s32 count) {
+u8 *a; s32 i; u32 mask=0; i=0; s32 one=1;
+for(;i<count;i++,p=*(u8 **)(p+0x1c)) {
+u8 *b, *info; a=*(u8 **)(p+8);b=*(u8 **)p;
+s32 state=func_02065c44(a);
+info=*(u8 **)(b+0x118);
+if(info[0]==0) {
+if(state==0) {
+u8 *q=*(u8 **)(p+0x28);
+while(q) {u8 *obj=*(u8 **)q;q=*(u8 **)(q+0x18);if(obj) mask|=one<<*(u16 *)(obj+0x90);}
+if(func_02065840(0,a[0])) {u8 *obj=*(u8 **)(p+4);if(obj)mask|=one<<*(u16 *)(obj+0x90);}
+}
+} else if(info[0]==1 && state==1 && !(*(u32 *)(info+0x78)&0x30) && !(*(u16 *)(p+0xe)&0x200)) {
+u8 *q=*(u8 **)(p+0x28);
+while(q) {u8 *obj=*(u8 **)q;q=*(u8 **)(q+0x18);if(obj)mask|=one<<*(u16 *)(obj+0x90);}
+if(func_02065840(0,a[0])) {
+if(a[6]!=7) {u8 *obj=*(u8 **)(p+4);if(obj)mask|=one<<*(u16 *)(obj+0x90);}
+else if(a[6]==7) {u8 *obj=*(u8 **)(p+4);if(obj)mask|=1;if(obj)mask|=2;if(obj)mask|=4;}
+}
+}
+}
+func_020e26f0(7,1,999);
+{u16 extra=*(u16 *)(data_02160a74+0x1e0);if(extra)mask|=extra;}
+if(mask)func_020e26f0(mask,0,999);
+}
+
 s32 func_020d2e14(s32 arg0, s32 arg1) {
     UnkE *g = data_02160110[0];
     switch (arg0) {
