@@ -144,6 +144,16 @@ void func_02026cec(void) {
     func_021167ac(p + 0x18, 0x14);
 }
 
+void func_02026d20(void) {
+    while (*(void **)((u8 *)data_0216007c[1] + 0x18) != NULL) {
+        func_02026ddc(*(void **)((u8 *)data_0216007c[1] + 0x18));
+    }
+    if (data_0216007c[1] != NULL) {
+        func_0210c5dc(data_0216007c[1]);
+        data_0216007c[1] = NULL;
+    }
+}
+
 void func_02026e40(u16 arg0) {
     void *p = func_0210c594(0x28, data_02155c3c);
     *(u16 *)p = arg0;
