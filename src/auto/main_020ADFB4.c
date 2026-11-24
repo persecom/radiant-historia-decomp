@@ -69,6 +69,16 @@ u8 func_020ae05c(u32 arg0, u32 arg1) {
     return arg0 % 10;
 }
 
+extern u8 *func_020adda8(void);
+extern void func_020a994c(void *);
+void func_020aea84(void) {
+    u8 *base = func_020adda8();
+    s32 i;
+    for (i = 0; i < 5; i++) {
+        func_020a994c(base + 0x3f0 + i * 0x50);
+    }
+}
+
 void func_020aeda0(void) {
     func_020aed5c(0);
     func_020aed5c(1);
