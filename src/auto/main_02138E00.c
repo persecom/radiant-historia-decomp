@@ -210,20 +210,27 @@ void func_021396f0(u8 *arg0, u8 *arg1) {
 
 s32 func_02139a34(u8 *arg0) {
     s32 i;
+    s32 ret = 0;
     if (*(s32 *)(arg0 + 0x6c) == 1) {
-        return 0;
+        return ret;
     }
     for (i = 0; i < *(s32 *)(arg0 + 0xa8); i++) {
         if (func_02126c88(*(void **)(arg0 + 0x20 + i * 0xc)) != 0) {
             break;
         }
     }
-    return i == *(s32 *)(arg0 + 0xa8);
+    if (i == *(s32 *)(arg0 + 0xa8)) {
+        ret = 1;
+    }
+    return ret;
 }
 
 void func_02139a9c(void *arg0) {
-    if (arg0 != NULL && *(void (**)(void))((u8 *)arg0 + 0xe0) != NULL) {
-        (*(void (**)(void))((u8 *)arg0 + 0xe0))();
+    if (arg0 != NULL) {
+        void (*f)(void *) = *(void (**)(void *))((u8 *)arg0 + 0xe0);
+        if (f != NULL) {
+            f(arg0);
+        }
     }
 }
 
