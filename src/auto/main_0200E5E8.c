@@ -91,7 +91,7 @@ s32 func_0200e5e8(u32 arg0, u32 arg1) {
     u32 buf[2];
     buf[0] = 0x03006000;
     func_0200e524(buf, 1);
-    while (func_0200ed20(0, 2, 0, 1) != 1) {
+    while ((func_0200ed20)(0, 2, 0, 1) != 1) {
     }
     buf[0] = 0x02006200 | (arg0 & 0xff);
     buf[1] = 0x01010000 | (u16)arg1;
