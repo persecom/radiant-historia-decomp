@@ -29,6 +29,27 @@ void func_021309c8(u32 arg0) {
     }
 }
 
+void func_021309e8(void *arg0) {
+    u8 *r4;
+    void *r5;
+    if (arg0 == NULL) {
+        func_0212bda8(data_0215b1a4);
+        return;
+    }
+    func_0212824c();
+    r4 = *(u8 **)(*(u8 **)((u8 *)arg0 + 4) + 4);
+    r5 = *(void **)(r4 + 0xb8);
+    if (r5 == NULL) {
+        return;
+    }
+    func_0212e61c();
+    func_02132770(r5);
+    func_021326e4(r5);
+    *(void **)(r4 + 0xb8) = NULL;
+    func_0212e628();
+    func_02132568();
+}
+
 void func_02130a44(void) {
     func_02132ae8();
 }
