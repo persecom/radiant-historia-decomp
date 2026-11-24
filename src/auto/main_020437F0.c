@@ -140,10 +140,12 @@ BOOL func_020443a8(void *arg0) {
         return FALSE;
     }
     while (node != NULL) {
+        s32 x = *(s32 *)(node + 0);
+        s32 z = *(s32 *)(node + 4);
         s32 vec[3];
-        vec[0] = *(s32 *)(node + 0);
+        vec[0] = x;
         vec[1] = 0;
-        vec[2] = *(s32 *)(node + 4);
+        vec[2] = z;
         if (func_0210c2f4(arg0, vec) < (*(u8 *)(node + 8) << 12)) {
             return TRUE;
         }
