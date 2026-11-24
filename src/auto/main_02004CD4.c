@@ -388,7 +388,8 @@ u32 func_02005870(u32 arg0) {
 
 void func_020058fc(u32 index, u32 arg1, u32 arg2) {
     u32 bit = 1 << (index + 8);
-    *(u32 *)(data_0215cd7c + index * 12) = arg1;
+    u8 *dst = data_0215cd7c;
+    *(u32 *)(dst + index * 12) = arg1;
     *(u32 *)(data_0215cd84 + index * 12) = arg2;
     *(u32 *)(data_0215cd80 + index * 12) = func_020059b4(bit) & bit;
 }
@@ -430,9 +431,6 @@ void func_020059e4(u32 arg0) {
     *(volatile u16 *)0x04000208 = ime;
 }
 
-extern u32 data_0215cdac[];
-extern u32 data_0215cdb0[];
-extern u32 data_0215cdb4[];
 u32 func_02005a14(u32 arg0) {
     u16 ime = *(volatile u16 *)0x04000208;
     *(volatile u16 *)0x04000208 = 0;
