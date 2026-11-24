@@ -588,3 +588,44 @@ void func_0210f410(u16 arg0, u32 arg1) {
     func_0210f138();
 }
 
+extern void func_020048a8(s32);
+extern void func_02004aac(s32);
+extern void func_02004bdc(s32);
+extern void func_02004cd4(s32);
+extern void func_02004d70(s32);
+extern void func_02004ee8(s32);
+extern void func_02004fc4(s32);
+extern void func_0200518c(s32);
+extern void func_02005228(s32);
+extern void func_02005298(s32);
+extern void func_02005318(s32);
+extern void func_020050c4(s32);
+extern void func_02005168(s32);
+extern void func_02002920(void *,s32,s32,s32,s32);
+extern void func_0210e290(s32);
+void func_0210f448(void) {
+s32 zero=0, value=0xc0, size=0x400;
+func_020048a8(zero);
+func_02004aac(zero);
+func_02004bdc(zero);
+func_02004cd4(zero);
+func_02004d70(zero);
+func_02004ee8(zero);
+func_02004fc4(zero);
+func_0200518c(zero);
+func_02005228(zero);
+func_02005298(zero);
+func_02005318(zero);
+func_020050c4(zero);
+func_02005168(zero);
+*(volatile u32 *)0x4000014=zero;
+*(volatile u32 *)0x4001010=zero;
+*(volatile u32 *)0x4001014=zero;
+*(volatile u16 *)0x4000060 &= 0xcfdf;
+*(volatile u16 *)0x4000060 &= 0xcfef;
+func_02002920((void *)0x4000050,23,23,31,zero);
+func_02008e68(value,(void *)0x7000000,size);
+func_02008e68(value,(void *)0x7000400,size);
+func_0210e290(zero);
+}
+
