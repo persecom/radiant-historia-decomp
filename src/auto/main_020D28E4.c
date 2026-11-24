@@ -226,6 +226,75 @@ void func_020d2e98(void) {
     }
 }
 
+extern u8 *data_02160080;
+extern void func_021168f8(void *, void *);
+extern void func_0202fad8(void *);
+extern void func_020d4184(void *);
+extern void func_02064c18(void *);
+extern void func_02026c00(void *);
+extern void func_02026564(void *);
+extern void func_02026e64(void *);
+extern void func_02093224(void *);
+extern void func_020c0940(void *);
+extern void func_020de17c(void *);
+extern void func_020bffb8(void *);
+extern void func_02067708(void *);
+extern void func_020dd51c(void *);
+void func_020d2f44(u8 *arg0) {
+    if ((*(u32 *)(arg0 + 0x80) & 1) != 0) {
+        if (**(u8 **)(arg0 + 0x118) == 0) {
+            func_021168f8((u8 *)data_02160a6c + 0xac, arg0);
+        }
+        if (**(u8 **)(arg0 + 0x118) == 1) {
+            func_021168f8((u8 *)data_02160a6c + 0xb8, arg0);
+        }
+    }
+    if (*(void **)(arg0 + 0x118) != NULL) {
+        func_0202fad8(*(void **)(arg0 + 0x118));
+        *(void **)(arg0 + 0x118) = NULL;
+    }
+    if (*(void **)(arg0 + 0x128) != NULL) {
+        func_020d4184(*(void **)(arg0 + 0x128));
+        *(void **)(arg0 + 0x128) = NULL;
+    }
+    if (*(void **)(arg0 + 0x11c) != NULL) {
+        func_02064c18(*(void **)(arg0 + 0x11c));
+        *(void **)(arg0 + 0x11c) = NULL;
+    }
+    if (*(void **)(arg0 + 0x120) != NULL) {
+        func_02026c00(*(void **)(arg0 + 0x120));
+        *(void **)(arg0 + 0x120) = NULL;
+    }
+    if (*(void **)(arg0 + 0x124) != NULL) {
+        func_02026564(*(void **)(arg0 + 0x124));
+        *(void **)(arg0 + 0x124) = NULL;
+    }
+    if (*(void **)(arg0 + 0x12c) != NULL) {
+        func_02026e64(*(void **)(arg0 + 0x12c));
+        *(void **)(arg0 + 0x12c) = NULL;
+    }
+    func_02093224(arg0);
+    if (data_02160080 != NULL) {
+        if (*(u8 **)(data_02160080 + 0x38) == arg0) {
+            *(void **)(data_02160080 + 0x38) = NULL;
+        }
+        if (*(u8 **)(data_02160080 + 0x3c) == arg0) {
+            *(void **)(data_02160080 + 0x3c) = NULL;
+        }
+    }
+    if (*(void **)(arg0 + 0x19c) != NULL) {
+        func_020c0940(*(void **)(arg0 + 0x19c));
+        *(void **)(arg0 + 0x19c) = NULL;
+    }
+    if (*(void **)(arg0 + 0x1a4) != NULL) {
+        func_020de17c(*(void **)(arg0 + 0x1a4));
+        *(void **)(arg0 + 0x1a4) = NULL;
+    }
+    func_020bffb8(arg0);
+    func_02067708(arg0);
+    func_020dd51c(arg0);
+}
+
 void func_020d30a0(void) {
     while (data_02160a6c->unk64 != 0) {
         func_020d2f44((u8 *)data_02160a6c->unk64);
