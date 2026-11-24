@@ -19,6 +19,14 @@ void func_020e95d0(void) {
     *(u16 *)(data_02160a74 + 0x1b0) = 0;
 }
 
+void func_020e95ec(u8 *arg0) {
+    func_021167ac(arg0 + 0x14, 0);
+    *(void **)(arg0 + 0) = (void *)func_020e9860;
+    *(u32 *)(arg0 + 4) = 0x3ec;
+    *(void **)(arg0 + 8) = arg0;
+    func_0210dae0(arg0);
+}
+
 void func_020ea164(void **arg0) {
     func_02108594(*arg0);
     if (arg0 != NULL) {
