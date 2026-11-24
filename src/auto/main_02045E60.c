@@ -56,3 +56,17 @@ void func_020468e0(u8 arg0) {
         node = *(u8 **)(node + 0x1dc);
     }
 }
+
+void func_020469ac(void) {
+    u16 cur = *(u16 *)(data_021600b8 + 0x1a);
+    u16 target = *(u16 *)(data_021600b8 + 0x1c);
+    if (target < cur) {
+        *(u16 *)(data_021600b8 + 0x1a) = cur - 1;
+    } else if (target > cur) {
+        *(u16 *)(data_021600b8 + 0x1a) = cur + 1;
+    }
+    if (*(u16 *)(data_021600b8 + 0x1a) == 0) {
+        *(u8 *)(data_021600b8 + 0x18) = 0;
+    }
+}
+
