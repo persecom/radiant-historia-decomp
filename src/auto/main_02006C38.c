@@ -28,6 +28,8 @@ extern void func_0200813c(u32);
 extern void *func_02007250(void *, void *);
 extern void *func_02007278(void *, void *);
 extern void func_02007538(s32, u32);
+extern void func_02006560(void *, u32);
+extern u32 data_0215ce00[];
 typedef struct UnkStruct_0215d128 {
     u16 unk00;
     u16 unk02;
