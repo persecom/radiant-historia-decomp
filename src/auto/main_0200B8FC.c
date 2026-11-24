@@ -310,6 +310,57 @@ void func_0200bfb8(u8 *arg0) {
     }
 }
 
+void func_0200c0a8(u8 *arg0) {
+    for (;;) {
+        CallbackNode *extractedHead = NULL;
+        CallbackNode *tail = NULL;
+        u32 start = *(u32 *)(arg0 + 4);
+        u32 end = start + (*(u32 *)(arg0 + 8) + *(u32 *)(arg0 + 0xc));
+        u32 ime = func_02008128();
+        CallbackNode *prev = NULL;
+        CallbackNode *head = data_0216004c;
+        CallbackNode *node = head;
+        CallbackNode *next;
+
+        for (; node != NULL; node = next) {
+            u32 arg = node->arg;
+            next = node->next;
+            u32 cbAddr = (u32)node->callback;
+            if ((arg == 0 && cbAddr >= start && cbAddr < end)
+                || (arg >= start && arg < end)) {
+                if (tail != NULL) {
+                    tail->next = node;
+                } else {
+                    extractedHead = node;
+                }
+                if (head == node) {
+                    data_0216004c = next;
+                    head = next;
+                }
+                node->next = NULL;
+                tail = node;
+                if (prev != NULL) {
+                    prev->next = next;
+                }
+            } else {
+                prev = node;
+            }
+        }
+        func_0200813c(ime);
+        if (extractedHead == NULL) {
+            return;
+        }
+        do {
+            void (*cb)(u32) = extractedHead->callback;
+            next = extractedHead->next;
+            if (cb != NULL) {
+                cb(extractedHead->arg);
+            }
+            extractedHead = next;
+        } while (extractedHead != NULL);
+    }
+}
+
 extern void func_0200c0a8(u8 *);
 extern s32 func_0200cb40(u8 *, s32, s32);
 extern s32 func_0200bd18(u8 *, void *, void *);
