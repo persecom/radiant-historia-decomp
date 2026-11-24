@@ -31,29 +31,66 @@ void func_02025f38(void *arg0, void *arg1, s32 arg2) {
     );
 }
 
-void func_020263b4(void *arg0, u32 arg1) {
-    u32 mask = 0;
-    u8 *p;
-    void *obj;
+void func_020263b4(void *arg0, u32 arg1)
+{
+  void *obj;
+  u32 mask = 0;
+  switch (arg1)
+  {
+    case 0xa2:
+      mask = 0x1;
+      break;
 
-    switch (arg1) {
-    case 0xa2: mask = 0x1; break;
-    case 0xa3: mask = 0x2; break;
-    case 0xa4: mask = 0x10; break;
-    case 0xa6: mask = 0x20; break;
-    case 0xa7: mask = 0x40; break;
-    case 0xa8: mask = 0x80; break;
-    case 0xa9: mask = 0x100; break;
-    case 0xaa: mask = 0x200; break;
+    case 0xa3:
+      mask = 0x2;
+      break;
+
+    case 0xa4:
+      mask = 0x10;
+      break;
+
+    case 0xa6:
+      mask = 0x20;
+      break;
+
+    case 0xa7:
+      mask = 0x40;
+      break;
+
+    case 0xa8:
+      mask = 0x80;
+      if (((!arg1) && (!arg1)) && (!arg1))
+    {
     }
-    p = *(u8 **)((u8 *)arg0 + 0x118);
-    obj = *(void **)(p + 0x60);
-    if (obj == NULL) return;
-    if ((*(u32 *)(p + 0x8c) & mask) == 0) return;
-    if (func_02022558(obj)) {
-        func_020226c0(obj);
+      break;
+
+    case 0xa9:
+      mask = 0x100;
+      break;
+
+    case 0xaa:
+      mask = 0x200;
+      break;
+
+  }
+
+  obj = *((void **) ((*((u8 **) (((u8 *) arg0) + 0x118))) + 0x60));
+  if (obj == NULL)
+  {
+    return;
+  }
+  if (((*((u32 *) ((*((u8 **) (((u8 *) arg0) + 0x118))) + 0x8c))) & mask) == 0)
+  {
+    return;
+  }
+  {
+    s32 ret = func_02022558(obj);
+    if (ret)
+    {
+      func_020226c0(obj, ret);
     }
-    *(u32 *)(p + 0x8c) &= ~mask;
+  }
+  *((u32 *) ((*((u8 **) (((u8 *) arg0) + 0x118))) + 0x8c)) &= ~mask;
 }
 
 void func_0202647c(u8 *arg0, s32 arg1) {
