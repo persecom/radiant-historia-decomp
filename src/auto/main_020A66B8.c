@@ -4,8 +4,10 @@
 extern void func_021168f8(void *, void *);
 extern void func_0210c5dc(void *);
 extern u8 *data_021600e4;
-extern u8 func_020bdba0(u16);
+extern u32 func_020bdba0(u16);
 extern void func_020a6c44(void *, u16);
+void func_020a6c04(void *arg0, u16 arg1, u8 arg2);
+void func_020a6c74(void *arg0, u16 arg1, u16 arg2);
 void func_020a6a20(void *arg0) {
     u8 *node = *(u8 **)arg0;
     s32 i = 0;
