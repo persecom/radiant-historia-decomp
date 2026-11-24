@@ -62,18 +62,24 @@ u16 func_020b39f4(u8 *arg0, u32 arg1) {
     return res;
 }
 
-s32 func_020b3a28(void) {
-    u8 *r4 = func_020b3880();
-    u8 *r5 = func_020b3fd8();
-    if (*(s32 *)(r4 + 0x3438) == 0 && *(u32 *)(r5 + 0x2aa4) <= 2 && *(u16 *)(func_020b4044() + 4) != 0) {
-        if (*(s32 *)(r5 + 0x2aa4) != 2) {
-            return 1;
-        }
-        if (*(u8 *)(r4 + 0x3442) == 2) {
-            return 1;
-        }
+s32 func_020b3a28(void)
+{
+  int new_var;
+  u8 *r4 = func_020b3880();
+  u8 *r5 = func_020b3fd8();
+  if ((((*((s32 *) (r4 + 0x3438))) == 0) && ((*((u32 *) (r5 + 0x2aa4))) <= 2)) && ((*((u16 *) (func_020b4044() + 4))) != 0))
+  {
+    new_var = 2;
+    if ((*((s32 *) (r5 + 0x2aa4))) != 2)
+    {
+      return 1;
     }
-    return 0;
+    if ((*((u8 *) (r4 + 0x3442))) == new_var)
+    {
+      return 1;
+    }
+  }
+  return 0;
 }
 
 extern void func_020b3a9c(void);
