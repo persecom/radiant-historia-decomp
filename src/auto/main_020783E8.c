@@ -86,8 +86,9 @@ data_0216263c[0]=x;
 r=((x>>16)*8)>>16;
 if(r-4==0) {
 Vec3_02078d8c v=*(Vec3_02078d8c *)data_0216244c;
+u32 offset=random_02078e1c(0x180000);
 v.y=0;
-v.x+=random_02078e1c(0x180000)-0xc0000;
+v.x+=offset-0xc0000;
 v.z+=random_02078e1c(0x200000)-0x100000;
 v.z-=0x10000;
 func_0206e8f0(0x77,&v,2);
