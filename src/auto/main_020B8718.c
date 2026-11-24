@@ -33,7 +33,7 @@ void func_020b8888(void) {
 }
 
 void func_020b88a4(void) {
-    u8 *root = *(u8 **)data_021601ec;
+    u8 *root = data_021601ec;
     func_020c9bb8(*(void **)(root + 0x48));
     func_020c9bb8(*(void **)(root + 0x4c));
     switch (*(u32 *)(root + 0x40)) {
@@ -67,8 +67,7 @@ void func_020b88a4(void) {
 }
 
 s32 func_020b8d60(void) {
-    u8 *p = *(u8 **)data_02160204;
-    if (*(u32 *)(p + 0x10c) == 0) {
+    if (*(u32 *)(data_02160204 + 0x10c) == 0) {
         return 1;
     }
     return func_020de3d8() == 0;
