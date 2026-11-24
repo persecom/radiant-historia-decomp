@@ -1,5 +1,9 @@
 /* 9 functions from 0x020783E8 to 0x02079374 (main), found by ds-decomp. */
 #include "common.h"
+extern u32 data_0216263c[3];
+extern u32 data_0216244c[43];
+extern u64 data_02162658[3];
+extern void func_0206e8f0(u32, void *, u32);
 
 typedef struct Vec3_02078d8c {
     s32 x;
