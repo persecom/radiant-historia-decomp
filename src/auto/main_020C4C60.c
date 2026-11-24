@@ -8,6 +8,7 @@ typedef struct { s16 data[36]; } Unk_020c4fa4_36;
 extern const Unk_020c4fa4_10 data_02144504;
 extern const Unk_020c4c60_27 data_02144578;
 extern const Unk_020c4fa4_10 data_02144518;
+extern const Unk_020c4fa4_10 data_0214452c;
 extern const Unk_020c4fa4_36 data_021445b0;
 
 extern void func_020a3bbc(s32);
