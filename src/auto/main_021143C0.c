@@ -210,6 +210,38 @@ void func_021148cc(u8 *arg0, s32 arg1) {
     }
 }
 
+void func_0211497c(u8 *arg0) {
+    if ((*(u32 *)(arg0 + 0x2c) & 2) == 0) {
+        return;
+    }
+    func_020095a8((void *)(*(u32 *)(arg0 + 0x4c)), 0, 1 << *(u32 *)(arg0 + 0x48), 0);
+    {
+        s32 ret = func_02009d2c();
+        func_02009b24(1);
+        func_02009cc0(ret);
+    }
+}
+
+void func_021149c8(u8 *arg0) {
+    if ((*(u32 *)(arg0 + 0x2c) & 2) == 0) {
+        return;
+    }
+    if (*(u32 *)(arg0 + 0x40) != 0) {
+        u32 irq = func_02008128();
+        func_021148cc(arg0, 1);
+        func_0200813c(irq);
+    }
+    if (*(u32 *)(arg0 + 0x40) == 0) {
+        func_02009580((void *)(*(u32 *)(arg0 + 0x4c)), 0, 1 << *(u32 *)(arg0 + 0x48), 0);
+    }
+}
+
+void func_02114a38(void) {
+    if (*(u32 *)data_0216c9bc != 0 && *(u32 *)(data_0216c9bc + 4) == 1) {
+        func_02114b44();
+    }
+}
+
 u32 func_02114f58(u32 arg0) {
     u32 old = data_0216cad0[0];
     data_0216cad0[0] = arg0;
