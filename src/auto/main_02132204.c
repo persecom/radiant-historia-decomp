@@ -10,6 +10,12 @@ extern void func_0212f010(void **, void **);
 extern void func_02130858(void **, void **);
 extern void func_02132b10(void **, void **);
 extern void func_0212f76c(void);
+extern u32 data_0215b1d0[2];
+extern void func_0212f0f0(u32, u32);
+extern void func_0212f97c(u32, u32);
+extern void func_0212f8b8(u32);
+extern void func_0212f994(void *);
+extern void func_0212fb8c(void *);
 
 extern void func_0212f738(void);
 extern u32 data_021749ac[4];
