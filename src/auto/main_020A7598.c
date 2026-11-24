@@ -250,7 +250,7 @@ func_02108eec(0,1000); func_020a7ec8(); func_0210dc88();
 data_02162868=0; data_0216bf84=0; return result;
 }
 
-static void func_020a7ec8(void){
+void func_020a7ec8(void){
 s32 zero,one;
 if(data_0216013c==NULL)return;
 zero=0;
