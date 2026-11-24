@@ -7,6 +7,15 @@ extern u32 func_02008128(void);
 extern void func_02008454(void);
 extern void func_020081a4(u32);
 extern u32 func_020081f0(void);
+extern void func_020059e4(u32);
+extern void func_02007ee4(void);
+extern void func_02007dd4(u8 *);
+void func_02007e44(u32 *arg0) {
+    arg0[0] = 0;
+    arg0[2] = 0;
+    arg0[8] = 0;
+}
+
 u32 func_02008198(u32 x) {
     do {
         x -= 4;
