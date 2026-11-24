@@ -416,6 +416,9 @@ void func_0212e5f4(void) {
 void func_0212e5f8(void) {
 }
 
+void func_0212e5fc(void) {
+}
+
 extern void func_0212c4c8(void);
 void func_0212e610(void) {
     func_0212c4c8();
