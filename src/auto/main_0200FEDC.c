@@ -47,16 +47,18 @@ extern void func_02008e68(s32, void *, s32);
 extern void func_02006dc4(void *, s32);
 extern void func_0200a674(s32, void *);
 extern void func_0200fedc(u32, u32, u32);
+typedef struct { u32 f0; u32 f4; u8 pad[0x514]; u32 f51c; } Data_215f120;
 
 #pragma peephole off
 
 void func_0200fedc(u32 arg0, u32 arg1, u32 arg2) {
     volatile u32 *p;
+    u32 v;
     if (arg0 != 0xb || arg2 == 0) {
         return;
     }
     p = (volatile u32 *)data_0215f120;
-    p[1] &= ~0x20;
-    u32 v = p[0x51c / 4];
-    func_020065c8((void *)v);
+    v = p[1] & ~0x20;
+    p[1] = v;
+    func_020065c8((void *)p[0x51c / 4]);
 }
