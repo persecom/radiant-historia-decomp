@@ -294,6 +294,30 @@ void func_020a9b28(void *arg0) {
     func_020a9b40(arg0);
 }
 
+void func_020a9d9c(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 a[2];
+    s32 b[2];
+    u16 angle;
+    a[0] = arg0;
+    a[1] = arg1;
+    b[0] = arg2;
+    b[1] = arg3;
+    func_020a655c(a, b, (u16)(func_02002404(arg2 - arg0, arg3 - arg1) - 0x4000), 1, 150);
+    angle = func_02002404(a[0] - b[0], a[1] - b[1]);
+    angle -= 0x4000;
+    func_020a655c(a, b, angle, 1, 150);
+}
+
+void func_020a9e38(s16 *arg0, s16 *arg1) {
+    u8 *p = data_021600e4;
+    *arg0 = (*arg0 * *(s32 *)(p + 0x6c)) / 4096;
+    *arg0 -= 0x20;
+    *arg1 = (*arg1 * *(s32 *)(p + 0x6c)) / 4096;
+    *arg1 += 0x14;
+    *arg0 += *(s32 *)(p + 0x44);
+    *arg1 += *(s32 *)(p + 0x48);
+}
+
 extern u8 *data_021600e4;
 extern s32 func_020a9194(void *);
 extern s32 func_020a916c(s32);
