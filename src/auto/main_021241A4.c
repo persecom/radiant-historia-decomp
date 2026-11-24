@@ -136,6 +136,14 @@ s32 func_02124ba8(void) {
     return -1;
 }
 
+void func_02124bb0(u32 a0, u32 a1, u32 a2, u32 a3, u32 a4) {
+    *(u32 *)((u8 *)data_02156160 + 0x8) = *(u32 *)((u8 *)data_0215617c + a0 * 0x18);
+    *(u32 *)((u8 *)data_02156160 + 0xc) = *(u32 *)((u8 *)data_0215617c + a1 * 0x18);
+    *(u32 *)((u8 *)data_02156160 + 0x10) = *(u32 *)((u8 *)data_0215617c + a2 * 0x18);
+    *(u32 *)((u8 *)data_02156160 + 0x14) = *(u32 *)((u8 *)data_0215617c + a3 * 0x18);
+    *(u32 *)((u8 *)data_02156160 + 0x18) = *(u32 *)((u8 *)data_0215617c + a4 * 0x18);
+}
+
 s32 func_02124e60(void) {
     return 0;
 }
@@ -144,11 +152,6 @@ s32 func_02125014(void) {
     return 0;
 }
 
-extern u8 data_0215617c[];
-extern u8 data_02156160[];
-extern u16 data_02173170;
-extern u32 data_02156150;
-extern u32 data_02156154;
 extern void func_0200439c(void);
 extern void func_020043f8(u32, u32, u32);
 extern void func_02004544(void);
