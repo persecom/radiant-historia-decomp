@@ -8,6 +8,7 @@ extern const Unk14 data_02141328, data_02141314;
 extern const Unk14 data_021410d0, data_021412d8, data_021412c4;
 
 extern const Unk14 data_02140db0;
+extern const Unk14 data_021413c8,data_021413b4,data_021413a0,data_0214138c;
 extern const Unk14 data_02140d9c, data_02140d60;
 typedef struct { s16 data[18]; } Unk24;
 extern const Unk24 data_02140e64;
