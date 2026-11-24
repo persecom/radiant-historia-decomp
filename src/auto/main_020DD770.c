@@ -331,8 +331,8 @@ void func_020de078(void) {
 }
 
 void func_020de0a8(u8 *arg0) {
-    u8 *r5;
     u8 *r4 = *(u8 **)(arg0 + 0x128);
+    u8 *r5;
     s16 pct;
     if (arg0 == NULL || (r5 = *(u8 **)(arg0 + 0x118)) == NULL) {
         return;
