@@ -165,6 +165,14 @@ void func_020bec40(u16 arg0) {
     data_02151fcc = (s32)arg0 << 12;
 }
 
+void func_020bec5c(s32 arg0) {
+    if (arg0 == 0) {
+        data_02155984 = data_0216242c;
+    } else if (arg0 == 1) {
+        data_02155984 = data_02162360;
+    }
+}
+
 void func_020bed94(void) {
     func_020becfc();
 }
