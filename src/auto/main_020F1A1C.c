@@ -23,3 +23,8 @@ void func_020f1f28(u8 *arg0) {
         func_0210c5dc(arg0);
     }
 }
+
+BOOL func_020f24f4(s32 arg0) {
+    return func_020f1ffc(arg0) != 0;
+}
+
