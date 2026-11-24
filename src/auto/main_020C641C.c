@@ -58,6 +58,10 @@ s32 func_020c6df4(u8 *arg0) {
     return 0;
 }
 
+void func_020c6e2c(void *arg0, void *arg1) {
+    func_020c6e40(arg0, arg1, 0, 0);
+}
+
 extern void func_020c6ef4(void);
 extern void func_020c6e40(void *, void *, s32, s32);
 void func_020c6e2c(void *arg0, void *arg1);
