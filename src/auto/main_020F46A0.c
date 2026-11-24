@@ -41,8 +41,31 @@ void func_020f4774(Vec3 *arg0, s32 arg1) {
     *(Vec3 *)((u8 *)((u32 *)data_02160c34)[1] + 0x20) = *arg0;
 }
 
+void func_020f4828(u16 arg0, u16 arg1) {
+    *(u16 *)((u8 *)((u32 *)data_02160c34)[1] + 0x18) = arg0;
+    *(u16 *)((u8 *)((u32 *)data_02160c34)[1] + 0x1a) = arg1;
+}
+
+void func_020f4844(u16 arg0, u16 arg1) {
+    *(u16 *)(data_02160c34[1] + 0x1c) = arg0;
+    *(u16 *)(data_02160c34[1] + 0x1e) = arg1;
+}
+
 void func_020f4860(u32 arg0) {
     data_02160c3c[1] = arg0;
+}
+
+void func_020f4870(void) {
+    void **p = (void **)&data_02160c3c[1];
+    if (*p == NULL) {
+        return;
+    }
+    func_0210a76c(*(void **)*p);
+    func_0210aa14(*(void **)((u8 *)*p + 4));
+    if (*p != NULL) {
+        func_0210c5dc(*p);
+        *p = NULL;
+    }
 }
 
 void func_020f4bd0(void *arg0) {
