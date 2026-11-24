@@ -18,12 +18,13 @@ extern s32 data_02162814;
 extern u8 *data_02160244;
 
 void func_020d850c(void) {
-    if (data_02160248.unk08 != NULL) {
+    UnkStruct_020d60248 *p = &data_02160248;
+    if (p->unk08 != NULL) {
         return;
     }
-    data_02160248.unk08 = func_0210c594(0x18, data_02155c3c);
-    func_021167ac(data_02160248.unk08, 0xc);
-    func_021167ac((u8 *)data_02160248.unk08 + 0xc, 8);
+    p->unk08 = func_0210c594(0x18, data_02155c3c);
+    func_021167ac(p->unk08, 0xc);
+    func_021167ac((u8 *)p->unk08 + 0xc, 8);
 }
 
 void func_020d8558(void) {
@@ -48,13 +49,12 @@ void func_020d8558(void) {
 }
 
 void func_020d85f4(u16 *arg) {
+    u16 i;
     u16 *dst = func_0210c594(0x14, data_02155c3c);
-    u16 i = 0;
-    do {
+    for (i = 0; i < 3; i++) {
         dst[i] = arg[i];
         dst[i + 3] = arg[i + 3];
-        i++;
-    } while (i < 3);
+    }
     func_021167f0(data_02160248.unk08);
 }
 
