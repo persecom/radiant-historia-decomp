@@ -94,18 +94,21 @@ u32 func_020137e0(u8 *dst, u16 *src, u32 maxLen) {
     if (dst == 0 || src == 0) {
         return 0;
     }
-    while (pos <= maxLen) {
+    for (;;) {
         if (*src == 0) {
             dst[pos] = 0;
-            return pos;
+            break;
         }
         code = *src++;
         len = func_020137c4(&tmp, code);
         if (pos + len > maxLen) {
-            return pos;
+            break;
         }
         func_02016e88((char *)dst + pos, (const char *)&tmp, len);
         pos += len;
+        if (pos > maxLen) {
+            break;
+        }
     }
     return pos;
 }
