@@ -13,3 +13,8 @@ extern void func_0211ae38(void *);
 extern u32 func_020055a0(void);
 extern void func_0211b0e8(s32, u32, u32, u32, u32);
 extern void func_0211b17c(s32, u32, u32, u32, u32);
+
+void func_0211b2b4(s32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
+    u8 *p = func_0211adb4(data_02144e80, arg1, arg2, arg3);
+    func_0211b17c(arg0, *(u16 *)(p + 4), data_021701f4, arg3, arg4);
+}
