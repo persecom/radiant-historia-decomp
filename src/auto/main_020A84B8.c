@@ -26,3 +26,7 @@ void func_020a8810(void *arg0, u32 arg1) {
     *(u32 *)((u8 *)arg0 + 0x3C) = func_020a8828(arg1);
 }
 
+u32 func_020a8828(u32 arg0) {
+    return (u16)data_02160148[arg0] & ~0xE0000000;
+}
+
