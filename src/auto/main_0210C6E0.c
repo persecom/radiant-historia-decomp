@@ -76,6 +76,7 @@ extern char data_02155c54[];
 extern u8 *data_02160204;
 extern s32 func_0210cc54(const char *);
 extern void func_0210cef8(void);
+typedef struct { u8 a,b,c,d; u16 repeat,trigger,pressed,held,released,down,raw,pad,up; } InputState;
 extern u8 data_021626a0[];
 extern u8 data_021626b6[];
 extern u16 data_021626ce[];
@@ -88,6 +89,46 @@ extern s32 func_021095d0(void *);
 extern void func_021093b0(void *);
 extern s32 func_02109444(void *);
 extern void *func_0210ca88(void *, s32);
+void func_0210c6e0(void) {
+u16 i=0;
+u16 keys=(u16)(((*(volatile u16 *)0x4000130 | *(volatile u16 *)0x2ffffa8)^0x2fff)&0x2fff);
+u16 prev;
+keys &= ~((keys & 0x40)<<1);
+keys &= ~((keys & 0x20)>>1);
+prev=*(u16 *)(data_021626a0+0x10);
+*(u16 *)(data_021626a0+0xe)=(prev^keys)&keys;
+*(u16 *)(data_021626a0+0xc)=prev&(prev^keys);
+*(u16 *)(data_021626a0+0x10)=keys;
+*(u16 *)(data_021626a0+6)=*(u16 *)(data_021626a0+0xe);
+for(;i<12;i++) {
+u16 bit=1<<i;
+if(keys&bit) {
+if(*(u16 *)(data_021626a0+4)&bit) {
+if(((u16 *)data_021626b6)[i]>=2) {
+((u16 *)data_021626b6)[i]=0;
+*(u16 *)(data_021626a0+6)|=bit;
+} else *(u16 *)(data_021626a0+6)&=(u16)~bit;
+} else if(((u16 *)data_021626b6)[i]>=10) {
+((u16 *)data_021626b6)[i]=0;
+*(u16 *)(data_021626a0+6)|=bit;
+*(u16 *)(data_021626a0+4)|=bit;
+}
+((u16 *)data_021626b6)[i]++;
+} else {
+((u16 *)data_021626b6)[i]=0;
+*(u16 *)(data_021626a0+4)&=(u16)~bit;
+*(u16 *)(data_021626a0+6)&=(u16)~bit;
+}
+}
+data_021626a0[0]=data_02144b9c[(keys&0xf0)>>4];
+if(data_021626a0[1]) keys=func_0210c8e8(keys);
+prev=*(u16 *)(data_021626a0+0xa);
+*(u16 *)(data_021626a0+8)=keys&(keys^prev);
+*(u16 *)(data_021626a0+0x14)=prev&(keys^prev);
+*(u16 *)(data_021626a0+0xa)=keys;
+data_021626a0[2]=data_02144b9c[(keys&0xf0)>>4];
+}
+
 void func_0210c898(void) {
     *(u16 *)(data_021626a0 + 0xc) = 0;
     *(u16 *)(data_021626a0 + 0xe) = 0;
