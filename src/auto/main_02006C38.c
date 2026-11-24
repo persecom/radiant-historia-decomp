@@ -190,6 +190,45 @@ void *func_02007250(void *arg0, void *arg1) {
     return arg0;
 }
 
+void *func_02007278(void *arg0, void *arg1) {
+    u8 *p = NULL;
+    u8 *cur = (u8 *)arg0;
+    u32 x, y;
+
+    if (cur != NULL) {
+        while ((u32)arg1 > (u32)cur) {
+            p = cur;
+            cur = *(u8 **)(cur + 4);
+            if (cur == NULL) break;
+        }
+    }
+    *(u8 **)arg1 = p;
+    *(u8 **)((u8 *)arg1 + 4) = cur;
+    if (cur != NULL) {
+        *(u8 **)cur = arg1;
+        x = *(u32 *)((u8 *)arg1 + 8);
+        if ((u8 *)arg1 + x == cur) {
+            x += *(u32 *)(cur + 8);
+            *(u32 *)((u8 *)arg1 + 8) = x;
+            cur = *(u8 **)(cur + 4);
+            *(u8 **)((u8 *)arg1 + 4) = cur;
+            if (cur != NULL) {
+                *(u8 **)cur = arg1;
+            }
+        }
+    }
+    if (p == NULL) return arg1;
+    *(u8 **)(p + 4) = arg1;
+    y = *(u32 *)(p + 8);
+    if ((u8 *)p + y != arg1) return arg0;
+    *(u32 *)(p + 8) = y + *(u32 *)((u8 *)arg1 + 8);
+    *(u8 **)(p + 4) = cur;
+    if (cur != NULL) {
+        *(u8 **)cur = p;
+    }
+    return arg0;
+}
+
 void func_02007428(s32 arg0, s32 arg1, void *arg2) {
     u8 *arena;
     u8 *heap;
@@ -285,9 +324,8 @@ u64 func_02007904(void) {
     volatile u16 countL;
     volatile u64 countH;
     u32 cookie = func_02008128();
-    UnkStruct_0215d128 *s = (UnkStruct_0215d128 *)&data_0215d128;
     countL = *(volatile u16 *)0x04000100;
-    countH = s->unk08 & 0xffffffffffffULL;
+    countH = *(volatile u64 *)((u8 *)&data_0215d128 + 8) & 0xffffffffffffULL;
     if ((*(volatile u32 *)0x04000214 & 8) != 0 && !(countL & 0x8000)) {
         countH++;
     }
