@@ -111,12 +111,37 @@ s32 func_020f4be4(u32 *arg0, u32 *arg1) {
     return 1;
 }
 
+void *func_020f4d40(u32 arg0) {
+    u8 *p = NULL;
+    u32 *head = (u32 *)data_02160c3c;
+    while (1) {
+        if (p != NULL) {
+            p = *(u8 **)(p + *(u16 *)((u8 *)head + 0xa) + 4);
+        } else {
+            p = *(u8 **)head;
+        }
+        if (p == NULL) {
+            return NULL;
+        }
+        if (*(u32 *)(p + 0x44) == arg0) {
+            return p;
+        }
+    }
+}
+
 extern void func_021168f8(void *, void *);
 extern void *func_0210c518(u32, void *);
 extern void func_02008e68(u32, void *, u32);
 void func_020f4ea4(u8 *arg0, u32 arg1) {
     *(u32 *)(arg0 + 0x10) = arg1;
     *(u16 *)(arg0 + 4) = (*(u16 *)(arg0 + 4) & ~0x3ff) | arg1;
+}
+
+void *func_020f4ec4(void) {
+    void *p = func_0210c518(0x54, (void *)data_02155c3c);
+    func_02008e68(0, p, 0x54);
+    *(u32 *)((u8 *)p + 0x20) = 1;
+    return p;
 }
 
 u32 func_020f53e4(void (*arg0)(void)) {
