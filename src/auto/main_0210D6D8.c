@@ -115,3 +115,12 @@ void func_0210dba0(u8 *arg0) {
     func_0210d9ac(list, arg0);
 }
 
+extern s32 func_02008128(void);
+extern void func_0200813c(s32);
+extern void func_021168f8(void *, void *);
+void func_0210dc00(void *arg0) {
+    s32 irq = func_02008128();
+    func_0210d92c(data_021628c8, arg0);
+    func_0200813c(irq);
+}
+
