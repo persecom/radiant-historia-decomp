@@ -13,6 +13,10 @@ void *func_02108844(void);
 void *func_0211a810(void);
 void func_0211a860(void *);
 void func_02108594(void *);
+extern s32 func_021086d4(void *);
+extern void *func_02117630(u8 *, u32);
+extern void func_0211903c(void *, void *, void *, void *, s32, s32, s32, s32, s32, s32);
+void func_020ebc94(u8 *, u32, s32);
 void func_020eb344(s32 arg0, s32 arg1) {
     if (arg0 == 0) {
         data_02156154(*(void **)data_02160aa4);
