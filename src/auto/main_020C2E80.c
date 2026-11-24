@@ -5,7 +5,10 @@ extern void *data_02155c3c;
 extern void *func_0210c594(s32, void *);
 extern void func_021168f8(void *, void *);
 extern void func_0210c5dc(void *);
+extern void func_021168f0(void *, void *);
 extern u8 *data_02160090;
+extern u8 *data_02160140;
+extern u8 *data_0216013c;
 void func_020c3020(void *arg0) {
     u8 *node = *(u8 **)(data_02160090 + 0x48);
     u8 *next;
