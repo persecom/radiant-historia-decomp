@@ -25,7 +25,6 @@ static inline u16 RandomA_02028420(u32 max) {
 static inline u8 *Pick_02028420(u8 **arr, u32 count) {
     return arr[RandomA_02028420(count)];
 }
-static inline u8 *Lookup_02028420(u32 index, u8 **array) { return array[(u16)index]; }
 extern s32 _s32_div_f(s32, s32);
 s32 func_02028420(u8 *arg0, u8 *arg1)
 {
