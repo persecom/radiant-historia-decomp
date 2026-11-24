@@ -16,6 +16,12 @@ static inline u16 Random_02028420(u16 max) {
  return (u16)(((x>>16)*max)>>16);
 }
 extern char data_02146164[];
+static inline u16 RandomA_02028420(u16 max) {
+ u32 x=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
+ data_0216263c[0]=x;
+ if(max!=0)x=(x>>16)*max;
+ return (u16)(x>>16);
+}
 extern s32 _s32_div_f(s32, s32);
 s32 func_02028420(u8 *arg0, u8 *arg1)
 {
@@ -145,8 +151,8 @@ s32 func_02028420(u8 *arg0, u8 *arg1)
       {
         u8 *list = *((u8 **) ((*((u8 **) (self + 0x12c))) + 0x1c));
         u8 *obj = NULL;
-        s32 found = 0;
         u8 *n = NULL;
+        s32 found = 0;
         if (list == NULL)
         {
           break;
@@ -185,8 +191,8 @@ s32 func_02028420(u8 *arg0, u8 *arg1)
       {
         u8 *list = *((u8 **) ((*((u8 **) (self + 0x12c))) + 0x1c));
         u8 *obj = NULL;
-        s32 found = 0;
         u8 *n = NULL;
+        s32 found = 0;
         if (list == NULL)
         {
           break;
@@ -198,8 +204,8 @@ s32 func_02028420(u8 *arg0, u8 *arg1)
           if ((*((u8 *) (*((u8 **) (obj + 0x118))))) == 0)
           {
             found = 1;
-            mask = cmd == 21;
-            if (mask)
+            mask = cmd != 21;
+            if (!mask)
             {
               *((u8 **) ((*((u8 **) (((u8 *) (&data_0216007c)) + 4))) + 0x3c)) = obj;
               return (s32) obj;
@@ -273,9 +279,7 @@ s32 func_02028420(u8 *arg0, u8 *arg1)
         data_0216263c[0] = x;
         if (cnt != 0)
         {
-          x = cnt;
-          x = x >> 16;
-          x = x * x;
+          x = (x >> 16) * cnt;
         }
         idx = (u16) (x >> 16);
         node = arr[idx];
@@ -288,7 +292,7 @@ s32 func_02028420(u8 *arg0, u8 *arg1)
       case 29:
       {
         u8 *arr[3] = {NULL};
-        char cnt;
+        u8 cnt;
         u32 x;
         u32 idx;
         if (v1 == 32)
@@ -355,16 +359,7 @@ s32 func_02028420(u8 *arg0, u8 *arg1)
         {
           break;
         }
-        x = (data_0216263c[1] * data_0216263c[0]) + data_0216263c[2];
-        data_0216263c[0] = x;
-        if (cnt != 0)
-        {
-          idx = (u16) (((x >> 16) * cnt) >> 16);
-        }
-        else
-        {
-          idx = (u16) (x >> 16);
-        }
+        idx = Random_02028420(cnt);
         node = arr[idx];
         *((u8 **) ((*((u8 **) (((u8 *) (&data_0216007c)) + 4))) + 0x38)) = node;
         return (s32) node;
@@ -381,7 +376,7 @@ s32 func_02028420(u8 *arg0, u8 *arg1)
         u8 *info = *((u8 **) (node + 0x118));
         if ((*((u32 *) (info + 0x70))) != 0)
         {
-          s32 pct = func_0201fb1c((*((s32 *) (info + 4))) * 100, *((s32 *) (info + 8)));
+          s32 pct = _s32_div_f((*((s32 *) (info + 4))) * 100, *((s32 *) (info + 8)));
           if ((v1 <= pct) && (pct <= v2))
           {
             *((u8 **) ((*((u8 **) (((u8 *) (&data_0216007c)) + 4))) + 0x38)) = node;
@@ -404,7 +399,7 @@ s32 func_02028420(u8 *arg0, u8 *arg1)
         u8 *info = *((u8 **) (node + 0x118));
         if ((*((u32 *) (info + 0x70))) != 0)
         {
-          s32 pct = func_0201fb1c((*((s32 *) (info + 4))) * 100, *((s32 *) (info + 8)));
+          s32 pct = _s32_div_f((*((s32 *) (info + 4))) * 100, *((s32 *) (info + 8)));
           if ((v1 <= pct) && (pct <= v2))
           {
             *((u8 **) ((*((u8 **) (((u8 *) (&data_0216007c)) + 4))) + 0x3c)) = node;
@@ -902,7 +897,7 @@ s32 func_02028420(u8 *arg0, u8 *arg1)
         u8 *info = *((u8 **) (node + 0x118));
         if (((*((u32 *) (info + 0x70))) != 0) && (self != node))
         {
-          s32 pct = func_0201fb1c((*((s32 *) (info + 4))) * 100, *((s32 *) (info + 8)));
+          s32 pct = _s32_div_f((*((s32 *) (info + 4))) * 100, *((s32 *) (info + 8)));
           if ((v1 <= pct) && (pct <= v2))
           {
             return (s32) node;
