@@ -21,3 +21,11 @@ extern Unk_02160244 *data_02160244;
 void func_0202b398(void) {
     data_02160244->field_70 = 0;
 }
+
+s32 func_0202b3b0(s32 arg0) {
+    if (data_02160244->field_70 & (1 << arg0)) {
+        return 0;
+    }
+    return 1;
+}
+
