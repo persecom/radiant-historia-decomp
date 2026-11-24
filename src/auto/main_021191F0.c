@@ -49,7 +49,7 @@ extern void func_0211ab04(u32);
 extern void func_0211ab28(void *);
 extern void func_0211ab14(void);
 extern void func_02119b34(u32);
-extern void func_02119334(void);
+extern void func_02119334(u8 *, s32);
 extern void func_02119448();
 extern void func_021194cc(void);
 extern void func_02119694();
