@@ -97,7 +97,7 @@ void func_02018c20(void *arg0, s32 arg1) {
         func_02018b84(arg0, data_02145f9c, 2);
         return;
     default:
-        func_02018c20(&local_26, arg1 / 2);
+        func_02018c20(&local_26, (s32)(arg1 + ((u32)(arg1 & 0x80000000) >> 31)) >> 1);
         func_02018a04(arg0, &local_26, &local_26);
         if (arg1 & 1) {
             struct S38 local_00 = *(struct S38 *)arg0;
