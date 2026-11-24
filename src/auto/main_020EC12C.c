@@ -67,3 +67,80 @@ void func_020ec218(void) {
         data_02160ab4 = NULL;
     }
 }
+
+extern u8 *data_02160aa4;
+extern s32 data_02155bac;
+extern void func_02108ffc(void);
+extern void *func_020eb400(void);
+extern s32 func_020eb44c(void *, u32, u32, s32, s32);
+extern void func_021167f0(void *, void *);
+#pragma optimization_level 0
+u8 *func_020ec294(u32 arg0, u16 arg1, s32 arg2, s32 arg3) {
+    void *v6 = NULL;
+    s32 v8 = 1;
+    u8 *v4 = NULL;
+    u32 v7;
+
+    if (arg0 == 0x2b02) {
+        v7 = *(u32 *)(data_02160aa4 + 0x14) + arg3;
+    } else {
+        v7 = *(u32 *)(data_02160aa4 + 0xc) + arg3;
+    }
+
+    func_02108ffc();
+
+    if (arg0 > 0x7d0 && arg0 < 0xf9f) {
+        void *tmp = func_020eb400();
+        data_02155bac = 0;
+        if (func_020eb44c(tmp, arg0, v7, 0, 0) == 0) {
+            (void)0;
+        }
+        data_02155bac = 1;
+        v6 = tmp;
+    } else if (arg0 > 0x1f40 && arg0 < 0x2af7) {
+        void *tmp = func_020eb400();
+        data_02155bac = 0;
+        if (func_020eb44c(tmp, arg0, v7, 0, 1) == 0) {
+            (void)0;
+        }
+        data_02155bac = 1;
+        v6 = tmp;
+    } else if (arg0 > 0x2af8 && arg0 < 0x2b03) {
+        void *tmp = func_020eb400();
+        if (func_020eb44c(tmp, arg0, v7, 0, 2) == 0) {
+            (void)0;
+        }
+        v6 = tmp;
+    } else if (arg0 > 0xfa0 && arg0 < 0x1004) {
+        void *tmp = func_020eb400();
+        data_02155bac = 0;
+        if (func_020eb44c(tmp, arg0, v7, 0, 3) == 0) {
+            (void)0;
+        }
+        data_02155bac = 1;
+        v6 = tmp;
+    } else {
+        return NULL;
+    }
+
+    v4 = (u8 *)func_0210c594(0x4c, data_02155c3c);
+    func_02108ffc();
+    *(s32 *)(v4 + 0x4) = v8;
+    *(u32 *)(v4 + 0x8) = arg0;
+    *(u32 *)(v4 + 0xc) = arg1;
+    *(void **)(v4 + 0x0) = v6;
+    *(s32 *)(v4 + 0x38) = 0;
+    *(s32 *)(v4 + 0x20) = 0x1000;
+    *(s32 *)(v4 + 0x24) = 0x1000;
+    *(u16 *)(v4 + 0x3c) = 0x7fff;
+    func_021167f0(data_02160ab4 + 0x50, v4);
+    if (arg0 == 0x2b02) {
+        *(u32 *)(v4 + 0x30) = *(u32 *)(data_02160aa4 + 0x14);
+        *(s32 *)(v4 + 0x34) = arg2;
+    } else {
+        *(u32 *)(v4 + 0x30) = *(u32 *)(data_02160aa4 + 0xc);
+        *(s32 *)(v4 + 0x34) = arg2;
+    }
+    return v4;
+}
+#pragma optimization_level 4
