@@ -9,7 +9,7 @@ extern const Unk20 data_02143dcc;
 extern const Unk20 data_02143df4;
 extern const Unk20 data_02143e1c;
 typedef struct {
-    s32 data[8][2];
+    s32 data[16];
 } Unk64;
 extern const Unk64 data_02143e4c;
 s32 _s32_div_f(s32,s32);
@@ -27,6 +27,40 @@ extern s32 func_020dddfc(void *, void *, s32);
 extern void func_020020f8(void *, void *, void *);
 extern void func_020c1fec(void);
 extern void func_0210d9e4(void *);
+void func_020c0284(s32 x,s32 y,s32 arg2,s32 value,s16 size) {
+Unk20 buf=data_02143df4;
+s16 center,padding;
+s32 divisor;
+s16 index,width,height,digit;
+*(volatile u32 *)0x40004a4=0x1f0080;
+if(value<=6)func_020a3bbc(0x70);
+else if(value<=12)func_020a3bbc(0x71);
+else if(value<=18)func_020a3bbc(0x72);
+else if(value<=24)func_020a3bbc(0x73);
+else func_020a3bbc(0x74);
+width=15+size*3;height=16+size*3;
+buf.unk[1]=0;buf.unk[2]=0;
+if(size==0){buf.unk[3]=width;buf.unk[4]=height;}
+else {buf.unk[3]=15;buf.unk[4]=16;}
+padding=size*3;
+buf.unk[7]=arg2+0x2bf;buf.unk[8]=width;buf.unk[9]=height;
+digit=value%10;
+center=y-(padding>>1);
+divisor=1;index=0;
+do {
+s16 current;
+if(divisor==1)current=digit;
+else current=(value/divisor)%10;
+buf.unk[1]=current*15;
+buf.unk[5]=x-index*width-(padding>>1);
+buf.unk[6]=center;
+func_021098ac(&buf);
+index++;
+divisor=(s16)divisor*(s16)10;
+if(value<divisor)divisor=-1;
+}while(divisor>0);
+}
+
 void func_020c0454(u8 *arg0, s32 arg1) {
 Unk20 buf=data_02143e1c;
 s32 percent;
@@ -188,25 +222,25 @@ void func_020c1038(void) {
     for (i = 0; i < 8; i++) {
         u8 *node = *(u8 **)(data_02160a6c + 0x70);
         while (node != NULL) {
-            if (*(u16 *)(node + 0x8e) == table.data[i][0] || table.data[i][0] == -1) {
+            if (*(u16 *)(node + 0x8e) == ((s32 *)&table)[i * 2] || ((s32 *)&table)[i * 2] == -1) {
                 u8 *list_mgr = ((u8 **)&data_02160218)[1];
                 if (*(u32 *)list_mgr == 0) {
                     u8 *item = (u8 *)func_0210c594(0xc, data_02155c3c);
-                    *(u16 *)item = table.data[i][1];
+                    *(u16 *)item = ((s32 *)&table)[i * 2 + 1];
                     func_021167f0(((u8 **)&data_02160218)[1] + 4, item);
                     *(u32 *)(((u8 **)&data_02160218)[1]) += 1;
                 } else {
                     u8 *it = *(u8 **)(list_mgr + 4);
                     s32 add = 1;
                     while (it != NULL) {
-                        if (*(u16 *)it == table.data[i][1]) {
+                        if (*(u16 *)it == ((s32 *)&table)[i * 2 + 1]) {
                             add = 0;
                         }
                         it = *(u8 **)(it + 8);
                     }
                     if (add != 0) {
                         u8 *item = (u8 *)func_0210c594(0xc, data_02155c3c);
-                        *(u16 *)item = table.data[i][1];
+                        *(u16 *)item = ((s32 *)&table)[i * 2 + 1];
                         func_021167f0(((u8 **)&data_02160218)[1] + 4, item);
                         *(u32 *)(((u8 **)&data_02160218)[1]) += 1;
                     }
