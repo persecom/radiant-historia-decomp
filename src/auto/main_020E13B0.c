@@ -70,3 +70,28 @@ void *func_020e1ccc(u32 arg0) {
     }
     return NULL;
 }
+
+void func_020e1d08(u16 arg0) {
+    Unk20 buf = data_02144998;
+    *(volatile u32 *)0x040004A4 = 0x001F00C0;
+    func_020a3bbc(0x79);
+    buf.unk[1] = 0;
+    buf.unk[2] = 0;
+    buf.unk[3] = 0xc;
+    buf.unk[4] = 0xc;
+    buf.unk[8] = 0xc;
+    buf.unk[9] = 0xc;
+    buf.unk[7] = 0x2cc;
+    buf.unk[5] = 0x74;
+    buf.unk[6] = arg0 + 0x3c;
+    func_021098ac(&buf);
+}
+
+void func_020e1e80(void) {
+    u16 i;
+    for (i = 0; i < 0xe; i++) {
+        func_020a5858(*(void **)(data_02160a74 + i * 4 + 0x60));
+        *(u32 *)(data_02160a74 + i * 4 + 0x60) = 0;
+    }
+}
+
