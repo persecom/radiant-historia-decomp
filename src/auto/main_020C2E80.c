@@ -74,8 +74,7 @@ void func_020c33d4(void) {
 }
 
 void *func_020c3c78(void) {
-    void *heap = data_02155c3c;
-    return func_0210c594(0x28, heap);
+    return func_0210c594(0x28, data_02155c3c);
 }
 
 void func_020c3c94(void *arg0) {
