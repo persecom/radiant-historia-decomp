@@ -283,6 +283,15 @@ u32 func_02133750(void *arg0, void *arg1) {
 void func_021337c4(void) {
 }
 
+void func_021337c8(void) {
+    s32 i;
+    for (i = 0; i < 10; i++) {
+        if (data_02174d6c[i].field_0 != 0) {
+            ((void (*)(void *))func_021337c4)(&data_02174d6c[i]);
+        }
+    }
+}
+
 extern u64 data_02174d64;
 void func_02133804(u64 arg0) {
     data_02174d64 = arg0;
