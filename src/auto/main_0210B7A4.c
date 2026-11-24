@@ -136,6 +136,7 @@ extern void *func_02120fa4(void *);
 extern void func_0211d520(void *, void *);
 #pragma optimization_level 0
 void func_0210b8f8(u8 *arg0, u32 arg1, u32 arg2, u32 arg3) {
+    u8 *p = arg0;
     u32 sp4;
     u32 sp0;
     void *r6 = NULL;
@@ -155,21 +156,93 @@ void func_0210b8f8(u8 *arg0, u32 arg1, u32 arg2, u32 arg3) {
     func_0210e3dc();
     func_02108ffc();
 
-    *(void **)(arg0 + 0x54) = GetMdlByIdx(func_02120f94(r6), arg3);
+    *(void **)(p + 0x54) = GetMdlByIdx(func_02120f94(r6), arg3);
 
-    *(void **)(arg0 + 0x58) = func_02120fa4(r5);
-    if (*(void **)(arg0 + 0x58) != NULL) {
-        func_0211d520(func_02120f94(r6), *(void **)(arg0 + 0x58));
+    *(void **)(p + 0x58) = func_02120fa4(r5);
+    if (*(void **)(p + 0x58)) {
+        func_0211d520(func_02120f94(r6), *(void **)(p + 0x58));
     }
-    *(void **)(arg0 + 0x118) = r6;
-    *(u32 *)(arg0 + 0x11c) = 0;
-    if (r5 != NULL) {
+    *(void **)(p + 0x118) = r6;
+    *(u32 *)(p + 0x11c) = 0;
+    if (r5) {
         func_0210c5dc(r5);
         r5 = NULL;
     }
 }
-#pragma optimization_level 4
 
+extern s32 data_02155c3c;
+extern void *func_0210c594(u32, s32);
+extern void func_02009354(void *, void *);
+#pragma optimization_level 4
+void func_0210ba48(u8 *p, u32 a, u32 b, u32 index) {
+    u32 x;
+    u32 y;
+    struct {
+        u32 compType : 8;
+        u32 destSize : 24;
+    } hdr;
+    void *first;
+    void *tmp;
+    void *second;
+    void *uncomp;
+    void *res;
+    u8 *base;
+    u8 *dict;
+    u8 *entry;
+    u8 *value;
+
+    tmp = func_0210c594(0x14, data_02155c3c);
+    data_02155bac = 0;
+    first = func_02109b14(a, &x);
+    second = func_02109b14(b, &y);
+    data_02155bac = 1;
+
+    hdr.destSize = *(u32 *)second >> 8;
+    uncomp = func_0210c594(hdr.destSize, data_02155c3c);
+    func_02009354(second, uncomp);
+    func_02108ffc();
+    if (second) {
+        func_0210c5dc(second);
+    }
+
+    func_02120828(first);
+    func_0210e3dc();
+    func_02108ffc();
+    func_02120828(uncomp);
+    func_0210e3dc();
+    func_02108ffc();
+
+    base = func_02120f94(first);
+    if (base) {
+        dict = base + 8;
+        if (dict && index < base[9]) {
+            entry = dict + *(u16 *)(base + 14);
+            entry = entry + 4 + *(u16 *)entry * index;
+        } else {
+            entry = 0;
+        }
+        if (entry) {
+            value = base + *(u32 *)entry;
+            goto found;
+        }
+    }
+    value = 0;
+found:
+    *(void **)(p + 0x54) = value;
+    res = func_02120fa4(uncomp);
+    *(void **)(p + 0x58) = res;
+    if (res) {
+        func_0211d520(func_02120f94(first), res);
+    }
+    *(void **)(p + 0x118) = first;
+    *(u32 *)(p + 0x11c) = 0;
+    if (uncomp) {
+        func_0210c5dc(uncomp);
+    }
+    if (tmp) {
+        func_0210c5dc(tmp);
+    }
+}
 void *func_02109b14(u32, u32 *);
 u8 *func_02120f94(void *);
 void *func_02120fa4(void *);
