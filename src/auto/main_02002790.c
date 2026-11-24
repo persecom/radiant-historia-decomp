@@ -108,6 +108,18 @@ void func_020029a0(s32 arg0, s32 arg1, s32 arg2, void *arg3, u8 *arg4) {
     func_02002bd8(arg4);
 }
 
+void func_020029ec(u32 arg0, u32 arg1) {
+    *(volatile u32 *)0x04000468 = arg1;
+    *(volatile u32 *)0x04000468 = arg0;
+    *(volatile u32 *)0x04000468 = 0;
+    *(volatile u32 *)0x04000468 = -arg0;
+    *(volatile u32 *)0x04000468 = arg1;
+    *(volatile u32 *)0x04000468 = 0;
+    *(volatile u32 *)0x04000468 = 0;
+    *(volatile u32 *)0x04000468 = 0;
+    *(volatile u32 *)0x04000468 = 0x1000;
+}
+
 extern void func_020055d4(void);
 void func_02002bbc(void)
 {
