@@ -206,6 +206,20 @@ void func_0212dce4(void *arg0) {
     func_0212e5ac();
 }
 
+void func_0212dd00(void *arg0) {
+    s8 *r4 = (s8 *)arg0;
+    func_0212e57c();
+    if (r4[1] == 2 && r4[2] == 1) {
+        r4[0x4c] = 1;
+        if (r4[0x4b] == 1) {
+            r4[0x4b] = 0;
+        }
+    } else {
+        r4[1] = 1;
+    }
+    func_0212e588();
+}
+
 void func_0212dd4c(void *arg0) {
     func_0212e5a0();
     func_0212dd68(arg0);
