@@ -293,6 +293,14 @@ void* func_02117140(void* heap, u32 size, s32 alignment)
     return (void*)aligned;
 }
 
+void func_02117198(void* heap)
+{
+    u8* start = *(u8**)((u8*)heap + 0x18);
+
+    *(u8**)((u8*)heap + 0x24) = start;
+    *(void**)((u8*)heap + 0x2C) = NULL;
+}
+
 void func_02117210(void) {
     func_02116ad8();
 }
