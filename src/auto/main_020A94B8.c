@@ -109,8 +109,7 @@ s32 func_020a9648(u32 *arg0) {
 }
 
 void func_020a96d4(u32 *arg0) {
-    if (func_020a9648(arg0) >= 4) {
-        return;
+    while (func_020a9648(arg0) >= 4) {
     }
 }
 
@@ -126,6 +125,38 @@ u32 func_020a96f0(u32 arg0) {
             return total;
         }
     }
+}
+
+u32 func_020a9738(u32 arg0, u16 arg1) {
+    u32 state[2] = { arg0, 0 };
+    u32 total = 0;
+    u16 counter = arg1;
+    u16 i = 0;
+    s32 val;
+    while (1) {
+        val = func_020a932c(state);
+        if (i == 0) {
+            state[0] += val + 3;
+            i++;
+            continue;
+        }
+        if (val < 0x500) {
+            total += func_020a916c(val);
+            continue;
+        }
+        if (val == 0xfd00) {
+            counter--;
+            if (counter == 0) {
+                break;
+            }
+            total = 0;
+            continue;
+        }
+        if (val == 0xfd14) {
+            data_021601d4 = 1;
+        }
+    }
+    return total;
 }
 
 u32 func_020a97e4(void **arg0, u32 arg1) {
