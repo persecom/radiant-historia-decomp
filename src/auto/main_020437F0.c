@@ -100,6 +100,29 @@ void func_020438d8(void) {
     func_0210db70(*(u8 **)(data_021600a8 + 4) + 0x40);
 }
 
+extern s32 func_0210c2f4(void *, s32 *);
+extern void func_02047820(u16);
+extern void func_020522d4(void *, s32, s32);
+extern void func_020468b0(s32);
+extern void func_02052904(s32);
+extern void func_0205443c(s32);
+extern u8 *func_020f0aa4(void);
+extern void func_02047490(void);
+extern void func_0210d568(s32);
+u16 func_02043964(u16 arg0) {
+    u8 *node = *(u8 **)(data_021600bc + 0x40);
+    while (node != NULL) {
+        if (*(u16 *)(node + 0x90) == arg0) {
+            break;
+        }
+        node = *(u8 **)(node + 0x13c);
+    }
+    if (node != NULL) {
+        return *(u16 *)(*(u8 **)(node + 0xb0) + 8);
+    }
+    return 0;
+}
+
 void *func_02044180(u16 arg0) {
     u8 *node = *(u8 **)(data_021600bc + 0xb8);
     while (node != NULL) {
