@@ -12,7 +12,7 @@ extern void func_0203bc34(void *, void *, void *, s32, s32, s32);
 extern void func_020a899c(void *);
 extern void func_020a9610(void *, void *, void *, void *, s32, s32);
 extern u32 func_020a96f0(void *);
-extern void *data_021600e4;
+extern u8 **data_021600e4;
 extern void *func_020a6360(void *, u8);
 
 typedef struct {
@@ -116,6 +116,34 @@ void *func_020a5f40(u8 **arg0, u16 arg1) {
         node = *(u8 **)(node + 0xa4);
     }
     return NULL;
+}
+
+s32 func_020a5f6c(u8 *arg0, u8 *arg1, u16 arg2, u16 arg3) {
+    u8 *g;
+    u16 v0 = *(u16 *)(arg1 + 0);
+    s32 i;
+    g = *(u8 **)data_021600e4;
+    if (v0 == arg2) {
+        for (i = 0; i < 4; i++) {
+            u8 v;
+            void *p;
+            void *a, *b;
+            switch (i) {
+            case 0: v = arg1[0x18]; break;
+            case 1: v = arg1[0x1b]; break;
+            case 2: v = arg1[0x19]; break;
+            case 3: v = arg1[0x1a]; break;
+            }
+            p = func_020a6360(g + 0x118, v);
+            if (p != NULL) {
+                a = *(void **)((u8 *)p + 4);
+                b = *(void **)((u8 *)p + 8);
+                if (*(u16 *)((u8 *)a + 4) == arg3) return (s8)i;
+                if (*(u16 *)((u8 *)b + 4) == arg3) return (s8)i;
+            }
+        }
+    }
+    return -1;
 }
 
 void *func_020a6168(void) {
