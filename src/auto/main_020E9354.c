@@ -78,6 +78,14 @@ void func_020e969c(void *arg0) {
     func_021168f8((u8 *)*(void **)(p + 8) + 0x10, arg0);
 }
 
+void func_020e96e0(u8 *arg0) {
+    if (*(void **)(arg0 + 0x60) != NULL) {
+        func_0210c5dc(*(void **)(arg0 + 0x60));
+        *(void **)(arg0 + 0x60) = NULL;
+    }
+    func_021168f8(*(u8 **)(arg0 + 8) + 0x20, arg0);
+}
+
 void func_020e9714(u8 *arg0) {
     func_021168f8(*(u8 **)(arg0 + 8) + 0x4c, arg0);
 }
