@@ -8,6 +8,11 @@ extern s32 func_0210c2f4(void *, void *);
 extern u8 *data_021600ac;
 extern u8 *data_02160200;
 extern u8 *data_02160204;
+extern void func_02002128(void *, void *, void *);
+extern s32 func_02002388(void *, void *);
+extern void func_02002274(void *, void *);
+extern void func_020020f8(void *, void *, void *);
+extern u16 func_020ddc8c(void *, void *);
 void func_02054118(void *arg0) {
     u8 *s = *(u8 **)((u8 *)arg0 + 0xd0);
     u8 i;
