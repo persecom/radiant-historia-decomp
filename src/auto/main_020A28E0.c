@@ -175,9 +175,8 @@ s32 func_020a2fa0(void) {
     return 0;
 }
 
-s32 func_020a30c4(void) {
-    func_020a30d4();
-    return func_020a3128();
+void func_020a30c4(u16 arg0) {
+    func_020a3128(func_020a30d4(arg0));
 }
 
 extern u32 data_02155c3c;
