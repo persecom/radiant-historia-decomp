@@ -115,6 +115,18 @@ u32 func_020ec9a0(u8 *arg0, s32 arg1) {
     return ret;
 }
 
+void func_020ec9d0(u32 arg0, s32 arg1) {
+    if (arg1 == 0) {
+        *(void **)(data_02160ab8 + 0x20) = (void *)func_020ed0bc;
+        *(u32 *)(data_02160ab8 + 0x24) = arg0;
+        func_0210dae0(data_02160ad8);
+    } else if (arg1 == 1) {
+        *(void **)(data_02160ab8 + 0xc) = (void *)func_020ed0bc;
+        *(u32 *)(data_02160ab8 + 0x10) = arg0;
+        func_0210db40(data_02160ac4);
+    }
+}
+
 void func_020ecaa4(void **arg0) {
     func_02108594(*arg0);
     if (arg0 != NULL) {
