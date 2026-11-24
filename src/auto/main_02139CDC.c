@@ -18,6 +18,50 @@ extern void func_02139ee4(void);
 extern void func_0210dc88(void);
 extern s32 func_0210723c(void);
 
+extern u32 data_02162858;
+extern u32 data_02162854;
+extern void func_020a994c(void *);
+extern void func_020a98a0(void *);
+extern void func_020a9544(void *);
+extern void func_020a3b84(void);
+extern void func_0210da14(void *);
+extern void func_0210dba0(void *);
+extern void func_0210dbe8(void *);
+extern void func_0210c5dc(void *);
+extern void func_0210e290(s32);
+extern void func_0210f138(void);
+void func_02139ee4(void) {
+    u8 i;
+
+    if (data_021769fc == NULL) {
+        return;
+    }
+
+    for (i = 0; i < 4; i++) {
+        u32 off = i * 0x50;
+        void *obj;
+
+        func_020a994c((u8 *)data_021769fc + 0x48 + off);
+        func_020a98a0((u8 *)data_021769fc + 0x48 + off);
+        obj = *(void **)((u8 *)data_021769fc + off + 0x44);
+        (*(void (**)(void *))((u8 *)obj + 0xc))(obj);
+    }
+
+    func_020a9544(*(void **)((u8 *)data_021769fc + 0x40));
+    func_020a3b84();
+    func_0210da14(data_021769fc);
+    func_0210dba0((u8 *)data_021769fc + 0x14);
+    func_0210dbe8((u8 *)data_021769fc + 0x28);
+    if (data_021769fc != NULL) {
+        func_0210c5dc(data_021769fc);
+        data_021769fc = NULL;
+    }
+    func_0210e290(0);
+    data_02162858 = 0;
+    data_02162854 = 0;
+    func_0210f138();
+}
+
 s32 func_02139fc4(void) {
     data_02162868 = 1;
     data_0216bf84 = 0;
