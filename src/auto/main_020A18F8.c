@@ -75,13 +75,11 @@ end:
 
 s32 func_020a2664(s32 arg0, s32 arg1, s32 arg2) {
     u8 *r3 = data_021600b0;
-    s32 hit;
     if (arg2 == 0) {
         return 1;
     }
     *(s16 *)(r3 + 0x1ce) = arg1;
-    hit = (arg0 >= 0 && arg0 <= 0x20 && arg1 >= -0x14 && arg1 <= 0xd4) ? 1 : 0;
-    if (hit != 0) {
+    if (in_rect_020a2664(arg0, arg1, 0, -0x14, 0x20, 0xd4)) {
         if (*(s32 *)(r3 + 0x224) == 1) {
             *(s16 *)(r3 + 0x1e0) += r3[0x238];
             if (*(s16 *)(r3 + 0x1e0) > 0) {
@@ -90,8 +88,7 @@ s32 func_020a2664(s32 arg0, s32 arg1, s32 arg2) {
         }
         return 1;
     }
-    hit = (arg0 >= 0xe6 && arg0 <= 0x106 && arg1 >= -0x14 && arg1 <= 0xd4) ? 1 : 0;
-    if (hit != 0) {
+    if (in_rect_020a2664(arg0, arg1, 0xe6, -0x14, 0x106, 0xd4)) {
         if (*(s32 *)(r3 + 0x230) == 1) {
             *(s16 *)(r3 + 0x1e0) -= r3[0x238];
         }
