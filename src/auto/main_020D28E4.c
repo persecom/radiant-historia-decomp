@@ -22,7 +22,7 @@ typedef struct {
     s32 unk24;
     s32 unk28;
     s32 unk2c;
-    u8 pad2[0x64];
+    u8 pad2[0x62];
     u16 unk92;
 } UnkA;
 
