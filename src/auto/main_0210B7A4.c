@@ -22,6 +22,29 @@ extern void *func_0210c518(u32, s32);
 extern void func_02002c2c(void);
 extern void func_02002dc0(void);
 extern void func_02120800(void);
+
+typedef struct {
+    s32 x;
+    s32 y;
+    s32 z;
+} Vec;
+
+extern void func_0210be4c(void);
+extern void func_02109af8(void);
+extern void func_0210ebd4(void);
+extern void func_0210d86c(void);
+extern void func_021097f4(void);
+extern void func_0210f550(void);
+extern void func_0210fcd4(u32);
+extern void func_0210e694(void);
+extern void func_02107d20(void);
+extern void func_0210b750(u32);
+extern void func_0210e67c(void);
+extern void func_0210cf10(void);
+extern void func_0210e7ac(void);
+extern void func_02011e20(u16 *, void *, u32, u32);
+extern void func_02002128(Vec *, Vec *, Vec *);
+extern void func_02002194(Vec *, Vec *, Vec *);
 extern u32 data_02162834[];
 extern u32 data_0216281c;
 
