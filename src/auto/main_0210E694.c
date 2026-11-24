@@ -234,6 +234,16 @@ s32 func_0210ea6c(void *arg0, u32 arg1, const char *arg2, u32 *arg3) {
     return 1;
 }
 
+void func_0210eb14(void *arg0) {
+    u32 *p = (u32 *)arg0;
+    if (p[1] == 0) {
+        return;
+    }
+    data_02156154(p[0]);
+    p[0] = 0;
+    p[1] = 0;
+}
+
 extern void func_0210eb14(void *);
 extern void func_0210eb4c(void *);
 void func_0210eb80(u8 *arg0) {
