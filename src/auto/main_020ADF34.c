@@ -68,18 +68,20 @@ void func_020ae004(s16 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s16 arg5, s
 }
 
 u8 func_020ae05c(u32 arg0, u32 arg1) {
-    u32 pow10 = 1;
     u32 i;
+    u32 pow10 = 1;
+    u32 count;
     if (arg0 == 0 && arg1 == 1) {
         return 0;
     }
-    for (i = 0; i < arg1 - 1; i++) {
+    count = arg1 - 1;
+    for (i = 0; i < count; i++) {
         pow10 *= 10;
     }
     if (arg0 < pow10) {
         return 10;
     }
-    for (i = 0; i < arg1 - 1; i++) {
+    for (i = 0; i < count; i++) {
         arg0 /= 10;
     }
     return arg0 % 10;
