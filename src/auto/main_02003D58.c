@@ -106,13 +106,15 @@ void func_02004084(void *arg0, u32 arg1, u32 arg2) {
 
 void func_020040f8(void) {
     if (data_02145ba4 == -1) {
-        return;
+        goto end;
     }
     func_0200893c();
     func_02004bdc(data_0215cd24[5]);
     data_0215cd24[5] = 0;
     data_0215cd24[4] = 0;
     data_0215cd24[3] = 0;
+end:
+    return;
 }
 
 void func_02004138(void) {
@@ -121,10 +123,13 @@ void func_02004138(void) {
     if (v == 0) {
         return;
     }
-    if (v == 0x20) {
-        data_0215cd24[1] = 0x06890000;
-    } else if (v == 0x40) {
-        data_0215cd24[1] = 0x06894000;
+    switch (v) {
+        case 0x20:
+            data_0215cd24[1] = 0x06890000;
+            break;
+        case 0x40:
+            data_0215cd24[1] = 0x06894000;
+            break;
     }
 }
 
