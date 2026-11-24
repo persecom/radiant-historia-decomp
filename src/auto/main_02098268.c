@@ -13,6 +13,28 @@ extern Pair16 data_02141fdc[6];
 extern Pair16 data_0214200c[8];
 extern Pair16 data_0214202c[10];
 
+void func_020983ac(void) {
+u8 *p=(u8 *)data_0216011c;
+u8 **q=&data_02160a74;
+switch(*(u16 *)(p+0x2c)) {
+case 0: break;
+case 1: *(u16 *)(p+0x38)=2; *(u16 *)(*q+0x1b8)=1; (*q)[0x1c8]=2; break;
+case 2: *(u16 *)(p+0x38)=3; *(u16 *)(*q+0x1ba)=2; break;
+case 3: *(u16 *)(p+0x38)=1; *(u16 *)(*q+0x1b6)=1; break;
+case 4: *(u16 *)(p+0x38)=3; *(u16 *)(*q+0x1ba)=2; break;
+case 5: *(u16 *)(p+0x38)=4; *(u16 *)(p+0x42)=0; break;
+case 6:
+*(u16 *)(*q+0x1b6)=0xffff;
+*(u16 *)(*q+0x1b0)=*(u16 *)(*q+0x1b6);
+func_020e9384(***(void ****)(*q+0xa0));
+*(u16 *)(*q+0x1b8)=255;
+*(u16 *)(*q+0x1ba)=7;
+(*q)[0x1c8]=0;
+*(u16 *)(p+0x38)=0;
+break;
+}
+}
+
 void func_02098694(u32 arg0) {
     u8 *out = (u8 *)data_0216011c;
     u16 buf[16];
