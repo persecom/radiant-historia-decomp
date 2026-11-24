@@ -147,6 +147,20 @@ u32 func_ov000_02176d10(u32 (*arg0)(void *), void *arg1) {
 void func_ov000_02176da0(void) {
 }
 
+u32 func_ov000_021774e4(u32 arg0) {
+    u32 v = (arg0 >> 24) & 0xff;
+    if ((v & 0xe) == 0xa) {
+        if ((v & 0xf0) == 0xf0) {
+            return 1;
+        }
+        if (v & 1) {
+            return 2;
+        }
+        return 3;
+    }
+    return 0;
+}
+
 extern u8 func_ov000_02178058[];
 extern void func_020082b8(void *buf);
 extern void func_020082d4(void *buf);
