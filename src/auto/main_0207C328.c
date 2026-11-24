@@ -53,6 +53,49 @@ void func_0207c328(void) {
     func_0210d27c(6);
 }
 
+void func_0207c3bc(void) {
+    u32 zero = 0;
+    u8 *node = *(u8 **)((u8 *)data_021600f0 + 0xc);
+    u8 *obj = *(u8 **)((u8 *)data_021600ac + 0x68);
+    u8 *res = func_02021f10(zero);
+    if (*node == 0 || obj == NULL) return;
+    if (*(u16 *)(res + 0x14) < 1) goto switch_part;
+    (*(u16 *)(node + 2))++;
+    if (*(u16 *)(node + 2) % 24 != 23) goto after_call;
+    func_0206e8f0(0x11, obj, 1);
+    *(u16 *)(node + 2) = 0;
+after_call:
+    if (func_0210c2f4(obj, &data_021600f4) <= 0x80000) return;
+    {
+        u16 left = *(u16 *)(res + 0x14);
+        if (left == 0) {
+            func_0210d27c(6);
+            *(u16 *)(node + 2) = 0;
+            return;
+        }
+        *(u16 *)(res + 0x14) = left - 1;
+        func_02057f5c();
+        data_021600f4 = *(S_0207c328 *)obj;
+        return;
+    }
+switch_part:
+    data_02160100 = *(S_0207c328 *)obj;
+    *(u32 *)((u8 *)&data_021600f0 + 0x10) = *(u32 *)obj + 0x6000;
+    *(u32 *)((u8 *)&data_021600f0 + 0x18) = *(u32 *)(obj + 8) - 0x8000;
+    switch (*(u16 *)(node + 2)) {
+    case 0:
+        func_0206e8f0(0x83, &data_02160100, 1);
+        break;
+    case 12:
+        func_0206e8f0(0x84, &data_02160100, 1);
+        break;
+    case 20:
+        func_0207c528();
+        break;
+    }
+    (*(u16 *)(node + 2))++;
+}
+
 void func_0207c528(void) {
     u8 *node = *(u8 **)((u8 *)data_021600f0 + 0xc);
     u8 *obj = *(u8 **)((u8 *)data_021600ac + 0x68);
