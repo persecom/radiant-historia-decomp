@@ -1,5 +1,7 @@
 /* 25 functions from 0x020BD38C to 0x020BE330 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { u16 x, y; } BDPair;
+extern u8 data_0215111c[], data_02151134[], data_02151144[];
 extern u8 data_02151118[];
 extern u8 *data_021600e4;
 extern s32 func_020be1b0(void);
