@@ -459,16 +459,30 @@ s32 func_0200d3c8(u8 *arg0, void *arg1, s32 arg2, u32 arg3) {
     return 0;
 }
 
-void func_0200d3f4(u32 *p, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u32 arg6, u32 arg7) {
-    p[16] = p[13] = arg4;
-    p[10] = arg1;
-    p[12] = arg3;
-    p[15] = p[11] = arg2;
-    p[14] = arg5;
-    p[18] = arg6 ? arg6 : (u32)func_0200d3a0;
-    p[19] = arg7 ? arg7 : (u32)func_0200d3c8;
-    p[17] = 0;
-    func_0200b6c8(p, (u32)&p[10], (u32)data_0213e964);
+void func_0200d3f4(void *p, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, void *arg6, void *arg7) {
+    struct {
+        u32 base;
+        u32 fat;
+        u32 fat_size;
+        u32 fnt;
+        u32 fnt_size;
+        u32 fat_bak;
+        u32 fnt_bak;
+        void *load_mem;
+        void *read_func;
+        void *write_func;
+    } *s = (void *)((u8 *)p + 0x28);
+    s->base = arg1;
+    s->fat = arg2;
+    s->fat_size = arg3;
+    s->fnt_size = arg5;
+    s->fnt = arg4;
+    s->fat_bak = arg2;
+    s->fnt_bak = arg4;
+    s->read_func = arg6 ? arg6 : (void *)func_0200d3a0;
+    s->write_func = arg7 ? arg7 : (void *)func_0200d3c8;
+    s->load_mem = 0;
+    func_0200b6c8(p, (u32)s, (u32)data_0213e964);
 }
 
 extern const u8 data_0213e964[];
