@@ -60,6 +60,26 @@ void func_020c470c(void) {
     func_0203be4c(*(void **)(func_020c46ac() + 0x10));
 }
 
+void func_020c48b8(void) {
+u8 *base=func_020c46ac();
+u32 *obj=*(u32 **)(base+0x10);
+Unk14 table=data_021444d0;
+*(volatile u32 *)0x40004a4=0x1f00c0;
+func_021099f8(&table);
+*(volatile u32 *)0x40004a8=(obj[1]>>3 | obj[6]<<26 | 0x40000000 | obj[4]<<20 | obj[5]<<23 | 0x20000000);
+*(volatile u32 *)0x40004ac=obj[3] >> (4-(obj[6]==2));
+*(volatile u32 *)0x4000480=0x7fff;
+func_020c4720(0,*(u32 *)(base+4));
+func_020c4720(1,*(u32 *)(base+4));
+func_020c4720(2,*(u32 *)(base+4));
+func_020c4720(3,*(u32 *)(base+4));
+func_020c4720(4,*(u32 *)(base+4));
+func_020c4720(5,*(u32 *)(base+4));
+func_020c4720(6,*(u32 *)(base+4));
+func_020c4720(7,*(u32 *)(base+4));
+func_020c4720(8,*(u32 *)(base+4));
+}
+
 void *func_020c4bd0(void) {
     return func_0210c594(0x10, data_02155c3c);
 }
