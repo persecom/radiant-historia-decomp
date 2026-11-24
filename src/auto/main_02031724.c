@@ -85,3 +85,7 @@ void *func_0203222c(void) {
     return *(void **)((u8 *)data_02160090 + 8);
 }
 
+void *func_02032240(void) {
+    return *(void **)((u8 *)data_02160090 + 0x14);
+}
+
