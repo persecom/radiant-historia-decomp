@@ -46,7 +46,7 @@ void func_02095f68(u8 *arg0) {
     func_02093510(p, 0x78);
     func_02093510(p, 0x79);
     func_02093510(p, 0x7a);
-    *(u8 *)(arg0 + 0x16) &= ~1;
+    *(u8 *)(arg0 + 0x16) &= 0xfe;
 }
 
 void func_020960dc(void) {
