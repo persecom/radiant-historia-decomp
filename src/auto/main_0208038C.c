@@ -5,6 +5,9 @@ typedef struct { s16 value[17]; } Stats_020806e8;
 extern void func_02080e00(void);
 extern void *data_02155c3c;
 extern u8 *data_0216010c;
+extern char data_021484f8[];
+extern char data_02148510[];
+extern char data_02148524[];
 extern void *func_0210c594(u32, void *);
 extern void func_020ec548(void *);
 #pragma optimization_level 0
