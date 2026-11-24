@@ -337,6 +337,16 @@ void func_020057d0(void) {
     *(u32 *)data_027e0060 = 0;
 }
 
+u32 func_020059b4(u32 arg0) {
+    u16 ime = *(volatile u16 *)0x04000208;
+    *(volatile u16 *)0x04000208 = 0;
+    u32 old = *(volatile u32 *)(0x04000208 + 8);
+    *(volatile u32 *)(0x04000208 + 8) = old | arg0;
+    (void)*(volatile u16 *)0x04000208;
+    *(volatile u16 *)0x04000208 = ime;
+    return old;
+}
+
 extern u32 data_0215cdac[];
 extern u32 data_0215cdb0[];
 extern u32 data_0215cdb4[];
