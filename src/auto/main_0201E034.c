@@ -2,7 +2,7 @@
 #include "common.h"
 
 extern void func_02019c4c(void);
-extern u64 func_0201edb0(u64, u64);
+extern u64 _dmul(u64, u64);
 
 typedef union {
     u64 d;
@@ -23,7 +23,7 @@ u64 func_0201e1f8(u64 x, s32 *exp, ...) {
         return x;
     }
     if (hx < 0x100000) {
-        u.d = func_0201edb0(u.d, 0x4350000000000000ULL);
+        u.d = _dmul(u.d, 0x4350000000000000ULL);
         hx = u.w.hi & 0x7fffffff;
         e = e - 54;
         *exp = e;

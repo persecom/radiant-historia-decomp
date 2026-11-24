@@ -5,7 +5,7 @@ extern double data_02160044;
 extern double func_0201e6a8(double);
 extern double func_02020c58(double,double);
 extern double func_0201e9fc(double,double);
-extern double func_0201edb0(double,double);
+extern double _dmul(double,double);
 extern double func_0201e6cc(double,double);
 extern double _dflt(s32);
 
@@ -25,7 +25,7 @@ data_02160034=33;
 return func_02020c58(func_0201e9fc(x,x),data_02160044);
 }
 k-=54;
-x=func_0201edb0(x,18014398509481984.0);
+x=_dmul(x,18014398509481984.0);
 hx=((s32 *)&x)[1];
 }
 if(hx>=0x7ff00000) return func_0201e6cc(x,x);
