@@ -155,3 +155,11 @@ void func_0212d5e0(void *arg0) {
     func_0212a228(*(void **)((u8 *)arg0 + 4));
 }
 
+extern void func_0212a230(void *);
+extern void func_0212a238(void *);
+extern s32 func_0212a240(void *);
+extern void func_0212a250(void *);
+void func_0212d5f0(void *arg0) {
+    func_0212a230(*(void **)((u8 *)arg0 + 4));
+}
+
