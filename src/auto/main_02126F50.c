@@ -192,6 +192,48 @@ void func_02127600(void *arg0) {
     *(u32 *)((u8 *)arg0 + 8) = 0;
 }
 
+extern void *func_02013858(void *, const void *, s32);
+void func_0212761c(s16 *src, s32 srcLen, s16 *dst, s32 dstLen) {
+    if (srcLen < dstLen) {
+        s32 diff = dstLen - srcLen;
+        s32 overlap = srcLen - diff;
+        s32 i;
+        for (i = 0; i < diff; i++) {
+            dst[i] = src[i];
+        }
+        for (i = 0; i < overlap; i++) {
+            s16 a = (s16)((overlap - i) * src[diff + i] / overlap);
+            s16 b = (s16)(i * src[i] / overlap);
+            s32 sum = a + b;
+            if (sum > 0x7fff) {
+                sum = 0x7fff;
+            } else if (sum < -0x8000) {
+                sum = -0x8000;
+            }
+            dst[diff + i] = sum;
+        }
+        for (i = 0; i < diff; i++) {
+            dst[srcLen + i] = src[overlap + i];
+        }
+    } else if (srcLen == dstLen) {
+        func_02013858(dst, src, dstLen * 2);
+    } else if (srcLen > dstLen) {
+        s32 diff = srcLen - dstLen;
+        s32 i;
+        for (i = 0; i < dstLen; i++) {
+            s16 a = (s16)(src[i] * (dstLen - i) / dstLen);
+            s16 b = (s16)(i * src[diff + i] / dstLen);
+            s32 sum = a + b;
+            if (sum > 0x7fff) {
+                sum = 0x7fff;
+            } else if (sum < -0x8000) {
+                sum = -0x8000;
+            }
+            dst[i] = sum;
+        }
+    }
+}
+
 extern void func_02127828(void *, void *, s32, s32);
 extern void func_021278c0(void *, void *);
 void func_021277f4(void *arg0, void *arg1, s32 arg2, s32 arg3) {
