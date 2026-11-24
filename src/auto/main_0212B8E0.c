@@ -252,6 +252,16 @@ void func_0212c464(void) {
     func_0212a9f8();
 }
 
+void func_0212c478(void) {
+    if (data_02173de4[2] != 0) {
+        ((void (*)(u32))data_02173de4[2])(data_02173de4[1]);
+    }
+    func_0212e600();
+    if (data_02173de4[0] != 0) {
+        ((void (*)(u32))data_02173de4[0])(data_02173de4[3]);
+    }
+}
+
 extern u32 data_02156cd8[4];
 void func_0212c4b8(u32 arg0) {
     data_02156cd8[0] = arg0;
