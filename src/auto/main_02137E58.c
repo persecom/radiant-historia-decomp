@@ -375,8 +375,9 @@ void func_02138618(void) {
 
 s32 func_02138658(s32 *arg0) {
     s32 ret;
-    if (data_02176644[2] != 0) {
-        ret = ((s32 (*)(void))data_02176644[2])();
+    s32 (*cb)(void) = (s32 (*)(void))data_02176644[2];
+    if (cb != NULL) {
+        ret = cb();
     } else {
         func_0213807c();
         ret = 1;
@@ -495,26 +496,27 @@ s8 func_02138d60(u8 *arg0) {
 
 extern u8 data_0215ca80[48];
 extern void func_02139664(void *, void *, s32, s32, s32);
-void func_02138d68(u8 *arg0, s32 arg1) {
-    struct Item {
-        u32 a;
-        s8 b;
-        u8 pad[7];
-    };
-    if (*(u32 *)(arg0 + 0x58) == 0) {
-        func_02126c20(data_0215ca80);
-        return;
-    }
-    func_02126c00();
-    *(s32 *)(arg0 + 0xc4) = arg1;
+void func_02138d68(u8 *arg0, s32 arg1)
+{
+  int new_var;
+  u8 *new_var2;
+  if ((*((u32 *) (arg0 + 0x58))) == 0)
+  {
+    func_02126c20(data_0215ca80);
+    return;
+  }
+  func_02126c00();
+  *((s32 *) (arg0 + 0xc4)) = arg1;
+  new_var = 0x18;
+  {
+    u8 *arr = arg0 + new_var;
+    new_var2 = arr + ((*((volatile s32 *) (arg0 + 0x10))) * 0xc);
+    if ((*((s8 *) (new_var2 + 4))) != 1)
     {
-        struct Item *arr = (struct Item *)(arg0 + 0x18);
-        if (arr[*(volatile s32 *)(arg0 + 0x10)].b == 1) {
-        } else {
-            func_02139664(arg0, &arr[*(volatile s32 *)(arg0 + 0x10)], 0, 0, arg1);
-        }
+      func_02139664(arg0, arr + ((*((volatile s32 *) (arg0 + 0x10))) * 0xc), 0, 0, arg1);
     }
-    func_02126c0c();
+  }
+  func_02126c0c();
 }
 
 void func_02138dd8(u8 *arg0, u32 arg1) {
