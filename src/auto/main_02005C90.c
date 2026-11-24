@@ -342,6 +342,33 @@ void func_02006510(void *arg0) {
     func_0200813c(cookie);
 }
 
+void func_02006560(void *arg0, u32 arg1) {
+    u32 cookie = func_02008128();
+    u8 **q = (u8 **)arg0;
+    if (*q == NULL) {
+        func_0200813c(cookie);
+        return;
+    }
+    while (*q != NULL) {
+        u8 *e = (u8 *)func_02005f5c(arg0);
+        *(u32 *)(e + 0x64) = 1;
+        *(u32 *)(e + 0x78) = 0;
+        *(u32 *)(e + 0x80) = 0;
+        *(u32 *)(e + 0x7c) = 0;
+    }
+    *(u32 *)((u8 *)arg0 + 4) = 0;
+    *q = NULL;
+    func_020060b8();
+    func_0200813c(cookie);
+}
+
+void func_020065c8(void *arg0) {
+    u32 cookie = func_02008128();
+    *(u32 *)((u8 *)arg0 + 0x64) = 1;
+    func_020060b8();
+    func_0200813c(cookie);
+}
+
 extern void func_020060b8(void);
 void func_0200661c(void) {
     u32 r4 = func_02008128();
