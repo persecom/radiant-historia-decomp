@@ -49,6 +49,15 @@ extern void func_020c7090(void *);
 extern u32 func_020c73b8(void *);
 extern void func_020c738c(void *, u32, u32);
 extern void func_0210fdc4(void *, u32, u32);
+typedef struct {
+    u32 field_0;
+    u32 field_4;
+    u8 field_8[0x80];
+    u32 field_88;
+    u32 field_8c;
+    u32 field_90;
+} Entry_94;
+
 extern void func_020c9940(void *);
 extern u8 data_02162b84[];
 extern s32 func_0210feb8(u32, u32, u32, u32, u32);
