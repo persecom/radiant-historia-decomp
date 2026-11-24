@@ -40,6 +40,32 @@ extern void func_02110abc(void *);
 extern void func_020bdf38(void);
 extern void func_020a8440(void);
 s32 func_020a47c8(void);
+void func_0210f550(void) {
+s32 four=4, zero=0;
+func_0210f448();
+func_02004d70(15);func_02004ee8(16);func_02004aac(0x60);func_0200518c(0x80);func_02005228(0x100);
+func_020027d4(1,four,1);func_020030e4(zero);
+*(volatile u32 *)0x4000000 &= 0xffcfffef;
+*(volatile u32 *)0x4000000 &= ~0x1f00;
+*(volatile u32 *)0x4000000 = (*(volatile u32 *)0x4000000 & ~0x1f00)|0x100;
+*(volatile u16 *)0x400000a &= ~3;
+*(volatile u16 *)0x400000e = (*(volatile u16 *)0x400000e & ~3)|1;
+*(volatile u16 *)0x400000c = (*(volatile u16 *)0x400000c & ~3)|2;
+*(volatile u16 *)0x4000008 = (*(volatile u16 *)0x4000008 & ~3)|3;
+*(volatile u16 *)0x4000060 &= 0xffffcffd;
+*(volatile u16 *)0x4000060 = (*(volatile u16 *)0x4000060 & ~0x3000)|0x10;
+*(volatile u16 *)0x4000060 = (*(volatile u16 *)0x4000060 & ~0x3000)|8;
+func_02002fb0(zero,zero,0x7fff,0x3f,zero);
+func_0210f410(four,0x10000);
+*(volatile u32 *)0x4001000 &= 0xffcfffef;
+func_0200283c(2);
+*(volatile u32 *)0x4001000 &= ~0x1f00;
+*(volatile u16 *)0x4001008 &= ~3;
+*(volatile u16 *)0x400100a = (*(volatile u16 *)0x400100a & ~3)|1;
+*(volatile u16 *)0x400100c = (*(volatile u16 *)0x400100c & ~3)|2;
+*(volatile u16 *)0x400100e = (*(volatile u16 *)0x400100e & ~3)|3;
+}
+
 void func_0210f6d4(void) {
  s32 one=1, zero=0;
  func_0210f448(); func_0210e290(one); func_02005168(0x200-one);
@@ -155,6 +181,31 @@ void func_0210fe40(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
             return;
         }
     }
+}
+
+s32 func_0210feb8(u32 a, u32 b, u32 size, u32 path, u32 packed) {
+s8 prefix[256], name[256], full[256];
+s32 i, j;
+s8 *out;
+if (!packed) { func_0210fe40(a,b,size,path); return; }
+func_02108ffc();
+for(i=0;i<256;i++) {
+ if (((s8 *)path)[i]) prefix[i]=((s8 *)path)[i];
+ else { j=i-1; for(;;) { if(prefix[j-1]=='/') { prefix[j]=0; break; } j--; } }
+}
+i=0; out=full;
+for(;;) {
+func_02108ffc();
+func_0210fdc4((u8 *)out,(u32)prefix,252);
+func_0210fdc4((u8 *)name,b+i,252);
+if(name[0]==0) return name[0];
+func_0210fdc4((u8 *)&size,b+(i+252),4);
+i+=256;
+func_020123cc(out,name);
+func_0210fe40(a,b+i,size,(u32)out);
+size=((s32)size+63)/64*64;
+i+=size;
+}
 }
 
 void func_021100c4(void);
