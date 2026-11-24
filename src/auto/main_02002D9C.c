@@ -17,3 +17,14 @@ void func_020038f8(void *arg0, u32 arg1, u32 arg2) {
         func_02008e08(arg0, base + arg1, arg2);
     }
 }
+
+extern u32 func_020031dc(void);
+void func_020039d8(void *arg0, u32 arg1, u32 arg2) {
+    u32 base = func_020031dc();
+    if (data_02145ba4 != -1 && arg2 > 0x1c) {
+        func_02008690(data_02145ba4, arg0, base + arg1, arg2, 1);
+    } else {
+        func_02008e08(arg0, base + arg1, arg2);
+    }
+}
+
