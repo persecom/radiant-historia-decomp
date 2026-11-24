@@ -3,6 +3,9 @@
 
 extern void func_021168f8(void *, void *);
 extern void func_0210c5dc(void *);
+extern u8 *data_021600e4;
+extern u8 func_020bdba0(u16);
+extern void func_020a6c44(void *, u16);
 void func_020a6e90(void **arg0) {
     void *ptr;
     while ((ptr = *arg0) != NULL) {
