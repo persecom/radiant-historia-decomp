@@ -272,6 +272,17 @@ u32 arg1, arg2;
     func_0212a9f8();
 }
 
+extern void *func_02127e18(void *, s32);
+extern void *func_02127ad0(void *, void *, s32);
+extern void (*data_02173428[])(void *);
+void *func_02127dec(void *arg0, s32 arg1) {
+    void *ret;
+    func_0212a9f4();
+    ret = func_02127e18(arg0, arg1);
+    func_0212a9f8();
+    return ret;
+}
+
 extern void func_0212a9f4(void);
 extern void func_02127e74(void *);
 extern void func_0212a9f8(void);
