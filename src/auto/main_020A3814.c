@@ -111,9 +111,9 @@ void func_020a473c(void) {
     char buf[0x1c];
     UnkStruct_020a473c *p = func_0210c594(0x24, data_02155c3c);
     data_02160130 = p;
-    p->unk0 = func_02109c60(data_0214fe18, &p->unk4);
+    data_02160130->unk0 = func_02109c60(data_0214fe18, &p->unk4);
     func_02005e80(buf, data_0214fe38, data_0214fe40, 1);
-    p->unk8 = func_02109c60(buf, &sp0);
-    p->unkc = sp0;
+    data_02160130->unk8 = func_02109c60(buf, &sp0);
+    data_02160130->unkc = sp0;
 }
 
