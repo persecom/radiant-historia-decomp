@@ -13,7 +13,7 @@ extern Unk021624F8 *data_021624f8;
 extern u8 data_02162510[];
 
 void func_02125b78(u32);
-void func_02125d00(u32);
+void func_02125d00();
 void func_02125bd4(u32, s32);
 
 void func_02108b54(u32 arg0) {
