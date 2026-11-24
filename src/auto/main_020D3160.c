@@ -13,13 +13,26 @@ typedef struct Node12c_020d3160 {
     struct Node12c_020d3160 *next;
 } Node12c_020d3160;
 
+typedef struct Node_020d3fac {
+    u8 pad_0[6];
+    u8 unk_6;
+    u8 pad_7[5];
+    struct Node_020d3fac *next;
+} Node_020d3fac;
+
 typedef struct Mgr_020d3160 {
-    u8 pad_00[0xec];
+    u8 pad_00[4];
+    void *unk_4;
+    u8 pad_08[0xe4];
     s32 unk_ec;
     u8 pad_f0[0x30];
     Node120_020d3160 *unk_120;
     u8 pad_124[0x8];
     Node12c_020d3160 *unk_12c;
+    u8 pad_130[0x14];
+    u8 unk_144;
+    u8 pad_145[0xb];
+    Node_020d3fac *unk_150;
 } Mgr_020d3160;
 
 extern Mgr_020d3160 *data_02160244;
