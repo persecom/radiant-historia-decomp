@@ -1,5 +1,16 @@
 /* 38 functions from 0x02032488 to 0x020333B8 (main), found by ds-decomp. */
 #include "common.h"
+extern void func_020c2694(s32);
+extern void func_020c2734(s32,s32,s32);
+extern void func_020c2870(s32);
+extern u8 *func_020c2a98(s32,s32);
+extern u8 *func_020c2584(void *,s32);
+extern void func_020c31f0(void);
+extern void func_020c27b4(s32,s32,s32);
+extern void func_020322ec(s32);
+extern void func_020c3244(s32);
+extern void func_020c30f8(s32);
+extern void func_020c2824(s32,s32,s32,s32);
 static inline u16 count_020327b4(u8 *p) {
 u16 n=0;
 while(p) { n++; p=*(u8 **)(p+0x24); }
