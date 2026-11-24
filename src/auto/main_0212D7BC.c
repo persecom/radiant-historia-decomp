@@ -28,20 +28,20 @@ void *func_0212d89c(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 }
 
 void *func_0212d938(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    u8 *entry = NULL;
+    u8 *e = NULL;
     s32 i;
     for (i = 0; i < data_02156d74[0]; i++) {
-        entry = data_021740f0[data_02156d74[1] + i];
-        if ((s8)entry[0] == 0) {
+        e = data_021740f0[data_02156d74[1] + i];
+        if ((s8)e[0] == 0) {
             break;
         }
     }
     if (i == data_02156d74[0]) {
         return NULL;
     }
-    func_0212d7bc(entry, arg0, arg1, arg2, arg3);
-    entry[3] = 0;
-    return entry;
+    func_0212d7bc(e, arg0, arg1, arg2, arg3);
+    e[3] = 0;
+    return e;
 }
 
 s32 func_0212d9cc(void *arg0, void *arg1) {
