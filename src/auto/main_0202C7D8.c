@@ -3,7 +3,17 @@
 
 extern u8 **data_02160244;
 extern void *func_0205bad4(void *);
-extern void func_02032b98(void *, void *, s32);
+extern u8 *func_02032b98(void *, void *, s32);
+extern u8 *data_02160a6c;
+extern u32 func_0202ea28(u8, s16);
+static inline void mark_first_c950(u8 *node) {
+ if(node) {
+  u8 *p;
+  *(u16 *)(node+4)|=0x20;
+  p=*(u8 **)(*(u8 **)node+0x118);
+  if(*(u32 *)(p+0x8c)&8) *(u32 *)(p+0x8c)|=0x800;
+ }
+}
 
 u8 *func_0202c7d8(s32 arg0) {
     u8 *result = NULL;
