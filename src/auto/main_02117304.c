@@ -424,6 +424,50 @@ u32 func_02117bd4(u32 **a0) {
     return *a0[1];
 }
 
+s32 func_02117be0(arg0,delta)
+void *arg0;
+s32 delta;
+{
+ u8 *a=arg0;
+ s32 zero=0,one=1,changed=0;
+ if(*(s32 *)(a+12)!=1)return changed;
+ *(s32 *)(a+16)+=func_02013630((s32)(((long long)*(s32 *)(a+20)*delta+0x800)>>12));
+ goto test;
+ for(;;){
+ {
+ u8 *p,*table;
+ s32 end;
+ *(s32 *)(a+16)-=*(u16 *)(*(u8 **)a+4)<<12;
+ if((*(s32 *)(a+20)>0)^*(u32 *)(a+8))p=*(u8 **)a+8;else p=*(u8 **)a-8;
+ *(u8 **)a=p;
+
+ changed=one;
+ if((*(s32 *)(a+20)>0)^*(u32 *)(a+8)){
+ table=*(u8 **)(a+28);
+ if(p>=*(u8 **)(table+12)+(*(u16 *)table<<3))end=one;else end=zero;
+ }else{
+ table=*(u8 **)(a+28);
+ if(p<=*(u8 **)(table+12)+(*(u16 *)(table+2)<<3)-8)end=one;else end=zero;
+ }
+ if(end)func_02117a8c(a);
+ p=*(u8 **)a;
+ if(*(u16 *)(p+4))*(u8 **)(a+4)=p;
+ if(*(volatile u32 *)(a+32)){
+ u16 index=(u16)(((u32)*(u8 **)a-*(u32 *)(*(u8 **)(a+28)+12))>>3);
+ switch(*(u32 *)(a+32)){
+ case 2: if(index==*(u16 *)(a+44)) (*(void (**)(u32,u32))(a+40))(*(u32 *)(a+36),index); break;
+ case 3: (*(void (**)(u32,u32))(a+40))(*(u32 *)(a+36),index);break;
+ }
+ }
+ }
+ test:
+ {s32 ready;
+ if(*(s32 *)(a+12)!=0 && *(s32 *)(a+16)>=(*(u16 *)(*(u8 **)a+4)<<12))ready=one;else ready=zero;
+ if(!ready)break;}
+ }
+ return changed;
+}
+
 extern BOOL func_02117b9c();
 void func_02117d74(void) {
     func_02117b9c();
