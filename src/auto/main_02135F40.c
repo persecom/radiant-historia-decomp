@@ -98,6 +98,14 @@ u32 func_02136944(u8 *arg0) {
     return (u32)*(u16 *)(arg0 + 0x1e) >> 1;
 }
 
+extern volatile u32 data_02175c58[2];
+void func_02136958(void) {
+    data_02175c58[1]++;
+    if (data_02175c58[1] == 1) {
+        data_02175c58[0] = 0;
+    }
+}
+
 void func_021369a8(void) {
     func_0213807c();
 }
