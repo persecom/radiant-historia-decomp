@@ -10,6 +10,10 @@ void func_020c6da0(void *arg0) {
     }
 }
 
+s32 func_020c6db4(void) {
+    return 1;
+}
+
 void func_020c6de0(void *arg0) {
     if (arg0 != NULL) {
         func_0210c5dc(arg0);
