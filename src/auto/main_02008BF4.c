@@ -37,6 +37,7 @@ extern void func_02009aec(u32 *);
 typedef struct { u32 a[8]; } Copy32B;
 typedef struct { u32 a[9]; } Copy36B;
 typedef struct { u32 a[12]; } Copy48B;
+typedef struct { u32 f0, f4, f8, fc; } Queue;
 
 void func_02008bf4(void) {
     u32 base;
@@ -120,6 +121,33 @@ void func_02008e08(u8 *src, u8 *dst, s32 size) {
     }
 }
 
+void func_02008e24(u32 value, u32 *dst, u32 bytes) {
+    u32 *end = (u32 *)((u8 *)dst + bytes);
+    do {
+        if ((s32)dst < (s32)end) {
+            *dst = value;
+            dst = (u32 *)((u8 *)dst + 4);
+        }
+    } while ((s32)dst < (s32)end);
+}
+
+void func_02008e38(const u32 *src, u32 *dst, u32 size) {
+    u32 *end = (u32 *)((u8 *)dst + size);
+    while (dst < end) {
+        *dst++ = *src++;
+    }
+}
+
+void func_02008e50(u32 *src, u32 *dst, s32 size) {
+    u32 *end = (u32 *)((u8 *)src + size);
+    while (1) {
+        if ((s32)src >= (s32)end) {
+            return;
+        }
+        *dst = *src++;
+    }
+}
+
 void func_02008eec(const Copy32B *src, Copy32B *dst) {
     *dst = *src;
 }
@@ -132,6 +160,13 @@ void func_02008f24(const Copy48B *src, Copy48B *dst) {
     *dst = *src;
 }
 
+void func_02008f48(const void *src, void *dst) {
+    typedef struct { u32 a[16]; } Copy64B;
+    const Copy64B *s = (const Copy64B *)src;
+    Copy64B *d = (Copy64B *)dst;
+    *d = *s;
+}
+
 void func_02009138(u32 *dst) {
     u32 i;
     for (i = 0; i < 9; i++) {
@@ -139,6 +174,7 @@ void func_02009138(u32 *dst) {
     }
 }
 
+extern u32 __swp(u32, u32 *);
 u32 func_02009148(u32 val, u32 *ptr) {
     return __swp(val, ptr);
 }
@@ -328,8 +364,10 @@ u32 *func_02009a64(s32 arg0) {
 
 void func_02009aec(u32 *arg0) {
     s32 irq = func_02008128();
-    u32 **q = data_0215d1b8;
-    u32 *tail = q[3];
+    u32 *tail;
+    u32 **q;
+    q = data_0215d1b8;
+    tail = q[3];
     if (tail == NULL) {
         q[2] = arg0;
     } else {
