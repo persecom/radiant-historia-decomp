@@ -346,6 +346,11 @@ void func_02117ddc(u32 *arg0) {
     *(u16 *)(arg0 + 3) = 0;
 }
 
+void func_02117e4c(void *arg0, void *arg1) {
+    *(void **)((u8 *)arg0 + 0x1c) = arg1;
+    func_02117df4(arg0);
+}
+
 void func_02117e5c(void *arg0, u32 arg1, u32 arg2) {
     func_02008e08(arg0, arg1 + 0x07000400, arg2);
 }
