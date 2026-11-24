@@ -7,6 +7,7 @@ extern void func_0212a9f8(void);
 extern u8 data_0215665c[60];
 extern void *func_02127dec(void *, s32);
 extern void *func_02127a9c(void *, void *, s32);
+extern void *func_02127ad0(void *, void *, s32);
 extern void func_02127e58(void *);
 extern void func_0212c3b0(void *);
 extern void func_021277f4();
