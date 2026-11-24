@@ -1,5 +1,7 @@
 /* 45 functions from 0x020DD770 to 0x020DE56C (main), found by ds-decomp. */
 #include "common.h"
+extern char data_02151510[];
+extern void *func_021092d8(void *);
 
 typedef struct UnkStruct_02160a68 {
     u8 unk00[4];
@@ -268,17 +270,16 @@ void *func_020dde4c(u16 arg0) {
 }
 
 void func_020dde88(u8 *arg0) {
-    register volatile u16 *hw = (volatile u16 *)0x40002b0;
     s32 dist = ((s32 (*)(void *, void *))func_0210c2f4)(data_02162440, arg0);
     s32 diff = data_0216242c[6] - *(s32 *)(arg0 + 4);
     s64 sq = (s64)diff * diff;
     s32 q;
     s32 v;
 
-    *hw = 1;
-    *(volatile u32 *)((u8 *)hw + 8) = (u32)sq;
-    *(volatile u32 *)((u8 *)hw + 0xc) = (u32)(sq >> 32);
-    while (*hw & 0x8000) {
+    *(volatile u16 *)0x40002b0 = 1;
+    *(volatile u32 *)0x40002b8 = (u32)sq;
+    *(volatile u32 *)0x40002bc = (u32)(sq >> 32);
+    while (*(volatile u16 *)0x40002b0 & 0x8000) {
     }
     q = (dist + (*(volatile s32 *)0x40002b4 + 1 >> 1)) >> 12;
     v = (0xa00 - q) << 13;
@@ -293,17 +294,16 @@ void func_020dde88(u8 *arg0) {
 }
 
 void func_020ddf2c(u8 *arg0) {
-    register volatile u16 *hw = (volatile u16 *)0x40002b0;
     s32 dist = ((s32 (*)(void *, void *))func_0210c2f4)(data_02162440, arg0);
     s32 diff = data_0216242c[6] - *(s32 *)(arg0 + 4);
     s64 sq = (s64)diff * diff;
     s32 q;
     s32 v;
 
-    *hw = 1;
-    *(volatile u32 *)((u8 *)hw + 8) = (u32)sq;
-    *(volatile u32 *)((u8 *)hw + 0xc) = (u32)(sq >> 32);
-    while (*hw & 0x8000) {
+    *(volatile u16 *)0x40002b0 = 1;
+    *(volatile u32 *)0x40002b8 = (u32)sq;
+    *(volatile u32 *)0x40002bc = (u32)(sq >> 32);
+    while (*(volatile u16 *)0x40002b0 & 0x8000) {
     }
     q = (dist + (*(volatile s32 *)0x40002b4 + 1 >> 1)) >> 12;
     v = (0xa00 - q) << 13;
@@ -394,7 +394,7 @@ void func_020de29c(void) {
 void *func_020de2a8(u8 *arg0, u16 arg1, u8 arg2) {
     u8 *node = func_020de33c(arg0, arg1, arg2);
     if (node != NULL) {
-        (*(u16 *)(node + 0xa))++;
+        *(u16 *)(node + 0xa) = *(u16 *)(node + 0xa) + 1;
         if (*(u16 *)(node + 0xa) >= 99) {
             *(u16 *)(node + 0xa) = 99;
         }
@@ -404,7 +404,7 @@ void *func_020de2a8(u8 *arg0, u16 arg1, u8 arg2) {
         *(u8 *)(node + 0xc) = arg2;
         *(u16 *)(node + 0xa) = 1;
         func_021167f0(arg0, node);
-        (*(u16 *)(arg0 + 0xc))++;
+        *(u16 *)(arg0 + 0xc) = *(u16 *)(arg0 + 0xc) + 1;
         if (*(u16 *)(arg0 + 0xc) >= 99) {
             *(u16 *)(arg0 + 0xc) = 99;
         }
