@@ -121,6 +121,29 @@ s32 func_021154a4(void *arg0) {
     return ret - 1;
 }
 
+void func_021154f4(void *arg0, s32 arg1) {
+void *sub = NULL;
+BOOL flag = FALSE;
+if (arg1 == 0) { func_02115380(arg0); return; }
+while (arg1 < *(u16 *)((u8 *)arg0+0xc)) {
+void *node = func_02116970((u8 *)arg0+4,NULL);
+sub = func_02116970(node, sub);
+while (sub != NULL) {
+void (*cb)(void *,u32,u32,u32) = *(void (**)(void *,u32,u32,u32))((u8 *)sub+0xc);
+if (cb != NULL) {
+cb((u8 *)sub+0x20,*(u32 *)((u8 *)sub+8),*(u32 *)((u8 *)sub+0x10),*(u32 *)((u8 *)sub+0x14));
+flag=TRUE;
+}
+sub=func_02116970(node,sub);
+}
+func_021168f8((u8 *)arg0+4,node);
+}
+func_02117304(*(void **)arg0,arg1);
+if (flag) func_0211566c();
+func_021172b4(*(void **)arg0,*(u16 *)((u8 *)arg0+0xc));
+func_02115630(arg0);
+}
+
 u32 func_021155c8(void *arg0) {
     u32 val = func_0211727c(*(void **)arg0, 0x20);
     if (val < 0x20) {
@@ -327,19 +350,22 @@ void *func_02115b7c(void *arg0, void *arg1, s32 arg2) {
 }
 
 #pragma peephole off
-void func_02115d10(void *arg0, s32 arg1, s32 arg2) {
-    void *r5;
-    void *r4;
-    if (arg1 == 0) {
-        return;
-    }
-    r5 = (void *)func_02008128();
-    r4 = func_02114f58((void *)arg1);
-    if (arg0 == func_02115264((void *)arg2)) {
-        func_0211528c((void *)arg2, NULL);
-        func_02114f58(r4);
-    }
-    func_0200813c((u32)r5);
+void func_02115d10(void *arg0, s32 arg1, s32 arg2)
+{
+  void *r5;
+  void *r4;
+  if (arg1 == 0)
+  {
+    return;
+  }
+  r5 = func_02008128();
+  r4 = func_02114f58((void *) arg1);
+  if (arg0 == func_02115264((void *) arg2))
+  {
+    func_0211528c((void *) arg2, NULL);
+    func_02114f58(r4);
+  }
+  func_0200813c(r5);
 }
 #pragma peephole on
 void func_02115d68(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
@@ -435,13 +461,3 @@ s32 func_021160c0(u32 arg0, u32 arg1, u32 arg2) {
     if (r == NULL) return 0;
     return func_02116244(arg0, r[9], *(u16 *)(r + 4), r[8], r, q, arg1, arg2);
 }
-
-void func_0211630c(s32 arg0) {
-    s32 i;
-    for (i = 0; i < 4; i++) {
-        if (data_0216cb40[i].flag) {
-            func_02116488(&data_0216cb40[i], arg0);
-        }
-    }
-}
-

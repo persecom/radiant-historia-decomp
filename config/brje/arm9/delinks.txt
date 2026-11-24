@@ -953,7 +953,10 @@ src/auto/main_021143C0.c:
     .text start:0x021143c0 end:0x02115380
 
 src/auto/main_02115380.c:
-    .text start:0x02115380 end:0x02116350
+    .text start:0x02115380 end:0x02116244
+
+src/auto/main_02116244.c:
+    .text start:0x02116244 end:0x02116350
 
 src/auto/main_02116350.c:
     .text start:0x02116350 end:0x02116488
