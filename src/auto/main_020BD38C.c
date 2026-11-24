@@ -64,8 +64,10 @@ void func_020bdd84(void) {
 }
 
 void func_020bddb0(u8 *arg0) {
-    *(u32 *)(arg0 + 0) = 0;
-    *(u16 *)(arg0 + 4) = 1;
+    u32 zero = 0;
+    u16 one = 1;
+    *(u32 *)(arg0 + 0) = zero;
+    *(u16 *)(arg0 + 4) = one;
 }
 
 s32 func_020bdf24(volatile s32 arg0, ...) {
