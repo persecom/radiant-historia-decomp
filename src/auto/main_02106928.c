@@ -58,6 +58,12 @@ extern u32 func_02005df8(void);
 extern void func_021071fc(void);
 extern void func_0201064c(void *);
 extern void func_0210721c(void);
+extern u32 data_0216106c;
+extern void func_02117f54(u32, u32, u32, u32);
+extern void func_02118008(u32, u32, u32, u32);
+extern void func_020105e0(u32, u32, u32, u32, u32, u32, u32, u32, u32);
+extern s32 func_020106a0(void);
+extern s32 func_020106ac(void);
 
 void func_02106928(void) {
     if (data_02161064 != NULL) {
