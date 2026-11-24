@@ -184,6 +184,11 @@ void func_02009ffc(u32 arg0) {
     }
 }
 
+u32 func_0200a040(void) {
+    func_02006d8c(data_0215ece0 + 1, 4);
+    return data_0215ece0[1];
+}
+
 extern u32 *data_0215ece0;
 extern void func_02006d8c(void *, s32);
 extern void func_02006dc4(void *, s32);
