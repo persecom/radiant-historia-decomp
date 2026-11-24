@@ -25,6 +25,37 @@ extern void func_0210c5dc(void *);
 extern void *func_0210c594(s32, u32);
 extern void func_021168f8(void *, void *);
 
+extern u32 (*data_02156150)(u32, s32, s32);
+extern u32 (*data_02156158)(u32, s32, s32);
+extern void func_0200439c(void);
+extern void func_020043f8(void *, u32, u32);
+extern void func_02004544(void);
+extern void func_02004588(void);
+extern void func_020045bc(void *, u32, u32);
+extern void func_0200462c(void);
+extern void func_020a4898(u32);
+void func_020a47c8(void) {
+    u8 *r5 = data_02160130;
+    u32 r6 = *(u32 *)(r5 + 4);
+    u32 r7;
+
+    *(u32 *)(r5 + 0x10) = data_02156150(r6, 0, 0);
+    func_0200439c();
+    func_020043f8(*(void **)r5, ((u32)(u16)*(u32 *)(r5 + 0x10)) << 3, r6);
+    func_02004544();
+
+    *(u32 *)(r5 + 0x18) = (((u32)(u16)*(u32 *)(r5 + 0x10)) & 0x1fffffff) | 0x68400000;
+
+    r7 = (*(u32 *)(r5 + 0xc) + 3) & ~3;
+    func_02004588();
+    *(u32 *)(r5 + 0x14) = data_02156158(r7, 1, 0);
+    func_020045bc(*(void **)(r5 + 8), ((u32)(u16)*(u32 *)(r5 + 0x14)) << 3, r7);
+    func_0200462c();
+
+    r5[0x20] = 1;
+    func_020a4898(0);
+}
+
 void func_020a4898(u32 arg0) {
     u8 *ptr = data_02160130;
     if (ptr[0x20] == arg0) {
