@@ -162,6 +162,43 @@ void func_021144f0(u8 *arg0) {
     }
 }
 
+extern void func_0211470c(u8 *);
+extern void func_021148bc(u8 *);
+extern s32 func_02113a1c(void);
+extern void func_020096d4(u32,u32,u32,u32,u32,u32,u32,u32,u32,u32);
+extern void func_0200960c(s32,u32,u32,void *,void *);
+extern void func_021167f0(void *,void *);
+s32 func_02114518(u8 *p,u32 mode,u32 base,u32 size,u32 rate,u32 count,u32 cb,u32 ctx) {
+u32 n, period, irq; s32 i;
+if ((*(s32 *)(p+0x2c)<<31)>>31) func_0211470c(p);
+n=func_0201fd28(size, *(u32 *)(p+0x50)*(count<<5));
+n *= count;
+n <<= 5;
+*(u32 *)(p+0x30)=n;
+if(mode==1) n>>=1;
+period=func_0201fd28(rate*n,count);
+*(s32 *)(p+0x48)=func_02113a1c();
+if(*(s32 *)(p+0x48)<0) return 0;
+for(i=0;i<*(s32 *)(p+0x50);i++){
+u32 ch=p[0x54+i];
+*(u32 *)(data_0216c8f4+ch*8)=base+*(u32 *)(p+0x30)*i;
+*(u32 *)(data_0216c8f4+ch*8+4)=0;
+func_020096d4(ch,mode,*(u32 *)(data_0216c8f4+ch*8),1,0,*(u32 *)(p+0x30)>>2,127,0,rate<<5,64);
+}
+func_0200960c(*(s32 *)(p+0x48),period,period,(void *)func_021148bc,p);
+func_021167f0(data_0216c8a8,p);
+*(u32 *)(p+0x28)=mode; *(u32 *)(p+0x34)=count;
+*(u32 *)(p+0x38)=cb; *(u32 *)(p+0x3c)=ctx;
+*(u32 *)(p+0x40)=0; *(u32 *)(p+0x44)=0;
+*(u32 *)(p+0x2c)=(*(u32 *)(p+0x2c)&~1)|1;
+irq=func_02008128();
+*(u32 *)(p+0x34)=1;
+func_021148cc(p,0);
+*(u32 *)(p+0x34)=count;
+func_0200813c(irq);
+return 1;
+}
+
 void func_021146b8(u8 *arg0) {
     func_02009580(*(void **)(arg0 + 0x4c), 0, 1u << *(s32 *)(arg0 + 0x48), 0);
     if (((*(s32 *)(arg0 + 0x2c) << 30) >> 31) != 0) {
