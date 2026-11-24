@@ -100,6 +100,15 @@ void func_020a5ed4(void **arg0) {
     }
 }
 
+void *func_020a5f14(u8 **arg0, u16 arg1) {
+    u8 *node = *arg0;
+    while (node != NULL) {
+        if (*(u16 *)(node + 0) == arg1) return node;
+        node = *(u8 **)(node + 0xa4);
+    }
+    return NULL;
+}
+
 void *func_020a6168(void) {
     return func_0210c594(0x14, data_02155c3c);
 }
