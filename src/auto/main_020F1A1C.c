@@ -47,13 +47,13 @@ void func_020f1fa4(u8 *arg0) {
     }
 }
 
-BOOL func_020f24f4(s32 arg0) {
-    return func_020f1ffc(arg0) != 0;
+BOOL func_020f24f4(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    return func_020f1ffc(arg0, arg1, arg2, arg3) != 0;
 }
 
-extern s32 func_020f2104(s32);
-BOOL func_020f250c(s32 arg0) {
-    return func_020f2104(arg0) != 0;
+extern BOOL func_020f2104(void *, s32, s32, void *);
+BOOL func_020f250c(void *arg0, s32 arg1, s32 arg2, void *arg3) {
+    return func_020f2104(arg0, arg1, arg2, arg3) != 0;
 }
 
 extern u8 data_02160c20[20];
