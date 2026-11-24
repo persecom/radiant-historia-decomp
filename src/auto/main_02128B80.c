@@ -201,3 +201,8 @@ void func_02129a14(u8 *arg0) {
     ((void (*)(u8 *))data_0217357c[3])(arg0);
 }
 
+s32 func_02129a50(void) {
+    data_0217358c[3]++;
+    return 0;
+}
+
