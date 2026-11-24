@@ -18,12 +18,12 @@ static inline u8 *find_node_02052844(u16 id) {
     return NULL;
 }
 
-extern void func_020dd9b4(void *, s32 *);
+extern s32 func_020dd9b4(void *, s32 *);
 extern s32 func_02117d80(void);
 extern u32 *data_02155984;
 extern u8 *data_02160a80;
 extern u8 *data_021600bc;
-extern void func_020526f0(u64, u32, s32, s32);
+extern void func_020526f0();
 extern void func_020477dc(void *, s32, s32);
 void func_02052328(void) {
     data_02155984[0] = 0x165;
