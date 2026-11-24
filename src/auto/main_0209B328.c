@@ -34,6 +34,62 @@ void func_0209b570(void) {
     }
 }
 
+extern u8 *func_0209ac14(void);
+extern void *func_020bd490(s32, u8);
+extern s32 func_02065884(void *, u16);
+extern s32 func_02065958(void *, u16);
+extern void func_0209ca18(void *, void *, s32, s32, s16, s32);
+extern void *func_0209c14c(u16);
+extern void func_0210d27c(s32);
+extern void func_0209c94c(void *, void *);
+void func_0209b7e4(void) {
+    u8 *base = data_02160120;
+    u8 *node;
+    u8 *sub;
+    u16 count = 0;
+
+    node = func_0209ac14();
+    while (node != NULL) {
+        sub = *(u8 **)(node + 0x3c);
+        if (sub != NULL) {
+            if (*(s16 *)(sub + 2) == 0) {
+                s32 val1 = func_02065884(func_020bd490(1, node[0]), *(u16 *)sub);
+                s32 val2 = func_02065958(func_020bd490(1, node[0]), *(u16 *)sub);
+                u8 *obj;
+                func_0209ca18(*(void **)(node + 0x30), *(void **)(base + 0x6a0), val1, 0x94, (s16)(node[0] * 0x38 + 0x34), 100);
+                obj = (u8 *)func_0209c14c((u16)(node[0] + 0x43));
+                *(u16 *)(obj + 2) |= 1;
+                if (val2 == 0) {
+                    *(u16 *)(obj + 4) = 10;
+                } else if (val2 == 1) {
+                    *(u16 *)(obj + 4) = 11;
+                } else if (val2 == 2) {
+                    *(u16 *)(obj + 4) = 12;
+                } else if (val2 == 3) {
+                    *(u16 *)(obj + 4) = 13;
+                }
+                func_0210d27c(0x9a);
+            }
+            *(s16 *)(sub + 2) += 6;
+            if (*(s16 *)(sub + 2) > 50) {
+                *(s16 *)(sub + 2) = 50;
+                func_0209c94c(node, sub);
+            }
+        } else {
+            count++;
+        }
+        node = *(u8 **)(node + 0x38);
+    }
+    if (count != base[0x694]) {
+        return;
+    }
+    *(s16 *)(base + 0x698) += 10;
+    if (*(s16 *)(base + 0x698) <= 50) {
+        return;
+    }
+    func_0209b194(7);
+}
+
 s32 func_0201fd28(s32,s32);
 void func_021099f8(void *);
 void func_0209b974(s32 x,s32 y,s32 a,s32 b,u16 *p,u8 flag) {
@@ -60,6 +116,35 @@ buf.unk[1]=0; buf.unk[2]=2; buf.unk[4]=1; buf.unk[9]=h; buf.unk[6]=y+3;
 func_021098ac(&buf);
 buf.unk[1]=0; buf.unk[2]=13; buf.unk[4]=3; buf.unk[9]=3; buf.unk[6]=y+h+3;
 func_021098ac(&buf);
+}
+
+void func_0209bfa0(s32 val, s32 x, s32 y, s32 arg3, u8 flag) {
+    Unk20 buf = data_021420d8;
+
+    *(volatile u32 *)0x40004a4 = 0x1f0080;
+    if (flag == 0) {
+        func_020a3bbc(0x19);
+    } else {
+        func_020a3bbc(0x1b);
+    }
+
+    buf.unk[7] = arg3;
+    buf.unk[5] = x - 14;
+    buf.unk[6] = y;
+    buf.unk[2] = 0;
+    buf.unk[3] = 7;
+    buf.unk[4] = 8;
+    buf.unk[8] = 7;
+    buf.unk[9] = 8;
+    buf.unk[1] = (s16)((val / 10) % 10) * 7;
+    func_021098ac(&buf);
+
+    buf.unk[5] = x - 7;
+    buf.unk[6] = y;
+    buf.unk[1] = (s16)(val % 10) * 7;
+    func_021098ac(&buf);
+
+    func_021098ac(&buf);
 }
 
 void *func_0209c0d0(void) {
