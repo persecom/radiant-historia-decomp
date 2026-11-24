@@ -94,6 +94,31 @@ void func_02055c90(s32 arg0) {
     func_0212501c(unk0);
 }
 
+void *func_02055d28(void *arg0, u16 arg1) {
+    u8 *p1;
+    void *result;
+    u8 *p2;
+    p1 = func_0210c594(0x1c, data_02155c3c);
+    p2 = func_0210c594(0x10, data_02155c3c);
+    result = func_0203be60(p1, *(void **)arg0, *(void **)arg0);
+    if (result != NULL) {
+        *(s32 *)(p1 + 0x10) = *(s32 *)((u8 *)arg0 + 0x8);
+        *(s32 *)(p1 + 0x14) = *(s32 *)((u8 *)arg0 + 0xc);
+        *(s32 *)(p1 + 0x18) = *(s32 *)((u8 *)arg0 + 0x10);
+        *(void **)p2 = p1;
+        *(u16 *)(p2 + 0x4) = arg1;
+        func_021167f0(data_021600c0 + 0x40, p2);
+    } else {
+        if (p1 != NULL) {
+            func_0210c5dc(p1);
+        }
+        if (p2 != NULL) {
+            func_0210c5dc(p2);
+        }
+    }
+    return result;
+}
+
 extern void *func_0203be60(void *, void *, void *);
 extern void func_021167f0(void *, void *);
 extern void func_0210c5dc(void *);
