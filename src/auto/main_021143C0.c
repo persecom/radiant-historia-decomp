@@ -7,6 +7,13 @@ extern u8 data_0216c8f8[];
 extern s32 func_0200a108(s32);
 extern void func_0200968c(u32, u32, s32);
 extern void func_020096b4(u32, s32);
+typedef struct {
+    u8 unk_00[0x44];
+    s32 unk_44;
+    u8 unk_48[0x8];
+    s32 unk_50;
+    u8 unk_54[16];
+} UnkStruct_02114728;
 extern void func_021139d0(void *);
 extern void func_02009580(void *, s32, u32, s32);
 extern void func_0200f0a4(void *);
