@@ -237,3 +237,28 @@ void func_020b92d4(void) {
     *(u32 *)(root + 0x5c) = 0xfa000;
 }
 
+void func_020b9350(void) {
+u8 *p=data_021601ec;
+u8 *obj=func_020c9c10(*(void **)(p+0x4c),2);
+s32 val=(*(s32 *)(p+0x5c)*60)/100;
+*(s32 *)(p+0x5c)=val;
+((void (*)(u8 *,s32))(*(void **)(obj+0x10)))(obj,(s16)((val>>12)-0xe6));
+((void (*)(u8 *,s32))(*(void **)(obj+0x14)))(obj,0x19);
+obj=func_020c9c10(*(void **)(p+0x4c),0xd);
+val=(*(s32 *)(p+0x5c)*60)/100;
+*(s32 *)(p+0x5c)=val;
+((void (*)(u8 *,s32))(*(void **)(obj+0x10)))(obj,(s16)((val>>12)-0xe6));
+obj=func_020c9c10(*(void **)(p+0x4c),0xf);
+val=(*(s32 *)(p+0x5c)*60)/100;
+*(s32 *)(p+0x5c)=val;
+((void (*)(u8 *,s32))(*(void **)(obj+0x10)))(obj,(s16)((val>>12)-0xca));
+obj=func_020c9c10(*(void **)(p+0x4c),0xc);
+val=(*(s32 *)(p+0x5c)*60)/100;
+*(s32 *)(p+0x5c)=val;
+((void (*)(u8 *,s32))(*(void **)(obj+0x10)))(obj,(s16)((val>>12)-0xe1));
+if(*(s32 *)(p+0x5c)<0x800) {
+*(s32 *)(p+0x40)=2;
+func_020b8aac();
+}
+}
+
