@@ -47,8 +47,13 @@ void func_02026578(void *arg0) {
 }
 
 void func_0202659c(u8 *arg0, s32 arg1) {
+    volatile s16 *p;
+    s16 v;
+
     *(s16 *)(arg0 + 2) += arg1;
-    if (*(s16 *)(arg0 + 2) > 2) {
+    p = (volatile s16 *)(arg0 + 2);
+    v = *p;
+    if (v > 2) {
         *(s16 *)(arg0 + 2) = 2;
     }
     if (*(s16 *)(arg0 + 2) < 0) {
