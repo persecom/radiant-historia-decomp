@@ -2,6 +2,7 @@
 #include "common.h"
 
 extern u32 data_0215d1b8[9];
+extern u8 data_0215ec80[0x60];
 extern s32 func_02008128(void);
 extern void func_0200813c(s32);
 extern s32 func_02009964(s32);
