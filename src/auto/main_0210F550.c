@@ -60,6 +60,9 @@ typedef struct {
 
 extern void func_020c9940(void *);
 extern u8 data_02162b84[];
+extern u8 data_02162b88[];
+extern u8 data_02162c0c[];
+extern u8 data_02162c10[];
 extern s32 func_0210feb8(u32, u32, u32, u32, u32);
 void func_0210fd94(u32 *arg0) {
     if (arg0[3] != 0) {
@@ -132,6 +135,13 @@ void func_021101ec(void *arg0) {
 s32 func_02110228(void *arg0) {
     func_020c9b64(*(void **)((u8 *)arg0 + 0x30));
     return 0;
+}
+
+s32 func_0211023c(void *arg0) {
+    void *p = func_020c9c10(*(void **)((u8 *)arg0 + 0x30), 0);
+    s32 result = ((s32 (*)(void *))(*(void **)((u8 *)p + 0x18)))(p);
+    func_020c738c(arg0, func_020c73b8(p), 2);
+    return result;
 }
 
 void func_021103a8(void *arg0) {
