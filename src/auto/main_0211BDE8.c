@@ -61,11 +61,7 @@ void func_0211c1f8(void *arg) {
     if (*(s32 *)(data_021701f8+0x24)) {
         shape=*p & 0xc000c000;
         u32 flipx,flipy;
-        if(func_0211c5d4(data_021701f8)) {
-            s16 tx=ObjX_0211c1f8((Obj_0211c1f8 *)p);
-            x=(u16)-(tx+data_02144d84[(shape&0xc000)>>14][(shape&0xc0000000)>>30]);
-        }
-        else x=(u16)ObjX_0211c1f8((Obj_0211c1f8 *)p);
+        x=FlipX_0211c1f8(p,shape);
         if(func_0211c5e8(data_021701f8)) {
             s16 ty=ObjY_0211c1f8((Obj_0211c1f8 *)p);
             y=(u16)-(ty+data_02144d6c[(shape&0xc000)>>14][(shape&0xc0000000)>>30]);
