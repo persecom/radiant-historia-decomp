@@ -231,6 +231,12 @@ s32 func_0210ce5c(void) {
     return func_0210cd90(0);
 }
 
+s32 func_0210ce6c(void) {
+    s32 r4 = func_0210ce5c();
+    func_02109444(data_021626e8.f4);
+    return r4;
+}
+
 extern char data_02155c58[];
 extern s32 func_0210ce5c(void);
 void func_0210cef8(void) {
