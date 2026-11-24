@@ -413,6 +413,18 @@ s32 func_020067d8(void) {
     return ret;
 }
 
+s32 func_02006808(void) {
+    u32 irq = func_02008128();
+    u32 v = data_0215cde4[1];
+    s32 ret = 0;
+    if (v != 0) {
+        ret = v;
+        data_0215cde4[1] = v - 1;
+    }
+    func_0200813c(irq);
+    return ret;
+}
+
 extern void func_02005ea8(s32, const char *, char *);
 void func_0200683c(u8 *arg0, u32 arg1) {
     *(u32 *)(arg0 + 0xb4) = arg1;
