@@ -7,6 +7,9 @@ extern void *func_0210c594(s32, u32);
 extern void func_021167ac(void *, s32);
 extern void func_020305b0(void *, void *);
 extern void func_0210c5dc(void *);
+extern void func_021168f8(void *, void *);
+extern void func_021167f0(void *, void *);
+extern void *func_02030630(u8 *, u16);
 void func_02030468(u8 *arg0, u32 arg1) {
     if (arg0 == NULL) {
         return;
