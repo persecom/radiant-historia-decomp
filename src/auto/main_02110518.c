@@ -68,9 +68,35 @@ void func_02110878(u8 *arg0, s32 arg1) {
     func_021107cc(arg0, *(s16 *)(arg0 + 0x34), arg1);
 }
 
+void func_0211088c(u8 *arg0, u8 arg1) {
+    u16 i;
+    u32 count = func_020c9c34(*(void **)(arg0 + 0x30));
+    for (i = 0; i < count; i++) {
+        u8 *obj = func_020c9c10(*(void **)(arg0 + 0x30), i);
+        u8 delta = obj[0x3c] - arg0[0x38];
+        ((void (*)(u8 *, u8))(*(void **)(obj + 0x1c)))(obj, arg1 + delta);
+    }
+    arg0[0x38] = arg1;
+}
+
+void func_02110a28(u8 *arg0) {
+    u16 i;
+    u32 count = func_020c9c34(*(void **)(arg0 + 0x30));
+    for (i = 0; i < count; i++) {
+        u8 *obj = func_020c9c10(*(void **)(arg0 + 0x30), i);
+        s32 flag = func_020c73d8((u16 *)obj);
+        s32 on = func_020c7408() == 0 ? 1 : 0;
+        flag = flag & on;
+        if (flag != 0) {
+            ((void (*)(u8 *, s32, s32))(*(void **)(obj + 0x24)))(obj, 1, 1);
+        } else {
+            ((void (*)(u8 *, s32, s32))(*(void **)(obj + 0x24)))(obj, 0, 0);
+        }
+    }
+}
+
 extern s32 func_020c73d8(u16 *);
 extern BOOL func_020c7408(void);
-extern void func_021103c0(u8 *, s32);
 u16 func_02110b20(u8 *arg0) {
     u8 *obj = func_020c9c10(*(void **)(arg0 + 0x30), arg0[0x39]);
     return *(u16 *)(obj + 0x3e);
