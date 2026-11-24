@@ -6,6 +6,7 @@ extern u32 data_02160204;
 typedef struct { u32 v; } OneWord;
 typedef struct { u32 a, b, c, d; } FourWords;
 typedef struct { s32 v[4]; } Mat4;
+typedef struct { u32 x, y; } Pair;
 
 void func_02110000(void);
 void func_021100d8(void);
@@ -27,13 +28,12 @@ void func_02000b60(void) {
 void func_02000b64(void) {
 }
 
-int main(void) {
+void main(void) {
     if (data_02160204 == 0) {
         func_02110000();
         func_021100d8();
         func_02008414();
     }
-    return 0;
 }
 
 void func_02000bec(FourWords *p) {
