@@ -8,7 +8,7 @@ extern void func_02006df4(void);
 extern void func_02006e00(u32, u32);
 extern s32 func_02006638(void *, s32);
 extern void func_020065c8(void *);
-extern void func_0200fddc(void);
+extern void func_0200fddc(u8 *);
 extern s32 func_0200fca4(void (*)(void *), s32);
 extern u16 func_020081e0(void);
 extern u32 func_02008128(void);
