@@ -7,7 +7,9 @@ typedef struct {
 } MainSub_6C;
 
 extern void func_0210c5dc(void *);
-extern void func_020c9490(void *);
+extern s32 func_020c9490(void *);
+extern void func_020c9940(void *);
+extern void func_02111ccc(u8 *);
 extern void *func_020c9c10(void *, u32);
 extern void func_020c7930(void *);
 extern void func_020c6d78(void *);
