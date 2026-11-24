@@ -368,24 +368,22 @@ void func_02115df0(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 void func_02115e10(s32 arg0, s32 arg1, void *arg2, s32 arg3) {
     if (func_0200a530(arg2, arg3) != arg0) {
-        goto done;
+        return;
     }
     func_0200a4fc(arg2, arg3, 0);
     func_02009760((void *)arg0, (void *)(arg0 + arg1));
-done:
-    return;
 }
 
 s32 func_02115f20(s32 arg0, void *arg1, u16 arg2, s32 arg3, s32 arg4) {
-    u8 a[8];
-    u8 b[8];
+    u32 a[2];
+    u32 b[2];
     u8 c[0xc];
+    func_0200a328(a);
+    b[0] = a[1];
+    b[1] = a[0];
     if (arg1 == NULL) {
         return 0;
     }
-    func_0200a328(a);
-    *(u32 *)b = *(u32 *)(a + 4);
-    *(u32 *)(b + 4) = *(u32 *)a;
     for (;;) {
         if (func_0200a348(arg1, c, b) == 0) {
             return 0;

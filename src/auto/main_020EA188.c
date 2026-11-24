@@ -17,11 +17,13 @@ extern s32 func_020ebddc(void *, s32);
 extern void func_020dd810(void *, s32, s32);
 extern u8 *data_02160a6c;
 s32 func_020ea574(u8 *arg0, u32 arg1, s32 arg2) {
+    u8 *r0 = *(u8 **)arg0;
+    u32 count = *(u16 *)(*(u8 **)(*(u8 **)(r0 + 0x58) + 0xc));
     s32 res;
-    if (*(u16 *)(*(u8 **)(*(u8 **)(*(u8 **)arg0 + 0x58) + 0xc)) <= arg1) {
+    if (count <= arg1) {
         return 0;
     }
-    res = (func_021086d4(*(u8 **)arg0) == 0) ? 1 : 0;
+    res = (func_021086d4(r0) == 0) ? 1 : 0;
     if (res != 0) {
         return 0;
     }
@@ -71,7 +73,7 @@ void *func_020eaa24(s32 arg0, s32 arg1) {
 void func_020eaaa0(u32 arg0) {
     data_02160a90[0] = (u32)func_020eaae0;
     data_02160a90[1] = arg0;
-    func_0210db70((u32 *)&data_02160a90);
+    func_0210db70(&data_02160a90);
 }
 
 s32 func_020eaacc(void) {

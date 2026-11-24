@@ -17,9 +17,11 @@ extern void *func_02021f10(u32);
 extern void func_0210d27c(s32);
 
 s32 func_0207be40(s32 *arg0, s32 *arg1, s32 arg2, s32 arg3) {
-    s32 v1 = func_0201ff0c(func_020201f4(func_0201f884(arg0[0] - arg1[0]), arg2));
-    s32 v2 = func_0201ff0c(func_020201f4(func_0201f884(arg0[2] - arg1[2]), arg3));
-    s64 sq = (s64)v1 * v1 + (s64)v2 * v2;
+    s32 v[2];
+    s64 sq;
+    v[0] = func_0201ff0c(func_020201f4(func_0201f884(arg0[0] - arg1[0]), arg2));
+    v[1] = func_0201ff0c(func_020201f4(func_0201f884(arg0[2] - arg1[2]), arg3));
+    sq = (s64)v[0] * v[0] + (s64)v[1] * v[1];
     *(volatile u16 *)0x40002b0 = 1;
     *(volatile u32 *)0x40002b8 = (u32)(sq << 2);
     *(volatile u32 *)0x40002bc = (u32)(sq >> 30);

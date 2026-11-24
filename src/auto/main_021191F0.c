@@ -148,20 +148,34 @@ void func_02119694(void *arg0, s32 arg1, s32 arg2) {
     (*(Cb5_02119694 *)(sub + 0x44))(p, sub, arg1, arg2, ctx);
 }
 
-void func_02119c80(u8 *arg0) {
+void func_02119c80(void *arg0) {
+    struct {
+        u8 pad[0x70];
+        u32 f70;
+        u32 f74;
+        u32 f78;
+        u32 f7c;
+        u32 f80;
+        u32 f84;
+        u16 f88;
+        u16 f8a;
+        u32 f8c;
+        u32 f90;
+        u16 f94;
+    } *p = arg0;
     s32 i;
     func_0211c4ec(arg0);
-    *(u32 *)(arg0 + 0x70) = 0;
-    *(u32 *)(arg0 + 0x74) = 0;
-    *(u32 *)(arg0 + 0x78) = 0;
-    *(u32 *)(arg0 + 0x7c) = 0;
-    *(u32 *)(arg0 + 0x80) = 0;
-    *(u32 *)(arg0 + 0x84) = 0;
-    *(u16 *)(arg0 + 0x88) = 0;
-    *(u16 *)(arg0 + 0x8a) = 0;
-    *(u32 *)(arg0 + 0x8c) = 0;
-    *(u32 *)(arg0 + 0x90) = 0;
-    *(u16 *)(arg0 + 0x94) = 0;
+    p->f70 = 0;
+    p->f74 = 0;
+    p->f78 = 0;
+    p->f7c = 0;
+    p->f80 = 0;
+    p->f84 = 0;
+    p->f88 = 0;
+    p->f8a = 0;
+    p->f8c = 0;
+    p->f90 = 0;
+    p->f94 = 0;
     data_0216f234.fc = 0;
     *(u16 *)data_02155eb0 = 0xfffe;
     for (i = 0; i < 0x20; i++) {
@@ -241,8 +255,7 @@ void func_02119eb8(u32 arg0) {
 }
 
 void func_0211a128(void) {
-    BOOL empty = ((s32)data_0216f234.fc <= 0);
-    if (empty) {
+    if ((*(volatile s32 *)&data_0216f234.fc <= 0) != 0) {
         return;
     }
     data_0216f234.fc--;

@@ -281,6 +281,8 @@ void *func_0210af8c(void) {
 void func_0210afcc(void *arg) {
     u8 *arg0 = arg;
     Unk_0210afcc *s = (Unk_0210afcc *)(arg0 + 0x100);
+    void *cb = func_0210af80;
+    u32 v = 0x3e7;
     s32 i;
     s->flags.bit3 = 0;
     s->flags.bit1 = 0;
@@ -294,10 +296,10 @@ void func_0210afcc(void *arg) {
     *(u8 *)(arg0 + 0x135) = 0x1f;
     *(u32 *)(arg0 + 0x138) = 0;
     *(volatile u16 *)((u8 *)s + 0xa4) &= ~0x100;
-    *(void **)(arg0 + 0x1a8) = func_0210af80;
-    s->unkA2 = 0x3e7;
+    *(void **)(arg0 + 0x1a8) = cb;
+    s->unkA2 = v;
     for (i = 0; i < 0x10; i++) {
-        *(u16 *)(arg0 + 0x180 + i * 2) = 0x3e7;
+        *(u16 *)(arg0 + 0x180 + i * 2) = v;
     }
 }
 

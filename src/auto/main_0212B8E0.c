@@ -340,15 +340,13 @@ void func_0212c808(u8 *arg0) {
 void func_0212c5cc(void) {
     extern u32 data_02173df4[5];
     extern u8 data_02173e08[720];
-    s32 i;
-    u32 *p = &data_02173df4[4];
-    *p -= 1;
+    extern void *memset(void *, int, unsigned long);
+    u32 volatile *p = (u32 volatile *)((u8 *)data_02173df4 + 0x10);
+    *p = *p - 1;
     if (*p != 0) {
         return;
     }
-    for (i = 0; i < 180; i++) {
-        ((u32 *)data_02173e08)[i] = 0;
-    }
+    memset(data_02173e08, 0, 0x2d0);
 }
 
 void func_0212c624(void *arg0) {

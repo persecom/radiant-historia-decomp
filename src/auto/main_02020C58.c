@@ -206,14 +206,13 @@ s32 func_02021570(u32 *arg0, u32 arg1, u32 arg2) {
 }
 
 s32 func_020215bc(void) {
-    s32 res = 0;
-    u32 size = 0x1698;
     u32 *p = data_02160078;
-    if (func_02021570(p, 0, size) == 0) {
+    s32 res = 0;
+    if (func_02021570(p, 0, 0x1698) == 0) {
         return res;
     }
     func_02021514();
-    if (p[2] == func_02021368((u8 *)(p + 4), size - 0x10)) {
+    if (p[2] == func_02021368((u8 *)(p + 4), 0x1698 - 0x10)) {
         res = 1;
     }
     return res;
@@ -254,7 +253,7 @@ extern void func_020106a0(void);
 extern u32 func_0200f984(void);
 void func_02021bd0(s32 arg0) {
     u32 buf[4];
-    u32 *p;
+    register u32 *p;
     if (func_02021344(1) == 0) {
         return;
     }

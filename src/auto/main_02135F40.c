@@ -182,7 +182,10 @@ void func_02136a24(void) {
 
 void func_02136a3c(void) {
     if (data_02175c60 == 0) {
-        memset(data_02175c64, 0, sizeof(data_02175c64));
+        s32 i;
+        for (i = 0; i < 54; i++) {
+            ((u32 *)data_02175c64)[i] = 0;
+        }
     }
     data_02175c60++;
 }

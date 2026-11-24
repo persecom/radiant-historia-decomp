@@ -97,27 +97,48 @@ void func_02122e70(u32 *arg0, u8 *arg1, u32 arg2) {
 }
 
 void func_02123074(u8 *arg0, void *arg1, u32 *arg2) {
-    u16 *p;
-    u16 v, w;
     u32 off = (arg0 != NULL) ? *(u16 *)(arg0 + 0x34) : 0;
+    u32 result;
+    u16 *p;
+    u32 v, w;
     if (off == 0) {
-        arg2[5] = 0;
-        return;
+        result = 0;
+    } else {
+        p = func_02120c74(arg0 + off);
+        v = p[0];
+        w = (u16)(((u16)*(u32 *)(arg0 + 0x2c)) & ~0xe0000000u);
+        if ((p[1] & 1) == 0) {
+            v = (v << 15) >> 16;
+            w = (w << 15) >> 16;
+        }
+        result = v + w;
     }
-    p = func_02120c74(arg0 + off);
-    v = p[0];
-    w = *(u16 *)(arg0 + 0x2c) & ~0xe0000000u;
-    if ((p[1] & 1) == 0) {
-        v = (v << 15) >> 16;
-        w = (w << 15) >> 16;
+    arg2[5] = result;
+}
+
+void func_021230d8(u8 *arg0, u8 *arg1, s32 arg2) {
+    u8 *ptr = *(u8 **)(arg1 + 8);
+    u32 frame = *(u32 *)(arg1 + 0);
+    s32 limit = *(u16 *)(ptr + 4) << 12;
+    u8 *r;
+    if ((s32)frame >= limit) {
+        frame = limit - 1;
+    } else if ((s32)frame < 0) {
+        frame = 0;
     }
-    arg2[5] = v + w;
+    r = func_02121090(ptr, (u16)arg2, (u16)(frame << 4));
+    func_02122fa0(*(void **)(arg1 + 0x14), func_02121040(ptr, *(u8 *)(r + 2)), arg0);
+    if (*(u8 *)(r + 3) != 0xff) {
+        func_02123074(*(void **)(arg1 + 0x14), func_02121068(ptr), arg0);
+    }
 }
 
 void func_02123168(u8 *arg0, u8 *arg1, u8 *arg2) {
-    u32 i;
-    *(void **)(arg0 + 0xc) = data_02155ed8;
-    arg0[0x19] = arg2[0x17];
+    u8 count = arg2[0x17];
+    void *d = data_02155ed8;
+    u32 i = 0;
+    *(void **)(arg0 + 0xc) = d;
+    arg0[0x19] = count;
     *(void **)(arg0 + 8) = arg1;
     for (i = 0; i < arg0[0x19]; i++) {
         *(u16 *)(arg0 + 0x1a + i * 2) = (u16)(i | 0x100);

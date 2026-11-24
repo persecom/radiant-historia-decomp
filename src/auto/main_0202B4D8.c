@@ -54,10 +54,10 @@ void func_0202b928(void) {
 }
 
 void func_0202b950(u32 arg0) {
-    u8 **pf = &data_02160080;
-    u8 **pb = &data_02160244;
-    u16 mask = 0xfffe;
-    s32 zero = 0;
+    register u8 **pf = &data_02160080;
+    register u8 **pb = &data_02160244;
+    register u16 mask = 0xfffe;
+    register s32 zero = 0;
     *(u16 *)*pf &= mask;
     *(u16 *)*pf |= 2;
     *(u16 *)*pf |= 8;

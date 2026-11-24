@@ -81,11 +81,11 @@ void func_020c627c(void) {
     u8 *p = data_021600e4;
     u8 *obj;
     s32 a;
+    u32 scale;
     s32 v1;
     s32 t1;
     s32 b;
     s32 base1;
-    s32 scale;
     s32 v2;
     s32 t2;
     s32 base2;
@@ -96,7 +96,7 @@ void func_020c627c(void) {
     if ((*(u32 *)(p + 0x3c) & 2) != 0 || *(s8 *)(p + 0x68) != 1) return;
     *(u32 *)(obj + 0x18) |= 1;
     a = *(s32 *)(p + 0xc8);
-    scale = *(s32 *)(p + 0x70);
+    scale = *(u32 *)(p + 0x70);
     v1 = (a >> 12) * scale;
     t1 = v1 - 0x20;
     b = *(s32 *)(p + 0xd0);

@@ -94,16 +94,39 @@ void func_02123684(s32 *arg0, u8 *arg1) {
 }
 
 void func_021236f8(s32 *arg0, u8 *arg1) {
-    u16 origW = *(u16 *)(arg1 + 0x2c);
-    s32 transS = *(s32 *)(arg1 + 0x24);
-    u16 origH = *(u16 *)(arg1 + 0x2e);
-    s32 transT = *(s32 *)(arg1 + 0x28);
+    s32 s = -(s32)(*(s32 *)(arg1 + 0x24) * *(u16 *)(arg1 + 0x2c));
+    s32 t = *(s32 *)(arg1 + 0x28) * *(u16 *)(arg1 + 0x2e);
     arg0[0] = 0x1000;
     arg0[5] = 0x1000;
     arg0[1] = 0;
-    arg0[12] = -(transS * origW) << 4;
-    arg0[13] = (transT * origH) << 4;
+    arg0[12] = s << 4;
+    arg0[13] = t << 4;
     arg0[4] = 0;
+}
+
+void func_02123824(s32 *arg0, u8 *arg1) {
+    s32 w = *(u16 *)(arg1 + 0x2c) << 12;
+    s32 h = *(u16 *)(arg1 + 0x2e) << 12;
+    s32 val;
+
+    func_02002058(h, w);
+    val = *(s16 *)(arg1 + 0x22);
+    arg0[0] = val;
+    arg0[5] = val;
+    arg0[1] = (-*(s16 *)(arg1 + 0x20) * func_02001ff4()) >> 12;
+    func_02002058(w, h);
+    {
+        s32 w2 = *(u16 *)(arg1 + 0x2c);
+        s32 h2 = *(u16 *)(arg1 + 0x2e);
+        s32 s1 = *(s16 *)(arg1 + 0x20);
+        s32 s2 = *(s16 *)(arg1 + 0x22);
+        s32 sum = s1 + s2;
+        s32 diff = s1 - s2;
+        s32 neg = (s32)((u32)0 - (u32)sum);
+        arg0[12] = (w2 * (neg + 0x1000)) << 3;
+        arg0[13] = (h2 * (diff + 0x1000)) << 3;
+    }
+    arg0[4] = (*(s16 *)(arg1 + 0x20) * func_02001ff4()) >> 12;
 }
 
 void func_021238d0(s32 *arg0, u8 *arg1) {
@@ -170,14 +193,16 @@ void func_02123934(u8 *arg0) {
 extern void func_02002058(s32, s32);
 extern s32 func_02001ff4(void);
 void func_02124130(s32 *arg0, u8 *arg1) {
-    u16 w = *(u16 *)(arg1 + 0x2c);
-    u16 h = *(u16 *)(arg1 + 0x2e);
-    s32 x = *(s32 *)(arg1 + 0x24);
+    s32 h = *(u16 *)(arg1 + 0x2e);
+    s32 w = *(u16 *)(arg1 + 0x2c);
     s32 y = *(s32 *)(arg1 + 0x28);
+    s32 x = *(s32 *)(arg1 + 0x24);
+    s32 t1 = (y * h) + ((-h) << 11);
     s32 a = *(s32 *)(arg1 + 0x18);
     s32 b = *(s32 *)(arg1 + 0x1c);
-    s32 v1 = (s32)(((s64)b * (h * (y - 0x800))) >> 8) + (h << 15);
-    s32 v2 = (s32)(((s64)a * (-w * (x + 0x800))) >> 8) + (w << 15);
+    s32 v1 = (s32)(((s64)b * t1) >> 8) + (h << 15);
+    s32 t2 = ((-w) << 11) - (x * w);
+    s32 v2 = (s32)(((s64)a * t2) >> 8) + (w << 15);
 
     arg0[0] = a;
     arg0[5] = b;

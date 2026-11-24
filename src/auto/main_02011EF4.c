@@ -44,7 +44,7 @@ char *func_020123cc(char *dst, const char *src) {
 }
 
 int func_020123f0(const u8 *a, const u8 *b) {
-    u32 aa = (u32)a & 3;
+    register u32 aa = (u32)a & 3;
     u32 ba = (u32)b & 3;
     u32 i = 0;
     u32 mask = 0x7f7f7f7f;

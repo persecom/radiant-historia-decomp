@@ -49,9 +49,9 @@ void func_0202fad8(u8 *arg0) {
     if (*(void **)(arg0 + 0x60) != NULL) {
         func_02022508(*(void **)(arg0 + 0x60));
     }
-    *(u32 *)(arg0 + 0x60) = 0;
+    *(u32 volatile *)(arg0 + 0x60) = 0;
     func_02030574(*(void **)(arg0 + 0xa0));
-    *(u32 *)(arg0 + 0xa0) = 0;
+    *(u32 volatile *)(arg0 + 0xa0) = 0;
     while (*(void **)(arg0 + 0xc0) != NULL) {
         void *node = *(void **)(arg0 + 0xc0);
         func_021168f8(arg0 + 0xc0, node);

@@ -98,15 +98,15 @@ void func_02000dbc(s32 *p, s32 a, s32 b) {
     p[4] = 1 << 12;
 }
 
-void func_02000dd8(s32 *p, s32 a, s32 b) {
-    *p++ = b;
-    *p++ = a;
-    *p++ = 0;
-    *p++ = -a;
-    *p++ = b;
-    p[0] = 0;
-    p[1] = 0;
-    p[2] = 0;
-    p[3] = 1 << 12;
+void func_02000dd8(MtxFields *p, s32 a, s32 b) {
+    p->a0 = b;
+    p->a1 = a;
+    p->a2 = 0;
+    p->a3 = -a;
+    p->a4 = b;
+    p->a5 = 0;
+    p->a6 = 0;
+    p->a7 = 0;
+    p->a8 = 1 << 12;
 }
 

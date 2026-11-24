@@ -371,6 +371,30 @@ void *func_02116b74(void *region, u16 signature) {
     return block;
 }
 
+extern void func_02116a5c(void *, u32, void *, void *, u16);
+void *func_02116ba0(void *start, void *end, u16 opt) {
+    typedef struct {
+        u8 *start;
+        u8 *end;
+    } Region;
+    u8 *p = (u8 *)start;
+    Region region;
+    void *block;
+    u16 attr = 0;
+    func_02116a5c(p, 0x45585048, p + 0x38, end, opt);
+    attr &= ~1;
+    *(u16 *)(p + 0x36) = attr;
+    *(u16 *)(p + 0x34) = 0;
+    region.start = *(void **)(p + 0x18);
+    region.end = *(void **)(p + 0x1c);
+    block = func_02116b74(&region, 0x4652);
+    *(void **)(p + 0x24) = block;
+    *(void **)(p + 0x28) = block;
+    *(u32 *)(p + 0x2c) = 0;
+    *(u32 *)(p + 0x30) = 0;
+    return p;
+}
+
 void* func_02116d7c(void* heap, u32 size, s32 alignment)
 {
     typedef struct Block {

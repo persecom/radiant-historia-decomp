@@ -54,22 +54,20 @@ void func_020d8f78(void) {
 }
 
 void func_020d9018(void) {
-    u8 **p = &data_02160258;
-    *(u32 *)(*p + 0xc) = 0x200000;
-    *(u32 *)(*p + 0x10) = 0x30000;
-    *(u32 *)(*p + 0x14) = 0x200000;
-    func_020d9cc0(*p + 0xc);
-    func_020f4668(*p + 0xc);
+    *(u32 *)(data_02160258 + 0xc) = 0x200000;
+    *(u32 *)(data_02160258 + 0x10) = 0x30000;
+    *(u32 *)(data_02160258 + 0x14) = 0x200000;
+    func_020d9cc0((u8 *)data_02160258 + 0xc);
+    func_020f4668((u8 *)data_02160258 + 0xc);
 }
 
-void func_020d9058(Unk3Words *arg0) {
+void func_020d9058(volatile Unk3Words *arg0) {
     s32 a = arg0->unk0;
     s32 b = arg0->unk4;
-    s32 c = arg0->unk8;
     u8 *p = data_02160258;
     *(s32 *)(p + 0xc) = a;
     *(s32 *)(p + 0x10) = b;
-    *(s32 *)(p + 0x14) = c;
+    *(s32 *)(p + 0x14) = arg0->unk8;
 }
 
 void func_020d907c(u32 arg0) {
@@ -79,7 +77,8 @@ void func_020d907c(u32 arg0) {
 void func_020d9090(void) {
     u8 *q = data_02160258;
     Unk3Words *p = *(Unk3Words **)(q + 0x54);
-    if (p != NULL) {
+    if (p == NULL) {
+    } else {
         s32 a = p->unk0;
         s32 b = p->unk4;
         s32 c = p->unk8;
@@ -87,6 +86,7 @@ void func_020d9090(void) {
         *(s32 *)(q + 0x10) = b;
         *(s32 *)(q + 0x14) = c;
     }
+    return;
 }
 
 s32 func_020d90bc(s32 arg0) {

@@ -62,3 +62,8 @@ void func_02007a78(u32 *arg0) {
     arg0[2] = 0;
 }
 
+void func_02007c2c(void);
+void func_02007c1c(void) {
+    func_02007c2c();
+}
+

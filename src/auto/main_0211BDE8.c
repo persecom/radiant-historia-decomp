@@ -181,7 +181,7 @@ void func_0211ca28(u8 *arg0, u8 *arg1, u32 arg2, s32 arg3) {
     *(u32 *)(arg0 + 0x14) = arg3;
     arg0[0x19] = 0;
     *(u32 *)(arg0 + 0xc) = 0;
-    if (data_02155ed4 <= 0) {
+    if ((s32)data_02155ed4 <= 0) {
         return;
     }
     for (i = 0; i < (u32)data_02155ed4; i++) {

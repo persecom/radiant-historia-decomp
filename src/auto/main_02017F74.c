@@ -97,3 +97,37 @@ void func_02018900(u8 *arg0, s32 arg1) {
     func_020188b0((void *)arg0, arg1);
 }
 
+void func_02018b84(u8 *arg0, u8 *arg1, u16 arg2) {
+    s32 i = 0;
+    u8 c;
+
+    arg0[0] = 0;
+    *(u16 *)(arg0 + 2) = arg2;
+    while (i < 0x20 && *arg1 != 0) {
+        (arg0 + 5)[i] = *arg1++ - '0';
+        i++;
+    }
+    c = *arg1;
+    arg0[4] = i;
+    if (c == 0) {
+        return;
+    }
+    if (c < 5) {
+        return;
+    }
+    if (c <= 5) {
+        arg1++;
+        while (*arg1 != 0) {
+            if (*arg1 != '0') {
+                goto round_up;
+            }
+            arg1++;
+        }
+        if (((arg0 + 5)[i - 1] & 1) == 0) {
+            return;
+        }
+    }
+round_up:
+    func_020188b0((void *)arg0, arg0[4]);
+}
+

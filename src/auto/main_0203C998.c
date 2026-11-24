@@ -36,8 +36,10 @@ void func_0203d800(void) {
 
 void func_0203d864(u32 *arg0) {
     u32 *dst = (u32 *)data_02160098[1];
-    dst[0] = arg0[0];
-    dst[1] = arg0[1];
+    u32 a = arg0[0];
+    u32 b = *(volatile u32 *)&arg0[1];
+    dst[0] = a;
+    dst[1] = b;
     dst[2] = arg0[2];
     func_020020f8(data_02160098[1], data_02160098[1] + 0xc, data_02160098[1]);
     func_020f4668(data_02160098[1]);

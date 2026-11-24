@@ -23,6 +23,57 @@ s32 func_0200ef5c(void) {
     return (*(volatile u16 *)0x4000304 & 1) ? 1 : 0;
 }
 
+void func_0200ef78(void *arg0, u32 arg1, u32 arg2, u32 arg3) {
+    u8 *prev, *cur;
+    if (arg0 == NULL) return;
+    *(s32 *)((u8 *)arg1 + 8) = (s32)arg2;
+    func_02008128();
+    prev = NULL;
+    cur = *(u8 **)arg0;
+    if (cur != NULL) {
+        do {
+            if (arg3 == 0 && *(s32 *)(cur + 8) > (s32)arg2) break;
+            if (arg3 == 1 && *(s32 *)(cur + 8) >= (s32)arg2) break;
+            prev = cur;
+            cur = *(u8 **)(cur + 0xc);
+        } while (cur != NULL);
+    }
+    if (cur != NULL) {
+        *(u8 **)((u8 *)arg1 + 0xc) = cur;
+    } else {
+        *(u8 **)((u8 *)arg1 + 0xc) = NULL;
+    }
+    if (prev != NULL) {
+        *(u8 **)(prev + 0xc) = (u8 *)arg1;
+    } else {
+        *(u8 **)arg0 = (u8 *)arg1;
+    }
+    func_0200813c();
+}
+
+void func_0200f004(void *arg0, s32 arg1) {
+    u8 *prev, *cur, *head;
+    if (arg0 == NULL) return;
+    func_02008128();
+    head = *(u8 **)arg0;
+    prev = head;
+    cur = head;
+    while (cur != NULL) {
+        if (cur == (u8 *)arg1) {
+            void *next = *(void **)(cur + 0xc);
+            if (cur == prev) {
+                *(u8 **)arg0 = (u8 *)next;
+            } else {
+                *(void **)(prev + 0xc) = next;
+            }
+            return;
+        }
+        prev = cur;
+        cur = *(u8 **)(cur + 0xc);
+    }
+    func_0200813c();
+}
+
 void func_0200f05c(u32 *arg0) {
     if (arg0 == NULL) return;
     do {
@@ -256,6 +307,27 @@ void func_0200f0e4(s32 arg0) {
 extern u8 data_0215f054[8];
 void func_0200f0fc(s32 arg0) {
     func_0200f004(data_0215f054, arg0);
+}
+
+void func_0200f114(void) {
+    u32 old;
+    u32 a, b;
+    a = 2;
+    b = 0;
+    func_020081a4(0x360000);
+    old = data_02145c18;
+    data_02145c18 = 0xe;
+    if (func_0200ef5c() == 1) goto end;
+    if (func_0200e808(a, b) != 0) goto end;
+    func_020081a4(0x51d23);
+    if (func_0200e808(a, b) != 0) goto end;
+    if (((s32 (*)(s32))func_0200ef20)(1) != 0) goto end;
+    a = 5;
+    b = 1;
+    func_020081a4(a);
+    if (((s32 (*)(s32))func_0200ef20)(b) == 0) return;
+end:
+    data_02145c18 = old;
 }
 
 extern u32 data_0215f03c[4];

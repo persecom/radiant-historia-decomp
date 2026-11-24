@@ -140,32 +140,32 @@ void func_02044c48(u32 arg0) {
 
 u8 func_02044c98(void) {
     u8 *p = data_021600a8[1];
+    s32 a;
+    s32 b;
     s32 x = data_02162908[0];
     u8 *q = *(u8 **)(p + 0x68);
     s32 y = data_02162908[1];
-    s32 a = *(s32 *)(q + 0xfc);
-    s32 b = *(s32 *)(q + 0x100);
-    return x >= a - 0x10 && x <= a + 0x10 && y >= b - 0x20 && y <= b;
+    a = *(s32 *)(q + 0xfc);
+    b = *(s32 *)(q + 0x100);
+    s32 lo = a - 0x10;
+    s32 hi = a + 0x10;
+    s32 lo2 = b - 0x20;
+    return x >= lo && x <= hi && y >= lo2 && y <= b;
 }
 
 u32 func_02044dd0(void) {
     u8 *p = data_021600a8[1];
-    void *base = data_021600f0;
+    u8 *base = data_021600f0;
     u32 val = data_0216bf84;
     u8 *q = *(u8 **)(p + 0x68);
-    u8 *s;
-    u32 mode;
+    u8 *s = *(u8 **)(base + 4);
+    u32 mode = *(u32 *)(p + 0x10);
     if (val != 1) return 0;
-    s = *(u8 **)((u8 *)base + 4);
     if ((*(u32 *)(q + 0xac) & 0x800) && *s == 0) return 0;
     if (func_02109754(3) == 1) return 0;
-    mode = *(u32 *)(p + 0x10);
-    if (mode != 0) {
-        if (mode != 8) return 0;
-    }
+    if (mode != 0 && mode != 8) return 0;
     if (*(u8 *)(data_02160204 + 0x85) != 0) return 0;
-    if (*(u32 *)(q + 0xac) & 0x400) return 0;
-    return 1;
+    return (*(u32 *)(q + 0xac) & 0x400) == 0;
 }
 
 void func_02044e8c(void) {

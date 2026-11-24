@@ -167,6 +167,32 @@ void func_020df260(u8 *arg0, u8 *arg1) {
     func_020e2788((s16)(1U << *(u16 *)(arg0 + 0x90)));
 }
 
+BOOL func_020df2ec(u8 *arg0, u8 *arg1) {
+    u8 v;
+    u8 *p;
+    s16 mask;
+    if (arg1[0] == 5) {
+        if ((u32)func_02022068(arg1[1]) < 1) {
+            return FALSE;
+        }
+        func_020220b0(arg1[1], -1);
+        return TRUE;
+    }
+    v = (u8)((s8)(*(s8 *)(arg1 + 0x1a) - 2));
+    if (v > 1) {
+        goto done;
+    }
+    p = *(u8 **)(arg0 + 0x118);
+    if (*(s16 *)(p + 0x5a) < 100) {
+        return FALSE;
+    }
+    *(s16 *)(p + 0x5a) -= 100;
+    mask = (s16)(1U << *(u16 *)(arg0 + 0x90));
+    func_020e2788((u32)mask);
+done:
+    return TRUE;
+}
+
 extern void func_020220b0(u32, u32);
 extern void func_020e2788(u32);
 s32 func_020df38c(s32 arg0, u32 arg1) {

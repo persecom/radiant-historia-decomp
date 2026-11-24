@@ -198,23 +198,20 @@ void func_02119130(u8 *arg0) {
 }
 
 void func_02119150(void) {
-    u32 *base = (u32 *)data_0216f234;
-    u32 index = base[3];
-    u32 flag = base[1];
+    u32 index = *(u32 *)(data_0216f234 + 0xc);
     u32 offset = index * 0x18;
-    u8 *dst;
-    if (flag != 0) {
+    if (*(u32 *)(data_0216f234 + 4) != 0) {
         *(u32 *)(data_0216f3d4 + offset) = 0;
         *(u32 *)(data_0216f3d8 + offset) = 0;
     } else {
         u8 *p = data_0216f3c4 + offset;
+        u8 *dst = data_0216f6c4 + offset;
         *(u32 *)p = 0x1000;
         *(u32 *)(p + 4) = 0;
         *(u32 *)(p + 8) = 0;
         *(u32 *)(p + 0xc) = 0x1000;
         *(u32 *)(p + 0x10) = 0;
         *(u32 *)(p + 0x14) = 0;
-        dst = data_0216f6c4 + offset;
         *(S_02119150 *)dst = *(S_02119150 *)p;
     }
     data_0216f244[index] = 0;

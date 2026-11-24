@@ -197,15 +197,17 @@ u16 func_020a30d4(u16 arg0) {
 
 void func_020a3128(u16 arg0) {
     UnkStruct_020a3128 *d;
-    s32 idx;
+    u32 idx;
+    u32 val;
     if (arg0 == 0) {
         return;
     }
     d = *(UnkStruct_020a3128 **)data_02160128;
     idx = arg0 - 1;
-    *(volatile u32 *)0x040004a8 = (d[idx].unk4 >> 3) | (d[idx].unk18 << 26) |
-                                  0x40000000 | (d[idx].unk10 << 20) |
-                                  (d[idx].unk14 << 23) | 0x20000000;
+    val = (d[idx].unk4 >> 3) | (d[idx].unk18 << 26) |
+          0x40000000 | (d[idx].unk10 << 20) |
+          (d[idx].unk14 << 23) | 0x20000000;
+    *(volatile u32 *)0x040004a8 = val;
     *(volatile u32 *)0x040004ac = d[idx].unkC >> (4 - (d[idx].unk18 == 2));
     *(volatile u32 *)0x04000480 = 0x7fff;
 }
@@ -238,19 +240,21 @@ void *func_020a36ac(void *arg0, s32 arg1) {
     void *dst;
     first = func_0203be10(arg1);
     dst = first;
-    for (i = 0; i < arg1; i++) {
+    i = 0;
+    while (i < arg1) {
         u8 *src = (u8 *)arg0 + i * 0x14;
         s32 a = *(s32 *)src;
         s32 b = *(s32 *)(src + 4);
-        if (b != 0) {
-            func_0203be60(dst, a, b);
-        } else {
+        if (b == 0) {
             func_0203be60(dst, a, a);
+        } else {
+            func_0203be60(dst, a, b);
         }
         *(u32 *)((u8 *)dst + 0x10) = *(u32 *)(src + 8);
         *(u32 *)((u8 *)dst + 0x14) = *(u32 *)(src + 0xc);
         *(u32 *)((u8 *)dst + 0x18) = *(u32 *)(src + 0x10);
         dst = (u8 *)dst + 0x1c;
+        i++;
     }
     return first;
 }
@@ -261,26 +265,30 @@ void *func_020a3730(void *arg0, s32 arg1) {
     void *dst;
     first = func_0203be10(arg1);
     dst = first;
-    for (i = 0; i < arg1; i++) {
+    i = 0;
+    while (i < arg1) {
         u8 *src = (u8 *)arg0 + i * 0x18;
         s32 type = src[0x14];
         if (type == 1) {
-            func_0203bef0(dst, *(s32 *)src);
-        } else if (type == 2) {
-            func_0203bfdc(dst, *(s32 *)src);
-        } else {
-            s32 b = *(s32 *)(src + 4);
             s32 a = *(s32 *)src;
-            if (b != 0) {
-                func_0203be60(dst, a, b);
-            } else {
+            func_0203bef0(dst, a);
+        } else if (type == 2) {
+            s32 a = *(s32 *)src;
+            func_0203bfdc(dst, a);
+        } else {
+            s32 a = *(s32 *)src;
+            s32 b = *(s32 *)(src + 4);
+            if (b == 0) {
                 func_0203be60(dst, a, a);
+            } else {
+                func_0203be60(dst, a, b);
             }
         }
         *(u32 *)((u8 *)dst + 0x10) = *(u32 *)(src + 8);
         *(u32 *)((u8 *)dst + 0x14) = *(u32 *)(src + 0xc);
         *(u32 *)((u8 *)dst + 0x18) = *(u32 *)(src + 0x10);
         dst = (u8 *)dst + 0x1c;
+        i++;
     }
     return first;
 }

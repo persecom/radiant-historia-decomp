@@ -49,6 +49,108 @@ s32 func_02002080(s32 arg0, u32 arg1) {
     return *(volatile s32 *)0x040002a0;
 }
 
+u16 func_02002404(s32 y, s32 x)
+{
+    extern s32 func_02001fb0(s32, s32);
+    extern const s16 data_0213e394[];
+
+    u32 positive, bias, denominator, numerator;
+
+    if (y > 0) {
+        if (x > 0) {
+            if (x > y) {
+                numerator = (u32)y;
+                denominator = (u32)x;
+                bias = 0;
+                positive = TRUE;
+            } else if (x < y) {
+                numerator = (u32)x;
+                denominator = (u32)y;
+                bias = 0x4000;
+                positive = FALSE;
+            } else {
+                return 0x2000;
+            }
+        } else if (x < 0) {
+            x = -x;
+
+            if (x < y) {
+                numerator = (u32)x;
+                denominator = (u32)y;
+                bias = 0x4000;
+                positive = TRUE;
+            } else if (x > y) {
+                numerator = (u32)y;
+                denominator = (u32)x;
+                bias = 0x8000;
+                positive = FALSE;
+            } else {
+                return 0x6000;
+            }
+        } else {
+            return 0x4000;
+        }
+    } else if (y < 0) {
+        y = -y;
+
+        if (x < 0) {
+            x = -x;
+
+            if (x > y) {
+                numerator = (u32)y;
+                denominator = (u32)x;
+                bias = (u32)-0x8000;
+                positive = TRUE;
+            } else if (x < y) {
+                numerator = (u32)x;
+                denominator = (u32)y;
+                bias = (u32)-0x4000;
+                positive = FALSE;
+            } else {
+                return 0xA000;
+            }
+        } else if (x > 0) {
+            if (x < y) {
+                numerator = (u32)x;
+                denominator = (u32)y;
+                bias = (u32)-0x4000;
+                positive = TRUE;
+            } else if (x > y) {
+                numerator = (u32)y;
+                denominator = (u32)x;
+                bias = 0;
+                positive = FALSE;
+            } else {
+                return 0xE000;
+            }
+        } else {
+            return 0xC000;
+        }
+    } else {
+        u16 result = 0;
+
+        if (x < 0) {
+            result = 0x8000;
+        }
+
+        return result;
+    }
+
+    if (denominator == 0) {
+        return 0;
+    }
+
+    if (positive) {
+        return (u16)(bias + data_0213e394[
+            func_02001fb0((s32)numerator, (s32)denominator) >> 5
+        ]);
+    } else {
+        return (u16)(bias - data_0213e394[
+            func_02001fb0((s32)numerator, (s32)denominator) >> 5
+        ]);
+    }
+}
+
 void func_02002594(void) {
 }
 

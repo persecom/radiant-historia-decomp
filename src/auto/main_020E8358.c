@@ -20,36 +20,29 @@ s32 func_020e8358(u8 *arg0) {
     u8 *p = data_02160a74;
     u16 flags = *(u16 *)(p + 0x1b8);
     s16 shift = *(s16 *)(p + 0xb2);
-    s32 ret = 1;
-    if ((flags & (1 << shift)) == 0) {
-        return 0;
-    }
+    if ((flags & (1 << shift)) == 0) goto fail;
     switch (*(s16 *)(p + 0xbc)) {
     case 0:
     case 2:
     case 4:
     case 5:
-        return ret;
+        return 1;
     case 1: {
         u8 *r = func_020e5910((*(s16 *)(p + 0xce) + shift) & 0xff);
-        if (r == NULL) {
-            return 0;
-        }
-        if (*(s16 *)(*(u8 **)(arg0 + 0x118) + 0xc) >= *(s16 *)(r + 0x1c)) {
-            return ret;
-        }
-        return 0;
+        if (r == NULL) goto fail;
+        if (*(s16 *)(*(u8 **)(arg0 + 0x118) + 0xc) >= *(s16 *)(r + 0x1c)) return 1;
+        goto fail;
     }
     case 3:
-        return ret;
+        return 1;
     case 6:
-        if (*(s16 *)(*(u8 **)(arg0 + 0x118) + 0x5a) < 100) {
-            return 0;
-        }
-        return ret;
+        if (*(s16 *)(*(u8 **)(arg0 + 0x118) + 0x5a) < 100) goto fail;
+        return 1;
     default:
-        return 0;
+        goto fail;
     }
+fail:
+    return 0;
 }
 
 s32 func_020e8410(s32 arg0, u32 arg1, s32 arg2) {
@@ -96,18 +89,21 @@ void *func_020e84c0(s32 arg0) {
 
 void func_020e8504(s32 arg0) {
     u8 *p = data_02160a74;
+    s32 a = 7;
+    s32 b = 0;
+    s32 c = 1;
 
     if (*(u32 *)(p + 0x58) & 0x4000) {
-        func_020e26f0(7, 1, 999);
-        func_020e25fc(8, arg0, 1);
+        func_020e26f0(a, c, 1000 - c);
+        func_020e25fc(8, arg0, c);
     } else {
         u8 *q;
         u8 *r;
-        func_020e26f0(7, 0, 999);
-        func_020e25fc(8, arg0, 0);
+        func_020e26f0(a, b, a + 992);
+        func_020e25fc(8, arg0, b);
         q = *(u8 **)(p + 0xa0);
         r = *(u8 **)q;
-        func_020e26f0(1 << *(u16 *)(r + 0x90), 3, 999);
+        func_020e26f0(c << *(u16 *)(r + 0x90), 3, a + 992);
     }
 }
 

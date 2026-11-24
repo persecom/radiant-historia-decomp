@@ -470,6 +470,27 @@ void func_0212e634(void) {
     data_021744d8[1]++;
 }
 
+u16 func_0212e670(void) {
+    if (--data_021744d8[1] == 0) {
+        u16 ime = *(volatile u16 *)0x04000208;
+        *(volatile u16 *)0x04000208 = data_021744d8[2];
+        return ime;
+    }
+}
+
+void func_0212e69c(void) {
+    if (data_02174524[2] == 1) {
+        func_020065c8(data_02174524[5] == 1 ? data_02174524[0x264 / 4] : (u32)data_02174608);
+        func_021384b0();
+        func_021384c0();
+        data_02174524[0x268 / 4]++;
+        func_02006510(0);
+        if (data_02174524[2] != 1) {
+            func_0212ea7c();
+        }
+    }
+}
+
 extern u32 data_02174524[0x100];
 extern u32 data_021744d8[];
 extern u8 data_02174608[];

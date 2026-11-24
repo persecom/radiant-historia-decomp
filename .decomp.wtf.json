@@ -3,7 +3,7 @@
   "platform": "nds",
   "version": "brje",
   "compiler": "DS/2.0/sp1p5",
-  "analysis": 6,
+  "analysis": 9,
   "game": {
     "what": "your copy of the game (.nds)",
     "path": "extract/baserom.nds",
@@ -27,7 +27,8 @@
     ]
   ],
   "rebuild": {
-    "identical": false,
-    "detail": "ninja: build stopped: subcommand failed."
+    "identical": true,
+    "detail": "identical",
+    "t": 1795476228.7464886
   }
 }

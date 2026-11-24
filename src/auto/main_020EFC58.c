@@ -21,14 +21,17 @@ void func_020f0984(u32 *arg0) {
     }
 }
 
-void func_020f09d4(u32 *arg0) {
-    u8 *p;
+void func_020f09d4(void *arg0) {
+    void *head;
+    void *p;
+    register void *q;
     func_021168f8(data_02160af0 + 0x70, arg0);
-    p = *(u8 **)data_02162618;
+    head = *(void **)data_02162618;
+    p = head;
     while (p != NULL) {
         u16 off = *(u16 *)(data_02162618 + 0xa);
-        u8 *q = (off != 0) ? *(u8 **)(p + off + 4) : p;
-        if (*(u32 **)p == *(u32 **)arg0) {
+        q = (p != NULL) ? *(void **)((u8 *)p + off + 4) : head;
+        if (*(void **)p == *(void **)arg0) {
             func_0210b860((void **)q);
             break;
         }

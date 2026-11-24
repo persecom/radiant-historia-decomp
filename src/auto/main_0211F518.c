@@ -31,15 +31,15 @@ end:
 }
 
 void func_021204a8(void) {
-    DataStruct *p;
+    u8 *p;
 
-    if (((DataStruct *)data_02173164)->m4 != 0) {
+    if (*(s32 *)(data_02173164 + 4) != 0) {
         func_02120500();
     }
-    p = (DataStruct *)((DataStruct *)data_02173164)->m0;
-    if (p == 0 || p->m0 == 0) return;
-    func_02008e50(&p->m4, (void *)0x4000400, p->m0 * 4);
-    p->m0 = 0;
+    p = *(u8 **)data_02173164;
+    if (p == 0 || *(s32 *)p == 0) return;
+    func_02008e50(p + 4, (void *)0x4000400, *(s32 *)p * 4);
+    *(s32 *)p = 0;
 }
 
 void func_02120500(void) {

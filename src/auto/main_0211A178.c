@@ -155,12 +155,16 @@ s32 func_0211adf4(u8 *arg0) {
     u32 v2 = *(volatile u32 *)0x04000000;
     u32 idx = v1 & 7;
     s32 flag = (v2 & 8) != 0;
+    s32 arg2 = 0;
     s32 val = arg0[idx];
 
+    if (flag != 0) {
+        arg2 = 1;
+    }
     if (val >= 8) {
         val -= 8;
     }
-    return func_020027d4(1, val, flag);
+    return func_020027d4(1, val, arg2);
 }
 
 s32 func_0211ae38(u8 *arg0) {

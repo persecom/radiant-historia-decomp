@@ -434,10 +434,18 @@ s32 func_0212f558(void *arg0, u32 *arg1) {
 }
 
 extern u8 data_021747a0[];
-s32 func_0212f570(void) {
-    u32 *const p = (u32 *)data_021747a0;
-    p[1] += 1;
-    return 0;
+s32 func_0212f570(void)
+{
+  struct S
+  {
+    u32 a;
+    u32 b;
+  };
+  if (data_021747a0)
+  {
+  }
+  ((struct S *) data_021747a0)->b++;
+  return 0;
 }
 
 s32 func_0212f6e4(void *arg0, void *arg1, void *arg2) {
