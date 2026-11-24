@@ -403,23 +403,23 @@ void func_02115e10(s32 arg0, s32 arg1, void *arg2, s32 arg3) {
 extern s32 func_0200a4f4(void *);
 s32 func_02115e58(s32 arg0, u16 arg1, s32 arg2, s32 arg3) {
     u8 *obj = (u8 *)arg0;
+    u32 count;
     u8 *entry;
-    u32 val;
-    s32 len;
     u32 field3c;
+    s32 len;
     void *buf;
 
-    if (func_0200a530(obj, arg1) != 0) {
+    if (func_0200a530((void *)arg0, arg1) != 0) {
         return 1;
     }
-    entry = obj + (*(u32 *)(obj + 0x38) + arg1) * 4;
-    if (arg1 < func_0200a4f4(obj) - 1) {
-        val = *(u32 *)(entry + 0x40);
-    } else {
-        val = *(u32 *)(obj + 8);
-    }
+    count = func_0200a4f4((void *)arg0);
+    entry = (u8 *)arg0 + (*(u32 *)((u8 *)arg0 + 0x38) + arg1) * 4;
     field3c = *(u32 *)(entry + 0x3c);
-    len = val - field3c;
+    if (arg1 < count - 1) {
+        len = *(u32 *)(entry + 0x40) - field3c;
+    } else {
+        len = *(u32 *)((u8 *)arg0 + 8) - field3c;
+    }
     if (arg3 == 0) {
         return 0;
     }
@@ -431,7 +431,7 @@ s32 func_02115e58(s32 arg0, u16 arg1, s32 arg2, s32 arg3) {
         return 0;
     }
     func_02006da8(buf, (void *)len);
-    func_0200a4fc(obj, arg1, buf);
+    func_0200a4fc((void *)arg0, arg1, buf);
     return 1;
 }
 
