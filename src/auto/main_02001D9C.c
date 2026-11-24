@@ -58,6 +58,18 @@ s32 func_020020bc(s32 arg0, u32 arg1) {
     return *(volatile s32 *)0x040002a8;
 }
 
+void func_020020f8(s32 *arg0, s32 *arg1, s32 *arg2) {
+    arg2[0] = arg0[0] + arg1[0];
+    arg2[1] = arg0[1] + arg1[1];
+    arg2[2] = arg0[2] + arg1[2];
+}
+
+void func_02002128(s32 *arg0, s32 *arg1, s32 *arg2) {
+    arg2[0] = arg0[0] - arg1[0];
+    arg2[1] = arg0[1] - arg1[1];
+    arg2[2] = arg0[2] - arg1[2];
+}
+
 u16 func_02002404(s32 y, s32 x)
 {
     extern s32 func_02001fb0(s32, s32);
@@ -172,5 +184,9 @@ u16 func_02002740(void) {
 
 void func_0200283c(u32 arg0) {
     *(volatile u32 *)0x04001000 = (*(volatile u32 *)0x04001000 & ~7) | arg0;
+}
+
+void func_02002920(u32 *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
+    *arg0 = (arg1 | 0x40) | (arg2 << 8) | ((arg3 | (arg4 << 8)) << 16);
 }
 
