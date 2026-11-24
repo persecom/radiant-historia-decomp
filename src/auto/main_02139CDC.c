@@ -1,5 +1,15 @@
 /* 7 functions from 0x02139CDC to 0x0213A394 (main), found by ds-decomp. */
 #include "common.h"
+extern u32 data_02155c3c,data_02162830,data_02162834,data_0216281c,data_02162820;
+extern char data_0215ccfc[];
+extern void func_02089550(void),func_02089578(void),func_0213a06c(void),func_0213a0b0(void),func_0213a0b4(void);
+extern void func_0210f6d4(void),func_020a31c8(s32);
+extern void *func_0210c594(u32,u32);
+extern void func_0210d9e4(void *),func_0210db70(void *),func_0210dbd0(void *);
+extern void *func_020a94b8(void *),*func_020a8604(s32,s32);
+extern void func_020a8810(void *,s32);
+extern void func_020a9830(void *,void *,s32,s32,s32,s32);
+extern void func_020a9610(void *,void *,void *,void *,s32,s32);
 
 typedef struct {
     u8 pad[0x3c];
