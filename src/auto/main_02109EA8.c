@@ -34,7 +34,7 @@ extern void *func_02109fac(void *);
 extern u8 data_02155bb0[];
 extern u8 data_02155bc0[];
 extern u8 data_02155bd0[];
-extern u32 data_02162578[];
+extern u8 data_02162578[];
 extern u8 data_02162580[];
 extern u8 data_021625c8[];
 
@@ -106,13 +106,65 @@ void *func_02109fac(void *arg0) {
     return p;
 }
 
+void func_0210a014(void) {
+    void *p = func_02109fac(data_02155bb0);
+    void *a = data_021625c8;
+    void *b = data_02162580;
+    *(u32 *)(data_02162578 + 4) = (u32)p;
+    *(u32 *)(data_02162578 + 0) = *(u32 *)p;
+    func_0200b888(a);
+    func_0200bc08(a, data_02155bc0);
+    func_0200b888(b);
+    func_0200bc08(b, data_02155bd0);
+}
+
+u32 func_0210a080(const u8 *s, u32 mask) {
+    s32 c = *s++;
+    if (c == '\\') {
+        c = '/';
+    }
+    if (c >= 'A' && c <= 'Z') {
+        c += 0x20;
+    }
+    if (c == '/') {
+        c = 0;
+    }
+    if (*s != 0) {
+        do {
+            s32 ch = *s++;
+            if (ch == '\\') {
+                ch = '/';
+            }
+            if (ch >= 'A' && ch <= 'Z') {
+                ch += 0x20;
+            }
+            c = 0x25 * c + ch;
+        } while (*s != 0);
+    }
+    return (u32)c & (mask - 1);
+}
+
 void func_0210a2f0(u8 *p) {
-    s32 zero = 0;
-    s32 neg = -1;
-    *(s32 *)p = neg;
-    *(s32 *)(p + 4) = zero;
-    *(s32 *)(p + 8) = zero;
+    u32 zero = 0;
+    *(u32 *)p = ~zero;
+    *(u32 *)(p + 4) = zero;
+    *(u32 *)(p + 8) = zero;
     p[0xc] = zero;
+}
+
+s32 func_0210a30c(u32 *arg0, u32 arg1, s32 arg2) {
+    switch (arg2) {
+        case 0:
+            arg0[0] = arg1;
+            break;
+        case 1:
+            arg0[0] += arg1;
+            break;
+        case 2:
+            arg0[0] = arg0[2] - arg1;
+            break;
+    }
+    return 1;
 }
 
 s32 func_0210a38c(u8 *arg0) {
@@ -136,5 +188,11 @@ void *func_0210a4b4(void) {
 extern u8 data_02162614[64];
 void *func_0210a4c0(void) {
     return data_02162614;
+}
+
+void func_0210a4cc(void) {
+    void *ptr = func_0210c594(0x34, data_02155c3c);
+    func_02118594();
+    *(u32 *)((u8 *)ptr + 0x24) = 0;
 }
 
