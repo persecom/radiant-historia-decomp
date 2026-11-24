@@ -81,3 +81,13 @@ void func_02044f48(void) {
 u32 func_02044f70(void) {
     return data_021600b0[1];
 }
+
+void func_02044f80(void) {
+    u8 *p = (u8 *)func_02044f70();
+    if (*(u32 *)(data_02160200 + 0x15c) & 0x80000000) {
+        *(u32 *)(p + 0xc) = 0;
+        *(u32 *)(p + 0xc) |= 9;
+    }
+    func_0205a3cc(p);
+}
+
