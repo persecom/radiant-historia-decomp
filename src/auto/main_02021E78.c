@@ -47,6 +47,18 @@ fail:
     return NULL;
 }
 
+#pragma optimization_level 0
+void *func_02021f54(s32 arg0){
+u8 *p;
+s32 index;
+if(arg0>=1 && arg0<=271) p=(u8 *)data_02160078+0x978+arg0*3;
+else if(arg0>=301 && arg0<=620){index=arg0-301;p=(u8 *)data_02160078+0xd00+index*3;}
+else if(arg0>=701 && arg0<=798){index=arg0-701;p=(u8 *)data_02160078+0x11b0+index*4;}
+else if(arg0>=801 && arg0<=900){index=arg0-801;p=(u8 *)data_02160078+0x1340+index*4;}
+else if(arg0==0)p=(u8 *)data_02160078+0x978;
+return p;
+}
+#pragma optimization_level 4
 s32 func_02022068(s32 arg0, ...) {
     return *(u8 *)func_02021f54(((s32 *)&arg0)[0]);
 }
