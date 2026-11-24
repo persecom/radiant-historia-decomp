@@ -5,13 +5,7 @@ typedef struct {s32 x,y,z;} Vec3_B793;
 extern s32 data_02170248[], data_02170204[];
 extern void func_02002028(s32);
 extern s64 func_02001fd0(void);
-static inline void ProjectTransformB793(const Vec3_B793 *v,const s32 *m,Vec3_B793 *o){
-s32 x,y,z;
-x=(s32)(((s64)v->x*m[0]+(s64)v->y*m[3]+(s64)v->z*m[6])>>12);
-y=(s32)(((s64)v->x*m[1]+(s64)v->y*m[4]+(s64)v->z*m[7])>>12);
-z=(s32)(((s64)v->x*m[2]+(s64)v->y*m[5]+(s64)v->z*m[8])>>12);
-o->x=m[9]+x;o->y=m[10]+y;o->z=m[11]+z;
-}
+
 extern u8 *data_021600ac;
 extern u32 func_020ddc8c(void *, void *);
 
