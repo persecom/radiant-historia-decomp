@@ -2,7 +2,7 @@
 #include "common.h"
 extern void func_020c32e8(void *,s16,u8);
 extern void func_020c30b4(u8,u8);
-void *func_020c2a98(u8,u8);
+void *func_020c2a98(u8,u32);
 void *func_020c2adc(u8);
 void *func_020c2b20(u8);
 
@@ -101,7 +101,57 @@ void func_020c2824(u8 arg0, u8 arg1, u32 arg2, u16 arg3) {
     }
 }
 
-void *func_020c2a98(u8 arg0, u8 arg1) {
+void func_020c2870(u8 id) {
+s16 count=0,sum=0,average,i,order;
+u8 *node=*(u8 **)(data_02160090+0x48),*next,*p;
+s32 zero=0,clear=0;
+while(node) {
+if(node[0]==id && !(*(u16 *)(node+24)&1)) { sum+=*(s16 *)(node+16);count++; }
+node=*(u8 **)(node+36);
+}
+average=sum/count;
+for(i=0;i<20;i++) {
+node=func_020c2adc(id);
+if(node) {
+void *obj=*(void **)(node+4);
+*(s16 *)(node+22)=*(s16 *)(node+16)-average;
+if(*(volatile s16 *)(node+22)<0)*(s16 *)(node+22)=zero;
+func_020c32e8(obj,*(s16 *)(node+22),node[0]);
+node[26]=clear;*(s16 *)(node+22)=clear;
+}
+}
+order=1;
+do {node=func_020c2b20(id);if(node) {node[1]=order;order++;}}while(node);
+func_020c30b4(id,254);
+node=*(u8 **)(data_02160090+0x6c);
+while(node) {
+s16 n,insert;
+u32 seed,random;
+u16 range;
+next=*(u8 **)(node+36);
+func_021168f8(data_02160090+0x6c,node);
+n=0;
+p=*(u8 **)(data_02160090+0x48);
+while(p) {if(p[0]==node[0])n++;p=*(u8 **)(p+36);}
+range=n+1;
+seed=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
+data_0216263c[0]=seed;
+random=seed>>16;
+if(range)random=(random*range)>>16;
+insert=(u16)random+1;
+p=*(u8 **)(data_02160090+0x48);
+while(p) {
+if(p[0]==node[0] && p[1]>=insert)p[1]++;
+p=*(u8 **)(p+36);
+}
+node[1]=insert;
+func_021167f0(data_02160090+0x48,node);
+node=next;
+}
+for(order=1;order<10;order++)func_020c2a98(id,order);
+}
+
+void *func_020c2a98(u8 arg0, u32 arg1) {
     u8 *node = *(u8 **)(data_02160090 + 0x48);
     while (node != NULL) {
         if (node[0] == arg0 && node[1] == arg1) {
