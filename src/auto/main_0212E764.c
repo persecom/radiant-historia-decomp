@@ -200,6 +200,10 @@ void func_0212ecb0(u8 *arg0, u8 *arg1) {
     arg1[0x3d] = src[0xf];
 }
 
+void func_0212ed3c(u8 *arg0, u8 *arg1) {
+    *(u16 *)(arg1 + 0xe) = (arg0[2] << 8) | arg0[3];
+}
+
 void func_0212f384(s32 *arg0, s32 arg1, s32 *arg2, s32 *arg3) {
     s32 ptr = arg0[0];
     s32 len = arg0[1];
