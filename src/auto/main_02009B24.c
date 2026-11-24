@@ -87,6 +87,12 @@ s32 func_02009e20(void) {
     return 0x100 - func_02009da8() - func_02009de4();
 }
 
+void func_02009e3c(u32 arg0, u32 arg1) {
+    s32 irq = func_02008128();
+    func_02009ffc(arg1);
+    func_0200813c(irq);
+}
+
 s32 func_0200a4f4(u8 *arg0) {
     return *(s32 *)(arg0 + 0x38);
 }
