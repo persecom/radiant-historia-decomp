@@ -194,7 +194,15 @@ void *func_02115aa4(void *arg0, void *arg1, s32 arg2) {
     return r4;
 }
 
-extern void func_02115d90(void);
+extern void func_02115d90(void *, s32, s32, s32);
+extern void func_02115d10(void *, s32, s32);
+extern void func_02009740(void *, void *);
+extern void func_0200a248(void *);
+extern u8 *func_021150ac(void *);
+extern void *func_02115be8(void *, void *, s32);
+extern u8 *func_02115174(void *);
+extern void *func_0211519c(void *, void *, void *, void *);
+extern void func_02006da8(void *, void *);
 void *func_02115b10(void *arg0, void *arg1, s32 arg2) {
     void *r4 = func_02115264(arg0);
     if (r4 == NULL) {
