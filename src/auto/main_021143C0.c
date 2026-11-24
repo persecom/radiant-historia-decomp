@@ -21,6 +21,10 @@ u32 func_02114f70(void) {
     return data_0216cad0[0];
 }
 
+void *func_021152a8(void) {
+    return *(void **)(data_0216cad0[0] + 0x9c);
+}
+
 extern void func_021139d0(void *);
 extern void func_02009580(void *, s32, u32, s32);
 extern void func_0200f0a4(void *);
