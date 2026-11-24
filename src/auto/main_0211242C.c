@@ -12,6 +12,10 @@ extern void func_02110b94(void *);
 extern void func_02112724(void);
 extern void func_021127fc(void);
 extern u8 *func_020c9b24(void *, s32, s32);
+extern const u16 data_02144cfc[2];
+extern const u16 data_02144cf8[2];
+extern u32 func_020c73b8(void *);
+extern void func_020c738c(void *, u32, s32);
 
 extern void func_02112110(void);
 void func_02112554(u8 *arg0, s32 arg1) {
