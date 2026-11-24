@@ -90,6 +90,25 @@ void func_020f1fa4(u8 *arg0) {
     }
 }
 
+s32 func_020f1ffc(void *a,s32 id,s32 mode,void *extra) {
+ char buf[256]; void *data; s32 size; void *mem;
+ if(mode==0) {
+ func_02005e80(buf,data_02151dc8,id);
+ mem=func_0210aad0(&data,buf,&size);
+ if(!mem)return 0;
+ if(extra)func_020f2198(data,extra);
+ if(!func_0210ae0c(a,data,buf))return 0;
+ } else {
+ func_02005e80(buf,data_02151dd0,id);
+ mem=func_0210aca0(&data,buf,&size);
+ if(!mem)return 0;
+ if(extra)func_020f2198(data,extra);
+ if(!func_0210ad88(a,data,mode))return 0;
+ }
+ if(mem)func_0210c5dc(mem);
+ return 1;
+}
+
 extern u8 data_02151dd8[8];
 extern s32 data_02155c3c;
 extern void func_02005e80(char *, const char *, ...);
