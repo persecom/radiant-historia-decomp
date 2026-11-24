@@ -2,3 +2,6 @@
 #include "common.h"
 
 extern u8 *data_02160238;
+
+void func_020cd0ac(void) {
+}
