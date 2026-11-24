@@ -131,6 +131,27 @@ void func_0202bd08(u8 *arg0) {
     }
 }
 
+void func_0202be58(void *arg0, u32 arg1) {
+    u8 *entry;
+    u8 *node;
+    if (arg1 > 0xb) {
+        return;
+    }
+    entry = *(u8 **)(data_02160244 + arg1 * 4 + 8);
+    *(u8 *)(entry + 2) -= 1;
+    node = *(u8 **)(entry + 0x10);
+    while (node != NULL) {
+        if (*(void **)(node + 0) == arg0) {
+            break;
+        }
+        node = *(u8 **)(node + 0xc);
+    }
+    func_021168f8(entry + 0x10, node);
+    if (node != NULL) {
+        func_0210c5dc(node);
+    }
+}
+
 extern void func_021167f0(void *, void *);
 void func_0202bec8(void *arg0) {
     u8 i;
