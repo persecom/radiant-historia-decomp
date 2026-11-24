@@ -282,6 +282,22 @@ void func_02033144(void) {
     func_020c319c();
 }
 
+void *func_02033150(void) {
+    u8 *p = func_0210c594(0x34, data_02155c3c);
+    *(u16 *)(p + 0) = 0;
+    *(u16 *)(p + 2) = 0;
+    *(u16 *)(p + 4) = 0;
+    *(u16 *)(p + 6) = 0;
+    *(u16 *)(p + 8) = 0;
+    *(u32 *)(p + 0x18) = 0;
+    *(u32 *)(p + 0x1c) = 0;
+    *(u32 *)(p + 0x20) = 0;
+    *(u32 *)(p + 0x24) = 0;
+    *(u32 *)(p + 0x28) = 0;
+    *(u32 *)(p + 0x2c) = 0;
+    return p;
+}
+
 extern void func_0210c5dc(void *);
 void func_0203319c(void *arg0) {
     if (arg0 != NULL) {
