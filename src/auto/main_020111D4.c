@@ -1,5 +1,6 @@
 /* 22 functions from 0x020111D4 to 0x02011EF4 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { u32 digestSize,blockSize; void *ctx,*digest; void (*init)(void *); void (*update)(void *,const void *,u32); void (*finish)(void *,void *); } Unk_02011c70;
 
 extern u32 data_0215fa34[11];
 extern u32 func_02008128(void);
