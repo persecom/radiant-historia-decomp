@@ -9,11 +9,10 @@ extern s16 func_02026f38(char *);
 extern u8 *func_0202e548(u32);
 extern char data_02146168[];
 extern u32 data_0216263c[3];
+typedef struct {u32 seed, multiplier, increment;} RandomState_020295f0;
 static inline u16 RandomRange_020295f0(u16 max) {
- u32 seed = data_0216263c[0];
- u32 multiplier = data_0216263c[1];
- u32 increment = data_0216263c[2];
- u32 value = multiplier * seed + increment;
+ RandomState_020295f0 state=*(RandomState_020295f0 *)data_0216263c;
+ u32 value = state.multiplier * state.seed + state.increment;
  data_0216263c[0] = value;
  value >>= 16;
  if(max) value = (value * max) >> 16;
