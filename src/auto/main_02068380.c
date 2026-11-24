@@ -72,7 +72,6 @@ void func_02068380(u8 *arg0)
         DirectionTable directions =
             *(const DirectionTable *)data_0213fd04;
 
-        s16 (*trig)[2] = (s16 (*)[2])data_0213a394;
         u16 i;
 
         for (i = 0; i < 4; i++) {
@@ -90,13 +89,13 @@ void func_02068380(u8 *arg0)
             dx = dir->x;
             dy = dir->y;
             angle = ((e->timer * 0x800) % 0x10000) >> 4;
-            wave = trig[angle][0];
+            wave = ((s16 (*)[2])data_0213a394)[angle][0];
 
             p->fxScaleX = dx * (0x8000 - wave);
 
             sy = dy *
                 (0x8000 -
-                trig[((e->timer * 0x800) % 0x10000) >> 4][0]);
+                ((s16 (*)[2])data_0213a394)[((e->timer * 0x800) % 0x10000) >> 4][0]);
 
             p->fxScaleY = sy;
 
@@ -104,7 +103,7 @@ void func_02068380(u8 *arg0)
             p->y = sy / 2;
 
             height =
-                trig[((e->timer * 0x400) % 0x10000) >> 4][0];
+                ((s16 (*)[2])data_0213a394)[((e->timer * 0x400) % 0x10000) >> 4][0];
 
             absY = p->fxScaleY;
 
@@ -282,10 +281,9 @@ void func_02068380(u8 *arg0)
 
     {
         u16 phase = e->phase;
+        u16 i;
 
         if (phase == 1) {
-            u16 i;
-
             for (i = 10; i < 16; i++) {
                 p = (Particle *)func_02067698(arg0, i);
 
@@ -305,12 +303,7 @@ void func_02068380(u8 *arg0)
 
             e->velocity = -0x400;
             e->phase++;
-            return;
-        }
-
-        if (phase == 2) {
-            u16 i;
-
+        } else if (phase == 2) {
             for (i = 10; i < 16; i++) {
                 p = (Particle *)func_02067698(arg0, i);
 
@@ -323,48 +316,31 @@ void func_02068380(u8 *arg0)
             }
 
             e->velocity -= 0x400;
-            return;
+        } else if (phase == 3) {
+            for (i = 10; i < 16; i++) {
+                s32 index;
+                s32 sx, sy;
+
+                p = (Particle *)func_02067698(arg0, i);
+
+                index = ((((i - 10) * 0x2aa8) % 0x10000) >> 4) * 2;
+
+                p->y += e->velocity;
+                p->x += ((p->fxScaleX / 3) >> 12) * ((s16 *)data_0213a394)[index];
+                p->z += ((p->fxScaleY / 3) >> 12) * ((s16 *)data_0213a394)[index + 1];
+
+                sx = (p->fxScaleX * 91) / 100;
+                p->fxScaleX = sx;
+
+                sy = (p->fxScaleY * 91) / 100;
+                p->fxScaleY = sy;
+
+                p->scaleX = sx >> 12;
+                p->scaleY = sy >> 12;
+            }
+
+            e->velocity -= 0x400;
         }
-
-        if (phase != 3) {
-            return;
-        }
-    }
-
-    {
-        s16 *trig = (s16 *)data_0213a394;
-        u16 i;
-
-        for (i = 10; i < 16; i++) {
-            s32 index;
-            s32 sine;
-            s16 *dir;
-            s32 sx, sy;
-
-            p = (Particle *)func_02067698(arg0, i);
-
-            index = ((((i - 10) * 0x2aa8) % 0x10000) >> 4) * 2;
-
-            dir = &trig[index];
-            sine = dir[0];
-
-            p->y += e->velocity;
-
-            p->x += ((p->fxScaleX / 3) >> 12) * sine;
-
-            p->z += ((p->fxScaleY / 3) >> 12) * dir[1];
-
-            sx = (p->fxScaleX * 91) / 100;
-            p->fxScaleX = sx;
-
-            sy = (p->fxScaleY * 91) / 100;
-            p->fxScaleY = sy;
-
-            p->scaleX = sx >> 12;
-            p->scaleY = sy >> 12;
-        }
-
-        e->velocity -= 0x400;
     }
 }
     extern void *func_02067698(u8 *, u16);
@@ -436,20 +412,10 @@ void func_02068ac4(u8 *arg0)
                 u32 seed;
                 u16 random;
 
-                increment = ((volatile u32 *)data_0216263c)[2];
-                multiplier = ((volatile u32 *)data_0216263c)[1];
-                seed = ((volatile u32 *)data_0216263c)[0];
-
-                seed = multiplier * seed + increment;
-
-                random = (u16)(((seed >> 16) * 3) >> 16);
-                data_0216263c[0] = seed;
+                random = Random_02068ac4(3);
 
                 if (random == 0) {
-                    seed = multiplier * seed + increment;
-
-                    random = (u16)(((seed >> 16) * 32) >> 16);
-                    data_0216263c[0] = seed;
+                    random = Random_02068ac4(32);
 
                     p->x = (random - 16) * 0x1000;
 
@@ -488,20 +454,8 @@ void func_02068ac4(u8 *arg0)
                 s32 offset;
                 s32 scale;
 
-                increment = ((volatile u32 *)data_0216263c)[2];
-                seed1 = data_0216263c[0];
-                multiplier = data_0216263c[1];
-
-                seed1 = multiplier * seed1 + increment;
-                seed2 = multiplier * seed1 + increment;
-
-                high1 = seed1 >> 16;
-                high2 = (seed2 >> 16) * 2;
-
-                data_0216263c[0] = seed2;
-
-                direction = (u16)(high2 >> 16);
-                offset = (u16)((high1 * 3) >> 16);
+                offset = Random_02068ac4(3);
+                direction = Random_02068ac4(2);
 
                 if (direction == 0) offset = -offset;
                 p->y -= 0x1000;
