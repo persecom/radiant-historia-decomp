@@ -29,6 +29,9 @@ extern void func_020113e4(void);
 extern void func_02011674(void *);
 extern u8 data_0215fb20[232];
 extern u16 data_0215fa30;
+extern void func_020115c8(u32, u32);
+extern void func_020115f0(void);
+extern void func_02011660(void);
 void func_020111d4(s32 arg0, u32 *arg1) {
     for (;;) {
         arg1[1] = func_02008128();
@@ -55,6 +58,36 @@ void func_02011254(s32 arg0) {
     while (func_0200a6e4(0xd, arg0, 0) != 0) {
         WaitByLoop(1);
     }
+}
+
+void func_020112a4(s32 arg0) {
+    u32 val = func_02008128();
+    data_0215fa2c = (u32)arg0;
+    if (func_02010ff8() == 0) {
+        goto end;
+    }
+    func_02007504(0xf000, arg0 != 0 ? 0x1000 : 0x5000);
+    if (arg0 == 0) {
+        func_020074c4(8);
+        func_020074e4(8);
+        func_02007518(8);
+    } else {
+        func_02006d58();
+        func_02006de8();
+        func_020074d4(8);
+        func_020074f4(8);
+        func_02007528(8);
+    }
+end:
+    func_0200813c(val);
+}
+
+void func_020115c8(u32 arg0, u32 arg1) {
+    if ((arg1 & 0x3f) == 1) {
+        data_0215fa30 = 1;
+        return;
+    }
+    func_02008414();
 }
 
 void func_0201164c(void) {
