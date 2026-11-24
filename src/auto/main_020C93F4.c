@@ -28,6 +28,12 @@ u16 func_020c94a8(u8 *arg0) {
     return *(u16 *)(arg0 + 0x3e);
 }
 
+void func_020c94c8(u8 *arg0, u16 arg1, u16 arg2) {
+    *(u16 *)(arg0 + 0x52) = arg1;
+    *(u16 *)(arg0 + 0x54) = arg2;
+    func_020c94dc(arg0);
+}
+
 u16 func_020c9924(u8 *arg0) {
     return *(u16 *)(arg0 + 8);
 }
