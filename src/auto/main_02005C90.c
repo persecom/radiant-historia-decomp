@@ -489,6 +489,10 @@ u32 func_02006940(void) {
     return data_02145bb8[1];
 }
 
+u32 func_02006974(void) {
+    return data_0213e508[func_020081e0()];
+}
+
 extern u32 func_02006940(void);
 BOOL func_0200698c(void) {
     return (func_02006940() & 0x10000000) != 0;
