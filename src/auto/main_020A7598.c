@@ -194,62 +194,36 @@ void func_020a80d4(void) {
 void func_020a80d8(void) {
 }
 
-void func_020a82f0(void) {
-    if (data_02160140 == NULL) {
-        return;
-    }
+extern s32 data_02162868;
+extern void func_02108e54(s32);
+extern void func_0210968c(s32, s32, s32);
+extern void func_020a81a8(void);
+extern void func_02109790(s32);
+extern void func_0210dc88(void);
+extern void func_020a82f0(void);
+s32 func_020a80dc(void) {
+    data_02162868 = 0;
     data_0216bf84 = 0;
-    func_020a3b84();
-    func_0210e290(0);
-    data_02162858[0] = 0;
-    data_02162854 = 0;
-    if (data_02160140 != NULL) {
-        func_020c3cd4(*(void **)(data_02160140 + 0x3c));
-        *(void **)(data_02160140 + 0x3c) = NULL;
-        func_020c3c94(*(void **)(data_02160140 + 0x40));
-        *(void **)(data_02160140 + 0x40) = NULL;
-        func_0210da14(data_02160140);
-        func_0210dba0(data_02160140 + 0x14);
-        func_0210dbe8(data_02160140 + 0x28);
-        if (data_02160140 != NULL) {
-            func_0210c5dc(data_02160140);
-            data_02160140 = NULL;
+    func_02108e54(0);
+    func_0210968c(3, 16, 1);
+    func_020a81a8();
+    func_0210968c(3, 0, 30);
+    func_02109790(3);
+    for (;;) {
+        if (*(u32 *)(data_02160140 + 0x4c) != 0) {
+            break;
         }
+        func_0210dc88();
     }
-    func_0210f138();
-}
-
-void func_020a83a8(void) {
-    func_020c3850(*(void **)(data_02160140 + 0x40));
-}
-
-void func_020a83c4(void) {
-    func_020c3df4(*(void **)(data_02160140 + 0x3c), 1);
-}
-
-void func_020a83e4(void) {
-    func_020c3df4(*(void **)(data_02160140 + 0x3c), 0);
-}
-
-void func_020a8404(void) {
-    data_02160148[33] = func_02109c60(data_02150088, data_021601d0);
-    func_020a8440();
-    data_02160144 = 0;
-}
-
-void func_020a8440(void) {
-    s32 i;
-    u32 *dst = data_02160148;
-    u8 *src = data_021436cc;
-    u32 (**fp)(s32, s32, s32);
-    func_02004588();
-    fp = &data_02156158;
-    for (i = 0; i < 0x21; i++) {
-        u32 key = (*fp)(8, 1, 0);
-        dst[i] = key;
-        func_020045bc(src, (u32)(u16)key << 3, 8);
-        src += 8;
+    if ((*(u8 **)(data_02160140 + 0x40))[0x25] != 0) {
+        func_0210968c(3, 16, 15);
+    } else {
+        func_0210968c(3, 16, 30);
     }
-    func_0200462c();
+    func_02109790(3);
+    func_020a82f0();
+    func_0210dc88();
+    data_02162868 = 0;
+    data_0216bf84 = 0;
+    return 0x27;
 }
-
