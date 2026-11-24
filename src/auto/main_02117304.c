@@ -56,6 +56,11 @@ void func_021174e4(void) {
     func_021174a8();
 }
 
+extern u32 data_0216e22c[];
+void func_02117a48(u32 arg0) {
+    data_0216e22c[1] = arg0;
+}
+
 extern void func_02117b9c(void);
 void func_02117d74(void) {
     func_02117b9c();
