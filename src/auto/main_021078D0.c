@@ -176,6 +176,20 @@ void *func_021082ec(void) {
     return NULL;
 }
 
+void func_02108308(u8 *arg0) {
+    *(u16 *)(arg0 + 0) = 0;
+    *(u16 *)(arg0 + 2) = 0;
+    *(u32 *)(arg0 + 4) = 0x1000;
+    *(u32 *)(arg0 + 8) = 0x20000;
+    *(u32 *)(arg0 + 0xc) = 0x20000;
+    *(u32 *)(arg0 + 0x10) = 0;
+    arg0[0x14] &= ~1;
+    arg0[0x14] &= ~2;
+    arg0[0x14] |= 4;
+    *(u16 *)(arg0 + 0x16) = 0;
+    arg0[0x15] = 0x1f;
+}
+
 extern u32 data_02155c3c;
 extern void *func_0210c594(u32, u32);
 extern void func_02008f74(void *, s32, u32);
