@@ -36,6 +36,7 @@ typedef struct Mgr_020d3160 {
 } Mgr_020d3160;
 
 extern Mgr_020d3160 *data_02160244;
+extern u8 *data_02160a74;
 
 void func_021168f8(void *, void *);
 void func_0210c5dc(void *);
