@@ -153,6 +153,20 @@ void func_02125374(u8 *arg0) {
     *(u32 *)(arg0 + 0x10) = 0;
 }
 
+s32 func_0212538c(u8 *arg0) {
+    struct Q {
+        u8 pad[0xa];
+        u16 tail;
+        u16 count;
+    } *q = (struct Q *)arg0;
+    if (func_02125074(q) != 0) {
+        return 0;
+    }
+    q->tail = func_02125054(q, q->tail);
+    q->count++;
+    return 1;
+}
+
 u8 *func_021253c8(u8 *arg0) {
     return *(u8 **)(arg0 + 0) + (*(u16 *)(arg0 + 8) << 4);
 }
