@@ -33,6 +33,30 @@ void func_020a6a20(void *arg0) {
     }
 }
 
+void func_020a6a88(s32 arg0, s32 arg1) {
+ char buf[32];
+ void *p;
+ s32 a;
+ u16 x, i, y;
+ s32 b;
+ if(arg0==0) func_02005e80(buf,data_0214ff8c,arg1);
+ else if(arg0==1) func_02005e80(buf,data_0214ffa4,arg1);
+ p=func_021092d8(buf);
+ if(p==NULL) return;
+ i=1;
+ do {
+  x=func_02092994(p,0);
+  y=func_02092994(p,0);
+  if(arg0==0) {a=i+0x7f;b=i+0x4a0;}
+  if(arg0==0) {
+   func_020bdb30((u16)a,(u8)x);
+   if(func_020bdba0((u16)b)==0) func_020bdb30((u16)b,(u8)y);
+  }
+  i++;
+ } while(func_02109444(p));
+ if(p!=NULL) func_021093b0(p);
+}
+
 void func_020a6b88(void *arg0, void *arg1) {
     u8 *node = *(u8 **)arg0;
     while (node != NULL) {
