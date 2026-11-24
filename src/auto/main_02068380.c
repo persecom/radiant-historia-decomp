@@ -8,7 +8,8 @@ static inline u16 effect_random(u16 range) {
 }
 static inline s32 effect_signed_random(u16 range) {
  s32 first = effect_random(range) - range / 2;
- return first >= 0 ? effect_random(range) - range / 2 : -(effect_random(range) - range / 2);
+ u16 second = effect_random(range);
+ return first >= 0 ? second - range / 2 : -(second - range / 2);
 }
 typedef struct { s8 xy[4][2]; } DirectionTable8;
 
