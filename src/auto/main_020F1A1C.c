@@ -104,6 +104,18 @@ BOOL func_020f2524(s32 arg0, s32 arg1, s32 arg2, s32 arg3, void *arg4) {
     return 1;
 }
 
+extern u32 data_02160c14[];
+extern u8 data_02160c20[];
+extern void func_020f37d0(void);
+extern void func_0210db70(void *);
+extern void *func_0210853c(void);
+extern void func_0210aa14(void *);
+void func_020f25b0(u32 arg0) {
+    data_02160c14[3] = (u32)func_020f37d0;
+    data_02160c14[4] = arg0;
+    func_0210db70(data_02160c20);
+}
+
 extern u8 data_02160c20[20];
 extern s32 func_0210dba0(void *);
 s32 func_020f25dc(void) {
