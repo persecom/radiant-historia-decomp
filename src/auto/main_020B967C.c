@@ -124,8 +124,8 @@ if(prev!=*(u16 *)(obj+0x30)) func_020c7930(obj);
 }
 
 void func_020ba118(void) {
-u16 arr[5] = {11,16,13,15,12};
 u8 *p = data_021601ec;
+u16 arr[5] = {11,16,13,15,12};
 u16 i;
 u8 *obj;
 for (i=0;i<5;i++) func_020c738c(func_020c9c10(*(void **)(p+0x4c),arr[i]),0,1);
