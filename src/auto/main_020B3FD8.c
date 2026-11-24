@@ -1,5 +1,7 @@
 /* 34 functions from 0x020B34D0 to 0x020B44CC (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { u32 value; u16 id, order; u8 owned; u8 pad[3]; } Entry_020b41b8;
+typedef struct { Entry_020b41b8 entries[901], selected; u16 ids[40]; s32 unk_2a98, count, unk_2aa0, filter, unk_2aa8, active; u8 flags; } Work_020b41b8;
 
 extern u8 *func_020b3890(void);
 extern u8 *func_020b3fd8(void);
@@ -106,6 +108,61 @@ s32 func_020b4198(u8 *arg0, u8 *arg1) {
         ret = -1;
     }
     return ret;
+}
+
+extern u8 *func_020bd058(u16);
+extern s32 func_02022068(u16);
+extern u16 func_020bd294(u16);
+extern void func_02015a3c(void *,s32,s32,void *);
+void func_020b41b8(s32 mode) {
+u8 *base,*item,*entry;
+s32 count=0,i,owned;
+u32 end,start;
+base=func_020b3fd8();
+func_02008f74(base,0,0x2a3c);
+*(s32 *)(base+0x2aac)=1;
+if(mode==0) {
+if(*((u8 *)func_020b3880()+0x3440)==1) {base[0x2ab0]|=7;*(s32 *)(base+0x2aa4)=0;}
+else if(*((u8 *)func_020b3880()+0x3440)==0){base[0x2ab0]|=8;*(s32 *)(base+0x2aa4)=3;}
+else {base[0x2ab0]|=15;*(s32 *)(base+0x2aa4)=3;}
+for(i=0;i<40;i++){
+if(*(u16 *)(base+0x2a48+i*2)!=0 && func_020b3f14(*(u16 *)(base+0x2a48+i*2))!=-1) {
+item=func_020bd058(*(u16 *)(base+0x2a48+i*2));
+if(item && item[7]==1) {
+entry=base+count*12;
+*(u16 *)(entry+4)=*(u16 *)(base+0x2a48+i*2);
+*(u32 *)entry=*(u32 *)item;
+entry[8]=0;count++;
+}
+}
+}
+*(s32 *)(base+0x2a9c)=count;
+} else if(mode==1) {
+end=0;start=0;
+base[0x2ab0]|=15;
+if(*(s32 *)(base+0x2aa4)==-1)*(s32 *)(base+0x2aa4)=3;
+for(i=1;i<901;i++){
+if(func_020b3f14((u16)i)!=-1) {
+owned=func_02022068((u16)i);
+if(owned) {
+item=func_020bd058((u16)i);
+if(item && item[7]==1) {
+entry=base+count*12;
+*(u16 *)(entry+4)=(u16)i;
+*(u32 *)entry=*(u32 *)item>>1;
+entry[8]=owned;
+*(u16 *)(entry+6)=func_020bd294((u16)i);
+count++;
+}
+}
+}
+}
+*(s32 *)(base+0x2a9c)=count;
+for(i=0;i<4;i++){
+func_020b40a4(i,&end,&start);
+if((s32)(end-start)>2)func_02015a3c(base+start*12,end-start,12,func_020b4198);
+}
+}
 }
 
 u8 *func_020b442c(void) {
