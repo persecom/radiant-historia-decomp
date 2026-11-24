@@ -8,6 +8,10 @@ extern void func_021167f0(void *, void *);
 extern void *func_0203222c(void);
 
 extern void func_020c2e80(void);
+void func_02032ff8(void) {
+    data_02160090[0x7e] = 1;
+}
+
 void func_0203305c(void) {
 }
 
