@@ -165,6 +165,16 @@ void func_02032db0(void *arg0) {
     }
 }
 
+void func_02032de8(void) {
+    void *node;
+    while ((node = *(void **)(data_02160090 + 0x24)) != NULL) {
+        func_021168f8(data_02160090 + 0x24, node);
+        if (node != NULL) {
+            func_0210c5dc(node);
+        }
+    }
+}
+
 void *func_02032e34(u32 arg0) {
     u8 *node = *(u8 **)(data_02160090 + 0x24);
     while (node != NULL) {
