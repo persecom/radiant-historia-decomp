@@ -41,6 +41,23 @@ x+=func_020a96f0(*(void **)(data_02160c74[1]+offset+0x90));
 return x;
 }
 
+extern void *func_020a94b8(void *);
+void func_020fd9f4(s32 index,u32 type) {
+if(*(void **)(data_02160c74[1]+index*4+0x28)) return;
+switch(type) {
+case 0: *(void **)(data_02160c74[1]+index*4+0x28)=func_020a94b8(data_02152ae0); break;
+case 1: *(void **)(data_02160c74[1]+index*4+0x28)=func_020a94b8(data_02152ae8); break;
+case 2: *(void **)(data_02160c74[1]+index*4+0x28)=func_020a94b8(data_02152af0); break;
+case 3: *(void **)(data_02160c74[1]+index*4+0x28)=func_020a94b8(data_02152af8); break;
+case 4: *(void **)(data_02160c74[1]+index*4+0x28)=func_020a94b8(data_02152b00); break;
+case 5: *(void **)(data_02160c74[1]+index*4+0x28)=func_020a94b8(data_02152b08); break;
+case 6: *(void **)(data_02160c74[1]+index*4+0x28)=func_020a94b8(data_02152b10); break;
+case 7: *(void **)(data_02160c74[1]+index*4+0x28)=func_020a94b8(data_02152b18); break;
+case 8: *(void **)(data_02160c74[1]+index*4+0x28)=func_020a94b8(data_02152b28); break;
+case 9: *(void **)(data_02160c74[1]+index*4+0x28)=func_020a94b8(data_02152b44); break;
+}
+}
+
 void func_020fdb64(void) {
     u8 *node;
     if (*(u32 *)(data_02160200 + 0x15c) & 0x2000000) {
