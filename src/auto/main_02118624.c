@@ -107,6 +107,14 @@ void func_02118eb4(u8 *arg0, u16 arg1) {
     }
 }
 
+void func_02118ed0(u8 *arg0, u32 arg1, u32 arg2) {
+    if (*(s32 *)arg0 == 1) {
+        *(u32 *)(arg0 + 4) = arg1;
+        *(u32 *)(arg0 + 8) = arg2;
+        *(u16 *)(arg0 + 0x12) |= 2;
+    }
+}
+
 extern void func_02118efc(void *);
 void func_02118eec(u32 *arg0, u32 arg1) {
     *arg0 = arg1;
