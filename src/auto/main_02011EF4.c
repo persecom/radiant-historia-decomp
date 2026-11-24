@@ -47,31 +47,34 @@ int func_020123f0(const u8 *a, const u8 *b) {
     u32 aa = (u32)a & 3;
     u32 ba = (u32)b & 3;
     u32 i = 0;
-    if (aa != ba) goto bytes;
+    u32 mask = 0x7f7f7f7f;
+    if ((aa ^ ba) != 0) goto bytes;
     if (aa == 0) goto words;
     if (aa >= 4) goto words;
     do {
-        if (a[i] != b[i]) return a[i] - b[i];
-        if (a[i] == 0) return 0;
+        u8 x = a[i];
+        u8 y = b[i];
+        if (x != y || x == 0) return x - y;
         i++;
     } while (i + aa < 4);
 words:
-    {
-        u32 mask = 0x7f7f7f7f;
-        for (;;) {
-            u32 x = *(const u32 *)(a + i);
-            u32 y = *(const u32 *)(b + i);
-            u32 t;
-            if (x != y) break;
-            t = ((x & mask) + mask) | x | mask;
-            if (t != 0xffffffff) break;
-            i += 4;
-        }
+    for (;;) {
+        u32 x = *(const u32 *)(a + i);
+        u32 y = *(const u32 *)(b + i);
+        u32 t;
+        u32 z;
+        if (x != y) break;
+        t = (x & mask) + mask;
+        t |= x;
+        t |= mask;
+        z = ~t;
+        if (z == 0) { i += 4; } else break;
     }
 bytes:
     for (;;) {
-        if (a[i] != b[i]) return a[i] - b[i];
-        if (a[i] == 0) return 0;
+        u8 x = a[i];
+        u8 y = b[i];
+        if (x != y || x == 0) return x - y;
         i++;
     }
 }
@@ -131,6 +134,22 @@ void func_02012d90(u32 *arg0, u8 arg1, s32 arg2) {
     }
     for (i = 0; i < n; i++) {
         ((u8 *)arg0[1])[i] = arg1;
+    }
+    arg0[0] -= n;
+    arg0[1] += arg2;
+}
+
+void func_02012de4(u32 *arg0, char *arg1, s32 arg2) {
+    u32 i, n;
+    if (arg2 <= 0) {
+        return;
+    }
+    n = arg0[0];
+    if (n > (u32)arg2) {
+        n = (u32)arg2;
+    }
+    for (i = 0; i < n; i++) {
+        ((u8 *)arg0[1])[i] = arg1[i];
     }
     arg0[0] -= n;
     arg0[1] += arg2;
