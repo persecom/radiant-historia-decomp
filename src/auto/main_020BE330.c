@@ -24,6 +24,7 @@ extern s32 data_0216242c[10];
 extern s32 *data_02155984;
 extern s32 data_02151fcc;
 extern u16 data_02151fc8;
+extern u16 data_02151fca;
 extern const s16 data_0213a394[];
 extern s32 data_02162360[];
 extern void func_02108240(void);
@@ -280,6 +281,25 @@ void func_020bf00c(s32 *out, s32 *a, s32 *b, s32 t) {
 out[0] = func_0201ff0c(func_020203d4(func_020201f4(func_02020604(0x3f800000,t),func_0201f884(a[0])),func_020201f4(t,func_0201f884(b[0]))));
 out[1] = func_0201ff0c(func_020203d4(func_020201f4(func_02020604(0x3f800000,t),func_0201f884(a[1])),func_020201f4(t,func_0201f884(b[1]))));
 out[2] = func_0201ff0c(func_020203d4(func_020201f4(func_02020604(0x3f800000,t),func_0201f884(a[2])),func_020201f4(t,func_0201f884(b[2]))));
+}
+
+s32 func_020bf118(void *out, VecBf118 *input, s32 count, f32 t) {
+s32 n=0, consumed=0, base=0, factorial=1;
+VecBf118 *work;
+s32 i,j;
+union {f32 f; s32 i;} bits;
+bits.f=t;
+if(t>1.0f) return 0;
+for(i=count-1;i>0;i--) factorial *= i;
+work=(VecBf118 *)func_0210c594((factorial+count)*0x90,data_02155c3c);
+for(i=0;i<count;i++) {work[i]=input[i];n++;}
+for(i=count-1;i>0;i--) {
+for(j=0;j<i;j++) {func_020bf00c((s32 *)&work[n],(s32 *)&work[base+j],(s32 *)&work[base+j+1],bits.i);n++;consumed++;}
+consumed++;base=consumed;
+}
+func_02009008(&work[base],out,12);
+if(work) func_0210c5dc(work);
+return 1;
 }
 
 void func_020bf24c(s32 arg0, u8 arg1) {
