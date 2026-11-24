@@ -75,6 +75,21 @@ void func_020adfe8(u16 arg0, u8 arg1) {
     *(u32 *)0x40004A4 = (arg1 << 24) | 0xC0 | (arg0 << 16);
 }
 
+void func_020ae004(s16 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s16 arg5, s16 arg6, s16 arg7, s16 arg8) {
+    s16 buf[10];
+    buf[0] = 1;
+    buf[1] = arg1;
+    buf[2] = arg2;
+    buf[3] = arg3;
+    buf[4] = arg4;
+    buf[5] = arg5;
+    buf[6] = arg6;
+    buf[7] = arg0;
+    buf[8] = arg7;
+    buf[9] = arg8;
+    func_021098ac(buf);
+}
+
 void func_020aeda0(void) {
     func_020aed5c(0);
     func_020aed5c(1);
