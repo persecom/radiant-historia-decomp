@@ -277,6 +277,23 @@ void func_020bb008(void) {
     func_020c4fa4(*(void **)(*(u8 **)((u8 *)&data_021601f0 + 4) + 0x40));
 }
 
+void func_020bb234(u8 *arg0) {
+    u16 i;
+    if (arg0 == NULL) {
+        return;
+    }
+    for (i = 0; i < 3; i++) {
+        void *obj;
+        func_020a98a0(arg0 + 0x18 + i * 0x34);
+        func_020a9544(((void **)(arg0 + 0xc))[i]);
+        obj = ((void **)arg0)[i];
+        ((void (*)(void *))(*(void **)((u8 *)obj + 0xc)))(obj);
+    }
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
 void func_020bb508(u8 *arg0) {
     if (arg0 == NULL) {
         return;
