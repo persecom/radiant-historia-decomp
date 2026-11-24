@@ -137,6 +137,17 @@ s32 func_0212c0a8(void) {
     return 0;
 }
 
+void func_0212c2d8(u8 *arg0, void *arg1, u32 arg2, u32 arg3) {
+    u32 x = *(u32 *)(arg0 + 0x94);
+    if (arg0 == NULL) {
+        func_0212bda8(data_02156c28);
+        return;
+    }
+    if (func_0212e604(x, arg1, 0, arg2, arg3) < 0) {
+        func_0212be08(data_02156c58, arg1);
+    }
+}
+
 void func_0212c3b0(void *arg0, void *arg1) {
     func_0212a9f4();
     ((void (*)(void *, void *))func_0212c3d4)(arg0, arg1);
