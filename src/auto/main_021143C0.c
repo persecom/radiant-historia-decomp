@@ -46,6 +46,9 @@ extern void func_0200b888(void *);
 extern s32 func_0200b9c8(void *, UnkPair8);
 extern s32 func_0200ba20(void *, void *, s32, s32);
 extern s32 func_02114db8(void *, s32, s32);
+static inline void *GetOffset_02114f80(void *base, u32 off) {
+    return off == 0 ? NULL : (u8 *)base + off;
+}
 typedef struct {
     u8 unk_00[0x28];
     u32 unk_28;
@@ -299,6 +302,27 @@ void func_02114a64(void) {
 void func_02114aa4(void) {
     data_0216c974 = NULL;
     *(u32 *)data_0216c9bc = 0;
+}
+
+void func_02114ac4(void) {
+    u8 *p = data_0216c9bc;
+    s32 v;
+    if (*(u32 *)(p + 0x0) == 0) {
+        return;
+    }
+    if (*(u32 *)(p + 0x4) != 0) {
+        return;
+    }
+    func_0211677c((s32 *)(p + 0x3c));
+    if (*(u32 *)(p + 0x4c) != 0 && func_02116794((s32 *)(p + 0x3c)) != 0) {
+        func_02114b44();
+    }
+    v = func_02116748((s32 *)(p + 0x3c)) >> 8;
+    if (v == *(s32 *)(p + 0x50)) {
+        return;
+    }
+    func_0200968c(*(u32 *)(p + 0x24), v, 0);
+    *(s32 *)(p + 0x50) = v;
 }
 
 void func_02114c28(void) {
