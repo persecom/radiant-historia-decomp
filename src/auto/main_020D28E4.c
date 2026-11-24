@@ -156,8 +156,8 @@ s32 func_020d2e14(s32 arg0, s32 arg1) {
 }
 
 void func_020d30a0(void) {
-    if (data_02160a6c->unk64 == 0) return;
-    func_020d2f44();
-    if (data_02160a6c->unk64 != 0) return;
+    while (data_02160a6c->unk64 != 0) {
+        func_020d2f44();
+    }
 }
 
