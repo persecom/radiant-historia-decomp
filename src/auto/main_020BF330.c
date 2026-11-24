@@ -1,5 +1,6 @@
 /* 19 functions from 0x020BF330 to 0x020C0284 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { s32 a,b; u16 c,pad; s32 d,e,f,g; s32 x,y,z,w,speed; u16 kind,h,i,j; s32 timer; u8 *owner; u16 state; u8 rest[10]; } Unk_020bfd78;
 extern u32 data_0216263c[3];
 #define RH_RANDOM(n) ((u16)((((data_0216263c[0] = data_0216263c[1] * data_0216263c[0] + data_0216263c[2]) >> 16) * (n)) >> 16))
 extern u8 *data_02160244;
@@ -168,6 +169,33 @@ void func_020bf700(void) {
         data_02160214 = NULL;
     }
     func_02066f9c();
+}
+
+extern void func_021167f0(void *,void *);
+void func_020bfd78(s32 a,s32 b,u16 c,s32 d,s32 e,s32 owner,u16 g,u16 h) {
+u8 *p=func_0210c594(0x4c,data_02155c3c);
+s32 zero=0;
+*(s32 *)(p)=a;*(s32 *)(p+4)=b;
+*(u16 *)(p+8)=zero;
+*(s32 *)(p+0xc)=d;*(s32 *)(p+0x10)=zero;
+*(s32 *)(p+0x14)=e;*(s32 *)(p+0x18)=zero;
+*(s32 *)(p+0x1c)=RH_RANDOM(0x1800)-0xc00;
+*(s32 *)(p+0x20)=RH_RANDOM(0x2000)-0x1000;
+*(s32 *)(p+0x24)=RH_RANDOM(0xc00)+0x2800;
+*(s32 *)(p+0x28)=RH_RANDOM(0x1000)+0x2800;
+*(s32 *)(p+0x2c)=RH_RANDOM(200)+700;
+*(u16 *)(p+0x32)=g;*(u16 *)(p+0x34)=h;
+*(u16 *)(p+0x36)=zero;*(s32 *)(p+0x38)=zero;
+*(s32 *)(p+0x3c)=owner;
+*(u16 *)(p+0x30)=c;*(u16 *)(p+0x40)=1;
+if(owner) {
+u8 *q=*(u8 **)((u8 *)owner+0x128);
+(*(s16 *)(q+0xaa))++;
+if(**(u8 **)((u8 *)owner+0x118)==0) *(s32 *)(p+4)+=10;
+*(u16 *)(p+0x40)=3;
+}
+func_021167f0(data_02160214+0x28,p);
+(*(s32 *)(data_02160214+0x34))++;
 }
 
 void *func_020bff74(u16 arg0, u16 arg1) {
