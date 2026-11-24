@@ -270,8 +270,8 @@ u32 func_02111dbc(u8 *arg0, u32 arg1) {
 }
 
 void func_02111ff0(u8 *arg0) {
-    u16 i;
     u32 count = func_020c9c34(*(void **)(arg0 + 0x34));
+    u16 i;
     for (i = 0; i < count; i++) {
         u8 *obj = func_020c9c10(*(void **)(arg0 + 0x34), i);
         ((void (*)(u8 *))(*(void **)(obj + 0x4c)))(obj);
