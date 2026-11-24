@@ -152,6 +152,25 @@ void func_02076380(u8 *arg0) {
     *(volatile u32 *)0x04000480 = 0x7fff;
 }
 
+extern void func_020a49a4(s32, s32, s32, s32, s32, s32, s32, s32, s32);
+void func_020763ec(u32 arg0) {
+    u8 *r4 = (u8 *)func_020764e4();
+    func_02076380(*(u32 *)(r4 + 0xb4));
+    func_020a49a4(0x65, 0, 0, 0x20, 0x11, 0, 0x2a, 0xdc, 0x23);
+    if (arg0 == 0) {
+        func_02076380(*(u32 *)(r4 + 0xb0));
+    } else {
+        func_02076380(*(u32 *)(r4 + 0xac));
+    }
+    func_020a49a4(0x65, 0, 0, 0x20, 0x12, 0x8a, 0x84, 0x8c, 0x12);
+    if (arg0 == 0) {
+        func_02076380(*(u32 *)(r4 + 0xac));
+    } else {
+        func_02076380(*(u32 *)(r4 + 0xb0));
+    }
+    func_020a49a4(0x65, 0, 0, 0x20, 0x12, 0x8a, 0x98, 0x8c, 0x12);
+}
+
 extern u8 *data_021600ec;
 extern void func_020766ec(void);
 u32 func_020764e4(void) {
