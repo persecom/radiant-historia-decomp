@@ -7,6 +7,9 @@ extern void func_0211d814(void);
 extern void func_0200439c(void);
 extern void func_020043f8(void *, u32, u32);
 extern void func_02004544(void);
+extern void func_02004588(void);
+extern void func_020045bc(void *, u32, u32);
+extern void func_0200462c(void);
 void func_0211cdc8(u8 *arg0, BOOL arg1) {
     u32 sz;
 
