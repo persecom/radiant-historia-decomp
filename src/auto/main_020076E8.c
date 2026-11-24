@@ -59,7 +59,3 @@ s32 func_020076e8(s32 arg0) {
     func_0200777c(func_020076fc(arg0));
     return arg0;
 }
-
-void func_020077f8(s32 arg0) {
-    data_0215d124 |= (u16)(1 << arg0);
-}
