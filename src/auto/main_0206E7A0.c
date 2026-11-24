@@ -26,8 +26,15 @@ void func_0206e8f0(u32 arg0, UnkVec12 *arg1, u8 arg2) {
     *(u8 *)(p + 0x20) = arg2;
     if (arg2 == 2 || arg2 == 3) {
         UnkVec12 *v = func_0210c594(0xc, data_02155c3c);
+        u32 x = arg1->x;
         *(UnkVec12 **)(p + 0x4c) = v;
-        *v = *arg1;
+        v->x = x;
+        {
+            u32 y = *(volatile u32 *)&arg1->y;
+            u32 z = arg1->z;
+            *(volatile u32 *)&v->y = y;
+            v->z = z;
+        }
         func_0206b3c0(p);
     } else if (arg2 == 1 || arg2 == 4) {
         *(UnkVec12 **)(p + 0x4c) = arg1;
@@ -40,12 +47,13 @@ void func_0206e8f0(u32 arg0, UnkVec12 *arg1, u8 arg2) {
 }
 
 void func_0206eb80(u16 arg0, u8 arg1, u8 arg2, UnkVec12 *arg3, UnkStruct24 *arg4) {
-    u8 *p = func_0210c594(0x2c, data_02155c3c);
+    u32 *heap = &data_02155c3c;
+    u8 *p = func_0210c594(0x2c, *heap);
     *(u8 *)(p + 0x2) = arg2;
     *(u16 *)(p + 0x0) = arg0;
     *(u8 *)(p + 0x20) = arg1;
     if (*(u8 *)((u8 *)arg4 + 0xc) == 2) {
-        UnkVec12 *v = func_0210c594(0xc, data_02155c3c);
+        UnkVec12 *v = func_0210c594(0xc, *heap);
         *(UnkVec12 **)(p + 0x4) = v;
         v->x = arg3->x;
         v->y = arg3->y;
@@ -53,7 +61,8 @@ void func_0206eb80(u16 arg0, u8 arg1, u8 arg2, UnkVec12 *arg3, UnkStruct24 *arg4
     } else {
         *(UnkVec12 **)(p + 0x4) = arg3;
     }
-    *(UnkStruct24 *)(p + 0x8) = *arg4;
+    heap = (u32 *)(p + 0x8);
+    *(UnkStruct24 *)heap = *arg4;
     func_021167f0(data_021600e8 + 0x54, p);
     func_0206e7a0(arg2, arg3, arg4, arg0);
 }
