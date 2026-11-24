@@ -9,29 +9,28 @@ extern u16 *func_02120c74(u8 *);
 extern void *func_02121090(void *, u16, u16);
 extern u8 func_02121040(void *, u8);
 extern void func_02122fa0(void *, u8, u8 *);
-extern u8 func_02121068(void *);
+extern u8 func_02121068();
 void func_02008df0(u8, void *, u32);
 s32 func_02120e30(void *, void *);
 #pragma opt_propagation off
-s32 func_0212251c(s32 *out, s16 *a, s16 *b, u32 flags) {
+s32 func_0212251c(s32 *out, const s16 *a, const s16 *b, u32 flags) {
  if (flags & 0x8000) {
-  s16 *p = a + (flags & 0x7fff)*3;
+  const s16 *p = a + (flags & 0x7fff)*3;
   s32 v = p[0];
   s32 idx = v & 15;
   s32 x, y;
-  out[8]=out[7]=out[6]=out[5]=out[4]=out[3]=out[2]=out[1]=out[0]=0;
-  out[idx] = (v & 16) ? -4096 : 4096;
+  out[0]=out[1]=out[2]=out[3]=out[4]=out[5]=out[6]=out[7]=out[8]=0;
   x=p[1]; y=p[2];
+  out[idx] = (v & 16) ? -4096 : 4096;
   out[data_02144f4c[idx*4]]=x;
   out[data_02144f4d[idx*4]]=y;
-  if(p[0]&32) y=-y;
-  if(p[0]&64) x=-x;
-  out[data_02144f4e[idx*4]]=y;
-  out[data_02144f4f[idx*4]]=x;
+  out[data_02144f4e[idx*4]]=(p[0]&32) ? -y : y;
+  out[data_02144f4f[idx*4]]=(p[0]&64) ? -x : x;
   return 0;
  } else {
-  s16 *p=b+(flags&0x7fff)*5;
-  s32 e=p[4], a0=p[0], a1=p[1], a2=p[2], a3=p[3];
+  const s16 *p=b+(flags&0x7fff)*5;
+  s32 a3, a2, a1, a0, e;
+  e=p[4]; a0=p[0]; a1=p[1]; a2=p[2]; a3=p[3];
   s16 bits=e&7;
   bits=(bits<<3)|(a0&7);
   bits=(bits<<3)|(a1&7);
@@ -43,7 +42,7 @@ s32 func_0212251c(s32 *out, s16 *a, s16 *b, u32 flags) {
   return 1;
  }
 }
-
+#pragma opt_propagation on
 u16 func_02122684(u8 *base, u32 flags, u32 frame) {
 u16 *p; u32 limit,a,b,x,y;
 if(flags&0x20000000) return (u16)flags;
