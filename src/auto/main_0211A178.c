@@ -1,6 +1,7 @@
 /* 28 functions from 0x0211A178 to 0x0211B0E8 (main), found by ds-decomp. */
 #include "common.h"
 typedef struct { s32 v[6]; } Mtx23;
+typedef struct { s32 m00,m01,m10,m11,m20,m21; } Mtx23Fields;
 extern s32 data_0216f234[4];
 extern u16 data_02155eb0[];
 extern u16 data_0216f2c4[][4];
@@ -42,6 +43,24 @@ m[0]=0x1000; m[1]=0; m[2]=0; m[3]=0x1000; m[5]=y; m[4]=x;
 { void *p=data_0216f3c4[data_0216f234[3]]; func_0211a4e0((void *)m,p,p); }
 { void *p=data_0216f6c4[data_0216f234[3]]; func_0211a4e0((void *)m,p,p); }
 data_0216f244[data_0216f234[3]]+=z;
+}
+
+void func_0211a3ac(s32 sine,s32 cosine) {
+ s32 m[6];
+ u16 *entry;
+ s32 active;
+ m[0]=cosine;m[1]=sine;m[2]=-sine;m[3]=cosine;m[4]=0;m[5]=0;
+ func_0211a4e0(m,data_0216f3c4[data_0216f234[3]],data_0216f3c4[data_0216f234[3]]);
+ func_0211a4e0(m,data_0216f6c4[data_0216f234[3]],data_0216f6c4[data_0216f234[3]]);
+ active=(data_0216f234[1]==0 && data_02155eb0[0]!=0xfffe);
+ if(!active) data_02155eb0[0]=data_0216f234[3];
+ entry=data_0216f2c4[(u16)data_0216f234[3]];
+ switch(entry[2]) {
+ case 0: case 2: case 3:
+ entry[1]=((u16 *)data_0216f234)[1]++;
+ entry[2]=1;
+ break;
+ }
 }
 
 void func_0211a4c0(void) {
