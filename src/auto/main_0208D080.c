@@ -5,6 +5,9 @@ typedef struct {
     s16 f0, f1, f2, f3, f4, f5, f6, f7, f8, f9;
 } Unk10;
 
+extern const Unk10 data_021411e8;
+extern const Unk10 data_021411d4;
+extern const Unk10 data_021411c0;
 extern const Unk10 data_021411ac;
 extern const Unk10 data_02141170, data_0214115c;
 extern void func_020922bc(s16,s16,s16,s32,s32,s32,s32,s32);
@@ -87,5 +90,23 @@ void func_0208dc14(s16 arg0, s16 arg1, s16 arg2, s16 arg3, s32 arg4) {
     sp.f6 = arg2;
     sp.f7 = arg3;
     func_021098ac(&sp);
+}
+
+void func_0208dea4(u32 id,s32 mode,s16 x,s16 y,s16 z,u8 bank) {
+ Unk10 a=data_02141170;
+ Unk10 b=data_0214115c;
+ func_020a3bbc(bank+0x3b);
+ switch(mode) {
+ case 1:a.f1=12;break;
+ case 2:a.f2=11;break;
+ case 3:a.f1=12;a.f2=11;break;
+ }
+ a.f5=x+3; a.f6=y+2; a.f7=z+1;
+ func_021098ac(&a);
+ func_020a3bbc(bank+0x39);
+ if(id<5)b.f2=id*11;else {b.f1=32;b.f2=(id-5)*11;}
+ b.f5=x+16;b.f6=y+2;b.f7=z+1;
+ func_021098ac(&b);
+ func_020922bc(bank+0x33,x,y,0x34,0x10,0x20,0x10,0x8e);
 }
 
