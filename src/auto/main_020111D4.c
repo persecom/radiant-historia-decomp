@@ -292,3 +292,53 @@ s32 func_02011bdc(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     return func_02011c70(arg0, arg1, arg2, arg3, arg4, ctx);
 }
 
+void func_02011e20(u16 *ctx, const void *buf, u32 len) {
+    s32 odd = 0;
+    u32 sum = 0;
+    const u8 *p = (const u8 *)buf;
+
+    if ((u32)p & 1) {
+        sum += (*p++) << 8;
+        len--;
+        odd = 1;
+    }
+
+    while ((len >> 17) != 0) {
+        u32 n = 0x10000;
+        len -= 0x20000;
+        do {
+            sum += *(const u16 *)p;
+            p += 2;
+        } while (--n != 0);
+        sum = (sum >> 16) + (sum & 0xffff);
+        sum = (u16)(sum + (sum >> 16));
+    }
+
+    {
+        u32 n = len >> 1;
+        if (n != 0) {
+            do {
+                sum += *(const u16 *)p;
+                p += 2;
+            } while (--n != 0);
+        }
+    }
+
+    if (len & 1) {
+        sum += *p;
+    }
+
+    sum = (sum >> 16) + (sum & 0xffff);
+    sum = (sum >> 16) + (sum & 0xffff);
+
+    if (odd) {
+        sum = ((sum << 24) | (sum << 8)) >> 16;
+    }
+
+    {
+        u32 total = sum + *ctx;
+        total += (total >> 16);
+        *ctx = (u16)total;
+    }
+}
+
