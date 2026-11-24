@@ -221,3 +221,7 @@ void func_0212d6fc(void *arg0) {
     func_0212a2ac(*(void **)((u8 *)arg0 + 4));
 }
 
+u32 func_0212d70c(void *arg0) {
+    return *(u32 *)((u8 *)arg0 + 0xb0);
+}
+
