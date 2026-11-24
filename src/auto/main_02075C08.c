@@ -199,3 +199,19 @@ void func_02076868(void) {
     func_02075fb8(*(s32 *)(r4 + 0x6c));
 }
 
+u8 func_02076914(s32 arg0) {
+    s32 y0, y1;
+    s16 x, y;
+    if (*(u16 *)((u8 *)data_02162908 + 4) == 0) {
+        return 0;
+    }
+    if (data_021628f8 == 0) {
+        return 0;
+    }
+    y0 = arg0 * 20 + 0x84;
+    y1 = arg0 * 20 + 0x96;
+    x = data_02162908[0];
+    y = data_02162908[1];
+    return (u8)(x >= 0x8a && x <= 0xff && y >= y0 && y <= y1);
+}
+
