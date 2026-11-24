@@ -62,3 +62,8 @@ void func_020da0c8(s32 arg0) {
     data_02151fcc = arg0 << 12;
 }
 
+void func_020da8a4(u8 *arg0) {
+    u8 *p = *(u8 **)(arg0 + 0x118);
+    *(s32 *)(arg0 + 0xf8) = (*(u32 *)(p + 0x78) & 0x10) ? 1 : 0;
+}
+
