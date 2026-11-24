@@ -140,6 +140,13 @@ s32 func_0212751c(void *arg0) {
     }
 }
 
+void func_02127580(void *arg0, s32 arg1) {
+    if (arg1 < -960) {
+        arg1 = -960;
+    }
+    func_021284bc(*(void **)((u8 *)arg0 + 4), arg1);
+}
+
 s32 func_021275f8(s32 *arg0) {
     return arg0[1];
 }
