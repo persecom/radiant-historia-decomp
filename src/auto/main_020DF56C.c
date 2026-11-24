@@ -12,9 +12,10 @@ extern void *func_0210c594(s32, u32);
 extern void func_021167f0(void *, void *);
 extern void func_020df9dc(void *, void *);
 void func_020df56c(void *arg0, s32 arg1) {
-    u8 *node = *(u8 **)(data_02160a6c + 0xb8);
+    u8 *node;
 
-    if (arg1 == 0) {
+    if (arg1 != 0) {
+        node = *(u8 **)(data_02160a6c + 0xb8);
         while (node != NULL) {
             if (arg0 != node) {
                 *(u32 *)(node + 0x80) &= ~2;
@@ -22,6 +23,7 @@ void func_020df56c(void *arg0, s32 arg1) {
             node = *(u8 **)(node + 0x174);
         }
     } else {
+        node = *(u8 **)(data_02160a6c + 0xb8);
         while (node != NULL) {
             *(u32 *)(node + 0x80) |= 2;
             node = *(u8 **)(node + 0x174);
