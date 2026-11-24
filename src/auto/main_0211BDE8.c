@@ -1,6 +1,7 @@
 /* 30 functions from 0x0211BDE8 to 0x0211CDC8 (main), found by ds-decomp. */
 #include "common.h"
 typedef struct Unk_0211c424 { u16 x, y, z; } Unk_0211c424;
+typedef struct State_0211c424 { u8 pad[0x30]; s32 enabled; u32 unk34; u16 x, y, z; } State_0211c424;
 typedef struct List_0211c424 { u16 count; u16 pad; Unk_0211c424 *entries; } List_0211c424;
 typedef struct Callbacks_0211c424 { u8 pad[0x20]; void (*before)(void *, void *, u16); void (*after)(void *, void *, u16); } Callbacks_0211c424;
 
@@ -35,18 +36,19 @@ extern void func_0211c1f8(void *);
 void func_0211c424(void *arg0, void *arg1) {
  u8 *p=data_021701f8;
  u16 i;
- for(i=0;i<*(u16 *)arg1;i++) {
-  u16 *entry;
+ for(i=0;i<((List_0211c424 *)arg1)->count;i++) {
+  Unk_0211c424 *entry;
+
   void (*callback)(void *,void *,u16);
   *(s32 *)(data_021701f8+0x30)=1;
- entry=(u16 *)(*(u8 **)((u8 *)arg1+4)+i*6);
- callback=*(void (**)(void *,void *,u16))((u8 *)arg0+0x20);
-  *(u16 *)(p+0x38)=entry[0];
-  *(u16 *)(p+0x3a)=entry[1];
-  *(u16 *)(p+0x3c)=entry[2];
+ entry=((List_0211c424 *)arg1)->entries+i;
+  *(u16 *)(p+0x38)=entry->x;
+  *(u16 *)(p+0x3a)=entry->y;
+  *(u16 *)(p+0x3c)=entry->z;
+  callback=((Callbacks_0211c424 *)arg0)->before;
   if(callback) callback(data_021701f8,arg1,i);
   if(*(s32 *)(data_021701f8+0x30)) func_0211c1f8(p+0x38);
-  callback=*(void (**)(void *,void *,u16))((u8 *)arg0+0x24);
+  callback=((Callbacks_0211c424 *)arg0)->after;
   if(callback) callback(data_021701f8,arg1,i);
  }
 }
