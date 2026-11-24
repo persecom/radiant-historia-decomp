@@ -56,6 +56,39 @@ void func_020263b4(void *arg0, u32 arg1) {
     *(u32 *)(p + 0x8c) &= ~mask;
 }
 
+void func_0202647c(u8 *arg0, s32 arg1) {
+    u32 mask = 0;
+    switch (arg1) {
+        case 0xab:
+            mask = 8;
+            break;
+        case 0xac:
+            mask = 0x10;
+            break;
+        case 0xaf:
+            mask = 0x20;
+            break;
+    }
+    if ((*(u32 *)(*(u8 **)(arg0 + 0x118) + 0x90) & mask) == 0) {
+        return;
+    }
+    ((void (*)(void *, void *))func_020226c0)(*(void **)(*(u8 **)(arg0 + 0x118) + 0x60), ((void *(*)(void *, s32))func_02022558)(*(void **)(*(u8 **)(arg0 + 0x118) + 0x60), arg1));
+    switch (arg1) {
+        case 0xab:
+            *(u16 *)(*(u8 **)(arg0 + 0x118) + 0x94) = 0;
+            *(u16 *)(*(u8 **)(arg0 + 0x118) + 0x96) = 0;
+            break;
+        case 0xac:
+            *(u16 *)(*(u8 **)(arg0 + 0x118) + 0x98) = 0;
+            *(u16 *)(*(u8 **)(arg0 + 0x118) + 0x9a) = 0;
+            break;
+        case 0xaf:
+            *(u16 *)(*(u8 **)(arg0 + 0x118) + 0x9c) = 0;
+            break;
+    }
+    *(u32 *)(*(u8 **)(arg0 + 0x118) + 0x90) &= ~mask;
+}
+
 void *func_02026548(void) {
     return func_0210c594(0x14, data_02155c3c);
 }
