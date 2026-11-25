@@ -82,70 +82,83 @@ void func_0210f6d4(void) {
 }
 
 void func_0210f7b0(void) {
-    s32 zero = 0, one = 1;
-    u32 mask3d = 0xffffcffd, mask = 0xffcfffef;
+    s32 one = 1, four = 4, zero = 0;
+volatile u16 *bg=(volatile u16*)0x4001008;
     func_0210f448();
     func_02004d70(15);
     func_02004ee8(0x70);
     func_0200518c(0x80);
     func_02005228(0x100);
-    func_020027d4(one, 4, one);
+    func_020027d4(one, four, one);
     func_020030e4(zero);
-    *(volatile u32 *)0x4000000 &= mask;
+    *(volatile u32 *)0x4000000 &= 0xffcfffef;
     *(volatile u32 *)0x4000000 &= ~0x1f00;
     *(volatile u32 *)0x4000000 = (*(volatile u32 *)0x4000000 & ~0x1f00) | 0x100;
     *(volatile u16 *)0x400000a = (*(volatile u16 *)0x400000a & ~3) | 1;
     *(volatile u16 *)0x400000e = (*(volatile u16 *)0x400000e & ~3) | 2;
     *(volatile u16 *)0x400000c = (*(volatile u16 *)0x400000c & ~3) | 3;
     *(volatile u16 *)0x4000008 = (*(volatile u16 *)0x4000008 & ~3) | 3;
-    *(volatile u16 *)0x4000060 &= mask3d;
+    *(volatile u16 *)0x4000060 &= 0xffffcffd;
     *(volatile u16 *)0x4000060 = (*(volatile u16 *)0x4000060 & ~0x3000) | 0x10;
     *(volatile u16 *)0x4000060 = (*(volatile u16 *)0x4000060 & ~0x3000) | 8;
     func_02002920((void *)0x4000050, one, 0x20, zero, zero);
-    func_02002fb0(zero, zero, mask3d >> 17, 0x3f, zero);
-    func_0210f410(4, 0x10000);
-    *(volatile u32 *)0x4001000 &= mask;
+    func_02002fb0(zero, zero, 0x7fff, 0x3f, zero);
+    func_0210f410(four, 0x10000);
+    *(volatile u32 *)0x4001000 &= 0xffcfffef;
     func_0200283c(2);
     *(volatile u32 *)0x4001000 &= ~0x1f00;
     *(volatile u32 *)0x4001000 = (*(volatile u32 *)0x4001000 & ~0x1f00) | 0x1100;
-    *(volatile u16 *)0x4001008 = (*(volatile u16 *)0x4001008 & ~3) | 3;
-    *(volatile u16 *)0x400100c = (*(volatile u16 *)0x400100c & ~3) | 2;
-    *(volatile u16 *)0x400100e = (*(volatile u16 *)0x400100e & ~3) | 1;
-    *(volatile u16 *)0x400100a &= ~3;
-    *(volatile u16 *)0x400100c &= 0xffbf;
+    bg[0] = (bg[0] & ~3) | 3;
+    bg[2] = (bg[2] & ~3) | (2 & 0xffffffffffffffffULL);
+    bg[3] = (bg[3] & ~3) | 1;
+    bg[1] &= ~3;
+    bg[2] &= 0xffbfULL;
 }
 
 int func_02002fb0(s32,s32,s32,s32,s32);
-void func_0210f978(void) {
-s32 one=1, four=4, zero=0;
-func_0210f448();
-func_02004d70(15);func_02004ee8(16);func_020048a8(0x60);func_0200518c(0x80);func_02005228(0x100);
-func_020027d4(one,four,one);func_020030e4(zero);
-*(volatile u32 *)0x4000000 &= 0xffcfffef;
-*(volatile u32 *)0x4000000 &= ~0x1f00;
-*(volatile u32 *)0x4000000 = (*(volatile u32 *)0x4000000 & ~0x1f00)|0x100;
-*(volatile u16 *)0x400000a = (*(volatile u16 *)0x400000a & ~3)|1;
-*(volatile u16 *)0x400000e = (*(volatile u16 *)0x400000e & ~3)|2;
-*(volatile u16 *)0x400000c = (*(volatile u16 *)0x400000c & ~3)|3;
-*(volatile u16 *)0x4000008 &= ~3;
-*(volatile u16 *)0x4000060 &= 0xffffcffd;
-*(volatile u16 *)0x4000060 = (*(volatile u16 *)0x4000060 & ~0x3000)|0x10;
-*(volatile u16 *)0x4000060 = (*(volatile u16 *)0x4000060 & ~0x3000)|8;
-func_02002920((void *)0x4000050,one,0x20,zero,zero);
-func_02002fb0(0,0,0x7fff,0x3f,0);
-func_0210f410(four,0x10000);
-*(volatile u32 *)0x4001000 &= 0xffcfffef;
-func_0200283c(2);
-*(volatile u32 *)0x4001000 = (*(volatile u32 *)0x4001000 & ~0x1f00)|0x1200;
-*(volatile u16 *)0x4001008 &= ~3;
-*(volatile u16 *)0x400100a = (*(volatile u16 *)0x400100a & ~3)|1;
-*(volatile u16 *)0x400100c = (*(volatile u16 *)0x400100c & ~3)|2;
-*(volatile u16 *)0x400100e = (*(volatile u16 *)0x400100e & ~3)|3;
+void func_0210f978(void)
+{
+  volatile u16 *new_var;
+  s32 one = 1;
+  long long new_var2;
+  s32 four = 4;
+  s32 zero = 0;
+  func_0210f448();
+  func_02004d70(15);
+  new_var2 = 0x10;
+  func_02004ee8(16);
+  func_020048a8(0x60);
+  func_0200518c(0x80);
+  func_02005228(0x100);
+  func_020027d4(one, four, one);
+  func_020030e4(zero);
+  *((volatile u32 *) 0x4000000) &= 0xffcfffef;
+  *((volatile u32 *) 0x4000000) &= ~0x1f00;
+  *((volatile u32 *) 0x4000000) = ((*((volatile u32 *) 0x4000000)) & (~0x1f00)) | 0x100;
+  *((volatile u16 *) 0x400000a) = ((*((volatile u16 *) 0x400000a)) & (~3)) | 1;
+  *((volatile u16 *) 0x400000e) = ((*((volatile u16 *) 0x400000e)) & (~3)) | 2;
+  *((volatile u16 *) 0x400000c) = ((*((volatile u16 *) 0x400000c)) & (~3)) | 3;
+  *((volatile u16 *) 0x4000008) &= ~3;
+  *((volatile u16 *) 0x4000060) &= 0xffffcffd;
+  *((volatile u16 *) 0x4000060) = ((*((volatile u16 *) 0x4000060)) & (~0x3000)) | new_var2;
+  *((volatile u16 *) 0x4000060) = ((*((volatile u16 *) 0x4000060)) & (~0x3000)) | 8;
+  func_02002920((void *) 0x4000050, one, 0x20, zero, zero);
+  func_02002fb0(zero, zero, 0x7fff, 0x3f, zero);
+  func_0210f410(four, 0x10000);
+  *((volatile u32 *) 0x4001000) &= 0xffcfffef;
+  func_0200283c(2);
+  new_var = (volatile u16 *) 0x4001008;
+  *((volatile u32 *) 0x4001000) = ((~0x1f00) & (*((volatile u32 *) 0x4001000))) | 0x1200;
+  *new_var &= ~3;
+  *((volatile u16 *) 0x400100a) = ((*((volatile u16 *) 0x400100a)) & (~3)) | 1;
+  *((volatile u16 *) 0x400100c) = ((*((volatile u16 *) 0x400100c)) & (~3)) | 2;
+  *((volatile u16 *) 0x400100e) = ((*((volatile u16 *) 0x400100e)) & (~3)) | 3;
 }
 
 void func_0210fb24(void) {
-s32 zero=0, one=1;
-u32 mask3d=0xffffcffd, mask=0xffcfffef;
+s32 one=1, zero=0;
+u32 mask=0xffcfffef;
+u32 color=0x7fff;
 func_0210f448();
 func_02004d70(7);func_02004ee8(16);func_020048a8(0x60);func_0200518c(0x180);func_02005228(8);
 func_020027d4(one,4,one);func_020030e4(zero);
@@ -156,11 +169,11 @@ func_020027d4(one,4,one);func_020030e4(zero);
 *(volatile u16 *)0x400000e = (*(volatile u16 *)0x400000e & ~3)|2;
 *(volatile u16 *)0x400000c = (*(volatile u16 *)0x400000c & ~3)|3;
 *(volatile u16 *)0x4000008 = (*(volatile u16 *)0x4000008 & ~3)|3;
-*(volatile u16 *)0x4000060 &= mask3d;
+*(volatile u16 *)0x4000060 &= 0xffffcffd;
 *(volatile u16 *)0x4000060 = (*(volatile u16 *)0x4000060 & ~0x3000)|0x10;
 *(volatile u16 *)0x4000060 = (*(volatile u16 *)0x4000060 & ~0x3000)|8;
 func_02002920((void *)0x4000050,one,32,zero,zero);
-func_02002fb0(zero,zero,0x8000-one,0x3f,zero);
+func_02002fb0(zero,zero,color,0x3f,zero);
 func_0210f410(3,0x10000);
 *(volatile u32 *)0x4001000 &= mask;
 func_0200283c(2);
@@ -168,7 +181,7 @@ func_0200283c(2);
 *(volatile u32 *)0x4001000 = (*(volatile u32 *)0x4001000 & ~0x1f00)|0x1100;
 *(volatile u16 *)0x4001008 &= ~3;
 *(volatile u16 *)0x400100a = (*(volatile u16 *)0x400100a & ~3)|1;
-*(volatile u16 *)0x400100c = (*(volatile u16 *)0x400100c & ~3)|2;
+*(volatile u16 *)0x400100c = (*(volatile u16 *)0x400100c & ~3)|(2 & 0xFFFFFFFFFFFFFFFF);
 *(volatile u16 *)0x400100e = (*(volatile u16 *)0x400100e & ~3)|3;
 }
 
@@ -341,21 +354,33 @@ void func_021100d8(void) {
     func_020bdf38();
 }
 
+#pragma opt_propagation off
 s32 func_021100e4(u8 *arg0) {
- Config_021100e4 cfg[1];
- register Config_021100e4 *p;
- func_020c6d78(arg0);
- if (*(void **)(arg0+0x30)==0) {
- *(void **)(arg0+0x30)=func_0210c594(8,data_02155c3c);
- func_020c992c();
- func_020c9a04(*(void **)(arg0+0x30),1);
- }
- cfg[0]=data_02144bb8;
- p=cfg;
- ApplyConfig_021100e4(*(void **)(arg0+0x30), p);
- return 0;
+    Config_021100e4 cfg;
+    Config_021100e4 *p;
+    u8 *obj;
+    s32 type;
+    func_020c6d78(arg0);
+    if (*(void **)(arg0 + 0x30) == 0) {
+        *(void **)(arg0 + 0x30) = func_0210c594(8, data_02155c3c);
+        func_020c992c();
+    }
+    func_020c9a04(*(void **)(arg0 + 0x30), 1);
+    cfg = data_02144bb8;
+    p = &cfg;
+    type = p->v[1];
+    obj = func_020c9b24(*(void **)(arg0 + 0x30), (u16)p->v[0], (u8)type);
+    *(s16 *)(obj + 0x32) = p->v[2];
+    *(s16 *)(obj + 0x34) = p->v[3];
+    *(s16 *)(obj + 0x36) = p->v[4];
+    *(s16 *)(obj + 0x38) = p->v[5];
+    *(s16 *)(obj + 0x3e) = p->v[6];
+    *(s16 *)(obj + 0x40) = p->v[7];
+    obj[0x43] += (u8)p->v[9];
+    if (type == 5) func_020c7894(obj, (u8)p->v[8]);
+    return 0;
 }
-
+#pragma opt_propagation on
 extern void func_0210c5dc(void *);
 extern void func_021101ec(void *);
 void func_021101cc(void *arg0) {
