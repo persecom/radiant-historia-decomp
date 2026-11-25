@@ -112,32 +112,23 @@ if(allocation)func_0210c5dc(allocation);
 return 1;
 }
 
-void *func_0210a984(s32 arg0, s32 arg1) {
-    void *p;
-    void *obj;
-    s32 ret;
-    obj = func_0210eb98(data_02155c08, arg0);
-    ret = func_0210f3ec(obj, arg1);
-    if (ret != 0) {
-        goto done;
-    }
-    p = func_0210a7b4();
-    if (p == NULL) {
-        ret = 0;
-        goto done;
-    }
-    if (func_0210a7e4(p, arg0, 0) == 0) {
-        if (p != NULL) {
-            func_0210c5dc(p);
+void *func_0210a984(s32 arg0) {
+    void *r5 = func_0210f3ec(func_0210eb98(data_02155c08, arg0), 1);
+    if (r5 == NULL) {
+        r5 = func_0210a7b4();
+        if (r5 == NULL) {
+            return NULL;
         }
-        ret = 0;
-        goto done;
+        if (!func_0210a7e4(r5, arg0, 0)) {
+            if (r5 != NULL) {
+                func_0210c5dc(r5);
+            }
+            return NULL;
+        }
+        func_0210f3ac(func_0210eb98(data_02155c10, arg0), r5, 1);
+        *(s32 *)((u8 *)r5 + 0x20) = 1;
     }
-    func_0210f3ac(func_0210eb98(data_02155c10, arg0), p, arg1);
-    *(s32 *)((u8 *)p + 0x20) = arg1;
-    ret = (s32)p;
-done:
-    return (void *)ret;
+    return r5;
 }
 
 void func_0210aa14(void *arg0) {
