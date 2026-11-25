@@ -14,6 +14,7 @@ src/auto/main_02001D9C.c:
     .text start:0x02001d9c end:0x02002708
 
 src/auto/main_02002708.c:
+    complete
     .text start:0x02002708 end:0x02002790
 
 src/auto/main_02002790.c:
@@ -38,6 +39,7 @@ src/auto/main_020076E8.c:
     .text start:0x020076e8 end:0x020077f8
 
 src/auto/main_020077F8.c:
+    complete
     .text start:0x020077f8 end:0x0200781c
 
 src/auto/main_0200781C.c:
@@ -53,6 +55,7 @@ src/auto/main_02008BF4.c:
     .text start:0x02008bf4 end:0x02009b24
 
 src/auto/main_02009B24.c:
+    complete
     .text start:0x02009b24 end:0x0200a348
 
 src/auto/main_0200A348.c:
@@ -92,6 +95,7 @@ src/auto/main_0200FEDC.c:
     .text start:0x0200fedc end:0x0200ff10
 
 src/auto/main_0200FF10.c:
+    complete
     .text start:0x0200ff10 end:0x020101f8
 
 src/auto/main_020101F8.c:
@@ -113,6 +117,7 @@ src/auto/main_020143D4.c:
     .text start:0x020143d4 end:0x02014880
 
 src/auto/main_02014880.c:
+    complete
     .text start:0x02014880 end:0x02014994
 
 src/auto/main_02014994.c:
@@ -131,6 +136,7 @@ src/auto/main_02017F74.c:
     .text start:0x02017f74 end:0x02018c20
 
 src/auto/main_02018C20.c:
+    complete
     .text start:0x02018c20 end:0x02018fa0
 
 src/auto/main_02018FA0.c:
@@ -146,6 +152,7 @@ src/auto/main_0201B4CC.c:
     .text start:0x0201b4cc end:0x0201c654
 
 src/auto/main_0201C654.c:
+    complete
     .text start:0x0201c654 end:0x0201d04c
 
 src/auto/main_0201D04C.c:
@@ -164,27 +171,33 @@ src/auto/main_02020C58.c:
     .text start:0x02020c58 end:0x02021c48
 
 src/auto/main_02021C48.c:
+    complete
     .text start:0x02021c48 end:0x02021e78
 
 src/auto/main_02021E78.c:
+    complete
     .text start:0x02021e78 end:0x02022a48
 
 src/auto/main_02022A48.c:
+    complete
     .text start:0x02022a48 end:0x0202318c
 
 src/auto/main_0202318C.c:
     .text start:0x0202318c end:0x02025f38
 
 src/auto/main_02025F38.c:
+    complete
     .text start:0x02025f38 end:0x02026f38
 
 src/auto/main_02026F38.c:
+    complete
     .text start:0x02026f38 end:0x020279b8
 
 src/auto/main_020279B8.c:
     .text start:0x020279b8 end:0x02028420
 
 src/auto/main_02028420.c:
+    complete
     .text start:0x02028420 end:0x02029130
 
 src/auto/main_02029130.c:
@@ -197,48 +210,61 @@ src/auto/main_0202A5A4.c:
     .text start:0x0202a5a4 end:0x0202b4d8
 
 src/auto/main_0202B4D8.c:
+    complete
     .text start:0x0202b4d8 end:0x0202c328
 
 src/auto/main_0202C328.c:
+    complete
     .text start:0x0202c328 end:0x0202c668
 
 src/auto/main_0202C668.c:
+    complete
     .text start:0x0202c668 end:0x0202c7d8
 
 src/auto/main_0202C7D8.c:
+    complete
     .text start:0x0202c7d8 end:0x0202cd5c
 
 src/auto/main_0202CD5C.c:
+    complete
     .text start:0x0202cd5c end:0x0202dd04
 
 src/auto/main_0202DD04.c:
+    complete
     .text start:0x0202dd04 end:0x0202ec9c
 
 src/auto/main_0202EC9C.c:
+    complete
     .text start:0x0202ec9c end:0x0202fa9c
 
 src/auto/main_0202FA9C.c:
+    complete
     .text start:0x0202fa9c end:0x0202fb50
 
 src/auto/main_0202FB50.c:
+    complete
     .text start:0x0202fb50 end:0x02030878
 
 src/auto/main_02030878.c:
+    complete
     .text start:0x02030878 end:0x02031384
 
 src/auto/main_02031384.c:
     .text start:0x02031384 end:0x02031724
 
 src/auto/main_02031724.c:
+    complete
     .text start:0x02031724 end:0x02032488
 
 src/auto/main_02032488.c:
+    complete
     .text start:0x02032488 end:0x020327b4
 
 src/auto/main_020327b4.c:
     .text start:0x020327b4 end:0x020328fc
 
 src/auto/main_020328fc.c:
+    complete
     .text start:0x020328fc end:0x020333b8
 
 src/auto/main_020333B8.c:
@@ -248,12 +274,14 @@ src/auto/main_0203447C.c:
     .text start:0x0203447c end:0x02035c3c
 
 src/auto/main_02035C3C.c:
+    complete
     .text start:0x02035c3c end:0x02036514
 
 src/auto/main_02036514.c:
     .text start:0x02036514 end:0x02037d1c
 
 src/auto/main_02037D1C.c:
+    complete
     .text start:0x02037d1c end:0x0203909c
 
 src/auto/main_0203909C.c:
@@ -269,6 +297,7 @@ src/auto/main_0203BAE4.c:
     .text start:0x0203bae4 end:0x0203c998
 
 src/auto/main_0203C998.c:
+    complete
     .text start:0x0203c998 end:0x0203d1d4
 
 src/auto/main_0203D1D4.c:
@@ -284,15 +313,18 @@ src/auto/main_0203E8C0.c:
     .text start:0x0203e8c0 end:0x0203f038
 
 src/auto/main_0203F038.c:
+    complete
     .text start:0x0203f038 end:0x0203fd08
 
 src/auto/main_0203FD08.c:
     .text start:0x0203fd08 end:0x020407fc
 
 src/auto/main_020407FC.c:
+    complete
     .text start:0x020407fc end:0x020416d4
 
 src/auto/main_020416D4.c:
+    complete
     .text start:0x020416d4 end:0x02041a58
 
 src/auto/main_02041A58.c:
@@ -314,6 +346,7 @@ src/auto/main_02045E60.c:
     .text start:0x02045e60 end:0x02046e30
 
 src/auto/main_02046E30.c:
+    complete
     .text start:0x02046e30 end:0x0204798c
 
 src/auto/main_0204798C.c:
@@ -326,6 +359,7 @@ src/auto/main_020508FC.c:
     .text start:0x020508fc end:0x02051344
 
 src/auto/main_02051344.c:
+    complete
     .text start:0x02051344 end:0x02052328
 
 src/auto/main_02052328.c:
@@ -338,12 +372,15 @@ src/auto/main_0205317C.c:
     .text start:0x0205317c end:0x02053f6c
 
 src/auto/main_02053F6C.c:
+    complete
     .text start:0x02053f6c end:0x02053fdc
 
 src/auto/main_02053FDC.c:
+    complete
     .text start:0x02053fdc end:0x02054018
 
 src/auto/main_02054018.c:
+    complete
     .text start:0x02054018 end:0x02054118
 
 src/auto/main_02054118.c:
@@ -353,6 +390,7 @@ src/auto/main_02054E14.c:
     .text start:0x02054e14 end:0x02055e14
 
 src/auto/main_02055E14.c:
+    complete
     .text start:0x02055e14 end:0x02056d10
 
 src/auto/main_02056D10.c:
@@ -365,18 +403,23 @@ src/auto/main_02058A08.c:
     .text start:0x02058a08 end:0x02059888
 
 src/auto/main_02059888.c:
+    complete
     .text start:0x02059888 end:0x0205a83c
 
 src/auto/main_0205A83C.c:
+    complete
     .text start:0x0205a83c end:0x0205b710
 
 src/auto/main_0205B710.c:
+    complete
     .text start:0x0205b710 end:0x0205c65c
 
 src/auto/main_0205C65C.c:
+    complete
     .text start:0x0205c65c end:0x0205d644
 
 src/auto/main_0205D644.c:
+    complete
     .text start:0x0205d644 end:0x0205df48
 
 src/auto/main_0205DF48.c:
@@ -401,9 +444,11 @@ src/auto/main_020637E4.c:
     .text start:0x020637e4 end:0x02064590
 
 src/auto/main_02064590.c:
+    complete
     .text start:0x02064590 end:0x02065298
 
 src/auto/main_02065298.c:
+    complete
     .text start:0x02065298 end:0x02065e78
 
 src/auto/main_02065E78.c:
@@ -413,6 +458,7 @@ src/auto/main_0206643C.c:
     .text start:0x0206643c end:0x02066d84
 
 src/auto/main_02066D84.c:
+    complete
     .text start:0x02066d84 end:0x0206713c
 
 src/auto/main_0206713C.c:
@@ -431,6 +477,7 @@ src/auto/main_02069F80.c:
     .text start:0x02069f80 end:0x0206a158
 
 src/auto/main_0206A158.c:
+    complete
     .text start:0x0206a158 end:0x0206a854
 
 src/auto/main_0206A854.c:
@@ -440,18 +487,22 @@ src/auto/main_0206B3C0.c:
     .text start:0x0206b3c0 end:0x0206e7a0
 
 src/auto/main_0206E7A0.c:
+    complete
     .text start:0x0206e7a0 end:0x0206ed38
 
 src/auto/main_0206ED38.c:
     .text start:0x0206ed38 end:0x02075c08
 
 src/auto/main_02075C08.c:
+    complete
     .text start:0x02075c08 end:0x020766ec
 
 src/auto/main_020766EC.c:
+    complete
     .text start:0x020766ec end:0x0207698c
 
 src/auto/main_0207698C.c:
+    complete
     .text start:0x0207698c end:0x02077688
 
 src/auto/main_02077688.c:
@@ -467,39 +518,47 @@ src/auto/main_02079874.c:
     .text start:0x02079874 end:0x0207a6b8
 
 src/auto/main_0207A6B8.c:
+    complete
     .text start:0x0207a6b8 end:0x0207b398
 
 src/auto/main_0207B398.c:
     .text start:0x0207b398 end:0x0207c328
 
 src/auto/main_0207C328.c:
+    complete
     .text start:0x0207c328 end:0x0207cdd4
 
 src/auto/main_0207CDD4.c:
+    complete
     .text start:0x0207cdd4 end:0x0207d4cc
 
 src/auto/main_0207D4CC.c:
     .text start:0x0207d4cc end:0x0208038c
 
 src/auto/main_0208038C.c:
+    complete
     .text start:0x0208038c end:0x02080e00
 
 src/auto/main_02080E00.c:
     .text start:0x02080e00 end:0x02081d3c
 
 src/auto/main_02081D3C.c:
+    complete
     .text start:0x02081d3c end:0x02082c70
 
 src/auto/main_02082C70.c:
+    complete
     .text start:0x02082c70 end:0x02083580
 
 src/auto/main_02083580.c:
     .text start:0x02083580 end:0x0208480c
 
 src/auto/main_0208480C.c:
+    complete
     .text start:0x0208480c end:0x02085328
 
 src/auto/main_02085328.c:
+    complete
     .text start:0x02085328 end:0x020860e4
 
 src/auto/main_020860E4.c:
@@ -512,9 +571,11 @@ src/auto/main_02087F70.c:
     .text start:0x02087f70 end:0x02088e90
 
 src/auto/main_02088E90.c:
+    complete
     .text start:0x02088e90 end:0x02089bb0
 
 src/auto/main_02089BB0.c:
+    complete
     .text start:0x02089bb0 end:0x0208a678
 
 src/auto/main_0208A678.c:
@@ -524,6 +585,7 @@ src/auto/main_0208B398.c:
     .text start:0x0208b398 end:0x0208c250
 
 src/auto/main_0208C250.c:
+    complete
     .text start:0x0208c250 end:0x0208d080
 
 src/auto/main_0208D080.c:
@@ -557,12 +619,15 @@ src/auto/main_02095874.c:
     .text start:0x02095874 end:0x02096740
 
 src/auto/main_02096740.c:
+    complete
     .text start:0x02096740 end:0x02097358
 
 src/auto/main_02097358.c:
+    complete
     .text start:0x02097358 end:0x02098268
 
 src/auto/main_02098268.c:
+    complete
     .text start:0x02098268 end:0x02098a28
 
 src/auto/main_02098A28.c:
@@ -572,21 +637,25 @@ src/auto/main_020996E0.c:
     .text start:0x020996e0 end:0x0209a548
 
 src/auto/main_0209A548.c:
+    complete
     .text start:0x0209a548 end:0x0209b328
 
 src/auto/main_0209B328.c:
     .text start:0x0209b328 end:0x0209c2ac
 
 src/auto/main_0209C2AC.c:
+    complete
     .text start:0x0209c2ac end:0x0209d0f0
 
 src/auto/main_0209D0F0.c:
+    complete
     .text start:0x0209d0f0 end:0x0209dfdc
 
 src/auto/main_0209DFDC.c:
     .text start:0x0209dfdc end:0x0209ee60
 
 src/auto/main_0209EE60.c:
+    complete
     .text start:0x0209ee60 end:0x0209f684
 
 src/auto/main_0209F684.c:
@@ -596,6 +665,7 @@ src/auto/main_020A033C.c:
     .text start:0x020a033c end:0x020a1234
 
 src/auto/main_020A1234.c:
+    complete
     .text start:0x020a1234 end:0x020a18f8
 
 src/auto/main_020A18F8.c:
@@ -611,33 +681,40 @@ src/auto/main_020A47C8.c:
     .text start:0x020a47c8 end:0x020a56cc
 
 src/auto/main_020A56CC.c:
+    complete
     .text start:0x020a56cc end:0x020a66b8
 
 src/auto/main_020A66B8.c:
+    complete
     .text start:0x020a66b8 end:0x020a7598
 
 src/auto/main_020A7598.c:
     .text start:0x020a7598 end:0x020a7ec8
 
 src/auto/main_020A7EC8.c:
+    complete
     .text start:0x020a7ec8 end:0x020a82f0
 
 src/auto/main_020A82F0.c:
+    complete
     .text start:0x020a82f0 end:0x020a84b8
 
 src/auto/main_020A84B8.c:
     .text start:0x020a84b8 end:0x020a94b8
 
 src/auto/main_020A94B8.c:
+    complete
     .text start:0x020a94b8 end:0x020a9d60
 
 src/auto/main_020A9D60.c:
+    complete
     .text start:0x020a9d60 end:0x020aa464
 
 src/auto/main_020AA464.c:
     .text start:0x020aa464 end:0x020ab250
 
 src/auto/main_020AB250.c:
+    complete
     .text start:0x020ab250 end:0x020ac0b0
 
 src/auto/main_020AC0B0.c:
@@ -647,21 +724,25 @@ src/auto/main_020ACE8C.c:
     .text start:0x020ace8c end:0x020ade8c
 
 src/auto/main_020ADE8C.c:
+    complete
     .text start:0x020ade8c end:0x020adf34
 
 src/auto/main_020ADF34.c:
+    complete
     .text start:0x020adf34 end:0x020adfb4
 
 src/auto/main_020ADFB4.c:
     .text start:0x020adfb4 end:0x020aedc0
 
 src/auto/main_020AEDC0.c:
+    complete
     .text start:0x020aedc0 end:0x020af2dc
 
 src/auto/main_020AF2DC.c:
     .text start:0x020af2dc end:0x020b0b0c
 
 src/auto/main_020B0B0C.c:
+    complete
     .text start:0x020b0b0c end:0x020b1790
 
 src/auto/main_020B1790.c:
@@ -671,12 +752,15 @@ src/auto/main_020B2520.c:
     .text start:0x020b2520 end:0x020b34d0
 
 src/auto/main_020B34D0.c:
+    complete
     .text start:0x020b34d0 end:0x020b3fd8
 
 src/auto/main_020B3FD8.c:
+    complete
     .text start:0x020b3fd8 end:0x020b44cc
 
 src/auto/main_020B44CC.c:
+    complete
     .text start:0x020b44cc end:0x020b5364
 
 src/auto/main_020B5364.c:
@@ -689,6 +773,7 @@ src/auto/main_020B77D4.c:
     .text start:0x020b77d4 end:0x020b8718
 
 src/auto/main_020B8718.c:
+    complete
     .text start:0x020b8718 end:0x020b967c
 
 src/auto/main_020B967C.c:
@@ -698,21 +783,27 @@ src/auto/main_020B9F6C.c:
     .text start:0x020b9f6c end:0x020ba63c
 
 src/auto/main_020BA63C.c:
+    complete
     .text start:0x020ba63c end:0x020baeb0
 
 src/auto/main_020BAEB0.c:
+    complete
     .text start:0x020baeb0 end:0x020bb558
 
 src/auto/main_020BB558.c:
+    complete
     .text start:0x020bb558 end:0x020bbd2c
 
 src/auto/main_020BBD2C.c:
+    complete
     .text start:0x020bbd2c end:0x020bc394
 
 src/auto/main_020BC394.c:
+    complete
     .text start:0x020bc394 end:0x020bd38c
 
 src/auto/main_020BD38C.c:
+    complete
     .text start:0x020bd38c end:0x020be330
 
 src/auto/main_020BE330.c:
@@ -725,18 +816,22 @@ src/auto/main_020C0284.c:
     .text start:0x020c0284 end:0x020c11f4
 
 src/auto/main_020C11F4.c:
+    complete
     .text start:0x020c11f4 end:0x020c1fec
 
 src/auto/main_020C1FEC.c:
     .text start:0x020c1fec end:0x020c2e80
 
 src/auto/main_020C2E80.c:
+    complete
     .text start:0x020c2e80 end:0x020c3df4
 
 src/auto/main_020C3DF4.c:
+    complete
     .text start:0x020c3df4 end:0x020c4c60
 
 src/auto/main_020C4C60.c:
+    complete
     .text start:0x020c4c60 end:0x020c55bc
 
 src/auto/main_020C55BC.c:
@@ -746,6 +841,7 @@ src/auto/main_020C641C.c:
     .text start:0x020c641c end:0x020c7408
 
 src/auto/main_020C7408.c:
+    complete
     .text start:0x020c7408 end:0x020c7760
 
 src/auto/main_020C7760.c:
@@ -764,6 +860,7 @@ src/auto/main_020CB1F4.c:
     .text start:0x020cb1f4 end:0x020cc09c
 
 src/auto/main_020CC09C.c:
+    complete
     .text start:0x020cc09c end:0x020ccd34
 
 src/auto/main_020CCD34.c:
@@ -773,18 +870,22 @@ src/auto/main_020CDCE8.c:
     .text start:0x020cdce8 end:0x020cec8c
 
 src/auto/main_020CEC8C.c:
+    complete
     .text start:0x020cec8c end:0x020cfc10
 
 src/auto/main_020CFC10.c:
+    complete
     .text start:0x020cfc10 end:0x020d0a40
 
 src/auto/main_020D0A40.c:
+    complete
     .text start:0x020d0a40 end:0x020d0d1c
 
 src/auto/main_020D0D1C.c:
     .text start:0x020d0d1c end:0x020d28e4
 
 src/auto/main_020D28E4.c:
+    complete
     .text start:0x020d28e4 end:0x020d3160
 
 src/auto/main_020D3160.c:
@@ -797,15 +898,19 @@ src/auto/main_020D4EB8.c:
     .text start:0x020d4eb8 end:0x020d56d8
 
 src/auto/main_020D56D8.c:
+    complete
     .text start:0x020d56d8 end:0x020d655c
 
 src/auto/main_020D655C.c:
+    complete
     .text start:0x020d655c end:0x020d6724
 
 src/auto/main_020D6724.c:
+    complete
     .text start:0x020d6724 end:0x020d67f8
 
 src/auto/main_020D67F8.c:
+    complete
     .text start:0x020d67f8 end:0x020d708c
 
 src/auto/main_020D708C.c:
@@ -818,42 +923,52 @@ src/auto/main_020D8E5C.c:
     .text start:0x020d8e5c end:0x020d9cc0
 
 src/auto/main_020D9CC0.c:
+    complete
     .text start:0x020d9cc0 end:0x020d9e48
 
 src/auto/main_020D9E48.c:
     .text start:0x020d9e48 end:0x020da8c0
 
 src/auto/main_020DA8C0.c:
+    complete
     .text start:0x020da8c0 end:0x020daa60
 
 src/auto/main_020DAA60.c:
+    complete
     .text start:0x020daa60 end:0x020daefc
 
 src/auto/main_020DAEFC.c:
+    complete
     .text start:0x020daefc end:0x020db1f4
 
 src/auto/main_020DB1F4.c:
+    complete
     .text start:0x020db1f4 end:0x020db4ac
 
 src/auto/main_020DB4AC.c:
+    complete
     .text start:0x020db4ac end:0x020db6f0
 
 src/auto/main_020DB6F0.c:
+    complete
     .text start:0x020db6f0 end:0x020db864
 
 src/auto/main_020DB864.c:
     .text start:0x020db864 end:0x020dc7ec
 
 src/auto/main_020DC7EC.c:
+    complete
     .text start:0x020dc7ec end:0x020dd770
 
 src/auto/main_020DD770.c:
+    complete
     .text start:0x020dd770 end:0x020de56c
 
 src/auto/main_020DE56C.c:
     .text start:0x020de56c end:0x020df56c
 
 src/auto/main_020DF56C.c:
+    complete
     .text start:0x020df56c end:0x020dff7c
 
 src/auto/main_020DFF7C.c:
@@ -863,12 +978,14 @@ src/auto/main_020E13B0.c:
     .text start:0x020e13b0 end:0x020e1ec8
 
 src/auto/main_020E1EC8.c:
+    complete
     .text start:0x020e1ec8 end:0x020e2be4
 
 src/auto/main_020E2BE4.c:
     .text start:0x020e2be4 end:0x020e3a9c
 
 src/auto/main_020E3A9C.c:
+    complete
     .text start:0x020e3a9c end:0x020e4a78
 
 src/auto/main_020E4A78.c:
@@ -881,6 +998,7 @@ src/auto/main_020E8358.c:
     .text start:0x020e8358 end:0x020e9354
 
 src/auto/main_020E9354.c:
+    complete
     .text start:0x020e9354 end:0x020ea188
 
 src/auto/main_020EA188.c:
@@ -896,6 +1014,7 @@ src/auto/main_020EB180.c:
     .text start:0x020eb180 end:0x020ec12c
 
 src/auto/main_020EC12C.c:
+    complete
     .text start:0x020ec12c end:0x020ec548
 
 src/auto/main_020EC548.c:
@@ -914,18 +1033,21 @@ src/auto/main_020EFC58.c:
     .text start:0x020efc58 end:0x020f0984
 
 src/auto/main_020F0984.c:
+    complete
     .text start:0x020f0984 end:0x020f0aec
 
 src/auto/main_020F0AEC.c:
     .text start:0x020f0aec end:0x020f1a1c
 
 src/auto/main_020F1A1C.c:
+    complete
     .text start:0x020f1a1c end:0x020f26fc
 
 src/auto/main_020F26FC.c:
     .text start:0x020f26fc end:0x020f2a5c
 
 src/auto/main_020F2A5C.c:
+    complete
     .text start:0x020f2a5c end:0x020f36b0
 
 src/auto/main_020F36B0.c:
@@ -938,18 +1060,22 @@ src/auto/main_020F5574.c:
     .text start:0x020f5574 end:0x020f6458
 
 src/auto/main_020F6458.c:
+    complete
     .text start:0x020f6458 end:0x020f67a8
 
 src/auto/main_020F67A8.c:
+    complete
     .text start:0x020f67a8 end:0x020f685c
 
 src/auto/main_020F685C.c:
+    complete
     .text start:0x020f685c end:0x020f6990
 
 src/auto/main_020F6990.c:
     .text start:0x020f6990 end:0x020fc50c
 
 src/auto/main_020FC50C.c:
+    complete
     .text start:0x020fc50c end:0x020fcea0
 
 src/auto/main_020FCEA0.c:
@@ -965,6 +1091,7 @@ src/auto/main_021011A8.c:
     .text start:0x021011a8 end:0x02102e60
 
 src/auto/main_02102E60.c:
+    complete
     .text start:0x02102e60 end:0x02103dc8
 
 src/auto/main_02103DC8.c:
@@ -974,6 +1101,7 @@ src/auto/main_02104B04.c:
     .text start:0x02104b04 end:0x02104f68
 
 src/auto/main_02104F68.c:
+    complete
     .text start:0x02104f68 end:0x02106928
 
 src/auto/main_02106928.c:
@@ -998,18 +1126,22 @@ src/auto/main_021099F8.c:
     .text start:0x021099f8 end:0x02109af8
 
 src/auto/main_02109AF8.c:
+    complete
     .text start:0x02109af8 end:0x02109c60
 
 src/auto/main_02109C60.c:
+    complete
     .text start:0x02109c60 end:0x02109ea8
 
 src/auto/main_02109EA8.c:
+    complete
     .text start:0x02109ea8 end:0x02109f3c
 
 src/auto/main_02109F3C.c:
     .text start:0x02109f3c end:0x02109fac
 
 src/auto/main_02109FAC.c:
+    complete
     .text start:0x02109fac end:0x0210a7e4
 
 src/auto/main_0210A7E4.c:
@@ -1025,45 +1157,54 @@ src/auto/main_0210D6D8.c:
     .text start:0x0210d6d8 end:0x0210e694
 
 src/auto/main_0210E694.c:
+    complete
     .text start:0x0210e694 end:0x0210f550
 
 src/auto/main_0210F550.c:
     .text start:0x0210f550 end:0x02110518
 
 src/auto/main_02110518.c:
+    complete
     .text start:0x02110518 end:0x02111498
 
 src/auto/main_02111498.c:
     .text start:0x02111498 end:0x0211242c
 
 src/auto/main_0211242C.c:
+    complete
     .text start:0x0211242c end:0x021133f8
 
 src/auto/main_021133F8.c:
     .text start:0x021133f8 end:0x021143c0
 
 src/auto/main_021143C0.c:
+    complete
     .text start:0x021143c0 end:0x02115380
 
 src/auto/main_02115380.c:
     .text start:0x02115380 end:0x02116244
 
 src/auto/main_02116244.c:
+    complete
     .text start:0x02116244 end:0x02116350
 
 src/auto/main_02116350.c:
+    complete
     .text start:0x02116350 end:0x02116488
 
 src/auto/main_0211645c.c:
+    complete
     .text start:0x02116488 end:0x02116720
 
 src/auto/main_02116720.c:
     .text start:0x02116720 end:0x02116ee0
 
 src/auto/main_02116EE0.c:
+    complete
     .text start:0x02116ee0 end:0x0211709c
 
 src/auto/main_0211709C.c:
+    complete
     .text start:0x0211709c end:0x02117304
 
 src/auto/main_02117304.c:
@@ -1100,6 +1241,7 @@ src/auto/main_0211DDAC.c:
     .text start:0x0211ddac end:0x0211ea84
 
 src/auto/main_0211EA84.c:
+    complete
     .text start:0x0211ea84 end:0x0211f518
 
 src/auto/main_0211F518.c:
@@ -1124,12 +1266,14 @@ src/auto/main_021251A0.c:
     .text start:0x021251a0 end:0x02126134
 
 src/auto/main_02126134.c:
+    complete
     .text start:0x02126134 end:0x02126f50
 
 src/auto/main_02126F50.c:
     .text start:0x02126f50 end:0x02127e74
 
 src/auto/main_02127E74.c:
+    complete
     .text start:0x02127e74 end:0x02128b80
 
 src/auto/main_02128B80.c:
@@ -1154,15 +1298,18 @@ src/auto/main_0212E764.c:
     .text start:0x0212e764 end:0x0212f760
 
 src/auto/main_0212F760.c:
+    complete
     .text start:0x0212f760 end:0x02130300
 
 src/auto/main_02130300.c:
     .text start:0x02130300 end:0x021312a4
 
 src/auto/main_021312A4.c:
+    complete
     .text start:0x021312a4 end:0x02132204
 
 src/auto/main_02132204.c:
+    complete
     .text start:0x02132204 end:0x02133134
 
 src/auto/main_02133134.c:
@@ -1172,6 +1319,7 @@ src/auto/main_02134134.c:
     .text start:0x02134134 end:0x02134edc
 
 src/auto/main_02134EDC.c:
+    complete
     .text start:0x02134edc end:0x02134f44
 
 src/auto/main_02134F44.c:
@@ -1187,10 +1335,12 @@ src/auto/main_02137E58.c:
     .text start:0x02137e58 end:0x02138e00
 
 src/auto/main_02138E00.c:
+    complete
     .text start:0x02138e00 end:0x0213999c
 
 src/auto/main_0213999C.c:
     .text start:0x0213999c end:0x02139cdc
 
 src/auto/main_02139CDC.c:
+    complete
     .text start:0x02139cdc end:0x0213a394
