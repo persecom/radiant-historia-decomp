@@ -333,6 +333,7 @@ void func_02118efc(void *arg0) {
 extern u8 *func_02117bd4(void *);
 extern u32 func_021176b0(void *, u32);
 extern void func_0211a7ec(s32, u32, u32);
+#pragma opt_propagation off
 void func_02118f24(void *arg0) {
 u8 *p=arg0, *v, *res, *tbl; u32 kind;
 if (*(u16 *)(*(u8 **)(p+4)+4)==0) return;
@@ -345,9 +346,9 @@ if(kind==2) ((void (*)(u8 *, s32, s32))func_02118e94)(p+0x3c,*(s16 *)(v+4),*(s16
 else {func_02118ed0(p+0x3c,*(u32 *)(v+4),*(u32 *)(v+8));func_02118eb4(p+0x3c,*(u16 *)(v+2));((void (*)(u8 *, s32, s32))func_02118e94)(p+0x3c,*(s16 *)(v+12),*(s16 *)(v+14));}
 }
 tbl=*(u8 **)(res+12);
-if((u8)has_02118f24_data(res)) {if((u8)has_02118f24_handle(p)) {u32 *a=(u32 *)(*(u8 **)(tbl+4)+*(u16 *)v*8);func_0211a7ec(*(s32 *)(p+0x38),a[0],a[1]);}}
+if(has_02118f24_data(res)) {if(has_02118f24_handle(p)) {u32 *a=(u32 *)(*(u8 **)(tbl+4)+*(u16 *)v*8);func_0211a7ec(*(volatile s32 *)(p+0x38),a[0],a[1]);}}
 }
-
+#pragma opt_propagation on
 void func_02119000(u8 *arg0, void *arg1, void *arg2) {
     u8 *p = arg0;
     *(void **)(p + 0x34) = arg2;
@@ -402,21 +403,21 @@ void func_02119130(u8 *arg0) {
 
 #pragma optimization_level 3
 void func_02119150(void) {
-    s32 index = *(s32 *)(data_0216f234 + 0xc);
-    s32 offset = index * 0x18;
-    if (*(u32 *)(data_0216f234 + 4) != 0) {
+    u32 index = *(u32 *)(data_0216f234 + 0xc);
+    u32 flag = *(u32 *)(data_0216f234 + 4);
+    u32 offset = index * 0x18;
+    if (flag != 0) {
         *(u32 *)(data_0216f3d4 + offset) = 0;
         *(u32 *)(data_0216f3d8 + offset) = 0;
     } else {
-        S_02119150 *p = (S_02119150 *)data_0216f3c4 + index;
-        S_02119150 *dst = (S_02119150 *)data_0216f6c4 + index;
+        S_02119150 *p = (S_02119150 *)(data_0216f3c4 + offset);
         p->w[0] = 0x1000;
         p->w[1] = 0;
         p->w[2] = 0;
         p->w[3] = 0x1000;
         p->w[4] = 0;
         p->w[5] = 0;
-        *dst = *p;
+        *(S_02119150 *)(data_0216f6c4 + offset) = *p;
     }
     data_0216f244[index] = 0;
 }
