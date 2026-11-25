@@ -74,6 +74,12 @@ static inline void MI_CpuFill32(void *dest, u32 data, u32 size) {
 extern void func_0211c850(u32);
 extern void func_0211c79c(u32);
 
+static inline s32 material_valid_02119728(void) {
+    s32 valid = 1;
+    if (*(s32 *)(data_02155eb0 + 4) == -1) valid = 0;
+    return valid;
+}
+
 static inline s32 is_valid_id(s32 id) {
     if (id != -1) {
         return 1;
@@ -202,13 +208,7 @@ else *(u32 *)(arg0+0x38)&=~0x1000;
 }
 p=(u8 *)data_0216f234.f8;
 if(*(u32 *)(p+0x84)&8) {
-s32 palette=palette_021194cc(arg0);
-u32 word=*(u16 *)(arg0+0x3c);
-u32 attr=*(u32 *)(arg0+0x38);
-attr=(attr&~0xc00)|(*(u32 *)(p+0x8c)<<10);
-word=(word&~0xf000)|(palette<<12);
-*(u32 *)(arg0+0x38)=attr;
-*(u16 *)(arg0+0x3c)=word;
+attr_021194cc(arg0,palette_021194cc(arg0),*(u32 *)(p+0x8c));
 }
 }
 p=(u8 *)data_0216f234.f8;
@@ -539,12 +539,14 @@ void func_02119f1c(void) {
         if (valid) {
             if (data_0216f234.f4) {
                 s32 current = *(volatile u32 *)&data_0216f234.fc;
-                u32 a = *(volatile u32 *)(data_0216f3d4 + current * 24);
-                u32 b = *(volatile u32 *)&data_0216f244[current];
-                *(volatile u32 *)(data_0216f3d4 + next * 24) = a;
-                a = *(volatile u32 *)(data_0216f3d8 + current * 24);
-                *(volatile u32 *)&data_0216f244[next] = b;
-                *(volatile u32 *)(data_0216f3d8 + next * 24) = a;
+                s32 curOff = current * 24;
+                s32 nextOff = next * 24;
+                u32 a = *(volatile u32 *)(data_0216f3d4 + curOff);
+                u32 b = data_0216f244[current];
+                *(volatile u32 *)(data_0216f3d4 + nextOff) = a;
+                a = *(volatile u32 *)(data_0216f3d8 + curOff);
+                data_0216f244[next] = b;
+                *(volatile u32 *)(data_0216f3d8 + nextOff) = a;
             } else {
                 s32 current = *(volatile u32 *)&data_0216f234.fc;
                 ((Struct24_02119f1c *)data_0216f3c4)[next] = ((Struct24_02119f1c *)data_0216f3c4)[current];
@@ -555,23 +557,27 @@ void func_02119f1c(void) {
         }
         {
             u16 now = data_0216f234.fc;
- u32 newOffset = now * 8, oldOffset = old * 8;
-            *(volatile Struct0216f2c4 *)((u8 *)data_0216f2c4 + newOffset) = *(volatile Struct0216f2c4 *)((u8 *)data_0216f2c4 + oldOffset);
-            { u16 v = *(volatile u16 *)((u8 *)data_0216f2c8 + oldOffset);
- if (v == 1) *(u16 *)((u8 *)data_0216f2c8 + newOffset) = 2;
- else *(u16 *)((u8 *)data_0216f2c8 + newOffset) = v; }
+            ((volatile Struct0216f2c4 *)data_0216f2c4)[now] = ((Struct0216f2c4 *)data_0216f2c4)[old];
+            {
+                u16 v = *(volatile u16 *)((u8 *)data_0216f2c8 + old * 8);
+                if (v == 1) *(u16 *)((u8 *)data_0216f2c8 + now * 8) = 2;
+                else *(u16 *)((u8 *)data_0216f2c8 + now * 8) = v;
+            }
         }
-    } else { s32 next = (s32)data_0216f234.fc + 1;
+    } else {
+        s32 next = (s32)data_0216f234.fc + 1;
         s32 valid = (s32)(next < 32 ? 1 : 0);
         if (valid) {
             if (data_0216f234.f4) {
                 s32 current = *(volatile u32 *)&data_0216f234.fc;
-                u32 a = *(volatile u32 *)(data_0216f3d4 + current * 24);
-                u32 b = *(volatile u32 *)&data_0216f244[current];
-                *(volatile u32 *)(data_0216f3d4 + next * 24) = a;
-                a = *(volatile u32 *)(data_0216f3d8 + current * 24);
-                *(volatile u32 *)&data_0216f244[next] = b;
-                *(volatile u32 *)(data_0216f3d8 + next * 24) = a;
+                s32 curOff = current * 24;
+                s32 nextOff = next * 24;
+                u32 a = *(volatile u32 *)(data_0216f3d4 + curOff);
+                u32 b = data_0216f244[current];
+                *(volatile u32 *)(data_0216f3d4 + nextOff) = a;
+                a = *(volatile u32 *)(data_0216f3d8 + curOff);
+                data_0216f244[next] = b;
+                *(volatile u32 *)(data_0216f3d8 + nextOff) = a;
             } else {
                 s32 current = *(volatile u32 *)&data_0216f234.fc;
                 ((Struct24_02119f1c *)data_0216f3c4)[next] = ((Struct24_02119f1c *)data_0216f3c4)[current];
@@ -579,7 +585,8 @@ void func_02119f1c(void) {
                 *(volatile u32 *)&data_0216f244[next] = *(volatile u32 *)&data_0216f244[current];
             }
             data_0216f234.fc = next;
-        } }
+        }
+    }
 }
 void func_0211a128(void) {
     if ((*(volatile s32 *)&data_0216f234.fc <= 0) != 0) {
