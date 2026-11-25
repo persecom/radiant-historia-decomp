@@ -37,39 +37,57 @@ extern void func_020c1fec(void);
 extern void func_0210d9e4(void *);
 extern void func_021167ac(void *, s32);
 extern void func_021167f0(void *, void *);
-void func_020c0284(s32 x,s32 y,s32 arg2,s32 value,s16 size) {
-s16 center,padding;
-s32 divisor;
-s16 index,width,height,digit;
-s32 growth;
-Unk20 buf=data_02143df4;
-*(volatile u32 *)0x40004a4=0x1f0080;
-if(value<=6)func_020a3bbc(0x70);
-else if(value<=12)func_020a3bbc(0x71);
-else if(value<=18)func_020a3bbc(0x72);
-else if(value<=24)func_020a3bbc(0x73);
-else func_020a3bbc(0x74);
-growth=size*3; width=15+growth; height=16+growth;
-buf.unk[1]=0;buf.unk[2]=0;
-if(size==0){buf.unk[3]=width;buf.unk[4]=height;}
-else {buf.unk[3]=15;buf.unk[4]=16;}
-digit=value%10;
-padding=growth;
-center=y-(padding>>1);
-buf.unk[9]=height;buf.unk[7]=arg2+0x2bf;buf.unk[8]=width;
-divisor=1;index=0;
-do {
-s16 current;
-if(divisor==1)current=digit;
-else current=(value/divisor)%10;
-buf.unk[1]=current*15;
-buf.unk[5]=x-index*width-(padding>>1);
-buf.unk[6]=center;
-func_021098ac(&buf);
-index++;
-divisor=(s16)divisor*(s16)10;
-if(value<divisor)divisor=-1;
-}while(divisor>0);
+void func_020c0284(s32 x, s32 y, s32 arg2, s32 value, s16 size) {
+    s32 divisor;
+    s16 index, width, height;
+    s32 growth;
+    Unk20 buf = data_02143df4;
+    *(volatile u32 *)0x40004a4 = 0x1f0080;
+    if (value <= 6) {
+        func_020a3bbc(0x70);
+    } else if (value <= 12) {
+        func_020a3bbc(0x71);
+    } else if (value <= 18) {
+        func_020a3bbc(0x72);
+    } else if (value <= 24) {
+        func_020a3bbc(0x73);
+    } else {
+        func_020a3bbc(0x74);
+    }
+    buf.unk[1] = 0;
+    buf.unk[2] = 0;
+    growth = size * 3;
+    width = 15 + growth;
+    height = 16 + growth;
+    if (size == 0) {
+        buf.unk[3] = width;
+        buf.unk[4] = height;
+    } else {
+        buf.unk[3] = 15;
+        buf.unk[4] = 16;
+    }
+    buf.unk[7] = arg2 + 0x2bf;
+    buf.unk[8] = width;
+    buf.unk[9] = height;
+    divisor = 1;
+    index = 0;
+    do {
+        s16 current;
+        if (divisor == 1) {
+            current = value % 10;
+        } else {
+            current = (value / divisor) % 10;
+        }
+        buf.unk[1] = current * 15;
+        buf.unk[5] = x - index * width - ((s16)growth >> 1);
+        buf.unk[6] = y - ((s16)growth >> 1);
+        func_021098ac(&buf);
+        index++;
+        divisor = (s16)divisor * (s16)10;
+        if (value < divisor) {
+            divisor = -1;
+        }
+    } while (divisor > 0);
 }
 
 void func_020c0454(u8 *arg0, s32 arg1) {
