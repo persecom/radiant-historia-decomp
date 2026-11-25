@@ -575,15 +575,14 @@ void func_0200893c(u32 dmaNo) {
 }
 
 void func_02008998(u32 arg0) {
-s32 irq = func_02008128();
-volatile u32 *p = (volatile u32 *)(0x4000000 + arg0 * 0xc);
-volatile u32 *q;
-p[0xb8/4] &= ~0x3a000000;
-p[0xb8/4] &= ~0x80000000;
-(void)p[0xb8/4];
-(void)p[0xb8/4];
+u32 irq = func_02008128();
+volatile u32 *p = (volatile u32 *)(0x40000b8 + arg0 * 12);
+*p &= ~0x3a000000;
+*p &= ~0x80000000;
+(void)*p;
+(void)*p;
 if (arg0 == 0) {
-q = (volatile u32 *)(0x4000000 + arg0 * 0xc + 0xb0);
+volatile u32 *q = (volatile u32 *)(0x40000b0 + arg0 * 12);
 q[0]=0; q[1]=0; q[2]=0x81400001;
 }
 func_0200813c(irq);
