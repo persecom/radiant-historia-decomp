@@ -34,6 +34,7 @@ extern void func_0209ebec(u32, u32, u32, u32, u32);
 extern void func_0210eb98(const u8 *, s32);
 extern u8 *func_020f57e8(void);
 void func_020a18f8(void) {
+    register s32 zero asm("r8") = 0;
     u8 *p = data_021600b0;
     switch (*(u16 *)(p + 0xde)) {
     case 12: {
@@ -41,7 +42,7 @@ void func_020a18f8(void) {
         *(u16 *)(q + 0xa8) += 1;
         if (*(u16 *)(q + 0xa8) > 2) {
             func_020a1750(*(u16 *)(q + 0xa6));
-            *(u16 *)(q + 0xa8) = 0;
+            *(u16 *)(q + 0xa8) = zero;
         }
         *(s32 *)(p + 0xd0) = (*(s32 *)(p + 0xd0) + 1) % 10;
         *(s32 *)(p + 0xd4) = (*(s32 *)(p + 0xd4) + 1) % 10;
@@ -49,45 +50,46 @@ void func_020a18f8(void) {
     }
     case 2: {
         s32 v = 4;
-        if (func_0209f424(0) == 0) return;
+        if (func_0209f424(zero) == 0) return;
         func_020a1750(v);
         {
             u8 *q = p + 0x100;
-            if (*(s16 *)(q + 0xec) > 4) {
+            if (*(s16 *)(q + 0xec) <= 4) {
+                *(s16 *)(q + 0xe0) = zero;
+                *(s16 *)(q + 0xcc) = *(s16 *)(q + 0xec) * 0x28 + 0x19;
+            } else {
                 *(s16 *)(q + 0xe0) = (*(s16 *)(q + 0xec) - 3) * (v - 0x2c);
                 *(s16 *)(q + 0xcc) = 0x91;
                 if (*(s16 *)(q + 0xec) == 0x58) {
                     *(s16 *)(q + 0xe0) = (*(s16 *)(q + 0xec) - 4) * (0x91 - 0xb9);
                     *(s16 *)(q + 0xcc) = 0xb9;
                 }
-            } else {
-                *(s16 *)(q + 0xe0) = 0;
-                *(s16 *)(q + 0xcc) = *(s16 *)(q + 0xec) * 0x28 + 0x19;
             }
             *(s16 *)(q + 0xce) = *(s16 *)(q + 0xee) * 0x1c + 0x57;
             *(s16 *)(q + 0xc6) = (*(s16 *)(q + 0xcc) - *(s16 *)(q + 0xe0)) / 40;
             *(s16 *)(q + 0xc8) = (*(s16 *)(q + 0xce) - (*(s16 *)(q + 0xe2) + 28)) / 28;
             p[0x1fa] = 3;
             if (*(s16 *)(q + 0xf8) == 0x58) p[0x1fa] = 4;
-            *(u16 *)(q + 0xe8) = 0;
+            *(u16 *)(q + 0xe8) = zero;
         }
         return;
     }
     case 5:
         if (func_0209f424(1) == 0) return;
-        func_020a1750(0);
+        func_020a1750(zero);
         return;
     case 4: {
+        s8 *fp = (s8 *)p;
         s16 pos[4];
         s32 flag = 1;
-        s32 x7 = 0;
-        s32 x6 = 0;
-        s32 moved = 0;
-        s16 ix = 0;
-        s16 iy = 0;
-        p[0x21e] &= ~2;
+        s32 x7 = zero;
+        s32 x6 = zero;
+        s32 moved = zero;
+        s16 ix = zero;
+        s16 iy = zero;
+        fp[0x21e] &= ~2;
         if (data_021626b0[0] & 2) {
-            p[0x21e] |= 2;
+            fp[0x21e] |= 2;
             func_020a25fc(1, 1);
             func_020a18c8(5);
             func_0210d27c(5);
@@ -95,86 +97,86 @@ void func_020a18f8(void) {
         }
         if (data_02162908[2] != 0) {
             if (func_020a2754(0xe8, -10, 30, 30) == 1) {
-                p[0x21e] |= 2;
+                fp[0x21e] |= 2;
                 func_020a25fc(1, 1);
                 func_020a18c8(5);
                 func_0210d27c(5);
                 return;
             }
-            p[0x212] &= ~2;
-            if (((s8)p[0x212] & 1) != 0) {
+            fp[0x212] &= ~2;
+            if ((fp[0x212] & 1) != 0) {
                 if (func_020a2754(0xa3, 0x9c, 0x50, 0x14) == 1) {
-                    p[0x212] |= 2;
-                    flag = 0;
+                    fp[0x212] |= 2;
+                    flag = zero;
                 }
             } else if (!(p[0x1f3] & 2)) {
                 if ((s16)((s16)((data_02162908[0] - *(s16 *)(p + 0x1e0)) / 40) * 5 +
                           (s16)((data_02162908[1] - (*(s16 *)(p + 0x1e2) + 28)) / 28)) ==
                     *(s16 *)(p + 0x1e8)) {
-                    p[0x212] |= 2;
-                    flag = 0;
+                    fp[0x212] |= 2;
+                    flag = zero;
                 }
             }
-            if (((s8)p[0x206] & 1) != 0) {
+            if ((fp[0x206] & 1) != 0) {
                 if (func_02064b84(0xa3, 0xae, 0x50, 0x14) != 0) {
-                    p[0x206] |= 4;
+                    fp[0x206] |= 4;
                 } else if (!(p[0x1f3] & 2)) {
                     if ((s16)((s16)((data_02162908[0] - *(s16 *)(p + 0x1e0)) / 40) * 5 +
                               (s16)((data_02162908[1] - (*(s16 *)(p + 0x1e2) + 28)) / 28)) ==
                         *(s16 *)(p + 0x1e8)) {
-                        p[0x206] |= 4;
-                        flag = 0;
+                        fp[0x206] |= 4;
+                        flag = zero;
                     }
                 }
             }
-            p[0x22a] &= ~2;
+            fp[0x22a] &= ~2;
             if (*(s32 *)(p + 0x224) == 1 &&
                 func_020a2754(0xa, 0x50, 0xe, 0xe) == 1) {
-                p[0x22a] |= 2;
-                flag = 0;
+                fp[0x22a] |= 2;
+                flag = zero;
             }
-            p[0x236] &= ~2;
+            fp[0x236] &= ~2;
             if (*(s32 *)(p + 0x230) == 1 &&
                 func_020a2754(0xe9, 0x50, 0xe, 0xe) == 1) {
-                p[0x236] |= 2;
-                flag = 0;
+                fp[0x236] |= 2;
+                flag = zero;
             }
         }
         p[0x1f3] &= ~2;
-        if (((s8)p[0x212] & 2) != 0) {
-            p[0x212] &= ~2;
+        if ((fp[0x212] & 2) != 0) {
+            fp[0x212] &= ~2;
             x7 = flag;
-            flag = 0;
+            flag = zero;
         }
-        if (((s8)p[0x22a] & 2) != 0) {
+        if ((fp[0x22a] & 2) != 0) {
             *(s16 *)(p + 0x1e0) += 0xc8;
-            if (*(s16 *)(p + 0x1e0) > 0) *(s16 *)(p + 0x1e0) = 0;
-            p[0x22a] &= ~2;
+            if (*(s16 *)(p + 0x1e0) > 0) *(s16 *)(p + 0x1e0) = zero;
+            fp[0x22a] &= ~2;
             func_0210d27c(2);
         }
-        if (((s8)p[0x236] & 2) != 0) {
+        if ((fp[0x236] & 2) != 0) {
             *(s16 *)(p + 0x1e0) -= 0xc8;
             if (-*(s16 *)(p + 0x1e0) / 40 + 6 >= (s16)*(s16 *)(p + 0x1f8)) {
                 *(s16 *)(p + 0x1e0) = ((s16)*(s16 *)(p + 0x1f8) - (s8)p[0x1fa]) * -40;
             }
-            p[0x236] &= ~2;
+            fp[0x236] &= ~2;
             func_0210d27c(2);
         }
-        if (flag == 1 && ((s8)p[0x212] & 1) != 0 && (data_021626a8 & 0x800)) {
-            p[0x212] |= 4;
-            flag = 0;
+        if (flag == 1 && (fp[0x212] & 1) != 0 && (data_021626a8 & 0x800)) {
+            fp[0x212] |= 4;
+            flag = zero;
             x7 = 1;
         }
-        p[0x206] &= ~2;
-        if (((s8)p[0x206] & 1) != 0 && !(data_021626b0[0] & 1) && ((s8)p[0x206] & 4)) {
-            p[0x206] |= 2;
+        fp[0x206] &= ~2;
+        if ((fp[0x206] & 1) != 0 && !(data_021626b0[0] & 1) && (fp[0x206] & 4)) {
+            fp[0x206] |= 2;
             func_020a25fc(1, 0x10);
             func_020a18c8(6);
-            flag = 0;
+            flag = zero;
             func_0210d27c(0xb);
         }
-        p[0x206] &= ~4;
-        if (flag != 1) return;
+        fp[0x206] &= ~4;
+        if (flag != 1) goto quit;
         pos[0] = data_02162908[0];
         pos[1] = data_02162908[1];
         pos[2] = data_02162908[2];
@@ -190,11 +192,11 @@ void func_020a18f8(void) {
                 if (-*(s16 *)(p + 0x1e0) / 40 + 6 >= (s16)*(s16 *)(p + 0x1f8)) {
                     *(s16 *)(p + 0x1e0) = ((s16)*(s16 *)(p + 0x1f8) - (s8)p[0x1fa]) * -40;
                 }
-                p[0x236] |= 4;
+                fp[0x236] |= 4;
             } else if ((data_021626a8 & 0x200) && *(s32 *)(p + 0x224) == 1) {
                 *(s16 *)(p + 0x1e0) += 0xc8;
-                if (*(s16 *)(p + 0x1e0) > 0) *(s16 *)(p + 0x1e0) = 0;
-                p[0x22a] |= 4;
+                if (*(s16 *)(p + 0x1e0) > 0) *(s16 *)(p + 0x1e0) = zero;
+                fp[0x22a] |= 4;
                 func_0210d27c(2);
             } else {
                 ix = *(s16 *)(p + 0x1cc);
@@ -206,22 +208,22 @@ void func_020a18f8(void) {
             }
         }
         if (moved != 1) {
-            p[0x239] = 0;
+            p[0x239] = zero;
             p[0x238] = 8;
         } else {
             p[0x239] = (p[0x239] + 1) & 0xff;
             if (p[0x239] >= 0x1e) {
                 p[0x238] = (p[0x238] + 1) & 0xff;
-                p[0x239] = 0;
+                p[0x239] = zero;
                 if (p[0x238] >= 0xf) p[0x238] = 0xf;
             }
         }
         if (func_020a2664(ix, iy, x6) == 0) {
-            s16 a[2] = { *(s16 *)(p + 0x1cc), *(s16 *)(p + 0x1ce) };
-            s16 b[2] = { ix, iy };
+            s32 a[2] = { *(s16 *)(p + 0x1cc), *(s16 *)(p + 0x1ce) };
+            s32 b[2] = { ix, iy };
             if (func_0210c28c(a, b, p + 0x100) <= 2) {
-                ix = a[0];
-                iy = a[1];
+                ix = *(s16 *)(p + 0x1cc);
+                iy = *(s16 *)(p + 0x1ce);
             }
             *(s16 *)(p + 0x1cc) = ix;
             *(s16 *)(p + 0x1ce) = iy;
@@ -246,14 +248,14 @@ void func_020a18f8(void) {
             if (*(s32 *)(p + 0x224) == 1) {
                 s16 val;
                 s32 idx, off;
-                s32 changed = 0;
+                s32 changed = zero;
                 s8 v;
                 func_02064b84(0xa, 0x50, 0xe, 0xe);
                 idx = *(s16 *)(p + 0x1c8) + *(s16 *)(p + 0x1c6) * 5;
                 val = idx;
                 off = idx * 40;
-                *(u32 *)(p + 0x200) = 0;
-                *(u32 *)(p + 0x20c) = 0;
+                *(u32 *)(p + 0x200) = zero;
+                *(u32 *)(p + 0x20c) = zero;
                 *(s16 *)(p + 0x24e + off) &= ~0x100;
                 if (!(*(s16 *)(p + 0x24e + off) & 0x40)) return;
                 if (func_020a1734(p[0x23a + off]) != 1) return;
@@ -261,20 +263,20 @@ void func_020a18f8(void) {
                 if (x7 == 1) {
                     v = *(s8 *)(p + 0x1e6);
                     if (v == 2) {
-                        p[0x1e6] = 0;
+                        p[0x1e6] = zero;
                     } else {
                         s32 vv = v + 1;
                         if (*(s16 *)(p + 0x250 + off + vv * 4) != 0) {
                             p[0x1e6] = vv;
                         } else {
-                            p[0x1e6] = 0;
+                            p[0x1e6] = zero;
                         }
                         func_0210d27c(0xb);
                         changed = 1;
                         if (*(s16 *)(p + 0x1e8) != val) {
                             *(s16 *)(p + 0x1e8) = val;
                             changed = 1;
-                            p[0x1e6] = 0;
+                            p[0x1e6] = zero;
                         }
                     }
                 }
@@ -291,6 +293,7 @@ void func_020a18f8(void) {
                 }
             }
         }
+    quit:
         return;
     }
     case 6: {
@@ -298,8 +301,8 @@ void func_020a18f8(void) {
         func_0210eb98(data_02148aa8, *(s16 *)(p + 0xc0));
         obj = func_020f57e8();
         data_02160124 = func_020a27a8(p[0x248 + *(s16 *)(p + 0x1e8) * 40]);
-        *(u32 *)(p + 0x200) = 0;
-        *(u32 *)(p + 0x20c) = 0;
+        *(u32 *)(p + 0x200) = zero;
+        *(u32 *)(p + 0x20c) = zero;
         if (obj == NULL) {
             func_020a1750(4);
         } else {
@@ -388,6 +391,27 @@ s32 func_020a2664(s32 arg0, s32 arg1, s32 arg2) {
         return 1;
     }
     return 0;
+}
+
+s32 func_020a2754(s32 arg0, s32 arg1, s32 arg2, s32 arg3)
+{
+  s32 x1 = arg0 + arg2;
+  u16 x;
+  s32 y1 = arg1 + arg3;
+  int new_var;
+  u16 y = data_02162908[1];
+  s32 ret;
+  x = data_02162908[0];
+  new_var = x >= arg0;
+  if (((new_var && (x <= x1)) && (y >= arg1)) && (y <= y1))
+  {
+    ret = 1;
+  }
+  else
+  {
+    ret = 0;
+  }
+  return !(!ret);
 }
 
 s32 func_020a27a8(s32 arg0) {
