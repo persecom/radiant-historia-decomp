@@ -71,6 +71,38 @@ void func_020f36b0(u8 *arg0, s32 arg1, s32 arg2) {
     }
 }
 
+extern void func_020e9dc0(void);
+extern void func_0211a4c0(void *, u32, u32);
+extern u8 *data_02160a6c;
+extern u8 data_021612c8[], data_02170248[], data_02170204[], data_02162834[];
+void func_020f37d0(u8 *arg) {
+    u8 *p = *(u8 **)&data_02160a6c;
+    if (p == NULL) return;
+    func_020e9dc0();
+    func_0211a4c0(data_021612c8, 0, 0);
+}
+
+BOOL func_020f3fcc(u8 *arg0, s32 arg1, s32 arg2)
+{
+    u8 *obj = *(u8 **)arg0;
+    u8 *table = *(u8 **)(obj + 0x58);
+    BOOL invalid;
+
+    if (**(u16 **)(table + 0xc) <= (u32)arg1) {
+        return FALSE;
+    }
+
+    invalid = (func_021086d4(obj, arg1) == 0);
+
+    if (invalid != FALSE) {
+        return FALSE;
+    }
+
+    func_02108680(*(u8 **)arg0, arg1, arg2);
+
+    return TRUE;
+}
+
 s32 func_020f402c(u8 *arg0, s32 arg1) {
     u8 *r2 = *(u8 **)arg0;
     u8 *r3 = *(u8 **)(arg0 + 0x10);
@@ -141,16 +173,17 @@ void func_020f4210(void){
 s32 before=0,after=0,zero=0,changed=0;
 u8 *q;
 u8 *p=data_02160c34.field_4;
+s32 step,next; u16 current,target;
 Unk_02151fc8 *c;
 s32 side;
 if(*(u16 *)(p+0x38)==0){
 {u32 moving=*(u32 *)(p+0x2c)|*(u32 *)(p+0x30)|*(u32 *)(p+0x34);if(moving!=0){
 q=data_02155984;
 changed=((s32)(*(u32 *)(p+0x20)-*(u32 *)(q+0x20))>=0) | (((s32)(*(u32 *)(p+0x24)-*(u32 *)(q+0x24))>=0)<<1) | (((s32)(*(u32 *)(p+0x28)-*(u32 *)(q+0x28))>=0)<<2);
-func_020020f8(q+0x20,p+0x2c,data_02155984+0x20);
-p=data_02160c34.field_4;q=data_02155984;
+func_020020f8(q+0x20,p+0x2c,q+0x20);
+q=data_02155984;p=data_02160c34.field_4;
 side=((s32)(*(u32 *)(p+0x20)-*(u32 *)(q+0x20))>=0) | (((s32)(*(u32 *)(p+0x24)-*(u32 *)(q+0x24))>=0)<<1) | (((s32)(*(u32 *)(p+0x28)-*(u32 *)(q+0x28))>=0)<<2);
-if(changed!=side){p=data_02160c34.field_4;*(Trip *)(q+0x20)=*(Trip *)(p+0x20);*(u32 *)(p+0x2c)=before;*(u32 *)(p+0x30)=before;*(u32 *)(p+0x34)=before;}changed=1;
+if(changed!=side){p=*(u8 *volatile *)&data_02160c34.field_4;*(Trip *)(q+0x20)=*(Trip *)(p+0x20);*(u32 *)(p+0x2c)=before;*(u32 *)(p+0x30)=before;*(u32 *)(p+0x34)=before;}changed=1;
 }}
 }else if(*(u16 *)(p+0x38)&1){
 func_020f4774(*(u32 *)(p+0x3c),p[0x40]);
@@ -159,14 +192,14 @@ p=data_02160c34.field_4;
 s32 distance=0,d;
 q=data_02155984;
 before=((s32)(*(u32 *)(p+0x20)-*(u32 *)(q+0x20))>=0) | (((s32)(*(u32 *)(p+0x24)-*(u32 *)(q+0x24))>=0)<<1) | (((s32)(*(u32 *)(p+0x28)-*(u32 *)(q+0x28))>=0)<<2);
-func_020020f8(q+0x20,p+0x2c,data_02155984+0x20);
-p=data_02160c34.field_4;q=data_02155984;
+func_020020f8(q+0x20,p+0x2c,q+0x20);
+q=data_02155984;p=data_02160c34.field_4;
 side=((s32)(*(u32 *)(p+0x20)-*(u32 *)(q+0x20))>=0) | (((s32)(*(u32 *)(p+0x24)-*(u32 *)(q+0x24))>=0)<<1) | (((s32)(*(u32 *)(p+0x28)-*(u32 *)(q+0x28))>=0)<<2);
 d=*(s32 *)(p+32)-*(s32 *)(q+32);distance+=(d<0?-d:d);
 d=*(s32 *)(p+36)-*(s32 *)(q+36);distance+=(d<0?-d:d);
 d=*(s32 *)(p+40)-*(s32 *)(q+40);distance+=(d<0?-d:d);
 if(before!=side || distance<0x2000){
-p=data_02160c34.field_4;*(Trip *)(q+0x20)=*(Trip *)(p+0x20);*(u32 *)(p+0x2c)=after;*(u32 *)(p+0x30)=after;*(u32 *)(p+0x34)=after;
+p=*(u8 *volatile *)&data_02160c34.field_4;*(Trip *)(q+0x20)=*(Trip *)(p+0x20);*(u32 *)(p+0x2c)=after;*(u32 *)(p+0x30)=after;*(u32 *)(p+0x34)=after;
 p=data_02160c34.field_4;*(u16 *)(p+0x38)&=0xfffe;
 p=data_02160c34.field_4;*(u32 *)(p+0x3c)=after;
 }changed=1;
@@ -182,8 +215,8 @@ if(*(u16 *)(p+0x4c)==0){c->field_4=*(u32 *)(p+0x48);*(u32 *)(p+0x44)=zero;}
 }
 p=data_02160c34.field_4;
 if(*(u16 *)(p+26)){
-s32 step=*(u16 *)(p+26),next;
-u16 target=*(u16 *)(p+24),current=c->field_0;
+step=*(u16 *)(p+26);
+target=*(u16 *)(p+24),current=c->field_0;
 if(current<target){if(target-current>=0x8000)goto negate0;}else{if(current-target<0x8000){
 negate0:
 step=-step;}}
@@ -198,8 +231,8 @@ if(step!=next){*(u16 *)(p+26)=zero;p=data_02160c34.field_4;c->field_0=*(u16 *)(p
 changed=1;
 }
 if(*(u16 *)(p+30)){
-s32 step=*(u16 *)(p+30),next;
-u16 target=*(u16 *)(p+28),current=c->field_2;
+step=*(u16 *)(p+30);
+target=*(u16 *)(p+28),current=c->field_2;
 if(current<target){if(target-current>=0x8000)goto negate2;}else{if(current-target<0x8000){
 negate2:
 step=-step;}}
