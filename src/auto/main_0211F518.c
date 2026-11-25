@@ -22,7 +22,7 @@ static inline u32 texcoord_0211fda4(s16 s,s16 t) {
 return (u16)s|((u32)(u16)t<<16);
 }
 static inline u32 texcoord_021200f4(s32 s,s32 t) {
-return texcoord_0211fda4((s16)((s << 8) >> 16),(s16)((t << 8) >> 16));
+return (u16)((s << 8) >> 16) | ((u32)(u16)((t << 8) >> 16) << 16);
 }
 static inline u8 *dict_entry_0211fda4(u8 *dict,u32 index) {
 if(dict && index<dict[1]){
