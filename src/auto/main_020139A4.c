@@ -16,106 +16,74 @@ typedef struct {
 
 extern const u16 data_0213eb14[];
 u8 *func_020139a4(u8 *fmt, s32 **argp, FormatSpec *out) {
-    FormatSpec spec;
-    u8 *p = fmt + 1;
-    u8 c = p[0];
-    s32 v, neg;
-
-    spec.padding = 1;
-    spec.sign = 0;
-    spec.unk2 = 0;
-    spec.alternate = 0;
-    spec.unk4 = 0;
-    spec.width = 0;
-    spec.precision = 0;
-
-    if (c == '%') {
-        spec.conversion = '%';
-        *out = spec;
-        return p + 1;
-    }
-
-    for (;;) {
-        switch (c) {
-        case '-': spec.padding = 0; break;
-        case '+': spec.sign = 1; break;
-        case ' ': if (spec.sign != 1) spec.sign = 2; break;
-        case '#': spec.alternate = 1; break;
-        case '0': if (spec.padding != 0) spec.padding = 2; break;
-        default: goto flags_done;
-        }
-        c = *++p;
-    }
-flags_done:
-
-    if (c == '*') {
-        v = *(*argp)++;
-        spec.width = v;
-        if (v < 0) {
-            spec.padding = 0;
-            spec.width = -v;
-        }
-        c = *++p;
-    } else {
-        while (c >= '0' && c <= '9') {
-            spec.width = spec.width * 10 + (c - '0');
-            c = *++p;
-        }
-    }
-
-    if (c == '.') {
-        c = *++p;
-        spec.alternate = 0;
-        if (c == '*') {
-            v = *(*argp)++;
-            spec.precision = v;
-            if (v < 0) spec.precision = -1;
-            c = *++p;
-        } else {
-            spec.precision = 0;
-            while (c >= '0' && c <= '9') {
-                spec.precision = spec.precision * 10 + (c - '0');
-                c = *++p;
-            }
-        }
-    }
-
-    switch (c) {
-    case 'h': spec.unk4 = 2; c = *++p; break;
-    case 'l': spec.unk4 = 3; c = *++p; break;
-    case 'L': spec.unk4 = 4; c = *++p; break;
-    case 't': spec.unk4 = 6; c = *++p; break;
-    case 'z': spec.unk4 = 7; c = *++p; break;
-    }
-
-    spec.conversion = c;
-
-    switch (c) {
-    case 'd': case 'i': case 'u': case 'o': case 'x': case 'X':
-        break;
-    case 'f': case 'F': case 'e': case 'E': case 'g': case 'G':
-        break;
-    case 'a': case 'A':
-        if (spec.precision == 0) spec.precision = 13;
-        break;
-    case 'c':
-        if (spec.padding == 2) spec.width = 1;
-        break;
-    case 'p':
-        spec.alternate = 1;
-        spec.conversion = 'x';
-        break;
-    case 'n':
-        break;
-    case 's':
-        break;
-    default:
-        spec.conversion = 0xff;
-        break;
-    }
-
-    *out = spec;
-    return p + 1;
+ FormatSpec spec;
+ u8 *p=fmt+1;
+ u8 c=*p;
+ int more;
+ spec.padding=1;spec.sign=0;spec.unk2=0;spec.alternate=0;spec.unk4=0;spec.width=0;spec.precision=0;
+ if(c=='%'){spec.conversion=c;*out=spec;return p+1;}
+ do {
+ more=1;
+ switch(c){
+ case '-':spec.padding=0;break;
+ case '+':spec.sign=1;break;
+ case ' ':if(spec.sign!=1)spec.sign=2;break;
+ case '#':spec.alternate=1;break;
+ case '0':if(spec.padding)spec.padding=2;break;
+ default:more=0;break;
+ }
+ if(more)c=*++p;else break;
+ }while(1);
+ if(c=='*'){
+ c=*++p;++*argp;spec.width=(*argp)[-1];
+ if(spec.width<0){spec.padding=0;spec.width=-spec.width;}
+ }else{
+ while(c<128 ? data_0213eb14[c]&8 : 0){spec.width=spec.width*10+(c-'0');c=*++p;}
+ }
+ if(spec.width>509){spec.conversion=255;*out=spec;return p+1;}
+ if(c=='.'){
+ c=*++p;spec.unk2=1;
+ if(c=='*'){c=*++p;++*argp;spec.precision=(*argp)[-1];if(spec.precision<0)spec.unk2=0;}
+ else{while(c<128 ? data_0213eb14[c]&8 : 0){spec.precision=spec.precision*10+(c-'0');c=*++p;}}
+ }
+ more=1;
+ switch(c){
+ case 'h':spec.unk4=2;if(p[1]=='h'){spec.unk4=1;c=*++p;}break;
+ case 'l':spec.unk4=3;if(p[1]=='l'){spec.unk4=4;c=*++p;}break;
+ case 'L':spec.unk4=9;break;
+ case 'j':spec.unk4=6;break;
+ case 't':spec.unk4=8;break;
+ case 'z':spec.unk4=7;break;
+ default:more=0;break;
+ }
+ if(more)c=*++p;
+ spec.conversion=c;
+ switch(c){
+ case 'd':case 'i':case 'u':case 'o':case 'x':case 'X':
+ if(spec.unk4==9)spec.conversion=255;
+ else if(!spec.unk2)spec.precision=1;
+ else if(spec.padding==2)spec.padding=1;
+ break;
+ case 'f':case 'F':
+ if(spec.unk4==2||spec.unk4==6||spec.unk4==7||spec.unk4==8||spec.unk4==4){spec.conversion=255;break;}
+ if(!spec.unk2)spec.precision=6;
+ break;
+ case 'a':case 'A':
+ if(!spec.unk2)spec.precision=13;
+ if(spec.unk4==2||spec.unk4==6||spec.unk4==7||spec.unk4==8||spec.unk4==4||spec.unk4==1)spec.conversion=255;
+ break;
+ case 'g':case 'G':if(spec.precision==0)spec.precision=1;
+ case 'e':case 'E':
+ if(spec.unk4==2||spec.unk4==1||spec.unk4==6||spec.unk4==7||spec.unk4==8||spec.unk4==4){spec.conversion=255;break;}
+ if(!spec.unk2)spec.precision=6;
+ break;
+ case 'p':spec.conversion='x';spec.alternate=1;spec.unk4=3;spec.precision=8;break;
+ case 'c':if(spec.unk4==3)spec.unk4=5;else if(spec.unk2||spec.unk4!=0)spec.conversion=255;break;
+ case 's':if(spec.unk4==3)spec.unk4=5;else if(spec.unk4!=0)spec.conversion=255;break;
+ case 'n':if(spec.unk4==9)spec.conversion=255;break;
+ default:spec.conversion=255;break;
+ }
+ *out=spec;return p+1;
 }
 
 u8 *func_02013eb0(s32 value, u8 *end, FormatSpec spec) {
