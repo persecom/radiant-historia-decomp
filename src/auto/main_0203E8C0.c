@@ -15,7 +15,7 @@ static inline s32 rand_0203e8c0(s32 max) {
     }
     seed = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
     data_0216263c[0] = seed;
-    r = ((seed >> 16) * (u16)(max * 2)) >> 16;
+    r = ((seed >> 16) * (max * 2)) >> 16;
     return (u16)r - max;
 }
 extern void func_021168f8(void *, void *);
