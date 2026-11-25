@@ -60,10 +60,6 @@ extern s32 func_02002080(s32, u32);
 extern void func_021167ac(void *, s32);
 extern void *data_02160c60[];
 extern void *data_02160c54[];
-static inline u8 *store_and_return(u8 *p) {
-    *(u8 *volatile *)data_02160c3c = p;
-    return p;
-}
 s32 func_020f46a0(u16 arg0) {
     *(u16 *)data_02151fc8 += arg0;
     return func_02107d58(*(u32 *)(data_02151fc8 + 4), *(u16 *)(data_02151fc8 + 2), *(u16 *)data_02151fc8);
