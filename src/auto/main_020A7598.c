@@ -129,7 +129,7 @@ void func_020a7598(void *arg0) {
         s0.unk_04 = ((u32 *)&s1)[i * 9 + 2];
         s0.unk_08 = ((u32 *)&s1)[i * 9 + 3];
         s0.unk_0c = ((u32 *)&s1)[i * 9 + 7];
-        if (func_020f50bc(p6, &s0) == 0) {
+        if (func_020f50bc(p6, &s0, p2) == 0) {
             return;
         }
         func_020f5114(p6, 1);
