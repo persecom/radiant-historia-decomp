@@ -55,14 +55,9 @@ u32 func_02129bc8(void) {
 }
 
 void func_02129bd8(void) {
-    u32 *p;
-    int i;
     func_02129624();
     func_02129a50();
-    p = (u32 *)data_021735a4;
-    for (i = 0; i < 244; i++) {
-        p[i] = 0;
-    }
+    memset((u32 *)data_021735a4, 0, sizeof(data_021735a4));
     func_02129bb8(0);
 }
 
@@ -284,7 +279,6 @@ u32 func_0212a240(u32 *arg0) {
 
 extern void func_02129624(void);
 extern void func_02129a50(void);
-extern u8 data_021735a4[976];
 u32 func_0212a250(u8 *arg0) {
     return *(u32 *)(arg0 + 0x30);
 }
