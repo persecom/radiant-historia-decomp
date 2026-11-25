@@ -308,9 +308,9 @@ void *func_020eaa24(s32 arg0, s32 arg1) {
 
 #pragma opt_propagation off
 void func_020eaaa0(u32 arg0) {
-    data_02160a90[0] = (u32)func_020eaae0;
-    data_02160a90[1] = arg0;
-    func_0210db70(data_02160a90);
+ data_02160a90[0]=(u32)func_020eaae0;
+ data_02160a90[1]=arg0;
+ func_0210db70(&data_02160a90[2]);
 }
 #pragma opt_propagation on
 s32 func_020eaacc(void) {
@@ -323,7 +323,7 @@ void func_020eaae0(void){
 Vec_EAAE0 pos;
 s32 matrix[12];
 u8 *sub,*node,*obj,*next;
-s32 visible,culled;
+u8 visible,culled;
 func_02001134(data_02170248,matrix);
 if(!data_02160a6c)return;
 func_020e9dc0();
