@@ -23,11 +23,11 @@ extern void func_0210d27c(s32);
 extern void func_020d0884(void);
 extern void func_020d3160(s32, s32, s32, s32);
 void func_0205df48(u8 *arg0) {
-int enabled=1;
 u8 *q=*(u8 **)(arg0+0x128);
-u8 *list=*(u8 **)(q+12);
 u8 *p=*(u8 **)(q+8);
+u8 *list=*(u8 **)(q+12);
 u8 *target=*(u8 **)(list+4);
+int enabled=1;
 u32 v[3];
 if(p[0]==3) enabled=0;
 else if(p[0]==4) enabled=0;
