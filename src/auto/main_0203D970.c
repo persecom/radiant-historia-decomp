@@ -1,6 +1,7 @@
 /* 6 functions from 0x0203D970 to 0x0203E8C0 (main), found by ds-decomp. */
 #include "common.h"
 typedef struct { s32 x,y,z; } Vec_0203d970;
+static inline void set_vec_d970(Vec_0203d970 *v,s32 x,s32 y,s32 z) { v->x=x;v->y=y;v->z=z; }
 extern u8 *data_02160aec, *data_02160204, *data_02155984;
 extern u8 *data_02160098[2];
 extern const s16 data_0213a394[];
@@ -57,33 +58,32 @@ extern u32 _dflt(s32);
 extern void func_02020058(void);
 extern void func_0201ff80(void);
 
-void func_0203d970(s32 *pos) {
-s32 x=pos[0]/65536,z=pos[2]/65536;
+void func_0203d970(Vec_0203d970 *pos) {
+s32 x=pos->x/65536,z=pos->z/65536;
 u8 *map=data_02160aec;
 u8 *state=data_02160098[1];
-s32 v[3];
+Vec_0203d970 v;
 s32 tile;
 s32 index;
 s32 zero=0;
 s32 distance,angle;
 if(!map) tile=0;
-else tile=map[(z* *(s16 *)(map+0x58d36)+x)*12+0xbcd];
+else tile=*(u8 *)(map+(z* *(s16 *)(map+0x58d36)+x)*12+0xbcd);
 if(*(u16 *)(state+0x60)==0 && data_02160204[0x84]==9) {
-v[0]=*(s32 *)(data_02155984+0x20);
-v[1]=pos[1]-0x4000;
-v[2]=*(s32 *)(data_02155984+0x28);
-distance=func_020dddf0(v,pos);
-angle=func_020ddc8c(pos,v);
+v.x=*(s32 *)(data_02155984+0x20);
+v.y=pos->y-0x4000;
+v.z=*(s32 *)(data_02155984+0x28);
+distance=func_020dddf0(&v,pos);
+angle=func_020ddc8c(pos,&v);
 if(distance>0xa000) {
 s32 a=(angle%65536)>>4;
-v[0]-=(v[0]-pos[0])-data_0213a394[a*2]*10;
-v[2]-=(v[2]-pos[2])-data_0213a394[a*2+1]*10;
+v.x-=(v.x-pos->x)-data_0213a394[a*2]*10;
+v.z-=(v.z-pos->z)-data_0213a394[a*2+1]*10;
 }
-func_0203d864(v);
+func_0203d864(&v);
 }else if(*(u16 *)(state+0x60)==1) {
 Table_0203d970_32 table=data_0213eef0;
-if(tile!=255 && *(s32 *)(state+0x1c)!=tile) {
-index=(tile-1)*4;
+if(tile!=255 && (index=(tile-1)*4, *(s32 *)(state+0x1c)!=tile)) {
 *(s32 *)(state+0x1c)=tile;
 *(s32 *)(state+0x20)=0;
 *(s32 *)(state+0x28)=*(s32 *)(state+0x24);
@@ -110,15 +110,16 @@ if(tile!=255 && (index=(tile-1)*6,*(s32 *)(state+0x1c)!=tile)) {
 data_02151fcc=0xe8000;data_02151fca=0x1900;
 }
 data_02151fc8=*(s32 *)(state+0x24);
-v[0]=(table.v[index+2]<<12)-((table.v[index+2]<<12)-pos[0]);
-v[1]=0;
-v[2]=table.v[index+3]<<12;
-if(v[0]<=(table.v[index+2]<<12)) v[0]=table.v[index+2]<<12;
-if(v[0]>(table.v[index+4]<<12)) v[0]=table.v[index+4]<<12;
-v[2]-=v[2]-pos[2];
-if(v[2]<=(table.v[index+3]<<12)) v[2]=table.v[index+3]<<12;
-if(v[2]>(table.v[index+5]<<12)) v[2]=table.v[index+5]<<12;
-func_0203d864(v);
+v.x=table.v[index+2]<<12;
+v.x-=v.x-pos->x;
+v.y=0;
+v.z=table.v[index+3]<<12;
+if(v.x<=(table.v[index+2]<<12)) v.x=table.v[index+2]<<12;
+if(v.x>(table.v[index+4]<<12)) v.x=table.v[index+4]<<12;
+v.z-=v.z-pos->z;
+if(v.z<=(table.v[index+3]<<12)) v.z=table.v[index+3]<<12;
+if(v.z>(table.v[index+5]<<12)) v.z=table.v[index+5]<<12;
+func_0203d864(&v);
 }else if(*(u16 *)(state+0x60)==5 || data_02160204[0x84]==0) {
 if(data_02160204[0x85]==2) {
 *(s32 *)(data_02155984+0x28)+=*(s32 *)(data_02160204+0x80);
@@ -127,13 +128,13 @@ data_02160204[0x85]=3;
 *(s32 *)(data_02155984+0x28)+=*(s32 *)(data_02160204+0x80);
 data_02160204[0x85]=zero;
 }
-v[0]=*(s32 *)(data_02155984+0x20);
-v[1]=pos[1]-0x4000;
-v[2]=*(s32 *)(data_02155984+0x28);
-distance=func_020dddf0(v,pos);
-angle=func_020ddc8c(pos,v);
-if(distance>0xa000) v[0]-=(v[0]-pos[0])-data_0213a394[((angle%65536)>>4)*2]*10;
-func_0203d864(v);
+v.x=*(s32 *)(data_02155984+0x20);
+v.y=pos->y-0x4000;
+v.z=*(s32 *)(data_02155984+0x28);
+distance=func_020dddf0(&v,pos);
+angle=func_020ddc8c(pos,&v);
+if(distance>0xa000) v.x-=(v.x-pos->x)-data_0213a394[((angle%65536)>>4)*2]*10;
+func_0203d864(&v);
 }else if(*(u16 *)(state+0x60)==6 || data_02160204[0x84]==1) {
 if(data_02160204[0x85]==2) {
 *(s32 *)(data_02155984+0x20)+=*(s32 *)(data_02160204+0x80);
@@ -142,16 +143,16 @@ data_02160204[0x85]=3;
 *(s32 *)(data_02155984+0x20)+=*(s32 *)(data_02160204+0x80);
 data_02160204[0x85]=zero;
 }
-v[0]=*(s32 *)(data_02155984+0x20);
-v[1]=pos[1]-0x4000;
-v[2]=*(s32 *)(data_02155984+0x28);
-distance=func_020dddf0(v,pos);
-angle=func_020ddc8c(pos,v);
-if(distance>0xa000) v[2]-=(v[2]-pos[2])-data_0213a394[((angle%65536)>>4)*2+1]*10;
-func_0203d864(v);
+v.x=*(s32 *)(data_02155984+0x20);
+v.y=pos->y-0x4000;
+v.z=*(s32 *)(data_02155984+0x28);
+distance=func_020dddf0(&v,pos);
+angle=func_020ddc8c(pos,&v);
+if(distance>0xa000) v.z-=(v.z-pos->z)-data_0213a394[((angle%65536)>>4)*2+1]*10;
+func_0203d864(&v);
 }
-v[0]=*(s32 *)(data_02155984+0x20);v[1]=pos[1]-0x4000;v[2]=*(s32 *)(data_02155984+0x28);
-if(func_020dddf0(v,pos)<=0xf000) {
+v.x=*(s32 *)(data_02155984+0x20);v.y=pos->y-0x4000;v.z=*(s32 *)(data_02155984+0x28);
+if(func_020dddf0(&v,pos)<=0xf000) {
 data_02160204[0x84]=9;*(s32 *)(data_02160204+0x80)=0;
 }
 }
