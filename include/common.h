@@ -28,6 +28,7 @@ typedef struct Elem_02089220 {
     u8 pad[0x3e];
 } Elem_02089220;
 #define TRUE 1
+extern void func_0200e314();
 #define FALSE 0
 #ifndef NULL
 #define NULL ((void*)0)
