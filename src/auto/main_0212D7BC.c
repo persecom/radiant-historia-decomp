@@ -241,13 +241,16 @@ s32 func_0212dc40(void *arg0, s32 arg1) {
 
 void func_0212dc58(void *arg0) {
     UnkStruct_0212dc58 *p = arg0;
+    s32 zero = 0;
     if (p->unk18 == 0) {
         p->unk01 = 3;
+        p->unk38 = zero;
+        p->unk50 = zero;
     } else {
         p->unk01 = 2;
+        p->unk38 = zero;
+        p->unk50 = zero;
     }
-    p->unk38 = 0;
-    p->unk50 = 0;
     p->unk02 = 0;
     p->unk28 = 0;
     p->unk2c = 0;
@@ -703,16 +706,14 @@ void func_0212e670(void) {
 }
 
 void func_0212e69c(void) {
-    if (data_02174524[2] == 1) {
-        func_020065c8(data_02174524[5] == 1 ? data_02174524[0x264 / 4] : (u32)data_02174608);
-        func_021384b0();
-        func_021384c0();
-        data_02174524[0x268 / 4]++;
-        func_02006510(0);
-        if (data_02174524[2] != 1) {
-            func_0212ea7c();
-        }
-    }
+ while (data_02174524[2] == 1) {
+ if(data_02174524[5] == 1) func_020065c8(data_02174524[0x264/4]);
+ else func_020065c8((u32)data_02174608);
+ func_021384b0(); func_021384c0();
+ data_02174524[0x268/4]++;
+ func_02006510(0);
+ }
+ func_0212ea7c();
 }
 
 extern u32 data_02174524[0x100];
