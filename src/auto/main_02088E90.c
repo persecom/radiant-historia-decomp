@@ -260,18 +260,17 @@ void func_0208994c(s32 arg0) {
     func_020895a0(8, 0x14000, 0x98000, n, 1, v, zero, zero, zero);
 }
 
+#pragma opt_common_subs off
 void func_020899e8(s32 arg0) {
-    u8 **pp = &data_0216010c;
-    s32 zero = 0;
-    s32 n = 50;
-    s32 v;
-    func_020a8810(*(void **)(*pp + 0x340), 0x18);
-    v = (u16)(arg0 + 1);
-    func_020895a0(9, 0x12000, 0x86000, n, 8, v, zero, zero, zero);
-    func_020a8810(*(void **)(*pp + 0x2f0), 0x16);
-    func_020895a0(8, 0x14000, 0x98000, n, 9, v, zero, zero, zero);
+ u8 **pp = &data_0216010c;
+ s32 zero=0, n=50, v;
+ func_020a8810(*(void **)(*pp+0x340),0x18);
+ v=arg0+1;
+ func_020895a0(9,0x12000,0x86000,n,8,(u16)v,zero,zero,zero);
+ func_020a8810(*(void **)(*pp+0x2f0),0x16);
+ func_020895a0(8,0x14000,0x98000,n,9,(u16)v,zero,zero,zero);
 }
-
+#pragma opt_common_subs reset
 void func_02089a98(void) {
     u8 **pp = &data_0216010c;
     s32 i;
