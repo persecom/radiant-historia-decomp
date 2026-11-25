@@ -350,6 +350,92 @@ void *func_020c3810(u16 arg0) {
     return node;
 }
 
+extern void func_020c3da4(void *,u16,s32);
+void func_020c3850(u8 *self) {
+int five=5,zero=0,one=1;
+u8 *p;
+if(*(u32 *)(self+4)>=1 && *(u32 *)(self+4)<=6 && self[0x25]==0) {
+if((data_021626a8&1) || (data_021626a8&8) || data_021628f8!=0) self[0x25]=one;
+}
+if(self[0x25]==1 && *(u32 *)(self+4)<=6 && *(u32 *)(self+4)>=3) {
+*(u32 *)(self+4)=11; self[0x25]=2; *(u32 *)(data_02160140+0x4c)=one;
+}
+switch(*(u32 *)(self+4)) {
+case 0:
+func_020c3da4(func_020c3810(4),11,zero);
+func_020c3da4(func_020c3810(6),9,zero);
+(*(volatile s16 *)(self+0x1c))++;
+if(*(volatile s16 *)(self+0x1c)>2) {*(volatile s16 *)(self+0x1c)=zero; *(u32 *)(self+4)=one;}
+break;
+case 1:
+func_020c3da4(func_020c3810(0),3,zero);
+func_020c3da4(func_020c3810(5),11,zero);
+func_020c3da4(func_020c3810(3),1,zero);
+func_020c3da4(func_020c3810(7),9,zero);
+*(u32 *)(self+4)=2;
+break;
+case 2: {
+int step=1;
+if(self[0x25]==1) step=3;
+p=func_020c3810(5);
+step*=2;
+*(volatile s8 *)(p+0x18)-=(s8)step;
+if(*(volatile s8 *)(p+0x18)<=1) {
+func_020c3da4(p,1,1); *(u32 *)(self+4)=3;
+}
+p=func_020c3810(7);
+*(volatile s8 *)(p+0x18)-=(s8)step;
+if(*(volatile s8 *)(p+0x18)<=1) func_020c3da4(p,1,1);
+break;
+}
+case 3:
+(*(volatile s16 *)(self+0x1c))++;
+if(*(volatile s16 *)(self+0x1c)>70) {*(volatile s16 *)(self+0x1c)=zero; *(u32 *)(self+4)=4;}
+break;
+case 4:
+p=func_020c3810(5);
+*(volatile s8 *)(p+0x18)+=3;
+if(*(volatile s8 *)(p+0x18)>=2) func_020c3da4(p,1,0);
+if(*(volatile s8 *)(p+0x18)>=31) {
+*(volatile s8 *)(p+0x18)=31;
+func_020c3da4(func_020c3810(zero),3,one);
+func_020c3da4(func_020c3810(3),one,one);
+func_020c3da4(func_020c3810(one),3,zero);
+func_020c3da4(func_020c3810(2),one,zero);
+*(u32 *)(self+4)=five;
+}
+p=func_020c3810(7);
+*(volatile s8 *)(p+0x18)+=3;
+if(*(volatile s8 *)(p+0x18)>=2) func_020c3da4(p,1,0);
+if(*(volatile s8 *)(p+0x18)>=31) *(volatile s8 *)(p+0x18)=31;
+break;
+case 5:
+p=func_020c3810(5);
+*(volatile s8 *)(p+0x18)-=3;
+if(*(volatile s8 *)(p+0x18)<=1) {*(volatile s8 *)(p+0x18)=zero; func_020c3da4(p,1,1);}
+p=func_020c3810(7);
+*(volatile s8 *)(p+0x18)-=3;
+if(*(volatile s8 *)(p+0x18)<=1) {*(volatile s8 *)(p+0x18)=zero; func_020c3da4(p,1,1); *(u32 *)(self+4)=6;}
+break;
+case 6:
+(*(volatile s16 *)(self+0x1c))++;
+if(*(volatile s16 *)(self+0x1c)>70) {*(volatile s16 *)(self+0x1c)=zero; *(u32 *)(self+4)=11;}
+break;
+case 11:
+p=func_020c3810(5);
+*(volatile s8 *)(p+0x18)+=3;
+if(*(volatile s8 *)(p+0x18)>=31) *(volatile s8 *)(p+0x18)=31;
+func_020c3da4(p,1,0);
+p=func_020c3810(7);
+*(volatile s8 *)(p+0x18)+=3;
+if(*(volatile s8 *)(p+0x18)>=31) *(volatile s8 *)(p+0x18)=31;
+func_020c3da4(p,one,zero);
+(*(volatile s16 *)(self+0x1c))++;
+if(*(volatile s16 *)(self+0x1c)>16) {*(volatile s16 *)(self+0x1c)=zero; *(u32 *)(data_02160140+0x4c)=one;}
+break;
+}
+}
+
 void *func_020c3c78(void) {
     return func_0210c594(0x28, data_02155c3c);
 }
