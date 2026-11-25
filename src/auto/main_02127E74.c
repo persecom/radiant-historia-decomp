@@ -203,19 +203,19 @@ void func_02128268(void *arg0) {
     void *p;
     if (arg0 == NULL) {
         func_0212bda8(data_0215682c);
-    } else {
-        if (a->f8 != NULL) {
-            func_0212db28(a->f8);
-        }
-        if (a->f2 == 4) {
-            func_0212e5fc(*(void **)((u8 *)a + 0x94));
-            if (a->f14 != 0) {
-                p = (void *)a->f14;
-                ((void (**)(void *))*(void **)p)[5](p);
-                func_021281cc(arg0);
-            }
+        return;
+    }
+    if (a->f8 != NULL) {
+        func_0212db28(a->f8);
+    }
+    if (a->f2 == 4) {
+        func_0212e5fc(*(void **)((u8 *)a + 0x94));
+        if (a->f14 != 0) {
+            p = (void *)a->f14;
+            ((void (**)(void *))*(void **)p)[5](p);
         }
     }
+    func_021281cc(arg0);
 }
 
 extern void *func_021282f0(void *);
