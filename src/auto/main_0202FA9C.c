@@ -42,22 +42,24 @@ void *func_0202fa9c(void) {
     func_021167ac(ptr + 0xc0, 8);
     return ptr;
 }
+#pragma optimization_level reset
 void func_0202fad8(u8 *arg0) {
+    void *node;
     if (*(void **)(arg0 + 0x60) != NULL) {
         func_02022508(*(void **)(arg0 + 0x60));
+        *(u32 *)(arg0 + 0x60) = 0;
     }
-    *(u32 volatile *)(arg0 + 0x60) = 0;
     func_02030574(*(void **)(arg0 + 0xa0));
-    *(u32 volatile *)(arg0 + 0xa0) = 0;
-    while (*(void **)(arg0 + 0xc0) != NULL) {
-        void *node = *(void **)(arg0 + 0xc0);
+    *(u32 *)(arg0 + 0xa0) = 0;
+    node = *(void **)(arg0 + 0xc0);
+    while (node != NULL) {
         func_021168f8(arg0 + 0xc0, node);
         if (node != NULL) {
             func_0210c5dc(node);
         }
+        node = *(void **)(arg0 + 0xc0);
     }
     if (arg0 != NULL) {
         func_0210c5dc(arg0);
     }
 }
-
