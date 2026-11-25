@@ -60,16 +60,11 @@ void func_020ba63c(u32 arg0) {
 }
 
 void func_020ba6d0(u32 arg0) {
-    u16 vals[6];
+    Unk_020ba6d0_Values vals;
     void *root = (void *)data_021601ec;
     void *obj, *obj2;
-    s16 *v = (s16 *)vals;
-    vals[0] = data_02143954[0];
-    vals[1] = data_02143954[1];
-    vals[2] = data_02143954[2];
-    vals[3] = data_02143954[3];
-    vals[4] = data_02143954[4];
-    v[5] = data_02143954[5];
+    s16 *v = vals.values;
+    vals = *(Unk_020ba6d0_Values *)data_02143954;
     obj = func_020c9c10(*(void **)((u8 *)root + 0x4c), 0xe);
     obj2 = func_020c8b10();
     *(u16 *)((u8 *)obj2 + 0x32) = 0;
