@@ -237,12 +237,10 @@ handled=*(u32 *)(ctx+8)&0x40;
 } else handled=0;
 if(!handled) {
 u8 *cache=*(u8 **)(*(u8 **)(ctx+4)+0x38);
-if(cache && !(*(u32 *)(ctx+8)&0x80)) {out=cache+idx*0x38; goto cache_done;}
-if((command==0x20 || command==0x40) && (*(u32 *)(ctx+0xbc+(idx>>5)*4)&(1<<(idx&31)))) {
+if(cache && !(*(u32 *)(ctx+8)&0x80)) out=cache+idx*0x38;
+else if((command==0x20 || command==0x40) && (*(u32 *)(ctx+0xbc+(idx>>5)*4)&(1<<(idx&31)))) {
 out=cache?cache+idx*0x38:data_02170464+idx*0x38;
-goto cache_done;
-}
-{
+} else {
 u8 *tbl,*entry,*source;
 u16 flags;
 u32 maska,maskb,a,b;
@@ -299,7 +297,6 @@ u32 c=*(u32 *)(mat+36);
 {u32 d=*(u32 *)(mat+40); *(u32 *)(out+48)=c; *(u32 *)(out+52)=d;}
 }
 }
-cache_done:
 *(u8 **)(ctx+0xb0)=out;
 }
 if(stage==2) {
@@ -389,28 +386,31 @@ void func_0211e910(u8 *arg0, u32 arg1, u8 *arg2) {
     }
 }
 
-void func_0211e9e4(u8 *arg0) {
+void func_0211e9e4(u8 *arg0, u32 arg1) {
     u32 flags = *(u32 *)(arg0 + 8);
-    u8 *p;
-    u8 idx;
-    u8 *tbl;
-    u16 cmd;
-    if (flags & 0x200) goto advance;
-    if (!(flags & 1)) goto advance;
-    if (flags & 2) goto advance;
-    p = *(u8 **)arg0;
-    idx = p[1];
-    tbl = *(u8 **)(arg0 + 0xdc);
-    if (tbl == NULL) goto advance;
-    if (idx >= tbl[1]) goto advance;
-    {
-        u16 off = *(u16 *)(tbl + 6);
-        u16 size = *(u16 *)(tbl + 4 + off);
-        u32 *ptr = (u32 *)(tbl + 8 + off + size * idx);
-        cmd = *(u16 *)(tbl + *ptr);
-        data_02155f90[cmd](arg0);
+    if (!(flags & 0x200) && (flags & 1) && !(flags & 2)) {
+        u8 *base = *(u8 **)arg0;
+        u8 index = base[1];
+        u8 *dict = *(u8 **)(arg0 + 0xdc);
+        u8 *node;
+        if (dict != NULL) {
+            u32 *entry;
+            if (dict != NULL && index < *(u8 *)(dict + 1)) {
+                u16 off = *(u16 *)(dict + 6);
+                u16 size = *(u16 *)(dict + off);
+                entry = (u32 *)(dict + off + 4 + size * index);
+            } else {
+                entry = NULL;
+            }
+            if (entry != NULL) {
+                node = dict + *entry;
+                goto got_node;
+            }
+        }
+        node = NULL;
+got_node:
+        ((void (*)(u8 *, u32, u8 *, u8))data_02155f90[*(u16 *)node])(arg0, arg1, node, index);
     }
-advance:
     *(u8 **)arg0 += 2;
 }
 
