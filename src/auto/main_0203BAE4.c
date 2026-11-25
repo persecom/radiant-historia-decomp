@@ -288,36 +288,32 @@ void func_0203c1f0(u8 *arg0, s32 arg1) {
     func_0210db70(arg0 + 0x18);
 }
 
+#pragma opt_propagation off
 void func_0203c20c(void) {
-    u8 *p = data_02162880;
-    register s32 count = 0;
-    s32 n;
-    u8 *best;
-    s32 i;
-    p[0x2c] = 0;
-    *(void **)(p + 0x38) = NULL;
-    if (p[0x2d] != 0) {
-        return;
-    }
-    n = *(u16 *)(p + 0x3c);
-    best = NULL;
-    for (i = 0; i < n; i++) {
-        u8 *elem = ((u8 **)(*(void **)(p + 0x34)))[i];
-        if (elem[0xb] == 0 && *(void **)(elem + 0x10) != NULL) {
-            if (((s32 (*)(u8 *))(*(void **)(elem + 0x10)))(elem) != 0) {
-                ++count;
-                if (best == NULL || *(s16 *)(best + 4) < *(s16 *)(elem + 4)) {
-                    best = elem;
-                }
-            }
-        }
-    }
-    if (count) {
-        p[0x2c] = 1;
-        *(void **)(p + 0x38) = best;
-    }
+ u8 *p=data_02162880;
+ register s32 count=0;
+ u8 *best;
+ s32 i;
+ u8 *elem;
+ s32 n;
+ p[0x2c]=0;
+ *(void **)(p+0x38)=NULL;
+ if(p[0x2d]!=0) return;
+ n=*(u16 *)(p+0x3c);
+ best=NULL;
+ i=0;
+ if(n>0) do {
+ elem=((u8 **)(*(void **)(p+0x34)))[i];
+ if(elem[0xb]==0 && *(void **)(elem+0x10)!=NULL) {
+ if(((s32 (*)(u8 *))(*(void **)(elem+0x10)))(elem)!=0) {
+ ++count;
+ if(best==NULL || *(s16 *)(best+4)<*(s16 *)(elem+4)) best=elem;
+ }
+ }
+ } while(++i<n);
+ if(count) {p[0x2c]=1; *(void **)(p+0x38)=best;}
 }
-
+#pragma opt_propagation on
 void func_0203c2b8(void) {
  u8 *p=data_02160a74;
  *(u32 *)(p+0x58)|=0x2000;
