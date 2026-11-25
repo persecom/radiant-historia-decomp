@@ -428,6 +428,7 @@ void func_0200fa4c(u32 arg0) {
     func_0200faec(arg0, 2);
 }
 
+#pragma optimization_level 2
 void func_0200fa74(void *arg0, s32 arg1) {
 void *p = data_0215f120;
 u32 state = func_02008128();
@@ -445,7 +446,7 @@ if (*(u32 *)((u8*)p+20)!=(u32)-3) goto again;
 *(u32 *)((u8*)p+24)+=1;
 func_0200813c(state);
 }
-
+#pragma optimization_level 4
 void func_0200faec(u32 arg0, s32 arg1) {
     u8 *p = data_0215f120;
     u32 state = func_02008128();
