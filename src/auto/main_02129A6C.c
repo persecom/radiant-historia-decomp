@@ -545,9 +545,9 @@ void func_0212a904(u8 *arg0) {
         func_0212a864(arg0);
     } else if (val == 10) {
         func_02129a14(arg0);
-        if (*(u32 *)(arg0 + 0xec) != 0) {
-            func_0212a944(arg0);
-        }
+    }
+    if (*(u32 *)(arg0 + 0xec) != 0) {
+        func_0212a944(arg0);
     }
 }
 
