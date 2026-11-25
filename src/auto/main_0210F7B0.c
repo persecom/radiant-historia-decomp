@@ -1,6 +1,5 @@
 /* 36 functions from 0x0210F550 to 0x02110518 (main), found by ds-decomp. */
 #include "common.h"
-enum { MASK1_0210f7b0 = 0xffcfffef, MASK2_0210f7b0 = 0xffffcffd };
 typedef struct { s16 v[10]; } Config_021100e4;
 extern const Config_021100e4 data_02144bb8;
 extern u8 *func_020c9b24(void *, u16, u8);
@@ -42,7 +41,7 @@ extern void func_020bdf38(void);
 extern void func_020a8440(void);
 s32 func_020a47c8(void);
 
-#pragma opt_common_subs off
+#pragma optimization_level 2
 void func_0210f7b0(void)
 {
   s32 one = 1;
@@ -78,6 +77,6 @@ void func_0210f7b0(void)
   *((volatile u16 *) 0x400100a) &= ~3;
   *((volatile u16 *) 0x400100c) &= 0xffbfULL;
 }
-#pragma opt_common_subs reset
+#pragma optimization_level reset
 int func_02002fb0(s32,s32,s32,s32,s32);
 #pragma scheduling off
