@@ -5,12 +5,13 @@ extern const Unk_020be490 data_02143db8;
 extern void func_020a9ebc(s16 *,s16 *);
 extern void func_020a3bbc(s32);
 extern void func_021098ac(void *);
-extern u32 data_0216263c[3];
+typedef struct { u32 s0, s1, s2; } RngStateBf;
+extern RngStateBf data_0216263c;
 static inline u16 RandomRange_bedf8(u32 limit) {
 u32 value;
 u16 max=limit;
-data_0216263c[0]=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
-value=data_0216263c[0]>>16;
+data_0216263c.s0=data_0216263c.s1*data_0216263c.s0+data_0216263c.s2;
+value=data_0216263c.s0>>16;
 if(max) value=(value*max)>>16;
 return value;
 }
@@ -384,8 +385,8 @@ s32 rx,ry,sx,sy;
 if(count<0) return 1;
 if(count==*(s32 *)(p+0x18)) {func_020beda0(p);return 0;}
 x>>=12;y>>=12;
-if(x>0) dx=RandomRange_bedf8(x)+(x>>1);
-if(y>0) dy=RandomRange_bedf8(y)+(y>>1);
+if(x>0) dx=(x>>1)+RandomRange_bedf8(x);
+if(y>0) dy=(y>>1)+RandomRange_bedf8(y);
 rx=RandomRange_bedf8(1)*2-1;
 ry=RandomRange_bedf8(1)*2-1;
 sx=*(s16 *)(p+0xc)>0 ? 1:-1;
