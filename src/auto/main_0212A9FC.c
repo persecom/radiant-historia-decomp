@@ -317,10 +317,11 @@ s32 func_0212b5ac(u8 *arg0, s32 arg1, u16 *arg2, s8 *arg3, s8 *arg4, s8 *arg5, s
     *arg7 = v2;
     v3 = ((u32)arg0[0xc] << 24) | ((u32)arg0[0xd] << 16) | ((u32)arg0[0xe] << 8) | arg0[0xf];
     *arg8 = v3;
-    if (*arg4 == 0) {
-        return 0;
+    if (*arg4 != 0) {
+        *arg9 = ((*arg5 - 2) << 3) / *arg4;
+    } else {
+        *arg9 = 0;
     }
-    *arg9 = _s32_div_f((*arg5 - 2) << 3);
     return 0;
 }
 
