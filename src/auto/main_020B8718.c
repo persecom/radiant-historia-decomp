@@ -124,37 +124,22 @@ void func_020b8888(void) {
 }
 
 void func_020b88a4(void) {
-    u8 *root = data_021601ec;
-    func_020c9bb8(*(void **)(root + 0x48));
-    func_020c9bb8(*(void **)(root + 0x4c));
-    switch (*(u32 *)(root + 0x40)) {
-    case 0:
-        func_020b8ef4();
-        break;
-    case 1:
-        func_020b9350();
-        break;
-    case 2:
-        func_020b967c();
-        break;
-    case 3:
-        func_020b99d8();
-        break;
-    case 4:
-        func_020b9af0();
-        break;
-    case 5:
-        func_020b9c84();
-        break;
-    case 6:
-        func_020ba214();
-        func_020ba3c0();
-        func_020ba3f8();
-        func_020b748c();
-        func_020b7624();
-        func_020b8944();
-        break;
-    }
+func_020c9bb8(*(void **)(data_021601ec + 0x48));
+func_020c9bb8(*(void **)(data_021601ec + 0x4c));
+switch (*(u32 *)(data_021601ec + 0x40)) {
+case 0: func_020b8ef4(); break;
+case 1: func_020b9350(); break;
+case 2: func_020b967c(); break;
+case 3: func_020b99d8(); break;
+case 5: func_020b9af0(); break;
+case 4: func_020b9c84(); break;
+case 6: func_020ba214(); break;
+}
+func_020ba3c0();
+func_020ba3f8();
+func_020b748c();
+func_020b7624();
+func_020b8944();
 }
 
 void func_020b8944(void) {
