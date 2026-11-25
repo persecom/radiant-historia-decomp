@@ -344,6 +344,17 @@ s32 func_021110a8(u8 *arg0) {
     return 0;
 }
 
+s32 func_021110d0(u8 *arg0)
+{
+    u8 *obj;
+    s32 result;
+    void *rp = &result;
+    obj = (u8 *)func_020c9c10(*(u8 **)(arg0 + 0x30), 0);
+    *(s32 *)rp = (*(s32 (**)(u8 *))(obj + 0x18))(obj);
+    func_020c738c(arg0, func_020c73b8(obj), 2);
+    return *(s32 *)rp;
+}
+
 extern const u16 data_02144c10[];
 void func_0211111c(void *arg0, s32 arg1, s32 arg2) {
     u8 *p = (u8 *)arg0;
