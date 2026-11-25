@@ -66,32 +66,11 @@ extern void func_020423f8(void);
 extern void func_020415d0(void);
 extern void func_02042634(void);
 void func_020437f0(void) {
-    u32 zero = 0;
-    func_0210f978();
-    func_020eff5c(zero);
-    func_020f40a4();
-    func_0203d7c0();
-    func_020eb180(1, zero);
-    func_020ec12c();
-    func_0203e61c();
-    func_0203ee20(zero);
-    func_020f5760();
-    {
-        u8 *p = data_02160204;
-        if (*(u8 *)(p + 0x7a) != 0) {
-            goto end;
-        }
-        func_020469f4();
-        func_02046594();
-        func_020e9eb0();
-        p = data_02160204;
-        if (*(u8 *)(p + 0xd7) == 3) {
-            goto end;
-        }
-        func_020a31c8(0);
-    }
-end:
-    return;
+u32 zero=0;
+func_0210f978(); func_020eff5c(zero); func_020f40a4(); func_0203d7c0(); func_020eb180(1,zero); func_020ec12c(); func_0203e61c(); func_0203ee20(zero); func_020f5760();
+if(data_02160204[0x7a]==0){func_020469f4();func_02046594();}
+func_020e9eb0();
+if(data_02160204[0xd7]!=3) func_020a31c8(0);
 }
 
 void func_02043870(void) {
