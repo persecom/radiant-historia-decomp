@@ -348,7 +348,6 @@ void func_02138510(void) {
 
 void func_02138520(void) {
     s32 i;
-    extern u8 data_021767bc[576] __attribute__((aligned(4)));
     __clear(data_0217667c, 0x20);
     data_02176654[0] = 0;
     data_02176654[1] = 0;
