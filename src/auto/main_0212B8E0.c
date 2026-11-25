@@ -623,7 +623,7 @@ u8 *func_0212c660(u32 arg0, s32 count, void **items) {
     if (i == 4) {
         return NULL;
     }
-    p = data_02173e08 + i * 0xb4;
+    p = (u8 *)data_02173e08 + i * 0xb4;
     width = func_02137d44(first);
     half = func_02137dbc(first) / 2;
     half2 = func_02137e34(first) / 2;
