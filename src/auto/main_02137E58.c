@@ -207,7 +207,7 @@ s32 func_021381cc(u8 *arg0, s32 arg1, s32 arg2, s32 *arg3) {
         func_02138130(data_0215c6a4);
         return -1;
     }
-    base = data_021767bc + (u32)arg0 * 0x48;
+    base = (u8 *)data_021767bc + (u32)arg0 * 0x48;
     for (i = 0; i < 6; i++) {
         u32 *entry = (u32 *)(base + i * 0xc);
         if (entry[0] == 0) {
