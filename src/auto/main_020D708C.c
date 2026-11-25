@@ -9,7 +9,7 @@ extern u8 *data_02160a6c;
 extern void *func_02092a40(void*,s32);
 extern s32 func_02092a70(void*,s32);
 extern u8 *func_02065298(void*,u16,s32,s32,void*);
-extern u32 func_020deaf0();
+extern u32 func_020deaf0(void*,s32,s32);
 extern u8 *func_0202e548(u8);
 extern u8 *func_0210c594(s32,u32);
 extern void func_02022fb0(void*);
@@ -52,7 +52,7 @@ if(func_02092a28(token,data_0215141c)){
 s32 effect;u8 *temp;u32 bit;
 kind=func_02092994(fp,0);position=func_02092994(fp,0);effect=func_02092994(fp,0);model=NULL;temp=NULL;action=NULL;
 if(effect)temp=func_02065298(NULL,(u16)effect,11,0,NULL);
-mask=func_020deaf0(temp,(u8)(bit=1<<kind,kind));
+bit=1<<kind;mask=func_020deaf0(temp,(u8)kind,1);
 for(i=0;i<9;i++){if(mask&(1<<i)){actor=func_0202e548((u8)i);if(actor[0x1c]==0){
 if(position){model=func_0210c594(0x1c8,data_02155c3c);*(void**)(model+0x118)=func_0202fb50(position,0);}
 if(effect){action=func_02065298(NULL,(u16)effect,11,0,NULL);}func_02022fb0(**(void***)(action+0x2c));
@@ -64,7 +64,7 @@ s32 targetIndex;u8 *model,*temp;u8 *action,*actor;u16 i;u32 mask;u32 bit;s8 targ
 kind=func_02092994(fp,0);targetIndex=func_02092994(fp,0);position=func_02092994(fp,0);
 temp=NULL;action=NULL;model=func_020ddbcc((u16)kind);
 if(model){target=(s8)targetIndex;if(position)temp=func_02065298(NULL,(u16)position,11,0,NULL);
-mask=func_020deaf0(temp,(u8)(bit=1<<target,target));
+bit=1<<target;mask=func_020deaf0(temp,(u8)target,1);
 for(i=0;i<9;i++){if(mask&(1<<i)){actor=func_0202e548((u8)i);if(actor[0x1c]==0){
 func_0202e874(actor);if(position){action=func_02065298(NULL,(u16)position,11,0,NULL);}func_02022fb0(**(void***)(action+0x2c));
 actor[0x30]|=2;func_02030878(model,action,actor,mask,bit,0);
