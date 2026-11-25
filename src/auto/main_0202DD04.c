@@ -209,23 +209,20 @@ return NULL;
 }
 
 s32 func_0202e468(void) {
-    u32 i;
-    for (i = 0; i < 9; i++) {
-        u8 *entry = data_02160244[2 + i];
-        u8 *sub = *(u8 **)(entry + 0x10);
-        if (sub != NULL) {
-            u8 *a = *(u8 **)(sub + 0);
-            if (a != NULL && *(u8 **)(a + 0x118) != NULL) {
-                if (*(s32 *)(*(u8 **)(a + 0x118) + 4) >= 1) {
-                    return (s32)a;
-                }
-            }
-            if (*(u8 **)(sub + 0xc) != NULL) {
-                return (s32)a;
-            }
-        }
-    }
-    return 0;
+u8 *sub;
+u32 i;
+for(i=0;i<9;i++){
+u8 *entry=data_02160244[2+i];
+sub=*(u8 **)(entry+0x10);
+while(sub!=NULL){
+u8 *a=*(u8 **)sub;
+if(a!=NULL && *(u8 **)(a+0x118)!=NULL){
+if(*(s32 *)(*(u8 **)(a+0x118)+4)>=1) return (s32)a;
+}
+sub=*(u8 **)(sub+0xc);
+}
+}
+return 0;
 }
 
 void func_0202e4cc(void) {
