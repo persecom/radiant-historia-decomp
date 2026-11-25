@@ -335,9 +335,9 @@ u32 func_020c9b64(u8 *arg0) {
 
 #pragma opt_lifetimes off
 u32 func_020c9bb8(u8 *arg0) {
-    u32 ret = 0;
     u16 count = *(u16 *)(arg0 + 4);
     u16 i;
+    u32 ret = 0;
     for (i = 0; i < count; i++) {
         u8 *obj = (*(u8 ***)arg0)[i];
         if (obj != NULL && *(void **)(obj + 0xc) != NULL) {
