@@ -201,15 +201,15 @@ void func_02004364(void) {
 }
 
 void func_0200439c(void) {
-s32 val=func_02005418(), off=val*6;
+s32 val = func_02005418();
+s32 off=val*6;
 u32 a=*(volatile u16 *)(data_0213e4a8+off)<<12;
 u32 b=*(volatile u16 *)(data_0213e4aa+off)<<12;
 u32 c=*(u16 *)(data_0213e4ac+off)<<12;
-u32 *dst=data_0215cd40;
-((volatile u32 *)dst)[5]=val;
-dst[1]=a;
-dst[6]=b;
-dst[7]=c;
+data_0215cd40[5]=val;
+data_0215cd40[1]=a;
+data_0215cd40[6]=b;
+data_0215cd40[7]=c;
 }
 
 void func_020043f8(void *arg0,u32 offset,u32 size) {
@@ -419,30 +419,15 @@ void func_02004aac(s32 arg0) {
 
 extern u16 data_0215cd60[];
 void func_02004bdc(u32 arg0) {
-    data_0215cd60[0] = (data_0215cd60[0] | data_0215cd60[7]) & ~arg0;
-    data_0215cd60[7] = arg0;
-    switch ((s32)arg0) {
-    case 0x10:
-        *(volatile u32 *)0x04000000 |= 0x40000000;
-        *(volatile u8 *)0x04000244 = 0x84;
-        break;
-    case 0x20:
-        *(volatile u32 *)0x04000000 |= 0x40000000;
-        *(volatile u8 *)0x04000245 = 0x84;
-        break;
-    case 0x40:
-        *(volatile u32 *)0x04000000 |= 0x40000000;
-        *(volatile u8 *)0x04000246 = 0x8c;
-        break;
-    case 0x60:
-        *(volatile u8 *)0x04000246 = 0x8c;
-        *(volatile u8 *)0x04000245 = 0x84;
-        *(volatile u32 *)0x04000000 |= 0x40000000;
-        break;
-    case 0:
-        *(volatile u32 *)0x04000000 &= ~0x40000000;
-        break;
-    }
-    func_02004810(data_0215cd60[0]);
+ data_0215cd60[0]=(data_0215cd60[0]|data_0215cd60[7])&~arg0;
+ data_0215cd60[7]=arg0;
+ switch((s32)arg0){
+ case 0: *(volatile u32 *)0x04000000 &=~0x40000000;break;
+ case 0x10: *(volatile u32 *)0x04000000 |=0x40000000;*(volatile u8 *)0x04000244=0x84;break;
+ case 0x40: *(volatile u32 *)0x04000000 |=0x40000000;*(volatile u8 *)0x04000246=0x8c;break;
+ case 0x60: *(volatile u8 *)0x04000246=0x8c;
+ case 0x20: *(volatile u8 *)0x04000245=0x84;*(volatile u32 *)0x04000000 |=0x40000000;break;
+ }
+ func_02004810(data_0215cd60[0]);
 }
 
