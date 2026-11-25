@@ -1,5 +1,6 @@
 /* 36 functions from 0x0210D6D8 to 0x0210E694 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { u64 state, multiplier, increment; } Rng64_0210ddfc;
 typedef struct { u32 attr; u32 tile; } Sprite_0210e290;
 extern s32 data_02155c3c;
 extern void func_0210c5dc(void *);
@@ -313,6 +314,8 @@ extern u32 data_021626f8;
 extern u32 data_0216263c;
 extern u32 data_02162658;
 extern void *data_0216267c;
+#pragma push
+#pragma opt_propagation off
 void func_0210ddfc(void) {
     u8 *cfg = data_02155c84;
     u8 *base = data_0216280c;
@@ -406,64 +409,54 @@ void func_0210ddfc(void) {
                 *(u8 **)(base + 0x7c) = null;
                 *(u8 **)(base + 0x30) = null;
             }
-            func_020081c0();
-            func_02125448();
-            func_02108ffc();
-            *(s32 *)(base + 0x60) = 0;
-        } else {
-            v = func_02008128();
-            if (*(u32 *)(base + 0x40) != *(u32 *)(base + 0x3c)) {
-                if (*(s32 *)(base + 0x54) != 0) {
-                    if (*(u32 *)(base + 0x3c) == 0)
-                        *(volatile u16 *)0x04000060 &= 0xcfdf;
-                    else {
-                        *(volatile u16 *)0x04000060 = (*(volatile u16 *)0x04000060 & ~0x3000) | 0x20;
-                        *(volatile u32 *)0x04000540 = *(u32 *)(cfg + 0xc);
-                        *(s32 *)(base + 0x50) = 1;
-                        func_0200813c(v);
-                        func_020081c0();
-                        func_02125448();
-                        func_02108ffc();
-                    }
+        }
+        func_020081c0();
+        func_02125448();
+        func_02108ffc();
+        *(u8 **)(base + 0x60) = null;
+    } else {
+        v = func_02008128();
+        if (*(u32 *)(base + 0x40) != *(u32 *)(base + 0x3c)) {
+            if (*(s32 *)(base + 0x54) == 0) {
+                if (*(u32 *)(base + 0x40) == 0) {
+                    { u16 mask = 0xcfdf; *(volatile u16 *)0x04000060 &= mask; }
+                } else { goto set; }
+            } else {
+                if (*(u32 *)(base + 0x3c) == 0) {
+                    *(volatile u16 *)0x04000060 &= 0xcfdf;
                 } else {
-                    if (*(u32 *)(base + 0x40) == 0)
-                        *(volatile u16 *)0x04000060 &= 0xcfdf;
-                    else {
-                        *(volatile u16 *)0x04000060 = (*(volatile u16 *)0x04000060 & ~0x3000) | 0x20;
-                        *(volatile u32 *)0x04000540 = *(u32 *)(cfg + 0xc);
-                        *(s32 *)(base + 0x50) = 1;
-                        func_0200813c(v);
-                        func_020081c0();
-                        func_02125448();
-                        func_02108ffc();
-                    }
+set:
+                    *(volatile u16 *)0x04000060 = (*(volatile u16 *)0x04000060 & ~0x3000) | 0x20;
                 }
             }
         }
+        *(volatile u32 *)0x04000540 = *(u32 *)(cfg + 0xc);
+        *(s32 *)(base + 0x50) = 1;
+        func_0200813c(v);
+        func_020081c0();
+        func_02125448();
+        func_02108ffc();
     }
 
     if (*(u8 *)base != 0 && *(void **)(base + 0xc) != NULL)
         ((void (*)(void))*(void **)(base + 0xc))();
 
-    if (*(s32 *)(base + 0x58) != 0) {
-        if (*(s32 *)(base + 0x54) != 0) {
-            func_02002858((void *)0x0400006c, *(void **)(base + 8));
-        } else {
-            func_02002858((void *)0x0400006c, *(void **)(base + 0x78));
-            func_02002858((void *)0x0400106c, *(void **)(base + 8));
-        }
-        if (*(s32 *)(base + 0x58) != 0 && *(void **)(base + 0x38) != NULL)
-            func_02107820();
+    if (*(s32 *)(base + 0x58) == 0 || *(s32 *)(base + 0x54) != 0) {
+        func_02002858((void *)0x0400006c, *(void **)(base + 8));
+        func_02002858((void *)0x0400106c, *(void **)(base + 0x78));
     } else {
-        if (*(void **)(base + 0x38) != NULL) func_02107820();
-        if (*(void **)(base + 0x34) != NULL) {
-            func_02107840();
-            func_0210763c();
-            func_02107774();
-        }
+        func_02002858((void *)0x0400006c, *(void **)(base + 0x78));
+        func_02002858((void *)0x0400106c, *(void **)(base + 8));
     }
-
-    if (data_02162b80 != 0 && *(s32 *)(base + 0x58) != 0 && *(s32 *)(base + 0x54) != 0)
+    if (*(s32 *)(base + 0x58) != 0 && *(void **)(base + 0x38) != NULL)
+        func_02107820();
+    if (*(s32 *)(base + 0x58) == 0) {
+        if (*(void **)(base + 0x38) != NULL) func_02107820();
+        if (*(void **)(base + 0x34) != NULL) func_02107840();
+    }
+    func_0210763c();
+    func_02107774();
+    if (data_02162b80 != 0 && (*(s32 *)(base + 0x58) == 0 || *(s32 *)(base + 0x54) != 0))
         func_02125448();
     if (data_021624f8 != 0) func_02109040();
     if (*(u32 *)data_02162730 != 0) func_0210d710();
@@ -484,12 +477,13 @@ void func_0210ddfc(void) {
     }
     {
         u64 *q = (u64 *)&data_02162658;
-        q[0] = q[0] * q[1] + q[2];
+        u64 value = q[1] * q[0] + q[2];
+        *(volatile u64 *)q = value;
     }
     if (data_0216267c != NULL && *(void **)((u8 *)data_0216267c + 0x24) != NULL)
         func_0210c470();
 }
-
+#pragma pop
 void func_0210e290(s32 arg0) {
  s32 i,x,y,z; Sprite_0210e290 *p;
  *(volatile s32 *)(data_0216280c+0x54)=0;
