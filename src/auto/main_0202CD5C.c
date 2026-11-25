@@ -225,6 +225,97 @@ void func_0202d3ac(u8 *arg0) {
     }
 }
 
+extern void func_021168f8(void *, void *);
+void func_0202d444(u8 *arg0) {
+u8 *p;
+u8 *node = *(u8 **)(arg0+0x10);
+s32 x,bx,y,by,dx,a,b; s8 old; u8 flags;
+if (!node) return;
+do {
+u8 *obj=*(u8 **)node;
+if (!obj) goto next;
+p=*(u8 **)(*(u8 **)(obj+0x128)+0x54);
+*(u16 *)(p+0x24)=*(u16 *)(obj+0x90);
+if((s8)p[1]==4) goto next;
+old=(s8)p[3]; flags=p[4];
+if(flags&1) goto next;
+a=(s8)p[0]; b=(s8)p[2];
+if(b==a) {
+if(flags&2) {p[4]=flags&0xfd; func_021168f8(data_02160244+0x44,p);} p[3]=1;
+func_0202d3ac(p);goto next;
+} else if(b!=a) {
+x=a/3; y=a%3; bx=b/3; by=b%3; dx=bx-x;
+if((dx>=0?dx:-dx)<=1 && by==y) {
+if(old!=0 && old<5) goto next;
+if(flags&2){p[4]&=0xfd;func_021168f8(data_02160244+0x44,p);}
+switch((s8)p[1]){
+case 0:p[3]=5;break;
+case 1:p[3]=4;break;
+case 2:p[3]=3;break;
+case 3:p[3]=2;break;
+}
+func_0202d3ac(p);goto next;
+}
+else if(bx==x && ((by-y)>=0?(by-y):-(by-y))<=1) {
+if(old!=0 && old<9) goto next;
+if(flags&2){p[4]&=0xfd;func_021168f8(data_02160244+0x44,p);}
+switch((s8)p[1]){
+case 0:p[3]=9;break;
+case 1:p[3]=8;break;
+case 2:p[3]=7;break;
+case 3:p[3]=6;break;
+}
+func_0202d3ac(p);goto next;
+}
+else if((dx>=0?dx:-dx)<=1 && ((by-y)>=0?(by-y):-(by-y))<=1) {
+if(old!=0 && old<13) goto next;
+if(flags&2){p[4]&=0xfd;func_021168f8(data_02160244+0x44,p);}
+switch((s8)p[1]){
+case 0:p[3]=13;break;
+case 1:p[3]=12;break;
+case 2:p[3]=11;break;
+case 3:p[3]=10;break;
+}
+func_0202d3ac(p);goto next;
+}
+else if((dx>=0?dx:-dx)<=1 && ((by-y)>=0?(by-y):-(by-y))==2) {
+if(old!=0 && old<17) goto next;
+if(flags&2){p[4]&=0xfd;func_021168f8(data_02160244+0x44,p);}
+switch((s8)p[1]){
+case 0:p[3]=17;break;
+case 1:p[3]=16;break;
+case 2:p[3]=15;break;
+case 3:p[3]=14;break;
+}
+func_0202d3ac(p);goto next;
+}
+else if((dx>=0?dx:-dx)==2 && ((by-y)>=0?(by-y):-(by-y))<=1) {
+if(old!=0 && old<21) goto next;
+if(flags&2){p[4]&=0xfd;func_021168f8(data_02160244+0x44,p);}
+switch((s8)p[1]){
+case 0:p[3]=21;break;
+case 1:p[3]=20;break;
+case 2:p[3]=19;break;
+case 3:p[3]=18;break;
+}
+func_0202d3ac(p);goto next;
+}
+else {
+if(old!=0 && old<25) goto next;
+if(flags&2){p[4]&=0xfd;func_021168f8(data_02160244+0x44,p);}
+switch((s8)p[1]){
+case 0:p[3]=25;break;
+case 1:p[3]=24;break;
+case 2:p[3]=23;break;
+case 3:p[3]=22;break;
+}
+}
+}else goto next;
+func_0202d3ac(p);
+next: node=*(u8 **)(node+12);
+}while(node);
+}
+
 s32 func_0202d890(s8 arg0, s16 arg1) {
     u8 *node = *(u8 **)(data_02160244 + 0x44);
 
