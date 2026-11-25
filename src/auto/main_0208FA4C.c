@@ -13,8 +13,10 @@ extern const Unk14 data_02140ff4;
 extern const Unk14 data_02140fe0;
 extern const Unk14 data_02140fcc;
 
-extern u8 func_02085110(u8);
-extern u8 *func_02021f10(u8);
+extern s32 func_02085110(u8);
+extern u8 *func_02021f10(s32);
+extern s32 func_02085158(u8);
+extern void func_020922f8(s32,s32,s16,s16,s32,s32,s32,s32,s32,s32,s32,s32,s32);
 extern void func_02090d48(s32, s16, s16, s16, s16, s16);
 extern void func_020a3bbc(s32);
 extern void func_021098ac(void *);
