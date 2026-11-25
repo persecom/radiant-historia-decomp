@@ -1,5 +1,19 @@
 /* 12 functions from 0x020C55BC to 0x020C641C (main), found by ds-decomp. */
 #include "common.h"
+typedef struct {s32 x,y,z;} Vec_020c55bc;
+extern u8 *data_02160200;
+extern const s16 data_0213a394[];
+extern s32 func_020a6dd8(s32,s32);
+extern u8 *func_020a7154(s32);
+extern s32 func_020a6d54(void *);
+extern void func_0210d27c(s32);
+extern u8 *func_020a6360(void *,u8);
+extern void func_02065cb8(s32);
+extern void func_020a5cd4(void *);
+extern s32 func_0210c2f4(void *,void *);
+extern s32 func_02002404(s32,s32);
+s32 func_020c5f08(void);
+void func_020c6124(void);
 typedef struct {u16 x,y,z,w;} Touch_020c5f08;
 extern u16 data_021626a8, data_021628f8, data_02162908[4];
 extern u8 *data_02160204;
@@ -35,26 +49,30 @@ typedef struct {
     u32 field_1b0;
 } Unk_020c627c;
 s32 func_020c5f08(void){
- u16 touch[4]={data_02162908[0],data_02162908[1],data_02162908[2],data_02162908[3]};
- s32 result=0;
- u8 *p;
- u16 *current;
+ Touch_020c5f08 touch;
  s32 i;
+ u8 *n;
+ s32 y,x;
+ u8 *p;
+ s32 result=0;
+ u16 *current;
  if(data_021626a8&0x40)result|=1;
  if(data_021626a8&0x80)result|=2;
  if(data_021626a8&0x20)result|=4;
  if(data_021626a8&0x10)result|=8;
+ touch=*(Touch_020c5f08 *)data_02162908;
  p=data_021600e4;
  current=func_020a5f14(p+0x124,*(u16 *)(p+0xd4));
  if(data_021628f8){
- s32 x=touch[0],y=touch[1];
+ y=touch.y;x=touch.x;
  for(i=0;i<37;i++){
- u8 *n=func_020a5f40(p+0x124,(u16)i);
+ n=func_020a5f40(p+0x124,(u16)i);
  if(n){
- s32 nx=*(s16 *)(n+6)**(s32 *)(p+0x70)-22+*(s32 *)(p+0x44);
- s32 ny=*(s16 *)(n+8)**(s32 *)(p+0x70)+4+*(s32 *)(p+0x48);
+ s32 ny,nx=*(s16 *)(n+6)**(s32 *)(p+0x70)-22+*(s32 *)(p+0x44);
+ ny=*(s16 *)(n+8)**(s32 *)(p+0x70)+4+*(s32 *)(p+0x48);
+ s32 left=nx-14,right=nx+14,top=ny-14,bottom=ny+14;
  s32 hit;
- if(x>=nx-14 && x<=nx+14 && y>=ny-14 && y<=ny+14)hit=1;else hit=0;
+ if(x>=left && x<=right && y>=top && y<=bottom)hit=1;else hit=0;
  if(hit==1){
  u16 id=*(u16 *)n,old=*(u16 *)(p+0xd4);
  if(old==id){
