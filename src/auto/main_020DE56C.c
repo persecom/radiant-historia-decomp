@@ -116,99 +116,159 @@ u8 *func_020de844(s32 arg0) {
     return NULL;
 }
 
-void func_020de888(void) {
-u8 *node,*info,*base,*obj,*state;
-s32 index=0;
-base=*(u8 **)data_02160244;
-node=func_02032240();
-while(node) {
-if(index==0) {
-*(u8 **)(base+0x10+index*4)=node;
-obj=*(u8 **)node;
-base[0x38]=**(u8 **)(obj+0x118);
-info=*(u8 **)(node+8);
-if(info[0]==4 && *(s32 *)(data_02160260+0x88)==0) {
-s32 sum=0,other;
-u16 random;
-u8 *root=data_02160a6c;
-u8 *p=*(u8 **)(root+0xac);
-while(p) {sum+=*(s16 *)(*(u8 **)(p+0x118)+0xba);p=*(u8 **)(p+0x16c);}
-other=0;
-p=*(u8 **)(root+0xb8);
-while(p) {other+=*(s16 *)(*(u8 **)(p+0x118)+0xba);p=*(u8 **)(p+0x174);}
-other/=*(u16 *)(root+0xc0);
-random=(u16)((((data_0216263c[0]=data_0216263c[1]*data_0216263c[0]+data_0216263c[2])>>16)*100)>>16);
-if(sum/3-other*5+60 >= random) {
-*(u32 *)(*(u8 **)(obj+0x128)+0x18)|=4;
-}
-}
-if(*(u16 *)(node+0xe)&2)return;
-state=*(u8 **)(obj+0x128);
-(*(s8 *)(state+0x50))++;
-*(u32 *)(state+0x18)|=1;
-*(u32 *)(state+0x18)&=~0x10;
-if(info[0]==3)*(u32 *)(state+0x18)|=0x10;
-}else if(index>=1) {
-u8 expected;
-u8 *info2,*obj2,*state2;
-s32 valid,i;
-u8 kind;
-obj2=*(u8 **)node;
-expected=base[0x38];
-info2=*(u8 **)(node+8);
-kind=**(u8 **)(obj2+0x118);
-if(kind!=expected)return;
-if(kind==1 && info2[0x14]==1)return;
-if(*(u16 *)(node+0xe)&2)return;
-valid=1;
-if(kind==1) {
-for(i=0;i<*(s8 *)(base+0x39);i++) {
-if(obj2==**(u8 ***)(base+0x10+i*4))valid=0;
-}
-}
-if(!valid)return;
-if(kind==expected) {
-state2=*(u8 **)(obj2+0x128);
-(*(s8 *)(state2+0x50))++;
-*(u32 *)(state2+0x18)|=1;
-*(u32 *)(state2+0x18)&=~0x10;
-if(info2[0]==3)*(u32 *)(state2+0x18)|=0x10;
-}
-}
-(*(s8 *)(base+0x39))++;
-*(u8 **)(base+0x10+index*4)=node;
-if(*(s8 *)(base+0x39)>=10)return;
-index++;
-node=*(u8 **)(node+0x24);
-}
+void func_020de888(void)
+{
+  u8 *node;
+  u8 *info;
+  u8 *base;
+  u8 *obj;
+  u8 *state;
+  s32 index = 0;
+  base = *((u8 **) data_02160244);
+  node = func_02032240();
+  while (node)
+  {
+    if (index == 0)
+    {
+      *((u8 **) ((base + 0x10) + (index * 4))) = node;
+      obj = *((u8 **) node);
+      base[0x38] = *(*((u8 **) (obj + 0x118)));
+      info = *((u8 **) (node + 8));
+      if (((info[0] == 4) && ((*((s32 *) (data_02160260 + 0x88))) == 0)) != 0)
+      {
+        s32 sum = 0;
+        s32 other;
+        u8 *root = data_02160a6c;
+        u16 random;
+        u8 *p = *((u8 **) (root + 0xac));
+        while (p)
+        {
+          sum += *((s16 *) ((*((u8 **) (p + 0x118))) + 0xba));
+          p = *((u8 **) (p + 0x16c));
+        }
+        other = 0;
+        p = *((u8 **) (root + 0xb8));
+        while (p)
+        {
+          other += *((s16 *) ((*((u8 **) (p + 0x118))) + 0xba));
+          p = *((u8 **) (p + 0x174));
+        }
+        other /= *((u16 *) (root + 0xc0));
+        {
+          u32 tmp = ((data_0216263c[0] = (data_0216263c[1] * data_0216263c[0]) + data_0216263c[2]) >> 16);
+          random = (u16) ((tmp * 100) >> 16);
+        }
+        if ((((sum / 3) - (other * 5)) + 60) >= random)
+        {
+          *((u32 *) ((*((u8 **) (obj + 0x128))) + 0x18)) |= 4;
+        }
+      }
+      if ((*((u16 *) (node + 0xe))) & 2)
+      {
+        return;
+      }
+      state = *((u8 **) (obj + 0x128));
+      (*((s8 *) (state + 0x50)))++;
+      *((u32 *) (state + 0x18)) |= 1;
+      *((u32 *) (state + 0x18)) &= ~0x10;
+      if (info[0] == 3)
+      {
+        *((u32 *) (state + 0x18)) |= 0x10;
+      }
+    }
+    else
+      if (index >= 1)
+    {
+      u8 expected;
+      u8 *info2;
+      u8 *obj2;
+      u8 *state2;
+      s32 valid;
+      s32 i;
+      u8 kind;
+      obj2 = *((u8 **) node);
+      expected = base[0x38];
+      info2 = *((u8 **) (node + 8));
+      kind = *(*((u8 **) (obj2 + 0x118)));
+      if (kind != expected)
+      {
+        return;
+      }
+      if ((kind == 1) && (info2[0x14] == 1))
+      {
+        return;
+      }
+      if ((*((u16 *) (node + 0xe))) & 2)
+      {
+        return;
+      }
+      valid = 1;
+      if (kind == 1)
+      {
+        for (i = 0; i < (*((s8 *) (base + 0x39))); i++)
+        {
+          if (obj2 == (*(*((u8 ***) ((base + 0x10) + (i * 4))))))
+          {
+            valid = 0;
+          }
+        }
+      }
+      if (!valid)
+      {
+        return;
+      }
+      if (kind == expected)
+      {
+        state2 = *((u8 **) (obj2 + 0x128));
+        (*((s8 *) (state2 + 0x50)))++;
+        *((u32 *) (state2 + 0x18)) |= 1;
+        *((u32 *) (state2 + 0x18)) &= ~0x10;
+        if (info2[0] == 3)
+        {
+          *((u32 *) (state2 + 0x18)) |= 0x10;
+        }
+      }
+    }
+    (*((s8 *) (base + 0x39)))++;
+    *((u8 **) ((base + 0x10) + (index * 4))) = node;
+    if (((*((s8 *) (base + 0x39))) + 1) >= (10 + 1))
+    {
+      return;
+    }
+    index++;
+    node = *((u8 **) (node + 0x24));
+  }
 }
 
-u32 func_020deaf0(u8 *arg0, s32 arg1) {
+u32 func_020deaf0(u8 *arg0, s32 arg1, s32 side) {
+    s32 neighbor;
     u32 mask = 1u << arg1;
     if (arg0 == NULL) return 0;
     switch (arg0[6]) {
     case 2:
-        if ((arg1 + 3) % 3 == arg1 % 3) mask |= 1u << (arg1 + 3);
-        if ((arg1 + 6) % 3 == arg1 % 3) mask |= 1u << (arg1 + 6);
+        neighbor=arg1+3;
+        if (neighbor % 3 == arg1 % 3) mask |= 1u << neighbor;
+        neighbor=arg1+6;
+        if (neighbor % 3 == arg1 % 3) mask |= 1u << neighbor;
         break;
     case 3:
-        if ((arg1 + 1) / 3 == arg1 / 3) mask |= 1u << (arg1 + 1);
-        if ((arg1 - 1) / 3 == arg1 / 3 && (arg1 - 1) >= 0) mask |= 1u << (arg1 - 1);
+        neighbor=arg1+1;
+        if (neighbor / 3 == arg1 / 3) mask |= 1u << neighbor;
+        neighbor=arg1-1;
+        if (neighbor / 3 == arg1 / 3 && neighbor >= 0) mask |= 1u << neighbor;
         break;
     case 4:
-        if ((arg1 + 1) / 3 == arg1 / 3) mask |= 1u << (arg1 + 1);
-        if ((arg1 - 1) / 3 == arg1 / 3 && (arg1 - 1) >= 0) mask |= 1u << (arg1 - 1);
-        if ((arg1 + 3) % 3 == arg1 % 3) mask |= 1u << (arg1 + 3);
-        if ((arg1 - 3) % 3 == arg1 % 3 && (arg1 - 3) >= 0) mask |= 1u << (arg1 - 3);
-        break;
-    case 5:
-        if ((arg1 + 1) / 3 == arg1 / 3) mask |= 1u << (arg1 + 1);
-        if ((arg1 - 1) / 3 == arg1 / 3 && (arg1 - 1) >= 0) mask |= 1u << (arg1 - 1);
-        if ((arg1 + 3) / 3 == arg1 / 3 && arg1 + 3 < 9) mask |= 1u << (arg1 + 3);
-        if ((arg1 - 3) / 3 == arg1 / 3 && (arg1 - 3) >= 0) mask |= 1u << (arg1 - 3);
+        neighbor=arg1+1;
+        if (neighbor / 3 == arg1 / 3) mask |= 1u << neighbor;
+        neighbor=arg1-1;
+        if (neighbor / 3 == arg1 / 3 && neighbor >= 0) mask |= 1u << neighbor;
+        neighbor=arg1+3;
+        if (neighbor % 3 == arg1 % 3) mask |= 1u << neighbor;
+        neighbor=arg1-3;
+        if (neighbor % 3 == arg1 % 3 && neighbor >= 0) mask |= 1u << neighbor;
         break;
     case 7: {
-        s32 i;
+        u16 i;
         u16 bits = *(u16 *)(arg0 + 0x38);
         for (i = 0; i < 12; i++) {
             if (bits & (1u << i)) mask |= 1u << i;
@@ -216,53 +276,74 @@ u32 func_020deaf0(u8 *arg0, s32 arg1) {
         break;
     }
     case 8:
-        if ((arg1 + 1) / 3 == arg1 / 3) mask |= 1u << (arg1 + 1);
-        if ((arg1 - 3) / 3 == (arg1 / 3) - 1 && (arg1 - 3) >= 0) mask |= 1u << (arg1 - 3);
-        if ((arg1 - 2) / 3 == (arg1 / 3) - 1 && (arg1 - 2) >= 0) mask |= 1u << (arg1 - 2);
+        neighbor=arg1+1;
+        if (neighbor / 3 == arg1 / 3) mask |= 1u << neighbor;
+        neighbor=arg1-3;
+        if (neighbor % 3 == arg1 % 3 && neighbor >= 0) mask |= 1u << neighbor;
+        neighbor=arg1-2;
+        if (neighbor / 3 == (arg1 / 3) - 1 && neighbor >= 0) mask |= 1u << neighbor;
         break;
     case 9:
-        if ((arg1 + 1) / 3 == arg1 / 3) mask |= 1u << (arg1 + 1);
-        if ((arg1 - 1) / 3 == arg1 / 3 && (arg1 - 1) >= 0) mask |= 1u << (arg1 - 1);
-        if ((arg1 + 3) / 3 == arg1 / 3 + 1) mask |= 1u << (arg1 + 3);
-        if ((arg1 - 3) / 3 == arg1 / 3 - 1 && (arg1 - 3) >= 0) mask |= 1u << (arg1 - 3);
+        neighbor=arg1+1;
+        if (neighbor / 3 == arg1 / 3) mask |= 1u << neighbor;
+        neighbor=arg1-1;
+        if (neighbor / 3 == arg1 / 3 && neighbor >= 0) mask |= 1u << neighbor;
+        neighbor=arg1-3;
+        if (neighbor % 3 == arg1 % 3 && arg1 - 3 >= 0) mask |= 1u << neighbor;
+        neighbor=arg1+3;
+        if (neighbor % 3 == arg1 % 3) mask |= 1u << neighbor;
+        if (arg1 % 3 <= 1 && arg1 / 3 >= 1) mask |= 1u << (arg1 - 2);
+        if (arg1 % 3 <= 1 && arg1 / 3 <= 1) mask |= 1u << (arg1 + 4);
+        if (arg1 % 3 >= 1 && arg1 / 3 <= 1) mask |= 1u << (arg1 + 2);
+        if (arg1 % 3 >= 1 && arg1 / 3 >= 1) mask |= 1u << (arg1 - 4);
         break;
     case 10:
-        if ((arg1 + 1) / 3 == arg1 / 3) mask |= 1u << (arg1 + 1);
-        if ((arg1 - 1) / 3 == arg1 / 3 && (arg1 - 1) >= 0) mask |= 1u << (arg1 - 1);
-        if (arg1 / 3 <= 1 && (arg1 - 2) >= 0) mask |= 1u << (arg1 - 2);
-        if (arg1 / 3 <= 1) mask |= 1u << (arg1 + 4);
-        if (arg1 % 3 <= 1 && arg1 / 3 <= 1) mask |= 1u << (arg1 + 2);
-        if (arg1 / 3 <= 1 && arg1 % 3 >= 1) mask |= 1u << (arg1 - 4);
+        neighbor=arg1+1;
+        if (neighbor / 3 == arg1 / 3) mask |= 1u << neighbor;
+        neighbor=arg1-1;
+        if (neighbor / 3 == arg1 / 3 && neighbor >= 0) mask |= 1u << neighbor;
+        neighbor=arg1+3;
+        if (neighbor % 3 == arg1 % 3 && arg1 + 3 < 9) mask |= 1u << neighbor;
+        if (arg1 % 3 <= 1 && arg1 / 3 <= 1) mask |= 1u << (arg1 + 4);
+        if (arg1 % 3 >= 1 && arg1 / 3 <= 1) mask |= 1u << (arg1 + 2);
+        break;
+    case 5:
+        if (side == 0) mask |= 0xe00;
+        else if (side == 1) mask |= 0x1ff;
         break;
     case 11:
-        if (arg1 == 0) mask |= 0xe00;
-        else if (arg1 == 1) mask |= 0x1ff;
+        neighbor=arg1+1;
+        if (neighbor / 3 == arg1 / 3 && neighbor < 9) mask |= 1u << neighbor;
         break;
     case 12:
-        if ((arg1 + 1) / 3 == arg1 / 3 && (arg1 + 1) < 9) mask |= 1u << (arg1 + 1);
-        break;
-    case 13:
         mask |= 0xe00;
         break;
-    case 14: {
+    case 13: {
         s32 q = arg1 % 3;
         if (q == 0) mask |= 0x49;
         else if (q == 1) mask |= 0x92;
         else if (q == 2) mask |= 0x124;
         break;
     }
-    case 15:
+    case 14:
         if (arg1 / 3 == 0) mask |= 0x7;
         else if (arg1 / 3 == 1) mask |= 0x38;
         else if (arg1 / 3 == 2) mask |= 0x1c0;
         break;
-    case 16:
-        if ((arg1 + 1) / 3 == arg1 / 3) mask |= 1u << (arg1 + 1);
-        if ((arg1 - 1) / 3 == arg1 / 3 && (arg1 - 1) >= 0) mask |= 1u << (arg1 - 1);
-        if ((arg1 + 3) % 3 == arg1 % 3 && arg1 + 3 < 9) mask |= 1u << (arg1 + 3);
-        if ((arg1 - 3) % 3 == arg1 % 3 && (arg1 - 3) >= 0) mask |= 1u << (arg1 - 3);
-        if (arg1 % 3 == 0) mask |= 0x3f;
+    case 15:
+        if (arg1 / 3 == 0) mask |= 0x3f;
         else mask |= 0x1f8;
+        break;
+    case 16:
+        mask |= 1u << arg1;
+        neighbor=arg1+1;
+        if (neighbor / 3 == arg1 / 3) mask |= 1u << neighbor;
+        neighbor=arg1-1;
+        if (neighbor / 3 == arg1 / 3 && neighbor >= 0) mask |= 1u << neighbor;
+        neighbor=arg1+3;
+        if (neighbor % 3 == arg1 % 3 && arg1 + 3 < 9) mask |= 1u << neighbor;
+        neighbor=arg1-3;
+        if (neighbor % 3 == arg1 % 3 && neighbor >= 0) mask |= 1u << neighbor;
         break;
     }
     return mask;
