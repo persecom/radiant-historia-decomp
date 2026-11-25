@@ -65,27 +65,24 @@ void func_020ed0bc(void) {
     }
 }
 
-s32 func_020ed2d0(u8 *arg0, s32 arg1) {
-    u8 *r3 = *(u8 **)(arg0 + 0x10);
-    if (*(u16 *)(*(u8 **)(*(u8 **)(*(u8 **)arg0 + 0x58) + 0xc)) <= arg1 * 2) {
-        return 0;
-    }
-    switch (r3[arg1 * 4]) {
-        case 0:
-            return 0;
-        case 1:
-            break;
-        case 4:
-            *(u16 *)(arg0 + 0xc) = 0xffff;
-            return func_020ed270(arg0, *(u16 *)(r3 + arg1 * 4 + 2) + 2, 1);
-        case 0xe:
-            *(u16 *)(arg0 + 0xc) = 0xffff;
-            return func_020ed270(arg0, *(u16 *)(r3 + arg1 * 4 + 2) + 2, 1);
-        case 0xf:
-            *(u16 *)(arg0 + 0xc) = 0xffff;
-            return func_020ed270(arg0, *(u16 *)(r3 + arg1 * 4 + 2), 1);
-    }
-    return 0;
+s32 func_020ed2d0(u8 *arg0,s32 arg1){
+u8 *p=*(u8 **)(arg0+0x10);s32 cmd;
+if(*(u16 *)(*(u8 **)(*(u8 **)(*(u8 **)arg0+0x58)+0xc))<=arg1*2)return 0;
+cmd=p[arg1*4];
+if(cmd>14)goto high;
+if(cmd>=14)goto fourteen;
+if(cmd>4)goto done;
+if(cmd<0)goto done;
+if(cmd==0)goto zero;
+if(cmd==4)goto four;
+goto done;
+high:if(cmd==15)goto fifteen;
+goto done;
+zero:return 0;
+four:*(u16 *)(arg0+12)=0xffff;return func_020ed270(arg0,*(u16 *)(p+arg1*4+2)+2,1);
+fourteen:*(u16 *)(arg0+12)=0xffff;return func_020ed270(arg0,*(u16 *)(p+arg1*4+2)+2,1);
+fifteen:*(u16 *)(arg0+12)=0xffff;return func_020ed270(arg0,*(u16 *)(p+arg1*4+2),1);
+done:return 0;
 }
 
 void func_020ed3a4(u8 *arg0, s32 arg1, s32 arg2) {
@@ -104,3 +101,7 @@ void func_020ed3a4(u8 *arg0, s32 arg1, s32 arg2) {
         }
     }
 }
+
+void func_020ed4c4(void *arg0, void *arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5) {
+}
+
