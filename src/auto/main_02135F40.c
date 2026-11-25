@@ -3,9 +3,20 @@
 static inline u32 pack_pcm_02136210(u16 low, u16 high) {
     return low | ((u32)high << 16);
 }
-static inline u32 pack_signed_pcm_02136210(s16 low, s16 high) {
-    return (u16)low | ((u32)(u16)high << 16);
-}
+typedef struct {
+    u16 flags;
+    s16 channel;
+    u8 *buffer;
+    u8 unk_08[8];
+    u32 written;
+    u8 unk_14[6];
+    u16 position;
+    u8 unk_1c[12];
+    u16 mode;
+    s16 previous;
+    u32 unk_2c;
+    void (*callback)(s16, void *, u32);
+} PcmState_02136210;
 extern void func_02008f74(void *, s32, u32);
 extern void func_02013878(void *, s32, s32);
 extern u8 data_0215beec[];
@@ -152,6 +163,7 @@ u32 func_021361bc(u8 *arg0, u16 *arg1, u16 *arg2) {
 }
 
 extern void func_02009008(void *, void *, u32);
+#pragma opt_lifetimes off
 s16 *func_02136210(void *arg0, void *arg1, u32 arg2) {
     u8 *p = (u8 *)arg0;
     s16 *src = (s16 *)arg1;
@@ -180,10 +192,10 @@ s16 *func_02136210(void *arg0, void *arg1, u32 arg2) {
                 prev = *(s16 *)(p + 0x2a);
                 s16 s1 = src[1];
                 s16 s2 = src[2];
-                s16 s3 = src[3];
-                s16 s4 = src[4];
                 s16 a0 = (s16)((prev + s0) / 2);
                 s16 a1 = (s16)((s1 + s2) / 2);
+                s16 s3 = src[3];
+                s16 s4 = src[4];
                 s16 a2 = (s16)((s3 + s4) / 2);
                 dst32[0] = pack_pcm_02136210((u16)a0, (u16)s0);
                 dst32[1] = pack_pcm_02136210((u16)s1, (u16)a1);
@@ -262,8 +274,8 @@ s16 *func_02136210(void *arg0, void *arg1, u32 arg2) {
                 s16 s1 = (s16)(pair >> 16);
                 s16 m0 = (s16)((prev + s0) / 2);
                 s16 q0 = (s16)((prev + m0) / 2);
-                s16 q1 = (s16)((m0 + s0) / 2);
                 s16 m1 = (s16)((s0 + s1) / 2);
+                s16 q1 = (s16)((m0 + s0) / 2);
                 s16 q2 = (s16)((s0 + m1) / 2);
                 s16 q3 = (s16)((m1 + s1) / 2);
                 count -= 2;
@@ -296,10 +308,10 @@ s16 *func_02136210(void *arg0, void *arg1, u32 arg2) {
                 s16 q3;
                 dst32[0] = pack_pcm_02136210((u16)e0, (u16)q0);
                 dst32[1] = pack_pcm_02136210((u16)e1, (u16)m0);
+                m1 = (s16)((s0 + s1) / 2);
                 q1 = (s16)((m0 + s0) / 2);
                 dst32[2] = pack_pcm_02136210((u16)(s16)((m0 + q1) / 2), (u16)q1);
                 dst32[3] = pack_pcm_02136210((u16)(s16)((q1 + s0) / 2), (u16)s0);
-                m1 = (s16)((s0 + s1) / 2);
                 q2 = (s16)((s0 + m1) / 2);
                 dst32[4] = pack_pcm_02136210((u16)(s16)((s0 + q2) / 2), (u16)q2);
                 dst32[5] = pack_pcm_02136210((u16)(s16)((q2 + m1) / 2), (u16)m1);
@@ -322,7 +334,7 @@ s16 *func_02136210(void *arg0, void *arg1, u32 arg2) {
     }
     return src;
 }
-
+#pragma opt_lifetimes on
 u16 func_0213689c(u8 *arg0) {
     u16 sp2;
     u16 sp0;
