@@ -5,7 +5,7 @@ extern u32 data_02162858[2], data_02162854;
 
 extern void func_020a2c20(void);
 extern void func_0210f6d4(void);
-extern void func_020a31c8(void);
+extern void func_020a31c8();
 extern void func_020a2dd0(void);
 extern void func_020a2e64(void);
 extern void func_020eb180(u32, u32);
