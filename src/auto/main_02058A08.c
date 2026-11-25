@@ -209,25 +209,20 @@ s32 func_02059460(u8 *arg0) {
 }
 
 s32 func_0205951c(void) {
-    u8 *p;
-    if (*(s32 *)((p = func_020bed94()) + 0x18) > 0) {
-        if (func_020bedf8() == 1) {
-            s32 x, y;
-            if (*(u16 *)(func_020becfc() + 0xd8) & 4) {
-                x = func_020bed24()[0] + (*(s16 *)(p + 0xc) << 0xc);
-                y = func_020bed24()[1] + (*(s16 *)(p + 0xe) << 0xc);
-            } else {
-                x = *(s32 *)(p + 0) + (*(s16 *)(p + 0xc) << 0xc);
-                y = *(s32 *)(p + 4) + (*(s16 *)(p + 0xe) << 0xc);
-            }
-            func_020bed24()[0] = x;
-            func_020bed24()[1] = y;
-        } else {
-            func_020bed54(2, 0);
-            return 0;
-        }
-    }
-    return 1;
+ u8 *p=func_020bed94();
+ if(*(s32 *)(p+0x18)>0) {
+ if(func_020bedf8(p)==1) {
+ s32 x,y;
+ if(*(u16 *)(func_020becfc()+0xd8)&4) {
+ x=func_020bed24()[0]+(*(s16 *)(p+12)<<12);
+ y=func_020bed24()[1]+(*(s16 *)(p+14)<<12);
+ } else {
+ x=*(s32 *)p+(*(s16 *)(p+12)<<12);
+ y=*(s32 *)(p+4)+(*(s16 *)(p+14)<<12);
+ }
+ func_020bed24()[0]=x; func_020bed24()[1]=y;
+ } else {func_020bed54(2,0); return 0;}
+ } return 1;
 }
 
 s32 func_020595c0(u8 *arg0, s32 *arg1) {
