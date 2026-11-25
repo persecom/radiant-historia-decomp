@@ -27,6 +27,7 @@ extern void *func_020a84b8(s32, s32);
 extern void func_020a8810(void *, u32);
 extern void func_020a9830(void *, void *, u32, u32, u32, u32);
 extern void func_020a9610(u32 *, void **, u32, u32, u32, u32);
+extern s32 func_020bdf24(const char *, ...);
 extern void *func_020c6d5c(u32);
 extern s32 func_020c8344(void *, s32, s32);
 extern void func_020c8640(void *, u32);
