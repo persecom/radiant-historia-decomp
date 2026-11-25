@@ -1,5 +1,7 @@
 /* 6 functions from 0x02121494 to 0x021221E4 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { s32 _00,_01,_02,_10,_11,_12,_20,_21,_22; } Mtx33_02121;
+extern void func_02002274(void *,void *);
 typedef struct { s16 x,y; } Pair16_02121;
 typedef struct { s32 x,y; } Pair32_02121;
 
