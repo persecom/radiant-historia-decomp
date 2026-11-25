@@ -1,5 +1,39 @@
 /* 7 functions from 0x020617C8 to 0x02062578 (main), found by ds-decomp. */
 #include "common.h"
+extern u8 *data_02160080;
+void func_020612d0(void *);
+void func_02060f0c(void *);
+void func_02060ec8(void *);
+void func_0205d204(void *);
+void func_02060b4c(void *);
+void func_02060ff8(void *);
+void func_02061214(void *);
+void func_02060cc4(void *);
+void func_02060db4(void *);
+void func_020606bc(void *);
+void func_020607f4(void *);
+void func_0206158c(void *);
+void func_02061628(void *);
+void func_020614e0(void *);
+void func_020da2c8(void *);
+void func_020da3e4(void *);
+void func_020d626c(void *);
+void func_020d64c8(void *);
+s32 func_020624c8(void);
+void func_020d0a40(s32);
+s32 func_020ddb00(s32);
+void func_0205b710(void *,s32);
+u8 *func_02064cb8(void *,s32);
+u8 *func_02022494(void *,s32);
+u8 *func_0202b4d8(s32,void *);
+s32 func_02065840(s32,s32);
+void func_020263b4(void *,s32);
+void func_020d60b8(u16);
+void func_020d622c(void);
+void func_0205ee3c(void *,s32);
+u8 *func_020dde4c(u16);
+u8 *func_0202f484(s32,void *);
+
 
 extern u8 *data_02160a6c;
 extern u8 *data_02160244;
@@ -18,6 +52,7 @@ extern void func_020d9da8(s32);
 extern void func_020d9ea8(s32,s32);
 extern void func_020d5fd0(void *);
 extern void func_020d4eb8(void *);
+#pragma optimization_level 3
 void func_020617c8(u8 *obj) {
  u8 *data;
  u8 *selected;
@@ -62,7 +97,10 @@ void func_020617c8(u8 *obj) {
      func_0210d27c(*(s16 *)(base+0x90));
      *(s16 *)(base+0x90)=0;
     }
-    { s32 callMode=mode; s32 callValue=value; func_0202f41c(child,obj,data,callValue,node,callMode,empty); }
+    {
+     u8 *argNode = node;
+     func_0202f41c(child,obj,data,value,argNode,mode,empty);
+    }
     *(s32 *)(child+0x28)+=0x10000;
     if(*(s32 *)(child+4)!=*(s32 *)(child+0x28)) func_0205baf8(child);
     if(selected==data && func_020d9df4()==*(u16 *)(obj+0x90)) {
@@ -78,7 +116,7 @@ void func_020617c8(u8 *obj) {
  }
  if(flags&2) func_020d4eb8(obj);
 }
-
+#pragma optimization_level 4
 void func_020619c8(s32 arg0) {
     u8 *node = *(u8 **)(data_02160a6c + 0xb8);
     while (node != NULL) {
@@ -92,8 +130,12 @@ void func_020619c8(s32 arg0) {
     }
 }
 
-void func_02061a20(void)
-{
+void func_02061540(void *);
+void func_02061a20(void) {
+ u8 *p=*(u8 **)(data_02160a6c+0xb8);
+ while(p) { u8 *next=*(u8 **)(p+0x174); u8 *s=*(u8 **)(p+0x128);
+ if(*(s32 *)(*(u8 **)(p+0x118)+0x70) && !*(s32 *)(s+0x24)) func_02061540(p);
+ p=next; }
 }
 
 s32 func_020624c8(void) {
