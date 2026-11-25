@@ -209,8 +209,8 @@ void func_0211c544(s32 *arg0) {
     *(s32 *)(ptr + 0x40) = a;
     *(s32 *)(ptr + 0x44) = b;
     {
-        s32 c = arg0[2];
         s32 z = 0;
+        s32 c = arg0[2];
         *(s32 *)(ptr + 0x48) = z;
         *(s32 *)(ptr + 0x4c) = c;
         s32 d = arg0[3];
@@ -219,8 +219,8 @@ void func_0211c544(s32 *arg0) {
         *(s32 *)(ptr + 0x58) = z;
         *(s32 *)(ptr + 0x5c) = z;
         {
-            s32 e = arg0[4];
             s32 big = 0x1000;
+            s32 e = arg0[4];
             *(s32 *)(ptr + 0x60) = big;
             *(s32 *)(ptr + 0x64) = e;
             *(s32 *)(ptr + 0x68) = arg0[5];
@@ -404,13 +404,10 @@ void func_0211ca28(u8 *arg0, u8 *arg1, u32 arg2, s32 arg3) {
     *(u32 *)(arg0 + 0x14) = arg3;
     arg0[0x19] = 0;
     *(u32 *)(arg0 + 0xc) = 0;
-    if ((s32)data_02155ed4 <= 0) {
-        return;
-    }
     for (i = 0; i < (u32)data_02155ed4; i++) {
         if (arg1[0] == data_02155ef8[i].code && *(u16 *)(arg1 + 2) == data_02155ef8[i].id) {
             if (data_02155efc[i].func != NULL) {
-                data_02155efc[i].func();
+                ((void (*)(u8 *, u8 *, u32))data_02155efc[i].func)(arg0,arg1,arg2);
             }
             return;
         }
