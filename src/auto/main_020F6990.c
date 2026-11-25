@@ -93,9 +93,4 @@ s32 func_020f6990(void) {
  }
  return 0;
 }
-extern const char data_02152084[], data_0215208c[], data_02152090[], data_02152094[], data_021520a0[], data_021520a8[], data_021520b0[], data_021520b4[], data_021520bc[], data_021520c0[], data_021520c8[], data_021520d0[], data_021520d8[], data_021520dc[], data_021520e4[], data_021520e8[], data_021520ec[], data_021520f0[], data_021520f8[], data_021520fc[];
-void func_020a56b4(s32);
-s32 func_0210cd90(s32);
-void func_0210968c(s32,s32,s32);
-void func_020a5698(void);
-s32 func_020ef4c8(void *);
+
