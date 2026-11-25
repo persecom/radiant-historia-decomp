@@ -238,6 +238,258 @@ void func_020125e0(u32 *bits, u32 start, u32 end) {
     } while (start < end);
 }
 
+extern void func_02008e24(u32, void *, u32);
+struct ScanState {
+    char **ap;
+    s32 count;
+    s32 inv;
+    s32 got;
+    const char *start;
+    u32 bits[8];
+};
+s32 func_02012634(s32 arg0, const char *fmt, char *args)
+{
+    s32 c = *fmt;
+    s32 flags = 0;
+    s32 width = 0;
+    s32 ch;
+    const char *f = fmt;
+    const char *s = (const char *)arg0;
+    s64 val = 0;
+    char **ap = (char **)args;
+    s32 count = 0;
+    s32 inv = 1;
+    s32 got = 0;
+    const char *start = s;
+    u32 bits[8];
+    s32 n;
+    s32 i;
+    s32 neg;
+    char *dst;
+    char *dst0;
+    s32 digit;
+    s32 k;
+
+    if (c == 0) goto finish;
+loop:
+    if (func_020125b8(c) != 0) {
+        if (func_020125b8(*f) != 0) {
+            while (func_020125b8(*++f) != 0) { }
+        }
+        if (func_020125b8(*s) != 0) {
+            while (func_020125b8(*++s) != 0) { }
+        }
+        goto next;
+    }
+    if (c != '%') {
+        if (*s != c) goto finish;
+        if ((u32)(((u8)c ^ 0x20) - 0xa1) < 0x3c) {
+            ch = *++s;
+            if (ch != c) goto finish;
+        }
+        s++;
+        f++;
+        goto next;
+    }
+    if (f[1] == '%') {
+        if (*s != c) goto finish;
+        f += 2;
+        goto next;
+    }
+    ch = *++f;
+    if (ch == '*') { flags |= 0x2000; ch = *++f; }
+    while (ch >= '0' && ch <= '9') {
+        width = width * 10 + ch - '0';
+        ch = *++f;
+    }
+    if (ch == 'h') {
+        ch = *++f;
+        if (ch == 'h') { flags |= 0x100; ch = *++f; }
+        else flags |= 0x40;
+    } else if (ch == 'l') {
+        ch = *++f;
+        if (ch == 'l') { flags |= 0x80; ch = *++f; }
+        else flags |= 0x20;
+    }
+    if (ch == 'i') { c = -1; goto parse_num; }
+    if (ch == 'd') { flags |= 0x1000; c = 10; goto parse_num; }
+    if (ch == 'X') { flags |= 0x1000; c = 16; goto parse_num; }
+    if (ch == '[') goto parse_set;
+    if (ch == 'c') goto parse_str;
+    if (ch == 'n') goto parse_count;
+    switch (ch) {
+    case 'o': c = 8; goto parse_num;
+    case 'p': flags |= 0x1000; c = 16; goto parse_num;
+    case 'q': goto finish;
+    case 'r': goto finish;
+    case 's': goto parse_str;
+    case 't': goto finish;
+    case 'u': flags |= 0x1000; c = 10; goto parse_num;
+    case 'v': goto finish;
+    case 'w': goto finish;
+    case 'x': flags |= 0x1000; c = 16; goto parse_num;
+    default: goto finish;
+    }
+
+parse_count:
+    if (flags & 0x2000) count--;
+    f++;
+    val = s - start;
+    goto store_val;
+
+parse_num:
+    f++;
+    ch = *s;
+    if (func_020125b8(ch) != 0) {
+        do { ch = *++s; } while (func_020125b8(ch) != 0);
+    }
+again_sign:
+    if (ch == '+') { flags |= 0x2; ch = *++s; goto again_sign; }
+    if (ch == '-') { flags |= 0x8; ch = *++s; goto again_sign; }
+    if (c == -1) {
+        if (ch != '0') c = 10;
+        else {
+            if (s[1] == 'x' || s[1] == 'X') c = 16;
+            else c = 8;
+        }
+    }
+    if (c == 16 && ch == '0') {
+        if (s[1] == 'x' || s[1] == 'X') { s += 2; ch = *s; }
+    }
+    if (width == 0) width = (s32)0x80000000;
+    n = 0;
+    val = 0;
+    if (width > 0) {
+        do {
+            digit = ch - '0';
+            if ((u32)digit >= 10) {
+                k = digit - 0x31;
+                if ((u32)k < 6) digit -= 0x27;
+                else {
+                    k = digit - 0x11;
+                    if ((u32)k < 6) digit = k + 0xa;
+                }
+            }
+            if ((u32)digit >= (u32)c) break;
+            ch = *++s;
+            n++;
+            val = val * c + digit;
+        } while (n < width);
+    }
+    if (n == 0) goto finish;
+    if (flags & 0x8) val = -val;
+    got = 1;
+store_val:
+    if (flags & 0x2000) goto next;
+    count++;
+    if (flags & 0x100) {
+        ap++;
+        *(u8 *)ap[-1] = (u8)val;
+    } else if (flags & 0x40) {
+        ap++;
+        *(u16 *)ap[-1] = (u16)val;
+    } else if (flags & 0x80) {
+        ap++;
+        *(s64 *)ap[-1] = val;
+    } else {
+        ap++;
+        *(s32 *)ap[-1] = (s32)val;
+    }
+    goto next;
+
+parse_str:
+    dst = 0;
+    dst0 = dst;
+    if (!(flags & 0x2000)) {
+        ap++;
+        dst = ap[-1];
+        dst0 = dst;
+    }
+    f++;
+    if (ch == 's') {
+        ch = *s;
+        if (width == 0) width = (s32)0x80000000;
+        if (func_020125b8(ch) != 0) {
+            while (func_020125b8(*++s) != 0) { }
+            ch = *s;
+        }
+        if (ch == 0 || func_020125b8(ch) != 0) goto str_end;
+        do {
+            if (dst != 0) *dst++ = ch;
+            ch = *++s;
+            width--;
+            if (ch == 0 || func_020125b8(ch) != 0) break;
+        } while (width > 0);
+str_end:
+        if (dst == dst0) goto next;
+        *dst = 0;
+        count++;
+        got = 1;
+        goto next;
+    }
+    if (width == 0) width = 1;
+    ch = *s;
+    do {
+        if (dst != 0) *dst++ = ch;
+        ch = *++s;
+        width--;
+        if (ch == 0) break;
+    } while (width > 0);
+    if (dst == dst0) goto next;
+    count++;
+    got = 1;
+    if (width > 0) *dst = 0;
+    goto next;
+
+parse_set:
+    func_02008e24(0, bits, 0x20);
+    ch = *++f;
+    inv = 1;
+    i = 0;
+    neg = 0;
+    if (ch == '^') { f++; ch = *f; inv = 0; }
+    if (ch == ']') { bits[(u8)ch >> 5] |= 1U << (ch & 31); f++; }
+    while (*f != 0 && *f != ']') {
+        ch = *f;
+        if (ch == '-' && i != 0 && f[1] != ']') {
+            f++;
+            ch = *f;
+            func_020125e0(bits, i, ch);
+            neg = 1;
+            f++;
+        } else {
+            bits[(u8)ch >> 5] |= 1U << (ch & 31);
+            i = ch;
+            f++;
+        }
+    }
+    if (*f == ']') f++;
+    got = 1;
+    if (flags & 0x2000) goto next;
+    ap++;
+    dst = ap[-1];
+    count++;
+    if (width == 0) width = (s32)0x80000000;
+    ch = *s;
+set_loop:
+    if (((bits[(u8)ch >> 5] >> ((u8)ch & 31)) & 1) != inv) goto set_end;
+    if (dst != 0) *dst++ = ch;
+    ch = *++s;
+    width--;
+    if (ch == 0) goto set_end;
+    if (width > 0) goto set_loop;
+set_end:
+    if (dst != 0) *dst = 0;
+    goto next;
+
+next:
+    c = *f;
+    if (c != 0) goto loop;
+finish:
+    if (*s == 0) count = got != 0 ? got : -1;
+    return count;
+}
+
 void func_02012d64(u32 *arg0, u8 arg1) {
     if (arg0[0] != 0) {
         *(u8 *)arg0[1] = arg1;
