@@ -9,6 +9,12 @@ extern void *func_020abf3c(void);
 typedef struct {
     u16 unk[10];
 } Unk20;
+
+typedef struct {
+    u8 unk0[8];
+    u32 count;
+    u8 flag;
+} UnkAae98;
 extern const Unk20 data_0214386c;
 extern void func_020a3bbc(s32);
 extern void func_021098ac(void *);
@@ -251,25 +257,17 @@ void func_020aa894(void *arg0) {
 
 void func_020aa8e8(void)
 {
-  u8 *p = data_021600e4;
-  int new_var3;
-  s32 *new_var;
-  u8 *node = func_020aa7fc(*((void **) (p + 0x13f4)));
-  int new_var2;
-  new_var3 = 8;
-  while (node != NULL)
-  {
-    s32 scale = *((s32 *) (p + 0x70));
-    s32 a = (*(new_var = (s32 *) (node + 4))) * scale;
-    unsigned int b = (*((s32 *) (node + new_var3))) * scale;
-    a = a - 0x20;
-    b = b + 0xc;
-    new_var2 = 0x10;
-    *((u16 *) (node + new_var2)) = (*((s32 *) (p + 0x44))) + a;
-    *((u16 *) (node + 0x12)) = (*((s32 *) (p + 0x48))) + b;
-    node = *((u8 **) (node + 0x18));
-  }
-
+    u8 *p = data_021600e4;
+    u8 *node = func_020aa7fc(*(void **)(p + 0x13f4));
+    if (node == NULL) return;
+    do {
+        s32 scale = *(s32 *)(p + 0x70);
+        s32 a = scale * *(s32 *)(node + 4);
+        s32 b = scale * *(s32 *)(node + 8);
+        *(u16 *)(node + 0x10) = *(s32 *)(p + 0x44) + (a - 0x20);
+        *(u16 *)(node + 0x12) = *(s32 *)(p + 0x48) + (b + 0xc);
+        node = *(u8 **)(node + 0x18);
+    } while (node != NULL);
 }
 
 void func_020aa94c(void) {
