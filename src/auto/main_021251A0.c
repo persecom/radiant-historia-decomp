@@ -633,3 +633,21 @@ return NULL;
 return p;
 }
 
+extern void func_02138a60(void *);
+extern void func_021386f0(void *);
+void func_021260ec(void *arg0, void *arg1) {
+    void **arr = (void **)arg0;
+    s32 i;
+    if (arg1 == NULL) {
+        return;
+    }
+    func_02138a60(arg1);
+    for (i = 0; i < 4; i++) {
+        if (arr[i] == arg1) {
+            func_021386f0(arr[i]);
+            arr[i] = NULL;
+            return;
+        }
+    }
+}
+
