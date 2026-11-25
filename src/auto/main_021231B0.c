@@ -21,6 +21,13 @@ v->x=x;v->y=y;v->z=z;
 extern void func_02002058(s32, s32);
 extern s32 func_02001ff4(void);
 extern void func_021205ec(s32, void *, s32);
+static inline void G3dGeTranslate_02123a6c(s32 x, s32 y, s32 z) {
+    s32 v[3];
+    v[0] = x;
+    v[1] = y;
+    v[2] = z;
+    func_021205ec(0x1c, v, 3);
+}
 extern void (*data_021560f0[8])(s32 *, u8 *);
 void func_021231b0(u32 *arg0, u8 *arg1, u32 arg2) {
     u8 *ptr = *(u8 **)(arg1 + 8);
@@ -167,7 +174,6 @@ out[4]=(ss*func_02001ff4())>>12;
 }
 
 void func_021235c0(s32 *arg0, u8 *arg1) {
-s32 s1, s2, w2, f24, h2, f28, sum, diff, neg;
 s32 w=*(u16*)(arg1+0x2c)<<12;
 s32 h=*(u16*)(arg1+0x2e)<<12;
 s32 val;
@@ -175,21 +181,29 @@ func_02002058(h,w);
 val=*(s16*)(arg1+0x22); arg0[0]=val; arg0[5]=val;
 arg0[1]=(-*(s16*)(arg1+0x20)*func_02001ff4())>>12;
 func_02002058(w,h);
-s1=*(s16*)(arg1+0x20); s2=*(s16*)(arg1+0x22);
-w2=*(u16*)(arg1+0x2c); f24=*(s32*)(arg1+0x24);
-sum=s1+s2; diff=s1-s2; neg=(s32)(0U-(u32)sum);
-h2=*(u16*)(arg1+0x2e); f28=*(s32*)(arg1+0x28);
+{
+s32 s1=*(s16*)(arg1+0x20), s2=*(s16*)(arg1+0x22);
+s32 w2=*(u16*)(arg1+0x2c), f24=*(s32*)(arg1+0x24);
+s32 diff=s1-s2, sum=s1+s2;
+s32 neg=(s32)(0U-(u32)sum);
 w=((w2*(neg+0x1000))<<3)-((f24*w2)<<4);
+{
+s32 h2=*(u16*)(arg1+0x2e), f28=*(s32*)(arg1+0x28);
 s2=h2*(diff+0x1000U);
 h=(s2<<3)+((f28*h2)<<4); arg0[12]=w; arg0[13]=h;
+}
+}
 arg0[4]=(*(s16*)(arg1+0x20)*func_02001ff4())>>12;
 }
 
 #pragma opt_propagation off
 void func_02123684(s32 *__restrict arg0, u8 *__restrict arg1) {
-s32 scaleS=*(s32 *)(arg1+0x18), scaleT=*(s32 *)(arg1+0x1c);
-s32 ts=(s32)(((s64)scaleS * *(s32 *)(arg1+0x24))>>8);
-s32 tt=(s32)(((s64)scaleT * *(s32 *)(arg1+0x28))>>8);
+s32 scaleT=*(s32 *)(arg1+0x1c);
+s32 scaleS=*(s32 *)(arg1+0x18);
+s32 transS=*(s32 *)(arg1+0x24);
+s32 transT=*(s32 *)(arg1+0x28);
+s32 ts=(s32)(((s64)scaleS * transS)>>8);
+s32 tt=(s32)(((s64)scaleT * transT)>>8);
 arg0[0]=scaleS; arg0[5]=scaleT; arg0[1]=0;
 arg0[12]=*(u16 *)(arg1+0x2c)*-ts;
 arg0[13]=*(u16 *)(arg1+0x2e)*tt+((*(u16 *)(arg1+0x2e)*(-(scaleT<<1)+0x2000U))<<3);
@@ -546,13 +560,11 @@ void func_02124058(s32 *arg0, u8 *arg1)
   {
     u16 h2 = *((u16 *) (arg1 + 0x2e));
     unsigned int w2 = *((u16 *) (arg1 + 0x2c));
-    s16 c = *((s16 *) (arg1 + 0x22));
     s32 y = ((-h2) << 11) + ((*((s32 *) (arg1 + 0x28))) * h2);
-    s16 s = *((s16 *) (arg1 + 0x20));
     s32 x = ((-w2) << 11) - ((*((s32 *) (arg1 + 0x24))) * w2);
-    s64 a = x * ((s64) c);
-    s64 b = (((s64) s) * x) + (((s64) c) * y);
-    a -= y * ((s64) s);
+    s64 a = x * ((s64) (*((s16 *) (arg1 + 0x22))));
+    s64 b = (((s64) (*((s16 *) (arg1 + 0x20)))) * x) + (((s64) (*((s16 *) (arg1 + 0x22)))) * y);
+    a -= y * ((s64) (*((s16 *) (arg1 + 0x20))));
     arg0[12] = ((s32) (a >> 8)) + (w2 << 15);
     arg0[13] = ((s32) (b >> 8)) + (h2 << 15);
   }
@@ -567,8 +579,8 @@ u32 h=*(u16 *)(arg1+0x2e),w=*(u16 *)(arg1+0x2c);
 s32 y=*(s32 *)(arg1+0x28),x=*(s32 *)(arg1+0x24);
 s32 a=*(s32 *)(arg1+0x18),b=*(s32 *)(arg1+0x1c);
 arg0[0]=a;arg0[5]=b;arg0[1]=0;
-s32 t=(s32)(((s64)b*(s32)((y*h)+((-h)<<11)))>>8)+(h<<15);
-s32 s=(s32)(((s64)a*(s32)(((-w)<<11)-(x*w)))>>8)+(w<<15);
-arg0[12]=s;arg0[13]=t;arg0[4]=0;
+h=(u32)(((s64)b*((y*(s32)h)+(-(s32)h<<11)))>>8)+((s32)h<<15);
+w=(u32)(((s64)a*((-(s32)w<<11)-(x*(s32)w)))>>8)+((s32)w<<15);
+arg0[12]=w;arg0[13]=h;arg0[4]=0;
 }
 #pragma opt_propagation on
