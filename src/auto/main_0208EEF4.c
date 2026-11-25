@@ -5,6 +5,9 @@ typedef struct {
     s16 data[10];
 } Unk_0208f7a0_10;
 
+extern const Unk_0208f7a0_10 data_021410bc, data_021410a8, data_02141094;
+typedef struct { s32 data[4]; } Unk_0208eef4_4;
+extern const Unk_0208eef4_4 data_02140f08;
 extern const Unk_0208f7a0_10 data_02141044;
 extern const Unk_0208f7a0_10 data_02141030;
 extern u8 *data_0216010c;
