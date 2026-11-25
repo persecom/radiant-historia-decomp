@@ -296,7 +296,6 @@ return 0;
 
 extern s32 func_ov000_021774e4(u32);
 
-#pragma peephole off
 s32 func_ov000_02178314(void *arg0, void *arg1, u32 arg2, u32 arg3) {
     u8 table[0x100];
     u32 i;
