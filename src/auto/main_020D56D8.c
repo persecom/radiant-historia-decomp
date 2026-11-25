@@ -1,5 +1,10 @@
 /* 10 functions from 0x020D56D8 to 0x020D655C (main), found by ds-decomp. */
 #include "common.h"
+extern u8 *data_02160244;
+extern void *func_020c17bc(void *,u16,u16,u8,s16);
+extern void func_0206e7a0(u8,void *,void *,u16);
+extern s32 func_020d655c(u8 *,u8 *);
+typedef struct {s32 x,y,z;u8 f0c,pad0d;u16 f0e;u8 f10,pad11;u16 f12;u8 f14;} CommandEffect;
 
 typedef struct {
     u8 pad_0[0x52];
