@@ -61,4 +61,4 @@ func_0208480c();func_0210d27c(5);
 }
 }
 }
-typedef struct { u8 pad[0x1a]; s16 flags; } MenuFlagView;
+
