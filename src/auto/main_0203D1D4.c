@@ -66,6 +66,13 @@ extern void func_0209625c(void);
 extern void func_021167f0(void *, void *);
 extern void func_02116844(void *, void *);
 extern void func_02116894(void *, void *, void *);
+static inline void activate_0203d2d4(u8 *actor, u8 *obj, s32 active) {
+    *(u32 *)(obj + 0x80) |= 0x20000;
+    *(u16 *)(*(u8 **)(obj + 0x118) + 0xbc) = active;
+    if (data_0216011c == NULL) func_02096740(actor, active);
+    else func_02096ad4(0, 0);
+}
+
 void func_0203d2d4(void) {
     s32 one = 1;
     s32 zero = 0;
@@ -135,7 +142,6 @@ void func_0203d2d4(void) {
         }
         return;
     case 2: {
-        u8 two;
         u8 *pa, *pb, *next, *base;
         u16 t, u;
         zero = 0;
@@ -143,11 +149,11 @@ void func_0203d2d4(void) {
         a = func_02032254((u16)(*(s16 *)(data_02160110 + 0xb6) - 1));
         b = func_02032254((u16)(*(s16 *)(data_02160110 + 0xde) + 1));
         obj = *(u8 **)a;
-        two = 1;
+        flag = 1;
         *(u32 *)(obj + 0x80) |= 0x20000;
-        *(u16 *)(*(u8 **)(obj + 0x118) + 0xbc) = two;
+        *(u16 *)(*(u8 **)(obj + 0x118) + 0xbc) = flag;
         if (data_0216011c == NULL) {
-            func_02096740(a, two);
+            func_02096740(a, flag);
         } else {
             func_02096ad4(zero, zero);
         }
