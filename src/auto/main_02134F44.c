@@ -25,6 +25,103 @@ typedef struct {
 extern Unk_021756d8 data_021756d8[4];
 
 extern void func_0213807c(void);
+void func_02013858(void *,void *,s32);
+void func_0212761c(s16 *,s32,s16 *,s32);
+u16 func_02135f7c(u8 *,u32,u16 *);
+void func_02136138(void *,void *,u16);
+void func_02135abc(u8 *,s16 *,s32);
+void func_02135b1c(u8 *,s16 *,s32,s16 **);
+void func_02137f80(void *,s32,void *,void *);
+void func_02134f44(u8 *p){
+struct {s16 *ptr;s32 len;} buf[2],rem[2];
+s16 *out[2];
+u16 count,ca,cb;
+s32 n, len, samples;
+u32 used,ua,ub;
+u32 consumed;
+u16 i;
+s16 *src=0;
+if(*(s8 *)(p+3)==1){
+len=*(u16 *)(p+0x2c);
+if((u32)len>=6){buf[0].ptr=0;src=*(s16 **)(p+0x28)+*(u16 *)(p+0x2e);}
+else {
+n=(*( s32 (**)(void *, s32))(*(u8 **)(*(void **)(p+0x10+0*4))+0x24))(*(void **)(p+0x10+0*4),1);
+if(n>0){
+(*( void (**)(void *, s32, s32, void *))(*(u8 **)(*(void **)(p+0x10+0*4))+0x18))(*(void **)(p+0x10+0*4),1,n,&buf[0]);
+src=buf[0].ptr;len=buf[0].len;
+if(p[5]){
+if(n>=*(u16 *)(p+0x32)*2){
+samples=*(u16 *)(p+0x32);
+if(len>=(samples<<1))consumed=(u16)(samples*2);
+else{
+func_02013858(*(void **)((u8 *)data_021756d8+0x2b0),src,len);
+(*( void (**)(void *, s32, void *))(*(u8 **)(*(void **)(p+0x10+0*4))+0x20))(*(void **)(p+0x10+0*4),0,&buf[0]);
+consumed=(u16)((samples<<1)-len);
+(*( void (**)(void *, s32, s32, void *))(*(u8 **)(*(void **)(p+0x10+0*4))+0x18))(*(void **)(p+0x10+0*4),1,consumed,&buf[0]);
+func_02013858(*(s16 **)((u8 *)data_021756d8+0x2b0)+len/2,buf[0].ptr,buf[0].len);
+src=*(s16 **)((u8 *)data_021756d8+0x2b0);len=buf[0].len;
+}
+}else if(p[1]&4){consumed=(u16)len;samples=len/2;}else{src=0;len=0;consumed=0;}
+if(len){
+s32 size=(samples*p[5]/100)&~3;
+func_0212761c(src,samples,*(s16 **)(p+0x28)+*(u16 *)(p+0x30),size);
+len=size*2;
+*(u16 *)(p+0x30)+=(u16)size;
+*(u16 *)(p+0x2c)+=(u16)len;
+src=*(s16 **)(p+0x28)+*(u16 *)(p+0x2e);
+}
+}
+}else{
+len=*(u16 *)(p+0x2c);if(len==0)return;
+buf[0].ptr=src;src=*(s16 **)(p+0x28)+*(u16 *)(p+0x2e);
+}
+}
+if(*(s8 *)(p+2)==2 && *(s8 *)(p+4)>=1){
+used=func_02135f7c(*(u8 **)(p+0x20),len,&ca);
+ub=func_02135f7c(*(u8 **)(p+0x24),len,&cb);
+if(used>ub){used=ub;count=cb;}else{count=ca;}
+if(count){
+if(*(u16 *)(p+0x98)){
+func_02135abc(p,src,used>>1);func_02135b1c(p,src,used>>1,out);
+func_02136138(*(void **)(p+0x20),out[0],count);func_02136138(*(void **)(p+0x24),out[1],count);
+}else{func_02136138(*(void **)(p+0x20),src,count);func_02136138(*(void **)(p+0x24),src,count);}
+}
+}else{
+used=func_02135f7c(*(u8 **)(p+0x20),len,&count);
+if(count)func_02136138(*(void **)(p+0x20),src,count);
+}
+if(p[5]){
+if(*(u16 *)(p+0x2c)){
+*(u16 *)(p+0x2c)-=used;*(u16 *)(p+0x2e)+=(u16)(used>>1);
+if(*(u16 *)(p+0x2c)<6){
+if(*(u16 *)(p+0x2c))func_02013858(*(void **)(p+0x28),*(s16 **)(p+0x28)+*(u16 *)(p+0x2e),*(u16 *)(p+0x2c));
+*(u16 *)(p+0x2e)=0;*(u16 *)(p+0x30)=(u32)*(u16 *)(p+0x2c)>>1;
+}
+}
+}else consumed=used;
+}else{
+n=(*( s32 (**)(void *, s32))(*(u8 **)(*(void **)(p+0x10+0*4))+0x24))(*(void **)(p+0x10+0*4),1);
+len=(*( s32 (**)(void *, s32))(*(u8 **)(*(void **)(p+0x10+1*4))+0x24))(*(void **)(p+0x10+1*4),1);
+(*( void (**)(void *, s32, s32, void *))(*(u8 **)(*(void **)(p+0x10+0*4))+0x18))(*(void **)(p+0x10+0*4),1,n,&buf[0]);
+(*( void (**)(void *, s32, s32, void *))(*(u8 **)(*(void **)(p+0x10+1*4))+0x18))(*(void **)(p+0x10+1*4),1,len,&buf[1]);
+ua=func_02135f7c(*(u8 **)(p+0x20),buf[0].len,&ca);
+ub=func_02135f7c(*(u8 **)(p+0x24),buf[1].len,&cb);
+if(ua>ub){consumed=ub;count=cb;}else{consumed=ua;count=ca;}
+if(count){func_02136138(*(void **)(p+0x20),buf[0].ptr,count);func_02136138(*(void **)(p+0x24),buf[1].ptr,count);}
+}
+if(buf[0].ptr){
+for(i=0;i<*(s8 *)(p+3);i++){
+if(consumed==buf[i].len){(*( void (**)(void *, s32, void *))(*(u8 **)(*(void **)(p+i*4+0x10))+0x20))(*(void **)(p+i*4+0x10),0,&buf[i]);}
+else if(consumed==0){(*( void (**)(void *, s32, void *))(*(u8 **)(*(void **)(p+i*4+0x10))+0x1c))(*(void **)(p+i*4+0x10),1,&buf[i]);}
+else{
+func_02137f80(&buf[i],consumed,&buf[i],&rem[i]);
+(*( void (**)(void *, s32, void *))(*(u8 **)(*(void **)(p+i*4+0x10))+0x20))(*(void **)(p+i*4+0x10),0,&buf[i]);
+(*( void (**)(void *, s32, void *))(*(u8 **)(*(void **)(p+i*4+0x10))+0x1c))(*(void **)(p+i*4+0x10),1,&rem[i]);
+}
+}
+}
+}
+
 void func_0213545c(u8 *arg0) {
     s32 i = 0;
     s32 n = ((s8)arg0[4] >= 1 && (s8)arg0[3] == 1 && (s8)arg0[2] == 2) ? 2 : (s8)arg0[3];
@@ -168,6 +265,45 @@ void func_0213575c(u8 *arg0, s32 arg1) {
 
 void func_021357dc(u8 **arg0, u8 arg1) {
     arg0[3][4] = arg1;
+}
+
+void func_021357e8(s32 arg0, s32 count, s32 arg2, u32 arg3, s32 arg4, u8 **arg5) {
+    s32 i = 0;
+    s32 flag = 0;
+
+    while (i < count) {
+        if (arg0 == 1) {
+            *(u32 *)(arg5[i + 8] + 0xc) += arg3;
+            if (*(u16 *)(arg5[i + 8] + 0x1c) != 0) {
+                if (arg3 > *(u16 *)(arg5[i + 8] + 0x1c)) {
+                    arg3 = *(u16 *)(arg5[i + 8] + 0x1c);
+                }
+                *(u16 *)(arg5[i + 8] + 0x1c) -= (u16)arg3;
+                *(u32 *)(arg5[i + 8] + 0x14) += arg3 >> 1;
+            }
+            if ((*(u16 *)(arg5[i + 8] + 0) & 2) == 0) {
+                if (*(u32 *)(arg5[i + 8] + 0xc) > *(u32 *)(arg5[i + 8] + 0x10)) {
+                    if (*(u32 *)(arg5[i + 8] + 0xc) - *(u32 *)(arg5[i + 8] + 0x10) < 0x80000000U) {
+                        flag = 1;
+                    }
+                } else {
+                    if (*(u32 *)(arg5[i + 8] + 0x10) - *(u32 *)(arg5[i + 8] + 0xc) >= 0x80000000U) {
+                        flag = 1;
+                    }
+                }
+                if (flag != 0) {
+                    *(u16 *)(arg5[i + 8] + 0x1a) = (u16)(*(u32 *)(arg5[i + 8] + 0xc) % 0x1800U);
+                    *(u32 *)(arg5[i + 8] + 0x10) = *(u32 *)(arg5[i + 8] + 0xc);
+                }
+            }
+        } else {
+            *(u32 *)(arg5[i + 8] + 0xc) += arg3;
+            *(u16 *)(arg5[i + 8] + 0x1a) = (u16)(*(u32 *)(arg5[i + 8] + 0xc) % 0x1800U);
+            *(u32 *)(arg5[i + 8] + 0x10) = *(u32 *)(arg5[i + 8] + 0xc);
+        }
+        *(u16 *)(arg5[i + 8] + 0x1e) = 0x1800 - *(u16 *)(arg5[i + 8] + 0x1c);
+        i++;
+    }
 }
 
 s32 func_02135920(u8 *arg0, s32 arg1) {
