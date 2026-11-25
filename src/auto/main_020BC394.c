@@ -1,5 +1,12 @@
 /* 14 functions from 0x020BC394 to 0x020BD38C (main), found by ds-decomp. */
 #include "common.h"
+extern char data_02151064[], data_0215107c[];
+extern void *func_021092d8(void *);
+extern s32 func_020f685c(void *, s32);
+extern s32 func_021093f0(void *);
+extern s32 func_02109444(void *);
+extern void func_021093b0(void *);
+
 typedef struct UnkStruct_02160134 {
     void *unk00;
     void *unk04;
