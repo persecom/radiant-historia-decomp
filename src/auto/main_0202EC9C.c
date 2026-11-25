@@ -27,14 +27,21 @@ void func_0202f4d8(void *);
 
 extern u8 *data_02160244;
 s32 func_0202ec9c(s8 *arg0, s32 arg1, s32 arg2) {
-    s32 drow = 0;
-    s32 dcol = 0;
-    s32 src_col = arg0[0] % 3;
-    s32 dst_col = arg0[2] % 3;
-    s32 src_row = arg0[0] / 3;
-    s32 dst_row = arg0[2] / 3;
     u8 *r7 = data_02160244;
+    s32 src_row;
+    s32 drow;
+    s32 src_col;
+    s32 dst_row;
+    s32 dst_col;
+    s32 dcol;
     s32 cell;
+
+    drow = 0;
+    dcol = 0;
+    src_row = arg0[0] / 3;
+    src_col = arg0[0] % 3;
+    dst_row = arg0[2] / 3;
+    dst_col = arg0[2] % 3;
 
     switch (arg1) {
         case 0: {
