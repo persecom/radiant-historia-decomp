@@ -6,6 +6,11 @@ typedef struct {
 } UnkStruct20;
 
 typedef struct {
+    u8 pad[0x1c];
+    s32 field_1c;
+} Unk_02114068;
+
+typedef struct {
     u16 a[5][2];
 } UnkStruct20_u16;
 
@@ -541,9 +546,11 @@ void func_0211405c(void) {
 
 extern void func_02114160(u8 *);
 void func_02114068(u8 *arg0) {
-    s32 *p = *(s32 **)(arg0 + 4);
+    u8 *p = *(u8 **)(arg0 + 4);
+    s32 v;
     func_020094e0(arg0[0x3c]);
-    if (p[7] != 0) {
+    v = *(s32 *)(p + 0x1c);
+    if (v != 0) {
         func_02009558(arg0[0x3c], 0xffff);
     }
     func_02114160(arg0);
