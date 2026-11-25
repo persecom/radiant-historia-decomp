@@ -3,7 +3,7 @@
 extern void *memset(void *, int, unsigned long);
 extern u32 data_02173df4[5];
 typedef struct { s8 active; u8 rest[0xb3]; } UnkSlot_0212c660;
-extern u8 data_02173e08[720];
+extern u32 data_02173e08[180];
 extern s32 func_02137d44(void *);
 extern s32 func_02137dbc(void *);
 extern s32 func_02137e34(void *);
