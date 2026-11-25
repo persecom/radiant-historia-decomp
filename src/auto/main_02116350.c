@@ -55,7 +55,7 @@ void func_02116350(void) {
  if(!p->b1) continue;
  func_0211677c((u8 *)p+0xf0);
  volume=data_0213e51c[p->unk15c];
- volume=data_0213e51c[func_02116748((s32 *)((u8 *)p+0xf0)) >> 8]+volume+data_0213e51c[p->unk160];
+ volume=data_0213e51c[func_02116748((s32 *)((u8 *)p+0xf0)) >> 8]-(-volume)+data_0213e51c[p->unk160];
  if(volume!=p->unk164) {func_02114728(p,volume);p->unk164=volume;}
  if(!p->b3) continue;
  if(!func_02116794((u8 *)p+0xf0)) continue;
