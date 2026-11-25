@@ -53,14 +53,6 @@ extern void func_020c49ec(void *);
 extern void func_020c3fa0(void *);
 extern void func_020c48b8(void);
 extern u8 *data_021600e4;
-typedef struct {
-    u8 pad0[0x7c];
-    s32 a, b;
-    u8 pad1[0x48];
-    s32 c, d;
-    u8 pad2[0x84];
-    void *ptr;
-} State_020a779c;
 extern void func_020c3850(void *);
 extern void func_020a78f0(void);
 extern void *func_020c6d5c(s32);
@@ -184,8 +176,8 @@ void func_020a773c(void) {
 #pragma opt_propagation off
 void func_020a779c(void) {
  u8 *p = data_021600e4;
- s32 a=*(s32 *)(p+0x7c), b=*(s32 *)(p+0x80);
- s32 c=*(s32 *)(p+0xc8), d=*(s32 *)(p+0xd0);
+ s32 c=*(s32 *)(p+0xc8), a=*(s32 *)(p+0x7c);
+ s32 d=*(s32 *)(p+0xd0), b=*(s32 *)(p+0x80);
  s32 ax=a*-235, by=b*-235;
  s32 cx=(c>>12)*a, dy=(d>>12)*b;
  ax/=4096; by/=4096; cx/=4096; dy/=4096;
