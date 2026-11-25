@@ -42,6 +42,7 @@ extern void func_02109444(void *);
 extern void func_021093b0(void *);
 
 extern void *func_02021f10(u32);
+#pragma optimization_level 4
 u16 func_020d708c(s32 a,s32 b,s32 c,u32 exclude){
 char name[64];void *fp; s32 result,count;u8 *enemy=NULL; s32 zero,id,kind;u8 *model,*action,*actor;u16 i; s32 position;u32 mask;
 func_02005e80(name,data_021513f4,a,b);fp=func_021092d8(name);result=0;count=0;
@@ -89,7 +90,7 @@ if(*(u16*)(enemy+74)){u8*e=func_02065298(*(void**)(obj+0x11c),*(u16*)(enemy+74),
 switch(*(u16*)(obj+0x8e)){
 case 801:case 831:{s32 id1,id2;u8*child;if(*(u16*)(obj+0x8e)==801){id1=802;id2=803;}else if(*(u16*)(obj+0x8e)==831){id1=832;id2=833;}obj[0xa1]|=0x3a;child=func_020dce1c(id1,0,0);*(u16*)(child+0x92)=0;*(s32*)child=0x1000;*(s32*)(child+4)=0x20000;*(s32*)(child+8)=0x1000;child[0xa1]|=0x3a;*(u32*)(child+0x80)=(*(u32*)(child+0x80)&~1)|0x200;func_021168f8(data_02160a6c+0x70,child);func_021167f0(data_02160a6c+0xc4,child);child=func_020dce1c(id2,0,0);*(u16*)(child+0x92)=0;*(s32*)child=0x1000;*(s32*)(child+4)=0x20000;*(s32*)(child+8)=0x1000;child[0xa1]|=0x3a;*(u32*)(child+0x80)=(*(u32*)(child+0x80)&~1)|0x200;func_021168f8(data_02160a6c+0x70,child);func_021167f0(data_02160a6c+0xc4,child);break;}
 case 811:case 821:case 841:case 861:{s32 id1;u8 *child;u16 n=*(u16*)(obj+0x8e);if(n==811)id1=813;else if(n==821)id1=823;else if(n==841)id1=843;else if(n==861)id1=863;obj[0xa1]|=0x3a;child=func_020dce1c(id1,0,0);*(u16*)(child+0x92)=0;*(s32*)child=0x1000;*(s32*)(child+4)=0x20000;*(s32*)(child+8)=0x1000;child[0xa1]|=0x3a;*(u32*)(child+0x80)=(*(u32*)(child+0x80)&~1)|0x200;func_021168f8(data_02160a6c+0x70,child);func_021167f0(data_02160a6c+0xc4,child);break;}
-case 851:{s32 id1;u8 *child;if(*(u16*)(obj+0x8e)==851){s32 base=852;id1=base+1;}obj[0xa1]|=0x3a;*(s32*)(obj+0x58)=1;*(s32*)(obj+0x68)=0;*(s32*)(obj+0x70)=-110;child=func_020dce1c(852,0,0);*(u16*)(child+0x92)=0;*(s32*)child=0x1000;*(s32*)(child+4)=0x20000;*(s32*)(child+8)=0x1000;*(u32*)(child+0x80)=(*(u32*)(child+0x80)&~1)|0x200;child[0xa1]|=0x3a;func_021168f8(data_02160a6c+0x70,child);func_021167f0(data_02160a6c+0xc4,child);child=func_020dce1c(id1,0,0);*(u16*)(child+0x92)=0;*(s32*)child=0x1000;*(s32*)(child+4)=0x20000;*(s32*)(child+8)=0x1000;*(u32*)(child+0x80)=(*(u32*)(child+0x80)&~1)|0x200;child[0xa1]|=0x3a;func_021168f8(data_02160a6c+0x70,child);func_021167f0(data_02160a6c+0xc4,child);break;}
+case 851:{s32 id1;u8 *child;if(*(u16*)(obj+0x8e)==851){s32 base=852;id1=base+1;}zero=0;obj[0xa1]|=0x3a;*(s32*)(obj+0x58)=1;*(s32*)(obj+0x68)=zero;*(s32*)(obj+0x70)=-110;child=func_020dce1c(852,zero,zero);*(u16*)(child+0x92)=0;*(s32*)child=0x1000;*(s32*)(child+4)=0x20000;*(s32*)(child+8)=0x1000;*(u32*)(child+0x80)=(*(u32*)(child+0x80)&~1)|0x200;child[0xa1]|=0x3a;func_021168f8(data_02160a6c+0x70,child);func_021167f0(data_02160a6c+0xc4,child);child=func_020dce1c(id1,zero,zero);*(u16*)(child+0x92)=0;*(s32*)child=0x1000;*(s32*)(child+4)=0x20000;*(s32*)(child+8)=0x1000;*(u32*)(child+0x80)=(*(u32*)(child+0x80)&~1)|0x200;child[0xa1]|=0x3a;func_021168f8(data_02160a6c+0x70,child);func_021167f0(data_02160a6c+0xc4,child);break;}
 }count++;
 }
 }
@@ -97,7 +98,6 @@ func_02109444(fp);result++;
 }while(result<512);
 if(fp)func_021093b0(fp);return count;
 }
-
 void *func_020d7a68(u32 arg0, u8 *arg1, u32 arg2) {
     u8 *p = func_02021f10(arg0);
     if (p != NULL) {
@@ -145,68 +145,3 @@ extern s32 func_021094a4(void *,void *);
 extern u8 *func_0202fb50(s32,s32);
 extern void func_0202fad8(void *);
 #pragma optimization_level 3
-s32 func_020d7c8c(s32 a,s32 b,s32 c,u32 match,u16 index,s16 *out,s32 *text) {
- char name[64];
- s32 zero;
- u8 *fp;
- s32 active;
- s32 count;
- s32 result;
- s32 value;
- s32 id;
- func_02005e80(name,data_02151454,a,b);
- fp=func_021092d8(name);
- id=-1;
- result=0;
- count=0;
- *out=-1;
- active=1;
- while(result<512) {
- while(active) {
- zero=0;
- result=func_02092ab0(fp,c);
- if(result!=-1) {
- if(match==(u16)func_02092994(fp,zero)) {
- if(func_02092a28(*(void **)(fp+8),data_0215147c)) {
- if(index==count) {
- value=99;
- active=zero;
- result=513;
- *text=func_021094a4(fp,*(void **)(fp+8));
- }
- } else if(func_02092a28(*(void **)(fp+8),data_02151484)) {
- if(index==count) {
- value=99;
- active=zero;
- result=513;
- *text=func_021094a4(fp,*(void **)(fp+8));
- }
- } else {
- s32 n=func_02092994(fp,zero);
- if(index==count) {
- id=n;
- *out=func_02092994(fp,zero);
- *out=func_02092994(fp,zero);
- active=zero;
- *text=func_021094a4(fp,*(void **)(fp+8));
- result=513;
- }
- }
- count++;
- }
- } else {
- result=513;
- active=0;
- }
- if(result<512)func_02109444(fp);
- }
- }
- if(fp)func_021093b0(fp);
- if(id!=-1 && id>100) {
- u8 *p=func_0202fb50(id,1);
- value=p[0x54];
- if(p)func_0202fad8(p);
- }
- return value;
-}
-#pragma optimization_level 4
