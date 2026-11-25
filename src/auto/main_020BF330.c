@@ -387,40 +387,86 @@ void func_020bfff4(s32 arg0) {
 }
 
 void func_020c0018(s16 x, s16 y, s32 number, s32 kind, u8 style, s16 scale) {
-Unk_020bfb44 draw=data_02143e08;
-s32 divisor=10;
-s16 index=0;
-s32 mode;
-s16 width,height;
-s16 digit;
-*(volatile u32 *)0x40004a4=0x1f0080;
-if(kind==0)func_020a3bbc(1);
-else if(kind==1)func_020a3bbc(5);
-else if(kind==2)func_020a3bbc(6);
-else if(kind==3)func_020a3bbc(112);
-else if(kind==4)func_020a3bbc(7);
-else if(kind==5)func_020a3bbc(8);
-if(style==0) {width=8;height=10;mode=0;}
-else if(style==4) {draw.v[1]=index;draw.v[2]=index;width=scale*3+15;height=scale*3+16;mode=5;}
-else if(number<100) {width=8;height=10;mode=0;}
-else if(number>=500) {draw.v[1]=index;draw.v[2]=index;width=14;height=19;mode=2;}
-else {draw.v[1]=140;draw.v[2]=index;width=11;height=14;mode=1;}
-draw.v[9]=height;draw.v[8]=width;
-if(scale==0) {draw.v[4]=height;draw.v[3]=width;}else {draw.v[4]=16;draw.v[3]=15;}
-digit=number%divisor;
-divisor=1; index=0;
-do {
-s16 value;
-if(divisor==1)value=digit;
-else value=(number/divisor)%10;
-if(mode==0 || mode==2)draw.v[1]=value*width;
-else if(mode==1){draw.v[1]=value*width+140;draw.v[2]=0;}
-else if(mode==5)draw.v[1]=value*15;
-draw.v[5]=x-index*width;draw.v[6]=y;
-func_021098ac(&draw);
-index++;
-divisor=(s16)divisor*10;
-if(number<divisor)divisor=-1;
-}while(divisor>0);
+    Unk_020bfb44 draw = data_02143e08;
+    s32 divisor;
+    s16 index;
+    s32 mode;
+    s16 width, height;
+    *(volatile u32 *)0x40004a4 = 0x1f0080;
+    if (kind == 0) {
+        func_020a3bbc(1);
+    } else if (kind == 1) {
+        func_020a3bbc(5);
+    } else if (kind == 2) {
+        func_020a3bbc(6);
+    } else if (kind == 3) {
+        func_020a3bbc(112);
+    } else if (kind == 4) {
+        func_020a3bbc(7);
+    } else if (kind == 5) {
+        func_020a3bbc(8);
+    }
+    if (style == 0) {
+        width = 8;
+        height = 10;
+        mode = 0;
+    } else if (style == 4) {
+        draw.v[1] = 0;
+        draw.v[2] = 0;
+        width = scale * 3 + 15;
+        height = scale * 3 + 16;
+        mode = 5;
+    } else if (number < 100) {
+        width = 8;
+        height = 10;
+        mode = 0;
+    } else if (number < 500) {
+        draw.v[1] = 140;
+        draw.v[2] = 0;
+        width = 11;
+        height = 14;
+        mode = 1;
+    } else {
+        draw.v[1] = 0;
+        draw.v[2] = 0;
+        width = 14;
+        height = 19;
+        mode = 2;
+    }
+    if (scale == 0) {
+        draw.v[3] = width;
+        draw.v[4] = height;
+    } else {
+        draw.v[3] = 15;
+        draw.v[4] = 16;
+    }
+    draw.v[8] = width;
+    draw.v[9] = height;
+    divisor = 1;
+    index = 0;
+    do {
+        s16 value;
+        if (divisor == 1) {
+            value = number % 10;
+        } else {
+            value = (number / divisor) % 10;
+        }
+        if (mode == 0 || mode == 2) {
+            draw.v[1] = value * width;
+        } else if (mode == 1) {
+            draw.v[1] = value * width + 140;
+            draw.v[2] = 0;
+        } else if (mode == 5) {
+            draw.v[1] = value * 15;
+        }
+        draw.v[5] = x - index * width;
+        draw.v[6] = y;
+        func_021098ac(&draw);
+        index++;
+        divisor = (s16)divisor * 10;
+        if (number < divisor) {
+            divisor = -1;
+        }
+    } while (divisor > 0);
 }
 
