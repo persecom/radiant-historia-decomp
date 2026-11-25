@@ -12,7 +12,7 @@ extern u16 data_02162908[];extern s16 data_0213a394[];extern void*func_0210c594(
 extern void func_020477c0(void*,void*);extern void func_02047778(void*);
 extern void func_02050b0c(u8*,s32);extern BOOL func_020508fc(s32*,s32*,s32*,s32*,s32*);
 extern BOOL func_02050e2c(s32*,s32*,s32*);extern s32 _s32_div_f(s32,s32);
-extern s32 func_02002404(s32,s32);
+extern s32 func_02002404(s32,s32);extern u64 func_0201fd28(u32,s32);
 {register o*f=NULL;register s32 e;register u32 l;register s32 F;register u32 i;register s32 x;
 s32 N,S,O,T,z;u32 K;s32 C,G,w,n;u8 Y,ao;u32 H;BOOL d;s32 m[2],c[2],k[2],h[2],B[2];
 s32 J[2],Z[2],ae[2];s32 aj,ad;o*I=NULL;BOOL r=FALSE;u32 A[20]={0};u8*aC;
