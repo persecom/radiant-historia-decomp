@@ -95,7 +95,7 @@ extern const Struct108_020a7598 data_02143660;
 extern void *func_020a7460(void);
 extern void *func_020f4d40(u32);
 extern void *func_020f4c2c(u32);
-extern s32 func_020f50bc(void *, void *);
+extern s32 func_020f50bc();
 extern void func_020f5114(void *, s32);
 extern void func_021167f0(void *, void *);
 
@@ -178,8 +178,8 @@ void func_020a779c(void) {
     s32 b = *(s32 *)(p + 0x80);
     s32 c = *(s32 *)(p + 0xc8);
     s32 d = *(s32 *)(p + 0xd0);
-    s32 x = ((c >> 12) * a) / 0x1000 + (0x80 + (a * -235) / 0x1000);
-    s32 y = ((d >> 12) * b) / 0x1000 + (0x60 + (b * -235) / 0x1000);
+    s32 x = (-235 * a) / 0x1000 + 0x80 + ((c >> 12) * a) / 0x1000;
+    s32 y = (-235 * b) / 0x1000 + 0x60 + ((d >> 12) * b) / 0x1000;
     func_020c7760(*(void **)(p + 0x154), (s16)(x - 8), (s16)(y - 0x18));
 }
 
