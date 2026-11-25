@@ -9,6 +9,14 @@ extern int func_020137e0(u8 *,void *,int);
 extern u8 *func_0201388c(u8 *,int,int);
 typedef struct { u8 padding,sign,unk2,alternate,unk4,conversion; u16 unk6; s32 width,precision; } FormatSpec;
 typedef struct { u8 sign,pad; s16 exponent; u8 length; u8 digits[35]; } Decimal_02014994;
+static inline long format_arg_long(u8 **p) { *p+=4;return *(long *)(*p-4); }
+static inline int format_arg_int(u8 **p) { *p+=4;return *(int *)(*p-4); }
+static inline unsigned long format_arg_ulong(u8 **p) { *p+=4;return *(unsigned long *)(*p-4); }
+static inline unsigned int format_arg_uint(u8 **p) { *p+=4;return *(unsigned int *)(*p-4); }
+static inline long long format_arg_ll(u8 **p) { *p+=8;return *(long long *)(*p-8); }
+static inline unsigned long long format_arg_ull(u8 **p) { *p+=8;return *(unsigned long long *)(*p-8); }
+static inline double format_arg_double(u8 **p) { *p+=8;return *(double *)(*p-8); }
+static inline long double format_arg_ldouble(u8 **p) { *p+=8;return *(long double *)(*p-8); }
 typedef struct { u8 c[5]; } FormatText5;
 typedef struct { u8 c[4]; } FormatText4;
 static inline void format_copy5(u8 *dst,u8 *src) { *(FormatText5*)dst=*(FormatText5*)src; }
@@ -102,6 +110,150 @@ if(num.sign)*--p='-';else if(sign==1)*--p='+';else if(sign==2)*--p=' ';
 break;
 }
 return p;
+}
+
+u8 *func_02014100(s64, u8 *, FormatSpec);
+u8 *func_02013eb0(s32, u8 *, FormatSpec);
+u8 *func_020143d4(double, u8 *, FormatSpec);
+s32 func_020150a4(s32 (*write)(void *, const u8 *, u32),void *ctx,const u8 *fmt,u8 *ap,s32 secure) {
+    u8 buf[512];
+    FormatSpec spec;
+    u8 pad=' ';
+    s64 wide;
+    s32 value;
+    s32 total=0,len,field;
+    u8 *text,*mark;
+    secure=secure;
+    while(*fmt) {
+        mark=func_02016f8c(fmt,'%');
+        if(!mark) {
+            len=func_02016da4(fmt);
+            total+=len;
+            if(len && !write(ctx,fmt,len))return -1;
+            break;
+        }
+        len=mark-fmt;
+        total+=len;
+        if(len && !write(ctx,fmt,len))return -1;
+        fmt=func_020139a4(mark,&ap,&spec);
+        switch(spec.conversion) {
+        case 'd':case 'i':
+            if(spec.unk4==3) {ap+=4;value=*(s32 *)(ap-4);}
+            else if(spec.unk4==4) {ap+=8;wide=*(s64 *)(ap-8);}
+            else if(spec.unk4==6) {ap+=8;wide=*(s64 *)(ap-8);}
+            else if(spec.unk4==7) {ap+=4;value=*(s32 *)(ap-4);}
+            else if(spec.unk4==8) {ap+=4;value=*(s32 *)(ap-4);}
+            else {ap+=4;value=*(s32 *)(ap-4);}
+            if(spec.unk4==2)value=(s16)value;
+            if(spec.unk4==1)value=(s8)value;
+            if(spec.unk4==4 || spec.unk4==6)text=func_02014100(wide,buf+512,spec);
+            else text=func_02013eb0(value,buf+512,spec);
+            if(!text)goto invalid;
+            len=buf+511-text;
+            break;
+        case 'o':case 'u':case 'x':case 'X':
+            if(spec.unk4==3) {ap+=4;value=*(u32 *)(ap-4);}
+            else if(spec.unk4==4) {ap+=8;wide=*(u64 *)(ap-8);}
+            else if(spec.unk4==6) {ap+=8;wide=*(u64 *)(ap-8);}
+            else if(spec.unk4==7) {ap+=4;value=*(u32 *)(ap-4);}
+            else if(spec.unk4==8) {ap+=4;value=*(u32 *)(ap-4);}
+            else {ap+=4;value=*(u32 *)(ap-4);}
+            if(spec.unk4==2)value=(u16)value;
+            if(spec.unk4==1)value=(u8)value;
+            if(spec.unk4==4 || spec.unk4==6)text=func_02014100(wide,buf+512,spec);
+            else text=func_02013eb0(value,buf+512,spec);
+            if(!text)goto invalid;
+            len=buf+511-text;
+            break;
+        case 'f':case 'F':case 'e':case 'E':case 'g':case 'G': {
+            double v;
+            if(spec.unk4==9) {ap+=8;v=*(double *)(ap-8);}
+            else {ap+=8;v=*(double *)(ap-8);}
+            text=func_02014994(v,buf+512,spec);
+            if(!text)goto invalid;
+            len=buf+511-text;break;
+        }
+        case 'a':case 'A': {
+            double v;
+            if(spec.unk4==9) {ap+=8;v=*(double *)(ap-8);}
+            else {ap+=8;v=*(double *)(ap-8);}
+            text=func_020143d4(v,buf+512,spec);
+            if(!text)goto invalid;
+            len=buf+511-text;break;
+        }
+        case 's':
+            if(spec.unk4==5) {
+                u8 *str;
+                ap+=4;str=*(u8 **)(ap-4);
+                if(secure && !str) {func_02016d78(0,0,-1);return -1;}
+                if(!str)str=data_02145e84;
+                text=buf;
+                if(func_020137e0(text,str,512)<0)goto invalid;
+            } else {ap+=4;text=*(u8 **)(ap-4);}
+            if(secure && !text) {func_02016d78(0,0,-1);return -1;}
+            if(!text)text=data_02145e88;
+            if(spec.alternate) {
+                len=*text++;
+                if(spec.unk2 && len>spec.precision)len=spec.precision;
+            } else if(spec.unk2) {
+                u8 *end;
+                len=spec.precision;
+                end=func_0201388c(text,0,len);
+                if(end)len=end-text;
+            } else len=func_02016da4(text);
+            break;
+        case 'n': {
+            void *ptr;
+            ap+=4;ptr=*(void **)(ap-4);
+            if(secure) {func_02016d78(0,0,-1);return -1;}
+            switch(spec.unk4) {
+            case 0:*(int *)ptr=total;break;
+            case 2:*(short *)ptr=total;break;
+            case 3:*(long *)ptr=total;break;
+            case 4:*(long long *)ptr=total;break;
+            case 6:*(long long *)ptr=total;break;
+            case 7:*(int *)ptr=total;break;
+            case 8:*(int *)ptr=total;break;
+            }
+            continue;
+        }
+        case 'c':
+            ap+=4;buf[0]=*(int *)(ap-4);text=buf;len=1;break;
+        case '%':
+            buf[0]='%';text=buf;len=1;break;
+        default:
+        invalid:
+            len=func_02016da4(mark);total+=len;
+            if(len && !write(ctx,mark,len))return -1;
+            return total;
+        }
+        field=len;
+        if(spec.padding) {
+            pad=spec.padding==2?'0':' ';
+            if((*text=='+' || *text=='-' || *text==' ') && pad=='0') {
+                if(!write(ctx,text,1))return -1;
+                text++;len--;
+            }
+            if(spec.padding==2 && (spec.conversion=='a'||spec.conversion=='A')) {
+                if(len<2)return -1;
+                if(!write(ctx,text,2))return -1;
+                len-=2;text+=2;
+            }
+            while(field<spec.width) {
+                if(!write(ctx,&pad,1))return -1;
+                field++;
+            }
+        }
+        if(len && !write(ctx,text,len))return -1;
+        if(!spec.padding) {
+            while(field<spec.width) {
+                if(!write(ctx,&pad,1))return -1;
+                field++;
+            }
+        }
+        total+=field;
+    }
+    return total;
 }
 
 s32 func_02015950(Unk_02015950 *arg0, void *arg1, u32 arg2) {
