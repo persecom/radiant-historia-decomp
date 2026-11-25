@@ -368,8 +368,8 @@ s32 func_0212d5d0(void *arg0) {
     return func_0212a220(*(void **)((u8 *)arg0 + 4));
 }
 
-void func_0212d5e0(void *arg0) {
-    func_0212a228(*(void **)((u8 *)arg0 + 4));
+s32 func_0212d5e0(void *arg0) {
+    return func_0212a228(*(void **)((u8 *)arg0 + 4));
 }
 
 extern void func_0212a230(void *);
