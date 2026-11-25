@@ -91,29 +91,23 @@ buf.unk[8]=width;buf.unk[9]=3;buf.unk[5]=5;buf.unk[6]=0xb8;
 func_021098ac(&buf);
 }
 
-void func_020c0588(void) {
-    Unk20 buf = data_02143dcc;
-    *(volatile u32 *)0x040004a4 = 0x001f00c0;
-    func_020a3bbc(0x64);
-    buf.unk[1] = 0;
-    buf.unk[2] = 0;
-    buf.unk[3] = 0x20;
-    buf.unk[4] = 0x20;
-    buf.unk[8] = 0x20;
-    buf.unk[9] = 0x20;
-    {
-        u8 *base = data_02160a6c;
-        u8 *obj = *(u8 **)(base + 0x70);
-        while (obj != NULL) {
-            if (*(u32 *)(obj + 0x80) & 0x4000) {
-                u32 a = *(u32 *)(obj + 0xfc);
-                buf.unk[5] = a - 0x10;
-                buf.unk[6] = *(u32 *)(obj + 0x100) - *(u32 *)(*(u8 **)(obj + 0x1a4) + 4) - 0x20;
-            }
-            func_021098ac(&buf);
-            obj = *(u8 **)(obj + 0x13c);
-        }
-    }
+void func_020c0588(void){
+Unk20 buf=data_02143dcc;
+*(volatile u32 *)0x040004a4=0x001f00c0;
+func_020a3bbc(0x64);
+buf.unk[1]=0;buf.unk[2]=0;buf.unk[3]=0x20;buf.unk[4]=0x20;buf.unk[8]=0x20;buf.unk[9]=0x20;
+{
+u8 *obj=*(u8 **)((u8 *)data_02160a6c+0x70);
+while(obj!=NULL){
+if(*(u32 *)(obj+0x80)&0x4000){
+u8 *p=*(u8 **)(obj+0x1a4);
+buf.unk[5]=*(u32 *)(obj+0xfc)-0x10;
+buf.unk[6]=*(u32 *)(obj+0x100)-*(u32 *)(p+4)-0x20;
+func_021098ac(&buf);
+}
+obj=*(u8 **)(obj+0x13c);
+}
+}
 }
 
 void func_020c0660(u32 kind, s16 x, s16 y, s16 depth, u32 value, s16 size) {
