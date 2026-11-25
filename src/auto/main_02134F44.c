@@ -32,6 +32,8 @@ void func_02136138(void *,void *,u16);
 void func_02135abc(u8 *,s16 *,s32);
 void func_02135b1c(u8 *,s16 *,s32,s16 **);
 void func_02137f80(void *,s32,void *,void *);
+#pragma push
+#pragma opt_tail_merge off
 void func_02134f44(u8 *arg0){
 struct {s16 *ptr;s32 len;} buf[2],rem[2];
 s16 *out[2];
@@ -43,7 +45,7 @@ register u32 consumed;
 register s16 *src=0;
 register s32 n;
 register u8 *p=arg0;
-u32 ua,ub;
+u32 ua,ub; u32 zero;
 u16 i;
 if(*(s8 *)(p+3)==1){
 len=*(u16 *)(p+0x2c);
@@ -70,9 +72,10 @@ if(len){
 s32 size=((s32)(samples*p[5])/100)&~3;
 len=size*2;
 func_0212761c(src,samples,*(s16 **)(p+0x28)+*(u16 *)(p+0x30),size);
+src=(s16 *)((u32)*(s16 **)(p+0x28)+2*(u32)*(u16 *)(p+0x2e));
 *(u16 *)(p+0x30)+=(u16)size;
 *(u16 *)(p+0x2c)+=(u16)len;
-src=*(s16 **)(p+0x28);src+=*(u16 *)(p+0x2e);goto ready;
+
 }
 }
 }else{
@@ -80,7 +83,7 @@ len=*(u16 *)(p+0x2c);if(len==0)return;
 src=*(s16 **)(p+0x28)+*(u16 *)(p+0x2e);buf[0].ptr=0;
 }
 }
-ready:
+zero=0;
 if(*(s8 *)(p+2)==2 && *(s8 *)(p+4)>=1){
 used=func_02135f7c(*(u8 **)(p+0x20),len,&ca);
 ub=func_02135f7c(*(u8 **)(p+0x24),len,&cb);
@@ -100,7 +103,7 @@ if(*(u16 *)(p+0x2c)){
 *(u16 *)(p+0x2c)-=used;*(u16 *)(p+0x2e)+=(u16)(used>>1);
 if(*(u16 *)(p+0x2c)<6){
 if(*(u16 *)(p+0x2c))func_02013858(*(void **)(p+0x28),*(s16 **)(p+0x28)+*(u16 *)(p+0x2e),*(u16 *)(p+0x2c));
-*(u16 *)(p+0x2e)=0;*(u16 *)(p+0x30)=(u32)*(u16 *)(p+0x2c)>>1;
+*(u16 *)(p+0x2e)=zero;*(u16 *)(p+0x30)=(u32)*(u16 *)(p+0x2c)>>1;
 }
 }
 }else consumed=used;
@@ -126,7 +129,7 @@ func_02137f80(&buf[i],consumed,&buf[i],&rem[i]);
 }
 }
 }
-
+#pragma pop
 void func_0213545c(u8 *arg0) {
     s32 i = 0;
     s32 n = ((s8)arg0[4] >= 1 && (s8)arg0[3] == 1 && (s8)arg0[2] == 2) ? 2 : (s8)arg0[3];
@@ -347,12 +350,12 @@ void func_021359e4(u8 *arg0) {
     }
 }
 #pragma opt_common_subs on
-void func_02135a80(u8 *arg0) {
+void func_02135a80(u8 *arg0)
+{
     s32 i = 0;
-    while (i < *(s8 *)(arg0 + 2)) {
-        s32 j = i++;
-        *(u16 *)(*(u8 **)(arg0 + j * 4 + 0x20) + 0x24) = j;
-        *(s32 *)(*(u8 **)(arg0 + j * 4 + 0x20) + 0x14) = j;
+    for (; i < *(s8 *)(arg0 + 2); i++) {
+        *(u16 *)(((u8 **)(arg0 + 0x20))[i] + 0x24) = 0;
+        *(s32 *)(((u8 **)(arg0 + 0x20))[i] + 0x14) = 0;
     }
 }
 
