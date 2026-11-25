@@ -9,7 +9,7 @@ extern u32 data_0216263c[3];
 static inline u16 RandomRange_bedf8(u32 limit) {
 u32 value;
 u16 max=limit;
-data_0216263c[0]=data_0216263c[2]+data_0216263c[1]*data_0216263c[0];
+data_0216263c[0]=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
 value=data_0216263c[0]>>16;
 if(max) value=(value*max)>>16;
 return value;
