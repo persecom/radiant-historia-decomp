@@ -41,16 +41,16 @@ u32 func_ov000_02177b0c(void) {
         u32 c5 = 5;
         volatile u8 *io = (volatile u8 *)(c1 << 26);
         u16 exmem = *(volatile u16 *)0x04000204;
-        u32 mask;
+        register u32 hdr_addr asm("r1");
         u32 ctrl;
         s32 pos;
         u32 cur_addr;
 
 
         *(volatile u16 *)0x04000204 &= ~0x800;
-        mask = 0x204 - c5;
-        pos = -(s32)(addr & mask);
-        ctrl = (*(volatile u32 *)(((((*(volatile u8 *)(io + 0x4000) & 1) + 5) << 18) - 13) << 5) & ~0x07000000) | 0xa1000000;
+        pos = -(s32)(addr & (0x204 - c5));
+        hdr_addr = ((((*(volatile u8 *)(io + 0x4000) & 1) + 5) << 18) - 13) << 5;
+        ctrl = (*(volatile u32 *)hdr_addr & ~0x07000000) | 0xa1000000;
         while (*(volatile u32 *)(io + 0x1a4) & 0x80000000) {}
         *(volatile u8 *)(io + 0x1a1) = 0x80;
         saved=saved_cmd;
@@ -148,7 +148,7 @@ u32 func_ov000_02177d4c(void) {
 
 
         *(volatile u16 *)0x04000204 &= ~0x800;
-        pos = card_neg(addr & (0x204 - c5));
+        pos = -(s32)(addr & (0x204 - c5));
         hdr_addr = ((((*(volatile u8 *)(io + 0x4000) & 1) + 5) << 18) - 13) << 5;
         ctrl = (*(volatile u32 *)hdr_addr & ~0x07000000) | 0xa1000000;
         while (*(volatile u32 *)(io + 0x1a4) & 0x80000000) {}
@@ -226,17 +226,50 @@ u32 func_ov000_02178010(void) {
 }
 
 #pragma opt_propagation on
-void func_ov000_021780e0(Rc4State *state,u8 *key,u32 keylen) {
-register u32 v=0x03020100; register u32 inc=0x04040404;
-u32 k=0; u32 j=0; s32 i;
-u32 *p=(u32*)state->s; u32 *end=(u32*)((u8*)state+0x10c);
-*(volatile u32*)&state->field_0=0xaa; state->field_4=0; state->field_8=0;
-do { *p++=v; v+=inc; }while(p<end);
-i=255; do { u32 x=key[k]; u8 tmp=state->s[i]; u8 tmp2;
-j=(tmp+(j+x))&255; k++;
-tmp2=state->s[j]; if(k>=keylen)k=0; state->s[j]=tmp; state->s[i]=tmp2;
-}while(--i>=0);
-}
+void func_ov000_021780e0(Rc4State *state, u8 *key, u32 keylen) {
+    u32 j;
+    s32 i;
+    u32 k;
+    u32 zero;
+    u32 marker;
+    u32 word;
+    u32 cursor;
+    u32 step;
+    marker = 0xaa;
+    k = 0;
+    *(volatile u32 *)&state->field_0 = marker;
+    state->field_4 = k;
+    word = 0x03020100;
+    step = 0x04040404;
+    j = k;
+    state->field_8 = k;
+    cursor = (u32)state + 0xc;
+    i = (u32)state + 0x10c;
+    do {
+        *(u32 *)(u32)cursor = (u32)word;
+        cursor = (u32)cursor + 4;
+        word = (u32)step + (u32)word;
+    } while ((u32)cursor < (u32)i);
+    i = 255;
+    zero = 0;
+    do {
+        u32 si;
+        u32 ip;
+        u32 x;
+        u32 tmp;
+        x = key[k];
+        ip = (u32)state + i;
+        si = *(u8 *)(ip + 0xc);
+        x = j + x;
+        ++k;
+        j = (si + x) & 255;
+        x = (u32)state + j;
+        tmp = *(u8 *)(x + 0xc);
+        k = k >= keylen ? zero : k;
+        *(u8 *)(x + 0xc) = (u8)si;
+        *(u8 *)(ip + 0xc) = (u8)tmp;
+    } while (--i >= 0);
+    }
 u32 func_ov000_0217816c(Rc4State *state) {
     u32 i = (state->field_4 + 1 + state->field_0) & 0xff;
     u32 si = state->s[i];
@@ -308,38 +341,70 @@ s32 func_ov000_021781fc(void *arg0, void *arg1, u32 arg2, u32 size) {
 extern s32 func_ov000_021774e4(u32);
 
 #pragma scheduling on
-s32 func_ov000_02178314(void *arg0,void *arg1,u32 arg2,u32 arg3){
- u8 table[256];u32 i;
- Rc4State *state=(Rc4State *)arg0;
- u8 *in=(u8 *)arg1,*out=(u8 *)arg2;
- if(arg3&3)return -1;
- func_ov000_021781c4((u32 *)table);
- for(i=0;i<arg3;i+=4){
- u32 *src=(u32 *)(in+i);
- u32 word=*(u32 *)src;
- switch(func_ov000_021774e4(word)){
- case 1:case 3:
- state->field_0+=word>>24;
- *(u32 *)(out+i)=((word&0xff000000)^0x01000000)|(((word&0xffffff)-0x402)&0xffffff);
- break;
- case 2:{
- u8 b0=((u8 *)src)[0];u32 k0=func_ov000_0217816c(state);
- state->field_0=b0;out[i]=b0^k0;
- {u8 b1=((u8 *)src)[1];u32 k1=func_ov000_0217816c(state);state->field_0=b1;out[i+1]=b1^k1;}
- state->field_0=state->field_0*((u8 *)src)[2]-((u8 *)src)[3];
- out[i+2]=table[((u8 *)src)[2]];out[i+3]=((u8 *)src)[3];
- *(u32 *)src^=0x01000000;
- }break;
- default:{
- u8 b0=((u8 *)src)[0];u32 k0=func_ov000_0217816c(state);
- state->field_0=b0;out[i]=b0^k0;
- {u8 b1=((u8 *)src)[1];u32 k1=func_ov000_0217816c(state);state->field_0=b1;out[i+1]=b1^k1;}
- state->field_0=state->field_0*((u8 *)src)[2]-((u8 *)src)[3];
- out[i+2]=table[((u8 *)src)[2]];out[i+3]=((u8 *)src)[3];
- }break;
- }
- }
- return 0;
+s32 func_ov000_02178314(void *arg0, void *arg1, u32 arg2, u32 arg3) {
+    u8 table[256];
+    register u8 * src;
+    unsigned long i;
+    Rc4State * state = (Rc4State *)arg0;
+    register u8 * out = (u8 *)arg2;
+    register u8 * in = (u8 *)arg1;
+    if (arg3 & 3) return -1;
+    func_ov000_021781c4((u32 *)table);
+    i = 0;
+    while (arg3 > i) {
+        u32 word = *(u32 *)(in + i);
+        s32 kind;
+        src = in + i;
+        kind = func_ov000_021774e4(word);
+        switch (kind) {
+        case 1:
+        case 3:
+            state->field_0 += word >> 24;
+            *(u32 *)(out + i) = ((word & 0xff000000) ^ 0x01000000) | (((word & 0xffffff) - 0x402) & 0xffffff);
+            break;
+        case 2: {
+            u8 b0 = src[0];
+            u8 b1;
+            u32 k1;
+            u32 k0;
+            u8 *q;
+            k0 = func_ov000_0217816c(state);
+            q = out + i;
+            state->field_0 = b0;
+            q[0] = b0 ^ k0;
+            b1 = src[1];
+            k1 = func_ov000_0217816c(state);
+            state->field_0 = b1;
+            q[1] = b1 ^ k1;
+            state->field_0 = state->field_0 * src[2] - src[3];
+            q[2] = table[src[2]];
+            q[3] = src[3];
+            *(u32 *)src ^= 0x01000000;
+            break;
+        }
+        default: {
+            u8 b0 = src[0];
+            u8 b1;
+            u32 k1;
+            u32 k0;
+            u8 *q;
+            k0 = func_ov000_0217816c(state);
+            q = out + i;
+            state->field_0 = b0;
+            q[0] = b0 ^ k0;
+            b1 = src[1];
+            k1 = func_ov000_0217816c(state);
+            state->field_0 = b1;
+            q[1] = b1 ^ k1;
+            state->field_0 = state->field_0 * src[2] - src[3];
+            q[2] = table[src[2]];
+            q[3] = src[3];
+            break;
+        }
+        }
+        i += 4;
+    }
+    return 0;
 }
 s32 func_ov000_0217849c(u8 *arg0, u8 *arg1, u32 arg2, u32 arg3) {
     Rc4State state;
