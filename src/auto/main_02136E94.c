@@ -30,7 +30,7 @@ extern void func_02137330(void);
 extern void func_021375e0(void *);
 
 typedef struct {
-    u8 data[1728];
+    u32 data[432];
 } Block_02175d40;
 
 extern u8 data_0215c55c[12];
@@ -202,13 +202,16 @@ void func_02137294(void) {
     func_021369b4();
 }
 
+void *memset(void *, int, unsigned long);
+#pragma push
+#pragma ANSI_strict off
+#pragma iso_inline on
+#pragma inline_intrinsics on
 void func_021372c0(void) {
-    if (data_02175d3c == 0) {
-        memset(data_02175d40, 0, sizeof(data_02175d40));
-    }
-    data_02175d3c++;
+ if (data_02175d3c == 0) memset(data_02175d40, 0, sizeof(data_02175d40));
+ data_02175d3c++;
 }
-
+#pragma pop
 void func_02137318(void) {
     func_021369a8();
     func_02137330();
@@ -216,13 +219,15 @@ void func_02137318(void) {
     func_02136980();
 }
 
+#pragma push
+#pragma intrinsic memset
 void func_02137330(void) {
     data_02175d3c--;
     if (data_02175d3c == 0) {
         memset(data_02175d40, 0, sizeof(data_02175d40));
     }
 }
-
+#pragma pop
 extern s32 func_021373b0(s32, s32, s32);
 s32 func_0213737c(s32 arg0, s32 arg1, s32 arg2) {
     s32 ret;
