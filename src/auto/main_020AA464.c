@@ -1,12 +1,5 @@
 /* 31 functions from 0x020AA464 to 0x020AB250 (main), found by ds-decomp. */
 #include "common.h"
-
-typedef struct {
-    u8 pad[4];
-    s32 x;
-    s32 y;
-    u8 rest[8];
-} AaNode;
 extern s32 (*const data_02143898[])(u8 *);
 extern s32 (*const data_021438b0[])(u8 *);
 extern s32 (*const data_0214388c[])(u8 *);
