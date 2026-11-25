@@ -449,25 +449,18 @@ func_0200813c(state);
 void func_0200faec(u32 arg0, s32 arg1) {
     u8 *p = data_0215f120;
     u32 state = func_02008128();
-    if (*(u32 *)(p + 0x14) == arg0) {
-        if (*(u32 *)(p + 0x18) != 0) {
-            goto check;
-        }
-    } else {
-        goto check;
-    }
-    func_02008414();
-    goto restore;
-check:
-    if (*(u32 *)(p + 0x24) != (u32)arg1) {
+    if (*(u32 *)(p + 0x14) != arg0 || *(u32 *)(p + 0x18) == 0) {
         func_02008414();
+    } else {
+        if (*(u32 *)(p + 0x24) != (u32)arg1) {
+            func_02008414();
+        }
+        if (--*(u32 *)(p + 0x18) == 0) {
+            *(u32 *)(p + 0x14) = (u32)-3;
+            *(u32 *)(p + 0x24) = 0;
+            func_02006560(p + 0x1c);
+        }
     }
-    if (--*(u32 *)(p + 0x18) == 0) {
-        *(u32 *)(p + 0x14) = (u32)-3;
-        *(u32 *)(p + 0x24) = 0;
-        func_02006560(p + 0x1c);
-    }
-restore:
     func_0200813c(state);
 }
 
