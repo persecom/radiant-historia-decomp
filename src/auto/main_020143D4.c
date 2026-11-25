@@ -18,7 +18,6 @@ typedef struct {
 
 extern const u16 data_0213eb14[];
 
-#pragma scheduling off
 u8 *func_020143d4(double value, u8 *end, FormatSpec spec)
 {
   double original = value;
@@ -61,24 +60,30 @@ u8 *func_020143d4(double value, u8 *end, FormatSpec spec)
       p = (u8 *) (((u32) p) - 5);
       if (conversion == 'A')
       {
-        *(FormatText5 *)p = data_02145e54;
+        ((FormatText5 *)p)->lo = data_02145e54.lo;
+        ((FormatText5 *)p)->hi = data_02145e54.hi;
+        ((FormatText5 *)p)->last = data_02145e54.last;
         return p;
       }
       else
       {
-        *(FormatText5 *)p = data_02145e5c;
+        ((FormatText5 *)p)->lo = data_02145e5c.lo;
+        ((FormatText5 *)p)->hi = data_02145e5c.hi;
+        ((FormatText5 *)p)->last = data_02145e5c.last;
         return p;
       }
     }
       p = (u8 *) (((u32) p) - 4);
       if (conversion == 'A')
       {
-        *(FormatText4 *)p = data_02145e64;
+        ((FormatText4 *)p)->lo = data_02145e64.lo;
+        ((FormatText4 *)p)->hi = data_02145e64.hi;
         return p;
       }
       else
       {
-        *(FormatText4 *)p = data_02145e68;
+        ((FormatText4 *)p)->lo = data_02145e68.lo;
+        ((FormatText4 *)p)->hi = data_02145e68.hi;
         return p;
       }
 
@@ -88,24 +93,30 @@ u8 *func_020143d4(double value, u8 *end, FormatSpec spec)
       p = (u8 *) (((u32) p) - 5);
       if (conversion == 'A')
       {
-        *(FormatText5 *)p = data_02145e6c;
+        ((FormatText5 *)p)->lo = data_02145e6c.lo;
+        ((FormatText5 *)p)->hi = data_02145e6c.hi;
+        ((FormatText5 *)p)->last = data_02145e6c.last;
         return p;
       }
       else
       {
-        *(FormatText5 *)p = data_02145e74;
+        ((FormatText5 *)p)->lo = data_02145e74.lo;
+        ((FormatText5 *)p)->hi = data_02145e74.hi;
+        ((FormatText5 *)p)->last = data_02145e74.last;
         return p;
       }
     }
       p = (u8 *) (((u32) p) - 4);
       if (conversion == 'A')
       {
-        *(FormatText4 *)p = data_02145e7c;
+        ((FormatText4 *)p)->lo = data_02145e7c.lo;
+        ((FormatText4 *)p)->hi = data_02145e7c.hi;
         return p;
       }
       else
       {
-        *(FormatText4 *)p = data_02145e80;
+        ((FormatText4 *)p)->lo = data_02145e80.lo;
+        ((FormatText4 *)p)->hi = data_02145e80.hi;
         return p;
       }
 
