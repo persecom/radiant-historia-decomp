@@ -54,29 +54,18 @@ void func_020cec8c(void) {
 }
 
 void func_020cecfc(void) {
-    u8 *p = data_02160238;
-    switch (p[0x774]) {
-    case 0:
-        {
-            u32 v = p[0x773] + 1;
-            if ((u8)v >= 0xff) {
-                p[0x774] = 1;
-            }
-            p[0x773] = v;
-        }
-        break;
-    case 1:
-        {
-            u32 v = p[0x773] - 1;
-            p[0x773] = v;
-            if ((v & 0xff) == 0) {
-                p[0x774] = 0;
-            }
-        }
-        break;
-    default:
-        break;
-    }
+u8 *p=data_02160238;
+switch(p[0x774]){
+case 0: {
+u32 v=p[0x773]+1;
+if((v&0xff)>=0xff){p[0x773]=v;p[0x774]=1;}else{p[0x773]=v;}
+}break;
+case 1:{
+u32 v=p[0x773]-1;p[0x773]=v;
+if((v&0xff)==0)p[0x774]=0;
+}break;
+default:break;
+}
 }
 
 void func_020ced5c(void) {
