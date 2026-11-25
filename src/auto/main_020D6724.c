@@ -18,31 +18,20 @@ void func_020d6724(void) {
     func_02005e80(buf, data_021513a8);
     r5 = func_021092d8(buf);
     for (i = 0; i < 3; i++) {
-        u32 x = (u16)func_02092994(r5, 0);
-        s32 y = (s8)data_02160204[i + 0x12b];
-        u32 v;
-        u16 flag;
-        if (y != 0) {
-            goto y_nonzero;
+        u16 x = func_02092994(r5, 0);
+        s8 y = data_02160204[i + 0x12b];
+        if (y == 0) {
+            if (x != 0) {
+                func_020bd2fc((u8)i, 1, (u8)(x - 1), 0);
+            } else if (x == 0) {
+                func_020bd2fc((u8)i, 0, (u8)x, 0);
+            }
+        } else {
+            func_020bd2fc((u8)i, 1, (u8)(y - 1), 0);
         }
-        if (x == 0) {
-            goto zero;
-        }
-        v = x - 1;
-        flag = 1;
-        goto call;
-    zero:
-        v = 0;
-        flag = 0;
-        goto call;
-    y_nonzero:
-        v = y - 1;
-        flag = 1;
-    call:
-        func_020bd2fc((u8)i, flag, v, 0);
     }
     if (r5 != NULL) {
         func_021093b0(r5);
-        func_020bd574();
     }
+    func_020bd574();
 }
