@@ -67,8 +67,6 @@ extern void func_02006dc4(void *, s32);
 extern void func_0200a674(s32, void *);
 extern void func_0200fedc(u32, u32, u32);
 
-#pragma opt_common_subs off
-
 void func_0200fc34(u32 arg0, u32 arg1) {
     u32 irq = func_02008128();
     void **node = (void **)data_0215f640;
