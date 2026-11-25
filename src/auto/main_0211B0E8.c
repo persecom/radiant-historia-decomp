@@ -9,20 +9,22 @@ s32 mode=a&0x300;
 if(mode!=0x100 && mode!=0x300) mode|=a&0x30000000;
 return mode;
 }
-static inline s32 Width_bb3c(u32 a) {
-u32 size; s32 shape;
-a &= 0xc000c000;
-size=(a&0xc0000000)>>30;
-shape=(s32)(a&0xc000)>>14;
-return size[data_02144d84[shape]];
-}
-static inline s32 Height_bb3c(u32 a) {
-u32 size; s32 shape;
-a &= 0xc000c000;
-size=(a&0xc0000000)>>30;
-shape=(s32)(a&0xc000)>>14;
-return size[data_02144d6c[shape]];
-}
+ static inline s32 Width_bb3c(u32 a) {
+ u32 size; s32 shape;
+ const u16 (*tab)[4] = data_02144d84;
+ a &= 0xc000c000;
+ size=(a&0xc0000000)>>30;
+ shape=(s32)(a&0xc000)>>14;
+ return size[tab[shape]];
+ }
+ static inline s32 Height_bb3c(u32 a) {
+ u32 size; s32 shape;
+ const u16 (*tab)[4] = data_02144d6c;
+ a &= 0xc000c000;
+ size=(a&0xc0000000)>>30;
+ shape=(s32)(a&0xc000)>>14;
+ return size[tab[shape]];
+ }
 static inline s32 Double_bb3c(u32 a) { return Mode_bb3c(a)==0x300; }
 static inline void GetDouble_bb3c(u32 a,s32 *result) { *result=Double_bb3c(a); }
 static inline void SetMode_bb3c(u32 *p,s32 mode) {
@@ -227,13 +229,11 @@ void func_0211b584(s32 arg0, s32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u
 
 #pragma opt_strength_reduction off
 void func_0211b614(void *dst, void *src, s32 sx, s32 sy, s32 dx, s32 dy, s32 dw, s32 dh, s32 w, s32 h) {
-    u16 raww = *(u16 *)src;
-    u16 rawh = ((u16 *)src)[1];
     s32 ey = sy + h;
     u16 *p = (u16 *)src + 6;
     s32 ex = sx + w;
-    s32 sh = (u32)rawh >> 3;
-    s32 sw = (u32)raww >> 3;
+    s32 sh = (u32)*((u16 *)src + 1) >> 3;
+    s32 sw = (u32)*(u16 *)src >> 3;
     s32 yy = dy;
     s32 x, xx;
     for (; sy < ey; sy++, yy++) {
@@ -352,9 +352,12 @@ void func_0211bb3c(const s32 *m, u32 *sprite, const Vec2_bb3c *translation) {
             else { *p2 = (*p2 & 0xc1fffcff) | mode; }
         }
     }
-    mode = Double_bb3c(*sprite);
-    w = Width_bb3c(*sprite) >> 1;
-    h = Height_bb3c(*sprite) >> 1;
+    {
+        u32 spr = *sprite;
+        mode = Double_bb3c(spr);
+        w = Width_bb3c(spr) >> 1;
+        h = Height_bb3c(spr) >> 1;
+    }
     {
         s32 oy = -(h << 12), ox = -(w << 12);
         ox += m[0] * w; oy += m[1] * w;
