@@ -538,10 +538,11 @@ u32 func_02005a14(u32 arg0) {
     return old;
 }
 
+extern u8 SDK_IRQ_STACKSIZE[];
 void func_02005a40(void) {
     u32 dtcm = (u32)data_027e0000;
     *(volatile u32 *)(dtcm + 0x3f7c) = 0xfddb597d;
-    *(volatile u32 *)(dtcm + 0x3f80 - 0x400) = 0x7bf9dd5b;
+    *(volatile u32 *)(dtcm + 0x3f80 - (u32)SDK_IRQ_STACKSIZE) = 0x7bf9dd5b;
 }
 
 extern u16 data_0215cddc;
