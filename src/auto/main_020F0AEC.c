@@ -31,6 +31,7 @@ extern void func_021204a8(void);
 void func_020f0aec(void) {
     u8 *mgr = data_02160af0;
     u8 *node;
+    u8 *obj;
 
     if (mgr == NULL) {
         return;
@@ -39,8 +40,7 @@ void func_020f0aec(void) {
     node = *(u8 **)(mgr + 0x64);
     while (node != NULL) {
         u32 id = *(u32 *)(node + 0x10);
-        if (id < 10000 && id != 0 && *(u8 **)(node + 0) != NULL) {
-            u8 *obj = *(u8 **)(node + 0);
+        if (id < 10000 && id != 0 && (obj = *(u8 **)(node + 0)) != NULL) {
             if (*(u32 *)(node + 0x14) & 1) {
                 u32 param;
                 if (*(u32 *)(obj + 0xf4) != 0) {
@@ -54,24 +54,28 @@ void func_020f0aec(void) {
 
                 if (*(u32 *)(node + 0x10) == 0x3e5) {
                     if (obj != NULL) {
-                        s32 *p = *(s32 **)(obj + 0xfc);
-                        if (p != NULL) {
-                            u32 i;
-                            for (i = 0; i < data_0216281c; i++) {
-                                *p += 0x1000;
-                            }
-                            if (*p >= 0xc80000) {
-                                *p = 0;
+                        {
+                            s32 *p = *(s32 **)(obj + 0xfc);
+                            if (p != NULL) {
+                                u32 i;
+                                for (i = 0; i < data_0216281c; i++) {
+                                    *p += 0x1000;
+                                }
+                                if (*p >= 0xc80000) {
+                                    *p = 0;
+                                }
                             }
                         }
-                        p = *(s32 **)(obj + 0x100);
-                        if (p != NULL) {
-                            u32 i;
-                            for (i = 0; i < data_0216281c; i++) {
-                                *p += 0x1000;
-                            }
-                            if (*p >= 0xc80000) {
-                                *p = 0;
+                        {
+                            s32 *p = *(s32 **)(obj + 0x100);
+                            if (p != NULL) {
+                                u32 i;
+                                for (i = 0; i < data_0216281c; i++) {
+                                    *p += 0x1000;
+                                }
+                                if (*p >= 0xc80000) {
+                                    *p = 0;
+                                }
                             }
                         }
                         *(s32 *)(node + 0x18) = 0;
@@ -152,7 +156,7 @@ void func_020f0aec(void) {
 
             if (*(s32 *)(node + 0x18) != 0) {
                 u8 *anim = *(u8 **)(obj + 0xfc);
-                if (((*(u16 *)(obj + 0x1a4) >> 3) & 1) && anim != NULL) {
+                if (((Flags_020f0aec *)(obj + 0x1a4))->b3 && anim != NULL) {
                     if (*(void (**)(void *))(obj + 0x1b0) != NULL) {
                         (*(void (**)(void *))(obj + 0x1b0))(obj);
                         *(void **)(obj + 0x1b0) = NULL;
@@ -165,10 +169,10 @@ void func_020f0aec(void) {
                         }
                         limit = *(u16 *)(*(u8 **)(anim + 8) + 4) << 12;
                         if (*(s32 *)anim >= limit) {
-                            if ((*(u16 *)(obj + 0x1a4) >> 5) & 1) {
+                            if (((Flags_020f0aec *)(obj + 0x1a4))->b5) {
                                 *(s32 *)anim = 0;
                             } else {
-                                *(u16 *)(obj + 0x1a4) &= ~8;
+                                ((Flags_020f0aec *)(obj + 0x1a4))->b3 = 0;
                                 *(s32 *)anim = limit - 1;
                                 if (*(void (**)(void *))(obj + 0x1b4) != NULL) {
                                     (*(void (**)(void *))(obj + 0x1b4))(*(void **)(obj + 0x1ac));
@@ -182,7 +186,7 @@ void func_020f0aec(void) {
 
             if (*(s32 *)(node + 0x1c) != 0) {
                 u8 *anim = *(u8 **)(obj + 0x100);
-                if (((*(u16 *)(obj + 0x1a4) >> 4) & 1) && anim != NULL) {
+                if (((Flags_020f0aec *)(obj + 0x1a4))->b4 && anim != NULL) {
                     s32 step = *(s32 *)(obj + 0x104);
                     if (*(void (**)(void *))(obj + 0x1b0) != NULL) {
                         (*(void (**)(void *))(obj + 0x1b0))(obj);
@@ -196,10 +200,10 @@ void func_020f0aec(void) {
                         }
                         limit = *(u16 *)(*(u8 **)(anim + 8) + 4) << 12;
                         if (*(s32 *)anim >= limit) {
-                            if ((*(u16 *)(obj + 0x1a4) >> 6) & 1) {
+                            if (((Flags_020f0aec *)(obj + 0x1a4))->b6) {
                                 *(s32 *)anim = 0;
                             } else {
-                                *(u16 *)(obj + 0x1a4) &= ~0x10;
+                                ((Flags_020f0aec *)(obj + 0x1a4))->b4 = 0;
                                 *(s32 *)anim = limit - 1;
                                 if (*(void (**)(void *))(obj + 0x1b4) != NULL) {
                                     (*(void (**)(void *))(obj + 0x1b4))(*(void **)(obj + 0x1ac));
