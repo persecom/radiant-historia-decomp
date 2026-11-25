@@ -23,6 +23,10 @@ extern void *func_020de270(void);
 extern u8 *func_02030698(void *, s32);
 
 s32 func_020db864(u8 *arg0, u8 *arg1, s32 arg2) {
+    register u8 *dbd_gp asm("r7");
+    register volatile u32 *dbd_st asm("r6");
+    register s32 dbd_one asm("r4");
+    register s32 dbd_zero asm("r8");
     u8 *p;
     switch (arg2) {
     case 0: {
@@ -206,13 +210,13 @@ func_021089e8(one,5,3);}
 func_020a2c38(*(u16 *)((u8 *)data_0216025c[1]+0x48),0);
 {u32 i=data_0216025c[2];data_02160668[i]=((u32)func_02007904()<<6)/33514;data_02160268[i]=data_0215150c;data_0216025c[2]++;}
 {
-u32 done=0, mode=9, special=15, alternate=2;
+s32 done=0;
 while(1) {
 u32 flags=*(u32 *)((u8 *)data_0216025c[1]+0x60);
-if(flags&4){done=one;data_0216025c[0]=mode;}
-else if(flags&8){if(data_02160204[0x7a])func_020414b0();done=one;data_0216025c[0]=special;}
+if(flags&4){done=one;data_0216025c[0]=9;}
+else if(flags&8){if(data_02160204[0x7a])func_020414b0();done=one;data_0216025c[0]=15;}
 else if(flags&64){if(data_02160204[0x7a])func_020414b0();done=one;}
-if(*(u32 *)((u8 *)data_0216025c[1]+0x60)&16){done=one;data_0216025c[0]=alternate;}
+if(*(u32 *)((u8 *)data_0216025c[1]+0x60)&16){done=one;data_0216025c[0]=2;}
 if(done)break;
 func_0210dc88();
 }
