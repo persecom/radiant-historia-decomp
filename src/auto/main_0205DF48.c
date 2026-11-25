@@ -28,6 +28,7 @@ u8 *p=*(u8 **)(q+8);
 u8 *list=*(u8 **)(q+12);
 u8 *target=*(u8 **)(list+4);
 int enabled=1;
+int zero=0;
 u32 v[3];
 if(p[0]==3) enabled=0;
 else if(p[0]==4) enabled=0;
@@ -49,7 +50,6 @@ func_0202bcd4(v,p[0x3a]);
 q[0x75]=two;
 } else if(func_02065c44(p)==0) {func_0202ccec(*(u16 *)(p+0x38),list); q[0x75]=0;}
 break;
-
 }
 case 12:
 func_0202ccec(0xe00,list); q[0x75]=0; break;
