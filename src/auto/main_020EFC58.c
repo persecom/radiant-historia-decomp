@@ -199,7 +199,7 @@ void func_020f0090(s32 arg0) {
     }
 }
 
-extern void func_0210af8c(void);
+extern u8 *func_0210af8c(void);
 extern void func_02108ffc(void);
 void func_020f0154(u32 arg0) {
     u8 *g = data_02160af0;
