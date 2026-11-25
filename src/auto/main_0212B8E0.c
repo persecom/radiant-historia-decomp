@@ -1,5 +1,6 @@
 /* 40 functions from 0x0212B8E0 to 0x0212C824 (main), found by ds-decomp. */
 #include "common.h"
+extern u32 data_02173df4[5];
 typedef struct { s8 active; u8 rest[0xb3]; } UnkSlot_0212c660;
 extern u8 data_02173e08[720];
 extern s32 func_02137d44(void *);
@@ -576,18 +577,18 @@ void func_0212c808(u8 *arg0) {
     arg0[1] = 0;
 }
 
+#pragma optimize_for_size off
+extern void *memset(void *, int, unsigned int);
+#pragma intrinsics on
 void func_0212c5cc(void) {
     extern u32 data_02173df4[5];
-    extern u8 data_02173e08[720];
-    extern void *memset(void *, int, u32);
     u32 volatile *p = (u32 volatile *)((u8 *)data_02173df4 + 0x10);
     *p = *p - 1;
     if (*p != 0) {
         return;
     }
-    memset(data_02173e08, 0, 0x2d0);
+    memset((u32 *)data_02173e08, 0, 0x2d0);
 }
-
 void func_0212c624(void *arg0) {
     u8 *p = (u8 *)arg0;
     *(u32 *)(p + 0xa0) = 0;
