@@ -485,7 +485,7 @@ parse_set:
         if (width == 0) width = (s32)0x80000000;
         ch = *s;
     set_loop:
-        if (((st.bits[(u32)(u8)ch >> 5] >> ((u8)ch & 31)) & 1) != st.inv) goto set_end;
+        if (((bits[(u32)(u8)ch >> 5] >> ((u8)ch & 31)) & 1) != st.inv) goto set_end;
         if (dst != 0) *dst++ = ch;
         ch = *++s;
         width--;
