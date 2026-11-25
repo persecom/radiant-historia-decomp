@@ -32,7 +32,7 @@ static inline s32 texfixed_021200f4(s32 v) { return (v << 8) >> 16; }
 static inline u32 texcoord_021200f4(s32 s,s32 t) {
 s=texfixed_021200f4(s);
 t=texfixed_021200f4(t);
-return (u16)s | ((u32)(u16)t << 16);
+return texcoord_0211fda4(s,t);
 }
 static inline u8 *dict_entry_0211fda4(u8 *dict,u32 index) {
 if(dict && index<dict[1]){
@@ -260,8 +260,7 @@ while(func_02002f3c(clip)!=0){}
 *(volatile u32 *)0x4000448=1;
 *(volatile u32 *)0x4000440=3;
 func_021205ec(0x16,clip,16);
-{s32 t=clip[13]>>4, s=clip[12]>>4;
-u32 packed=texcoord_021200f4(s,t);func_021205ec(0x22,&packed,1);}
+{u32 packed=texcoord_021200f4(clip[12]>>4,clip[13]>>4);func_021205ec(0x22,&packed,1);}
 }
 {u32 command=2;func_021205ec(0x10,&command,1);}
 {u32 command=30;func_021205ec(0x14,&command,1);}
