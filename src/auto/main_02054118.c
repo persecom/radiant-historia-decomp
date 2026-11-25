@@ -228,6 +228,7 @@ void func_020544d8(void *arg0, s32 arg1) {
     }
 }
 
+#pragma opt_peephole off
 s32 func_0205453c(u8 *arg0) {
     u16 count = 0;
     u8 *s = *(u8 **)(arg0 + 0xd0);
@@ -235,16 +236,15 @@ s32 func_0205453c(u8 *arg0) {
         return 0;
     }
     while (1) {
-        s32 angle;
+        u32 seed = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
+        s32 angle = (u16)(((seed >> 16) * 0xfffe) >> 16) - 65535;
         s32 dist;
         s32 idx;
         s32 d;
         u32 half;
         u16 r;
 
-        { u32 addend = data_0216263c[2]; u32 seed = data_0216263c[0]; u32 multiplier = data_0216263c[1]; data_0216263c[0] = addend + seed * multiplier; }
-        r = ((data_0216263c[0] >> 16) * 0xfffe) >> 16;
-        angle = (s32)r - 0xffff;
+        data_0216263c[0] = seed;
         if (angle < 0) {
             angle = -angle;
         }
@@ -252,11 +252,12 @@ s32 func_0205453c(u8 *arg0) {
         half = (u32)*(u16 *)(s + 0x1c) >> 1;
         if (half != 0) {
             u16 max = half * 2;
-            data_0216263c[0] = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
+            seed = data_0216263c[1] * seed + data_0216263c[2];
+            data_0216263c[0] = seed;
             if (max == 0) {
-                r = data_0216263c[0] >> 16;
+                r = seed >> 16;
             } else {
-                r = ((data_0216263c[0] >> 16) * max) >> 16;
+                r = ((seed >> 16) * max) >> 16;
             }
             dist = (s32)r - (s32)((u32)*(u16 *)(s + 0x1c) >> 1);
         } else {
@@ -286,8 +287,7 @@ s32 func_0205453c(u8 *arg0) {
     }
     return 1;
 }
-
-#pragma optimization_level 3
+#pragma opt_peephole on
 s32 func_020546c0(u8 *arg0, s32 arg1) {
     u16 tries = 0;
     u32 range = (u16)(arg1 * 2);
