@@ -79,13 +79,21 @@ void func_02129c50(u8 *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_02129c6c(u8 *arg0) {
-void *p; u32 i;
-*(u32 *)(arg0+0xc4)=0;
-*(s16 *)(arg0+0xd8)=0;
-*(s16 *)(arg0+0xda)=-128;
-*(s16 *)(arg0+0xdc)=-128;
-p=arg0+0xc8;
-i=4; do { ((volatile u8 *)p)[0]=0; ((u8 *)p)[1]=0; ((u8 *)p)[2]=0; ((u8 *)p)[3]=0; p=(u8 *)p+4; } while(--i);
+    u8 *p;
+    u32 i;
+    *(u32 *)(arg0 + 0xc4) = 0;
+    *(s16 *)(arg0 + 0xd8) = 0;
+    *(s16 *)(arg0 + 0xda) = -0x80;
+    *(s16 *)(arg0 + 0xdc) = -0x80;
+    p = arg0 + 0xc8;
+    i = 4;
+    do {
+        p[0] = 0;
+        p[1] = 0;
+        p[2] = 0;
+        p[3] = 0;
+        p += 4;
+    } while (--i != 0);
 }
 
 void *func_0212965c(void);
@@ -276,7 +284,6 @@ u32 func_0212a240(u32 *arg0) {
 
 extern void func_02129624(void);
 extern void func_02129a50(void);
-extern void *memset(void *, int, u32);
 extern u8 data_021735a4[976];
 u32 func_0212a250(u8 *arg0) {
     return *(u32 *)(arg0 + 0x30);
