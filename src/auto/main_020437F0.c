@@ -12,6 +12,26 @@ extern void func_020447a4(void *);
 extern void func_02046794(void);
 
 extern u8 *data_021600bc;
+extern u32 data_0216263c[3];
+
+static inline s32 in_rect_02043de4(u8 *node, u8 *player) {
+    s32 x = *(s32 *)(player + 0);
+    s32 z = *(s32 *)(player + 8);
+    if (x >= *(s32 *)(node + 0) && x <= *(s32 *)(node + 8) &&
+        z >= *(s32 *)(node + 4) && z <= *(s32 *)(node + 0xc)) {
+        return 1;
+    }
+    return 0;
+}
+
+static inline u16 rand_range_02043de4(u16 max) {
+    u32 x = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
+    data_0216263c[0] = x;
+    if (max == 0) {
+        return (u16)(x >> 16);
+    }
+    return (u16)(((x >> 16) * max) >> 16);
+}
 extern u8 *data_02160204;
 extern u8 data_021600a8[8];
 extern void func_0210f978(void);
