@@ -1,5 +1,18 @@
 /* 4 functions from 0x02097358 to 0x02098268 (main), found by ds-decomp. */
 #include "common.h"
+extern u8 *data_02160244;
+extern u16 data_021626a8,data_021628f8,data_02160a78;
+extern void func_020a8810(void *,s32);
+extern void func_020e24bc(void *,s16,s16,s32,s32);
+extern void func_020e267c(void *,s16,s16,s32);
+extern s32 func_02064b84(s32,s32,s32,s32);
+extern void func_0210d27c(s32);
+extern void func_020e25c4(void);
+extern u8 *func_020ddb90(u16);
+extern void func_02098694(u16),func_02098710(u16),func_0209877c(u16),func_020987e8(u16),func_02098854(u16);
+extern void func_020e25fc(s32,u16,s32);
+extern void func_020e9384(void *);
+extern void func_02098268(void),func_020983ac(void),func_020984e4(void);
 typedef struct { u16 v[10]; } Draw_02097fb4;
 typedef struct { u16 f0,f1,f2,f3,f4,f5,f6,f7,f8,f9; } DrawFields_02097fb4;
 extern const Draw_02097fb4 data_02141fb0;
@@ -10,6 +23,8 @@ void func_021098ac(void *);
 void func_020e3f30(s32, s32, s32);
 
 extern u8 *data_0216011c;
+void func_02097358(void) {}
+
 void func_02097fb4(void) {
 u8 *base=data_0216011c;
 u8 *a=*(u8 **)(base+0x30), *b=*(u8 **)(base+0x34);
