@@ -28,6 +28,10 @@ extern void func_021205ec(s32, void *, s32);
 extern void func_0211e078(void *);
 extern void func_0211d7a4(void);
 extern void func_021204a8(void);
+extern s32 data_02170204[];
+extern void func_02002028(s32);
+extern s64 func_02001fd0(void);
+extern void func_0210d27c(s32);
 void func_020f0aec(void) {
     u8 *mgr = data_02160af0;
     u8 *node;
