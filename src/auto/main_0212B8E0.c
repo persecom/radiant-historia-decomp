@@ -546,11 +546,8 @@ s32 func_0212c54c(u32 arg0) {
 
 void func_0212c56c(void) {
     if (data_02173df4[4] == 0) {
-        s32 i;
         func_02129bd8();
-        for (i = 0; i < 180; i++) {
-            data_02173e08[i] = 0;
-        }
+        __clear(data_02173e08, 720);
     }
     data_02173df4[4]++;
 }
@@ -619,7 +616,7 @@ u8 *func_0212c660(u32 arg0, s32 count, void **items) {
     void *first = items[0];
     s32 i;
     for (i = 0; i < 4; i++) {
-        if (*(volatile s8 *)(data_02173e08 + i * 0xb4) == 0) {
+        if (*(volatile s8 *)((u8 *)data_02173e08 + i * 0xb4) == 0) {
             break;
         }
     }
