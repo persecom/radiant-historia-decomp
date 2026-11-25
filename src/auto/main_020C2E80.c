@@ -16,6 +16,8 @@ struct UnkB0 {
     s16 data[88];
 };
 extern const struct UnkB0 data_02144318;
+struct Unk108 { s16 data[132]; };
+extern const struct Unk108 data_021443c8;
 extern void *func_020c3d24(void *);
 extern void func_02116844(void *, void *);
 extern void func_02116894(void *, void *, void *);
