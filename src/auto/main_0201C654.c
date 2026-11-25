@@ -1,6 +1,9 @@
 /* 2 functions from 0x0201C654 to 0x0201D04C (main), found by ds-decomp. */
 #include "common.h"
 
+extern const s32 data_0213ec80[],data_0213ed00[];
+extern double func_0201e014(double);
+extern s32 func_0201d04c(double *,double *,s32,s32,s32,const s32 *);
 double _dsub(double,double);
 int func_0201ff80(double);
 double func_0201cd34(double x, double y) {
