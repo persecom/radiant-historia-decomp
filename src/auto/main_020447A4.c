@@ -269,18 +269,21 @@ void func_02044cfc(void)
 }
 
 u32 func_02044dd0(void) {
+    u8 *q;
     u8 *p = data_021600a8[1];
     u8 *base = data_021600f0;
     u32 val = data_0216bf84;
-    u8 *q = *(u8 **)(p + 0x68);
+    q = *(u8 **)(p + 0x68);
     u8 *s = *(u8 **)(base + 4);
-    u32 mode = *(u32 *)(p + 0x10);
     if (val != 1) return 0;
     if ((*(u32 *)(q + 0xac) & 0x800) && *s == 0) return 0;
     if (func_02109754(3) == 1) return 0;
-    if (mode != 0 && mode != 8) return 0;
-    if (*(u8 *)(data_02160204 + 0x85) != 0) return 0;
-    return (*(u32 *)(q + 0xac) & 0x400) == 0;
+    switch (*(u32 *)(p + 0x10)) {
+    case 0: case 8:
+        if (*(u8 *)(data_02160204 + 0x85) != 0 || (*(u32 *)(q + 0xac) & 0x400)) return 0;
+        return 1;
+    default: return 0;
+    }
 }
 
 void func_02044e8c(void) {
