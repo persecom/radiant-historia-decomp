@@ -34,7 +34,7 @@ void func_020fcea0(void) {
     s8 digits[6];
     s32 i;
     s32 ndigits;
-    s32 x;
+    s32 x = 0;
     if (data_02160c74[1] == NULL) {
         return;
     }
