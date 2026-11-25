@@ -237,12 +237,12 @@ void func_0202bd08(u8 *arg0) {
     }
 }
 
-u8 *func_0202bd60(s32 arg0, s32 arg1) {
-    u8 *node = func_0210c594(0x28, data_02155c3c);
+s8 *func_0202bd60(s32 arg0, s32 arg1) {
+    s8 *node = func_0210c594(0x28, data_02155c3c);
     node[0] = arg0;
     node[1] = arg1;
     node[3] = 0;
-    node[2] = node[3] - 1;
+    node[2] = -1;
     func_021167f0(data_02160244 + 0x50, node);
     return node;
 }
