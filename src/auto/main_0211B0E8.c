@@ -48,8 +48,8 @@ static inline s32 tile_offset(s32 x, s32 y, s32 width, s32 height) {
     s32 ry = y % 32;
     s32 bx = x / 32;
     s32 rx = x % 32;
-    s32 bw = bx == width / 32 ? width % 32 : 32;
     s32 bh = by == height / 32 ? height % 32 : 32;
+    s32 bw = bx == width / 32 ? width % 32 : 32;
     return rx + (by * (width * 32) + bx * (bh * 32) + bw * ry);
 }
 extern void func_02006dc4(void *, u32);
@@ -226,22 +226,25 @@ void func_0211b584(s32 arg0, s32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u
 }
 
 void func_0211b614(void *dst, void *src, s32 sx, s32 sy, s32 dx, s32 dy, s32 dw, s32 dh, s32 w, s32 h) {
- s32 sh,sw;
- sw=(u32)*(u16 *)src>>3;
- sh=(u32)*((u16 *)src+1)>>3;
- u16 *p=(u16 *)src+6;
- s32 ex=sx+w, ey=sy+h;
- s32 yy=dy;
- s32 x,xx;
- for(;sy<ey;sy++,yy++) {
- x=sx; xx=dx;
- if(x<ex) { do {
- u16 *q=p+tile_offset(x,sy,sw,sh);
- u16 v=*q;
- ((u16 *)dst)[tile_offset(xx,yy,dw,dh)]=v;
- x++; xx++;
- } while(x<ex);
- }
+ u16 *p = (u16 *)src + 6;
+ s32 ex = sx + w;
+ s32 ey = sy + h;
+ s32 sw = (u32)*(u16 *)src >> 3;
+ s32 sh = (u32)*((u16 *)src + 1) >> 3;
+ s32 yy = dy;
+ s32 x, xx;
+ for (; sy < ey; sy++, yy++) {
+  x = sx;
+  xx = dx;
+  if (x < ex) {
+   do {
+    u16 *q = p + tile_offset(x, sy, sw, sh);
+    u16 v = *q;
+    ((u16 *)dst)[tile_offset(xx, yy, dw, dh)] = v;
+    x++;
+    xx++;
+   } while (x < ex);
+  }
  }
 }
 
