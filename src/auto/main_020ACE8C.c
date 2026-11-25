@@ -150,6 +150,93 @@ s32 func_020ad2dc(u8 *arg0) {
     return 0;
 }
 
+void func_020ade44(s32);
+s32 func_020ad34c(u8 *arg) {
+u8 *menu,*player;
+s32 *touch;
+s32 row=-1, tab=-1, dir=0, commit=0;
+s32 end=0,start=0,te=0,ts=0,x=0,y=0;
+s32 n,i;
+menu=func_020b3fd8();player=func_020b3890();touch=(s32*)func_020b442c();
+func_020b40a4(*(s32*)(menu+0x2aa4),&end,&start);
+n=end-start;
+if(func_020abf5c(18,54,200,15,0)&&n>=1){if(touch[0]!=10){touch[0]=10;row=0;}else if(touch[2]==1)commit=1;}
+else if(func_020abf5c(18,72,200,15,0)&&n>=2){if(touch[0]!=11){touch[0]=11;row=1;}else if(touch[2]==1)commit=1;}
+else if(func_020abf5c(18,90,200,15,0)&&n>=3){if(touch[0]!=12){touch[0]=12;row=2;}else if(touch[2]==1)commit=1;}
+else if(func_020abf5c(18,108,200,15,0)&&n>=4){if(touch[0]!=13){touch[0]=13;row=3;}else if(touch[2]==1)commit=1;}
+else if(func_020abf5c(18,126,200,15,0)&&n>=5){if(touch[0]!=14){touch[0]=14;row=4;}else if(touch[2]==1)commit=1;}
+for(i=0;i<4;i++) if(func_020abf5c(12+20*i,28,18,18,0)){touch[0]=i+6;tab=i;}
+if(func_020abf5c(226,54,14,14,0)){if(touch[3]==1)dir=-1;}
+else if(func_020abf5c(226,133,14,14,0)){if(touch[3]==1)dir=1;}
+if(end-start>5){
+if(dir==0){
+if(func_020abf5c(226,68,14,65,0)){
+s32 offset,h,pos,delta;
+func_020ade44(17);
+h=53-(end-start-5)*4;if(h<=0)h=1;
+pos=(*(s32*)(menu+0x2a98)-start)*(65-(h+12))/(end-start-5);
+func_020ac094(&x,&y);
+if(!func_020abf5c(226,pos+68,14,h+12,0)){
+offset=*(s32*)(menu+0x2aa0)-*(s32*)(menu+0x2a98);
+y-=68;
+{ float f=(float)y/75.0f; delta=start+(s32)(f*(float)(end-start))-*(s32*)(menu+0x2a98); }
+if(delta>0){func_0210d27c(2);(*(s32*)(menu+0x2a98))++;}
+else if(delta<0){func_0210d27c(2);(*(s32*)(menu+0x2a98))--;}
+if(*(s32*)(menu+0x2a98)>end-5)*(s32*)(menu+0x2a98)=end-5;
+*(s32*)(menu+0x2aa0)=*(s32*)(menu+0x2a98)+offset;
+func_020b4058(*(s32*)(menu+0x2aa0));
+player[0x263]=func_020b3be8(*(u16*)(func_020b4044()+4),0);
+if(player[0x263]!=1)func_020ae50c(5);
+}
+}
+}else{
+s32 old=*(s32*)(menu+0x2a98);
+s32 off=*(s32*)(menu+0x2aa0)-old;
+if(dir==1)(*(s32*)(menu+0x2a98))++;
+else if(dir==-1)(*(s32*)(menu+0x2a98))--;
+if(*(s32*)(menu+0x2a98)>end-5)*(s32*)(menu+0x2a98)=end-5;
+if(*(s32*)(menu+0x2a98)<start)*(s32*)(menu+0x2a98)=start;
+*(s32*)(menu+0x2aa0)=*(s32*)(menu+0x2a98)+off;
+if(old!=*(s32*)(menu+0x2a98)){
+if(dir==1)func_020ade44(16);else if(dir==-1)func_020ade44(15);
+func_0210d27c(2);
+func_020b4058(*(s32*)(menu+0x2aa0));
+player[0x263]=func_020b3be8(*(u16*)(func_020b4044()+4),0);
+if(player[0x263]!=1)func_020ae50c(5);
+}
+}
+}
+if(func_020abf5c(234,3,18,18,1)){func_020ade30(2);func_020abf3c();func_0210d27c(5);return 3;}
+if(func_020abf5c(194,156,52,16,1))commit=1;
+if(row!=-1){
+*(s32*)(menu+0x2aa0)=*(s32*)(menu+0x2a98)+row;
+func_020b4058(*(s32*)(menu+0x2aa0));
+player[0x263]=func_020b3be8(*(u16*)(func_020b4044()+4),0);
+if(player[0x263]!=1)func_020ae50c(5);
+func_0210d27c(2);
+}
+if(tab!=-1){
+row=*(s32*)(menu+0x2aa4);
+func_020b3fb4(menu[0x2ab0],&te,&ts);
+if(te-ts==1)row=3;
+else if(te-ts==4){if(tab==0)row=3;else row=tab-1;}
+else if(te-ts==3){if(tab!=3)row=tab;}
+if(*(s32*)(menu+0x2aa4)!=row){
+*(s32*)(menu+0x2aa4)=row;
+func_020b40a4(row,&end,&start);
+{s32 first=start; *(s32*)(menu+0x2a98)=first;*(s32*)(menu+0x2aa0)=first;
+func_020b4058(first);}
+player[0x263]=func_020b3be8(*(u16*)(func_020b4044()+4),0);
+if(player[0x263]!=1)func_020ae50c(5);
+func_0210d27c(1);
+}
+}
+if(commit==1 && start>=0){*arg=1;func_020ade30(18);func_0210d27c(11);return 2;}
+if(*(u16*)(data_02162908+4)==0){touch[2]=1;touch[3]=0;touch[1]=0;}
+else{touch[2]=0;touch[3]=0;if(touch[1]==0)touch[3]=1;if(touch[1]>=20 && touch[1]%2==0)touch[3]=1;touch[1]++;if(touch[1]>100)touch[1]=20;}
+return 0;
+}
+
 void func_020ade30(s32);
 s32 func_020ada80(u8 *arg0) {
 u8 *a,*p,*q,*touch;
