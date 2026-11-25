@@ -380,3 +380,95 @@ void func_0205cfa8(u8 *p) {
     }
 }
 
+void func_0205d204(u8 *p){
+u8 *obj,*q,*r;
+q=*(u8 **)(p+0x128);
+s32 zero=0;
+if(!(q[0x76]&1)){r=*(u8 **)(q+8);obj=*(u8 **)q;}
+else {u8 *sub=*(u8 **)(q+0x78);r=*(u8 **)(sub+4);obj=*(u8 **)(sub+8);}
+if(!(q[0x76]&1)){func_020d9da8(32);func_020d9ea8(8,48);}
+if(*(s16 *)(q+0x1c)==0){
+if(!(r[0x1e]&1)) data_02160244[0][0x6c]=zero;
+if(q[0x75]==0){
+s32 distance;
+*(s32 *)(p+0x30)=zero;*(s32 *)(p+0x34)=zero;*(s32 *)(p+0x38)=zero;
+*(s32 *)(q+0x44)=*(s32 *)(obj+0x1a8);*(s32 *)(q+0x48)=*(s32 *)(obj+0x1a8+4);*(s32 *)(q+0x4c)=*(s32 *)(obj+0x1a8+8);
+distance=func_020dddf0(q+0x44,p);
+if(**(u8 **)(p+0x118)) *(s32 *)(p+0x78)=*(s32 *)(q+0x3c);
+else *(s32 *)(p+0x78)=distance/140;
+func_020ddd5c(p);
+func_020d2bf0(p,q+0x44,*(s32 *)(q+0x30),*(s32 *)(q+0x34));
+if(*(u16 *)(p+0x90)==0){
+*(s32 *)(p+0x2c)-=0x20000;
+*(s16 *)(p+0x92)=func_020ddcb0(p,p+0x24);
+func_020ddd8c(p);
+}
+}else if(q[0x75]==2){
+s32 distance;
+if(obj) *(Vec_0205d204 *)(q+0x80)=*(Vec_0205d204 *)obj;
+else {*(s32 *)(q+0x80)=0x214000;*(s32 *)(q+0x88)=0x200000;}
+
+*(s32 *)(p+0x30)=zero;*(s32 *)(p+0x34)=zero;*(s32 *)(p+0x38)=zero;
+*(s32 *)(q+0x44)=*(s32 *)(q+0x80);*(s32 *)(q+0x48)=*(s32 *)(q+0x80+4);*(s32 *)(q+0x4c)=*(s32 *)(q+0x80+8);
+distance=func_020dddf0(q+0x44,p);
+if(**(u8 **)(p+0x118)) *(s32 *)(p+0x78)=*(s32 *)(q+0x3c);
+else *(s32 *)(p+0x78)=distance/140;
+func_020ddd5c(p);
+func_020d2bf0(p,q+0x44,*(s32 *)(q+0x30),*(s32 *)(q+0x34));
+{
+u8 *o;
+u8 *node=func_0205bad4(q);
+s32 flag,height;
+height=0x20000;flag=0;
+while(node) {
+o=*(u8 **)node;
+if(o && *(s32 *)(o+4)!=*(s32 *)(p+4)) height=*(s32 *)(o+4);
+if(o && *(u16 *)(o+0x8e)==0x353) flag=1;
+node=*(u8 **)(node+0x18);
+}
+*(s32 *)(q+0x48)=height;
+if(*(u16 *)(p+0x90)==0 && flag){
+*(s32 *)(p+0x2c)-=0x20000;
+*(s16 *)(p+0x92)=func_020ddcb0(p,p+0x24);
+func_020ddd8c(p);
+}
+}
+}else if(q[0x75]==1){
+s32 v[3];s32 distance;
+*(s32 *)(p+0x30)=zero;*(s32 *)(p+0x34)=zero;*(s32 *)(p+0x38)=zero;
+func_0202bcd4(v,*(u16 *)(r+0x38)&255);
+v[1]=*(s32 *)(p+4);
+*(s32 *)(q+0x44)=*(s32 *)((u8 *)v);*(s32 *)(q+0x48)=*(s32 *)((u8 *)v+4);*(s32 *)(q+0x4c)=*(s32 *)((u8 *)v+8);
+distance=func_020dddf0(q+0x44,p);
+if(**(u8 **)(p+0x118)) *(s32 *)(p+0x78)=*(s32 *)(q+0x3c);
+else *(s32 *)(p+0x78)=distance/140;
+func_020ddd5c(p);func_020d2bf0(p,q+0x44,*(s32 *)(q+0x30),*(s32 *)(q+0x34));
+}else if(q[0x75]==3){
+s32 v[3];s32 distance;
+*(s32 *)(p+0x30)=zero;*(s32 *)(p+0x34)=zero;*(s32 *)(p+0x38)=zero;
+func_0202bcd4(v,r[0x3a]);
+v[1]=*(s32 *)(p+4);
+*(s32 *)(q+0x44)=*(s32 *)((u8 *)v);*(s32 *)(q+0x48)=*(s32 *)((u8 *)v+4);*(s32 *)(q+0x4c)=*(s32 *)((u8 *)v+8);
+distance=func_020dddf0(q+0x44,p);
+if(**(u8 **)(p+0x118)) *(s32 *)(p+0x78)=*(s32 *)(q+0x3c);
+else *(s32 *)(p+0x78)=distance/140;
+func_020ddd5c(p);func_020d2bf0(p,q+0x44,*(s32 *)(q+0x30),*(s32 *)(q+0x34));
+}
+if(*(u16 *)(q+0x40)&1) *(s32 *)(q+0x48)=0x20000;
+if(*(s32 *)(q+0x38)) *(s32 *)(q+0x48)+=*(s32 *)(q+0x38)<<12;
+*(s32 *)(p+0x28)=*(s32 *)(q+0x48);
+if(*(s32 *)(p+4)!=*(s32 *)(p+0x28))func_0205baf8(p);
+func_020d9e48(p,q+0x44);
+*(s16 *)(q+0x1c)=1;
+}
+if(*(s16 *)(q+0x1c)==1){
+u8 ready=zero;s32 d;
+func_0205bc60(p,&ready,20);
+d=(*(s32 *)(p+0x28)-*(s32 *)(p+4))>>12;
+if(d<0)d=-d;
+if(d<8){*(s32 *)(p+4)=*(s32 *)(p+0x28);*(s32 *)(p+0x34)=zero;ready++;}
+if(ready>=2)func_020d4eb8(p);
+else func_020020f8(p,p+0x30,p);
+}
+}
+
