@@ -456,4 +456,3 @@ s32 func_02029790(u32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     }
     return 0;
 }
-#pragma opt_propagation on
