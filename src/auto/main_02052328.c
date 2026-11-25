@@ -154,21 +154,15 @@ void func_02052984(u8 val) {
 }
 
 s32 func_020529ac(void *arg0, s32 arg1, s32 arg2) {
-    s32 base = func_020ddc8c(arg0, arg2);
-    s16 lo = (s16)(base + 0x3ffc);
-    if ((u32)base >= 0x3ffc) {
-        if (arg1 >= lo) {
-            if (arg1 > base - 0x3ffc) return 1;
-            if ((u32)base > 0xc004) {
-                if (arg1 > base + (s16)0xc004) return 1;
-            }
-            return 0;
-        }
-        return arg1 > base - 0x3ffc ? 1 : 0;
-    }
-    if (arg1 < base + 0x3ffc) return 0;
-    if (arg1 <= base + (s16)0xc004) return 0;
-    return 1;
+s32 base=func_020ddc8c(arg0,arg2);
+s32 lo=base+0x3ffc;
+if((u32)base<0x3ffc) {if(arg1<lo || arg1>base+0xc004) return 1;}
+else {
+lo%=0x10000;
+if(arg1<lo && arg1>base-0x3ffc) return 1;
+if((u32)base>0xc004) {if(arg1<lo || arg1>base-0x3ffc) return 1;}
+}
+return 0;
 }
 
 u32 func_02052a54(void *arg0, s32 arg1) {
