@@ -588,9 +588,10 @@ void func_0212c808(u8 *arg0) {
 extern void *memset(void *, int, unsigned long);
 #pragma intrinsics on
 void func_0212c5cc(void) {
- volatile u32 *p=data_02173df4;
- p[4]--;
- if(p[4]==0) {u32 zero[180]={0}; memcpy(data_02173e08,zero,sizeof zero);}
+    volatile u32 *p = data_02173df4;
+    p[4]--;
+    if (p[4] != 0) return;
+    __clear(data_02173e08, 720);
 }
 void func_0212c624(void *arg0) {
     u8 *p = (u8 *)arg0;
