@@ -9,19 +9,21 @@ extern u8 *func_0202c920(u32);
 extern u8 *func_0202e548(u8);
 extern u8 **data_02160244;
 s32 func_02029790(u32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    u16 count = 0;
     u8 pos;
+    u16 count;
     u16 i;
     u8 *unit;
     u8 *v;
+    s32 a2 = arg2;
 
     switch (arg0) {
     case 1:
+        count = 0;
         pos = func_0202c658(arg3);
         if (arg1 == pos / 3 + 1) {
             count++;
         }
-        if (arg2 == pos % 3 + 1) {
+        if (a2 == pos % 3 + 1) {
             count++;
         }
         if (count == 2) {
@@ -30,11 +32,12 @@ s32 func_02029790(u32 arg0, s32 arg1, s32 arg2, s32 arg3) {
         return 0;
 
     case 2:
+        count = 0;
         pos = func_0202c658(arg3);
         if (arg1 == pos / 3 + 1) {
             count++;
         }
-        if (arg2 == pos % 3 + 1) {
+        if (a2 == pos % 3 + 1) {
             count++;
         }
         if (count == 2) {
@@ -64,6 +67,7 @@ s32 func_02029790(u32 arg0, s32 arg1, s32 arg2, s32 arg3) {
         case 3:
             return 0;
         case 2:
+            count = 0;
             if (func_0202c820(0)) count++;
             if (func_0202c820(1)) count++;
             if (func_0202c820(2)) count++;
@@ -80,6 +84,7 @@ s32 func_02029790(u32 arg0, s32 arg1, s32 arg2, s32 arg3) {
         case 1:
             return 0;
         case 2:
+            count = 0;
             for (i = 0; i < 6; i++) {
                 if (pos != i && func_0202c820(i)) {
                     count++;
@@ -90,6 +95,7 @@ s32 func_02029790(u32 arg0, s32 arg1, s32 arg2, s32 arg3) {
             }
             break;
         case 3:
+            count = 0;
             for (i = 0; i < 9; i++) {
                 if (pos != i && func_0202c820(i)) {
                     count++;
@@ -110,6 +116,7 @@ s32 func_02029790(u32 arg0, s32 arg1, s32 arg2, s32 arg3) {
         case 3:
             return 1;
         case 2:
+            count = 0;
             for (i = 0; i < 6; i++) {
                 if (pos != i && func_0202c820(i)) {
                     count++;
@@ -125,7 +132,10 @@ s32 func_02029790(u32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     case 8:
         pos = func_0202c658(arg3);
         switch (pos / 3 + 1) {
+        case 3:
+            return 0;
         case 1:
+            count = 0;
             for (i = 0; i < 9; i++) {
                 if (pos != i && func_0202c820(i)) {
                     count++;
@@ -136,6 +146,7 @@ s32 func_02029790(u32 arg0, s32 arg1, s32 arg2, s32 arg3) {
             }
             break;
         case 2:
+            count = 0;
             for (i = 3; i < 9; i++) {
                 if (pos != i && func_0202c820(i)) {
                     count++;
@@ -145,14 +156,13 @@ s32 func_02029790(u32 arg0, s32 arg1, s32 arg2, s32 arg3) {
                 return 1;
             }
             break;
-        case 3:
-            return 0;
         }
         break;
 
     case 9:
     case 10:
         pos = func_0202c658(arg3);
+        count = 0;
         switch (pos % 3 + 1) {
         case 1:
             if (func_0202c820(0)) count++;
@@ -182,6 +192,7 @@ s32 func_02029790(u32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     case 11:
     case 12:
         pos = func_0202c658(arg3);
+        count = 0;
         switch (pos / 3 + 1) {
         case 1:
             if (func_0202c820(0)) count++;
@@ -211,6 +222,7 @@ s32 func_02029790(u32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     case 13:
     case 14:
         pos = func_0202c658(arg3);
+        count = 0;
         if (pos / 3 == (pos + 1) / 3 && func_0202c820(pos + 1)) count++;
         if (pos / 3 == (pos - 1) / 3 && func_0202c820(pos - 1)) count++;
         if (pos % 3 == (pos + 3) % 3 && func_0202c820(pos + 3)) count++;
@@ -224,6 +236,7 @@ s32 func_02029790(u32 arg0, s32 arg1, s32 arg2, s32 arg3) {
         break;
 
     case 15:
+        count = 0;
         for (i = 0; i < 9; i++) {
             if (func_0202c7d8((s8)(u8)i) != NULL) {
                 count++;
@@ -331,41 +344,53 @@ s32 func_02029790(u32 arg0, s32 arg1, s32 arg2, s32 arg3) {
         }
         return 1;
 
-    case 28:
+    case 28: {
+        s32 base = arg2 - 1;
+        count = 0;
         for (i = 0; i < 3; i++) {
-            v = func_0202c920((u8)((arg2 - 1) + i * 3));
+            v = func_0202c920((u8)(base + i * 3));
             if (v != (u8 *)arg3 && v != NULL) {
                 return 1;
             }
         }
         break;
+    }
 
-    case 29:
+    case 29: {
+        s32 base = arg2 - 1;
+        count = 0;
         for (i = 0; i < 3; i++) {
-            v = func_0202c920((u8)((arg2 - 1) + i * 3));
+            v = func_0202c920((u8)(base + i * 3));
             if (v != (u8 *)arg3 && v != NULL) {
                 return 0;
             }
         }
         return 1;
+    }
 
-    case 30:
+    case 30: {
+        s32 base = arg2 - 1;
+        count = 0;
         for (i = 0; i < 3; i++) {
-            v = func_0202c920((u8)((arg2 - 1) + i * 3));
+            v = func_0202c920((u8)(base + i * 3));
             if (v != NULL) {
                 return 1;
             }
         }
         break;
+    }
 
-    case 31:
+    case 31: {
+        s32 base = arg2 - 1;
+        count = 0;
         for (i = 0; i < 3; i++) {
-            v = func_0202c920((u8)((arg2 - 1) + i * 3));
+            v = func_0202c920((u8)(base + i * 3));
             if (v != NULL) {
                 return 0;
             }
         }
         return 1;
+    }
 
     case 32:
         pos = func_0202c658(arg3);
@@ -420,6 +445,7 @@ s32 func_02029790(u32 arg0, s32 arg1, s32 arg2, s32 arg3) {
         return 1;
 
     case 38:
+        count = 0;
         for (i = 0; i < 9; i++) {
             if (func_0202c7d8((s8)(u8)i) != NULL) {
                 count++;
@@ -431,6 +457,7 @@ s32 func_02029790(u32 arg0, s32 arg1, s32 arg2, s32 arg3) {
         return 1;
 
     case 39:
+        count = 0;
         for (i = 0; i < 9; i++) {
             unit = func_0202e548((u8)i);
             if (*(u32 *)(unit + 0x10) == 0 && unit[0x1c] != 0) {
@@ -443,6 +470,7 @@ s32 func_02029790(u32 arg0, s32 arg1, s32 arg2, s32 arg3) {
         return 1;
 
     case 40:
+        count = 0;
         for (i = 0; i < 9; i++) {
             unit = func_0202e548((u8)i);
             if (*(u32 *)(unit + 0x10) == 0 && unit[0x1c] != 0) {
@@ -452,7 +480,7 @@ s32 func_02029790(u32 arg0, s32 arg1, s32 arg2, s32 arg3) {
         if (count == 0) {
             return 1;
         }
-        return 0;
+        break;
     }
     return 0;
 }
