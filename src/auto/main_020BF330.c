@@ -338,6 +338,14 @@ func_021167f0(data_02160214+0x28,p);
 (*(s32 *)(data_02160214+0x34))++;
 }
 
+void func_020bff30(void *arg0) {
+    *(u32 *)(data_02160214 + 0x34) -= 1;
+    func_021168f8(data_02160214 + 0x28, arg0);
+    if (arg0 != NULL) {
+        func_0210c5dc(arg0);
+    }
+}
+
 void *func_020bff74(u16 arg0, u16 arg1) {
     u8 *node = *(u8 **)(data_02160214 + 0x28);
     while (node != NULL) {
