@@ -2,6 +2,7 @@
 #include "common.h"
 extern char data_02146170[];
 extern u16 *data_02160080;
+extern u8 *data_02160a6c;
 
 typedef struct {
     u8 pad[0x70];
