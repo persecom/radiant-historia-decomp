@@ -91,8 +91,8 @@ const s32 *m=(s32 *)data_02170248,*p=(s32 *)data_02170204;
 s32 x,y,z;
 s32 px,py,sx,sy;
 long long inv;
-y=m[10]+(s32)(((long long)pos[0]*m[1]+(long long)pos[1]*m[4]+(long long)pos[2]*m[7])>>12);
 x=m[9]+(s32)(((long long)pos[0]*m[0]+(long long)pos[1]*m[3]+(long long)pos[2]*m[6])>>12);
+y=m[10]+(s32)(((long long)pos[0]*m[1]+(long long)pos[1]*m[4]+(long long)pos[2]*m[7])>>12);
 z=m[11]+(s32)(((long long)pos[0]*m[2]+(long long)pos[1]*m[5]+(long long)pos[2]*m[8])>>12);
 func_02002028(p[15]+(s32)(((long long)x*p[3]+(long long)y*p[7]+(long long)z*p[11])>>12));
 px=p[12]+(s32)(((long long)x*p[0]+(long long)y*p[4]+(long long)z*p[8])>>12);
@@ -346,17 +346,16 @@ extern void func_020020f8(void *,void *,void *);
 extern void func_020f4774(u32,u8);
 void func_020f4210(void){
 s32 before=0,after=0,zero=0,changed=0;
-u8 *p=data_02160c34.field_4;
 u8 *q;
+u8 *p=data_02160c34.field_4;
 s32 step,next; u16 current,target;
 Unk_02151fc8 *c;
 s32 side;
 if(*(u16 *)(p+0x38)==0){
-{Trip *velocity=(Trip *)(p+0x2c);
-u32 moving=velocity->a|velocity->b|velocity->c;if(moving!=0){
+{u32 moving=*(u32 *)(p+0x2c)|*(u32 *)(p+0x30)|*(u32 *)(p+0x34);if(moving!=0){
 q=data_02155984;
-changed=positionSide((s32 *)(p+0x20),(s32 *)(q+0x20));
-func_020020f8(q+0x20,p+0x2c,q+0x20);
+changed=((s32)(*(u32 *)(p+0x20)-*(u32 *)(q+0x20))>=0) | (((s32)(*(u32 *)(p+0x24)-*(u32 *)(q+0x24))>=0)<<1) | (((s32)(*(u32 *)(p+0x28)-*(u32 *)(q+0x28))>=0)<<2);
+func_020020f8(q+0x20,p+0x2c,data_02155984+0x20);
 q=data_02155984;p=data_02160c34.field_4;
 side=((s32)(*(u32 *)(p+0x20)-*(u32 *)(q+0x20))>=0) | (((s32)(*(u32 *)(p+0x24)-*(u32 *)(q+0x24))>=0)<<1) | (((s32)(*(u32 *)(p+0x28)-*(u32 *)(q+0x28))>=0)<<2);
 if(changed!=side){p=*(u8 *volatile *)&data_02160c34.field_4;*(Trip *)(q+0x20)=*(Trip *)(p+0x20);*(u32 *)(p+0x2c)=before;*(u32 *)(p+0x30)=before;*(u32 *)(p+0x34)=before;}changed=1;
