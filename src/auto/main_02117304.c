@@ -1,5 +1,6 @@
 /* 56 functions from 0x02117304 to 0x02118234 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { u16 attr[3]; } OamEntry6;
 typedef struct { u32 offset, value; } RelocPair174;
 typedef struct { u16 count, pad; u32 unk4, unk8; RelocPair174 *pairs; } RelocEntry174;
 extern u8 data_0216e274[];
@@ -549,17 +550,21 @@ void func_02117e80(void) {
 }
 
 s32 func_02117f54(u8 *arg0, u16 arg1, u16 arg2, s32 arg3) {
-    u8 *row = data_0216e274 + arg3 * 0x540;
+    u32 off = (u32)arg3 * 0x540u;
+    u8 *row = data_0216e274 + off;
     u16 *p = (u16 *)(row + arg1 * 2);
     u16 *end = (u16 *)(row + arg2 * 2);
-    s32 ok = 1;
-    for (; p <= end; p++) {
+    s32 ok;
+    while (p <= end) {
         if (*p != 0xffff) {
             ok = 0;
-            break;
+            goto check;
         }
+        p++;
     }
-    if (!ok) {
+    ok = 1;
+check:
+    if (ok == 0) {
         return 0;
     }
     {
@@ -573,33 +578,35 @@ s32 func_02117f54(u8 *arg0, u16 arg1, u16 arg2, s32 arg3) {
         *(u16 *)(arg0 + 0xc) = 0;
         *(u32 *)(arg0 + 0) = arg3;
         *(u32 *)(arg0 + 0x14) = 0;
-        func_02008df0(id, row + arg1 * 2, (arg2 - arg1 + 1) * 2);
+        func_02008df0(id, data_0216e274 + off + arg1 * 2, (arg2 - arg1 + 1) * 2);
     }
     return 1;
 }
 
 s32 func_02118008(u8 *arg0, u16 arg1, u16 arg2) {
-    u8 *row = data_0216e274 + *(u32 *)(arg0 + 0) * 0x540 + 0x500;
-    u16 *p = (u16 *)(row + arg1 * 2);
-    u16 *end = (u16 *)(row + arg2 * 2);
-    s32 ok = 1;
+    u32 idx = *(u32 *)(arg0 + 0);
+    u8 *row = data_0216e274 + idx * 0x540 + 0x500;
+    u16 *end;
+    u16 *p;
+    s32 ok;
+    p = (u16 *)row + arg1;
+    end = (u16 *)row + arg2;
     for (; p <= end; p++) {
         if (*p != 0xffff) {
             ok = 0;
-            break;
+            goto check;
         }
     }
+    ok = 1;
+check:
     if (!ok) {
         return 0;
     }
-    {
-        s32 count = arg2 - arg1 + 1;
-        *(u16 *)(arg0 + 0xc) = arg2;
-        *(u16 *)(arg0 + 0xa) = arg1;
-        *(u16 *)(arg0 + 0xe) = arg1;
-        *(u32 *)(arg0 + 0x14) = 0;
-        func_02008df0(*(u16 *)(arg0 + 0x10), row + arg1 * 2, count * 2);
-    }
+    *(u16 *)(arg0 + 0xc) = arg2;
+    *(u16 *)(arg0 + 0xa) = arg1;
+    *(u16 *)(arg0 + 0xe) = arg1;
+    *(u32 *)(arg0 + 0x14) = 0;
+    func_02008df0(*(u16 *)(arg0 + 0x10), row + ((u32)arg1 << 1), (arg2 - arg1 + 1) * 2);
     return 1;
 }
 
@@ -608,23 +615,16 @@ s32 func_0211809c(u8 *arg0, u16 *arg1, u16 arg2) {
     u16 cur = *(u16 *)(arg0 + 8);
     s32 valid = 0;
     u32 avail;
-    if (cur <= end + 1 && *(u16 *)(arg0 + 4) <= end) {
-        valid = 1;
-    }
+    if (cur <= end + 1 && *(u16 *)(arg0 + 4) <= end) valid = 1;
     avail = valid ? (u16)(end - cur + 1) : 0;
-    if (avail >= 1) {
-        u16 *oam = (u16 *)(data_0216e274 + *(s32 *)arg0 * 0x540 + 0x100 + *(u16 *)(arg0 + 8) * 8);
-        u16 a0 = arg1[0];
-        u16 a1 = arg1[1];
-        u16 a2 = arg1[2];
-        oam[0] = a0;
-        oam[1] = a1;
-        oam[2] = a2;
+    if ((s32)(avail >= 1) != 0) {
+        u16 *oam = (u16 *)(data_0216e274 + *(s32 *)arg0 * 0x540 + 0x100 + *(volatile u16 *)(arg0 + 8) * 8);
+        u16 a0 = arg1[0], a1 = arg1[1], a2 = arg1[2];
+        oam[0] = a0; oam[1] = a1; oam[2] = a2;
         if (arg2 != 0xfffe) {
             u32 attr = *(u32 *)oam;
-            if (((attr << 22) >> 30) & 1) {
+            if (((attr << 22) >> 30) & 1)
                 *(u32 *)oam = (attr & ~0x3e000000) | (((u32)arg2 << 27) >> 2);
-            }
         }
         *(u16 *)(arg0 + 8) = *(u16 *)(arg0 + 8) + 1;
         return 1;
@@ -635,23 +635,33 @@ s32 func_0211809c(u8 *arg0, u16 *arg1, u16 arg2) {
 s32 func_02118178(u8 *arg0, s32 *arg1) {
     u16 count = *(u16 *)(arg0 + 0xc);
     u16 idx = *(u16 *)(arg0 + 0xe);
-    s32 room;
-    if (idx > count + 1 || *(u16 *)(arg0 + 0xa) > count) {
-        return 0xfffe;
+    s32 ok = 0;
+    u16 room;
+    s32 has_room;
+    if (idx <= count + 1) {
+        if (*(u16 *)(arg0 + 0xa) <= count) {
+            ok = 1;
+        }
     }
-    room = (u16)(count - idx + 1);
-    if (room < 1) {
+    room = ok ? (u16)(count - idx + 1) : 0;
+    has_room = (room >= 1) ? 1 : 0;
+    if (!has_room) {
         return 0xfffe;
     }
     {
         u32 bank = *(u32 *)(arg0 + 0);
-        u8 *entry = data_0216e274 + bank * 0x540 + 0x100 + idx * 0x20;
-        *(u16 *)(entry + 6) = arg1[0] >> 4;
-        *(u16 *)(entry + 0xe) = arg1[1] >> 4;
-        *(u16 *)(entry + 0x16) = arg1[2] >> 4;
-        *(u16 *)(entry + 0x1e) = arg1[3] >> 4;
-        *(u16 *)(arg0 + 0xe) = idx + 1;
-        return idx;
+        s32 a = arg1[0];
+        u16 cur = *(u16 *)(arg0 + 0xe);
+        s32 b = arg1[1];
+        s32 c = arg1[2];
+        s32 d = arg1[3];
+        u16 *entry = (u16 *)(data_0216e274 + bank * 0x540 + 0x100 + cur * 0x20);
+        entry[3] = a >> 4;
+        entry[7] = b >> 4;
+        entry[11] = c >> 4;
+        entry[15] = d >> 4;
+        *(u16 *)(arg0 + 0xe) = cur + 1;
+        return cur;
     }
 }
 
