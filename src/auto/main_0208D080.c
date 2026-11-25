@@ -139,31 +139,52 @@ void func_0208d84c(s16 arg0, s16 arg1, s16 arg2, s16 arg3) {
     func_021098ac(&b);
 }
 
-void func_0208d900(s32 x, s32 y, s32 z, s32 value) {
-Unk10 a = data_021411e8;
-Unk10 b = data_021411d4;
-Unk10 c = data_021411c0;
-s16 i;
-s32 base;
-s32 n;
-func_020a3bbc(42);
-a.f5=x; a.f6=y; a.f7=z;
-func_021098ac(&a);
-base=x+1;
-n=(value%100)/9;
-for(i=0;i<11;i++){
-func_020a3bbc(42);
-b.f5=base+i*3; b.f6=y+1; b.f7=z+1;
-func_021098ac(&b);
-if(value==100){func_020a3bbc(43);
-c.f5=base+i*3; c.f6=y+1; c.f7=z+2;
-func_021098ac(&c);} else if(i<n){
-func_020a3bbc(43);
-c.f5=base+i*3; c.f6=y+1; c.f7=z+2;
-func_021098ac(&c);
-}
+void func_0208d900(s32 x, s32 y, s32 z, s32 value)
+{
+  int new_var2;
+  Unk10 a = data_021411e8;
+  Unk10 b = data_021411d4;
+  Unk10 c = data_021411c0;
+  s16 i;
+  s32 base;
+  s32 n;
+  s32 new_var;
+  func_020a3bbc(42);
+  a.f5 = x;
+  new_var = value;
+  a.f6 = y;
+  a.f7 = z;
+  func_021098ac(&a);
+  base = x + 1;
+  n = (value % 100) / 9;
+  for (i = 0; i < 11; i++)
+  {
+    func_020a3bbc(42);
+    b.f5 = base + (i * 3);
+    s16 z1 = z + 1;
+ new_var2 = z + 2;
+    b.f6 = y + 1;
+    b.f7 = z1;
+    func_021098ac(&b);
+    if (new_var == 100)
+    {
+      func_020a3bbc(43);
+      c.f5 = base + (i * 3);
+      c.f6 = y + 1;
+      c.f7 = new_var2;
+      func_021098ac(&c);
+    }
+    else
+      if (i < n)
+    {
+      func_020a3bbc(43);
+      c.f5 = base + (i * 3);
+      c.f6 = y + 1;
+      c.f7 = z + 2;
+      func_021098ac(&c);
+    }
+  }
 
-}
 }
 
 void func_0208da7c(s16 arg0, s32 arg1, s16 arg2, s16 arg3, s16 arg4, s16 arg5, s16 arg6) {
@@ -260,7 +281,12 @@ void func_0208dea4(u32 id,s32 mode,s16 x,s16 y,s16 z,u8 bank) {
  a.f5=x+3; a.f6=y+2; a.f7=z+1;
  func_021098ac(&a);
  func_020a3bbc(bank+0x39);
- if(id<5)b.f2=id*11;else {b.f1=32;b.f2=(id-5)*11;}
+ if(id>=5) {
+  b.f1=32;
+  b.f2=(id-5)*11;
+ } else {
+  b.f2=id*11;
+ }
  b.f5=x+16;b.f6=y+2;b.f7=z+1;
  func_021098ac(&b);
  func_020922bc(bank+0x33,x,y,0x34,0x10,0x20,0x10,0x8e);
