@@ -1,5 +1,6 @@
 /* 6 functions from 0x020D655C to 0x020D708C (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { u8 pad0[0x8c]; u16 id, type; u8 pad90[0x88]; u8 *info; u8 *list; u8 pad120[0x84]; u8 *object; } D67Actor;
 extern char data_021513c0[];
 void func_021167ac(void *,int);
 void func_021168f8(void *,void *);
@@ -34,12 +35,12 @@ extern void *func_0202fb50(s32, s32);
 extern void func_021167f0(void *, void *);
 #pragma optimization_level 0
 void func_020d67f8(void) {
-u8 *p=0;u8 i;u8 *info=0;u8 *unused=0;u8 *node=0;u8 *next=0;u8 *list=0;u8 id;u8 j;void *file=0;u8 temp[12];int unused2;u16 index;u8 found;
+register u8 *p=0;u8 *info=0;u8 i;u8 *unused=0;u8 *node=0;u8 *next=0;u8 *list=0;u16 id;u8 j;void *file=0;u8 temp[12];int unused2;u16 index;u8 found;
 func_021167ac(temp,0x30);
 file=func_021092d8(data_021513c0);
 for(j=0;j<3;j++){
 if(!func_020bd490(0,j))continue;
-*(u16 *)&data_02160248=j;*(int *)((u8 *)&data_02160248+12)=1;
+*(u16 *)&data_02160248=(u16)(s32)j;*(int *)((u8 *)&data_02160248+12)=1;
 id=func_020bd490(1,j);
 func_020d6f58(id);
 p=*(u8 **)((u8 *)&data_02160248+4);
@@ -58,15 +59,15 @@ if(func_020bd490(2,j)==0)info=func_02021f10(func_020bd490(3,j));
 else info=func_02021f10((u8)(id-1));
 if(info){
 for(i=0;i<30;i++){
-if(info[0x4e + i]){
-if(info[0x4e + i]==11)func_02064fd0(*(u8 **)(p+0x11c),id,info[0x4e + i],-1,file);
-else func_02064fd0(*(u8 **)(p+0x11c),id,info[0x4e + i],i,file);
+if((info+i)[0x4e]){
+if((info+i)[0x4e]==11)func_02064fd0(*(u8 **)(p+0x11c),id,(info+i)[0x4e],-1,file);
+else func_02064fd0(*(u8 **)(p+0x11c),id,(info+i)[0x4e],i,file);
 }}
-for(i=0;i<15;i++){if(info[0x6c+i])func_02064fd0(*(u8 **)(p+0x11c),id,info[0x6c+i],(s16)(i+100),file);}
+for(i=0;i<15;i++){if((info+i)[0x6c])func_02064fd0(*(u8 **)(p+0x11c),id,(info+i)[0x6c],(s16)(i+100),file);}
 }else func_02064fd0(*(u8 **)(p+0x11c),id,11,-1,file);
 if(info){
-for(i=0;i<30;i++){if(info[0x4e + i])++(**(u8 **)(p+0x11c));}
-for(i=0;i<15;i++){if(info[0x6c+i])++(*(u8 **)(p+0x11c))[2];}
+for(i=0;i<30;i++){if((info+i)[0x4e])++(**(u8 **)(p+0x11c));}
+for(i=0;i<15;i++){if((info+i)[0x6c])++(*(u8 **)(p+0x11c))[2];}
 }else **(u8 **)(p+0x11c)=1;
 func_02064fd0(*(u8 **)(p+0x11c),id,3,-1,file);
 func_02064fd0(*(u8 **)(p+0x11c),id,4,-1,file);
@@ -82,8 +83,9 @@ node=*(u8 **)temp;
 while(*(u16 *)(temp+8)){
 next=*(u8 **)(node+0x34);func_021168f8(temp,node);func_021167f0(list+4,node);node=next;
 }
+if(!*(u16 *)(temp+8))continue;
 }
-if(*(u16 *)(temp+8))func_021167f0(data_02160a6c+0xac,p);
+func_021167f0(data_02160a6c+0xac,p);
 }
 if(file){func_021093b0(file);file=0;}
 }
