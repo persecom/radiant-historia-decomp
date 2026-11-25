@@ -48,8 +48,8 @@ static inline s32 tile_offset(s32 x, s32 y, s32 width, s32 height) {
     s32 ry = y % 32;
     s32 bx = x / 32;
     s32 rx = x % 32;
-    s32 bw = bx == width / 32 ? width % 32 : 32;
     s32 bh = by == height / 32 ? height % 32 : 32;
+    s32 bw = bx == width / 32 ? width % 32 : 32;
     return rx + (by * (width * 32) + bx * (bh * 32) + bw * ry);
 }
 extern void func_02006dc4(void *, u32);
@@ -261,22 +261,19 @@ void func_0211b83c(u8 *dst, u8 *src, s32 srcX, s32 srcY, s32 dstX, s32 dstY, s32
 
 #pragma opt_propagation off
 void func_0211b8a4(u8 *dst, u8 *src, s32 srcX, s32 srcY, s32 dstX, s32 dstY, s32 dstStride, s32 width, s32 height) {
-    u32 srcStride = (u32)*(u16 *)src >> 3;
-    s32 y;
-    u32 size;
-    u8 *s;
-    u8 *d;
+u32 srcStride = (u32)*(u16 *)src >> 3;
 
-    dstX += dstY * dstStride;
-    srcX += srcY * srcStride;
-    size = width * 2;
-    s = src + 12 + srcX * 2;
-    d = dst + dstX * 2;
-    for (y = srcY; y < srcY + height; y++) {
-        func_02008e08(s, d, size);
-        s += srcStride * 2;
-        d += dstStride * 2;
-    }
+dstX += dstY * dstStride;
+srcX += srcY * srcStride;
+u32 size = width * 2;
+s32 endY = srcY + height;
+u8 *s = src + 12 + srcX * 2;
+u8 *d = dst + dstX * 2;
+for (; srcY < endY; srcY++) {
+func_02008e08(s, d, size);
+s += srcStride * 2;
+d += dstStride * 2;
+}
 }
 #pragma opt_propagation on
 extern void func_0211b3dc(s32, s32, u32);
