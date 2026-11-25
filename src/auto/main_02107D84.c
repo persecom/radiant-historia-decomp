@@ -28,6 +28,23 @@ static inline s32 FX_Mul12(s32 a, s32 b) {
     return (s32)(((s64)a * b + 0x800) >> 12);
 }
 
+typedef struct {
+    s32 x;
+    s32 y;
+    s32 z;
+} VecFx32;
+
+extern u32 data_0216263c[3];
+
+static inline u16 rand_range_02107e4c(u16 max) {
+    u32 x = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
+    data_0216263c[0] = x;
+    if (max == 0) {
+        return (u16)(x >> 16);
+    }
+    return (u16)(((x >> 16) * max) >> 16);
+}
+
 extern void func_02107d84(u32, s32, s32, s32);
 extern void func_02107e4c(void *);
 extern void func_02002128(void *, void *, void *);
