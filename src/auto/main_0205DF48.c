@@ -182,6 +182,7 @@ break;
 }
 } else {
 int valid=1;
+int zero=0;
 if(p[7]!=8) {
 q[0x75]=zero;
 if(list[0x41]&8) {
