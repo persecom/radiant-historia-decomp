@@ -26,7 +26,6 @@ void func_020637e4(void) {
     s32 saved[9];
     s32 i;
     s32 count;
-    u8 *cell;
     u8 *list;
 
     *(s32 *)(p0 + 0xc) = 0x1a;
@@ -41,7 +40,7 @@ void func_020637e4(void) {
 
     count = 0;
     for (i = 0; i < 9; i++) {
-        cell = ((u8 **)((u8 *)data_02160244 + 8))[i];
+        u8 *cell = ((u8 **)((u8 *)data_02160244 + 8))[i];
         u8 *node = *(u8 **)(cell + 0x10);
         while (node != NULL && node[4] == 0) {
             u8 *unit = *(u8 **)(node + 0);
@@ -54,7 +53,7 @@ void func_020637e4(void) {
     }
 
     for (i = 0; i < 9; i++) {
-        cell = ((u8 **)((u8 *)data_02160244 + 8))[i];
+        u8 *cell = ((u8 **)((u8 *)data_02160244 + 8))[i];
         u8 *node = *(u8 **)(cell + 0x10);
         while (node != NULL && node[4] == 0) {
             u8 *unit = *(u8 **)(node + 0);
@@ -150,7 +149,7 @@ void func_020637e4(void) {
     }
 
     for (i = 0; i < 9; i++) {
-        cell = ((u8 **)((u8 *)data_02160244 + 8))[i];
+        u8 *cell = ((u8 **)((u8 *)data_02160244 + 8))[i];
         s32 flag = 1;
         if (*(u16 *)(cell + 0x18) == 1) {
             u8 *node = *(u8 **)(cell + 0x10);
@@ -205,7 +204,7 @@ void func_020637e4(void) {
     if (func_0202dd04(list) != 0) {
         register count = 0;
         for (i = 0; i < 9; i++) {
-            cell = ((u8 **)((u8 *)data_02160244 + 8))[i];
+            u8 *cell = ((u8 **)((u8 *)data_02160244 + 8))[i];
             u8 *node = *(u8 **)(cell + 0x10);
             while (node != NULL && node[4] == 0) {
                 u8 *unit = *(u8 **)(node + 0);

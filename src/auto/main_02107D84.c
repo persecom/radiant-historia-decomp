@@ -70,20 +70,23 @@ extern void func_02119d38(void *, void *);
 extern void func_02107860(void);
 
 #pragma push
-#pragma opt_propagation off
+#pragma optimization_level 3
 void func_02107d84(u32 arg0, s32 arg1, s32 arg2, s32 arg3) {
- u8 *__restrict p=(u8 *)arg0;
- s32 i=arg2>>4,j=arg3>>4;
- s32 sinA=data_0213a394[i*2+1], cosA=data_0213a394[i*2];
- s32 sinB=data_0213a394[j*2+1],cosB=data_0213a394[j*2];
- s32 a=(s32)(((s64)sinA*arg1+0x800)>>12);
- s32 x=(s32)(((s64)a*cosB+0x800)>>12);
- s32 y=(s32)(((s64)cosA*arg1+0x800)>>12);
- s32 z=(s32)(((s64)a*sinB+0x800)>>12);
- x=*(s32 *)(p+0x20)-x; y=*(s32 *)(p+0x24)+y; z=*(s32 *)(p+0x28)+z;
- *(s32 *)(p+0x14)=x; *(s32 *)(p+0x18)=y; *(s32 *)(p+0x1c)=z;
- *(s32 *)(p+0x90)=arg2; *(s32 *)(p+0x94)=arg3;
- func_02108240();
+    u8 *p = (u8 *)arg0;
+    s32 cosA = data_0213a394[(arg2 >> 4) * 2 + 1];
+    s32 a = (s32)(((s64)cosA * arg1 + 0x800) >> 12);
+    s32 sinB = data_0213a394[(arg3 >> 4) * 2];
+    s32 sinA = data_0213a394[(arg2 >> 4) * 2];
+    s32 cosB = data_0213a394[(arg3 >> 4) * 2 + 1];
+    s32 x = *(s32 *)(p + 0x20) - (s32)(((s64)a * sinB + 0x800) >> 12);
+    s32 y = *(s32 *)(p + 0x24) + (s32)(((s64)sinA * arg1 + 0x800) >> 12);
+    s32 z = *(s32 *)(p + 0x28) + (s32)(((s64)a * cosB + 0x800) >> 12);
+    *(s32 *)(p + 0x14) = x;
+    *(s32 *)(p + 0x18) = y;
+    *(s32 *)(p + 0x1c) = z;
+    *(s32 *)(p + 0x90) = arg2;
+    *(s32 *)(p + 0x94) = arg3;
+    func_02108240();
 }
 #pragma pop
 extern u32 data_02162834[];

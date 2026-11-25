@@ -45,16 +45,12 @@ s32 func_020e2be4(u8 ***arg0, u32 type, u32 flags) {
     UnkMenuState *g = (UnkMenuState *)data_02160a74;
     u8 *obj = **arg0;
     u8 *entry = NULL;
-    u8 *node;
-    u8 *item;
 
     count = 0;
-    i = 0;
-    while (i < 6) {
+    for (i = 0; i < 6; i++) {
         g->unk_174[i] = -1;
         g->unk_182[i] = 0;
         g->unk_18e[i] = 0;
-        i++;
     }
 
     idx = 0;
@@ -93,19 +89,19 @@ s32 func_020e2be4(u8 ***arg0, u32 type, u32 flags) {
         count++;
         break;
     case 1: {
-        node = *(u8 **)(*(u8 **)(obj + 0x11c) + 4);
-        while (node != NULL) {
-            if (*(s16 *)(node + 0x26) != 0 && *(s16 *)(node + 0x3c) != -1 && *(s16 *)(node + 0x3c) < 100) {
+        entry = *(u8 **)(*(u8 **)(obj + 0x11c) + 4);
+        while (entry != NULL) {
+            if (*(s16 *)(entry + 0x26) != 0 && *(s16 *)(entry + 0x3c) != -1 && *(s16 *)(entry + 0x3c) < 100) {
                 u16 slot = idx - g->unk_ce;
                 if ((flags & 2) && slot < 6) {
                     g->unk_174[slot] = 1;
-                    if (*(s16 *)(*(u8 **)(obj + 0x118) + 0xc) < *(s16 *)(node + 0x1c)) {
+                    if (*(s16 *)(*(u8 **)(obj + 0x118) + 0xc) < *(s16 *)(entry + 0x1c)) {
                         g->unk_174[slot] = 2;
                     }
                     if (func_020e5630((u8)type, obj, (u8)idx) == 0) {
                         g->unk_174[slot] = 2;
                     }
-                    if (((UnkMenuState *)data_02160a74)->unk_c8 >= 9 && *(u16 *)(node + 0x20) == 0x15) {
+                    if (((UnkMenuState *)data_02160a74)->unk_c8 >= 9 && *(u16 *)(entry + 0x20) == 0x15) {
                         g->unk_174[slot] = 2;
                     }
                     if (g->unk_b2 == slot) {
@@ -122,29 +118,29 @@ s32 func_020e2be4(u8 ***arg0, u32 type, u32 flags) {
                     if (g->unk_b2 == slot && g->unk_174[slot] == 2) {
                         func_020a8810(*(void **)(g->unk_60[slot] + 4), 0x17);
                     }
-                    if (*(u8 *)(node + 0x28) == 0) {
+                    if (*(u8 *)(entry + 0x28) == 0) {
                         g->unk_182[slot] = 0x2d;
-                    } else if (*(u8 *)(node + 0x28) == 1) {
+                    } else if (*(u8 *)(entry + 0x28) == 1) {
                         g->unk_182[slot] = 0x2e;
-                    } else if (*(u8 *)(node + 0x28) == 2) {
+                    } else if (*(u8 *)(entry + 0x28) == 2) {
                         g->unk_182[slot] = 0x2f;
-                    } else if (*(u8 *)(node + 0x28) == 3) {
+                    } else if (*(u8 *)(entry + 0x28) == 3) {
                         g->unk_182[slot] = 0x30;
                     }
-                    g->unk_18e[slot] = *(s16 *)(node + 0x1c);
-                    func_020e24bc(g->unk_60[slot], 0, 0, *(u16 *)(node + 0x20), 0);
+                    g->unk_18e[slot] = *(s16 *)(entry + 0x1c);
+                    func_020e24bc(g->unk_60[slot], 0, 0, *(u16 *)(entry + 0x20), 0);
                 }
                 count++;
                 idx++;
             }
-            node = *(u8 **)(node + 0x34);
+            entry = *(u8 **)(entry + 0x34);
         }
         break;
     }
     case 3: {
-        node = *(u8 **)(*data_021600c8 + 4);
-        while (node != NULL) {
-            if (func_02022068(*(u8 *)(node + 1)) != 0) {
+        entry = *(u8 **)(*data_021600c8 + 4);
+        while (entry != NULL) {
+            if (func_02022068(*(u8 *)(entry + 1)) != 0) {
                 u16 slot = idx - g->unk_ce;
                 if ((flags & 2) && slot < 6) {
                     if (g->unk_b2 == slot) {
@@ -153,21 +149,21 @@ s32 func_020e2be4(u8 ***arg0, u32 type, u32 flags) {
                         func_020a8810(*(void **)(g->unk_60[slot] + 4), 0x14);
                     }
                     g->unk_174[slot] = 1;
-                    g->unk_18e[slot] = func_02022068(*(u8 *)(node + 1));
+                    g->unk_18e[slot] = func_02022068(*(u8 *)(entry + 1));
                     {
-                        u16 v = func_020a30d4(*(u8 *)(node + 1)) + 0x30;
+                        u16 v = func_020a30d4(*(u8 *)(entry + 1)) + 0x30;
                         if (v >= 0x31 && v <= 0x41) {
                             g->unk_182[slot] = v;
                         } else {
                             g->unk_182[slot] = 0x42;
                         }
                     }
-                    func_020e24bc(g->unk_60[slot], 0, 0, *(u16 *)(node + 0x20), 0);
+                    func_020e24bc(g->unk_60[slot], 0, 0, *(u16 *)(entry + 0x20), 0);
                 }
                 count++;
                 idx++;
             }
-            node = *(u8 **)(node + 0x34);
+            entry = *(u8 **)(entry + 0x34);
         }
         break;
     }
@@ -182,15 +178,15 @@ s32 func_020e2be4(u8 ***arg0, u32 type, u32 flags) {
         for (k = 0; k < 15; k++) {
             s32 id = func_020e55d8((u8)*(u16 *)(obj + 0x90), (u8)k);
             if (id != 0) {
-                item = func_02064cb8(*(void **)(obj + 0x11c), id);
-                if (item != NULL) {
+                entry = func_02064cb8(*(void **)(obj + 0x11c), id);
+                if (entry != NULL) {
                     u16 slot = idx - g->unk_ce;
                     if ((flags & 2) && slot < 6) {
                         g->unk_174[slot] = 1;
                         if (func_020e5630((u8)type, obj, (u8)k) == 0) {
                             g->unk_174[slot] = 2;
                         }
-                        if (((UnkMenuState *)data_02160a74)->unk_c8 >= 9 && *(u8 *)(item + 1) == 0x67) {
+                        if (((UnkMenuState *)data_02160a74)->unk_c8 >= 9 && *(u8 *)(entry + 1) == 0x67) {
                             g->unk_174[slot] = 2;
                         }
                         if (g->unk_b2 == slot) {
@@ -207,16 +203,16 @@ s32 func_020e2be4(u8 ***arg0, u32 type, u32 flags) {
                         if (g->unk_b2 == slot && g->unk_174[slot] == 2) {
                             func_020a8810(*(void **)(g->unk_60[slot] + 4), 0x17);
                         }
-                        if (*(u8 *)(item + 0x28) == 0) {
+                        if (*(u8 *)(entry + 0x28) == 0) {
                             g->unk_182[slot] = 0x2d;
-                        } else if (*(u8 *)(item + 0x28) == 1) {
+                        } else if (*(u8 *)(entry + 0x28) == 1) {
                             g->unk_182[slot] = 0x2e;
-                        } else if (*(u8 *)(item + 0x28) == 2) {
+                        } else if (*(u8 *)(entry + 0x28) == 2) {
                             g->unk_182[slot] = 0x2f;
-                        } else if (*(u8 *)(item + 0x28) == 3) {
+                        } else if (*(u8 *)(entry + 0x28) == 3) {
                             g->unk_182[slot] = 0x30;
                         }
-                        func_020e24bc(g->unk_60[slot], 0, 0, *(u16 *)(item + 0x20), 0);
+                        func_020e24bc(g->unk_60[slot], 0, 0, *(u16 *)(entry + 0x20), 0);
                     }
                     count++;
                     idx++;

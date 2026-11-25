@@ -28,49 +28,50 @@ void func_020eb3dc(void);
 u32 func_02124cf8(u32, u32, u32);
 void func_0210db70(void *);
 void func_0210dbd0(void *);
-#pragma opt_propagation on
-void func_020eb180(u32 arg0, s32 arg1) {
- u32 mode = arg0;
- u8 *p;
- s32 enabled = arg1;
- u8 **state = &data_02160aa4;
- if ((*state) != 0) return;
- (*state) = func_0210c594(0x44, data_02155c3c);
- *(u32 *)((*state) + 0) = 0;
- *(u32 *)((*state) + 4) = 0;
- *(u32 *)((*state) + 8) = 0;
- *(u32 *)((*state) + 12) = 0;
- *(u32 *)((*state) + 16) = 0;
- *(u32 *)((*state) + 20) = 0;
- *(u32 *)((*state) + 0x18) = 1;
- if (mode == 0) {
- *(u32 *)((*state) + 0) = func_02124cf8(0x4000,0,0);
- *(u32 *)((*state) + 4) = (u16)*(u32 *)((*state) + 0) * 8;
- }
- if (mode <= 1) {
- *(u32 *)((*state) + 8) = func_02124cf8(0x8000,0,0);
- p = (*state);
- *(u32 *)(p + 12) = (u16)*(u32 *)(p + 8) * 8;
- }
- if (mode == 2) {
- *(u32 *)((*state) + 8) = func_02124cf8(0x20000,0,0);
- *(u32 *)((*state) + 12) = (u16)*(u32 *)((*state) + 8) * 8;
- *(u32 *)((*state) + 16) = func_02124cf8(0x4000,0,0);
- *(u32 *)((*state) + 20) = (u16)*(u32 *)((*state) + 16) * 8;
- }
- if (mode == 3) {
- *(u32 *)((*state) + 8) = func_02124cf8(0x8000,0,0);
- *(u32 *)((*state) + 12) = (u16)*(u32 *)((*state) + 8) * 8;
- }
- *(void (**)(void))((*state) + 0x1c) = func_020eb3dc;
- *(u32 *)((*state) + 0x20) = 0x3eb;
- func_0210db70((*state) + 0x1c);
- if (enabled == 1) {
- *(void (**)(void))((*state) + 0x30) = func_020eb3dc;
- *(u32 *)((*state) + 0x34) = 0x3eb;
- func_0210dbd0((*state) + 0x30);
- }
+#pragma opt_propagation off
+#pragma opt_scheduling off
+void func_020eb180(u32 arg0, u32 arg1) {
+    u8 **state = &data_02160aa4;
+    if (state[0] != NULL) {
+        return;
+    }
+    state[0] = func_0210c594(0x44, data_02155c3c);
+    *(u32 *)(state[0] + 0) = 0;
+    *(u32 *)(state[0] + 4) = 0;
+    *(u32 *)(state[0] + 8) = 0;
+    *(u32 *)(state[0] + 12) = 0;
+    *(u32 *)(state[0] + 16) = 0;
+    *(u32 *)(state[0] + 20) = 0;
+    *(u32 *)(state[0] + 0x18) = 1;
+    if (arg0 == 0) {
+        *(u32 *)(state[0] + 0) = func_02124cf8(0x4000, 0, 0);
+        *(u32 *)(state[0] + 4) = (u16)*(u32 *)(state[0] + 0) * 8;
+    }
+    if (arg0 <= 1) {
+        *(u32 *)(state[0] + 8) = func_02124cf8(0x8000, 0, 0);
+        *(u32 *)(state[0] + 12) = (u16)*(u32 *)(state[0] + 8) * 8;
+    }
+    if (arg0 == 2) {
+        *(u32 *)(state[0] + 8) = func_02124cf8(0x20000, 0, 0);
+        *(u32 *)(state[0] + 12) = (u16)*(u32 *)(state[0] + 8) * 8;
+        *(u32 *)(state[0] + 16) = func_02124cf8(0x4000, 0, 0);
+        *(u32 *)(state[0] + 20) = (u16)*(u32 *)(state[0] + 16) * 8;
+    }
+    if (arg0 == 3) {
+        *(u32 *)(state[0] + 8) = func_02124cf8(0x8000, 0, 0);
+        *(u32 *)(state[0] + 12) = (u16)*(u32 *)(state[0] + 8) * 8;
+    }
+    *(void (**)(void))(state[0] + 0x1c) = func_020eb3dc;
+    *(u32 *)(state[0] + 0x20) = 0x3eb;
+    func_0210db70(state[0] + 0x1c);
+    if (arg1 == 1) {
+        *(void (**)(void))(state[0] + 0x30) = func_020eb3dc;
+        *(u32 *)(state[0] + 0x34) = 0x3eb;
+        func_0210dbd0(state[0] + 0x30);
+    }
 }
+#pragma opt_propagation on
+#pragma opt_scheduling on
 void func_020eb344(s32 arg0, s32 arg1) {
     if (arg0 == 0) {
         data_02156154(*(void **)data_02160aa4);
@@ -150,7 +151,7 @@ extern void *func_020ec00c(u8 *);
 #pragma optimization_level 0
 s32 func_020eb44c(u8 *arg0, u16 arg1, s32 arg2, void *arg3, s32 arg4) {
     u8 *r8;
-    char buf_list[0x1a];
+    char buf_list[0x12];
     char buf_d8[50];
     char buf_a6[50];
     char buf_74[50];
@@ -161,6 +162,7 @@ s32 func_020eb44c(u8 *arg0, u16 arg1, s32 arg2, void *arg3, s32 arg4) {
     u32 v28;
     u32 v24 = 0;
     s32 idx;
+    register s32 bv, cv;
 
     if (arg4 == 0) {
         func_02005e80(buf_list, data_021518c8);
@@ -177,11 +179,8 @@ s32 func_020eb44c(u8 *arg0, u16 arg1, s32 arg2, void *arg3, s32 arg4) {
     ((u32 *)&data_02160aa4)[3] = 0;
 
     handle = func_021092d8(buf_list);
-    if (handle == 0) {
-        ;
-    } else {
-        idx = func_02092ab0(handle, arg1);
-    }
+    if (handle == 0) { (void)handle; }
+    idx = func_02092ab0(handle, arg1);
     if (idx != -1) {
         ((u32 *)&data_02160aa4)[1] = func_0210cd20(handle, 0);
         ((u32 *)&data_02160aa4)[2] = func_0210cd20(handle, 0);
@@ -227,15 +226,17 @@ s32 func_020eb44c(u8 *arg0, u16 arg1, s32 arg2, void *arg3, s32 arg4) {
 
         if (arg1 >= 0xfa1 && arg1 <= 0xfb4) {
             u32 v1c = 0;
-            volatile struct { u32 a : 4; u32 b : 4; u32 c : 24; } hdr;
+            struct { u32 a : 4; u32 b : 4; u32 c : 24; } hdr;
             void *dst;
             u32 v10;
             u32 *src = NULL;
             func_02005e80(buf_74, data_02151adc, buf_74);
             src = func_02109b14(buf_74, &v10);
             hdr.a = 0;
-            hdr.b = (s32)(*src & 0xf0) >> 4;
-            hdr.c = *src >> 8;
+            bv = (s32)(*src & 0xf0) >> 4;
+            hdr.b = bv;
+            cv = *src >> 8;
+            hdr.c = cv;
             dst = func_0210c594(hdr.c, data_02155c3c);
             func_02009354(src, dst);
             if (src) {
@@ -252,15 +253,17 @@ s32 func_020eb44c(u8 *arg0, u16 arg1, s32 arg2, void *arg3, s32 arg4) {
             *(void **)(arg0 + 4) = v2c;
         } else if (arg1 >= 0x1f40 && arg1 <= 0x2327) {
             u32 v0c = 0;
-            volatile struct { u32 a : 4; u32 b : 4; u32 c : 24; } hdr;
+            struct { u32 a : 4; u32 b : 4; u32 c : 24; } hdr;
             void *dst;
             u32 v00;
             u32 *src = NULL;
             func_02005e80(buf_74, data_02151ae8, buf_74);
             src = func_02109b14(buf_74, &v00);
             hdr.a = 0;
-            hdr.b = (s32)(*src & 0xf0) >> 4;
-            hdr.c = *src >> 8;
+            bv = (s32)(*src & 0xf0) >> 4;
+            hdr.b = bv;
+            cv = *src >> 8;
+            hdr.c = cv;
             dst = func_0210c594(hdr.c, data_02155c3c);
             func_02009230(src, dst);
             if (src) {
@@ -293,11 +296,7 @@ s32 func_020eb44c(u8 *arg0, u16 arg1, s32 arg2, void *arg3, s32 arg4) {
         func_02108ffc();
         func_02005e80(buf_a6, data_02151b04, buf_a6);
         *(void **)(*(u8 **)(*(u8 **)(arg0 + 8) + 0x58) + 8) = func_0210ac2c((void **)(*(u8 **)(*(u8 **)(arg0 + 8) + 0x58) + 0xc), buf_a6, &v28);
-        if (func_02117630(*(u8 **)(*(u8 **)(*(u8 **)(arg0 + 8) + 0x58) + 0xc), 0) == 0) {
-            ;
-        } else {
-            ;
-        }
+        if (func_02117630(*(u8 **)(*(u8 **)(*(u8 **)(arg0 + 8) + 0x58) + 0xc), 0) == 0) { (void)handle; }
     }
 
     if (handle) {

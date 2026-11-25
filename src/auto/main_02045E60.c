@@ -52,17 +52,17 @@ extern void func_0204690c(u32, s32);
 extern void func_020a2534(void);
 void func_02045e60(void)
 {
-  s32 zero;
   u8 *mode;
+  s32 zero;
   s32 *pos;
   u8 *system;
   s32 *new_var;
   u8 *state = data_021600ac;
+  u8 *obj;
   pos = *((s32 **) (state + 0x68));
   system = func_020becfc();
   mode = func_02044f70();
   zero = 0;
-  u8 *obj;
   if (data_02160204[0x7e])
   {
     goto done;
@@ -71,59 +71,45 @@ void func_02045e60(void)
   switch (*((u32 *) (state + 0x10)))
   {
     case 0:
-
     case 1:
-
     case 2:
-
     case 3:
-
     case 5:
-
     case 6:
-
     case 8:
-
     case 9:
-
     case 10:
-
     case 11:
       break;
-
     case 4:
       if (data_02162908[2] == 0)
-    {
-      *((s32 *) (state + 0x10)) = zero;
-    }
+      {
+        *((s32 *) (state + 0x10)) = zero;
+      }
       break;
-
     case 7:
       *((u32 *) (data_021600b0 + 0xa0)) |= 1;
       break;
-
     case 12:
       if ((*((s32 *) (mode + 4))) == 2000)
-    {
-      func_020581b8();
-    }
-    else
-      if ((*((s32 *) (mode + 4))) == 2001)
-    {
-      if ((*((u32 *) (mode + 12))) & 2)
       {
-        func_02058a08();
+        func_020581b8();
       }
       else
-        if ((*((u32 *) (mode + 12))) & 4)
+        if ((*((s32 *) (mode + 4))) == 2001)
       {
-        func_02059128();
+        if ((*((u32 *) (mode + 12))) & 2)
+        {
+          func_02058a08();
+        }
+        else
+          if ((*((u32 *) (mode + 12))) & 4)
+        {
+          func_02059128();
+        }
       }
-    }
       break;
-
   }
-
   if (((((*((s32 *) (mode + 4))) == 2001) && (!((*((u32 *) (mode + 12))) & 2))) && (!((*((u32 *) (mode + 12))) & 4))) && (!((*((u32 *) (mode + 12))) & 8)))
   {
     func_02058e08();
@@ -174,7 +160,6 @@ void func_02045e60(void)
         {
           *anim += 4096;
         }
-
         if ((*anim) >= 0x6a4000)
         {
           *anim = zero;
@@ -246,7 +231,6 @@ void func_02045e60(void)
   }
   done:
   func_020a18f8();
-
 }
 
 void func_02046238(void) {

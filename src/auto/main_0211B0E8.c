@@ -321,6 +321,7 @@ void func_0211b9e8(void *dst, void *src, s32 x, s32 y, s32 dx, s32 dy, s32 dw, s
  }
 }
 
+#pragma opt_lifetimes off
 void func_0211bb3c(const s32 *m, u32 *sprite, const Vec2_bb3c *translation) {
     Vec2_bb3c pos;
     s16 x = (s16)((*sprite & 0x1ff0000) >> 16);
@@ -350,12 +351,9 @@ void func_0211bb3c(const s32 *m, u32 *sprite, const Vec2_bb3c *translation) {
             else { *p2 = (*p2 & 0xc1fffcff) | mode; }
         }
     }
-    {
-        u32 spr = *sprite;
-        mode = Double_bb3c(spr);
-        w = Width_bb3c(spr) >> 1;
-        h = Height_bb3c(spr) >> 1;
-    }
+    mode = Double_bb3c(*sprite);
+    w = Width_bb3c(*sprite) >> 1;
+    h = Height_bb3c(*sprite) >> 1;
     {
         s32 oy = -(h << 12), ox = -(w << 12);
         ox += m[0] * w; oy += m[1] * w;
@@ -373,4 +371,4 @@ void func_0211bb3c(const s32 *m, u32 *sprite, const Vec2_bb3c *translation) {
     pos.y += translation->y;
     *sprite = (*sprite & 0xfe00ff00) | ((pos.y >> 12) & 255) | (((pos.x >> 12) & 511) << 16);
 }
-
+#pragma opt_lifetimes on

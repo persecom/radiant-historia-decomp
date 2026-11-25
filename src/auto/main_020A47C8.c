@@ -449,7 +449,7 @@ void func_020a5338(void) {
     data_02160134.unk04 = NULL;
 }
 
-#pragma optimization_level 2
+#pragma scheduling off
 void func_020a5368(void){
 Unk20 buf=data_0214339c;
 switch(*(u16 *)data_02160134.unk04){
@@ -503,7 +503,7 @@ break;
 case 8:break;
 }
 }
-#pragma optimization_level 3
+#pragma scheduling on
 void func_020a5644(u16 arg0) {
     u8 *p = data_02160134.unk04;
     if (p == NULL) {

@@ -392,21 +392,18 @@ void func_02045d84(void) {
     }
 }
 
+#pragma optimization_level 3
 u32 func_02045e28(void) {
     u8 *p = data_02160204;
-    if (p[0x7e] != 0) {
-        return p[0x7e];
-    }
-    {
+    u32 ret = p[0x7e];
+    if (ret == 0) {
         u8 *q = data_021600ac;
-        u32 a = *(u32 *)(q + 0x10);
+        ret = *(u32 *)(q + 0x10);
         *(volatile u32 *)(q + 0x68);
-        if (a != 0) {
-            return a;
+        if (ret == 0) {
+            ret = p[0x85];
+            while (ret == 0) break;
         }
     }
-    if (p[0x85] != 0) {
-        return p[0x85];
-    }
-    return 0;
+    return ret;
 }

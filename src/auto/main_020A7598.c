@@ -175,9 +175,9 @@ void func_020a773c(void) {
 #pragma push
 #pragma opt_propagation off
 void func_020a779c(void) {
- u8 *p = data_021600e4;
- s32 c=*(s32 *)(p+0xc8), a=*(s32 *)(p+0x7c);
- s32 d=*(s32 *)(p+0xd0), b=*(s32 *)(p+0x80);
+ u8 * const p = data_021600e4;
+ s32 c=*(s32 *)(p+0xc8), d=*(s32 *)(p+0xd0);
+ s32 a=*(s32 *)(p+0x7c), b=*(s32 *)(p+0x80);
  s32 ax=a*-235, by=b*-235;
  s32 cx=(c>>12)*a, dy=(d>>12)*b;
  ax/=4096; by/=4096; cx/=4096; dy/=4096;

@@ -41,20 +41,23 @@ extern void func_020619c8(u32);
 extern void func_020bfff4(u16);
 void func_02060110(u8 *, u8 *, u8 *, s32, s32);
 void func_0205fa44(u8 *a0) {
-    register s32 zero asm("r5");
-    register u8 *r6 asm("r6");
-    register u8 *r7 asm("r7");
-    register u8 *r8 asm("r8");
-    register u8 *r9 asm("r9");
-    register u8 *arg0 asm("r10");
-    register s32 one asm("r11");
+    s32 zero = 0;
+    u8 *r6 = *(u8 **)(a0 + 0x128);
+    u8 *r7;
+    u8 *r8 = zero;
+    u8 *r9;
+    u8 *arg0 = a0;
+    s32 one = 1;
     u8 *sp10;
     u32 sp0c;
-    arg0 = a0;
-    zero = 0;
-    r6 = *(u8 **)(arg0 + 0x128);
-    one = 1;
-    r8 = zero;
+    s16 hitCount;
+    u8 *target;
+    s32 ok;
+    u8 *event;
+    u16 count;
+    s16 val;
+    u8 *info;
+    u8 *status;
 
     func_020d9da8(0x20);
     func_020d9ea8(8, 0x30);
@@ -88,8 +91,8 @@ void func_0205fa44(u8 *a0) {
         if (*(u8 *)(r9 + 7) != 8 && *(u8 *)(r9 + 7) != 0xa) {
             if (*(u16 *)(*(u8 **)data_02160244 + 0x7e) == 0) {
                 for (r8 = func_0205bad4(r6); r8 != NULL; r8 = *(u8 **)(r8 + 0x18)) {
-                    u8 *target = *(u8 **)(r8 + 0);
-                    s32 ok = zero;
+                    target = *(u8 **)(r8 + 0);
+                    ok = zero;
                     if (target != NULL && *(void **)(target + 0x118) != NULL) {
                         if (r7 != NULL) {
                             if (target == r7) {
@@ -141,9 +144,7 @@ void func_0205fa44(u8 *a0) {
             }
             break;
         default: {
-            s16 hitCount;
             if (*(u8 *)(r9 + 0) != 5) {
-                s16 val;
                 func_020d3fe8(arg0, func_0205bad4(r6), r9);
                 func_020d3160(one, (u8)*(s16 *)(r9 + 0x16), sp10, (u8)*(u16 *)(arg0 + 0x90));
                 val = (s16)func_020d3160(8, zero, NULL, zero);
@@ -153,8 +154,8 @@ void func_0205fa44(u8 *a0) {
             }
             hitCount = zero;
             for (r8 = func_0205bad4(r6); r8 != NULL; r8 = *(u8 **)(r8 + 0x18)) {
-                u8 *target = *(u8 **)(r8 + 0);
-                s32 ok = zero;
+                target = *(u8 **)(r8 + 0);
+                ok = zero;
                 if (target != NULL && *(void **)(target + 0x118) != NULL) {
                     if (r7 != NULL) {
                         if (target == r7) {

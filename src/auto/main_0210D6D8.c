@@ -317,8 +317,8 @@ extern void *data_0216267c;
 #pragma push
 #pragma opt_propagation off
 void func_0210ddfc(void) {
-    u8 *cfg = data_02155c84;
-    u8 *base = data_0216280c;
+    u8 *__restrict cfg = data_02155c84;
+    u8 *__restrict base = data_0216280c;
     u8 *null = 0;
     u8 *node, *list2, *list3, *list1, *p;
     s32 v;

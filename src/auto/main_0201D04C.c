@@ -11,136 +11,189 @@ double func_02019c20(double,s32);
 double func_0201e034(double);
 int func_0201f294(double,double);
 extern const s32 data_0213ee08[4];
-int func_0201d04c(double *x, double *y, int e0, int nx, int pec, const int *ipio2)
+extern const double data_0213ee18[8];
+int func_0201d04c(double *x, double *y, int e0, int nx, int prec, const int *ipio2)
 {
-    double q[40];
-    double f[20];
-    int iq[20];
-    double d, d2, dd, z;
-    int local_04, local_08, local_10, local_14, local_18, local_1c, local_20, local_24;
-    int i, j, k, m, l, r6, r10;
+    int jz, jx, jv, jp, jk, carry, n, iq[20], i, j, k, m, q0, ih;
+    double z, fw, f[20], fq[20], q[20];
 
-    int jv = (e0 - 3) / 9;
-    local_24 = data_0213ee08[pec];
+    jk = data_0213ee08[prec];
+    jp = jk;
+
+    jx = nx - 1;
+    jv = (e0 - 3) / 24;
     if (jv < 0) jv = 0;
-    local_18 = e0 - (jv + 1) * 24;
-    local_14 = 24 - local_18;
-    local_10 = 23 - local_18;
+    q0 = e0 - 24 * (jv + 1);
 
-    j = jv - (nx - 1);
-    if ((nx - 1) + local_24 >= 0) {
-        for (i = 0; i <= (nx - 1) + local_24; i++, j++) {
-            if (j < 0) {
-                union { int w[2]; double d; } u;
-                u.w[0] = u.w[1] = i;
-                z = u.d;
-            } else {
-                z = _dflt(ipio2[j]);
-            }
-            f[i] = z;
+    j = jv - jx;
+    m = jx + jk;
+    for (i = 0; i <= m; i++, j++) {
+        f[i] = (j < 0) ? 0.0 : (double)ipio2[j];
+    }
+
+    for (i = 0; i <= jk; i++) {
+        for (j = 0, fw = 0.0; j <= jx; j++) {
+            fw += x[j] * f[jx + i - j];
         }
+        q[i] = fw;
     }
 
-    if (local_24 >= 0) {
-        for (k = 0; k <= local_24; k++) {
-            d = 0.0;
-            for (m = 0; m <= nx - 1; m++) {
-                d = _dadd(d, _dmul(x[m], f[(nx - 1) + k - m]));
-            }
-            q[k] = d;
-        }
+    jz = jk;
+recompute:
+    for (i = 0, j = jz, z = q[jz]; j > 0; i++, j--) {
+        fw = (double)((int)(5.9604644775390625e-08 * z));
+        iq[i] = (int)(z - 16777216.0 * fw);
+        z = q[j - 1] + fw;
     }
 
-    local_04 = local_24;
-    local_14 = 24 - local_18;
-    local_10 = 23 - local_18;
-    l = 0;
-    r6 = local_04;
-    d2 = q[local_04];
-    if (local_04 > 0) {
-        do {
-            {
-                union { double d; u32 w[2]; } c32;
-                c32.w[0] = 0;
-                c32.w[1] = 0x40400000;
-                dd = _dflt(func_0201ff80(_dmul(c32.d, d2)));
-            }
-            {
-                union { double d; u32 w[2]; } c53;
-                c53.w[0] = 0;
-                c53.w[1] = 0x43400000;
-                iq[l] = func_0201ff80(_dsub(d2, _dmul(c53.d, dd)));
-            }
-            d2 = _dadd(dd, q[r6]);
-            r6--;
-            l++;
-        } while (r6 > 0);
-    }
-    local_20 = func_0201ff80(func_02019c20(d2, local_18));
-    {
-        union { double d; u32 w[2]; } c1;
-        c1.w[0] = 0;
-        c1.w[1] = 0x3FC00000;
-        d = _dmul(c1.d, func_0201e034(_dmul(c1.d, func_02019c20(d2, local_18))));
-        {
-            union { double d; u32 w[2]; } c15;
-            c15.w[0] = 0;
-            c15.w[1] = 0x3FC60000;
-            dd = _dsub(func_02019c20(d2, local_18), _dmul(c15.d, func_0201e034(_dmul(c1.d, func_02019c20(d2, local_18)))));
-        }
-    }
-    local_20 = func_0201ff80(_dsub(dd, _dflt(local_20)));
-    d2 = _dsub(dd, _dflt(local_20));
-
-    if (local_18 > 0) {
-        int *p = &iq[local_04 - 1];
-        int v = *p;
-        int lo = v - ((v >> local_14) << local_14);
-        *p = lo;
-        local_20 += v >> local_14;
-        r10 = lo >> local_10;
-    } else if (local_18 == 0) {
-        r10 = iq[local_04 - 1] >> 23;
+    z = func_02019c20(z, q0);
+    z -= 8.0 * func_0201e034(0.125 * z);
+    n = (int)z;
+    z -= (double)n;
+    ih = 0;
+    if (q0 > 0) {
+        i = (iq[jz - 1] >> (24 - q0));
+        n += i;
+        iq[jz - 1] -= i << (24 - q0);
+        ih = iq[jz - 1] >> (23 - q0);
+    } else if (q0 == 0) {
+        ih = iq[jz - 1] >> 23;
+    } else if (z >= 0.5) {
+        ih = 2;
     }
 
-    {
-        union { double d; u32 w[2]; } half;
-        half.w[0] = r10;
-        half.w[1] = 0x3FE00000;
-        if (func_0201f294(d2, half.d) >= 0) r10 = 2;
-    }
-
-    if (r10 > 0) {
-        int carry = 0;
-        local_20++;
-        for (j = 0; j < local_04; j++) {
+    if (ih > 0) {
+        n += 1;
+        carry = 0;
+        for (i = 0; i < jz; i++) {
+            j = iq[i];
             if (carry == 0) {
-                if (iq[j] != 0) {
-                    iq[j] = 0x1000000 - iq[j];
+                if (j != 0) {
                     carry = 1;
+                    iq[i] = 0x1000000 - j;
                 }
             } else {
-                iq[j] = 0xFFFFFF - iq[j];
+                iq[i] = 0xffffff - j;
+            }
+        }
+        if (q0 > 0) {
+            switch (q0) {
+                case 1:
+                    iq[jz - 1] &= 0x7fffff;
+                    break;
+                case 2:
+                    iq[jz - 1] &= 0x3fffff;
+                    break;
+            }
+        }
+        if (ih == 2) {
+            z = 1.0 - z;
+            if (carry != 0) {
+                z -= func_02019c20(1.0, q0);
             }
         }
     }
 
-    if (local_18 > 0) {
-        if (local_18 == 1) {
-            iq[local_04 - 1] &= 0x7FFFFF;
-        } else if (local_18 == 2) {
-            iq[local_04 - 1] &= 0x3FFFFF;
+    if (z == 0.0) {
+        j = 0;
+        for (i = jz - 1; i >= jk; i--) {
+            j |= iq[i];
+        }
+        if (j == 0) {
+            for (k = 1; iq[jk - k] == 0; k++) {
+            }
+            for (i = jz + 1; i <= jz + k; i++) {
+                f[jx + i] = (double)ipio2[jv + i];
+                for (j = 0, fw = 0.0; j <= jx; j++) {
+                    fw += x[j] * f[jx + i - j];
+                }
+                q[i] = fw;
+            }
+            jz += k;
+            goto recompute;
         }
     }
 
-    if (r10 == 2) {
-        union { double d; u32 w[2]; } sub;
-        sub.w[0] = 0;
-        sub.w[1] = 0x3FF00000;
-        d = _dsub(sub.d, d2);
+    if (z == 0.0) {
+        jz -= 1;
+        q0 -= 24;
+        while (iq[jz] == 0) {
+            jz--;
+            q0 -= 24;
+        }
+    } else {
+        z = func_02019c20(z, -q0);
+        if (z >= 16777216.0) {
+            fw = (double)((int)(5.9604644775390625e-08 * z));
+            iq[jz] = (int)(z - 16777216.0 * fw);
+            jz += 1;
+            q0 += 24;
+            iq[jz] = (int)fw;
+        } else {
+            iq[jz] = (int)z;
+        }
     }
 
-    return 0;
+    fw = func_02019c20(1.0, q0);
+    for (i = jz; i >= 0; i--) {
+        q[i] = fw * (double)iq[i];
+        fw *= 5.9604644775390625e-08;
+    }
+
+    for (i = jz; i >= 0; i--) {
+        for (fw = 0.0, k = 0; k <= jp && k <= jz - i; k++) {
+            fw += data_0213ee18[k] * q[i + k];
+        }
+        fq[jz - i] = fw;
+    }
+
+    switch (prec) {
+        case 0:
+            fw = 0.0;
+            for (i = jz; i >= 0; i--) {
+                fw += fq[i];
+            }
+            y[0] = (ih == 0) ? fw : -fw;
+            break;
+        case 1:
+        case 2:
+            fw = 0.0;
+            for (i = jz; i >= 0; i--) {
+                fw += fq[i];
+            }
+            y[0] = (ih == 0) ? fw : -fw;
+            fw = fq[0] - fw;
+            for (i = 1; i <= jz; i++) {
+                fw += fq[i];
+            }
+            y[1] = (ih == 0) ? fw : -fw;
+            break;
+        case 3:
+            for (i = jz; i > 0; i--) {
+                fw = fq[i - 1] + fq[i];
+                fq[i] += fq[i - 1] - fw;
+                fq[i - 1] = fw;
+            }
+            for (i = jz; i > 1; i--) {
+                fw = fq[i - 1] + fq[i];
+                fq[i] += fq[i - 1] - fw;
+                fq[i - 1] = fw;
+            }
+            for (fw = 0.0, i = jz; i >= 2; i--) {
+                fw += fq[i];
+            }
+            if (ih == 0) {
+                y[0] = fq[0];
+                y[1] = fq[1];
+                y[2] = fw;
+            } else {
+                y[0] = -fq[0];
+                y[1] = -fq[1];
+                y[2] = -fw;
+            }
+            break;
+    }
+    return n & 7;
 }
 
 double func_0201dbfc(double x,double y,int iy) {

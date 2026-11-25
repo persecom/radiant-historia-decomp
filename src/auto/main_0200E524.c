@@ -81,22 +81,20 @@ extern void func_0200e974(u32);
 void func_0200e524(u32 *arg0, s32 arg1) {
     volatile s32 result;
     s32 status;
-
-    while (1) {
-        result = -0x10000;
-        status = func_0200e4a0(arg0, arg1, 0, (u32)func_0200e314, (u32)&result);
-        while (status != 0) {
-            func_020081a4(0x51d23);
-            status = func_0200e4a0(arg0, arg1, 0, (u32)func_0200e314, (u32)&result);
-        }
-        while (result == -0x10000) {
-            func_020081a4(0x51d23);
-        }
-        if (result != 0) {
-            func_020081a4(0x51d23);
-            continue;
-        }
-        return;
+    s32 delay = 0x51d23;
+    u32 callback = (u32)func_0200e314;
+    u32 presult = (u32)&result;
+    s32 sentinel = -0x10000;
+loop:
+    result = sentinel;
+    status = func_0200e4a0(arg0, arg1, 0, callback, presult);
+    while (status != 0) {
+        func_020081a4(delay);
+        status = func_0200e4a0(arg0, arg1, 0, callback, presult);
     }
+    while (result == sentinel) func_020081a4(delay);
+    if (result == 0) return;
+    func_020081a4(delay);
+    goto loop;
 }
 #pragma opt_propagation on

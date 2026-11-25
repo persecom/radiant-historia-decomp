@@ -33,17 +33,12 @@ extern s32 func_02031384(u8 *, u32, s32);
 extern u8 *func_020314dc(void *, s32);
 
 s32 func_02031384(u8 *arg0, u32 arg1, s32 arg2) {
-    s16 table[36] = {
-        0, 1, 4, 5,
-        4, 5, 8, 9,
-        8, 9, 12, 13,
-        1, 2, 5, 6,
-        5, 6, 9, 10,
-        9, 10, 13, 14,
-        2, 3, 6, 7,
-        6, 7, 10, 11,
-        10, 11, 14, 15,
-    };
+    typedef struct {
+        s16 values[36];
+    } Table;
+
+    extern const u32 data_0213ee94[18];
+    Table table = *(const Table *)(const void *)data_0213ee94;
     u16 idx;
     s32 x, y, z;
     u8 *res;
@@ -51,7 +46,7 @@ s32 func_02031384(u8 *arg0, u32 arg1, s32 arg2) {
 
     idx = (u16)(*arg0 * 4 + arg1);
     if (arg2 == -1) {
-        res = func_02031c24((u8)table[idx]);
+        res = func_02031c24((u8)table.values[idx]);
         if (res != NULL) {
             res[0x18] |= 2;
         }
@@ -83,7 +78,7 @@ s32 func_02031384(u8 *arg0, u32 arg1, s32 arg2) {
             break;
     }
     val = (u16)arg2;
-    res = func_0203165c((u8)table[idx], 0, 0, 0, val);
+    res = func_0203165c((u8)table.values[idx], 0, 0, 0, val);
     res[0x18] = 0;
     *(u16 *)(res + 0x20) = val;
     *(s32 *)(res + 0xc) = x;

@@ -166,234 +166,141 @@ void func_02094cc0(void)
   *((u16 *) (p + 0xd2)) = 0;
   switch (*((u16 *) state))
   {
-    case 0:
-
-    case 4:
-
-    case 7:
-
-    case 8:
-
-    case 9:
-
-    case 10:
-
-    case 11:
-
-    case 12:
-
-    case 13:
-
-    case 14:
-
-    case 15:
-
-    case 16:
-
-    case 17:
-
-    case 18:
-
-    case 19:
-
-    case 20:
-
-    case 21:
-
-    case 22:
-
-    case 23:
-
-    case 24:
-
-    case 25:
-
-    if (1)
-    {
-      case 26:
-
-      case 27:
-
-      case 28:
-
-      case 29:
-
-      case 30:
-
-      case 31:
-
-    }
-    case 32:
+    case 0:  case 4:  case 7:  case 8:  case 9:  case 10:
+    case 11: case 12: case 13: case 14: case 15: case 16:
+    case 17: case 18: case 19: case 20: case 21: case 22:
+    case 23: case 24: case 25: case 26: case 27: case 28:
+    case 29: case 30: case 31: case 32:
       break;
-
     case 1:
       *((s16 *) (p + 0xd4)) = 212;
       *((s16 *) (p + 0xd6)) = -44;
       *((s16 *) (p + 0xd8)) = 0;
       *((u16 *) (p + 0xd2)) |= 1;
       break;
-
     case 2:
       *((s16 *) (p + 0xd4)) = 212 - (*((s16 *) (p + 0xd8)));
-      if ((*((volatile s16 *) (p + 0xd4))) < 20)
-    {
-      *((s16 *) (p + 0xd4)) = 20;
-    }
+      if ((*((volatile s16 *) (p + 0xd4))) < 20) *((s16 *) (p + 0xd4)) = 20;
       *((s16 *) (p + 0xd6)) = (*((s16 *) (p + 0xd8))) - 44;
-      if ((*((volatile s16 *) (p + 0xd6))) > 20)
-    {
-      *((s16 *) (p + 0xd6)) = 20;
-    }
+      if ((*((volatile s16 *) (p + 0xd6))) > 20) *((s16 *) (p + 0xd6)) = 20;
       *((s16 *) (p + 0xd8)) += 12;
-      if ((*((volatile s16 *) (p + 0xd8))) > 200)
-    {
-      *((s16 *) (p + 0xd8)) = 200;
-    }
+      if ((*((volatile s16 *) (p + 0xd8))) > 200) *((s16 *) (p + 0xd8)) = 200;
       *((u16 *) (p + 0xd2)) |= 1;
       break;
-
     case 3:
       *((s16 *) (p + 0xd4)) = 20;
       *((s16 *) (p + 0xd6)) = 20;
       break;
-
     case 33:
       *((s16 *) (p + 0xd4)) = 20;
       *((s16 *) (p + 0xd6)) = 20;
       *((u16 *) (p + 0xd2)) |= 1;
       break;
-
     case 5:
-
     case 6:
-
     case 34:
       *((s16 *) (p + 0xd4)) = 20;
       *((s16 *) (p + 0xd6)) = 20;
       *((u16 *) (p + 0xd2)) |= 1;
       if (p[0xdc] & 8)
-    {
-      func_02096670(zero, zero, zero);
-      func_02096670(one, zero, ((*((s16 *) ((*(&data_02160110)) + 0xe2))) * stride) + 23);
-      p[0xdc] &= 0xf7;
-      p[0xdc] |= 0x10;
-      func_02096880(*((u32 *) (p + 0xe4)), zero, zero);
-    }
-    else
-      if (p[0xdc] & 0x40)
-    {
-      func_02096670(zero, zero, zero);
-      func_02096670(one, zero, ((*((s16 *) ((*(&data_02160110)) + 0xe2))) * stride) + 23);
-      p[0xdc] &= 0xbf;
-      p[0xdc] |= 0x10;
-      func_02096880(*((u32 *) (p + 0xe4)), 2, *((u32 *) (p + 0x100)));
-    }
-    else
-      if (p[0xdc] & 0x20)
-    {
-      func_02096670(2, zero, zero);
-      if (data_0216011c == NULL)
-      {
-        func_02096880(zero, one, zero);
-        p[0xdc] = zero;
-      }
-      else
-        if (data_0216011c != NULL)
-      {
-        func_02096ad4(zero, zero, one);
-        p[0xdc] = zero;
-      }
-    }
-    else
-      if (p[0xdc] & 0x10)
-    {
-      new_var = 30;
-      *((s16 *) (p + 0xe8)) += 2;
-      if ((*((volatile s16 *) (p + 0xe8))) > new_var)
-      {
-        *((s16 *) (p + 0xe8)) = zero;
-      }
-      if (((*((s16 *) (p + 0xde))) != (*((s16 *) (p + 0xe0)))) || ((*((s16 *) (p + 0xe8))) != (*((s16 *) (p + 0xea)))))
-      {
-        goto update;
-      }
-    }
-    else
-      if (p[0xdc] & 1)
-    {
-      u8 *obj = data_0216011c;
-      if (obj == NULL)
       {
         func_02096670(zero, zero, zero);
         func_02096670(one, zero, ((*((s16 *) ((*(&data_02160110)) + 0xe2))) * stride) + 23);
-        p[0xdc] &= 0xfe;
-        p[0xdc] |= 2;
-        func_02096740(*((u32 *) (p + 0xe4)), zero);
+        p[0xdc] &= 0xf7;
+        p[0xdc] |= 0x10;
+        func_02096880(*((u32 *) (p + 0xe4)), zero, zero);
       }
-      else
-        if (obj[0x46] == 0)
+      else if (p[0xdc] & 0x40)
       {
         func_02096670(zero, zero, zero);
         func_02096670(one, zero, ((*((s16 *) ((*(&data_02160110)) + 0xe2))) * stride) + 23);
-        p[0xdc] &= 0xfe;
-        p[0xdc] |= 2;
-        func_02096740(*((u32 *) (p + 0xe4)), zero);
+        p[0xdc] &= 0xbf;
+        p[0xdc] |= 0x10;
+        func_02096880(*((u32 *) (p + 0xe4)), 2, *((u32 *) (p + 0x100)));
       }
-      else
-        if (obj != NULL)
+      else if (p[0xdc] & 0x20)
       {
-        func_02096670(zero, zero, zero);
-        func_02096670(one, zero, ((*((s16 *) ((*(&data_02160110)) + 0xe2))) * stride) + 23);
-        p[0xdc] &= 0xfe;
-        p[0xdc] |= 2;
-        if (data_0216011c[0x46] == 1)
+        func_02096670(2, zero, zero);
+        if (data_0216011c == NULL)
         {
-          s32 a = func_020dda2c(one);
-          func_02096ad4(zero, a, zero);
+          func_02096880(zero, one, zero);
+          p[0xdc] = zero;
         }
-        else
-          if (data_0216011c[0x46] == 2)
+        else if (data_0216011c != NULL)
         {
-          func_02096ad4(zero, zero, 2);
+          func_02096ad4(zero, zero, one);
+          p[0xdc] = zero;
         }
       }
-    }
-    else
-      if (p[0xdc] & 4)
-    {
-      func_02096670(2, zero, zero);
-      func_02096740(*((u32 *) (p + 0xe4)), one);
-      p[0xdc] = zero;
-    }
-    else
-      if (p[0xdc] & 2)
-    {
-      *((s16 *) (p + 0xe8)) += 2;
-      if ((*((volatile s16 *) (p + 0xe8))) > new_var)
+      else if (p[0xdc] & 0x10)
       {
-        *((s16 *) (p + 0xe8)) = zero;
+        new_var = 30;
+        *((s16 *) (p + 0xe8)) += 2;
+        if ((*((volatile s16 *) (p + 0xe8))) > new_var) *((s16 *) (p + 0xe8)) = zero;
+        if (((*((s16 *) (p + 0xde))) != (*((s16 *) (p + 0xe0)))) || ((*((s16 *) (p + 0xe8))) != (*((s16 *) (p + 0xea)))))
+        {
+          *((s16 *) (p + 0xe0)) = *((s16 *) (p + 0xde));
+          *((s16 *) (p + 0xea)) = *((s16 *) (p + 0xe8));
+          func_02096670(1, (-(*((s16 *) (p + 0xe8)))) % 15, ((*((s16 *) (p + 0xde))) * stride) + 23);
+        }
       }
-      if (((*((s16 *) (p + 0xde))) != (*((s16 *) (p + 0xe0)))) || ((*((s16 *) (p + 0xe8))) != (*((s16 *) (p + 0xea)))))
+      else if (p[0xdc] & 1)
       {
-        update:
-        *((s16 *) (p + 0xe0)) = *((s16 *) (p + 0xde));
-
-        *((s16 *) (p + 0xea)) = *((s16 *) (p + 0xe8));
-        func_02096670(1, (-(*((s16 *) (p + 0xe8)))) % 15, ((*((s16 *) (p + 0xde))) * stride) + 23);
+        u8 *obj = data_0216011c;
+        if (obj == NULL)
+        {
+          func_02096670(zero, zero, zero);
+          func_02096670(one, zero, ((*((s16 *) ((*(&data_02160110)) + 0xe2))) * stride) + 23);
+          p[0xdc] &= 0xfe;
+          p[0xdc] |= 2;
+          func_02096740(*((u32 *) (p + 0xe4)), zero);
+        }
+        else if (obj[0x46] == 0)
+        {
+          func_02096670(zero, zero, zero);
+          func_02096670(one, zero, ((*((s16 *) ((*(&data_02160110)) + 0xe2))) * stride) + 23);
+          p[0xdc] &= 0xfe;
+          p[0xdc] |= 2;
+          func_02096740(*((u32 *) (p + 0xe4)), zero);
+        }
+        else if (obj != NULL)
+        {
+          func_02096670(zero, zero, zero);
+          func_02096670(one, zero, ((*((s16 *) ((*(&data_02160110)) + 0xe2))) * stride) + 23);
+          p[0xdc] &= 0xfe;
+          p[0xdc] |= 2;
+          if (data_0216011c[0x46] == 1)
+          {
+            s32 a = func_020dda2c(one);
+            func_02096ad4(zero, a, zero);
+          }
+          else if (data_0216011c[0x46] == 2)
+          {
+            func_02096ad4(zero, zero, 2);
+          }
+        }
       }
-    }
+      else if (p[0xdc] & 4)
+      {
+        func_02096670(2, zero, zero);
+        func_02096740(*((u32 *) (p + 0xe4)), one);
+        p[0xdc] = zero;
+      }
+      else if (p[0xdc] & 2)
+      {
+        *((s16 *) (p + 0xe8)) += 2;
+        if ((*((volatile s16 *) (p + 0xe8))) > new_var) *((s16 *) (p + 0xe8)) = zero;
+        if (((*((s16 *) (p + 0xde))) != (*((s16 *) (p + 0xe0)))) || ((*((s16 *) (p + 0xe8))) != (*((s16 *) (p + 0xea)))))
+        {
+          *((s16 *) (p + 0xe0)) = *((s16 *) (p + 0xde));
+          *((s16 *) (p + 0xea)) = *((s16 *) (p + 0xe8));
+          func_02096670(1, (-(*((s16 *) (p + 0xe8)))) % 15, ((*((s16 *) (p + 0xde))) * stride) + 23);
+        }
+      }
       break;
-
   }
-
-  if ((*((u16 *) (p + 0xd2))) & 1)
-  {
-    ((void (*)(s32)) func_02095770)(1);
-  }
-  if ((*((u16 *) (p + 0x70))) & 0x40)
-  {
-    func_02095874();
-  }
+  if ((*((u16 *) (p + 0xd2))) & 1) ((void (*)(s32)) func_02095770)(1);
+  if ((*((u16 *) (p + 0x70))) & 0x40) func_02095874();
   func_020947a0();
 }
 

@@ -272,11 +272,10 @@ void func_02018a04(UnkNum_02018844 *out, const UnkNum_02018844 *a, const UnkNum_
         if (n > a->unk04 - i) n = a->unk04 - i;
         x = a->digits + i;
         y = b->digits + j;
-        if (n > 0) {
-            do {
-                u32 digit = *x++;
-                carry += digit * *y--;
-            } while (--n > 0);
+        while (n > 0) {
+            u32 digit = *x++;
+            carry += digit * *y--;
+            n--;
         }
         *--p = carry % 10;
         carry /= 10;

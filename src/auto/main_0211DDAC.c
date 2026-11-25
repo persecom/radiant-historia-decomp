@@ -222,7 +222,8 @@ void func_0211e320(u8 *arg0) {
 }
 
 #pragma peephole off
-void func_0211e3ec(u8 *ctx,u32 command,u8 *mat,u32 idx) {
+void func_0211e3ec(u8 *__restrict ctx,u32 command,u8 *__restrict mat,u32 idx) {
+u32 stride=0x38;
 u32 stage,handled;
 u32 zero=0;
 u8 *out;
@@ -239,20 +240,19 @@ handled=*(u32 *)(ctx+8)&0x40;
 } else handled=0;
 if(!handled) {
 u8 *cache=*(u8 **)(*(u8 **)(ctx+4)+0x38);
-if(cache && !(*(u32 *)(ctx+8)&0x80)) out=cache+idx*0x38;
+if(cache && !(*(u32 *)(ctx+8)&0x80)) out=cache+idx*stride;
 else if((command==0x20 || command==0x40) && (*(u32 *)(ctx+0xbc+(idx>>5)*4)&(1<<(idx&31)))) {
-if(cache) out=cache+idx*0x38;
-else out=data_02170464+idx*0x38;
+out=cache?cache+idx*stride:data_02170464+idx*stride;
 } else {
 u8 *tbl,*entry,*source;
 u16 flags;
 u32 maska,maskb,a,b;
 if(cache) {
 *(u32 *)(ctx+0xbc+(idx>>5)*4)|=1<<(idx&31);
-out=*(u8 **)(*(u8 **)(ctx+4)+0x38)+idx*0x38;
+out=*(u8 **)(*(u8 **)(ctx+4)+0x38)+idx*stride;
 } else if(command==0x40) {
 *(u32 *)(ctx+0xbc+(idx>>5)*4)|=1<<(idx&31);
-out=data_02170464+idx*0x38;
+out=data_02170464+idx*stride;
 } else out=ctx+0xf4;
 *(u32 *)out=zero;
 tbl=*(u8 **)(ctx+0xd8);

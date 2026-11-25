@@ -60,6 +60,7 @@ extern void func_02006da8(void *, s32);
 
 extern s32 func_0200698c(void);
 
+#pragma optimization_level 4
 s32 func_0200a348(u8 *arg0, u8 *arg1, u32 *arg2) {
     while (arg2[0] < *(u32 *)(arg0 + 0x38)) {
         u32 entry = *(u32 *)(arg0 + 0x3c + arg2[0] * 4);

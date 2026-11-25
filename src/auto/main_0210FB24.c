@@ -49,10 +49,11 @@ int func_02002fb0(s32,s32,s32,s32,s32);
 
 #pragma scheduling on
 
+#pragma scheduling off
 void func_0210fb24(void)
 {
-  s32 zero = 0;
   s32 one = 1;
+  s32 zero = 0;
   func_0210f448();
   func_02004d70(7);
   func_02004ee8(16);
@@ -83,7 +84,7 @@ void func_0210fb24(void)
   *((volatile u16 *) 0x400100c) = ((*((volatile u16 *) 0x400100c)) & (~3)) | (2 & 0xFFFFFFFFFFFFFFFF);
   *((volatile u16 *) 0x400100e) = ((*((volatile u16 *) 0x400100e)) & (~3)) | 3;
 }
-#pragma optimization_level 4
+#pragma scheduling on
 void func_0210fcd4(u32 arg0) {
     if (data_02162b80 != NULL) {
         func_0210c5dc(data_02162b80);

@@ -70,16 +70,17 @@ s32 func_02108240(void) {
 }
 
 #pragma opt_propagation off
-s32 func_02108258(u32 arg0) {
-    u8 *p = (u8 *)arg0;
-    s32 x, z;
-    func_02002128(p + 0x20, p + 0x14, p + 0x48);
-    func_02002274(p + 0x48, p + 0x48);
-    x = *(volatile s32 *)(p + 0x48);
-    z = *(volatile s32 *)(p + 0x50);
-    *(s32 *)(p + 0x54) = x;
-    *(s32 *)(p + 0x5c) = z;
-    func_02002274(p + 0x54, p + 0x54);
+s32 func_02108258(u32 arg0)
+{
+  s32 *v = (s32 *)arg0;
+  s32 x, z;
+  func_02002128(&v[8], &v[5], &v[18]);
+  func_02002274(&v[18], &v[18]);
+  x = *(volatile s32 *)&v[18];
+  z = *(volatile s32 *)&v[20];
+  v[21] = x;
+  v[23] = z;
+  func_02002274(&v[21], &v[21]);
 }
 #pragma opt_propagation on
 extern void func_0210c35c(void *, u32, u32, u32);

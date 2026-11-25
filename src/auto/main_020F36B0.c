@@ -161,7 +161,7 @@ if(draw && !offscreen) {
 s32 sx=*(s32 *)(entity+0x54),sy=sx;
 s32 x,y,z;
 u32 command;
-s32 polygon=3;
+u32 polygon=3;
 if(((SpriteFlipFlags *)(anim+0x70))->flipX) sx*=polygon-4;
 else if(((SpriteFlipFlags *)(anim+0x70))->flipY) sy*=polygon-4;
 command=(*(u32 *)(entity+0x80)&0x1000)?0x8000:0;
@@ -218,12 +218,12 @@ if(link) *(s32 *)(link+0x14)=finished;
 if(finished) {
 s32 mode=*(s32 *)(anim+0x18);
 if(!mode) mode=*(s32 *)(*(u8 **)(anim+0x1c)+8);
-switch(mode) {case 2:case 4: {
+if(mode==2 || mode==4) {
 seq=*(u8 **)(anim+0x1c);
 *(u8 **)anim=*(u8 **)(seq+12)+*(u16 *)(seq+2)*8;
 *(s32 *)(anim+0x10)=zero;
 func_02117be0(anim,zero);
-break;} default: *(s32 *)(anim+0xc)=zero;break;}
+} else *(s32 *)(anim+0xc)=zero;
 seq=*(u8 **)(anim+0x1c);
 entry=*(u8 **)anim;
 start=*(u8 **)(seq+12);
@@ -348,14 +348,14 @@ void func_020f4210(void){
 s32 before=0,after=0,zero=0,changed=0;
 u8 *q;
 u8 *p=data_02160c34.field_4;
-s32 step,next; u16 current,target;
+s32 step,next; u16 target,current;
 Unk_02151fc8 *c;
 s32 side;
 if(*(u16 *)(p+0x38)==0){
 {u32 moving=*(u32 *)(p+0x2c)|*(u32 *)(p+0x30)|*(u32 *)(p+0x34);if(moving!=0){
 q=data_02155984;
 changed=((s32)(*(u32 *)(p+0x20)-*(u32 *)(q+0x20))>=0) | (((s32)(*(u32 *)(p+0x24)-*(u32 *)(q+0x24))>=0)<<1) | (((s32)(*(u32 *)(p+0x28)-*(u32 *)(q+0x28))>=0)<<2);
-func_020020f8(q+0x20,p+0x2c,data_02155984+0x20);
+func_020020f8(q+0x20,p+0x2c,q+0x20);
 q=data_02155984;p=data_02160c34.field_4;
 side=((s32)(*(u32 *)(p+0x20)-*(u32 *)(q+0x20))>=0) | (((s32)(*(u32 *)(p+0x24)-*(u32 *)(q+0x24))>=0)<<1) | (((s32)(*(u32 *)(p+0x28)-*(u32 *)(q+0x28))>=0)<<2);
 if(changed!=side){p=*(u8 *volatile *)&data_02160c34.field_4;*(Trip *)(q+0x20)=*(Trip *)(p+0x20);*(u32 *)(p+0x2c)=before;*(u32 *)(p+0x30)=before;*(u32 *)(p+0x34)=before;}changed=1;

@@ -41,7 +41,7 @@ extern void func_020bdf38(void);
 extern void func_020a8440(void);
 s32 func_020a47c8(void);
 
-#pragma optimization_level 2
+#pragma opt_lifetimes off
 void func_0210f7b0(void)
 {
   s32 one = 1;
@@ -77,6 +77,6 @@ void func_0210f7b0(void)
   *((volatile u16 *) 0x400100a) &= ~3;
   *((volatile u16 *) 0x400100c) &= 0xffbfULL;
 }
-#pragma optimization_level reset
+#pragma opt_lifetimes reset
 int func_02002fb0(s32,s32,s32,s32,s32);
 #pragma scheduling off

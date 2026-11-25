@@ -164,25 +164,25 @@ void func_02066868(void) {
     u8 *base = data_021600e0[1];
     s32 i;
     Params_02066868 p = data_0213fc60;
-
     *(volatile u32 *)0x40004a4 = 0x1f0080;
     *(volatile u32 *)0x4000480 = 0x7fff;
-    p.v[1] = 0;
-    p.v[2] = 0;
-    p.v[3] = 256;
-    p.v[4] = 256;
+    p.v[1] = 0; p.v[2] = 0; p.v[3] = 256; p.v[4] = 256;
     {
         u8 *current = *(u8 *volatile *)&data_021600e0[1];
         p.v[8] = (*(s32 *)(current + 0x6c) * 256) / 4096;
         p.v[9] = (*(s32 *)(current + 0x6c) * 256) / 4096;
     }
     for (i = 0; i < 4; i++) {
-        s32 x, y;
+        s32 x, scale, y;
         func_020a3bbc(i);
         x = ((i % 2) << 8) - ((i % 2) << 3);
         y = i / 2;
-        x = (x * *(s32 *)(data_021600e0[1] + 0x6c)) / 4096;
-        y = (((y << 8) - (y << 3)) * *(s32 *)(data_021600e0[1] + 0x6c)) / 4096;
+        scale = *(s32 *)(data_021600e0[1] + 0x6c);
+        x = (x * scale) / 4096;
+        {
+            s32 ty = (y << 8) - (y << 3);
+            y = (scale * ty) / 4096;
+        }
         p.v[5] = *(s32 *)(data_021600e0[1] + 0x44) + (x - 32);
         p.v[6] = *(s32 *)(data_021600e0[1] + 0x48) + (y + 8);
         func_021098ac(&p);

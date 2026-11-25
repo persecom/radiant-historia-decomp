@@ -98,68 +98,45 @@ int func_020123f0(const u8 *a, const u8 *b)
   u32 ba = ((u32) b) & 3;
   u32 i = 0;
   u32 mask = 0x7f7f7f7f;
-  if ((aa ^ ba) != 0)
-  {
-    goto bytes;
-  }
-  if (aa == 0)
-  {
-    goto words;
-  }
-  if (aa >= 4)
-  {
-    goto words;
-  }
-  do
-  {
+  if ((aa ^ ba) != 0) goto bytes;
+  if (aa == 0) goto words;
+  if (aa >= 4) goto words;
+  do {
     u8 x = a[i];
     u8 y = b[i];
-    if ((x != y) || (x == 0))
-    {
-      return x - y;
-    }
+    if ((x != y) || (x == 0)) return x - y;
     i++;
-  }
-  while ((i + aa) < 4);
-  words:
-  for (;;)
-  {
+  } while ((i + aa) < 4);
+words:
+  for (;;) {
     u32 x = *((const u32 *) (a + i));
     u32 y = *((const u32 *) (b + i));
     u32 t;
     u32 z;
-    if (x != y)
-    {
-      break;
-    }
-    t = ((((((((x & 0xFFFFFFFFFFFFFFFF) & 0xFFFFFFFFFFFFFFFF) & 0xFFFFFFFFFFFFFFFF) & 0xFFFFFFFFFFFFFFFF) & 0xFFFFFFFFFFFFFFFF) & 0xFFFFFFFFFFFFFFFF) & 0xFFFFFFFFFFFFFFFF) & mask) + mask;
+    u64 w;
+    if (x != y) break;
+    w = x & 0xFFFFFFFFFFFFFFFF;
+    w &= 0xFFFFFFFFFFFFFFFF;
+    w &= 0xFFFFFFFFFFFFFFFF;
+    w &= 0xFFFFFFFFFFFFFFFF;
+    w &= 0xFFFFFFFFFFFFFFFF;
+    w &= 0xFFFFFFFFFFFFFFFF;
+    w &= 0xFFFFFFFFFFFFFFFF;
+    w &= 0xFFFFFFFFFFFFFFFF;
+    w &= mask;
+    t = (u32)(w + mask);
     t |= x;
     t |= mask;
     z = ~t;
-    if (z == 0)
-    {
-      i += 4;
-    }
-    else
-    {
-      break;
-    }
+    if (z == 0) i += 4; else break;
   }
-
-
-  bytes:
-  for (;;)
-  {
+bytes:
+  for (;;) {
     u8 x = a[i];
     u8 y = b[i];
-    if ((x != y) || (x == 0))
-    {
-      return x - y;
-    }
+    if ((x != y) || (x == 0)) return x - y;
     i++;
   }
-
-
 }
 
 int func_020124a8(const u8 *a, const u8 *b, s32 n)

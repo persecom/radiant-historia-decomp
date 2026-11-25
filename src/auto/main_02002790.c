@@ -63,16 +63,19 @@ void func_02002858(volatile u16 *reg, s32 brightness) {
 extern void func_02001d9c(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 *arg7);
 extern void func_02002bbc();
 extern void func_02002e58(void);
-void func_02002880(u32 addr, const s32 *mtx, s32 centerX,s32 centerY,s32 x1,s32 y1){
-
-s32 dy=y1-centerY;
-s32 dx=x1-centerX;
-*(volatile u32 *)(addr+0)=(u16)((mtx[0]<<12)>>16)|((u16)((mtx[1]<<12)>>16)<<16);
-*(volatile u32 *)(addr+4)=(u16)((mtx[2]<<12)>>16)|((u16)((mtx[3]<<12)>>16)<<16);
-s32 x2=mtx[0]*dx+mtx[1]*dy+(centerX<<12);
-s32 y2=mtx[2]*dx+mtx[3]*dy+(centerY<<12);
-*(volatile u32 *)(addr+8)=(u32)(x2>>4);
-*(volatile u32 *)(addr+12)=(u32)(y2>>4);
+void func_02002880(u32 addr, const s32 *mtx, s32 centerX, s32 centerY, s32 x1, s32 y1)
+{
+  s32 x2;
+  s32 y2;
+  s32 dy = y1 - centerY;
+  const s32 *new_var;
+  s32 dx = x1 - centerX;
+  *((volatile u32 *) (addr + 0)) = ((u16) ((mtx[0] << 12) >> 16)) | (((u16) ((mtx[1] << 12) >> 16)) << 16);
+  *((volatile u32 *) (addr + 4)) = ((u16) ((mtx[2] << 12) >> 16)) | (((u16) ((mtx[3] << 12) >> 16)) << 16);
+  x2 = (((new_var = mtx)[0] * dx) + (new_var[1] * dy)) + (centerX << 12);
+  y2 = ((new_var[2] * dx) + (new_var[3] * dy)) + (centerY << 12);
+  *((volatile u32 *) (addr + 8)) = (u32) (x2 >> 4);
+  *((volatile u32 *) (addr + 12)) = (u32) (y2 >> 4);
 }
 
 void func_02002920(u32 *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {

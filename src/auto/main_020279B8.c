@@ -70,7 +70,7 @@ s32 func_020279b8(u8 *self,u8 *parser) {
  }else if(count==3) {
  u16 start;u16 roll=Random_020279b8(100);
  if(roll>=66)start=0;else if(roll>=33)start=1;else start=2;
- for(i=0;i<3;i++)if(func_0202e63c(self,Cell_020279b8(cells,start,i,3))){func_0202b3d4(self,cells[(i+start)-(u32)((u64)3*((i+start)/3))]);return 1;}
+ for(i=0;i<3;i++)if(func_0202e63c(self,cells[(i+start)%3])){func_0202b3d4(self,cells[(i+start)%3]);return 1;}
  }break;
  }
  case 3:{

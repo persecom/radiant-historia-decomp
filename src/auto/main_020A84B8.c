@@ -245,9 +245,8 @@ void func_020a8ab8(u8 *p) {
 
 void func_020a8ba4(u8 *p, s32 x, s32 y, s32 ch) {
 s32 zero = 0;
-s32 width, n, skip, row, col, pixel, valid;
+s32 width, n, skip, row, col, pixel, shift, valid;
 u8 *dst, *src;
-s32 shift;
 if(x < 0) valid = 0;
 else if(x + func_020a916c(ch) > *(s32 *)(p+0x18)) valid = 0;
 else if(y < 0) valid = 0;
@@ -268,9 +267,8 @@ u8 bits=*src++;
 for(pixel=zero;pixel<4;pixel++) {
 s32 v=bits&3;
 bits = (u8)(bits >> 2);
-{ u8 mask = ~(3<<sh); u8 part = v<<sh;
-value &= mask;
-value |= part; }
+value &= (u8)~(3<<sh);
+value |= (u8)(v<<sh);
 sh=(sh+2)&7;
 if(sh==0) { *dst=value; value=*++dst; }
 }

@@ -28,6 +28,7 @@ extern void func_0209250c(s16,s32,s16,s16,s16,s16,s16,s16,s16,s16,s16,s16,s16);
 extern void func_0208db04(u16,s32,s16,s16,s16,s16,s16,s16);
 extern void func_0208dcc8(s16,s16,s32,s16,u8);
 extern s32 func_02085110(u8);
+#pragma opt_lifetimes off
 void func_0208eef4(s16 x,s16 y,s16 z) {
 Unk_0208f7a0_10 top=data_021410bc;
 Unk_0208f7a0_10 icon=data_021410a8;
@@ -36,8 +37,8 @@ Unk_0208eef4_4 styles=data_02140f08;
 u8 count=6;
 u8 *base=data_0216010c;
 u8 offset=base[0x50d7]-base[0x50d6];
-s32 row;
-u8 selected;
+u32 row;
+s32 selected;
 s16 i;
 if(*(s16 *)(base+0x50d4)<6) {
 count=(u8)*(s16 *)(base+0x50d4);
@@ -81,7 +82,7 @@ top.data[1]=16;top.data[2]=0;top.data[5]=x+87;top.data[6]=y+4;top.data[7]=z+1;
 func_021098ac(&top);
 func_020922f8(8,0,(s16)(x+26),(s16)(y+4),60,15,8,14,4,4,4,4,z+1);
 }
-
+#pragma opt_lifetimes reset
 void func_0208f4e4(s16 arg0, s16 arg1, s16 arg2, s32 arg3) {
     u8 buf[0x64];
     Unk_0208f7a0_10 s1 = data_0214106c;

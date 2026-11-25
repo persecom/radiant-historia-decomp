@@ -71,11 +71,11 @@ void func_020783e8(u8 *arg0)
   u8 *p00ac;
   s32 ty;
   s32 tx;
-  u32 flags[1];
   u8 *p68;
   int new_var = 0xac;
   s32 dx;
   s32 dy;
+  u32 flags;
   if (data_02162908[2] != 0)
   {
     *((u32 *) (arg0 + 0xac)) &= ~0x400000;
@@ -86,24 +86,18 @@ void func_020783e8(u8 *arg0)
     {
       return;
     }
-    flags[0] = *((u32 *) (data_02160200 + 0x34));
+    flags = *((u32 *) (data_02160200 + 0x34));
     tx = *((s16 *) (&data_02162908[0]));
     ty = *((s16 *) (&data_02162908[1]));
-    if (flags[0] & 0x10)
+    if ((flags & 0x10) && (u8) ((((tx >= 0xe0) && (tx <= 0x100)) && (ty >= 0xa0)) && (ty <= 0xc0)))
     {
-      if ((u8) ((((tx >= 0xe0) && (tx <= 0x100)) && (ty >= 0xa0)) && (ty <= 0xc0)))
-      {
-        *((u32 *) (arg0 + new_var)) |= 0x400000;
-        return;
-      }
+      *((u32 *) (arg0 + new_var)) |= 0x400000;
+      return;
     }
-    if (flags[0] & 0x20)
+    if ((flags & 0x20) && (u8) ((((tx >= 0xb8) && (tx <= 0xd8)) && (ty >= 0xa0)) && (ty <= 0xc0)))
     {
-      if ((u8) ((((tx >= 0xb8) && (tx <= 0xd8)) && (ty >= 0xa0)) && (ty <= 0xc0)))
-      {
-        *((u32 *) (arg0 + new_var)) |= 0x800000;
-        return;
-      }
+      *((u32 *) (arg0 + new_var)) |= 0x800000;
+      return;
     }
     p00ac = (u8 *) data_021600ac;
     if ((*((s32 *) (p00ac + 0x844))) == 1)
@@ -146,12 +140,11 @@ void func_020783e8(u8 *arg0)
     }
     p68 = *((u8 **) (p00ac + 0x68));
     {
-      s32 cx = *((s32 *) (p68 + 0xfc));
-      s32 cy[1]; cy[0] = *((s32 *) (p68 + 0x100));
-      s32 x0 = cx - 0x46;
-      s32 x1 = cx + 0x46;
-      s32 y0 = cy[0] - 0x36;
-      s32 y1 = cy[0] + 0x2a;
+      s32 *pos = (s32 *) (p68 + 0xfc);
+      s32 x0 = pos[0] - 0x46;
+      s32 x1 = pos[0] + 0x46;
+      s32 y0 = pos[1] - 0x36;
+      s32 y1 = pos[1] + 0x2a;
       if ((u8) ((((tx >= x0) && (tx <= x1)) && (ty >= y0)) && (ty <= y1)))
       {
         *((u32 *) (p68 + new_var)) |= 0x80;
@@ -443,8 +436,8 @@ void func_02079174(void)
   s32 sy;
   s32 w;
   s64 inv;
-  const s32 *m;
   const s32 *p;
+  const s32 *m;
   data_0216263c[0] = seed;
   r = ((seed >> 16) * 16) >> 16;
   if (r != 0)

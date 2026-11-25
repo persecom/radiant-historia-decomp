@@ -273,13 +273,13 @@ case 0: break;
 }
 if(data_0216f234.f4==0) material=data_0216f3c4+data_0216f234.fc*24;
 else {
-u32 off=data_0216f234.fc*24;
-*(volatile u32 *)(data_02155eb0+24)=*(volatile u32 *)(data_0216f3d4+off);
-*(volatile u32 *)(data_02155eb0+28)=*(volatile u32 *)(data_0216f3d8+off);
+u32 off = (u32)data_0216f234.fc * 24;
+*(volatile u32 *)(data_02155eb0+24)=*(volatile u32 *)((u8 *)data_0216f3d4+off);
+*(volatile u32 *)(data_02155eb0+28)=*(volatile u32 *)((u8 *)data_0216f3d8+off);
 material=data_02155eb8;
 }
 func_0211c5ac(material,matrix);
-switch(*(s32 *)(data_02155eb0+4) != -1) {
+switch(is_valid_id(*(s32 *)(data_02155eb0+4))) {
 default: func_0211c850(arg); break;
 case 0: func_0211c79c(arg); break;
 }
@@ -287,13 +287,13 @@ case 0: func_0211c79c(arg); break;
 func_0211c5c4(root,data_0216f244[data_0216f234.fc]);
 if(data_0216f234.f4==0) material=data_0216f3c4+data_0216f234.fc*24;
 else {
-u32 off=data_0216f234.fc*24;
-*(volatile u32 *)(data_02155eb0+24)=*(volatile u32 *)(data_0216f3d4+off);
-*(volatile u32 *)(data_02155eb0+28)=*(volatile u32 *)(data_0216f3d8+off);
+u32 off = (u32)data_0216f234.fc * 24;
+*(volatile u32 *)(data_02155eb0+24)=*(volatile u32 *)((u8 *)data_0216f3d4+off);
+*(volatile u32 *)(data_02155eb0+28)=*(volatile u32 *)((u8 *)data_0216f3d8+off);
 material=data_02155eb8;
 }
 func_0211c544(material);
-switch(*(s32 *)(data_02155eb0+4) != -1) {
+switch(is_valid_id(*(s32 *)(data_02155eb0+4))) {
 default: func_0211c850(arg); break;
 case 0: func_0211c79c(arg); break;
 }
@@ -439,7 +439,7 @@ void func_02119b34(u32 arg0) {
     func_0211a128(1);
 }
 
-#pragma scheduling off
+#pragma optimization_level 3
 void func_02119c80(u8 *arg0) {
     s32 i;
     func_0211c4ec(arg0);
@@ -455,16 +455,16 @@ void func_02119c80(u8 *arg0) {
     *(u32 *)(arg0 + 0x90) = 0;
     *(u16 *)(arg0 + 0x94) = 0;
     data_0216f234.fc = 0;
-    *(volatile u16 *)data_02155eb0 = 0xfffe;
+    *(u16 *)data_02155eb0 = 0xfffe;
     for (i = 0; i < 0x20; i++) {
-        MI_CpuFill32(data_0216f9c4[i].f10, 0xffffffff, 0x10);
+        func_02008e68(-1, data_0216f9c4[i].f10, 0x10);
     }
     data_0216f234.f0 = 0;
     data_0216f234.f2 = 0;
-    MI_CpuFill32(data_0216f2c4, 0, 0x100);
+    func_02008e68(0, data_0216f2c4, 0x100);
     data_0216f234.f4 = 0;
 }
-#pragma scheduling on
+#pragma optimization_level 4
 void func_02119d38(void *arg0, void **arg1) {
     arg1[0xc] = *(void **)((u8 *)arg0 + 0x70);
     *(void **)((u8 *)arg0 + 0x70) = arg1;

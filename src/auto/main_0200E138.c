@@ -65,7 +65,7 @@ s32 func_0200a6e4(s32,u32,s32);
 
 #pragma opt_propagation on
 
-#pragma optimization_level 3
+#pragma opt_propagation off
 void func_0200e138(u32 arg0,u32 arg1) {
  Coord0200e138 *dst=(Coord0200e138 *)arg0;
  const Coord0200e138 *src=(const Coord0200e138 *)arg1;
@@ -81,7 +81,7 @@ void func_0200e138(u32 arg0,u32 arg1) {
  }
  u16 z=src->z,w=src->w;
  coeff=data_0215f01c;
- if(z==0) {dst->y=dst->x=0;}
+ if(z==0) {dst->x=dst->y=0;}
  dst->w=w;
  dst->z=z;
  if(z==0) return;
@@ -94,4 +94,3 @@ void func_0200e138(u32 arg0,u32 arg1) {
  if(v<0) dst->y=0;
  else if(v>191) dst->y=191;
 }
-#pragma optimization_level 4

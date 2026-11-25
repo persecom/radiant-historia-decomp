@@ -221,12 +221,8 @@ hexadecimal:
             {
             s8 *buffer = digits;
             u32 *output = out;
-            s32 left;
-            u32 *output2 = out;
             if (prefixes > 0 && prefix[0] == '0') {
-                buffer[count] = '0';
-                (void)output2;
-                count++;
+                buffer[count++] = '0';
                 prefixes = 0;
             }
             precision -= count;
@@ -234,7 +230,7 @@ hexadecimal:
                 precision = width-count-prefixes;
             if (precision > 0) width -= precision;
             width -= prefixes + count;
-            left = flags & 8;
+            s32 left = flags & 8;
             if (!left) func_02012d90(out, ' ', width);
             while (prefixes > 0) func_02012d64(output, prefix[--prefixes]);
             func_02012d90(out, '0', precision);

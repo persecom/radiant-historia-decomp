@@ -52,7 +52,7 @@ pad='0';
 switch(num.digits[0]){
 case '0':num.exponent=0;break;
 case 'I':
-if(value<0){p=(u8*)((u32)end-5);if((u32)conversion>=128?0:data_0213eb14[conversion]&0x200){*(FormatText5*)p=*(FormatText5*)data_02145e54;return p;}else{*(FormatText5*)p=*(FormatText5*)data_02145e5c;return p;}}
+if(value<0.0){p=(u8*)((u32)end-5);if((u32)conversion>=128?0:data_0213eb14[conversion]&0x200){*(FormatText5*)p=*(FormatText5*)data_02145e54;return p;}else{*(FormatText5*)p=*(FormatText5*)data_02145e5c;return p;}}
 p=(u8*)((u32)end-4);if((u32)conversion>=128?0:data_0213eb14[conversion]&0x200){*(FormatText4*)p=*(FormatText4*)data_02145e64;return p;}else{*(FormatText4*)p=*(FormatText4*)data_02145e68;return p;}
 case 'N':
 if(num.sign){p=(u8*)((u32)end-5);if((u32)conversion>=128?0:data_0213eb14[conversion]&0x200){*(FormatText5*)p=*(FormatText5*)data_02145e6c;return p;}else{*(FormatText5*)p=*(FormatText5*)data_02145e74;return p;}}
@@ -143,8 +143,6 @@ s32 func_020150a4(s32 (*write)(void *, const u8 *, u32),void *ctx,const u8 *fmt,
         if(len && !write(ctx,fmt,len))return -1;
         fmt=func_020139a4(mark,&ap,&spec);
         switch(spec.conversion) {
-case 255:goto invalid;
-
         case 'd':case 'i':
             if(spec.unk4==3) {value=format_arg_long(&ap);}
             else if(spec.unk4==4) {wide=format_arg_ll(&ap);}
@@ -158,7 +156,8 @@ case 255:goto invalid;
             else {text=func_02013eb0(value,buf+512,spec);if(!text)goto invalid;}
             len=buf+511-text;
             break;
-        case 'o':case 'u':case 'x':case 'X':
+        case 'o':case 'u':case 'X':
+        unsigned_case:
             if(spec.unk4==3) {value=format_arg_ulong(&ap);}
             else if(spec.unk4==4) {wide=format_arg_ull(&ap);}
             else if(spec.unk4==6) {wide=format_arg_ull(&ap);}
@@ -225,11 +224,14 @@ case 255:goto invalid;
             ap+=4;buf[0]=*(int *)(ap-4);text=buf;len=1;break;
         case '%':
             buf[0]='%';text=buf;len=1;break;
+        case 'p':
+        case 255:
         default:
         invalid:
             len=func_02016da4(mark);total+=len;
             if(len && !write(ctx,mark,len))return -1;
             return total;
+        case 'x': goto unsigned_case;
         }
         field=len;
         if(spec.padding) {

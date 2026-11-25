@@ -4,10 +4,287 @@
 extern u8 *data_02160aec;
 extern void func_0211d7a4(void);
 void func_020eeea4(void) {
-    if (*(u16 *)(data_02160aec + 0xc) == 0) {
-        return;
-    }
+    extern const s16 data_02144aa0[];
+    extern const s16 data_02144b60[];
+    typedef struct { u8 type, unused, shape, height; u8 rest[8]; } Tile;
+    typedef struct { u16 letter, value; u16 rest[3]; } Mark;
+    u8 *map;
+    register u8 *tiles;
+    s32 xmin, xmax, zmax;
+    s32 cx, cz;
+    s32 oldz;
+    register s32 y;
+    s32 oldx;
+    register s32 x;
+    s32 oldh;
+
+    if (*(u16 *)(data_02160aec + 0xc) == 0) return;
     func_0211d7a4();
+    oldh = 0;
+    *(volatile u32 *)0x040004a4 = 0x001f0080;
+    *(volatile u32 *)0x04000444 = oldh;
+    *(volatile u32 *)0x04000470 = oldh;
+    *(volatile u32 *)0x04000470 = oldh - 0x880;
+    *(volatile u32 *)0x04000470 = oldh;
+    *(volatile u32 *)0x0400046c = 0x10000;
+    *(volatile u32 *)0x0400046c = 0x8000;
+    *(volatile u32 *)0x0400046c = 0x10000;
+    *(volatile u32 *)0x040004c0 = (u32)oldh - 0x80000001u;
+    *(volatile u32 *)0x040004c4 = 0x7fff7fff;
+    *(volatile u32 *)0x04000484 = oldh;
+    map = data_02160aec;
+
+    oldx = oldh;
+    cx = *(s32 *)(map + 0x58d28);
+    cz = *(s32 *)(map + 0x58d30);
+    xmin = (cx / 0x10000) - 16;
+    y = (cz / 0x10000) - 16;
+    xmax = xmin + 32;
+    zmax = y + 32;
+    oldz = oldh;
+    if (xmin < *(s32 *)(map + 0x58bc8)) xmin = *(s32 *)(map + 0x58bc8);
+    if (xmax >= *(s32 *)(map + 0x58bcc)) xmax = *(s32 *)(map + 0x58bcc);
+    if (y < *(s32 *)(map + 0x58bd0)) y = *(s32 *)(map + 0x58bd0);
+    if (zmax >= *(s32 *)(map + 0x58bd4)) zmax = *(s32 *)(map + 0x58bd4);
+    *(volatile u32 *)0x040004a4 = 0x000c0080;
+    for (; y <= zmax; ++y) {
+        x = xmin;
+        if (x <= xmax) do {
+            const s16 *v;
+            s32 index, h, type;
+            u32 shape;
+            s32 dx, dz, dh;
+            u32 p0, pnext;
+            s32 vertex_word;
+            u32 tex, pal, uv;
+            volatile Tile *cell;
+            register u32 *texwords;
+            Mark *mark;
+            u32 mask = 0x3ff;
+            u32 x7fe0 = mask << 5;
+            u32 xz = 0x04000480 - 0x440;
+            u32 chosen_color;
+            tiles = data_02160aec;
+            dx = x - oldx;
+            dz = y - oldz;
+            index = y * *(s16 *)(tiles + 0x58d36) + x;
+            cell = (volatile Tile *)(tiles + 0x3c8 + 0x800) + index;
+            mark = &((Mark *)(tiles + 0x30bc8))[index];
+            h = ((volatile u8 *)cell)[3];
+            dh = h - oldh;
+            *(volatile u32 *)0x04000470 = (u32)dx << 12;
+            *(volatile u32 *)0x04000470 = (u32)dh << 12;
+            *(volatile u32 *)0x04000470 = (u32)dz << 12;
+            oldx = x;
+            oldh = h;
+            shape = ((volatile u8 *)cell)[2];
+            if (shape >= 13) shape = 0;
+            if (shape != 0) v = data_02144aa0 + (shape - 1) * 8;
+            else v = data_02144b60;
+            texwords = (u32 *)data_02160aec;
+            *(volatile u32 *)0x04000480 = 0x3e0;
+            type = cell->type;
+            oldz = y;
+            if (type != 0) {
+                switch (type) {
+                case 1: case 6: case 7: case 8: case 9: case 10: case 26:
+                    switch (type) {
+                        case 1:
+                            chosen_color = 0x7c00;
+                            goto color_write;
+                            break;
+                        case 6:
+                            chosen_color = x7fe0;
+                            goto color_write;
+                            break;
+                        case 7:
+                            chosen_color = mask;
+                            goto color_write;
+                            break;
+                        case 8: case 9: case 10:
+                            chosen_color = 0x7c1f;
+                            goto color_write;
+                            break;
+                        case 26:
+                            *(volatile u32 *)0x04000480 = 0x1f;
+                            break;
+                        default: break;
+                    }
+                    goto color_done;
+color_write:
+                    *(volatile u32 *)0x04000480 = chosen_color;
+color_done:
+                    tex = texwords[4];
+                    vertex_word = v[4];
+                    *(volatile u32 *)0x040004a8 = tex;
+                    tex = texwords[5];
+                    p0 = (((u32)((s32)vertex_word >> 6) << 22) >> 12);
+                    *(volatile u32 *)0x040004ac = tex;
+                    *(volatile u32 *)0x04000500 = 1;
+                    uv = texwords[6];
+                    vertex_word = (u16)v[5];
+                    *(volatile u32 *)0x04000488 = uv;
+                    pnext = (((u16)vertex_word) | 0x10000000u);
+                    *(volatile u32 *)0x04000490 = p0;
+                    p0 = pnext;
+                    uv = texwords[7];
+                    vertex_word = v[6];
+                    *(volatile u32 *)0x04000488 = uv;
+                    pnext = (((((u32)((s32)vertex_word >> 6) << 22) >> 12)) | xz);
+                    *(volatile u32 *)0x0400049c = p0;
+                    p0 = pnext;
+                    uv = texwords[8];
+                    vertex_word = (u16)v[7];
+                    *(volatile u32 *)0x04000488 = uv;
+                    pnext = (u16)vertex_word;
+                    *(volatile u32 *)0x04000490 = p0;
+                    p0 = pnext;
+                    uv = texwords[9];
+                    *(volatile u32 *)0x04000488 = uv;
+                    *(volatile u32 *)0x0400049c = p0;
+                    break;
+                case 2:
+                    tex = texwords[4];
+                    vertex_word = v[4];
+                    *(volatile u32 *)0x040004a8 = tex;
+                    tex = texwords[5];
+                    p0 = (((u32)((s32)vertex_word >> 6) << 22) >> 12);
+                    *(volatile u32 *)0x040004ac = tex;
+                    *(volatile u32 *)0x04000500 = 0;
+                    uv = texwords[7];
+                    vertex_word = v[5];
+                    *(volatile u32 *)0x04000488 = uv;
+                    pnext = (((((u32)((s32)vertex_word >> 6) << 22) >> 12)) | 0x4000000u);
+                    *(volatile u32 *)0x04000490 = p0;
+                    p0 = pnext;
+                    uv = texwords[8];
+                    vertex_word = v[6];
+                    *(volatile u32 *)0x04000488 = uv;
+                    pnext = (((((u32)((s32)vertex_word >> 6) << 22) >> 12)) | 0x40u);
+                    *(volatile u32 *)0x04000490 = p0;
+                    p0 = pnext;
+                    uv = texwords[9];
+                    *(volatile u32 *)0x04000488 = uv;
+                    *(volatile u32 *)0x04000490 = p0;
+                    break;
+                case 3:
+                    vertex_word = v[7];
+                    tex = texwords[4];
+                    *(volatile u32 *)0x040004a8 = tex;
+                    tex = texwords[5];
+                    p0 = (((((u32)(vertex_word >> 6) & 0x3ffu) << 10)) | xz);
+                    *(volatile u32 *)0x040004ac = tex;
+                    *(volatile u32 *)0x04000500 = 0;
+                    uv = texwords[7];
+                    vertex_word = v[6];
+                    *(volatile u32 *)0x04000488 = uv;
+                    pnext = (((((u32)(vertex_word >> 6) & 0x3ffu) << 10)) | 0x40u);
+                    *(volatile u32 *)0x04000490 = p0;
+                    p0 = pnext;
+                    uv = texwords[8];
+                    vertex_word = v[4];
+                    *(volatile u32 *)0x04000488 = uv;
+                    pnext = (((u32)(vertex_word >> 6) & 0x3ffu) << 10);
+                    *(volatile u32 *)0x04000490 = p0;
+                    p0 = pnext;
+                    uv = texwords[9];
+                    *(volatile u32 *)0x04000488 = uv;
+                    *(volatile u32 *)0x04000490 = p0;
+                    break;
+                case 4:
+                    tex = texwords[4];
+                    vertex_word = v[6];
+                    *(volatile u32 *)0x040004a8 = tex;
+                    pal = texwords[5];
+                    p0 = (((((u32)((s32)vertex_word >> 6) << 22) >> 12)) | 0x40u);
+                    *(volatile u32 *)0x040004ac = pal;
+                    *(volatile u32 *)0x04000500 = 0;
+                    uv = texwords[7];
+                    vertex_word = v[5];
+                    *(volatile u32 *)0x04000488 = uv;
+                    pnext = (((((u32)((s32)vertex_word >> 6) << 22) >> 12)) | 0x4000000u);
+                    *(volatile u32 *)0x04000490 = p0;
+                    p0 = pnext;
+                    uv = texwords[8];
+                    vertex_word = v[7];
+                    *(volatile u32 *)0x04000488 = uv;
+                    pnext = (((((u32)((s32)vertex_word >> 6) << 22) >> 12)) | xz);
+                    *(volatile u32 *)0x04000490 = p0;
+                    p0 = pnext;
+                    uv = texwords[9];
+                    *(volatile u32 *)0x04000488 = uv;
+                    *(volatile u32 *)0x04000490 = p0;
+                    break;
+                case 5:
+                    vertex_word = v[5];
+                    tex = texwords[4];
+                    *(volatile u32 *)0x040004a8 = tex;
+                    tex = texwords[5];
+                    p0 = (((((u32)(vertex_word >> 6) & 0x3ffu) << 10)) | 0x4000000u);
+                    *(volatile u32 *)0x040004ac = tex;
+                    *(volatile u32 *)0x04000500 = 0;
+                    uv = texwords[7];
+                    vertex_word = v[7];
+                    *(volatile u32 *)0x04000488 = uv;
+                    pnext = (((((u32)(vertex_word >> 6) & 0x3ffu) << 10)) | xz);
+                    *(volatile u32 *)0x04000490 = p0;
+                    p0 = pnext;
+                    uv = texwords[8];
+                    vertex_word = v[4];
+                    *(volatile u32 *)0x04000488 = uv;
+                    pnext = (((u32)(vertex_word >> 6) & 0x3ffu) << 10);
+                    *(volatile u32 *)0x04000490 = p0;
+                    p0 = pnext;
+                    uv = texwords[9];
+                    *(volatile u32 *)0x04000488 = uv;
+                    *(volatile u32 *)0x04000490 = p0;
+                    break;
+                default:
+                    goto overlay;
+                }
+                *(volatile u32 *)0x04000504 = 0;
+            }
+overlay:
+            if (mark->letter >= 0x41 && mark->letter <= 0x5a) {
+                if (mark->value != 0xff && mark->value != 0) {
+                    *(volatile u32 *)0x04000480 = 0x79fe;
+                } else {
+                    *(volatile u32 *)0x04000480 = 0x2de;
+                }
+                tex = texwords[4];
+                vertex_word = v[4];
+                *(volatile u32 *)0x040004a8 = tex;
+                tex = texwords[5];
+                p0 = (((u32)((s32)vertex_word >> 6) << 22) >> 12);
+                *(volatile u32 *)0x040004ac = tex;
+                *(volatile u32 *)0x04000500 = 1;
+                uv = texwords[6];
+                vertex_word = (u16)v[5];
+                *(volatile u32 *)0x04000488 = uv;
+                pnext = (((u16)vertex_word) | 0x10000000u);
+                *(volatile u32 *)0x04000490 = p0;
+                p0 = pnext;
+                uv = texwords[7];
+                vertex_word = v[6];
+                *(volatile u32 *)0x04000488 = uv;
+                pnext = (((((u32)((s32)vertex_word >> 6) << 22) >> 12)) | xz);
+                *(volatile u32 *)0x0400049c = p0;
+                p0 = pnext;
+                uv = texwords[8];
+                vertex_word = (u16)v[7];
+                *(volatile u32 *)0x04000488 = uv;
+                pnext = (u16)vertex_word;
+                *(volatile u32 *)0x04000490 = p0;
+                p0 = pnext;
+                uv = texwords[9];
+                *(volatile u32 *)0x04000488 = uv;
+                *(volatile u32 *)0x0400049c = p0;
+                *(volatile u32 *)0x04000504 = 0;
+            }
+            *(volatile u32 *)0x04000480 = 0x1f;
+        } while (++x <= xmax);
+    }
+    *(volatile u32 *)0x04000448 = 1;
 }
 
 s32 func_020ef4c8(s32 *arg0) {

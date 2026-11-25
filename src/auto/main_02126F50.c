@@ -151,24 +151,23 @@ void func_021273f0(void *arg0) {
     }
 }
 
-#pragma push
-#pragma optimization_level 2
+#pragma opt_peephole off
 BOOL func_02127404(void *arg0, void *arg1, void *arg2, s32 arg3) {
-    void *p;
+    s32 p;
     if (*(s32 *)((u8 *)arg1 + 8) != 0) {
-        p = func_02127dec(arg2, arg3 - 0xc);
+        p = (s32)func_02127dec(arg2, arg3 - 0xc);
     } else {
-        p = func_02127a9c(*(void **)arg1, arg2, arg3 - 0xc);
+        p = (s32)func_02127a9c(*(void **)arg1, arg2, arg3 - 0xc);
     }
-    *(void **)((u8 *)arg0 + 4) = p;
-    if (p == NULL) {
-        func_02126c20(data_0215665c);
-        return FALSE;
+    *(s32 *)((u8 *)arg0 + 4) = p;
+    if (p != 0) {
+        *(void **)((u8 *)arg0 + 8) = *(void **)arg1;
+        return TRUE;
     }
-    *(void **)((u8 *)arg0 + 8) = *(void **)arg1;
-    return TRUE;
+    func_02126c20(data_0215665c);
+    return FALSE;
 }
-#pragma pop
+#pragma opt_peephole reset
 void func_02127468(void *arg0) {
     if (*(void **)((u8 *)arg0 + 4) != NULL) {
         func_02127e58(*(void **)((u8 *)arg0 + 4));
@@ -341,6 +340,7 @@ void func_021277f4(void *arg0, void *arg1, s32 arg2, s32 arg3) {
     func_0212a9f8();
 }
 
+#pragma opt_strength_reduction off
 void func_02127828(void *arg0, void *arg1, s32 arg2, s32 arg3)
 {
   u8 *new_var;
@@ -363,7 +363,7 @@ void func_02127828(void *arg0, void *arg1, s32 arg2, s32 arg3)
   *(((u8 *) arg0) + 1) = 1;
   func_02128880(arg0);
 }
-
+#pragma opt_strength_reduction on
 void func_0212789c(void *arg0, void *arg1) {
     func_0212a9f4();
     func_021278c0(arg0, arg1);
@@ -461,12 +461,13 @@ extern void func_02128578(void *, s32);
 void *func_02127ad0(void *arg0, void *arg1, s32 arg2) {
     u8 *obj;
     s32 i;
+    s32 zero;
     s32 n = (s32)arg0;
     u32 aligned = ((u32)arg1 + 0x3f) & ~0x3f;
     s32 size = arg2 - (aligned - (u32)arg1);
     s32 ch_size;
 
-    if (!(n >= 0 && arg1 != NULL && arg2 >= 0)) {
+    if (n < 0 || arg1 == NULL || arg2 < 0) {
         func_0212bda8(data_02156780);
         return NULL;
     }
@@ -551,18 +552,19 @@ void *func_02127ad0(void *arg0, void *arg1, s32 arg2) {
     for (i = 0; i < n; i++) {
         *(s16 *)(obj + 0x42 + i * 2) = -128;
     }
-    *(s16 *)(obj + 0x46) = 0;
+    zero = i - n;
+    *(s16 *)(obj + 0x46) = zero;
     obj[0x6c] = 1;
-    *(s32 *)(obj + 0x54) = 0;
-    *(s32 *)(obj + 0x58) = 0;
-    *(s32 *)(obj + 0x5c) = 0;
-    *(s16 *)(obj + 0x60) = 0;
-    *(s32 *)(obj + 0x64) = 0;
-    *(s16 *)(obj + 0x68) = 0;
-    *(s16 *)(obj + 0x6a) = 0;
+    *(s32 *)(obj + 0x54) = zero;
+    *(s32 *)(obj + 0x58) = zero;
+    *(s32 *)(obj + 0x5c) = zero;
+    *(s16 *)(obj + 0x60) = zero;
+    *(s32 *)(obj + 0x64) = zero;
+    *(s16 *)(obj + 0x68) = zero;
+    *(s16 *)(obj + 0x6a) = zero;
     obj[0x6d] = 1;
-    obj[0x72] = 0;
-    *(s32 *)(obj + 0x88) = 0;
+    obj[0x72] = zero;
+    *(s32 *)(obj + 0x88) = zero;
     func_021288a4(obj);
     func_02128578(obj, 1);
     obj[0] = 1;

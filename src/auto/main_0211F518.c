@@ -57,87 +57,104 @@ static inline void SetMatrixCache(u8 *ctx,u32 idx) {
 #pragma push
 #pragma opt_propagation off
 void func_0211f518(u8 *arg0) {
-long long weight=0;
-u8 *obj=*(u8 **)(arg0+4);
-u8 *src=*(u8 **)arg0;
-u8 *base=*(u8 **)(obj+4);
-u32 count=src[2];
-src+=3;
-base+=*(s32 *)(base+0x10);
-s32 buf[21];
-u32 i;
-s32 *matrix;
-s32 *normal;
-((void (*)(u32,void *,u32))func_02008e68)(0,buf,0x54);
-func_021204a8();
-*(volatile u32 *)0x04000440=0;
-*(volatile u32 *)0x0400044c=1;
-*(volatile u32 *)0x04000454=0;
-*(volatile u32 *)0x04000440=2;
-for(i=0;i<count;i++) {
-u32 idx=src[1];
-u32 offset=(u16)idx*100;
-matrix=(s32 *)(data_02171864+offset);
-u8 *flagword=arg0+(idx>>5)*4;
-u32 cached=*(u32 *)(flagword+0xcc)&(1u<<(idx&31));
-s32 w;
-if(!cached) {
-*(u32 *)(flagword+0xcc)|=1u<<(idx&31);
-*(volatile u32 *)0x04000450=src[0];
-*(volatile u32 *)0x04000440=1;
-func_02002bf4(base+idx*84);
-}
-if(i) {
-buf[12] += (weight * normal[0]) >> 12;
-buf[13] += (weight * normal[1]) >> 12;
-buf[14] += (weight * normal[2]) >> 12;
-buf[15] += (weight * normal[3]) >> 12;
-buf[16] += (weight * normal[4]) >> 12;
-buf[17] += (weight * normal[5]) >> 12;
-buf[18] += (weight * normal[6]) >> 12;
-buf[19] += (weight * normal[7]) >> 12;
-buf[20] += (weight * normal[8]) >> 12;
-}
-if(!cached) {
-while(func_02002f3c(matrix));
-*(volatile u32 *)0x04000440=2;
-func_02002c10(base+idx*84+48);
-}
-w=src[2]<<4;
-normal=(s32 *)(data_021718a4+offset);
-buf[0] += ((long long)w * matrix[0]) >> 12;
-buf[1] += ((long long)w * matrix[1]) >> 12;
-buf[2] += ((long long)w * matrix[2]) >> 12;
-buf[3] += ((long long)w * matrix[4]) >> 12;
-buf[4] += ((long long)w * matrix[5]) >> 12;
-buf[5] += ((long long)w * matrix[6]) >> 12;
-buf[6] += ((long long)w * matrix[8]) >> 12;
-buf[7] += ((long long)w * matrix[9]) >> 12;
-buf[8] += ((long long)w * matrix[10]) >> 12;
-buf[9] += ((long long)w * matrix[12]) >> 12;
-buf[10] += ((long long)w * matrix[13]) >> 12;
-buf[11] += ((long long)w * matrix[14]) >> 12;
-weight=w;
-src+=3;
-if(!cached) {while(func_02002f6c(normal));}
-}
-buf[12] += (weight * normal[0]) >> 12;
-buf[13] += (weight * normal[1]) >> 12;
-buf[14] += (weight * normal[2]) >> 12;
-buf[15] += (weight * normal[3]) >> 12;
-buf[16] += (weight * normal[4]) >> 12;
-buf[17] += (weight * normal[5]) >> 12;
-buf[18] += (weight * normal[6]) >> 12;
-buf[19] += (weight * normal[7]) >> 12;
-buf[20] += (weight * normal[8]) >> 12;
-func_02002bd8((u32 *)(buf+12));
-*(volatile u32 *)0x04000440=1;
-func_02002bd8((u32 *)buf);
-*(volatile u32 *)0x04000440=0;
-*(volatile u32 *)0x04000450=1;
-*(volatile u32 *)0x04000440=2;
-*(volatile u32 *)0x0400044c=(*(u8 **)arg0)[1];
-*(u8 **)arg0 += ((*(u8 **)arg0)[2]+1)*3;
+    struct Ctx {
+        u8 *src;
+        u8 *obj;
+        u8 pad[0xc4];
+        volatile u32 flags[8];
+    };
+    struct Ctx *ctx = (struct Ctx *)arg0;
+    long long weight = 0;
+    u8 *obj = ctx->obj;
+    u8 *src = ctx->src;
+    u8 *base = *(u8 **)(obj + 4);
+    u32 count = src[2];
+    s32 buf[21];
+    u32 i;
+    s32 *matrix;
+    s32 *normal;
+
+    src += 3;
+    base += *(s32 *)(base + 0x10);
+    ((void (*)(u32, void *, u32))func_02008e68)(0, buf, 0x54);
+    func_021204a8();
+    *(volatile u32 *)0x04000440 = 0;
+    *(volatile u32 *)0x0400044c = 1;
+    *(volatile u32 *)0x04000454 = 0;
+    *(volatile u32 *)0x04000440 = 2;
+
+    for (i = 0; i < count; i++) {
+        u32 idx = src[1];
+        u32 offset = (u16)idx * 100;
+        u32 cached;
+        s32 w;
+        matrix = (s32 *)(data_02171864 + offset);
+        cached = ctx->flags[idx >> 5] & (1u << (idx & 31));
+        if (!cached) {
+            ctx->flags[idx >> 5] |= 1u << (idx & 31);
+            *(volatile u32 *)0x04000450 = src[0];
+            *(volatile u32 *)0x04000440 = 1;
+            func_02002bf4(base + idx * 84);
+        }
+        if (i) {
+            buf[12] += (weight * normal[0]) >> 12;
+            buf[13] += (weight * normal[1]) >> 12;
+            buf[14] += (weight * normal[2]) >> 12;
+            buf[15] += (weight * normal[3]) >> 12;
+            buf[16] += (weight * normal[4]) >> 12;
+            buf[17] += (weight * normal[5]) >> 12;
+            buf[18] += (weight * normal[6]) >> 12;
+            buf[19] += (weight * normal[7]) >> 12;
+            buf[20] += (weight * normal[8]) >> 12;
+        }
+        if (!cached) {
+            while (func_02002f3c(matrix));
+            *(volatile u32 *)0x04000440 = 2;
+            func_02002c10(base + idx * 84 + 48);
+        }
+        w = src[2] << 4;
+        normal = (s32 *)(data_021718a4 + offset);
+        {
+            long long t0 = ((long long)w * matrix[0]) >> 12;
+            s32 m1 = matrix[1];
+            s32 m2 = matrix[2];
+            buf[0] += t0;
+            buf[1] += ((long long)w * m1) >> 12;
+            buf[2] += ((long long)w * m2) >> 12;
+        }
+        buf[3] += ((long long)w * matrix[4]) >> 12;
+        buf[4] += ((long long)w * matrix[5]) >> 12;
+        buf[5] += ((long long)w * matrix[6]) >> 12;
+        buf[6] += ((long long)w * matrix[8]) >> 12;
+        buf[7] += ((long long)w * matrix[9]) >> 12;
+        buf[8] += ((long long)w * matrix[10]) >> 12;
+        buf[9] += ((long long)w * matrix[12]) >> 12;
+        buf[10] += ((long long)w * matrix[13]) >> 12;
+        buf[11] += ((long long)w * matrix[14]) >> 12;
+        weight = w;
+        src += 3;
+        if (!cached) {
+            while (func_02002f6c(normal));
+        }
+    }
+
+    buf[12] += (weight * normal[0]) >> 12;
+    buf[13] += (weight * normal[1]) >> 12;
+    buf[14] += (weight * normal[2]) >> 12;
+    buf[15] += (weight * normal[3]) >> 12;
+    buf[16] += (weight * normal[4]) >> 12;
+    buf[17] += (weight * normal[5]) >> 12;
+    buf[18] += (weight * normal[6]) >> 12;
+    buf[19] += (weight * normal[7]) >> 12;
+    buf[20] += (weight * normal[8]) >> 12;
+    func_02002bd8((u32 *)(buf + 12));
+    *(volatile u32 *)0x04000440 = 1;
+    func_02002bd8((u32 *)buf);
+    *(volatile u32 *)0x04000440 = 0;
+    *(volatile u32 *)0x04000450 = 1;
+    *(volatile u32 *)0x04000440 = 2;
+    *(volatile u32 *)0x0400044c = ctx->src[1];
+    ctx->src += (ctx->src[2] + 1) * 3;
 }
 #pragma pop
 void func_0211fc60(u8 *arg0) {

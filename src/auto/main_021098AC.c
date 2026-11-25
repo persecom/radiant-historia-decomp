@@ -28,7 +28,9 @@ extern void *data_02155c3c;
 extern u32 data_02162564[];
 extern u32 func_0210a498(u32 *);
 void func_021098ac(s16 *arg0) {
-    s32 tx = arg0[5], ty = arg0[6], tz = arg0[7];
+    s32 tx = arg0[5];
+    s32 ty = arg0[6];
+    s32 tz = arg0[7];
     s32 y = arg0[2] << 12;
     s32 x = arg0[1] << 12;
     s32 width = arg0[3] << 12;

@@ -52,7 +52,7 @@ extern void func_020d9da8(s32);
 extern void func_020d9ea8(s32,s32);
 extern void func_020d5fd0(void *);
 extern void func_020d4eb8(void *);
-#pragma opt_propagation off
+#pragma opt_propagation on
 void func_020617c8(u8 *obj) {
  u8 *data;
  u8 *selected;
@@ -60,7 +60,8 @@ void func_020617c8(u8 *obj) {
  u8 *base;
  u8 *node;
  u16 i;
- u8 *value;
+ s32 empty;
+ s32 value;
  s32 mode;
  s32 flags;
  base = *(u8 **)(obj+0x128);
@@ -71,19 +72,19 @@ void func_020617c8(u8 *obj) {
   *(s16 *)(base+0x1c)=1;
   if (!(base[0x76]&1)) {
    node=func_0205bad4(base);
-   value=*(u8 **)(base+8);
+   value=*(s32 *)(base+8);
    selected=*(u8 **)base;
   } else {
    u8 *p=*(u8 **)(base+0x78);
    mode=1;
    node=*(u8 **)(*(u8 **)(p+0xc)+0x28);
-   value=*(u8 **)(p+4);
+   value=*(s32 *)(p+4);
   }
   for(i=0;node; i++,node=*(u8 **)(node+0x18)) {
-   s32 empty;
    data=*(u8 **)node;
    child=func_020d56d8(obj,data,0,1);
    if(child) {
+
     *(u16 *)(child+0x90)=i+0x276+(*(u16 *)(obj+0x90)-0x65)*10;
     *(u32 *)child=*(u32 *)data;
     *(u32 *)(child+4)=*(u32 *)(data+4);
@@ -112,4 +113,4 @@ void func_020617c8(u8 *obj) {
  }
  if(flags&2) func_020d4eb8(obj);
 }
-#pragma opt_propagation on
+#pragma opt_propagation off

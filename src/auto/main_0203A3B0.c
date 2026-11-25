@@ -12,7 +12,8 @@ extern s32 func_020d90bc(s32),func_0205bcb0(u8 *,s32),func_020ec950(s32);
 extern void func_020ec548(void),func_0210d27c(s32),func_020df3f4(u8 *,s32);
 extern void func_020daefc(u8 *,u8 *,s32,s32,s32,s32,s32),func_020d56d8(u8 *,u8 *,s32,s32);
 
-#pragma scheduling on
+#pragma push
+#pragma optimization_level 3
 void func_0203a3b0(u8 *actor) {
     u8 *ctx = *(u8 **)(actor + 0x128);
     u8 *state = *(u8 **)(ctx + 0x8c);
@@ -76,11 +77,11 @@ void func_0203a3b0(u8 *actor) {
                 func_0210d27c(4);
                 func_0210d27c(0x61);
             }
-            if (*(s16 *)(state + 2) > 30) {
+            if (*(volatile s16 *)(state + 2) > 30) {
                 func_020ec950(1);
                 func_020ec548();
                 func_020dd810(actor, 17, 0);
-                func_020331d0(state, 2, 1);
+                func_020331d0(state, 2, 1U);
             }
         }
         if ((*(u16 *)(state + 8) & 2) && (func_0205bcb0(actor, 6) & 2)) {
@@ -179,3 +180,4 @@ void func_0203a3b0(u8 *actor) {
     }
     if (next) func_020331b0(state, next);
 }
+#pragma pop

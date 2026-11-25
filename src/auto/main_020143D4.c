@@ -60,30 +60,24 @@ u8 *func_020143d4(double value, u8 *end, FormatSpec spec)
       p = (u8 *) (((u32) p) - 5);
       if (conversion == 'A')
       {
-        ((FormatText5 *)p)->lo = data_02145e54.lo;
-        ((FormatText5 *)p)->hi = data_02145e54.hi;
-        ((FormatText5 *)p)->last = data_02145e54.last;
+        *(FormatText5 *)p = data_02145e54;
         return p;
       }
       else
       {
-        ((FormatText5 *)p)->lo = data_02145e5c.lo;
-        ((FormatText5 *)p)->hi = data_02145e5c.hi;
-        ((FormatText5 *)p)->last = data_02145e5c.last;
+        *(FormatText5 *)p = data_02145e5c;
         return p;
       }
     }
       p = (u8 *) (((u32) p) - 4);
       if (conversion == 'A')
       {
-        ((FormatText4 *)p)->lo = data_02145e64.lo;
-        ((FormatText4 *)p)->hi = data_02145e64.hi;
+        *(FormatText4 *)p = data_02145e64;
         return p;
       }
       else
       {
-        ((FormatText4 *)p)->lo = data_02145e68.lo;
-        ((FormatText4 *)p)->hi = data_02145e68.hi;
+        *(FormatText4 *)p = data_02145e68;
         return p;
       }
 
@@ -93,30 +87,24 @@ u8 *func_020143d4(double value, u8 *end, FormatSpec spec)
       p = (u8 *) (((u32) p) - 5);
       if (conversion == 'A')
       {
-        ((FormatText5 *)p)->lo = data_02145e6c.lo;
-        ((FormatText5 *)p)->hi = data_02145e6c.hi;
-        ((FormatText5 *)p)->last = data_02145e6c.last;
+        *(FormatText5 *)p = data_02145e6c;
         return p;
       }
       else
       {
-        ((FormatText5 *)p)->lo = data_02145e74.lo;
-        ((FormatText5 *)p)->hi = data_02145e74.hi;
-        ((FormatText5 *)p)->last = data_02145e74.last;
+        *(FormatText5 *)p = data_02145e74;
         return p;
       }
     }
       p = (u8 *) (((u32) p) - 4);
       if (conversion == 'A')
       {
-        ((FormatText4 *)p)->lo = data_02145e7c.lo;
-        ((FormatText4 *)p)->hi = data_02145e7c.hi;
+        *(FormatText4 *)p = data_02145e7c;
         return p;
       }
       else
       {
-        ((FormatText4 *)p)->lo = data_02145e80.lo;
-        ((FormatText4 *)p)->hi = data_02145e80.hi;
+        *(FormatText4 *)p = data_02145e80;
         return p;
       }
 

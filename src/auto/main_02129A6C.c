@@ -418,8 +418,7 @@ void func_0212a5d4(u8 *arg0, u32 arg1) {
     func_02129830(p);
 }
 
-#pragma push
-#pragma scheduling off
+#pragma scheduling on
 void func_0212a61c(u8 *p) {
     s32 remaining, end, format;
     s32 start, count, length, rounded, limit, pad, blocks, span, max, unit;
@@ -437,24 +436,16 @@ void func_0212a61c(u8 *p) {
     span = blocks * unit;
     if (limit < blocks) {
         start += span;
-        if (start - pad < end) {
-            blocks++;
-        }
+        if (start - pad < end) blocks++;
     }
-    if (remaining < length) {
-        length += pad;
-    }
+    if (remaining < length) length += pad;
     max = length / unit;
     count = count <= max ? count : max;
     count = count <= limit ? count : limit;
-    count = count <= blocks ? count : blocks;
-    if (format == 2) {
-        func_0212a5d4(p, count);
-    } else {
-        func_0212a594(p, count);
-    }
+    if (count > blocks) count = blocks;
+    if (format == 2) func_0212a5d4(p, count);
+    else func_0212a594(p, count);
 }
-#pragma pop
 void func_0212a71c(u16 *arg0, s16 *arg1, s32 arg2) {
     if (arg2 > 0) {
         do {

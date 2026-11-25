@@ -517,8 +517,7 @@ s32 func_021095d0(u32 arg0) {
     return 0;
 }
 
-#pragma push
-#pragma opt_common_subs off
+#pragma opt_common_subs on
 void func_02109600(void) {
  s32 active=0;
  s32 i;
@@ -535,29 +534,28 @@ void func_02109600(void) {
  *(s32 *)((u8 *)&data_02162510+i-2)=0;
  }
 }
-#pragma pop
 void func_0210968c(u32 arg0, s32 arg1, u32 arg2) {
  s32 sz=arg1;
  s32 i;
- 
  if(sz>16) sz=16; else if(sz< -16) sz=-16;
  for(i=0;i<2;i++) {
- if(arg0 & (1<<i)) {
- s32 value=*(s32 *)(data_02162544+i*16);
- func_0210c35c((s32 *)(data_02162544+i*16),value,sz<<12,arg2);
- if(arg2!=0) {
- if(data_02162510.unk_00==0) {
- *(void (**)(void))&data_02162510=func_02109600;
- *(u32 *)((u8 *)&data_02162510+4)=0x15f90;
- func_0210d9e4((u8 *)&data_02162510);
- }
- } else {
- if(i==0) data_02162814=sz; else data_02162884=sz;
- }
- }
+  if(arg0 & (1<<i)) {
+   s32 value = *(volatile s32 *)((u8 *)data_02162544 + i*16);
+   func_0210c35c((s32 *)((u8 *)data_02162544 + i*16), value, sz<<12, arg2);
+   if(arg2!=0) {
+    if(data_02162510.unk_00==0) {
+     Unk02162510 *p = &data_02162510;
+     *(void (**)(void))&data_02162510=func_02109600;
+     *(u32 *)((u8 *)&data_02162510+4)=0x15f90;
+     func_0210d9e4((u8 *)&data_02162510);
+    }
+   } else {
+    if(i==0) data_02162814=sz; else data_02162884=sz;
+   }
+  }
  }
 }
-
+#pragma opt_common_subs on
 s32 func_02109754(u32 arg0) {
     s32 i;
     for (i = 0; i < 2; i++) {
@@ -590,7 +588,6 @@ void func_02109828(void) {
     *(u32 *)((u8 *)&data_02162510 + 0x44) = 0x8000;
 }
 
-#pragma push
 #pragma opt_common_subs off
 void func_02109840(void) {
 s32 i;
@@ -598,7 +595,7 @@ for(i=0;i<2;i++) *(s32 *)(data_02162544+i*16+12)=0;
 func_0210da14(&data_02162510);
 *(s32 *)((u8 *)&data_02162510 + i - 2)=0;
 }
-#pragma pop
+#pragma opt_common_subs on
 void func_02109884(u32 arg0, u32 arg1) {
     if (arg0 & 1) {
         *(u32 *)((u8 *)&data_02162510 + 0x34) = arg1 << 0xc;

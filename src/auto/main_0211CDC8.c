@@ -436,17 +436,29 @@ s32 func_0211d8e0(u32 *arg0, u8 *arg1, u32 arg2) {
 
 #pragma push
 #pragma opt_propagation off
-void func_0211d94c(s32 *arg0, s32 *arg1, s32 arg2, s32 arg3) {
- if (arg3) {
- s32 b=*(volatile s32 *)(arg0+1), c=*(volatile s32 *)(arg0+2), a=*(volatile s32 *)arg0;
- a=arg2+a; b=arg2+b; c=arg2+c;
- *(volatile s32 *)(arg0+1)=b; *(volatile s32 *)(arg0+2)=c; *(volatile s32 *)arg0=a;
- } else {
- s32 a=arg0[0]+((arg2*arg1[0])>>12);
- s32 b=arg0[1]+((arg2*arg1[1])>>12);
- s32 c=arg0[2]+((arg2*arg1[2])>>12);
- *(volatile s32 *)arg0=a; *(volatile s32 *)(arg0+1)=b; *(volatile s32 *)(arg0+2)=c;
- }
+void func_0211d94c(s32 *arg0, s32 *arg1, s32 arg2, s32 arg3)
+{
+  if (arg3)
+  {
+    s32 b = *((volatile s32 *) (arg0 + 1));
+    s32 c = *((volatile s32 *) (arg0 + 2));
+    s32 a = *((volatile s32 *) arg0);
+    b += arg2;
+    a += arg2;
+    c += arg2;
+    *((volatile s32 *) (arg0 + 1)) = b;
+    *(arg0 + 2) = c;
+    *((volatile s32 *) arg0) = a;
+  }
+  else
+  {
+    s32 a = arg0[0] + ((arg2 * arg1[0]) >> 12);
+    s32 b = arg0[1] + ((arg2 * arg1[1]) >> 12);
+    s32 c = arg0[2] + ((arg2 * arg1[2]) >> 12);
+    *((volatile s32 *) arg0) = a;
+    *((volatile s32 *) (arg0 + 1)) = b;
+    *((volatile s32 *) (arg0 + 2)) = c;
+  }
 }
 #pragma pop
 extern void func_02008e68(u8, void *, u32);

@@ -10,7 +10,7 @@ extern void func_02076380(void *);
 #pragma optimization_level 3
 void func_020af2dc(u8 *menu) {
 s16 y = 0;
-u8 *other;
+u8 * volatile other;
 u8 *item = func_020b3908();
 other = func_020b3914();
 s32 x = *(s32 *)func_020ade60(3);
@@ -76,9 +76,9 @@ func_020ae0f0(abs_020af2dc(delta),102,(s16)(left+140),y+52,7,8);
 }
 func_02076380(*(void **)(menu+0x6c));
 y+=13;
-func_020ae0f0(*(u16 *)(item+20),102,(s16)(x+72),y+50,8,10);
+func_020ae0f0(*(u16 *)(item+20),102,(s16)((u16)x+72u),y+50,8,10);
 value=*(u16 *)(item+22)+*(s16 *)(item+38);
-func_020ae0f0(value,102,(s16)(x+118),y+50,8,10);
+func_020ae0f0(value,102,(s16)((u16)x+118u),y+50,8,10);
 delta=*(u16 *)(other+22)+*(s16 *)(other+38)-value;
 if(delta!=0) {
 if((abs_020af2dc(delta))>=100) shift=7;
@@ -99,7 +99,7 @@ func_020ae0f0(abs_020af2dc(delta),102,(s16)(left+140),y+52,7,8);
 func_02076380(*(void **)(menu+0x6c));
 y+=13;
 value=*(u16 *)(item+24)+*(s16 *)(item+40);
-if(value<0) {func_020ae0f0(0,102,(s16)(x+76),y+50,8,10);} else {func_020ae0f0(value,102,(s16)(x+76),y+50,8,10);}
+if(value<0) {func_020ae0f0(0,102,(s16)(x+76),y+50,8,10);} else {func_020ae0f0(value,102,(s16)((u16)x+76u),y+50,8,10);}
 delta=*(u16 *)(other+24)+*(s16 *)(other+40)-value;
 if(delta!=0) {
 if((abs_020af2dc(delta))>=10) shift=0;else shift=-7;
@@ -117,7 +117,7 @@ func_020ae0f0(abs_020af2dc(delta),102,(s16)(left+98),y+52,7,8);
 }
 func_02076380(*(void **)(menu+0x6c));
 value=*(u16 *)(item+26)+*(s16 *)(item+44);
-if(value<0) {func_020ae0f0(0,103,(s16)(x+182),y+50,8,10);} else {func_020ae0f0(value,103,(s16)(x+182),y+50,8,10);}
+if(value<0) {func_020ae0f0(0,103,(s16)(x+182),y+50,8,10);} else {func_020ae0f0(value,103,(s16)((u16)x+182u),y+50,8,10);}
 delta=*(u16 *)(other+26)+*(s16 *)(other+44)-value;
 if(delta!=0) {
 if((abs_020af2dc(delta))>=10) shift=0;else shift=-7;
@@ -136,7 +136,7 @@ func_020ae0f0(abs_020af2dc(delta),102,(s16)(left+203),y+52,7,8);
 func_02076380(*(void **)(menu+0x6c));
 y+=13;
 value=*(u16 *)(item+28)+*(s16 *)(item+42);
-if(value<0) {func_020ae0f0(0,103,(s16)(x+76),y+50,8,10);} else {func_020ae0f0(value,103,(s16)(x+76),y+50,8,10);}
+if(value<0) {func_020ae0f0(0,103,(s16)((u32)x+76),y+50,8,10);} else {func_020ae0f0(value,103,(s16)(x+76),y+50,8,10);}
 delta=*(u16 *)(other+28)+*(s16 *)(other+42)-value;
 if(delta!=0) {
 if((abs_020af2dc(delta))>=10) shift=0;else shift=-7;
@@ -154,7 +154,7 @@ func_020ae0f0(abs_020af2dc(delta),102,(s16)(left+98),y+52,7,8);
 }
 func_02076380(*(void **)(menu+0x6c));
 value=*(u16 *)(item+30)+*(s16 *)(item+46);
-if(value<0) {func_020ae0f0(0,103,(s16)(x+182),y+50,8,10);} else {func_020ae0f0(value,103,(s16)(x+182),y+50,8,10);}
+if(value<0) {func_020ae0f0(0,103,(s16)((u32)x+182),y+50,8,10);} else {func_020ae0f0(value,103,(s16)(x+182),y+50,8,10);}
 delta=*(u16 *)(other+30)+*(s16 *)(other+46)-value;
 if(delta!=0) {
 if((abs_020af2dc(delta))>=10) shift=0;else shift=-7;
@@ -173,7 +173,7 @@ func_020ae0f0(abs_020af2dc(delta),102,(s16)(left+203),y+52,7,8);
 func_02076380(*(void **)(menu+0x6c));
 y+=13;
 value=*(u16 *)(item+32)+*(s16 *)(item+48);
-if(value<0) {func_020ae0f0(0,102,(s16)(x+76),y+50,8,10);} else {func_020ae0f0(value,102,(s16)(x+76),y+50,8,10);}
+if(value<0) {func_020ae0f0(0,102,(s16)((u16)x+76u),y+50,8,10);} else {func_020ae0f0(value,102,(s16)((u32)x+76),y+50,8,10);}
 delta=*(u16 *)(other+32)+*(s16 *)(other+48)-value;
 if(delta!=0) {
 if((abs_020af2dc(delta))>=10) shift=0;else shift=-7;
@@ -191,7 +191,7 @@ func_020ae0f0(abs_020af2dc(delta),102,(s16)(left+98),y+52,7,8);
 }
 func_02076380(*(void **)(menu+0x6c));
 value=*(u16 *)(item+34)+*(s16 *)(item+50);
-if(value<0) {func_020ae0f0(0,102,(s16)(x+182),y+50,8,10);} else {func_020ae0f0(value,102,(s16)(x+182),y+50,8,10);}
+if(value<0) {func_020ae0f0(0,102,(s16)((u16)x+182u),y+50,8,10);} else {func_020ae0f0(value,102,(s16)((u32)x+182),y+50,8,10);}
 delta=*(u16 *)(other+34)+*(s16 *)(other+50)-value;
 if(delta!=0) {
 if((abs_020af2dc(delta))>=10) shift=0;else shift=-7;

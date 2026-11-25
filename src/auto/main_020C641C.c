@@ -500,24 +500,22 @@ void func_020c6e2c(void *arg0, void *arg1) {
     func_020c6e40(arg0, arg1, 0, 0);
 }
 
-#pragma opt_common_subs off
+#pragma scheduling off
 s32 func_020c6e40(void *arg0, u8 *__restrict arg1, s32 arg2, s32 arg3) {
-    s16 *p;
     if (func_020c73c0() == 0) {
         return 2;
     }
     (*(void (**)(void *))(arg1 + 0x18))(arg0);
-    p = data_02160220;
-    p[0] = 1;
-    p[1] = *(s16 *)(arg1 + 2);
-    p[2] = *(s16 *)(arg1 + 4);
-    p[3] = *(s16 *)(arg1 + 6);
-    p[4] = *(s16 *)(arg1 + 8);
-    p[5] = arg2 + (*(s16 *)(arg1 + 0xa) + arg1[0x14]);
-    p[6] = arg3 + (*(s16 *)(arg1 + 0xc) + arg1[0x15]);
-    p[7] = arg1[0x13];
-    p[8] = *(s16 *)(arg1 + 0xe);
-    p[9] = *(s16 *)(arg1 + 0x10);
+    data_02160220[0] = 1;
+    data_02160220[1] = *(s16 *)(arg1 + 2);
+    data_02160220[2] = *(s16 *)(arg1 + 4);
+    data_02160220[3] = *(s16 *)(arg1 + 6);
+    data_02160220[4] = *(s16 *)(arg1 + 8);
+    data_02160220[5] = arg2 + (*(s16 *)(arg1 + 0xa) + arg1[0x14]);
+    data_02160220[6] = arg3 + (*(s16 *)(arg1 + 0xc) + arg1[0x15]);
+    data_02160220[7] = arg1[0x13];
+    data_02160220[8] = *(s16 *)(arg1 + 0xe);
+    data_02160220[9] = *(s16 *)(arg1 + 0x10);
     func_021098ac(data_02160220);
     return 0;
 }

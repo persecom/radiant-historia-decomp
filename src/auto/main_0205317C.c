@@ -285,7 +285,6 @@ void func_02053824(u8 *p) {
     case 0x7a:
     case 0x83:
     case 0x85:
-    default:
         break;
     case 0xc9:
         if (*(u16 *)(ctx + 6) == 0) {

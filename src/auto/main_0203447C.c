@@ -22,31 +22,10 @@ extern void func_020df3f4(u8 *, s32);
 extern void func_020df56c(u8 *, s32);
 void func_0203447c(u8 *actor)
 {
-    typedef struct {
-        s32 x, y, z;
-    } Vec;
-    typedef struct {
-        u16 phase;
-        volatile s16 timer;
-        u8 pad04[4];
-        u16 flags;
-        u8 pad0a[0xe];
-        Vec savedActor;
-        Vec savedTarget;
-    } State;
-    typedef struct Node {
-        u8 *obj;
-        u8 pad04[0x14];
-        struct Node *next;
-    } Node;
-    typedef struct {
-        u8 *object;
-        u8 pad04[0x10];
-        s32 x, y;
-        u8 pad1c[4];
-        s32 sx, sy;
-    } Effect;
-
+    typedef struct { s32 x, y, z; } Vec;
+    typedef struct { u16 phase; volatile s16 timer; u8 pad04[4]; u16 flags; u8 pad0a[0xe]; Vec savedActor; Vec savedTarget; } State;
+    typedef struct Node { u8 *obj; u8 pad04[0x14]; struct Node *next; } Node;
+    typedef struct { u8 *object; u8 pad04[0x10]; s32 x, y; u8 pad1c[4]; s32 sx, sy; } Effect;
     extern u8 *func_020dde4c(u16);
     extern u8 *func_020c1370(s32, void *, s32, s32, s32);
     extern u8 *func_020ec950(s32);
@@ -58,16 +37,16 @@ void func_0203447c(u8 *actor)
     extern u32 data_0216263c[];
     extern s32 data_02170248[];
     extern s32 data_02170204[];
-
+    register u8 *target asm("r5");
+    register State *state asm("r6");
     u8 *ctx = *(u8 **)(actor + 0x128);
-    u8 *target = *(u8 **)ctx;
-    State *state = *(State **)(ctx + 0x8c);
+    target = *(u8 **)ctx;
+    state = *(State **)(ctx + 0x8c);
     s32 zero = 0;
     s32 next = 0;
     s32 one = 1;
     Vec pos;
     u16 i;
-
     switch (state->phase) {
     case 0: {
         Node *node;

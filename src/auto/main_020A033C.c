@@ -23,32 +23,311 @@ extern u8 *data_02160204;
 extern const char data_021489f8[28];
 extern const u8 data_02148a14[4];
 #pragma optimization_level 0
-void func_020a033c(s32 id) {
-    s32 i;
-    s32 zero = 0;
-    void *fp;
-    s8 *g;
-    s32 buf[10];
-    s32 v[24];
-    s16 a[5], b[5];
-    s32 pad[16];
-    s32 extra[12];
 
-    g = (s8 *)data_02160204;
-    fp = func_021092d8((const char *)data_02160200);
-    if (fp == 0) return;
-    func_02109444(fp);
-    for (i = 0; i < 10; i++) buf[i] = 0;
-    *(u16 *)((u8 *)g + 0x100 + 0xec) = 1;
-    *(u16 *)((u8 *)g + 0x100 + 0xee) = 0;
-    *(u8 *)((u8 *)g + 0x238) = 8;
-    for (i = 0; i < 16; i++) v[i] = (s16)func_0210cdfc(fp, 0);
-    for (i = 0; i < 5; i++) {
-        a[i] = (s16)func_0210cdfc(fp, 0);
-        b[i] = (s16)func_0210cdfc(fp, 0);
+#pragma optimization_level 4
+void func_020a033c(s32 id)
+{
+    extern void *func_020a0dac(void);
+    extern s32 func_020a0e5c(const char *);
+    extern u32 func_020a1734(u32);
+    extern s32 func_020123f0(const char *, const char *);
+    extern void func_021093b0(u32);
+    extern void func_02108ffc(void);
+    extern void func_021167f0(void *, void *);
+    s32 col = 0;
+    s32 row = col - 2;
+    s32 matched = col;
+    s32 special_count = col;
+    s32 slot = col;
+    s8 *g = data_021600b0;
+    void *fp = func_021092d8(data_021489f8);
+    const char *kind;
+    const char *alt_kind;
+    s16 entry_id;
+    s16 entry_col;
+    s16 entry_row;
+    s16 links[3];
+    s16 requirement;
+    s16 entry_group;
+    s16 entry_value;
+    s32 alt_requirement;
+    s16 entry_extra;
+    s16 item_base;
+    s16 item_arg;
+    s16 item_req[5];
+    s16 item_args[5];
+    u32 unlocked[10];
+    u16 special_slots[40];
+    s32 volatile entry_value_unsigned;
+    s32 id_bit;
+    s32 id_word;
+    s32 req_word;
+    s32 req_bit;
+    s32 alt_word;
+    s32 alt_bit;
+    s32 volatile group_byte;
+    s32 volatile base_arg;
+    s32 volatile row_byte;
+    s32 i;
+
+    if (fp == NULL) {
+        return;
     }
-    (void)id; (void)zero; (void)func_0210cd20; (void)pad; (void)b; (void)a; (void)v; (void)extra;
+    func_02109444(fp);
+    for (i = col; i < 10; ++i) {
+        unlocked[i] = 0;
+    }
+    *(u16 *)(g + 0x1ec) = 1;
+    *(u16 *)(g + 0x1ee) = 0;
+    g[0x238] = 8;
+
+next_record:
+    i = 0;
+    kind = (const char *)func_0210cd20(fp, i);
+    if (func_020123f0(data_02148a14, kind) == 0) {
+        goto finish_file;
+    }
+    entry_id = (s16)(u16)func_0210cdfc(fp, i);
+    entry_col = (s16)func_0210cdfc(fp, i);
+    entry_row = (s16)func_0210cdfc(fp, i);
+    links[0] = (s16)func_0210cdfc(fp, i);
+    links[1] = (s16)func_0210cdfc(fp, i);
+    links[2] = (s16)func_0210cdfc(fp, i);
+    requirement = (s16)(u16)func_0210cdfc(fp, i);
+    entry_group = (s16)(u16)func_0210cdfc(fp, i);
+    entry_value = (s16)(u16)func_0210cdfc(fp, i);
+    alt_requirement = (s16)func_0210cdfc(fp, i);
+    alt_kind = (const char *)func_0210cd20(fp, i);
+    entry_extra = (s16)(u16)func_0210cdfc(fp, i);
+    item_base = (s16)(u16)func_0210cdfc(fp, i);
+    item_arg = (s16)(u16)func_0210cdfc(fp, i);
+    {
+        s32 zero = i;
+        for (; i < 5; ++i) {
+            item_req[i] = (s16)func_0210cdfc(fp, zero);
+            item_args[i] = (s16)func_0210cdfc(fp, zero);
+        }
+    }
+    entry_value_unsigned = (u16)entry_value;
+    id_bit = entry_id % 32;
+    id_word = entry_id / 32;
+    req_word = requirement / 32;
+    req_bit = requirement % 32;
+    alt_word = alt_requirement / 32;
+    alt_bit = alt_requirement % 32;
+    group_byte = entry_group & 0xff;
+    base_arg = (s8)item_arg;
+    row_byte = (s8)entry_row;
+
+fill_slot:
+    {
+        s8 *entry = g + slot * 40;
+        s8 *fields = entry + 0x200;
+        *(s16 *)(fields + 0x4e) = 0;
+        if (entry_col == col && entry_row == row) {
+            s16 *node = (s16 *)func_020a0dac();
+            s8 *record = g + slot * 40;
+            s32 type = func_020a0e5c(kind);
+            record[0x23a] = (s8)type;
+            if (func_020a1734((u8)type) == 1) {
+                s8 *rf = record + 0x200;
+                *(s16 *)(rf + 0x3c) = (s16)entry_col;
+                record[0x23e] = (s8)row_byte;
+                *(s16 *)(rf + 0x46) = (s16)entry_id;
+                record[0x248] = (s8)group_byte;
+                *(s16 *)(rf + 0x4a) = (s16)entry_value_unsigned;
+                *(s16 *)(rf + 0x4c) = (s16)entry_extra;
+                if (*(u32 *)(data_02160200 + 0x160) & 0x40) {
+                    s32 j;
+                    s16 *flags = (s16 *)(entry + 0x24e);
+                    for (j = 0; j < 3; ++j) {
+                        s32 link = links[j];
+                        *(s16 *)(entry + 0x240 + j * 2) = (s16)link;
+                        if (link != -1) {
+                            *flags |= (s16)(1 << j);
+                            *flags |= (s16)(1 << (j + 3));
+                        }
+                    }
+                    *(s16 *)(fields + 0x4e) |= 0x40;
+                    unlocked[id_word] |= 1U << id_bit;
+                    goto count_unlocked;
+                }
+                if (((u32 *)data_02160200)[req_word] & (1U << req_bit)) {
+                    s32 j;
+                    s16 *flags = (s16 *)(entry + 0x24e);
+                    unlocked[id_word] |= 1U << id_bit;
+                    for (j = 0; j < 3; ++j) {
+                        s32 link = links[j];
+                        *(s16 *)(entry + 0x240 + j * 2) = (s16)link;
+                        if (link != -1) {
+                            *flags |= (s16)(1 << j);
+                        }
+                    }
+                    *(s16 *)(fields + 0x4e) |= 0x40;
+                    if (alt_requirement == -1) goto count_unlocked;
+                    if (((u32 *)data_02160200)[alt_word] & (1U << alt_bit)) {
+                        ++*(u8 *)(g + 0x1f2);
+                    }
+                    goto item_data;
+count_unlocked:
+                    ++*(u8 *)(g + 0x1f2);
+                }
+item_data:
+                *(s16 *)(record + 0x250) = (s16)item_base;
+                record[0x25c] = (s8)base_arg;
+                {
+                    s32 j;
+                    s32 count = 1;
+                    s16 expected = 1;
+                    for (j = 1; j < 6; ++j) {
+                        s32 req;
+                        *(s16 *)(entry + 0x250 + j * 2) = 0;
+                        req = item_req[j - 1];
+                        if (req == -1) {
+                            continue;
+                        }
+                        if ((*(u32 *)(data_02160200 + 0x160) & 0x40) ||
+                            (((u32 *)data_02160200)[req / 32] & (1U << (req % 32)))) {
+                            *(s16 *)(entry + 0x250 + count * 2) = (s16)(item_base + j);
+                            entry[0x25c + count] = (s8)item_args[j - 1];
+                            ++count;
+                        }
+                        ++expected;
+                    }
+                    if (count == expected) {
+                        *(s16 *)(fields + 0x4e) |= 0x80;
+                    }
+                }
+                if (alt_requirement != -1 &&
+                    (((u32 *)data_02160200)[alt_word] & (1U << alt_bit))) {
+                    entry[0x23a] = (s8)func_020a0e5c(alt_kind);
+                }
+                ++*(s16 *)(g + 0x1f0);
+                if (*(u16 *)(data_02160204 + 0x148) == entry_id) {
+                    *(s16 *)(g + 0x1ea) = (s16)entry_id;
+                    *(s16 *)(g + 0x1ec) = (s16)entry_col;
+                    *(s16 *)(g + 0x1ee) = (s16)entry_row;
+                }
+            } else {
+                s32 j;
+                s8 *rf = record + 0x200;
+                *(s16 *)(rf + 0x3c) = (s16)entry_col;
+                record[0x23e] = (s8)row_byte;
+                *(s16 *)(rf + 0x46) = (s16)entry_id;
+                record[0x248] = 1;
+                *(s16 *)(rf + 0x4a) = 1;
+                *(s16 *)(rf + 0x4c) = (s16)entry_extra;
+                for (j = 0; j < 3; ++j) {
+                    *(s16 *)(entry + 0x240 + j * 2) = links[j];
+                }
+                special_slots[special_count] = (u16)slot;
+                special_count = (u8)(special_count + 1);
+            }
+            node[0] = (s16)entry_id;
+            node[1] = (s16)slot;
+            func_021167f0((void *)id, node);
+            matched = 1;
+        } else {
+            s8 *empty = g + slot * 40;
+            *(s16 *)(empty + 0x246) = -1;
+            empty[0x23e] = (s8)*(s16 *)(empty + 0x246);
+            *(s16 *)(empty + 0x23c) = empty[0x23e];
+            empty[0x23a] = 0;
+        }
+    }
+    ++row;
+    if (row >= 3) {
+        ++col;
+        row = -2;
+    }
+    ++slot;
+    if (slot % 8 == 0) {
+        func_02108ffc();
+    }
+    if (matched != 1) {
+        goto fill_slot;
+    }
+    matched = 0;
+    if (((s32 (*)(void *))(void (*)(void))func_02109444)(fp) != 0) {
+        goto next_record;
+    }
+
+finish_file:
+    func_021093b0((u32)fp);
+    func_02108ffc();
+    {
+        s32 j;
+        for (j = special_count - 1; j > -1; --j) {
+            s8 *fields = g + special_slots[j] * 40 + 0x200;
+            s32 link;
+            switch (fields[0x3a]) {
+            case 10:
+                link = *(s16 *)(fields + 0x40);
+                if (unlocked[link / 32] & (1U << (link % 32))) {
+                    *(s16 *)(fields + 0x4e) |= 0x49;
+                    link = *(s16 *)(fields + 0x46);
+                    unlocked[link / 32] |= 1U << (link % 32);
+                }
+                break;
+            case 9:
+            case 12:
+            case 13:
+                link = *(s16 *)(fields + 0x42);
+                if (unlocked[link / 32] & (1U << (link % 32))) {
+                    *(s16 *)(fields + 0x4e) |= 0x52;
+                    link = *(s16 *)(fields + 0x46);
+                    unlocked[link / 32] |= 1U << (link % 32);
+                }
+                break;
+            case 11:
+                link = *(s16 *)(fields + 0x44);
+                if (unlocked[link / 32] & (1U << (link % 32))) {
+                    *(s16 *)(fields + 0x4e) |= 0x64;
+                    link = *(s16 *)(fields + 0x46);
+                    unlocked[link / 32] |= 1U << (link % 32);
+                }
+                break;
+            }
+            if (j % 8 == 0) {
+                func_02108ffc();
+            }
+        }
+    }
+    func_02108ffc();
+    *(s16 *)(g + 0x1f8) = 0;
+    i = 0;
+    {
+    s16 *node = func_02116984(data_021600b0 + 0x1d4, (u16)i);
+    do {
+        s32 key = node[0];
+        if (unlocked[key / 32] & (1U << (key % 32))) {
+            s32 j;
+            s8 *fields = g + node[1] * 40 + 0x200;
+            s16 x = *(s16 *)(fields + 0x3c);
+            if (*(s16 *)(g + 0x1f8) < x) {
+                *(s16 *)(g + 0x1f8) = x;
+            }
+            for (j = 0; j < 3; ++j) {
+                s8 *entry = g + node[1] * 40;
+                s32 link = *(s16 *)(entry + 0x240 + j * 2);
+                if (link != -1) {
+                    *(s16 *)(entry + 0x24e) |= (s16)(1 << j);
+                    if (unlocked[link / 32] & (1U << (link % 32))) {
+                        *(s16 *)(g + node[1] * 40 + 0x24e) |= (s16)(1 << (j + 3));
+                    }
+                }
+            }
+        }
+        ++i;
+        if (i % 8 == 0) {
+            func_02108ffc();
+        }
+        node = func_02116984(data_021600b0 + 0x1d4, (u16)i);
+    } while (node != NULL);
+    }
 }
+#pragma optimization_level 0
+
 #pragma optimization_level 4
 void func_020a0da8(void) {
 }

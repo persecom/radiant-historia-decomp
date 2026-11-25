@@ -390,7 +390,7 @@ if(page!=arg2 || ((u32)arg1&3)!=0 || arg3<chunk) {buf=data_0215f820;cached_page=
 func_02010738(page);
 {u32 i=0,ctrl;do {
 ctrl=*(volatile u32 *)0x040001a4;
-if(ctrl&0x800000) {arg0=*(volatile u32 *)0x04100010;if(i<0x80){buf[i]=arg0;i++;}}
+if(ctrl&0x800000) {u32 word=*(volatile u32 *)0x04100010;if(i<0x80){buf[i]=word;i++;}}
 }while(ctrl&0x80000000);}
 }
 if(buf==data_0215f820){u32 off=arg2-page;chunk=0x200-off;if(arg3<=chunk)chunk=arg3;func_02009008((u8 *)data_0215f820+off,arg1,chunk);}

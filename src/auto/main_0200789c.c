@@ -61,13 +61,15 @@ extern u16 data_0215d128;
 
 void func_0200789c(void) {
     UnkStruct_0215d128 *s = (UnkStruct_0215d128 *)&data_0215d128;
+    void (*cb)(void);
     s->unk08++;
     if (s->unk04 != 0) {
         *(volatile u16 *)0x04000102 = 0;
         *(volatile u16 *)0x04000100 = 0;
         *(volatile u16 *)0x04000102 = 0xc1;
         s->unk04 = 0;
+        cb = func_0200789c;
     }
-    func_02005944(0, func_0200789c, 0);
+    func_02005944(0, cb, 0);
 }
 #pragma opt_dead_code reset

@@ -151,9 +151,7 @@ void func_0206a854(u8 *arg0)
 
             p->timer++;
 
-            t = p->timer;
-
-            if (t > limit) {
+            if (*(volatile u16 *)&p->timer > limit) {
                 p->timer = limit;
             }
 
@@ -177,14 +175,11 @@ void func_0206a854(u8 *arg0)
                 p->scaleX = sx;
                 p->scaleY = h;
 
-                t = p->timer;
-
                 if (p->timer == 8) {
                     e->flags &= mask;
                 }
 
-                p->active = (p->timer == 8) ? inactive : active;
-                break;
+                goto setActive;
 
             case 1:
                 t = p->timer;
@@ -205,7 +200,6 @@ void func_0206a854(u8 *arg0)
                 p->scaleX = sx;
                 p->scaleY = h;
 
-                t = p->timer;
                 goto setActive;
 
             case 2:
@@ -242,10 +236,8 @@ void func_0206a854(u8 *arg0)
                 p->scaleX = sx;
                 p->scaleY = sy + 6;
 
-                t = p->timer;
-
             setActive:
-                if (t == 8) {
+                if (p->timer == 8) {
                     p->active = inactive;
                 } else {
                     p->active = active;
@@ -265,17 +257,11 @@ void func_0206a854(u8 *arg0)
 
     if (bit == 0) {
         s32 depth;
-        s32 left;
-        s32 upper;
-        s32 negativeWidth;
 
         e->flags = flags | 4;
 
         i = 4;
         depth = -0x14000;
-        left = 0x5000;
-        upper = 0x1e000;
-        negativeWidth = -17;
 
         for (; i < 6; i++) {
             p = (Particle *)func_02067698(arg0, i);
@@ -286,11 +272,11 @@ void func_0206a854(u8 *arg0)
 
             switch (i) {
             case 4:
-                p->x = left;
-                p->y = upper;
+                p->x = 0x5000;
+                p->y = 0x1e000;
                 p->z = depth;
                 p->timer = inactive;
-                p->scaleX = negativeWidth;
+                p->scaleX = -17;
                 goto initializePair;
 
             case 5:
@@ -309,6 +295,7 @@ void func_0206a854(u8 *arg0)
     } else if (bit != 0) {
         s32 heightRange = 24;
         s32 otherRange = heightRange;
+        s32 limit = 8;
         i = 4;
 
         for (; i < 6; i++) {
@@ -328,7 +315,7 @@ void func_0206a854(u8 *arg0)
 
             t = p->timer;
 
-            if (t > 8) {
+            if ((s32)*(volatile u16 *)&p->timer > limit) {
                 p->timer = inactive;
             }
 
@@ -419,7 +406,7 @@ void func_0206a854(u8 *arg0)
 
             p->timer--;
 
-            if (p->timer == 0) {
+            if (*(volatile u16 *)&p->timer == 0) {
                 u32 seed;
                 u16 random;
 
@@ -535,7 +522,7 @@ void func_0206a854(u8 *arg0)
 
             p->timer--;
 
-            if (p->timer == 0) {
+            if (*(volatile u16 *)&p->timer == 0) {
                 p->timer = RH_RANDOM(timerRange) + 22;
             }
 
@@ -623,7 +610,7 @@ void func_0206a854(u8 *arg0)
 
             p->timer--;
 
-            if (p->timer == 0) {
+            if (*(volatile u16 *)&p->timer == 0) {
                 p->timer = RH_RANDOM(timerRange) + 22;
             }
 
@@ -670,11 +657,11 @@ void func_0206a854(u8 *arg0)
     active = 1;
     inactive = 0;
 
-    if (e->timer <= 10) {
+    if (*(volatile u16 *)&e->timer <= 10) {
         return;
     }
 
-    if (e->timer < 21) {
+    if (*(volatile u16 *)&e->timer < 21) {
         return;
     }
 

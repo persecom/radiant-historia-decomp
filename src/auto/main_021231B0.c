@@ -125,7 +125,7 @@ void func_02123370(u32 *out, const u32 *in, const u8 *p, u32 flags)
     out[3] = z;
     if (bits & 2)
     {
-      register u32 index = p[1];
+      u32 index = p[1];
       u32 *map = (u32 *) (data_02170460 + 0xc4);
       map[index >> 5] &= ~(1 << (index & 31));
       *((volatile u32 *)((u8 *)data_02171270 + (s16)index * 24)) = in[3];
@@ -173,43 +173,48 @@ out[13]=h2*(s32)(((s64)sy2**(s32 *)(p+0x28))>>8)+((h2*(a-sy2+0x2000))<<3);
 out[4]=(ss*func_02001ff4())>>12;
 }
 
+#pragma opt_level 3
 void func_021235c0(s32 *arg0, u8 *arg1) {
-s32 w=*(u16*)(arg1+0x2c)<<12;
-s32 h=*(u16*)(arg1+0x2e)<<12;
-s32 val;
-func_02002058(h,w);
-val=*(s16*)(arg1+0x22); arg0[0]=val; arg0[5]=val;
-arg0[1]=(-*(s16*)(arg1+0x20)*func_02001ff4())>>12;
-func_02002058(w,h);
-{
-s32 s1=*(s16*)(arg1+0x20), s2=*(s16*)(arg1+0x22);
-s32 w2=*(u16*)(arg1+0x2c), f24=*(s32*)(arg1+0x24);
-s32 diff=s1-s2, sum=s1+s2;
-s32 neg=(s32)(0U-(u32)sum);
-w=((w2*(neg+0x1000))<<3)-((f24*w2)<<4);
-{
-s32 h2=*(u16*)(arg1+0x2e), f28=*(s32*)(arg1+0x28);
-s2=h2*(diff+0x1000U);
-h=(s2<<3)+((f28*h2)<<4); arg0[12]=w; arg0[13]=h;
+    s32 w = *(u16 *)(arg1 + 0x2c) << 12;
+    s32 h = *(u16 *)(arg1 + 0x2e) << 12;
+    s32 val;
+    func_02002058(h, w);
+    val = *(s16 *)(arg1 + 0x22);
+    arg0[0] = val;
+    arg0[5] = val;
+    arg0[1] = (-*(s16 *)(arg1 + 0x20) * func_02001ff4()) >> 12;
+    func_02002058(w, h);
+    {
+        s32 s1 = *(s16 *)(arg1 + 0x20), s2 = *(s16 *)(arg1 + 0x22);
+        s32 w2 = *(u16 *)(arg1 + 0x2c), f24 = *(s32 *)(arg1 + 0x24);
+        u32 sum = s1 + s2;
+        s32 diff = s1 - s2;
+        s32 neg = (s32)(0U - sum);
+        w = ((w2 * (neg + 0x1000)) << 3) - ((f24 * w2) << 4);
+        {
+            s32 h2 = *(u16 *)(arg1 + 0x2e), f28 = *(s32 *)(arg1 + 0x28);
+            s2 = h2 * (diff + 0x1000U);
+            h = (s2 << 3) + ((f28 * h2) << 4);
+            arg0[12] = w;
+            arg0[13] = h;
+        }
+    }
+    arg0[4] = (*(s16 *)(arg1 + 0x20) * func_02001ff4()) >> 12;
 }
-}
-arg0[4]=(*(s16*)(arg1+0x20)*func_02001ff4())>>12;
-}
-
 #pragma opt_propagation off
 void func_02123684(s32 *__restrict arg0, u8 *__restrict arg1) {
-s32 scaleT=*(s32 *)(arg1+0x1c);
-s32 scaleS=*(s32 *)(arg1+0x18);
-s32 transS=*(s32 *)(arg1+0x24);
-s32 transT=*(s32 *)(arg1+0x28);
-s32 ts=(s32)(((s64)scaleS * transS)>>8);
-s32 tt=(s32)(((s64)scaleT * transT)>>8);
-arg0[0]=scaleS; arg0[5]=scaleT; arg0[1]=0;
-arg0[12]=*(u16 *)(arg1+0x2c)*-ts;
-arg0[13]=*(u16 *)(arg1+0x2e)*tt+((*(u16 *)(arg1+0x2e)*(-(scaleT<<1)+0x2000U))<<3);
-arg0[4]=0;
+    s32 scaleS = *(s32 *)(arg1 + 0x18);
+    s32 scaleT = *(s32 *)(arg1 + 0x1c);
+    u16 w = *(u16 *)(arg1 + 0x2c);
+    u16 h = *(u16 *)(arg1 + 0x2e);
+    arg0[0] = scaleS;
+    arg0[5] = scaleT;
+    arg0[1] = 0;
+    arg0[12] = w * -((s32)(((s64)scaleS * *(s32 *)(arg1 + 0x24)) >> 8));
+    arg0[13] = ((h * (-(scaleT << 1) + 0x2000U)) << 3) + h * (s32)(((s64)scaleT * *(s32 *)(arg1 + 0x28)) >> 8);
+    arg0[4] = 0;
 }
-#pragma opt_propagation on
+#pragma opt_propagation reset
 void func_021236f8(s32 *__restrict arg0, u8 *__restrict arg1) {
 arg0[0]=0x1000; arg0[5]=0x1000; arg0[1]=0;
 arg0[12]=(-(*(s32 *)(arg1+0x24) * *(u16 *)(arg1+0x2c)))<<4;
@@ -257,7 +262,7 @@ void func_02123824(s32 *arg0, u8 *arg1)
   func_02002058(w, h);
   {
     u16 w2 = *((u16 *) (arg1 + 0x2c));
-    u32 h2 = *((u16 *) (arg1 + 0x2e));
+    s32 h2 = *((u16 *) (arg1 + 0x2e));
     s32 s1 = *((s16 *) (arg1 + 0x20));
     s32 s2 = *((s16 *) (arg1 + 0x22));
     s32 sum = s1 + s2;
@@ -292,43 +297,48 @@ void func_02123910(s32 *arg0) {
 
 void func_02123934(u8 *arg0)
 {
-    s32 data[19];
-    u32 flags = *(u32 *)arg0;
-    s32 scale = 0;
-    void (*fn)(s32 *, u8 *);
-    if (flags & 8) {
-        data[0] = 0x101610;
-    } else {
-        data[0] = 0x101810;
-    }
-    fn = data_021560f0[flags & 7];
-    data[1] = 3;
-    data[18] = 2;
-    data[16] = scale;
-    data[13] = scale;
-    data[12] = scale;
-    data[11] = scale;
-    data[10] = scale;
-    data[9] = scale;
-    data[8] = scale;
-    data[4] = scale;
-    data[5] = scale;
-    data[17] = 0x1000;
-    fn(&data[2], arg0);
-
-    scale = *(s32 *)(arg0 + 0x30);
-    if (scale != 0x1000) {
-        data[2] = (s32)(((s64)scale * data[2]) >> 12);
-        data[3] = (s32)(((s64)scale * data[3]) >> 12);
-        data[14] = (s32)(((s64)scale * data[14]) >> 12);
-    }
-    scale = *(s32 *)(arg0 + 0x34);
-    if (scale != 0x1000) {
-        data[6] = (s32)(((s64)scale * data[6]) >> 12);
-        data[7] = (s32)(((s64)scale * data[7]) >> 12);
-        data[15] = (s32)(((s64)scale * data[15]) >> 12);
-    }
-    func_021205ec(data[0], (s32 *)((u8 *)data + 4), 0x12);
+  s32 data[19];
+  u32 flags;
+  unsigned int new_var;
+  s32 scale = 0;
+  void (*fn)(s32 *, u8 *);
+  if ((*((u32 *) arg0)) & 8)
+  {
+    data[0] = 0x101610;
+  }
+  else
+  {
+    data[0] = 0x101810;
+  }
+  fn = data_021560f0[flags & 7];
+  data[1] = 3;
+  data[18] = 2;
+  data[12] = (new_var = (data[13] = scale));
+  data[16] = scale;
+  data[11] = new_var;
+  data[8] = (data[10] = scale);
+  data[9] = scale;
+  flags++;
+  flags--;
+  data[4] = new_var;
+  data[5] = scale;
+  data[17] = 0x1000;
+  fn(&data[2], arg0);
+  scale = *((s32 *) (arg0 + 0x30));
+  if (scale != 0x1000)
+  {
+    data[2] = (s32) ((((s64) scale) * data[2]) >> 12);
+    data[3] = (s32) ((((s64) scale) * data[3]) >> 12);
+    data[14] = (s32) ((((s64) scale) * data[14]) >> 12);
+  }
+  scale = *((s32 *) (arg0 + 0x34));
+  if (scale != 0x1000)
+  {
+    data[6] = (s32) ((((s64) scale) * data[6]) >> 12);
+    data[7] = (s32) ((((s64) scale) * data[7]) >> 12);
+    data[15] = (s32) ((((s64) scale) * data[15]) >> 12);
+  }
+  func_021205ec(data[0], (s32 *) (((u8 *) data) + 4), 0x12);
 }
 
 void func_02123a6c(u8 *arg0)
@@ -389,34 +399,57 @@ void func_02123a6c(u8 *arg0)
   }
 }
 
-void func_02123b90(u32 *out, s32 *in, u8 *p, u32 flags) {
-u32 dst=p[1], src=p[2];
-u32 *bits;
-if(flags&4) {
- out[0]|=1;
- if(*(u32 *)(data_02170460 + (src>>5)*4 + 0xc4)&(1u<<(src&31))) {bits=(u32 *)(data_02170460+0xc4);bits[dst>>5]|=1u<<(dst&31);out[0]|=0x18;return;}
- {u32 offset=src*24;
- func_02008e38((u8 *)data_02171264+offset,(u8 *)data_02171264+dst*24,24);
- func_02008e38((u8 *)data_02171264+offset,out+4,24);}
-} else {
- s32 x=((volatile s32 *)in)[0],y=((volatile s32 *)in)[1],z=((volatile s32 *)in)[2];
- out[1]=x;out[2]=y;out[3]=z;
- if(*(u32 *)(data_02170460 + (src>>5)*4 + 0xc4)&(1u<<(src&31))) {
- func_02008e38(in,(u8 *)data_02171264+dst*24,24);
- bits=(u32 *)(data_02170460+0xc4);
- bits[dst>>5]&=~(1u<<(dst&31));
- out[0]|=0x18; return;
- }
- bits=(u32 *)(data_02170460+0xc4);
- bits[dst>>5]&=~(1u<<(dst&31));
- *(volatile s32 *)((u8 *)data_02171264+dst*24)=((s64)x**(volatile s32 *)((u8 *)data_02171264+src*24))>>12;
- *(volatile s32 *)((u8 *)data_02171268+dst*24)=((s64)y**(volatile s32 *)((u8 *)data_02171268+src*24))>>12;
- *(volatile s32 *)((u8 *)data_0217126c+dst*24)=((s64)z**(volatile s32 *)((u8 *)data_0217126c+src*24))>>12;
- *(volatile s32 *)((u8 *)data_02171270+dst*24)=((s64)in[3]**(volatile s32 *)((u8 *)data_02171270+src*24))>>12;
- *(volatile s32 *)((u8 *)data_02171274+dst*24)=((s64)in[4]**(volatile s32 *)((u8 *)data_02171274+src*24))>>12;
- *(volatile s32 *)((u8 *)data_02171278+dst*24)=((s64)in[5]**(volatile s32 *)((u8 *)data_02171278+src*24))>>12;
- func_02008e38((u8 *)data_02171264+src*24,out+4,24);
-}
+void func_02123b90(u32 *out, s32 *in, u8 *p, u32 flags)
+{
+  u32 dst = p[1];
+  u32 src = p[2];
+  u32 *bits;
+  if (flags & 4)
+  {
+    out[0] |= 1;
+    if ((*((u32 *) ((data_02170460 + ((src >> 5) * 4)) + 0xc4))) & (1u << (src & 31)))
+    {
+      bits = (u32 *) (data_02170460 + 0xc4);
+      bits[dst >> 5] |= 1u << (dst & 31);
+      out[0] |= 0x18;
+      return;
+    }
+    {
+      u32 offset = src * 24;
+      func_02008e38(((u8 *) data_02171264) + offset, ((u8 *) data_02171264) + (dst * 24), 24);
+      func_02008e38(((u8 *) data_02171264) + offset, out + 4, 24);
+    }
+  }
+  else
+  {
+    s32 x = in[0];
+    s32 y = in[1];
+    s32 z = in[2];
+    out[1] = x;
+    out[2] = y;
+    out[3] = z;
+    if ((*((u32 *) ((data_02170460 + ((src >> 5) * 4)) + 0xc4))) & (1u << (src & 31)))
+    {
+      func_02008e38(in, ((u8 *) data_02171264) + (dst * 24), 24);
+      bits = (u32 *) (data_02170460 + 0xc4);
+      bits[dst >> 5] &= ~(1u << (dst & 31));
+      out[0] |= 0x18;
+      return;
+    }
+    bits = (u32 *) (data_02170460 + 0xc4);
+    bits[dst >> 5] &= ~(1u << (dst & 31));
+    *((volatile s32 *) (((u8 *) data_02171264) + (dst * 24))) = (((s64) x) * (*((volatile s32 *) (((u8 *) data_02171264) + (src * 24))))) >> 12;
+    *((volatile s32 *) (((u8 *) data_02171268) + (dst * 24))) = (((s64) y) * (*((volatile s32 *) (((u8 *) data_02171268) + (src * 24))))) >> 12;
+    *((volatile s32 *) (((u8 *) data_0217126c) + (dst * 24))) = (((s64) z) * (*((volatile s32 *) (((u8 *) data_0217126c) + (src * 24))))) >> 12;
+    *((volatile s32 *) (((u8 *) data_02171270) - (-(dst * 24)))) = (((s64) in[3]) * (*((volatile s32 *) (((u8 *) data_02171270) + (src * 24))))) >> 12;
+    {
+      s32 b = in[4];
+      s32 c = in[5];
+      *((volatile s32 *) (((u8 *) data_02171274) + (dst * 24))) = (((s64) b) * (*((volatile s32 *) (((u8 *) data_02171274) + (src * 24))))) >> 12;
+      *((volatile s32 *) (((u8 *) data_02171278) + (dst * 24))) = (((s64) c) * (*((volatile s32 *) (((u8 *) data_02171278) + (src * 24))))) >> 12;
+    }
+    func_02008e38(((u8 *) data_02171264) + (src * 24), out + 4, 24);
+  }
 }
 
 void func_02123da4(const u8 *p)
@@ -520,11 +553,13 @@ void func_02124058(s32 *arg0, u8 *arg1)
   {
     u16 h2 = *((u16 *) (arg1 + 0x2e));
     unsigned int w2 = *((u16 *) (arg1 + 0x2c));
+    s16 c = *((s16 *) (arg1 + 0x22));
     s32 y = ((-h2) << 11) + ((*((s32 *) (arg1 + 0x28))) * h2);
+    s16 s = *((s16 *) (arg1 + 0x20));
     s32 x = ((-w2) << 11) - ((*((s32 *) (arg1 + 0x24))) * w2);
-    s64 a = x * ((s64) (*((s16 *) (arg1 + 0x22))));
-    s64 b = (((s64) (*((s16 *) (arg1 + 0x20)))) * x) + (((s64) (*((s16 *) (arg1 + 0x22)))) * y);
-    a -= y * ((s64) (*((s16 *) (arg1 + 0x20))));
+    s64 a = x * ((s64) c);
+    s64 b = (((s64) s) * x) + (((s64) c) * y);
+    a -= y * ((s64) s);
     arg0[12] = ((s32) (a >> 8)) + (w2 << 15);
     arg0[13] = ((s32) (b >> 8)) + (h2 << 15);
   }
@@ -533,14 +568,21 @@ void func_02124058(s32 *arg0, u8 *arg1)
 
 extern void func_02002058(s32, s32);
 extern s32 func_02001ff4(void);
-#pragma opt_propagation off
-void func_02124130(s32 *__restrict arg0,u8 *__restrict arg1){
-u32 h=*(u16 *)(arg1+0x2e),w=*(u16 *)(arg1+0x2c);
-s32 y=*(s32 *)(arg1+0x28),x=*(s32 *)(arg1+0x24);
-s32 a=*(s32 *)(arg1+0x18),b=*(s32 *)(arg1+0x1c);
-arg0[0]=a;arg0[5]=b;arg0[1]=0;
-h=(u32)(((s64)b*((y*(s32)h)+(-(s32)h<<11)))>>8)+((s32)h<<15);
-w=(u32)(((s64)a*((-(s32)w<<11)-(x*(s32)w)))>>8)+((s32)w<<15);
-arg0[12]=w;arg0[13]=h;arg0[4]=0;
+#pragma opt_lifetimes off
+void func_02124130(s32 *__restrict arg0, u8 *__restrict arg1) {
+    s32 a = *(s32 *)(arg1 + 0x18);
+    s32 b = *(s32 *)(arg1 + 0x1c);
+    s32 y = *(s32 *)(arg1 + 0x28);
+    s32 x = *(s32 *)(arg1 + 0x24);
+    s32 h = *(u16 *)(arg1 + 0x2e);
+    s32 w = *(u16 *)(arg1 + 0x2c);
+    arg0[0] = a;
+    arg0[5] = b;
+    arg0[1] = 0;
+    h = (s32)(((s64)b * ((y * h) + ((-h) << 11))) >> 8) + (h << 15);
+    w = (s32)(((s64)a * (((-w) << 11) - (x * w))) >> 8) + (w << 15);
+    arg0[12] = w;
+    arg0[13] = h;
+    arg0[4] = 0;
 }
-#pragma opt_propagation on
+#pragma opt_lifetimes reset

@@ -238,8 +238,8 @@ void func_0203d970(Vec_0203d970 *pos, s32 unused, s32 index)
   }
 }
 
-#pragma push
-#pragma optimization_level 2
+#pragma optimization_level 3
+#pragma opt_dead_assignments on
 void func_0203df40(Vec_0203d970 *arg) {
     State_0203df40 *state;
     u8 *map = data_02160aec;
@@ -252,13 +252,12 @@ void func_0203df40(Vec_0203d970 *arg) {
     u16 j;
     s32 f0, f1, f2, f3;
     s32 d, tmp, delta;
-    s32 ten = 10;
     s32 flags;
     u16 v, tileId;
     Vec_0203e5a8 vec;
 
     if (map == NULL) return;
-    tile = (u16 *)(map + 0x30bc8 + ten * ((arg->z / 65536) * (s16)*(u16 *)(map + 0x58d36) + arg->x / 65536));
+    tile = (u16 *)(map + 0x30bc8 + 10 * ((arg->z / 65536) * (s16)*(u16 *)(map + 0x58d36) + arg->x / 65536));
     state = (State_0203df40 *)data_02160098[1];
     prev = state->field_30;
     if (prev != NULL) {
@@ -272,17 +271,17 @@ void func_0203df40(Vec_0203d970 *arg) {
 
     marker = prev[1];
     h = *(s16 *)(map + 0x58d38);
+    i = 0;
     n = 0;
-    i = n;
     if (h > 0) {
         w = *(s16 *)(map + 0x58d36);
         do {
             j = 0;
             if (w > 0) {
-                u8 *row = map + ten * (i * w);
+                u8 *row = map + 10 * (i * w);
 
                 do {
-                    if (*(u16 *)(row + ten * j + 0x30bc8) == marker) {
+                    if (*(u16 *)(row + 10 * j + 0x30bc8) == marker) {
                         if (n == 0) { f0 = j; f1 = i; }
                         else { f2 = j; f3 = i; }
                         n++;
@@ -356,13 +355,13 @@ void func_0203df40(Vec_0203d970 *arg) {
     if (((State_0203df40 *)data_02160098[1])->field_4e & 8) {
         if (data_02151fc8 > ((State_0203df40 *)data_02160098[1])->field_48) {
             data_02151fc8 -= ((State_0203df40 *)data_02160098[1])->field_4a;
-            if (data_02151fc8 < ((State_0203df40 *)data_02160098[1])->field_48) {
+            if (*(volatile u16 *)&data_02151fc8 < ((State_0203df40 *)data_02160098[1])->field_48) {
                 data_02151fc8 = ((State_0203df40 *)data_02160098[1])->field_48;
                 ((State_0203df40 *)data_02160098[1])->field_4e &= 0xfff7;
             }
         } else if (data_02151fc8 < ((State_0203df40 *)data_02160098[1])->field_48) {
             data_02151fc8 += ((State_0203df40 *)data_02160098[1])->field_4a;
-            if (data_02151fc8 > ((State_0203df40 *)data_02160098[1])->field_48) {
+            if (*(volatile u16 *)&data_02151fc8 > ((State_0203df40 *)data_02160098[1])->field_48) {
                 data_02151fc8 = ((State_0203df40 *)data_02160098[1])->field_48;
                 ((State_0203df40 *)data_02160098[1])->field_4e &= 0xfff7;
             }
@@ -371,20 +370,19 @@ void func_0203df40(Vec_0203d970 *arg) {
     if (((State_0203df40 *)data_02160098[1])->field_4e & 4) {
         if (data_02151fc8 > ((State_0203df40 *)data_02160098[1])->field_4c) {
             data_02151fc8 -= ((State_0203df40 *)data_02160098[1])->field_4a;
-            if (data_02151fc8 < ((State_0203df40 *)data_02160098[1])->field_4c) {
+            if (*(volatile u16 *)&data_02151fc8 < ((State_0203df40 *)data_02160098[1])->field_4c) {
                 data_02151fc8 = ((State_0203df40 *)data_02160098[1])->field_4c;
                 ((State_0203df40 *)data_02160098[1])->field_4e &= 0xfffb;
             }
         } else if (data_02151fc8 < ((State_0203df40 *)data_02160098[1])->field_4c) {
             data_02151fc8 += ((State_0203df40 *)data_02160098[1])->field_4a;
-            if (data_02151fc8 > ((State_0203df40 *)data_02160098[1])->field_4c) {
+            if (*(volatile u16 *)&data_02151fc8 > ((State_0203df40 *)data_02160098[1])->field_4c) {
                 data_02151fc8 = ((State_0203df40 *)data_02160098[1])->field_4c;
                 ((State_0203df40 *)data_02160098[1])->field_4e &= 0xfffb;
             }
         }
     }
 }
-#pragma pop
 s32 func_0203e5a8(Vec_0203e5a8 *a, Vec_0203e5a8 *b, Vec_0203e5a8 *c) {
 s32 y=c->field_4-b->field_4;
 s32 ay=a->field_4-b->field_4;

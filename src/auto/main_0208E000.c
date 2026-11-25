@@ -168,7 +168,7 @@ case 2:func_020a3bbc(72);break;
 case 3:func_020a3bbc(86);break;
 }
 func_021098ac(&icon);
-{s32 texture=(s32)selected+73;func_020a3bbc(texture);
+{s32 texture=selected+73;func_020a3bbc(texture);
 amount.f5=x+128;amount.f6=y+31+i*22;amount.f7=z+1;
 func_021098ac(&amount);
 func_0208db04((u16)texture,*(s16 *)(data_0216010c+(offset<<6)+(i<<6)+0x4890),x+150,y+31+i*22,7,8,8,z+1);

@@ -49,8 +49,9 @@ return 0;
 
 void func_02079874(void) {
 u32 active;
+int direction, mode;
 u8 *base,*a,*node,*b,*p;
-int direction, mode, near,far;
+int near, far;
 if(data_02160204[0x7e]) return;
 direction=0;active=0;mode=0;
 node=*(u8 **)(data_02160a80[0]+0x3c);
@@ -78,83 +79,113 @@ func_021168f8(data_021600bc+0x40,b);func_0204487c(p);
 }
 a[0x9d]+=6;
 {
-s32 *ca=*(s32 **)(a+0xb0), *cb;
-if(!ca || !(cb=*(s32 **)(b+0xb0))) {near=0;goto near_done;} else {
-int ra=*ca, rb;
-if(ra && (rb=*cb)) {
-int ax=*(s32 *)a, az=*(s32 *)(a+8), bx=*(s32 *)b, bz=*(s32 *)(b+8);
-int x0=ax-ra,x1=ax+ra,z0=az-ra,z1=az+ra;
-int bx0=bx-rb,bx1=bx+rb,bz0=bz-rb,bz1=bz+rb;
-if(x0<bx1 && bx0<x1 && z0<bz1 && bz0<z1) near=1;else near=0;goto near_done;
+if(*(u8 **)(a+0xb0)==0 || *(u8 **)(b+0xb0)==0) { near=0; goto near_done; }
+if(*(s32 *)(*(u8 **)(a+0xb0))!=0 && *(s32 *)(*(u8 **)(b+0xb0))!=0) {
+s32 box1[4], box0[4], rad;
+rad=*(s32 *)(*(u8 **)(a+0xb0));
+box1[0]=*(s32 *)(a+0)-rad; box1[2]=*(s32 *)(a+0)+rad;
+box1[1]=*(s32 *)(a+8)-rad; box1[3]=*(s32 *)(a+8)+rad;
+rad=*(s32 *)(*(u8 **)(b+0xb0));
+box0[0]=*(s32 *)(b+0)-rad; box0[2]=*(s32 *)(b+0)+rad;
+box0[1]=*(s32 *)(b+8)-rad; box0[3]=*(s32 *)(b+8)+rad;
+if(box1[0]<box0[2] && box0[0]<box1[2] && box1[1]<box0[3] && box0[1]<box1[3]) near=1; else near=0;
+goto near_done;
 }
-if(a[0x9d] && b[0x9d]) {near=func_0210c2f4(a,b)<((a[0x9d]+b[0x9d])<<12);goto near_done;}
-if(a[0x9d] && (rb=*cb)) {
-int x=*(s32 *)a,z=*(s32 *)(a+8),x0=*(s32 *)b-rb,x1=*(s32 *)b+rb,z0=*(s32 *)(b+8)-rb,z1=*(s32 *)(b+8)+rb;
-u8 i;
+if(a[0x9d]!=0 && b[0x9d]!=0) {
+if(func_0210c2f4(a,b)<((a[0x9d]+b[0x9d])<<12)) near=1; else near=0;
+goto near_done;
+}
+if(a[0x9d]!=0 && *(s32 *)(*(u8 **)(b+0xb0))!=0) {
+s32 box2[4]; u16 ang; s32 pz,px,hit,s,c,rad; u8 i;
+rad=*(s32 *)(*(u8 **)(b+0xb0));
+box2[0]=*(s32 *)(b+0)-rad; box2[2]=*(s32 *)(b+0)+rad;
+box2[1]=*(s32 *)(b+8)-rad; box2[3]=*(s32 *)(b+8)+rad;
+rad=a[0x9d];
 for(i=0;i<8;i++) {
-int angle=(u16)(i<<13);
-int idx=(angle%65536)>>4;
-int px=x+a[0x9d]*sin_02079874(angle), pz=z+a[0x9d]*cos_02079874(angle);
-int hit;
-if(px>=x0 && px<=x1 && pz>=z0 && pz<=z1) hit=1;else hit=0;
-if(hit) {near=1;goto near_done;}
+ang=(u16)(i<<13);
+s=data_0213a394[(((s32)ang%0x10000)>>4)*2];
+px=*(s32 *)(a+0)+rad*s;
+c=data_0213a394[(((s32)ang%0x10000)>>4)*2+1];
+pz=*(s32 *)(a+8)+rad*c;
+if(px>=box2[0] && px<=box2[2] && pz>=box2[1] && pz<=box2[3]) hit=1; else hit=0;
+if(hit) { near=1; goto near_done; }
 }
-} else if(b[0x9d] && ra) {
-int x=*(s32 *)b,z=*(s32 *)(b+8),x0=*(s32 *)a-ra,x1=*(s32 *)a+ra,z0=*(s32 *)(a+8)-ra,z1=*(s32 *)(a+8)+ra;
-u8 i;
+near=0; goto near_done;
+}
+if(b[0x9d]!=0 && *(s32 *)(*(u8 **)(a+0xb0))!=0) {
+s32 box3[4]; u16 ang; s32 pz,px,hit,s,c,rad; u8 i;
+rad=*(s32 *)(*(u8 **)(a+0xb0));
+box3[0]=*(s32 *)(a+0)-rad; box3[2]=*(s32 *)(a+0)+rad;
+box3[1]=*(s32 *)(a+8)-rad; box3[3]=*(s32 *)(a+8)+rad;
+rad=b[0x9d];
 for(i=0;i<8;i++) {
-int angle=(u16)(i<<13);
-int idx=(angle%65536)>>4;
-int px=x+b[0x9d]*sin_02079874(angle), pz=z+b[0x9d]*cos_02079874(angle);
-int hit;
-if(px>=x0 && px<=x1 && pz>=z0 && pz<=z1) hit=1;else hit=0;
-if(hit) {near=1;goto near_done;}
+ang=(u16)(i<<13);
+s=data_0213a394[(((s32)ang%0x10000)>>4)*2];
+px=*(s32 *)(b+0)+rad*s;
+c=data_0213a394[(((s32)ang%0x10000)>>4)*2+1];
+pz=*(s32 *)(b+8)+rad*c;
+if(px>=box3[0] && px<=box3[2] && pz>=box3[1] && pz<=box3[3]) hit=1; else hit=0;
+if(hit) { near=1; goto near_done; }
 }
+near=0; goto near_done;
 }
-}
-near=0;goto near_done;
-
+near=0;
 near_done:;
 }
 a[0x9d]-=6;
 a[0x9d]+=15;
 {
-s32 *ca=*(s32 **)(a+0xb0), *cb;
-if(!ca || !(cb=*(s32 **)(b+0xb0))) {far=0;goto far_done;} else {
-int ra=*ca, rb;
-if(ra && (rb=*cb)) {
-int ax=*(s32 *)a, az=*(s32 *)(a+8), bx=*(s32 *)b, bz=*(s32 *)(b+8);
-int x0=ax-ra,x1=ax+ra,z0=az-ra,z1=az+ra;
-int bx0=bx-rb,bx1=bx+rb,bz0=bz-rb,bz1=bz+rb;
-if(x0<bx1 && bx0<x1 && z0<bz1 && bz0<z1) far=1;else far=0;goto far_done;
+if(*(u8 **)(a+0xb0)==0 || *(u8 **)(b+0xb0)==0) { far=0; goto far_done; }
+if(*(s32 *)(*(u8 **)(a+0xb0))!=0 && *(s32 *)(*(u8 **)(b+0xb0))!=0) {
+s32 box1[4], box0[4], rad;
+rad=*(s32 *)(*(u8 **)(a+0xb0));
+box1[0]=*(s32 *)(a+0)-rad; box1[2]=*(s32 *)(a+0)+rad;
+box1[1]=*(s32 *)(a+8)-rad; box1[3]=*(s32 *)(a+8)+rad;
+rad=*(s32 *)(*(u8 **)(b+0xb0));
+box0[0]=*(s32 *)(b+0)-rad; box0[2]=*(s32 *)(b+0)+rad;
+box0[1]=*(s32 *)(b+8)-rad; box0[3]=*(s32 *)(b+8)+rad;
+if(box1[0]<box0[2] && box0[0]<box1[2] && box1[1]<box0[3] && box0[1]<box1[3]) far=1; else far=0;
+goto far_done;
 }
-if(a[0x9d] && b[0x9d]) {far=func_0210c2f4(a,b)<((a[0x9d]+b[0x9d])<<12);goto far_done;}
-if(a[0x9d] && (rb=*cb)) {
-int x=*(s32 *)a,z=*(s32 *)(a+8),x0=*(s32 *)b-rb,x1=*(s32 *)b+rb,z0=*(s32 *)(b+8)-rb,z1=*(s32 *)(b+8)+rb;
-u8 i;
+if(a[0x9d]!=0 && b[0x9d]!=0) {
+far=func_0210c2f4(a,b)<((a[0x9d]+b[0x9d])<<12);
+goto far_done;
+}
+if(a[0x9d]!=0 && *(s32 *)(*(u8 **)(b+0xb0))!=0) {
+s32 box2[4]; u16 ang; s32 pz,px,hit,s,c,rad; u8 i;
+rad=*(s32 *)(*(u8 **)(b+0xb0));
+box2[0]=*(s32 *)(b+0)-rad; box2[2]=*(s32 *)(b+0)+rad;
+box2[1]=*(s32 *)(b+8)-rad; box2[3]=*(s32 *)(b+8)+rad;
+rad=a[0x9d];
 for(i=0;i<8;i++) {
-int angle=(u16)(i<<13);
-int idx=(angle%65536)>>4;
-int px=x+a[0x9d]*sin_02079874(angle), pz=z+a[0x9d]*cos_02079874(angle);
-int hit;
-if(px>=x0 && px<=x1 && pz>=z0 && pz<=z1) hit=1;else hit=0;
-if(hit) {far=1;goto far_done;}
+ang=(u16)(i<<13);
+s=data_0213a394[(((s32)ang%0x10000)>>4)*2];
+px=*(s32 *)(a+0)+rad*s;
+c=data_0213a394[(((s32)ang%0x10000)>>4)*2+1];
+pz=*(s32 *)(a+8)+rad*c;
+if(px>=box2[0] && px<=box2[2] && pz>=box2[1] && pz<=box2[3]) hit=1; else hit=0;
+if(hit) { far=1; goto far_done; }
 }
-} else if(b[0x9d] && ra) {
-int x=*(s32 *)b,z=*(s32 *)(b+8),x0=*(s32 *)a-ra,x1=*(s32 *)a+ra,z0=*(s32 *)(a+8)-ra,z1=*(s32 *)(a+8)+ra;
-u8 i;
+far=0; goto far_done;
+}
+if(b[0x9d]!=0 && *(s32 *)(*(u8 **)(a+0xb0))!=0) {
+s32 box3[4]; u16 ang; s32 pz,px,hit,s,c,rad; u8 i;
+rad=*(s32 *)(*(u8 **)(a+0xb0));
+box3[0]=*(s32 *)(a+0)-rad; box3[2]=*(s32 *)(a+0)+rad;
+box3[1]=*(s32 *)(a+8)-rad; box3[3]=*(s32 *)(a+8)+rad;
+rad=b[0x9d];
 for(i=0;i<8;i++) {
-int angle=(u16)(i<<13);
-int idx=(angle%65536)>>4;
-int px=x+b[0x9d]*sin_02079874(angle), pz=z+b[0x9d]*cos_02079874(angle);
-int hit;
-if(px>=x0 && px<=x1 && pz>=z0 && pz<=z1) hit=1;else hit=0;
-if(hit) {far=1;goto far_done;}
+ang=(u16)(i<<13);
+s=data_0213a394[(((s32)ang%0x10000)>>4)*2];
+px=*(s32 *)(b+0)+rad*s;
+c=data_0213a394[(((s32)ang%0x10000)>>4)*2+1];
+pz=*(s32 *)(b+8)+rad*c;
+if(px>=box3[0] && px<=box3[2] && pz>=box3[1] && pz<=box3[3]) hit=1; else hit=0;
+if(hit) { far=1; goto far_done; }
 }
+far=0; goto far_done;
 }
-}
-far=0;goto far_done;
-
+far=0;
 far_done:;
 }
 a[0x9d]-=15;
@@ -180,17 +211,17 @@ if(data_02162908[2]) {
 s32 x,y,z,sx,sy,w,screenX,screenY;
 s64 inv;
 const s32 *m=data_02170248,*pr=data_02170204;
-y=m[10]+(s32)(((s64)*(s32 *)(a+4)*m[4]+(s64)*(s32 *)a*m[1]+(s64)*(s32 *)(a+8)*m[7])>>12);
-x=m[9]+(s32)(((s64)*(s32 *)(a+4)*m[3]+(s64)*(s32 *)a*m[0]+(s64)*(s32 *)(a+8)*m[6])>>12);
-z=m[11]+(s32)(((s64)*(s32 *)(a+4)*m[5]+(s64)*(s32 *)a*m[2]+(s64)*(s32 *)(a+8)*m[8])>>12);
-w=pr[15]+(s32)(((s64)y*pr[7]+(s64)x*pr[3]+(s64)z*pr[11])>>12);
+y=m[10]+(s32)(((s64)*(s32 *)a*m[1]+(s64)*(s32 *)(a+4)*m[4]+(s64)*(s32 *)(a+8)*m[7])>>12);
+x=m[9]+(s32)(((s64)*(s32 *)a*m[0]+(s64)*(s32 *)(a+4)*m[3]+(s64)*(s32 *)(a+8)*m[6])>>12);
+z=m[11]+(s32)(((s64)*(s32 *)a*m[2]+(s64)*(s32 *)(a+4)*m[5]+(s64)*(s32 *)(a+8)*m[8])>>12);
+w=pr[15]+(s32)(((s64)x*pr[3]+(s64)y*pr[7]+(s64)z*pr[11])>>12);
 func_02002028(w);
-sx=pr[12]+(s32)(((s64)y*pr[4]+(s64)x*pr[0]+(s64)z*pr[8])>>12);
-sy=pr[13]+(s32)(((s64)y*pr[5]+(s64)x*pr[1]+(s64)z*pr[9])>>12);
+sx=pr[12]+(s32)(((s64)x*pr[0]+(s64)y*pr[4]+(s64)z*pr[8])>>12);
+sy=pr[13]+(s32)(((s64)x*pr[1]+(s64)y*pr[5]+(s64)z*pr[9])>>12);
 inv=func_02001fd0();
 screenY=(s32)((inv*sy+0x80000000LL)>>32);
 sy=(screenY+4096)>>1;
-sy=(sy<<6)+(sy<<7);
+sy=(sy<<7)+(sy<<6);
 screenY=192-((sy+2048)>>12);
 screenX=(s32)((inv*sx+0x80000000LL)>>32);
 screenX=(((((screenX+4096)>>1)*256)+2048)>>12);
@@ -227,7 +258,7 @@ case 16:mode=0xc000;break;
 case 4:mode=0x4000;break;
 case 2:mode=0x8000;break;
 case 8:mode=0;break;
-case 0:case 1:case 3:case 5:case 7:case 9:case 10:case 11:case 13:case 14:case 15:case 17:
+case 0:
 default:active|=1;break;
 }
 if(!(active&1)) {
@@ -237,12 +268,14 @@ if(*(u32 *)(base+0x74)==active) angle=*(u16 *)(base+0x6c);else angle=data_02151f
 angle=(u16)((angle+mode)%65536);
 cosine=data_0213a394[(angle>>4)*2+1];
 *(s32 *)(a+0x78)=speed;
-*(s32 *)(a+0x30)=speed*cosine;
+*(s32 *)(a+0x30)=*(s32 *)(a+0x78)*cosine;
 sine=data_0213a394[(angle>>4)*2];
 *(s32 *)(a+0x38)=*(s32 *)(a+0x78)*sine;
 *(s32 *)(b+0x30)=*(s32 *)(a+0x78)*cosine;
 *(s32 *)(b+0x38)=*(s32 *)(a+0x78)*sine;
-*(u32 *)(a+0xac)=((*(u32 *)(a+0xac)&~0x40)&~0x80)|0x20000;
+*(u32 *)(a+0xac)&=~0x40;
+*(u32 *)(a+0xac)&=~0x80;
+*(u32 *)(a+0xac)|=0x20000;
 *(u32 *)(b+0xac)|=0x20000;
 if(!func_0210d548()) func_0210d27c(120);
 }

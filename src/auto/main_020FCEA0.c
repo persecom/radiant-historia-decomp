@@ -35,7 +35,6 @@ void func_020fcea0(void) {
     s32 i;
     s32 ndigits;
     s32 x;
-    s32 y = 0;
     if (data_02160c74[1] == NULL) {
         return;
     }
@@ -67,9 +66,9 @@ void func_020fcea0(void) {
             }
             func_020fd9f4(1, 4);
             if (*(s8 *)(data_02160c74[1] + 0x301) == 1) {
-                x = func_020fd8bc(*(s8 *)(data_02160c74[1] + 0x300), *(void **)(data_02160c74[1] + 0x2c), 4, y, y);
+                x = func_020fd8bc(*(s8 *)(data_02160c74[1] + 0x300), *(void **)(data_02160c74[1] + 0x2c), 4, 0, 0);
             } else {
-                x = func_020fd8bc(*(s8 *)(data_02160c74[1] + 0x300), *(void **)(data_02160c74[1] + 0x2c), 1, y, y);
+                x = func_020fd8bc(*(s8 *)(data_02160c74[1] + 0x300), *(void **)(data_02160c74[1] + 0x2c), 1, 0, 0);
             }
             x = func_020fd8bc(*(s8 *)(data_02160c74[1] + 0x300), *(void **)(data_02160c74[1] + 0x28), *(s32 *)(data_02160c74[1] + 0x2fc), x, 0);
             if (data_02160c74[1][0x2f8] <= 1) {

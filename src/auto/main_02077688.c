@@ -16,8 +16,7 @@ extern u16 data_021626aa;
 extern s16 data_0213a394[];
 extern u16 data_02151fc8;
 extern u16 data_02151fca;
-#pragma push
-#pragma optimization_level 3
+#pragma optimization_level 4
 void func_02077688(void) {
 List_02077688 a,b,c;
 Vec_02077688 pos,other;
@@ -80,12 +79,12 @@ if(!matches)ids[groups++]=*(u16*)node;
 if(groups>=3)break;
 }
 for(node=b.head;node;node=next){next=*(u8**)(node+24);
-if(*(u16*)node!=ids[0] && *(u16*)node!=ids[1] && *(u16*)node!=ids[2]){
+if(ids[0]!=*(u16*)node && ids[1]!=*(u16*)node && ids[2]!=*(u16*)node){
 func_021168f8(&b,node);if(node)func_0210c5dc(node);
 }}
 for(node=b.head;node;node=next){next=*(u8**)(node+24);func_021168f8(&b,node);func_021167f0(&c,node);}
 {
-u32 total=0,entry;
+u16 total=0,entry;
 u32 choice;u8 i;
 u8 occupied[9]={0,0,0,0,0,0,0,0,0};
 for(node=c.head;node;node=next){
@@ -94,7 +93,7 @@ if(total==0){
 total=1;
 choice=func_020d7ab8((u16)((*(u16*)(data_02160204+0x72)-1)/20+1),0,*(u16*)(node+10));
 if(choice==0)choice=1;else if(choice>=10)choice=1;
-for(entry=1;entry<9;entry=(u16)(entry+1)){
+for(entry=1;entry<9;entry++){
 u16 shape;u32 placed;
 cell=0;value=0;
 shape=func_020d7c8c((u16)((*(u16*)(data_02160204+0x72)-1)/20+1),0,*(u16*)(node+10),choice,entry,&cell,&value);
@@ -146,7 +145,7 @@ func_021168f8(&c,node);if(node)func_0210c5dc(node);
 if(total<9){
 scan=func_0210c594(20,data_02155c3c);scan[0]=0;*(u16*)(scan+2)=0;scan[16]=0;*(u16*)(scan+4)=*(u16*)(node+2);func_021167f0(result,scan);
 }
-total=(u16)(total+1);
+total++;
 }
 }
 }
@@ -155,12 +154,10 @@ for(node=b.head;node;node=next){next=*(u8**)(node+24);if(node)func_0210c5dc(node
 for(node=c.head;node;node=next){next=*(u8**)(node+24);if(node)func_0210c5dc(node);}
 *(List_02077688**)(data_02160204+0x6c)=result;
 }
-#pragma opt_propagation off
 void func_020781b0(u8 *arg0, u16 *arg1, u32 *arg2) {
     u32 r12 = 0;
     u16 keys;
     s32 angle;
-    s16 sinv, cosv;
 
     if (data_02160204[0x12a] & 8) {
         return;
@@ -202,6 +199,7 @@ void func_020781b0(u8 *arg0, u16 *arg1, u32 *arg2) {
         if (!(r12 & 1)) {
             u16 baseAngle;
             s32 idx;
+            s16 sinv, cosv;
 
             *(s32 *)(arg0 + 0x30) = 0;
             *(s32 *)(arg0 + 0x34) = 0;

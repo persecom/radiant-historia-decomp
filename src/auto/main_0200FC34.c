@@ -67,12 +67,13 @@ extern void func_02006dc4(void *, s32);
 extern void func_0200a674(s32, void *);
 extern void func_0200fedc(u32, u32, u32);
 
-void func_0200fc34(u32 arg0, u32 arg1) {
+#pragma opt_lifetimes off
+void func_0200fc34(s32 arg0, s32 arg1) {
     u32 irq = func_02008128();
     void **node = (void **)data_0215f640;
     void ***prev = (void ***)&data_0215f640;
     while (node != NULL) {
-        void (*cb)(void *, u32, u32) = (void (*)(void *, u32, u32))node[2];
+        void (*cb)(void *, s32, s32) = (void (*)(void *, s32, s32))node[2];
         if (cb != NULL) {
             cb(node[1], arg0, arg1);
         }
@@ -86,3 +87,4 @@ void func_0200fc34(u32 arg0, u32 arg1) {
     }
     func_0200813c(irq);
 }
+#pragma opt_lifetimes reset

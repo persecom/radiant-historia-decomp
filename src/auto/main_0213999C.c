@@ -144,6 +144,7 @@ void func_02128880(void *,s32);
 #pragma push
 #pragma optimization_level 2
 void func_02139be8(u32 arg0, u32 arg1, u32 arg2) {
+ typedef struct { u8 pad[0xac]; u32 v[5]; } S_02139be8;
  u8 *p=(u8 *)arg0;
  char buf[16];
  u32 c,b,a;
@@ -154,12 +155,16 @@ void func_02139be8(u32 arg0, u32 arg1, u32 arg2) {
  s32 size=16;
  func_0212bf38(arg1,arg2,buf,size);
  func_0212be08(data_0215ccd8,buf);
- set_02139be8_error(p, size);
+ *(s16 *)(p+0x60)=size-17;
+ p[1]=6;
  return;
  }
- *(u32 *)(p+0xb0)=*(u32 *)(p+0xac);
- *(u32 *)(p+0xb4)=a; *(u32 *)(p+0xb8)=c; *(u32 *)(p+0xbc)=b;
+ {
+ S_02139be8 *s=(S_02139be8 *)p;
+ s->v[1]=s->v[0];
+ s->v[2]=a; s->v[3]=c; s->v[4]=b;
  p[1]=1;p[0xa8]=1;p[2]=1;
  func_02128880(p,0);
+ }
 }
 #pragma pop

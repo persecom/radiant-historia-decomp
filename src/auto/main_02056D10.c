@@ -243,7 +243,6 @@ func_021167f0(data_021600ac+0x8c4,obj);
 #pragma push
 #pragma scheduling off
 u8 *func_02057764(u16 a0, s32 a1, s16 a2, s16 a3, s16 a4, s8 a5, u16 a6, u8 a7, s32 a8) {
-    u32 local[5] = {0, 0, 0, 0, 0};
     u8 *p;
     u8 *buf;
     s32 v = a1;
@@ -252,6 +251,7 @@ u8 *func_02057764(u16 a0, s32 a1, s16 a2, s16 a3, s16 a4, s8 a5, u16 a6, u8 a7, 
     u8 *result;
     u8 *node;
     u8 digit;
+    u32 local[5] = {0, 0, 0, 0, 0};
 
     p = func_0210c594(0x28, data_02155c3c);
     func_021167ac(p + 0x14, 8);

@@ -553,24 +553,25 @@ BOOL func_0212f3cc(u8 *arg0, s32 arg1) {
 
 extern void func_0212f178();
 extern u32 data_02145914[];
-#pragma scheduling off
-s32 func_0212f3fc(u8 *arg0, s32 arg1) {
+#pragma opt_scheduling off
+s32 func_0212f3fc(u8 *arg0, u32 arg1) {
     s32 rem;
     s32 result;
-    if (*(s32 *)(arg0 + 0xc) < arg1) {
+    if (*(s32 *)(arg0 + 0xc) < (s32)arg1) {
         func_0212f178(arg0);
     }
-    if (arg1 > *(s32 *)(arg0 + 0xc)) {
+    if ((s32)arg1 > *(s32 *)(arg0 + 0xc)) {
         *(s32 *)(arg0 + 0x10) += *(s32 *)(arg0 + 0xc);
         *(s32 *)(arg0 + 0xc) = 0;
         return 0;
     }
-    rem = *(s32 *)(arg0 + 0xc) - arg1;
+    rem = *(s32 *)(arg0 + 0xc) - (s32)arg1;
     result = data_02145914[arg1] & (*(s32 *)(arg0 + 8) >> rem);
     *(s32 *)(arg0 + 0xc) = rem;
-    *(s32 *)(arg0 + 0x10) += arg1;
+    *(s32 *)(arg0 + 0x10) += (s32)arg1;
     return result;
 }
+#pragma opt_scheduling reset
 void *func_0212f468(void *arg0) {
     return *(void **)((u8 *)arg0 + 0x10);
 }

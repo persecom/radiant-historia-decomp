@@ -84,38 +84,39 @@ extern void func_02107a64(s32);
 extern void func_02107a44(s32, s32);
 extern void func_02107a7c(s32);
 #pragma opt_propagation off
-void func_02107938(void) {
-    u8 *s0;
-    func_02119d48(data_021610c0);
-    func_02119d48(data_02161108);
-
-    *(u32 *)(data_021610c0 + 0x0) = 0;
-    *(u32 *)(data_021610c0 + 0x8) = 0x100000;
-    *(u32 *)(data_021610c0 + 0x4) = 0;
-    *(u32 *)(data_021610c0 + 0xc) = 0xc0000;
-    *(void **)(data_021610c0 + 0x28) = (void *)func_02107a24;
-    *(void **)(data_021610c0 + 0x2c) = (void *)func_02107a64;
-
-    *(u32 *)(data_02161108 + 0x0) = 0;
-    *(u32 *)(data_02161108 + 0x8) = 0x100000;
-    *(u32 *)(data_02161108 + 0x4) = 0;
-    *(u32 *)(data_021610c0 + 0x14) = 1;
-    *(u32 *)(data_02161108 + 0xc) = 0xc0000;
+void func_02107938(void)
+{
+  u8 *s0;
+  u8 (*new_var)[72];
+  func_02119d48(data_021610c0);
+  new_var = &data_021610c0;
+  func_02119d48(data_02161108);
+  *((u32 *) (data_021610c0 + 0x0)) = 0;
+  *((u32 *) ((*new_var) + 0x8)) = 0x100000;
+  *((u32 *) ((*new_var) + 0x4)) = 0;
+  {
+    u32 sp0[2] = {0, 0};
+    *((u32 *) ((*new_var) + 0xc)) = 0xc0000;
+    *((void **) (data_021610c0 + 0x28)) = (void *) func_02107a24;
+    *((void **) (data_021610c0 + 0x2c)) = (void *) func_02107a64;
+    *((u32 *) (data_02161108 + 0x0)) = 0;
+    *((u32 *) (data_02161108 + 0x8)) = 0x100000;
+    *((u32 *) (data_02161108 + 0x4)) = 0;
+    *((u32 *) ((*new_var) + 0x14)) = 1;
+    *((u32 *) (data_02161108 + 0xc)) = 0xc0000;
     s0 = data_02161230;
-    *(void **)(data_02161108 + 0x28) = (void *)func_02107a44;
-    *(void **)(data_02161108 + 0x2c) = (void *)func_02107a7c;
-
+    *((void **) (data_02161108 + 0x28)) = (void *) func_02107a44;
+    *((void **) (data_02161108 + 0x2c)) = (void *) func_02107a7c;
     {
-        u32 sp8[2] = {0, 0};
-        u32 sp0[2] = {0, 0};
-        *(u32 *)(data_02161108 + 0x14) = 2;
-
-        func_02119c80(s0);
-        func_02119c80(data_02161198);
-        func_02119d38(s0, data_021610c0);
-        func_02119d38(data_02161198, data_02161108);
-        *(s32 *)(s0 + 0x80) = -0x1000;
+      u32 sp8[2] = {0, 0};
+      *((u32 *) (data_02161108 + 0x14)) = 2;
+      func_02119c80(s0);
+      func_02119c80(data_02161198);
+      func_02119d38(s0, *new_var);
+      func_02119d38(data_02161198, data_02161108);
+      *((s32 *) (s0 + 0x80)) = -0x1000;
     }
+  }
 }
 #pragma opt_propagation on
 void func_02107a24(s32 arg0, s32 arg1) {

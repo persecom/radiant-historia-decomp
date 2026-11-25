@@ -12,6 +12,7 @@ extern void func_020d9e7c(void);
 extern void func_020ddfd0(u8 *, s32);
 extern void func_020dd810(void *, s32, s32);
 void func_020d5648(u8 *,u8 *);
+#pragma opt_propagation off
 void func_020d4eb8(u8 *self) {
     u8 *state = *(u8 **)(self + 0x128);
     u8 *cmd;
@@ -147,7 +148,7 @@ void func_020d4eb8(u8 *self) {
         func_02026c94(*(void **)(self + 0x120));
     }
 }
-
+#pragma opt_propagation on
 void func_020d5648(u8 *arg0, u8 *arg1) {
     u8 *p = *(u8 **)(arg0 + 0x128);
     s32 v;

@@ -25,7 +25,7 @@ void func_02057ae4(void) {
     u16 j;
     u8 *slot;
     u8 *widget;
-    s32 *bar;
+    u8 *bar;
     u8 *actor;
     f32 ratio;
     s32 sp2c;
@@ -58,31 +58,31 @@ void func_02057ae4(void) {
             }
             switch (j) {
                 case 7:
-                    bar = (s32 *)func_020f4d40(i + 1);
+                    bar = func_020f4d40(i + 1);
                     if (*(u16 *)(actor + 0x10) != 0) {
                         ratio = (f32)*(u16 *)(actor + 0x10) / (f32)(*(u16 *)(actor + 0x12) + *(s16 *)(actor + 0x24));
-                        ((s32 *)bar)[8] = (s32)(4096.0f * ratio);
+                        *(s32 *)(bar + 0x20) = (s32)(4096.0f * ratio);
                         *(s32 *)(widget + 0x8) = (s32)((f32)(i * 81 + 52) - (32.0f - 32.0f * ratio) / 2.0f);
-                        ((s32 *)bar)[10] = 1;
+                        *(s32 *)(bar + 0x28) = 1;
                         *(s32 *)(widget + 0x20) = 1;
                     } else {
                         *(s32 *)(widget + 0x20) = 0;
                     }
                     break;
                 case 8:
-                    bar = (s32 *)func_020f4d40(i + 4);
+                    bar = func_020f4d40(i + 4);
                     if (*(u16 *)(actor + 0x14) != 0) {
                         ratio = (f32)*(u16 *)(actor + 0x14) / (f32)(*(u16 *)(actor + 0x16) + *(s16 *)(actor + 0x26));
-                        ((s32 *)bar)[8] = (s32)(4096.0f * ratio);
+                        *(s32 *)(bar + 0x20) = (s32)(4096.0f * ratio);
                         *(s32 *)(widget + 0x8) = (s32)((f32)(i * 81 + 52) - (32.0f - 32.0f * ratio) / 2.0f);
-                        ((s32 *)bar)[10] = 1;
+                        *(s32 *)(bar + 0x28) = 1;
                         *(s32 *)(widget + 0x20) = 1;
                     } else {
                         *(s32 *)(widget + 0x20) = 0;
                     }
                     break;
                 case 20:
-                    bar = (s32 *)func_020f4d40(i + 7);
+                    bar = func_020f4d40(i + 7);
                     sp2c = 0;
                     sp28 = 0;
                     func_0208c788(*(u8 *)(actor + 0x42), *(u8 *)(actor + 0x43), &sp2c, &sp28);
@@ -94,14 +94,14 @@ void func_02057ae4(void) {
                         if (0.0f == ratio) {
                             *(s32 *)(widget + 0x20) = 0;
                         } else {
-                            ((s32 *)bar)[8] = (s32)(4096.0f * ratio);
+                            *(s32 *)(bar + 0x20) = (s32)(4096.0f * ratio);
                             *(s32 *)(widget + 0x8) = (s32)((f32)(i * 81 + 29) - (64.0f - 64.0f * ratio) / 2.0f);
                             *(s32 *)(widget + 0x20) = 1;
                         }
                     } else {
                         *(s32 *)(widget + 0x20) = 0;
                     }
-                    ((s32 *)bar)[10] = 1;
+                    *(s32 *)(bar + 0x28) = 1;
                     break;
                 case 21:
                 case 22:

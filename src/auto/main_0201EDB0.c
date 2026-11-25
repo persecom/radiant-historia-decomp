@@ -3,10 +3,10 @@
 
 #pragma opt_propagation off
 u32 func_0201f114(u32 lo, u32 hi) {
-    u32 exp = hi >> 20;
     u32 sign = hi & 0x80000000;
+    u32 exp = hi >> 20;
+    u32 r3, m;
     s32 e, shift;
-    u32 m, r3;
 
     exp &= ~0x800;
     if (exp == 0) goto L_zero;
@@ -26,19 +26,17 @@ u32 func_0201f114(u32 lo, u32 hi) {
     return lo;
 
 L_nan:
-    if ((lo | (hi << 12)) != 0) goto L_nan2;
+    if ((lo | (hi << 12)) != 0) return 0x7fffffff;
     lo = 0xff000000U;
     return sign | (lo >> 1);
-L_nan2:
-    return 0x7fffffff;
 L_zero:
     if ((lo | (hi << 12)) != 0) goto L_zero2;
     return sign;
 L_denorm:
     if (e == -23) goto L_440;
     if (e < -23) goto L_zero2;
-    m = (((hi << 11) | 0x80000000) >> 8) | (lo >> 29);
     shift = 1 - e;
+    m = (((hi << 11) | 0x80000000) >> 8) | (lo >> 29);
     hi = lo << 3;
     lo = sign | (m >> shift);
     shift = 0x20 - shift;
@@ -54,12 +52,12 @@ L_denorm:
 L_440:
     return sign + ((lo | (hi << 12)) != 0);
 L_zero2:
-    return sign;
+    lo = sign;
+    return lo;
 L_inf:
     lo = 0xff000000U;
     return sign | (lo >> 1);
 }
-#pragma opt_propagation on
 u64 _dflt(s32 arg0) {
     u32 sign = (u32)arg0 & 0x80000000;
     u32 x = (u32)arg0;

@@ -160,6 +160,8 @@ s32 func_02002214(const s32 *v) {
     return (*(volatile s32 *)0x040002b4 + 1) >> 1;
 }
 
+#pragma push
+#pragma opt_common_subs off
 void func_02002274(const Vec3 *pSrc, Vec3 *pDst)
 {
   s64 t = ((s64) pSrc->y) * pSrc->y;
@@ -186,7 +188,7 @@ void func_02002274(const Vec3 *pSrc, Vec3 *pDst)
   pDst->y = (s32) (((d * pSrc->y) + (((s64) 1) << 44)) >> 45);
   pDst->z = (s32) (((d * pSrc->z) + (((s64) 1) << 44)) >> 45);
 }
-
+#pragma pop
 s32 func_02002388(s32 *arg0,s32 *arg1) {
 s32 dx=arg0[0]-arg1[0];
 s32 dy=arg0[1]-arg1[1];

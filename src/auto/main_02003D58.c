@@ -200,9 +200,10 @@ void func_02004364(void) {
     data_0215cd24[6] = 0;
 }
 
+#pragma scheduling off
 void func_0200439c(void) {
 s32 val = func_02005418();
-s32 off=val*6;
+u32 off=val*6;
 u32 a=*(volatile u16 *)(data_0213e4a8+off)<<12;
 u32 b=*(volatile u16 *)(data_0213e4aa+off)<<12;
 u32 c=*(u16 *)(data_0213e4ac+off)<<12;
@@ -211,7 +212,7 @@ data_0215cd40[1]=a;
 data_0215cd40[6]=b;
 data_0215cd40[7]=c;
 }
-
+#pragma scheduling on
 void func_020043f8(void *arg0,u32 offset,u32 size) {
  u32 second=data_0215cd40[6];
  u32 dst;

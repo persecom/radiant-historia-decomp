@@ -64,22 +64,22 @@ s32 func_0211c5e8(u8 *);
 #pragma opt_propagation off
 
 void func_0211c544(s32 *arg0) {
-u8 *ptr=data_021701f8;
-s32 a=arg0[0], b=arg0[1];
-*(s32 **)(ptr+0x2c)=arg0;
-*(s32 *)(ptr+0x40)=a; *(s32 *)(ptr+0x44)=b;
-{ s32 c=arg0[2];
-*(s32 *)(ptr+0x48)=0;
-s32 d=arg0[3];
-*(s32 *)(ptr+0x4c)=c; *(s32 *)(ptr+0x50)=d;
-*(s32 *)(ptr+0x54)=0; *(s32 *)(ptr+0x58)=0; *(s32 *)(ptr+0x5c)=0;
-}
-{ s32 e=arg0[4];
-*(s32 *)(ptr+0x60)=0x1000;
-s32 f=arg0[5];
-*(s32 *)(ptr+0x64)=e; *(s32 *)(ptr+0x68)=f;
-}
-*(s32 *)(ptr+0x6c)=*(s32 *)(ptr+0x34);
+    s32 *ptr=(s32 *)data_021701f8;
+    u32 a=arg0[0], b=arg0[1];
+    ptr[0x2c/4]=(u32)arg0;
+    ptr[0x40/4]=a; ptr[0x44/4]=b;
+    { u32 c=arg0[2];
+    ptr[0x48/4]=0;
+    u32 d=arg0[3];
+    ptr[0x4c/4]=c; ptr[0x50/4]=d;
+    ptr[0x54/4]=0; ptr[0x58/4]=0; ptr[0x5c/4]=0;
+    }
+    { u32 e=arg0[4];
+    ptr[0x60/4]=0x1000;
+    u32 f=arg0[5];
+    ptr[0x64/4]=e; ptr[0x68/4]=f;
+    }
+    ptr[0x6c/4]=ptr[0x34/4];
 }
 #pragma pop
 void func_0211c5ac(s32 arg0, s32 arg1) {

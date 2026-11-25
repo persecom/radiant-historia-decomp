@@ -61,14 +61,15 @@ extern s32 func_020ebd5c(void *, s32, s32);
 
 #pragma optimization_level 3
 
+#pragma optimization_level 4
 s32 func_020ecac8(u8 *self, s32 id)
 {
-  s32 zero;
+  u8 *new_var = data_02160ab8;
+  register s32 zero = 0;
   char a[50];
   char b[50];
   char c[50];
   s32 extra;
-  u8 *new_var;
   s32 one = 1;
   s32 j;
   s32 k;
@@ -93,7 +94,7 @@ s32 func_020ecac8(u8 *self, s32 id)
   }
   if (((*((u32 *) data_02160ab8)) && (*((u32 *) (data_02160ab8 + 4)))) && (*((u32 *) (new_var + 8))))
   {
-    func_02005e80(a, data_02151b0c, *new_var);
+    func_02005e80(a, data_02151b0c);
     func_02005e80(b, data_02151b28, *((u32 *) (new_var + 4)));
     func_02005e80(c, data_02151b48, *((u32 *) (data_02160ab8 + 8)));
     if (!func_02108620(*((void **) self), a, b, c, zero))
@@ -144,10 +145,8 @@ s32 func_020ecac8(u8 *self, s32 id)
     *((u8 **) (resource + 16)) = entries;
   }
   *((u8 **) (self + 16)) = *((u8 **) (resource + 16));
-  new_var = data_02160ab8;
   return 1;
 }
-
 extern char data_02151b6c[];
 extern char data_02151b84[];
 extern char data_02151ba4[];
@@ -226,7 +225,7 @@ s32 func_020ecd10(void **arg0, u32 arg1, void **arg2)
         r6 = *((u8 **) sub);
         if (r6 != NULL)
         {
-          u8 *end = *((u8 **) (sub + 4));
+          u8 *end = *(u8 * volatile *)(sub + 4);
           if (r6 != end)
           {
             do

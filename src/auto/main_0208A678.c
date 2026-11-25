@@ -101,7 +101,6 @@ void func_0208a678(void) {
             p[0x1fa] = 4;
         }
         *(u16 *)(p + 0xde) = 2;
-        break;
     }
     case 2:
         *(u16 *)(p + 0xde) = 5;
@@ -110,12 +109,12 @@ void func_0208a678(void) {
     case 4:
         break;
     case 5: {
+        s32 flag = 1;
         s32 x6 = 0;
         s32 x7 = 0;
         s32 moved = 0;
         s16 ix = 0;
         s16 iy = 0;
-        s32 flag = 1;
 
         if (data_02162908[2] != 0) {
             p[0x212] = (s8)p[0x212] & ~2;
@@ -163,9 +162,9 @@ void func_0208a678(void) {
                 return;
             }
             if (((s8)p[0x22a] & 2) != 0) {
-                *(s16 *)(p + 0x1e0) += 0xc8;
+                *(volatile s16 *)(p + 0x1e0) += 0xc8;
                 flag = 0;
-                if (*(s16 *)(p + 0x1e0) > 0) {
+                if (*(volatile s16 *)(p + 0x1e0) > 0) {
                     *(s16 *)(p + 0x1e0) = 0;
                 }
                 p[0x22a] = (s8)p[0x22a] & ~2;
@@ -189,8 +188,7 @@ void func_0208a678(void) {
         }
 
         if (flag == 1) {
-            struct TPPos { u16 x, y, touch, validity; } pos;
-            pos = *(struct TPPos *)data_02162908;
+            struct TPPos { u16 x, y, touch, validity; } pos = *(struct TPPos *)data_02162908;
             if (pos.touch == 1) {
                 p[0x1f3] |= 2;
                 ix = pos.x;
@@ -205,8 +203,8 @@ void func_0208a678(void) {
                     p[0x236] = (s8)p[0x236] | 4;
                     func_0210d27c(2);
                 } else if ((data_021626a8 & 0x200) && *(s32 *)(p + 0x224) == 1) {
-                    *(s16 *)(p + 0x1e0) += 0xc8;
-                    if (*(s16 *)(p + 0x1e0) > 0) {
+                    *(volatile s16 *)(p + 0x1e0) += 0xc8;
+                    if (*(volatile s16 *)(p + 0x1e0) > 0) {
                         *(s16 *)(p + 0x1e0) = 0;
                     }
                     p[0x22a] = (s8)p[0x22a] | 4;
@@ -215,10 +213,10 @@ void func_0208a678(void) {
                     u16 hold = *(u16 *)data_021626b0;
                     ix = *(s16 *)(p + 0x1cc);
                     iy = *(s16 *)(p + 0x1ce);
-                    if (hold & 0x10) { x6 = 1; moved = 1; ix += p[0x238]; }
-                    if (hold & 0x20) { x6 = 1; moved = 1; ix -= p[0x238]; }
-                    if (hold & 0x40) { x6 = 1; moved = 1; iy -= p[0x238]; }
-                    if (hold & 0x80) { x6 = 1; moved = 1; iy += p[0x238]; }
+                    if (hold & 0x10) { x6 = 1; moved = 1; ix = *(s16 *)(p + 0x1cc) + p[0x238]; }
+                    if (hold & 0x20) { x6 = 1; moved = 1; ix = *(s16 *)(p + 0x1cc) - p[0x238]; }
+                    if (hold & 0x40) { x6 = 1; moved = 1; iy = *(s16 *)(p + 0x1ce) - p[0x238]; }
+                    if (hold & 0x80) { x6 = 1; moved = 1; iy = *(s16 *)(p + 0x1ce) + p[0x238]; }
                 }
             }
             if (moved == 1) {
@@ -274,20 +272,19 @@ void func_0208a678(void) {
         {
             s16 val = *(s16 *)(p + 0x1c8) + *(s16 *)(p + 0x1c6) * 5;
             s32 off = val * (s16)40;
-            u8 *entry = p + off;
             s32 changed = 0;
             s8 v;
             u16 *arr;
             *(u32 *)(p + 0x200) = 0;
             *(u32 *)(p + 0x20c) = 0;
-            *(s16 *)(entry + 0x24e) &= ~0x100;
-            if (!(*(s16 *)(entry + 0x24e) & 0x40)) {
+            *(volatile s16 *)(p + 0x24e + off) &= ~0x100;
+            if (!(*(volatile s16 *)(p + 0x24e + off) & 0x40)) {
                 return;
             }
-            if (func_020a1734(entry[0x23a]) != 1) {
+            if (func_020a1734((p + off)[0x23a]) != 1) {
                 return;
             }
-            if (*(s16 *)(entry + 0x254) != 0) {
+            if (*(s16 *)(p + off + 0x254) != 0) {
                 *(u32 *)(p + 0x20c) = 1;
             }
             if (x7 == 1) {
@@ -296,14 +293,14 @@ void func_0208a678(void) {
                     p[0x1e6] = 0;
                 } else {
                     s32 vv = v + 1;
-                    if (*(s16 *)(entry + vv * 4 + 0x250) != 0) {
+                    if (*(s16 *)(p + off + vv * 4 + 0x250) != 0) {
                         p[0x1e6] = vv;
                     } else {
                         p[0x1e6] = 0;
                     }
                 }
-                func_0210d27c(0xb);
                 changed = 1;
+                func_0210d27c(0xb);
             }
             if (*(s16 *)(p + 0x1e8) != val) {
                 *(s16 *)(p + 0x1e8) = val;
@@ -314,9 +311,9 @@ void func_0208a678(void) {
                 return;
             }
             v = *(s8 *)(p + 0x1e6);
-            arr = (u16 *)(entry + 0x250);
-            func_0208c680(entry[0x248], *(u16 *)(entry + 0x24a),
-                          arr[v * 2], *(s8 *)(entry + v * 2 + 0x25c),
+            arr = (u16 *)(p + 0x250 + off);
+            func_0208c680((p + off)[0x248], *(u16 *)(p + off + 0x24a),
+                          arr[v * 2], *(s8 *)(p + off + v * 2 + 0x25c),
                           arr[v * 2 + 1]);
         }
         break;

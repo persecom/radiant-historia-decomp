@@ -586,20 +586,16 @@ void func_02107840(void) {
 }
 
 extern u32 *data_02161070[];
+#pragma optimization_level 2
 s32 func_02107860(u8 *arg0, u8 *arg1, u8 *arg2) {
-    s32 ay = *(s32 *)(arg1 + 0x14);
-    s32 by = *(s32 *)(arg2 + 4);
     u8 r4 = *(u16 *)(arg0 + 2) & 0x3f;
-    s32 ax, bx;
     s32 dy, dx;
     s32 y0, y1, x0, x1;
+    dy = *(s32 *)(arg1 + 0x14) - *(s32 *)(arg2 + 4);
     r4 <<= 2;
-    dy = ay - by;
     y0 = dy + (r4 << 12);
     y1 = dy - (r4 << 12);
-    ax = *(s32 *)(arg1 + 0x10);
-    bx = *(s32 *)(arg2 + 0);
-    dx = ax - bx;
+    dx = *(s32 *)(arg1 + 0x10) - *(s32 *)(arg2 + 0);
     x0 = dx - (r4 << 12);
     x1 = dx + (r4 << 12);
     if (y0 > 0 && y1 < *(s32 *)(arg2 + 0xc) && x1 > 0 && x0 < *(s32 *)(arg2 + 8)) {
@@ -607,3 +603,4 @@ s32 func_02107860(u8 *arg0, u8 *arg1, u8 *arg2) {
     }
     return 0;
 }
+#pragma optimization_level reset

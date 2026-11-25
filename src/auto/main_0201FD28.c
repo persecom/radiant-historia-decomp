@@ -28,20 +28,17 @@ u64 func_0201fd28(u32 numerator, u32 denominator)
     return ((u64)remainder << 32) | numerator;
 }
 
+#pragma optimization_level 3
 u32 func_0201ff40(u32 x) {
-    s32 e;
     if ((x & 0x80000000u) == 0) {
-        e = 0x9e;
+        s32 e = 0x9e;
         e -= (s32)(x >> 23);
-        if (e < 0) goto neg_result;
+        if (e < 0) return 0xffffffffu;
         return ((x << 8) | 0x80000000u) >> e;
     }
     if (0xff000000u >= (x << 1)) return 0;
     return 0xffffffffu;
-neg_result:
-    return 0xffffffffu;
 }
-
 int func_0201ff80(u32 lo, u32 hi) {
     s32 e;
     u32 m;
@@ -77,9 +74,9 @@ u64 func_0201ffcc(u64 bits) {
     }
     if ((u32)hi >= 0xfff00000U && (hi != 0xfff00000U || lo != 0)) goto overflow;
 zero:
-    return 0;
+    return ((u64)(u32)0 << 32) | (u32)0;
 overflow:
-    return -1ULL;
+    return ((u64)(u32)-1 << 32) | (u32)-1;
 }
 #pragma pop
 u64 func_02020058(u64 value) {

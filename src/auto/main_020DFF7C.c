@@ -16,9 +16,9 @@ extern u32 func_020deaf0(void *, u8, u8);
 extern void func_020c34c8(s32 *, s32, s32, s32, s32, s32, s32, u16);
 
 void func_020dff7c(void) {
-    s16 r8 = 0;
     u8 *p5 = 0;
     u8 *p9 = 0;
+    s16 r8;
     u32 flags;
     s32 one=1;
     u8 *actor;
@@ -46,7 +46,10 @@ void func_020dff7c(void) {
     if (p5 != 0) {
         actor = *(u8 **)(p5 + 4);
     } else return;
-    if ((flags & 0x80) != 0) {
+    if ((flags & 0x80) == 0) {
+        return;
+    }
+    if (1) {
     r8 = func_020e4ad4();
 
     if (r8 >= 0 && r8 <= 11) {

@@ -13,6 +13,7 @@ extern u32 data_0216263c[3];
 extern u32 data_0216244c[43];
 extern u64 data_02162658[3];
 extern void func_0206e8f0(u32, void *, u32);
+#pragma optimization_level 3
 void func_02079374(void) {
     Vec3_B793 pos = *(Vec3_B793 *)data_0216244c;
     s32 x, y, z, sx, sy, w;
@@ -23,8 +24,8 @@ void func_02079374(void) {
     u32 *rng;
     u32 seed;
     u16 r;
-    y = m[10] + (s32)(((s64)pos.x * m[1] + (s64)pos.y * m[4] + (s64)pos.z * m[7]) >> 12);
     x = m[9] + (s32)(((s64)pos.x * m[0] + (s64)pos.y * m[3] + (s64)pos.z * m[6]) >> 12);
+    y = m[10] + (s32)(((s64)pos.x * m[1] + (s64)pos.y * m[4] + (s64)pos.z * m[7]) >> 12);
     z = m[11] + (s32)(((s64)pos.x * m[2] + (s64)pos.y * m[5] + (s64)pos.z * m[8]) >> 12);
     p = data_02170204;
     w = p[15] + (s32)(((s64)x * p[3] + (s64)y * p[7] + (s64)z * p[11]) >> 12);
@@ -32,39 +33,43 @@ void func_02079374(void) {
     sx = p[12] + (s32)(((s64)x * p[0] + (s64)y * p[4] + (s64)z * p[8]) >> 12);
     sy = p[13] + (s32)(((s64)x * p[1] + (s64)y * p[5] + (s64)z * p[9]) >> 12);
     inv = func_02001fd0();
-    screenX = (s32)((inv * sx + 0x80000000LL) >> 32);
     screenY = (s32)((inv * sy + 0x80000000LL) >> 32);
     sy = (screenY + 4096) >> 1;
     sy = (sy << 7) + (sy << 6);
-    screenY = 192 - ((sy + 2048) >> 12);
+    screenY = (sy + 2048) >> 12;
+    screenX = (s32)((inv * sx + 0x80000000LL) >> 32);
     screenX = ((((screenX + 4096) >> 1) * 256 + 2048) >> 12);
+    screenY = 192 - screenY;
     rng = data_0216263c;
     seed = rng[1] * rng[0] + rng[2];
-    rng[0] = seed;
     r = ((seed >> 16) * 8) >> 16;
-    pos.z = 0;
+    rng[0] = seed;
     if (r == 0) {
         pos.x = (screenX / 2) << 13;
         pos.y = (screenY / 2) << 13;
+        pos.z = 0;
         func_0206e8f0(128, &pos, 3);
     }
+    rng = data_0216263c;
     seed = rng[1] * rng[0] + rng[2];
-    rng[0] = seed;
     r = ((seed >> 16) * 8) >> 16;
+    rng[0] = seed;
     if (r != 0) return;
     {
         Vec3_B793 v = *(Vec3_B793 *)data_0216244c;
-        u64 a = data_02162658[0], b = data_02162658[1], c = data_02162658[2];
-        u64 t = b * a + c, res = b * t + c;
-        data_02162658[0] = res;
+        s32 dx, dz;
+        data_02162658[0] = data_02162658[1] * data_02162658[0] + data_02162658[2];
+        dx = (s32)(((u64)(u32)(data_02162658[0] >> 32) * 0x1c0000u) >> 32) - 0xa0000;
+        data_02162658[0] = data_02162658[1] * data_02162658[0] + data_02162658[2];
+        dz = (s32)(((u64)(u32)(data_02162658[0] >> 32) * 0x200000u) >> 32) - 0x100000;
         v.y = 0;
-        v.x += (u32)(((u64)(u32)(t >> 32) * 0x1c0000u) >> 32) - 0xa0000;
-        v.z += (u32)(((u64)(u32)(res >> 32) * 0x200000u) >> 32) - 0x100000;
+        v.x += dx;
+        v.z += dz;
         v.z -= 0x40000;
         func_0206e8f0(129, &v, 2);
     }
 }
-
+#pragma optimization_level 4
 void func_0207963c(void) {
     u32 x = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
     u16 r;

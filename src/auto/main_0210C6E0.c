@@ -90,42 +90,47 @@ extern void func_021093b0(void *);
 extern s32 func_02109444(void *);
 extern void *func_0210ca88(void *, s32);
 void func_0210c6e0(void) {
-u16 prev;
-s32 keys=(u16)(((*(volatile u16 *)0x4000130 | *(volatile u16 *)0x2ffffa8)^0x2fff)&0x2fff);
-u16 i=0;
-keys = (u16)(keys & ~((keys & 0x40)<<1) & ~((keys & 0x20)>>1));
-prev=((InputState *)data_021626a0)->raw;
-((InputState *)data_021626a0)->down=(prev^keys)&keys;
-((InputState *)data_021626a0)->released=prev&(prev^keys);
-((InputState *)data_021626a0)->raw=keys;
-((InputState *)data_021626a0)->trigger=((InputState *)data_021626a0)->down;
-for(;i<12;i++) {
-u16 bit=1<<i;
-if(keys&bit) {
-u16 repeat=((volatile InputState *)data_021626a0)->repeat;
-u16 timer=((volatile u16 *)data_021626b6)[i];
-if(repeat&bit) {
-if(timer>=2) {
-((volatile u16 *)data_021626b6)[i]=0;
-((volatile InputState *)data_021626a0)->trigger|=bit;
-} else ((volatile InputState *)data_021626a0)->trigger&=(u16)~bit;
-} else if(timer>=10) {
-((volatile u16 *)data_021626b6)[i]=0;
-((volatile InputState *)data_021626a0)->trigger|=bit;
-((volatile InputState *)data_021626a0)->repeat=repeat|bit;
-}
-((volatile u16 *)data_021626b6)[i]++;
-} else {
-((volatile u16 *)data_021626b6)[i]=0;
-((volatile InputState *)data_021626a0)->repeat&=(u16)~bit;
-((volatile InputState *)data_021626a0)->trigger&=(u16)~bit;
-}
-}
-data_021626a0[0]=data_02144b9c[(keys&0xf0)>>4];
-if(data_021626a0[1]) keys=func_0210c8e8(keys);
-prev=((volatile InputState *)data_021626a0)->held;
-((volatile InputState *)data_021626a0)->pressed=keys&(keys^prev);
-((volatile InputState *)data_021626a0)->up=prev&(keys^prev);
-((volatile InputState *)data_021626a0)->held=keys;
-data_021626a0[2]=data_02144b9c[(keys&0xf0)>>4];
+    u16 i = 0;
+    s32 keys = *(volatile u16 *)0x4000130 | *(volatile u16 *)0x2ffffa8;
+    u16 prev;
+    keys = (u16)((keys ^ 0x2fff) & 0x2fff);
+    keys = (u16)(keys & ~((keys & 0x40) << 1) & ~((keys & 0x20) >> 1));
+    prev = ((InputState *)data_021626a0)->raw;
+    ((InputState *)data_021626a0)->down = (prev ^ keys) & keys;
+    ((InputState *)data_021626a0)->released = prev & (prev ^ keys);
+    ((InputState *)data_021626a0)->raw = keys;
+    ((InputState *)data_021626a0)->trigger = ((InputState *)data_021626a0)->down;
+    for (; i < 12; i++) {
+        u16 bit = 1 << i;
+        if (keys & bit) {
+            u16 repeat = ((volatile InputState *)data_021626a0)->repeat;
+            u16 timer = ((volatile u16 *)data_021626b6)[i];
+            if (repeat & bit) {
+                if (timer >= 2) {
+                    ((volatile u16 *)data_021626b6)[i] = 0;
+                    ((volatile InputState *)data_021626a0)->trigger |= bit;
+                } else {
+                    ((volatile InputState *)data_021626a0)->trigger &= (u16)~bit;
+                }
+            } else if (timer >= 10) {
+                ((volatile u16 *)data_021626b6)[i] = 0;
+                ((volatile InputState *)data_021626a0)->trigger |= bit;
+                ((volatile InputState *)data_021626a0)->repeat = repeat | bit;
+            }
+            ((volatile u16 *)data_021626b6)[i]++;
+        } else {
+            ((volatile u16 *)data_021626b6)[i] = 0;
+            ((volatile InputState *)data_021626a0)->repeat &= (u16)~bit;
+            ((volatile InputState *)data_021626a0)->trigger &= (u16)~bit;
+        }
+    }
+    data_021626a0[0] = data_02144b9c[(keys & 0xf0) >> 4];
+    if (data_021626a0[1]) {
+        keys = func_0210c8e8(keys);
+    }
+    prev = ((volatile InputState *)data_021626a0)->held;
+    ((volatile InputState *)data_021626a0)->pressed = keys & (keys ^ prev);
+    ((volatile InputState *)data_021626a0)->up = prev & (keys ^ prev);
+    ((volatile InputState *)data_021626a0)->held = keys;
+    data_021626a0[2] = data_02144b9c[(keys & 0xf0) >> 4];
 }

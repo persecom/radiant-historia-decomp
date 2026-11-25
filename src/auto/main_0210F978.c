@@ -47,16 +47,16 @@ s32 func_020a47c8(void);
 int func_02002fb0(s32,s32,s32,s32,s32);
 #pragma scheduling off
 
+#pragma scheduling on
 void func_0210f978(void)
 {
   volatile u16 *new_var;
-  long long new_var2;
-  u32 four = 4;
   u32 one = 1;
+  u32 four = 4;
   u32 zero = 0;
+  long long new_var2 = 0x10;
   func_0210f448();
   func_02004d70(15);
-  new_var2 = 0x10;
   func_02004ee8(16);
   func_020048a8(0x60);
   func_0200518c(0x80);
@@ -85,4 +85,3 @@ void func_0210f978(void)
   *((volatile u16 *) 0x400100c) = ((*((volatile u16 *) 0x400100c)) & (~3)) | 2;
   *((volatile u16 *) 0x400100e) = ((*((volatile u16 *) 0x400100e)) & (~3)) | 3;
 }
-#pragma scheduling on

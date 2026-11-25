@@ -265,7 +265,7 @@ void func_0200dbe4(s16 *arg0)
 {
   s32 state;
   s32 n;
-  s32 d;
+  s16 d;
   if (arg0 == NULL)
   {
     *((u16 *) (data_0215f000 + 0x34)) = 0;
@@ -284,7 +284,6 @@ void func_0200dbe4(s16 *arg0)
     while ((*((volatile u16 *) 0x4000280)) & 0x8000)
     {
     }
-
     *((s32 *) (data_0215f000 + 0x24)) = *((volatile s32 *) 0x40002a0);
   }
   else
@@ -305,7 +304,6 @@ void func_0200dbe4(s16 *arg0)
     while ((*((volatile u16 *) 0x4000280)) & 0x8000)
     {
     }
-
     *((s32 *) (data_0215f000 + 0x30)) = *((volatile s32 *) 0x40002a0);
   }
   else
@@ -399,7 +397,6 @@ s32 func_0200df4c(s16 *calibrate, u16 raw_x1, u16 raw_y1, u16 dx1, u16 dy1, u16 
     s32 xDotSize;
     s32 yDotSize;
     s32 x0;
-    s32 y0;
     s32 rawdy; s32 dy; s32 irq;
 
     if (raw_x1 >= 0x1000 || raw_y1 >= 0x1000 || raw_x2 >= 0x1000 || raw_y2 >= 0x1000) {
@@ -412,14 +409,14 @@ s32 func_0200df4c(s16 *calibrate, u16 raw_x1, u16 raw_y1, u16 dx1, u16 dy1, u16 
         return 1;
     }
 
-    irq=func_02008128();
+    irq = func_02008128();
 
     *(volatile u16 *)0x04000280 = 0;
     *(volatile s32 *)0x04000290 = (raw_x1 - raw_x2) << 8;
     *(volatile u64 *)0x04000298 = (u32)(dx1 - dx2);
 
-    rawdy=raw_y1-raw_y2;
-dy = dy1 - dy2;
+    rawdy = raw_y1 - raw_y2;
+    dy = dy1 - dy2;
 
     while (*(volatile u16 *)0x04000280 & 0x8000) {}
     xDotSize = *(volatile s32 *)0x040002a0;
@@ -450,11 +447,11 @@ dy = dy1 - dy2;
     }
     calibrate[3] = (s16)yDotSize;
 
-    y0 = ((((raw_y1 + raw_y2) << 8) - (s32)calibrate[3] * (dy1 + dy2)) << 9) >> 16;
-    if (y0 >= 0x8000 || y0 < -0x8000) {
+    x0 = ((((raw_y1 + raw_y2) << 8) - (s32)calibrate[3] * (dy1 + dy2)) << 9) >> 16;
+    if (x0 >= 0x8000 || x0 < -0x8000) {
         return 1;
     }
-    calibrate[1] = (s16)y0;
+    calibrate[1] = (s16)x0;
 
     return 0;
 }

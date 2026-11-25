@@ -24,7 +24,7 @@ u32 func_ov000_02177b0c(void) {
     u32 buf[0x80];
     u32 hash[7];
     u8 saved_cmd[8];
- u8 *saved;
+    u8 *saved;
     u32 lock_id;
     u32 addr = 0x1000;
     s32 i, j;
@@ -35,33 +35,34 @@ u32 func_ov000_02177b0c(void) {
     func_0200f9b0(lock_id);
 
     dst = (u8 *)buf;
-    i=0;
- do {
+    i = 0;
+    do {
         u32 c1 = 1;
         u32 c5 = 5;
         volatile u8 *io = (volatile u8 *)(c1 << 26);
         u16 exmem = *(volatile u16 *)0x04000204;
-        register u32 hdr_addr asm("r1");
+        u32 hdr_addr;
         u32 ctrl;
+        u32 offset;
         s32 pos;
         u32 cur_addr;
 
-
         *(volatile u16 *)0x04000204 &= ~0x800;
-        pos = -(s32)(addr & (0x204 - c5));
+        offset = addr & (0x204 - c5);
         hdr_addr = ((((*(volatile u8 *)(io + 0x4000) & 1) + 5) << 18) - 13) << 5;
+        pos = -(s32)offset;
         ctrl = (*(volatile u32 *)hdr_addr & ~0x07000000) | 0xa1000000;
         while (*(volatile u32 *)(io + 0x1a4) & 0x80000000) {}
         *(volatile u8 *)(io + 0x1a1) = 0x80;
-        saved=saved_cmd;
- j=0;
- do {
+        saved = saved_cmd;
+        j = 0;
+        do {
             *saved++ = ((volatile u8 *)0x040001a8)[j];
         } while (++j < 8);
         cur_addr = addr + pos;
         while (pos < 0x200) {
- u8 command = 0xb7;
- volatile u8 *cmd=(volatile u8 *)0x04000000;
+            u8 command = 0xb7;
+            volatile u8 *cmd = (volatile u8 *)0x04000000;
             cmd[0x1a8] = command;
             cmd[0x1a9] = (u8)(cur_addr >> 24);
             cmd[0x1aa] = (u8)(cur_addr >> 16);
@@ -82,9 +83,9 @@ u32 func_ov000_02177b0c(void) {
             } while (*(volatile u32 *)(io + 0x1a4) & 0x80000000);
             cur_addr += 0x200;
         }
-        saved=saved_cmd;
- j=0;
- do {
+        saved = saved_cmd;
+        j = 0;
+        do {
             ((volatile u8 *)0x040001a8)[j] = *saved++;
         } while (++j < 8);
         *(volatile u16 *)(io + 0x204) = exmem;
@@ -97,8 +98,8 @@ u32 func_ov000_02177b0c(void) {
     func_0200fa20(lock_id);
     func_02005e50(lock_id);
 
-    j=0;
- do {
+    j = 0;
+    do {
         if (hash[3 + 0] != hash[0 + j]) {
             res = 0xfb;
             goto clear;
@@ -111,8 +112,8 @@ u32 func_ov000_02177b0c(void) {
     }
 
 clear:
-    j=0;
- do {
+    j = 0;
+    do {
         buf[j] = j;
     } while (++j < 0x80);
     return res * 0xb3;
@@ -226,50 +227,59 @@ u32 func_ov000_02178010(void) {
 }
 
 #pragma opt_propagation on
-void func_ov000_021780e0(Rc4State *state, u8 *key, u32 keylen) {
-    u32 j;
-    s32 i;
-    u32 k;
-    u32 zero;
-    u32 marker;
-    u32 word;
-    u32 cursor;
-    u32 step;
-    marker = 0xaa;
-    k = 0;
-    *(volatile u32 *)&state->field_0 = marker;
-    state->field_4 = k;
-    word = 0x03020100;
-    step = 0x04040404;
-    j = k;
-    state->field_8 = k;
-    cursor = (u32)state + 0xc;
-    i = (u32)state + 0x10c;
-    do {
-        *(u32 *)(u32)cursor = (u32)word;
-        cursor = (u32)cursor + 4;
-        word = (u32)step + (u32)word;
-    } while ((u32)cursor < (u32)i);
-    i = 255;
-    zero = 0;
-    do {
-        u32 si;
-        u32 ip;
-        u32 x;
-        u32 tmp;
-        x = key[k];
-        ip = (u32)state + i;
-        si = *(u8 *)(ip + 0xc);
-        x = j + x;
-        ++k;
-        j = (si + x) & 255;
-        x = (u32)state + j;
-        tmp = *(u8 *)(x + 0xc);
-        k = k >= keylen ? zero : k;
-        *(u8 *)(x + 0xc) = (u8)si;
-        *(u8 *)(ip + 0xc) = (u8)tmp;
-    } while (--i >= 0);
-    }
+void func_ov000_021780e0(Rc4State *state, u8 *key, u32 keylen)
+{
+  u32 j;
+  u32 new_var;
+  s32 i;
+  u32 k;
+  u32 zero;
+  u32 marker;
+  u32 word;
+  u32 cursor;
+  u32 step;
+  marker = 0xaa;
+  k = 0;
+  *((volatile u32 *) (&state->field_0)) = marker;
+  state->field_4 = k;
+  word = 0x03020100;
+  step = 0x04040404;
+  j = k;
+  state->field_8 = k;
+  cursor = ((u32) state) + 0xc;
+  i = ((u32) state) + 0x10c;
+  do
+  {
+    *((u32 *) ((u32) cursor)) = (u32) word;
+    cursor = ((u32) cursor) + 4;
+    word = ((u32) step) + ((u32) word);
+  }
+  while (((u32) cursor) < ((u32) i));
+  new_var = 255;
+  i = new_var;
+  zero = 0;
+  do
+  {
+    u32 si;
+    u32 ip;
+    u32 x;
+    u32 tmp;
+    x = key[k];
+    tmp = ((u32) state) + i;
+    ip = tmp;
+    si = *((u8 *) (ip + 0xc));
+    x = (new_var = j + x);
+    ++k;
+    j = si + new_var;
+    j = j & new_var;
+    x = ((u32) state) + j;
+    tmp = *((u8 *) (x + 0xc));
+    k = (k >= keylen) ? (zero) : (k);
+    *((u8 *) (x + 0xc)) = (u8) si;
+    *((u8 *) (ip + 0xc)) = (u8) tmp;
+  }
+  while ((--i) >= 0);
+}
 u32 func_ov000_0217816c(Rc4State *state) {
     u32 i = (state->field_4 + 1 + state->field_0) & 0xff;
     u32 si = state->s[i];

@@ -136,9 +136,7 @@ void func_0201e6c0(void) {
     func_0201b4cc();
 }
 
-double _dadd(double a, double b) {
-    return a + b;
-}
+double _dadd(double a, double b) { return a + b; }
 
 double _dsub(double aa,double bb) {
  DoubleBits a,b,r;

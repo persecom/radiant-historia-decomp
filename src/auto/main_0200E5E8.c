@@ -284,7 +284,7 @@ extern void func_02005988(u32);
 extern u16 func_020081e0(void);
 extern s32 func_02011054(void);
 #pragma push
-#pragma optimization_level 3
+#pragma opt_loop_invariants off
 void func_0200ea34(u32 trigger, u32 logic, u32 keyPattern) {
     s32 flag = 0;
     u32 intr;
@@ -366,10 +366,10 @@ void func_0200ea34(u32 trigger, u32 logic, u32 keyPattern) {
             }
         }
         {
-            volatile u32 *display = (volatile u32 *)0x4000000;
-            *display = dispCnt;
-            display += 0x400;
-            *display = subDispCnt;
+            volatile u8 *reg = (volatile u8 *)0x4000000;
+            *(volatile u32 *)reg = dispCnt;
+            reg += 0x1000;
+            *(volatile u32 *)reg = subDispCnt;
         }
         func_020081a4(0x360000);
     }

@@ -40,9 +40,11 @@ void func_0212c824(void *arg0) {
     s32 buf[2];
     s32 tmp[2];
     s32 ret;
+    register s32 len asm("r2");
 
-    ret = (*(s32 (**)(void *, s32, s32, void *))(*(u8 **)obj + 0x18))(obj, 1, 0xc800, buf);
-    if (buf[1] <= 0) {
+    (*(void (**)(void *, s32, s32, void *))(*(u8 **)obj + 0x18))(obj, 1, 0xc800, buf);
+    len = buf[1];
+    if (len <= 0) {
         (*(void (**)(void *, s32, void *))(*(u8 **)obj + 0x1c))(obj, 1, buf);
         return;
     }
@@ -50,7 +52,8 @@ void func_0212c824(void *arg0) {
     if (*(s16 *)(ctx + 0x9a) == 0 && *(s16 *)(ctx + 0x98) != 0xd) {
         func_02137f80(buf, 0, tmp, buf);
         (*(void (**)(void *, s32, void *))(*(u8 **)obj + 0x20))(obj, 0, tmp);
-        if (buf[1] < 0x10) {
+        len = buf[1];
+        if (len < 0x10) {
             (*(void (**)(void *, s32, void *))(*(u8 **)obj + 0x1c))(obj, 1, buf);
             return;
         }
@@ -93,11 +96,11 @@ void func_0212c824(void *arg0) {
     }
 
     if (func_0212a1dc(ctx) == 2) {
-        s32 len = buf[1];
-        if (len >= 0x40) {
-            len = 0x40;
+        s32 l = buf[1];
+        if (l >= 0x40) {
+            l = 0x40;
         }
-        func_02013858(p + 0x60, (void *)buf[0], len);
+        func_02013858(p + 0x60, (void *)buf[0], l);
     }
 
     {

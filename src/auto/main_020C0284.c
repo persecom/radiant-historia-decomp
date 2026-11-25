@@ -149,7 +149,6 @@ func_021098ac(&buf);break;
 case 3: case 4: case 5:
 func_020c0284(x,y,depth,value,size);break;
 case 6: case 7:
-#pragma opt_propagation on
 if(value<=6){func_020a3bbc(0x6b);w=0x35;goto height16;}
 else if(value<=12){func_020a3bbc(0x6c);w=0x37;height16: h=0x10;}
 else if(value<=18){func_020a3bbc(0x6d);w=0x67;goto height19;}
@@ -158,7 +157,6 @@ else {func_020a3bbc(0x6f);w=0x79;h=0x17;}
 buf.unk[1]=zero;buf.unk[2]=zero;buf.unk[3]=w;buf.unk[4]=h;buf.unk[8]=w;buf.unk[9]=h;
 buf.unk[5]=x;buf.unk[6]=y;buf.unk[7]=depth+0x2bf;
 func_021098ac(&buf);break;
-#pragma opt_propagation off
 case 8:
 *hw = hwval - 0x120000;func_020a3bbc(0x75);
 buf.unk[1]=zero;buf.unk[2]=1;buf.unk[3]=-64;buf.unk[4]=25;buf.unk[8]=64;buf.unk[9]=25;

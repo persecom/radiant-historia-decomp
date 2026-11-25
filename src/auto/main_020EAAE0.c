@@ -98,16 +98,15 @@ void func_020ebc94(void *,u16,s32);
 void func_020eaae0(void)
 {
   Vec_EAAE0 pos;
-  s32 matrix[12];
-  s64 new_var2;
-  volatile long long new_var;
+  union { s32 m[12]; volatile s32 nv; } u;
   u8 *node;
   u8 *sub;
   u8 *obj;
   u8 *next;
+  s64 new_var2;
   s32 visible;
   s32 culled;
-  func_02001134(data_02170248, matrix);
+  func_02001134(data_02170248, u.m);
   if (!data_02160a6c)
   {
     return;
@@ -194,7 +193,7 @@ void func_020eaae0(void)
       sy = (s32) (((inv * py) + 0x80000000LL) >> 32);
       sy = (sy + 4096) >> 1;
       sy = (((sy << 7) + (sy << 6)) + 2048) >> 12;
-      sx = (s32) (((inv * (new_var = px)) + 0x80000000LL) >> 32);
+      sx = (s32) (((inv * (u.nv = px)) + 0x80000000LL) >> 32);
       sx = ((((sx + 4096) >> 1) << 8) + 2048) >> 12;
       sy = 192 - sy;
       *((s32 *) (node + 0xfc)) = sx;

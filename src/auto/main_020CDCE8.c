@@ -62,16 +62,14 @@ void func_020cdce8(s32 value, s16 x, s16 y, s16 z, s8 spacing, u16 kind, s32 ali
  padding=count-digits;
  for(i=0;i<padding;i++) {
  sprite.field[1]=0; sprite.field[2]=0;
- sprite.field[3]=width; sprite.field[4]=height;
- sprite.field[8]=width; sprite.field[9]=height;
+ set_digit_size(&sprite,width,height);
  sprite.field[6]=y; sprite.field[5]=x+(-(width+spacing))*(digits+i);
  sprite.field[7]=z+101;
  func_021098ac(&sprite);
  }
  *(volatile u32 *)0x40004a4=0x1f00c0;
  for(i=0;i<digits;i++) {
- sprite.field[3]=width; sprite.field[4]=height;
- sprite.field[8]=width; sprite.field[9]=height;
+ set_digit_size(&sprite,width,height);
  sprite.field[2]=0; sprite.field[6]=y;
  { u8 digit=value%10; value/=10; sprite.field[1]=digit*width; }
  if(align) sprite.field[5]=x+i*(-(width+spacing));
@@ -151,7 +149,8 @@ void func_020ce170(s32 arg0, s32 arg1, s32 arg2) {
     u16 j;
     s32 a, b, c;
     s16 y, x, x2;
-    u8 *vobj; u8 **manager; u8 *m;
+    s32 anim;
+    u8 *vobj; u8 **manager;
 
     if (slot[0] != 0) {
         active = 1;
@@ -284,7 +283,7 @@ void func_020ce170(s32 arg0, s32 arg1, s32 arg2) {
         }
     }
 
-    manager=&data_02160238;
+    manager = &data_02160238;
     func_020ceb74(&a, &b, &c, *(s32 *)(slot + 8));
     p = func_020cdc8c((u16)(base2 + 3), 2);
     *(s32 *)(p + 4) = a;
@@ -297,10 +296,13 @@ void func_020ce170(s32 arg0, s32 arg1, s32 arg2) {
         y = 0x19;
         x = 0x4e;
     }
-    m=*manager;
-    if(arg2) func_020a8810(*(void **)(m + arg0 * 0x64 + 0x560), 0x13);
-else func_020a8810(*(void **)(m + arg0 * 0x64 + 0x560), 0x14);
-    func_020ce664(arg0, 5, x, y, slot[6]);
+    if (arg2 != 0) {
+        func_020a8810(*(void **)(*manager + arg0 * 0x64 + 0x560), 0x13);
+    } else {
+        func_020a8810(*(void **)(*manager + arg0 * 0x64 + 0x560), 0x14);
+    }
+    anim = slot[6];
+    func_020ce664(arg0, 5, x, y, (u8)anim);
     *(s32 *)(*manager + arg0 * 0x64 + 0x5b8) = active;
 
     x2 = (s16)(arg0 * 0x30 + 0x28);

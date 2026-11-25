@@ -172,52 +172,54 @@ void func_0211a860(u32 arg0) {
 
 #pragma opt_propagation off
 void func_0211a8ac(void *oam0, void *tex0, void *image, void *palette, s32 *uv) {
- SpriteTex_1a8ac *tex=tex0;
- SpriteOam_1a8ac *oam=oam0;
- u16 tile=oam->bits.tile;
- u32 attr=oam->word[0]&0xc000c000;
- u32 size=(attr&0xc0000000)>>30;
- s32 shape=(s32)(attr&0xc000)>>14;
- u32 mapping=tex->mapping;
- u32 address=(u32)image;
- 
- u32 fx,fy;
- u16 index;
- s32 format;
- { u16 w=data_02144d84[shape][size];
- u16 h=data_02144d6c[shape][size];
- uv[4]=w;uv[5]=h; }
- if(mapping==0) {
- s32 fmt=tex->format;
- u32 packed = fmt << 26;
- packed |= address >> 3;
- packed |= 0x40000000;
- packed |= tex->width << 20;
- packed |= tex->height << 23;
- packed |= tex->transparent << 29;
- *(volatile u32 *)0x40004a8=packed;
- if(fmt==4) tile>>=1;
- { s32 width=tex->width;
- s32 v=(s32)tile>>width;
- s32 u=tile&(data_02144db8[width]-1);
- uv[0]=u<<15; uv[1]=v<<15; }
- } else {
- address+=tile<<(((s32)(mapping&0x700000)>>20)+5);
- *(volatile u32 *)0x40004a8=(address>>3)|(tex->format<<26)|0x40000000|(data_02144dd8[(u16)shape][(u16)size]<<20)|(data_02144e08[(u16)shape][(u16)size]<<23)|(tex->transparent<<29);
- uv[0]=0;uv[1]=0;
- }
- uv[2]=uv[0]+(uv[4]<<12);
- uv[3]=uv[1]+(uv[5]<<12);
- fy=oam->bits.flipY;fx=oam->bits.flipX;
- if(fx) { s32 tmp=uv[0];uv[0]=uv[2];uv[2]=tmp; }
- if(fy) { s32 tmp=uv[1];uv[1]=uv[3];uv[3]=tmp; }
- if(data_021701d8[0]) ((void (*)(s32 *,s32 *,s32 *,s32 *,u32,u32))data_021701d8[0])(uv,uv+1,uv+2,uv+3,fx,fy);
- index=oam->bits.palette;
- format=data_02144db0[oam->bits.format];
- if(tex->palette) address=index<<9;
- else if(format==4) address=0;
- else address=index<<5;
- *(volatile u32 *)0x40004ac=((u32)palette+address)>>(4-(format==2));
+    SpriteTex_1a8ac *tex = tex0;
+    SpriteOam_1a8ac *oam = oam0;
+    u32 pal = (u32)palette;
+    u16 tile = oam->bits.tile;
+    u32 attr = oam->word[0] & 0xc000c000;
+    u32 size = (attr & 0xc0000000) >> 30;
+    s32 shape = (s32)(attr & 0xc000) >> 14;
+    u32 mapping = tex->mapping;
+    u32 address = (u32)image;
+    u32 fx, fy;
+    u16 index;
+    s32 format;
+    {
+        u16 w = data_02144d84[shape][size];
+        u16 h = data_02144d6c[shape][size];
+        uv[4] = w;
+        uv[5] = h;
+    }
+    if (mapping == 0) {
+        s32 fmt = tex->format;
+        *(volatile u32 *)0x40004a8 = ((u32)fmt << 26) | (address >> 3) | 0x40000000 | (tex->width << 20) | (tex->height << 23) | (tex->transparent << 29);
+        if (fmt == 4) tile >>= 1;
+        {
+            s32 width = tex->width;
+            s32 v = ((s32)tile >> width) << 15;
+            s32 u = (tile & (data_02144db8[width] - 1)) << 15;
+            uv[0] = u;
+            uv[1] = v;
+        }
+    } else {
+        address += tile << (((s32)(mapping & 0x700000) >> 20) + 5);
+        *(volatile u32 *)0x40004a8 = (tex->format << 26) | (address >> 3) | 0x40000000 | (data_02144dd8[(u16)shape][(u16)size] << 20) | (data_02144e08[(u16)shape][(u16)size] << 23) | (tex->transparent << 29);
+        uv[0] = 0;
+        uv[1] = 0;
+    }
+    uv[2] = uv[0] + (uv[4] << 12);
+    uv[3] = uv[1] + (uv[5] << 12);
+    fy = oam->bits.flipY;
+    fx = oam->bits.flipX;
+    if (fx) { s32 tmp = uv[0]; uv[0] = uv[2]; uv[2] = tmp; }
+    if (fy) { s32 tmp = uv[1]; uv[1] = uv[3]; uv[3] = tmp; }
+    if (data_021701d8[0]) ((void (*)(s32 *, s32 *, s32 *, s32 *, u32, u32))data_021701d8[0])(uv, uv + 1, uv + 2, uv + 3, fx, fy);
+    index = oam->bits.palette;
+    format = data_02144db0[oam->bits.format];
+    if (tex->palette) address = index << 9;
+    else if (format == 4) address = 0;
+    else address = index << 5;
+    *(volatile u32 *)0x40004ac = (pal + address) >> (4 - (format == 2));
 }
 #pragma opt_propagation on
 void func_0211ab04(u32 arg0) {
@@ -240,15 +242,13 @@ u32 func_0211ab38(void) {
 extern void func_0211a8ac(void *, void *, void *, void *, s32 *);
 extern u16 data_02144d84[][4];
 extern u16 data_02144d6c[][4];
-#pragma opt_propagation off
-void func_0211ab48(long x, long y, long z, u32 *oam, void *pTex, void *pPltt, void *pChar) {
+#pragma scheduling off
+void func_0211ab48(s32 x, s32 y, s32 z, u32 *oam, void *pTex, void *pPltt, void *pChar) {
     s32 uv[6];
-    u32 mode;
     u32 attr;
-    
+    u32 mode;
 
     func_0211a8ac(oam, pTex, pPltt, pChar, uv);
-
 
     attr = *oam;
     mode = attr & 0x300;
@@ -299,7 +299,7 @@ void func_0211ab48(long x, long y, long z, u32 *oam, void *pTex, void *pPltt, vo
         data_021701d8[1] += data_02155ed0[0];
     }
 }
-#pragma opt_propagation on
+#pragma scheduling on
 extern u32 data_021701d8[4];
 void func_0211ad90(u32 arg0) {
     data_021701d8[0] = arg0;

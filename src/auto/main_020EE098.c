@@ -46,175 +46,227 @@ extern s32 func_0210e848(char *, void *);
 extern void func_021167f0(void *, void *);
 
 u8 *func_020ee52c(s32 arg0);
-s32 func_020ee098(void) {
-    struct S24 { u32 a, b, c, d, e, f; };
-    s32 zero = 0;
-    s32 id;
-    s32 flag;
-    s32 s1;
-    s32 one = 1;
-    s32 s2;
-    s32 s3;
-    s32 f1;
-    s32 f2;
-    s32 f3;
-    s32 id2;
-    s32 zero2;
-    s32 i;
-    u8 *node;
-    u8 *slot;
-    char name[0x40];
-
-    if (func_0210cc54(data_02151ca0) != 0) {
-        id = func_0210cd90(zero);
-        flag = 0x20;
-        s1 = func_0210cd90(flag);
-        if (id % 10 != 1) {
-            flag = 0x10;
-        }
-        s2 = func_0210cd90(flag);
-        s3 = func_0210cd90(0x10);
-        zero2 = 0;
-        id2 = func_0210cd90(zero2);
-        if (id == 0) {
-            return zero2;
-        }
-        if (func_020ee52c(id) != NULL) {
-            return zero2;
-        }
-        switch (s1) {
-        case 8:
-            f1 = zero2;
-            break;
-        case 0x10:
-            f1 = 1;
-            break;
-        case 0x20:
-            f1 = 2;
-            break;
-        case 0x40:
-            f1 = 3;
-            break;
-        case 0x80:
-            f1 = 4;
-            break;
-        case 0x100:
-            f1 = 5;
-            break;
-        default:
-            return 0;
-        }
-        switch (s2) {
-        case 8:
-            f2 = 0;
-            break;
-        case 0x10:
-            f2 = 1;
-            break;
-        case 0x20:
-            f2 = 2;
-            break;
-        case 0x40:
-            f2 = 3;
-            break;
-        case 0x80:
-            f2 = 4;
-            break;
-        case 0x100:
-            f2 = 5;
-            break;
-        default:
-            return 0;
-        }
-        switch (s3) {
-        case 0:
-            f3 = zero2;
-            break;
-        case 4:
-            f3 = 2;
-            break;
-        case 0x10:
-            f3 = 3;
-            break;
-        default:
-            return 0;
-        }
-        node = func_0210c518(0x28, (void *)data_02155c3c);
-        if (node == NULL) {
-            return 0;
-        }
-        func_02008e68(zero, node, 0x28);
-        func_02005e80(name, data_02151ca4, id);
-        if (func_0210e7f0(name, node + 8) == 0) {
-            return zero;
-        }
-        if (id2 == 0) {
-            id2 = id;
-        }
-        func_02005e80(name, data_02151cb8, id2);
-        if (func_0210e848(name, node + 0x10) == 0) {
-            return 0;
-        }
-        *(u32 *)(node + 0x18) = f1;
-        *(u32 *)(node + 0x1c) = f2;
-        *(u32 *)(node + 0x20) = f3;
-        *(u16 *)(node + 0x24) = id;
-        func_021167f0(data_02160aec, node);
-        return 1;
+s32 func_020ee098(void)
+{
+  struct S24
+  {
+    u32 a;
+    u32 b;
+    u32 c;
+    u32 d;
+    u32 e;
+    u32 f;
+  };
+  s32 zero = 0;
+  s32 id;
+  s32 flag;
+  s32 one = 1;
+  s32 s1;
+  s32 s2;
+  s32 s3;
+  s32 f2;
+  s32 f3;
+  s32 zero2;
+  s32 i;
+  u8 *new_var[2];
+  char name[0x40];
+  if (func_0210cc54(data_02151ca0) != 0)
+  {
+    id = func_0210cd90(zero);
+    flag = 0x20;
+    s1 = func_0210cd90(flag);
+    if ((id % 10) != 1)
+    {
+      flag = 0x10;
     }
-    if (func_0210cc54(data_02151ccc) != 0) {
-    i = zero;
-    slot = (u8 *)((u32)(data_02160aec + 0x10) + func_0210cd90(i) * 0x78);
-    do {
-        id = func_0210cd90(zero);
-        if (id == 0) {
-            switch (i) {
-            case 2:
-                *(struct S24 *)(slot + 0x30) = *(struct S24 *)slot;
-                break;
-            case 3:
-                *(struct S24 *)(slot + 0x48) = *(struct S24 *)(slot + 0x30);
-                break;
-            case 4:
-                *(struct S24 *)(slot + 0x60) = *(struct S24 *)(slot + 0x48);
-                break;
-            default:
-                return zero;
-            }
-        } else {
-            node = func_020ee52c(id);
-            if (node == NULL) {
-                return zero;
-            }
-            {
-                u32 off = i * 0x18;
-                u8 *p = slot + off;
-                s32 v1;
-                s32 v2;
-                s16 x;
+    s2 = func_0210cd90(flag);
+    s3 = func_0210cd90(0x10);
+    zero2 = 0;
+    one = func_0210cd90(zero2);
+    if (id == 0)
+    {
+      return zero2;
+    }
+    if (func_020ee52c(id) != NULL)
+    {
+      return zero2;
+    }
+    switch (s1)
+    {
+      case 8:
+        flag = zero2;
+        break;
 
-                *(u32 *)(p + 0x0) = (*(u32 *)(node + 0xc) >> 3) | (*(u32 *)(node + 0x20) << 26) | 0x40000000 | (*(u32 *)(node + 0x18) << 20) | (*(u32 *)(node + 0x1c) << 23) | 0xf0000;
-                v1 = (one << (*(u32 *)(node + 0x18) + 3)) << 12;
-                v2 = (one << (*(u32 *)(node + 0x1c) + 3)) << 12;
-                *(u32 *)(p + 0x4) = *(u32 *)(node + 0x14) >> (4 - ((*(u32 *)(node + 0x20) == 2) ? one : zero));
-                x = (s16)(v2 >> 8);
-                if (i != 4) {
-                    *(u32 *)(p + 0x8) = zero;
-                    *(u32 *)(p + 0xc) = (u32)(u16)x << 16;
-                    *(u32 *)(p + 0x10) = (u32)(u16)(s16)(v1 >> 8) | ((u32)(u16)x << 16);
-                    *(u32 *)(p + 0x14) = (u32)(u16)(s16)(v1 >> 8);
-                } else {
-                    *(u32 *)(p + 0x8) = (u32)(u16)x << 16;
-                    *(u32 *)(p + 0xc) = zero;
-                    *(u32 *)(p + 0x10) = (u32)(u16)(s16)(v1 >> 8);
-                    *(u32 *)(p + 0x14) = (u32)(u16)(s16)(v1 >> 8) | ((u32)(u16)x << 16);
-                }
-            }
-        }
-    } while (++i < 5);
+      case 0x10:
+        flag = 1;
+        break;
+
+      case 0x20:
+        flag = 2;
+        break;
+
+      case 0x40:
+        flag = 3;
+        break;
+
+      case 0x80:
+        flag = 4;
+        break;
+
+      case 0x100:
+        flag = 5;
+        break;
+
+      default:
+        return 0;
+
+    }
+
+    switch (s2)
+    {
+      case 8:
+        f2 = 0;
+        break;
+
+      case 0x10:
+        f2 = 1;
+        break;
+
+      case 0x20:
+        f2 = 2;
+        break;
+
+      case 0x40:
+        f2 = 3;
+        break;
+
+      case 0x80:
+        f2 = 4;
+        break;
+
+      case 0x100:
+        f2 = 5;
+        break;
+
+      default:
+        return 0;
+
+    }
+
+    switch (s3)
+    {
+      case 0:
+        f3 = zero2;
+        break;
+
+      case 4:
+        f3 = 2;
+        break;
+
+      case 0x10:
+        f3 = 3;
+        break;
+
+      default:
+        return 0;
+
+    }
+
+    new_var[1] = func_0210c518(0x28, (void *) data_02155c3c);
+    if (new_var[1] == NULL)
+    {
+      return 0;
+    }
+    func_02008e68(zero, new_var[1], 0x28);
+    func_02005e80(name, data_02151ca4, id);
+    if (func_0210e7f0(name, new_var[1] + 8) == 0)
+    {
+      return zero;
+    }
+    if (one == 0)
+    {
+      one = id;
+    }
+    func_02005e80(name, data_02151cb8, one);
+    if (func_0210e848(name, new_var[1] + 0x10) == 0)
+    {
+      return 0;
+    }
+    *((u32 *) (new_var[1] + 0x18)) = flag;
+    *((u32 *) (new_var[1] + 0x1c)) = f2;
+    *((u32 *) (new_var[1] + 0x20)) = f3;
+    *((u16 *) (new_var[1] + 0x24)) = id;
+    func_021167f0(data_02160aec, new_var[1]);
     return 1;
+  }
+  if (func_0210cc54(data_02151ccc) != 0)
+  {
+    i = zero;
+    new_var[0] = (u8 *) (((u32) (data_02160aec + 0x10)) + (func_0210cd90(i) * 0x78));
+    for (; i < 5; i++)
+    {
+      id = func_0210cd90(zero);
+      if (id == 0)
+      {
+        switch (i)
+        {
+          case 2:
+            *((struct S24 *) (new_var[0] + 0x30)) = *((struct S24 *) new_var[0]);
+            break;
+
+          case 3:
+            *((struct S24 *) (new_var[0] + 0x48)) = *((struct S24 *) (new_var[0] + 0x30));
+            break;
+
+          case 4:
+            *((struct S24 *) (new_var[0] + 0x60)) = *((struct S24 *) (new_var[0] + 0x48));
+            break;
+
+          default:
+            return zero;
+
+        }
+
+      }
+      else
+      {
+        new_var[1] = func_020ee52c(id);
+        if (new_var[1] == NULL)
+        {
+          return zero;
+        }
+        {
+          u32 off = i * 0x18;
+          u8 *p = new_var[0] + off;
+          s32 v1;
+          s32 v2;
+          s16 x;
+          *((u32 *) (p + 0x0)) = ((((((*((u32 *) (new_var[1] + 0xc))) >> 3) | ((*((u32 *) (new_var[1] + 0x20))) << 26)) | 0x40000000) | ((*((u32 *) (new_var[1] + 0x18))) << 20)) | ((*((u32 *) (new_var[1] + 0x1c))) << 23)) | 0xf0000;
+          v1 = (one << ((*((u32 *) (new_var[1] + 0x18))) + 3)) << 12;
+          v2 = (one << ((*((u32 *) (new_var[1] + 0x1c))) + 3)) << 12;
+          *((u32 *) (p + 0x4)) = (*((u32 *) (new_var[1] + 0x14))) >> (4 - (((*((u32 *) (new_var[1] + 0x20))) == 2) ? (one) : (zero)));
+          ;
+          if (i != 4)
+          {
+            *((u32 *) (p + 0x8)) = zero;
+            *((u32 *) (p + 0xc)) = ((u32) ((u16) ((s16) (v2 >> 8)))) << 16;
+            *((u32 *) (p + 0x10)) = ((u32) ((u16) ((s16) (v1 >> 8)))) | (((u32) ((u16) ((s16) (v2 >> 8)))) << 16);
+            *((u32 *) (p + 0x14)) = (u32) ((u16) ((s16) (v1 >> 8)));
+          }
+          else
+          {
+            *((u32 *) (p + 0x8)) = ((u32) ((u16) ((s16) (v2 >> 8)))) << 16;
+            *((u32 *) (p + 0xc)) = zero;
+            *((u32 *) (p + 0x10)) = (u32) ((u16) ((s16) (v1 >> 8)));
+            *((u32 *) (p + 0x14)) = ((u32) ((u16) ((s16) (v1 >> 8)))) | (((u32) ((u16) ((s16) (v2 >> 8)))) << 16);
+          }
+        }
+      }
     }
-    return zero;
+
+    return 1;
+  }
+  return zero;
 }
 
 u8 *func_020ee52c(s32 arg0) {
@@ -274,15 +326,14 @@ func_0210c094(p+(off+96),p+0x58ce0,p+(off+120),p+(off+84));
 func_0210c094(p+(off+144),p+0x58d10,p+(off+168),p+(off+132));
 }
 
-#pragma push
-#pragma opt_loop_invariants off
+#pragma opt_lifetimes off
 void func_020ee6c8(u32 arg0) {
     char name[0x30];
     struct {u32 low:8;u32 size:24;} header;
     u8 *decoded, *packed;
-    s32 height, width;
+    s32 height = 0, width;
     void *file=0;
-    s32 x,y,j,k;
+    s32 y,x,j,k;
     u8 *src,*dst;
     func_020eec70();
     data_02160aec=func_0210c594(0x58d3c,data_02155c3c);
@@ -371,7 +422,7 @@ void func_020ee6c8(u32 arg0) {
         for(x=0;x<0x4000;x++) {dst[0]=255;dst[1]=255;dst[3]=0;dst+=12;}
     }
 }
-#pragma pop
+#pragma opt_lifetimes on
 void func_020eec70(void)
 {
   u8 **pp = &data_02160aec;

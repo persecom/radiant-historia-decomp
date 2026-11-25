@@ -209,11 +209,13 @@ do { *(u32 *)p=value; p+=4; } while(p<end);
 }
 if(size&2) { *(u16 *)p=value; p+=2; }
 }
-if(!(size&1)) return;
-{
+switch (size & 1) {
+case 0: return;
+default: {
 u32 old=*(u16 *)p&0xff00;
 value&=255;
 *(u16 *)p=value|old;
+}
 }
 }
 #pragma pop
@@ -629,8 +631,11 @@ void func_02009894(void) {
     for (i = 0; i < 255; i++) {
         *(u32 *)(data_0215d480 + i * 24) = (u32)(data_0215d480 + (i + 1) * 24);
     }
-    *(u32 *)(data_0215e480 + 0x7e8) = 0;
-    data_0215d1b8[4] = (u32)data_0215ec68;
+    {
+        volatile u32 *e = (volatile u32 *)(data_0215e480 + 0x7e8);
+        *e = 0;
+    }
+    ((volatile u32 *)data_0215d1b8)[4] = (u32)data_0215ec68;
     data_0215d1b8[2] = 0;
     data_0215d1b8[3] = 0;
     data_0215d1b8[7] = 0;

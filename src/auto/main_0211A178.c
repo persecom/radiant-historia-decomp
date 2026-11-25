@@ -49,34 +49,29 @@ extern u32 data_02155ed0[4];
 
 
 extern void func_0211c5fc(void);
-void func_0211a178(s32 x, s32 y, s32 z)
-{
-  s32 *new_var;
-  volatile s32 m[6];
-  if (data_0216f234[1])
-  {
-    s32 i = data_0216f234[3];
-    *((volatile s32 *) (((u8 *) data_0216f3d4) + (i * 24))) += x;
-    {
-      s32 a = *((volatile s32 *) (((u8 *) data_0216f3d8) + (i * 24)));
-      s32 b = ((volatile s32 *) data_0216f244)[i];
-      *((s32 *) (((u8 *) data_0216f3d8) + (i * 24))) = a + y;
-      ((volatile s32 *)data_0216f244)[i] = b + z;
+#pragma optimization_level 3
+void func_0211a178(s32 x, s32 y, s32 z) {
+    s32 *new_var;
+    volatile s32 m[6];
+    if (data_0216f234[1]) {
+        s32 i = data_0216f234[3];
+        data_0216f3c4[i][4] += x;
+        data_0216f3c4[i][5] += y;
+        data_0216f244[i] += z;
+        return;
     }
-    return;
-  }
-  m[0] = 0x1000;
-  m[1] = 0;
-  m[2] = 0;
-  m[3] = 0x1000;
-  m[5] = y;
-  m[4] = x;
-  func_0211a4e0((void *) m, data_0216f3c4[data_0216f234[3]], data_0216f3c4[(new_var = data_0216f234)[3]]);
-  func_0211a4e0((void *) m, data_0216f6c4[data_0216f234[3]], data_0216f6c4[data_0216f234[3]]);
-  data_0216f244[data_0216f234[3]] += z;
+    m[0] = 0x1000;
+    m[1] = 0;
+    m[2] = 0;
+    m[3] = 0x1000;
+    m[5] = y;
+    m[4] = x;
+    func_0211a4e0((void *)m, data_0216f234[3] * 24 + (u8 *)data_0216f3c4, (new_var = data_0216f234)[3] * 24 + (u8 *)data_0216f3c4);
+    func_0211a4e0((void *)m, data_0216f234[3] * 24 + (u8 *)data_0216f6c4, data_0216f234[3] * 24 + (u8 *)data_0216f6c4);
+    data_0216f244[data_0216f234[3]] += z;
 }
-
 s32 func_02001fc0(s32);
+#pragma optimization_level 3
 void func_0211a26c(s32 x, s32 y)
 {
   Mtx23 m;
@@ -135,52 +130,45 @@ void func_0211a26c(s32 x, s32 y)
   }
 
 }
-
+#pragma optimization_level 3
 void func_0211a3ac(s32 sine, s32 cosine)
 {
-  s32 storage[6];
-  u32 offset;
-  s32 *m = storage;
-  long stride = 24;
-  s32 *state = data_0216f234;
-  s32 index = *((volatile s32 *) (&state[3]));
-  volatile u16 *entry;
-  s32 active;
-  m[1] = sine;
-  offset = index * stride;
-  m[3] = (m[0] = cosine);
-  m[2] = -sine;
-  m[5] = m[4] = 0;
-  func_0211a4e0((void *) m, ((u8 *) data_0216f3c4) + offset, ((u8 *) data_0216f3c4) + (index * stride));
-  func_0211a4e0((void *) m, ((u8 *) data_0216f6c4) + (state[3] * stride), data_0216f6c4[data_0216f234[3]]);
-  active = Active0211a3ac();
-  if (!active)
-  {
-    data_02155eb0[0] = data_0216f234[3];
-  }
-  entry = data_0216f2c4[(u16) data_0216f234[3]];
-  switch (entry[2])
-  {
-    case 1:
-      break;
+    s32 storage[6];
+    u32 offset;
+    s32 *m = storage;
+    long stride = 24;
+    s32 *state = data_0216f234;
+    s32 index = *((volatile s32 *)(&state[3]));
+    volatile u16 *entry;
+    s32 active;
 
-    case 0:
-
-    case 2:
-
-    case 3:
-    {
-      u16 n = ((u16 *) data_0216f234)[1];
-      ((volatile u16 *) data_0216f234)[1] = n + 1;
-      entry[1] = n;
+    m[1] = sine;
+    offset = index * stride;
+    m[3] = (m[0] = cosine);
+    m[2] = -sine;
+    m[5] = m[4] = 0;
+    func_0211a4e0((void *)m, ((u8 *)data_0216f3c4) + offset, ((u8 *)data_0216f3c4) + (index * stride));
+    func_0211a4e0((void *)m, ((u8 *)data_0216f6c4) + (state[3] * stride), data_0216f6c4[data_0216f234[3]]);
+    active = Active0211a3ac();
+    if (!active) {
+        data_02155eb0[0] = data_0216f234[3];
     }
-      entry[2] = 1;
-      break;
-
-  }
-
+    entry = data_0216f2c4[(u16)data_0216f234[3]];
+    switch (entry[2]) {
+    case 1:
+        break;
+    case 0:
+    case 2:
+    case 3: {
+        u16 n = ((u16 *)data_0216f234)[1];
+        ((volatile u16 *)data_0216f234)[1] = n + 1;
+        entry[1] = n;
+    }
+        entry[2] = 1;
+        break;
+    }
 }
-
+#pragma optimization_level reset
 void func_0211a4c0(void) {
     func_0211c5fc();
 }

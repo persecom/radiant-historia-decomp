@@ -338,41 +338,32 @@ void func_020060b8(void) {
     func_020068fc(r5);
 }
 
-#pragma opt_common_subs off
+#pragma optimization_level 3
 void func_0200617c(void) {
-    u32 end, start;
-    s32 size;
-    if (((volatile u32 *)data_0215cde4)[3]) return;
-    ((volatile u32 *)data_0215cde4)[3] = 1;
-    ((volatile u32 *)data_0215cde4)[2] = (u32)data_0215ce04;
-
-    *(volatile u32 *)((u8 *)data_0215ced0 + 0x70) = 16;
-    *(volatile u32 *)((u8 *)data_0215ced0 + 0x6c) = 0;
-    *(volatile u32 *)((u8 *)data_0215ced0 + 0x64) = 1;
-    *(volatile u32 *)((u8 *)data_0215ced0 + 0x68) = 0;
-    *(volatile u32 *)((u8 *)data_0215ced0 + 0x74) = 0;
-    ((volatile u32 *)data_0215cde4)[9] = (u32)data_0215ced0;
-    ((volatile u32 *)data_0215cde4)[8] = (u32)data_0215ced0;
-    size = (s32)SDK_SYS_STACKSIZE;
-    if (size <= 0) start = 0x027e0080 - size;
-    else start = ((u32)data_027e0000 + 0x3f80) - (u32)SDK_IRQ_STACKSIZE - size;
-    end = ((u32)data_027e0000 + 0x3f80) - (u32)SDK_IRQ_STACKSIZE;
-    *(volatile u32 *)((u8 *)data_0215ced0 + 0x94) = end;
-    *(volatile u32 *)((u8 *)data_0215ced0 + 0x90) = start;
-    *(volatile u32 *)((u8 *)data_0215ced0 + 0x98) = 0;
-    *(u32 *)(end - 8) = 0xfddb597d;
-    **(u32 **)((u8 *)data_0215ced0 + 0x90) = 0x7bf9dd5b;
-    *(volatile u32 *)((u8 *)data_0215ced0 + 0xa0) = 0;
-    *(volatile u32 *)((u8 *)data_0215ced0 + 0x9c) = 0;
-    *(volatile u16 *)((u8 *)data_0215cde4 + 0x1c) = 0;
-    *(volatile u16 *)((u8 *)data_0215cde4 + 0x1e) = 0;
-    *(u32 *)0x02ffffa0 = (u32)data_0215ce00;
-    func_020067a0(0);
-    func_020062d8(data_0215ce10, (void (*)(void *))func_020067c8, 0, data_0215d058, 200, 31);
-    *(u32 *)(data_0215ce10 + 0x70) = 32;
-    *(u32 *)(data_0215ce10 + 0x64) = 1;
+ u32 end,start; s32 size;
+ if(((volatile u32 *)data_0215cde4)[3]) return;
+ ((volatile u32 *)data_0215cde4)[3]=1;
+ ((volatile u32 *)data_0215cde4)[2]=(u32)data_0215ce04;
+ 
+ *(volatile u32 *)((u8 *)data_0215ced0+0x70)=16; *(volatile u32 *)((u8 *)data_0215ced0+0x6c)=0;
+ *(volatile u32 *)((u8 *)data_0215ced0+0x64)=1; *(volatile u32 *)((u8 *)data_0215ced0+0x68)=0; *(volatile u32 *)((u8 *)data_0215ced0+0x74)=0;
+ ((volatile u32 *)data_0215cde4)[9]=(u32)data_0215ced0; ((volatile u32 *)data_0215cde4)[8]=(u32)data_0215ced0;
+ size=(s32)SDK_SYS_STACKSIZE;
+ if(size<=0) start=0x027e0080-size;
+ else start=((u32)data_027e0000+0x3f80)-(u32)SDK_IRQ_STACKSIZE-size;
+ end=((u32)data_027e0000+0x3f80)-(u32)SDK_IRQ_STACKSIZE;
+ *(volatile u32 *)((u8 *)data_0215ced0+0x94)=end; *(volatile u32 *)((u8 *)data_0215ced0+0x90)=start; *(volatile u32 *)((u8 *)data_0215ced0+0x98)=0;
+ *(u32 *)(end-8)=0xfddb597d;
+ **(u32 **)((u8 *)data_0215ced0+0x90)=0x7bf9dd5b;
+ *(volatile u32 *)((u8 *)data_0215ced0+0xa0)=0; *(volatile u32 *)((u8 *)data_0215ced0+0x9c)=0;
+ *(volatile u16 *)((u8 *)data_0215cde4+0x1c)=0; *(volatile u16 *)((u8 *)data_0215cde4+0x1e)=0;
+ *(u32 *)0x02ffffa0=(u32)data_0215ce00;
+ func_020067a0(0);
+ func_020062d8(data_0215ce10,(void (*)(void *))func_020067c8,0,data_0215d058,200,31);
+ *(u32 *)(data_0215ce10+0x70)=32;
+ *(u32 *)(data_0215ce10+0x64)=1;
 }
-#pragma opt_common_subs on
+#pragma optimization_level 4
 extern u32 data_0215cdf0[4];
 extern s32 func_02005c80(u16, void *, void *);
 extern void func_02005dd8(void);
@@ -622,7 +613,7 @@ void func_0200683c(u8 *arg0, u32 arg1) {
     *(u32 *)(arg0 + 0xb4) = arg1;
 }
 
-#pragma scheduling off
+#pragma opt_propagation off
 void func_02006844(volatile u32 *arg0, u32 arg1, u32 arg2) {
     u32 pc = arg1 + 4;
     arg0[16] = pc;
@@ -632,7 +623,12 @@ void func_02006844(volatile u32 *arg0, u32 arg1, u32 arg2) {
         arg2 -= 4;
     }
     arg0[14] = arg2;
-    arg0[0] = (pc & 1) ? 0x3f : 0x1f;
+    pc &= 1;
+    u32 val = 0x1f;
+    if (pc) {
+        val = 0x3f;
+    }
+    arg0[0] = val;
     arg0[1] = 0;
     arg0[2] = 0;
     arg0[3] = 0;
@@ -648,7 +644,6 @@ void func_02006844(volatile u32 *arg0, u32 arg1, u32 arg2) {
     arg0[13] = 0;
     arg0[15] = 0;
 }
-#pragma scheduling on
 u32 func_02006940(void) {
     if (data_02145bb8[1] != -1) {
         return data_02145bb8[1];

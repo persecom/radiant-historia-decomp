@@ -66,8 +66,7 @@ extern void func_0209625c(void);
 extern void func_021167f0(void *, void *);
 extern void func_02116844(void *, void *);
 extern void func_02116894(void *, void *, void *);
-#pragma push
-#pragma peephole off
+#pragma peephole on
 void func_0203d2d4(void) {
     s32 one = 1;
     s32 zero = 0;
@@ -140,6 +139,7 @@ void func_0203d2d4(void) {
         s32 two;
         u8 *pa, *pb, *next, *base;
         u16 t, u;
+        u8 **flagp = &data_0216011c;
         zero = 0;
         func_020c30f8(zero);
         a = func_02032254((u16)(*(s16 *)(data_02160110 + 0xb6) - 1));
@@ -148,7 +148,7 @@ void func_0203d2d4(void) {
         two = 1;
         *(u32 *)(obj + 0x80) |= 0x20000;
         *(u16 *)(*(u8 **)(obj + 0x118) + 0xbc) = two;
-        if (data_0216011c == NULL) {
+        if (*flagp == NULL) {
             func_02096740(a, two);
         } else {
             func_02096ad4(zero, zero);
@@ -200,4 +200,3 @@ void func_0203d2d4(void) {
         return;
     }
 }
-#pragma pop

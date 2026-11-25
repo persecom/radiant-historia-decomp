@@ -9,9 +9,10 @@ extern u8 *data_02160238;
 
 void *func_020cda08(u32, u16);
 void *func_020cdc8c(u16, u32);
+#pragma opt_scheduling off
 void func_020ccd34(s32 flag) {
 Table_ccd34 a=data_02144660,b=data_02144658;
-u8 *mgr=data_02160238; u16 i,j; u16 k; register u16 jj; s32 end,end2;
+u8 *mgr=data_02160238; u16 i,j,k,jj; s32 end,end2;
 if(flag) {
 for(i=0;i<3;i++) {
 for(j=a.v[i];j<a.v[i]+11;j++) ((u8 *)func_020cda08(2,j))[2]=0;
@@ -27,7 +28,7 @@ func_020ce170(3,mgr[0x708],1);
 for(i=0;i<3;i++) {
 for(jj=a.v[i];jj<a.v[i]+11;jj++) {
 ((u8 *)func_020cda08(2,jj))[2]=1;
-for(k=b.v[i];k<b.v[i]+5;++k) { u8 *p=func_020cdc8c(k,2); if(p) p[2]=1; }
+for(k=b.v[i];k<b.v[i]+5;k++) { u8 *p=func_020cdc8c(k,2); if(p) p[2]=1; }
 }
 *(s32 *)(mgr+0x5b8+i*100)=1;
 func_020ce170((u8)i,(u8)i,mgr[0x708]==i);
@@ -38,7 +39,7 @@ for(j=b.v[3];j<b.v[3]+5;j++) { u8 *p=func_020cdc8c(j,2); if(p) p[2]=0; }
 *(s32 *)(mgr+0x6e4)=0;
 }
 }
-
+#pragma opt_scheduling on
 void func_020cd0ac(void) {
 }
 

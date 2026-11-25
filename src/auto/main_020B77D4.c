@@ -399,10 +399,13 @@ s32 func_020b77d4(void) {
             func_020c8344(sub, 4, 2);
             func_020c83f4(sub, *(void **)(r9 + 0x88), 1, 0);
             func_020c8640(sub, 9);
-            ((void (*)(u8 *, s32))(*(void **)(sub + 0x10)))(sub, 8);
-            ((void (*)(u8 *, s32))(*(void **)(sub + 0x14)))(sub, 2);
-            ((void (*)(u8 *, s32))(*(void **)(w + 0x10)))(w, 0x1c);
-            ((void (*)(u8 *, s32))(*(void **)(w + 0x14)))(w, 0x1c);
+            {
+                void (*fn)(u8 *, s32);
+                fn = (void (*)(u8 *, s32))*(void **)(sub + 0x10); fn(sub, 8);
+                fn = (void (*)(u8 *, s32))*(void **)(sub + 0x14); fn(sub, 2);
+                fn = (void (*)(u8 *, s32))*(void **)(w + 0x10); fn(w, 0x1c);
+                fn = (void (*)(u8 *, s32))*(void **)(w + 0x14); fn(w, 0x1c);
+            }
             ((void (*)(u8 *, u8))(*(void **)(w + 0x1c)))(w, *(u8 *)(w + 0x43));
 
             {

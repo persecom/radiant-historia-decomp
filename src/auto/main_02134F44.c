@@ -39,14 +39,14 @@ void func_02134f44(u8 *arg0){
 struct {s16 *ptr;s32 len;} buf[2],rem[2];
 s16 *out[2];
 u16 count,ca,cb;
-register u32 used;
-register u32 samples;
-register s32 len;
-register u32 consumed;
-register s16 *src=0;
-register s32 n;
-register u8 *p=arg0;
-u32 ua,ub; u32 zero;
+u32 samples;
+s32 len;
+u32 consumed;
+u32 used;
+s16 *src=0;
+s32 n;
+u8 *p=arg0;
+u32 ua,ub;
 u16 i;
 if(*(s8 *)(p+3)==1){
 len=*(u16 *)(p+0x2c);
@@ -84,7 +84,6 @@ len=*(u16 *)(p+0x2c);if(len==0)return;
 src=*(s16 **)(p+0x28)+*(u16 *)(p+0x2e);buf[0].ptr=0;
 }
 }
-zero=0;
 if(*(s8 *)(p+2)==2 && *(s8 *)(p+4)>=1){
 used=func_02135f7c(*(u8 **)(p+0x20),len,&ca);
 ub=func_02135f7c(*(u8 **)(p+0x24),len,&cb);
@@ -104,7 +103,7 @@ if(*(u16 *)(p+0x2c)){
 *(u16 *)(p+0x2c)-=used;*(u16 *)(p+0x2e)+=(u16)(used>>1);
 if(*(u16 *)(p+0x2c)<6){
 if(*(u16 *)(p+0x2c))func_02013858(*(void **)(p+0x28),*(s16 **)(p+0x28)+*(u16 *)(p+0x2e),*(u16 *)(p+0x2c));
-*(u16 *)(p+0x2e)=zero;*(u16 *)(p+0x30)=(u32)*(u16 *)(p+0x2c)>>1;
+*(u16 *)(p+0x2e)=0;*(u16 *)(p+0x30)=(u32)*(u16 *)(p+0x2c)>>1;
 }
 }
 }else consumed=used;
@@ -269,6 +268,7 @@ void func_021357dc(u8 **arg0, u8 arg1) {
     arg0[3][4] = arg1;
 }
 
+#pragma opt_strength_reduction off
 void func_021357e8(s32 arg0, s32 count, s32 arg2, u32 arg3, s32 arg4, u8 **arg5) {
     s32 i = 0;
     s32 flag = 0;
@@ -307,7 +307,7 @@ void func_021357e8(s32 arg0, s32 count, s32 arg2, u32 arg3, s32 arg4, u8 **arg5)
         i++;
     }
 }
-
+#pragma opt_strength_reduction on
 s32 func_02135920(u8 *arg0, s32 arg1) {
     s16 val = (arg1 >= 0) ? 0 : arg1;
     val = (-999 >= val) ? -999 : val;
@@ -377,53 +377,41 @@ void func_02135abc(u8 *arg0, s16 *arg1, s32 arg2) {
 
 void func_02135b1c(u8 *arg0, s16 *arg1, s32 count, s16 **out)
 {
-  s16 *new_var2;
-  s16 *left = *((s16 **) (((u8 *) data_021756d8) + 0x2b4));
-  s16 *right;
-  u8 *new_var;
-  u16 pos;
-  s32 i;
-  out[0] = left;
-  new_var2 = (*((s16 **) (((u8 *) data_021756d8) + 0x2b4))) + (*((s32 *) (arg0 + 0xa4)));
-  right = new_var2;
-  out[1] = right;
-  pos = *((u16 *) (arg0 + ((unsigned long) 0xa8)));
-  new_var = arg0 + 0xa8;
-  for (i = 0; ((0, i)) < count; i++)
-  {
-    s32 v = ((3 * arg1[i]) + (2 * (*((s16 **) (arg0 + 0x9c)))[pos])) >> 2;
-    if (v > 32767)
-    {
-      v = 32767;
+    s16 *new_var2;
+    s16 *left = *((s16 **)(((u8 *)data_021756d8) + 0x2b4));
+    s16 *right;
+    u8 *new_var;
+    u16 pos;
+    register s32 i;
+    out[0] = left;
+    new_var2 = (*((s16 **)(((u8 *)data_021756d8) + 0x2b4))) + (*((s32 *)(arg0 + 0xa4)));
+    right = new_var2;
+    out[1] = right;
+    pos = *((u16 *)(arg0 + 0xa8));
+    new_var = arg0 + 0xa8;
+    for (i = 0; (0, i) < count; i++) {
+        s32 v = ((3 * arg1[i]) + (2 * (*((s16 **)(arg0 + 0x9c)))[pos])) >> 2;
+        if (v > 32767) {
+            v = 32767;
+        } else if (v < -32768) {
+            v = -32768;
+        }
+        left[i] = v;
+        if ((arg0 && arg0) != 0) {
+        }
+        v = ((3 * arg1[i]) - (2 * (*((s16 **)(arg0 + 0x9c)))[pos])) >> 2;
+        if (v > 32767) {
+            v = 32767;
+        } else if (v < -32768) {
+            v = -32768;
+        }
+        right[i] = v;
+        pos++;
+        if (*((s32 *)(arg0 + 0xa4)) == pos) {
+            pos = 0;
+        }
     }
-    else
-      if (v < (-32768))
-    {
-      v = -32768;
-    }
-    left[i] = v;
-    if ((arg0 && arg0) != 0)
-    {
-    }
-    v = ((3 * arg1[i]) - (2 * (*((s16 **) (arg0 + 0x9c)))[pos])) >> 2;
-    if (v > 32767)
-    {
-      v = 32767;
-    }
-    else
-      if (v < (-32768))
-    {
-      v = -32768;
-    }
-    right[i] = v;
-    pos++;
-    if ((*((s32 *) (arg0 + 0xa4))) == pos)
-    {
-      pos = 0;
-    }
-  }
-
-  *((u16 *) new_var) = pos;
+    *((u16 *)new_var) = pos;
 }
 
 void func_02135c00(void) {
@@ -490,7 +478,7 @@ void func_02135d4c(s32 arg0, u16 arg1)
   s32 i;
   if (arg0 == 0)
   {
-    new_var2 = (u8 *)data_02175ab8;
+    new_var2 = data_02175ab8;
     i = 0;
     stride = 0x34;
     do

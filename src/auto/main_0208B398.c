@@ -15,6 +15,7 @@ typedef struct { s32 mode; s16 counter; s8 flags; u8 pad[5]; } Entry_0208bff0;
 typedef struct { u8 pad[0x200]; Entry_0208bff0 entries[2]; } State_0208bff0;
 extern void func_020922bc(s32,s32,s32,s32,s32,s32,s32,s32);
 
+#pragma opt_dead_assignments off
 void func_0208b398(Pos_0208bda0 pos, s32 arg1) {
     struct Node { u8 pad[0x28]; };
     s32 col, row;
@@ -141,9 +142,9 @@ void func_0208b398(Pos_0208bda0 pos, s32 arg1) {
             case 6:
                 if (d_bc.v[5] + d_bc.v[8] > 0 && d_bc.v[5] < 256) {
                     d_bc.v[5] += 1;
-                    d_bc.v[6] -= 1;
                     d_bc.v[8] = 0x14;
                     d_bc.v[9] = 0x15;
+                    d_bc.v[6] -= 1;
                     d_bc.v[4] = d_bc.v[9];
                     d_bc.v[3] = d_bc.v[8];
                     func_020a3bbc(8);
@@ -154,9 +155,9 @@ void func_0208b398(Pos_0208bda0 pos, s32 arg1) {
             case 7:
                 if (d_bc.v[5] + d_bc.v[8] > 0 && d_bc.v[5] < 256) {
                     d_bc.v[5] += 1;
-                    d_bc.v[6] -= 3;
                     d_bc.v[8] = 0x14;
                     d_bc.v[9] = 0x15;
+                    d_bc.v[6] -= 3;
                     d_bc.v[4] = d_bc.v[9];
                     d_bc.v[3] = d_bc.v[8];
                     func_020a3bbc(0xb);
@@ -166,9 +167,9 @@ void func_0208b398(Pos_0208bda0 pos, s32 arg1) {
             case 3:
                 if (d_bc.v[5] + d_bc.v[8] > 0 && d_bc.v[5] < 256) {
                     d_bc.v[5] += 1;
-                    d_bc.v[6] += 1;
                     d_bc.v[8] = 0x11;
                     d_bc.v[9] = 0x10;
+                    d_bc.v[6] += 1;
                     d_bc.v[4] = d_bc.v[9];
                     d_bc.v[3] = d_bc.v[8];
                     func_020a3bbc(0xc);
@@ -177,9 +178,9 @@ void func_0208b398(Pos_0208bda0 pos, s32 arg1) {
                 break;
             case 4:
                 if (d_bc.v[5] + d_bc.v[8] > 0 && d_bc.v[5] < 256) {
-                    d_bc.v[6] -= 2;
                     d_bc.v[8] = 0x14;
                     d_bc.v[9] = 0x15;
+                    d_bc.v[6] -= 2;
                     d_bc.v[4] = d_bc.v[9];
                     d_bc.v[3] = d_bc.v[8];
                     func_020a3bbc(0xd);

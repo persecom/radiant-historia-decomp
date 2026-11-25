@@ -22,9 +22,9 @@ void func_02118234(void *arg0) {
     u32 type;
     OamFn fn;
     u16 i;
-    register OamManager_2118234 *p asm("r7") = arg0;
+    OamManager_2118234 *p = arg0;
     if (p->full != 0) {
-        type = ((volatile OamManager_2118234 *)p)->type;
+        type = p->type;
         start = p->first;
         end = p->last;
         size = (end - start + 1) * 8;
@@ -132,7 +132,6 @@ void func_02118430(void *arg0)
       *((u16 *) dst) = 0xc0;
       dst += 8;
     }
-
   }
   *((u16 *) (p + 8)) = *((u16 *) (p + 4));
   *((u16 *) (p + 0xe)) = *((u16 *) (p + 0xa));

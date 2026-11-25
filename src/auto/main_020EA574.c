@@ -139,7 +139,7 @@ void func_020ea64c(void)
   s32 flip = 0;
   s32 idx;
   unsigned char new_var;
-  struct 
+  struct
   {
     u8 b0 : 1;
     u8 b1 : 1;
@@ -281,13 +281,12 @@ void func_020ea64c(void)
             }
           }
         }
-
       }
       if ((changed != 0) && ((*((u16 *) ((*((u8 **) new_var2)) + 4))) != 0))
       {
         v = *((u8 **) (*((u8 **) new_var2)));
         *((void **) (obj + 0x30)) = func_021176b0(*((void **) (obj + 0x34)), *((u16 *) v));
-        idx = (*((s32 *) ((*((u8 **) v)) + 4))) & 0xff;
+        idx = (*((s32 *) ((*((u8 **) (obj + 0x1c))) + 4))) & 0xff;
         func_02118eec((void *) (obj + 0x3c), 1);
         if (idx != 0)
         {
@@ -306,7 +305,6 @@ void func_020ea64c(void)
     }
     node = *((u8 **) (node + 0x38));
   }
-
 }
 #pragma pop
 extern u8 *data_02160a80;

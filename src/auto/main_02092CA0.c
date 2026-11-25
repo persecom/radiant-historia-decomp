@@ -70,8 +70,8 @@ s32 func_02092cec(void)
   u16 count;
   u8 *node;
   void **res;
-  func_021167ac(&new_var[0], 0x114);
   func_021167ac(&new_var[1], 0x114);
+  func_021167ac(&new_var[0], 0x114);
   {
     u16 i;
     for (i = 0; i < 3; i++)
@@ -117,13 +117,13 @@ s32 func_02092cec(void)
         *((u16 *) (a + 0x106)) = 0;
         *((u16 *) (a + 0x108)) = 4;
         *((u16 *) (a + 0x10a)) = 2;
-        func_021167f0(&new_var[0], a);
+        func_021167f0(&new_var[1], a);
         *((u16 *) (b + 0x102)) = i + 13;
         *((u16 *) (b + 0x106)) = 0;
-        func_021167f0(&new_var[1], b);
+        func_021167f0(&new_var[0], b);
         *((u16 *) (c + 0x102)) = i + 6;
         *((u16 *) (c + 0x106)) = 0;
-        func_021167f0(&new_var[1], c);
+        func_021167f0(&new_var[0], c);
       }
     }
 
@@ -182,10 +182,10 @@ s32 func_02092cec(void)
       *((u16 *) (a + 0x106)) = 0;
       *((u16 *) (a + 0x108)) = 4;
       *((u16 *) (a + 0x10a)) = 2;
-      func_021167f0(&new_var[0], a);
+      func_021167f0(&new_var[1], a);
       *((u16 *) (b + 0x102)) = count + 10;
       *((u16 *) (b + 0x106)) = 0;
-      func_021167f0(&new_var[1], b);
+      func_021167f0(&new_var[0], b);
       seen[count] = *((u16 *) ((*((u8 **) (node + 0x118))) + 0x56));
       count++;
     }

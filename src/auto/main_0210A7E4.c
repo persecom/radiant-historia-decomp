@@ -354,23 +354,23 @@ void *func_0210af8c(void) {
 #pragma push
 #pragma optimization_level 3
 void func_0210afcc(void *arg) {
-    u8 *arg0 = arg;
-    u8 *base = arg0 + 0x100;
+    register u8 *arg0 = arg;
+    register Unk_0210afcc *s = (Unk_0210afcc *)(arg0 + 0x100);
     s32 i;
-    ((Flags_0210afcc *)(base + 0xa4))->bit3 = 0;
-    ((Flags_0210afcc *)(base + 0xa4))->bit1 = 0;
-    ((Flags_0210afcc *)(base + 0xa4))->bit2 = ((Flags_0210afcc *)(base + 0xa4))->bit1;
+    s->flags.bit3 = 0;
+    s->flags.bit1 = 0;
+    s->flags.bit2 = s->flags.bit1;
     *(u32 *)(arg0 + 0x104) = 0x1000;
     *(u8 *)(arg0 + 0x128) = 0;
-    ((Flags_0210afcc *)(base + 0xa4))->bit0 = 1;
+    s->flags.bit0 = 1;
     *(u32 *)(arg0 + 0x12c) = 0;
     *(u32 *)(arg0 + 0x130) = 2;
     *(u8 *)(arg0 + 0x134) = 0;
     *(u8 *)(arg0 + 0x135) = 0x1f;
     *(u32 *)(arg0 + 0x138) = 0;
-    ((volatile Flags_0210afcc *)(base + 0xa4))->bit8 = 0;
+    *(volatile u16 *)((u8 *)s + 0xa4) &= ~0x100;
     *(void **)(arg0 + 0x1a8) = func_0210af80;
-    *(u16 *)(base + 0xa2) = 0x3e7;
+    s->unkA2 = 0x3e7;
     for (i = 0; i < 0x10; i++) {
         *(u16 *)(arg0 + 0x180 + i * 2) = 0x3e7;
     }
@@ -426,12 +426,12 @@ s32 func_0210b130(u8 *arg0, s32 arg1) {
     return ret;
 }
 
-#pragma opt_propagation off
+#pragma optimization_level 3
 void func_0210b198(u8 *arg0,u16 arg1,u32 arg2,s32 arg3,s32 arg4) {
-u32 *p;
-p=*(u32 **)(arg0+0xfc);
+Unk_0210afcc *s;
+u32 *p=*(u32 **)(arg0+0xfc);
 if(p){
-Unk_0210afcc *s=(Unk_0210afcc *)(arg0+0x100);
+s=(Unk_0210afcc *)(arg0+0x100);
 if(!s->flags.bit3){
 s->flags.bit3=1;
 s->flags.bit5=(u16)arg3;
@@ -441,7 +441,7 @@ s->flags.bit7=(u16)arg4;
 }}
 p=*(u32 **)(arg0+0x100);
 if(p){
-Unk_0210afcc *s=(Unk_0210afcc *)(arg0+0x100);
+s=(Unk_0210afcc *)(arg0+0x100);
 if(!s->flags.bit4){
 *(volatile u16 *)&s->flags = *(u16 *)&s->flags | 0x10;
 s->flags.bit3=1;
@@ -451,7 +451,6 @@ s->flags.bit7=(u16)arg4;
 *p=arg2;
 }}
 }
-#pragma opt_propagation on
 extern void func_0211cd24(u8 *, u8 *);
 extern void func_02120bb0(void *);
 u8 *func_0210b27c(u8 *arg0, s32 arg1) {

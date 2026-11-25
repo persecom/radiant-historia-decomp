@@ -219,15 +219,15 @@ void func_02044c48(u32 arg0) {
 u8 func_02044c98(void)
 {
   u8 *p = data_021600a8[1];
-  u8 *q = *((u8 **) (p + 0x68));
+  s32 *q = *((s32 **) (p + 0x68));
   s32 y = data_02162908[1];
-  s32 a = *((s32 *) (q + 0xfc));
-  s32 b = *((s32 *) (q + 0x100));
+  s32 a = q[0xfc / 4];
+  s32 b = q[0x100 / 4];
   s32 xmin = a - 0x10;
-  s32 xmax = a + 0x10;
+  a += 0x10;
   s32 x = data_02162908[0];
   s32 ymin = b - 0x20;
-  return (((x >= xmin) && (x <= xmax)) && (y >= ymin)) && (y <= b);
+  return (((x >= xmin) && (x <= a)) && (y >= ymin)) && (y <= b);
 }
 #pragma opt_propagation on
 extern void func_020544d8(void *, s32);

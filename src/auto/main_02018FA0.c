@@ -120,7 +120,6 @@ s32 func_02019080(const u8 *a, const u8 *b) {
 void func_02019160(Decimal19160 *a,const Decimal19160 *b,const Decimal19160 *c){
 s32 i,n,shift;
 u8 *start,*end,*q,*scan;
-s32 digit;
 const u8 *cs,*cp,*stop;
 s32 round;
 *a=*b;
