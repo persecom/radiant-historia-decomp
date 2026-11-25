@@ -126,7 +126,7 @@ extern void F(103d30)(void);extern void F(103d78)(s32);extern void F(103d98)(s32
 extern s32 F(104f68)(void);extern void F(10829c)(s32,s32,s32);extern void F(108ffc)(void);extern void F(1091b4)(void);extern void F(109444)(void*);
 extern void*F(10c594)(s32,void*);extern void F(10c5dc)(void*);extern s32 F(10cbd0)(void);extern s32 F(10ccbc)(const char*);
 extern const char*F(10cce4)(const char*);extern void*F(10eb98)(const char*,...);extern void F(1167f0)(void*,void*);extern void F(1168f8)(void*,void*);
-u32 frame[(0x2d4-8)/4],arg5,arg6;u32 r0,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12;u32 cmp_a,cmp_b,base_tmp;{s32 n,value;u32 skip;u8*ctx;Script6990*script;
+u32 frame[(0x2c4-8)/4],arg5,arg6;u32 r0,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12;u32 cmp_a,cmp_b,base_tmp;{s32 n,value;u32 skip;u8*ctx;Script6990*script;
 script=(Script6990*)D(626e8)[0];ctx=script->context;skip=(*(u32*)(ctx+0x18))&0x80000000u;if(S(D(60200),0x160)&4)F(0fc50c)();if(CC(050)){
 n=--script->depth;if(n<0)return 0;value=script->returns[n];if(value){(*(s32*)((u8*)(*(u8**)D(626e8)[0])+8))=value;script->returns[n]=0;
 if(script->depth<0)script->depth=0;}return 1;}if(CC(054)){if(skip)return 1;n=0;if(!F(10ce90)())n=NUM;do{value=TOK;if(!n){
