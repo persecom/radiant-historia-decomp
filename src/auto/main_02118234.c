@@ -1,7 +1,7 @@
 /* 33 functions from 0x02118234 to 0x021191F0 (main), found by ds-decomp. */
 #include "common.h"
 typedef struct { u8 pad[0x100]; u16 entries[128][4]; u8 tail[0x40]; } UnkOamBuffer;
-extern u8 data_0216e274[];
+extern UnkOamBuffer data_0216e274[];
 typedef struct { u32 type; u16 first, last, unk_08, affineFirst, affineLast, affineLimit; u32 unk_10, full; } OamManager_2118234;
 typedef void (*OamFn)(void *, u32, u32);
 extern OamFn data_02155e9c[5];
@@ -93,7 +93,7 @@ void func_02118430(void *arg0) {
     OamManager_2118234 *p = arg0;
     if (p->full) {
         u32 size;
-        u8 *dst;
+        u16 (*dst)[4];
         s32 valid = 0;
         u32 channel;
         if (p->unk_08 <= p->last + 1 && p->first <= p->last) {
@@ -104,7 +104,7 @@ void func_02118430(void *arg0) {
         } else {
             size = (u16)(p->last - p->first + 1) * 8;
         }
-        dst = (u8 *)((UnkOamBuffer *)data_0216e274)[p->type].entries[p->first];
+        dst = &((UnkOamBuffer *)data_0216e274)[p->type].entries[p->first];
         func_02006d8c(dst, size);
         channel = data_02145ba4;
         if (channel > 3) {
@@ -117,11 +117,11 @@ void func_02118430(void *arg0) {
         }
     } else {
         u16 count = p->last - p->first + 1;
-        u8 *dst = (u8 *)((UnkOamBuffer *)data_0216e274)[p->type].entries[p->first];
+        u16 (*dst)[4] = &((UnkOamBuffer *)data_0216e274)[p->type].entries[p->first];
         u16 i;
         for (i = 0; i < count; i++) {
-            *(u16 *)dst = 0xc0;
-            dst += 8;
+            (*dst)[0] = 0xc0;
+            dst++;
         }
     }
     p->unk_08 = p->first;
