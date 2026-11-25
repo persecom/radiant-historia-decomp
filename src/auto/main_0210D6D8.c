@@ -1,6 +1,11 @@
 /* 36 functions from 0x0210D6D8 to 0x0210E694 (main), found by ds-decomp. */
 #include "common.h"
 typedef struct { u64 state, multiplier, increment; } Rng64_0210ddfc;
+static inline u64 advance_0210ddfc(Rng64_0210ddfc *q) {
+    u64 value = q->multiplier * q->state + q->increment;
+    q->state = value;
+    return value;
+}
 typedef struct { u32 attr; u32 tile; } Sprite_0210e290;
 extern s32 data_02155c3c;
 extern void func_0210c5dc(void *);
@@ -418,15 +423,16 @@ void func_0210ddfc(void) {
         v = func_02008128();
         if (*(u32 *)(base + 0x40) != *(u32 *)(base + 0x3c)) {
             if (*(s32 *)(base + 0x54) == 0) {
-                if (*(u32 *)(base + 0x40) == 0) {
-                    { u16 mask = 0xcfdf; *(volatile u16 *)0x04000060 &= mask; }
-                } else { goto set; }
-            } else {
-                if (*(u32 *)(base + 0x3c) == 0) {
-                    *(volatile u16 *)0x04000060 &= 0xcfdf;
-                } else {
-set:
+                if (*(u32 *)(base + 0x40) != 0) {
                     *(volatile u16 *)0x04000060 = (*(volatile u16 *)0x04000060 & ~0x3000) | 0x20;
+                } else {
+                    *(volatile u16 *)0x04000060 &= 0xcfdf;
+                }
+            } else {
+                if (*(u32 *)(base + 0x3c) != 0) {
+                    *(volatile u16 *)0x04000060 = (*(volatile u16 *)0x04000060 & ~0x3000) | 0x20;
+                } else {
+                    *(volatile u16 *)0x04000060 &= 0xcfdf;
                 }
             }
         }
