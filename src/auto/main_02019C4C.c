@@ -9,7 +9,7 @@ extern int _dgr(double, double);
 extern double func_0201e014(double);
 extern double func_02020c58(double, double);
 extern double func_0201f800(u32);
-extern double func_02020058(double);
+extern u64 func_02020058(u64);
 extern u32 data_02145c2c;
 extern u32 data_02160034;
 extern void func_0201e2b8(u64, s32);
