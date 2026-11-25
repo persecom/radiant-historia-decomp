@@ -114,114 +114,182 @@ void func_0205a8c8(void) {
     }
 }
 
+extern u8 *data_02160258;
+extern void func_020a5ce4(void *);
 void func_0205aa34(u8 *arg0) {
-    u8 *stats = *(u8 **)(arg0 + 0x118);
     u8 *st = *(u8 **)(arg0 + 0x128);
-    u8 *list, *node, *g, *p;
-    u16 flags;
-    s32 dmg;
+    u8 *list;
+    u8 *node;
+    s32 hit;
 
-    if (stats == NULL || *(u32 *)(stats + 0x70) == 0) return;
-    flags = *(u16 *)(st + 0x1e);
-    if (flags & 0x100) *(u16 *)(st + 0x1e) = flags & 0xfeff;
-    list = *(u8 **)(stats + 0x60);
-    if (*(u16 *)list < 1) return;
+    if (arg0 == NULL) {
+        return;
+    }
+    {
+        u8 *stats0 = *(u8 **)(arg0 + 0x118);
+        if (*(u32 *)(stats0 + 0x70) == 0) {
+            return;
+        }
+        list = *(u8 **)(stats0 + 0x60);
+        if (*(u16 *)(st + 0x1e) & 0x100) {
+            *(u16 *)(st + 0x1e) &= ~0x100;
+        }
+    }
+
+    if (*(u16 *)list < 1) {
+        return;
+    }
+
+    hit = 0;
     node = *(u8 **)(list + 4);
-    if (node == NULL) goto tail;
-    g = data_02160a74;
+    while (node != NULL) {
+        u8 *next = *(u8 **)(node + 0x14);
+        u8 *stats;
+        s32 dmg;
 
-    switch (*(u16 *)node) {
-    case 0x85:
-        if (*(u8 *)stats == 0) {
-            p = *data_02160244;
-            *(u32 *)(g + 0x90) = *(u32 *)(p + 0xc);
-            *(u32 *)(g + 0x94) = *(u32 *)(p + 0x10);
-            *(u32 *)(g + 0x98) = *(u32 *)(p + 0x14);
-            g[0x6d] = g[0x6c];
-            g[0x6c] = 5;
-            g[0x8d] = 0x32;
-            flags = *(u16 *)(st + 0x1e);
-            if (flags & 0x80) {
-                *(u16 *)(st + 0x1e) = flags & 0xff7f;
-                *(u16 *)(g + 0x3e) += 1;
-            }
-        } else {
-            if (*(u32 *)(stats + 0x8c) & 0x1000) goto tail;
-            g[0x6c] = 6;
-        }
-        dmg = *(s16 *)(node + 4) + *(s16 *)(node + 0xc) / 3;
-        *(s32 *)(stats + 4) -= dmg;
-        if (*(s32 *)(stats + 4) <= 1) *(s32 *)(stats + 4) = 1;
-        func_020bfd78(0x80, 0x60, 0, 4, dmg, arg0, *(u16 *)(arg0 + 0x90), 2);
-        func_0210d27c(0x6b);
-        goto tail;
-    case 0x86:
-        if (*(u8 *)stats == 0) {
-            p = *data_02160244;
-            *(u32 *)(g + 0x90) = *(u32 *)(p + 0xc);
-            *(u32 *)(g + 0x94) = *(u32 *)(p + 0x10);
-            *(u32 *)(g + 0x98) = *(u32 *)(p + 0x14);
-            g[0x6d] = g[0x6c];
-            g[0x6c] = 5;
-            g[0x8d] = 0x32;
-            flags = *(u16 *)(st + 0x1e);
-            if (flags & 0x80) {
-                *(u16 *)(st + 0x1e) = flags & 0xff7f;
-                *(u16 *)(g + 0x3e) += 1;
-            }
-        } else {
-            if (*(u32 *)(stats + 0x8c) & 0x1000) goto tail;
-            g[0x6c] = 6;
-        }
-        dmg = *(s16 *)(node + 4) + *(s16 *)(node + 0xc) / 3;
-        *(s16 *)(stats + 0xc) -= (s16)dmg;
-        if (*(s16 *)(stats + 0xc) <= 0) *(s16 *)(stats + 0xc) = 0;
-        func_020bfd78(0x80, 0x60, 0, 3, dmg, arg0, *(u16 *)(arg0 + 0x90), 2);
-        func_0210d27c(0x6b);
-        goto tail;
-    case 0x88:
-        if (*(u8 *)stats == 0) {
-            if (*(u32 *)(stats + 0x8c) & 0x400) {
-                *(u32 *)(stats + 0x8c) &= ~0x400;
-                p = *data_02160244;
-                *(u32 *)(g + 0x90) = *(u32 *)(p + 0xc);
-                *(u32 *)(g + 0x94) = *(u32 *)(p + 0x10);
-                *(u32 *)(g + 0x98) = *(u32 *)(p + 0x14);
-                g[0x6d] = g[0x6c];
-                g[0x6c] = 5;
-                g[0x8d] = 0x32;
-                flags = *(u16 *)(st + 0x1e);
-                if (flags & 0x80) {
-                    *(u16 *)(st + 0x1e) = flags & 0xff7f;
-                    *(u16 *)(g + 0x3e) += 1;
+        switch (*(u16 *)node) {
+        case 0x85:
+            stats = *(u8 **)(arg0 + 0x118);
+            if (*(u8 *)stats == 0) {
+                u8 *src = data_02160258;
+                u8 *g = *data_02160244;
+                *(u32 *)(g + 0x90) = *(u32 *)(src + 0xc);
+                *(u32 *)(g + 0x94) = *(u32 *)(src + 0x10);
+                *(u32 *)(g + 0x98) = *(u32 *)(src + 0x14);
+                (*data_02160244)[0x6d] = (*data_02160244)[0x6c];
+                (*data_02160244)[0x6c] = 5;
+                (*data_02160244)[0x8d] = 0x32;
+                if (*(u16 *)(st + 0x1e) & 0x80) {
+                    *(u16 *)(st + 0x1e) &= ~0x80;
+                    *(u16 *)(*data_02160244 + 0x3e) += 1;
                 }
-                dmg = *(s16 *)(g + 0xc4) / 4;
-                *(s16 *)(g + 0xc4) = 0;
-                *(s32 *)(stats + 4) -= dmg;
-                if (*(s32 *)(stats + 4) <= 1) *(s32 *)(stats + 4) = 1;
-                func_020bfd78(0x80, 0x60, 0, 6, dmg, arg0, *(u16 *)(arg0 + 0x90), 2);
+                dmg = *(s16 *)(node + 4) + *(s16 *)(node + 0xc) / 5;
+                *(s32 *)(*(u8 **)(arg0 + 0x118) + 4) -= dmg;
+                if (*(s32 *)(*(u8 **)(arg0 + 0x118) + 4) <= 1) {
+                    *(s32 *)(*(u8 **)(arg0 + 0x118) + 4) = 1;
+                }
+                func_020bfd78(0x80, 0x60, 0, 4, dmg, arg0, *(u16 *)(arg0 + 0x90), 2);
                 func_0210d27c(0x6b);
+                *(u16 *)(data_02160a74 + 0x1e0) |= (u16)(1 << *(u16 *)(arg0 + 0x90));
+                func_020a5ce4(*(void **)(data_02160a74 + 0x78));
+                hit = 1;
+            } else {
+                if (!(*(u32 *)(stats + 0x8c) & 0x1000)) {
+                    (*data_02160244)[0x6c] = 6;
+                    dmg = *(s16 *)(node + 4) + *(s16 *)(node + 0xc) / 5;
+                    *(s32 *)(*(u8 **)(arg0 + 0x118) + 4) -= dmg;
+                    if (*(s32 *)(*(u8 **)(arg0 + 0x118) + 4) <= 1) {
+                        *(s32 *)(*(u8 **)(arg0 + 0x118) + 4) = 1;
+                    }
+                    func_020bfd78(0x80, 0x60, 0, 4, dmg, arg0, *(u16 *)(arg0 + 0x90), 2);
+                    func_0210d27c(0x6b);
+                    hit = 1;
+                }
             }
-        } else {
-            if (!(*(u32 *)(stats + 0x8c) & 0x1000) && (*(u32 *)(stats + 0x8c) & 0x400)) {
-                *(u32 *)(stats + 0x8c) &= ~0x400;
-                g[0x6c] = 6;
-                dmg = *(s16 *)(g + 0xc4) / 4;
-                *(s16 *)(g + 0xc4) = 0;
-                *(s32 *)(stats + 4) -= dmg;
-                if (*(s32 *)(stats + 4) <= 1) *(s32 *)(stats + 4) = 1;
-                func_020bfd78(0x80, 0x60, 0, 6, dmg, arg0, *(u16 *)(arg0 + 0x90), 2);
+            break;
+
+        case 0x86:
+            stats = *(u8 **)(arg0 + 0x118);
+            if (*(u8 *)stats == 0) {
+                u8 *src = data_02160258;
+                u8 *g = *data_02160244;
+                *(u32 *)(g + 0x90) = *(u32 *)(src + 0xc);
+                *(u32 *)(g + 0x94) = *(u32 *)(src + 0x10);
+                *(u32 *)(g + 0x98) = *(u32 *)(src + 0x14);
+                (*data_02160244)[0x6d] = (*data_02160244)[0x6c];
+                (*data_02160244)[0x6c] = 5;
+                (*data_02160244)[0x8d] = 0x32;
+                if (*(u16 *)(st + 0x1e) & 0x80) {
+                    *(u16 *)(st + 0x1e) &= ~0x80;
+                    *(u16 *)(*data_02160244 + 0x3e) += 1;
+                }
+                dmg = *(s16 *)(node + 4) + *(s16 *)(node + 0xc) / 5;
+                *(s16 *)(*(u8 **)(arg0 + 0x118) + 0xc) -= (s16)dmg;
+                if (*(s16 *)(*(u8 **)(arg0 + 0x118) + 0xc) <= 0) {
+                    *(s16 *)(*(u8 **)(arg0 + 0x118) + 0xc) = 0;
+                }
+                func_020bfd78(0x80, 0x60, 0, 2, dmg, arg0, *(u16 *)(arg0 + 0x90), 2);
                 func_0210d27c(0x6b);
+                *(u16 *)(data_02160a74 + 0x1e0) |= (u16)(1 << *(u16 *)(arg0 + 0x90));
+                func_020a5ce4(*(void **)(data_02160a74 + 0x78));
+                hit = 1;
+            } else {
+                if (!(*(u32 *)(stats + 0x8c) & 0x1000)) {
+                    (*data_02160244)[0x6c] = 6;
+                    dmg = *(s16 *)(node + 4) + *(s16 *)(node + 0xc) / 5;
+                    *(s16 *)(*(u8 **)(arg0 + 0x118) + 0xc) -= (s16)dmg;
+                    if (*(s16 *)(*(u8 **)(arg0 + 0x118) + 0xc) <= 0) {
+                        *(s16 *)(*(u8 **)(arg0 + 0x118) + 0xc) = 0;
+                    }
+                    func_020bfd78(0x80, 0x60, 0, 2, dmg, arg0, *(u16 *)(arg0 + 0x90), 2);
+                    func_0210d27c(0x6b);
+                    hit = 1;
+                }
             }
+            break;
+
+        case 0x88:
+            stats = *(u8 **)(arg0 + 0x118);
+            if (*(u8 *)stats == 0) {
+                if (*(u32 *)(stats + 0x8c) & 0x400) {
+                    *(u32 *)(stats + 0x8c) &= ~0x400;
+                    {
+                        u8 *src = data_02160258;
+                        u8 *g = *data_02160244;
+                        *(u32 *)(g + 0x90) = *(u32 *)(src + 0xc);
+                        *(u32 *)(g + 0x94) = *(u32 *)(src + 0x10);
+                        *(u32 *)(g + 0x98) = *(u32 *)(src + 0x14);
+                    }
+                    (*data_02160244)[0x6d] = (*data_02160244)[0x6c];
+                    (*data_02160244)[0x6c] = 5;
+                    (*data_02160244)[0x8d] = 0x32;
+                    if (*(u16 *)(st + 0x1e) & 0x80) {
+                        *(u16 *)(st + 0x1e) &= ~0x80;
+                        *(u16 *)(*data_02160244 + 0x3e) += 1;
+                    }
+                    dmg = *(s16 *)(arg0 + 0x1c4) / 10;
+                    *(s16 *)(arg0 + 0x1c4) = 0;
+                    *(s32 *)(*(u8 **)(arg0 + 0x118) + 4) -= dmg;
+                    if (*(s32 *)(*(u8 **)(arg0 + 0x118) + 4) <= 1) {
+                        *(s32 *)(*(u8 **)(arg0 + 0x118) + 4) = 1;
+                    }
+                    func_020bfd78(0x80, 0x60, 0, 6, dmg, arg0, *(u16 *)(arg0 + 0x90), 2);
+                    func_0210d27c(0x6b);
+                    *(u16 *)(data_02160a74 + 0x1e0) |= (u16)(1 << *(u16 *)(arg0 + 0x90));
+                    func_020a5ce4(*(void **)(data_02160a74 + 0x78));
+                    hit = 1;
+                } else {
+                    if (*(u16 *)(st + 0x1e) & 0x80) {
+                        *(u16 *)(st + 0x1e) &= ~0x80;
+                        *(u16 *)(*data_02160244 + 0x3e) += 1;
+                    }
+                }
+            } else {
+                if (!(*(u32 *)(stats + 0x8c) & 0x1000) && (*(u32 *)(stats + 0x8c) & 0x400)) {
+                    *(u32 *)(stats + 0x8c) &= ~0x400;
+                    (*data_02160244)[0x6c] = 6;
+                    dmg = *(s16 *)(arg0 + 0x1c4) / 10;
+                    *(s16 *)(arg0 + 0x1c4) = 0;
+                    *(s32 *)(*(u8 **)(arg0 + 0x118) + 4) -= dmg;
+                    if (*(s32 *)(*(u8 **)(arg0 + 0x118) + 4) <= 1) {
+                        *(s32 *)(*(u8 **)(arg0 + 0x118) + 4) = 1;
+                    }
+                    func_020bfd78(0x80, 0x60, 0, 6, dmg, arg0, *(u16 *)(arg0 + 0x90), 2);
+                    func_0210d27c(0x6b);
+                    hit = 1;
+                }
+            }
+            break;
         }
-        goto tail;
+        node = next;
     }
-tail:
-    if (*(u32 *)(node + 0x14) == 0) {
-        arg0[0xa2] |= 4;
-        *(u16 *)(arg0 + 0x98) = 8;
-        func_020da8c0(arg0, 9);
+
+    if (hit == 0) {
+        return;
     }
+    *(u16 *)(arg0 + 0x98) = 8;
+    arg0[0xa2] |= 4;
+    func_020da8c0(arg0, 9);
 }
 
 void func_0205b01c(void) {
