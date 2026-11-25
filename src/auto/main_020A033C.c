@@ -20,6 +20,8 @@ extern s32 func_0210cd20(void *, s32);
 extern s32 func_0210cdfc(void *, s32);
 extern u8 *data_02160200;
 extern u8 *data_02160204;
+extern const char data_021489f8[28];
+extern const u8 data_02148a14[4];
 #pragma optimization_level 0
 void func_020a033c(s32 id) {
     s32 i;
