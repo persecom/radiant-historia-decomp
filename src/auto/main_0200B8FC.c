@@ -34,7 +34,7 @@ extern void func_02006d8c(u32, u32);
 extern void func_02008f74(void *, s32, s32);
 extern void func_02009008(void *, void *, s32);
 extern u32 func_020118c0(u32);
-extern void func_02011bdc(void *, void *, u32, u32 *);
+extern void func_02011bdc();
 extern s32 func_0200afb4(u8 *, s32, s32);
 extern s32 func_0200d460(u8 *, u32 *);
 extern s32 func_0200d4a0(u8 *, u32 *);
