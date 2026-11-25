@@ -2,6 +2,8 @@
 #include "common.h"
 void func_02082958(void);
 void func_02082584(void);
+extern u32 data_02162858;
+extern u32 data_02162854;
 
 typedef struct Block_02081f08 {
     u32 w0, w1, w2, w3;
