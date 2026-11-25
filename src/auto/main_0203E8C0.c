@@ -12,9 +12,9 @@ static inline u16 random_0203e8c0(u16 limit) {
     u32 r;
     seed = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
     data_0216263c[0] = seed;
-    seed >>= 16;
-    if (limit != 0) seed = (seed * limit) >> 16;
-    return seed;
+    r = seed >> 16;
+    if (limit != 0) r = (r * limit) >> 16;
+    return r;
 }
 static inline s32 rand_0203e8c0(s32 max) {
     if (!max) return 0;
