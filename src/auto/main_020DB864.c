@@ -23,6 +23,10 @@ extern void *func_020de270(void);
 extern u8 *func_02030698(void *, s32);
 
 s32 func_020db864(u8 *arg0, u8 *arg1, s32 arg2) {
+    register u8 *dbd_gp asm("r7");
+    register volatile u32 *dbd_st asm("r6");
+    register s32 dbd_one asm("r4");
+    register s32 dbd_zero asm("r8");
     u8 *p;
     switch (arg2) {
     case 0: {
@@ -166,7 +170,7 @@ extern void func_02109264(s32);
 extern void func_021089e8(s32,s32,s32);
 extern void func_0210d6a4(s32,s32);
 #pragma push
-#pragma scheduling off
+#pragma scheduling on
 s32 func_020dbd0c(void){
 s32 one=1,zero=0;
 data_02162870[0]=zero;
