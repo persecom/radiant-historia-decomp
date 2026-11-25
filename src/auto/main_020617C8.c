@@ -43,7 +43,7 @@ extern s32 func_0205bcb0(void *, u16);
 extern u8 *func_0205bad4(void *);
 extern u8 *func_020d56d8(void *, void *, void *, s32);
 extern void func_0210d27c(s32);
-extern void func_0202f41c(void *,void *,void *,void *,void *,s32,s32);
+extern void func_0202f41c(void *,void *,void *,s32,void *,s32,s32);
 extern void func_0205baf8(void *);
 extern s32 func_020d9df4(void);
 extern void func_020d9e48(void *,void *);
@@ -60,7 +60,7 @@ void func_020617c8(u8 *obj) {
  u8 *base;
  u8 *node;
  u16 i;
- s32 value;
+ u8 *value;
  s32 mode;
  s32 flags;
  base = *(u8 **)(obj+0x128);
@@ -71,13 +71,13 @@ void func_020617c8(u8 *obj) {
   *(s16 *)(base+0x1c)=1;
   if (!(base[0x76]&1)) {
    node=func_0205bad4(base);
-   value=*(s32 *)(base+8);
+   value=*(u8 **)(base+8);
    selected=*(u8 **)base;
   } else {
    u8 *p=*(u8 **)(base+0x78);
    mode=1;
    node=*(u8 **)(*(u8 **)(p+0xc)+0x28);
-   value=*(s32 *)(p+4);
+   value=*(u8 **)(p+4);
   }
   for(i=0;node; i++,node=*(u8 **)(node+0x18)) {
    s32 empty;
