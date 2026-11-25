@@ -155,37 +155,43 @@ void func_020f1dfc(s32 arg0, s32 arg1) {
     }
 }
 
+#pragma optimization_level 2
 void func_020f1e2c(void) {
-    s32 i;
-    s32 j;
-    s32 off;
-
-    if (data_02160c10 == NULL) {
-        return;
-    }
-    for (i = 0; i < 6; i++) {
-        off = i * 12;
-        while (*(u16 *)(data_02160c10 + off + 8) != 0) {
-            func_020f1f28(*(u8 **)(data_02160c10 + off));
-        }
-    }
-    for (j = 0; j < 6; j++) {
-        off = j * 12;
-        while (*(u16 *)(data_02160c10 + off + 0x50) != 0) {
-            func_020f1fa4(*(u8 **)(data_02160c10 + off + 0x48));
-        }
-    }
-    func_0210da14(data_02160c10 + 0x9c);
-    func_0210dba0(data_02160c10 + 0xb0);
-    func_0210db10(data_02160c10 + 0xc4);
-    func_020e972c(*(void **)(data_02160c10 + 0xd8));
-    if (data_02160c10 == NULL) {
-        return;
-    }
-    func_0210c5dc(data_02160c10);
-    data_02160c10 = NULL;
+ s32 j;
+ s32 off;
+ s32 i;
+ if(data_02160c10==NULL) return;
+ i=0;
+ goto test1;
+ loop1:
+ off=i*12;
+ if(*(u16 *)(data_02160c10+off+8)!=0) {
+ do {func_020f1f28(*(u8 **)(off+data_02160c10));}
+ while(*(u16 *)(off+data_02160c10+8)!=0);
+ }
+ i++;
+ test1:
+ if(i<6) goto loop1;
+ i=0;
+ goto test2;
+ loop2:
+ off=i*12;
+ if(*(u16 *)(data_02160c10+off+0x50)!=0) {
+ do {func_020f1fa4(*(u8 **)(off+data_02160c10+0x48));}
+ while(*(u16 *)(off+data_02160c10+0x50)!=0);
+ }
+ i++;
+ test2:
+ if(i<6) goto loop2;
+ func_0210da14(data_02160c10+0x9c);
+ func_0210dba0(data_02160c10+0xb0);
+ func_0210db10(data_02160c10+0xc4);
+ func_020e972c(*(void **)(data_02160c10+0xd8));
+ if(data_02160c10==NULL) return;
+ func_0210c5dc(data_02160c10);
+ data_02160c10=NULL;
 }
-
+#pragma optimization_level 4
 void func_020f1f28(u8 *arg0) {
     func_021168f8(data_02160c10 + arg0[0x20] * 0xc, arg0);
     if (*(void **)(arg0 + 0x1c) != NULL) {
@@ -256,6 +262,119 @@ BOOL func_020f2104(void *arg0, s32 arg1, s32 arg2, void *arg3) {
         return 0;
     }
     return 1;
+}
+
+s32 func_020f2198(void *arg0,void *arg1) {
+char path[256];
+u8 *src;
+u32 size;
+s32 total;
+u8 *dst;
+register u16 w;
+u16 col;
+register u16 x;
+u16 y,h;
+u16 sx,sy;
+u8 *obj=arg0;
+u16 width=*(u16 *)(obj+2);
+u16 height=*(u16 *)obj;
+u8 *node=*(u8 **)arg1;
+while(node) {
+x=*(u16 *)(node+0x100);
+y=*(u16 *)(node+0x102);
+sx=*(u16 *)(node+0x104);
+sy=*(u16 *)(node+0x106);
+w=*(u16 *)(node+0x108);
+h=*(u16 *)(node+0x10a);
+col=0;
+dst=*(u8 **)(obj+0x14);
+if(*(s8 *)node){
+void *buf;
+s32 stride;
+s32 sw,sh;
+u16 i;
+u8 *pixels;
+if(*(u16 *)(node+0x10c)==0)func_02005e80(path,data_02151de0,node);
+else func_02005e80(path,data_02151de8,node);
+buf=func_02109c60(path,&size);
+if(!buf)return 0;
+if(*(u16 *)(node+0x10c)==0)func_021177c0(buf,&src);else func_02117774(buf,&src);
+pixels=*(u8 **)(src+0x14);
+sw=*(u16 *)(src+2);sh=*(u16 *)src;
+if(*(u32 *)(obj+4)==3 && *(u32 *)(src+4)==3)stride=32;
+else if(*(u32 *)(obj+4)==4 && *(u32 *)(src+4)==4)stride=64;
+else if(*(u32 *)(obj+4)==4 && *(u32 *)(src+4)==3)stride=32;
+else return 0;
+if(x>width || y>height || x+w>(s32)width || y+h>(s32)height)return 0;
+if(w==0)w=sw-sx;
+if(h==0)h=sh-sy;
+if(*(u16 *)(node+0x10c)==0){
+dst+=stride*(x+y*width);
+pixels+=stride*(sx+sy*sw);
+}else{
+dst+=y*(stride*width)+(x<<2);
+pixels+=sy*(stride*sw)+(sx<<2);
+}
+for(i=0;i<(w*h)*stride;i++){
+if(*(u16 *)(node+0x10c)==0){
+if(col>=w*stride){col=0;dst+=stride*(width-w);pixels+=stride*(sw-w);}
+}else{
+if(col>=w*4){col=0;dst+=(width-w)*4;pixels+=(sw-w)*4;}
+}
+*dst=*pixels;
+col++;
+dst++;
+pixels++;
+}
+if(buf)func_0210c5dc(buf);
+}
+node=*(u8 **)(node+0x118);
+}
+return 1;
+}
+
+extern char data_02151df0[];
+s32 func_020f242c(void *arg0, void *arg1)
+{
+  u8 *node = *((u8 **) arg1);
+  while (node != NULL)
+  {
+    u8 *dst = *((u8 **) (((u8 *) arg0) + 0xc));
+    u16 idx1 = *((u16 *) (node + 0x102));
+    u16 idx2 = *((u16 *) (node + 0x106));
+    char buf[0x100];
+    void *pal;
+    s32 size;
+    s32 ptr;
+    u8 *d;
+    u8 *s;
+    u32 i;
+    i = idx2;
+    if ((idx1 > 0xf) || (idx2 > 0xf))
+    {
+      return 0;
+    }
+    func_02005e80(buf, data_02151df0, node);
+    ptr = func_0210ab44(&pal, buf, &size);
+    if (ptr == 0)
+    {
+      return 0;
+    }
+    d = dst + (idx1 * 0x20);
+    s = (*((u8 **) (((u8 *) pal) + 0xc))) + (i * 0x20);
+    for (i = 0; i < 0x20; i++)
+    {
+      *(d++) = *(s++);
+    }
+
+    if (ptr != 0)
+    {
+      func_0210c5dc((void *) ptr);
+    }
+    node = *((u8 **) (node + 0x118));
+  }
+
+  return 1;
 }
 
 BOOL func_020f24f4(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
