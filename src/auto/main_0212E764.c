@@ -83,14 +83,13 @@ s32 func_0212e7f0(u32 arg0, void *arg1) {
 void func_0212ea64(void);
 void func_0212ea90(void);
 void func_0212e764(void);
-static inline u32 *ThreadParams_0212e860(void) { return data_021744d8; }
 void func_0212e860(void *arg)
 {
   u32 value;
   u32 stack;
   u32 base;
+  u32 new_var;
   Config_0212e860 *p = arg;
-  u32 *new_var;
   (void) (*((volatile const u32 *) (&data_0214590c)));
   if (!p)
   {
@@ -123,14 +122,14 @@ void func_0212e860(void *arg)
   data_02174524[7] = 0;
   data_02174524[2] = 1;
   func_0212ea90();
-  new_var = data_021744d8;
+  new_var = (u32)data_021744d8;
   stack = p->words[3];
   base = ((volatile Config_0212e860 *) p)->words[6];
   stack = ((stack + 3) & (~3)) + base;
-  func_020062d8(data_02174548, func_0212e69c, 0, stack, base, new_var[10]);
+  func_020062d8(data_02174548, func_0212e69c, 0, stack, base, *(u32 *)(new_var + 0x28));
   data_02174524[4] = 1;
   data_02174524[5] = 0;
-  func_020062d8(data_02174608, func_0212e70c, 0, ((p->words[4] + 3) & (~3)) + p->words[7], p->words[7], new_var[11]);
+  func_020062d8(data_02174608, func_0212e70c, 0, ((p->words[4] + 3) & (~3)) + p->words[7], p->words[7], *(u32 *)(new_var + 0x2c));
   if (data_02174524[8] != 2)
   {
     data_02174524[0] = 0;
@@ -139,7 +138,7 @@ void func_0212e860(void *arg)
   }
   data_02174524[0] = 1;
   data_02174524[1] = 0;
-  func_020062d8(data_021746c8, func_0212e764, 0, ((p->words[5] + 3) & (~3)) + p->words[8], p->words[8], new_var[12]);
+  func_020062d8(data_021746c8, func_0212e764, 0, ((p->words[5] + 3) & (~3)) + p->words[8], p->words[8], *(u32 *)(new_var + 0x30));
 }
 
 BOOL func_0212ea3c(void) {
