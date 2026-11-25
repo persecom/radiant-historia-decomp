@@ -28,11 +28,11 @@ void func_020eb3dc(void);
 u32 func_02124cf8(u32, u32, u32);
 void func_0210db70(void *);
 void func_0210dbd0(void *);
+#pragma optimization_level 3
 void func_020eb180(u32 arg0, s32 arg1) {
  u32 mode = arg0;
  u8 *p;
  s32 enabled = arg1;
- u32 zero = 0;
  u8 **state = &data_02160aa4;
  if ((*state) != 0) return;
  (*state) = func_0210c594(0x44, data_02155c3c);
@@ -44,22 +44,22 @@ void func_020eb180(u32 arg0, s32 arg1) {
  *(u32 *)((*state) + 20) = 0;
  *(u32 *)((*state) + 0x18) = 1;
  if (mode == 0) {
- *(u32 *)((*state) + 0) = func_02124cf8(0x4000,zero,zero);
+ *(u32 *)((*state) + 0) = func_02124cf8(0x4000,0,0);
  *(u32 *)((*state) + 4) = (u16)*(u32 *)((*state) + 0) * 8;
  }
  if (mode <= 1) {
- *(u32 *)((*state) + 8) = func_02124cf8(0x8000,zero,zero);
+ *(u32 *)((*state) + 8) = func_02124cf8(0x8000,0,0);
  p = (*state);
  *(u32 *)(p + 12) = (u16)*(u32 *)(p + 8) * 8;
  }
  if (mode == 2) {
- *(u32 *)((*state) + 8) = func_02124cf8(0x20000,zero,zero);
+ *(u32 *)((*state) + 8) = func_02124cf8(0x20000,0,0);
  *(u32 *)((*state) + 12) = (u16)*(u32 *)((*state) + 8) * 8;
- *(u32 *)((*state) + 16) = func_02124cf8(0x4000,zero,zero);
+ *(u32 *)((*state) + 16) = func_02124cf8(0x4000,0,0);
  *(u32 *)((*state) + 20) = (u16)*(u32 *)((*state) + 16) * 8;
  }
  if (mode == 3) {
- *(u32 *)((*state) + 8) = func_02124cf8(0x8000,zero,zero);
+ *(u32 *)((*state) + 8) = func_02124cf8(0x8000,0,0);
  *(u32 *)((*state) + 12) = (u16)*(u32 *)((*state) + 8) * 8;
  }
  *(void (**)(void))((*state) + 0x1c) = func_020eb3dc;
@@ -71,7 +71,7 @@ void func_020eb180(u32 arg0, s32 arg1) {
  func_0210dbd0((*state) + 0x30);
  }
 }
-
+#pragma optimization_level 4
 void func_020eb344(s32 arg0, s32 arg1) {
     if (arg0 == 0) {
         data_02156154(*(void **)data_02160aa4);
@@ -106,9 +106,9 @@ void *func_020eb400(void) {
     return p;
 }
 
-extern void func_02005e80(u8 *, u8 *, u32);
-extern void func_021092d8(u8 *);
-extern u8 data_021518c8[], data_021518e8[], data_02151900[], data_02151918[];
+extern void func_02005e80(char *, const char *, ...);
+extern void *func_021092d8(char *);
+extern char data_021518c8[], data_021518e8[], data_02151900[], data_02151918[];
 s32 func_020eb44c(s32 mode, s32 value, s32 arg2) {
     u8 stack[0x124];
     u8 *dst = stack + 0x10a;
@@ -186,67 +186,138 @@ s32 func_020ebd5c(u8 *arg0, s32 arg1) {
     return 0;
 }
 
-void func_020ebddc(u8 *obj,s32 update) {
-s32 one=1,zero=0,changed;
-u8 *p=*(u8 **)(obj+8);
-s32 delta;
-if(!update)return;
-delta=*(s32 *)(p+96)<<data_02162834[0];
-changed=zero;
-*(s32 *)(obj+32)=changed;
-if(*(s32 *)(p+12)) {
-s32 step=(s32)(((long long)*(s32 *)(p+20)*delta+0x800)>>12);
-if(step<0)step=-step;
-*(s32 *)(p+16)+=step;
-while(*(s32 *)(p+12) && *(s32 *)(p+16)>=(*(u16 *)(*(u8 **)p+4)<<12)){
-s32 end; s32 mode; u8 *seq;u8 *cur;
-*(s32 *)(p+16)-=*(u16 *)(*(u8 **)p+4)<<12;
-changed=one;
-*(u8 **)p=(u8 *)(*(u32 *)p+8);
-cur=(u8 *)*(volatile u32 *)p;
-if((*(s32 *)(p+20)>zero)^*(u32 *)(p+8)){
-seq=*(u8 **)(p+28);
-if(cur>=*(u8 **)(seq+12)+*(u16 *)seq*8)end=one;else end=zero;
-}else{
-seq=*(u8 **)(p+28);
-if(cur<=*(u8 **)(seq+12)+*(u16 *)(seq+2)*8-8)end=one;else end=zero;
-}
-if(obj)*(s32 *)(obj+32)=end;
-if(end){
-mode=*(s32 *)(p+24);
-if(!mode)mode=*(s32 *)(*(u8 **)(p+28)+8);
-if(mode==2||mode==4){
-seq=*(u8 **)(p+28);
-*(u8 **)p=*(u8 **)(seq+12)+*(u16 *)(seq+2)*8;
-*(s32 *)(p+16)=zero;
-func_02117be0(p,zero);
-}else *(s32 *)(p+12)=zero;
-seq=*(u8 **)(p+28);cur=*(u8 **)p;
-if(cur>*(u8 **)(seq+12)+*(u16 *)seq*8-8)*(u8 **)p=*(u8 **)(seq+12)+*(u16 *)seq*8-8;
-else if(cur<*(u8 **)(seq+12))*(u8 **)p=*(u8 **)(seq+12);
-}
-}
-}
-if(changed && *(u16 *)(*(u8 **)p+4)){
-u8 *frame=**(u8 ***)p;
-u8 *bank=*(u8 **)(p+52);
-u8 flag;
-s32 valid;
-*(void **)(p+48)=func_021176b0(bank,*(u16 *)frame);
-flag=*(u32 *)(*(u8 **)(p+28)+4)&255;
-func_02118eec(p+60,1);
-if(flag)func_02118e94(p+60,*(s16 *)(frame+4),*(s16 *)(frame+6));
-valid=has_02118f24_data(bank);
-if(valid){
-valid=(u32)(*(s32 *)(p+56)!=-1);
-if(valid==0)goto done;
-if(valid){
-u32 *entry=(u32 *)(*(u8 **)(*(u8 **)(bank+12)+4)+*(u16 *)frame*8);
-func_0211a7ec(*(volatile s32 *)(p+56),entry[0],entry[1]);
-}
-}
-}
-done:;
+void func_020ebddc(u8 *obj, s32 update)
+{
+  u8 *new_var;
+  s32 one = 1;
+  s32 zero = 0;
+  s32 changed;
+  int new_var2;
+  u8 *p = *((u8 **) (obj + 8));
+  s32 delta;
+  if (!update)
+  {
+    return;
+  }
+  delta = (*((s32 *) (p + 96))) << data_02162834[0];
+  changed = zero;
+  *((s32 *) (obj + 32)) = changed;
+  if (*((s32 *) (p + 12)))
+  {
+    s32 step = (s32) (((((long long) (*((s32 *) (p + 20)))) * delta) + 0x800) >> 12);
+    if (step < 0)
+    {
+      step = -step;
+    }
+    *((s32 *) (p + 16)) += step;
+    while ((*((s32 *) (p + 12))) && ((*((s32 *) (p + 16))) >= ((*((u16 *) ((*((u8 **) p)) + 4))) << 12)))
+    {
+      s32 end;
+      s32 mode;
+      u8 *seq;
+      u8 *cur;
+      *((s32 *) (p + 16)) -= (*((u16 *) ((*((u8 **) p)) + 4))) << 12;
+      changed = one;
+      *((u8 **) p) = (u8 *) ((*((u32 *) p)) + 8);
+      cur = (u8 *) (*((volatile u32 *) p));
+      if (((*((s32 *) (p + 20))) > zero) ^ (*((u32 *) (p + 8))))
+      {
+        seq = *((u8 **) (p + 28));
+        if (cur >= ((*((u8 **) (seq + 12))) + ((*((u16 *) seq)) * 8)))
+        {
+          end = one;
+        }
+        else
+        {
+          end = zero;
+        }
+      }
+      else
+      {
+        seq = *((u8 **) (p + 28));
+        new_var = seq + 12;
+        if ((cur - 1) <= ((((*((u8 **) new_var)) + ((*((u16 *) (seq + 2))) * 8)) - 8) - 1))
+        {
+          end = one;
+        }
+        else
+        {
+          end = zero;
+        }
+      }
+      if (obj)
+      {
+        *((s32 *) (obj + 32)) = end;
+      }
+      if (end)
+      {
+        mode = *((s32 *) (p + 24));
+        if (!mode)
+        {
+          mode = *((s32 *) ((*((u8 **) (p + 28))) + 8));
+        }
+        if ((mode == 2) || (mode == 4))
+        {
+          seq = *((u8 **) (p + 28));
+          *((u8 **) p) = (*((u8 **) (seq + 12))) + ((*((u16 *) (seq + 2))) * 8);
+          *((s32 *) (p + 16)) = zero;
+          func_02117be0(p, zero);
+        }
+        else
+        {
+          *((s32 *) (p + 12)) = zero;
+        }
+        seq = *((u8 **) (p + 28));
+        cur = *((u8 **) p);
+        if (cur > (((*((u8 **) (seq + 12))) + ((*((u16 *) seq)) * 8)) - 8))
+        {
+          *((u8 **) p) = (*((u8 **) (seq + 12))) + ((*((u16 *) seq)) * 8);
+          *((u8 **) p) = (*((u8 **) p)) - 8;
+        }
+        else
+          if (cur < (*((u8 **) (seq + 12))))
+        {
+          *((u8 **) p) = *((u8 **) (seq + 12));
+        }
+      }
+    }
+
+  }
+  if (changed && (*((u16 *) ((*((u8 **) p)) + 4))))
+  {
+    u8 *frame = *(*((u8 ***) p));
+    u8 *bank = *((u8 **) (p + 52));
+    u8 flag;
+    s32 valid;
+    *((void **) (p + 48)) = func_021176b0(bank, *((u16 *) frame));
+    new_var2 = 255;
+    flag = (*((u32 *) ((*((u8 **) (p + 28))) + 4))) & new_var2;
+    func_02118eec(p + 60, 1);
+    if (flag)
+    {
+      func_02118e94(p + 60, *((s16 *) (frame + 4)), *((s16 *) (frame + 6)));
+    }
+    valid = has_02118f24_data(bank);
+    if (valid)
+    {
+      valid = (u32) ((*((s32 *) (p + 56))) != (-1));
+      if (valid == 0)
+      {
+        goto done;
+      }
+      if (valid)
+      {
+        u32 *entry = (u32 *) ((*((u8 **) ((*((u8 **) (bank + 12))) + 4))) + ((*((u16 *) frame)) * 8));
+        func_0211a7ec(*((volatile s32 *) (p + 56)), entry[0], entry[1]);
+      }
+    }
+  }
+  done:
+  ;
+
+  ;
+  ;
+  ;
 }
 
 s32 func_020020bc(s32,s32);
