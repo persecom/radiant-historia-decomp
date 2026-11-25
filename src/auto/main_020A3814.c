@@ -206,7 +206,149 @@ void func_020a3ce8(s16 *arg0) {
     func_021098ac(sp);
 }
 
+extern void func_020a46cc(s16, s16, s16, s16, s16, s16, s16);
 void func_020a3d8c(u8 *arg0, u8 *arg1) {
+    s16 arr[2];
+    s32 i;
+    s32 v34, hp, maxHp, mp, maxMp, gauge;
+    s16 w;
+    u16 icon;
+
+    if (arg1 == NULL) {
+        return;
+    }
+
+    *(volatile u32 *)0x04000444 = 0;
+    {
+        s32 x = *(s16 *)(arg0 + 0x18) << 12;
+        s32 z = *(s16 *)(arg0 + 0x1c) << 12;
+        s32 y = *(s16 *)(arg0 + 0x1a) << 12;
+        *(volatile u32 *)0x04000470 = x;
+        *(volatile u32 *)0x04000470 = y;
+        *(volatile u32 *)0x04000470 = z;
+    }
+
+    if (*(s32 *)(arg0 + 0x20) == 0) {
+        func_020a3bbc(*(s32 *)(arg0 + 0xc));
+    } else if (*(s32 *)(arg0 + 0x20) == 1) {
+        func_020a3bbc(*(s32 *)(arg0 + 0x10));
+    }
+
+    draw_quad_020a3d8c(0, 0, 2, 2, 0, 0, 1, 2, 2);
+    draw_quad_020a3d8c(0x1e, 0, 2, 2, 0x4e, 0, 1, 2, 2);
+    draw_quad_020a3d8c(0, 0x1e, 2, 2, 0, 0x1d, 1, 2, 2);
+    draw_quad_020a3d8c(0x1e, 0x1e, 2, 2, 0x4e, 0x1d, 1, 2, 2);
+    draw_quad_020a3d8c(3, 0, 1, 1, 0, 2, 1, 2, 0x1b);
+    draw_quad_020a3d8c(3, 0, 1, 1, 0x4e, 2, 1, 2, 0x1b);
+    draw_quad_020a3d8c(3, 0, 1, 1, 2, 0, 1, 0x4c, 0x1f);
+
+    func_020a3bbc(*(s32 *)(arg0 + 4));
+    draw_quad_020a3d8c(0xa, 0, 1, 1, 2, 2, 3, 0x2a, 1);
+    draw_quad_020a3d8c(0xa, 0, 1, 1, 2, 0x16, 3, 0x2a, 1);
+    draw_quad_020a3d8c(0xa, 0, 1, 1, 2, 2, 3, 1, 0x15);
+    draw_quad_020a3d8c(0xa, 0, 1, 1, 0x2b, 2, 3, 1, 0x15);
+    draw_quad_020a3d8c(4, 7, 1, 1, 3, 3, 2, 0x28, 0x13);
+
+    func_020a3c54(*(s32 *)(arg0 + 4));
+    arr[0] = data_021430c8[0];
+    arr[1] = data_021430c8[1];
+    for (i = 0; i < 2; i++) {
+        draw_quad_020a3d8c(0, 0xb, 1, 4, 0x2d, arr[i], 2, 0, 0);
+        draw_quad_020a3d8c(1, 0xb, 1, 4, 0x2e, arr[i], 2, 0x1f, 4);
+        draw_quad_020a3d8c(0, 0xb, 1, 4, 0x4d, arr[i], 2, 0, 0);
+    }
+
+    if (data_02160204[0x11c] == 1) {
+        s32 flag = 0;
+        s8 v;
+        func_020a3bbc(0);
+        v = *(s8 *)(arg0 + 0x28);
+        if (v != 0 && (v % 6) > 2) {
+            flag = 1;
+        }
+        if (flag == 0) {
+            for (i = 0; i < 25; i++) {
+                func_020a46cc(0, 7, 4, 4, (s16)(i * 3 + 2), 25, 2);
+            }
+        } else {
+            for (i = 0; i < 25; i++) {
+                func_020a46cc(8, 7, 4, 4, (s16)(i * 3 + 2), 25, 2);
+            }
+        }
+    }
+
+    func_020a3bbc(*(s32 *)(arg0 + 4));
+    draw_quad_020a3d8c(1, 0, 9, 7, 2, 0x10, 4, 0, 0);
+    draw_quad_020a3d8c(0xa, 0, 0xb, 6, 0x2d, 3, 2, 0, 0);
+    draw_quad_020a3d8c(0x15, 0, 0xb, 5, 0x2d, 0xe, 2, 0, 0);
+
+    func_020a3bbc(*(s32 *)(arg0 + 0));
+    draw_quad_020a3d8c(2, 1, 0x28, 0x13, 3, 3, 3, 0, 0);
+
+    if (*(s16 *)(arg1 + 0xbc) != 0) {
+        func_020a3bbc(*(s32 *)(arg0 + 8));
+        *(volatile u32 *)0x040004a4 = 0x1480c0;
+        draw_quad_020a3d8c(0, 5, 1, 1, 3, 3, 4, 0x28, 0x13);
+        *(volatile u32 *)0x040004a4 = 0x1f0080;
+    }
+
+    v34 = *(s16 *)(arg1 + 0x34);
+    hp = *(s32 *)(arg1 + 4);
+    maxHp = *(s32 *)(arg1 + 8);
+    mp = *(s16 *)(arg1 + 0xc);
+    maxMp = *(s16 *)(arg1 + 0xe);
+    gauge = *(s16 *)(arg1 + 0x5a);
+
+    func_020a3bbc(*(s32 *)(arg0 + 8));
+    if (hp != 0) {
+        w = (hp * 31) / maxHp;
+    } else {
+        w = 0;
+    }
+    if (w != 0) {
+        draw_quad_020a3d8c(0, 1, 0x1f, 2, 0x2e, 9, 3, w, 2);
+    } else if (hp != 0) {
+        draw_quad_020a3d8c(0, 1, 0x1f, 2, 0x2e, 9, 3, 1, 2);
+    }
+
+    if (mp != 0) {
+        w = (mp * 31) / maxMp;
+    } else {
+        w = 0;
+    }
+    if (w != 0) {
+        draw_quad_020a3d8c(4, 3, 2, 2, 0x2e, 0x14, 3, w, 2);
+    } else if (mp != 0) {
+        draw_quad_020a3d8c(4, 3, 2, 2, 0x2e, 0x14, 3, 1, 2);
+    }
+
+    if (data_02160204[0x11c] == 1) {
+        s32 k;
+        s32 cnt;
+        if (gauge >= 100) {
+            gauge = 100;
+        }
+        cnt = (gauge * 25) / 100;
+        func_020a3bbc(*(s32 *)(arg0 + 8));
+        for (k = 0; k < 25; k++) {
+            if (k < cnt) {
+                draw_quad_020a3d8c(0, 3, 2, 2, (s16)((k + 1) * 3), 0x1a, 4, 2, 2);
+            }
+        }
+    }
+
+    func_020a3bbc(3);
+    func_020a48d0(v34, 2, 0x10, 0x10, 4, 5, 0);
+    func_020a48d0(hp, 4, 0x48, 2, 2, 5, 0);
+    func_020a48d0(mp, 3, 0x48, 0xd, 2, 5, 0);
+
+    icon = *(u16 *)(*(u8 **)(arg1 + 0xa0) + 2);
+    if (icon != 0) {
+        func_020a3bbc(icon);
+        draw_quad_020a3d8c(0, 0, 0xc, 0xc, 2, 2, 4, 0xc, 0xc);
+    }
+
+    *(volatile u32 *)0x04000448 = 1;
 }
 
 void func_020a46cc(s16 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s16 arg5, s16 arg6) {
