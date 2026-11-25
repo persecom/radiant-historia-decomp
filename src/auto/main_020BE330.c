@@ -267,11 +267,9 @@ func_020f4668(&b);
 }
 
 void func_020beb14(void) {
-    s32 *q = data_0216242c;
-    u8 *p = data_0216020c;
-    data_02155984 = q;
-    q[9] += *(s32 *)(p + 0x98);
-    data_02151fcc = *(s16 *)(p + 0x8e) + 0x80;
+    data_02155984 = data_0216242c;
+    ((s32 *)data_02155984)[9] += *(s32 *)(data_0216020c + 0x98);
+    data_02151fcc = *(s16 *)(data_0216020c + 0x8e) + 0x80;
     func_02108240();
 }
 
@@ -375,11 +373,12 @@ void func_020bedb4(u8 *arg0, s32 arg1, u16 arg2, u16 arg3, s32 arg4, s32 arg5) {
     func_02009008(arg1, arg0, 0xc);
 }
 
+#pragma optimization_level 3
 s32 func_020bedf8(u8 *p) {
 s32 x=*(s16 *)(p+0x10)<<12;
 s32 y=*(s16 *)(p+0x12)<<12;
-s32 dx=0,dy=0;
 s32 count=(*(s32 *)(p+0x14))++;
+s32 dx=0,dy=0;
 s32 rx,ry,sx,sy;
 if(count<0) return 1;
 if(count==*(s32 *)(p+0x18)) {func_020beda0(p);return 0;}
@@ -403,7 +402,7 @@ if(*(s16 *)(p+0xc)==0 && *(s16 *)(p+0xe)==0) {
 }
 return 1;
 }
-
+#pragma optimization_level 4
 u8 *func_020befb4(void) {
     return func_020becfc() + 0x1c;
 }
