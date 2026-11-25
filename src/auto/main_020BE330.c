@@ -15,22 +15,6 @@ if(max) value=(value*max)>>16;
 return value;
 }
 
-static inline u16 RandomRangePtr_bedf8(u32 *rng, u32 limit) {
- u16 max=limit;
- u32 value;
- rng[0]=rng[1]*rng[0]+rng[2];
- value=rng[0]>>16;
- if(max)value=(value*max)>>16;
- return value;
-}
-static inline u16 RandomRangeVar_bedf8(u16 max) {
- u32 value;
- data_0216263c[0]=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
- value=data_0216263c[0]>>16;
- if(max)value=(value*max)>>16;
- return value;
-}
-
 typedef struct { s32 x, y, z; } VecBf118;
 static inline void SetVecBf118(VecBf118 *p, s32 x, s32 y, s32 z) {
 p->x=x; p->y=y; p->z=z;
