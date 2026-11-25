@@ -45,32 +45,32 @@ extern void func_020a994c(void *);
 extern void func_0208da7c(s16, s32, s16, s16, s16, s16, s16);
 extern void func_020a30c4(u16);
 extern void func_0208dcc8(s32, s32, s32, s32, s32);
-extern void func_0208dea4(s32, s32, s32, s32, s32, s32);
+extern void func_0208dea4(u32, s32, s16, s16, s16, u8);
 extern const Unk10 data_02141008;
 void func_0208e1cc(s32 arg0, s32 arg1) {
     Unk10 a = data_02141008;
     s16 i;
     s16 stride = 0x50;
-    u8 *page = data_0216010c + 0x5000;
-    s32 id;
-    s32 diff, off, cnt;
+    u8 *page;
+    s32 diff, off, id, cnt;
     u8 limit;
 
     diff = (u8)(data_0216010c[0x50d7] - data_0216010c[0x50d6]);
     limit = 6;
     if (*(s16 *)(data_0216010c + 0x50d4) < 6) limit = (u8)*(s16 *)(data_0216010c + 0x50d4);
     off = diff * 100;
+    page = data_0216010c + 0x5000;
 
     for (i = 0; i < 6; i++) {
         if (limit <= i) {
-            func_020a994c(data_0216010c + 0x74 + i * stride);
+            func_020a994c(((Entry_0208e1cc *)(data_0216010c + 0x74))[i].data);
             continue;
         }
         id = *(s16 *)(off + data_0216010c + i * 100 + 0x5570);
         cnt = *(u8 *)(data_0216010c + off + i * 100 + 0x5572);
         if (i == page[0xd6]) {
             func_0209250c(0x30, 1, 10, (s16)(i * 19 + 53), 156, 18, 8, 16, 4, 2, 4, 4, 177);
-            func_020a8810(*(void **)(data_0216010c + i * stride + 0x70), 19);
+            func_020a8810(*(void **)(((Entry_0208e1cc *)data_0216010c)[i].data + 0x70), 19);
             if (cnt >= 10) {
                 func_0208da7c(0x3e, (cnt / 10) & 0xff, 0x92, (s16)(i * 19 + 56), 8, 10, 179);
                 func_0208da7c(0x3e, (cnt % 10) & 0xff, 0x9a, (s16)(i * 19 + 56), 8, 10, 179);
@@ -80,7 +80,7 @@ void func_0208e1cc(s32 arg0, s32 arg1) {
             func_0208da7c(0x3e, 10, 0x86, (s16)(i * 19 + 56), 8, 10, 179);
         } else {
             func_0209250c(0x2f, 1, 10, (s16)(i * 19 + 53), 156, 18, 8, 16, 4, 2, 4, 4, 177);
-            func_020a8810(*(void **)(data_0216010c + i * stride + 0x70), 20);
+            func_020a8810(*(void **)(((Entry_0208e1cc *)data_0216010c)[i].data + 0x70), 20);
             if (cnt >= 10) {
                 func_0208da7c(0x3d, (cnt / 10) & 0xff, 0x92, (s16)(i * 19 + 56), 8, 10, 179);
                 func_0208da7c(0x3d, (cnt % 10) & 0xff, 0x9a, (s16)(i * 19 + 56), 8, 10, 179);
