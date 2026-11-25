@@ -2,8 +2,8 @@
 #include "common.h"
 typedef struct { u8 pad[0x100]; u16 entries[128][4]; u8 tail[0x40]; } UnkOamBuffer;
 extern u8 data_0216e274[];
-typedef void (*OamFn)(void *, u16, u32);
-extern void (*data_02155e9c[5])(void *, u16, u32);
+typedef void (*OamFn)(void *, u32, u32);
+extern OamFn data_02155e9c[5];
 extern void func_02003770(void *, u32, u32);
 extern void func_020037d4(void *, u32, u32);
 extern void func_02006dc4(void *, u32);
