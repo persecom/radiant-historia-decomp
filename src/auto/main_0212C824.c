@@ -301,39 +301,26 @@ void func_0212d21c(u8 *arg0) {
 }
 
 extern void func_02013878(void *, s32, s32);
-void func_0212d288(void *arg0)
-{
-  Unk0212D3B4 *p = (Unk0212D3B4 *) arg0;
-  s32 buf[2];
-  s32 n = p->unkA8 * 2;
-  s32 i;
-  s32 half;
-  unsigned char count;
-  for (i = 0; i < p->count; i++)
-  {
-    void *obj = p->objs[i];
-    (*((void (**)(void *, s32, s32, void *)) ((*((u8 **) obj)) + 0x18)))(obj, 0, 0x7fffffff, buf);
-    n = (n < buf[1]) ? (n) : (buf[1]);
-    obj = p->objs[i];
-    (*((void (**)(void *, s32, void *)) ((*((u8 **) obj)) + 0x1c)))(obj, 0, buf);
-  }
-
-  half = n / 2;
-  count = half * 2;
-  if (count <= 0)
-  {
-    return;
-  }
-  for (i = 0; i < p->count; i++)
-  {
-    void *obj = p->objs[i];
-    (*((void (**)(void *, s32, s32, void *)) ((*((u8 **) obj)) + 0x18)))(obj, 0, count, buf);
-    func_02013878((void *) buf[0], 0, count);
-    obj = p->objs[i];
-    (*((void (**)(void *, s32, void *)) ((*((u8 **) obj)) + 0x20)))(obj, 1, buf);
-  }
-
-  p->unkA8 -= half;
+void func_0212d288(void *arg0) {
+Unk0212D3B4 *p=arg0;
+s32 buf[2], n=p->unkA8*2, i, half; long count;
+for(i=0;i<p->count;i++){
+void *obj=p->objs[i];
+(*(void (**)(void *,s32,s32,void *))(*(u8 **)obj+0x18))(obj,0,0x7fffffff,buf);
+n=n<buf[1]?n:buf[1];
+obj=p->objs[i];
+(*(void (**)(void *,s32,void *))(*(u8 **)obj+0x1c))(obj,0,buf);
+}
+half=n/2; count=half*2;
+if(count<=0)return;
+for(i=0;i<p->count;i++){
+void *obj=p->objs[i];
+(*(void (**)(void *,s32,s32,void *))(*(u8 **)obj+0x18))(obj,0,count,buf);
+func_02013878((void *)buf[0],0,count);
+obj=p->objs[i];
+(*(void (**)(void *,s32,void *))(*(u8 **)obj+0x20))(obj,1,buf);
+}
+p->unkA8-=half;
 }
 
 static void func_0212d3b4(void *arg) {
