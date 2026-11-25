@@ -435,7 +435,7 @@ void func_02136a9c(void) {
 void func_02136ab4(void) {
     data_02175c60--;
     if (data_02175c60 == 0) {
-        memset(data_02175c64, 0, sizeof(data_02175c64));
+        __clear(data_02175c64, 216);
     }
 }
 extern s32 func_02136b34(void *, void *);
