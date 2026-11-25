@@ -81,8 +81,8 @@ static inline s32 check_hit_02051344(u8 *other, u8 *arg0) {
         s32 pz, px, hit;
         s32 s, c;
         s32 ret;
-        u8 i = 0;
         s32 rad = 0;
+        u8 i = 0;
         rad = *(s32 *)(*(u8 **)(arg0 + 0xb0));
         box2[0] = *(s32 *)(arg0 + 0) - rad;
         box2[2] = *(s32 *)(arg0 + 0) + rad;
