@@ -45,6 +45,20 @@ typedef struct {
     EntryB_020b77d4 a[2];
 } TblB_020b77d4;
 
+extern u16 data_02143a70[112];
+extern u16 data_0214390c[4];
+extern u16 data_02143984[8];
+extern u16 data_02143994[8];
+extern u16 data_02143960[6];
+
+typedef struct {
+    EntryA_020b77d4 a[8];
+} TblC_020b77d4;
+
+typedef struct { u16 a[4]; } Tbl4_020b77d4;
+typedef struct { u16 a[7]; } Tbl7_020b77d4;
+typedef struct { u16 a[6]; } Tbl6_020b77d4;
+
 void func_020a2c20(void);
 void func_021070c4(void);
 void func_0210f6d4(void);
