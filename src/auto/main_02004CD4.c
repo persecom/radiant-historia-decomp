@@ -485,19 +485,23 @@ u32 func_02005870(u32 arg0) {
 
 void func_020058fc(u32 index, u32 arg1, u32 arg2) {
     u32 offset = index * 12;
-    u32 bit = 1 << (index + 8);
     *(u32 *)(data_0215cd7c + offset) = arg1;
-    *(u32 *)(data_0215cd84 + offset) = arg2;
-    *(u32 *)(data_0215cd80 + offset) = func_020059b4(bit) & bit;
+    {
+        u32 bit = 1 << (index + 8);
+        *(u32 *)(data_0215cd84 + offset) = arg2;
+        *(u32 *)(data_0215cd80 + offset) = func_020059b4(bit) & bit;
+    }
 }
 
+#pragma optimization_level 2
 void func_02005944(s32 arg0, u32 arg1, u32 arg2) {
-    data_0215cdac[arg0].unk0 = arg1;
-    data_0215cdb4[arg0].unk0 = arg2;
+    s32 offset = arg0 * 12;
+    *(volatile u32 *)((u8 *)data_0215cdac + offset) = arg1;
+    *(volatile u32 *)((u8 *)data_0215cdb4 + offset) = arg2;
     func_020059b4(1 << (arg0 + 3));
-    data_0215cdb0[arg0].unk0 = 1;
+    *(volatile u32 *)((u8 *)data_0215cdb0 + offset) = 1;
 }
-
+#pragma optimization_level 4
 u32 func_02005988(u32 arg0) {
     u16 ime = *(volatile u16 *)0x04000208;
     *(volatile u16 *)0x04000208 = 0;
