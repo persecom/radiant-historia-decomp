@@ -245,7 +245,6 @@ struct ScanState {
     s32 inv;
     s32 got;
     const char *start;
-    u32 bits[8];
 };
 s32 func_02012634(s32 arg0, const char *fmt, char *args)
 {
