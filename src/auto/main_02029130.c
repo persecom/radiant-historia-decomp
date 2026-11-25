@@ -13,9 +13,10 @@ typedef struct {u32 seed, multiplier, increment;} RandomState_020295f0;
 static inline u16 RandomRange_020295f0(u16 max) {
     u32 value;
     data_0216263c[0] = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
-    value = data_0216263c[0] >> 16;
-    if (max) {
-        value = (value * max) >> 16;
+    if (!max) {
+        value = data_0216263c[0] >> 16;
+    } else {
+        value = ((data_0216263c[0] >> 16) * max) >> 16;
     }
     return value;
 }
@@ -38,7 +39,7 @@ s16 func_02029130(u8 *arg0, u8 *arg1) {
                 s32 idx = (v1 - 1) * 3 + i;
                 u8 flag = func_0202e548((u8)idx)[0x1c];
                 if (flag == 0) {
-                    return idx;
+                    return (s16)idx;
                 }
                 if (flag == 0) {
                     arr[cnt++] = idx;
