@@ -134,8 +134,6 @@ s32 func_020f26fc(u8 *arg0, u16 arg1, u8 arg2) {
 }
 
 s32 func_020f2a5c(u8 *arg0,u16 id,u8 type) {
- u8 *resource;
- u8 *cur;
  u8 *node=0;
  void *texture=0;
  void *csv=0;
@@ -154,6 +152,7 @@ s32 func_020f2a5c(u8 *arg0,u16 id,u8 type) {
  void *pack0,*pack1,*pack2;
  u16 n,count;
  u16 index=0;
+ Frame_020f2a5c *cur;
  func_02005e80(csvName,data_02151ef8,id);
  func_02005e80(csvName,data_02151f18);
  data_02160c14[0]=0;data_02160c14[1]=0;data_02160c14[2]=0;
@@ -207,16 +206,16 @@ if(data_02160c14[1] && needIcon){
  return 0;
  }}
  if(data_02160c14[0]){
- resource=0;
- (*(u8 **)((*(u8 **)arg0)+0x58))=func_0210835c();resource=(*(u8 **)((*(u8 **)arg0)+0x58));
+ Resource_020f2a5c *resource=0;
+ (*(u8 **)((*(u8 **)arg0)+0x58))=func_0210835c();resource=(Resource_020f2a5c *)(*(u8 **)((*(u8 **)arg0)+0x58));
  func_02005e80(path,data_02151f6c,modelName);
- *(void **)(resource+0)=func_0210abb8(resource+4,path,&size);
- if(*(void **)(resource+0)){if(!func_02109f84(*(void **)(resource+0)))needIcon=1;}
+ resource->model=func_0210abb8(&resource->modelData,path,&size);
+ if(resource->model){if(!func_02109f84(resource->model))needIcon=1;}
  else {if(csv){func_021093b0(csv);csv=0;}return 0;}
  if(needIcon)func_020f36b0(arg0,(u16)(((*(u16 *)(arg0+0x18))%2)*16),(u16)(((*(u16 *)(arg0+0x18))/2)*16));
  func_02005e80(path,data_02151f74,modelName);
- *(void **)(resource+8)=func_0210ac2c(resource+12,path,&size);
- if(!*(void **)(resource+8)){if(csv){func_021093b0(csv);csv=0;}return 0;}
+ resource->animation=func_0210ac2c(&resource->animationData,path,&size);
+ if(!resource->animation){if(csv){func_021093b0(csv);csv=0;}return 0;}
  if(!func_02117630((*(u8 **)((*(u8 **)((*(u8 **)arg0)+0x58))+0xc)),0)){(void)csv;}
  func_02119000((*(u8 **)arg0),func_02117630((*(u8 **)((*(u8 **)((*(u8 **)arg0)+0x58))+0xc)),0),(*(u8 **)((*(u8 **)((*(u8 **)arg0)+0x58))+0x4)));
  func_02108680((*(u8 **)arg0),0,1);
@@ -227,12 +226,12 @@ if(data_02160c14[1] && needIcon){
  n=*(u16 *)(*(u8 **)((*(u8 **)((*(u8 **)arg0)+0x58))+0xc));
  count=(func_020020bc(n,2)?1:0)+func_02002080(n,2);
  mem=func_0210c594(count*4,data_02155c3c);
- cur=mem;
- for(i=0;i<count;i++,cur+=4){
- idx=i*2;*(u16 *)(cur+2)=idx;cur[0]=0;
+ cur=(Frame_020f2a5c *)mem;
+ for(i=0;i<count;i++,cur++){
+ idx=i*2;cur->index=idx;cur->flags=0;
  for(j=0;j<2;idx++,j++){
  if(n<=idx)break;
- if((func_021086d4((*(u8 **)arg0),idx)==0)==0)cur[0]|=(u8)(1<<j);
+ if((func_021086d4((*(u8 **)arg0),idx)==0)==0)cur->flags|=(u8)(1<<j);
  }}
  *(void **)(info+16)=mem;
  }
