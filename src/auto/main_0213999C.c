@@ -143,6 +143,11 @@ s32 func_0212e5d4(u32,u32,u32,u32 *,u32 *,u32 *);
 void func_02128880(void *,s32);
 #pragma push
 #pragma optimization_level 2
+static inline void set_02139be8_error(u8 *p, s32 size) {
+    *(s16 *)(p + 0x60) = size - 17;
+    p[1] = 6;
+}
+
 void func_02139be8(u32 arg0, u32 arg1, u32 arg2) {
  u8 *p=(u8 *)arg0;
  char buf[16];
@@ -158,9 +163,12 @@ void func_02139be8(u32 arg0, u32 arg1, u32 arg2) {
  p[1]=6;
  return;
  }
+ {
+ u8 one = 1;
  *(u32 *)(p+0xb0)=*(u32 *)(p+0xac);
  *(u32 *)(p+0xb4)=a; *(u32 *)(p+0xb8)=c; *(u32 *)(p+0xbc)=b;
- p[1]=1;p[0xa8]=1;p[2]=1;
+ p[1]=one;p[0xa8]=one;p[2]=one;
  func_02128880(p,0);
+ }
 }
 #pragma pop
