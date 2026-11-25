@@ -14,6 +14,38 @@ extern void func_021168f8(void *, void *);
 extern void func_0210c5dc(void *);
 extern s16 *func_02116984(void *, u16);
 
+extern void *func_021092d8(const char *);
+extern void func_02109444(void *);
+extern s32 func_0210cd20(void *, s32);
+extern s32 func_0210cdfc(void *, s32);
+extern u8 *data_02160200;
+extern u8 *data_02160204;
+void func_020a033c(s32 id) {
+    s32 i;
+    s32 zero = 0;
+    void *fp;
+    s8 *g;
+    s32 buf[10];
+    s32 v[24];
+    s16 a[5], b[5];
+    s32 pad[16];
+
+    g = (s8 *)data_02160204;
+    fp = func_021092d8((const char *)data_02160200);
+    if (fp == 0) return;
+    func_02109444(fp);
+    for (i = 0; i < 10; i++) buf[i] = 0;
+    *(u16 *)((u8 *)g + 0x100 + 0xec) = 1;
+    *(u16 *)((u8 *)g + 0x100 + 0xee) = 0;
+    *(u8 *)((u8 *)g + 0x238) = 8;
+    for (i = 0; i < 16; i++) v[i] = (s16)func_0210cdfc(fp, 0);
+    for (i = 0; i < 5; i++) {
+        a[i] = (s16)func_0210cdfc(fp, 0);
+        b[i] = (s16)func_0210cdfc(fp, 0);
+    }
+    (void)id; (void)zero; (void)func_0210cd20; (void)pad; (void)b; (void)a; (void)v;
+}
+
 void func_020a0da8(void) {
 }
 
@@ -31,17 +63,14 @@ void func_020a0dc8(void **arg0) {
     }
 }
 
-s32 func_020a0e08(void *arg0, s32 arg1) {
-    s32 i = 0;
-    s16 *ptr = func_02116984(arg0, i);
-    do {
-        if (ptr[0] == arg1) {
-            return ptr[1];
-        }
-        i++;
-        ptr = func_02116984(arg0, i);
-    } while (ptr != NULL);
-    return 0;
+s32 func_020a0e08(void *arg0,s32 arg1) {
+s32 i=0;
+do {
+s16 *ptr=func_02116984(arg0,(u16)i);
+if(ptr[0]==arg1) return ptr[1];
+i++;
+} while(func_02116984(arg0,(u16)i)!=NULL);
+return 0;
 }
 
 extern s32 func_020123f0(const char *, const char *);
