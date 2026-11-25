@@ -258,19 +258,25 @@ void func_020aa894(void *arg0) {
 
 void func_020aa8e8(void)
 {
-    s32 *p = (s32 *)data_021600e4;
-    u8 *node = func_020aa7fc(*(void **)((u8 *)p + 0x13f4));
-    if (node == NULL) return;
-    do {
-        s32 scale = p[0x70 / 4];
-        s32 x = *(s32 *)(node + 4);
-        s32 y = *(s32 *)(node + 8);
-        s32 a = scale * x;
-        s32 b = scale * y;
-        *(u16 *)(node + 0x10) = p[0x44 / 4] + (a - 0x20);
-        *(u16 *)(node + 0x12) = p[0x48 / 4] + (b + 0xc);
-        node = *(u8 **)(node + 0x18);
-    } while (node != NULL);
+  u8 *p = data_021600e4;
+  int new_var3;
+  s32 *new_var;
+  u8 *node = func_020aa7fc(*((void **) (p + 0x13f4)));
+  int new_var2;
+  new_var3 = 8;
+  while (node != NULL)
+  {
+    s32 scale = *((s32 *) (p + 0x70));
+    s32 a = (*(new_var = (s32 *) (node + 4))) * scale;
+    unsigned int b = (*((s32 *) (node + new_var3))) * scale;
+    a = a - 0x20;
+    b = b + 0xc;
+    new_var2 = 0x10;
+    *((u16 *) (node + new_var2)) = (*((s32 *) (p + 0x44))) + a;
+    *((u16 *) (node + 0x12)) = (*((s32 *) (p + 0x48))) + b;
+    node = *((u8 **) (node + 0x18));
+  }
+
 }
 
 void func_020aa94c(void) {
@@ -452,27 +458,33 @@ s32 func_020aadf8(void) {
 #pragma push
 #pragma optimization_level 2
 s32 func_020aae98(void) {
-    s32 *p = func_020ade60(3);
-    if (((u8 *)p)[0xd] == 0) {
-        if (func_020aaaec(p, -220, 0, 4, p[2]) != 0) {
-            ((u8 *)p)[0xd] = 1;
-            p[2] = 0;
+    u8 *p;
+    s32 id = 3;
+    p = func_020ade60(id);
+    if (*(u8 *)(p + 0xd) == 0) {
+        if (func_020aaaec((s32 *)p, id - 0xdf, 0, 4, *(s32 *)(p + 8)) != 0) {
+            *(u8 *)(p + 0xd) = 1;
+            *(s32 *)(p + 8) = 0;
             return 1;
         }
     }
-    p[2]++;
+    *(s32 *)(p + 8) += 1;
     return 0;
 }
 #pragma pop
-s32 func_020aaf08(void) {
- u8 *p=func_020ade60(4);
- if(p[13]!=0) {
- if(func_020aaa60(p+12,1,31,4,*(s32*)(p+8))) {
- p[13]=0; *(s32*)(p+8)=0; return 1;
- }}
- p[13]=2;
- ++*(s32*)(p+8);
- return p[13]-2;
+s32 func_020aaf08(void)
+{
+    u8 *p = func_020ade60(4);
+    if (p[13] != 0) {
+        if (func_020aaa60(p + 12, 1, 31, 4, *(s32 *)(p + 8))) {
+            p[13] = 0;
+            *(s32 *)(p + 8) = 0;
+            return 1;
+        }
+        p[13] = 2;
+        ++*(s32 *)(p + 8);
+    }
+    return 0;
 }
 
 BOOL func_020aaf88(s32 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
