@@ -1,5 +1,12 @@
 /* 3 functions from 0x02014994 to 0x02015994 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { u8 padding,sign,unk2,alternate,unk4,conversion; u16 unk6; s32 width,precision; } FormatSpec;
+typedef struct { u8 c[5]; } FormatText5;
+typedef struct { u8 c[4]; } FormatText4;
+extern u8 data_02145e54[],data_02145e5c[],data_02145e64[],data_02145e68[],data_02145e6c[],data_02145e74[],data_02145e7c[],data_02145e80[];
+extern const u16 data_0213eb14[];
+extern void func_02019580(void *,double,void *);
+extern void func_02014880(u8 *,s32);
 
 typedef struct {
     u8 *field_0;
