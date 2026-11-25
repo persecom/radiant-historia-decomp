@@ -21,44 +21,56 @@ double func_0201abc4(double x) {
     k = 0;
     if (hx < 0x00100000) {
         if (((hx & 0x7fffffff) | lx) == 0) {
-            return func_02020c58(-18014398509481984.0, data_0216003c);
+            return -18014398509481984.0 / data_0216003c;
         }
         if (hx < 0) {
             data_02160034 = 33;
-            return func_02020c58(_dsub(x, x), data_0216003c);
+            return (x - x) / data_0216003c;
         }
         k -= 54;
-        x = _dmul(x, 18014398509481984.0);
+        x *= 18014398509481984.0;
         hx = ((s32 *)&x)[1];
     }
-    if (hx >= 0x7ff00000) return _dadd(x, x);
+    if (hx >= 0x7ff00000) return x + x;
     k += (hx >> 20) - 1023;
     hx &= 0x000fffff;
     i = (hx + 0x95f64) & 0x100000;
     ((s32 *)&x)[1] = hx | (i ^ 0x3ff00000);
     k += (i >> 20);
-    f = _dsub(x, 1.0);
+    f = x - 1.0;
     if ((0x000fffff & (2 + hx)) < 3) {
         if (f == data_0216003c) {
             if (k == 0) return data_0216003c;
-            dk = _dflt(k);
-            return _dadd(_dmul(dk, 6.93147180369123816490e-01), _dmul(dk, 1.90821492927058770002e-10));
+            dk = (double)k;
+            return dk * 6.93147180369123816490e-01 + dk * 1.90821492927058770002e-10;
         }
-        R = _dmul(_dmul(f, f), _dsub(0.5, _dmul(f, 0.33333333333333333)));
-        if (k == 0) return _dsub(f, R);
-        dk = _dflt(k);
-        return _dsub(_dmul(dk, 6.93147180369123816490e-01), _dsub(_dsub(R, _dmul(dk, 1.90821492927058770002e-10)), f));
+        R = f * f * (0.5 - 0.33333333333333333 * f);
+        if (k == 0) return f - R;
+        dk = (double)k;
+        return dk * 6.93147180369123816490e-01 - ((R - dk * 1.90821492927058770002e-10) - f);
     }
-    s = func_02020c58(f, _dadd(2.0, f));
-    dk = _dflt(k);
-    z = _dmul(s, s);
-    w = _dmul(z, z);
-    t1 = _dmul(w, _dadd(3.999999999940941908e-01, _dmul(w, _dadd(1.479819860511658591e-01, _dmul(w, 1.818357216161805012e-01)))));
-    t2 = _dmul(z, _dadd(6.666666666666735130e-01, _dmul(w, _dadd(2.857142874366239149e-01, _dmul(w, _dadd(2.222219843214978396e-01, _dmul(w, 1.531383769920937332e-01)))))));
-    R = _dadd(t2, t1);
-    hfsq = _dmul(_dmul(f, 0.5), f);
-    if (k == 0) return _dsub(f, _dsub(hfsq, _dmul(s, _dadd(hfsq, R))));
-    return _dsub(_dmul(dk, 6.93147180369123816490e-01), _dsub(_dsub(hfsq, _dadd(_dmul(s, _dadd(hfsq, R)), _dmul(dk, 1.90821492927058770002e-10))), f));
+    s = f / (2.0 + f);
+    dk = (double)k;
+    z = s * s;
+    i = hx - 0x6147a;
+    w = z * z;
+    j = 0x6b851 - hx;
+    t1 = w * (3.999999999940941908e-01 + w * (2.222219843214978396e-01 + w * 1.531383769920937332e-01));
+    t2 = z * (6.666666666666735130e-01 + w * (2.857142874366239149e-01 + w * (1.818357216161805012e-01 + w * 1.479819860511658591e-01)));
+    i |= j;
+    R = t2 + t1;
+    if (i > 0) {
+        hfsq = 0.5 * f * f;
+        if (k == 0) return f - (hfsq - s * (hfsq + R));
+        else {
+            t1 = dk * 6.93147180369123816490e-01;
+            t2 = s * (hfsq + R);
+            return t1 - ((hfsq - (t2 + dk * 1.90821492927058770002e-10)) - f);
+        }
+    } else {
+        if (k == 0) return f - s * (f - R);
+        else return dk * 6.93147180369123816490e-01 - ((s * (f - R) - dk * 1.90821492927058770002e-10) - f);
+    }
 }
 
 double func_0201b2f4(double x) {
