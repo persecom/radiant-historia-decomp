@@ -6,6 +6,8 @@ extern u32 data_02155c3c;
 extern u8 *data_02160078;
 extern u32 data_02162858[2];
 extern u32 data_02162854;
+extern u8 *data_02160204;
+extern u8 data_021512f0;
 extern char data_021512f8[];
 extern char data_02151304[];
 extern char data_02151318[];
