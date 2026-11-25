@@ -72,23 +72,7 @@ static inline void MI_CpuFill32(void *dest, u32 data, u32 size) {
 
 extern void func_0211c850(u32);
 extern void func_0211c79c(u32);
-static inline s32 selection_02119728(void) {
-s32 result;
-s32 id=*(s32 *)(data_02155eb0+4);
-if(id!=-1) result=1; else result=0;
-return result;
-}
-static inline s32 selection_loop_02119728(void) {
-s32 result=1;
-if(*(s32 *)(data_02155eb0+4)==-1) result=0;
-return result;
-}
-static inline void draw_02119728(u32 arg,s32 valid) {
-switch (valid) {
-default: func_0211c850(arg); break;
-case 0: func_0211c79c(arg); break;
-}
-}
+
 static inline s32 is_valid_id(s32 id) {
     if (id != -1) {
         return 1;
@@ -295,7 +279,7 @@ else {
 material=data_02155eb8;
 }
 func_0211c5ac(material,matrix);
-switch(is_valid_id(*(s32 *)(data_02155eb0+4))) {
+switch(*(u32 *)(data_02155eb0+4)!=0xffffffffU) {
 default: func_0211c850(arg); break;
 case 0: func_0211c79c(arg); break;
 }
@@ -308,7 +292,7 @@ else {
 material=data_02155eb8;
 }
 func_0211c544(material);
-switch(is_valid_id(*(s32 *)(data_02155eb0+4))) {
+switch(*(u32 *)(data_02155eb0+4)!=0xffffffffU) {
 default: func_0211c850(arg); break;
 case 0: func_0211c79c(arg); break;
 }
@@ -350,7 +334,7 @@ u8 *entry=data_0216f3c4+data_0216f234.fc*24;
 material=data_02155eb8;
 }
 func_0211c5ac(material,matrix);
-{s32 valid=1; if(*(s32 *)(data_02155eb0+4)==-1) valid=0;
+{u32 valid=1; if(*(u32 *)(data_02155eb0+4)==0xffffffffU) valid=0;
 switch(valid) {
 default: func_0211c850(arg); break;
 case 0: func_0211c79c(arg); break;
@@ -371,7 +355,7 @@ u8 *entry=data_0216f3c4+data_0216f234.fc*24;
 material=data_02155eb8;
 }
 func_0211c544(material);
-{s32 valid=1; if(*(s32 *)(data_02155eb0+4)==-1) valid=0;
+{u32 valid=1; if(*(u32 *)(data_02155eb0+4)==0xffffffffU) valid=0;
 switch(valid) {
 default: func_0211c850(arg); break;
 case 0: func_0211c79c(arg); break;
