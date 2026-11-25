@@ -37,7 +37,7 @@ extern void func_02002028(s32);
 extern s64 func_02001fd0(void);
 static inline void ProjectRenderPosition(const Vec_EAAE0 *pos,s32 *outX,s32 *outY){
 const s32 *m=data_02170248,*p=data_02170204;
-s32 x,y,z,sx,sy,px,py;
+s32 z,y,x,py,px,sy,sx;
 s64 inv;
 x=m[9]+(s32)(((s64)pos->x*m[0]+(s64)pos->y*m[3]+(s64)pos->z*m[6])>>12);
 y=m[10]+(s32)(((s64)pos->x*m[1]+(s64)pos->y*m[4]+(s64)pos->z*m[7])>>12);
@@ -335,44 +335,16 @@ next=*(u8 **)(node+0x15c);
 if((*(u32 *)(node+0x80)&2)==0){*(u32 *)(node+0x80)&=~4;visible=0;}else visible=1;
 if(*(s32 *)(node+0x64)==0)
 {
-const s32 *m=data_02170248,*p=data_02170204;
-s32 x,y,z,sx,sy,px,py;
-s64 inv;
-x=m[9]+(s32)(((s64)pos.x*m[0]+(s64)pos.y*m[3]+(s64)pos.z*m[6])>>12);
-y=m[10]+(s32)(((s64)pos.x*m[1]+(s64)pos.y*m[4]+(s64)pos.z*m[7])>>12);
-z=m[11]+(s32)(((s64)pos.x*m[2]+(s64)pos.y*m[5]+(s64)pos.z*m[8])>>12);
-func_02002028(p[15]+(s32)(((s64)x*p[3]+(s64)y*p[7]+(s64)z*p[11])>>12));
-px=p[12]+(s32)(((s64)x*p[0]+(s64)y*p[4]+(s64)z*p[8])>>12);
-py=p[13]+(s32)(((s64)x*p[1]+(s64)y*p[5]+(s64)z*p[9])>>12);
-inv=func_02001fd0();
-sy=(s32)((inv*py+0x80000000LL)>>32);
-sy=(sy+4096)>>1;
-sy=((sy<<7)+(sy<<6)+2048)>>12;
-sx=(s32)((inv*px+0x80000000LL)>>32);
-sx=((((sx+4096)>>1)<<8)+2048)>>12;
-sy=192-sy;
+s32 sx,sy;
+ProjectRenderPosition(&pos,&sx,&sy);
 *(s32 *)(node+0xfc)=sx;*(s32 *)(node+0x100)=sy;
 if(sx < -48 || sx > 304 || sy < -16 || sy > 240){*(u32 *)(node+0x80)&=~4;culled=1;}
 else{*(u32 *)(node+0x80)|=4;culled=0;}
 }
 else
 {
-const s32 *m=data_02170248,*p=data_02170204;
-s32 x,y,z,sx,sy,px,py;
-s64 inv;
-x=m[9]+(s32)(((s64)pos.x*m[0]+(s64)pos.y*m[3]+(s64)pos.z*m[6])>>12);
-y=m[10]+(s32)(((s64)pos.x*m[1]+(s64)pos.y*m[4]+(s64)pos.z*m[7])>>12);
-z=m[11]+(s32)(((s64)pos.x*m[2]+(s64)pos.y*m[5]+(s64)pos.z*m[8])>>12);
-func_02002028(p[15]+(s32)(((s64)x*p[3]+(s64)y*p[7]+(s64)z*p[11])>>12));
-px=p[12]+(s32)(((s64)x*p[0]+(s64)y*p[4]+(s64)z*p[8])>>12);
-py=p[13]+(s32)(((s64)x*p[1]+(s64)y*p[5]+(s64)z*p[9])>>12);
-inv=func_02001fd0();
-sy=(s32)((inv*py+0x80000000LL)>>32);
-sy=(sy+4096)>>1;
-sy=((sy<<7)+(sy<<6)+2048)>>12;
-sx=(s32)((inv*px+0x80000000LL)>>32);
-sx=((((sx+4096)>>1)<<8)+2048)>>12;
-sy=192-sy;
+s32 sx,sy;
+ProjectRenderPosition(&pos,&sx,&sy);
 *(s32 *)(node+0xfc)=sx;*(s32 *)(node+0x100)=sy;
 *(u32 *)(node+0x80)|=4;culled=0;
 }
