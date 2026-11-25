@@ -71,7 +71,6 @@ extern u8 data_0215c638[32];
 extern s32 data_02176400;
 extern u32 data_02176404[144];
 extern void *memset(void *, int, unsigned long);
-static inline void RH_clear_pair(u32 value, u32 *dst) { dst[0] = value; dst[1] = value; }
 void *func_02137e58(void *arg0) {
     if (arg0 == NULL) {
         func_02137250(data_0215c604, data_0215c610);
@@ -382,7 +381,7 @@ void func_02138618(void) {
     if (*(volatile u32 *)data_02176644 == 0) {
         func_02138520();
         data_0217666c[0] = 0;
-        data_0217666c[1] = 0;
+        data_0217666c[1] = data_0217666c[0];
     }
 }
 
