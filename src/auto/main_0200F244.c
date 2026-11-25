@@ -474,7 +474,7 @@ void func_0200fb84(void) {
 }
 
 extern u8 data_0215f0c0[];
-extern void *volatile data_0215f640[];
+extern void *data_0215f640[];
 extern void func_02008e68(s32, void *, s32);
 extern void func_02006dc4(void *, s32);
 extern void func_0200a674(s32, void *);
@@ -504,19 +504,19 @@ void func_0200fbe8(void) {
 void func_0200fc34(u32 arg0, u32 arg1) {
     u32 irq = func_02008128();
     void **node = (void **)data_0215f640[0];
-    void **volatile *prev = (void **volatile *)&data_0215f640[0];
+    u32 *prev = (u32 *)data_0215f640;
     while (node != NULL) {
         void (*cb)(void *, u32, u32) = (void (*)(void *, u32, u32))node[2];
         if (cb != NULL) {
             cb(node[1], arg0, arg1);
         }
         {
-            void **cur = *prev;
+            void **cur = (void **)*prev;
             if (cur == node) {
-                prev = (void **volatile *)cur;
+                prev = (u32 *)cur;
             }
         }
-        node = *prev;
+        node = (void **)*prev;
     }
     func_0200813c(irq);
 }
