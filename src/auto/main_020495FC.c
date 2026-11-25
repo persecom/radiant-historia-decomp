@@ -118,7 +118,7 @@ l++;break;case 6:A[l]=(x)+(z+1)**(s16*)(data_02160aec+0x58D36);l++;break;case 7:
 break;case 8:A[l]=(x-1)+(z)**(s16*)(data_02160aec+0x58D36);l++;break;}}}}for(i=0;i<l;i++){u32 aH=A[i];
 for(j=1;j<l;j++){if(aH==A[j]&&i!=j&&A[j]!=0){A[j]=0;}}}if(l!=0){u32 au=1;
 u32 ap=1;for(;;){if(A[au]==0){A[au]=A[au+ap];A[au+ap]=0;ap++;if((s32)(au+ap)>=16){
-break;}}else{ap=1;au++;}}l=au;}for(i=0;i<l;i++){x=(u32)(func_0201fd28(A[i],*(s16*)(data_02160aec+0x58D36))>>32);z=(u32)func_0201fd28(A[i],*(s16*)(data_02160aec+0x58D36));C=x<<16;w=(x<<16)+0x10000;G=z<<16;n=(z<<16)+0x10000; c[0]=0;
+break;}}else{ap=1;au++;}}l=au;}for(i=0;i<l;i++){x=A[i]%*(s16*)(data_02160aec+0x58D36);z=A[i]/ *(s16*)(data_02160aec+0x58D36);C=x<<16;w=(x<<16)+0x10000;G=z<<16;n=(z<<16)+0x10000; c[0]=0;
 c[1]=0;m[0]=(((ac*)aI)->X-((ac*)aI)->s)>>12;m[1]=(((ac*)aI)->M-((ac*)aI)->v)>>12;Y=((tile*)(data_02160aec+(A[i])*0xC))->type;H=0;
 switch(Y){case 1:case 6:case 7:case 8:case 9:case 10:{switch(Y){case 6:H|=0xA;break;case 7:H|=5;break;}if((H&1)==0){h[0]=(w-((ac*)aI)->s)>>12;k[0]=(w-((ac*)aI)->s)>>12;h[1]=8+((n-((ac*)aI)->v)>>12);k[1]=((G-((ac*)aI)->v)>>12)-8;d=func_020508fc(c,m,h,k,B); if(d){f=(o*)func_0210c594(0x2C,data_02155c3c);f->D|=1;f->aa=A[i]; f->a[0]=w>>12;
 f->b[0]=w>>12;f->a[1]=(n>>12)+8;f->b[1]=(G>>12)-8; {register s32 zz;zz=((ac*)aI)->v+((B[1])<<12);f->x=((ac*)aI)->s+((B[0])<<12);f->y=0;f->z=zz;} func_020477c0(((ac*)aI),f);r=TRUE; H|=4;}}if((H&2)==0){h[0]=8+((w-((ac*)aI)->s)>>12);k[0]=((C-((ac*)aI)->s)>>12)-8; h[1]=(n-((ac*)aI)->v)>>12;k[1]=(n-((ac*)aI)->v)>>12;d=func_020508fc(c,m,h,k,B);if(d){f=(o*)func_0210c594(0x2C,data_02155c3c);
