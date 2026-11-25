@@ -449,6 +449,8 @@ void func_020e441c(void)
     func_021098ac(&buf);
 }
 
+#pragma push
+#pragma opt_propagation off
 void func_020e47cc(TargetState *out,u8 *arg) {
 u8 *p=*(u8 **)(arg+8);
 u8 i=0;
@@ -457,10 +459,10 @@ dst->flags=0;dst->active=0;
 if(p[6]==7 || p[6]==12){
 switch(p[7]){
 case 1:case 2:case 3:case 4:
-dst->flags|=1;dst->col=dst->row=dst->side=0;
+dst->flags|=1;dst->col=0;dst->row=0;dst->side=0;
 func_0202e568(*(u16 *)(p+0x38));return;
 case 5:case 6:case 9:case 11:
-dst->flags|=1;dst->col=dst->row=0;dst->side=dst->active=1;
+dst->flags|=1;dst->col=0;dst->row=0;dst->side=1;dst->active=1;
 if(p[6]==12)func_0202e5d8(0xe00);else func_0202e5d8(*(u16 *)(p+0x38));
 return;
 }
@@ -472,21 +474,21 @@ e=*(u8 **)(e+0x128);
 if(e){
 s32 n=**(s8 **)(e+0x54);
 dst->col=2-n%3;dst->row=2-(n/3)%3;
-}
 dst->side=i;
+}
 if(p[7]==8)dst->flags|=2;
 func_020e4c80(p,(u16)((2-(s8)dst->row)*3+(2-(s8)dst->col)));
 break;
 }
 case 5:case 6:case 9:case 11: {
 u8 *e;
-for(;i<3;i++){
+do {
 e=func_0202c920(i+9);
 if(e){
 e=*(u8 **)(e+0x128);
 dst->col=**(s8 **)(e+0x54)-9;dst->row=3;dst->side=1;break;
 }
-}
+}while(++i<3);
 e=*(u8 **)(data_02160a6c+0xac);
 while(e){
 e[0x192]=0;*(u32 *)(e+0x80)&=~0x1000;
@@ -503,4 +505,4 @@ dst->col=**(s8 **)(e+0x54)-8;dst->row=3;dst->side=2;break;
 }
 }
 }
-
+#pragma pop
