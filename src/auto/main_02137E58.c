@@ -427,26 +427,24 @@ s32 used=0;
 
 if (*(s32 *)(a+0x58)==1 || *(s32 *)(a+0x5c)==1) {func_02126c20(data_0215c840); return 0;}
 func_021390fc(a);
-{
-s32 one = 1;
-const InitParams *src = p;
-*(s32 *)(a+0x5c)=one;
-*(InitParams *)(a+0x80)=*src;
+*(s32 *)(a+0x5c)=1;
+*(InitParams *)(a+0x80)=*p;
 {
 s32 cfg[3]={0,0,0};
-if(src->v[7]==1) cfg[1]=src->v[3]; else cfg[1]=one;
-cfg[0]=src->v[1]; cfg[2]=src->v[9];
-if(src->v[6]==1){*(s32 *)(a+0x64)=1;*(s32 *)(a+0xa8)=2;}
+cfg[0]=p->v[1];
+if(p->v[7]==1) cfg[1]=p->v[3]; else cfg[1]=1;
+cfg[2]=p->v[9];
+if(p->v[6]==1){*(s32 *)(a+0x64)=1;*(s32 *)(a+0xa8)=2;}
 else {*(s32 *)(a+0x64)=0;*(s32 *)(a+0xa8)=1;}
 for(i=0;i<*(s32 *)(a+0xa8);i++){
-if(src->v[7]==0){
+if(p->v[7]==0){
 void *obj; s32 size;
 obj=func_021273a8(buf+used,12);
 *(void **)(a+i*4)=obj;
 if(!obj){func_02126c20(data_0215c870);func_02138a60(a);return 0;}
 used+=12;
-if(src->v[9]) size=0x2900+src->v[4]*((((src->v[0]+1)*((src->v[2]/1000*2500)/16)+2048)/2048)*2048+36);
-else {s32 overhead=src->v[1]*5216; s32 scale=src->v[1]*2500; size=src->v[4]*((((src->v[0]+1)*((src->v[2]/1000*scale)/16)+2048)/2048)*2048+36)+(overhead<<1)+64;}
+if(p->v[9]) size=0x2900+p->v[4]*((((p->v[0]+1)*((p->v[2]/1000*2500)/16)+2048)/2048)*2048+36);
+else {s32 overhead=p->v[1]*5216; s32 scale=p->v[1]*2500; size=p->v[4]*((((p->v[0]+1)*((p->v[2]/1000*scale)/16)+2048)/2048)*2048+36)+(overhead<<1)+64;}
 if(!((s32 (*)(void *,void *,void *,s32))(*(u32 **)obj)[0])(obj,cfg,buf+used,size)){func_02126c20(data_0215c8a8);func_02138a60(a);return 0;}
 *(void **)(a+i*12+0x18)=*(void **)(a+i*4);
 used+=size;
@@ -454,7 +452,6 @@ used+=size;
 *(void **)(a+i*12+0x20)=func_02126c2c(buf+used,68);
 if(!*(void **)(a+i*12+0x20)){func_02126c20(data_0215c8e0);func_02138a60(a);return 0;}
 used+=68;
-}
 }
 }
 i=0; *(s32 *)(a+0x10)=i;
