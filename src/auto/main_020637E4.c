@@ -277,6 +277,18 @@ void func_02063f20(void) {
 
 extern u8 *data_02160a6c;
 extern void func_020de0a8(void *);
+extern const s16 data_0213a394[];
+extern u16 data_02151fc8;
+extern u32 data_0216263c[3];
+extern s32 func_020dd9b4(void *, s32 *);
+extern s32 func_02117d80(s32);
+extern void func_020dd810(void *, s32, s32);
+extern void func_021168f8(void *, void *);
+extern void func_0210d27c(s32);
+extern void func_020ddf2c(void *);
+extern void func_020dde88(void *);
+extern void func_020f1dd4(void *, s32);
+extern void *func_02030630(u8 *, u16);
 void func_02063f68(void) {
     u8 *g = data_02160a6c;
     if (g == NULL) return;
