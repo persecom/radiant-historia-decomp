@@ -22,6 +22,12 @@ s16 a=*(s16 *)p,b=*(s16 *)(p+2);
 *(s16 *)out=a; *(s16 *)(out+2)=b; return p+4;
 }
 extern u8 data_02170464[];
+static inline u8 *MaterialCache_0211e3ec(u8 *cache,u32 idx) {
+return cache ? cache+idx*56 : data_02170464+idx*56;
+}
+static inline u32 MaterialStage_0211e3ec(u8 *ctx) {
+return *(void **)(ctx+0x1c) ? ctx[0x90] : 0;
+}
 extern const u32 data_02144f08[];
 extern u8 data_021701fc[];
 static inline void MaterialBuild_0211e3ec(u8 *out,u8 *mat,u8 *source) {
@@ -317,10 +323,12 @@ a=*(u32 *)(mat+4); b=*(u32 *)(mat+8);
 *(u32 *)(out+20)=*(u16 *)(mat+28);
 if(flags&1) {
 u8 *p=mat+0x2c;
-if(flags&2) *(u32 *)out|=1;
-else {*(Pair_0211e3ec *)(out+24)=*(Pair_0211e3ec *)p; p+=8;}
-if(*(u16 *)(mat+30)&4) *(u32 *)out|=2;
-else {s32 a=*(s16 *)p,b=*(s16 *)(p+2); p+=4; *(s16 *)(out+32)=a; *(s16 *)(out+34)=b;}
+if(flags&2) {*(u32 *)out|=1; goto scale_done;}
+*(Pair_0211e3ec *)(out+24)=*(Pair_0211e3ec *)p; p+=8;
+scale_done:
+if(*(u16 *)(mat+30)&4) {*(u32 *)out|=2; goto rotation_done;}
+{s32 a=*(s16 *)p,b=*(s16 *)(p+2); p+=4; *(s16 *)(out+32)=a; *(s16 *)(out+34)=b;}
+rotation_done:
 if(!(*(u16 *)(mat+30)&8)) {*(Pair_0211e3ec *)(out+36)=*(Pair_0211e3ec *)p;}
 else *(u32 *)out|=4;
 *(u32 *)out|=8;
