@@ -25,6 +25,13 @@ return size[data_02144d6c[shape]];
 }
 static inline s32 Double_bb3c(u32 a) { return Mode_bb3c(a)==0x300; }
 static inline void GetDouble_bb3c(u32 a,s32 *result) { *result=Double_bb3c(a); }
+static inline void Dims_bb3c(u32 a, s32 *w, s32 *h) {
+    u32 attr = a & 0xc000c000;
+    u32 size = (attr & 0xc0000000) >> 30;
+    s32 shape = (s32)(attr & 0xc000) >> 14;
+    *w = size[data_02144d84[shape]];
+    *h = size[data_02144d6c[shape]];
+}
 static inline void SetMode_bb3c(u32 *p,s32 mode) {
 if(mode==0x100) { *(volatile u32 *)p=(*p&0xc1fffcff)|mode; }
 else { *(volatile u32 *)p=(*p&0xc1fffcff)|mode; }
@@ -227,11 +234,13 @@ void func_0211b584(s32 arg0, s32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u
 
 #pragma opt_strength_reduction off
 void func_0211b614(void *dst, void *src, s32 sx, s32 sy, s32 dx, s32 dy, s32 dw, s32 dh, s32 w, s32 h) {
+    u16 w16 = *(u16 *)src;
+    u16 h16 = ((u16 *)src)[1];
     s32 ey = sy + h;
-    u16 *p = (u16 *)src + 6;
+    u16 *p = (u16 *)((u8 *)src + 0xc);
     s32 ex = sx + w;
-    s32 sh = (u32)*((u16 *)src + 1) >> 3;
-    s32 sw = (u32)*(u16 *)src >> 3;
+    s32 sh = (u32)h16 >> 3;
+    s32 sw = (u32)w16 >> 3;
     s32 yy = dy;
     s32 x, xx;
     for (; sy < ey; sy++, yy++) {
@@ -354,7 +363,8 @@ void func_0211bb3c(const s32 *m, u32 *sprite, const Vec2_bb3c *translation) {
         s32 oy = -(h << 12), ox = -(w << 12);
         ox += m[0] * w; oy += m[1] * w;
         ox += m[2] * h; oy += m[3] * h;
-        pos.y += oy; pos.x += ox;
+        pos.x += ox;
+        pos.y += oy;
     }
     switch (mode) {
         case 0: break;
@@ -364,12 +374,7 @@ void func_0211bb3c(const s32 *m, u32 *sprite, const Vec2_bb3c *translation) {
             break;
     }
     pos.x += translation->x;
-    {
-        s32 px = pos.x >> 12;
-        s32 py;
-        pos.y += translation->y;
-        py = pos.y >> 12;
-        *sprite = (*sprite & 0xfe00ff00) | (py & 0xff) | ((px & 0x1ff) << 16);
-    }
+    pos.y += translation->y;
+    *sprite = (*sprite & 0xfe00ff00) | ((pos.y >> 12) & 255) | (((pos.x >> 12) & 511) << 16);
 }
 
