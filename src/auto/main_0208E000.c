@@ -10,6 +10,7 @@ void func_0208d5c0(u8,s16,s16,s32);
 typedef struct { s16 f0, f1, f2, f3, f4, f5, f6, f7, f8, f9; } Unk10;
 extern const Unk10 data_02141148, data_02141134;
 extern const Unk10 data_0214101c,data_021410f8,data_021410e4;
+typedef struct { s16 data[10]; } Params_0208e864;
 typedef struct { s32 data[4]; } Styles_0208e864;
 extern const Styles_0208e864 data_02140ef8;
 extern s32 func_02087754(u8);
@@ -125,15 +126,15 @@ void func_0208e67c(s16 x, s16 y, s32 unused, s32 selected) {
  }
 }
 
-void func_0208e864(s16 x,s16 y,s16 z,s32 arg3,u8 arg4) {
+void func_0208e864(s16 x,s16 y,s16 z,s16 arg3,u8 arg4) {
 Unk10 top=data_0214101c;
 Unk10 icon=data_021410f8;
 Unk10 amount=data_021410e4;
 Styles_0208e864 styles=data_02140ef8;
 u8 count=6;
 u8 *base=data_0216010c;
-s32 row;
 u8 offset=base[0x50d7]-base[0x50d6];
+s32 row;
 u8 selected;
 s16 i;
 if(*(s16 *)(base+0x50d4)<6) {
@@ -146,7 +147,7 @@ if(i==base[0x50d6]) selected=1;
 selected+=func_02087754((u8)(i+offset));
 func_020a8810(*(void **)(((u8 (*)[80])data_0216010c)[i]+0x70),styles.data[selected]);
 row=y+26+i*22;
-func_0209250c((s16)(selected+47),1,(s16)(x+8),row,156,18,8,16,4,2,4,4,z);
+func_0209250c(selected+47,1,x+8,row,156,18,8,16,4,2,4,4,z);
 func_020895a0((u16)i,(x+28)<<12,(y+28+i*22)<<12,90,0,*(u16 *)(data_0216010c+(offset<<6)+(i<<6)+0x4894),0,0,0);
 icon.f6=row; icon.f5=x+9;icon.f7=z+1;
 switch(*(u8 *)(data_0216010c+(offset<<6)+(i<<6)+0x489c)) {
