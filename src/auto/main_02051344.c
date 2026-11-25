@@ -78,9 +78,8 @@ static inline s32 check_hit_02051344(u8 *other, u8 *arg0) {
     if (*(u8 *)(other + 0x9d) != 0 && *(s32 *)(*(u8 **)(arg0 + 0xb0)) != 0) {
         s32 box2[4];
         u8 i = 0;
-        s32 rad = 0;
-        u8 r;
-        rad = *(s32 *)(*(u8 **)(arg0 + 0xb0));
+        u8 r = 0;
+        s32 rad = *(s32 *)(*(u8 **)(arg0 + 0xb0));
         box2[0] = *(s32 *)(arg0 + 0) - rad;
         box2[2] = *(s32 *)(arg0 + 0) + rad;
         box2[1] = *(s32 *)(arg0 + 8) - rad;
@@ -107,9 +106,8 @@ static inline s32 check_hit_02051344(u8 *other, u8 *arg0) {
     if (*(u8 *)(arg0 + 0x9d) != 0 && *(s32 *)(*(u8 **)(other + 0xb0)) != 0) {
         s32 box3[4];
         u8 i = 0;
-        s32 rad = 0;
-        u8 r;
-        rad = *(s32 *)(*(u8 **)(other + 0xb0));
+        u8 r = 0;
+        s32 rad = *(s32 *)(*(u8 **)(other + 0xb0));
         box3[0] = *(s32 *)(other + 0) - rad;
         box3[2] = *(s32 *)(other + 0) + rad;
         box3[1] = *(s32 *)(other + 8) - rad;
