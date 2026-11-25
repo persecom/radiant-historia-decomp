@@ -26,6 +26,118 @@ extern u8 *func_0202c820(u8);
 extern void func_020c34c8(u32 *, u32, u32, u32, u32, u32, u32, u32);
 extern void func_020c35c4(u32 *, u32, u32, u32, u32, u32, u32, u32);
 
+void func_020e13b0(s32 arg0, s32 arg1) {
+    u8 *r6 = *(u8 **)(data_02160a74 + 0xb8);
+    s32 type = 0;
+    u32 pos[3];
+
+    if (arg1 == 0) {
+        u8 *obj = func_0202c820((u8)arg0);
+        if (obj != NULL) {
+            s8 v = *(s8 *)(*(u8 **)(*(u8 **)(obj + 0x128) + 0x54) + 1);
+            if (v == 0) {
+                pos[0] = *(u32 *)(obj + 0);
+                pos[1] = 0x24000;
+                pos[2] = *(u32 *)(obj + 8);
+            } else if (v == 1) {
+                type = 1;
+                pos[0] = *(u32 *)(obj + 0);
+                pos[1] = 0x24000;
+                pos[2] = *(u32 *)(obj + 8);
+            } else if (v == 2) {
+                type = 2;
+                pos[0] = *(u32 *)(obj + 0);
+                pos[1] = 0x24000;
+                pos[2] = *(u32 *)(obj + 8);
+            } else if (v == 3) {
+                type = 3;
+                pos[0] = *(u32 *)(obj + 0);
+                pos[1] = 0x24000;
+                pos[2] = *(u32 *)(obj + 8);
+            } else if (v == 4) {
+                type = 4;
+                pos[0] = *(u32 *)(obj + 0);
+                pos[1] = 0x24000;
+                pos[2] = *(u32 *)(obj + 8);
+            }
+        }
+    }
+
+    *(u8 *)(data_02160a74 + 0x1d2) = type;
+
+    if (arg0 >= 0 && arg0 <= 0xb) {
+        u8 *node = *(u8 **)((u8 *)data_02160244 + arg0 * 4 + 8);
+        if (node != NULL) {
+            s32 col;
+            if (type == 0) {
+                pos[0] = *(u32 *)(node + 4);
+                pos[1] = 0x24000;
+                pos[2] = *(u32 *)(node + 0xc);
+            }
+            *(u32 *)(data_02160a74 + 0x1d4) = pos[0];
+            *(u32 *)(data_02160a74 + 0x1dc) = pos[2];
+            col = *(s16 *)(r6 + 0x10);
+            if (arg1 == 0) {
+                u32 x = pos[0];
+                u32 z = pos[2];
+                if (type == 0) {
+                    func_020a3bbc(0x1d);
+                    pos[1] = 0x24000;
+                    func_020c34c8(pos, 0, 0, 0x3f, 0x3f, 0x11, 0x18, (u16)(0x1f | (col << 5) | (col << 10)));
+                } else if (type == 1) {
+                    func_020a3bbc(0x47);
+                    pos[2] = z - 0x18000;
+                    func_020c34c8(pos, 0, 0, 0x3f, 0x3f, 0x11, 0x18, (u16)(0x1f | (col << 5) | (col << 10)));
+                    pos[2] = z + 0x18000;
+                    func_020c34c8(pos, 0, 0, 0x3f, 0x3f, 0x11, (u32)-0x18, (u16)(0x1f | (col << 5) | (col << 10)));
+                } else if (type == 2) {
+                    func_020a3bbc(0x45);
+                    pos[0] = x - 0x11000;
+                    func_020c34c8(pos, 0, 0, 0x3f, 0x3f, 0x11, 0x18, (u16)(0x1f | (col << 5) | (col << 10)));
+                    pos[0] = x + 0x11000;
+                    func_020c34c8(pos, 0, 0, 0x3f, 0x3f, (u32)-0x11, 0x18, (u16)(0x1f | (col << 5) | (col << 10)));
+                } else if (type == 3) {
+                    u32 x0 = x - 0x11000;
+                    u32 z0 = z - 0x18000;
+                    u32 x1;
+                    u32 z1;
+                    func_020a3bbc(0x46);
+                    pos[0] = x0;
+                    pos[2] = z0;
+                    func_020c34c8(pos, 0, 0, 0x3f, 0x3f, 0x11, 0x18, (u16)(0x1f | (col << 5) | (col << 10)));
+                    x1 = x + 0x11000;
+                    pos[0] = x1;
+                    pos[2] = z0;
+                    func_020c34c8(pos, 0, 0, 0x3f, 0x3f, (u32)-0x11, 0x18, (u16)(0x1f | (col << 5) | (col << 10)));
+                    z1 = z + 0x18000;
+                    pos[0] = x0;
+                    pos[2] = z1;
+                    func_020c34c8(pos, 0, 0, 0x3f, 0x3f, 0x11, (u32)-0x18, (u16)(0x1f | (col << 5) | (col << 10)));
+                    pos[0] = x1;
+                    pos[2] = z1;
+                    func_020c34c8(pos, 0, 0, 0x3f, 0x3f, (u32)-0x11, (u32)-0x18, (u16)(0x1f | (col << 5) | (col << 10)));
+                }
+            } else if (arg1 == 1) {
+                pos[1] = 0x21000;
+                func_020c35c4(pos, 0, 0, 0x3f, 0x3f, 0x11, 0x18, (u16)(0x1f | (col << 5) | (col << 10)));
+            } else if (arg1 == 2) {
+                if (func_0202c820((u8)arg0) == NULL) {
+                    pos[1] = 0x21000;
+                    func_020c35c4(pos, 0, 0, 0x3f, 0x3f, 0x11, 0x18, (u16)(0x1f | (col << 5) | (col << 10)));
+                }
+            }
+        }
+    }
+
+    if (*(u8 *)(data_02160a74 + 0x1d2) == 4 && arg0 >= 0 && arg0 <= 8) {
+        u8 *node = *(u8 **)((u8 *)data_02160244 + 0x18);
+        if (node != NULL) {
+            *(u32 *)(data_02160a74 + 0x1d4) = *(u32 *)(node + 4);
+            *(u32 *)(data_02160a74 + 0x1dc) = *(u32 *)(node + 0xc);
+        }
+    }
+}
+
 void func_020e1850(void) {
     u8 *root = data_02160a74;
     u16 i;
@@ -98,7 +210,6 @@ func_020c33d8(args,0,0,0x1f,0x1f,0x11,0x18);
 }
 
 extern u8 **data_02160244;
-extern void func_020c34c8(u32 *, u32, u32, u32, u32, u32, u32, u32);
 void func_020e1b00(void) {
     u16 i;
     if (data_02160244 == NULL) {
