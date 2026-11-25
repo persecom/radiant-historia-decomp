@@ -1,5 +1,22 @@
 /* 33 functions from 0x020C641C to 0x020C7408 (main), found by ds-decomp. */
 #include "common.h"
+s32 func_020c6d78(void *arg0);
+void func_020c6da0(void *arg0);
+s32 func_020c6db4(void);
+s32 func_020c6dbc(u8 *arg0);
+void func_020c6de0(void *arg0);
+s32 func_020c6df4(u8 *arg0);
+void func_020c6f04(u8 *arg0, u16 arg1);
+void func_020c6f0c(u8 *arg0, u16 arg1);
+s32 func_020c6f14(u8 *arg0);
+void func_020c706c(u8 *arg0, u8 arg1);
+void func_020c7074(u8 *arg0, u8 arg1, u8 arg2);
+s32 func_020c7080(void);
+void func_020c7088(u8 *arg0, u8 arg1);
+s32 func_020c71bc(u8 *arg0);
+void func_020c71d8(void *arg0);
+s32 func_020c71ec(u8 *p);
+s32 func_020c7384(void);
 typedef struct { s16 x,y,w,h; } Unk_020c71ec_Rect;
 
 extern void func_0210c5dc(void *);
