@@ -2,6 +2,7 @@
 #include "common.h"
 typedef struct { s32 v[10]; } InitParams;
 typedef struct { s32 a,b,c; } InitConfig;
+typedef struct { u32 a, b; } PairU32;
 static inline void InitConfigZero(InitConfig *p) {p->b=0;p->a=0;p->c=0;}
 static inline void InitConfigSet(s32 *cfg, s32 channels, s32 mode, s32 count, s32 flag) { if(mode==1)cfg[1]=count;else cfg[1]=1;cfg[0]=channels;cfg[2]=flag; }
 extern u8 data_0215c840[], data_0215c870[], data_0215c8a8[], data_0215c8e0[], data_0215c91c[];
@@ -377,10 +378,13 @@ void func_021385d4(void) {
 }
 
 void func_02138618(void) {
+    u32 zero = 0;
     *(volatile u32 *)data_02176644 = *(volatile u32 *)data_02176644 - 1;
     if (*(volatile u32 *)data_02176644 == 0) {
         func_02138520();
-        *(u64 *)data_0217666c = 0;
+        u32 *p = data_0217666c;
+        p[0] = zero;
+        p[1] = zero;
     }
 }
 
@@ -423,7 +427,6 @@ void func_02138a60(u8 *);
 s32 func_02138704(u8 *a, const InitParams *p, u8 *buf, s32 capacity) {
 s32 i;
 s32 used=0;
-register s32 size;
 
 if (*(s32 *)(a+0x58)==1 || *(s32 *)(a+0x5c)==1) {func_02126c20(data_0215c840); return 0;}
 func_021390fc(a);
@@ -432,12 +435,12 @@ func_021390fc(a);
 {
 s32 cfg[3]={0,0,0};
 if(p->v[7]==1) cfg[1]=p->v[3]; else cfg[1]=1;
-size=p->v[1]; cfg[0]=size; cfg[2]=p->v[9];
+cfg[0]=p->v[1]; cfg[2]=p->v[9];
 if(p->v[6]==1){*(s32 *)(a+0x64)=1;*(s32 *)(a+0xa8)=2;}
 else {*(s32 *)(a+0x64)=0;*(s32 *)(a+0xa8)=1;}
 for(i=0;i<*(s32 *)(a+0xa8);i++){
 if(p->v[7]==0){
-void *obj;
+void *obj; s32 size;
 obj=func_021273a8(buf+used,12);
 *(void **)(a+i*4)=obj;
 if(!obj){func_02126c20(data_0215c870);func_02138a60(a);return 0;}
