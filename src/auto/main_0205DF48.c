@@ -39,7 +39,7 @@ if(enabled) {
 if(p[6]==7 || (u8)(p[6]+0xf4)<=4) {
 switch(p[6]) {
 case 7: {
-int two=2;
+two=2;
 *(u32 *)q=0;
 if(func_02065c44(p)==1) {
 func_0202c950(*(u16 *)(p+0x38),list,-1);
