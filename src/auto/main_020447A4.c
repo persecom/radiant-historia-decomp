@@ -18,7 +18,7 @@ static inline u16 random_4487c(u16 max) {
  data_0216263c[0]=seed;
  value=seed>>16;
  if(max) value=(value*max)>>16;
- return value;
+ return (u16)value;
 }
 extern s32 data_02162870[2], data_02162868[2], data_02162814[2], data_02162884[2];
 static inline s32 abs_4487c(s32 x) { return x < 0 ? -x : x; }
@@ -116,8 +116,10 @@ void func_0204487c(u8 *obj) {
             *(u16 *)(data_02160204 + 0x6a) = *(u16 *)(*(u8 **)(obj + 0xb0) + 8);
             if ((*(u8 **)(obj + 0xb0))[13] != 0) {
                 s32 n = 0;
-                if ((*(u8 **)(obj + 0xb0))[13])
-                    n = (s32)random_4487c((*(u8 **)(obj + 0xb0))[13] * 2) - (*(u8 **)(obj + 0xb0))[13];
+                if ((*(u8 **)(obj + 0xb0))[13]) {
+                    u16 rand = random_4487c((*(u8 **)(obj + 0xb0))[13] * 2);
+                    n = rand - (*(u8 **)(obj + 0xb0))[13];
+                }
                 *(u16 *)(data_02160204 + 0x6a) = *(u16 *)(*(u8 **)(obj + 0xb0) + 8) + abs_4487c(n);
             }
             *(u16 *)(data_021600a8[1] + 0x88) = *(u16 *)(obj + 0x90);
@@ -152,11 +154,10 @@ void func_0204487c(u8 *obj) {
 #pragma opt_peephole on
 void func_02044a98(s32 arg0)
 {
-  u8 *new_var;
+  u8 **p = data_021600a8;
   S_02044a98 local[1];
   local[0] = data_0213f2d0;
-  new_var = (u16 *) (new_var = data_021600a8[1] + 0x8b4);
-  func_02044aec(&local[arg0], *new_var);
+  func_02044aec(&local[arg0], *(u16 *)(p[1] + 0xb4));
 }
 
 void *func_02044aec(void *arg0, u16 arg1) {
@@ -224,10 +225,10 @@ void func_02044c48(u32 arg0) {
 u8 func_02044c98(void)
 {
   u8 *p = data_021600a8[1];
-  u8 *q = *((u8 **) (p + 0x68));
-  s32 a = *((s32 *) (q + 0xfc));
+  s32 *q = *(s32 **)(p + 0x68);
   s32 y = data_02162908[1];
-  s32 b = *((s32 *) (q + 0x100));
+  s32 a = q[0x3f];
+  s32 b = q[0x40];
   s32 xmin = a - 0x10;
   s32 xmax = a + 0x10;
   s32 x = data_02162908[0];
@@ -240,30 +241,27 @@ extern void func_020a4c98(s32);
 #pragma opt_propagation off
 void func_02044cfc(void)
 {
-    u8 *r6 = *(u8 **)(data_021600bc + 0x40);
+    u8 *r6;
     u8 *node;
     s32 flag;
 
-    if (r6 == NULL) goto done;
-loop:
-    flag = 0;
-    for (node = *(u8 **)(*(u8 **)(data_02160204 + 0x6c)); node != NULL; node = *(u8 **)(node + 0xc)) {
-        if (*(u16 *)(r6 + 0x90) == *(u16 *)(node + 4)) {
-            flag = 1;
-            break;
+    for (r6 = *(u8 **)(data_021600bc + 0x40); r6 != NULL; r6 = *(u8 **)(r6 + 0x13c)) {
+        flag = 0;
+        for (node = *(u8 **)(*(u8 **)(data_02160204 + 0x6c)); node != NULL; node = *(u8 **)(node + 0xc)) {
+            if (*(u16 *)(r6 + 0x90) == *(u16 *)(node + 4)) {
+                flag = 1;
+                break;
+            }
         }
-    }
-    if (flag == 0) {
-        u16 v = *(u16 *)(r6 + 0x8e);
-        if (v > 100 && v < 700) {
+        if (flag != 0) {
+            continue;
+        }
+        if (*(u16 *)(r6 + 0x8e) > 100 && *(u16 *)(r6 + 0x8e) < 700) {
             *(u32 *)(r6 + 0x84) = *(u32 *)(r6 + 0x80);
             *(u32 *)(r6 + 0x80) = (*(u32 *)(r6 + 0x80) & ~2) | 0x400;
             func_020544d8(r6, 1);
         }
     }
-    r6 = *(u8 **)(r6 + 0x13c);
-    if (r6 != NULL) goto loop;
-done:
     func_020a4c98(0);
     *(u32 *)(data_021600a8[1] + 0x10) = 10;
 }
