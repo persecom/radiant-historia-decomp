@@ -190,7 +190,7 @@ if(arg1) found=func_02120c74((u8 *)arg1+0x3c,name);
 else found=(void *)zero;
 if(found){
 u8 *entry;
-if(dict && i<dict[1]) { u16 unit; entry=dict+*(u16 *)(dict+6); unit=*(u16 *)entry; entry=entry+4+unit*i; }
+if(dict && i<dict[1]) { u32 stride; u32 offset=*(u16 *)(dict+6); stride=*(u16 *)(dict+offset); entry=dict+offset; entry+=4; entry+=stride*i; }
 else entry=(u8 *)zero;
 if(!(entry[3]&1)) func_0211cf5c(p,entry,arg1,found);
 } else result=zero;
@@ -214,28 +214,34 @@ void func_0211d238(u8 *arg0) {
 
 #pragma scheduling off
 void func_0211d2c4(u8 *arg0, u8 *arg1, u8 *arg2, u16 *arg3) {
-u16 ofs, key;
-BOOL flag;
-u8 *indices;
-u32 i;
-key = (u16)*(u32 *)(arg2 + 0x2c);
-flag = arg3[1] & 1;
-key &= ~0xe0000000;
-ofs = arg3[0];
-indices = arg0 + *(u16 *)arg1;
-if (!flag) { ofs >>= 1; key >>= 1; }
-for (i=0; i<arg1[2]; i++) {
-u8 *mat;
-u32 idx = indices[i];
-if (arg0 != NULL) {
-u32 *entry = (u32 *)get_res_data_by_idx(arg0+4,idx);
-if (entry != NULL) { mat=arg0+*entry; goto got_mat; }
-}
-mat=NULL;
-got_mat:
-*(u16 *)(mat+0x1c) = ofs + key;
-}
-arg1[3] |= 1;
+    u16 ofs, key;
+    BOOL flag;
+    u8 *indices;
+    u32 i;
+    key = (u16)*(u32 *)(arg2 + 0x2c);
+    flag = arg3[1] & 1;
+    indices = arg0 + *(u16 *)arg1;
+    key &= ~0xe0000000;
+    ofs = arg3[0];
+    if (!flag) {
+        ofs >>= 1;
+        key >>= 1;
+    }
+    for (i = 0; i < arg1[2]; i++) {
+        u8 *mat;
+        u32 idx = indices[i];
+        if (arg0 != NULL) {
+            u32 *entry = (u32 *)get_res_data_by_idx(arg0 + 4, idx);
+            if (entry != NULL) {
+                mat = arg0 + *entry;
+                goto got_mat;
+            }
+        }
+        mat = NULL;
+    got_mat:
+        *(u16 *)(mat + 0x1c) = ofs + key;
+    }
+    arg1[3] |= 1;
 }
 
 s32 func_0211d3a0(void *arg0_v, void *arg1_v) {
