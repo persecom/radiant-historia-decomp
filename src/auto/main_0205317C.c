@@ -71,7 +71,7 @@ q=*(u8 **)(q+0x134);
 }else if(*(u16 *)(ctx+0x26)==102){if(func_02054800(p)==1){*(u16 *)(ctx+4)=zero;*(u16 *)(ctx+6)=zero;ctx[1]=5;}}
 else if(*(u16 *)(ctx+0x26)==104){if(func_02054a94(p)==1){*(u16 *)(ctx+4)=zero;*(u16 *)(ctx+6)=zero;ctx[1]=5;}}
 else if(*(u16 *)(ctx+0x26)==103)func_0205530c(p);break;
-case 51:break;case 52:break;case 53:break;case 61:break;case 71:break;case 72:break;case 81:break;case 91:break;case 92:break;case 111:break;case 121:break;case 122:break;case 131:break;case 62:break;case 73:break;case 82:break;case 83:break;case 93:break;case 112:break;case 123:break;case 132:break;
+case 22:break;case 50:break;case 51:break;case 52:break;case 53:break;case 61:break;case 71:break;case 81:break;case 91:break;case 124:break;case 122:break;case 133:break;case 62:break;case 73:break;case 82:break;case 83:break;case 93:break;case 112:break;case 123:break;case 132:break;
 }
 }
 
