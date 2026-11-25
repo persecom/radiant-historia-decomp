@@ -15,6 +15,12 @@ static inline u32 random_02078e1c(u32 limit) {
     data_02162658[0] = value;
     return (u32)(((u64)(u32)(value >> 32) * limit) >> 32);
 }
+static inline u8 in_rect_020783e8(s32 x, s32 y, s32 x0, s32 y0, s32 x1, s32 y1) {
+    if (x >= x0 && x <= x1 && y >= y0 && y <= y1) {
+        return 1;
+    }
+    return 0;
+}
 extern u32 data_0216263c[3];
 extern u32 data_0216244c[43];
 extern u64 data_02162658[3];
@@ -58,6 +64,152 @@ void func_021168f8(Node_020789ec **, Node_020789ec *);
 void func_02047490(void *);
 void func_0210c5dc(void *);
 s32 func_0210c2f4(Obj_02078d8c *, Vec3_02078d8c *);
+
+extern u16 data_02162908[];
+extern u8 *data_02160200;
+extern u16 data_021628fa[];
+extern s32 func_02044c98(void);
+extern void func_02002128(void *, void *, void *);
+extern void func_020020f8(void *, void *, void *);
+void func_020783e8(u8 *arg0) {
+    u8 *p0200;
+    s32 ty;
+    s32 tx;
+    u32 flags;
+    u8 *p00ac;
+    u8 *p68;
+    s32 dx;
+    s32 dy;
+
+    if (data_02162908[2] != 0) {
+        *(u32 *)(arg0 + 0xac) &= ~0x400000;
+        *(u32 *)(arg0 + 0xac) &= ~0x800000;
+        *(u32 *)(arg0 + 0xac) &= ~0x8000000;
+
+        if (func_02044c98() != 0) {
+            return;
+        }
+
+        p0200 = data_02160200;
+        tx = *(s16 *)&data_02162908[0];
+        ty = *(s16 *)&data_02162908[1];
+        flags = *(u32 *)(p0200 + 0x34);
+
+        if (flags & 0x10) {
+            if ((u8)(tx >= 0xe0 && tx <= 0x100 && ty >= 0xa0 && ty <= 0xc0)) {
+                *(u32 *)(arg0 + 0xac) |= 0x400000;
+                return;
+            }
+        }
+
+        if (flags & 0x20) {
+            if ((u8)(tx >= 0xb8 && tx <= 0xd8 && ty >= 0xa0 && ty <= 0xc0)) {
+                *(u32 *)(arg0 + 0xac) |= 0x800000;
+                return;
+            }
+        }
+
+        p00ac = (u8 *)data_021600ac;
+        if (*(s32 *)(p00ac + 0x844) == 1) {
+            s32 *r = (s32 *)(p00ac + 0x84c);
+            if ((u8)(tx >= r[0] && tx <= r[2] && ty >= r[1] && ty <= r[3])) {
+                *(u32 *)(arg0 + 0xac) |= 0x2000000;
+                *(s32 *)((u8 *)data_021600ac + 0x848) = 1;
+                return;
+            }
+            r = (s32 *)(p00ac + 0x85c);
+            if ((u8)(tx >= r[0] && tx <= r[2] && ty >= r[1] && ty <= r[3])) {
+                *(u32 *)(arg0 + 0xac) |= 0x2000000;
+                *(s32 *)((u8 *)data_021600ac + 0x848) = 1;
+                return;
+            }
+        }
+
+        if (*(s32 *)(p00ac + 0x884) == 1) {
+            s32 *r = (s32 *)(p00ac + 0x88c);
+            if ((u8)(tx >= r[0] && tx <= r[2] && ty >= r[1] && ty <= r[3])) {
+                *(u32 *)(arg0 + 0xac) |= 0x8000000;
+                *(s32 *)((u8 *)data_021600ac + 0x888) = 1;
+                return;
+            }
+            r = (s32 *)(p00ac + 0x89c);
+            if ((u8)(tx >= r[0] && tx <= r[2] && ty >= r[1] && ty <= r[3])) {
+                *(u32 *)(arg0 + 0xac) |= 0x8000000;
+                *(s32 *)((u8 *)data_021600ac + 0x888) = 1;
+                return;
+            }
+        }
+
+        if ((u8)(tx >= 0 && tx <= 0x2e && ty >= 0xb3 && ty <= 0xc0)) {
+            return;
+        }
+
+        p68 = *(u8 **)(p00ac + 0x68);
+        {
+            s32 cx = *(s32 *)(p68 + 0xfc);
+            s32 cy = *(s32 *)(p68 + 0x100);
+            s32 x0 = cx - 0x46;
+            s32 x1 = cx + 0x46;
+            s32 y0 = cy - 0x36;
+            s32 y1 = cy + 0x2a;
+            if ((u8)(tx >= x0 && tx <= x1 && ty >= y0 && ty <= y1)) {
+                *(u32 *)(p68 + 0xac) |= 0x80;
+            } else {
+                *(u32 *)(p68 + 0xac) &= ~0x80;
+            }
+        }
+
+        dx = *(s32 *)(arg0 + 0xfc) - ((volatile u16 *)data_02162908)[0];
+        if (dx < 0) {
+            dx = -dx;
+        }
+        dy = *(s32 *)(arg0 + 0x100) - ((volatile u16 *)data_02162908)[1];
+        if (dx <= 8) {
+            if (dy < 0) {
+                dy = -dy;
+            }
+            if (dy <= 8) {
+                return;
+            }
+        }
+
+        {
+            s32 v4[3] = {0, 0, 0};
+            s32 v3[3] = {0, 0, 0};
+            s32 v2[3];
+            s32 v1[3];
+            s32 v0[3];
+
+            v4[0] = *(s32 *)(arg0 + 0xfc);
+            v4[2] = *(s32 *)(arg0 + 0x100);
+            v3[0] = ((volatile u16 *)data_02162908)[0];
+            v3[2] = ((volatile u16 *)data_02162908)[1];
+            func_02002128(v4, v3, v2);
+
+            v1[0] = *(s32 *)(arg0 + 0);
+            v1[1] = *(s32 *)(arg0 + 4);
+            v1[2] = *(s32 *)(arg0 + 8);
+            v1[0] >>= 12;
+            v1[1] >>= 12;
+            v1[2] >>= 12;
+            func_020020f8(v1, v2, v0);
+
+            *(s32 *)(arg0 + 0x24) = v0[0] << 12;
+            *(s32 *)(arg0 + 0x28) = v0[1] << 12;
+            *(s32 *)(arg0 + 0x2c) = v0[2] << 12;
+            *(u32 *)(arg0 + 0xac) |= 0x40;
+        }
+    } else {
+        if (data_021628fa[0] != 0) {
+            *(u32 *)(arg0 + 0xac) &= ~0x2000000;
+            return;
+        }
+        *(u32 *)(arg0 + 0xac) &= ~0x400000;
+        *(u32 *)(arg0 + 0xac) &= ~0x8000000;
+        *(u32 *)(arg0 + 0xac) &= ~0x800000;
+        *(u32 *)(arg0 + 0xac) &= ~0x2000000;
+    }
+}
 
 void func_0207884c(s32 arg0) {
 s16 z,x;
