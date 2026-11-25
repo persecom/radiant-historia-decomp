@@ -28,6 +28,7 @@ u8 *p=*(u8 **)(q+8);
 u8 *list=*(u8 **)(q+12);
 u8 *target=*(u8 **)(list+4);
 int enabled=1;
+int two;
 u32 v[3];
 if(p[0]==3) enabled=0;
 else if(p[0]==4) enabled=0;
