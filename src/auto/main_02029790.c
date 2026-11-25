@@ -8,7 +8,6 @@ extern int func_0202bf4c(u16, u8);
 extern u8 *func_0202c920(u32);
 extern u8 *func_0202e548(u8);
 extern u8 **data_02160244;
-#pragma opt_propagation off
 s32 func_02029790(u32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     u16 count = 0;
     u8 pos;
