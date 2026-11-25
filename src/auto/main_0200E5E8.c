@@ -443,22 +443,17 @@ void func_0200f0fc(s32 arg0) {
 
 void func_0200f114(void) {
     u32 old;
-    u32 a, b;
-    a = 2;
-    b = 0;
     func_020081a4(0x360000);
     old = data_02145c18;
     data_02145c18 = 0xe;
-    if (func_0200ef5c() == 1) goto end;
-    if (func_0200e808(a, b) != 0) goto end;
-    func_020081a4(0x51d23);
-    if (func_0200e808(a, b) != 0) goto end;
-    if (((s32 (*)(s32))func_0200ef20)(1) != 0) goto end;
-    a = 5;
-    b = 1;
-    func_020081a4(a);
-    if (((s32 (*)(s32))func_0200ef20)(b) == 0) return;
-end:
+    if (func_0200ef5c() != 1) {
+        while (func_0200e808(2, 0) != 0) {
+            func_020081a4(0x51d23);
+        }
+        while (((s32 (*)(s32))func_0200ef20)(1) == 0) {
+            func_020081a4(5);
+        }
+    }
     data_02145c18 = old;
 }
 
