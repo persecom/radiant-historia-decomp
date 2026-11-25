@@ -273,15 +273,13 @@ case 0: break;
 }
 if(data_0216f234.f4==0) material=data_0216f3c4+data_0216f234.fc*24;
 else {
-u32 offset=data_0216f234.fc*24;
-u32 first=*(volatile u32 *)(data_0216f3d4+offset);
-*(volatile u32 *)(data_02155eb0+24)=first;
-u32 second=*(volatile u32 *)(data_0216f3d8+offset);
-*(volatile u32 *)(data_02155eb0+28)=second;
+u32 off=data_0216f234.fc*24;
+*(volatile u32 *)(data_02155eb0+24)=*(volatile u32 *)(data_0216f3d4+off);
+*(volatile u32 *)(data_02155eb0+28)=*(volatile u32 *)(data_0216f3d8+off);
 material=data_02155eb8;
 }
 func_0211c5ac(material,matrix);
-switch(*(u32 *)(data_02155eb0+4)!=0xffffffffU) {
+switch(*(s32 *)(data_02155eb0+4) != -1) {
 default: func_0211c850(arg); break;
 case 0: func_0211c79c(arg); break;
 }
@@ -289,15 +287,13 @@ case 0: func_0211c79c(arg); break;
 func_0211c5c4(root,data_0216f244[data_0216f234.fc]);
 if(data_0216f234.f4==0) material=data_0216f3c4+data_0216f234.fc*24;
 else {
-u32 offset=data_0216f234.fc*24;
-u32 first=*(volatile u32 *)(data_0216f3d4+offset);
-*(volatile u32 *)(data_02155eb0+24)=first;
-u32 second=*(volatile u32 *)(data_0216f3d8+offset);
-*(volatile u32 *)(data_02155eb0+28)=second;
+u32 off=data_0216f234.fc*24;
+*(volatile u32 *)(data_02155eb0+24)=*(volatile u32 *)(data_0216f3d4+off);
+*(volatile u32 *)(data_02155eb0+28)=*(volatile u32 *)(data_0216f3d8+off);
 material=data_02155eb8;
 }
 func_0211c544(material);
-switch(*(u32 *)(data_02155eb0+4)!=0xffffffffU) {
+switch(*(s32 *)(data_02155eb0+4) != -1) {
 default: func_0211c850(arg); break;
 case 0: func_0211c79c(arg); break;
 }
@@ -339,7 +335,7 @@ u8 *entry=data_0216f3c4+data_0216f234.fc*24;
 material=data_02155eb8;
 }
 func_0211c5ac(material,matrix);
-{u32 valid=1; if(*(u32 *)(data_02155eb0+4)==0xffffffffU) valid=0;
+{s32 valid=1; if(*(s32 *)(data_02155eb0+4)==-1) valid=0;
 switch(valid) {
 default: func_0211c850(arg); break;
 case 0: func_0211c79c(arg); break;
@@ -360,7 +356,7 @@ u8 *entry=data_0216f3c4+data_0216f234.fc*24;
 material=data_02155eb8;
 }
 func_0211c544(material);
-{u32 valid=1; if(*(u32 *)(data_02155eb0+4)==0xffffffffU) valid=0;
+{s32 valid=1; if(*(s32 *)(data_02155eb0+4)==-1) valid=0;
 switch(valid) {
 default: func_0211c850(arg); break;
 case 0: func_0211c79c(arg); break;
@@ -447,25 +443,25 @@ void func_02119b34(u32 arg0) {
 void func_02119c80(u8 *arg0) {
     s32 i;
     func_0211c4ec(arg0);
-    *(u16 *)(arg0 + 0x94) =
-    *(u32 *)(arg0 + 0x90) =
-    *(u32 *)(arg0 + 0x8c) =
-    *(u16 *)(arg0 + 0x8a) =
-    *(u16 *)(arg0 + 0x88) =
-    *(u32 *)(arg0 + 0x84) =
-    *(u32 *)(arg0 + 0x80) =
-    *(u32 *)(arg0 + 0x7c) =
-    *(u32 *)(arg0 + 0x78) =
-    *(u32 *)(arg0 + 0x74) =
     *(u32 *)(arg0 + 0x70) = 0;
+    *(u32 *)(arg0 + 0x74) = 0;
+    *(u32 *)(arg0 + 0x78) = 0;
+    *(u32 *)(arg0 + 0x7c) = 0;
+    *(u32 *)(arg0 + 0x80) = 0;
+    *(u32 *)(arg0 + 0x84) = 0;
+    *(u16 *)(arg0 + 0x88) = 0;
+    *(u16 *)(arg0 + 0x8a) = 0;
+    *(u32 *)(arg0 + 0x8c) = 0;
+    *(u32 *)(arg0 + 0x90) = 0;
+    *(u16 *)(arg0 + 0x94) = 0;
     data_0216f234.fc = 0;
-    *(u16 *)data_02155eb0 = 0xfffe;
+    *(volatile u16 *)data_02155eb0 = 0xfffe;
     for (i = 0; i < 0x20; i++) {
-        func_02008e68(-1, data_0216f9c4[i].f10, 0x10);
+        MI_CpuFill32(data_0216f9c4[i].f10, 0xffffffff, 0x10);
     }
     data_0216f234.f0 = 0;
     data_0216f234.f2 = 0;
-    func_02008e68(0, data_0216f2c4, 0x100);
+    MI_CpuFill32(data_0216f2c4, 0, 0x100);
     data_0216f234.f4 = 0;
 }
 #pragma scheduling on
@@ -562,7 +558,8 @@ void func_02119f1c(void) {
         {
             u16 now = data_0216f234.fc;
             u32 newOffset = now * 8, oldOffset = old * 8;
-            *(volatile Struct0216f2c4 *)((u8 *)data_0216f2c4 + newOffset) = *(volatile Struct0216f2c4 *)((u8 *)data_0216f2c4 + oldOffset);
+            Struct0216f2c4 tmp = *(Struct0216f2c4 *)((u8 *)data_0216f2c4 + oldOffset);
+            *(volatile Struct0216f2c4 *)((u8 *)data_0216f2c4 + newOffset) = tmp;
             {
                 u16 v = *(volatile u16 *)((u8 *)data_0216f2c8 + oldOffset);
                 if (v == 1) *(u16 *)((u8 *)data_0216f2c8 + newOffset) = 2;
