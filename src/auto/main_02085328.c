@@ -177,15 +177,16 @@ void func_02085328(void) {
             func_0210d27c(2); return;
         }
         if((data_021626a8&1)||(*(s16 *)((u8 *)data_0216010c+0x5382)&2)) {
+                    int k;
                     int a=func_02085110(((u8 *)data_0216010c)[0x50dc]);
                     int b=func_02085128(((u8 *)data_0216010c)[0x50dc]);
                     
                     int c=func_02084f80((u8)(((s8 *)data_0216010c)[0x50de]+1));
                     int d=func_02084fa8((u8)(((s8 *)data_0216010c)[0x50de]+1));
                     u8 *node, *next;
-                    for(j=0;j<((u8 *)data_0216010c)[0x614];j=(s16)(j+1))
-                        if(a==func_02084f80((u8)j) && b==func_02084fa8((u8)j))
-                            func_020bd2fc((u8)j,1,(u8)c,(u8)d);
+                    for(k=0;k<((u8 *)data_0216010c)[0x614];k=(s16)(k+1))
+                        if(a==func_02084f80((u8)k) && b==func_02084fa8((u8)k))
+                            func_020bd2fc((u8)k,1,(u8)c,(u8)d);
                     func_020bd2fc((u8)(((s8 *)data_0216010c)[0x50de]+1),1,(u8)a,(u8)b);
                     func_020bd574();
                     node=*(u8 **)((u8 *)data_0216010c+0x608);
