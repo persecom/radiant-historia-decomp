@@ -10,6 +10,9 @@ extern f32 func_0201f8cc(u32),func_0201f884(s32);
 extern f32 func_02020888(f32,f32),func_020201f4(f32,f32);
 extern s32 func_0201ff0c(f32);
 
+extern const Unk10 data_021412b0, data_0214129c, data_02141288, data_02141274, data_02141260;
+extern u8 *data_02160204;
+extern s32 func_02085158(s32);
 extern const Unk10 data_02141184;
 extern u8 *data_0216010c;
 extern void func_0209250c(s32,s32,s32,s16,s32,s32,s32,s32,s32,s32,s32,s32,s32);
