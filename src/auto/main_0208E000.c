@@ -10,7 +10,6 @@ void func_0208d5c0(u8,s16,s16,s32);
 typedef struct { s16 f0, f1, f2, f3, f4, f5, f6, f7, f8, f9; } Unk10;
 extern const Unk10 data_02141148, data_02141134;
 extern const Unk10 data_0214101c,data_021410f8,data_021410e4;
-typedef struct { s16 data[10]; } Params_0208e864;
 typedef struct { s32 data[4]; } Styles_0208e864;
 extern const Styles_0208e864 data_02140ef8;
 extern s32 func_02087754(u8);
@@ -133,10 +132,10 @@ Unk10 amount=data_021410e4;
 Styles_0208e864 styles=data_02140ef8;
 u8 count=6;
 u8 *base=data_0216010c;
-u8 offset=base[0x50d7]-base[0x50d6];
-s32 row;
-u8 selected;
+s32 offset=(u8)(base[0x50d7]-base[0x50d6]);
+s32 row, depth;
 s16 i;
+u8 selected;
 if(*(s16 *)(base+0x50d4)<6) {
 count=(u8)*(s16 *)(base+0x50d4);
 {s32 j;for(j=count;j<6;j=(s16)(j+1)) func_020895a0((u16)j,(x+30)<<12,(y+28+j*22)<<12,90,0,0,0,0,0);}
@@ -178,12 +177,13 @@ func_020895a0(7,(x+34)<<12,(y+5)<<12,90,4,(u16)(func_02085110(data_0216010c[0x50
 if((*(s16 *)(data_0216010c+0x534e)&2)||(*(s16 *)(data_0216010c+0x534e)&4)) {
 func_020a3bbc(56);*(s16 *)(data_0216010c+0x534e)&=~4;
 }else func_020a3bbc(55);
-top.f1=0;top.f2=0;top.f5=x+10;top.f6=y+4;top.f7=z+1;
+depth=z+1;
+top.f1=0;top.f2=0;top.f5=x+10;top.f6=y+4;top.f7=depth;
 func_021098ac(&top);
 if((*(s16 *)(data_0216010c+0x531a)&2)||(*(s16 *)(data_0216010c+0x531a)&4)) {
 func_020a3bbc(56);*(s16 *)(data_0216010c+0x531a)&=~4;
 }else func_020a3bbc(55);
-top.f1=16;top.f2=0;top.f5=x+87;top.f6=y+4;top.f7=z+1;
+top.f1=16;top.f2=0;top.f5=x+87;top.f6=y+4;top.f7=depth;
 func_021098ac(&top);
-func_020922f8(8,0,(s16)(x+26),(s16)(y+4),60,15,8,14,4,4,4,4,z+1);
+func_020922f8(8,0,(s16)(x+26),(s16)(y+4),60,15,8,14,4,4,4,4,depth);
 }
