@@ -228,8 +228,9 @@ u32 func_ov000_02178010(void) {
 
 #pragma opt_propagation on
 void func_ov000_021780e0(Rc4State *state,u8 *key,u32 keylen) {
+register u32 v=0x03020100; register u32 inc=0x04040404;
+u32 k=0; u32 j=0; s32 i;
 u32 *p=(u32*)state->s; u32 *end=(u32*)((u8*)state+0x10c);
-u32 v=0x03020100; u32 inc=0x04040404; u32 k=0; u32 j=0; s32 i;
 *(volatile u32*)&state->field_0=0xaa; state->field_4=0; state->field_8=0;
 do { *p++=v; v+=inc; }while(p<end);
 i=255; do { u32 x=key[k]; u8 tmp=state->s[i]; u8 tmp2;
@@ -262,45 +263,47 @@ s32 func_ov000_021781c4(u32 *p) {
 
 s32 func_ov000_021774e4(u32);
 s32 func_ov000_021781fc(void *arg0, void *arg1, u32 arg2, u32 size) {
-u8 table[256];
-Rc4State *state=arg0;
-u8 *src=arg1, *dst=(u8 *)arg2;
-u8 *p;
-u8 *q;
-s32 i;
-if(size&3) return -1;
-func_ov000_021781c4((u32 *)table);
-for(i=0;i<size;i+=4) {
-s32 kind;
-p=src+i;
-kind=func_ov000_021774e4(*(u32 *)p);
-switch(kind) {
-case 1: case 2: {
-u32 v;
-u32 low;
-u32 high;
-*(u32 *)(dst+i)=*(u32 *)p;
-v=*(u32 *)(dst+i);
-low=v&0xffffff;
-high=v&0xff000000;
-low+=0x402;
-high^=0x1000000;
-state->field_0+=high>>24;
-*(u32 *)(dst+i)=high|(low&0xffffff);
-break; }
-case 3: *(u32 *)p^=0x1000000;
-default:
-state->field_0=p[0]^func_ov000_0217816c(state);
-q=dst+i;
-q[0]=state->field_0;
-state->field_0=p[1]^func_ov000_0217816c(state);
-q[1]=state->field_0;
-q[2]=table[p[2]];
-q[3]=p[3];
-state->field_0=state->field_0*q[2]-q[3];
-}
-}
-return 0;
+    u8 table[256];
+    Rc4State *state = arg0;
+    u8 *src = arg1, *dst = (u8 *)arg2;
+    unsigned long i;
+    u8 *q;
+    if (size & 3) return -1;
+    func_ov000_021781c4((u32 *)table);
+    for (i = 0; i < size; i += 4) {
+        s32 kind;
+        u8 *p = src + i;
+        kind = func_ov000_021774e4(*(u32 *)p);
+        switch (kind) {
+        case 1:
+        case 2: {
+            u32 v;
+            u32 low;
+            u32 high;
+            *(u32 *)(dst + i) = *(u32 *)p;
+            v = *(u32 *)(dst + i);
+            low = v & 0xffffff;
+            high = v & 0xff000000;
+            low += 0x402;
+            high ^= 0x1000000;
+            state->field_0 += high >> 24;
+            *(u32 *)(dst + i) = high | (low & 0xffffff);
+            break;
+        }
+        case 3:
+            *(u32 *)p ^= 0x1000000;
+        default:
+            state->field_0 = p[0] ^ func_ov000_0217816c(state);
+            q = dst + i;
+            q[0] = state->field_0;
+            state->field_0 = p[1] ^ func_ov000_0217816c(state);
+            q[1] = state->field_0;
+            q[2] = table[p[2]];
+            q[3] = p[3];
+            state->field_0 = state->field_0 * q[2] - q[3];
+        }
+    }
+    return 0;
 }
 
 extern s32 func_ov000_021774e4(u32);
