@@ -295,27 +295,16 @@ s32 func_02115910(void *arg0,u32 arg1,void *arg2,s32 arg3,void **arg4) {
  return 0;
 }
 
-void *func_02115994(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4) {
-    void *p;
-    void *buf;
-    void *q;
-    p = func_02115174(arg0);
-    if (p == NULL) {
-        return NULL;
-    }
-    if (arg4 == NULL) {
-        return NULL;
-    }
-    q = (u8 *)p + 0x20;
-    buf = func_0211543c(p, (u32)q, arg1, (u32)arg2, (u32)arg3);
-    if (buf == NULL) {
-        return NULL;
-    }
-    if (func_0211519c(arg0, buf, p, NULL) != p) {
-        return NULL;
-    }
-    func_02006da8(buf, p);
-    return buf;
+void *func_02115994(void *arg0,void *arg1,void *arg2,void *arg3,void *arg4) {
+ void *p=func_02115174(arg0);
+ void *buf;
+ if(!p)return NULL;
+ if(!arg4)return NULL;
+ buf=func_0211543c(arg4,(u32)p+0x20,arg1,(u32)arg2,(u32)arg3);
+ if(!buf)return NULL;
+ if(p!=func_0211519c(arg0,buf,p,NULL))return NULL;
+ func_02006da8(buf,p);
+ return buf;
 }
 
 extern void *func_02115264(void *);
