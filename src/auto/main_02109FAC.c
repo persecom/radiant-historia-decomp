@@ -245,42 +245,34 @@ s32 func_0210a39c(u32 *arg0, s32 arg1, u32 *arg2) {
 
 s32 func_0210a3d8(u8 *arg0, u8 *arg1, s32 arg2) {
     u32 local;
-    u32 start = func_02007904();
-    s32 avail = func_0210a39c((u32 *)arg0, arg2, &local);
+    s32 chunk;
     s32 written;
-    if (avail <= 0) {
-        return avail;
-    }
-    written = 0;
-    for (;;) {
-        func_0200bb10(data_021625c8, local, written);
-        {
-            u32 elapsed = func_02007904() - start;
-            elapsed *= 0x40;
-            u32 ticks = (u32)(((u64)elapsed * 0x7d269b01ULL) >> 46);
-            if (ticks > 0x28) {
+    u64 start = func_02007904();
+    arg2 = func_0210a39c((u32 *)arg0, arg2, &local);
+    if (arg2 > 0) {
+        written = 0;
+        func_0200bb10(data_021625c8, local, 0);
+        while (1) {
+            if (((u32)((u64)func_02007904() - start) * 64) / 33514u > 40) {
                 func_021091b4();
-                if (avail == 0) {
-                    break;
-                }
-                {
-                    s32 chunk = avail;
-                    if (avail >= 0x800) {
-                        chunk = 0x800;
-                        avail -= 0x800;
-                    } else {
-                        avail = written;
-                    }
-                    func_0200bb3c(data_021625c8, arg1, chunk);
-                    arg1 += chunk;
-                    written += chunk;
-                }
-            } else {
-                avail = written;
             }
+            if (arg2 == 0) {
+                break;
+            }
+            chunk = arg2;
+            if (arg2 >= 0x800) {
+                chunk = 0x800;
+                arg2 -= 0x800;
+            } else {
+                arg2 = 0;
+            }
+            func_0200bb3c(data_021625c8, arg1, chunk);
+            arg1 += chunk;
+            written += chunk;
         }
+        arg2 = written;
     }
-    return written;
+    return arg2;
 }
 
 u32 func_0210a498(u32 *arg) {
