@@ -94,7 +94,7 @@ void func_020c3df4(u8 **arg0, s32 arg1) {
 void func_020c4574(void);
 void func_020c3fa0(u8 *p) {
 int zero=0, one=1;
-u8 *q; s32 *v; int hit;
+u8 *q; s32 *v; int hit; int timer;
 switch (*(u32 *)(p+4)) {
 case 0: case 4: case 6: break;
 case 1:
@@ -107,8 +107,8 @@ func_020c3da4(func_020c3d64(7),one,zero);
 func_020c3da4(func_020c3d64(10),one,zero);
 func_020c3da4(func_020c3d64(12),one,zero);
 func_020c3da4(func_020c3d64(11),one,zero);
-if ((data_02160204[0x68]<<31)>>31) {p[0x24]=one;func_020c3da4(func_020c3d64(11),one,one);}
-func_020c3da4(func_020c3d64(13),one,zero);
+if (((MenuFlag *)(data_02160204+0x68))->flag) {p[0x24]=one;func_020c3da4(func_020c3d64(11),one,one);
+func_020c3da4(func_020c3d64(13),one,zero);}
 q=func_020f0a5c(*(u16 *)(data_0216013c+0x230));
 if(q) *(u32 *)(q+0x14)|=1;
 q=func_020f0aa4(*(u16 *)(data_0216013c+0x232));
@@ -118,11 +118,11 @@ func_020c4574();
 *(s16 *)(p+0x1c)=0;p[0x23]|=1;
 func_0210968c(3,0,30);*(s32 *)(p+4)=2;break;
 case 2:
-q=func_020c3d64(5);*(s8 *)(q+0x18)-=2;if(*(s8 *)(q+0x18)<=1)func_020c3da4(q,one,one);
-q=func_020c3d64(3);*(s8 *)(q+0x18)-=2;if(*(s8 *)(q+0x18)<=1)func_020c3da4(q,1,1);
-++*(s16 *)(p+0x1c);if(*(s16 *)(p+0x1c)>16){*(s16 *)(p+0x1c)=zero;*(s32 *)(p+4)=3;}break;
+q=func_020c3d64(5);*(s8 *)(q+0x18)-=2;if(*(volatile s8 *)(q+0x18)<=1)func_020c3da4(q,one,one);
+q=func_020c3d64(3);*(s8 *)(q+0x18)-=2;if(*(volatile s8 *)(q+0x18)<=1)func_020c3da4(q,1,1);
+++*(s16 *)(p+0x1c);if(*(volatile s16 *)(p+0x1c)>16){*(s16 *)(p+0x1c)=zero;*(s32 *)(p+4)=3;}break;
 case 3:
-if(p[0x23]&1){++*(s16 *)(p+0x1c);if(*(s16 *)(p+0x1c)>4){*(s16 *)(p+0x1c)=zero;*(s32 *)(p+4)=5;}}break;
+if(p[0x23]&1){++*(s16 *)(p+0x1c);if(*(volatile s16 *)(p+0x1c)>4){*(s16 *)(p+0x1c)=zero;*(s32 *)(p+4)=5;}}break;
 case 5:
 hit=zero;
 if(!(p[0x23]&2)){
@@ -135,10 +135,11 @@ if(p[0x24]==0){func_020c3da4(func_020c3d64(11),one,0);func_020c3da4(func_020c3d6
 else if(p[0x24]==1){func_020c3da4(func_020c3d64(11),one,one);func_020c3da4(func_020c3d64(13),one,0);}
 if(p[0x23]&2){
 ++*(s16 *)(p+0x1c);
-if(*(s16 *)(p+0x1c)==1){
+timer=*(volatile s16 *)(p+0x1c);
+if(timer==1){
 if(p[0x24]==0){func_020c3da4(func_020c3d64(10),1,1);q=func_020c3d64(11);++*(s32 *)q;++*(s32 *)(q+4);}
 else if(p[0x24]==1){func_020c3da4(func_020c3d64(12),1,1);q=func_020c3d64(13);++*(s32 *)q;++*(s32 *)(q+4);}
-}else if(*(s16 *)(p+0x1c)>4){*(s32 *)(data_0216013c+0x238)=one;data_0216013c[0x23c]=p[0x24];}
+}else if(timer>4){*(s32 *)(data_0216013c+0x238)=one;data_0216013c[0x23c]=p[0x24];}
 }
 break;
 }
