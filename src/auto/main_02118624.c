@@ -5,7 +5,7 @@ typedef struct { u16 width,height; u32 format,type,unkC,size; void *data; } Unk0
 typedef struct { u32 unk[3]; u32 height,width,format,zero,one,type; } Unk02118A54Out;
 static inline void init_02118a54(Unk02118A54Out *p, u32 format, u32 zero, u32 type) { p->format=format; p->zero=zero; p->one=1; p->type=type; }
 static inline s32 has_02118f24_data(u8 *p) { s32 r = 1; if (!*(void **)(p + 12)) r = 0; return r; }
-static inline s32 has_02118f24_handle(u8 *p) { s32 r = 1; if (*(s32 *)(p + 0x38) == -1) r = 0; return r; }
+static inline s32 has_02118f24_handle(u8 *p) { s32 r = 0; if (*(s32 *)(p + 0x38) != -1) r = 1; return r; }
 
 extern void func_02117df4(void *);
 extern s32 func_02117d80(void *);
@@ -335,22 +335,24 @@ void func_02119130(u8 *arg0) {
     func_02118f24(arg0);
 }
 
+#pragma optimization_level 3
 void func_02119150(void) {
-    u32 index = *(u32 *)(data_0216f234 + 0xc);
-    u32 offset = index * 0x18;
+    s32 index = *(s32 *)(data_0216f234 + 0xc);
+    s32 offset = index * 0x18;
     if (*(u32 *)(data_0216f234 + 4) != 0) {
         *(u32 *)(data_0216f3d4 + offset) = 0;
         *(u32 *)(data_0216f3d8 + offset) = 0;
     } else {
-        u8 *p = data_0216f3c4 + offset;
-        u8 *dst = data_0216f6c4 + offset;
-        *(u32 *)p = 0x1000;
-        *(u32 *)(p + 4) = 0;
-        *(u32 *)(p + 8) = 0;
-        *(u32 *)(p + 0xc) = 0x1000;
-        *(u32 *)(p + 0x10) = 0;
-        *(u32 *)(p + 0x14) = 0;
-        *(S_02119150 *)dst = *(S_02119150 *)p;
+        S_02119150 *p = (S_02119150 *)data_0216f3c4 + index;
+        S_02119150 *dst = (S_02119150 *)data_0216f6c4 + index;
+        p->w[0] = 0x1000;
+        p->w[1] = 0;
+        p->w[2] = 0;
+        p->w[3] = 0x1000;
+        p->w[4] = 0;
+        p->w[5] = 0;
+        *dst = *p;
     }
     data_0216f244[index] = 0;
 }
+#pragma optimization_level 4
