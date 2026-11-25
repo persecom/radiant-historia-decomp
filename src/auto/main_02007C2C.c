@@ -74,18 +74,15 @@ if(node) func_020079a4(node);
 }
 
 void func_02007d18(void) {
-    u8 *p = data_0215d144;
-    u32 zero = 0;
-    u32 one = 1;
-    if (*(u16 *)p == 0) {
-        *(u16 *)p = one;
-        zero = 0;
-        *(u32 *)(p + 0xc) = zero;
-        *(u32 *)(p + 0x10) = zero;
-        func_020059e4(4);
-        *(u32 *)(p + 8) = zero;
-        *(u32 *)(p + 4) = zero;
+    if (*(u16 *)data_0215d144 != 0) {
+        return;
     }
+    *(u16 *)data_0215d144 = 1;
+    *(u32 *)(data_0215d144 + 0xc) = 0;
+    *(u32 *)(data_0215d144 + 0x10) = 0;
+    func_020059e4(4);
+    *(u32 *)(data_0215d144 + 8) = 0;
+    *(u32 *)(data_0215d144 + 4) = 0;
 }
 
 void func_02007d58(u8 *arg0) {
@@ -281,16 +278,12 @@ s32 func_0200808c(u8 *arg0, s32 arg1, s32 arg2) {
 
 u32 func_020080d8(u32 arg0) {
     u32 irq = func_02008128();
-    u32 *p = (u32 *)data_0215d144;
-    if (arg0 < p[1]) {
-        p[2]++;
+    if ((s32)arg0 < ((s32 *)data_0215d144)[1]) {
+        ((s32 *)data_0215d144)[2]++;
     }
-    {
-        u32 *q = (u32 *)data_0215d144;
-        q[1] = arg0;
-        func_0200813c(irq);
-        return q[2];
-    }
+    ((s32 *)data_0215d144)[1] = arg0;
+    func_0200813c(irq);
+    return ((s32 *)data_0215d144)[2];
 }
 
 u32 func_02008198(u32 x) {
