@@ -95,7 +95,7 @@ extern const Struct108_020a7598 data_02143660;
 extern void *func_020a7460(void);
 extern void *func_020f4d40(u32);
 extern void *func_020f4c2c(u32);
-extern s32 func_020f50bc();
+extern s32 func_020f50bc(void *, void *, void *);
 extern void func_020f5114(void *, s32);
 extern void func_021167f0(void *, void *);
 
