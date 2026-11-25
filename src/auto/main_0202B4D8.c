@@ -30,6 +30,7 @@ extern void func_021167f0(void *, void *);
 extern void func_021168f8(void *, void *);
 extern void func_0210c5dc(void *);
 extern void func_0202e874(void *);
+typedef struct { u8 f0, f1, f2, f3; } Node0202bd60;
 
 u8 *func_0202b4d8(s32 type) {
 u16 count=0;
@@ -220,11 +221,11 @@ u8 *func_0202bc44(s32 arg0) {
 
 void func_0202bcd4(u32 *arg0, s32 arg1) {
     s16 idx = arg1 * 2;
-    u32 v0 = data_0214618c[idx] << 12;
     u32 v1 = data_0214618c[idx + 1] << 12;
+    u32 v0 = data_0214618c[idx] << 12;
+    arg0[2] = v1;
     arg0[0] = v0;
     arg0[1] = 0x20000;
-    arg0[2] = v1;
 }
 
 void func_0202bd08(u8 *arg0) {
@@ -244,10 +245,12 @@ void func_0202bd08(u8 *arg0) {
 
 u8 *func_0202bd60(s32 arg0, s32 arg1) {
     u8 *node = func_0210c594(0x28, data_02155c3c);
+    s32 v;
     node[0] = arg0;
     node[1] = arg1;
     node[3] = 0;
-    node[2] = node[3] - 1;
+    v = node[3] - 1;
+    node[2] = v;
     func_021167f0(data_02160244 + 0x50, node);
     return node;
 }
