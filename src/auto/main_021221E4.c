@@ -8,6 +8,7 @@ static inline void cross_021221e4(const s32 *a, const s32 *b, s32 *out) {
 }
 extern const u8 data_02144f4c[], data_02144f4d[], data_02144f4e[], data_02144f4f[];
 typedef struct { s16 x, y; } Pair_02122b9c;
+typedef struct { s32 x, y; } Pair32_02122aa8;
 
 extern void *data_02155ee8;
 extern void *data_02155ed8;
