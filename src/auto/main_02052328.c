@@ -39,7 +39,7 @@ void func_02052328(void) {
     data_02155984[1] = 0xff0;
 }
 
-#pragma opt_propagation on
+#pragma opt_propagation off
 s32 func_02052350(s32 arg0)
 {
   if ((data_02162908[2] != 0) && (data_021628f8 != 0))
@@ -77,7 +77,7 @@ s32 func_02052350(s32 arg0)
   }
   return 0;
 }
-#pragma opt_propagation off
+#pragma opt_propagation on
 s32 func_02052520(Vec3_02052350 *pos)
 {
   if ((data_02162908[2] != 0) && (data_021628f8 != 0))
@@ -401,8 +401,8 @@ void func_02052d30(void *arg0) {
                         *(u32 *)(obj + 0xac) &= ~1;
                         *(u16 *)(obj + 0x96) = 1;
                         *(u32 *)(obj + 0x80) |= 2;
-                        *(u16 *)(r5 + 6) = 1;
                     }
+                    *(u16 *)(r5 + 6) = 1;
                 }
             }
         }
@@ -413,12 +413,11 @@ void func_02052d30(void *arg0) {
     case 0x51:
         if (*(u16 *)(r5 + 6) == 0) {
             func_0205440c(r6, 0);
-            func_02054018(r6);
         }
         goto done;
     default:
         goto done;
     }
 done:
-    return;
+    func_02054018(r6);
 }
