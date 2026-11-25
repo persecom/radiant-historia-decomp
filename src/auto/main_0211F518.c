@@ -114,21 +114,14 @@ void func_0211fc60(u8 *arg0) {
 }
 
 void func_0211fd3c(u8 *arg0, s32 arg1) {
-    s32 flags = *(s32 *)(arg0 + 8);
-    s32 arr[3];
-    s32 val;
-
-    if (flags & 0x100) goto end;
-    if (flags & 0x200) goto end;
-
-    val = arg1 == 0 ? *(s32 *)(arg0 + 0xe0) : *(s32 *)(arg0 + 0xe4);
-    arr[0] = val;
-    arr[1] = val;
-    arr[2] = val;
-    func_021205ec(0x1b, arr, 3);
-    *(s32 *)arg0 += 1;
-end:
-    ;
+ s32 flags=*(s32 *)(arg0+8); s32 arr[3];
+ if (!(flags&0x100)) {
+ if (!(flags&0x200)) {
+ if(arg1==0) arr[0]=arr[1]=arr[2]=*(s32 *)(arg0+0xe0);
+ else arr[0]=arr[1]=arr[2]=*(s32 *)(arg0+0xe4);
+ func_021205ec(0x1b,arr,3);
+ }}
+ *(s32 *)arg0+=1;
 }
 
 void func_0211fda4(u8 *p){
