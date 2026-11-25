@@ -42,7 +42,7 @@ extern void func_020077f8(s32);
 extern void func_0200789c(void);
 extern void func_020057e8(u32, void (*)(void));
 extern void func_020059b4(u32);
-extern void func_02005944(u32, void (*)(void), u32, ...);
+extern void func_02005944(u32, void (*)(void), u32);
 extern void func_02007674(void);
 extern u32 func_0200701c(s32);
 extern void func_020071a0(s32, u32);
@@ -83,7 +83,7 @@ void func_0200789c(void) {
         *(volatile u16 *)0x04000102 = 0xc1;
         s->unk04 = 0;
     }
-    if ((func_02005944(0, func_0200789c, 0), 0)) {
-        s->unk04 = 0;
-    }
+    do {
+        func_02005944(0, func_0200789c, 0);
+    } while (0);
 }
