@@ -9,6 +9,95 @@ extern s32 func_020ef4c8();
 extern u8 *data_021600bc, *data_021600ac;
 extern u8 *func_02047820(u16);
 extern void func_020477dc(void *, s32, s32);
+
+static inline s32 check_active_02051344(u8 *other) {
+    if (*(u32 *)(other + 0xac) & 1) {
+        return 1;
+    }
+    return 0;
+}
+
+static inline s32 check_id_02051344(u8 *a, u8 *b) {
+    if (*(u16 *)(a + 0x8e) > 0x64 && *(u16 *)(a + 0x8e) < 0x2bc &&
+        *(u16 *)(b + 0x8e) > 0x64 && *(u16 *)(b + 0x8e) < 0x2bc) {
+        return 0;
+    }
+    return 1;
+}
+
+static inline s32 check_hit_02051344(u8 *other, u8 *arg0) {
+    if (*(void **)(other + 0xb0) == NULL || *(void **)(arg0 + 0xb0) == NULL) {
+        return 0;
+    }
+    if (*(s32 *)(*(u8 **)(other + 0xb0)) != 0 && *(s32 *)(*(u8 **)(arg0 + 0xb0)) != 0) {
+        s32 box1[4];
+        s32 box0[4];
+        s32 rad = 0;
+        rad = *(s32 *)(*(u8 **)(other + 0xb0));
+        box1[0] = *(s32 *)(other + 0) - rad;
+        box1[2] = *(s32 *)(other + 0) + rad;
+        box1[1] = *(s32 *)(other + 8) - rad;
+        box1[3] = *(s32 *)(other + 8) + rad;
+        rad = *(s32 *)(*(u8 **)(arg0 + 0xb0));
+        box0[0] = *(s32 *)(arg0 + 0) - rad;
+        box0[2] = *(s32 *)(arg0 + 0) + rad;
+        box0[1] = *(s32 *)(arg0 + 8) - rad;
+        box0[3] = *(s32 *)(arg0 + 8) + rad;
+        if (box1[0] < box0[2] && box0[0] < box1[2] && box1[1] < box0[3] && box0[1] < box1[3]) {
+            return 1;
+        }
+        return 0;
+    }
+    if (*(u8 *)(other + 0x9d) != 0 && *(u8 *)(arg0 + 0x9d) != 0) {
+        if (func_0210c2f4(other, arg0) < ((*(u8 *)(other + 0x9d) + *(u8 *)(arg0 + 0x9d)) << 12)) {
+            return 1;
+        }
+        return 0;
+    }
+    if (*(u8 *)(other + 0x9d) != 0 && *(s32 *)(*(u8 **)(arg0 + 0xb0)) != 0) {
+        s32 box2[4];
+        u8 i = 0;
+        s32 rad = 0;
+        u8 r;
+        rad = *(s32 *)(*(u8 **)(arg0 + 0xb0));
+        box2[0] = *(s32 *)(arg0 + 0) - rad;
+        box2[2] = *(s32 *)(arg0 + 0) + rad;
+        box2[1] = *(s32 *)(arg0 + 8) - rad;
+        box2[3] = *(s32 *)(arg0 + 8) + rad;
+        r = *(u8 *)(other + 0x9d);
+        for (i = 0; i < 8; i++) {
+            u16 ang = (u16)(i << 13);
+            s32 px = *(s32 *)(other + 0) + r * data_0213a394[(((s32)ang % 0x10000) >> 4) * 2];
+            s32 pz = *(s32 *)(other + 8) + r * data_0213a394[(((s32)ang % 0x10000) >> 4) * 2 + 1];
+            if (px >= box2[0] && px <= box2[2] && pz >= box2[1] && pz <= box2[3]) {
+                return 1;
+            }
+        }
+        return 0;
+    }
+    if (*(u8 *)(arg0 + 0x9d) != 0 && *(s32 *)(*(u8 **)(other + 0xb0)) != 0) {
+        s32 box3[4];
+        u8 i = 0;
+        s32 rad = 0;
+        u8 r;
+        rad = *(s32 *)(*(u8 **)(other + 0xb0));
+        box3[0] = *(s32 *)(other + 0) - rad;
+        box3[2] = *(s32 *)(other + 0) + rad;
+        box3[1] = *(s32 *)(other + 8) - rad;
+        box3[3] = *(s32 *)(other + 8) + rad;
+        r = *(u8 *)(arg0 + 0x9d);
+        for (i = 0; i < 8; i++) {
+            u16 ang = (u16)(i << 13);
+            s32 px = *(s32 *)(arg0 + 0) + r * data_0213a394[(((s32)ang % 0x10000) >> 4) * 2];
+            s32 pz = *(s32 *)(arg0 + 8) + r * data_0213a394[(((s32)ang % 0x10000) >> 4) * 2 + 1];
+            if (px >= box3[0] && px <= box3[2] && pz >= box3[1] && pz <= box3[3]) {
+                return 1;
+            }
+        }
+        return 0;
+    }
+    return 0;
+}
 #pragma optimization_level 4
 void func_0205196c(u8 *arg0) {
     s32 savedx = *(s32 *)(arg0 + 0xc);
