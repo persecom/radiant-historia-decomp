@@ -1000,7 +1000,10 @@ src/auto/main_020E5968.c:
     .text start:0x020e5968 end:0x020e8358
 
 src/auto/main_020E8358.c:
-    .text start:0x020e8358 end:0x020e9354
+    .text start:0x020e8358 end:0x020e86c0
+
+src/auto/main_020E86C0.c:
+    .text start:0x020e86c0 end:0x020e9354
 
 src/auto/main_020E9354.c:
     complete
