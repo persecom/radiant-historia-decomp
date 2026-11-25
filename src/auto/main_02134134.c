@@ -1,5 +1,6 @@
 /* 31 functions from 0x02134134 to 0x02134F44 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { u32 words[181]; } Clear_02134748;
 extern u8 data_0215be68[];
 extern void *func_02135d9c(s32,s32,u8);
 extern u8 data_0215bd44[], data_0215bd5c[], data_0215bd80[], data_0215bda4[];
@@ -291,39 +292,21 @@ void func_0213473c(void) {
     func_02135c78();
 }
 
+void *memset(void *, int, unsigned long);
+#pragma intrinsic on
 void func_02134748(void) {
-    u32 *p;
-    s32 i;
     data_0215be64 = data_02145aa4;
-    if (data_021756d4 != 0) {
-        return;
+    if (data_021756d4 == 0) {
+        func_02135c18();
+        memset(data_021756d8, 0, 0x2d4);
+        func_02135ccc();
+        *(u32 *)(data_021756d8 + 0x2bc) = 2;
+        data_021756d8[0x2c0] = 4;
+        data_021756d8[0x2c1] = 5;
+        *(u32 *)(data_021756d8 + 0x2b4) = 0;
     }
-    func_02135c18();
-    p = (u32 *)data_021756d8;
-    for (i = 0; i < 0x16; i++) {
-        p[0] = 0;
-        p[1] = 0;
-        p[2] = 0;
-        p[3] = 0;
-        p[4] = 0;
-        p[5] = 0;
-        p[6] = 0;
-        p[7] = 0;
-        p += 8;
-    }
-    p[0] = 0;
-    p[1] = 0;
-    p[2] = 0;
-    p[3] = 0;
-    p[4] = 0;
-    func_02135ccc();
-    *(u32 *)(data_021756d8 + 0x2bc) = 2;
-    data_021756d8[0x2c0] = 4;
-    data_021756d8[0x2c1] = 5;
-    *(u32 *)(data_021756d8 + 0x2b4) = 0;
     data_021756d4++;
 }
-
 void func_021347e8(void) {
     s32 i;
     u8 *p;
@@ -355,14 +338,15 @@ void func_02134844(u8 *arg0, s32 arg1) {
 }
 
 u8 func_02134884(void) {
-    Mgr_02134884 *mgr = (Mgr_02134884 *)data_021756d8;
     u8 result = 0xff;
-    if (mgr->cb != NULL) {
-        mgr->cb(&result);
+    void (*cb)(u8 *) = *(void **)(data_021756d8 + 0x2d0);
+    if (cb != NULL) {
+        cb(&result);
     } else {
+        s32 count = *(s32 *)(data_021756d8 + 0x2bc);
         s32 i;
-        for (i = 0; i < mgr->count; i++) {
-            if (mgr->flags[i] == 0) {
+        for (i = 0; i < count; i++) {
+            if (*(u8 *)(data_021756d8 + i + 0x2c8) == 0) {
                 data_021759a0[i] = 1;
                 result = data_02175998[i];
                 break;
