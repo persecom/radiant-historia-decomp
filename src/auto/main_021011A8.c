@@ -363,9 +363,8 @@ s32 func_021011a8(void)
         node2 = (*(u8 **)(data_02160204 + 0xe8));
         player2 = (*(u8 **)(data_021600ac + 0x68));
         while (node2 != NULL) {
-            id = (*(u16 *)(node2 + 0x90));
             next2 = (*(u8 **)(node2 + 0x134));
-            obj = (u8 *)func_020f0aa4(id);
+            obj = (u8 *)func_020f0aa4(*(u16 *)(node2 + 0x90));
             if (node2 != player2) {
                 func_02047490(node2);
                 if (obj != NULL) func_020f09d4(obj);
