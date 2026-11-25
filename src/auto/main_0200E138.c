@@ -65,6 +65,35 @@ s32 func_0200a6e4(s32,u32,s32);
 
 #pragma opt_propagation on
 
+void func_0200e138(u32 arg0,u32 arg1) {
+ Coord0200e138 *dst=(Coord0200e138 *)arg0;
+ const Coord0200e138 *src=(const Coord0200e138 *)arg1;
+ s32 *coeff;
+ s32 v;
+ if(((State0200dcd4 *)data_0215f000)->f34==0) {
+ u16 x=((volatile Coord0200e138 *)src)->x;
+ u16 y=((volatile Coord0200e138 *)src)->y;
+ u16 z=((volatile Coord0200e138 *)src)->z;
+ u16 w=((volatile Coord0200e138 *)src)->w;
+ dst->y=y;dst->z=z;dst->w=w;dst->x=x;
+ return;
+ }
+ u16 z=src->z,w=src->w;
+ coeff=data_0215f01c;
+ if(z==0) {dst->y=dst->x=0;}
+ dst->w=w;
+ dst->z=z;
+ if(z==0) return;
+ dst->x=(s16)((((s64)((s32)src->x<<2)-coeff[0])*coeff[2])>>22);
+ v=*(volatile s16 *)&dst->x;
+ if(v<0) dst->x=0;
+ else if(v>255) dst->x=255;
+ dst->y=(s16)((((s64)((s32)src->y<<2)-coeff[3])*coeff[5])>>22);
+ v=*(volatile s16 *)&dst->y;
+ if(v<0) dst->y=0;
+ else if(v>191) dst->y=191;
+}
+
 void func_0200e254(u16 arg0) {
     while (*(volatile u16 *)(data_0215f000 + 0x3a) & arg0) {
     }
@@ -152,32 +181,16 @@ void func_0200e384(void) {
 }
 
 void func_0200e418(u32 arg0, u32 arg1, u32 arg2) {
-    u8 b = (u8)arg1;
-    u32 v = ((arg1 & 0x7f00) << 8) >> 16;
-    u32 cond = arg2;
-    if (cond != 0) {
-        func_0200e320((v == 0x61 || v == 0x62) ? 1 : 2);
-        return;
-    }
-    switch (v) {
-    case 0x60:
-        b = 0;
-        break;
-    case 0x61: {
-        u8 *p = *(u8 **)(data_0215f03c + 0x38);
-        if (p != NULL) {
-            *(u16 *)p = b;
-        }
-        b = 0;
-        break;
-    }
-    case 0x62:
-        break;
-    case 0x63:
-        *(u32 *)(data_0215f03c + 0xc) = 1;
-        break;
-    }
-    func_0200e320(b);
+u8 b = arg1 & 0xff;
+u32 v = ((arg1 & 0x7f00) << 8) >> 16;
+if (arg2 != 0) { func_0200e320((v == 0x61 || v == 0x62) ? 1 : 2); return; }
+switch(v) {
+case 0x61: { u8 *p = *(u8 **)(data_0215f03c + 0x38); if(p) *(u16 *)p = b; b=0; break; }
+case 0x60: b=0; break;
+case 0x62: break;
+case 0x63: *(u32 *)(data_0215f03c+0xc)=1; break;
+}
+func_0200e320(b);
 }
 
 extern s32 func_02008128(void);
@@ -202,16 +215,3 @@ s32 func_0200e4a0(u32 *arg0, s32 arg1, u32 arg2, u32 arg3, u32 arg4) {
     func_0200813c(irq);
     return 0;
 }
-
-void func_0200e524(u32 *arg0, s32 arg1) {
-volatile s32 result; s32 status;
-for (;;) {
-result = -0x10000;
-status = func_0200e4a0(arg0,arg1,0,(u32)func_0200e314,(u32)&result);
-while (status != 0) {func_020081a4(0x51d23); status = func_0200e4a0(arg0,arg1,0,(u32)func_0200e314,(u32)&result);}
-while (result == -0x10000) func_020081a4(0x51d23);
-if (result == 0) return;
-func_020081a4(0x51d23);
-}
-}
-
