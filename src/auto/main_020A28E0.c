@@ -402,12 +402,13 @@ void *func_020a36ac(void *arg0, s32 arg1) {
     dst = first;
     i = 0;
     if (arg1 > 0) for (; i < arg1; i++) {
-        u8 *src = (u8 *)&((s32 (*)[5])arg0)[i];
-        s32 a = *(s32 *)src;
+        u8 *src = (u8 *)arg0 + i * 0x14;
         s32 b = *(s32 *)(src + 4);
         if (b == 0) {
+            s32 a = *(s32 *)src;
             func_0203be60(dst, a, a);
         } else {
+            s32 a = *(s32 *)src;
             func_0203be60(dst, a, b);
         }
         *(u32 *)((u8 *)dst + 0x10) = *(u32 *)(src + 8);
