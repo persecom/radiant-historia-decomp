@@ -76,6 +76,24 @@ void func_020c8598(u8 *, s32);
 void func_020c84e8(u8 *, s32, s32);
 void func_02112e80(void);
 void func_02113630(void *, void *);
+void func_020b8844(void);
+void func_020b88a4(void);
+void func_020b886c(void);
+void func_020b8888(void);
+void func_02111828(void *, s32, s32, s32);
+void func_02111ac0(void *, s32, s32, s32, s32);
+void func_02112278(void *);
+void func_02112388(void *, void *);
+void func_02112628(void *, s32, s32, s32);
+void func_02111db0(void *, void *, s32);
+void func_0211071c(void *, void *);
+void func_02110754(void *, void *);
+void func_02112094(void *, void *);
+u8 func_020c94a8(void *);
+u8 func_020c94b0(void *);
+void func_020b7360(void);
+void func_020b8aac(void);
+void func_020b8718(void);
 
 void func_020b77d4(void) {
     u8 *p;
