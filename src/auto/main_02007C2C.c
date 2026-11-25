@@ -309,17 +309,7 @@ u32 func_020081f0(void) {
     return 0x2fffc40;
 }
 
-void func_020081fc(void) {
-    s32 c = 0xc;
-    s32 one = 1;
-    if (data_0215d158 == 0) {
-        data_0215d158 = 1;
-        func_0200a56c();
-        if (func_0200a6c0(c, one) != 0) {
-            func_0200a674(c, func_02005a84);
-        }
-    }
-}
+void func_020081fc(void) { if (data_0215d158 != 0) return; data_0215d158=1; func_0200a56c(); while (func_0200a6c0(12,1)==0) {} func_0200a674(12,func_02005a84); }
 
 void func_02008250(u32 arg0) {
     if (*(u16 *)0x2fffc40 != 2) {
