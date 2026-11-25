@@ -262,22 +262,21 @@ s32 func_020125b8(s32 c) {
 #pragma scheduling off
 void func_020125e0(u32 *bits, u32 start, u32 end)
 {
-  u32 endMask;
   if (start >= end)
   {
     return;
   }
-  endMask = (1U << (end & 0x1f)) - 1;
   do
   {
     u32 word = start >> 5;
     u32 mask = (~0U) << (start & 0x1f);
+    u32 endMask = (1U << (end & 0x1f)) - 1;
     u32 next = (word + 1) << 5;
     if (end < next)
     {
       mask &= endMask;
     }
-    bits[start >> 5] |= mask;
+    bits[word] |= mask;
     start = next;
   }
   while (start < end);
@@ -295,6 +294,7 @@ struct ScanState {
 s32 func_02012634(s32 arg0, const char *fmt, char *args)
 {
     s32 c = *fmt;
+    s32 base;
     s32 flags;
     s32 width;
     s32 ch;
@@ -360,11 +360,11 @@ loop:
         break;
     }
     switch (ch) {
-    case 'd': c = 10; goto parse_num;
-    case 'i': c = -1; goto parse_num;
-    case 'o': c = 8; goto parse_num;
-    case 'u': flags |= 0x1000; c = 10; goto parse_num;
-    case 'X': case 'p': case 'x': flags |= 0x1000; c = 16; goto parse_num;
+    case 'd': base = 10; goto parse_num;
+    case 'i': base = -1; goto parse_num;
+    case 'o': base = 8; goto parse_num;
+    case 'u': flags |= 0x1000; base = 10; goto parse_num;
+    case 'X': case 'p': case 'x': flags |= 0x1000; base = 16; goto parse_num;
     case 'n': goto parse_count;
     case 'c': case 's': goto parse_str;
     case '[': goto parse_set;
@@ -391,14 +391,14 @@ next_sign:
     ch = *++s;
     goto again_sign;
 after_sign:
-    if (c == -1) {
-        if (ch != '0') c = 10;
+    if (base == -1) {
+        if (ch != '0') base = 10;
         else {
-            if (s[1] == 'x' || s[1] == 'X') c = 16;
-            else c = 8;
+            if (s[1] == 'x' || s[1] == 'X') base = 16;
+            else base = 8;
         }
     }
-    if (c == 16 && ch == '0') {
+    if (base == 16 && ch == '0') {
         if (s[1] == 'x' || s[1] == 'X') { s += 2; ch = *s; }
     }
     if (width == 0) width = 0x7fffffff;
@@ -414,10 +414,10 @@ after_sign:
                     if (k < 6) digit = k + 0xa;
                 }
             }
-            if (digit >= (u32)c) break;
+            if (digit >= (u32)base) break;
             ch = *++s;
             n++;
-            val = val * c + digit;
+            val = val * base + digit;
         } while (n < width);
     }
     if (n == 0) goto finish;
@@ -486,21 +486,22 @@ str_end:
 
 parse_set:
     {
+        u32 *bits = st.bits;
         u32 previous = 0;
         s32 range = 0;
         dst = NULL;
         st.inv = 1;
-        func_02008e24(0, st.bits, 0x20);
+        func_02008e24(0, bits, 0x20);
         ch = *++f;
         if (ch == '^') { f++; st.inv = 0; }
         ch = *f;
-        if (ch == ']') { st.bits[(u32)(u8)ch >> 5] |= 1U << ((u8)ch & 31); f++; }
+        if (ch == ']') { bits[(u32)(u8)ch >> 5] |= 1U << ((u8)ch & 31); f++; }
         for (;;) {
             ch = *f;
             if (ch == 0 || ch == ']') {
                 if (range) {
-                    st.bits[previous >> 5] |= 1U << (previous & 31);
-                    st.bits[1] |= 0x2000;
+                    bits[previous >> 5] |= 1U << (previous & 31);
+                    bits[1] |= 0x2000;
                 }
                 if (*f == ']') f++;
                 break;
@@ -508,17 +509,17 @@ parse_set:
             if (!range) {
                 if (previous != 0 && ch == '-') { range = 1; }
                 else {
-                    st.bits[(u32)(u8)ch >> 5] |= 1U << ((u8)ch & 31);
+                    bits[(u32)(u8)ch >> 5] |= 1U << ((u8)ch & 31);
                     previous = (u8)*f;
                 }
             } else {
                 u32 end = (u8)ch;
                 if (previous > end) {
-                    st.bits[previous >> 5] |= 1U << (previous & 31);
-                    st.bits[1] |= 0x2000;
-                    st.bits[end >> 5] |= 1U << (end & 31);
+                    bits[previous >> 5] |= 1U << (previous & 31);
+                    bits[1] |= 0x2000;
+                    bits[end >> 5] |= 1U << (end & 31);
                 } else {
-                    func_020125e0(st.bits, previous, end + 1);
+                    func_020125e0(bits, previous, end + 1);
                 }
                 range = 0;
                 previous = 0;
@@ -534,7 +535,7 @@ parse_set:
         if (width == 0) width = 0x7fffffff;
         ch = *s;
         while (ch != 0 && width > 0) {
-            if (((st.bits[(u32)(u8)ch >> 5] >> ((u8)ch & 31)) & 1) != st.inv) break;
+            if (((bits[(u32)(u8)ch >> 5] >> ((u8)ch & 31)) & 1) != st.inv) break;
             if (dst) *dst++ = ch;
             ch = *++s;
             width--;
