@@ -613,7 +613,7 @@ void func_021141f8(u8 *arg0) {
     void *obj = func_02116958(data_0216bfd8, NULL);
     while (obj != NULL) {
         if (arg0[0x3d] < ((u8 *)obj)[0x3d]) {
-            return;
+            break;
         }
         obj = func_02116958(data_0216bfd8, obj);
     }
