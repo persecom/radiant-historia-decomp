@@ -58,6 +58,10 @@ extern u32 data_02162834[];
 extern void func_02002128(Vec3 *, void *, void *);
 extern s32 func_02002080(s32, u32);
 extern void func_021167ac(void *, s32);
+static inline void alloc_store_call_020f4928(void **slot, void *p, s32 n) {
+    *(void *volatile *)slot = p;
+    func_021167ac(p, n);
+}
 extern void *data_02160c60[];
 extern void *data_02160c54[];
 s32 func_020f46a0(u16 arg0) {
