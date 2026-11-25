@@ -2,7 +2,6 @@
 #include "common.h"
 typedef struct { s32 v[10]; } InitParams;
 typedef struct { s32 a,b,c; } InitConfig;
-typedef struct { u32 a, b; } PairU32;
 static inline void InitConfigZero(InitConfig *p) {p->b=0;p->a=0;p->c=0;}
 static inline void InitConfigSet(s32 *cfg, s32 channels, s32 mode, s32 count, s32 flag) { if(mode==1)cfg[1]=count;else cfg[1]=1;cfg[0]=channels;cfg[2]=flag; }
 extern u8 data_0215c840[], data_0215c870[], data_0215c8a8[], data_0215c8e0[], data_0215c91c[];
