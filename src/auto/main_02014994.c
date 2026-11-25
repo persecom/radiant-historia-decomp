@@ -4,6 +4,8 @@ typedef struct { u8 padding,sign,unk2,alternate,unk4,conversion; u16 unk6; s32 w
 typedef struct { u8 sign,pad; s16 exponent; u8 length; u8 digits[35]; } Decimal_02014994;
 typedef struct { u8 c[5]; } FormatText5;
 typedef struct { u8 c[4]; } FormatText4;
+static inline void format_copy5(u8 *dst,u8 *src) { *(FormatText5*)dst=*(FormatText5*)src; }
+static inline void format_copy4(u8 *dst,u8 *src) { *(FormatText4*)dst=*(FormatText4*)src; }
 extern u8 data_02145e54[],data_02145e5c[],data_02145e64[],data_02145e68[],data_02145e6c[],data_02145e74[],data_02145e7c[],data_02145e80[];
 extern const u16 data_0213eb14[];
 static inline s32 format_upper(s32 c) { if ((u32)c>=128) return 0; return data_0213eb14[c]&0x200; }
@@ -22,7 +24,7 @@ u8 fmt[4]; Decimal_02014994 num;
 s32 sign,alternate,conversion,precision;
 precision=spec.precision;conversion=spec.conversion;alternate=spec.alternate;sign=spec.sign;
 u8 *p=0,*q;
-s32 zero=0,pad=32,i,j,exp,whole,frac;
+s32 zero=0,pad=32,i,j,whole,frac,exp;
 if(precision>509)return p;
 fmt[0]=0;*(s16*)(fmt+2)=pad;
 func_02019580(fmt,value,&num);
@@ -40,7 +42,7 @@ p=(u8*)((u32)end-4);if((u32)conversion>=128?0:data_0213eb14[conversion]&0x200){*
 
 }
 num.exponent+=(s16)(num.length-1);
-p=(u8*)((u32)end-1);*p=0;
+p=end;*--p=0;
 switch(conversion){
 case 'g':case 'G':
 if(num.length>precision)func_02014880((u8*)&num,precision);
@@ -56,9 +58,9 @@ goto fixed;
 case 'e':case 'E':
 scientific:
 if(num.length>precision+1)func_02014880((u8*)&num,precision+1);
-s32 exponent=num.exponent;j='+';i=0;
-if(exponent<0){exponent=-exponent;j='-';}
-while(exponent!=0 || i<2){*--p='0'+exponent%10;exponent/=10;i++;}
+exp=num.exponent;j='+';i=0;
+if(exp<0){exp=-exp;j='-';}
+while(exp!=0 || i<2){*--p='0'+exp%10;exp/=10;i++;}
 *--p=j;*--p=conversion;
 if(precision+(end-p)>509)return 0;
 pad='0';
