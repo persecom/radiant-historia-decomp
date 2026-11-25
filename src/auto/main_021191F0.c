@@ -72,6 +72,12 @@ static inline void MI_CpuFill32(void *dest, u32 data, u32 size) {
 
 extern void func_0211c850(u32);
 extern void func_0211c79c(u32);
+static inline s32 selection_02119728(void) {
+s32 result;
+s32 id=*(s32 *)(data_02155eb0+4);
+if(id!=-1) result=1; else result=0;
+return result;
+}
 static inline void draw_02119728(u32 arg,s32 valid) {
 switch (valid) {
 default: func_0211c850(arg); break;
@@ -345,6 +351,8 @@ default: func_0211c850(arg); break;
 case 0: func_0211c79c(arg); break;
 }
 }
+*(u32 *)(data_0216f234.f8+0x74)=0;
+func_0211c738();
 }
 } else {
 func_0211c5cc(current,node);
@@ -364,9 +372,9 @@ default: func_0211c850(arg); break;
 case 0: func_0211c79c(arg); break;
 }
 }
-}
 *(u32 *)(data_0216f234.f8+0x74)=0;
 func_0211c738();
+}
 }
 node=*(u8 **)(node+48);
 }
