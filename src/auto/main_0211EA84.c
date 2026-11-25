@@ -22,6 +22,99 @@ extern void *func_0211d878(void),*func_0211d8ac(void),*func_0211d7d4(void);
 extern void func_02001100(void *,void *),func_02001894(void *,void *,void *);
 extern void func_02008e50(void *,void *,s32);
 
+void func_0211ea84(u8 *p,s32 command){
+u32 early,first,last;
+s32 b,a;
+s32 index=(*(u8 **)p)[1];
+s32 zero=0,size=4;
+s32 callback,skip;
+u8 *result,*data,*cursor;
+p[0xae]=index;*(u32 *)(p+8)|=0x10;
+if(*(u32 *)(p+8)&0x400){
+if(command==0x40||command==0x60)size++;
+if(command==0x20||command==0x60){size++;if(!(*(u32 *)(p+8)&0x100)){early=(*(u8 **)p)[4];func_021205ec(0x14,&early,1);}}
+*(u8 **)p+=size;return;
+}
+if(command==0x40||command==0x60){
+if(command==0x40)first=(*(u8 **)p)[4];else first=(*(u8 **)p)[5];
+size++;
+if(!(*(u32 *)(p+8)&0x100))func_021205ec(0x14,&first,1);
+}
+*(void **)(p+0xb4)=p+0x12c;
+callback=*(void **)(p+0x24)?p[0x92]:0;
+if(callback==1){
+*(u32 *)(p+8)&=~0x40;
+(*(void (**)(void *))(p+0x24))(p);
+callback=*(void **)(p+0x24)?p[0x92]:0;
+skip=*(u32 *)(p+8)&0x40;
+}else skip=0;
+if(!skip){
+u8 *obj=*(u8 **)(p+4);
+u8 *table=*(u8 **)(obj+0x34);
+s32 cached;
+if(table){result=table+index*0x58;cached=(*(u32 *)(p+8)&0x80)?0:1;}
+else {result=p+0x12c;cached=0;}
+if(!cached){
+*(u32 *)result=zero;
+obj=*(u8 **)(p+4);
+if(*(void **)(obj+0x10)){
+if((*(s32 (**)(void *,void *,s32))(obj+0x14))(result,*(void **)(obj+0x10),index))goto done;
+}
+data=node_0211ea84(*(u8 **)(p+0xd4),index);
+cursor=data+4;
+if(*(u16 *)data&1)*(u32 *)result|=4;
+else {
+*(s32 *)(result+0x4c)=*(s32 *)cursor;
+*(s32 *)(result+0x50)=*(s32 *)(cursor+4);
+*(s32 *)(result+0x54)=*(s32 *)(cursor+8);cursor+=12;
+}
+if(*(u16 *)data&2)*(u32 *)result|=2;
+else if(*(u16 *)data&8){
+s32 pivot=(*(u16 *)data&0xf0)>>4;
+a=*(s16 *)cursor;b=*(s16 *)(cursor+2);
+func_02009138(result+0x28);
+*(s32 *)(result+0x28+pivot*4)=(*(u16 *)data&0x100)?-4096:4096;
+*(s32 *)(result+0x28+data_02144f28[pivot*4]*4)=a;
+*(s32 *)(result+0x28+data_02144f29[pivot*4]*4)=b;
+cursor+=4;
+if(*(u16 *)data&0x200)b=-b;
+*(s32 *)(result+0x28+data_02144f2a[pivot*4]*4)=b;
+if(*(u16 *)data&0x400)a=-a;
+*(s32 *)(result+0x28+data_02144f2b[pivot*4]*4)=a;
+}else{
+*(s32 *)(result+0x28)=*(s16 *)(data+2);
+*(s32 *)(result+44)=*(s16 *)(cursor+0);
+*(s32 *)(result+48)=*(s16 *)(cursor+2);
+*(s32 *)(result+52)=*(s16 *)(cursor+4);
+*(s32 *)(result+56)=*(s16 *)(cursor+6);
+*(s32 *)(result+60)=*(s16 *)(cursor+8);
+*(s32 *)(result+64)=*(s16 *)(cursor+10);
+*(s32 *)(result+68)=*(s16 *)(cursor+12);
+*(s32 *)(result+72)=*(s16 *)(cursor+14);
+cursor+=16;
+}
+(*(void (**)(void *,void *,void *,u32))(p+0xe8))(result,cursor,*(void **)p,*(u16 *)data);
+}
+done: *(void **)(p+0xb4)=result;
+}
+if(callback==2){
+*(u32 *)(p+8)&=~0x40;
+(*(void (**)(void *))(p+0x24))(p);
+callback=*(void **)(p+0x24)?p[0x92]:0;
+skip=*(u32 *)(p+8)&0x40;
+}else skip=0;
+if(!skip&&!(*(u32 *)(p+8)&0x100)) (*(void (**)(void *))(p+0xec))(*(void **)(p+0xb4));
+*(void **)(p+0xb4)=0;
+if(callback==3){
+*(u32 *)(p+8)&=~0x40;
+(*(void (**)(void *))(p+0x24))(p);
+
+skip=*(u32 *)(p+8)&0x40;
+}else skip=0;
+if(command==0x20||command==0x60){size++;if(!skip&&!(*(u32 *)(p+8)&0x100)){last=(*(u8 **)p)[4];func_021205ec(0x13,&last,1);}}
+*(u8 **)p+=size;
+}
+
 void func_0211eee0(u8 *p,s32 command){
 s32 matrix[16],a[16],b[16];
 u32 first,last;
