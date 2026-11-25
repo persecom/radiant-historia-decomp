@@ -1,5 +1,7 @@
 /* 2 functions from 0x020F26FC to 0x020F36B0 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct {void *model,*modelData,*animation,*animationData,*pack,*texture;} Resource_020f2a5c;
+typedef struct {u8 flags,pad;u16 index;} Frame_020f2a5c;
 
 extern char data_02151df8[];
 extern char data_02151e18[];
@@ -131,5 +133,140 @@ s32 func_020f26fc(u8 *arg0, u16 arg1, u8 arg2) {
     return 1;
 }
 
-s32 func_020f2a5c(u8 *obj,u32 id,u8 type) {return 0;}
+s32 func_020f2a5c(u8 *arg0,u16 id,u8 type) {
+ u8 *resource;
+ u8 *cur;
+ u8 *node=0;
+ void *texture=0;
+ void *csv=0;
+ char iconName[256]={0};
+ char texName[256]={0};
+ char modelName[256]={0};
+ char path[256];
+ char packName[256];
+ char csvName[64];
+ s32 line;
+ s32 needIcon,needSpecial;
+ s32 size;
+ u8 *info;
+ s32 i,j,idx;
+ u8 *mem;
+ void *pack0,*pack1,*pack2;
+ u16 n,count;
+ u16 index=0;
+ func_02005e80(csvName,data_02151ef8,id);
+ func_02005e80(csvName,data_02151f18);
+ data_02160c14[0]=0;data_02160c14[1]=0;data_02160c14[2]=0;
+ csv=func_021092d8(csvName);
+ if(!csv){(void)csv;}
+ line=func_02092ab0(csv,id);
+ if(line!=-1){data_02160c14[0]=func_0210cd20(csv,0);data_02160c14[1]=func_0210cd20(csv,0);data_02160c14[2]=func_0210cd20(csv,0);}
+ func_02005e80(iconName,data_02151f38,data_02160c14[1]);
+ func_02005e80(texName,data_02151f48,data_02160c14[2]);
+ func_02005e80(modelName,data_02151f58,data_02160c14[0]);
+ if(id>=0xbba && id<=0xbc5)id=0x443;
+ needIcon=1;needSpecial=1;
+if(type==0){
+index=data_02160a6c[0x11c];node=(*(u8 **)(data_02160a6c+0xd0));
+for(;node;node=(*(u8 **)(node+0x118))){if((*(u16 *)(node+0x10e))==id){(*(u16 *)(arg0+0x18))=(u8)(*(u16 *)(node+0x110));needIcon=0;break;}}
+node=(*(u8 **)(data_02160a6c+0xd0));
+for(;node;node=(*(u8 **)(node+0x118))){if((*(u16 *)(node+0x10e))==9999){needSpecial=0;break;}}
+}
+else if(type==1){
+index=data_02160a6c[0x11e];node=(*(u8 **)(data_02160a6c+0xdc));
+for(;node;node=(*(u8 **)(node+0x118))){if((*(u16 *)(node+0x10e))==id){(*(u16 *)(arg0+0x18))=(u8)(*(u16 *)(node+0x110));needIcon=0;break;}}
+node=(*(u8 **)(data_02160a6c+0xdc));
+for(;node;node=(*(u8 **)(node+0x118))){if((*(u16 *)(node+0x10e))==9999){needSpecial=0;break;}}
+}
+else if(type==2){
+index=data_02160a6c[0x120];node=(*(u8 **)(data_02160a6c+0xe8));
+for(;node;node=(*(u8 **)(node+0x118))){if((*(u16 *)(node+0x10e))==id){(*(u16 *)(arg0+0x18))=(u8)(*(u16 *)(node+0x110));needIcon=0;break;}}
+node=(*(u8 **)(data_02160a6c+0xe8));
+for(;node;node=(*(u8 **)(node+0x118))){if((*(u16 *)(node+0x10e))==9999){needSpecial=0;break;}}
+}
+if(data_02160c14[1] && needIcon){
+ node=func_0210c594(0x11c,data_02155c3c);
+ func_02005e80((char *)node,data_02151f68,iconName);
+ (*(u16 *)(node+0x100))=(u16)((index%2)*16);
+(*(u16 *)(node+0x102))=(u16)((index/2)*16);
+(*(u16 *)(node+0x104))=0;(*(u16 *)(node+0x106))=0;(*(u16 *)(node+0x108))=16;(*(u16 *)(node+0x10a))=16;(*(u16 *)(node+0x10c))=1;(*(u16 *)(node+0x10e))=id;(*(u16 *)(node+0x110))=index;
+ (*(u16 *)(arg0+0x18))=index;
+ if(type==0){func_021167f0(data_02160a6c+0xd0,node);data_02160a6c[0x11c]++;}
+ else if(type==1){
+ func_021167f0(data_02160a6c+0xdc,node);data_02160a6c[0x11e]++;
+ if(id==0x443){node=func_0210c594(0x11c,data_02155c3c);node[0]=0;(*(u16 *)(node+0x100))=(u16)((index%2)*16);
+(*(u16 *)(node+0x102))=(u16)((index/2)*16);
+(*(u16 *)(node+0x104))=0;(*(u16 *)(node+0x106))=0;(*(u16 *)(node+0x108))=16;(*(u16 *)(node+0x10a))=16;(*(u16 *)(node+0x10c))=1;(*(u16 *)(node+0x10e))=0xbba;(*(u16 *)(node+0x110))=index;func_021167f0(data_02160a6c+0xdc,node);}
+ }else if(type==2){func_021167f0(data_02160a6c+0xe8,node);data_02160a6c[0x120]++;}
+ }
+ if(data_02160c14[2]){
+ texture=func_0210a7b4();
+ if(!func_0210a7e4(texture,texName,0)){
+ if(texture){func_0210c5dc(texture);texture=0;}
+ if(csv){func_021093b0(csv);csv=0;}
+ return 0;
+ }}
+ if(data_02160c14[0]){
+ resource=0;
+ (*(u8 **)((*(u8 **)arg0)+0x58))=func_0210835c();resource=(*(u8 **)((*(u8 **)arg0)+0x58));
+ func_02005e80(path,data_02151f6c,modelName);
+ *(void **)(resource+0)=func_0210abb8(resource+4,path,&size);
+ if(*(void **)(resource+0)){if(!func_02109f84(*(void **)(resource+0)))needIcon=1;}
+ else {if(csv){func_021093b0(csv);csv=0;}return 0;}
+ if(needIcon)func_020f36b0(arg0,(u16)(((*(u16 *)(arg0+0x18))%2)*16),(u16)(((*(u16 *)(arg0+0x18))/2)*16));
+ func_02005e80(path,data_02151f74,modelName);
+ *(void **)(resource+8)=func_0210ac2c(resource+12,path,&size);
+ if(!*(void **)(resource+8)){if(csv){func_021093b0(csv);csv=0;}return 0;}
+ if(!func_02117630((*(u8 **)((*(u8 **)((*(u8 **)arg0)+0x58))+0xc)),0)){(void)csv;}
+ func_02119000((*(u8 **)arg0),func_02117630((*(u8 **)((*(u8 **)((*(u8 **)arg0)+0x58))+0xc)),0),(*(u8 **)((*(u8 **)((*(u8 **)arg0)+0x58))+0x4)));
+ func_02108680((*(u8 **)arg0),0,1);
+ *(void **)((*(u8 **)((*(u8 **)arg0)+0x58))+20)=texture;
+ }
+ info=func_02109f3c((*(u8 **)((*(u8 **)((*(u8 **)arg0)+0x58))+0x8)));
+ if(!*(void **)(info+16)){
+ n=*(u16 *)(*(u8 **)((*(u8 **)((*(u8 **)arg0)+0x58))+0xc));
+ count=(func_020020bc(n,2)?1:0)+func_02002080(n,2);
+ mem=func_0210c594(count*4,data_02155c3c);
+ cur=mem;
+ for(i=0;i<count;i++,cur+=4){
+ idx=i*2;*(u16 *)(cur+2)=idx;cur[0]=0;
+ for(j=0;j<2;idx++,j++){
+ if(n<=idx)break;
+ if((func_021086d4((*(u8 **)arg0),idx)==0)==0)cur[0]|=(u8)(1<<j);
+ }}
+ *(void **)(info+16)=mem;
+ }
+ *(void **)(arg0+16)=*(void **)(info+16);
+if(type==0){
+ if(data_02160a6c[0x11c]>=data_02160a6c[0x11d]){
+ node=(*(u8 **)(data_02160a6c+0xd0));
+ if(!(*(u8 **)(data_02160a6c+0x110))){
+ pack0=0;
+ func_02005e80(packName,data_02151f7c);
+ pack0=func_020eaa24(packName,data_02160a6c+0xd0);
+ *(void **)(data_02160a6c+0x110)=pack0;*(void **)((*(u8 **)((*(u8 **)arg0)+0x58))+16)=pack0;
+ }else *(void **)((*(u8 **)((*(u8 **)arg0)+0x58))+16)=(*(u8 **)(data_02160a6c+0x110));
+ }}
+else if(type==1){
+ if(data_02160a6c[0x11e]>=data_02160a6c[0x11f]){
+ node=(*(u8 **)(data_02160a6c+0xdc));
+ if(!(*(u8 **)(data_02160a6c+0x114))){
+ pack1=0;
+ 
+ pack1=func_020eaa24(node,data_02160a6c+0xdc);
+ *(void **)(data_02160a6c+0x114)=pack1;*(void **)((*(u8 **)((*(u8 **)arg0)+0x58))+16)=pack1;
+ }else *(void **)((*(u8 **)((*(u8 **)arg0)+0x58))+16)=(*(u8 **)(data_02160a6c+0x114));
+ }}
+else if(type==2){
+ if(data_02160a6c[0x120]>=data_02160a6c[0x121]){
+ node=(*(u8 **)(data_02160a6c+0xe8));
+ if(!(*(u8 **)(data_02160a6c+0x118))){
+ pack2=0;
+ func_02005e80(packName,data_02151fa4);
+ pack2=func_020eaa24(packName,data_02160a6c+0xe8);
+ *(void **)(data_02160a6c+0x118)=pack2;*(void **)((*(u8 **)((*(u8 **)arg0)+0x58))+16)=pack2;
+ }else *(void **)((*(u8 **)((*(u8 **)arg0)+0x58))+16)=(*(u8 **)(data_02160a6c+0x118));
+ }}
+if(csv){func_021093b0(csv);csv=0;}return 1;
+}
 
