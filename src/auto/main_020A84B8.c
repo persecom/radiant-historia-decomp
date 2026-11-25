@@ -288,6 +288,115 @@ u32 line = y+row;
 }
 }
 
+void func_020a8d4c(u8 *p, s32 x, s32 y, s32 ch)
+{
+  u32 *dst;
+  u8 *src;
+  s32 endx;
+  s32 shift;
+  s32 valid;
+  s32 endy;
+  s32 width;
+  s32 col;
+  s32 n;
+  if (x < 0)
+  {
+    valid = 0;
+  }
+  else
+    if ((x + func_020a916c(ch)) > (*((s32 *) (p + 0x18))))
+  {
+    valid = 0;
+  }
+  else
+    if (y < 0)
+  {
+    valid = 0;
+  }
+  else
+    if ((y + 12) > (*((s32 *) (p + 0x1c))))
+  {
+    valid = 0;
+  }
+  else
+  {
+    valid = 1;
+  }
+  if (!valid)
+  {
+    return;
+  }
+  shift = *((s32 *) (p + 0x30));
+  src = (((u8 *) data_02160148[33]) + (ch << 5)) + (ch << 2);
+  endy = y + 12;
+  dst = *((u32 **) (p + 0x10));
+  endx = x + 12;
+  width = func_020a916c(ch) - 1;
+  {
+    u32 *bits = (*((u32 **) (p + 0x38))) + 2;
+    u32 bit = ((y >> 3) << (*((s32 *) (p + 0x30)))) + (x >> 3);
+    bits[bit >> 5] |= 1 << (bit & 31);
+  }
+  {
+    u32 *bits = (*((u32 **) (p + 0x38))) + 2;
+    u32 bit = (((y + 6) >> 3) << (*((s32 *) (p + 0x30)))) + (x >> 3);
+    bits[bit >> 5] |= 1 << (bit & 31);
+  }
+  {
+    u32 *bits = (*((u32 **) (p + 0x38))) + 2;
+    u32 bit = (((y + 11) >> 3) << (*((s32 *) (p + 0x30)))) + (x >> 3);
+    bits[bit >> 5] |= 1 << (bit & 31);
+  }
+  {
+    u32 *bits = (*((u32 **) (p + 0x38))) + 2;
+    u32 bit = ((y >> 3) << (*((s32 *) (p + 0x30)))) + ((x + width) >> 3);
+    bits[bit >> 5] |= 1 << (bit & 31);
+  }
+  {
+    u32 *bits = (*((u32 **) (p + 0x38))) + 2;
+    u32 bit = (((y + 6) >> 3) << (*((s32 *) (p + 0x30)))) + ((x + width) >> 3);
+    bits[bit >> 5] |= 1 << (bit & 31);
+  }
+  {
+    u32 *bits = (*((u32 **) (p + 0x38))) + 2;
+    u32 bit = (((y + 11) >> 3) << (*((s32 *) (p + 0x30)))) + ((x + width) >> 3);
+    bits[bit >> 5] |= 1 << (bit & 31);
+  }
+  if (width > 8)
+  {
+    {
+      u32 *bits = (*((u32 **) (p + 0x38))) + 2;
+      u32 bit = ((y >> 3) << (*((s32 *) (p + 0x30)))) + ((x + (width >> 1)) >> 3);
+      bits[bit >> 5] |= 1 << (bit & 31);
+    }
+    {
+      u32 *bits = (*((u32 **) (p + 0x38))) + 2;
+      u32 bit = (((y + 6) >> 3) << (*((s32 *) (p + 0x30)))) + ((x + (width >> 1)) >> 3);
+      bits[bit >> 5] |= 1 << (bit & 31);
+    }
+    {
+      u32 *bits = (*((u32 **) (p + 0x38))) + 2;
+      u32 bit = (((y + 11) >> 3) << (*((s32 *) (p + 0x30)))) + ((x + (width >> 1)) >> 3);
+      bits[bit >> 5] |= 1 << (bit & 31);
+    }
+  }
+  n = 0;
+  for (; y < endy; y++)
+  {
+    for (col = x; col < endx; col++)
+    {
+      u32 pixel = (src[n >> 2] >> ((n & 3) * 2)) & 3;
+      long offset = ((col & (~7)) + (y & 7)) + ((y & (~7)) << shift);
+      u32 sh = (col & 7) * 4;
+      n++;
+      dst[offset] &= ~(15 << sh);
+      dst[offset] |= pixel << sh;
+    }
+
+  }
+
+}
+
 extern void func_0210fd24(u32 *, u32);
 extern void func_0210fd38(u32 *, u32, u32, u32);
 extern void func_0210fd94(u32 *);
