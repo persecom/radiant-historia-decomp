@@ -334,22 +334,16 @@ void func_020eec70(void)
 
 void func_020eed30(s32 arg0) {
     u8 **pp = &data_02160aec;
-    if (*pp == NULL || *(u16 *)(*pp + 0xc) == 0) {
-        return;
-    }
+    if (*pp == NULL || *(u16 *)(*pp + 0xc) == 0) return;
     if (arg0 != 0) {
-        if (*(void **)data_02151c8c != NULL) {
-            return;
-        }
+        if (*(void **)data_02151c8c != NULL) return;
         *(void **)data_02151c8c = func_020eeea4;
-        func_0210dae0(data_02151c8c);
+        func_0210dae0(data_02151c8c + 4);
         *(u32 *)(*pp + 0x58bdc) = 1;
     } else {
-        void **qq = (void **)data_02151c8c;
-        if (*qq == NULL) {
-            return;
-        }
-        func_0210db10(data_02151c8c);
+        void *volatile *qq = (void **)data_02151c8c;
+        if (*qq == NULL) return;
+        func_0210db10(data_02151c8c + 4);
         *qq = NULL;
         *(u32 *)(*pp + 0x58bdc) = 0;
     }
@@ -364,11 +358,14 @@ void func_020eedcc(void) {
     s32 maxI = 0;
     s32 minJ = *(s16 *)(base + 0x58d38);
     s32 maxJ = 0;
-    s32 ny = minI;
-    u8 *cell = base + 0xbc8;
+    s32 i;
     s32 j;
-    for (j = 0; j < *(s16 *)(base + 0x58d38); j++) {
-        s32 i;
+    u8 *cell = base + 0xbc8;
+    s32 ny;
+    j = 0;
+    if (minJ > 0) {
+    ny = minI;
+    do {
         for (i = 0; i < ny; i++) {
             if (*cell != 0) {
                 if (minI > i) minI = i;
@@ -378,6 +375,8 @@ void func_020eedcc(void) {
             }
             cell += 0xc;
         }
+        j++;
+    } while (j < *(volatile s16 *)(base + 0x58d38));
     }
     *(s32 *)(data_02160aec + 0x58bc8) = minI;
     *(s32 *)(data_02160aec + 0x58bcc) = maxI;
