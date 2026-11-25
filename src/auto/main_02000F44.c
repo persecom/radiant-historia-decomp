@@ -1,5 +1,9 @@
 /* 12 functions from 0x02000F44 to 0x02001D9C (main), found by ds-decomp. */
 #include "common.h"
+
+typedef struct {
+    s32 x, y, z;
+} Vec3_;
 typedef struct { s32 v[9]; } Mtx33;
 typedef struct { s32 v[12]; } Mtx43;
 typedef struct { s32 v[16]; } Mtx44;
