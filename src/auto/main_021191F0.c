@@ -75,9 +75,8 @@ extern void func_0211c850(u32);
 extern void func_0211c79c(u32);
 
 static inline s32 material_valid_02119728(void) {
-    s32 valid = 1;
-    if (*(s32 *)(data_02155eb0 + 4) == -1) valid = 0;
-    return valid;
+    if (*(s32 *)(data_02155eb0 + 4) != -1) return 1;
+    return 0;
 }
 
 static inline s32 is_valid_id(s32 id) {
