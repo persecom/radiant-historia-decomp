@@ -202,9 +202,9 @@ s32 func_0200e85c(void) {
     if (ret != 0) {
         return ret;
     }
-    data_02145c18 = 0xc;
+    *(volatile s32 *)&data_02145c18 = 0xc;
     func_0200e290();
-    data_02145c18 = 2;
+    *(volatile s32 *)&data_02145c18 = 2;
     return *(volatile s32 *)&result;
 }
 
@@ -272,6 +272,106 @@ void func_0200e9a0(void) {
             break;
         }
     }
+}
+
+extern u32 func_020059e4(u32);
+extern s32 func_0200788c(void);
+extern void func_02005988(u32);
+extern u16 func_020081e0(void);
+extern s32 func_02011054(void);
+void func_0200ea34(u32 trigger, u32 logic, u32 keyPattern) {
+    s32 flag = 0;
+    u32 intr;
+    u32 mask;
+    u32 dispCnt;
+    u32 subDispCnt;
+    s32 lcdPower;
+    s32 backLight2;
+    s32 backLight1;
+    u16 ime;
+
+    func_0200f05c((u32 *)data_0215f03c[4]);
+    ime = *(volatile u16 *)0x4000208;
+    *(volatile u16 *)0x4000208 = 0;
+    intr = ((u32 (*)(void))func_02008128)();
+    mask = func_020059e4(0x3fffff);
+    func_02005988((func_0200788c() ? 8 : 0) | 0x40000);
+    ((void (*)(u32))func_0200813c)(intr);
+    (void)*(volatile u16 *)0x4000208;
+    *(volatile u16 *)0x4000208 = 1;
+
+    if (trigger & 8) {
+        u16 val = func_020081e0();
+        if (val == 2 || val == 3) {
+            trigger &= ~8;
+        }
+    }
+    if (trigger & 0x10) {
+        if (func_02011054() == 0) {
+            trigger &= ~0x10;
+        }
+    }
+    dispCnt = *(volatile u32 *)0x4000000;
+    subDispCnt = *(volatile u32 *)0x4001000;
+    lcdPower = func_0200ef5c();
+    while (func_0200e914(&backLight2, &backLight1) != 0) {
+        func_020081a4(0x51d23);
+    }
+    while (func_0200e808(2, 0) != 0) {
+        func_020081a4(0x51d23);
+    }
+    func_0200e350();
+    *(volatile u32 *)0x4000000 &= ~0x30000;
+    *(volatile u32 *)0x4001000 &= ~0x10000;
+    func_0200e350();
+    func_0200e350();
+    func_0200e9a0();
+    {
+        u32 r8 = 0;
+        u32 r9;
+        u32 param;
+        data_0215f03c[3] = 0;
+        if (backLight1 != 0) {
+            r8 = 0x80;
+        }
+        r9 = (backLight2 != 0) ? 0x40 : 0;
+        func_02005988(0x40000);
+        param = trigger | r9;
+        param |= r8;
+        func_0200e5e8((u16)param, (u16)(logic | keyPattern));
+    }
+    while (*(volatile u32 *)&data_0215f03c[3] == 0) {
+        func_02008454();
+    }
+    func_02005988((func_0200788c() ? 8 : 0) | 0x40000);
+    if (trigger & 8) {
+        if (*(volatile u32 *)0x4000214 & 0x100000) {
+            flag = 1;
+        }
+    }
+    if (!flag) {
+        if (lcdPower == 1) {
+            while (func_0200ed20(1, 1, 1, 1) != 1) {
+            }
+        } else {
+            while (func_0200e758(1) != 0) {
+                func_020081a4(0x51d23);
+            }
+        }
+        *(u32 *)0x4000000 = dispCnt;
+        *(u32 *)0x4001000 = subDispCnt;
+        func_020081a4(0x360000);
+    }
+    (void)*(volatile u16 *)0x4000208;
+    *(volatile u16 *)0x4000208 = 0;
+    func_02005988(mask);
+    ((void (*)(u32))func_0200813c)(intr);
+    (void)*(volatile u16 *)0x4000208;
+    *(volatile u16 *)0x4000208 = ime;
+    if (flag) {
+        func_0200e8a8();
+    }
+    func_0200f05c((u32 *)data_0215f03c[6]);
 }
 
 extern void func_0200e350(void);
