@@ -78,6 +78,11 @@ s32 id=*(s32 *)(data_02155eb0+4);
 if(id!=-1) result=1; else result=0;
 return result;
 }
+static inline s32 selection_loop_02119728(void) {
+s32 result=1;
+if(*(s32 *)(data_02155eb0+4)==-1) result=0;
+return result;
+}
 static inline void draw_02119728(u32 arg,s32 valid) {
 switch (valid) {
 default: func_0211c850(arg); break;
