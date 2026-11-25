@@ -9,6 +9,12 @@ void func_0208d5c0(u8,s16,s16,s32);
 
 typedef struct { s16 f0, f1, f2, f3, f4, f5, f6, f7, f8, f9; } Unk10;
 extern const Unk10 data_02141148, data_02141134;
+extern const Unk10 data_0214101c,data_021410f8,data_021410e4;
+typedef struct { s32 data[4]; } Styles_0208e864;
+extern const Styles_0208e864 data_02140ef8;
+extern s32 func_02087754(u8);
+extern void func_0208db04(u16,s32,s16,s16,s16,s16,s16,s16);
+extern void func_020922f8(s32,s32,s32,s32,s16,s16,s16,s16,s16,s16,s16,s16,s16);
 void func_020a3bbc(s32);
 void func_021098ac(void *);
 
@@ -32,6 +38,72 @@ void func_0208e000(u32 id, s16 x, s16 y, s16 width, s16 z) {
  case 4:b.f1=0;b.f2=39;b.f8=40;b.f3=40;b.f9=13;b.f4=b.f9;break;
  }
  func_021098ac(&b);
+}
+
+extern void func_020a994c(void *);
+extern void func_0208da7c(s32, s32, s32, s16, s32, s32);
+extern void func_020a30c4(void *, s32);
+extern void func_0208dcc8(s32, s32, s32, s32, s32);
+extern void func_0208dea4(s32, s32, s32, s32, s32, s32);
+extern const Unk10 data_02141008;
+void func_0208e1cc(s32 arg0, s32 arg1) {
+    Unk10 a = data_02141008;
+    u8 *g = data_0216010c;
+    s16 i;
+    s32 diff, limit, off, id, cnt;
+
+    diff = (u8)(g[0x50d7] - g[0x50d6]);
+    limit = *(s16 *)(g + 0x50d4);
+    if (limit >= 6) limit = 6;
+    off = diff * 100;
+
+    for (i = 0; i < 6; i++) {
+        if (i >= limit) {
+            func_020a994c((u8 *)g + 0x74 + i * 0x50);
+            break;
+        }
+        id = *(s16 *)(g + off + i * 100 + 0x5570);
+        cnt = *(u8 *)(g + off + i * 100 + 0x5572);
+        if (i == g[0x50d6]) {
+            func_0209250c(0x30, 1, 10, (s16)(i * 19 + 53), 156, 18, 8, 16, 4, 2, 4, 4, 177);
+            func_020a8810(*(void **)(g + off + i * 100 + 0x5574), 19);
+            if (cnt >= 10) {
+                func_0208da7c(0x3e, (cnt / 10) & 0xff, 0x92, (s16)(i * 19 + 56), 10, 179);
+                func_0208da7c(0x3e, (cnt % 10) & 0xff, 0x9a, (s16)(i * 19 + 56), 10, 179);
+            } else {
+                func_0208da7c(0x3e, cnt & 0xff, 0x96, (s16)(i * 19 + 56), 10, 179);
+            }
+            func_0208da7c(0x3e, 10, 0x86, (s16)(i * 19 + 56), 8, 179);
+        } else {
+            func_0209250c(0x2f, 1, 10, (s16)(i * 19 + 53), 156, 18, 8, 16, 4, 2, 4, 4, 177);
+            func_020a8810(*(void **)(g + off + i * 100 + 0x5574), 20);
+            if (cnt >= 10) {
+                func_0208da7c(0x3d, (cnt / 10) & 0xff, 0x92, (s16)(i * 19 + 56), 10, 179);
+                func_0208da7c(0x3d, (cnt % 10) & 0xff, 0x9a, (s16)(i * 19 + 56), 10, 179);
+            } else {
+                func_0208da7c(0x3d, cnt & 0xff, 0x96, (s16)(i * 19 + 56), 10, 179);
+            }
+            func_0208da7c(0x3d, 10, 0x86, (s16)(i * 19 + 56), 8, 179);
+        }
+        func_020895a0((u16)id, (i * 19 + 55) << 12, 0x5a, 4, 0, 0, 0, 0, 0);
+        func_020a30c4((void *)(u32)(u16)id, 11);
+        a.f5 = 11;
+        a.f6 = (s16)(i * 19 + 53);
+        a.f7 = 179;
+        func_021098ac(&a);
+    }
+
+    func_0208dcc8(0xaa, 0x35, 0x4e, 0xb1, diff);
+    if (arg0 == 10) return;
+    if (*(s16 *)(g + 0x50d4) < 1) return;
+    {
+        s32 flags = *(s16 *)(g + 0x5382);
+        if (flags & 2) {
+            func_0208dea4(arg0, arg1, 0xc5, 0x89, 0x8e, 1);
+        } else if (flags & 4) {
+            func_0208dea4(arg0, arg1, 0xc5, 0x89, 0x8e, 0);
+        }
+    }
 }
 
 void func_0208e67c(s16 x, s16 y, s32 unused, s32 selected) {
