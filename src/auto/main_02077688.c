@@ -1,14 +1,22 @@
 /* 2 functions from 0x02077688 to 0x020783E8 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { s32 x,y,z; } Vec_02077688;
+typedef struct { u8 *head; u8 *tail; u16 count,offset; } List_02077688;
+extern u8 *data_021600ac;
+extern u32 data_02155c3c,data_0216263c[3];
+extern void *func_0210c594(u32,u32);
+extern u16 func_02043964(u16);
+extern u8 *func_02047820(u16);
+extern s32 func_020ddc8c(void*,void*),func_0210c2f4(void*,void*);
+extern u16 func_020d7ab8(s32,s32,s32);
+extern s32 func_020d7c8c(s32,s32,s32,u32,u16,s16*,s32*);
 
 extern u8 *data_02160204;
 extern u16 data_021626aa;
 extern s16 data_0213a394[];
 extern u16 data_02151fc8;
 extern u16 data_02151fca;
-void func_02077688(void)
-{
-}
+void func_02077688(void) {}
 
 #pragma optimization_level 3
 void func_020781b0(u8 *arg0, u16 *arg1, u32 *arg2) {
