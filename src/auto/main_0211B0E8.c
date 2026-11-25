@@ -227,30 +227,27 @@ void func_0211b584(s32 arg0, s32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u
 
 #pragma opt_strength_reduction off
 void func_0211b614(void *dst, void *src, s32 sx, s32 sy, s32 dx, s32 dy, s32 dw, s32 dh, s32 w, s32 h) {
- s32 ey = sy + h;
- u16 *p = (u16 *)src + 6;
- s32 ex = sx + w;
- s32 sw = (u32)*(u16 *)src >> 3;
- s32 sh = (u32)*((u16 *)src + 1) >> 3;
- s32 yy = dy;
- s32 x, xx;
- for (; sy < ey; sy++, yy++) {
-  x = sx;
-  xx = dx;
-  for (; x < ex; x++, xx++) {
-   u16 *q = p + tile_offset(x, sy, sw, sh);
-   u16 *d = (u16 *)dst + tile_offset(xx, yy, dw, dh);
-   *d = *q;
-  }
- }
+    s32 ey = sy + h;
+    u16 *p = (u16 *)src + 6;
+    s32 ex = sx + w;
+    s32 sh = (u32)*((u16 *)src + 1) >> 3;
+    s32 sw = (u32)*(u16 *)src >> 3;
+    s32 yy = dy;
+    s32 x, xx;
+    for (; sy < ey; sy++, yy++) {
+        for (x = sx, xx = dx; x < ex; x++, xx++) {
+            u16 *q = p + tile_offset(x, sy, sw, sh);
+            ((u16 *)dst)[tile_offset(xx, yy, dw, dh)] = *q;
+        }
+    }
 }
 #pragma opt_strength_reduction on
 void func_0211b83c(u8 *dst, u8 *src, s32 srcX, s32 srcY, s32 dstX, s32 dstY, s32 dstStride, s32 width, s32 height) {
     s32 srcStride = (u32)(*(u16 *)src) >> 3;
-    s32 dstOff = dstY * dstStride + dstX;
-    u8 *s = (src + 0xc) + srcY * srcStride + srcX;
-    u8 *d = dst + dstOff;
     s32 endY = srcY + height;
+    s32 dstOff = (dstY * dstStride) + dstX;
+    u8 *s = (src + 0xc) + (srcY * srcStride + srcX);
+    u8 *d = dst + dstOff;
     s32 y;
     for (y = srcY; y < endY; y++) {
         func_02009008(s, d, width);
@@ -262,13 +259,12 @@ void func_0211b83c(u8 *dst, u8 *src, s32 srcX, s32 srcY, s32 dstX, s32 dstY, s32
 #pragma opt_propagation off
 void func_0211b8a4(u8 *dst, u8 *src, s32 srcX, s32 srcY, s32 dstX, s32 dstY, s32 dstStride, s32 width, s32 height) {
 u32 srcStride = (u32)*(u16 *)src >> 3;
-
-dstX += dstY * dstStride;
-srcX += srcY * srcStride;
+s32 dstIdx = dstX + dstY * dstStride;
+s32 srcIdx = srcX + srcY * srcStride;
 u32 size = width * 2;
 s32 endY = srcY + height;
-u8 *s = src + 12 + srcX * 2;
-u8 *d = dst + dstX * 2;
+u8 *s = src + 12 + srcIdx * 2;
+u8 *d = dst + dstIdx * 2;
 for (; srcY < endY; srcY++) {
 func_02008e08(s, d, size);
 s += srcStride * 2;
@@ -292,12 +288,16 @@ void func_0211b910(s32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5) {
 
 #pragma push
 #pragma opt_propagation off
-void func_0211b96c(s32 arg0,u16 *arg1,u32 arg2,u32 arg3,u32 arg4,u32 arg5,u32 arg6,u32 arg7) {
- u32 flag=0;
- u32 a=arg1[3], b=arg1[0], c=arg1[1];
- if(arg1[2]!=0) flag=1;
- func_0211b584(arg0,a,flag,b,c,arg6,arg7);
- func_0211b910(arg0,(u32)arg1,arg2,arg3,arg4,arg5);
+void func_0211b96c(s32 arg0, u16 *arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u32 arg6, u32 arg7) {
+    u32 flag = 0;
+    u16 a = arg1[3];
+    u16 b = arg1[0];
+    u16 c = arg1[1];
+    if (arg1[2] != 0) {
+        flag = 1;
+    }
+    func_0211b584(arg0, a, flag, b, c, arg6, arg7);
+    func_0211b910(arg0, (u32)arg1, arg2, arg3, arg4, arg5);
 }
 #pragma pop
 extern void func_0211b614(void *, void *, s32,s32,s32,s32,s32,s32,s32,s32);
@@ -318,52 +318,58 @@ void func_0211b9e8(void *dst, void *src, s32 x, s32 y, s32 dx, s32 dy, s32 dw, s
  }
 }
 
-void func_0211bb3c(const s32 *m,u32 *sprite,const Vec2_bb3c *translation) {
-Vec2_bb3c pos;
-s16 x=(s16)((*sprite&0x1ff0000)>>16);
-s16 y;
-s32 mode,w,h;
-s32 dx,dy;
-if(x>255)x|=0xff00;
-pos.x=x<<12;
-y=*sprite&255;
-if(y>127)y|=0xff00;
-pos.y=y<<12;
-if(Mode_bb3c(*sprite)==0x300) {
-u32 attr=*sprite&0xc000c000;
-u32 size=(attr&0xc0000000)>>30;
-s32 shape=(s32)(attr&0xc000)>>14;
-w=data_02144d84[shape][size];h=data_02144d6c[shape][size];
-pos.x+=w<<11;
-pos.y+=h<<11;
-}
-Transform_bb3c(&pos,m,&pos);
-mode=data_021701f8[1];
-if(mode) {
-mode=mode==2?0x300:0x100;
-{
- u32 *p2=sprite;
- if(mode!=0x100) { *(s32 *)p2=(*p2&0xc1fffcff)|mode; }
- else { *p2=(*p2&0xc1fffcff)|mode; }
-}
-}
-mode=Double_bb3c(*sprite);
-mode=(long)mode;
-{
-u32 attr=*sprite&0xc000c000;
-u32 size=(attr&0xc0000000)>>30;
-s32 shape=(s32)(attr&0xc000)>>14;
-w=(s32)data_02144d84[shape][size]>>1;
-h=(s32)data_02144d6c[shape][size]>>1;
-}
-{
-s32 oy=-(h<<12),ox=-(w<<12);
-ox+=m[0]*w;oy+=m[1]*w;
-ox+=m[2]*h;oy+=m[3]*h;
-pos.y+=oy;pos.x+=ox;
-}
-switch(mode) {case 0:break; default:pos.x-=w<<12;pos.y-=h<<12;break;}
-pos.x+=translation->x;pos.y+=translation->y;
-*sprite=(*sprite&0xfe00ff00)|((pos.y>>12)&255)|(((pos.x>>12)&511)<<16);
+void func_0211bb3c(const s32 *m, u32 *sprite, const Vec2_bb3c *translation) {
+    Vec2_bb3c pos;
+    s16 x = (s16)((*sprite & 0x1ff0000) >> 16);
+    s16 y;
+    s32 mode, w, h;
+    if (x > 255) x |= 0xff00;
+    pos.x = x << 12;
+    y = *sprite & 255;
+    if (y > 127) y |= 0xff00;
+    pos.y = y << 12;
+    if (Mode_bb3c(*sprite) == 0x300) {
+        u32 attr = *sprite & 0xc000c000;
+        u32 size = (attr & 0xc0000000) >> 30;
+        s32 shape = (s32)(attr & 0xc000) >> 14;
+        w = data_02144d84[shape][size];
+        h = data_02144d6c[shape][size];
+        pos.x += w << 11;
+        pos.y += h << 11;
+    }
+    Transform_bb3c(&pos, m, &pos);
+    mode = data_021701f8[1];
+    if (mode) {
+        mode = mode == 2 ? 0x300 : 0x100;
+        {
+            u32 *p2 = sprite;
+            if (mode != 0x100) { *(s32 *)p2 = (*p2 & 0xc1fffcff) | mode; }
+            else { *p2 = (*p2 & 0xc1fffcff) | mode; }
+        }
+    }
+    mode = Double_bb3c(*sprite);
+    w = Width_bb3c(*sprite) >> 1;
+    h = Height_bb3c(*sprite) >> 1;
+    {
+        s32 oy = -(h << 12), ox = -(w << 12);
+        ox += m[0] * w; oy += m[1] * w;
+        ox += m[2] * h; oy += m[3] * h;
+        pos.y += oy; pos.x += ox;
+    }
+    switch (mode) {
+        case 0: break;
+        default:
+            pos.x -= w << 12;
+            pos.y -= h << 12;
+            break;
+    }
+    pos.x += translation->x;
+    {
+        s32 px = pos.x >> 12;
+        s32 py;
+        pos.y += translation->y;
+        py = pos.y >> 12;
+        *sprite = (*sprite & 0xfe00ff00) | (py & 0xff) | ((px & 0x1ff) << 16);
+    }
 }
 
