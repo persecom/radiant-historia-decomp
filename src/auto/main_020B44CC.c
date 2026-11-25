@@ -132,10 +132,10 @@ void func_020b45cc(void) {
     func_020b41b8((u8)*(u32 *)(p6 + 0x3438));
     func_020b40a4(*(u32 *)(p4 + 0x2aa4), &sp4, &sp0);
     {
+        s32 *q = (s32 *)(p4 + 0x2000);
         s32 val = sp0;
-        u8 *q = p4 + 0x2000;
-        *(s32 *)(q + 0xa98) = val;
-        *(s32 *)(q + 0xaa0) = val;
+        q[0xa98 / 4] = val;
+        q[0xaa0 / 4] = val;
     }
     func_020b4058();
     *(u8 *)(p5 + 0x263) = func_020b3be8(*(u16 *)(func_020b4044() + 4), 0);
