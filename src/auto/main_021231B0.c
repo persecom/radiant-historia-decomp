@@ -256,9 +256,15 @@ void func_02123824(s32 *arg0, u8 *arg1)
   arg0[4] = ((*((s16 *) (arg1 + 0x20))) * func_02001ff4()) >> 12;
 }
 
-void func_021238d0(s32 *arg0, u8 *arg1) {
- s32 t=*(s32 *)(arg1+0x1c); s32 h=*(u16 *)(arg1+0x2e); s32 v= (s32)(-(t<<1)); s32 s=*(s32 *)(arg1+0x18);
- arg0[5]=t; arg0[0]=s; arg0[1]=0; arg0[12]=0; arg0[13]=(h*(v+0x2000U))<<3; arg0[4]=0;
+void func_021238d0(s32 *__restrict arg0, u8 *__restrict arg1) {
+    s32 x = *(s32 *)(arg1 + 0x18);
+    s32 y = *(s32 *)(arg1 + 0x1c);
+    arg0[5] = y;
+    arg0[0] = x;
+    arg0[1] = 0;
+    arg0[12] = 0;
+    arg0[13] = (*(u16 *)(arg1 + 0x2e) * ((-(y << 1)) + 0x2000U)) << 3;
+    arg0[4] = 0;
 }
 
 void func_02123910(s32 *arg0) {
