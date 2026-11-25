@@ -1,10 +1,10 @@
 /* 33 functions from 0x021098AC to 0x0210A7E4 (main), found by ds-decomp. */
 #include "common.h"
 static inline void SetTranslation_021098ac(s32 x, s32 y, s32 z) {
- *(volatile s32 *)0x4000470=x; *(volatile s32 *)0x4000470=y; *(volatile s32 *)0x4000470=z;
+ *(volatile s32 *)0x4000470=x<<12; *(volatile s32 *)0x4000470=y<<12; *(volatile s32 *)0x4000470=z<<12;
 }
 static inline void SetScale_021098ac(s32 x, s32 y) {
- *(volatile s32 *)0x400046c=x; *(volatile s32 *)0x400046c=y;
+ *(volatile s32 *)0x400046c=x<<12; *(volatile s32 *)0x400046c=y<<12;
 }
 
 extern u8 data_02162610[64];
@@ -41,32 +41,24 @@ typedef struct {
 } Args_021099f8;
 
 void func_021099f8(s16 *arg0) {
-    s32 x = arg0[1];
-    s32 y = arg0[2];
-    s32 z = arg0[3];
-    s32 sx, sy, flags;
-    s32 vx, vy, vz, vsx, vsy;
+    s32 x = arg0[1], y = arg0[2], z = arg0[3];
+    s32 tx, sy, flags, sx;
 
     *(volatile u32 *)0x40004a8 = 0;
 
+    tx = x << 12;
     sy = arg0[5];
     flags = arg0[0];
     sx = arg0[4];
 
     *(volatile u32 *)0x4000444 = 0;
 
-    vx = x << 12;
-    vy = y << 12;
-    vz = z << 12;
-    vsx = sx << 12;
-    vsy = sy << 12;
+    *(volatile s32 *)0x4000470 = tx;
+    *(volatile s32 *)0x4000470 = y << 12;
+    *(volatile s32 *)0x4000470 = z << 12;
 
-    *(volatile s32 *)0x4000470 = vx;
-    *(volatile s32 *)0x4000470 = vy;
-    *(volatile s32 *)0x4000470 = vz;
-
-    *(volatile s32 *)0x400046c = vsx;
-    *(volatile s32 *)0x400046c = vsy;
+    *(volatile s32 *)0x400046c = sx << 12;
+    *(volatile s32 *)0x400046c = sy << 12;
     *(volatile s32 *)0x400046c = 0x1000;
 
     *(volatile u32 *)0x4000500 = 1;
