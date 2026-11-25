@@ -48,38 +48,98 @@ return 0;
 extern void func_02008e50(void *, u32, u32);
 
 extern void func_02120534(u32 *, u32);
-void func_0211f518(u8 *arg0) {
-    u8 *obj = *(u8 **)(arg0 + 4);
-    u8 *src = *(u8 **)arg0;
-    u8 *node = *(u8 **)(obj + 4);
-    s32 count = src[2];
-    u8 *base = node + *(s32 *)(node + 0x10);
-    u32 buf[0x15];
-    s32 i, idx;
-    u32 *flags;
-
-    func_02008e68(0, buf, 0x54, 0);
-    func_021204a8();
-    *(u32 *)(data_02171864 + 0x0) = 0;
-    *(u32 *)(data_02171864 + 0xc) = 1;
-    *(u32 *)(data_02171864 + 0x14) = 0;
-    *(u32 *)(data_02171864 + 0x0) = 2;
-    if (count <= 0) goto finish;
-    for (i = 0; i < count; i++) {
-        idx = src[i + 1];
-        flags = (u32 *)(arg0 + (idx >> 5) * 4 + 0xcc);
-        if (*flags & (1u << (idx & 0x1f))) goto next;
-        *flags |= 1u << (idx & 0x1f);
-        *(u8 *)(0x4000440 + idx * 0x54) = src[0];
-        *(u32 *)(0x4000440 + idx * 0x54 - 0x10) = 1;
-        func_02002bf4(base + idx * 0x54);
-    next:
-        ;
-    }
-finish:
-    *(u8 **)arg0 += 3;
+static inline u32 TestMatrixCache(u8 *ctx,u32 idx) {
+return *(u32 *)(ctx+(idx>>5)*4+0xcc)&(1u<<(idx&31));
 }
-
+static inline void SetMatrixCache(u8 *ctx,u32 idx) {
+*(u32 *)(ctx+(idx>>5)*4+0xcc)|=1u<<(idx&31);
+}
+#pragma push
+#pragma opt_propagation off
+void func_0211f518(u8 *arg0) {
+long long weight=0;
+u8 *obj=*(u8 **)(arg0+4);
+u8 *src=*(u8 **)arg0;
+u8 *base=*(u8 **)(obj+4);
+u32 count=src[2];
+base+=*(s32 *)(base+0x10);
+s32 buf[21];
+u32 i;
+s32 *matrix;
+s32 *normal;
+src+=3;
+((void (*)(u32,void *,u32))func_02008e68)(0,buf,0x54);
+func_021204a8();
+*(volatile u32 *)0x04000440=0;
+*(volatile u32 *)0x0400044c=1;
+*(volatile u32 *)0x04000454=0;
+*(volatile u32 *)0x04000440=2;
+for(i=0;i<count;i++) {
+u32 idx=src[1];
+u32 offset=(u16)idx*100;
+matrix=(s32 *)(data_02171864+offset);
+u8 *flagword=arg0+(idx>>5)*4;
+u32 cached=*(u32 *)(flagword+0xcc)&(1u<<(idx&31));
+s32 w;
+if(!cached) {
+*(u32 *)(flagword+0xcc)|=1u<<(idx&31);
+*(volatile u32 *)0x04000450=src[0];
+*(volatile u32 *)0x04000440=1;
+func_02002bf4(base+idx*84);
+}
+if(i) {
+buf[12] += (weight * normal[0]) >> 12;
+buf[13] += (weight * normal[1]) >> 12;
+buf[14] += (weight * normal[2]) >> 12;
+buf[15] += (weight * normal[3]) >> 12;
+buf[16] += (weight * normal[4]) >> 12;
+buf[17] += (weight * normal[5]) >> 12;
+buf[18] += (weight * normal[6]) >> 12;
+buf[19] += (weight * normal[7]) >> 12;
+buf[20] += (weight * normal[8]) >> 12;
+}
+if(!cached) {
+while(func_02002f3c(matrix));
+*(volatile u32 *)0x04000440=2;
+func_02002c10(base+idx*84+48);
+}
+w=src[2]<<4;
+normal=(s32 *)(data_021718a4+offset);
+buf[0] += ((long long)w * matrix[0]) >> 12;
+buf[1] += ((long long)w * matrix[1]) >> 12;
+buf[2] += ((long long)w * matrix[2]) >> 12;
+buf[3] += ((long long)w * matrix[4]) >> 12;
+buf[4] += ((long long)w * matrix[5]) >> 12;
+buf[5] += ((long long)w * matrix[6]) >> 12;
+buf[6] += ((long long)w * matrix[8]) >> 12;
+buf[7] += ((long long)w * matrix[9]) >> 12;
+buf[8] += ((long long)w * matrix[10]) >> 12;
+buf[9] += ((long long)w * matrix[12]) >> 12;
+buf[10] += ((long long)w * matrix[13]) >> 12;
+buf[11] += ((long long)w * matrix[14]) >> 12;
+weight=w;
+src+=3;
+if(!cached) {while(func_02002f6c(normal));}
+}
+buf[12] += (weight * normal[0]) >> 12;
+buf[13] += (weight * normal[1]) >> 12;
+buf[14] += (weight * normal[2]) >> 12;
+buf[15] += (weight * normal[3]) >> 12;
+buf[16] += (weight * normal[4]) >> 12;
+buf[17] += (weight * normal[5]) >> 12;
+buf[18] += (weight * normal[6]) >> 12;
+buf[19] += (weight * normal[7]) >> 12;
+buf[20] += (weight * normal[8]) >> 12;
+func_02002bd8((u32 *)(buf+12));
+*(volatile u32 *)0x04000440=1;
+func_02002bd8((u32 *)buf);
+*(volatile u32 *)0x04000440=0;
+*(volatile u32 *)0x04000450=1;
+*(volatile u32 *)0x04000440=2;
+*(volatile u32 *)0x0400044c=(*(u8 **)arg0)[1];
+*(u8 **)arg0 += ((*(u8 **)arg0)[2]+1)*3;
+}
+#pragma pop
 void func_0211fc60(u8 *arg0) {
 s32 mode,r1;u8 *p;u32 off,val;
 mode=*(void **)(arg0+0x34)!=NULL?arg0[0x96]:0;
