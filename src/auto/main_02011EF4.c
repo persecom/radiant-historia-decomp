@@ -457,7 +457,7 @@ parse_set:
     {
         s32 i = 0;
         s32 neg = 0;
-        func_02008e24(0, st.bits, 0x20);
+        func_02008e24(0, bits, 0x20);
         ch = *++f;
         st.inv = 1;
         if (ch == '^') { f++; ch = *f; st.inv = 0; }
