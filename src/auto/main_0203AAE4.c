@@ -26,6 +26,11 @@ extern void func_020c1370(s32, void *, s32, s32, s32);
 extern void func_020d9058(void *);
 extern void func_0205db90(void *, void *, s32, s32);
 extern void func_0206e7a0(s32, void *, void *, s32);
+extern void *func_020ec950(s32);
+extern s32 func_020ec9a0(void *, s32);
+extern void func_020ec548(void *);
+extern void func_020331b0(void *, s32);
+extern s32 unk_const_ffc;
 s32 func_0203aae4(u8 *arg0) {
     u8 *r7 = *(u8 **)(arg0 + 0x128);
     u8 *r8 = *(u8 **)(r7 + 0x8c);
