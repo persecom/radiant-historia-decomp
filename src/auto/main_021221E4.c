@@ -585,17 +585,22 @@ void func_02122fa0(void *arg0_, u8 arg1, u8 *arg2) {
 }
 
 void func_02123074(u8 *arg0, void *arg1, u32 *arg2) {
-u32 off,result;
-if(arg0==NULL || (off=*(u16 *)(arg0+0x34))==0) result=0;
-else {
-u16 *p=func_02120c74(arg0+off);
-u32 w=(u16)(((u16)*(u32 *)(arg0+0x2c)) & ~0xe0000000u);
-u32 flags=p[1];
-u32 v=p[0];
-if((flags&1)==0) {w=(w<<15)>>16;v=(v<<15)>>16;}
-result=v+w;
-}
-arg2[5]=result;
+    u32 off;
+    u16 *p;
+    u32 w, flags, v;
+    if (arg0 == NULL || (off = *(u16 *)(arg0 + 0x34)) == 0) {
+        p = NULL;
+    } else {
+        p = func_02120c74(arg0 + off);
+    }
+    w = (u16)(((u16)*(u32 *)(arg0 + 0x2c)) & ~0xe0000000u);
+    flags = p[1];
+    v = p[0];
+    if ((flags & 1) == 0) {
+        v = (u16)(v >> 1);
+        w = (u16)(w >> 1);
+    }
+    arg2[5] = v + w;
 }
 
 void func_021230d8(u8 *arg0, u8 *arg1, s32 arg2) {
