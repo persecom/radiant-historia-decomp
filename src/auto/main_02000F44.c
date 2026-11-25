@@ -169,59 +169,65 @@ s32 func_02001194(const Mtx43 *a, Mtx43 *b)
 }
 
 #pragma opt_propagation off
-void func_02001508(const Mtx43 *a, const Mtx43 *b, Mtx43 *out) {
-    Mtx43 tmp;
-    Mtx43 *dst = out;
-    s32 x, y, z, t, t2;
-    s32 bx, by, bz;
-
-    if (out == b) {
-        dst = &tmp;
-    }
-
-    x = a->v[0];
-    y = a->v[1];
-    z = a->v[2];
-    dst->v[0] = ((((s64)x * b->v[0]) + ((s64)y * b->v[3])) + ((s64)z * b->v[6])) >> 12;
-    dst->v[1] = ((((s64)x * b->v[1]) + ((s64)y * b->v[4])) + ((s64)z * b->v[7])) >> 12;
-    bx=b->v[2]; by=b->v[5]; bz=b->v[8];
-    t = ((((s64)x * bx) + ((s64)y * by)) + ((s64)z * bz)) >> 12;
-
-    x = a->v[3];
-    y = a->v[4];
-    z = a->v[5];
-    t2 = ((((s64)x * bx) + ((s64)y * by)) + ((s64)z * bz)) >> 12;
-    dst->v[2] = t;
-    dst->v[5] = t2;
-    dst->v[4] = ((((s64)x * b->v[1]) + ((s64)y * b->v[4])) + ((s64)z * b->v[7])) >> 12;
-    bx=b->v[0]; by=b->v[3]; bz=b->v[6];
-    t = ((((s64)x * bx) + ((s64)y * by)) + ((s64)z * bz)) >> 12;
-
-    x = a->v[6];
-    y = a->v[7];
-    z = a->v[8];
-    t2 = ((((s64)x * bx) + ((s64)y * by)) + ((s64)z * bz)) >> 12;
-    dst->v[3] = t;
-    dst->v[6] = t2;
-    dst->v[7] = ((((s64)x * b->v[1]) + ((s64)y * b->v[4])) + ((s64)z * b->v[7])) >> 12;
-    t = ((((s64)x * b->v[2]) + ((s64)y * b->v[5])) + ((s64)z * b->v[8])) >> 12;
-
-    y = a->v[10];
-    x = a->v[9];
-    z = a->v[11];
-    { s64 value;
-    value = ((((s64)x * b->v[2]) + ((s64)y * b->v[5])) + ((s64)z * b->v[8])) >> 12;
+void func_02001508(const Mtx43 *a, const Mtx43 *b, Mtx43 *out)
+{
+  Mtx43 tmp;
+  Mtx43 *dst = out;
+  s32 x;
+  s32 y;
+  s32 z;
+  s32 t;
+  s32 t2;
+  s32 bx;
+  s32 by;
+  s32 bz;
+  if (out == b)
+  {
+    dst = &tmp;
+  }
+  x = a->v[0];
+  y = a->v[1];
+  z = a->v[2];
+  dst->v[0] = (((((s64) x) * b->v[0]) + (((s64) y) * b->v[3])) + (((s64) z) * b->v[6])) >> 12;
+  dst->v[1] = (((((s64) x) * b->v[1]) + (((s64) y) * b->v[4])) + (((s64) z) * b->v[7])) >> 12;
+  bx = b->v[2];
+  by = b->v[5];
+  bz = b->v[8];
+  t = (((((s64) x) * bx) + (((s64) y) * by)) + (((s64) z) * bz)) >> 12;
+  x = a->v[3];
+  y = a->v[4];
+  z = a->v[5];
+  t2 = (((((s64) x) * bx) + (((s64) y) * by)) + (((s64) z) * bz)) >> 12;
+  dst->v[2] = t;
+  dst->v[5] = t2;
+  dst->v[4] = (((((s64) x) * b->v[1]) + (((s64) y) * b->v[4])) + (((s64) z) * b->v[7])) >> 12;
+  bx = b->v[0];
+  by = b->v[3];
+  bz = b->v[6];
+  t = (((((s64) x) * bx) + (((s64) y) * by)) + (((s64) z) * bz)) >> 12;
+  x = a->v[6];
+  y = a->v[7];
+  z = a->v[8];
+  t2 = (((((s64) x) * bx) + (((s64) y) * by)) + (((s64) z) * bz)) >> 12;
+  dst->v[3] = t;
+  dst->v[6] = t2;
+  dst->v[7] = (((((s64) x) * b->v[1]) + (((s64) y) * b->v[4])) + (((s64) z) * b->v[7])) >> 12;
+  t = (((((s64) x) * b->v[2]) + (((s64) y) * b->v[5])) + (((s64) z) * b->v[8])) >> 12;
+  y = a->v[10];
+  x = a->v[9];
+  z = a->v[11];
+  {
+    s64 value;
+    value = ((((s64) x) * b->v[2]) + (((s64) y) * b->v[5])) + (((s64) z) * b->v[8]);
     dst->v[8] = t;
-    value += b->v[11];
-    dst->v[11] = value; }
-
-
-    dst->v[10] = b->v[10] + (((((s64)x * b->v[1]) + ((s64)y * b->v[4])) + ((s64)z * b->v[7])) >> 12);
-    dst->v[9] = b->v[9] + (((((s64)x * b->v[0]) + ((s64)y * b->v[3])) + ((s64)z * b->v[6])) >> 12);
-
-    if (dst == &tmp) {
-        *out = tmp;
-    }
+    dst->v[11] = (s32)((s64)(u32)b->v[11] + (value >> 12));
+  }
+  dst->v[10] = b->v[10] + ((((((s64) x) * b->v[1]) + (((s64) y) * b->v[4])) + (((s64) z) * b->v[7])) >> 12);
+  dst->v[9] = b->v[9] + ((((((s64) x) * b->v[0]) + (((s64) y) * b->v[3])) + (((s64) z) * b->v[6])) >> 12);
+  if (dst == (&tmp))
+  {
+    *out = tmp;
+  }
 }
 #pragma opt_propagation on
 extern void func_02002274(const s32 *, s32 *);
@@ -279,26 +285,22 @@ void func_02001894(const Mtx44 *a, const Mtx44 *b, Mtx44 *out) {
     Mtx44 tmp;
     Mtx44 *dst;
     s32 x, y, z, w, t, t2;
+ s32 x2,y2,z2,w2;
 
-    if (out == b) {
-        dst = &tmp;
-    } else {
-        dst = out;
-    }
+    dst = out;
+    if(out == b) dst = &tmp;
 
     x = a->v[0];
     y = a->v[1];
     z = a->v[2];
     w = a->v[3];
+    y2=a->v[5]; x2=a->v[4];
     dst->v[0] = (((((s64)x * b->v[0]) + ((s64)y * b->v[4])) + ((s64)z * b->v[8])) + ((s64)w * b->v[12])) >> 12;
     dst->v[1] = (((((s64)x * b->v[1]) + ((s64)y * b->v[5])) + ((s64)z * b->v[9])) + ((s64)w * b->v[13])) >> 12;
     dst->v[3] = (((((s64)x * b->v[3]) + ((s64)y * b->v[7])) + ((s64)z * b->v[11])) + ((s64)w * b->v[15])) >> 12;
     t = (((((s64)x * b->v[2]) + ((s64)y * b->v[6])) + ((s64)z * b->v[10])) + ((s64)w * b->v[14])) >> 12;
 
-    x = a->v[4];
-    y = a->v[5];
-    z = a->v[6];
-    w = a->v[7];
+    x=x2; y=y2; z=a->v[6]; w=a->v[7];
     t2 = (((((s64)x * b->v[2]) + ((s64)y * b->v[6])) + ((s64)z * b->v[10])) + ((s64)w * b->v[14])) >> 12;
     dst->v[2] = t;
     dst->v[6] = t2;
