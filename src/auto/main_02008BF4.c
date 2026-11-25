@@ -51,19 +51,24 @@ void func_02008bf4(void) {
     u32 base;
     u32 size;
     u32 remaining;
-    size = data_0215d17c.field_c;
-    if (size == 0) return;
+    size = *(volatile u32 *)&data_0215d17c.field_c;
+    if (size == 0) {
+        return;
+    }
+    if (size >= 0x1d8) {
+        size = 0x1d8;
+    }
     base = data_0215d17c.field_8;
-    if (size >= 0x1d8) size = 0x1d8;
     remaining = data_0215d17c.field_c - size;
     data_0215d17c.field_c = remaining;
     data_0215d17c.field_8 = base + size;
     if (remaining == 0) {
         func_020058fc(data_0215d17c.field_4, (u32)func_02008ca8, 0);
-        func_01ff845c(data_0215d17c.field_4, base, 0x4000400, (-0x3bc00000) | (size >> 2), 0);
-    } else {
-        func_01ff845c(data_0215d17c.field_4, base, 0x4000400, 0x84400000 | (size >> 2), 0);
+        func_01ff845c(data_0215d17c.field_4, base, 0x4000400, 0xc4400000 | (size >> 2), 0);
+        func_02005a14(0x200000);
+        return;
     }
+    func_01ff845c(data_0215d17c.field_4, base, 0x4000400, 0x84400000 | (size >> 2), 0);
     func_02005a14(0x200000);
 }
 
@@ -398,6 +403,32 @@ if(remaining<=0)break;
 flags<<=1;
 }
 }
+}
+
+void func_02009354(const u8 *src, u32 *dst) {
+ const u8 *tree=src+5;
+ const u8 *node=tree;
+ const u32 *bits=(const u32 *)(src+4+2*(src[4]+1));
+ s32 remaining=(*(const u32 *)src)>>8;
+ u32 width=src[0]&15;
+ u32 count=0, out=0;
+ u32 limit=(width&7)+4;
+ while(remaining>0) {
+ u32 word=*bits++;
+ s32 n=32;
+ while(--n>=0 && remaining>0) {
+ u32 right=(word>>31)&1;
+ u32 leaf=*node<<right;
+ node=(const u8 *)(((u32)node>>1)<<1)+2*((*node&63)+1)+right;
+ if(leaf&128) {
+ out=(out>>width)|((u32)*node<<(32-width));
+ node=tree;
+ count++;
+ if(count==limit) { *dst++=out; remaining-=4; count=0; }
+ }
+ if(remaining>0) word<<=1;
+ }
+ }
 }
 
 void func_0200942c(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
