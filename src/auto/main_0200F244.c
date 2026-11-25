@@ -469,7 +469,8 @@ void func_0200fb84(void) {
 }
 
 extern u8 data_0215f0c0[];
-extern void *data_0215f640;
+typedef struct Link { void *unused; void *arg; void (*cb)(void *, u32, u32); } Link;
+extern Link *data_0215f640;
 extern void func_02008e68(s32, void *, s32);
 extern void func_02006dc4(void *, s32);
 extern void func_0200a674(s32, void *);
@@ -496,6 +497,8 @@ void func_0200fbe8(void) {
     func_0200a674(0xb, (void *)func_0200fedc);
 }
 
+#pragma push
+#pragma optimization_level 3
 void func_0200fc34(u32 arg0, u32 arg1) {
     u32 irq = func_02008128();
     void **node = (void **)data_0215f640;
@@ -515,6 +518,7 @@ void func_0200fc34(u32 arg0, u32 arg1) {
     }
     func_0200813c(irq);
 }
+#pragma pop
 s32 func_0200fca4(void (*cb)(void *), s32 arg1) {
     u8 *base = data_0215f120;
     if (arg1 != 0) {
