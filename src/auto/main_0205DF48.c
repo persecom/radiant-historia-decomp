@@ -22,6 +22,8 @@ extern void func_0206e990(s32, u32);
 extern void func_0210d27c(s32);
 extern void func_020d0884(void);
 extern void func_020d3160(s32, s32, s32, s32);
+#pragma push
+#pragma optimization_level 2
 void func_0205df48(u8 *arg0) {
 u8 *q=*(u8 **)(arg0+0x128);
 u8 *p=*(u8 **)(q+8);
@@ -237,7 +239,7 @@ if(p[7]==9 || p[7]==5 || p[7]==6 || p[7]==11) func_0202ccec(mask,list);
 *(u32 *)(q+0x24)=60;
 func_0205deb4(list);
 }
-
+#pragma pop
 void func_0205ebb0(u8 *arg0) {
     u8 *r4 = *(u8 **)(arg0 + 0x128);
     s32 state;
