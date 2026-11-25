@@ -233,11 +233,9 @@ void func_020030f4(void *arg0) {
 }
 
 u32 func_02003188(void) {
-    u16 b = *(volatile u16 *)0x04000008;
-    u32 a = *(volatile u32 *)0x04000000;
-    a = (a & 0x38000000) >> 27;
-    a = (a << 16) + 0x06000000;
-    return a + (((b & 0x1f00) >> 8) << 11);
+s32 offset=(*(volatile u16 *)0x04000008 & 0x1f00)>>8;
+u32 base=((*(volatile u32 *)0x04000000 & 0x38000000)>>27)<<16;
+return 0x06000000+base+(offset<<11);
 }
 
 u32 func_020031bc(void) {
