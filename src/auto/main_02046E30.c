@@ -57,11 +57,11 @@ void func_02046e30(void) {
  while(*(void **)((u8 *)data_021600bc+0xa0)) {
   outer=*(void **)((u8 *)data_021600bc+0xa0);
   func_021168f8((void **)((u8 *)data_021600bc+0xa0),outer);
-  prev=*(u8 **)outer;
-  if(prev) {
-   while((node=*(u8 **)prev)!=NULL) {
-    func_021168f8((void **)prev,node);
-    if(node) func_0210c5dc(node);
+  node=*(u8 **)outer;
+  if(node) {
+   while((prev=*(u8 **)node)!=NULL) {
+    func_021168f8((void **)node,prev);
+    if(prev) func_0210c5dc(prev);
    }
   }
   if(*(void **)outer) {func_0210c5dc(*(void **)outer); *(void **)outer=zero;}
