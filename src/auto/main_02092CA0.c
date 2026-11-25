@@ -11,6 +11,16 @@ extern u8 *data_02160110;
 extern s32 data_02155c3c;
 void func_021168f8(void *, void *);
 void func_0210c5dc(void *);
+
+static inline void ClearList_02092cec(List_02092cec *list) {
+    void *node;
+    while ((node = list->head) != NULL) {
+        func_021168f8(list, node);
+        if (node != NULL) {
+            func_0210c5dc(node);
+        }
+    }
+}
 void *func_02093658(u16);
 void func_02093444(u16);
 void *func_0210c594(s32, s32);
