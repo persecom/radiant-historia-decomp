@@ -226,14 +226,14 @@ extern s32 func_020f1a1c(u8 *, s32);
 extern s32 func_020f1b70(u8 *, s32);
 extern void func_020f18ec(u8 *, s32);
 extern char data_02151d10[], data_02151d20[], data_02151d24[], data_02151d28[], data_02151d30[], data_02151d44[], data_02151d48[];
-s32 func_020f0154(u32 arg0) {
+s32 func_020f0154(u16 arg0) {
     u8 flag = 0;
-    volatile s32 result;
     s32 tmp;
     void *file = NULL;
     u8 *mgr = NULL;
     u8 *node = NULL;
     s32 zero = 0;
+    volatile s32 result;
     char name[50];
     char path[50];
     s32 found;
@@ -252,7 +252,7 @@ s32 func_020f0154(u32 arg0) {
     if (arg0 != 0 && arg0 < 1000) {
         func_02005e80(name, data_02151d10);
         file = func_021092d8(name);
-        if (!file) { file = file; }
+        if (!file) { mgr = mgr; }
         found = func_02092ab0(file, arg0);
         if (found != -1) {
             ((s32 *)&data_02160af0)[1] = func_0210cd20(file, 0);
@@ -278,7 +278,7 @@ s32 func_020f0154(u32 arg0) {
     } else if (arg0 > 0x2710 && arg0 < 0x2b01) {
         func_02005e80(name, data_02151d30);
         file = func_021092d8(name);
-        if (!file) { file = file; }
+        if (!file) { mgr = mgr; }
         found = func_02092ab0(file, arg0);
         if (found != -1) {
             ((s32 *)&data_02160af0)[1] = func_0210cd20(file, 0);
@@ -297,7 +297,7 @@ s32 func_020f0154(u32 arg0) {
 
     *(u8 *)(mgr + 0x134) = 0;
     *(u16 *)(mgr + 0x1b8) = arg0;
-    ((s32 *)mgr)[0x80 / 4] = ((s32 *)mgr)[0x7c / 4] = ((s32 *)mgr)[0x78 / 4] = ((s32 *)&data_02160af0)[7];
+    SetScale_020f0154(mgr, ((s32 *)&data_02160af0)[7]);
     *(u32 *)(mgr + 0xf4) = 1;
     *(u16 *)(mgr + 0x94) = 0x8000;
     *(u16 *)(mgr + 0x96) = 0x8000;
@@ -338,6 +338,7 @@ s32 func_020f0154(u32 arg0) {
             func_020f18ec(mgr, 0x385);
             *(u32 *)(node + 0x18) = 1;
         }
+        mgr = mgr;
     } else if (arg0 != 0 && arg0 < 0x3e8) {
         tmp = func_020f1b70(mgr, 0);
         *(u32 *)(node + 0) = (u32)mgr;
