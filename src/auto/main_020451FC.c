@@ -21,6 +21,8 @@ extern void func_021168f8(void *,void *),func_0203be4c(void *),func_0210c5dc(voi
 extern u8 *func_02044f70(void);
 
 extern u8 *data_02160204;
+extern u8 *data_021600ac;
+extern void func_020a2c20(void), func_02002fb0(s32,s32,s32,s32), func_020f40a4(void), func_020be784(void), func_020be874(void), func_02120524(s32), func_020eff5c(s32), func_020bed54(s32,s32), func_0210f6d4(void), func_020eb180(s32,s32), func_020ec12c(void), func_020e9eb0(void), func_020ec98c(s32), func_0203e61c(void), func_0203ee20(s32), func_0210b750(void), func_020f5760(void), func_021070c4(void), func_02046594(void), func_020469f4(void), func_02046b6c(void), func_020a31c8(s32);
 extern u8 *data_021600b0;
 extern void func_020a62d8(void *arg0);
 extern void func_020a5ed4(void *arg0);
