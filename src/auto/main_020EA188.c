@@ -35,6 +35,25 @@ extern s32 data_02170248[],data_02170204[];
 extern void func_02001134(void *,void *);
 extern void func_02002028(s32);
 extern s64 func_02001fd0(void);
+static inline void ProjectRenderPosition(const Vec_EAAE0 *pos,s32 *outX,s32 *outY){
+const s32 *m=data_02170248,*p=data_02170204;
+s32 x,y,z,sx,sy,px,py;
+s64 inv;
+x=m[9]+(s32)(((s64)pos->x*m[0]+(s64)pos->y*m[3]+(s64)pos->z*m[6])>>12);
+y=m[10]+(s32)(((s64)pos->x*m[1]+(s64)pos->y*m[4]+(s64)pos->z*m[7])>>12);
+z=m[11]+(s32)(((s64)pos->x*m[2]+(s64)pos->y*m[5]+(s64)pos->z*m[8])>>12);
+func_02002028(p[15]+(s32)(((s64)x*p[3]+(s64)y*p[7]+(s64)z*p[11])>>12));
+px=p[12]+(s32)(((s64)x*p[0]+(s64)y*p[4]+(s64)z*p[8])>>12);
+py=p[13]+(s32)(((s64)x*p[1]+(s64)y*p[5]+(s64)z*p[9])>>12);
+inv=func_02001fd0();
+sy=(s32)((inv*py+0x80000000LL)>>32);
+sy=(sy+4096)>>1;
+sy=((sy<<7)+(sy<<6)+2048)>>12;
+sx=(s32)((inv*px+0x80000000LL)>>32);
+sx=((((sx+4096)>>1)<<8)+2048)>>12;
+sy=192-sy;
+*outX=sx;*outY=sy;
+}
 extern s32 func_020ebddc(void *, s32);
 extern void func_020dd810(void *, s32, s32);
 extern u8 *data_02160a6c;
@@ -298,10 +317,11 @@ s32 func_020eaacc(void) {
 }
 
 void func_020ebc94(void *,u16,s32);
+#pragma opt_propagation off
 void func_020eaae0(void){
-s32 matrix[12];
 Vec_EAAE0 pos;
-u8 *node,*sub,*obj,*next;
+s32 matrix[12];
+u8 *sub,*node,*obj,*next;
 s32 visible,culled;
 func_02001134(data_02170248,matrix);
 if(!data_02160a6c)return;
@@ -318,16 +338,16 @@ if(*(s32 *)(node+0x64)==0)
 const s32 *m=data_02170248,*p=data_02170204;
 s32 x,y,z,sx,sy,px,py;
 s64 inv;
-x=m[9]+(s32)(((s64)pos.y*m[3]+(s64)pos.x*m[0]+(s64)pos.z*m[6])>>12);
-y=m[10]+(s32)(((s64)pos.y*m[4]+(s64)pos.x*m[1]+(s64)pos.z*m[7])>>12);
-z=m[11]+(s32)(((s64)pos.y*m[5]+(s64)pos.x*m[2]+(s64)pos.z*m[8])>>12);
-func_02002028(p[15]+(s32)(((s64)y*p[7]+(s64)x*p[3]+(s64)z*p[11])>>12));
-px=p[12]+(s32)(((s64)y*p[4]+(s64)x*p[0]+(s64)z*p[8])>>12);
-py=p[13]+(s32)(((s64)y*p[5]+(s64)x*p[1]+(s64)z*p[9])>>12);
+x=m[9]+(s32)(((s64)pos.x*m[0]+(s64)pos.y*m[3]+(s64)pos.z*m[6])>>12);
+y=m[10]+(s32)(((s64)pos.x*m[1]+(s64)pos.y*m[4]+(s64)pos.z*m[7])>>12);
+z=m[11]+(s32)(((s64)pos.x*m[2]+(s64)pos.y*m[5]+(s64)pos.z*m[8])>>12);
+func_02002028(p[15]+(s32)(((s64)x*p[3]+(s64)y*p[7]+(s64)z*p[11])>>12));
+px=p[12]+(s32)(((s64)x*p[0]+(s64)y*p[4]+(s64)z*p[8])>>12);
+py=p[13]+(s32)(((s64)x*p[1]+(s64)y*p[5]+(s64)z*p[9])>>12);
 inv=func_02001fd0();
 sy=(s32)((inv*py+0x80000000LL)>>32);
 sy=(sy+4096)>>1;
-sy=((sy<<6)+(sy<<7)+2048)>>12;
+sy=((sy<<7)+(sy<<6)+2048)>>12;
 sx=(s32)((inv*px+0x80000000LL)>>32);
 sx=((((sx+4096)>>1)<<8)+2048)>>12;
 sy=192-sy;
@@ -340,16 +360,16 @@ else
 const s32 *m=data_02170248,*p=data_02170204;
 s32 x,y,z,sx,sy,px,py;
 s64 inv;
-x=m[9]+(s32)(((s64)pos.y*m[3]+(s64)pos.x*m[0]+(s64)pos.z*m[6])>>12);
-y=m[10]+(s32)(((s64)pos.y*m[4]+(s64)pos.x*m[1]+(s64)pos.z*m[7])>>12);
-z=m[11]+(s32)(((s64)pos.y*m[5]+(s64)pos.x*m[2]+(s64)pos.z*m[8])>>12);
-func_02002028(p[15]+(s32)(((s64)y*p[7]+(s64)x*p[3]+(s64)z*p[11])>>12));
-px=p[12]+(s32)(((s64)y*p[4]+(s64)x*p[0]+(s64)z*p[8])>>12);
-py=p[13]+(s32)(((s64)y*p[5]+(s64)x*p[1]+(s64)z*p[9])>>12);
+x=m[9]+(s32)(((s64)pos.x*m[0]+(s64)pos.y*m[3]+(s64)pos.z*m[6])>>12);
+y=m[10]+(s32)(((s64)pos.x*m[1]+(s64)pos.y*m[4]+(s64)pos.z*m[7])>>12);
+z=m[11]+(s32)(((s64)pos.x*m[2]+(s64)pos.y*m[5]+(s64)pos.z*m[8])>>12);
+func_02002028(p[15]+(s32)(((s64)x*p[3]+(s64)y*p[7]+(s64)z*p[11])>>12));
+px=p[12]+(s32)(((s64)x*p[0]+(s64)y*p[4]+(s64)z*p[8])>>12);
+py=p[13]+(s32)(((s64)x*p[1]+(s64)y*p[5]+(s64)z*p[9])>>12);
 inv=func_02001fd0();
 sy=(s32)((inv*py+0x80000000LL)>>32);
 sy=(sy+4096)>>1;
-sy=((sy<<6)+(sy<<7)+2048)>>12;
+sy=((sy<<7)+(sy<<6)+2048)>>12;
 sx=(s32)((inv*px+0x80000000LL)>>32);
 sx=((((sx+4096)>>1)<<8)+2048)>>12;
 sy=192-sy;
@@ -362,7 +382,7 @@ if(node[0xa1]&1){
 *(s32 *)(node+0x100)=*(s32 *)(node+4);culled=0;
 }
 if(visible && !culled){
-if(*(s32 *)(sub+0x18) && node[0x104]!=999){
+if(*(s32 *)(sub+0x18) && GetRenderId(node)!=999){
 u32 mode=1;u8 *seq=*(u8 **)(sub+0xc);
 if(*(u16 *)(node+0x94))mode=3;
 if(*(u16 *)(sub+0x1c)!=mode){
@@ -378,7 +398,7 @@ s32 scale=*(s32 *)(node+0x54);
 u32 cull=2,flag=0;
 s32 x,y,z;
 u32 flags;
-if((obj[0x70]>>1)&1){scale=-scale;cull=3;}
+if(((u32)obj[0x70]<<30)>>31){scale*=-1;cull=3;}
 if(*(u32 *)(node+0x80)&0x1000)flag=0x8000;
 *(volatile u32 *)0x040004a4=flag|(cull<<6)|(*(s16 *)(node+0x9a)<<16);
 if(*(u32 *)(node+0x80)&0x20000)*(u16 *)(node+0x88)=31;
@@ -388,10 +408,9 @@ func_0211a4d4(data_021612c8,*(void **)(*(u8 **)(obj+0x58)+0x10),*(void **)(*(u8 
 func_02119da4(data_021612c8);func_02119f1c();
 flags=*(u32 *)(node+0x80);x=*(s32 *)(node+0xfc);y=*(s32 *)(node+0x100);
 if(flags&0x80){x+=*(s32 *)(node+0x3c);y+=*(s32 *)(node+0x40);}
-if(flags&0x8000){y+=*(s32 *)(node+0x70);x+=*(s32 *)(node+0x68);}
+if(flags&0x8000){x+=*(s32 *)(node+0x68);y+=*(s32 *)(node+0x70);}
 z=*(s32 *)(node+0x64);
-if(!z){z=*(s32 *)(node+0x74)<<12;if(node[0x192])z=(node[0x192]+0x212)<<12;}else z<<=12;
-func_0211a178(x<<12,y<<12,z);
+if(!z){z=*(s32 *)(node+0x74)<<12;if(node[0x192])z=(node[0x192]+0x212)<<12;func_0211a178(x<<12,y<<12,z);}else func_0211a178(x<<12,y<<12,z<<12);
 func_0211a26c(scale,*(s32 *)(node+0x54),4096);
 func_02119eb8(obj);func_0211a128();func_02119e4c();
 }
@@ -399,7 +418,7 @@ func_02119eb8(obj);func_0211a128();func_02119e4c();
 node=next;
 }while(node);
 }
-
+#pragma opt_propagation on
 void func_020eb0f8(void) {
     u8 *node = data_02160a6c;
     u8 *obj = *(u8 **)(node + 0x7c);
