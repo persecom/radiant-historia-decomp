@@ -3,6 +3,9 @@
 static inline u32 pack_pcm_02136210(u16 low, u16 high) {
     return low | ((u32)high << 16);
 }
+static inline u32 pack_signed_pcm_02136210(s16 low, s16 high) {
+    return (u16)low | ((u32)(u16)high << 16);
+}
 extern void func_02008f74(void *, s32, u32);
 extern void func_02013878(void *, s32, s32);
 extern u8 data_0215beec[];
@@ -156,6 +159,8 @@ s16 *func_02136210(void *arg0, void *arg1, u32 arg2) {
     u8 *dst = *(u8 **)(p + 0x4) + pos;
     u16 nextPos = pos + arg2;
     u16 mode;
+    s16 last;
+    s16 prev;
 
     if (nextPos >= 0x1800) {
         nextPos -= 0x1800;
@@ -172,7 +177,7 @@ s16 *func_02136210(void *arg0, void *arg1, u32 arg2) {
             u32 *dst32 = (u32 *)dst;
             for (i = 0; i < count; i++) {
                 s16 s0 = src[0];
-                s16 prev = *(s16 *)(p + 0x2a);
+                prev = *(s16 *)(p + 0x2a);
                 s16 s1 = src[1];
                 s16 s2 = src[2];
                 s16 s3 = src[3];
@@ -180,10 +185,10 @@ s16 *func_02136210(void *arg0, void *arg1, u32 arg2) {
                 s16 a0 = (s16)((prev + s0) / 2);
                 s16 a1 = (s16)((s1 + s2) / 2);
                 s16 a2 = (s16)((s3 + s4) / 2);
-                dst32[0] = ((u32)(u16)s0 << 16) | (u16)a0;
-                dst32[1] = ((u32)(u16)a1 << 16) | (u16)s1;
-                dst32[2] = ((u32)(u16)s3 << 16) | (u16)s2;
-                dst32[3] = ((u32)(u16)s4 << 16) | (u16)a2;
+                dst32[0] = pack_pcm_02136210((u16)a0, (u16)s0);
+                dst32[1] = pack_pcm_02136210((u16)s1, (u16)a1);
+                dst32[2] = pack_pcm_02136210((u16)s2, (u16)s3);
+                dst32[3] = pack_pcm_02136210((u16)a2, (u16)s4);
                 *(s16 *)(p + 0x2a) = s4;
                 src += 5;
                 dst32 += 4;
@@ -192,26 +197,25 @@ s16 *func_02136210(void *arg0, void *arg1, u32 arg2) {
             s32 count = (s32)(arg2 >> 1) / 4;
             s32 i;
             s16 *dst16 = (s16 *)dst;
-            s16 s2;
             for (i = 0; i < count; i++) {
                 s16 s0 = src[0];
                 s16 s1 = src[1];
-                s2 = src[2];
+                last = src[2];
                 dst16[0] = s0;
                 dst16[1] = (s0 + s1 * 2) / 3;
-                dst16[2] = (s2 + s1 * 2) / 3;
-                dst16[3] = s2;
+                dst16[2] = (last + s1 * 2) / 3;
+                dst16[3] = last;
                 src += 3;
                 dst16 += 4;
             }
-            *(s16 *)(p + 0x2a) = s2;
+            *(s16 *)(p + 0x2a) = last;
         } else if (mode == 3) {
             s32 count = (s32)(arg2 >> 1) / 8;
             s32 i;
             s16 *dst16 = (s16 *)dst;
             for (i = 0; i < count; i++) {
                 s16 s0 = src[0];
-                s16 prev = *(s16 *)(p + 0x2a);
+                prev = *(s16 *)(p + 0x2a);
                 s16 s1 = src[1];
                 s16 s2 = src[2];
                 s16 m1 = (s0 + s1 * 2) / 3;
@@ -230,18 +234,18 @@ s16 *func_02136210(void *arg0, void *arg1, u32 arg2) {
             }
         } else if (mode == 4) {
             s32 count = arg2 >> 2;
-            s16 prev = *(s16 *)(p + 0x2a);
+            prev = *(s16 *)(p + 0x2a);
             u32 *src32 = (u32 *)src;
             u32 *dst32 = (u32 *)dst;
             while (count > 0) {
-                u32 pair = *src32++;
+                s32 pair = *(s32 *)src32++;
                 s16 s0 = (s16)pair;
                 s16 s1 = (s16)(pair >> 16);
                 s16 a0 = (s16)((prev + s0) / 2);
                 s16 a1 = (s16)((s1 + s0) / 2);
                 count -= 2;
-                dst32[0] = ((u32)(u16)s0 << 16) | (u16)a0;
-                dst32[1] = ((u32)(u16)s1 << 16) | (u16)a1;
+                dst32[0] = pack_pcm_02136210((u16)a0, (u16)s0);
+                dst32[1] = pack_pcm_02136210((u16)a1, (u16)s1);
                 prev = s1;
                 dst32 += 2;
             }
@@ -249,11 +253,11 @@ s16 *func_02136210(void *arg0, void *arg1, u32 arg2) {
             src = (s16 *)src32;
         } else if (mode == 2) {
             s32 count = arg2 >> 3;
-            s16 prev = *(s16 *)(p + 0x2a);
+            prev = *(s16 *)(p + 0x2a);
             u32 *src32 = (u32 *)src;
             u32 *dst32 = (u32 *)dst;
             while (count > 0) {
-                u32 pair = *src32++;
+                s32 pair = *(s32 *)src32++;
                 s16 s0 = (s16)pair;
                 s16 s1 = (s16)(pair >> 16);
                 s16 m0 = (s16)((prev + s0) / 2);
@@ -263,10 +267,10 @@ s16 *func_02136210(void *arg0, void *arg1, u32 arg2) {
                 s16 q2 = (s16)((s0 + m1) / 2);
                 s16 q3 = (s16)((m1 + s1) / 2);
                 count -= 2;
-                dst32[0] = ((u32)(u16)m0 << 16) | (u16)q0;
-                dst32[1] = ((u32)(u16)s0 << 16) | (u16)q1;
-                dst32[2] = ((u32)(u16)m1 << 16) | (u16)q2;
-                dst32[3] = ((u32)(u16)s1 << 16) | (u16)q3;
+                dst32[0] = pack_pcm_02136210((u16)q0, (u16)m0);
+                dst32[1] = pack_pcm_02136210((u16)q1, (u16)s0);
+                dst32[2] = pack_pcm_02136210((u16)q2, (u16)m1);
+                dst32[3] = pack_pcm_02136210((u16)q3, (u16)s1);
                 prev = s1;
                 dst32 += 4;
             }
@@ -274,38 +278,38 @@ s16 *func_02136210(void *arg0, void *arg1, u32 arg2) {
             src = (s16 *)src32;
         } else if (mode == 1) {
             s32 count = (s32)(arg2 >> 1) / 8;
-            s16 prev = *(s16 *)(p + 0x2a);
+            last = *(s16 *)(p + 0x2a);
             s32 i;
             u32 *src32 = (u32 *)src;
             u32 *dst32 = (u32 *)dst;
             for (i = 0; i < count; i++) {
-                u32 pair = *src32++;
+                s32 pair = *(s32 *)src32++;
                 s16 s0 = (s16)pair;
                 s16 s1 = (s16)(pair >> 16);
-                s16 m0 = (s16)((prev + s0) / 2);
-                s16 q0 = (s16)((prev + m0) / 2);
-                s16 e0 = (s16)((prev + q0) / 2);
+                s16 m0 = (s16)((last + s0) / 2);
+                s16 q0 = (s16)((last + m0) / 2);
+                s16 e0 = (s16)((last + q0) / 2);
                 s16 e1 = (s16)((q0 + m0) / 2);
                 s16 q1;
                 s16 m1;
                 s16 q2;
                 s16 q3;
-                dst32[0] = ((u32)(u16)q0 << 16) | (u16)e0;
-                dst32[1] = ((u32)(u16)m0 << 16) | (u16)e1;
+                dst32[0] = pack_pcm_02136210((u16)e0, (u16)q0);
+                dst32[1] = pack_pcm_02136210((u16)e1, (u16)m0);
                 q1 = (s16)((m0 + s0) / 2);
-                dst32[2] = ((u32)(u16)q1 << 16) | (u16)(s16)((m0 + q1) / 2);
-                dst32[3] = ((u32)(u16)s0 << 16) | (u16)(s16)((q1 + s0) / 2);
+                dst32[2] = pack_pcm_02136210((u16)(s16)((m0 + q1) / 2), (u16)q1);
+                dst32[3] = pack_pcm_02136210((u16)(s16)((q1 + s0) / 2), (u16)s0);
                 m1 = (s16)((s0 + s1) / 2);
                 q2 = (s16)((s0 + m1) / 2);
-                dst32[4] = ((u32)(u16)q2 << 16) | (u16)(s16)((s0 + q2) / 2);
-                dst32[5] = ((u32)(u16)m1 << 16) | (u16)(s16)((q2 + m1) / 2);
+                dst32[4] = pack_pcm_02136210((u16)(s16)((s0 + q2) / 2), (u16)q2);
+                dst32[5] = pack_pcm_02136210((u16)(s16)((q2 + m1) / 2), (u16)m1);
                 q3 = (s16)((m1 + s1) / 2);
-                dst32[6] = ((u32)(u16)q3 << 16) | (u16)(s16)((m1 + q3) / 2);
-                dst32[7] = ((u32)(u16)s1 << 16) | (u16)(s16)((q3 + s1) / 2);
-                prev = s1;
+                dst32[6] = pack_pcm_02136210((u16)(s16)((m1 + q3) / 2), (u16)q3);
+                dst32[7] = pack_pcm_02136210((u16)(s16)((q3 + s1) / 2), (u16)s1);
+                last = s1;
                 dst32 += 8;
             }
-            *(s16 *)(p + 0x2a) = prev;
+            *(s16 *)(p + 0x2a) = last;
             src = (s16 *)src32;
         }
     } else {
