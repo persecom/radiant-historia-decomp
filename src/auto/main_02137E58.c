@@ -93,7 +93,7 @@ void func_02137eac(void) {
 #pragma intrinsic on
 void func_02137ec4(void) {
     if (data_02176400 == 0) {
-        memset(data_02176404, 0, sizeof(data_02176404));
+        __clear(data_02176404, sizeof(data_02176404));
     }
     data_02176400++;
 }
@@ -239,10 +239,9 @@ void func_0213825c(void *arg0, void *arg1) {
 void func_02138280(u32 arg0,u32 arg1) {
 if(arg1>=6){func_02138130(data_0215c704);return;}
 if(arg0>=8){func_02138130(data_0215c724);return;}
-u32 zero=0;
-*(volatile u32 *)(data_021767bc+arg0*0x48+arg1*12)=zero;
-*(volatile u32 *)(data_021767c0+arg0*0x48+arg1*12)=zero;
-*(volatile u32 *)(data_021767c4+arg0*0x48+arg1*12)=zero;
+*(volatile u32 *)(data_021767bc+arg0*0x48+arg1*12)=0;
+*(volatile u32 *)(data_021767c0+arg0*0x48+arg1*12)=0;
+*(volatile u32 *)(data_021767c4+arg0*0x48+arg1*12)=0;
 }
 #pragma pop
 void func_021382fc(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
