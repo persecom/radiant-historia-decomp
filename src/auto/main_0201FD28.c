@@ -1,7 +1,6 @@
 /* 11 functions from 0x0201FD28 to 0x02020C58 (main), found by ds-decomp. */
 #include "common.h"
 extern u32 data_02160034;
-typedef union { double d; struct { u32 lo, hi; } w; } DoubleBits_0201ff80;
 
 u32 func_0201ff40(u32 x) {
     s32 e;
@@ -15,6 +14,24 @@ u32 func_0201ff40(u32 x) {
     return 0xffffffffu;
 neg_result:
     return 0xffffffffu;
+}
+
+int func_0201ff80(u32 lo, u32 hi) {
+    s32 bias = 0x41e;
+    s32 e;
+    u32 m;
+    s32 r;
+    e = bias;
+    e -= (s32)((hi & 0x7fffffffu) >> 20);
+    if (e < 0) goto saturate;
+    if (e >= 32) goto zero;
+    m = (hi << 11) | 0x80000000u | (lo >> 21);
+    if ((s32)hi < 0) return -(s32)(m >> e);
+    return (s32)(m >> e);
+zero:
+    return 0;
+saturate:
+    return ~((s32)hi >> 31) + 0x80000000;
 }
 
 u64 func_02020058(u64 value) {
