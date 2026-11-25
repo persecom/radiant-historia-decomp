@@ -24,7 +24,7 @@ u8 *state=*(u8**)(data_0216010c+0x44);
 u8 *saved=data_0216010c;
 u8 *actor;
 u8 *actor7;
-s32 handled=0;
+register int handled asm("r7")=0;
 volatile u8 limit=6;
 s16 delta;
 volatile u8 old1,old4;
