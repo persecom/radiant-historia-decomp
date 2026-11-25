@@ -3,6 +3,184 @@
 typedef struct { s16 x,y; } Pair16_02121;
 typedef struct { s32 x,y; } Pair32_02121;
 
+extern u8 *data_02170460;
+void func_02121938(s32 *, s32, u32 *, u8 *);
+void func_021217e8(s32 *, s32, u32 *, u8 *);
+void func_021211f0(void *);
+void func_021221e4(void *, u32, void *, void *);
+void func_02121de0(void *, u32, void *, void *);
+s32 func_0212251c(void *, void *, void *, u32);
+void func_02121314(void *);
+void func_02121c60(s32 *, s32, u32 *, u8 *);
+void func_02121a8c(s32 *, s32, u32 *, u8 *);
+void func_02121284(void *);
+void func_02121494(u8 *arg0, u32 arg1, u32 arg2, u8 *arg3) {
+    struct Header {
+        u8 pad[0x14];
+        u16 ofs[1];
+    };
+    struct Mtx33 {
+        s32 _00, _01, _02;
+        s32 _10, _11, _12;
+        s32 _20, _21, _22;
+    };
+    struct {
+        s32 s[3];
+        s32 invs[3];
+    } scale;
+    s32 tmp0[2];
+    s32 tmp1[2];
+    s32 tmp2[2];
+    u16 off = ((struct Header *)arg0)->ofs[arg1];
+    u8 *base = arg0 + off;
+    u32 flags = *(u32 *)base;
+
+    if (flags & 1) {
+        *(u32 *)arg3 = 7;
+    } else {
+        u8 *p = base + 4;
+        s32 interp;
+        if ((arg2 & 0xfff) && (*(u32 *)(arg0 + 8) & 1)) {
+            interp = 1;
+        } else {
+            interp = 0;
+        }
+        *(u32 *)arg3 = 0;
+
+        if (!(flags & 6)) {
+            if (!(flags & 8)) {
+                if (interp) {
+                    func_02121938((s32 *)(arg3 + 0x4c), arg2, (u32 *)p, arg0);
+                } else {
+                    func_021217e8((s32 *)(arg3 + 0x4c), arg2, (u32 *)p, arg0);
+                }
+                p += 8;
+            } else {
+                *(u32 *)(arg3 + 0x4c) = *(u32 *)p;
+                p += 4;
+            }
+            if (!(flags & 0x10)) {
+                if (interp) {
+                    func_02121938((s32 *)(arg3 + 0x50), arg2, (u32 *)p, arg0);
+                } else {
+                    func_021217e8((s32 *)(arg3 + 0x50), arg2, (u32 *)p, arg0);
+                }
+                p += 8;
+            } else {
+                *(u32 *)(arg3 + 0x50) = *(u32 *)p;
+                p += 4;
+            }
+            if (!(flags & 0x20)) {
+                if (interp) {
+                    func_02121938((s32 *)(arg3 + 0x54), arg2, (u32 *)p, arg0);
+                } else {
+                    func_021217e8((s32 *)(arg3 + 0x54), arg2, (u32 *)p, arg0);
+                }
+                p += 8;
+            } else {
+                *(u32 *)(arg3 + 0x54) = *(u32 *)p;
+                p += 4;
+            }
+        } else if (flags & 2) {
+            *(u32 *)arg3 |= 4;
+        } else {
+            func_021211f0(arg3);
+        }
+
+        if (!(flags & 0xc0)) {
+            if (!(flags & 0x100)) {
+                if (interp) {
+                    func_021221e4(arg3 + 0x28, arg2, p, arg0);
+                } else {
+                    func_02121de0(arg3 + 0x28, arg2, p, arg0);
+                }
+                p += 8;
+            } else {
+                if (func_0212251c(arg3 + 0x28, arg0 + *(u32 *)(arg0 + 0xc), arg0 + *(u32 *)(arg0 + 0x10), *(u32 *)p)) {
+                    struct Mtx33 *m = (struct Mtx33 *)(arg3 + 0x28);
+                    s32 _12 = m->_12;
+                    s32 _00 = m->_00;
+                    s32 _10 = m->_10;
+                    s32 _02 = m->_02;
+                    s32 _01 = m->_01;
+                    s32 _11 = m->_11;
+                    m->_20 = (_01 * _12 - _02 * _11) >> 12;
+                    m->_21 = (_02 * _10 - _00 * _12) >> 12;
+                    m->_22 = (_00 * _11 - _01 * _10) >> 12;
+                }
+                p += 4;
+            }
+        } else if (flags & 0x40) {
+            *(u32 *)arg3 |= 2;
+        } else {
+            func_02121314(arg3);
+        }
+
+        if (!(flags & 0x600)) {
+            {
+                s32 invs0, s0;
+                if (!(flags & 0x800)) {
+                    if (interp) {
+                        func_02121c60(tmp0, arg2, (u32 *)p, arg0);
+                    } else {
+                        func_02121a8c(tmp0, arg2, (u32 *)p, arg0);
+                    }
+                    s0 = tmp0[0];
+                    invs0 = tmp0[1];
+                } else {
+                    s0 = *(s32 *)(p + 0);
+                    invs0 = *(s32 *)(p + 4);
+                }
+                scale.s[0] = s0;
+                scale.invs[0] = invs0;
+            }
+            {
+                s32 invs1, s1;
+                if (!(flags & 0x1000)) {
+                    if (interp) {
+                        func_02121c60(tmp1, arg2, (u32 *)(p + 8), arg0);
+                    } else {
+                        func_02121a8c(tmp1, arg2, (u32 *)(p + 8), arg0);
+                    }
+                    s1 = tmp1[0];
+                    invs1 = tmp1[1];
+                } else {
+                    s1 = *(s32 *)(p + 8);
+                    invs1 = *(s32 *)(p + 12);
+                }
+                scale.s[1] = s1;
+                scale.invs[1] = invs1;
+            }
+            {
+                s32 invs2, s2;
+                if (!(flags & 0x2000)) {
+                    if (interp) {
+                        func_02121c60(tmp2, arg2, (u32 *)(p + 16), arg0);
+                    } else {
+                        func_02121a8c(tmp2, arg2, (u32 *)(p + 16), arg0);
+                    }
+                    s2 = tmp2[0];
+                    invs2 = tmp2[1];
+                store_z:
+                    scale.s[2] = s2;
+                    scale.invs[2] = invs2;
+                } else {
+                    s2 = *(s32 *)(p + 16);
+                    invs2 = *(s32 *)(p + 20);
+                    goto store_z;
+                }
+            }
+        } else if (flags & 0x200) {
+            *(u32 *)arg3 |= 1;
+        } else {
+            func_02121284(arg3);
+            return;
+        }
+    }
+
+    ((void (*)(void *, void *, u32, s32))(*(void **)(data_02170460 + 0xe8)))(arg3, &scale, *(u32 *)data_02170460, (*(u32 *)arg3 & 1) ? 4 : 0);
+}
+
 void func_021217e8(s32 *out, s32 pos, u32 *desc, u8 *data) {
  u32 offset = desc[1];
  u32 flags = desc[0];
@@ -85,7 +263,8 @@ else {s16 *q=(s16 *)p+index;a=q[0];b=q[1];}
 }
 
 void func_02121a8c(s32 *out,s32 pos,u32 *desc,u8 *data) {
-u32 offset=desc[1], flags=desc[0];
+u32 offset=((volatile u32 *)desc)[1];
+u32 flags=desc[0];
 u32 index=pos>>12;
 u8 *p=data+offset;
 u32 end,rem,a,b;
@@ -99,38 +278,47 @@ a=index>>1;goto half;
 index>>=1;goto direct;
 }
 rem=index&3;
-if(!rem){index>>=2;goto direct;}
+if(rem){
 if(index>end){index=rem+(end>>2);goto direct;}
-if(!(index&1)){a=index>>2;goto half;}
+if(index&1){
 if(index&2){a=index>>2;b=a+1;}else {b=index>>2;a=b+1;}
 if(flags&0x20000000){
-s16 *q=(s16 *)p;
-s32 x=q[b*2]*3+q[a*2];
-s32 y=q[b*2+1]*3+q[a*2+1];
+Pair16_02121 *q=(Pair16_02121 *)p;
+s32 bx=q[b].x, by=q[b].y, ax=q[a].x, ay=q[a].y;
+s32 x=ax+bx*3;
+s32 y=ay+by*3;
 out[0]=x>>2;out[1]=y>>2;
+return;
 }else{
-s32 *q=(s32 *)p;
-s64 x=(s64)q[b*2]*3+q[a*2];
-s64 y=(s64)q[b*2+1]*3+q[a*2+1];
+Pair32_02121 *q=(Pair32_02121 *)p;
+Pair32_02121 *pb=q+b,*pa=q+a;
+s32 bx=pb->x, by=pb->y;
+s32 ax=pa->x,ay=pa->y;
+s64 x=(s64)bx*3+ax;
+s64 y=(s64)by*3+ay;
 out[0]=x>>2;out[1]=y>>2;
 }
 return;
+}
+a=index>>2;goto half;
+}
+index>>=2;
 direct:
 {
 s32 x,y;
-if(flags&0x20000000){s16 *q=(s16 *)p+index*2;x=q[0];y=q[1];}
-else{s32 *q=(s32 *)p+index*2;x=q[0];y=q[1];}
+if(flags&0x20000000){Pair16_02121 *q=(Pair16_02121 *)p+index;x=q->x;y=q->y;}
+else{Pair32_02121 *q=(Pair32_02121 *)p+index;x=q->x;y=q->y;}
 out[0]=x;out[1]=y;
 }
 return;
 half:
 if(flags&0x20000000){
-s16 *q=(s16 *)p+a*2;
-s32 x=q[0]+q[2],y=q[1]+q[3];
+Pair16_02121 *q=(Pair16_02121 *)p+a;
+s32 x=q[0].x+q[1].x,y=q[0].y+q[1].y;
 out[0]=x>>1;out[1]=y>>1;
 }else {
-s32 *q=(s32 *)p+a*2;
-s32 x=q[0]+q[2],y=q[1]+q[3];
+Pair32_02121 *q=(Pair32_02121 *)p+a;
+s32 x=q[0].x+q[1].x,y=q[0].y+q[1].y;
 out[0]=x>>1;out[1]=y>>1;
 }
 }
