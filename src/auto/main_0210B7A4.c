@@ -115,23 +115,18 @@ void func_0210b860(void **arg0) {
 }
 
 void func_0210b894(void) {
-    void *p = *(void **)data_02162618;
-    void *q;
-    u16 off;
-    if (p == NULL) goto done;
-    off = *(u16 *)(data_02162618 + 0xa);
-    if (off != 0) {
-        q = *(void **)((u8 *)p + off + 4);
-    } else {
-        q = p;
-    }
-    func_0210b860(p);
-    if (q != NULL) goto done;
-    if (*(void **)(data_02162618 + 0xc) == NULL) goto done;
-    *(void **)(data_02162618 + 0xc) = NULL;
-    func_0210db10(data_02162624, data_02162618, 0);
-done:
-    return;
+ void *p=*(void **)data_02162618;
+ while(p!=NULL) {
+ void *q;
+ if(p!=NULL) q=*(void **)((u8 *)p+*(u16 *)(data_02162618+0xa)+4);
+ else q=*(void **)data_02162618;
+ func_0210b860(p);
+ p=q;
+ }
+ if(*(void **)(data_02162618+0xc)!=NULL) {
+ *(void **)(data_02162618+0xc)=NULL;
+ func_0210db10(data_02162624,data_02162618,0);
+ }
 }
 
 extern u32 data_02155bac;
@@ -381,12 +376,9 @@ s32 func_0210c0e8(Vec *arg0, Vec *arg1, Vec *arg2, Vec *arg3, Vec *arg4) {
     s32 d1;
     s32 d2;
     s32 t;
-    s64 x;
-    s64 y;
-    s64 z;
-    s32 ax;
-    s32 ay;
-    s32 az;
+    s64 x, y, z;
+    s32 sx, sy, sz;
+    s32 ax, ay, az;
 
     func_02002128(arg2, arg0, &v);
     d1 = func_02002158(&v, arg3);
@@ -396,14 +388,20 @@ s32 func_0210c0e8(Vec *arg0, Vec *arg1, Vec *arg2, Vec *arg3, Vec *arg4) {
     }
     t = func_02001fb0(d1, d2);
     x = (s64)arg1->x * t;
-    ax = arg0->x;
     y = (s64)arg1->y * t;
-    ay = arg0->y;
     z = (s64)arg1->z * t;
+    sx = (s32)((x + 0x800) >> 12);
+    sy = (s32)((y + 0x800) >> 12);
+    sz = (s32)((z + 0x800) >> 12);
+    ax = arg0->x;
+    ay = arg0->y;
+    ax += sx;
     az = arg0->z;
-    arg4->x = ax + (s32)((x + 0x800) >> 12);
-    arg4->y = ay + (s32)((y + 0x800) >> 12);
-    arg4->z = az + (s32)((z + 0x800) >> 12);
+    ay += sy;
+    az += sz;
+    arg4->x = ax;
+    arg4->y = ay;
+    arg4->z = az;
     return 1;
 }
 
