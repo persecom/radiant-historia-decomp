@@ -597,13 +597,9 @@ void func_0200b888(u32 *arg0) {
 }
 
 void func_0200b8b4(u32 *arg0) {
-    u32 bak = func_02008128();
-    u32 flag = (u8)((arg0[3] & 1) != 0);
-    if (flag) {
-        u32 *arc = (u32 *)arg0[2];
-        arg0[3] |= 2;
-        arc[5] |= 0x20;
-        func_0200813c(bak);
-    }
+u32 bak=func_02008128();
+u32 flag=(arg0[3]&1)!=0;
+if(flag){u32 *arc=(u32 *)arg0[2];arg0[3]|=2;arc[5]|=0x20;}
+func_0200813c(bak);
 }
 
