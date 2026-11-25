@@ -184,11 +184,10 @@ void func_02121494(u8 *arg0, u32 arg1, u32 arg2, u8 *arg3) {
 }
 
 void func_021217e8(s32 *out, s32 pos, u32 *desc, u8 *data) {
- u32 offset = desc[1];
- u32 flags = desc[0];
  s32 index = pos >> 12;
- u8 *p = data + offset;
- u32 end, rem, other;
+ u8 *p = data + desc[1];
+ u32 flags = desc[0];
+ u32 end, rem; s32 other;
  if (!(flags & 0xc0000000)) goto direct;
  {
   end = (flags & 0x1fff0000) >> 16;
@@ -205,8 +204,8 @@ void func_021217e8(s32 *out, s32 pos, u32 *desc, u8 *data) {
    if (index & 1) {
     if (index & 2) {index = (u32)index >> 2; other = index + 1;}
     else {other = (u32)index >> 2; index = other + 1;}
-    if (flags & 0x20000000) *out = (((s16 *)p)[index] + 3 * ((s16 *)p)[other]) >> 2;
-    else *out = ((s64)((s32 *)p)[other] * 3 + ((s32 *)p)[index]) >> 2;
+    if (flags & 0x20000000) { s32 a=((s16 *)p)[other]*3; s32 b=((s16 *)p)[index]; *out=(a+b)>>2; }
+    else { s64 a=(s64)((s32 *)p)[other]*3; s64 b=((s32 *)p)[index]; *out=(a+b)>>2; }
     return;
    }
    index = (u32)index >> 2; goto half;
@@ -215,12 +214,15 @@ void func_021217e8(s32 *out, s32 pos, u32 *desc, u8 *data) {
  }
  goto direct;
 half:
- if (!(flags & 0x20000000)) *out = (((s32 *)p)[index] >> 1) + (((s32 *)p + index)[1] >> 1);
- else *out = (((s16 *)p)[index] + ((s16 *)p + index)[1]) >> 1;
+ { s32 value;
+ if (flags & 0x20000000) value = (((s16 *)p)[index] + ((s16 *)p + index)[1]) >> 1;
+ else value = (((s32 *)p)[index] >> 1) + (((s32 *)p + index)[1] >> 1);
+ *out=value;
+ }
  return;
 direct:
  if (flags & 0x20000000) { *out = ((s16 *)p)[index]; }
- if (!(flags & 0x20000000)) { *out = ((s32 *)p)[index]; }
+ else { *out = ((s32 *)p)[index]; }
  return;
 }
 
@@ -236,8 +238,8 @@ else index=(index&3)+(index>>2);
 }
 if(*(u32 *)(data+8)&2) {
 frac=pos&0xfff;
-if(!(flags&0x20000000)){a=((s32 *)p)[index];b=((s32 *)p)[0];}
-else {a=((s16 *)p)[index];b=((s16 *)p)[0];}
+if(flags&0x20000000){a=((s16 *)p)[index];b=((s16 *)p)[0];}
+else {a=((s32 *)p)[index];b=((s32 *)p)[0];}
 *out=a+((frac*(b-a))>>12);
 } else {
 if(flags&0x20000000)a=((s16 *)p)[index];
