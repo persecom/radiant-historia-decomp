@@ -33,7 +33,7 @@ extern void func_02002028(s32);
 extern s64 func_02001fd0(void);
 extern void func_0210d27c(s32);
 typedef struct Vec_F0FD0 {s32 x,y,z;} Vec_F0FD0;
-static inline void ProjectMatrices_F0FD0(const Vec_F0FD0 *pos,s32 *outX,s32 *outY,const s32 *p,const s32 *m){
+static inline void ProjectMatrices_F0FD0(const Vec_F0FD0 *pos,s32 *outX,s32 *outY,const s32 *m,const s32 *p){
  register s32 z,y; s32 x,py,px,sy,sx; s64 inv;
  x=m[9]+(s32)(((s64)pos->x*m[0]+(s64)pos->y*m[3]+(s64)pos->z*m[6])>>12);
  y=m[10]+(s32)(((s64)pos->x*m[1]+(s64)pos->y*m[4]+(s64)pos->z*m[7])>>12);
