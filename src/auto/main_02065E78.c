@@ -1,12 +1,7 @@
 /* 13 functions from 0x02065E78 to 0x02066D84 (main), found by ds-decomp. */
 #include "common.h"
 extern u8 *data_02160204;
-static inline void ApplyPendingLocation(void) {
-if (*(s16 *)(data_02160204+0xf6)!=-1) {
-*(s16 *)(data_02160204+0x72)=*(s16 *)(data_02160204+0xf6);
-*(s16 *)(data_02160204+0xf6)=-1;
-}
-}
+
 typedef struct {s32 x,y,z;} Vec_6662c;
 extern const s16 data_0213a394[];
 extern void func_020c55bc(void),func_02066d84(void),func_020c627c(void);
@@ -52,7 +47,7 @@ void func_02066c28(void);
 u8 *func_020a5f14(void *,u16);
 void *func_020a583c(void);
 void func_02065e78(void){
-s32 one=1,zero=0;
+s32 zero=0,one=1;
 u8 *node,*v;
 func_020a2c20();
 {u32 bits=*(volatile u16 *)0x04000304;bits &= ~0x8000U;*(volatile u16 *)0x04000304=bits;}
@@ -87,10 +82,7 @@ func_021167ac(data_021600e0[1]+5088,52);
 *(s32 *)((*(u8 *volatile *)&data_021600e0[1])+116)=256;
 *(s32 *)((*(u8 *volatile *)&data_021600e0[1])+64)=one;
 *(s32 *)((*(u8 *volatile *)&data_021600e0[1])+148)=101;
-if(*(s16 *)(data_02160204+0xf6)!=-1){
-*(s16 *)(data_02160204+0x72)=*(s16 *)(data_02160204+0xf6);
-*(s16 *)(data_02160204+0xf6)=-1;
-}
+ApplyPendingLocation();
 *(s32 *)((*(u8 *volatile *)&data_021600e0[1])+0x98)=(*(u16 *)(data_02160204+0x72)-1)/20+101;
 *(s16 *)((*(u8 *volatile *)&data_021600e0[1])+0x198)=100;*(s16 *)((*(u8 *volatile *)&data_021600e0[1])+0x19a)=zero;
 {Vec_6662c *v=(Vec_6662c *)((*(u8 *volatile *)&data_021600e0[1])+68);v->x=zero;v->y=zero;v->z=zero;}
