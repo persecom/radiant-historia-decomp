@@ -18,7 +18,7 @@ void *func_021092d8(void *);
 char *func_020929f4(void *,int);
 int func_02092a28(void *,void *);
 void func_021093f0(void *);
-int func_020274c0(void *,void *);
+s32 func_020274c0(u8 *, u8 *);
 int func_020279b8(void *,void *,void *);
 int func_02029704(void *,void *);
 int func_02028420(void *,void *);
