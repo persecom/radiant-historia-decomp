@@ -458,17 +458,15 @@ s32 func_020aadf8(void) {
 #pragma push
 #pragma optimization_level 2
 s32 func_020aae98(void) {
-    u8 *p;
-    s32 id = 3;
-    p = func_020ade60(id);
-    if (*(u8 *)(p + 0xd) == 0) {
-        if (func_020aaaec((s32 *)p, id - 0xdf, 0, 4, *(s32 *)(p + 8)) != 0) {
-            *(u8 *)(p + 0xd) = 1;
+    u8 *p = func_020ade60(3);
+    if (p[13] == 0) {
+        if (func_020aaaec((s32 *)p, -0xdc, 0, 4, *(s32 *)(p + 8)) != 0) {
+            p[13] = 1;
             *(s32 *)(p + 8) = 0;
             return 1;
         }
+        ++*(s32 *)(p + 8);
     }
-    *(s32 *)(p + 8) += 1;
     return 0;
 }
 #pragma pop
