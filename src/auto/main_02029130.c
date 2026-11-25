@@ -11,11 +11,11 @@ extern char data_02146168[];
 extern u32 data_0216263c[3];
 typedef struct {u32 seed, multiplier, increment;} RandomState_020295f0;
 static inline u16 RandomRange_020295f0(u16 max) {
-    RandomState_020295f0 state = *(RandomState_020295f0 *)data_0216263c;
-    u32 value = (state.multiplier * state.seed) + state.increment;
-    data_0216263c[0] = value;
-    value >>= 16;
-    if (max != 0) {
+    RandomState_020295f0 *state = (RandomState_020295f0 *)data_0216263c;
+    u32 value;
+    state->seed = state->multiplier * state->seed + state->increment;
+    value = state->seed >> 16;
+    if (max) {
         value = (value * max) >> 16;
     }
     return value;
