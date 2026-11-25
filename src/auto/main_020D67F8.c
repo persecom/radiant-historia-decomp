@@ -92,37 +92,29 @@ if(file){func_021093b0(file);file=0;}
 #pragma optimization_level 4
 
 void func_020d6c9c(void) {
-    u8 *base = (u8 *)&data_02160248;
-    u8 *root = (u8 *)&data_02160a6c;
-    s32 i = 0;
-    s32 one = 1;
-    u32 c2bc = 0x2bc;
-    u16 c1f = 0x1f;
-    u8 zero = 0;
-    u8 *node;
-    u8 *p;
-
-    for (; i < 3; i++) {
-        if (func_020bd490(zero, (u8)i) == 0) {
-            continue;
+    s32 i;
+    for (i = 0; i < 3; i++) {
+        if (func_020bd490(0, (u8)i) != 0) {
+            u8 *node;
+            u8 *p;
+            *(u16 *)((u8 *)&data_02160248 + 0) = i;
+            *(u32 *)((u8 *)&data_02160248 + 0xc) = 0;
+            func_020d6f58(func_020bd490(1, (u8)i));
+            node = *(u8 **)((u8 *)&data_02160248 + 4);
+            *(u16 *)(node + 0x92) = 0;
+            *(u32 *)(node + 0) = i * 20 + 0x80;
+            *(u32 *)(node + 4) = i * 0x39 + 0x3e;
+            *(u32 *)(node + 8) = 0;
+            *(u16 *)(node + 0x8c) = func_020bd490(1, (u8)i);
+            *(u32 *)(node + 0x64) = 0x2bc;
+            *(u8 *)(node + 0xa1) |= 1;
+            *(u16 *)(node + 0x9a) = 0x1f;
+            func_020dd810(node, 1, 0);
+            p = func_0202fb50(func_020bd490(1, (u8)i), 0);
+            *(u8 **)(node + 0x118) = p;
+            *p = 0;
+            func_021167f0(*(u8 **)&data_02160a6c + 0xac, node);
         }
-        *(u16 *)(base + 0) = i;
-        *(u32 *)(base + 0xc) = zero;
-        func_020d6f58(func_020bd490(one, (u8)i));
-        node = *(u8 **)(base + 4);
-        *(u16 *)(node + 0x92) = zero;
-        *(u32 *)(node + 0) = (u32)i * 20 + 0x80;
-        *(u32 *)(node + 4) = (u32)i * 0x39 + 0x3e;
-        *(u32 *)(node + 8) = zero;
-        *(u16 *)(node + 0x8c) = func_020bd490(one, (u8)i);
-        *(u32 *)(node + 0x64) = c2bc;
-        *(u8 *)(node + 0xa1) |= one;
-        *(u16 *)(node + 0x9a) = c1f;
-        func_020dd810(node, one, zero);
-        p = func_0202fb50(func_020bd490(one, (u8)i), zero);
-        *(u8 **)(node + 0x118) = p;
-        *(u8 *)p = zero;
-        func_021167f0(*(u8 **)root + 0xac, node);
     }
 }
 
