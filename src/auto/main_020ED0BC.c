@@ -65,6 +65,28 @@ void func_020ed0bc(void) {
     }
 }
 
+extern s32 func_021086d4(void *, s32);
+extern void func_02108680(void *, u32, s32);
+s32 func_020ed270(void *arg0, u16 arg1, s32 arg2) {
+    u8 *obj = *(u8 **)arg0;
+    u8 *table = *(u8 **)(obj + 0x58);
+    s32 invalid;
+
+    if (**(u16 **)(table + 0xc) <= (u32)arg1) {
+        return 0;
+    }
+
+    invalid = (func_021086d4(obj, arg1) == 0);
+
+    if (invalid != 0) {
+        return 0;
+    }
+
+    func_02108680(*(u8 **)arg0, arg1, arg2);
+
+    return 1;
+}
+
 s32 func_020ed2d0(u8 *arg0,s32 arg1){
 u8 *p=*(u8 **)(arg0+0x10);s32 cmd;
 if(*(u16 *)(*(u8 **)(*(u8 **)(*(u8 **)arg0+0x58)+0xc))<=arg1*2)return 0;
