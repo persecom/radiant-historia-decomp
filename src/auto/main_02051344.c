@@ -103,6 +103,7 @@ found:
     *(u32 *)(arg0 + 0xac) |= 1;
 }
 
+#pragma optimization_level 4
 void func_02051ef4(void){
 u8 *node,*obj;u32 size;
 *(volatile u32 *)0x40004a4=0x31f00c0;
