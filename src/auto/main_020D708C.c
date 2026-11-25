@@ -31,6 +31,9 @@ extern void *func_02026e40(u16);
 extern void *func_02026548(void);
 extern void func_021167f0(void*,void*);
 extern void func_021168f8(void*,void*);
+static inline void SetSpecialPosition_020d708c(u8 *obj){
+obj[0xa1]|=0x3a;*(s32*)(obj+0x58)=1;*(s32*)(obj+0x68)=0;*(s32*)(obj+0x70)=-110;
+}
 extern char data_02151454[],data_0215147c[],data_02151484[];
 extern char data_0215142c[];
 extern u32 data_0216263c[3];
