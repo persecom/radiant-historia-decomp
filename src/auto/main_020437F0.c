@@ -299,7 +299,7 @@ extern u32 data_02155c3c;
 extern void func_0207ae48(s32, u8);
 extern s32 func_0207a6b8(void *);
 extern u8 *func_02046f90(s32, u16);
-extern void func_02052240(void);
+extern void func_02052240();
 extern u8 *func_0210c594(s32, u32);
 extern void func_020477dc(void *, s32, s32);
 void func_02043de4(void)
@@ -355,10 +355,8 @@ void func_02043de4(void)
         case 5:
             if (in_rect_02043de4(node, player) != 0 && *(u16 *)(node + 0x1a) == 0) {
                 u8 *obj = func_02046f90(0x141, (u16)(*(u16 *)(node + 0x10) + 0x1770));
-                *(u32 *)(obj + 0) = *(u32 *)(node + 0x20);
-                *(u32 *)(obj + 0x18) = *(u32 *)(node + 0x20);
-                *(u32 *)(obj + 8) = *(u32 *)(node + 0x28);
-                *(u32 *)(obj + 0x20) = *(u32 *)(node + 0x28);
+                *(u32 *)(obj + 0x18) = *(u32 *)(obj + 0) = *(u32 *)(node + 0x20);
+                *(u32 *)(obj + 0x20) = *(u32 *)(obj + 8) = *(u32 *)(node + 0x28);
                 func_02052240();
                 *(u8 **)(obj + 0xd0) = func_0210c594(0x3c, data_02155c3c);
                 *(*(u8 **)(obj + 0xd0) + 0x19) = 3;
