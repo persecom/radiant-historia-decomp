@@ -194,23 +194,18 @@ u16 func_02110b20(u8 *arg0) {
     return *(u16 *)(obj + 0x3e);
 }
 
+#pragma optimization_level 0
 u8 func_02110b38(u16 arg0) {
-    u8 i;
-    u16 lo;
-    u16 hi;
-    for (i = 0; i < 5; i++) {
-        func_0211379c(i, &hi, &lo);
-        if (arg0 < hi) {
-            continue;
-        }
-        if (arg0 >= lo) {
-            continue;
-        }
-        return i;
-    }
-    return 5;
+u8 i;
+for(i=0;i<5;i++){
+u16 hi;
+u16 lo;
+func_0211379c(i,&hi,&lo);
+if(arg0>=hi && arg0<lo) return i;
 }
-
+return 5;
+}
+#pragma optimization_level reset
 extern void func_020c6d78(void *);
 extern void *func_0210c594(u32,void *);
 extern void func_020c992c(void *);
