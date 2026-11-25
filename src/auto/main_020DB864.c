@@ -1,7 +1,6 @@
 /* 4 functions from 0x020DB864 to 0x020DC7EC (main), found by ds-decomp. */
 #include "common.h"
-extern u32 data_02162870[],data_02162868[];
-extern volatile u32 data_02160668[];
+extern volatile u32 data_02162870[],data_02162868[],data_02160668[];
 extern char * volatile data_02160268[];
 extern char data_021514bc[],data_021514cc[],data_021514d8[],data_021514e4[],data_021514f8[],data_0215150c[];
 extern s32 data_02162814,data_02162884;
@@ -167,7 +166,7 @@ extern void func_02109264(s32);
 extern void func_021089e8(s32,s32,s32);
 extern void func_0210d6a4(s32,s32);
 s32 func_020dbd0c(void){
-s32 zero=0,one=1;
+s32 one=1,zero=0;
 data_02162870[0]=zero;
 data_02160204[0x123]=zero;
 data_02160204[0x137]|=1;
@@ -177,7 +176,7 @@ if(*(void **)(data_02160204+0x10c)){func_020de29c(*(void **)(data_02160204+0x10c
 *(u16 *)(data_02160204+0x142)=zero;
 *(u32 *)(data_02160204+0x108)=zero;
 *(u32 *)(data_02160204+0x13c)=zero;
-data_02162868[0]=one;data_0216bf84=zero;
+data_02162868[0]=one;*(volatile u32 *)&data_0216bf84=zero;
 data_0216025c[0]=9;
 func_0200781c();
 data_0216025c[2]=zero;
