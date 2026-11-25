@@ -9,6 +9,7 @@ extern u32 data_02156150;
 extern u32 data_02156154;
 extern void func_021205ec(u32, void *, s32);
 extern void (*data_02156130[8])(s32 *, u8 *);
+extern void (*data_02156110[8])(s32 *, u8 *);
 
 extern void func_02003c78(void);
 extern void func_02002058(s32, s32);
@@ -105,11 +106,12 @@ void func_02124418(u8 *arg0)
 
     Packet packet;
     s32 scale;
+    s32 idx;
     void (*build)(s32 *, u8 *);
 
     packet.command = (*(u32 *)arg0 & 8) ? 0x101610 : 0x101810;
-
-    build = data_02156110[*(u32 *)arg0 & 7];
+    idx = *(u32 *)arg0 & 7;
+    build = data_02156110[idx];
 
     packet.mode = 3;
     packet.endMode = 2;
