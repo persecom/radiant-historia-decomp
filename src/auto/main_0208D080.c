@@ -160,8 +160,8 @@ void func_0208d900(s32 x, s32 y, s32 z, s32 value)
   for (i = 0; i < 11; i++)
   {
     func_020a3bbc(42);
+    s32 z1 = z + 1;
     b.f5 = base + (i * 3);
-    s16 z1 = z + 1;
  new_var2 = z + 2;
     b.f6 = y + 1;
     b.f7 = z1;
@@ -180,7 +180,7 @@ void func_0208d900(s32 x, s32 y, s32 z, s32 value)
       func_020a3bbc(43);
       c.f5 = base + (i * 3);
       c.f6 = y + 1;
-      c.f7 = z + 2;
+      c.f7 = new_var2;
       func_021098ac(&c);
     }
   }

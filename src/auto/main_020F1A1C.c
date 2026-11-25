@@ -60,19 +60,16 @@ s32 func_020f1a1c(void *arg0, s32 arg1) {
     }
 
     if (func_02109cf0(path) != 0) {
-        u16 i = 0;
-        while (i < 0x20) {
+        u16 i;
+        for (i = 0; i < 0x20; i++) {
             if (path[i] == 0) {
                 u16 len = i;
-                i = len - 5;
-                while (i < len) {
+                for (i = len - 5; i < len; i++) {
                     ext[5 - (len - i)] = path[i];
-                    i++;
                 }
                 ext[5 - (len - i)] = 0;
                 break;
             }
-            i++;
         }
 
         if (func_020123f0(data_02151da4, ext) == 0 || func_020123f0(data_02151dac, ext) == 0) {

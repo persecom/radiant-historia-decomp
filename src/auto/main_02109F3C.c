@@ -39,19 +39,13 @@ extern u8 data_02162580[];
 extern u8 data_021625c8[];
 
 void *func_02109f3c(u32 arg0) {
-    void *node = NULL;
-    u8 *base = (u8 *)data_02162564;
-    u16 offset = *(u16 *)(base + 0x12);
-    void *head = *(void **)(base + 8);
-    for (;;) {
-        node = (node == NULL) ? head : *(void **)((u8 *)node + offset + 4);
-        if (node == NULL) {
-            return NULL;
-        }
-        if (*(u32 *)((u8 *)node + 8) == arg0) {
-            return node;
+    u8 *p = NULL;
+    for (; (p = (p == NULL) ? *(u8 **)((u8 *)data_02162564 + 8) : *(u8 **)(p + *(u16 *)((u8 *)data_02162564 + 0x12) + 4)) != NULL;) {
+        if (*(u32 *)(p + 8) == arg0) {
+            return p;
         }
     }
+    return NULL;
 }
 
 s32 func_02109f84(u32 arg0) {

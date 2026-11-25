@@ -5,6 +5,13 @@ extern s32 func_02016cfc(s32, const char *, char *);
 extern s32 func_02016018(void *, void *, const char *, void *, s32);
 extern void (*data_02160038)(void);
 extern void func_02016da0(void);
+s32 func_02016018(void *arg0, void *arg1, const char *arg2, void *arg3, s32 arg4) {
+    if (arg2[0] == 0 || arg4 == 0) {
+        return 0;
+    }
+    return 0;
+}
+
 s32 func_02016c84(void *p, s32 ch, s32 act) {
     struct {
         u8 *str;
@@ -86,18 +93,20 @@ void func_02016dc0(u8 *dst, u8 *src) {
         goto tail;
     }
     if (align != 0) {
-        u32 n = 3 - align;
+        u32 n;
         c = *src;
-        *p = c;
+        *dst = c;
         if ((c & 0xff) == 0) {
             return;
         }
+        n = 3 - align;
         if (n == 0) {
             goto word;
         }
         do {
             c = *++src;
             if ((c & 0xff) == 0) {
+                *++p = c;
                 return;
             }
             *++p = c;
@@ -108,16 +117,19 @@ void func_02016dc0(u8 *dst, u8 *src) {
 word:
     {
         u32 w = *(u32 *)src;
+        u32 *wp;
+        u32 *ws;
         if (((w + 0xfefefeffu) & ~w & 0x80808080u) != 0) {
             goto tail;
         }
-        p -= 4;
+        wp = (u32 *)p - 1;
+        ws = (u32 *)src;
         do {
-            *(u32 *)(p + 4) = w;
-            w = *(u32 *)(src + 4);
-            src += 4;
+            *++wp = w;
+            w = *++ws;
         } while (((w + 0xfefefeffu) & ~w & 0x80808080u) == 0);
-        p += 4;
+        p = (u8 *)(wp + 1);
+        src = (u8 *)ws;
     }
 tail:
     do {

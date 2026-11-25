@@ -254,16 +254,19 @@ void func_0211b83c(u8 *dst, u8 *src, s32 srcX, s32 srcY, s32 dstX, s32 dstY, s32
 }
 
 void func_0211b8a4(u8 *dst, u8 *src, s32 srcX, s32 srcY, s32 dstX, s32 dstY, s32 dstStride, s32 width, s32 height) {
-    u32 srcStride = (u32)*(u16 *)src >> 3;
-    u8 *s = src + 0xc + (srcY * srcStride + srcX) * 2;
-    u8 *d = dst + (dstY * dstStride + dstX) * 2;
-    s32 endY = srcY + height;
-    s32 y;
-    for (y = srcY; y < endY; y++) {
-        func_02008e08(s, d, width * 2);
-        s += srcStride * 2;
-        d += dstStride * 2;
-    }
+s32 srcStride = (u32)*(u16 *)src >> 3;
+
+dstX += dstY * dstStride;
+srcX += srcY * srcStride;
+u32 size = width * 2;
+s32 endY = srcY + height;
+u8 *s = src + 12 + srcX * 2;
+u8 *d = dst + dstX * 2;
+for (; srcY < endY; srcY++) {
+func_02008e08(s, d, size);
+s += srcStride * 2;
+d += dstStride * 2;
+}
 }
 
 extern void func_0211b3dc(s32, s32, u32);
@@ -282,10 +285,13 @@ void func_0211b910(s32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5) {
 
 void func_0211b96c(s32 arg0, u16 *arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u32 arg6, u32 arg7) {
     u32 flag = 0;
+    u16 c = arg1[1];
+    u16 a = arg1[3];
+    u16 b = arg1[0];
     if (arg1[2] != 0) {
         flag = 1;
     }
-    func_0211b584(arg0, arg1[3], flag, arg1[0], arg1[1], arg6, arg7);
+    func_0211b584(arg0, a, flag, b, c, arg6, arg7);
     func_0211b910(arg0, (u32)arg1, arg2, arg3, arg4, arg5);
 }
 
@@ -342,10 +348,11 @@ w=(s32)data_02144d84[shape][size]>>1;
 h=(s32)data_02144d6c[shape][size]>>1;
 }
 {
-s32 ox=-(w<<12),oy=-(h<<12);
+s32 wx=w<<12,hy=h<<12;
+s32 ox=-wx,oy=-hy;
 ox+=m[0]*w;oy+=m[1]*w;
 ox+=m[2]*h;oy+=m[3]*h;
-pos.y+=oy;pos.x+=ox;
+pos.y=oy+pos.y;pos.x=ox+pos.x;
 }
 switch(mode) {case 0:break; default:pos.x-=w<<12;pos.y-=h<<12;break;}
 pos.x+=translation->x;pos.y+=translation->y;

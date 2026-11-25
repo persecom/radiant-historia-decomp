@@ -101,18 +101,27 @@ s32 func_020020bc(s32 arg0, u32 arg1) {
     return *(volatile s32 *)0x040002a8;
 }
 
-void func_020020f8(s32 *arg0, s32 *arg1, s32 *arg2) {
-    arg2[0] = arg0[0] + arg1[0];
-    arg2[1] = arg0[1] + arg1[1];
-    arg2[2] = arg0[2] + arg1[2];
-}
-
 #pragma optimization_level 1
-#pragma scheduling on
-#pragma peephole on
-void func_02002128(s32 *arg0, s32 *arg1, s32 *arg2)
+void func_020020f8(s32 *arg0, s32 *arg1, s32 *arg2)
 {
     u32 bx = (u32)arg1[0];
+    u32 by = (u32)arg1[1];
+    u64 a = *(const u64 *)arg0;
+    u32 ax = (u32)a;
+    u32 ay = (u32)(a >> 32);
+    u32 az, bz;
+    ay += by;
+    ax += bx;
+    az = (u32)arg0[2];
+    bz = (u32)arg1[2];
+    arg2[0] = (s32)ax;
+    arg2[1] = (s32)ay;
+    arg2[2] = (s32)(az + bz);
+}
+#pragma optimization_level 4
+void func_02002128(s32 *arg0, s32 *arg1, s32 *arg2)
+{
+    u32 bx = *(volatile u32 *)arg1;
     u32 by = (u32)arg1[1];
     u64 a = *(const u64 *)arg0;
     u32 ax = (u32)a;
@@ -151,48 +160,52 @@ s32 func_02002214(const s32 *v) {
     return (*(volatile s32 *)0x040002b4 + 1) >> 1;
 }
 
-void func_02002274(const Vec3 *pSrc, Vec3 *pDst) {
-    s64 t = (s64)pSrc->y * pSrc->y;
-    s32 s;
-    s64 d;
-    t += (s64)pSrc->x * pSrc->x;
-    t += (s64)pSrc->z * pSrc->z;
-    *(volatile u16 *)0x04000280 = 2;
-    *(volatile u64 *)0x04000290 = (u64)1 << 56;
-    *(volatile u64 *)0x04000298 = t;
-    *(volatile u16 *)0x040002b0 = 1;
-    *(volatile u64 *)0x040002b8 = t << 2;
-    while (*(volatile u16 *)0x040002b0 & 0x8000) {
-    }
-    s = *(volatile s32 *)0x040002b4;
-    while (*(volatile u16 *)0x04000280 & 0x8000) {
-    }
-    d = *(volatile s64 *)0x040002a0 * s;
-    pDst->x = (s32)((d * pSrc->x + ((s64)1 << 44)) >> 45);
-    pDst->y = (s32)((d * pSrc->y + ((s64)1 << 44)) >> 45);
-    pDst->z = (s32)((d * pSrc->z + ((s64)1 << 44)) >> 45);
+void func_02002274(const Vec3 *pSrc, Vec3 *pDst)
+{
+  s64 t = ((s64) pSrc->y) * pSrc->y;
+  s32 s;
+  s64 d;
+  t += ((s64) pSrc->x) * (pSrc->x ^ 0);
+  t += ((s64) pSrc->z) * pSrc->z;
+  *((volatile u16 *) 0x04000280) = 2;
+  *((volatile u64 *) 0x04000290) = ((u64) 1) << 56;
+  *((volatile u64 *) 0x04000298) = t;
+  *((volatile u16 *) 0x040002b0) = 1;
+  *((volatile u64 *) 0x040002b8) = t << 2;
+  while ((*((volatile u16 *) 0x040002b0)) & 0x8000)
+  {
+  }
+
+  s = *((volatile s32 *) 0x040002b4);
+  while ((*((volatile u16 *) 0x04000280)) & 0x8000)
+  {
+  }
+
+  d = (*((volatile s64 *) 0x040002a0)) * s;
+  pDst->x = (s32) (((d * pSrc->x) + (((s64) 1) << 44)) >> 45);
+  pDst->y = (s32) (((d * pSrc->y) + (((s64) 1) << 44)) >> 45);
+  pDst->z = (s32) (((d * pSrc->z) + (((s64) 1) << 44)) >> 45);
 }
 
-s32 func_02002388(s32 *arg0, s32 *arg1) {
-    s64 sum;
-    s32 a;
-    s32 b;
-    s32 c;
-    s32 d;
-    a = arg0[1];
-    b = arg1[1];
-    c = arg0[0];
-    d = a - b;
-    sum = (s64)d * d;
-    d = c - arg1[0];
-    sum += (s64)d * d;
-    d = arg0[2] - arg1[2];
-    sum += (s64)d * d;
-    *(volatile u16 *)0x40002b0 = 1;
-    *(volatile u64 *)0x40002b8 = (u64)sum << 2;
-    while (*(volatile u16 *)0x40002b0 & 0x8000) {
-    }
-    return (*(volatile s32 *)0x40002b4 + 1) >> 1;
+s32 func_02002388(s32 *arg0, s32 *arg1)
+{
+  s64 sum;
+  s32 dy;
+  s32 dx;
+  s32 dz;
+  dy = arg0[1] - arg1[1];
+  sum = ((s64) dy) * dy;
+  dx = arg0[0] - arg1[0];
+  dz = arg0[2] - arg1[2];
+  sum += ((s64) dz) * dz;
+  sum += ((s64) dx) * dx;
+  *((volatile u16 *) 0x40002b0) = 1;
+  *((volatile u64 *) 0x40002b8) = ((u64) sum) << 2;
+  while ((*((volatile u16 *) 0x40002b0)) & 0x8000)
+  {
+  }
+
+  return ((*((volatile s32 *) 0x40002b4)) + 1) >> 1;
 }
 
 u16 func_02002404(s32 y, s32 x)

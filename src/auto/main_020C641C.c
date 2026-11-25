@@ -500,13 +500,11 @@ void func_020c6e2c(void *arg0, void *arg1) {
     func_020c6e40(arg0, arg1, 0, 0);
 }
 
+#pragma scheduling off
 s32 func_020c6e40(void *arg0, u8 *arg1, s32 arg2, s32 arg3) {
     s16 v2, v4, v6, v8, va, vc, ve, v10;
     u8 v13, v14, v15;
-    s32 s5, s6;
-    if (func_020c73c0() == 0) {
-        return 2;
-    }
+    if (func_020c73c0() == 0) return 2;
     (*(void (**)(void *))(arg1 + 0x18))(arg0);
     v2 = *(s16 *)(arg1 + 2);
     data_02160220[0] = 1;
@@ -518,25 +516,21 @@ s32 func_020c6e40(void *arg0, u8 *arg1, s32 arg2, s32 arg3) {
     v14 = arg1[0x14];
     v8 = *(s16 *)(arg1 + 8);
     data_02160220[3] = v6;
-    s5 = va + v14;
     vc = *(s16 *)(arg1 + 0xc);
     v15 = arg1[0x15];
     data_02160220[4] = v8;
-    s5 = arg2 + s5;
-    s6 = vc + v15;
     v13 = arg1[0x13];
-    data_02160220[5] = s5;
-    s6 = arg3 + s6;
-    data_02160220[6] = s6;
+    data_02160220[5] = arg2 + (va + v14);
+    data_02160220[6] = arg3 + (vc + v15);
     ve = *(s16 *)(arg1 + 0xe);
     data_02160220[7] = v13;
     v10 = *(s16 *)(arg1 + 0x10);
     data_02160220[8] = ve;
     data_02160220[9] = v10;
-    func_021098ac(data_02160220);
+    func_021098ac(data_02160220+1);
     return 0;
 }
-
+#pragma scheduling reset
 void func_020c6ef4(u8 *arg0) {
     func_020a3bbc(*(u16 *)(arg0 + 0x30));
 }
@@ -581,15 +575,16 @@ two:
     return 2;
 }
 
-s32 func_020c6fe4(u8 *arg0) {
-    s32 y = *(s16 *)(arg0 + 0x3c);
-    s32 y2 = y + *(s16 *)(arg0 + 0x40);
-    s32 x = *(s16 *)(arg0 + 0x3a);
-    s32 x2 = x + *(s16 *)(arg0 + 0x3e);
-    s32 px = data_02162908[0];
-    s32 py = data_02162908[1];
-    u8 inside = (px >= x && px <= x2 && py >= y && py <= y2);
-    return inside ? 0 : 1;
+s32 func_020c6fe4(u8 *arg0)
+{
+  s32 py = data_02162908[1];
+  s32 y = *((s16 *) (arg0 + 0x3c));
+  s32 y2 = y + (*((s16 *) (arg0 + 0x40)));
+  s32 x = *((s16 *) (arg0 + 0x3a));
+  s32 x2 = (*((s16 *) (arg0 + 0x3e))) + x;
+  s32 px = data_02162908[0];
+  u8 inside = (((px >= (*((s16 *) (arg0 + 0x3a)))) && (px <= x2)) && (py >= y)) && (py <= y2);
+  return (inside) ? (0) : (1);
 }
 
 s32 func_020c7048(u8 *arg0) {

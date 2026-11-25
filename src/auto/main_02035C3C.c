@@ -3,6 +3,163 @@
 extern u8 *data_02160a6c;
 
 extern u8 *func_020ddc08(s32);
+void func_02036298(s32 arg0, u8 arg1, s32 arg2);
+void func_020362c0(s32 arg0, u8 arg1, u16 arg2, s32 arg3);
+void func_020362e8(s32 arg0, s32 arg1);
+void func_02035c3c(u8 *p, s32 mode) {
+    switch (mode) {
+    case 0:
+        if (*(u16 *)(p + 0x8e) < 0x320) return;
+        *(s32 *)(p + 0x64) = 200;
+        switch (*(u16 *)(p + 0x8e)) {
+        case 0x321:
+            func_02036298(0x322, 10, 0x104);
+            func_02036298(0x323, 10, 0x12c);
+            break;
+        case 0x32b:
+            func_02036298(0x32d, 10, 0x104);
+            break;
+        case 0x335:
+            func_02036298(0x337, 10, 0x104);
+            break;
+        case 0x33f:
+            func_02036298(0x340, 10, 0x104);
+            func_02036298(0x341, 10, 0x12c);
+            break;
+        case 0x349:
+            func_02036298(0x34b, 10, 0x104);
+            break;
+        case 0x353:
+            *(s32 *)(p + 0x64) = 100;
+            func_02036298(0x354, 100, 0);
+            func_02036298(0x355, 100, 0);
+            break;
+        case 0x35d:
+            func_02036298(0x35f, 10, 0x104);
+            break;
+        }
+        break;
+    case 1:
+        if (*(u16 *)(p + 0x8e) < 0x320) return;
+        *(s32 *)(p + 0x64) = 100;
+        *(u16 *)(p + 0x190) = 0;
+        switch (*(u16 *)(p + 0x8e)) {
+        case 0x321:
+            func_02036298(0x322, 0, 0x104);
+            func_02036298(0x323, 0, 0x140);
+            break;
+        case 0x32b:
+            func_02036298(0x32d, 0, 0x12c);
+            break;
+        case 0x335:
+            func_02036298(0x337, 0, 0x12c);
+            break;
+        case 0x33f:
+            func_02036298(0x340, 0, 200);
+            func_02036298(0x341, 0, 0x12c);
+            break;
+        case 0x349:
+            func_02036298(0x34b, 0, 200);
+            break;
+        case 0x353:
+            *(s32 *)(p + 0x64) = 200;
+            func_02036298(0x354, 100, 0);
+            func_02036298(0x355, 100, 0);
+            func_020362e8(0x353, 0);
+            func_020362e8(0x354, 0);
+            func_020362e8(0x355, 0);
+            break;
+        case 0x35d:
+            func_02036298(0x35f, 0, 0x12c);
+            break;
+        }
+        break;
+    case 2:
+        if (*(u16 *)(p + 0x8e) < 0x320) return;
+        p[0x192] = 100;
+        *(u16 *)(p + 0x190) = 0x97;
+        *(s32 *)(p + 0x64) = 0;
+        switch (*(u16 *)(p + 0x8e)) {
+        case 0x321:
+            func_020362c0(0x322, 100, 0xbe, 0);
+            func_020362c0(0x323, 100, 0xfa, 0);
+            break;
+        case 0x32b:
+            func_020362c0(0x32d, 100, 0x12c, 0);
+            break;
+        case 0x335:
+            func_020362c0(0x337, 100, 0x12c, 0);
+            break;
+        case 0x33f:
+            func_020362c0(0x340, 100, 0xbe, 0);
+            func_020362c0(0x341, 100, 0xfa, 0);
+            break;
+        case 0x349:
+            func_020362c0(0x34b, 100, 200, 0);
+            break;
+        case 0x353:
+            func_020362e8((s32)p, 1);
+            func_020362e8(0x354, 1);
+            func_020362e8(0x355, 1);
+            func_020362c0(0x353, 100, 200, 0);
+            func_020362c0(0x354, 100, 200, 0);
+            func_020362c0(0x355, 100, 200, 0);
+            break;
+        case 0x35d:
+            func_020362c0(0x35f, 100, 0x12c, 0);
+            break;
+        }
+        break;
+    case 3:
+        if (*(u16 *)(p + 0x8e) < 0x320) return;
+        switch (*(u16 *)(p + 0x8e)) {
+        case 0x321:
+            p[0x192] = 100;
+            *(s32 *)(p + 0x64) = 0;
+            *(u16 *)(p + 0x190) = 0xd3;
+            func_02036298(0x322, 0xe6, 0);
+            func_02036298(0x323, 0x18, 0);
+            break;
+        case 0x32b:
+            p[0x192] = 100;
+            *(s32 *)(p + 0x64) = 0;
+            *(u16 *)(p + 0x190) = 0xd3;
+            func_02036298(0x32d, 0x18, 0);
+            break;
+        case 0x335:
+            p[0x192] = 100;
+            *(s32 *)(p + 0x64) = 0;
+            *(u16 *)(p + 0x190) = 0xd3;
+            func_02036298(0x337, 0x18, 0);
+            break;
+        case 0x33f:
+            p[0x192] = 100;
+            *(s32 *)(p + 0x64) = 0;
+            *(u16 *)(p + 0x190) = 0xd3;
+            func_02036298(0x340, 0xe6, 0);
+            func_02036298(0x341, 0x18, 0);
+            break;
+        case 0x349:
+            p[0x192] = 100;
+            *(s32 *)(p + 0x64) = 0;
+            *(u16 *)(p + 0x190) = 0xd3;
+            func_02036298(0x34b, 0x18, 0);
+            break;
+        case 0x353:
+            *(s32 *)(p + 0x64) = 100;
+            func_02036298(0x354, 100, 0);
+            func_02036298(0x355, 100, 0);
+            break;
+        case 0x35d:
+            *(s32 *)(p + 0x64) = 100;
+            func_02036298(0x354, 100, 0);
+            func_02036298(0x355, 100, 0);
+            break;
+        }
+        break;
+    }
+}
+
 void func_02036298(s32 arg0, u8 arg1, s32 arg2) {
     u8 *p = func_020ddc08(arg0);
     p[0x192] = arg1;

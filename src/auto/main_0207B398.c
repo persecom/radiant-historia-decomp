@@ -21,14 +21,13 @@ void func_0207b398(void)
 }
 
 s32 func_0207be40(s32 *arg0, s32 *arg1, s32 arg2, s32 arg3) {
-    s32 v[2];
-    s64 sq;
-    v[0] = func_0201ff0c(func_020201f4(func_0201f884(arg0[0] - arg1[0]), arg2));
-    v[1] = func_0201ff0c(func_020201f4(func_0201f884(arg0[2] - arg1[2]), arg3));
-    sq = (s64)v[0] * v[0] + (s64)v[1] * v[1];
+    s32 x, y;
+    u64 sq;
+    x = func_0201ff0c(func_020201f4(func_0201f884(arg0[0] - arg1[0]), arg2));
+    y = func_0201ff0c(func_020201f4(func_0201f884(arg0[2] - arg1[2]), arg3));
+    sq = ((s64)x * x + (s64)y * y) << 2;
     *(volatile u16 *)0x40002b0 = 1;
-    *(volatile u32 *)0x40002b8 = (u32)(sq << 2);
-    *(volatile u32 *)0x40002bc = (u32)(sq >> 30);
+    *(volatile u64 *)0x40002b8 = sq;
     while (*(volatile u16 *)0x40002b0 & 0x8000) {
     }
     return (*(volatile s32 *)0x40002b4 + 1) >> 1;

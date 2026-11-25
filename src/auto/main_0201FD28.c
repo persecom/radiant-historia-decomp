@@ -2,6 +2,32 @@
 #include "common.h"
 extern u32 data_02160034;
 
+u64 func_0201fd28(u32 numerator, u32 denominator)
+{
+    u32 remainder = 0;
+    s32 i;
+
+    if (denominator == 0) {
+        return numerator;
+    }
+
+    if (numerator < denominator) {
+        return (u64)numerator << 32;
+    }
+
+    for (i = 0; i < 32; i++) {
+        remainder = (remainder << 1) | (numerator >> 31);
+        numerator <<= 1;
+
+        if (remainder >= denominator) {
+            remainder -= denominator;
+            numerator |= 1;
+        }
+    }
+
+    return ((u64)remainder << 32) | numerator;
+}
+
 u32 func_0201ff40(u32 x) {
     s32 e;
     if ((x & 0x80000000u) == 0) {
@@ -34,6 +60,26 @@ saturate:
     return ~((s32)hi >> 31) + 0x80000000;
 }
 
+#pragma optimization_level 2
+u64 func_0201ffcc(u64 bits) {
+    u32 lo = bits, hi = bits >> 32;
+    s32 shift;
+    register u64 mantissa;
+    if (!(hi & 0x80000000)) {
+        shift = 0x43e - (hi >> 20);
+        if (shift < 0) goto overflow;
+        if (shift >= 64) goto zero;
+        mantissa = (bits << 11) | 0x8000000000000000ULL;
+        if (shift > 32) { shift -= 32; return (u32)(mantissa >> 32) >> shift; } else
+        return mantissa >> shift;
+    }
+    if (bits > 0xfff0000000000000ULL) goto overflow;
+zero:
+    return 0;
+overflow:
+    return ~(u64)0;
+}
+#pragma optimization_level 4
 u64 func_02020058(u64 value) {
 u32 lo=(u32)value,hi=(u32)(value>>32);
 s32 exponent;

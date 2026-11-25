@@ -106,6 +106,24 @@ void *func_020eb400(void) {
     return p;
 }
 
+extern void func_02005e80(u8 *, u8 *, u32);
+extern void func_021092d8(u8 *);
+extern u8 data_021518c8[], data_021518e8[], data_02151900[], data_02151918[];
+s32 func_020eb44c(s32 mode, s32 value, s32 arg2) {
+    u8 stack[0x124];
+    u8 *dst = stack + 0x10a;
+
+    if (mode == 0) func_02005e80(dst, data_021518c8, 0);
+    else if (mode == 1) func_02005e80(dst, data_021518e8, 0);
+    else if (mode == 2) func_02005e80(dst, data_02151900, 0);
+    else if (mode == 3) func_02005e80(dst, data_02151918, 0);
+    func_021092d8(dst);
+    *(u32 *)(data_02160aa4 + 4) = 0;
+    *(u32 *)(data_02160aa4 + 8) = 0;
+    *(u32 *)(data_02160aa4 + 0xc) = 0;
+    return 1;
+}
+
 void func_020ebc24(u8 *arg0) {
     if (*(void **)arg0 != NULL) {
         func_0210c5dc(*(void **)arg0);
@@ -134,10 +152,10 @@ void func_020ebc94(u8 *arg0, u32 arg1, s32 arg2) {
                   *(s32 *)(p4 + 0x14), *(s32 *)(p4 + 0x10));
 }
 
+#pragma optimization_level 3
 s32 func_020ebcfc(u8 *arg0, u32 arg1, s32 arg2) {
     u8 *r0 = *(u8 **)(arg0 + 8);
-    u8 *p58 = *(u8 **)(r0 + 0x58);
-    u32 count = *(u16 *)(*(u8 **)(p58 + 0xc));
+    u32 count = *(u16 *)(*(u8 **)(*(u8 **)(r0 + 0x58) + 0xc));
     s32 res;
     if (count <= arg1) {
         return 0;
@@ -149,7 +167,7 @@ s32 func_020ebcfc(u8 *arg0, u32 arg1, s32 arg2) {
     func_020ebc94(arg0, arg1, arg2);
     return 1;
 }
-
+#pragma optimization_level 4
 s32 func_020ebd5c(u8 *arg0, s32 arg1) {
     u8 *r3 = *(u8 **)(arg0 + 0xc);
     if (r3 != NULL) {

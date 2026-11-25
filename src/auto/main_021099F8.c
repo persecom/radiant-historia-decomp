@@ -42,23 +42,18 @@ typedef struct {
 
 void func_021099f8(s16 *arg0) {
     s32 x = arg0[1], y = arg0[2], z = arg0[3];
-    s32 tx, sy, flags, sx;
+    s32 sy, flags, sx;
 
     *(volatile u32 *)0x40004a8 = 0;
 
-    tx = x << 12;
     sy = arg0[5];
     flags = arg0[0];
     sx = arg0[4];
 
     *(volatile u32 *)0x4000444 = 0;
 
-    *(volatile s32 *)0x4000470 = tx;
-    *(volatile s32 *)0x4000470 = y << 12;
-    *(volatile s32 *)0x4000470 = z << 12;
-
-    *(volatile s32 *)0x400046c = sx << 12;
-    *(volatile s32 *)0x400046c = sy << 12;
+    SetTranslation_021098ac(x, y, z);
+    SetScale_021098ac(sx, sy);
     *(volatile s32 *)0x400046c = 0x1000;
 
     *(volatile u32 *)0x4000500 = 1;

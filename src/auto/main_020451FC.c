@@ -43,6 +43,48 @@ extern void func_020a9544(void *arg0);
 extern void func_020a994c(void *arg0);
 extern void func_020a98a0(void *arg0);
 
+void func_020451fc(void) {
+    s32 zero = 0;
+    s32 one = 1;
+    u8 *g = data_02160204;
+
+    func_020a2c20();
+    func_02002fb0(zero, 0x1f, 0x7fff, zero);
+    func_020f40a4();
+    func_020be784();
+    func_020be874();
+    func_020bf414(one);
+    func_02120524(one);
+    func_020eff5c(one);
+    func_02044f70();
+    func_020bed54(one, one);
+    func_0210f6d4();
+    func_020eb180(one, one);
+    func_020ec12c();
+    func_020e9eb0();
+    func_020eaa10(one);
+    func_020ec98c(zero);
+    func_0203e61c();
+    func_0203ee20(one);
+    func_0210b894();
+    func_020f5760();
+    *(u8 **)(data_021600ac) = func_0210c594(0x908, data_02155c3c);
+    *(s32 *)(*(u8 **)(data_021600ac) + 0x35c) = zero;
+    *(s32 *)(*(u8 **)(data_021600ac) + 0x360) = zero;
+    *(s32 *)(*(u8 **)(data_021600ac) + 0x354) = zero;
+    *(s32 *)(*(u8 **)(data_021600ac) + 0x358) = zero;
+    *(s32 *)(*(u8 **)(data_021600ac) + 0x34c) = zero;
+    *(s32 *)(*(u8 **)(data_021600ac) + 0x350) = zero;
+    *(s32 *)(*(u8 **)(data_021600ac) + 0x364) = zero;
+    *(u16 *)(*(u8 **)(data_021600ac) + 0x348) = 0xd;
+    func_021070c4();
+    func_02046594();
+    func_020469f4();
+    func_02046b6c();
+    func_020a31c8(0xe);
+    *(s32 *)(*(u8 **)(data_021600ac) + 0xc) = zero;
+}
+
 void func_02045800(void) {
 s32 priority;
 s32 x,y,z;
@@ -209,5 +251,22 @@ void func_02045d84(void) {
 
 u32 func_02045e28(void) {
     u8 *p = data_02160204;
-    return (p[0x7e] == 0 && *(u32 *)(data_021600ac + 0x10) == 0 && p[0x85] == 0) ? p[0x85] : p[0x7e];
+    if (p[0x7e] != 0) {
+        return p[0x7e];
+    }
+    {
+        u8 *q = data_021600ac;
+        u32 a = *(u32 *)(q + 0x10);
+        *(volatile u32 *)(q + 0x68);
+        if (a != 0) {
+            return a;
+        }
+    }
+    {
+        u8 v = p[0x85];
+        if (v != 0) {
+            return v;
+        }
+        return v;
+    }
 }

@@ -12,6 +12,7 @@ extern s32 func_020d90bc(s32),func_0205bcb0(u8 *,s32),func_020ec950(s32);
 extern void func_020ec548(void),func_0210d27c(s32),func_020df3f4(u8 *,s32);
 extern void func_020daefc(u8 *,u8 *,s32,s32,s32,s32,s32),func_020d56d8(u8 *,u8 *,s32,s32);
 
+#pragma scheduling off
 void func_0203a3b0(u8 *actor){
 u8 *ctx=*(u8 **)(actor+0x128);
 u8 *state=*(u8 **)(ctx+0x8c);
@@ -45,7 +46,7 @@ break;
 case 3:
 if(!(*(u16 *)(state+8)&4)){func_020dd810(actor,14,0);func_020331d0(state,4,1);}
 if((*(u16 *)(state+8)&4)&&!(*(u16 *)(state+8)&8)){
-++*(s16 *)(state+2);
+*(s16 *)(state+2)=(s16)(*(s16 *)(state+2)+1);
 if(*(s16 *)(state+2)>7){func_0210d27c(0x94);*(s16 *)(state+2)=0;func_020331d0(state,8,1);}
 }
 if(func_0205bcb0(actor,6)&2){
@@ -61,9 +62,9 @@ func_020c1370(1,&pos,0x82d,0,0x180);
 func_020331d0(state,1,1);
 }
 if(!(*(u16 *)(state+8)&2)){
-++*(s16 *)(state+2);
+*(s16 *)(state+2)=(s16)(*(s16 *)(state+2)+1);
 if(*(s16 *)(state+2)%6==0){func_0210d27c(4);func_0210d27c(0x61);}
-if(*(s16 *)(state+2)>30){func_020ec950(1);func_020ec548();func_020dd810(actor,17,0);{u16 bit=2;s32 set=1;func_020331d0(state,bit,set);}}
+if(*(s16 *)(state+2)>30){func_020ec950(1);func_020ec548();func_020dd810(actor,17,0);func_020331d0(state,2,1);}
 }
 if((*(u16 *)(state+8)&2) && (func_0205bcb0(actor,6)&2)){
 func_020dd810(actor,0,0);
@@ -74,7 +75,7 @@ next=5;
 break;
 case 5:
 if(!(*(u16 *)(state+8)&1)){
-++*(s16 *)(state+2);
+*(s16 *)(state+2)=(s16)(*(s16 *)(state+2)+1);
 if(*(s16 *)(state+2)>10){
 *(s16 *)(state+2)=0;
 pos.x=0x80000;pos.y=0x60000;pos.z=0x259000;
@@ -82,11 +83,11 @@ func_020c1370(2,&pos,0x82d,1,0x280);func_020331d0(state,1,1);
 }
 }
 if(*(u16 *)(state+8)&1){
-++*(s16 *)(state+4);
+*(s16 *)(state+4)=(s16)(*(s16 *)(state+4)+1);
 if(*(s16 *)(state+4)%4==0)func_0210d27c(0x46);
 }
 if((*(u16 *)(state+8)&1)&&!(*(u16 *)(state+8)&2)){
-++*(s16 *)(state+2);
+*(s16 *)(state+2)=(s16)(*(s16 *)(state+2)+1);
 if(*(s16 *)(state+2)>10){
 *(s16 *)(state+2)=0;
 pos.x=0x80000;pos.y=0x60000;pos.z=0x2bc000;
@@ -94,11 +95,11 @@ func_020c1370(3,&pos,0x82d,5,0x380);func_020331d0(state,2,1);
 }
 }
 if(*(u16 *)(state+8)&2){
-++*(s16 *)(state+6);
+*(s16 *)(state+6)=(s16)(*(s16 *)(state+6)+1);
 if(*(s16 *)(state+6)%6==0)func_0210d27c(0x83);
 }
 if((*(u16 *)(state+8)&1)&&(*(u16 *)(state+8)&2)&&!(*(u16 *)(state+8)&4)){
-++*(s16 *)(state+2);
+*(s16 *)(state+2)=(s16)(*(s16 *)(state+2)+1);
 if(*(s16 *)(state+2)>30){
 s16 i;
 *(s16 *)(state+4)=0;
@@ -118,11 +119,11 @@ func_020d56d8(actor,obj,0,1);func_020d56d8(actor,obj,0,2);
 break;
 case 6:
 if(!(*(u16 *)(state+8)&8)){
-++*(s16 *)(state+6);
+*(s16 *)(state+6)=(s16)(*(s16 *)(state+6)+1);
 if(*(s16 *)(state+6)%6==0)func_0210d27c(0x83);
 }
 if(!(*(u16 *)(state+8)&8)){
-++*(s16 *)(state+2);
+*(s16 *)(state+2)=(s16)(*(s16 *)(state+2)+1);
 if(*(s16 *)(state+2)>40){func_020ec950(3);func_020ec548();func_020331d0(state,8,1);}
 }
 if(*(u16 *)(state+8)&8)next=7;
@@ -147,3 +148,4 @@ break;
 }
 if(next)func_020331b0(state,next);
 }
+#pragma scheduling reset

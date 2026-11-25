@@ -121,14 +121,15 @@ u8 *func_020143d4(double, u8 *, FormatSpec);
 s32 func_020150a4(s32 (*write)(void *, const u8 *, u32),void *ctx,const u8 *fmt,u8 *ap,s32 secure) {
     u8 buf[512];
     FormatSpec spec;
-    u8 space;
     u8 pad=' ';
+    u8 space;
     s64 wide;
-    double v;
     s32 value;
-    s32 total=0,len,field;
+    s32 total=0,field;
+    s32 len;
     u8 *text,*mark;
-    secure=(u8)secure;
+    long double v;
+    secure=secure;
     while(*fmt) {
         mark=func_02016f8c(fmt,'%');
         if(!mark) {
@@ -142,12 +143,14 @@ s32 func_020150a4(s32 (*write)(void *, const u8 *, u32),void *ctx,const u8 *fmt,
         if(len && !write(ctx,fmt,len))return -1;
         fmt=func_020139a4(mark,&ap,&spec);
         switch(spec.conversion) {
+case 255:goto invalid;
+
         case 'd':case 'i':
             if(spec.unk4==3) {value=format_arg_long(&ap);}
             else if(spec.unk4==4) {wide=format_arg_ll(&ap);}
             else if(spec.unk4==6) {wide=format_arg_ll(&ap);}
-            else if(spec.unk4==7) {value=format_arg_int(&ap);}
-            else if(spec.unk4==8) {value=format_arg_int(&ap);}
+            else if(spec.unk4==7) {value=format_arg_ptrdiff(&ap);}
+            else if(spec.unk4==8) {value=format_arg_long(&ap);}
             else {value=format_arg_int(&ap);}
             if(spec.unk4==2)value=(s16)value;
             if(spec.unk4==1)value=(s8)value;
@@ -159,8 +162,8 @@ s32 func_020150a4(s32 (*write)(void *, const u8 *, u32),void *ctx,const u8 *fmt,
             if(spec.unk4==3) {value=format_arg_ulong(&ap);}
             else if(spec.unk4==4) {wide=format_arg_ull(&ap);}
             else if(spec.unk4==6) {wide=format_arg_ull(&ap);}
-            else if(spec.unk4==7) {value=format_arg_uint(&ap);}
-            else if(spec.unk4==8) {value=format_arg_uint(&ap);}
+            else if(spec.unk4==7) {value=format_arg_ptrdiff(&ap);}
+            else if(spec.unk4==8) {value=format_arg_long(&ap);}
             else {value=format_arg_uint(&ap);}
             if(spec.unk4==2)value=(u16)value;
             if(spec.unk4==1)value=(u8)value;
@@ -186,12 +189,12 @@ s32 func_020150a4(s32 (*write)(void *, const u8 *, u32),void *ctx,const u8 *fmt,
             if(spec.unk4==5) {
                 u8 *str;
                 ap+=4;str=*(u8 **)(ap-4);
-                if(secure && !str) {func_02016d78(0,0,-1);return -1;}
+                if(secure && !str) {total=-1;func_02016d78(0,0,total);return total;}
                 if(!str)str=data_02145e84;
                 text=buf;
                 if(func_020137e0(text,str,512)<0)goto invalid;
             } else {ap+=4;text=*(u8 **)(ap-4);}
-            if(secure && !text) {func_02016d78(0,0,-1);return -1;}
+            if(secure && !text) {total=-1;func_02016d78(0,0,total);return total;}
             if(!text)text=data_02145e88;
             if(spec.alternate) {
                 len=*text++;
@@ -206,15 +209,15 @@ s32 func_020150a4(s32 (*write)(void *, const u8 *, u32),void *ctx,const u8 *fmt,
         case 'n': {
             void *ptr;
             ap+=4;ptr=*(void **)(ap-4);
-            if(secure) {func_02016d78(0,0,-1);return -1;}
+            if(secure) {total=-1;func_02016d78(0,0,total);return total;}
             switch(spec.unk4) {
             case 0:*(int *)ptr=total;break;
             case 2:*(short *)ptr=total;break;
             case 3:*(long *)ptr=total;break;
-            case 4:*(long long *)ptr=total;break;
             case 6:*(long long *)ptr=total;break;
             case 7:*(int *)ptr=total;break;
             case 8:*(int *)ptr=total;break;
+            case 4:*(long long *)ptr=total;break;
             }
             continue;
         }

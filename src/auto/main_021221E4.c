@@ -28,7 +28,7 @@ indices=(u16 *)(base+track[1]); frame=time>>12; offsetA=*(u32 *)(base+12); offse
 if(frame==*(u16 *)(base+4)-1) {
 if(flags&0xc0000000) { if(flags&0x40000000) frame=(frame&1)+(frame>>1); else frame=(frame&3)+(frame>>2); }
 if(*(u32 *)(base+8)&2) {next=0;goto unit;}
-if(func_0212251c(out,(s16 *)(base+offsetA),(s16 *)(base+offsetB),indices[frame])) { s32 y,x,z; s32 by,az,bz; s32 ax,ay,bx; bz=out[5]; by=out[4]; ay=out[1]; az=out[2]; x=(ay*bz-az*by)>>12; bx=out[3]; ax=out[0]; y=(az*bx-ax*bz)>>12; z=(ax*by-ay*bx)>>12; out[6]=x; out[7]=y; out[8]=z; }
+if(func_0212251c(out,(s16 *)(base+offsetA),(s16 *)(base+offsetB),indices[frame])) { s32 y,x,z; s32 by,az,bz; s32 ax,ay,bx; ay=out[1]; bz=out[5]; az=out[2]; by=out[4]; ax=out[0]; bx=out[3]; x=(ay*bz-az*by)>>12; y=(az*bx-ax*bz)>>12; z=(ax*by-ay*bx)>>12; out[6]=x; out[7]=y; out[8]=z; }
 else func_02002274(out+6,out+6);
 return;
 }
@@ -56,7 +56,7 @@ out[6]=a[6]*step+((frac*(b[6]-a[6]))>>12);
 out[7]=a[7]*step+((frac*(b[7]-a[7]))>>12);
 out[8]=a[8]*step+((frac*(b[8]-a[8]))>>12);
 func_02002274(out+6,out+6);
-} else { s32 y,x,z; s32 by,az,bz; s32 ax,ay,bx; bz=out[5]; by=out[4]; ay=out[1]; az=out[2]; x=(ay*bz-az*by)>>12; bx=out[3]; ax=out[0]; y=(az*bx-ax*bz)>>12; z=(ax*by-ay*bx)>>12; out[6]=x; out[7]=y; out[8]=z; }
+} else { s32 y,x,z; s32 by,az,bz; s32 ax,ay,bx; ay=out[1]; bz=out[5]; az=out[2]; by=out[4]; ax=out[0]; bx=out[3]; x=(ay*bz-az*by)>>12; y=(az*bx-ax*bz)>>12; z=(ax*by-ay*bx)>>12; out[6]=x; out[7]=y; out[8]=z; }
 }
 #pragma opt_propagation on
 s32 func_0212251c(s32 *out, const s16 *a, const s16 *b, u32 flags) {
@@ -244,40 +244,48 @@ void func_0212299c(u8 *pResult, u8 *anmObj, u32 dataIdx) {
 }
 
 s32 func_02122aa8(u8 *base, u32 flags, s32 offset, u32 frame) {
-u32 end, a, b;
-s32 x,y;
-if (flags & 0x20000000) return offset;
-base += offset;
-if (flags & 0xc0000000) {
-end = (u16)flags;
-if (flags & 0x40000000) {
-if (frame & 1) {
-if (frame > end) { frame = (end >> 1)+1; goto sample; }
-frame >>= 1; goto average;
-}
-frame >>= 1;
-} else {
-u32 rem = frame & 3;
-if (rem) {
-if (frame > end) { frame = (end >> 2)+rem; goto sample; }
-if (frame & 1) {
-if (frame & 2) { frame >>= 2; a = frame+1; } else { a = frame >> 2; frame = a+1; }
-if (flags & 0x10000000) { x = ((s16 *)base)[a]; y = ((s16 *)base)[frame]; }
-else { x = ((s32 *)base)[a]; y = ((s32 *)base)[frame]; }
-return (3*x+y)>>2;
-}
-frame >>= 2; goto average;
-}
-frame >>= 2;
-}
-}
+    u32 end, a;
+    s32 x, y;
+    if (flags & 0x20000000) return offset;
+    base += offset;
+    if (flags & 0xc0000000) {
+        end = (u16)flags;
+        if (flags & 0x40000000) {
+            if (frame & 1) {
+                if (frame > end) { frame = (end >> 1) + 1; goto sample; }
+                frame >>= 1; goto average;
+            }
+            frame >>= 1;
+        } else {
+            u32 rem = frame & 3;
+            if (rem) {
+                if (frame > end) { frame = (end >> 2) + rem; goto sample; }
+                if (frame & 1) {
+                    if (frame & 2) { frame >>= 2; a = frame + 1; } else { a = frame >> 2; frame = a + 1; }
+                    if (flags & 0x10000000) { x = ((s16 *)base)[a]; y = ((s16 *)base)[frame]; }
+                    else { x = ((s32 *)base)[a]; y = ((s32 *)base)[frame]; }
+                    x *= 3;
+                    x += y;
+                    return x >> 2;
+                }
+                frame >>= 2; goto average;
+            }
+            frame >>= 2;
+        }
+    }
 sample:
-if (flags & 0x10000000) return ((s16 *)base)[frame];
-return ((s32 *)base)[frame];
+    if (flags & 0x10000000) return ((s16 *)base)[frame];
+    return ((s32 *)base)[frame];
 average:
-if (flags & 0x10000000) { x = ((s16 *)base)[frame]; y = ((s16 *)base)[frame+1]; }
-else { x = ((s32 *)base)[frame]; y = ((s32 *)base)[frame+1]; }
-return (x+y)>>1;
+    if (flags & 0x10000000) {
+        y = (((s16 *)base) + frame)[1];
+        x = ((s16 *)base)[frame];
+    } else {
+        s32 *p = (s32 *)base + frame;
+        x = p[0];
+        y = p[1];
+    }
+    return (y + x) >> 1;
 }
 
 u32 func_02122b9c(u8 *base,u32 flags,u32 offset,s32 frame) {
@@ -490,16 +498,14 @@ void func_02122fa0(void *arg0_, u8 arg1, u8 *arg2) {
 }
 
 void func_02123074(u8 *arg0, void *arg1, u32 *arg2) {
-    u32 off = (arg0 != NULL) ? *(u16 *)(arg0 + 0x34) : 0;
+    u32 off;
     u32 result;
-    u16 *p;
-    u32 v, w;
-    if (off == 0) {
+    if (arg0 == NULL || (off = *(u16 *)(arg0 + 0x34)) == 0) {
         result = 0;
     } else {
-        p = func_02120c74(arg0 + off);
-        v = p[0];
-        w = (u16)(((u16)*(u32 *)(arg0 + 0x2c)) & ~0xe0000000u);
+        u16 *p = func_02120c74(arg0 + off);
+        u32 v = p[0];
+        u32 w = (u16)(((u16)*(u32 *)(arg0 + 0x2c)) & ~0xe0000000u);
         if ((p[1] & 1) == 0) {
             v = (v << 15) >> 16;
             w = (w << 15) >> 16;
@@ -529,13 +535,14 @@ void func_021230d8(u8 *arg0, u8 *arg1, s32 arg2) {
 }
 
 void func_02123168(u8 *arg0, u8 *arg1, u8 *arg2) {
+    u32 i;
     u8 count = arg2[0x17];
     void *d = data_02155ed8;
-    u32 i = 0;
     *(void **)(arg0 + 0xc) = d;
     arg0[0x19] = count;
     *(void **)(arg0 + 8) = arg1;
-    for (i = 0; i < arg0[0x19]; i++) {
+    i = 0;
+    for (; i < arg0[0x19]; i++) {
         *(u16 *)(arg0 + 0x1a + i * 2) = (u16)(i | 0x100);
     }
 }

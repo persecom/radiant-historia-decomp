@@ -537,8 +537,8 @@ void func_02109600(void) {
         }
     }
     if (active == 0) {
-        func_0210da14(data_02162510);
-        *(s32 *)data_02162510 = 0;
+        func_0210da14((void *)data_02162510);
+        *(s32 *)((u8 *)data_02162510) = 0;
     }
 }
 #pragma opt_common_subs on

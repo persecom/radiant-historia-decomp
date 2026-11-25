@@ -70,18 +70,19 @@ void func_020be330(u8 *arg0) {
     }
 }
 
+#pragma opt_strength_reduction off
 void func_020be3a8(u8 *arg0) {
     s16 a = *(s16 *)(arg0 + 0x1a);
     s16 b = *(s16 *)(arg0 + 0x1c);
     s32 w = (*(s32 *)(data_021600e4 + 0x6c) << 5) / 4096;
     func_020be30c(&a, &b);
     func_020a9e38(&a, &b);
-    func_020a9d9c(a, b, (s16)(a + ((w << 4) >> 16)), b);
-    func_020a9d9c((s16)(a + ((w << 4) >> 16)), b, (s16)(a + ((w << 4) >> 16)), (s16)(b + ((w << 4) >> 16)));
-    func_020a9d9c(a, (s16)(b + ((w << 4) >> 16)), (s16)(a + ((w << 4) >> 16)), (s16)(b + ((w << 4) >> 16)));
-    func_020a9d9c(a, b, a, (s16)(b + ((w << 4) >> 16)));
+    func_020a9d9c(a, b, (s16)(a + w), b);
+    func_020a9d9c((s16)(a + w), b, (s16)(a + w), (s16)(b + w));
+    func_020a9d9c(a, (s16)(b + w), (s16)(a + w), (s16)(b + w));
+    func_020a9d9c(a, b, a, (s16)(b + w));
 }
-
+#pragma opt_strength_reduction on
 void func_020be490(u8 *p,s16 x,s16 y) {
 Unk_020be490 desc=data_02143db8;
 s16 width=30,height=15;
@@ -266,9 +267,11 @@ func_020f4668(&b);
 }
 
 void func_020beb14(void) {
-    data_02155984 = data_0216242c;
-    data_0216242c[9] += *(s32 *)(data_0216020c + 0x98);
-    data_02151fcc = *(s16 *)(data_0216020c + 0x8e) + 0x80;
+    s32 *q = data_0216242c;
+    u8 *p = data_0216020c;
+    data_02155984 = q;
+    q[9] += *(s32 *)(p + 0x98);
+    data_02151fcc = *(s16 *)(p + 0x8e) + 0x80;
     func_02108240();
 }
 
@@ -421,24 +424,56 @@ out[1] = func_0201ff0c(func_020203d4(func_020201f4(func_02020604(0x3f800000,t),f
 out[2] = func_0201ff0c(func_020203d4(func_020201f4(func_02020604(0x3f800000,t),func_0201f884(a[2])),func_020201f4(t,func_0201f884(b[2]))));
 }
 
-s32 func_020bf118(void *out, VecBf118 *input, s32 count, f32 t) {
-s32 factorial;
-s32 i,j;
-s32 n=0, consumed=0;
-VecBf118 *work;
-s32 base=0;
-factorial=1;
-if(t>1.0f) return 0;
-for(i=count-1;i>0;i--) factorial *= i;
-work=(VecBf118 *)func_0210c594((factorial+count)*0x90,data_02155c3c);
-for(i=0;i<count;i++) {work[i]=input[i];n++;}
-for(i=count-1;i>0;i--) {
-for(j=0;j<i;j++) {((void (*)(void *,void *,void *,f32))func_020bf00c)(&work[n],&work[base+j],&work[base+j+1],t);n++;consumed++;}
-consumed++;base=consumed;
-}
-func_02009008(&work[base],out,12);
-if(work) func_0210c5dc(work);
-return 1;
+s32 func_020bf118(void *out, VecBf118 *input, s32 count, f32 t)
+{
+  s32 j;
+  VecBf118 *new_var;
+  s32 i;
+  s32 factorial;
+  s32 n = 0;
+  u8 *new_var2;
+  s32 consumed = 0;
+  VecBf118 *work;
+  s32 base = 0;
+  factorial = 1;
+  if (t > 1.0f)
+  {
+    return 0;
+  }
+  for (i = count - 1; i > 0; i--)
+  {
+    factorial *= i;
+  }
+
+  consumed = factorial + count;
+  new_var2 = func_0210c594(consumed * 0x90, data_02155c3c);
+  new_var = (VecBf118 *) new_var2;
+  work = new_var;
+  for (i = 0; i < count; i++)
+  {
+    work[i] = input[i];
+    n++;
+  }
+
+  for (i = count - 1; i > 0; i--)
+  {
+    for (j = 0; j < i; j++)
+    {
+      ((void (*)(void *, void *, void *, f32)) func_020bf00c)(&work[n], &work[base + j], &work[(base + j) + 1], t);
+      n++;
+      consumed++;
+    }
+
+    consumed++;
+    base = consumed;
+  }
+
+  func_02009008(&work[base], out, 12);
+  if (work)
+  {
+    func_0210c5dc(work);
+  }
+  return 1;
 }
 
 void func_020bf24c(s32 arg0, u8 arg1) {

@@ -133,9 +133,9 @@ Styles_0208e864 styles=data_02140ef8;
 u8 count=6;
 u8 *base=data_0216010c;
 s32 offset=(u8)(base[0x50d7]-base[0x50d6]);
-s32 row, depth;
-s16 i;
+s32 texture, row, depth;
 u8 selected;
+s16 i;
 if(*(s16 *)(base+0x50d4)<6) {
 count=(u8)*(s16 *)(base+0x50d4);
 {s32 j;for(j=count;j<6;j=(s16)(j+1)) func_020895a0((u16)j,(x+30)<<12,(y+28+j*22)<<12,90,0,0,0,0,0);}
@@ -156,11 +156,10 @@ case 2:func_020a3bbc(72);break;
 case 3:func_020a3bbc(86);break;
 }
 func_021098ac(&icon);
-{s32 texture=selected+73;func_020a3bbc(texture);
+texture=selected+73;func_020a3bbc(texture);
 amount.f5=x+128;amount.f6=y+31+i*22;amount.f7=z+1;
 func_021098ac(&amount);
 func_0208db04((u16)texture,*(s16 *)(data_0216010c+(offset<<6)+(i<<6)+0x4890),x+150,y+31+i*22,7,8,8,z+1);
-}
 }
 func_0208dcc8((s16)(x+168),(s16)(y+26),94,z,offset);
 if(count) {

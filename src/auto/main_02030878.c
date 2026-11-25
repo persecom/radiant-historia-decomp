@@ -136,3 +136,29 @@ s32 func_02030878(u8 *arg0, u8 *arg1, u8 *arg2, u32 arg3, u32 arg4, u8 arg5) {
 
     return 0;
 }
+
+extern void func_0202647c(u8 *, u32);
+extern u32 func_0202e84c(u8 *);
+void func_02030b7c(u8 *e, s32 mode, u32 flags, u32 arg3) {
+    u8 *p;
+    u32 v;
+
+    if (e == NULL) return;
+    p = *(u8 **)(e + 0x118);
+    if (p == NULL) return;
+    v = *(u32 *)(p + 0x8c);
+    if (!(v & 8)) return;
+    if (!(v & 0x800)) return;
+    if (mode == 4) {
+        v = *(u32 *)(p + 0x90);
+        if (v & 8) func_0202647c(e, 0xab);
+        if (v & 0x10) func_0202647c(e, 0xac);
+        if (v & 0x20) func_0202647c(e, 0xaf);
+        *(u32 *)(p + 0x90) = 0;
+    }
+    v = func_0202e84c(e);
+    if (!(v & 1)) return;
+    if (!(flags & 1)) return;
+    *(u32 *)data_02160244 = (u32)func_0210c594(0x1c, data_02155c3c);
+}
+

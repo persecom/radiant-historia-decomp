@@ -223,6 +223,7 @@ void func_02018940(UnkNum_02018844 *p, unsigned long long n)
   p->unk02 = p->unk04 - 1;
 }
 
+#pragma opt_propagation off
 void func_02018a04(UnkNum_02018844 *out, const UnkNum_02018844 *a, const UnkNum_02018844 *b) {
 u8 buf[64];
 u32 carry=0;
@@ -258,7 +259,7 @@ if(!(p[-1]&1)) return;
 }
 round_up: func_020188b0(out,out->unk04);
 }
-
+#pragma opt_propagation on
 void func_02018b84(u8 *arg0, u8 *arg1, u16 arg2) {
     s32 i = 0;
     u8 c;

@@ -133,39 +133,40 @@ extern u8 *func_02120f94(void *);
 extern void *func_02120fa4(void *);
 extern void func_0211d520(void *, void *);
 #pragma optimization_level 0
-void func_0210b8f8(u8 *arg0, u32 arg1, u32 arg2, u32 arg3) {
-    u8 *p = arg0;
-    u32 sp4;
-    u32 sp0;
-    void *r6 = NULL;
-    void *r5 = NULL;
-
-    data_02155bac = 0;
-    r5 = func_02109b14(arg2, &sp0);
-    data_02155bac = 1;
-    func_02120828(r5);
-    func_0210e3dc();
-    func_02108ffc();
-
-    data_02155bac = 0;
-    r6 = func_02109b14(arg1, &sp4);
-    data_02155bac = 1;
-    func_02120828(r6);
-    func_0210e3dc();
-    func_02108ffc();
-
-    *(void **)(p + 0x54) = GetMdlByIdx(func_02120f94(r6), arg3);
-
-    *(void **)(p + 0x58) = func_02120fa4(r5);
-    if (*(void **)(p + 0x58)) {
-        func_0211d520(func_02120f94(r6), *(void **)(p + 0x58));
+void func_0210b8f8(u8 *arg0, u32 arg1, u32 arg2, u32 arg3)
+{
+  u32 sp4;
+  u32 sp0;
+  void *r6 = NULL;
+  u8 *p = arg0;
+  data_02155bac = 0;
+  arg0 = func_02109b14(arg2, &sp0);
+  data_02155bac = 1;
+  func_02120828(arg0);
+  func_0210e3dc();
+  func_02108ffc();
+  data_02155bac = 0;
+  r6 = func_02109b14(arg1, &sp4);
+  data_02155bac = 1;
+  func_02120828(r6);
+  func_0210e3dc();
+  func_02108ffc();
+  *((void **) (p + 0x54)) = GetMdlByIdx(func_02120f94(r6), arg3);
+  *((void **) (p + 0x58)) = func_02120fa4(arg0);
+  if (*((void **) (p + 0x58)))
+  {
+    func_0211d520(func_02120f94(r6), *((void **) (p + 0x58)));
+    if ((!arg0) && (!arg0))
+    {
     }
-    *(void **)(p + 0x118) = r6;
-    *(u32 *)(p + 0x11c) = 0;
-    if (r5) {
-        func_0210c5dc(r5);
-        r5 = NULL;
-    }
+  }
+  *((void **) (p + 0x118)) = r6;
+  *((u32 *) (p + 0x11c)) = 0;
+  if (arg0)
+  {
+    func_0210c5dc(arg0);
+    arg0 = NULL;
+  }
 }
 
 extern s32 data_02155c3c;

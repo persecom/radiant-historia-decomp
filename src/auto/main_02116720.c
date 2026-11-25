@@ -194,28 +194,17 @@ void *func_02116a34(void *memBlock) {
 }
 
 void func_02116a5c(void *heap, u32 signature, void *start, void *end, u16 opt) {
-    typedef struct {
-        u32 opt : 8;
-        u32 : 24;
-    } Bits;
-    typedef union {
-        Bits bits;
-        u32 raw;
-    } Attr;
-    u8 *p = (u8 *)heap;
-    u32 *flag = &data_0216e21c;
-    u16 n = 4;
-    Attr a;
-    a.raw = 0;
-    a.bits.opt = opt;
-    *(u32 *)(p + 0) = signature;
-    *(void **)(p + 0x18) = start;
-    *(void **)(p + 0x1c) = end;
-    *(u32 *)(p + 0x20) = a.raw;
-    func_021167ac(p + 0xc, n);
-    if (*flag == 0) {
-        func_021167ac(data_0216e220, n);
-        *flag = 1;
+    typedef struct { u32 opt : 8; u32 pad : 24; } Bits;
+    u32 flags = 0;
+    ((Bits *)&flags)->opt = opt;
+    *(u32 *)heap = signature;
+    *(void **)((u8 *)heap + 0x18) = start;
+    *(void **)((u8 *)heap + 0x1c) = end;
+    *(u32 *)((u8 *)heap + 0x20) = flags;
+    func_021167ac((u8 *)heap + 0xc, 4);
+    if (data_0216e21c == 0) {
+        func_021167ac(data_0216e220, 4);
+        data_0216e21c = 1;
     }
     func_021167f0(func_02116a34(heap), heap);
 }
@@ -315,62 +304,60 @@ extern void *func_02116b1c(void *, void *);
 extern void *func_02116b44(void *, void *, void *);
 extern void *func_02116b74(void *, u16);
 extern void func_02008e24(u32, void *, u32);
-void *func_02116c10(void *expHeap, void *found, void *foundMem, s32 size, u16 flag) {
-    typedef struct Block {
-        u16 signature;
-        u16 attribute;
-        u32 blockSize;
-        struct Block* prev;
-        struct Block* next;
-    } Block;
-
-    u8 *prev;
-    u8 *header;
-    Region region;
-    Region region2;
-    Region region3;
-    Block *block3;
-    u8 *dst;
-    u32 len2;
-    u32 gap;
-    u32 attr;
-
-    func_02116af0(&region, found);
-    region2.end = region.end;
-    header = (u8 *)foundMem - 0x10;
-    region.end = header;
-    region2.start = (u8 *)(size + (u32)foundMem);
-    prev = func_02116b1c(expHeap, found);
-    if ((u32)(region.end - region.start) >= 0x14) {
-        prev = func_02116b44(expHeap, func_02116b74(&region, 0x4652), prev);
-    } else {
-        region.end = region.start;
-    }
-    if ((u32)(region2.end - region2.start) >= 0x14) {
-        prev = func_02116b44(expHeap, func_02116b74(&region2, 0x4652), prev);
-    } else {
-        region2.start = region2.end;
-    }
-    dst = region.end;
-    len2 = region2.start - region.end;
-    if ((u8)*(u32 *)((u8 *)expHeap - 4) & 1) {
-        func_02008e24(0, (void *)dst, (u32)len2);
-    }
-    region3.start = header;
-    region3.end = region2.start;
-    block3 = (Block *)func_02116b74(&region3, 0x5544);
-    attr = (u32)block3->attribute;
-    attr = (attr & ~0x8000) | ((u32)(flag & 1) << 15);
-    block3->attribute = attr;
-    gap = (u16)((u32)block3 - (u32)region.end);
-    attr = attr & ~0x7f00;
-    block3->attribute = attr;
-    attr = block3->attribute | ((gap << 0x19) >> 0x11);
-    block3->attribute = attr;
-    attr = (attr & ~0xff) | (*(u16 *)(expHeap + 0x10) & 0xff);
-    block3->attribute = attr;
-    func_02116b44((u8 *)expHeap + 8, block3, *(u32 *)((u8 *)expHeap + 0xc));
-    return foundMem;
+void *func_02116c10(void *expHeap, void *found, void *foundMem, s32 size, u16 flag)
+{
+  u8 *prev;
+  u8 *header;
+  Region region;
+  Region region2;
+  Region region3;
+  u8 *block3;
+  u8 *dst;
+  u32 len2;
+  u32 gap;
+  u32 attr;
+  func_02116af0(&region, found);
+  region2.end = region.end;
+  header = ((u8 *) foundMem) - 0x10;
+  region.end = header;
+  region2.start = (u8 *) (size + ((u32) foundMem));
+  prev = func_02116b1c(expHeap, found);
+  if (((u32) (region.end - region.start)) >= 0x14)
+  {
+    prev = func_02116b44(expHeap, func_02116b74(&region, 0x4652), prev);
+  }
+  else
+  {
+    region.end = region.start;
+  }
+  if (((u32) (region2.end - region2.start)) >= 0x14)
+  {
+    prev = func_02116b44(expHeap, func_02116b74(&region2, 0x4652), prev);
+  }
+  else
+  {
+    region2.start = region2.end;
+  }
+  dst = region.end;
+  len2 = region2.start - region.end;
+  if (((u8) (*((u32 *) (((u8 *) expHeap) - 4)))) & 1)
+  {
+    func_02008e24(0, (void *) dst, (u32) len2);
+  }
+  region3.start = header;
+  region3.end = region2.start;
+  block3 = func_02116b74(&region3, 0x5544);
+  attr = *((u16 *) (block3 + 2));
+  attr = (attr & (~0x8000)) | ((flag & 1) << 15);
+  *((u16 *) (block3 + 2)) = attr;
+  gap = (u16) (block3 - region.end);
+  *((u16 *) (block3 + 2)) = attr & (~0x7f00);
+  attr = (*((u16 *) (block3 + 2))) | ((gap << 0x19) >> 0x11);
+  *((u16 *) (block3 + 2)) = attr;
+  attr = ((*((u16 *) (expHeap + 0x10))) & 0xff) | (attr & (~0xff));
+  *((u16 *) (block3 + 2)) = attr;
+  func_02116b44(((u8 *) expHeap) + 8, block3, *((u32 *) (((u8 *) expHeap) + 0xc)));
+  return foundMem;
 }
 
 void* func_02116d7c(void* heap, u32 size, s32 alignment)

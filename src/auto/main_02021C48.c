@@ -17,3 +17,61 @@ u8 *func_02021c48(void) {
     *(u16 *)(p + 0x22) = 0;
     return p;
 }
+
+extern void func_02008e68(s32, void *, s32);
+extern u8 *func_02021f10(s32);
+extern void func_020bbd2c(void);
+extern void func_020bbe20(s32, s32);
+extern void func_020bc394(void);
+extern void func_020bd2fc(s32, s32, s32, s32);
+extern void func_020bd574(void);
+extern void func_02021e78(void);
+extern void func_020bddb0(void *);
+extern void func_0210e620(s32);
+void func_02021c7c(void) {
+    s32 i, j;
+
+    func_02008e68(0, (void *)data_02160078, 0x1698);
+    *(u8 *)(data_02160078 + 0x10) &= ~7;
+    *(u8 *)(data_02160078 + 0x11) |= 0x40;
+    *(u8 *)(data_02160078 + 0x10) = (*(u8 *)(data_02160078 + 0x10) & ~0x38) | 0x10;
+
+    for (i = 0; i < 8; i++) {
+        u8 *p = func_02021f10(i);
+        func_020bbd2c();
+        for (j = 0; j < 0x1e; j++) {
+            p[0x4e + j] = 0;
+        }
+        for (j = 0; j < 0xf; j++) {
+            p[0x6c + j] = 0;
+        }
+    }
+
+    func_020bbe20(0, 1);
+    func_020bbe20(1, 2);
+    func_020bbe20(2, 3);
+    func_020bbe20(3, 4);
+    func_020bbe20(4, 5);
+    func_020bbe20(5, 6);
+    func_020bbe20(6, 7);
+    func_020bbe20(7, 8);
+    func_020bc394();
+    func_020bd2fc(0, 1, 0, 0);
+    func_020bd2fc(1, 0, 0, 0);
+    func_020bd2fc(2, 0, 0, 0);
+    func_020bd574();
+    func_02021e78();
+    func_020bddb0((u8 *)data_02160078 + 0x14ec);
+    for (i = 0; i < 0x2e; i++) {
+        *(u32 *)(data_02160078 + 0x14f4 + i * 4) = 0;
+    }
+    *(u32 *)(data_02160078 + 0x28) = 0;
+    func_0210e620(0);
+    *(u8 *)(data_02160078 + 0x34) = 0xff;
+    *(u8 *)(data_02160078 + 0x35) = 0;
+    *(u32 *)(data_02160078 + 0x00) = 0x6d63;
+    *(u32 *)(data_02160078 + 0x04) = 0;
+    *(u16 *)(data_02160078 + 0x0c) = 0;
+    *(u16 *)(data_02160078 + 0x0e) = 0x1698;
+}
+

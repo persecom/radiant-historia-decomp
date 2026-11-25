@@ -299,38 +299,39 @@ void func_0212d21c(u8 *arg0) {
 }
 
 extern void func_02013878(void *, s32, s32);
-void func_0212d288(void *arg0) {
-    Unk0212D3B4 *p = (Unk0212D3B4 *)arg0;
-    s32 buf[2];
-    s32 n = p->unkA8 * 2;
-    s32 i;
-    s32 half;
-    s32 count;
+void func_0212d288(void *arg0)
+{
+  Unk0212D3B4 *p = (Unk0212D3B4 *) arg0;
+  s32 buf[2];
+  s32 n = p->unkA8 * 2;
+  s32 i;
+  s32 half;
+  unsigned char count;
+  for (i = 0; i < p->count; i++)
+  {
+    void *obj = p->objs[i];
+    (*((void (**)(void *, s32, s32, void *)) ((*((u8 **) obj)) + 0x18)))(obj, 0, 0x7fffffff, buf);
+    n = (n < buf[1]) ? (n) : (buf[1]);
+    obj = p->objs[i];
+    (*((void (**)(void *, s32, void *)) ((*((u8 **) obj)) + 0x1c)))(obj, 0, buf);
+  }
 
-    for (i = 0; i < p->count; i++) {
-        void *obj = p->objs[i];
-        (*(void (**)(void *, s32, s32, void *))(*(u8 **)obj + 0x18))(obj, 0, 0x7fffffff, buf);
-        n = n < buf[1] ? n : buf[1];
-        obj = p->objs[i];
-        (*(void (**)(void *, s32, void *))(*(u8 **)obj + 0x1c))(obj, 0, buf);
-    }
+  half = n / 2;
+  count = half * 2;
+  if (count <= 0)
+  {
+    return;
+  }
+  for (i = 0; i < p->count; i++)
+  {
+    void *obj = p->objs[i];
+    (*((void (**)(void *, s32, s32, void *)) ((*((u8 **) obj)) + 0x18)))(obj, 0, count, buf);
+    func_02013878((void *) buf[0], 0, count);
+    obj = p->objs[i];
+    (*((void (**)(void *, s32, void *)) ((*((u8 **) obj)) + 0x20)))(obj, 1, buf);
+  }
 
-    half = n / 2;
-    count = half * 2;
-    if (count <= 0) {
-        return;
-    }
-
-    for (i = 0; i < p->count; i++) {
-        s32 zero = 0;
-        void *obj = p->objs[i];
-        (*(void (**)(void *, s32, s32, void *))(*(u8 **)obj + 0x18))(obj, zero, count, buf);
-        func_02013878((void *)buf[0], zero, count);
-        obj = p->objs[i];
-        (*(void (**)(void *, s32, void *))(*(u8 **)obj + 0x20))(obj, 1, buf);
-    }
-
-    p->unkA8 -= half;
+  p->unkA8 -= half;
 }
 
 static void func_0212d3b4(void *arg) {
@@ -521,22 +522,13 @@ u32 func_0212d70c(void *arg0) {
     return *(u32 *)((u8 *)arg0 + 0xb0);
 }
 
-s32 func_0212d714(void) {
-    data_021740d8[5]++;
-    if (data_021740d8[5] == 1) {
-        s32 i;
-        for (i = 0; i < 1000; i++) {
-            data_021740f0[i] = 0;
-        }
-    }
-    return 1;
-}
+s32 func_0212d714(void) { if (++data_021740d8[5] == 1) { struct { u32 words[250]; } zero = {0}; memcpy(data_021740f0, &zero, 1000); } return 1; }
 
 extern void *memset(void *, int, unsigned long);
+#pragma intrinsic on
 void func_0212d76c(void) {
     if (--data_021740d8[5] != 0) {
         return;
     }
     memset(data_021740f0, 0, sizeof(data_021740f0));
 }
-

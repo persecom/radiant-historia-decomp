@@ -145,6 +145,18 @@ u32 func_021361bc(u8 *arg0, u16 *arg1, u16 *arg2) {
     return a;
 }
 
+extern void func_02009008(void *, s32);
+s16 *func_02136210(void *arg0, void *arg1, u32 arg2) {
+    u8 *p = (u8 *)arg0;
+    u16 val = *(u16 *)(p + 0x1a);
+    s32 sum = val + arg2;
+    if (sum >= 0x1800) sum -= 0x1800;
+    *(u32 *)(p + 0x10) += arg2;
+    *(u16 *)(p + 0x1a) = (u16)sum;
+    *(u16 *)(p + 0) |= 2;
+    return (s16 *)arg1;
+}
+
 u16 func_0213689c(u8 *arg0) {
     u16 sp2;
     u16 sp0;
@@ -265,13 +277,13 @@ void func_02136a9c(void) {
     func_02136980();
 }
 
+#pragma inline_intrinsics on
 void func_02136ab4(void) {
     data_02175c60--;
     if (data_02175c60 == 0) {
         memset(data_02175c64, 0, sizeof(data_02175c64));
     }
 }
-
 extern s32 func_02136b34(void *, void *);
 s32 func_02136b08(void *arg0, void *arg1) {
     s32 ret;

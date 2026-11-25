@@ -2,6 +2,13 @@
 #include "common.h"
 
 extern u8 *data_02160aec;
+extern void func_0211d7a4(void);
+void func_020eeea4(void) {
+    u8 *map = data_02160aec;
+    if (*(u16 *)(map + 0xc) == 0) return;
+    func_0211d7a4();
+}
+
 s32 func_020ef4c8(s32 *arg0) {
     extern u8 *data_02160aec;
     extern s32 func_0210c1dc(void *, void *, void *, void *, void *);

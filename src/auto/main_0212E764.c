@@ -71,16 +71,13 @@ void func_0212e7e4(void) {
 }
 
 s32 func_0212e7f0(u32 arg0, void *arg1) {
-    u32 *zp = data_021744ec;
-    void *p = arg1;
-    u32 *dp = data_02174524;
     s32 ret = 1;
-    *(volatile u32 *)&dp[8] = arg0;
-    *(volatile u32 *)&zp[0] = 0;
-    *(volatile u32 *)&zp[1] = 0;
-    *(volatile u32 *)&zp[2] = 0;
-    *(volatile u32 *)&zp[3] = 0;
-    *(volatile u32 *)&zp[4] = 0;
+    *(volatile u32 *)&data_02174524[8] = arg0;
+    *(volatile u32 *)&data_021744ec[0] = 0;
+    *(volatile u32 *)&data_021744ec[1] = 0;
+    *(volatile u32 *)&data_021744ec[2] = 0;
+    *(volatile u32 *)&data_021744ec[3] = 0;
+    *(volatile u32 *)&data_021744ec[4] = 0;
     if (arg0 <= 1) {
         func_0212c4b8(ret);
         return ret;
@@ -88,7 +85,7 @@ s32 func_0212e7f0(u32 arg0, void *arg1) {
     if (arg0 == 2) {
         func_0212c4b8(2);
     }
-    func_0212e860(p);
+    func_0212e860(arg1);
     return ret;
 }
 
@@ -328,29 +325,38 @@ void func_0212ee04(u8 *arg0, u8 *arg1) {
 }
 
 s32 func_0212ee80(u8 *src, s32 size, s32 *length, u8 *out) {
- s32 left, i;
+ u8 *base;
+ s32 i;
+ s32 step;
+ u8 *s = src;
+ u8 *o = out;
+ s32 left;
  if (length) *length = 0;
  if (size < 4) return -1;
- if ((u16)((src[0] << 8) | src[1]) != 0x8000) return -4;
- left = (src[2] << 8) | src[3];
+ if ((u16)((s[0] << 8) | s[1]) != 0x8000) return -4;
+ left = (s[2] << 8) | s[3];
  if (length) *length = left;
- if (!out) return 0;
+ if (!o) return 0;
  if (size < left + 4) return -2;
  if (left - 6 < 16) return -2;
- func_0212ecb0(src + 4, out);
- src += 0x14;
+ func_0212ecb0(s + 4, o);
+ s += 0x14;
  left -= 0x16;
- if (*(s8 *)(out + 0x3c) == 4) {src += 12; left -= 12;}
+ if (*(s8 *)(o + 0x3c) == 4) {s += 12; left -= 12;}
  if (left < 4) return 0;
- func_0212ed3c(src, out);
- src += 4;
- if (left < *(s16 *)(out+14) * 20) return 0;
- for (i=0; i<*(s16 *)(out+14); i++) func_0212ed50(src, out+16+i*20);
- left -= *(s16 *)(out+14) * 20U;
- for (i=0; i<*(s8 *)(out+3); i++) {
+ func_0212ed3c(s, o);
+ s += 4;
+ if (left < *(s16 *)(o+14) * 20) return 0;
+ step = 20;
+ base = o + 16;
+ for (i=0; i<*(s16 *)(o+14); i++) func_0212ed50(s, base+i*step);
+ left -= *(s16 *)(o+14) * (s16)20;
+ step = 12;
+ base = o + 36;
+ for (i=0; i<*(s8 *)(o+3); i++) {
   if (left < 12) return 0;
-  func_0212ee04(src, out+36+i*12);
-  src += 12; left -= 12;
+  func_0212ee04(s, base+i*step);
+  s += 12; left -= 12;
  }
  return 0;
 }

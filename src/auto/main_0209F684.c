@@ -7,6 +7,14 @@ extern const Draw_020a00ec data_02142ccc, data_02142c18;
 void func_020a3bbc(s32);
 void func_021098ac(void *);
 
+void func_0209f684(s32 arg0, s32 arg1, s32 arg2, s32 arg3)
+{
+    (void)arg0;
+    (void)arg1;
+    (void)arg2;
+    (void)arg3;
+}
+
 void func_020a00ec(s32 mode, s16 x, s16 y, Pos_020a00ec pos, s16 arg5) {
 s16 py=pos.y;
 Draw_020a00ec a=data_02142ccc;

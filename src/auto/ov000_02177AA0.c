@@ -105,10 +105,14 @@ clear:
     return res * 0xb3;
 }
 
+#pragma push
+#pragma opt_propagation off
+#pragma opt_loop_invariants off
 u32 func_ov000_02177d4c(void) {
     u32 buf[0x80];
-    u32 hash[2][3];
+    u32 hash[7];
     u8 saved_cmd[8];
+ u8 *saved;
     u32 lock_id;
     u32 addr = 0x1000;
     s32 i, j;
@@ -119,9 +123,10 @@ u32 func_ov000_02177d4c(void) {
     func_0200f9b0(lock_id);
 
     dst = (u8 *)buf;
-    for (i = 0; i < 3; i++) {
-        const u32 c1 = 1;
-        const u32 c5 = 5;
+    i=0;
+ do {
+        u32 c1 = 1;
+        u32 c5 = 5;
         volatile u8 *io = (volatile u8 *)(c1 << 26);
         u16 exmem = *(volatile u16 *)0x04000204;
         u32 hdr_addr;
@@ -129,25 +134,30 @@ u32 func_ov000_02177d4c(void) {
         s32 pos;
         u32 cur_addr;
 
+
         *(volatile u16 *)0x04000204 &= ~0x800;
         hdr_addr = ((((*(volatile u8 *)(io + 0x4000) & 1) + 5) << 18) - 13) << 5;
-        pos = -(s32)(addr & (0x204 - c5));
+        c5 = 0x204 - c5;
+        pos = -(s32)(addr & c5);
         ctrl = (*(volatile u32 *)hdr_addr & ~0x07000000) | 0xa1000000;
         while (*(volatile u32 *)(io + 0x1a4) & 0x80000000) {}
         *(volatile u8 *)(io + 0x1a1) = 0x80;
-        for (j = 0; j < 8; j++) {
-            saved_cmd[j] = ((volatile u8 *)0x040001a8)[j];
-        }
+        saved=saved_cmd;
+ j=0;
+ do {
+            *saved++ = ((volatile u8 *)0x040001a8)[j];
+        } while (++j < 8);
         cur_addr = addr + pos;
         while (pos < 0x200) {
-            io[0x1a8] = 0xb7;
-            io[0x1a9] = (u8)(cur_addr >> 24);
-            io[0x1aa] = (u8)(cur_addr >> 16);
-            io[0x1ab] = (u8)(cur_addr >> 8);
-            io[0x1ac] = (u8)cur_addr;
-            io[0x1ad] = 0;
-            io[0x1ae] = 0;
-            io[0x1af] = 0;
+ volatile u8 *cmd=(volatile u8 *)0x04000000;
+            cmd[0x1a8] = 0xb7;
+            cmd[0x1a9] = (u8)(cur_addr >> 24);
+            cmd[0x1aa] = (u8)(cur_addr >> 16);
+            cmd[0x1ab] = (u8)(cur_addr >> 8);
+            cmd[0x1ac] = (u8)cur_addr;
+            cmd[0x1ad] = 0;
+            cmd[0x1ae] = 0;
+            cmd[0x1af] = 0;
             *(volatile u32 *)(io + 0x1a4) = ctrl;
             do {
                 if (*(volatile u32 *)(io + 0x1a4) & 0x00800000) {
@@ -160,39 +170,42 @@ u32 func_ov000_02177d4c(void) {
             } while (*(volatile u32 *)(io + 0x1a4) & 0x80000000);
             cur_addr += 0x200;
         }
-        for (j = 0; j < 8; j++) {
-            ((volatile u8 *)0x040001a8)[j] = saved_cmd[j];
-        }
+        saved=saved_cmd;
+ j=0;
+ do {
+            ((volatile u8 *)0x040001a8)[j] = *saved++;
+        } while (++j < 8);
         *(volatile u16 *)(io + 0x204) = exmem;
-        hash[0][i] = func_ov000_02177ad0(buf, 0x200);
+        hash[0 + i] = func_ov000_02177ad0(buf, 0x200);
         func_02010c40(-1, addr + 0x7000, buf, 0x200, 0, 0, 0);
-        hash[1][i] = func_ov000_02177ad0(buf, 0x200);
+        hash[3 + i] = func_ov000_02177ad0(buf, 0x200);
         addr += 0x200;
-    }
+    } while (++i < 3);
 
     func_0200fa20(lock_id);
     func_02005e50(lock_id);
 
-    for (j = 0; j < 3; j++) {
-        if (hash[1][0] != hash[0][j]) {
+    j=0;
+ do {
+        if (hash[3 + 0] != hash[0 + j]) {
             res = 0xf1;
             goto clear;
         }
-    }
-    if (hash[1][0] == hash[1][1] && hash[1][0] == hash[1][2]) {
+    } while (++j < 3);
+    if (hash[3 + 0] == hash[3 + 1] && hash[3 + 0] == hash[3 + 2]) {
         res = 0xf1;
     } else {
         res = 0xfb;
     }
 
 clear:
-    for (j = 0; j < 0x80; j++) {
+    j=0;
+ do {
         buf[j] = j;
-    }
+    } while (++j < 0x80);
     return res * 0xbf;
 }
-
-#pragma optimization_level reset
+#pragma pop
 u32 func_ov000_02178004(void) {
     return 0xaa65;
 }
@@ -201,9 +214,10 @@ u32 func_ov000_02178010(void) {
     return 0xa99f;
 }
 
+#pragma optimization_level 3
 void func_ov000_021780e0(Rc4State *state, u8 *key, u32 keylen) {
     u32 *p = (u32 *)state->s;
-    u32 *end = (u32 *)((u8 *)state + sizeof(Rc4State));
+    u32 *end = (u32 *)((u8 *)state + 0x10c);
     u32 v = 0x03020100;
     u32 inc = 0x4040404;
     u32 j = 0;
@@ -211,7 +225,6 @@ void func_ov000_021780e0(Rc4State *state, u8 *key, u32 keylen) {
     s32 i;
     state->field_0 = 0xaa;
     state->field_4 = 0;
-    j = j;
     state->field_8 = 0;
     do {
         *p++ = v;
@@ -228,7 +241,7 @@ void func_ov000_021780e0(Rc4State *state, u8 *key, u32 keylen) {
         state->s[i] = tmp2;
     }
 }
-
+#pragma optimization_level 4
 u32 func_ov000_0217816c(Rc4State *state) {
     u32 i = (state->field_4 + 1 + state->field_0) & 0xff;
     u32 si = state->s[i];
@@ -254,7 +267,7 @@ s32 func_ov000_021781c4(u32 *p) {
 
 s32 func_ov000_021774e4(u32);
 s32 func_ov000_021781fc(void *arg0, void *arg1, u32 arg2, u32 size) {
-u32 table[64];
+u8 table[256];
 Rc4State *state=arg0;
 u8 *src=arg1, *dst=(u8 *)arg2;
 u8 *p;
@@ -287,7 +300,7 @@ q=dst+i;
 q[0]=state->field_0;
 state->field_0=p[1]^func_ov000_0217816c(state);
 q[1]=state->field_0;
-q[2]=((u8 *)table)[p[2]];
+q[2]=table[p[2]];
 q[3]=p[3];
 state->field_0=state->field_0*q[2]-q[3];
 }
@@ -297,70 +310,40 @@ return 0;
 
 extern s32 func_ov000_021774e4(u32);
 
-#pragma scheduling off
-s32 func_ov000_02178314(void *arg0, void *arg1, u32 arg2, u32 arg3) {
-    u8 table[0x100];
-    u32 i;
-    Rc4State *state = (Rc4State *)arg0;
-    u8 *in = (u8 *)arg1;
-    u8 *out = (u8 *)arg2;
-
-    if ((arg3 & 3) != 0) {
-        return -1;
-    }
-
-    func_ov000_021781c4((u32 *)table);
-
-    for (i = 0; i < arg3; i += 4) {
-        u8 *src = &in[i];
-        u32 word = *(u32 *)src;
-        switch (func_ov000_021774e4(word)) {
-        case 1:
-        case 3:
-            state->field_0 += word >> 24;
-            *(u32 *)(out + i) = ((word & 0xff000000) ^ 0x01000000) | (((word & 0x00ffffff) - 0x402) & 0x00ffffff);
-            break;
-        case 2:
-            {
-                u8 b0 = src[0];
-                u32 k0 = func_ov000_0217816c(state);
-                state->field_0 = b0;
-                out[i] = b0 ^ k0;
-                {
-                    u8 b1 = src[1];
-                    u32 k1 = func_ov000_0217816c(state);
-                    state->field_0 = b1;
-                    out[i + 1] = b1 ^ k1;
-                }
-                state->field_0 = (state->field_0 * src[2]) - src[3];
-                out[i + 2] = table[src[2]];
-                out[i + 3] = src[3];
-                *(u32 *)src ^= 0x01000000;
-            }
-            break;
-        default:
-            {
-                u8 b0 = src[0];
-                u32 k0 = func_ov000_0217816c(state);
-                state->field_0 = b0;
-                out[i] = b0 ^ k0;
-                {
-                    u8 b1 = src[1];
-                    u32 k1 = func_ov000_0217816c(state);
-                    state->field_0 = b1;
-                    out[i + 1] = b1 ^ k1;
-                }
-                state->field_0 = (state->field_0 * src[2]) - src[3];
-                out[i + 2] = table[src[2]];
-                out[i + 3] = src[3];
-            }
-            break;
-        }
-    }
-
-    return 0;
-}
 #pragma scheduling on
+s32 func_ov000_02178314(void *arg0,void *arg1,u32 arg2,u32 arg3){
+ u8 table[256];u32 i;
+ Rc4State *state=(Rc4State *)arg0;
+ u8 *in=(u8 *)arg1,*out=(u8 *)arg2;
+ if(arg3&3)return -1;
+ func_ov000_021781c4((u32 *)table);
+ for(i=0;i<arg3;i+=4){
+ u32 *src=(u32 *)(in+i);
+ u32 word=*(u32 *)src;
+ switch(func_ov000_021774e4(word)){
+ case 1:case 3:
+ state->field_0+=word>>24;
+ *(u32 *)(out+i)=((word&0xff000000)^0x01000000)|(((word&0xffffff)-0x402)&0xffffff);
+ break;
+ case 2:{
+ u8 b0=((u8 *)src)[0];u32 k0=func_ov000_0217816c(state);
+ state->field_0=b0;out[i]=b0^k0;
+ {u8 b1=((u8 *)src)[1];u32 k1=func_ov000_0217816c(state);state->field_0=b1;out[i+1]=b1^k1;}
+ state->field_0=state->field_0*((u8 *)src)[2]-((u8 *)src)[3];
+ out[i+2]=table[((u8 *)src)[2]];out[i+3]=((u8 *)src)[3];
+ *(u32 *)src^=0x01000000;
+ }break;
+ default:{
+ u8 b0=((u8 *)src)[0];u32 k0=func_ov000_0217816c(state);
+ state->field_0=b0;out[i]=b0^k0;
+ {u8 b1=((u8 *)src)[1];u32 k1=func_ov000_0217816c(state);state->field_0=b1;out[i+1]=b1^k1;}
+ state->field_0=state->field_0*((u8 *)src)[2]-((u8 *)src)[3];
+ out[i+2]=table[((u8 *)src)[2]];out[i+3]=((u8 *)src)[3];
+ }break;
+ }
+ }
+ return 0;
+}
 s32 func_ov000_0217849c(u8 *arg0, u8 *arg1, u32 arg2, u32 arg3) {
     Rc4State state;
     func_ov000_021780e0(&state, arg0, 0x10);

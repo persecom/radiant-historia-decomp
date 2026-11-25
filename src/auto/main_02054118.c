@@ -287,38 +287,41 @@ s32 func_0205453c(u8 *arg0) {
     return 1;
 }
 
-#pragma scheduling off
-s32 func_020546c0(u8 *arg0,s32 arg1) {
- u16 tries=0;
- u32 range=(u16)(arg1*2);
- for(;;) {
- u32 val;
- u32 seed=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
- s32 angle=(u16)(((seed>>16)*0xfffe)>>16)-65535;
- s32 radius;
- data_0216263c[0]=seed;
- if(angle<0) angle=-angle;
- if(arg1!=0) {
- seed=data_0216263c[1]*seed+data_0216263c[2];
- data_0216263c[0]=seed;
- val=seed>>16;
- if(range) val=(val*range)>>16;
- radius=-arg1+(u16)val;
- } else radius=0;
- angle >>=4;
- if(radius<0) radius=-radius;
- radius+=32;
- *(s32 *)(arg0+0x24)=*(s32 *)arg0+radius*data_0213a394[angle*2];
- *(s32 *)(arg0+0x2c)=*(s32 *)(arg0+8)+radius*data_0213a394[angle*2+1];
- if(data_02160aec[0xbc8+12*((*(s32 *)(arg0+0x24)/65536)+(*(s32 *)(arg0+0x2c)/65536)* *(s16 *)(data_02160aec+0x58d36))]==255) break;
- if(tries>3) {
- *(Vec_546c0 *)(arg0+0x24)=*(Vec_546c0 *)arg0; return 0;
- }
- tries++;
- }
- return 1;
+#pragma optimization_level 3
+s32 func_020546c0(u8 *arg0, s32 arg1) {
+    u16 tries = 0;
+    u32 range = (u16)(arg1 * 2);
+    for (;;) {
+        u32 seed = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
+        s32 angle = (u16)(((seed >> 16) * 0xfffe) >> 16) - 65535;
+        s32 radius;
+        data_0216263c[0] = seed;
+        if (angle < 0) angle = -angle;
+        if (arg1 != 0) {
+            u16 val;
+            seed = data_0216263c[1] * seed + data_0216263c[2];
+            data_0216263c[0] = seed;
+            val = seed >> 16;
+            if (range) val = (val * range) >> 16;
+            radius = (s32)val - arg1;
+        } else {
+            radius = 0;
+        }
+        angle >>= 4;
+        if (radius < 0) radius = -radius;
+        radius += 32;
+        *(s32 *)(arg0 + 0x24) = *(s32 *)arg0 + radius * data_0213a394[angle * 2];
+        *(s32 *)(arg0 + 0x2c) = *(s32 *)(arg0 + 8) + radius * data_0213a394[angle * 2 + 1];
+        if (data_02160aec[0xbc8 + 12 * ((*(s32 *)(arg0 + 0x24) / 65536) + (*(s32 *)(arg0 + 0x2c) / 65536) * *(s16 *)(data_02160aec + 0x58d36))] == 255) break;
+        if (tries > 3) {
+            *(Vec_546c0 *)(arg0 + 0x24) = *(Vec_546c0 *)arg0;
+            return 0;
+        }
+        tries++;
+    }
+    return 1;
 }
-
+#pragma optimization_level 4
 extern void func_020477dc(void *, s32, s32);
 extern void func_020495fc(void *, s32);
 extern void func_02050b0c(void *, s32);

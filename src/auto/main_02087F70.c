@@ -1,6 +1,9 @@
 /* 2 functions from 0x02087F70 to 0x02088E90 (main), found by ds-decomp. */
 #include "common.h"
 
+void func_02087f70(void) {
+}
+
 s32 func_02088e10(const void *arg0, const void *arg1) {
     struct {
         u32 unk_00[9];

@@ -465,52 +465,42 @@ void func_0200b594(u8 *arg0) {
     *(u32 *)(r5 + 0xc) = r4;
 }
 
+#pragma optimization_level 3
 s32 func_0200b5b8(u8 *arg0, s8 *arg1, u32 arg2) {
-    u32 lock;
     s32 ret = 0;
-    u32 a2 = arg2;
-    s8 *a1 = arg1;
-    u8 *a0 = arg0;
-    lock = func_02008128();
-    void *found = func_0200b0ec(a1, a2);
-    if (found != NULL) goto fail;
-    {
-        u8 **slot = &data_0215ed68;
+    u32 lock = func_02008128();
+    if (func_0200b0ec(arg1, arg2) == NULL) {
         u8 *cur = data_0215ed68;
+        u8 **slot = &data_0215ed68;
         while (cur != NULL) {
             slot = (u8 **)(cur + 4);
-            cur = *slot;
+            cur = *(u8 **)(cur + 4);
         }
-        *slot = a0;
-    }
-    if (a2 <= 3) {
-        *(u32 *)a0 = 0;
-        func_02012244(a0, a1, a2 + 1);
-        goto done;
-    }
-    if (a2 > 0xf) goto fail;
-    {
-        register s8 *table = data_0215ed78;
-        ret = 0;
-        while (ret < 0x10) {
-            if (table[ret << 4] == 0) {
-                u8 *p = (u8 *)table + (ret << 4);
-                func_02012244(p, a1, a2 + 1);
-                *(void **)a0 = p;
-                goto done;
+        *slot = arg0;
+        if (arg2 <= 3) {
+            *(u32 *)arg0 = 0;
+            func_02012244(arg0, arg1, arg2 + 1);
+        } else if (arg2 <= 0xf) {
+            s32 i;
+            for (i = 0; ; i++) {
+                if (i >= 0x10) {
+                    func_02008414();
+                } else if (((s8 (*)[16])data_0215ed78)[i][0] == 0) {
+                    func_02012244(((s8 (*)[16])data_0215ed78)[i], arg1, arg2 + 1);
+                    *(void **)arg0 = ((s8 (*)[16])data_0215ed78)[i];
+                    break;
+                }
             }
-            ret++;
+        } else {
+            func_02008414();
         }
+        *(u32 *)(arg0 + 0x14) |= 1;
+        ret = 1;
     }
-fail:
-    func_02008414();
-    *(u32 *)(a0 + 0x14) |= 1;
-    ret = 1;
-done:
     func_0200813c(lock);
     return ret;
 }
-
+#pragma optimization_level 4
 u8 *func_0200b6b8(u8 *arg0) {
     if (*(s8 *)(arg0 + 3) != 0) {
         return *(u8 **)(arg0 + 0);

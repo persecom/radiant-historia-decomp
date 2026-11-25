@@ -90,13 +90,13 @@ void func_02137eac(void) {
     func_021369b4();
 }
 
+#pragma intrinsic on
 void func_02137ec4(void) {
     if (data_02176400 == 0) {
         memset(data_02176404, 0, sizeof(data_02176404));
     }
     data_02176400++;
 }
-
 void func_02137f1c(void) {
     func_021369a8();
     func_02137f34();
@@ -234,20 +234,15 @@ void func_0213825c(void *arg0, void *arg1) {
     func_0213808c();
 }
 
-void func_02138280(u32 arg0, u32 arg1) {
-    if (arg1 >= 6) {
-        func_02138130(data_0215c704);
-        return;
-    }
-    if (arg0 >= 8) {
-        func_02138130(data_0215c724);
-        return;
-    }
-    *(u32 *)(data_021767bc + arg0 * 0x48 + arg1 * 0xc) = 0;
-    *(u32 *)(data_021767c0 + arg0 * 0x48 + arg1 * 0xc) = 0;
-    *(u32 *)(data_021767c4 + arg0 * 0x48 + arg1 * 0xc) = 0;
+#pragma scheduling off
+void func_02138280(u32 arg0,u32 arg1) {
+if(arg1>=6){func_02138130(data_0215c704);return;}
+if(arg0>=8){func_02138130(data_0215c724);return;}
+*(volatile u32 *)(data_021767bc+(s32)arg0*0x48+(s32)arg1*12)=0;
+*(volatile u32 *)(data_021767c0+(s32)arg0*0x48+(s32)arg1*12)=0;
+*(volatile u32 *)(data_021767c4+(s32)arg0*0x48+(s32)arg1*12)=0;
 }
-
+#pragma scheduling on
 void func_021382fc(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
     func_0213807c();
     func_02138338(arg0, arg1, arg2, arg3, arg4);
@@ -352,7 +347,8 @@ void func_02138510(void) {
 
 void func_02138520(void) {
     s32 i;
-    memset(data_0217667c, 0, 0x20);
+    extern u8 data_021767bc[576] __attribute__((aligned(4)));
+    __clear(data_0217667c, 0x20);
     data_02176654[0] = 0;
     data_02176654[1] = 0;
     data_02176674[0] = 0;
@@ -361,11 +357,9 @@ void func_02138520(void) {
     data_0217665c[1] = 0;
     data_02176664[0] = 0;
     data_02176664[1] = 0;
-    for (i = 0; i < 6; i++) {
-        data_0217669c[i] = 0;
-    }
+    for (i = 0; i < 6; i++) data_0217669c[i] = 0;
     data_02176644[2] = 0;
-    memset(data_021767bc, 0, 0x240);
+    __clear(data_021767bc, 0x240);
 }
 
 void func_021385d4(void) {

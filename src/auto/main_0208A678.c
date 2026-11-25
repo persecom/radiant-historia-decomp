@@ -59,18 +59,14 @@ void func_0208a678(void) {
         while (node != NULL) {
             u8 *next = *(u8 **)(node + 0x30);
             func_021168f8(data_0216010c + 0x5f0, node);
-            if (node != NULL) {
-                func_0210c5dc(node);
-            }
+            if (node != NULL) { func_0210c5dc(node); }
             node = next;
         }
         node = *(u8 **)(data_0216010c + 0x5fc);
         while (node != NULL) {
             u8 *next = *(u8 **)(node + 0x30);
             func_021168f8(data_0216010c + 0x5fc, node);
-            if (node != NULL) {
-                func_0210c5dc(node);
-            }
+            if (node != NULL) { func_0210c5dc(node); }
             node = next;
         }
         func_020a3b84();
@@ -103,9 +99,7 @@ void func_0208a678(void) {
         *(s16 *)(q + 0xc6) = (*(s16 *)(q + 0xcc) - *(s16 *)(q + 0xe0)) / 40;
         *(s16 *)(q + 0xc8) = (*(s16 *)(q + 0xce) - (*(s16 *)(q + 0xe2) + 28)) / 28;
         p[0x1fa] = x7;
-        if (*(s16 *)(q + 0xf8) == 0x58) {
-            p[0x1fa] = 4;
-        }
+        if (*(s16 *)(q + 0xf8) == 0x58) { p[0x1fa] = 4; }
         *(u16 *)(p + 0xde) = x6;
         return;
     }
@@ -116,17 +110,15 @@ void func_0208a678(void) {
     case 4:
         return;
     case 5: {
-        u16 *in = data_02162908;
+        s16 pos[4];
         u16 keys = data_021626a8;
         s32 flag = 1;
         s32 moved = 0;
         s16 ix = 0;
         s16 iy = 0;
-        s32 x6a = 0;
-        s16 out[2];
         x6 = 0;
         x7 = 0;
-        if (in[2] != 0) {
+        if (data_02162908[2] != 0) {
             p[0x212] &= ~2;
             if (((s8)p[0x212] & 1) != 0) {
                 if (func_020a2754(0xa3, 0xad, 0x50, 0x14) == 1) {
@@ -134,8 +126,8 @@ void func_0208a678(void) {
                     flag = 0;
                 }
             } else if (!(p[0x1f3] & 2)) {
-                if ((s16)((s16)((in[0] - *(s16 *)(p + 0x1e0)) / 40) * 5 +
-                          (s16)((in[1] - (*(s16 *)(p + 0x1e2) + 28)) / 28)) ==
+                if ((s16)((s16)((data_02162908[0] - *(s16 *)(p + 0x1e0)) / 40) * 5 +
+                          (s16)((data_02162908[1] - (*(s16 *)(p + 0x1e2) + 28)) / 28)) ==
                     *(s16 *)(p + 0x1e8)) {
                     p[0x212] |= 2;
                     flag = 0;
@@ -160,7 +152,7 @@ void func_0208a678(void) {
                 flag = 0;
             }
         }
-        p[0x1f3] &= ~2;
+        p[0x1f3] = p[0x1f3] & 0xfd;
         if (((s8)p[0x212] & 2) != 0) {
             p[0x212] &= ~2;
             x7 = flag;
@@ -175,9 +167,7 @@ void func_0208a678(void) {
             }
             if (((s8)p[0x22a] & 2) != 0) {
                 *(s16 *)(p + 0x1e0) += 0xc8;
-                if (*(s16 *)(p + 0x1e0) > 0) {
-                    *(s16 *)(p + 0x1e0) = 0;
-                }
+                if (*(s16 *)(p + 0x1e0) > 0) { *(s16 *)(p + 0x1e0) = 0; }
                 p[0x22a] &= ~2;
                 func_0210d27c(2);
                 if (((s8)p[0x236] & 2) != 0) {
@@ -195,13 +185,15 @@ void func_0208a678(void) {
                 x7 = 1;
             }
         }
-        if (flag != 1) {
-            return;
-        }
-        if (in[2] == 1) {
+        if (flag != 1) { return; }
+        pos[0] = data_02162908[0];
+        pos[1] = data_02162908[1];
+        pos[2] = data_02162908[2];
+        pos[3] = data_02162908[3];
+        if (pos[2] == 1) {
             p[0x1f3] |= 2;
-            ix = in[0];
-            iy = in[1];
+            ix = pos[0];
+            iy = pos[1];
             x6 = 1;
         } else {
             if ((keys & 0x100) && *(s32 *)(p + 0x230) == 1) {
@@ -212,9 +204,7 @@ void func_0208a678(void) {
                 p[0x236] |= 4;
             } else if ((keys & 0x200) && *(s32 *)(p + 0x224) == 1) {
                 *(s16 *)(p + 0x1e0) += 0xc8;
-                if (*(s16 *)(p + 0x1e0) > 0) {
-                    *(s16 *)(p + 0x1e0) = 0;
-                }
+                if (*(s16 *)(p + 0x1e0) > 0) { *(s16 *)(p + 0x1e0) = 0; }
                 p[0x22a] |= 4;
                 func_0210d27c(2);
             } else {
@@ -226,7 +216,6 @@ void func_0208a678(void) {
                 if (data_021626b0[0] & 0x80) { x6 = 1; moved = 1; iy += p[0x238]; }
             }
         }
-        x6a = moved;
         if (moved != 1) {
             p[0x239] = 0;
             p[0x238] = 8;
@@ -235,21 +224,19 @@ void func_0208a678(void) {
             if (p[0x239] >= 0x1e) {
                 p[0x238] = (p[0x238] + 1) & 0xff;
                 p[0x239] = 0;
-                if (p[0x238] >= 0xf) {
-                    p[0x238] = 0xf;
-                }
+                if (p[0x238] >= 0xf) { p[0x238] = 0xf; }
             }
         }
         if (func_020a2664(ix, iy, x6) == 0) {
-            out[0] = *(s16 *)(p + 0x1cc);
-            out[1] = *(s16 *)(p + 0x1ce);
-            if (func_0210c28c(out, &ix, p + 0x100) <= 2) {
-                ix = *(s16 *)(p + 0x1cc);
-                iy = *(s16 *)(p + 0x1ce);
+            s16 a[2] = { *(s16 *)(p + 0x1cc), *(s16 *)(p + 0x1ce) };
+            s16 b[2] = { ix, iy };
+            if (func_0210c28c(a, b, p + 0x100) <= 2) {
+                ix = a[0];
+                iy = a[1];
             }
             *(s16 *)(p + 0x1cc) = ix;
             *(s16 *)(p + 0x1ce) = iy;
-            if ((u16)(iy - 0x12) <= (u16)(0x9e - 0x12)) {
+            if (iy >= 0x12 && iy <= 0x9e) {
                 *(s16 *)(p + 0x1c6) = (*(s16 *)(p + 0x1cc) - *(s16 *)(p + 0x1e0)) / 40;
                 *(s16 *)(p + 0x1c8) = (*(s16 *)(p + 0x1ce) - (*(s16 *)(p + 0x1e2) + 28)) / 28;
             }
@@ -263,30 +250,25 @@ void func_0208a678(void) {
             } else if (*(s16 *)(p + 0x1ce) > 0xe6) {
                 *(s16 *)(p + 0x1cc) = 0xe6;
             }
-            if ((u16)(*(s16 *)(p + 0x1ce) - 0x12) <= (u16)(0x9e - 0x12)) {
+            if (*(s16 *)(p + 0x1ce) >= 0x12 && *(s16 *)(p + 0x1ce) <= 0x9e) {
                 *(s16 *)(p + 0x1c6) = (*(s16 *)(p + 0x1cc) - *(s16 *)(p + 0x1e0)) / 40;
                 *(s16 *)(p + 0x1c8) = (*(s16 *)(p + 0x1ce) - (*(s16 *)(p + 0x1e2) + 28)) / 28;
             }
             if (*(s32 *)(p + 0x224) == 1) {
                 s16 val;
                 s32 idx;
+                s8 v;
                 func_02064b84(0xa, 0x50, 0xe, 0xe);
                 idx = *(s16 *)(p + 0x1c8) + *(s16 *)(p + 0x1c6) * 5;
                 val = idx;
                 *(u32 *)(p + 0x200) = 0;
                 *(u32 *)(p + 0x20c) = 0;
                 *(u16 *)(p + 0x24e + idx * 40) &= ~0x100;
-                if (!((*(u16 *)(p + 0x24e + idx * 40)) & 0x40)) {
-                    return;
-                }
-                if (p[idx + 0x23a] != 1) {
-                    return;
-                }
-                if (*(s16 *)(p + idx + 0x254) != 0) {
-                    *(u32 *)(p + 0x20c) = 1;
-                }
+                if (!((*(u16 *)(p + 0x24e + idx * 40)) & 0x40)) { return; }
+                if (func_020a1734(p[idx + 0x23a]) != 1) { return; }
+                if (*(s16 *)(p + idx + 0x254) != 0) { *(u32 *)(p + 0x20c) = 1; }
                 if (x7 == 1) {
-                    s8 v = *(s8 *)(p + 0x1e6);
+                    v = *(s8 *)(p + 0x1e6);
                     if (v == 2) {
                         p[0x1e6] = 0;
                     } else {
@@ -303,11 +285,14 @@ void func_0208a678(void) {
                             x6 = 1;
                             p[0x1e6] = 0;
                         }
-                        if (x6 != 1) {
-                            return;
-                        }
+                        if (x6 != 1) { return; }
                     }
                 }
+                v = *(s8 *)(p + 0x1e6);
+                func_0208c680(p[idx + 0x248], *(u16 *)(p + idx + 0x24a),
+                              *(u16 *)(p + idx + 0x250 + v * 4),
+                              *(s8 *)(p + idx + v * 2 + 0x25c),
+                              *(u16 *)(p + idx + 0x250 + (v * 2 + 1) * 2));
             } else {
                 func_020a994c(data_0216010c + 0x344);
                 func_020a994c(data_0216010c + 0x3e4);

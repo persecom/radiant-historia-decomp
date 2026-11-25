@@ -138,7 +138,7 @@ void func_020e13b0(s32 arg0, s32 arg1) {
 }
 
 void func_020e1850(void) {
-    u8 *root = data_02160a74;
+    u32 root = (u32)data_02160a74;
     u16 i;
     for (i = 0; i < 10; i++) {
         *(u16 *)(*(u8 **)(root + i * 4 + 0x110) + 0x0) = 0;

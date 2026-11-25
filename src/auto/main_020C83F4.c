@@ -225,7 +225,7 @@ s32 func_020c885c(u8 *arg0) {
 }
 
 void func_020c888c(u8 *arg0,s32 arg1,s32 arg2){
-u8 *obj; s32 y,x; u16 i;
+u8 *obj; s16 y,x; u16 i;
 u32 count=func_020c9c34(*(void **)(arg0+0x54));
 for(i=0;i<count;i++){
 obj=func_020c9c10(*(void **)(arg0+0x54),i);
@@ -233,8 +233,8 @@ if(obj!=NULL){
 ((void (*)(u8 *))(*(void **)(obj+0x28)))(obj);
 s32 dx=arg1+(*(s16 *)(obj+0x3a)-*(s16 *)(arg0+0x58));
 s32 dy=arg2+(*(s16 *)(obj+0x3c)-*(s16 *)(arg0+0x5a));
-y=(dy<<16)>>16; x=(dx<<16)>>16;
-((void (*)(u8 *,s32))(*(void **)(obj+0x10)))(obj,x);
+y=dy; x=dx;
+((void (*)(u8 *,s16))(*(void * volatile *)(obj+0x10)))(obj,x);
 ((void (*)(u8 *,s32))(*(void **)(obj+0x14)))(obj,y);
 }}
 *(s16 *)(arg0+0x58)=arg1;

@@ -138,7 +138,7 @@ extern void func_0207af60(void);
 extern void func_0207c2dc(void);
 u32 func_020439a8(void) {
     u8 *node, *pos;
-    u32 ret = 0;
+    u16 ret = 0;
     s32 one = 1;
     s32 zero = 0;
 

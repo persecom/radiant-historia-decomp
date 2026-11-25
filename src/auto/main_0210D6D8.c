@@ -314,10 +314,10 @@ extern u32 data_0216263c;
 extern u32 data_02162658;
 extern void *data_0216267c;
 void func_0210ddfc(void) {
-    u8 *base = data_0216280c;
     u8 *cfg = data_02155c84;
-    u8 *list1, *list2, *list3, *node, *p;
-    u32 *rng;
+    u8 *base = data_0216280c;
+    u8 *null = 0;
+    u8 *node, *list2, *list3, *list1, *p;
     s32 v;
 
     if (*(u8 *)base != 0 && *(s32 *)(base + 0x54) == 0 && *(void **)(base + 0x2c) != NULL) {
@@ -346,8 +346,8 @@ void func_0210ddfc(void) {
                 node = *(u8 **)(node + 0x10);
             else
                 node = *(u8 **)(base + 0x30);
-            *(u8 **)(base + 0x7c) = NULL;
-            *(u8 **)(base + 0x30) = NULL;
+            *(u8 **)(base + 0x7c) = null;
+            *(u8 **)(base + 0x30) = null;
         }
     }
 
@@ -365,8 +365,8 @@ void func_0210ddfc(void) {
                 node = *(u8 **)(node + 0x10);
             else
                 node = *(u8 **)(base + 0x30);
-            *(u8 **)(base + 0x7c) = NULL;
-            *(u8 **)(base + 0x30) = NULL;
+            *(u8 **)(base + 0x7c) = null;
+            *(u8 **)(base + 0x30) = null;
         }
     }
 
@@ -382,8 +382,8 @@ void func_0210ddfc(void) {
                 node = *(u8 **)(node + 0x10);
             else
                 node = *(u8 **)(base + 0x30);
-            *(u8 **)(base + 0x7c) = NULL;
-            *(u8 **)(base + 0x30) = NULL;
+            *(u8 **)(base + 0x7c) = null;
+            *(u8 **)(base + 0x30) = null;
         }
     }
 
@@ -394,19 +394,17 @@ void func_0210ddfc(void) {
             func_02125448();
             func_02108ffc();
             p = *(u8 **)(base + 0xb0);
-            if (p != NULL) {
-                while (p != NULL) {
-                    *(u32 *)(base + 0x74) = *(u32 *)(p + 8);
-                    *(u8 **)(base + 0x7c) = p;
-                    if (*(s32 *)(p + 4) >= 0)
-                        ((void (*)(void))*(void **)p)();
-                    if (*(u8 **)(base + 0x30) == NULL)
-                        p = *(u8 **)(p + 0x10);
-                    else
-                        p = *(u8 **)(base + 0x30);
-                    *(u8 **)(base + 0x7c) = NULL;
-                    *(u8 **)(base + 0x30) = NULL;
-                }
+            while (p != NULL) {
+                *(u32 *)(base + 0x74) = *(u32 *)(p + 8);
+                *(u8 **)(base + 0x7c) = p;
+                if (*(s32 *)(p + 4) >= 0)
+                    ((void (*)(void))*(void **)p)();
+                if (*(u8 **)(base + 0x30) == NULL)
+                    p = *(u8 **)(p + 0x10);
+                else
+                    p = *(u8 **)(base + 0x30);
+                *(u8 **)(base + 0x7c) = null;
+                *(u8 **)(base + 0x30) = null;
             }
             func_020081c0();
             func_02125448();
@@ -415,10 +413,22 @@ void func_0210ddfc(void) {
         } else {
             v = func_02008128();
             if (*(u32 *)(base + 0x40) != *(u32 *)(base + 0x3c)) {
-                if (*(s32 *)(base + 0x54) == 0) {
-                    if (*(u32 *)(base + 0x40) != 0) {
+                if (*(s32 *)(base + 0x54) != 0) {
+                    if (*(u32 *)(base + 0x3c) == 0)
                         *(volatile u16 *)0x04000060 &= 0xcfdf;
-                    } else {
+                    else {
+                        *(volatile u16 *)0x04000060 = (*(volatile u16 *)0x04000060 & ~0x3000) | 0x20;
+                        *(volatile u32 *)0x04000540 = *(u32 *)(cfg + 0xc);
+                        *(s32 *)(base + 0x50) = 1;
+                        func_0200813c(v);
+                        func_020081c0();
+                        func_02125448();
+                        func_02108ffc();
+                    }
+                } else {
+                    if (*(u32 *)(base + 0x40) == 0)
+                        *(volatile u16 *)0x04000060 &= 0xcfdf;
+                    else {
                         *(volatile u16 *)0x04000060 = (*(volatile u16 *)0x04000060 & ~0x3000) | 0x20;
                         *(volatile u32 *)0x04000540 = *(u32 *)(cfg + 0xc);
                         *(s32 *)(base + 0x50) = 1;
@@ -437,12 +447,10 @@ void func_0210ddfc(void) {
 
     if (*(s32 *)(base + 0x58) != 0) {
         if (*(s32 *)(base + 0x54) != 0) {
-            func_02002858((void *)data_0216263c, *(void **)(base + 8));
-            p = *(void **)(base + 0x78);
+            func_02002858((void *)0x0400006c, *(void **)(base + 8));
         } else {
-            func_02002858((void *)data_0216263c, *(void **)(base + 0x78));
-            func_02002858((void *)((u8 *)data_0216263c + 0x1000), *(void **)(base + 8));
-            p = *(void **)(base + 0x78);
+            func_02002858((void *)0x0400006c, *(void **)(base + 0x78));
+            func_02002858((void *)0x0400106c, *(void **)(base + 8));
         }
         if (*(s32 *)(base + 0x58) != 0 && *(void **)(base + 0x38) != NULL)
             func_02107820();
@@ -455,13 +463,13 @@ void func_0210ddfc(void) {
         }
     }
 
-    if (*(u32 *)data_02162b80 != 0 && *(s32 *)(base + 0x58) != 0 && *(s32 *)(base + 0x54) != 0)
+    if (data_02162b80 != 0 && *(s32 *)(base + 0x58) != 0 && *(s32 *)(base + 0x54) != 0)
         func_02125448();
-    if (*(u32 *)data_021624f8 != 0) func_02109040();
+    if (data_021624f8 != 0) func_02109040();
     if (*(u32 *)data_02162730 != 0) func_0210d710();
     if (*(s32 *)(base + 0x54) != 0) return;
 
-    if (*(u32 *)data_021626f8 == 0) {
+    if (data_021626f8 == 0) {
         func_0210c6e0();
         func_0210e740();
     } else {
@@ -470,24 +478,15 @@ void func_0210ddfc(void) {
     }
 
     (*(s32 *)(base + 0x68))++;
-    rng = &data_0216263c;
     {
-        u32 a = rng[0], b = rng[1], c = rng[2];
-        rng[0] = b * a + c;
+        u32 *q = &data_0216263c;
+        q[0] = q[1] * q[0] + q[2];
     }
     {
-        u32 *q = &data_02162658;
-        u64 p = (u64)q[2] * q[0];
-        u32 lo = (u32)p;
-        u32 hi = (u32)(p >> 32);
-        hi = q[2] * q[1] + hi;
-        hi = q[3] * q[0] + hi;
-        lo += q[4];
-        hi += q[5] + ((lo < q[4]) ? 1 : 0);
-        q[0] = lo;
-        q[1] = hi;
+        u64 *q = (u64 *)&data_02162658;
+        q[0] = q[0] * q[1] + q[2];
     }
-    if (*(u32 *)data_0216267c != 0 && *(void **)(*(void **)data_0216267c + 0x24) != NULL)
+    if (data_0216267c != NULL && *(void **)((u8 *)data_0216267c + 0x24) != NULL)
         func_0210c470();
 }
 

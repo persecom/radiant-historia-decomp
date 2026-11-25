@@ -158,48 +158,90 @@ int func_020123f0(const u8 *a, const u8 *b)
   }
 }
 
-int func_020124a8(const u8 *a, const u8 *b, s32 n) {
-    u32 aa, ba, mask;
-    s32 i, limit;
-
-    if (n == 0) goto done;
-    aa = (u32)a & 3;
-    ba = (u32)b & 3;
-    i = 0;
-    mask = 0x7f7f7f7f;
-    if ((aa ^ ba) != 0) goto bytes;
-    if (aa == 0) goto words;
-    while (((i + aa) < 4) && (i < n)) {
-        u8 x = a[i];
-        u8 y = b[i];
-        if ((x != y) || (x == 0)) return x - y;
-        i++;
+int func_020124a8(const u8 *a, const u8 *b, s32 n)
+{
+  u32 aa;
+  u32 ba;
+  u32 i;
+  u32 mask;
+  s32 limit;
+  if (n == 0)
+  {
+    goto done;
+  }
+  aa = ((u32) a) & 3;
+  ba = ((u32) b) & 3;
+  i = 0;
+  limit = 0x7f7f7f7f;
+  mask = limit;
+  if ((aa ^ ba) != 0)
+  {
+    goto bytes;
+  }
+  if (aa == 0)
+  {
+    goto words;
+  }
+  while (((i + aa) < 4) && (((s32) i) < n))
+  {
+    u8 x = a[i];
+    u8 y = b[i];
+    if ((x != y) || (x == 0))
+    {
+      return x - y;
     }
-words:
-    limit = n - 4;
-    if (i > limit) goto bytes;
-    do {
-        u32 x = *(const u32 *)(a + i);
-        u32 y = *(const u32 *)(b + i);
-        u32 t, z;
-        if (x != y) break;
-        t = (x & mask) + mask;
-        t |= x;
-        t |= mask;
-        z = ~t;
-        if (z != 0) break;
-        i += 4;
-    } while (i <= limit);
-bytes:
-    if (i >= n) goto done;
-    do {
-        u8 x = a[i];
-        u8 y = b[i];
-        if ((x != y) || (x == 0)) return x - y;
-        i++;
-    } while (i < n);
-done:
-    return 0;
+    i++;
+  }
+
+  words:
+  limit = n - 4;
+
+  ba = limit;
+  if (((s32) i) > limit)
+  {
+    goto bytes;
+  }
+  do
+  {
+    u32 x = *((const u32 *) (a + i));
+    u32 y = *((const u32 *) (b + i));
+    u32 t;
+    u32 z;
+    if (x != y)
+    {
+      break;
+    }
+    t = (x & mask) + mask;
+    t |= x;
+    t |= mask;
+    z = ~t;
+    if (z != 0)
+    {
+      break;
+    }
+    i += 4;
+  }
+  while (((s32) i) <= ba);
+  bytes:
+  if (((s32) i) >= n)
+  {
+    goto done;
+  }
+
+  do
+  {
+    u8 x = a[i];
+    u8 y = b[i];
+    if ((x != y) || (x == 0))
+    {
+      return x - y;
+    }
+    i++;
+  }
+  while (((s32) i) < n);
+  done:
+  return 0;
+
 }
 
 void func_02012590(s32 arg0, const char *arg1, ...) {
@@ -219,23 +261,30 @@ s32 func_020125b8(s32 c) {
     return ret;
 }
 
-void func_020125e0(u32 *bits, u32 start, u32 end) {
-    u32 mask, endMask, word;
-    if (start >= end) {
-        return;
+void func_020125e0(u32 *bits, u32 start, u32 end)
+{
+  u32 word;
+  u32 endMask;
+  u32 mask;
+  u32 next;
+  if (start >= end)
+  {
+    return;
+  }
+  endMask = (1U << (end & 0x1f)) - 1;
+  do
+  {
+    word = start >> 5;
+    mask = (~0U) << (start & 0x1f);
+    next = (word + 1) << 5;
+    if (end < next)
+    {
+      mask &= endMask;
     }
-    endMask = (1U << (end & 0x1f)) - 1;
-    do {
-        u32 next;
-        word = start >> 5;
-        mask = ~0U << (start & 0x1f);
-        next = (word + 1) << 5;
-        if (end < next) {
-            mask &= endMask;
-        }
-        bits[word] |= mask;
-        start = next;
-    } while (start < end);
+    bits[start >> 5] |= mask;
+    start = next;
+  }
+  while (start < end);
 }
 
 extern void func_02008e24(u32, void *, u32);
@@ -257,7 +306,6 @@ s32 func_02012634(s32 arg0, const char *fmt, char *args)
     const char *s = (const char *)arg0;
     s64 val = 0;
     struct ScanState st;
-    u32 bits[8];
     s32 n;
     char *dst;
     char *dst0;
@@ -357,8 +405,13 @@ parse_num:
         do { ch = *++s; } while (func_020125b8(ch) != 0);
     }
 again_sign:
-    if (ch == '+') { flags |= 0x2; ch = *++s; goto again_sign; }
+    if (ch == '+') { flags |= 0x2; goto next_sign; }
     if (ch == '-') { flags |= 0x8; ch = *++s; goto again_sign; }
+    goto after_sign;
+next_sign:
+    ch = *++s;
+    goto again_sign;
+after_sign:
     if (c == -1) {
         if (ch != '0') c = 10;
         else {
@@ -457,21 +510,22 @@ parse_set:
     {
         s32 i = 0;
         s32 neg = 0;
-        func_02008e24(0, bits, 0x20);
+        func_02008e24(0, st.bits, 0x20);
         ch = *++f;
         st.inv = 1;
         if (ch == '^') { f++; ch = *f; st.inv = 0; }
-        if (ch == ']') { bits[(u32)(u8)ch >> 5] |= 1U << (ch & 31); f++; }
+        if (ch == ']') { st.bits[(u32)(u8)ch >> 5] |= 1U << (ch & 31); f++; }
         while (*f != 0 && *f != ']') {
             ch = *f;
             if (ch == '-' && i != 0 && f[1] != ']') {
                 f++;
                 ch = *f;
-                func_020125e0(bits, i, ch);
+                func_020125e0(st.bits, i, ch);
+                st.bits[1] |= 0x2000;
                 neg = 1;
                 f++;
             } else {
-                bits[(u32)(u8)ch >> 5] |= 1U << (ch & 31);
+                st.bits[(u32)(u8)ch >> 5] |= 1U << (ch & 31);
                 i = ch;
                 f++;
             }
@@ -485,7 +539,7 @@ parse_set:
         if (width == 0) width = (s32)0x80000000;
         ch = *s;
     set_loop:
-        if (((bits[(u32)(u8)ch >> 5] >> ((u8)ch & 31)) & 1) != st.inv) goto set_end;
+        if (((st.bits[(u32)(u8)ch >> 5] >> ((u8)ch & 31)) & 1) != st.inv) goto set_end;
         if (dst != 0) *dst++ = ch;
         ch = *++s;
         width--;

@@ -146,50 +146,45 @@ void func_020da0dc(void) {
     func_020d0a40(4);
 }
 
+#pragma optimization_level 4
 void func_020da1c0(void) {
-    u8 *next;
-    u8 *node;
-    if (*(u16 *)(data_02160080 + 0x14) == 0) {
-        return;
-    }
-    node = *(u8 **)(data_02160080 + 0x18);
-    while (node != NULL) {
-        u8 *obj = *(u8 **)(node + 0);
-        u8 *sub;
-        next = *(u8 **)(node + 0x18);
-        if (obj != NULL && (sub = *(u8 **)(obj + 0x128)) != NULL) {
-            switch (*(s16 *)(node + 0x10)) {
-            case 0:
-                *(u8 *)(sub + 0x76) |= 1;
-                *(void **)(sub + 0x78) = node;
-                *(s16 *)(node + 0x10) = 1;
-                break;
-            case 1:
-                if (*(u16 *)(data_02160080 + 0x14) == 2) {
-                    *(u32 *)(sub + 0x24) = 0x3f2;
-                    func_020d626c(obj, sub);
-                    *(s16 *)(node + 0x10) = 2;
-                }
-                break;
-            case 2:
-                if (*(u32 *)(sub + 0x24) == 0) {
-                    *(void **)(sub + 0x78) = NULL;
-                    *(u8 *)(sub + 0x76) = 0;
-                    if (*(u8 *)(node + 0x12) & 1) {
-                        func_020223f8(sub, 0);
-                    }
-                    func_02026ddc(node);
-                }
-                break;
-            }
-        }
-        node = next;
-    }
-    if (*(u16 *)(data_02160080 + 0x16) == 0) {
-        *(u16 *)(data_02160080 + 0x14) = 0;
-    }
+ register u8 *node;
+ register u8 *next;
+ u8 *obj;
+ u8 *sub;
+ if(*(u16 *)(data_02160080+0x14)==0) return;
+ node=*(u8 **)(data_02160080+0x18);
+ while(node!=NULL) {
+ obj=*(u8 **)node;
+ next=*(u8 **)(node+0x18);
+ if(obj!=NULL && (sub=*(u8 **)(obj+0x128))!=NULL) {
+ switch(*(s16 *)(node+0x10)) {
+ case 0:
+ *(u8 *)(sub+0x76)|=1;
+ *(void **)(sub+0x78)=node;
+ *(s16 *)(node+0x10)=1;
+ break;
+ case 1:
+ if(*(u16 *)(data_02160080+0x14)==2) {
+ *(u32 *)(sub+0x24)=0x3f2;
+ func_020d626c(obj,sub);
+ *(s16 *)(node+0x10)=2;
+ }
+ break;
+ case 2:
+ if(*(u32 *)(sub+0x24)==0) {
+ *(void **)(sub+0x78)=NULL;
+ *(u8 *)(sub+0x76)=0;
+ if(*(u8 *)(node+0x12)&1) func_020223f8(sub,0);
+ func_02026ddc(node);
+ }
+ break;
+ }
+ }
+ node=next;
+ }
+ if(*(u16 *)(data_02160080+0x16)==0) *(u16 *)(data_02160080+0x14)=0;
 }
-
 void func_0202b950(u8 *);
 u8 *func_0202c7d8(s32);
 void func_020da2c8(u8 *arg0) {

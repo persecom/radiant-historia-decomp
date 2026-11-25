@@ -23,6 +23,87 @@ extern void func_02132568(void);
 extern void func_02132ae8(void);
 extern s32 data_0215a07c[];
 extern s32 func_0212f3fc(void *, s32);
+void func_02130300(void *bs, u8 *hdr, s32 bit_alloc[][32], s32 scalefactor[][3][32], s32 gr, s16 *samples, s32 *sf_table) {
+    s32 sblimit = *(s32 *)(hdr + 0x10);
+    s32 nch = *(s32 *)(hdr + 0x4);
+    s32 jsbound = *(s32 *)(hdr + 0x14);
+    u8 *alloc_tbl = *(u8 **)(hdr + 0x18);
+    s32 sb, ch, j;
+
+    for (sb = 0; sb < sblimit; sb++) {
+        for (ch = 0; ch < (sb < jsbound ? nch : 1); ch++) {
+            s32 ba = bit_alloc[ch][sb];
+            if (ba != 0) {
+                s32 *entry = (s32 *)(alloc_tbl + sb * 0x180 + ba * 0x18);
+                s32 d = entry[5];
+                s32 sf = sf_table[scalefactor[ch][gr][sb]];
+                s32 c = entry[4];
+                if (entry[2] == 3) {
+                    s32 bits = entry[1];
+                    if (bits <= 8) {
+                        s32 code = func_0212f3fc(bs, bits * 3);
+                        s32 mask = data_0215a07c[bits];
+                        samples[ch * 96 + 64 + sb] = (s16)((((c * (code & mask) + d) >> 2) * sf) >> 16);
+                        code >>= bits;
+                        samples[ch * 96 + 32 + sb] = (s16)((((c * (code & mask) + d) >> 2) * sf) >> 16);
+                        code >>= bits;
+                        samples[ch * 96 + 0 + sb] = (s16)((((c * code + d) >> 2) * sf) >> 16);
+                    } else {
+                        samples[ch * 96 + 0 + sb] = (s16)((((func_0212f3fc(bs, bits) * c + d) >> 2) * sf) >> 16);
+                        samples[ch * 96 + 32 + sb] = (s16)((((func_0212f3fc(bs, bits) * c + d) >> 2) * sf) >> 16);
+                        samples[ch * 96 + 64 + sb] = (s16)((((func_0212f3fc(bs, bits) * c + d) >> 2) * sf) >> 16);
+                    }
+                } else {
+                    s32 steps = entry[0];
+                    s32 code = func_0212f3fc(bs, entry[1]);
+                    if (steps == 3) {
+                        samples[ch * 96 + 0 + sb] = (s16)(((((code % 3) * c + d) >> 2) * sf) >> 16);
+                        code /= 3;
+                        samples[ch * 96 + 32 + sb] = (s16)(((((code % 3) * c + d) >> 2) * sf) >> 16);
+                        code /= 3;
+                        samples[ch * 96 + 64 + sb] = (s16)(((((code % 3) * c + d) >> 2) * sf) >> 16);
+                    } else if (steps == 5) {
+                        samples[ch * 96 + 0 + sb] = (s16)(((((code % 5) * c + d) >> 2) * sf) >> 16);
+                        code /= 5;
+                        samples[ch * 96 + 32 + sb] = (s16)(((((code % 5) * c + d) >> 2) * sf) >> 16);
+                        code /= 5;
+                        samples[ch * 96 + 64 + sb] = (s16)(((((code % 5) * c + d) >> 2) * sf) >> 16);
+                    } else if (steps == 9) {
+                        samples[ch * 96 + 0 + sb] = (s16)(((((code % 9) * c + d) >> 2) * sf) >> 16);
+                        code /= 9;
+                        samples[ch * 96 + 32 + sb] = (s16)(((((code % 9) * c + d) >> 2) * sf) >> 16);
+                        code /= 9;
+                        samples[ch * 96 + 64 + sb] = (s16)(((((code % 9) * c + d) >> 2) * sf) >> 16);
+                    } else {
+                        for (j = 0; j < 3; j++) {
+                            samples[ch * 96 + j * 32 + sb] = (s16)(((((code % steps) * c + d) >> 2) * sf) >> 16);
+                            code /= steps;
+                        }
+                    }
+                }
+            } else {
+                samples[ch * 96 + 0 + sb] = 0;
+                samples[ch * 96 + 32 + sb] = 0;
+                samples[ch * 96 + 64 + sb] = 0;
+            }
+
+            if (nch == 2 && sb >= jsbound) {
+                for (j = 0; j < 3; j++) {
+                    samples[96 + j * 32 + sb] = samples[j * 32 + sb];
+                }
+            }
+        }
+    }
+
+    for (sb = sblimit; sb < 32; sb++) {
+        for (ch = 0; ch < nch; ch++) {
+            for (j = 0; j < 3; j++) {
+                samples[ch * 96 + j * 32 + sb] = 0;
+            }
+        }
+    }
+}
+
 void func_02130858(u32 *arg0, u32 *arg1) {
     if (arg0 != NULL) {
         *arg0 = data_0215a0d8[0];

@@ -166,14 +166,11 @@ void func_0211c424(void *arg0, void *arg1) {
  u16 i;
  for(i=0;i<((List_0211c424 *)arg1)->count;i++) {
   Unk_0211c424 *entry;
-
   void (*callback)(void *,void *,u16);
   ((State_0211c424 *)data_021701f8)->enabled=1;
- entry=((List_0211c424 *)arg1)->entries+i;
+  entry=((List_0211c424 *)arg1)->entries+i;
   p->x=entry->x;
-  p->y=entry->y;
-  p->z=entry->z;
-  callback=((Callbacks_0211c424 *)arg0)->before;
+  callback=((Callbacks_0211c424 *)arg0)->before; p->y=entry->y; p->z=entry->z;
   if(callback) callback(data_021701f8,arg1,i);
   if(((State_0211c424 *)data_021701f8)->enabled) func_0211c1f8(&p->x);
   callback=((Callbacks_0211c424 *)arg0)->after;

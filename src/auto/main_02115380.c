@@ -367,14 +367,13 @@ void *func_02115b7c(void *arg0, void *arg1, s32 arg2) {
     return r4;
 }
 
-#pragma opt_propagation off
 #pragma scheduling off
 void *func_02115be8(void *arg0,void *arg1,s32 arg2) {
 u32 total; u8 *p=func_02115264(arg0); u32 size; void *ctx;
 if(!p) {
 ctx=0;
-if((s32)func_0211519c(arg0,data_0216cad4.header,(void *)0x3c,0)!=0x3c)return 0;
-size=data_0216cad4.count*4;total=size*2;
+if((s32)func_0211519c(arg0,&data_0216cad4,(void *)0x3c,0)!=0x3c)return 0;
+size=*(volatile u32 *)&((u32 *)&data_0216cad4)[14]*4;total=size*2;
 if(!arg1)return 0;
 if(arg2)ctx=func_02114f70();
 p=func_0211543c(arg1,total+0x5c,func_02115df0,(u32)ctx,(u32)arg0);
@@ -388,7 +387,6 @@ if(arg2)func_0211528c(arg0,p);
 return p;
 }
 #pragma scheduling on
-#pragma opt_propagation on
 void func_02115d10(void *arg0, s32 arg1, s32 arg2)
 {
   void *r5;

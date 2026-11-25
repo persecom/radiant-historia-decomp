@@ -416,37 +416,31 @@ void func_0212a5d4(u8 *arg0, u32 arg1) {
 }
 
 void func_0212a61c(u8 *p) {
-    s32 remaining, end, format;
-    format = *(s32 *)(p + 0x50);
-    s32 count = *(s32 *)(p + 0x4c) / format;
-    remaining = *(s32 *)(p + 0x70);
-    s32 start = *(s32 *)(p + 0x68);
-    s32 length = *(s32 *)(p + 0x6c);
-    s32 rounded = remaining + *(s32 *)(p + 0x58) - 1;
-    s32 limit = rounded / *(s32 *)(p + 0x58);
-    s32 pad = *(s32 *)(p + 0x58) - 1 - rounded % *(s32 *)(p + 0x58);
-    end = *(s32 *)(p + 0x60);
-    s32 blocks = (*(s32 *)(p + 0x58) + (end - start) - 1) / *(s32 *)(p + 0x58);
-    s32 span = blocks * *(s32 *)(p + 0x58);
-    s32 max;
-    if (limit < blocks) {
-        start += span;
-        if (start - pad < end) {
-            blocks++;
-        }
-    }
-    if (remaining < length) {
-        length += pad;
-    }
-    max = length / *(s32 *)(p + 0x58);
-    count = count <= max ? count : max;
-    count = count <= limit ? count : limit;
-    count = count <= blocks ? count : blocks;
-    if (format == 2) {
-        func_0212a5d4(p, count);
-    } else {
-        func_0212a594(p, count);
-    }
+s32 remaining, end, format;
+format = *(s32 *)(p+0x50);
+s32 count = *(s32 *)(p+0x4c) / format;
+remaining = *(s32 *)(p+0x70);
+s32 unit = *(s32 *)(p+0x58);
+s32 start = *(s32 *)(p+0x68);
+s32 length = *(s32 *)(p+0x6c);
+s32 rounded = remaining + (u32)unit - 1;
+s32 limit = rounded / unit;
+s32 pad = unit - 1 - rounded % unit;
+end = *(s32 *)(p+0x60);
+s32 blocks = ((unsigned)unit + (end-start) - 1)/unit;
+s32 span = blocks * unit;
+s32 max;
+if (limit < blocks) {
+start += span;
+if (start-pad < end) blocks++;
+}
+if (remaining < length) length += pad;
+max = length/unit;
+count = count <= max ? count : max;
+count = count <= limit ? count : limit;
+count = count <= blocks ? count : blocks;
+if (format == 2) func_0212a5d4(p,count);
+else func_0212a594(p,count);
 }
 
 void func_0212a71c(u16 *arg0, s16 *arg1, s32 arg2) {

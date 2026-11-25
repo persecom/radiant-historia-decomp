@@ -55,6 +55,45 @@ static inline u16 Random_02067de0(u32 limit) {
     data_0216263c[0]=seed;
     return (u16)(((seed>>16)*limit)>>16);
 }
+extern u8 *data_021600e8;
+extern u16 data_0213fc78[];
+extern s32 data_02170248[];
+extern s32 data_02170204[];
+extern s32 data_02155984;
+extern void func_0206753c(s32);
+extern void func_02002028(s32);
+extern long long func_02001fd0(void);
+extern s32 func_0210c2f4(void *, void *);
+extern void func_021098ac(void *);
+void func_02067744(void) {
+    u16 table[5][2];
+    u8 *root = data_021600e8;
+    u8 *owner;
+    s32 signX;
+    s32 signY;
+    u32 i;
+    u16 *src = data_0213fc78;
+    u8 *dst = (u8 *)table;
+    for (i = 0; i < 5; i++) {
+        u16 a = src[0];
+        u16 b = src[1];
+        src += 2;
+        ((u16 *)dst)[1] = b;
+        ((u16 *)dst)[0] = a;
+        dst += 4;
+    }
+    owner = *(u8 **)(root + 0x48);
+    if (owner == NULL) return;
+    signX = 1;
+    if (owner[0x40] & 2) signX = -1;
+    signY = (owner[0x40] & 4) ? -1 : 1;
+    if (*(void **)(owner + 0x44) != NULL && *(void **)(owner + 0x54) != NULL) {
+        u8 *part = *(u8 **)(owner + 0x54);
+        *(s32 *)(owner + 4) = *(s32 *)(owner + 4);
+        data_02170248[0] = (s32)(((u32)(owner[0x18] % 24 + 32) << 24) | 0xc0u | ((u32)part[0x26] << 16));
+    }
+}
+
 void func_02067de0(u8 *arg0)
 {
   int new_var;

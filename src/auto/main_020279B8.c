@@ -101,16 +101,15 @@ s32 func_020279b8(u8 *self,u8 *parser) {
  break;
  }
  case 8:case 9:{
- s8 available[9]={0};SignedGrid_020279b8 order=*(const SignedGrid_020279b8 *)&data_0213ee88,offset=*(const SignedGrid_020279b8 *)&data_0213ee58;u32 i;
+ s8 available[9]={0};MixedGrid_020279b8 order=*(const MixedGrid_020279b8 *)&data_0213ee88,offset=*(const MixedGrid_020279b8 *)&data_0213ee58;u32 i;
  for(i=0;i<9;i++)if(func_0202b3b0(i) && !func_0202c820(i))available[i]=1;
  for(i=0;i<16;i++){s8 b,a; a=Random_020279b8(9);b=Random_020279b8(9);s8 tmp=order.cells[a];order.cells[a]=order.cells[b];order.cells[b]=tmp;}
- {s32 none=0;
- for(i=none;i<9;i++){
- s8 k=order.cells[i];s32 found=none;u16 j;
- for(j=none;j<8;j++){s8 pos=k+offset.cells[j];if(pos>=0 && pos<=8 && available[pos]==0)found=1;}
- if(available[k]==1 && found==1 && cmd==8){if(func_0202e63c(self,k)){func_0202b3d4(self,order.cells[i]);return 1;}}
- else if(available[k]==1 && found==0 && cmd==9){if(func_0202e63c(self,k)){func_0202b3d4(self,order.cells[i]);return 1;}}
- }}break;
+ for(i=0;i<9;i++){
+ s8 k=order.cells[i];s32 found=0;u16 j;
+ for(j=0;j<8;j++){s8 pos=k+offset.cells[j];if(pos>=0 && pos<=8 && available[pos]==0)found=1;}
+ if(available[k]==1 && found==1 && cmd==8){if(func_0202e63c(self,k)){func_0202b3d4(self,order.unsignedCells[i]);return 1;}}
+ else if(available[k]==1 && found==0 && cmd==9){if(func_0202e63c(self,k)){func_0202b3d4(self,order.unsignedCells[i]);return 1;}}
+ }break;
  }
  case 10:
  for(;count<9;count++)if(func_0202e548(count)[0x1c] && func_0202e63c(self,count) && !func_0202c820(count)){func_0202b3d4(self,count);return 1;}

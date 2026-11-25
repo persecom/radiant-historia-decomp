@@ -354,8 +354,6 @@ void *func_0210af8c(void) {
 void func_0210afcc(void *arg) {
     u8 *arg0 = arg;
     Unk_0210afcc *s = (Unk_0210afcc *)(arg0 + 0x100);
-    void *cb = func_0210af80;
-    u32 v = 0x3e7;
     s32 i;
     s->flags.bit3 = 0;
     s->flags.bit1 = 0;
@@ -369,10 +367,10 @@ void func_0210afcc(void *arg) {
     *(u8 *)(arg0 + 0x135) = 0x1f;
     *(u32 *)(arg0 + 0x138) = 0;
     *(volatile u16 *)((u8 *)s + 0xa4) &= ~0x100;
-    *(void **)(arg0 + 0x1a8) = cb;
-    s->unkA2 = v;
+    *(void **)(arg0 + 0x1a8) = func_0210af80;
+    s->unkA2 = 0x3e7;
     for (i = 0; i < 0x10; i++) {
-        *(u16 *)(arg0 + 0x180 + i * 2) = v;
+        *(u16 *)(arg0 + 0x180 + i * 2) = 0x3e7;
     }
 }
 
@@ -426,28 +424,35 @@ s32 func_0210b130(u8 *arg0, s32 arg1) {
     return ret;
 }
 
-void func_0210b198(u8 *arg0, u16 arg1, u32 arg2, s32 arg3, s32 arg4) {
-    if (*(u32 **)(arg0 + 0xfc) != NULL) {
-        Unk_0210afcc *s = (Unk_0210afcc *)(arg0 + 0x100);
-        if (!s->flags.bit3) {
-            s->flags.bit3 = 1;
-            s->flags.bit5 = (u16)arg3;
-            s->unkA2 = arg1;
-            s->flags.bit7 = (u16)arg4;
-            **(u32 **)(arg0 + 0xfc) = arg2;
-        }
-    }
-    if (*(u32 **)(arg0 + 0x100) != NULL) {
-        Unk_0210afcc *s = (Unk_0210afcc *)(arg0 + 0x100);
-        if (!s->flags.bit4) {
-            *(u16 *)&s->flags |= 0x10;
-            s->flags.bit3 = 1;
-            s->flags.bit5 = (u16)arg3;
-            s->unkA2 = arg1;
-            s->flags.bit7 = (u16)arg4;
-            **(u32 **)(arg0 + 0x100) = arg2;
-        }
-    }
+void func_0210b198(u8 *arg0,u16 arg1,u32 arg2,s32 arg3,s32 arg4) {
+Unk_0210afcc *s;
+u32 *p;
+u16 flag;
+p=*(u32 **)(arg0+0xfc);
+if(p){
+s=(Unk_0210afcc *)(arg0+0x100);
+if(!s->flags.bit3){
+s->flags.bit3=1;
+flag=(u16)arg3;
+s->flags.bit5=flag;
+s->unkA2=arg1;
+flag=(u16)arg4;
+s->flags.bit7=flag;
+*p=arg2;
+}}
+p=*(u32 **)(arg0+0x100);
+if(p){
+s=(Unk_0210afcc *)(arg0+0x100);
+if(!s->flags.bit4){
+*(volatile u16 *)&s->flags = *(u16 *)&s->flags | 0x10;
+s->flags.bit3=1;
+flag=(u16)arg3;
+s->flags.bit5=flag;
+s->unkA2=arg1;
+flag=(u16)arg4;
+s->flags.bit7=flag;
+*p=arg2;
+}}
 }
 
 extern void func_0211cd24(u8 *, u8 *);

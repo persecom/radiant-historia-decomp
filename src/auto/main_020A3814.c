@@ -168,20 +168,20 @@ void func_020a3bb8(void) {
 }
 
 void func_020a3bbc(s32 arg0) {
-    UnkStruct_020a3bbc *p = *(UnkStruct_020a3bbc **)((u8 *)*data_0216012c + 0x30);
-    *(volatile u32 *)0x040004a8 = (u32)(p[arg0].unk4 >> 3) | (p[arg0].unk18 << 26) |
-                                  (1 << 30) | (p[arg0].unk10 << 20) |
-                                  (p[arg0].unk14 << 23) | (1 << 29);
-    *(volatile u32 *)0x040004ac = (u32)(p[arg0].unkc >> (4 - (p[arg0].unk18 == 2)));
+    UnkStruct_020a3bbc *base = *(UnkStruct_020a3bbc **)((u8 *)*data_0216012c + 0x30);
+    *(volatile u32 *)0x040004a8 = (base[arg0].unk4 >> 3) | (base[arg0].unk18 << 26) |
+                                  0x40000000 | (base[arg0].unk10 << 20) |
+                                  (base[arg0].unk14 << 23) | 0x20000000;
+    *(volatile u32 *)0x040004ac = base[arg0].unkc >> (4 - (base[arg0].unk18 == 2));
     *(volatile u32 *)0x04000480 = 0x7fff;
 }
 
 void func_020a3c54(s32 arg0) {
-    UnkStruct_020a3bbc *p = *(UnkStruct_020a3bbc **)((u8 *)*data_0216012c + 0x30);
-    *(volatile u32 *)0x040004a8 = (u32)(p[arg0].unk4 >> 3) | (p[arg0].unk18 << 26) |
-                                  (1 << 30) | (p[arg0].unk10 << 20) |
-                                  (p[arg0].unk14 << 23);
-    *(volatile u32 *)0x040004ac = (u32)(p[arg0].unkc >> (4 - (p[arg0].unk18 == 2)));
+    UnkStruct_020a3bbc *base = *(UnkStruct_020a3bbc **)((u8 *)*data_0216012c + 0x30);
+    *(volatile u32 *)0x040004a8 = (base[arg0].unk4 >> 3) | (base[arg0].unk18 << 26) |
+                                  0x40000000 | (base[arg0].unk10 << 20) |
+                                  (base[arg0].unk14 << 23);
+    *(volatile u32 *)0x040004ac = base[arg0].unkc >> (4 - (base[arg0].unk18 == 2));
     *(volatile u32 *)0x04000480 = 0x7fff;
 }
 

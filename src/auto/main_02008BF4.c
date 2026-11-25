@@ -357,52 +357,101 @@ u32 func_02009148(u32 val, u32 *ptr) {
     return __swp(val, ptr);
 }
 
-void func_02009230(u8 *src,u16 *dst) {
-u32 packed=0,shift=0;
-u32 header=*(u32 *)src;
-s32 remaining=header>>8;
-int extended=(header&15)!=0;
-src+=4;
-while(remaining>0){
-u32 flags=*src++;
-s32 bit=8;
-while(--bit>=0){
-if(!(flags&128)){
-packed|=(u32)*src++<<shift;
-remaining--;
-shift^=8;
-if(!shift){*dst++=packed;packed=0;}
-}else{
-s32 b=*src;
-s32 length;
-u32 distance,offset;
-if(!extended)length=3;
-else if(b&0xe0)length=1;
-else {
-src++;
-length=(b&15)<<4;
-if(b&16){length<<=8;length+=*src++<<4;length+=0x111;}
-b=*src;
+void func_02009150(const u8 *src, u8 *dst) {
+ u32 header=*(const u32 *)src;
+ s32 remaining=header>>8;
+ u32 extended=(header&15)!=0;
+ src+=4;
+ while(remaining>0) {
+ u32 flags=*src++;
+ s32 n=8;
+ while(n-- && remaining>0) {
+ if(!(flags&128)) { *dst++=*src++; remaining--; }
+ else {
+ u32 byte=*src;
+ s32 base=3, length;
+ u32 offset;
+ if(extended) {
+ base=1;
+ if(!(byte&224)) {
+ src++;
+ base=(byte&15)<<4;
+ if(byte&16) { base<<=8; base+=*src++<<4; base+=256; }
+ base+=17;
+ byte=*src;
+ }
+ }
+ length=base+(byte>>4);
+ src++;
+ offset=((byte&15)<<8)|*src++;
+ offset++;
+ remaining-=length;
+ do { *dst=dst[-(s32)offset]; dst++; } while(--length>0);
+ }
+ flags<<=1;
+ }
+ }
 }
-length+=b>>4;
-b=*src++;
-distance=((b&15)<<8)|*src++;
-distance++;
-offset=((8-shift)^((distance&1)<<3))^8;
-remaining-=length;
-do{
-u32 back=((distance+((8-shift)>>3))>>1)<<1;
-s32 value=*(u16 *)((u8 *)dst-back);
-value=(value&(255<<offset))>>offset;
-packed|=value<<shift;
-shift^=8;
-if(!shift){*dst++=packed;packed=0;}
-}while(--length>0);
-}
-if(remaining<=0)break;
-flags<<=1;
-}
-}
+
+void func_02009230(u8 *src, u16 *dst) {
+    u32 packed = 0, shift = 0;
+    u32 header = *(u32 *)src;
+    s32 remaining = header >> 8;
+    int extended = (header & 15) != 0;
+    src += 4;
+    while (remaining > 0) {
+        u32 flags = *src++;
+        s32 bit = 8;
+        while (--bit >= 0) {
+            if (!(flags & 128)) {
+                packed |= (u32)*src++ << shift;
+                remaining--;
+                shift ^= 8;
+                if (!shift) {
+                    *dst++ = packed;
+                    packed = 0;
+                }
+            } else {
+                s32 b = *src;
+                s32 length;
+                u32 distance, offset;
+                if (!extended)
+                    length = 3;
+                else if (b & 0xe0)
+                    length = 1;
+                else {
+                    src++;
+                    length = (b & 15) << 4;
+                    if (b & 16) {
+                        length <<= 8;
+                        length += *src++ << 4;
+                        length += 0x111;
+                    }
+                    b = *src;
+                }
+                length += b >> 4;
+                b = *src++;
+                distance = ((b & 15) << 8) | *src++;
+                distance++;
+                offset = ((8 - shift) ^ ((distance & 1) << 3)) ^ 8;
+                remaining -= length;
+                do {
+                    u32 back = ((distance + ((8 - shift) >> 3)) >> 1) << 1;
+                    s32 value = *(u16 *)((u8 *)dst - back);
+                    value = (value & (255 << offset)) >> offset;
+                    packed |= value << shift;
+                    shift ^= 8;
+                    if (!shift) {
+                        *dst++ = packed;
+                        packed = 0;
+                    }
+                } while (--length > 0);
+            }
+            if (remaining <= 0)
+                break;
+            flags <<= 1;
+        }
+    }
 }
 
 void func_02009354(const u8 *src, u32 *dst) {
@@ -416,7 +465,9 @@ void func_02009354(const u8 *src, u32 *dst) {
  while(remaining>0) {
  u32 word=*bits++;
  s32 n=32;
- while(--n>=0 && remaining>0) {
+ next_bit:
+ if(--n<0) continue;
+ {
  u32 right=(word>>31)&1;
  u32 leaf=*node<<right;
  node=(const u8 *)(((u32)node>>1)<<1)+2*((*node&63)+1)+right;
@@ -426,7 +477,7 @@ void func_02009354(const u8 *src, u32 *dst) {
  count++;
  if(count==limit) { *dst++=out; remaining-=4; count=0; }
  }
- if(remaining>0) word<<=1;
+ if(remaining>0) { word<<=1; goto next_bit; }
  }
  }
 }
@@ -584,24 +635,36 @@ s32 func_02009880(void) {
     return func_02006b4c(&data_0215d1a0);
 }
 
+#pragma optimization_level 2
 void func_02009894(void) {
-s32 i;u32 *p;
-func_02009e60();
-data_0215d1b8[0]=(u32 *)data_0215d480;
-i=0;
-goto test;
-loop: {s32 next=i+1; *(u32 **)(data_0215d480+i*24)=(u32 *)(data_0215d480+next*24);i=next;}
-test: if(i<255)goto loop;
-*(u32 **)(data_0215e480+0x7e8)=0;
-data_0215d1b8[4]=data_0215ec68;
-data_0215d1b8[2]=0;data_0215d1b8[3]=0;data_0215d1b8[7]=0;data_0215d1b8[5]=0;data_0215d1b8[6]=0;data_0215d1b8[8]=(u32 *)1;data_0215d1b8[1]=0;
-data_0215ece0=data_0215d200;
-func_0200a08c();
-p=func_02009a64(1);
-if(!p)return;
-p[1]=0x1d;p[2]=(u32)data_0215ece0;func_02009aec(p);func_02009b24(1);
+    s32 i;
+    u32 *p;
+    func_02009e60();
+    data_0215d1b8[0] = (u32 *)data_0215d480;
+    for (i = 0; i < 255; i++) {
+        *(u32 **)(data_0215d480 + i * 24) = (u32 *)(data_0215d480 + (i + 1) * 24);
+    }
+    *(u32 *volatile *)(data_0215e480 + 0x7e8) = 0;
+    data_0215d1b8[4] = data_0215ec68;
+    data_0215d1b8[2] = 0;
+    data_0215d1b8[3] = 0;
+    data_0215d1b8[7] = 0;
+    data_0215d1b8[5] = 0;
+    data_0215d1b8[6] = 0;
+    data_0215d1b8[8] = (u32 *)1;
+    data_0215d1b8[1] = 0;
+    data_0215ece0 = data_0215d200;
+    func_0200a08c();
+    p = func_02009a64(1);
+    if (!p) {
+        return;
+    }
+    p[1] = 0x1d;
+    p[2] = (u32)data_0215ece0;
+    func_02009aec(p);
+    func_02009b24(1);
 }
-
+#pragma optimization_level 4
 extern void *data_0215d1dc[];
 extern void func_020081a4(u32);
 extern u32 func_0200a068(void);

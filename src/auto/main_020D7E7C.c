@@ -56,6 +56,188 @@ extern s32 data_02162884;
 extern u8 *data_02160260;
 extern u8 *data_02160244;
 
+void func_020d7e7c(s32 arg0, s32 arg1) {
+    char buf[0x40];
+    s32 idx;
+    u8 **list_head;
+    u8 *node;
+
+    func_02005e80(buf, data_02151488, arg0, arg1);
+    idx = 0;
+    list_head = *(u8 ***)(data_02160204 + 0x6c);
+    node = *list_head;
+    while (node != NULL) {
+        if (*(s8 *)(node + 0x10) == 1) {
+            void *fp = func_021092d8(buf);
+            s32 i;
+            for (i = 0; i <= 0x200; i++) {
+                if (*(u16 *)(node + 2) != i) {
+                    func_02109444(fp);
+                } else if (*(u16 *)(node + 2) == i) {
+                    break;
+                }
+            }
+            if (i != 0x200) {
+                s32 id = 0;
+                char *tok;
+                func_02092994(fp, 0);
+                func_02092994(fp, 0);
+                tok = func_02092a40(fp, 0);
+                if (tok != NULL) {
+                    if (func_02092a28(tok, data_021514b0) != 0) {
+                        s32 pos = func_02092994(fp, 0);
+                        s32 unit_id = func_02092994(fp, 0);
+                        s32 skill_id = func_02092994(fp, 0);
+                        u8 *actor = NULL;
+                        u8 *skill_tmp = NULL;
+                        u8 *skill_obj = NULL;
+                        u32 pos_mask;
+                        u32 mask;
+                        u16 cell_idx;
+
+                        if (skill_id != 0) {
+                            skill_tmp = func_02065298(NULL, (u16)skill_id, 0xb, 0, NULL);
+                        }
+                        pos_mask = 1 << pos;
+                        mask = func_020deaf0(skill_tmp, (u8)pos);
+                        for (cell_idx = 0; cell_idx < 9; cell_idx++) {
+                            if (mask & (1 << cell_idx)) {
+                                u8 *cell = func_0202e548((u8)cell_idx);
+                                if (cell[0x1c] == 0) {
+                                    if (unit_id != 0) {
+                                        actor = (u8 *)func_0210c594(0x1c8, data_02155c3c);
+                                        *(u8 **)(actor + 0x118) = func_0202fb50(unit_id, 0);
+                                    }
+                                    if (skill_id != 0) {
+                                        skill_obj = func_02065298(NULL, (u16)skill_id, 0xb, 0, NULL);
+                                        func_02022fb0(**(void ***)(skill_obj + 0x2c));
+                                    }
+                                    cell[0x30] |= 3;
+                                    func_02030878(actor, skill_obj, cell, mask, pos_mask, 0);
+                                }
+                                func_0202c7d8((s8)cell_idx);
+                            }
+                        }
+                        func_02064c80(skill_tmp);
+                    } else if (func_02092a28(tok, data_021514b4) != 0) {
+                        s32 target_id = func_02092994(fp, 0);
+                        s32 pos = func_02092994(fp, 0);
+                        s32 skill_id = func_02092994(fp, 0);
+                        u8 *skill_tmp = NULL;
+                        u8 *skill_obj = NULL;
+                        void *actor = func_020ddbcc((u16)target_id);
+                        if (actor != NULL) {
+                            s8 pos8 = (s8)pos;
+                            u32 pos_mask;
+                            u32 mask;
+                            u16 cell_idx;
+                            if (skill_id != 0) {
+                                skill_tmp = func_02065298(NULL, (u16)skill_id, 0xb, 0, NULL);
+                            }
+                            pos_mask = 1 << pos8;
+                            mask = func_020deaf0(skill_tmp, (u8)pos8);
+                            for (cell_idx = 0; cell_idx < 9; cell_idx++) {
+                                if (mask & (1 << cell_idx)) {
+                                    u8 *cell = func_0202e548((u8)cell_idx);
+                                    if (cell[0x1c] == 0) {
+                                        func_0202e874(cell);
+                                        if (skill_id != 0) {
+                                            skill_obj = func_02065298(NULL, (u16)skill_id, 0xb, 0, NULL);
+                                            func_02022fb0(**(void ***)(skill_obj + 0x2c));
+                                        }
+                                        cell[0x30] |= 2;
+                                        func_02030878(actor, skill_obj, cell, mask, pos_mask, 0);
+                                    }
+                                    func_0202c7d8((s8)cell_idx);
+                                }
+                            }
+                            func_02064c80(skill_tmp);
+                        }
+                    } else {
+                        id = func_02092a70(tok, 0);
+                    }
+                }
+                if (id >= 0x65) {
+                    s32 ai_id = func_02092994(fp, 0);
+                    u8 *unit;
+                    u8 *actor;
+                    void *disp;
+                    u16 model_id;
+                    func_02092994(fp, 0);
+                    unit = func_0202fb50(id, 0);
+                    unit[0] = 1;
+                    actor = func_020dce1c(*(u16 *)(unit + 0x4c), 0, 0);
+                    *(u16 *)(actor + 0x92) = 0;
+                    *(u32 *)(actor + 0x0) = 0x1000;
+                    *(u32 *)(actor + 0x4) = 0x20000;
+                    *(u32 *)(actor + 0x8) = 0x1000;
+                    *(u16 *)(actor + 0x8c) = (u16)id;
+                    *(u16 *)(actor + 0x90) = (u16)(node[0] + 0x65);
+                    actor[0x1a0] = node[0];
+                    *(u8 **)(actor + 0x118) = unit;
+                    *(u32 *)(actor + 0x78) = 0x640;
+                    disp = func_020de160();
+                    *(void **)(actor + 0x1a4) = disp;
+                    func_020de190(disp, *(u16 *)(actor + 0x8e));
+                    func_020ddd5c(actor);
+                    func_020dd810(actor, 0, 0);
+                    model_id = *(u16 *)(actor + 0x8e);
+                    if (model_id < 0x320 || model_id > 0x383) {
+                        s32 *p = **(s32 ***)(actor + 0x108);
+                        *p += (idx % 4) * 8;
+                    }
+                    *(void **)(actor + 0x128) = func_020d413c();
+                    *(void **)(actor + 0x11c) = func_02064be8();
+                    if (*(u16 *)(unit + 0x40) != 0) {
+                        u8 *item = func_02065298(*(void **)(actor + 0x11c), *(u16 *)(unit + 0x40), 0xb, 0, unit);
+                        item[1] = 0xb;
+                    }
+                    if (*(u16 *)(unit + 0x42) != 0) {
+                        u8 *item = func_02065298(*(void **)(actor + 0x11c), *(u16 *)(unit + 0x42), 0xb, 0, unit);
+                        item[1] = 0xc;
+                    }
+                    if (*(u16 *)(unit + 0x44) != 0) {
+                        u8 *item = func_02065298(*(void **)(actor + 0x11c), *(u16 *)(unit + 0x44), 0xb, 0, unit);
+                        item[1] = 0xd;
+                    }
+                    if (*(u16 *)(unit + 0x46) != 0) {
+                        u8 *item = func_02065298(*(void **)(actor + 0x11c), *(u16 *)(unit + 0x46), 0xb, 0, unit);
+                        item[1] = 0xe;
+                    }
+                    if (*(u16 *)(unit + 0x48) != 0) {
+                        u8 *item = func_02065298(*(void **)(actor + 0x11c), *(u16 *)(unit + 0x48), 0xb, 0, unit);
+                        item[1] = 0xf;
+                    }
+                    if (*(u16 *)(unit + 0x4a) != 0) {
+                        u8 *item = func_02065298(*(void **)(actor + 0x11c), *(u16 *)(unit + 0x4a), 0xb, 0, unit);
+                        item[1] = 0x10;
+                    }
+                    *(void **)(actor + 0x12c) = func_02026e40((u16)ai_id);
+                    *(void **)(actor + 0x124) = func_02026548();
+                    func_021167f0(data_02160a6c + 0xb8, actor);
+                }
+            }
+            if (fp != NULL) {
+                func_021093b0(fp);
+            }
+        }
+        node = *(u8 **)(node + 0xc);
+        idx++;
+    }
+
+    node = *list_head;
+    while (node != NULL) {
+        u8 *next = *(u8 **)(node + 0xc);
+        if (node[0] == 0x63) {
+            func_021168f8(list_head, node);
+            if (node != NULL) {
+                func_0210c5dc(node);
+            }
+        }
+        node = next;
+    }
+}
+
 void func_020d850c(void) {
     UnkStruct_020d60248 *p = &data_02160248;
     if (p->unk08 != NULL) {

@@ -61,6 +61,7 @@ typedef struct {
     void *payload;
 } RH0215f120;
 
+#pragma optimize_for_size on
 void func_0200fedc(u32 arg0, u32 arg1, u32 arg2) {
     volatile u32 *p;
     if (arg0 != 0xb || arg2 == 0) {
@@ -70,7 +71,7 @@ void func_0200fedc(u32 arg0, u32 arg1, u32 arg2) {
     p[1] &= ~0x20;
     func_020065c8((void *)p[0x51c / 4]);
 }
-
+#pragma optimize_for_size reset
 extern u32 data_0215ce00[];
 extern s32 func_0200a6c0(s32, s32);
 extern void func_020081a4(s32);

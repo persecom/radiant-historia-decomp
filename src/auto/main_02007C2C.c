@@ -266,17 +266,17 @@ if (b <= *(s16 *)(arg0 + 0x12)) return 1;
 return 2;
 }
 
+#pragma optimize_for_size on
 u32 func_020080d8(u32 arg0) {
     u32 irq = func_02008128();
-    s32 old = ((s32 *)data_0215d144)[1];
-    if ((s32)arg0 < old) {
-        ((s32 *)data_0215d144)[2]++;
+    if ((s32)arg0 < *(s32 *)((u8 *)data_0215d144 + 4)) {
+        *(s32 *)((u8 *)data_0215d144 + 8) += 1;
     }
     ((s32 *)data_0215d144)[1] = arg0;
     func_0200813c(irq);
     return ((s32 *)data_0215d144)[2];
 }
-
+#pragma optimize_for_size reset
 u32 func_02008198(u32 x) {
     do {
         x -= 4;

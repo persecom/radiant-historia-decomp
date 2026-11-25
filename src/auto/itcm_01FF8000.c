@@ -73,47 +73,50 @@ typedef struct {
     volatile u32 dest;
     volatile u32 ctrl;
 } Dma_01ff845c;
-void func_01ff845c(u32 dmaNo, u32 src, u32 dest, u32 ctrl, u32 flags) {
-    volatile u32 *p;
-    u32 noWait = flags & 1;
-    u32 fix;
-
-    if (!noWait) {
-        func_02008128();
+unsigned long func_01ff845c(u32 dmaNo, u32 src, u32 dest, u32 ctrl, u32 flags)
+{
+  volatile u32 *p;
+  u32 noWait = flags & 1;
+  u32 fix;
+  if (!noWait)
+  {
+    func_02008128();
+  }
+  p = (volatile u32 *) (0x040000b0 + (dmaNo * 0xc));
+  if (flags & 0x10)
+  {
+    *((volatile u32 *) (0x040000e0 + (dmaNo * 4))) = src;
+    src = 0x040000e0 + ((dmaNo * 2) * 2);
+  }
+  else
+    if (flags & 0x20)
+  {
+    *((volatile u16 *) (0x040000e0 + (dmaNo * 4))) = (u16) src;
+    src = 0x040000e0 + (dmaNo * 4);
+  }
+  ((volatile u32 *) (0x040000b0 + (dmaNo * 0xc)))[0] = src;
+  p[1] = dest;
+  p[2] = ctrl;
+  fix = flags & 2;
+  if (fix)
+  {
+    (void) (*((volatile u32 *) 0x040000b0));
+    (void) (*((volatile u32 *) 0x040000b0));
+    if ((!(flags & 4)) && (dmaNo == 0))
+    {
+      ((volatile u32 *) (0x040000b0 + (dmaNo * 0xc)))[0] = 0;
+      ((volatile u32 *) (0x040000b0 + (dmaNo * 0xc)))[1] = 0;
+      ((volatile u32 *) (0x040000b0 + (dmaNo * 0xc)))[2] = 0x81400001;
     }
-
-    p = (volatile u32 *)(0x040000b0 + dmaNo * 0xc);
-
-    if (flags & 0x10) {
-        *(volatile u32 *)(0x040000e0 + dmaNo * 4) = src;
-        src = 0x040000e0 + dmaNo * 4;
-    } else if (flags & 0x20) {
-        *(volatile u16 *)(0x040000e0 + dmaNo * 4) = (u16)src;
-        src = 0x040000e0 + dmaNo * 4;
-    }
-
-    p[0] = src;
-    p[1] = dest;
-    p[2] = ctrl;
-
-    fix = flags & 2;
-    if (fix) {
-        (void)*(volatile u32 *)0x040000b0;
-        (void)*(volatile u32 *)0x040000b0;
-        if (!(flags & 4) && dmaNo == 0) {
-            p[0] = 0;
-            p[1] = 0;
-            p[2] = 0x81400001;
-        }
-    }
-
-    if (!noWait) {
-        func_0200813c();
-    }
-
-    if (fix) {
-        (void)*(volatile u32 *)0x040000b0;
-        (void)*(volatile u32 *)0x040000b0;
-    }
+  }
+  if (!noWait)
+  {
+    func_0200813c();
+  }
+  if (fix)
+  {
+    (void) (*((volatile u32 *) 0x040000b0));
+    (void) (*((volatile u32 *) 0x040000b0));
+  }
 }
 

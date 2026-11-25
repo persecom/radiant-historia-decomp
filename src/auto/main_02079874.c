@@ -48,12 +48,14 @@ return 0;
 }
 
 void func_02079874(void) {
-u8 *base,*a,*b,*node,*p;
-int direction=0, active=0, mode=0, near,far;
+u32 active;
+u8 *base,*a,*node,*b,*p;
+int direction, mode, near,far;
 if(data_02160204[0x7e]) return;
+direction=0;active=0;mode=0;
+node=*(u8 **)(data_02160a80[0]+0x3c);
 base=data_021600ac;
 a=*(u8 **)(base+0x68);b=*(u8 **)(base+0x370);
-node=*(u8 **)(data_02160a80[0]+0x3c);
 while(node) {if(*(u32 *)(node+8)==0x32c9) goto found;node=*(u8 **)(node+0x38);}
 node=0;
 found:
@@ -75,10 +77,86 @@ func_021168f8(data_021600bc+0x40,b);func_0204487c(p);
 }
 }
 a[0x9d]+=6;
-near=collision_02079874(a,b);
+{
+s32 *ca=*(s32 **)(a+0xb0), *cb;
+if(!ca || !(cb=*(s32 **)(b+0xb0))) {near=0;goto near_done;} else {
+int ra=*ca, rb;
+if(ra && (rb=*cb)) {
+int ax=*(s32 *)a, az=*(s32 *)(a+8), bx=*(s32 *)b, bz=*(s32 *)(b+8);
+int x0=ax-ra,x1=ax+ra,z0=az-ra,z1=az+ra;
+int bx0=bx-rb,bx1=bx+rb,bz0=bz-rb,bz1=bz+rb;
+if(x0<bx1 && bx0<x1 && z0<bz1 && bz0<z1) near=1;else near=0;goto near_done;
+}
+if(a[0x9d] && b[0x9d]) {near=func_0210c2f4(a,b)<((a[0x9d]+b[0x9d])<<12);goto near_done;}
+if(a[0x9d] && (rb=*cb)) {
+int x=*(s32 *)a,z=*(s32 *)(a+8),x0=*(s32 *)b-rb,x1=*(s32 *)b+rb,z0=*(s32 *)(b+8)-rb,z1=*(s32 *)(b+8)+rb;
+u8 i;
+for(i=0;i<8;i++) {
+int angle=(u16)(i<<13);
+int idx=(angle%65536)>>4;
+int px=x+a[0x9d]*sin_02079874(angle), pz=z+a[0x9d]*cos_02079874(angle);
+int hit;
+if(px>=x0 && px<=x1 && pz>=z0 && pz<=z1) hit=1;else hit=0;
+if(hit) {near=1;goto near_done;}
+}
+} else if(b[0x9d] && ra) {
+int x=*(s32 *)b,z=*(s32 *)(b+8),x0=*(s32 *)a-ra,x1=*(s32 *)a+ra,z0=*(s32 *)(a+8)-ra,z1=*(s32 *)(a+8)+ra;
+u8 i;
+for(i=0;i<8;i++) {
+int angle=(u16)(i<<13);
+int idx=(angle%65536)>>4;
+int px=x+b[0x9d]*sin_02079874(angle), pz=z+b[0x9d]*cos_02079874(angle);
+int hit;
+if(px>=x0 && px<=x1 && pz>=z0 && pz<=z1) hit=1;else hit=0;
+if(hit) {near=1;goto near_done;}
+}
+}
+}
+near=0;goto near_done;
+
+near_done:;
+}
 a[0x9d]-=6;
 a[0x9d]+=15;
-far=collision_02079874(a,b);
+{
+s32 *ca=*(s32 **)(a+0xb0), *cb;
+if(!ca || !(cb=*(s32 **)(b+0xb0))) {far=0;goto far_done;} else {
+int ra=*ca, rb;
+if(ra && (rb=*cb)) {
+int ax=*(s32 *)a, az=*(s32 *)(a+8), bx=*(s32 *)b, bz=*(s32 *)(b+8);
+int x0=ax-ra,x1=ax+ra,z0=az-ra,z1=az+ra;
+int bx0=bx-rb,bx1=bx+rb,bz0=bz-rb,bz1=bz+rb;
+if(x0<bx1 && bx0<x1 && z0<bz1 && bz0<z1) far=1;else far=0;goto far_done;
+}
+if(a[0x9d] && b[0x9d]) {far=func_0210c2f4(a,b)<((a[0x9d]+b[0x9d])<<12);goto far_done;}
+if(a[0x9d] && (rb=*cb)) {
+int x=*(s32 *)a,z=*(s32 *)(a+8),x0=*(s32 *)b-rb,x1=*(s32 *)b+rb,z0=*(s32 *)(b+8)-rb,z1=*(s32 *)(b+8)+rb;
+u8 i;
+for(i=0;i<8;i++) {
+int angle=(u16)(i<<13);
+int idx=(angle%65536)>>4;
+int px=x+a[0x9d]*sin_02079874(angle), pz=z+a[0x9d]*cos_02079874(angle);
+int hit;
+if(px>=x0 && px<=x1 && pz>=z0 && pz<=z1) hit=1;else hit=0;
+if(hit) {far=1;goto far_done;}
+}
+} else if(b[0x9d] && ra) {
+int x=*(s32 *)b,z=*(s32 *)(b+8),x0=*(s32 *)a-ra,x1=*(s32 *)a+ra,z0=*(s32 *)(a+8)-ra,z1=*(s32 *)(a+8)+ra;
+u8 i;
+for(i=0;i<8;i++) {
+int angle=(u16)(i<<13);
+int idx=(angle%65536)>>4;
+int px=x+b[0x9d]*sin_02079874(angle), pz=z+b[0x9d]*cos_02079874(angle);
+int hit;
+if(px>=x0 && px<=x1 && pz>=z0 && pz<=z1) hit=1;else hit=0;
+if(hit) {far=1;goto far_done;}
+}
+}
+}
+far=0;goto far_done;
+
+far_done:;
+}
 a[0x9d]-=15;
 if(!((data_021626aa[0]&1)||data_02162908[2]) || (!near && !far)) {
 *(u32 *)(base+0x10)=0;
@@ -111,7 +189,9 @@ sx=pr[12]+(s32)(((s64)y*pr[4]+(s64)x*pr[0]+(s64)z*pr[8])>>12);
 sy=pr[13]+(s32)(((s64)y*pr[5]+(s64)x*pr[1]+(s64)z*pr[9])>>12);
 inv=func_02001fd0();
 screenY=(s32)((inv*sy+0x80000000LL)>>32);
-screenY=192-(((((screenY+4096)>>1)*192)+2048)>>12);
+sy=(screenY+4096)>>1;
+sy=(sy<<6)+(sy<<7);
+screenY=192-((sy+2048)>>12);
 screenX=(s32)((inv*sx+0x80000000LL)>>32);
 screenX=(((((screenX+4096)>>1)*256)+2048)>>12);
 if(direction==1) {
@@ -134,6 +214,7 @@ if(data_021626aa[0]&16) active|=8;
 if(node) {if(*(u32 *)(node+0x10)) func_020ea5d4(node,4);*(u32 *)(node+0x18)|=1;}
 }
 }
+{ int speed=3;
 if(active) {
 if((active&16)&&(active&4)) active&=~20;
 if((active&2)&&(active&8)) active&=~10;
@@ -146,6 +227,7 @@ case 16:mode=0xc000;break;
 case 4:mode=0x4000;break;
 case 2:mode=0x8000;break;
 case 8:mode=0;break;
+case 0:case 1:case 3:case 5:case 7:case 9:case 10:case 11:case 13:case 14:case 15:case 17:
 default:active|=1;break;
 }
 if(!(active&1)) {
@@ -154,17 +236,18 @@ int angle,cosine,sine;
 if(*(u32 *)(base+0x74)==active) angle=*(u16 *)(base+0x6c);else angle=data_02151fc8;
 angle=(u16)((angle+mode)%65536);
 cosine=data_0213a394[(angle>>4)*2+1];
+*(s32 *)(a+0x78)=speed;
+*(s32 *)(a+0x30)=speed*cosine;
 sine=data_0213a394[(angle>>4)*2];
-*(s32 *)(a+0x78)=3;
-*(s32 *)(a+0x30)=3*cosine;
 *(s32 *)(a+0x38)=*(s32 *)(a+0x78)*sine;
 *(s32 *)(b+0x30)=*(s32 *)(a+0x78)*cosine;
 *(s32 *)(b+0x38)=*(s32 *)(a+0x78)*sine;
-*(u32 *)(a+0xac)=(*(u32 *)(a+0xac)&~0xc0)|0x20000;
+*(u32 *)(a+0xac)=((*(u32 *)(a+0xac)&~0x40)&~0x80)|0x20000;
 *(u32 *)(b+0xac)|=0x20000;
 if(!func_0210d548()) func_0210d27c(120);
 }
 } else *(u32 *)(a+0xac)&=~0x20000;
+}
 if(*(u32 *)(base+0x74)!=active) {*(u32 *)(base+0x74)=active;*(u16 *)(base+0x6c)=data_02151fc8;}
 if((*(u32 *)(a+0xac)&0x20000)||(*(u32 *)(a+0xac)&0x40)||(*(u32 *)(a+0xac)&0x400)) {
 switch(func_02079720(b)) {

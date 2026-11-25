@@ -50,6 +50,23 @@ extern u8 *data_02160a74;
 void func_021168f8(void *, void *);
 void func_0210c5dc(void *);
 
+s32 func_020d3160(s32 cmd, s32 a1, s32 a2, s32 a3) {
+    s32 r = 0;
+    s32 sum = a1 + a2 + a3;
+    switch (cmd) {
+    case 0: r = 0; break;
+    case 1: r = 1; break;
+    case 2: r = 2; break;
+    case 3: r = 3; break;
+    case 4: r = 4; break;
+    case 5: r = 5; break;
+    case 6: r = 6; break;
+    case 7: r = 7; break;
+    case 8: r = 8; break;
+    }
+    return r + sum - sum;
+}
+
 void func_020d3c98(s32 arg0) {
     Mgr_020d3160 *mgr = data_02160244;
     if (mgr != NULL) {

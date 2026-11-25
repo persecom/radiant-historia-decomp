@@ -40,20 +40,14 @@ extern void func_0210dba0(void *);
 s32 func_020c7760(u8 *arg0, s32 arg1, s32 arg2) {
     u8 *obj = *(u8 **)(arg0 + 0x30);
     u8 *sub = *(u8 **)(obj + 4);
-    s32 a0 = *(s32 *)(obj + 0x14);
     s32 b = 0x2000 - *(s32 *)(sub + 0x20);
     s32 c = 0x2000 - *(s32 *)(sub + 0x24);
-    s32 a = a0 << 12;
-    s32 q = _s32_div_f(a, b);
-    s32 t = q + ((u32)q >> 31);
+    s32 q = _s32_div_f((s32)((u32)*(s32 *)(obj + 0x14) << 12), b);
     s32 q2;
-    q = t >> 1;
-    arg1 = (s16)(arg1 - q);
-    q2 = _s32_div_f(*(s32 *)(obj + 0x18) << 12, c);
-    t = q2 + ((u32)q2 >> 31);
+    arg1 = (s16)(arg1 - q / 2);
+    q2 = _s32_div_f((s32)((u32)*(s32 *)(obj + 0x18) << 12), c);
     *(s32 *)(obj + 8) = arg1;
-    q2 = t >> 1;
-    *(s32 *)(*(u8 **)(arg0 + 0x30) + 0xc) = (s16)(arg2 - q2);
+    *(s32 *)(*(u8 **)(arg0 + 0x30) + 0xc) = (s16)(arg2 - q2 / 2);
     return 0;
 }
 
@@ -114,6 +108,17 @@ void func_020c7894(u8 *arg0, u8 arg1) {
         }
     }
     func_020c7930(arg0);
+}
+
+void func_020c7930(void *arg0) {
+    u8 *p = arg0;
+    u8 mode = *(u8 *)(p + 0x50);
+    void *obj = *(void **)(p + 0x4c);
+    if (mode == 1) {
+        func_020c9c10(obj, 0);
+    } else if (mode == 3) {
+        func_020c9c10(obj, 0);
+    }
 }
 
 void func_020c7f6c(void *arg0, s32 arg1, s16 arg2) {

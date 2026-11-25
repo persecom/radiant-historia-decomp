@@ -233,41 +233,37 @@ u8 func_02044c98(void)
 
 extern void func_020544d8(void *, s32);
 extern void func_020a4c98(s32);
+#pragma optimization_level 3
 void func_02044cfc(void)
 {
-    s32 one = 1;
-    s32 one2 = 1;
-    s32 zero = 0;
     u8 *r6 = *(u8 **)(data_021600bc + 0x40);
     u8 *node;
-    u8 *base;
     s32 flag;
 
-    if (r6 != NULL) {
-        do {
-            base = data_02160204;
-            flag = zero;
-            for (node = *(u8 **)(*(u8 **)(base + 0x6c)); node != NULL; node = *(u8 **)(node + 0xc)) {
-                if (*(u16 *)(r6 + 0x90) == *(u16 *)(node + 4)) {
-                    flag = one;
-                    break;
-                }
-            }
-            if (flag == 0) {
-                u16 v = *(u16 *)(r6 + 0x8e);
-                if (v > 100 && v < 700) {
-                    *(u32 *)(r6 + 0x84) = *(u32 *)(r6 + 0x80);
-                    *(u32 *)(r6 + 0x80) = (*(u32 *)(r6 + 0x80) & ~2) | 0x400;
-                    func_020544d8(r6, one2);
-                }
-            }
-            r6 = *(u8 **)(r6 + 0x13c);
-        } while (r6 != NULL);
+    if (r6 == NULL) goto done;
+loop:
+    flag = 0;
+    for (node = *(u8 **)(*(u8 **)(data_02160204 + 0x6c)); node != NULL; node = *(u8 **)(node + 0xc)) {
+        if (*(u16 *)(r6 + 0x90) == *(u16 *)(node + 4)) {
+            flag = 1;
+            break;
+        }
     }
+    if (flag == 0) {
+        u16 v = *(u16 *)(r6 + 0x8e);
+        if (v > 100 && v < 700) {
+            *(u32 *)(r6 + 0x84) = *(u32 *)(r6 + 0x80);
+            *(u32 *)(r6 + 0x80) = (*(u32 *)(r6 + 0x80) & ~2) | 0x400;
+            func_020544d8(r6, 1);
+        }
+    }
+    r6 = *(u8 **)(r6 + 0x13c);
+    if (r6 != NULL) goto loop;
+done:
     func_020a4c98(0);
     *(u32 *)(data_021600a8[1] + 0x10) = 10;
 }
-
+#pragma optimization_level 4
 u32 func_02044dd0(void) {
     u8 *q;
     u8 *p = data_021600a8[1];

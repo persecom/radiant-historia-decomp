@@ -61,43 +61,33 @@ extern s32 func_02020604(s32, s32);
 extern s32 func_0201ff0c(s32);
 void func_020f56a4(void);
 extern void func_020f53e4(void);
+#pragma opt_propagation off
+#pragma opt_strength_reduction off
 s32 func_020f5574(void) {
-    const char *name = "";
     s32 ret;
-    s32 flag;
-    s32 expected;
+    const char *name = "";
 
     func_0200c1a8(0, name);
-    expected = -1;
-    flag = 0;
-    if (expected == func_ov000_02176da0(func_020f53e4, 0, 0)) flag = 1;
-    if (flag) func_020f56a4();
-    flag = 0;
-    if (expected == func_ov000_02176e18(func_020f53e4, 0, 0)) flag = 1;
-    if (flag) func_020f56a4();
-    flag = 0;
-    if (expected == func_ov000_02176e90(func_020f53e4, 0, 0)) flag = 1;
-    if (flag) func_020f56a4();
-    flag = 0;
-    if (expected == func_ov000_02176ddc(func_020f53e4, 0, 0)) flag = 1;
-    if (!flag) goto failed;
-    flag = 0;
-    if (expected == func_ov000_02176e54(func_020f53e4, 0, 0)) flag = 1;
-    if (!flag) goto failed;
-    flag = 0;
-    if (expected == func_ov000_02176ecc(func_020f53e4, 0, 0)) flag = 1;
-    if (!flag) goto failed;
-    func_020cea64(1);
-    ret = 29;
-    goto done;
-failed:
-    func_020f56a4();
-    ret = 2;
-done:
+    {
+        s32 expected = -1;
+        if (check_f53_result(expected, (void *)func_020f53e4, func_ov000_02176da0)) func_020f56a4();
+        if (check_f53_result(expected, (void *)func_020f53e4, func_ov000_02176e18)) func_020f56a4();
+        if (check_f53_result(expected, (void *)func_020f53e4, func_ov000_02176e90)) func_020f56a4();
+        if (check_f53_result(expected, (void *)func_020f53e4, func_ov000_02176ddc) &&
+            check_f53_result(expected, (void *)func_020f53e4, func_ov000_02176e54) &&
+            check_f53_result(expected, (void *)func_020f53e4, func_ov000_02176ecc)) {
+            func_020cea64(1);
+            ret = 29;
+        } else {
+            func_020f56a4();
+            ret = 2;
+        }
+    }
     func_0200c1fc(0, name);
     return ret;
 }
-
+#pragma opt_strength_reduction on
+#pragma opt_propagation on
 void func_020f56a4(void) {
     *(u16 *)((u8 *)data_02160204 + 0x72) = 0x14b;
     *(u16 *)((u8 *)data_02160204 + 0xdc) = 0xe7;

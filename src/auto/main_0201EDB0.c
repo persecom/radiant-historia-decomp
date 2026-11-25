@@ -4,57 +4,57 @@
 u32 func_0201f114(u32 lo, u32 hi) {
     u32 sign = hi & 0x80000000;
     u32 exp = hi >> 20;
-    u32 r3, round, result, m;
+    u32 r3, m;
     s32 e, shift;
 
     exp &= ~0x800;
     if (exp == 0) goto L_zero;
-    if (exp >= 0x7ff) goto L_nan;
+    if ((exp << 21) >= 0xffe00000U) goto L_nan;
     e = exp - 0x380;
     if (exp <= 0x380) goto L_denorm;
     if (e >= 0xff) goto L_inf;
 
     r3 = sign | ((hi << 12) >> 9) | (lo >> 29);
-    round = lo << 3;
-    result = r3 | (e << 23);
-    if (round == 0) return result;
-    if ((round & 0x80000000) == 0) return result;
-    round <<= 1;
-    if (round == 0) round = result & 1;
-    if (round != 0) result++;
-    return result;
+    hi = lo << 3;
+    lo = r3 | (e << 23);
+    if (hi == 0) return lo;
+    if ((hi & 0x80000000) == 0) return lo;
+    hi <<= 1;
+    if (hi == 0) hi = lo & 1;
+    if (hi != 0) lo++;
+    return lo;
 
-L_zero:
-    if ((lo | (hi << 12)) != 0) goto L_zero2;
-    return sign;
 L_nan:
     if ((lo | (hi << 12)) != 0) goto L_nan2;
     return sign | 0x7f800000;
-L_inf:
-    return sign | 0x7f800000;
 L_nan2:
     return 0x7fffffff;
-L_zero2:
+L_zero:
+    if ((lo | (hi << 12)) != 0) goto L_zero2;
     return sign;
 L_denorm:
     if (e == -23) goto L_440;
     if (e < -23) goto L_zero2;
     m = (((hi << 11) | 0x80000000) >> 8) | (lo >> 29);
     shift = 1 - e;
-    round = lo << 3;
-    result = sign | (m >> shift);
+    hi = lo << 3;
+    lo = sign | (m >> shift);
     shift = 0x20 - shift;
     m = m << shift;
-    if (round != 0) m |= 1;
-    round = m;
-    if (round == 0) return result;
-    if ((round & 0x80000000) == 0) return result;
-    round <<= 1;
-    if (round == 0) round = result & 1;
-    if (round != 0) result++;
-    return result;
+    if (hi != 0) m |= 1;
+    hi = m;
+    if (hi == 0) return lo;
+    if ((hi & 0x80000000) == 0) return lo;
+    hi <<= 1;
+    if (hi == 0) hi = lo & 1;
+    if (hi != 0) lo++;
+    return lo;
 L_440:
     return sign + ((lo | (hi << 12)) != 0);
+L_zero2:
+    return sign;
+L_inf:
+    return sign | 0x7f800000;
 }
 
 u64 _dflt(s32 arg0) {
@@ -120,10 +120,10 @@ u64 func_0201f800(u32 arg0) {
     return ((u64)hi << 32) | lo;
 }
 
-s32 func_0201f884(s32 arg0) {
+u32 func_0201f884(s32 arg0) {
     u32 sign = (u32)arg0 & 0x80000000;
     u32 x = (u32)arg0;
-    if (x & 0x80000000) {
+    if (arg0 < 0) {
         x = -x;
     }
     if (x == 0) {
@@ -134,7 +134,7 @@ s32 func_0201f884(s32 arg0) {
         u32 low, result, round;
         x <<= lz;
         low = x & 0xff;
-        result = sign | (((x << 1) >> 9)) | ((0x9e - lz) << 23);
+        result = sign | ((x + x) >> 9) | ((0x9e - lz) << 23);
         if (low == 0) {
             return result;
         }
@@ -151,4 +151,19 @@ s32 func_0201f884(s32 arg0) {
         return result;
     }
 }
+
+#pragma optimization_level 2
+u32 func_0201f8cc(u32 x) {
+ u32 exp, rem, round;
+ if (!x) return x;
+ exp=158;
+ while ((s32)x>=0) {x+=x; exp--;}
+ rem=x&255; x+=x; x>>=9; x|=exp<<23;
+ if (!rem) return x;
+ if (!(rem&128)) return x;
+ round=(rem&127) ? (rem&127) : (x&1); if(round) x++;
+ return x;
+}
+#pragma optimization_level 4
+long long func_0201f914(long long a, long long b) { return b ? a % b : a; }
 

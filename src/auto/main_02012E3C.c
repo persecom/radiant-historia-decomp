@@ -5,6 +5,74 @@ extern u32 data_02145c2c;
 extern u32 data_02145c8c[];
 extern s32 func_0201f800(u32);
 
+void func_02012e3c(u8 *arg0, u32 *arg1, s8 *fmt, s32 **argp) {
+    u32 out[2];
+    s8 c, d;
+    s32 flags = 0, width = 0, prec = -1, r7 = 0, r6 = 0;
+    s32 **ap = argp;
+    u8 tmp[0x20];
+    s32 i;
+
+    if (*fmt == 0) return;
+    func_02012d64(out, *fmt);
+    if (*++fmt == 0) goto done;
+    func_02012d64(out, *fmt);
+
+    while ((c = *fmt) != 0) {
+        if (c == '%') {
+            fmt++;
+            flags = 0; width = 0; prec = -1; r7 = 0; r6 = 0;
+            for (;;) {
+                d = *++fmt;
+                if (d == ' ') flags |= 2;
+                else if (d == '-') flags |= 1;
+                else if (d == '+') flags |= 8;
+                else if (d == '#') flags |= 0x10;
+                else if (d == '0') flags |= 4;
+                else break;
+            }
+            if (d == '*') {
+                r6 = *(*ap)++;
+                if (r6 < 0) { r6 = -r6; flags |= 8; }
+            } else {
+                while (d >= '0' && d <= '9') {
+                    r6 = r6 * 10 + (d - '0');
+                    d = *++fmt;
+                }
+            }
+            if (d == '.') {
+                d = *++fmt;
+                prec = 0;
+                if (d == '*') { prec = *(*ap)++; d = *++fmt; }
+                else while (d >= '0' && d <= '9') { prec = prec * 10 + (d - '0'); d = *++fmt; }
+            }
+            if (d == 'h') { r7 = 2; d = *++fmt; }
+            else if (d == 'l') { r7 = 3; d = *++fmt; }
+            if (d == 'c') {
+                func_02012d64(out, (u8)(*(*ap)++));
+            } else if (d == 's') {
+                s8 *s = (s8 *)*(*ap)++;
+                while (*s) func_02012d64(out, *s++);
+            } else if (d == 'd' || d == 'x' || d == 'u' || d == 'o' || d == 'p') {
+                u32 v;
+                u32 base = 10;
+                if (d == 'x' || d == 'p') base = 16;
+                else if (d == 'o') base = 8;
+                v = (u32)*(*ap)++;
+                i = 0;
+                do { tmp[i++] = '0' + (u8)(v % base); v /= base; } while (v);
+                while (i-- > 0) func_02012d64(out, tmp[i]);
+            }
+            fmt++;
+        } else {
+            func_02012d64(out, c);
+            fmt++;
+        }
+    }
+done:
+    if (arg1 != NULL && *(u32 *)arg1 != 0) *(u8 *)(*(u32 *)(arg1 + 4)) = 0;
+}
+
 s32 func_02013618(void) {
     return func_0201f800(data_02145c2c);
 }

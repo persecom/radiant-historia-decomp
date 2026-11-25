@@ -47,8 +47,8 @@ void func_02066c28(void);
 u8 *func_020a5f14(void *,u16);
 void *func_020a583c(void);
 void func_02065e78(void){
-s32 zero=0,one=1;
-u8 *node,*v;
+u32 zero=0,one=1;
+u8 *v,*node;
 func_020a2c20();
 {u32 bits=*(volatile u16 *)0x04000304;bits &= ~0x8000U;*(volatile u16 *)0x04000304=bits;}
 func_0210fb24();func_020a31c8(2);func_020e9eb0();func_020f4928();func_02120524(one);
@@ -82,7 +82,10 @@ func_021167ac(data_021600e0[1]+5088,52);
 *(s32 *)((*(u8 *volatile *)&data_021600e0[1])+116)=256;
 *(s32 *)((*(u8 *volatile *)&data_021600e0[1])+64)=one;
 *(s32 *)((*(u8 *volatile *)&data_021600e0[1])+148)=101;
-ApplyPendingLocation();
+if(*(s16 *)(data_02160204+0xf6)!=-1){
+*(s16 *)(data_02160204+0x72)=*(s16 *)(data_02160204+0xf6);
+*(s16 *)(data_02160204+0xf6)=-1;
+}
 *(s32 *)((*(u8 *volatile *)&data_021600e0[1])+0x98)=(*(u16 *)(data_02160204+0x72)-1)/20+101;
 *(s16 *)((*(u8 *volatile *)&data_021600e0[1])+0x198)=100;*(s16 *)((*(u8 *volatile *)&data_021600e0[1])+0x19a)=zero;
 {Vec_6662c *v=(Vec_6662c *)((*(u8 *volatile *)&data_021600e0[1])+68);v->x=zero;v->y=zero;v->z=zero;}

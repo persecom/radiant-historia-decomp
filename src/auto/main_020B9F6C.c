@@ -157,31 +157,23 @@ void func_020ba3f8(void) {
     s32 flag = func_020c73d8(obj);
     u16 prev = *(u16 *)(obj + 0x30);
     u8 i;
+    u32 baseId=5;
     u16 val;
-    u32 id;
     *(u16 *)(obj + 0x30) = flag != 0 ? 0xd : 0xc;
-    if (*(u16 *)(obj + 0x30) != prev) {
-        func_020c7930(obj);
-    }
+    if (*(volatile u16 *)(obj + 0x30) != prev) func_020c7930(obj);
     for (i = 0; i < 2; i++) {
-        id = 5;
-        if (i != 0) {
-            id = 6;
-        }
-        obj = func_020c9c10(*(void **)(p + 0x4c), id);
-        prev = *(u16 *)(obj + 0x30);
-        if (flag == 0) {
-            *(u16 *)(obj + 0x30) = 0x12;
-        }
-        if (*(u16 *)(obj + 0x30) != prev) {
-            func_020c7930(obj);
-        }
+        u32 id = baseId;
+        u8 *sub;
+        u16 subPrev;
+        if (i != 0) id = baseId+1;
+        sub = func_020c9c10(*(void **)(p + 0x4c), id);
+        subPrev = *(u16 *)(sub + 0x30);
+        if (flag == 0) *(u16 *)(sub + 0x30) = 0x12;
+        if (*(u16 *)(sub + 0x30) != subPrev) func_020c7930(sub);
     }
     obj = func_020c9c10(*(void **)(p + 0x4c), 4);
     val = 0xf;
-    if (flag == 0) {
-        val = 0xe;
-    }
+    if (flag == 0) val = 0xe;
     *(u16 *)(obj + 0x30) = val;
 }
 

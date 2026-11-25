@@ -65,6 +65,7 @@ s32 func_0200a6e4(s32,u32,s32);
 
 #pragma opt_propagation on
 
+#pragma optimization_level 3
 void func_0200e138(u32 arg0,u32 arg1) {
  Coord0200e138 *dst=(Coord0200e138 *)arg0;
  const Coord0200e138 *src=(const Coord0200e138 *)arg1;
@@ -93,7 +94,7 @@ void func_0200e138(u32 arg0,u32 arg1) {
  if(v<0) dst->y=0;
  else if(v>191) dst->y=191;
 }
-
+#pragma optimization_level 4
 void func_0200e254(u16 arg0) {
     while (*(volatile u16 *)(data_0215f000 + 0x3a) & arg0) {
     }

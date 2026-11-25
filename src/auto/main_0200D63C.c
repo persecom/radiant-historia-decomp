@@ -261,43 +261,61 @@ done:
     return 1;
 }
 
-void func_0200dbe4(s16 *arg0) {
+void func_0200dbe4(s16 *arg0)
+{
+  s32 state;
+  s32 n;
+  s32 d;
+  if (arg0 == NULL)
+  {
+    *((u16 *) (data_0215f000 + 0x34)) = 0;
+    return;
+  }
+  state = func_02008128();
+  d = arg0[2];
+  if (d != 0)
+  {
+    *((volatile u16 *) 0x4000280) = 0;
+    *((volatile u32 *) 0x4000290) = 0x10000000;
+    n = arg0[0];
+    *((s32 *) (data_0215f000 + 0x20)) = (*((volatile u32 *) 0x4000298) = d);
+    *((volatile u32 *) 0x400029c) = 0;
+    *((s32 *) (data_0215f000 + 0x1c)) = n;
+    while ((*((volatile u16 *) 0x4000280)) & 0x8000)
+    {
+    }
 
-s32 state;
-s32 n;
-s32 d;
-if(arg0==NULL){ *(u16 *)(data_0215f000+0x34)=0; return; }
-state=func_02008128();
-d=arg0[2];
-if(d!=0){
-*(volatile u16 *)0x4000280=0;
-*(volatile u32 *)0x4000290=0x10000000;
-n=arg0[0];
-*(volatile u32 *)0x4000298=d;
-*(volatile u32 *)0x400029c=0;
-*(s32 *)(data_0215f000+0x1c)=n;
-*(s32 *)(data_0215f000+0x20)=d;
-while(*(volatile u16 *)0x4000280 & 0x8000){}
-*(s32 *)(data_0215f000+0x24)=*(volatile s32 *)0x40002a0;
-}else{
-*(s32 *)(data_0215f000+0x1c)=0; *(s32 *)(data_0215f000+0x20)=0; *(s32 *)(data_0215f000+0x24)=0;
-}
-d=arg0[3];
-if(d!=0){
-*(volatile u16 *)0x4000280=0;
-*(volatile u32 *)0x4000290=0x10000000;
-n=arg0[1];
-*(volatile u32 *)0x4000298=d;
-*(volatile u32 *)0x400029c=0;
-*(s32 *)(data_0215f000+0x28)=n;
-*(s32 *)(data_0215f000+0x2c)=d;
-while(*(volatile u16 *)0x4000280 & 0x8000){}
-*(s32 *)(data_0215f000+0x30)=*(volatile s32 *)0x40002a0;
-}else{
-*(s32 *)(data_0215f000+0x28)=0; *(s32 *)(data_0215f000+0x2c)=0; *(s32 *)(data_0215f000+0x30)=0;
-}
-func_0200813c(state);
-*(u16 *)(data_0215f000+0x34)=1;
+    *((s32 *) (data_0215f000 + 0x24)) = *((volatile s32 *) 0x40002a0);
+  }
+  else
+  {
+    *((s32 *) (data_0215f000 + 0x1c)) = 0;
+    *((s32 *) (data_0215f000 + 0x20)) = 0;
+    *((s32 *) (data_0215f000 + 0x24)) = 0;
+  }
+  d = arg0[3];
+  if (d != 0)
+  {
+    *((volatile u16 *) 0x4000280) = 0;
+    *((volatile u32 *) 0x4000290) = 0x10000000;
+    n = arg0[1];
+    *((s32 *) (data_0215f000 + 0x2c)) = (*((volatile u32 *) 0x4000298) = d);
+    *((volatile u32 *) 0x400029c) = 0;
+    *((s32 *) (data_0215f000 + 0x28)) = n;
+    while ((*((volatile u16 *) 0x4000280)) & 0x8000)
+    {
+    }
+
+    *((s32 *) (data_0215f000 + 0x30)) = *((volatile s32 *) 0x40002a0);
+  }
+  else
+  {
+    *((s32 *) (data_0215f000 + 0x28)) = 0;
+    *((s32 *) (data_0215f000 + 0x2c)) = 0;
+    *((s32 *) (data_0215f000 + 0x30)) = 0;
+  }
+  func_0200813c(state);
+  *((u16 *) (data_0215f000 + 0x34)) = 1;
 }
 
 s32 func_0200a6e4(s32,u32,s32);

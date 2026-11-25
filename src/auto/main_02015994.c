@@ -83,3 +83,72 @@ void func_02015a3c(void *base, u32 count, u32 size, s32 (*compare)(const void *,
  }
 }
 
+u8 *func_02015b74(u8 *input,ScanSpec_02015 *out){
+u8 *format;
+s32 c=input[1];
+ScanSpec_02015 spec=data_0213ec14;
+format=input+1;
+s32 modifier,next;
+if(c=='%'){spec.conversion=c;*out=spec;return format+1;}
+if(c=='*'){c=*++format;spec.suppress=1;}
+if((u32)c>=128 ? 0 : data_0213eb14[c]&8){
+spec.width=0;
+do{s32 width=spec.width*10+(c-'0');c=*++format;spec.width=width;}while((u32)c>=128 ? 0 : data_0213eb14[c]&8);
+if(spec.width==0){spec.conversion=255;*out=spec;return format+1;}
+spec.hasWidth=1;
+}
+modifier=1;
+switch(c){
+case 'h':{next=format[1];spec.length=2;if(next=='h'){spec.length=1;c=*++format;}break;}
+case 'l':{next=format[1];spec.length=3;if(next=='l'){spec.length=7;c=*++format;}break;}
+case 'L':spec.length=9;break;
+case 'j':spec.length=4;break;
+case 't':spec.length=6;break;
+case 'z':spec.length=5;break;
+default:modifier=0;break;
+}
+if(modifier)c=*++format;
+spec.conversion=c;
+switch(c){
+case 'd':case 'i':case 'o':case 'u':case 'x':case 'X':
+if(spec.length==9)spec.conversion=255;break;
+case 'a':case 'A':case 'e':case 'E':case 'f':case 'F':case 'g':case 'G':
+if(spec.length==1 || spec.length==2 || ((u8)(spec.length+252)<=3))spec.conversion=255;
+else if(spec.length==3)spec.length=8;
+break;
+case 'p':spec.length=3;spec.conversion='x';break;
+case 'c':
+if(spec.length==3)spec.length=10;else if(spec.length!=0)spec.conversion=255;
+break;
+case 's':{
+s32 n;u8 *p;
+if(spec.length==3)spec.length=10;else if(spec.length!=0)spec.conversion=255;
+p=spec.set;n=32;do{*p++=255;}while(--n>0);
+spec.set[1]=0xc1;spec.set[4]=0xfe;break;
+}
+case '[':{
+s32 invert, end, ch;
+u8 *p;s32 n;
+if(spec.length==3)spec.length=10;else if(spec.length!=0)spec.conversion=255;
+ch=*++format;invert=0;
+if(ch=='^'){ch=*++format;invert=1;}
+if(ch==']'){spec.set[']'>>3]|=1<<(']'&7);ch=*++format;}
+while(ch && ch!=']'){
+next=format[1];
+spec.set[(u8)ch>>3]|=(u8)(1<<(ch&7));
+if(next=='-' && format[2] && format[2]!=']'){
+end=format[2];
+for(ch++;ch<=end;ch++)spec.set[(u8)ch>>3]|=(u8)(1<<(ch&7));
+format+=3;ch=*format;
+}else ch=*++format;
+}
+if(!ch)spec.conversion=255;
+else if(invert){p=spec.set;n=32;do{*p=(u8)~*p;p++;}while(--n>0);}
+break;
+}
+case 'n':break;
+default:spec.conversion=255;break;
+}
+*out=spec;return format+1;
+}
+

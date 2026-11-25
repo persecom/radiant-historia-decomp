@@ -49,65 +49,136 @@ extern u32 data_02155ed0[4];
 
 
 extern void func_0211c5fc(void);
-void func_0211a178(s32 x, s32 y, s32 z) {
-volatile s32 m[6];
-if(data_0216f234[1]) {
-s32 i=data_0216f234[3];
-*(volatile s32 *)((u8 *)data_0216f3d4+i*24)+=x;
+void func_0211a178(s32 x, s32 y, s32 z)
 {
-s32 a=*(volatile s32 *)((u8 *)data_0216f3d8+i*24);
-s32 b=((volatile s32 *)data_0216f244)[i];
-*(s32 *)((u8 *)data_0216f3d8+i*24)=a+y;
-data_0216f244[i]=b+z;
-}
-return;
-}
-m[0]=0x1000; m[1]=0; m[2]=0; m[3]=0x1000; m[5]=y; m[4]=x;
-{ void *p=data_0216f3c4[data_0216f234[3]]; func_0211a4e0((void *)m,p,p); }
-{ void *p=data_0216f6c4[data_0216f234[3]]; func_0211a4e0((void *)m,p,p); }
-data_0216f244[data_0216f234[3]]+=z;
+  s32 *new_var;
+  volatile s32 m[6];
+  if (data_0216f234[1])
+  {
+    s32 i = data_0216f234[3];
+    *((volatile s32 *) (((u8 *) data_0216f3d4) + (i * 24))) += x;
+    {
+      s32 a = *((volatile s32 *) (((u8 *) data_0216f3d8) + (i * 24)));
+      s32 b = ((volatile s32 *) data_0216f244)[i];
+      *((s32 *) (((u8 *) data_0216f3d8) + (i * 24))) = a + y;
+      data_0216f244[i] = b + z;
+    }
+    return;
+  }
+  m[0] = 0x1000;
+  m[1] = 0;
+  m[2] = 0;
+  m[3] = 0x1000;
+  m[5] = y;
+  m[4] = x;
+  func_0211a4e0((void *) m, data_0216f3c4[data_0216f234[3]], data_0216f3c4[(new_var = data_0216f234)[3]]);
+  func_0211a4e0((void *) m, data_0216f6c4[data_0216f234[3]], data_0216f6c4[data_0216f234[3]]);
+  data_0216f244[data_0216f234[3]] += z;
 }
 
 s32 func_02001fc0(s32);
-void func_0211a26c(s32 x,s32 y) {
- Mtx23 m;
- Mtx23 *mp=&m;
- s32 index=*(volatile s32 *)&data_0216f234[3]*24;
- volatile u16 *entry;
- s32 zero=0;
- mp->v[0]=x;mp->v[1]=zero;mp->v[2]=zero;mp->v[3]=y;mp->v[4]=zero;mp->v[5]=zero;
- func_0211a4e0(mp,(void *)((u32)data_0216f3c4+index),(void *)((u32)data_0216f3c4+index));
- mp->v[0]=func_02001fc0(x);mp->v[1]=zero;mp->v[2]=zero;
- {s32 t=func_02001fc0(y);index=*(volatile s32 *)&data_0216f234[3]*24;mp->v[3]=t;}mp->v[4]=zero;mp->v[5]=zero;
- func_0211a4e0(mp,(void *)((u32)data_0216f6c4+index),(void *)((u32)data_0216f6c4+index));
- if(!Active0211a3ac()) data_02155eb0[0]=data_0216f234[3];
- entry=data_0216f2c4[(u16)data_0216f234[3]];
- switch(entry[2]) {
- case 1: break;
- case 0: case 2: case 3:
- { u16 n=((u16 *)data_0216f234)[1]; ((volatile u16 *)data_0216f234)[1]=n+1; entry[1]=n; }
- entry[2]=1; break;
- }
+void func_0211a26c(s32 x, s32 y)
+{
+  Mtx23 m;
+  u32 new_var3;
+  volatile s32 new_var2;
+  Mtx23 *mp = &m;
+  s32 index = (*((volatile s32 *) (&data_0216f234[3]))) * 24;
+  volatile u16 *entry;
+  int new_var;
+  s32 zero = 0;
+  mp->v[0] = x;
+  mp->v[1] = zero;
+  mp->v[4] = (mp->v[2] = zero);
+  mp->v[3] = y;
+  mp->v[1] = (mp->v[5] = zero);
+  new_var3 = (u32) data_0216f3c4;
+  func_0211a4e0(mp, (void *) (new_var3 + index), (void *) (new_var3 + index));
+  mp->v[0] = func_02001fc0(x);
+  new_var2 = *((volatile s32 *) (&data_0216f234[3]));
+  mp->v[2] = zero;
+  new_var = 5;
+  {
+    s32 t = func_02001fc0(y);
+    index = new_var2 * 24;
+    mp->v[3] = t;
+  }
+  mp->v[4] = (mp->v[new_var] = zero);
+  func_0211a4e0(mp, (void *) (((u32) data_0216f6c4) + index), (void *) (((u32) data_0216f6c4) + index));
+  if (!Active0211a3ac())
+  {
+    do
+    {
+      data_02155eb0[0] = data_0216f234[3];
+    }
+    while (0);
+  }
+  entry = data_0216f2c4[(u16) data_0216f234[3]];
+  switch (entry[2])
+  {
+    case 1:
+      break;
+
+    case 0:
+
+    case 2:
+
+    case 3:
+    {
+      u16 n = ((u16 *) data_0216f234)[1];
+      ((volatile u16 *) data_0216f234)[1] = n + 1;
+      entry[1] = n;
+    }
+      entry[2] = 1;
+      break;
+
+  }
+
 }
 
-void func_0211a3ac(s32 sine,s32 cosine) {
- Mtx23 m;
- s32 index=*(volatile s32 *)&data_0216f234[3];
- volatile u16 *entry;
- s32 active;
- m.v[1]=sine;m.v[0]=cosine;m.v[3]=cosine;m.v[2]=-sine;m.v[4]=0;m.v[5]=0;
- func_0211a4e0(&m,data_0216f3c4[index],data_0216f3c4[index]);
- func_0211a4e0(&m,data_0216f6c4[data_0216f234[3]],data_0216f6c4[data_0216f234[3]]);
- active=Active0211a3ac();
- if(!active) data_02155eb0[0]=data_0216f234[3];
- entry=data_0216f2c4[(u16)data_0216f234[3]];
- switch(entry[2]) {
- case 1: break;
- case 0: case 2: case 3:
- { u16 n=((u16 *)data_0216f234)[1]; ((volatile u16 *)data_0216f234)[1]=n+1; entry[1]=n; }
- entry[2]=1;
- break;
- }
+void func_0211a3ac(s32 sine, s32 cosine)
+{
+  s32 storage[6];
+  u32 offset;
+  s32 *m = storage;
+  long stride = 24;
+  s32 *state = data_0216f234;
+  s32 index = *((volatile s32 *) (&state[3]));
+  volatile u16 *entry;
+  s32 active;
+  m[1] = sine;
+  offset = index * stride;
+  m[3] = (m[0] = cosine);
+  m[2] = -sine;
+  m[5] = m[4] = 0;
+  func_0211a4e0((void *) m, ((u8 *) data_0216f3c4) + offset, data_0216f3c4[index]);
+  func_0211a4e0((void *) m, ((u8 *) data_0216f6c4) + (state[3] * stride), data_0216f6c4[data_0216f234[3]]);
+  active = Active0211a3ac();
+  if (!active)
+  {
+    data_02155eb0[0] = data_0216f234[3];
+  }
+  entry = data_0216f2c4[(u16) data_0216f234[3]];
+  switch (entry[2])
+  {
+    case 1:
+      break;
+
+    case 0:
+
+    case 2:
+
+    case 3:
+    {
+      u16 n = ((u16 *) data_0216f234)[1];
+      ((volatile u16 *) data_0216f234)[1] = n + 1;
+      entry[1] = n;
+    }
+      entry[2] = 1;
+      break;
+
+  }
+
 }
 
 void func_0211a4c0(void) {
@@ -169,15 +240,13 @@ void func_0211a5fc(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u32 arg4, u32 arg5, u
 }
 
 void func_0211a698(u32 arg0, u32 count, u32 arg2) {
-    u32 i = 0;
+    u32 i;
+    u32 n = count;
 
-    data_021701cc[0] = arg2;
-    data_021701cc[1] = count;
     data_021701cc[2] = arg0;
-    if (count == 0) {
-        return;
-    }
-    do {
+    data_021701cc[1] = n;
+    data_021701cc[0] = arg2;
+    for (i = 0; i < n; i++) {
         u8 *p = (u8 *)arg0 + i * 0x30;
         func_02118e68(p);
         *(u32 *)(p + 0xc) = 0;
@@ -189,10 +258,10 @@ void func_0211a698(u32 arg0, u32 count, u32 arg2) {
         *(u32 *)(p + 0x24) = 0;
         *(u32 *)(p + 0x28) = 0;
         *(u32 *)(p + 0x2c) = 0;
-        i++;
-    } while (i < count);
+    }
 }
 
+#pragma optimization_level 2
 void func_0211a700(void) {
 u32 i;
 s32 j;
@@ -201,11 +270,13 @@ u32 base;
 u32 kind;
 s32 flag;
 s32 value;
-for(i=0;i<data_021701cc[1];i++){
+i=0;
+if(i>=data_021701cc[1]) return;
+do {
 p=(u8 *)data_021701cc[2]+i*0x30;
 if(*(u32 *)(p+0x1c)!=0){
 j=0;
-while(j<3){
+if(j<3) do {
 flag=0;
 if((*(u32 *)(p+0x24)&(1<<j)) && (*(u32 *)(p+0x20)&(1<<j))) flag=1;
 if(flag){
@@ -215,12 +286,13 @@ value=func_02118e8c(p,j);
 if(((s32 (*)(u32,s32,u32,u32))data_021701cc[0])(kind,value,base+*(u32 *)(p+0x28),*(u32 *)(p+0x2c))!=0) *(u32 *)(p+0x24)&=~(1<<j);
 }
 j++;
-}
+} while(j<3);
 *(u32 *)(p+0x20)=0;
 }
+i++;
+} while(i<data_021701cc[1]);
 }
-}
-
+#pragma optimization_level 4
 void func_0211a7ec(s32 arg0, u32 arg1, u32 arg2) {
     u8 *p = func_0211a5e4(arg0);
     *(u32 *)(p + 0x24) = -1;
@@ -259,8 +331,9 @@ void func_0211a860(u32 arg0) {
 void func_0211a8ac(void *oam0, void *tex0, void *image, void *palette, s32 *uv) {
  SpriteOam_1a8ac *oam=oam0;
  SpriteTex_1a8ac *tex=tex0;
- u16 tile=oam->bits.tile;
- u32 attr=oam->word[0]&0xc000c000;
+ u16 tile=(u16)oam->bits.tile;
+ u32 first=oam->word[0];
+ u32 attr=first&0xc000c000;
  u32 size=(attr&0xc0000000)>>30;
  s32 shape=(s32)(attr&0xc000)>>14;
  u32 mapping=tex->mapping;
@@ -333,8 +406,8 @@ void func_0211ab48(s32 x, s32 y, s32 z, u32 *oam, void *pTex, void *pPltt, void 
     }
     if (mode == 0x300) {
         u32 shape_size = attr & 0xc000c000;
-        s32 shape = (s32)(shape_size & 0xc000) >> 14;
         u32 size = (shape_size & 0xc0000000) >> 30;
+        s32 shape = (s32)(shape_size & 0xc000) >> 14;
         u16 w = data_02144d84[shape][size];
         u16 h = data_02144d6c[shape][size];
         s32 zz = data_021701d8[2] ? ((s32)data_021701d8[1] + (z << 12)) : (z << 12);
@@ -397,14 +470,16 @@ u8 *func_0211adb4(u8 *arg0, s32 arg1, s32 arg2) {
 }
 
 s32 func_0211adf4(u8 *arg0) {
-    u32 v1 = *(volatile u32 *)0x04000000;
     u32 v2 = *(volatile u32 *)0x04000000;
-    u32 idx = v1 & 7;
-    s32 flag = (v2 & 8) != 0;
-    s32 arg2 = 0;
+    u32 v1 = *(volatile u32 *)0x04000000;
+    u32 idx = v2 & 7;
+    u8 flag = (v1 & 8) != 0;
     s32 val = arg0[idx];
+    s32 arg2 = 0;
 
-    if (flag != 0) {
+    if (flag == 0) {
+        arg2 = 0;
+    } else {
         arg2 = 1;
     }
     if (val >= 8) {

@@ -6,6 +6,10 @@ extern u32 data_02155c3c;
 extern void func_0210c5dc(void *);
 extern s32 func_020a2c5c(s32, s32, s32, s32, s32);
 extern void *func_0210c594(u32, u32);
+void func_020938b0(s32 arg0, s32 arg1, s32 arg2) {
+    *(u8 *)(arg0 + 0x13) = arg1;
+}
+
 s32 func_02094700(void) {
     u8 *p = data_02160110;
     if (func_020a2c5c(4, 13, 0, 101, 7) == 0) {

@@ -37,19 +37,24 @@ else if(*(u16 *)(list+14)&0x200) enabled=0;
 if(enabled) {
 if(p[6]==7 || (u8)(p[6]-12)<=4) {
 switch(p[6]) {
-case 7:
+case 7: {
+int two=2;
 *(u32 *)q=0;
 if(func_02065c44(p)==1) {
 func_0202c950(*(u16 *)(p+0x38),list,-1);
+position7:
 q[0x75]=1;
 func_0202bcd4(v,p[0x3a]);
 *(u32 *)(q+0x80)=v[0]; *(u32 *)(q+0x84)=v[1]; *(u32 *)(q+0x88)=v[2];
-q[0x75]=2;
+q[0x75]=two;
 } else if(func_02065c44(p)==0) {func_0202ccec(*(u16 *)(p+0x38),list); q[0x75]=0;}
 break;
+
+}
 case 12:
 func_0202ccec(0xe00,list); q[0x75]=0; break;
 case 13: {
+int two=2;
 if(target && *(u32 *)(*(u8 **)(target+0x118)+0x70) && *(s32 *)(*(u8 **)(target+0x118)+4)>=0) {
 int n=func_0202c658(target);
 if(list[0x4e]==0) p[0x3b]=n;
@@ -69,14 +74,16 @@ p[0x3b]=func_0202c658(obj);
 if(func_02065c44(p)==1) {
 if((int)p[0x3b]%3==0) {func_0202c950(73,list,-1);p[0x3a]=0;}
 else if((int)p[0x3b]%3==1) {func_0202c950(146,list,-1);p[0x3a]=1;}
-else if((int)p[0x3b]%3==2) {func_0202c950(292,list,-1);p[0x3a]=2;}q[0x75]=1;
+else if((int)p[0x3b]%3==2) {func_0202c950(292,list,-1);p[0x3a]=2;}goto position7;
+q[0x75]=1;
 func_0202bcd4(v,p[0x3a]);
 *(u32 *)(q+0x80)=v[0]; *(u32 *)(q+0x84)=v[1]; *(u32 *)(q+0x88)=v[2];
-q[0x75]=2;
+q[0x75]=two;
 } else {func_02065c44(p);}
 break;
 }
 case 14: {
+int two=2;
 if(target && *(u32 *)(*(u8 **)(target+0x118)+0x70) && *(s32 *)(*(u8 **)(target+0x118)+4)>=0) {
 int n=func_0202c658(target);
 if(list[0x4e]==0) p[0x3b]=n;
@@ -99,11 +106,12 @@ else if((int)p[0x3b]/3==1) {func_0202c950(56,list,-1);p[0x3a]=4;}
 else if((int)p[0x3b]/3==2) {func_0202c950(448,list,-1);p[0x3a]=7;}q[0x75]=1;
 func_0202bcd4(v,p[0x3a]);
 *(u32 *)(q+0x80)=v[0]; *(u32 *)(q+0x84)=v[1]; *(u32 *)(q+0x88)=v[2];
-q[0x75]=2;
+q[0x75]=two;
 } else {func_02065c44(p);}
 break;
 }
 case 15: {
+int two=2;
 if(target && *(u32 *)(*(u8 **)(target+0x118)+0x70) && *(s32 *)(*(u8 **)(target+0x118)+4)>=0) {
 int n=func_0202c658(target);
 if(list[0x4e]==0) p[0x3b]=n;
@@ -124,11 +132,12 @@ if((int)p[0x3b]/3==0) {func_0202c950(63,list,-1);p[0x3a]=1;}
 else  {func_0202c950(504,list,-1);p[0x3a]=4;}q[0x75]=1;
 func_0202bcd4(v,p[0x3a]);
 *(u32 *)(q+0x80)=v[0]; *(u32 *)(q+0x84)=v[1]; *(u32 *)(q+0x88)=v[2];
-q[0x75]=2;
+q[0x75]=two;
 } else {func_02065c44(p);}
 break;
 }
 case 16: {
+int two=2;
 if(target && *(u32 *)(*(u8 **)(target+0x118)+0x70) && *(s32 *)(*(u8 **)(target+0x118)+4)>=0) {
 int n=func_0202c658(target);
 int delta=((s8 *)list)[0x44];
@@ -166,7 +175,7 @@ p[0x3a]=n;
 q[0x75]=1;
 func_0202bcd4(v,p[0x3a]);
 *(u32 *)(q+0x80)=v[0]; *(u32 *)(q+0x84)=v[1]; *(u32 *)(q+0x88)=v[2];
-q[0x75]=2;
+q[0x75]=two;
 } else func_02065c44(p);
 break;
 }

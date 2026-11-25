@@ -185,29 +185,23 @@ void func_020a8958(void *arg0) {
 }
 
 void func_020a899c(void *arg0) {
-    u8 *p = arg0;
-    u32 unk[4];
-    u32 tex = *(u32 *)(p + 0x34);
-    s32 w = *(s32 *)(p + 0x18);
-    u32 h = *(u32 *)(p + 0x1c);
-    u32 off = (u16)tex << 3;
-    u32 src = *(u32 *)(p + 0x10);
-    s32 len = w >> 2;
-    u32 i;
-    u32 idx;
+u8 *p=arg0; u32 ctx[4];
+u32 tex=*(u32 *)(p+0x34)<<16;
+s32 w=*(s32 *)(p+0x18);
+u32 h=*(u32 *)(p+0x1c);
+register u32 off=tex>>13, src=*(u32 *)(p+0x10);
+s32 len=w>>2;
+register u32 i=0;
+func_0210fd24(ctx,i);
+while(i<h){
 
-    func_0210fd24(unk, 0);
-    for (i = 0; i < h; i++) {
-        u32 mask = 1 << (i & 0x1f);
-        idx = i >> 5;
-        if (*(u32 *)((u8 *)*(void **)(p + 0x50) + (idx << 2) + 8) & mask) {
-            func_0210fd38(unk, off, src, len);
-            *(u32 *)((u8 *)*(void **)(p + 0x50) + (idx << 2) + 8) &= ~mask;
-        }
-        off += len;
-        src += len;
-    }
-    func_0210fd94(unk);
+if(*(u32 *)((u8 *)*(void **)(p+0x50)+((i>>5)<<2)+8)&(1<<(i&31))){
+func_0210fd38(ctx,off,src,len);
+*(u32 *)((u8 *)*(void **)(p+0x50)+((i>>5)<<2)+8)&=~(1<<(i&31));
+}
+i++; off+=len;src+=len;
+}
+func_0210fd94(ctx);
 }
 
 void func_020a8a50(void *arg0) {

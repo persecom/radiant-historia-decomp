@@ -137,14 +137,14 @@ void func_021273f0(void *arg0) {
 }
 
 BOOL func_02127404(void *arg0, void *arg1, void *arg2, s32 arg3) {
-    void *p;
+    u32 p;
     if (*(s32 *)((u8 *)arg1 + 8) != 0) {
-        p = func_02127dec(arg2, arg3 - 0xc);
+        p = (u32)func_02127dec(arg2, arg3 - 0xc);
     } else {
-        p = func_02127a9c(*(void **)arg1, arg2, arg3 - 0xc);
+        p = (u32)func_02127a9c(*(void **)arg1, arg2, arg3 - 0xc);
     }
-    *(void **)((u8 *)arg0 + 4) = p;
-    if (p != NULL) {
+    *(u32 *)((u8 *)arg0 + 4) = p;
+    if (p != 0) {
         *(void **)((u8 *)arg0 + 8) = *(void **)arg1;
         return TRUE;
     }
@@ -324,22 +324,27 @@ void func_021277f4(void *arg0, void *arg1, s32 arg2, s32 arg3) {
     func_0212a9f8();
 }
 
-void func_02127828(void *arg0, void *arg1, s32 arg2, s32 arg3) {
-    s32 zero = 0;
-    if (arg0 == NULL || arg1 == NULL) {
-        func_0212bda8(data_02156698);
-        return;
-    }
-    func_0212824c(arg0);
-    func_02132bf8(*(void **)((u8 *)arg0 + 0xac), 0x100, arg1);
-    *(void **)((u8 *)arg0 + 0xb0) = *(void **)((u8 *)arg0 + 0xac);
-    *(s32 *)((u8 *)arg0 + 0xb4) = zero;
-    *(s32 *)((u8 *)arg0 + 0xb8) = arg2;
-    *(s32 *)((u8 *)arg0 + 0xbc) = arg3;
-    *((u8 *)arg0 + 1) = 1;
-    *((u8 *)arg0 + 0xa8) = 1;
-    *((u8 *)arg0 + 2) = zero;
-    func_02128880(arg0);
+void func_02127828(void *arg0, void *arg1, s32 arg2, s32 arg3)
+{
+  u8 *new_var;
+  u8 *new_var2;
+  if ((arg0 == NULL) || (arg1 == NULL))
+  {
+    func_0212bda8(data_02156698);
+    return;
+  }
+  func_0212824c(arg0);
+  func_02132bf8(*((void **) (((u8 *) arg0) + 0xac)), 0x100, arg1);
+  new_var = (u8 *) arg0;
+  *((void **) (new_var + 0xb0)) = *((void **) (new_var + 0xac));
+  *((s32 *) (new_var + 0xb4)) = 0;
+  *((s32 *) (((u8 *) arg0) + 0xb8)) = arg2;
+  new_var2 = ((u8 *) arg0) + 0xbc;
+  *((s32 *) new_var2) = arg3;
+  *(((u8 *) arg0) + 2) = 0;
+  *(((u8 *) arg0) + 0xa8) = (*(((u8 *) arg0) + 1) = 1);
+  *(((u8 *) arg0) + 1) = 1;
+  func_02128880(arg0);
 }
 
 void func_0212789c(void *arg0, void *arg1) {
@@ -421,6 +426,132 @@ void *func_02127a9c(void *arg0, void *arg1, s32 arg2) {
     return ret;
 }
 
+extern u8 data_02156780[40];
+extern u8 data_02173ad4[784];
+extern u8 data_021567a8[44];
+extern u8 data_021567d4[48];
+extern void func_02013878(void *, s32, s32);
+extern void *func_0213737c(void *, s32, s32);
+extern void *func_0212d9cc(void *, s32);
+extern void *func_0212c660(void *, s32, void *);
+extern void *func_0212eaec(void *, s32, void *);
+extern void *func_0212e5e4(void *);
+extern void func_0212e5f4(void *, void *);
+extern void func_021288a4(void *);
+extern void func_02128578(void *, s32);
+#pragma optimization_level 3
+void *func_02127ad0(void *arg0, void *arg1, s32 arg2) {
+    s32 n = (s32)arg0;
+    u32 aligned = ((u32)arg1 + 0x3f) & ~0x3f;
+    s32 size = arg2 - (aligned - (u32)arg1);
+    s32 i;
+    u8 *obj;
+    s32 ch_size;
+
+    if (n < 0 || arg1 == NULL || arg2 < 0) {
+        func_0212bda8(data_02156780);
+        return NULL;
+    }
+
+    for (i = 0; i < 4; i++) {
+        if (((s8 *)data_02173ad4)[i * 0xc4] == 0) {
+            break;
+        }
+    }
+    if (i == 4) {
+        func_0212bda8(data_021567a8);
+        return NULL;
+    }
+
+    obj = &data_02173ad4[i * 0xc4];
+    func_02013878(obj, 0, 0xc4);
+    obj[3] = n;
+    ch_size = n * 0x1460;
+    *(u32 *)(obj + 0x20) = aligned + (ch_size << 1);
+    *(s32 *)(obj + 0x24) = ((size - (ch_size << 1) - 0x124) / 0x800) * 0x800;
+    if (*(s32 *)(obj + 0x24) < 0) {
+        func_0212bda8(data_021567d4);
+        return NULL;
+    }
+
+    *(s32 *)(obj + 0x28) = 0x24;
+    *(u32 *)(obj + 0xac) = *(u32 *)(obj + 0x20) + (*(s32 *)(obj + 0x24) + 0x24);
+    *(u32 *)(obj + 0x2c) = aligned;
+    *(s32 *)(obj + 0x30) = 0x800;
+    *(s32 *)(obj + 0x34) = 0x860;
+    *(s32 *)(obj + 0x14) = 0;
+
+    *(void **)(obj + 0x10) = func_0213737c(*(void **)(obj + 0x20), *(s32 *)(obj + 0x24), *(s32 *)(obj + 0x28));
+    if (*(void **)(obj + 0x10) == NULL) {
+        func_02127e74(obj);
+        return NULL;
+    }
+
+    *(void **)(obj + 8) = func_0212d9cc(*(void **)(obj + 0x10), 0);
+    if (*(void **)(obj + 8) == NULL) {
+        func_02127e74(obj);
+        return NULL;
+    }
+
+    for (i = 0; i < n; i++) {
+        void *tmp = func_0213737c(
+            (u8 *)(*(u32 *)(obj + 0x2c) + *(s32 *)(obj + 0x34) * i * 2),
+            *(s32 *)(obj + 0x30) * 2,
+            (*(s32 *)(obj + 0x34) - *(s32 *)(obj + 0x30)) * 2
+        );
+        *(void **)((obj + i * 4) + 0x18) = tmp;
+        if (tmp == NULL) {
+            func_02127e74(obj);
+            return NULL;
+        }
+    }
+
+    *(void **)(obj + 4) = func_0212c660(*(void **)(obj + 0x10), n, obj + 0x18);
+    if (*(void **)(obj + 4) == NULL) {
+        func_02127e74(obj);
+        return NULL;
+    }
+
+    *(void **)(obj + 0xc) = func_0212eaec(obj + 0x18, n, (u8 *)(aligned + n * 0x10c0));
+    if (*(void **)(obj + 0xc) == NULL) {
+        func_02127e74(obj);
+        return NULL;
+    }
+
+    *(void **)(obj + 0x94) = func_0212e5e4(*(void **)(obj + 0x10));
+    if (*(void **)(obj + 0x94) == NULL) {
+        func_02127e74(obj);
+        return NULL;
+    }
+
+    func_0212e5f4(*(void **)(obj + 0x94), *(void **)(obj + 8));
+    func_0212a9dc();
+    *(u32 *)(obj + 0x38) = ((u32 *)data_02173428)[5];
+    *(s16 *)(obj + 0x3c) = *(s32 *)(obj + 0x24) / 0x800;
+    *(s16 *)(obj + 0x3e) = (s16)(0.85f * (f32)*(volatile s16 *)(obj + 0x3c));
+    *(s16 *)(obj + 0x40) = 0;
+    for (i = 0; i < n; i++) {
+        *(s16 *)(obj + 0x42 + i * 2) = -128;
+    }
+    *(s16 *)(obj + 0x46) = 0;
+    obj[0x6c] = 1;
+    *(s32 *)(obj + 0x54) = 0;
+    *(s32 *)(obj + 0x58) = 0;
+    *(s32 *)(obj + 0x5c) = 0;
+    *(s16 *)(obj + 0x60) = 0;
+    *(s32 *)(obj + 0x64) = 0;
+    *(s16 *)(obj + 0x68) = 0;
+    *(s16 *)(obj + 0x6a) = 0;
+    obj[0x6d] = 1;
+    obj[0x72] = 0;
+    *(s32 *)(obj + 0x88) = 0;
+    func_021288a4(obj);
+    func_02128578(obj, 1);
+    obj[0] = 1;
+    func_0212a9e8();
+    return obj;
+}
+#pragma optimization_level 4
 extern void *func_02127e18(void *, s32);
 extern void *func_02127ad0(void *, void *, s32);
 extern void (*data_02173428[])(void *);

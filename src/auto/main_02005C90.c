@@ -350,16 +350,18 @@ void func_020060b8(void) {
 
 #pragma scheduling off
 void func_0200617c(void) {
- s32 end,start; s32 size;
+ u32 end,start; s32 size; u32 initial=1;
  if(((volatile u32 *)data_0215cde4)[3]) return;
- ((volatile u32 *)data_0215cde4)[3]=1;
+ ((volatile u32 *)data_0215cde4)[3]=initial;
  ((volatile u32 *)data_0215cde4)[2]=(u32)data_0215ce04;
  
  *(volatile u32 *)((u8 *)data_0215ced0+0x70)=16; *(volatile u32 *)((u8 *)data_0215ced0+0x6c)=0;
- *(volatile u32 *)((u8 *)data_0215ced0+0x64)=1; *(volatile u32 *)((u8 *)data_0215ced0+0x68)=0; *(volatile u32 *)((u8 *)data_0215ced0+0x74)=0;
+ *(volatile u32 *)((u8 *)data_0215ced0+0x64)=initial; *(volatile u32 *)((u8 *)data_0215ced0+0x68)=0; *(volatile u32 *)((u8 *)data_0215ced0+0x74)=0;
  ((volatile u32 *)data_0215cde4)[9]=(u32)data_0215ced0; ((volatile u32 *)data_0215cde4)[8]=(u32)data_0215ced0;
+ initial=0;
  size=(s32)SDK_SYS_STACKSIZE;
- start=(size<=0?(s32)0x027e0080:((s32)data_027e0000+0x3f80)-(s32)SDK_IRQ_STACKSIZE)-size;
+ if(size<=0) start=0x027e0080-size;
+ else start=((u32)data_027e0000+0x3f80)-(u32)SDK_IRQ_STACKSIZE-size;
  end=((u32)data_027e0000+0x3f80)-(u32)SDK_IRQ_STACKSIZE;
  *(volatile u32 *)((u8 *)data_0215ced0+0x94)=end; *(volatile u32 *)((u8 *)data_0215ced0+0x90)=start; *(volatile u32 *)((u8 *)data_0215ced0+0x98)=0;
  *(u32 *)(end-8)=0xfddb597d;
@@ -622,32 +624,28 @@ void func_0200683c(u8 *arg0, u32 arg1) {
     *(u32 *)(arg0 + 0xb4) = arg1;
 }
 
-void func_02006844(u32 *arg0, u32 arg1, u32 arg2) {
-    arg1 += 4;
-    arg0[16] = arg1;
-    arg0[17] = arg2;
-    arg2 -= 0x40;
-    if (arg2 & 4) {
-        arg2 -= 4;
-    }
-    arg0[14] = arg2;
-    arg0[0] = (arg1 & 1) ? 0x3f : 0x1f;
-    arg0[1] = 0;
-    arg0[2] = 0;
-    arg0[3] = 0;
-    arg0[4] = 0;
-    arg0[5] = 0;
-    arg0[6] = 0;
-    arg0[7] = 0;
-    arg0[8] = 0;
-    arg0[9] = 0;
-    arg0[10] = 0;
-    arg0[11] = 0;
-    arg0[12] = 0;
-    arg0[13] = 0;
-    arg0[15] = 0;
+#pragma scheduling off
+void func_02006844(volatile u32 *arg0, u32 arg1, u32 arg2) {
+arg1 += 4; arg0[16]=arg1; arg0[17]=arg2;
+arg2-=0x40; if(arg2&4) arg2-=4; arg0[14]=arg2;
+arg1 &= 1; if(arg1) arg1=0x3f; else arg1=0x1f;
+arg0[0]=arg1;
+arg0[1]=0;
+arg0[2]=0;
+arg0[3]=0;
+arg0[4]=0;
+arg0[5]=0;
+arg0[6]=0;
+arg0[7]=0;
+arg0[8]=0;
+arg0[9]=0;
+arg0[10]=0;
+arg0[11]=0;
+arg0[12]=0;
+arg0[13]=0;
+arg0[15]=0;
 }
-
+#pragma scheduling on
 u32 func_02006940(void) {
     if (data_02145bb8[1] != -1) {
         return data_02145bb8[1];
@@ -689,19 +687,17 @@ BOOL func_020069a4(Unk69A4 *arg0, void *arg1, s32 arg2) {
 extern u32 data_0215ce00[];
 extern void func_02006d10(u8 *, u8 *);
 extern u64 _s32_div_f(u32, u32);
+#pragma opt_propagation off
 s32 func_02006a38(Unk69A4 *arg0, u32 *arg1, u32 arg2) {
     u32 cookie = func_02008128();
     if (arg0->usedCount == 0) {
-        arg2 %= 2;
-        if (arg2 == 0) {
+        u8 flag = arg2 & 1;
+        if (flag == 0) {
             func_0200813c(cookie);
             return 0;
         }
         func_02006510(&arg0->unk8);
-        if (arg0->usedCount == 0) {
-            func_0200813c(cookie);
-            return 0;
-        }
+        if (arg0->usedCount == 0) goto fail;
     }
     if (arg1 != NULL) {
         *arg1 = arg0->msgArray[arg0->firstIndex];
@@ -712,8 +708,11 @@ s32 func_02006a38(Unk69A4 *arg0, u32 *arg1, u32 arg2) {
     ((void (*)(void *))func_02006560)(arg0);
     func_0200813c(cookie);
     return 1;
+fail:
+    func_0200813c(cookie);
+    return 0;
 }
-
+#pragma opt_propagation on
 extern u32 data_02145bb8[2];
 extern u32 func_02006974(void);
 void func_02006ad8(Unk6AD8 *arg0) {

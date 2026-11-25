@@ -5,6 +5,10 @@ extern f64 func_02016fc4(s32, void *, void *, s32 *, s32 *);
 extern void func_02016c84(void);
 extern void func_0201e014(f64);
 extern s32 data_02160034;
+f64 func_02016fc4(s32 arg0, void *arg1, void *arg2, s32 *arg3, s32 *arg4) {
+    return 0.0;
+}
+
 f64 func_02017edc(const char *str, char **endptr) {
     f64 value;
     s32 chars_scanned;

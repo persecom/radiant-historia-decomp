@@ -194,3 +194,162 @@ void *func_0205817c(u32 arg0) {
     }
     return NULL;
 }
+
+extern void func_020bdcc0(s32);
+extern void func_020bdd84(s32);
+extern void func_02108eec(s32, s32);
+void func_020581b8(void) {
+    u8 *obj = *(u8 **)(data_021600ac + 0x68);
+    s32 zero = 0;
+
+    switch (*(u16 *)(*(u8 * volatile *)&data_0216020c + 0xbe)) {
+    case 0:
+        *(u16 *)(obj + 0x92) = zero;
+        *(s32 *)(obj + 0) = 0xc8000;
+        *(s32 *)(obj + 8) = 0x40000;
+        func_020477dc(obj, zero, zero);
+        *(s32 *)(*(u8 * volatile *)&data_0216020c + 0xb4) = 0x20000;
+        *(u16 *)(*(u8 * volatile *)&data_0216020c + 0x8e) = 0x380;
+        data_02162884[0] = -16;
+        data_02162814[0] = -16;
+        *(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) = zero;
+        *(u16 *)(*(u8 * volatile *)&data_0216020c + 0xbe) = 1;
+        *(u8 *)(*(u8 * volatile *)&data_0216020c + 0xd0) = zero;
+        *(u8 *)(*(u8 * volatile *)&data_0216020c + 0xd8) = zero;
+        break;
+    case 1:
+        ++*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba);
+        if (*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) > 60) {
+            *(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) = 60;
+            func_020477dc(obj, 2, 0);
+        }
+        *(s32 *)(*(u8 * volatile *)&data_0216020c + 0xb4) = 0x20000 - (((*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) * 128) / 60) << 10);
+        *(u16 *)(*(u8 * volatile *)&data_0216020c + 0x8e) = 0x380 + (*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) * 128) / 60;
+        *(s32 *)(obj + 8) = (((*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) * 64) / 60) + 0x40) << 12;
+        data_02162884[0] = (*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) * 16) / 60 - 16;
+        data_02162814[0] = (*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) * 16) / 60 - 16;
+        if (*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) == 60)
+            *(u16 *)(*(u8 * volatile *)&data_0216020c + 0xbe) = 2;
+        break;
+    case 2:
+        func_020477dc(obj, 2, zero);
+        *(s32 *)(data_021600ac + 0x10) = zero;
+        func_020468e0(zero);
+        *(u16 *)(*(u8 * volatile *)&data_0216020c + 0xbe) = 3;
+        data_0216263c[0] = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
+        if ((u16)(((data_0216263c[0] >> 16) * 2) >> 16) == 0)
+            *(u8 *)(*(u8 * volatile *)&data_0216020c + 0xd0) |= 3;
+        else
+            *(u8 *)(*(u8 * volatile *)&data_0216020c + 0xd0) |= 5;
+        break;
+    case 3:
+        *(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) = 60;
+        break;
+    case 4:
+        func_020468e0(1);
+        *(u16 *)(*(u8 * volatile *)&data_0216020c + 0xbe) = 5;
+        break;
+    case 5:
+        func_020477dc(obj, zero, zero);
+        --*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba);
+        if (*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) < 0)
+            *(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) = zero;
+        switch (*(u8 *)(*(u8 * volatile *)&data_0216020c + 0xc0)) {
+        case 0:
+            data_0216263c[0] = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
+            *(u8 *)(*(u8 * volatile *)&data_0216020c + 0xc0) = (u8)((u16)(((data_0216263c[0] >> 16) * 4) >> 16) + 1);
+            ++*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba);
+            break;
+        case 1:
+            *(s32 *)(obj + 8) = (0xdf - (*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) * 95) / 60) << 12;
+            break;
+        case 2:
+            *(s32 *)(obj + 0) = (0xa9 + (*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) * 31) / 60) << 12;
+            *(s32 *)(obj + 8) = (0x43 + (*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) * 61) / 60) << 12;
+            *(u16 *)(obj + 0x92) = 0xc000;
+            break;
+        case 3:
+            *(s32 *)(obj + 0) = (0xff - (*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) * 55) / 60) << 12;
+            *(s32 *)(obj + 8) = (0x63 + (*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) * 29) / 60) << 12;
+            *(u16 *)(obj + 0x92) = 0x4000;
+            break;
+        case 4:
+            *(s32 *)(obj + 0) = (0x11f - (*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) * 87) / 60) << 12;
+            *(s32 *)(obj + 8) = (0xa3 - (*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) * 35) / 60) << 12;
+            *(u16 *)(obj + 0x92) = 0x4000;
+            break;
+        }
+        *(s32 *)(*(u8 * volatile *)&data_0216020c + 0xb4) = 0x20000 - (((*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) * 128) / 60) << 10);
+        *(u16 *)(*(u8 * volatile *)&data_0216020c + 0x8e) = 0x380 + (*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) * 128) / 60;
+        *(s32 *)(obj + 8) = (((*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) * 64) / 60) + 0x40) << 12;
+        data_02162884[0] = (*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) * 16) / 60 - 16;
+        data_02162814[0] = (*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) * 16) / 60 - 16;
+        if (*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) == 0)
+            *(u16 *)(*(u8 * volatile *)&data_0216020c + 0xbe) = 2;
+        break;
+    case 6:
+        data_02160204[0x11f] = *(u8 *)(*(u8 * volatile *)&data_0216020c + 0xc1);
+        *(s32 *)(data_021600ac + 0xc) = 1;
+        data_02160204[0xd8] = 0x26;
+        if (func_02044f70() == NULL) break;
+        {
+            u8 *p2 = func_02044f70();
+            if (*(s32 *)(p2 + 8) != 1) break;
+            data_02160204[0xd8] = 0x12;
+            p2 = func_02044f70();
+            *(s32 *)(p2 + 0xc) |= 1;
+            p2 = func_02044f70();
+            *(s32 *)(p2 + 0xc) |= 2;
+        }
+        break;
+    case 7:
+        func_020477dc(obj, zero, zero);
+        --*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba);
+        if (*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) < 0)
+            *(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) = zero;
+        switch (*(u8 *)(*(u8 * volatile *)&data_0216020c + 0xc0)) {
+        case 0:
+            data_0216263c[0] = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
+            *(u8 *)(*(u8 * volatile *)&data_0216020c + 0xc0) = (u8)((u16)(((data_0216263c[0] >> 16) * 4) >> 16) + 1);
+            ++*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba);
+            break;
+        case 1:
+            *(s32 *)(obj + 8) = (0xdf - (*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) * 95) / 60) << 12;
+            break;
+        case 2:
+            *(s32 *)(obj + 0) = (0xa9 + (*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) * 31) / 60) << 12;
+            *(s32 *)(obj + 8) = (0x43 + (*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) * 61) / 60) << 12;
+            *(u16 *)(obj + 0x92) = 0xc000;
+            break;
+        case 3:
+            *(s32 *)(obj + 0) = (0xff - (*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) * 55) / 60) << 12;
+            *(s32 *)(obj + 8) = (0x63 + (*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) * 29) / 60) << 12;
+            *(u16 *)(obj + 0x92) = 0x4000;
+            break;
+        case 4:
+            *(s32 *)(obj + 0) = (0x11f - (*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) * 87) / 60) << 12;
+            *(s32 *)(obj + 8) = (0xa3 - (*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) * 35) / 60) << 12;
+            *(u16 *)(obj + 0x92) = 0x4000;
+            break;
+        }
+        *(s32 *)(*(u8 * volatile *)&data_0216020c + 0xb4) = 0x20000 - (((*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) * 128) / 60) << 10);
+        *(u16 *)(*(u8 * volatile *)&data_0216020c + 0x8e) = 0x380 + (*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) * 128) / 60;
+        *(s32 *)(obj + 8) = (((*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) * 64) / 60) + 0x40) << 12;
+        data_02162884[0] = (*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) * 16) / 60 - 16;
+        data_02162814[0] = (*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) * 16) / 60 - 16;
+        if (*(s16 *)(*(u8 * volatile *)&data_0216020c + 0xba) != 0) return;
+        {
+            s32 two = 2, thousand = 1000;
+            func_020bdcc0(two);
+            func_020bdd84(two);
+            data_02160204[0xd8] = two;
+            data_02160204[0x11d] |= 1;
+            func_02108eec(0, thousand);
+            func_02108eec(1, thousand);
+            *(s32 *)(data_021600ac + 0xc) = 1;
+            *(u16 *)(*(u8 * volatile *)&data_0216020c + 0xbe) = 6;
+        }
+        break;
+    }
+}
+

@@ -3,6 +3,10 @@
 
 double _dsub(double,double);
 int func_0201ff80(double);
+void func_0201d04c(void)
+{
+}
+
 double func_0201dbfc(double x,double y,int iy) {
  double z,v,r;
  s32 ix=((s32 *)&x)[1]&0x7fffffff;

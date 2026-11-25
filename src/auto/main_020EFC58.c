@@ -199,6 +199,15 @@ void func_020f0090(s32 arg0) {
     }
 }
 
+extern void func_0210af8c(void);
+extern void func_02108ffc(void);
+void func_020f0154(u32 arg0) {
+    u8 *g = data_02160af0;
+    if (*(u32 *)g != 0) return;
+    func_0210af8c();
+    func_02108ffc();
+}
+
 extern u8 *func_0210c594(s32, u32);
 extern void func_021167f0(void *, void *);
 void func_020f07b0(Unk_Vec3_020f07b0 arg0, u32 arg1, u16 arg2) {

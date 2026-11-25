@@ -47,7 +47,6 @@ void func_0205fa44(u8 *arg0) {
     u8 *sp10;
     u8 *r7;
     u32 sp0c;
-    s16 hitCount;
 
     func_020d9da8(0x20);
     func_020d9ea8(8, 0x30);
@@ -133,7 +132,8 @@ void func_0205fa44(u8 *arg0) {
                 *(s16 *)(r6 + 0x90) = 0;
             }
             break;
-        default:
+        default: {
+            s16 hitCount;
             if (*(u8 *)(r9 + 0) != 5) {
                 s16 val;
                 func_020d3fe8(arg0, func_0205bad4(r6), r9);
@@ -208,6 +208,7 @@ void func_0205fa44(u8 *arg0) {
                 *(s16 *)(r6 + 0x90) = 0;
             }
             break;
+        }
         }
     }
 

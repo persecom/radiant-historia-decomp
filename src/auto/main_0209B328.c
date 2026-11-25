@@ -38,11 +38,11 @@ void func_0209b328(void) {
             *(s32 *)(r10 + 0x14) += lv * 2;
         }
 
-        if (*(s32 *)(r10 + 0x14) >= *(s32 *)(r10 + 8)) {
-            *(u32 *)(r10 + 4) += *(u32 *)(r10 + 8);
-            *(s32 *)(r10 + 8) = 0;
-            *(s32 *)(r10 + 0x14) = 0;
-            if (*(s32 *)(r10 + 0xc) == 0) {
+        if (((s32 *)r10)[5] >= ((s32 *)r10)[2]) {
+            ((u32 *)r10)[1] += ((u32 *)r10)[2];
+            ((s32 *)r10)[2] = 0;
+            ((s32 *)r10)[5] = 0;
+            if (((s32 *)r10)[3] == 0) {
                 *(s16 *)(r9 + 0x698) += 1;
             }
         }
@@ -348,33 +348,23 @@ buf.unk[1]=0; buf.unk[2]=13; buf.unk[4]=3; buf.unk[9]=3; buf.unk[6]=y+h+3;
 func_021098ac(&buf);
 }
 
-void func_0209bfa0(s32 val, s32 x, s32 y, s32 arg3, u8 flag) {
-    Unk20 buf = data_021420d8;
+void func_0209bfa0(s32 val,s32 x,s32 y,s32 arg3,u8 flag) {
+Unk20 buf=data_021420d8;
+*(volatile u32 *)0x40004a4=0x1f0080;
+if(flag==0) func_020a3bbc(0x19); else func_020a3bbc(0x1b);
 
-    *(volatile u32 *)0x40004a4 = 0x1f0080;
-    if (flag == 0) {
-        func_020a3bbc(0x19);
-    } else {
-        func_020a3bbc(0x1b);
-    }
-
-    buf.unk[7] = arg3;
-    buf.unk[5] = x - 14;
-    buf.unk[6] = y;
-    buf.unk[2] = 0;
-    buf.unk[3] = 7;
-    buf.unk[4] = 8;
-    buf.unk[8] = 7;
-    buf.unk[9] = 8;
-    buf.unk[1] = (s16)((val / 10) % 10) * 7;
-    func_021098ac(&buf);
-
-    buf.unk[5] = x - 7;
-    buf.unk[6] = y;
-    buf.unk[1] = (s16)(val % 10) * 7;
-    func_021098ac(&buf);
-
-    func_021098ac(&buf);
+buf.unk[5]=x-14;
+buf.unk[3]=7;
+buf.unk[4]=8;
+buf.unk[7]=arg3;
+buf.unk[2]=0;
+buf.unk[8]=7;
+buf.unk[9]=8;
+buf.unk[6]=y;
+buf.unk[1]=(s16)((val/10)%10)*7;
+func_021098ac(&buf);
+buf.unk[5]=x-7; buf.unk[6]=y; buf.unk[1]=(s16)(val%10)*7;
+func_021098ac(&buf); func_021098ac(&buf);
 }
 
 void *func_0209c0d0(void) {

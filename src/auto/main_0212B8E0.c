@@ -342,7 +342,8 @@ void func_0212c0b8(void) {
     data_02156b74 = data_021458c8;
     func_02132be0();
     if (data_02173ac0[4] == 0) {
-        u32 i;
+        typedef struct { u32 x[196]; } Zero784;
+        static const Zero784 z = {0};
         func_0212a98c();
         func_0212a9dc();
         func_02137eac();
@@ -357,9 +358,7 @@ void func_0212c0b8(void) {
         func_021385d4();
         func_0212eae0(func_0212c068, 0);
         func_0212e5ec(func_0212c078, 0);
-        for (i = 0; i < 196; i++) {
-            ((u32 *)data_02173ad4)[i] = 0;
-        }
+        *(Zero784 *)data_02173ad4 = z;
         func_021382fc(2, 1, func_0212c098, 0, data_02156b7c);
         data_02173ac0[1] = func_02138190(4, func_0212c0a8, 0, data_02156b8c);
         data_02173ac0[3] = func_02138190(5, func_0212c088, 0, data_02156b9c);

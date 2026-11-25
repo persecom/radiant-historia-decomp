@@ -36,7 +36,8 @@ Unk_0208eef4_4 styles=data_02140f08;
 u8 count=6;
 u8 *base=data_0216010c;
 u8 offset=base[0x50d7]-base[0x50d6];
-s32 row, selected;
+s32 row;
+u8 selected;
 s16 i;
 if(*(s16 *)(base+0x50d4)<6) {
 count=(u8)*(s16 *)(base+0x50d4);
@@ -45,7 +46,7 @@ count=(u8)*(s16 *)(base+0x50d4);
 for(i=0;i<count;i++) {
 selected=0;
 if(i==base[0x50d6]) selected=1;
-func_020a8810(*(void **)((s32)data_0216010c+(s16)i*(s16)80+0x70),styles.data[selected]);
+func_020a8810(*(void **)(((Unk_0208eef4_80 *)data_0216010c)[i].data+0x70),styles.data[selected]);
 row=y+26+i*22;
 func_0209250c(selected+47,1,x+8,row,156,18,8,16,4,2,4,4,z);
 func_020895a0((u16)i,(x+28)<<12,(y+28+i*22)<<12,90,0,*(u16 *)(data_0216010c+(offset<<6)+(i<<6)+0x4894),0,0,0);

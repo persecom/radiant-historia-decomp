@@ -337,17 +337,17 @@ void func_02134844(u8 *arg0, s32 arg1) {
 }
 
 u8 func_02134884(void) {
-    volatile u8 result = 0xff;
+    u8 result = 0xff;
     void (*cb)(u8 *) = *(void **)(data_021756d8 + 0x2d0);
     if (cb != NULL) {
-        cb((u8 *)&result);
+        cb(&result);
     } else {
         s32 count = *(s32 *)(data_021756d8 + 0x2bc);
         s32 i;
         for (i = 0; i < count; i++) {
             if (*(u8 *)(data_021756d8 + i + 0x2c8) == 0) {
                 data_021759a0[i] = 1;
-                result = *(volatile u8 *)(data_02175998 + i);
+                result = data_02175998[i];
                 break;
             }
         }

@@ -176,28 +176,174 @@ data_02160204[0x84]=9;*(s32 *)(data_02160204+0x80)=0;
 }
 }
 
-void func_0203df40(void *arg0) {
-    if (data_02160aec == NULL) return;
+void func_0203df40(Vec_0203d970 *arg) {
+    State_0203df40 *state = (State_0203df40 *)data_02160098[1];
+    u8 *map = data_02160aec;
+    u16 *prev;
+    u16 *tile;
+    s32 h;
+    u16 i, j, n;
+    u16 f0, f1, f2, f3;
+    s32 d, tmp, delta;
+    s32 ten = 10;
+    u16 flags, v, tileId;
+    Vec_0203e5a8 vec;
+
+    if (map == NULL) return;
+    tile = (u16 *)(map + 0x30bc8 + ten * ((arg->z / 65536) * (s16)*(u16 *)(map + 0x58d36) + arg->x / 65536));
+    prev = ((State_0203df40 *)data_02160098[1])->field_30;
+    if (prev == NULL) goto final;
+    v = prev[0];
+    if (v == 0 || v == 0xff) goto L_a88;
+    if (prev[2] == 0) goto L_978;
+    if (prev[2] != *tile) goto L_978;
+    vec.field_0 = arg->x >> 12;
+    vec.field_4 = arg->z >> 12;
+    flags = state->field_4e;
+    if (flags & 1) goto L_900;
+
+    h = *(s16 *)(map + 0x58d38);
+    i = 0;
+    n = 0;
+    f0 = 0; f1 = 0; f2 = 0; f3 = 0;
+    if (h > 0) {
+        do {
+            s32 w = *(s16 *)(map + 0x58d36);
+            j = 0;
+            if (w > 0) {
+                u8 *row = map + ten * (i * w);
+                do {
+                    if (*(u16 *)(row + ten * j + 0x30bc8) == prev[1]) {
+                        n++;
+                        if (n == 1) { f0 = j; f1 = i; }
+                        else { f2 = j; f3 = i; }
+                    }
+                    j++;
+                } while (w > j);
+            }
+            i++;
+        } while (h > i);
+    }
+
+    if (flags & 8) {
+        ((State_0203df40 *)data_02160098[1])->field_4c = ((State_0203df40 *)data_02160098[1])->field_48;
+        if (prev[3] == 0x52)
+            ((State_0203df40 *)data_02160098[1])->field_48 = ((State_0203df40 *)data_02160098[1])->field_4c + (prev[4] - 0x40) * 0xaaa;
+        else
+            ((State_0203df40 *)data_02160098[1])->field_48 = ((State_0203df40 *)data_02160098[1])->field_4c - (prev[4] - 0x40) * 0xfff7;
+        ((State_0203df40 *)data_02160098[1])->field_4e &= 0xfff7;
+    } else if (flags & 4) {
+        ((State_0203df40 *)data_02160098[1])->field_4e &= 0xfffb;
+    } else {
+        ((State_0203df40 *)data_02160098[1])->field_4c = data_02151fc8;
+        if (prev[3] == 0x52)
+            ((State_0203df40 *)data_02160098[1])->field_48 = data_02151fc8 + (prev[4] - 0x40) * 0xaaa;
+        else
+            ((State_0203df40 *)data_02160098[1])->field_48 = data_02151fc8 - (prev[4] - 0x40) * 0xaaa;
+    }
+    ((State_0203df40 *)data_02160098[1])->field_50 = (f0 << 16) >> 12;
+    ((State_0203df40 *)data_02160098[1])->field_54 = (f1 << 16) >> 12;
+    ((State_0203df40 *)data_02160098[1])->field_58 = (f2 << 16) >> 12;
+    ((State_0203df40 *)data_02160098[1])->field_5c = (f3 << 16) >> 12;
+    d = func_0203e5a8(&vec, (Vec_0203e5a8 *)&((State_0203df40 *)data_02160098[1])->field_50, (Vec_0203e5a8 *)&((State_0203df40 *)data_02160098[1])->field_58);
+    ((State_0203df40 *)data_02160098[1])->field_40 = d;
+    ((State_0203df40 *)data_02160098[1])->field_44 = d;
+    ((State_0203df40 *)data_02160098[1])->field_4e |= 1;
+    goto L_978;
+
+L_900:
+    d = func_0203e5a8(&vec, (Vec_0203e5a8 *)&((State_0203df40 *)data_02160098[1])->field_50, (Vec_0203e5a8 *)&((State_0203df40 *)data_02160098[1])->field_58);
+    if (d > 0) {
+        tmp = ((prev[4] - 0x40) * 0xaaa) / ((State_0203df40 *)data_02160098[1])->field_40;
+        delta = (((State_0203df40 *)data_02160098[1])->field_44 - d) * tmp;
+        if (prev[3] == 0x52) data_02151fc8 = (u16)(data_02151fc8 + (u16)delta);
+        else data_02151fc8 = (u16)(data_02151fc8 - (u16)delta);
+        ((State_0203df40 *)data_02160098[1])->field_44 = d;
+    }
+
+L_978:
+    if (prev[1] != 0 && prev[1] == *tile) {
+        ((State_0203df40 *)data_02160098[1])->field_30 = tile;
+        ((State_0203df40 *)data_02160098[1])->field_4e &= 0xfffe;
+        ((State_0203df40 *)data_02160098[1])->field_4a = 3 * (((prev[4] - 0x40) * 0xaaa) / ((State_0203df40 *)data_02160098[1])->field_40);
+        ((State_0203df40 *)data_02160098[1])->field_4e |= 8;
+        ((State_0203df40 *)data_02160098[1])->field_4e &= 0xfffb;
+    }
+    if ((((State_0203df40 *)data_02160098[1])->field_4e & 1) && prev[0] == *tile) {
+        ((State_0203df40 *)data_02160098[1])->field_4a = 3 * (((prev[4] - 0x40) * 0xaaa) / ((State_0203df40 *)data_02160098[1])->field_40);
+        ((State_0203df40 *)data_02160098[1])->field_4e |= 4;
+        ((State_0203df40 *)data_02160098[1])->field_4e &= 0xfff7;
+        ((State_0203df40 *)data_02160098[1])->field_4e &= 0xfffe;
+    }
+    tileId = *tile;
+    if (prev[0] == tileId || prev[1] == tileId || prev[2] == tileId)
+        ((State_0203df40 *)data_02160098[1])->field_30 = tile;
+    goto final;
+
+L_a88:
+    ((State_0203df40 *)data_02160098[1])->field_4e &= 0xfffe;
+    ((State_0203df40 *)data_02160098[1])->field_30 = tile;
+
+final:
+    if (((State_0203df40 *)data_02160098[1])->field_4e & 8) {
+        if (data_02151fc8 > ((State_0203df40 *)data_02160098[1])->field_48) {
+            data_02151fc8 -= ((State_0203df40 *)data_02160098[1])->field_4a;
+            if (data_02151fc8 < ((State_0203df40 *)data_02160098[1])->field_48) {
+                data_02151fc8 = ((State_0203df40 *)data_02160098[1])->field_48;
+                ((State_0203df40 *)data_02160098[1])->field_4e &= 0xfff7;
+            }
+        } else if (data_02151fc8 < ((State_0203df40 *)data_02160098[1])->field_48) {
+            data_02151fc8 += ((State_0203df40 *)data_02160098[1])->field_4a;
+            if (data_02151fc8 > ((State_0203df40 *)data_02160098[1])->field_48) {
+                data_02151fc8 = ((State_0203df40 *)data_02160098[1])->field_48;
+                ((State_0203df40 *)data_02160098[1])->field_4e &= 0xfff7;
+            }
+        }
+    }
+    if (((State_0203df40 *)data_02160098[1])->field_4e & 4) {
+        if (data_02151fc8 > ((State_0203df40 *)data_02160098[1])->field_4c) {
+            data_02151fc8 -= ((State_0203df40 *)data_02160098[1])->field_4a;
+            if (data_02151fc8 < ((State_0203df40 *)data_02160098[1])->field_4c) {
+                data_02151fc8 = ((State_0203df40 *)data_02160098[1])->field_4c;
+                ((State_0203df40 *)data_02160098[1])->field_4e &= 0xfffb;
+            }
+        } else if (data_02151fc8 < ((State_0203df40 *)data_02160098[1])->field_4c) {
+            data_02151fc8 += ((State_0203df40 *)data_02160098[1])->field_4a;
+            if (data_02151fc8 > ((State_0203df40 *)data_02160098[1])->field_4c) {
+                data_02151fc8 = ((State_0203df40 *)data_02160098[1])->field_4c;
+                ((State_0203df40 *)data_02160098[1])->field_4e &= 0xfffb;
+            }
+        }
+    }
 }
 
 s32 func_0203e5a8(Vec_0203e5a8 *a, Vec_0203e5a8 *b, Vec_0203e5a8 *c) {
-    s32 r4 = c->field_4 - b->field_4;
-    s32 r3 = a->field_4 - b->field_4;
+    s32 b4 = *(s32 *)((u8 *)b + 4);
+    s32 c4 = *(s32 *)((u8 *)c + 4);
+    s32 a4 = *(s32 *)((u8 *)a + 4);
+    s32 r4 = c4 - b4;
+    s32 r3 = a4 - b4;
     s32 r12 = r4 * r3;
     s32 r3b = r4 * r4;
-    s32 r2 = c->field_0 - b->field_0;
-    s32 r5 = a->field_0 - b->field_0;
-    s32 v0 = r2 * r5 + r12;
-    s32 v1 = r2 * r2 + r3b;
+    s32 b0 = *(s32 *)((u8 *)b + 0);
+    s32 c0 = *(s32 *)((u8 *)c + 0);
+    s32 a0 = *(s32 *)((u8 *)a + 0);
+    s32 r2 = c0 - b0;
+    s32 r5 = a0 - b0;
+    s32 v0 = r12 + r2 * r5;
+    s32 v1 = r3b + r2 * r2;
     s32 ret = _s32_div_f(v0, v1);
-    if (ret < 0) {
+    if (ret < 0) goto fail;
+    if (ret <= 1) goto body;
+fail:
+    return -1;
+body:
+    {
         s32 t = r4 * ret;
         _dflt((t - r5) * (t - r5));
         func_02020058();
         func_0201ff80();
-        return ret;
     }
-    return -1;
 }
 
 void func_0203e61c(void) {

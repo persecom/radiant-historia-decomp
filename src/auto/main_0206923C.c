@@ -41,43 +41,34 @@ void func_0206923c(u8 *arg0)
 
     Effect *e = (Effect *)arg0;
     Particle *p;
-    u16 phase = e->phase;
     s32 zero = 0;
-    u32 *rng;
+    u16 i;
+    u16 phase = e->phase;
 
 #define RH_RANDOM(n) \
-    ((u16)((((rng[0] = rng[1] * rng[0] + rng[2]) >> 16) * (n)) >> 16))
+    ((u16)((((data_0216263c[0] = data_0216263c[1] * data_0216263c[0] \
+    + data_0216263c[2]) >> 16) * (n)) >> 16))
 
     switch (phase) {
-    case 0: {
-        u16 i;
-        s32 initialFixed;
-        s16 initialScale;
-        u32 range;
-
-        rng = data_0216263c;
-        i = zero;
-        initialFixed = 0x6000;
-        initialScale = 6;
-        range = 40;
-
-        for (; i < 8; i++) {
+    case 0:
+        for (i = zero; i < 8; i++) {
             p = (Particle *)func_02067698(arg0, i);
 
-            p->fxScaleY = initialFixed;
-            p->fxScaleX = initialFixed;
+            p->fxScaleY = 0x6000;
+            p->fxScaleX = 0x6000;
 
-            p->scaleY = initialScale;
+            p->scaleY = 6;
             p->scaleX = p->scaleY;
 
             if (i == 0 || i == 4) {
                 u32 seed;
                 u32 value;
 
-                seed = rng[1] * rng[0] + rng[2];
-                value = (seed >> 16) * range;
+                seed = data_0216263c[1] * data_0216263c[0]
+                    + data_0216263c[2];
+                value = (seed >> 16) * 40;
 
-                rng[0] = seed;
+                data_0216263c[0] = seed;
 
                 p->timer = value >> 16;
             }
@@ -87,26 +78,18 @@ void func_0206923c(u8 *arg0)
             p->pos.z = zero;
         }
 
-        {
-            u16 nextPhase = 1;
-            u16 timer = 0x1000;
-
-            e->timer = timer;
-            e->phase = nextPhase;
-        }
-
+        e->timer = 0x1000;
+        e->phase = e->timer >> 12;
         break;
-    }
 
     case 1: {
         u8 group;
+        s32 start;
+        u16 j;
+        s32 scale;
+        s32 z;
 
         for (group = zero; group < 2; group++) {
-            s32 start;
-            u16 j;
-            s32 scale;
-            s32 z;
-
             j = (u8)((group + 1) * 4 - 1);
             start = group * 4;
 
@@ -160,7 +143,7 @@ void func_0206923c(u8 *arg0)
             p->fxScaleX = scale;
 
             p->scaleY = scale >> 12;
-            p->scaleX = p->scaleY;
+            p->scaleX = ((volatile Particle *)p)->scaleY;
 
             if (e->frame > 1) {
                 p->active = 1;
@@ -174,42 +157,43 @@ void func_0206923c(u8 *arg0)
 
     {
         u16 state = e->state;
-        s32 inactive = zero;
 
         if (state == 0) {
-            u16 i;
-            s32 initialScale;
             s32 active;
+            s32 inactive;
             s32 maxScale;
+            s32 initialScale;
+            s32 scale;
 
-            rng = data_0216263c;
-            i = 8;
-            initialScale = 6;
             active = 1;
+            inactive = zero;
             maxScale = 48;
+            initialScale = 6;
 
-            for (; i < 20; i++) {
+            for (i = 8; i < 20; i++) {
                 p = (Particle *)func_02067698(arg0, i);
 
                 if (p->active != 0) {
-                    s32 scale;
-
                     switch (i) {
                     case 8:
                     case 9:
                     case 14:
                     case 15:
                     case 16:
-                    case 17:
+                    case 17: {
+                        s32 value;
+
                         scale = (p->fxScaleY * 96) / 100;
 
                         p->fxScaleY = scale;
                         p->fxScaleX = scale;
 
                         p->scaleY = scale >> 12;
-                        p->scaleX = p->scaleY;
+                        value = ((volatile Particle *)p)->scaleY;
 
-                        if (p->scaleX < 2) {
+                        p->scaleX = value;
+
+                        if (value < 2) {
                             p->active = inactive;
                         }
 
@@ -218,22 +202,27 @@ void func_0206923c(u8 *arg0)
                         p->velocityY =
                             (p->velocityY * 94) / 100;
                         break;
+                    }
 
                     case 10:
                     case 11:
                     case 12:
-                    case 13:
+                    case 13: {
+                        s32 value;
+
                         scale = (p->fxScaleY * 92) / 100;
 
                         p->fxScaleY = scale;
                         p->scaleY = scale >> 12;
+                        value = ((volatile Particle *)p)->scaleY;
 
-                        if (p->scaleY < 2) {
+                        if (value < 2) {
                             p->active = inactive;
                         }
 
                         p->pos.y += p->timer * 0x1000;
                         break;
+                    }
 
                     case 18:
                     case 19:
@@ -245,16 +234,16 @@ void func_0206923c(u8 *arg0)
                         p->scaleX = p->fxScaleX >> 12;
                         p->scaleY = scale >> 12;
 
-                        if (p->scaleY > 10) {
+                        if (((volatile Particle *)p)->scaleY > 10) {
                             p->fxScaleX =
                                 (p->fxScaleX * 94) / 100;
                         }
 
-                        if (p->scaleX < 3) {
+                        if (((volatile Particle *)p)->scaleX < 3) {
                             p->active = inactive;
                         }
 
-                        if (p->scaleY > maxScale) {
+                        if (((volatile Particle *)p)->scaleY > maxScale) {
                             p->scaleY = maxScale;
                         }
                         break;
@@ -283,13 +272,13 @@ void func_0206923c(u8 *arg0)
                         p->scaleX = value;
 
                         value = 0x6000;
-
-                    squareParticle:
+                        /* fallthrough */
+                    square:
                         p->fxScaleY = value;
                         p->fxScaleX = value;
 
-                        value = RH_RANDOM(4) + 4;
-                        goto setVelocity;
+                        p->velocityY = (RH_RANDOM(4) + 4) * 0x1000;
+                        break;
 
                     case 10:
                     case 11:
@@ -305,29 +294,28 @@ void func_0206923c(u8 *arg0)
                     case 15:
                     case 16:
                     case 17:
-                        p->scaleX = p->scaleY = 7;
+                        p->scaleY = 7;
+                        value = ((volatile Particle *)p)->scaleY;
+                        p->scaleX = value;
 
                         value = 0x7000;
-                        goto squareParticle;
+                        goto square;
 
                     case 18:
                         p->scaleX = 8;
                         value = 0x8000;
-                        goto tallParticle;
+                        goto tall;
 
                     case 19:
                         p->scaleX = 11;
                         value = 0xb000;
 
-                    tallParticle:
+                    tall:
                         p->fxScaleX = value;
                         p->fxScaleY = 0x1000;
-                        p->scaleY = (s16)active;
+                        p->scaleY = active;
 
-                        value = RH_RANDOM(2) + 2;
-
-                    setVelocity:
-                        p->velocityY = value * 0x1000;
+                        p->velocityY = (RH_RANDOM(2) + 2) * 0x1000;
                         break;
                     }
                 }

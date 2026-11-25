@@ -96,6 +96,137 @@ void func_02118624(void *arg0, u32 arg1, s32 arg2, void *arg3) {
     func_021185b0((s32 *)arg3, arg2, (s32)arg1);
 }
 
+void func_0211883c(void *arg0, u32 arg1, u32 arg2, void *arg3)
+{
+    typedef struct {
+        u16 height;
+        u16 width;
+        u32 format;
+        u32 mapping;
+        u32 characterFormat;
+        u32 size;
+        void *data;
+    } CharacterData;
+
+    typedef struct {
+        u32 location[3];
+        u32 width;
+        u32 height;
+        u32 format;
+        u32 extendedPalette;
+        u32 paletteMode;
+        u32 mapping;
+    } ImageProxy;
+
+    CharacterData *data = (CharacterData *)arg0;
+    ImageProxy *proxy = (ImageProxy *)arg3;
+    u32 mapping = data->mapping;
+    u32 zero = 0;
+    u32 width;
+    u32 height;
+    u32 format;
+    u32 dimension;
+
+    switch (arg2) {
+    case 0:
+        break;
+    case 1:
+        *(volatile u32 *)0x04000000 =
+            (*(volatile u32 *)0x04000000 & 0xffcfffef) | mapping;
+        break;
+    case 2:
+        *(volatile u32 *)0x04001000 =
+            (*(volatile u32 *)0x04001000 & 0xffcfffef) | mapping;
+        break;
+    }
+
+    func_02006dc4(data->data, data->size);
+
+    switch (arg2) {
+    case 0:
+        func_0200439c();
+        func_020043f8(data->data, arg1, data->size);
+        func_02004544();
+        break;
+    case 1:
+        func_02003830(data->data, arg1, data->size);
+        break;
+    case 2:
+        func_02003894(data->data, arg1, data->size);
+        break;
+    }
+
+    if (data->mapping == 0) {
+        switch (data->width) {
+        case 1:
+            dimension = 0;
+            break;
+        case 2:
+            dimension = 1;
+            break;
+        case 4:
+            dimension = 2;
+            break;
+        case 8:
+            dimension = 3;
+            break;
+        case 16:
+            dimension = 4;
+            break;
+        case 32:
+            dimension = 5;
+            break;
+        default:
+            dimension = 0;
+            break;
+        }
+
+        height = data->height;
+        proxy->width = dimension;
+
+        switch (height) {
+        case 1:
+            dimension = 0;
+            break;
+        case 2:
+            dimension = 1;
+            break;
+        case 4:
+            dimension = 2;
+            break;
+        case 8:
+            dimension = 3;
+            break;
+        case 16:
+            dimension = 4;
+            break;
+        case 32:
+            dimension = 5;
+            break;
+        default:
+            dimension = 0;
+            break;
+        }
+
+        proxy->height = dimension;
+    } else {
+        width = data->width;
+        height = data->height;
+        proxy->width = width;
+        proxy->height = height;
+    }
+
+    format = data->format;
+    mapping = data->mapping;
+
+    proxy->format = format;
+    proxy->extendedPalette = zero;
+    proxy->paletteMode = 1;
+    proxy->mapping = mapping;
+
+    func_021185b0(proxy, arg2, arg1);
+}
+
 void func_02118a54(void *arg0, u32 arg1, s32 arg2, void *arg3) {
     const Unk02118A54 *p=arg0;
     Unk02118A54Out *out=arg3;

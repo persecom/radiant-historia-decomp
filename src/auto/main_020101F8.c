@@ -265,7 +265,8 @@ extern u32 data_02145c1c;
 extern u32 data_0215f820[128];
 extern void func_02010738(u32);
 extern void func_02009008(const void *, void *, u32);
-#pragma optimization_level 3
+#pragma optimization_level 2
+#pragma peephole off
 u32 func_020108d8(u32 arg0, void *arg1, u32 arg2, u32 arg3) {
     u32 ret = arg3;
     u32 cached_page = data_02145c1c;
@@ -273,7 +274,7 @@ u32 func_020108d8(u32 arg0, void *arg1, u32 arg2, u32 arg3) {
     u32 page;
     u32 chunk;
 
-    for (; arg3 > 0; arg1 = (u8 *)arg1 + chunk, arg2 += chunk, arg3 -= chunk) {
+    while (arg3 > 0) {
         page = arg2 & -0x200;
         buf = (u32 *)arg1;
         chunk = 0x200;
@@ -310,6 +311,10 @@ u32 func_020108d8(u32 arg0, void *arg1, u32 arg2, u32 arg3) {
             }
             func_02009008((u8 *)data_0215f820 + off, arg1, chunk);
         }
+
+        arg1 = (u8 *)arg1 + chunk;
+        arg2 += chunk;
+        arg3 -= chunk;
     }
 
     func_0201076c();
@@ -317,7 +322,8 @@ u32 func_020108d8(u32 arg0, void *arg1, u32 arg2, u32 arg3) {
     data_02145c1c = cached_page;
     return ret;
 }
-#pragma optimization_level 4
+#pragma peephole on
+#pragma optimization_level 3
 void func_020109f4(void) {
     u32 *p = *(u32 **)(data_0215f760 + 8);
     if (p == NULL) {

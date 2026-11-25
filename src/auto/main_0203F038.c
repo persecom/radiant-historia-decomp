@@ -48,6 +48,10 @@ extern void *func_0210c594(s32, u32);
 extern void func_0210c5dc(void *);
 extern void func_021167f0(void *, void *);
 
+void func_0203f038(void)
+{
+}
+
 void func_0203faf4(void) {
     UnkData_0203faf4 buf;
     u8 i;

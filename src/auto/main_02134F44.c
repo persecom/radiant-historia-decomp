@@ -268,7 +268,8 @@ void func_021357e8(s32 arg0, s32 count, s32 arg2, u32 arg3, s32 arg4, u8 **arg5)
     s32 i = 0;
     s32 flag = 0;
 
-    while (i < count) {
+    if(count<=0)return;
+    do {
         if (arg0 == 1) {
             *(u32 *)(arg5[i + 8] + 0xc) += arg3;
             if (*(u16 *)(arg5[i + 8] + 0x1c) != 0) {
@@ -300,7 +301,7 @@ void func_021357e8(s32 arg0, s32 count, s32 arg2, u32 arg3, s32 arg4, u8 **arg5)
         }
         *(u16 *)(arg5[i + 8] + 0x1e) = 0x1800 - *(u16 *)(arg5[i + 8] + 0x1c);
         i++;
-    }
+    }while(i<count);
 }
 
 s32 func_02135920(u8 *arg0, s32 arg1) {
@@ -370,27 +371,55 @@ void func_02135abc(u8 *arg0, s16 *arg1, s32 arg2) {
     }
 }
 
-void func_02135b1c(u8 *arg0, s16 *arg1, s32 count, s16 **out) {
-register s32 i;
-register s16 *left;
-register s16 *right;
-register u16 pos;
-left=*(s16 **)((u8 *)data_021756d8+0x2b4);
-out[0]=left;
-right=*(s16 **)((u8 *)data_021756d8+0x2b4)+*(s32 *)(arg0+0xa4);
-out[1]=right;
-pos=*(u16 *)(arg0+0xa8);
-for(i=0;i<count;i++){
-s32 v=(3*arg1[i]+2*(*(s16 **)(arg0+0x9c))[pos])>>2;
-if(v>32767) v=32767; else if(v < -32768) v=-32768;
-left[i]=v;
-v=(3*arg1[i]-2*(*(s16 **)(arg0+0x9c))[pos])>>2;
-if(v>32767) v=32767; else if(v < -32768) v=-32768;
-right[i]=v;
-pos++;
-if(*(s32 *)(arg0+0xa4)==pos) pos=0;
-}
-*(u16 *)(arg0+0xa8)=pos;
+void func_02135b1c(u8 *arg0, s16 *arg1, s32 count, s16 **out)
+{
+  s16 *new_var2;
+  s16 *left = *((s16 **) (((u8 *) data_021756d8) + 0x2b4));
+  s16 *right;
+  u8 *new_var;
+  u16 pos;
+  s32 i;
+  out[0] = left;
+  new_var2 = (*((s16 **) (((u8 *) data_021756d8) + 0x2b4))) + (*((s32 *) (arg0 + 0xa4)));
+  right = new_var2;
+  out[1] = right;
+  pos = *((u16 *) (arg0 + ((unsigned long) 0xa8)));
+  new_var = arg0 + 0xa8;
+  for (i = 0; ((0, i)) < count; i++)
+  {
+    s32 v = ((3 * arg1[i]) + (2 * (*((s16 **) (arg0 + 0x9c)))[pos])) >> 2;
+    if (v > 32767)
+    {
+      v = 32767;
+    }
+    else
+      if (v < (-32768))
+    {
+      v = -32768;
+    }
+    left[i] = v;
+    if ((arg0 && arg0) != 0)
+    {
+    }
+    v = ((3 * arg1[i]) - (2 * (*((s16 **) (arg0 + 0x9c)))[pos])) >> 2;
+    if (v > 32767)
+    {
+      v = 32767;
+    }
+    else
+      if (v < (-32768))
+    {
+      v = -32768;
+    }
+    right[i] = v;
+    pos++;
+    if ((*((s32 *) (arg0 + 0xa4))) == pos)
+    {
+      pos = 0;
+    }
+  }
+
+  *((u16 *) new_var) = pos;
 }
 
 void func_02135c00(void) {

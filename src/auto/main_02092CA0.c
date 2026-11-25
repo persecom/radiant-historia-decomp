@@ -63,14 +63,10 @@ extern void *func_0210a7b4(void);
 extern s32 func_020f2104(void *, const char *, s32, void *);
 extern void func_020f4860(void *);
 s32 func_02092cec(void) {
-    struct List_02092cec {
-        void *head;
-        void *tail;
-        u32 unk8;
-    } list1, list2;
+    u16 count;
+    List_02092cec list1, list2;
     char buf[0x40];
     u32 seen[3] = {0, 0, 0};
-    u16 count;
     u8 *node;
     void **res;
 
@@ -166,12 +162,12 @@ s32 func_02092cec(void) {
             }
 
             node[0x114] = count + 3;
-            if (count == 2) {
-                *(u16 *)(a + 0x100) = 0xc;
-                *(u16 *)(a + 0x102) = 0xa;
-            } else {
+            if (count != 2) {
                 *(u16 *)(a + 0x100) = 4;
                 *(u16 *)(a + 0x102) = count * 2 + 8;
+            } else {
+                *(u16 *)(a + 0x100) = 0xc;
+                *(u16 *)(a + 0x102) = 0xa;
             }
             *(u16 *)(a + 0x104) = 0;
             *(u16 *)(a + 0x106) = 0;
@@ -210,7 +206,7 @@ s32 func_02092cec(void) {
     func_020f4860(res);
 
     {
-        struct List_02092cec *pList = &list1;
+        List_02092cec *pList = &list1;
         while ((node = (u8 *)pList->head) != NULL) {
             func_021168f8(pList, node);
             if (node != NULL) {
@@ -219,7 +215,7 @@ s32 func_02092cec(void) {
         }
     }
     {
-        struct List_02092cec *pList = &list2;
+        List_02092cec *pList = &list2;
         while ((node = (u8 *)pList->head) != NULL) {
             func_021168f8(pList, node);
             if (node != NULL) {

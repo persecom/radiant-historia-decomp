@@ -34,22 +34,22 @@ void func_020f6614(void *, void *, s32);
 void func_0210cef8(void);
 
 s32 func_020f6990(void) {
- u8 *script;
- u8 *ctx;
- u32 skip;
  s32 n, value;
- script = data_021626e8[0];
- ctx = *(u8 **)(script + 0x10);
- skip = *(u32 *)(ctx + 0x18) & 0x80000000;
+ u32 skip;
+ u8 *ctx;
+ Script6990 *script;
+ script=(Script6990 *)data_021626e8[0];
+ ctx=script->context;
+ skip=*(u32 *)(ctx+0x18)&0x80000000;
  if (*(u32 *)(data_02160200 + 0x160) & 4) func_020fc50c();
  if (func_0210cc54(data_02152050)) {
-  n = --*(s32 *)(script + 0x5c);
+  n = --script->depth;
   if (n < 0) return 0;
-  value = *(s32 *)(script + 0x1c + n*4);
+  value = script->returns[n];
   if (value) {
    *(s32 *)(*(u8 **)data_021626e8[0] + 8) = value;
-   *(s32 *)(script + 0x1c + n*4) = 0;
-   if (*(s32 *)(script + 0x5c) < 0) *(s32 *)(script + 0x5c) = 0;
+   script->returns[n] = 0;
+   if (script->depth < 0) script->depth = 0;
   }
   return 1;
  }
@@ -60,8 +60,8 @@ s32 func_020f6990(void) {
   do {
    value = func_0210cd50();
    if (!n) {
-    *(s32 *)(script + 0x1c + *(s32 *)(script + 0x5c)*4) = value;
-    ++*(s32 *)(script + 0x5c);
+    script->returns[script->depth] = value;
+    ++script->depth;
     return func_0210cba0(data_021626e8[0], value);
    }
   } while (--n >= 0);

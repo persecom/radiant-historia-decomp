@@ -213,19 +213,15 @@ void func_02075fb8(s32 arg0) {
 void func_0207628c(void) {
     u8 *r4 = (u8 *)func_020764e4();
 
-    if (*(volatile u32 *)(r4 + 0x90) == 0) {
-        return;
-    }
-    if (*(volatile void **)(r4 + 0x7c) != NULL) {
+    if (*(u32 *)(r4 + 0x90) == 0) return;
+    if (*(void **)(r4 + 0x7c) != NULL) {
         func_0200439c();
         func_020043f8(*(void **)(r4 + 0x7c), *(u32 *)(r4 + 0x84), *(u32 *)(r4 + 0x8c));
         func_02004544();
         *(u32 *)(r4 + 0x94) = 1;
     }
-    if (*(volatile u32 *)(r4 + 0x98) == 0) {
-        return;
-    }
-    if (*(volatile void **)(r4 + 0x80) != NULL) {
+    if (*(volatile u32 *)(r4 + 0x98) == 0) return;
+    if (*(void **)(r4 + 0x80) != NULL) {
         func_02004588();
         func_020045bc(*(u32 *)(r4 + 0x80), *(u32 *)(r4 + 0x88), 0x200);
         func_0200462c();
