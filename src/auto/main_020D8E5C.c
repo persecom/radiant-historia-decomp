@@ -16,10 +16,12 @@ extern const s16 data_0213a394[];
 extern u32 data_0216263c[3];
 
 static inline u16 Rand16_020d9a08(u32 *ctx, u16 max) {
-    u32 value = ctx[1] * ctx[0] + ctx[2];
-    ctx[0] = value;
-    if (max != 0) value = (value >> 16) * max;
-    return (u16)(value >> 16);
+    ctx[0] = ctx[1] * ctx[0] + ctx[2];
+    if (max == 0) {
+        return (u16)(ctx[0] >> 16);
+    } else {
+        return (u16)(((ctx[0] >> 16) * max) >> 16);
+    }
 }
 
 typedef struct {
