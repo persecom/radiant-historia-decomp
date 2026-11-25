@@ -14,6 +14,9 @@ extern u16 data_02162908[4];
 extern void func_020a957c(void *);
 extern void func_0210d27c(s32);
 extern void func_0210c5dc(void *);
+extern void func_0209e688(void);
+extern void func_0203bc34(void *, void *, void *, s32, s32, s32);
+extern void func_020a899c(void *);
 typedef struct { s16 field[10]; } Unk_0209e688;
 extern const Unk_0209e688 data_02142bc8;
 
