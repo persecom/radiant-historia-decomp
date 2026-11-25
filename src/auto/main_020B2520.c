@@ -82,6 +82,7 @@ void func_020b2aac(u8 * arg0)
 {
     u8 *info;
     s32 offset = 0;
+    s32 row;
     s32 selected = 0;
     s32 extended = 0;
     u8 *kind;
@@ -142,7 +143,6 @@ void func_020b2aac(u8 * arg0)
         s32 four = 4;
         s32 one = 1;
         s32 panel = 0x6c;
-        s32 row;
         s32 stride, y0, y1, y2;
         u16 ready;
         func_020aea50();
