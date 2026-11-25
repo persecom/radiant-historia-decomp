@@ -453,10 +453,10 @@ void func_020a638c(u8 **list,s32 scale,s32 *offset,s32 arg) {
  if(next) {
  a[0]=offset[0]+(*(s16 *)(point+6)*scale)/0x1000-32;
  a[1]=offset[1]+(*(s16 *)(point+8)*scale)/0x1000+8;
- a[0]<<=12;a[1]<<=12;
+ 
  b[0]=offset[0]+(*(s16 *)(next+6)*scale)/0x1000-32;
  b[1]=offset[1]+(*(s16 *)(next+8)*scale)/0x1000+8;
- b[0]<<=12;b[1]<<=12;
+ a[0]<<=12;a[1]<<=12;b[0]<<=12;b[1]<<=12;
  unit=func_020a66b8(a,b,first,last,0x8000,unit,arg,*(s32 *)(line+0x18));
  }
  point=next;
