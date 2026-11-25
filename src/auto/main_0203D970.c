@@ -79,149 +79,218 @@ extern u32 _dflt(s32);
 extern void func_02020058(void);
 extern void func_0201ff80(void);
 
-void func_0203d970(Vec_0203d970 *pos,s32 unused,s32 index) {
-s32 x=pos->x/65536,z=pos->z/65536;
-u8 *map=data_02160aec;
-u8 *state=data_02160098[1];
-Vec_0203d970 v;
-u32 tile;
+void func_0203d970(Vec_0203d970 *pos, s32 unused, s32 index)
+{
+  s32 x = pos->x / 65536;
+  s32 z = pos->z / 65536;
+  u8 *map = data_02160aec;
+  u8 *state = data_02160098[1];
+  Vec_0203d970 v;
+  s32 tile;
+  s32 zero = 0;
+  s32 distance;
+  s32 angle;
+  if (!map)
+  {
+    tile = 0;
+  }
+  else
+  {
+    tile = *((u8 *) ((map + (((z * (*((s16 *) (map + 0x58d36)))) + x) * 12)) + 0xbcd));
+  }
+  if (((*((u16 *) (state + 0x60))) == 0) && (data_02160204[0x84] == 9))
+  {
+    set_vec_d970(&v, *((s32 *) (data_02155984 + 0x20)), pos->y - 0x4000, *((s32 *) (data_02155984 + 0x28)));
+    distance = func_020dddf0(&v, pos);
+    angle = func_020ddc8c(pos, &v);
+    if (distance > 0xa000)
+    {
+      s32 a = (angle % 65536) >> 4;
+      s32 sine = data_0213a394[a * 2];
+      s32 cosine = data_0213a394[(a * 2) + 1];
+      s32 dx = v.x - pos->x;
+      s32 dz = v.z - pos->z;
+      sine *= 10;
+      cosine *= 10;
+      sine = dx - sine;
+      cosine = (0, dz - cosine);
+      sine = (v.x = v.x - sine);
+      cosine = v.z - cosine;
+      v.z = cosine;
+    }
+    func_0203d864(&v);
+  }
+  else
+    if ((*((u16 *) (state + 0x60))) == 1)
+  {
+    Table_0203d970_32 table = data_0213eef0;
+    if ((tile != 255) && ((index = (tile - 1) * 4, (*((s32 *) (state + 0x1c))) != tile)))
+    {
+      *((s32 *) (state + 0x1c)) = tile;
+      *((s32 *) (state + 0x20)) = 0;
+      *((s32 *) (state + 0x28)) = *((s32 *) (state + 0x24));
+      *((s32 *) (state + 0x2c)) = table.v[index];
+      data_02151fcc = 0xe8000;
+      data_02151fca = 0x2000;
+    }
+    if ((*((u32 *) (state + 0x20))) != 255)
+    {
+      s32 a = (*((s32 *) (state + 0x24))) + (((*((s32 *) (state + 0x2c))) - (*((s32 *) (state + 0x28)))) / 15);
+      *((s32 *) (state + 0x24)) = a;
+      data_02151fc8 = a % 65536;
+      ++(*((u32 *) (state + 0x20)));
+      if ((*((u32 *) (state + 0x20))) > 15)
+      {
+        *((s32 *) (state + 0x20)) = 255;
+        data_02151fc8 = *((s32 *) (state + 0x2c));
+        *((s32 *) (state + 0x24)) = (u16) (*((s32 *) (state + 0x2c)));
+      }
+    }
+    func_0203d864(pos);
+  }
+  else
+    if ((*((u16 *) (state + 0x60))) == 2)
+  {
+    Table_0203d970_48 table = data_0213ef30;
+    if ((tile != 255) && ((index = (tile - 1) * 6, (*((s32 *) (state + 0x1c))) != tile)))
+    {
+      *((s32 *) (state + 0x1c)) = tile;
+      *((s32 *) (state + 0x20)) = 255;
+      data_02151fcc = 0xe8000;
+      data_02151fca = 0x1900;
+    }
+    data_02151fc8 = *((s32 *) (state + 0x24));
+    s32 minx = table.v[index + 2];
+    s32 minz = table.v[index + 3];
+    s32 vx = minx << 12;
+    vx -= vx - pos->x;
+    set_vec_d970(&v, vx, zero, minz << 12);
+    if (v.x <= (minx << 12))
+    {
+      v.x = minx << 12;
+    }
+    if (v.x > (table.v[index + 4] << 12))
+    {
+      v.x = table.v[index + 4] << 12;
+    }
+    v.z -= v.z - pos->z;
+    if (v.z <= (minz << 12))
+    {
+      v.z = minz << 12;
+    }
+    if (v.z > (table.v[index + 5] << 12))
+    {
+      v.z = table.v[index + 5] << 12;
+    }
+    func_0203d864(&v);
+  }
+  else
+    if (((*((u16 *) (state + 0x60))) == 5) || (data_02160204[0x84] == 0))
+  {
+    if (data_02160204[0x85] == 2)
+    {
+      *((s32 *) (data_02155984 + 0x28)) += *((s32 *) (data_02160204 + 0x80));
+      data_02160204[0x85] = 3;
+    }
+    else
+      if (data_02160204[0x85] == 6)
+    {
+      *((s32 *) (data_02155984 + 0x28)) += *((s32 *) (data_02160204 + 0x80));
+      data_02160204[0x85] = zero;
+    }
+    set_vec_d970(&v, *((s32 *) (data_02155984 + 0x20)), pos->y - 0x4000, *((s32 *) (data_02155984 + 0x28)));
+    distance = func_020dddf0(&v, pos);
+    angle = func_020ddc8c(pos, &v);
+    if (distance > 0xa000)
+    {
+      v.x -= (v.x - pos->x) - (data_0213a394[((angle % 65536) >> 4) * 2] * 10);
+    }
+    func_0203d864(&v);
+  }
+  else
+    if (((*((u16 *) (state + 0x60))) == 6) || (data_02160204[0x84] == 1))
+  {
+    if (data_02160204[0x85] == 2)
+    {
+      *((s32 *) (data_02155984 + 0x20)) += *((s32 *) (data_02160204 + 0x80));
+      data_02160204[0x85] = 3;
+    }
+    else
+      if (data_02160204[0x85] == 6)
+    {
+      *((s32 *) (data_02155984 + 0x20)) += *((s32 *) (data_02160204 + 0x80));
+      data_02160204[0x85] = zero;
+    }
+    set_vec_d970(&v, *((s32 *) (data_02155984 + 0x20)), pos->y - 0x4000, *((s32 *) (data_02155984 + 0x28)));
+    distance = func_020dddf0(&v, pos);
+    angle = func_020ddc8c(pos, &v);
+    if (distance > 0xa000)
+    {
+      v.z -= (v.z - pos->z) - (data_0213a394[(((angle % 65536) >> 4) * 2) + 1] * 10);
+    }
+    func_0203d864(&v);
+  }
+  set_vec_d970(&v, *((s32 *) (data_02155984 + 0x20)), pos->y - 0x4000, *((s32 *) (data_02155984 + 0x28)));
+  if (func_020dddf0(&v, pos) <= 0xf000)
+  {
+    data_02160204[0x84] = 9;
+    *((s32 *) (data_02160204 + 0x80)) = 0;
+  }
+}
 
-s32 zero=0;
-s32 distance,angle;
-if(!map) tile=0;
-else tile=*(u8 *)(map+(z* *(s16 *)(map+0x58d36)+x)*12+0xbcd);
-if(*(u16 *)(state+0x60)==0 && data_02160204[0x84]==9) {
-set_vec_d970(&v,*(s32 *)(data_02155984+0x20),pos->y-0x4000,*(s32 *)(data_02155984+0x28));
-distance=func_020dddf0(&v,pos);
-angle=func_020ddc8c(pos,&v);
-if(distance>0xa000) {
-s32 a=(angle%65536)>>4;
-s32 sine=data_0213a394[a*2], cosine=data_0213a394[a*2+1];
-s32 dx=v.x-pos->x, dz=v.z-pos->z;
-sine*=10;cosine*=10;
-sine=dx-sine;cosine=dz-cosine;
-sine=v.x-sine;cosine=v.z-cosine;
-v.x=sine;v.z=cosine;
-}
-func_0203d864(&v);
-}else if(*(u16 *)(state+0x60)==1) {
-Table_0203d970_32 table=data_0213eef0;
-if(tile!=255 && (index=(tile-1)*4, *(s32 *)(state+0x1c)!=tile)) {
-*(s32 *)(state+0x1c)=tile;
-*(s32 *)(state+0x20)=0;
-*(s32 *)(state+0x28)=*(s32 *)(state+0x24);
-*(s32 *)(state+0x2c)=table.v[index];
-data_02151fcc=0xe8000;data_02151fca=0x2000;
-}
-if(*(u32 *)(state+0x20)!=255) {
-s32 a=*(s32 *)(state+0x24)+(*(s32 *)(state+0x2c)-*(s32 *)(state+0x28))/15;
-*(s32 *)(state+0x24)=a;
-data_02151fc8=a%65536;
-++*(u32 *)(state+0x20);
-if(*(u32 *)(state+0x20)>15) {
-*(s32 *)(state+0x20)=255;
-data_02151fc8=*(s32 *)(state+0x2c);
-*(s32 *)(state+0x24)=(u16)*(s32 *)(state+0x2c);
-}
-}
-func_0203d864(pos);
-}else if(*(u16 *)(state+0x60)==2) {
-Table_0203d970_48 table=data_0213ef30;
-if(tile!=255 && (index=(tile-1)*6,*(s32 *)(state+0x1c)!=tile)) {
-*(s32 *)(state+0x1c)=tile;
-*(s32 *)(state+0x20)=255;
-data_02151fcc=0xe8000;data_02151fca=0x1900;
-}
-data_02151fc8=*(s32 *)(state+0x24);
-s32 minx=table.v[index+2], minz=table.v[index+3];
-s32 vx=minx<<12;
-vx-=vx-pos->x;
-set_vec_d970(&v,vx,zero,minz<<12);
-if(v.x<=(minx<<12)) v.x=minx<<12;
-if(v.x>(table.v[index+4]<<12)) v.x=table.v[index+4]<<12;
-v.z-=v.z-pos->z;
-if(v.z<=(minz<<12)) v.z=minz<<12;
-if(v.z>(table.v[index+5]<<12)) v.z=table.v[index+5]<<12;
-func_0203d864(&v);
-}else if(*(u16 *)(state+0x60)==5 || data_02160204[0x84]==0) {
-if(data_02160204[0x85]==2) {
-*(s32 *)(data_02155984+0x28)+=*(s32 *)(data_02160204+0x80);
-data_02160204[0x85]=3;
-}else if(data_02160204[0x85]==6) {
-*(s32 *)(data_02155984+0x28)+=*(s32 *)(data_02160204+0x80);
-data_02160204[0x85]=zero;
-}
-set_vec_d970(&v,*(s32 *)(data_02155984+0x20),pos->y-0x4000,*(s32 *)(data_02155984+0x28));
-distance=func_020dddf0(&v,pos);
-angle=func_020ddc8c(pos,&v);
-if(distance>0xa000) v.x-=(v.x-pos->x)-data_0213a394[((angle%65536)>>4)*2]*10;
-func_0203d864(&v);
-}else if(*(u16 *)(state+0x60)==6 || data_02160204[0x84]==1) {
-if(data_02160204[0x85]==2) {
-*(s32 *)(data_02155984+0x20)+=*(s32 *)(data_02160204+0x80);
-data_02160204[0x85]=3;
-}else if(data_02160204[0x85]==6) {
-*(s32 *)(data_02155984+0x20)+=*(s32 *)(data_02160204+0x80);
-data_02160204[0x85]=zero;
-}
-set_vec_d970(&v,*(s32 *)(data_02155984+0x20),pos->y-0x4000,*(s32 *)(data_02155984+0x28));
-distance=func_020dddf0(&v,pos);
-angle=func_020ddc8c(pos,&v);
-if(distance>0xa000) v.z-=(v.z-pos->z)-data_0213a394[((angle%65536)>>4)*2+1]*10;
-func_0203d864(&v);
-}
-set_vec_d970(&v,*(s32 *)(data_02155984+0x20),pos->y-0x4000,*(s32 *)(data_02155984+0x28));
-if(func_020dddf0(&v,pos)<=0xf000) {
-data_02160204[0x84]=9;*(s32 *)(data_02160204+0x80)=0;
-}
-}
-
+#pragma push
+#pragma optimization_level 2
 void func_0203df40(Vec_0203d970 *arg) {
-    State_0203df40 *state = (State_0203df40 *)data_02160098[1];
+    State_0203df40 *state;
     u8 *map = data_02160aec;
     u16 *prev;
+    u16 marker;
     u16 *tile;
-    s32 h;
-    u16 i, j, n;
-    u16 f0, f1, f2, f3;
+    s32 h, w;
+    u16 n;
+    u16 i;
+    u16 j;
+    s32 f0, f1, f2, f3;
     s32 d, tmp, delta;
     s32 ten = 10;
-    u16 flags, v, tileId;
+    s32 flags;
+    u16 v, tileId;
     Vec_0203e5a8 vec;
 
     if (map == NULL) return;
     tile = (u16 *)(map + 0x30bc8 + ten * ((arg->z / 65536) * (s16)*(u16 *)(map + 0x58d36) + arg->x / 65536));
-    prev = ((State_0203df40 *)data_02160098[1])->field_30;
-    if (prev == NULL) goto final;
+    state = (State_0203df40 *)data_02160098[1];
+    prev = state->field_30;
+    if (prev != NULL) {
     v = prev[0];
-    if (v == 0 || v == 0xff) goto L_a88;
-    if (prev[2] == 0) goto L_978;
-    if (prev[2] != *tile) goto L_978;
+    if (v != 0 && v != 0xff) {
+    if (prev[2] != 0 && prev[2] == *tile) {
     vec.field_0 = arg->x >> 12;
     vec.field_4 = arg->z >> 12;
     flags = state->field_4e;
-    if (flags & 1) goto L_900;
+    if (!(flags & 1)) {
 
+    marker = prev[1];
     h = *(s16 *)(map + 0x58d38);
-    i = 0;
     n = 0;
-    f0 = 0; f1 = 0; f2 = 0; f3 = 0;
+    i = n;
     if (h > 0) {
+        w = *(s16 *)(map + 0x58d36);
         do {
-            s32 w = *(s16 *)(map + 0x58d36);
             j = 0;
             if (w > 0) {
                 u8 *row = map + ten * (i * w);
+
                 do {
-                    if (*(u16 *)(row + ten * j + 0x30bc8) == prev[1]) {
-                        n++;
-                        if (n == 1) { f0 = j; f1 = i; }
+                    if (*(u16 *)(row + ten * j + 0x30bc8) == marker) {
+                        if (n == 0) { f0 = j; f1 = i; }
                         else { f2 = j; f3 = i; }
+                        n++;
                     }
-                    j++;
+                    j = (u16)(j + 1);
                 } while (w > j);
             }
-            i++;
+            i = (u16)(i + 1);
         } while (h > i);
     }
 
@@ -230,12 +299,12 @@ void func_0203df40(Vec_0203d970 *arg) {
         if (prev[3] == 0x52)
             ((State_0203df40 *)data_02160098[1])->field_48 = ((State_0203df40 *)data_02160098[1])->field_4c + (prev[4] - 0x40) * 0xaaa;
         else
-            ((State_0203df40 *)data_02160098[1])->field_48 = ((State_0203df40 *)data_02160098[1])->field_4c - (prev[4] - 0x40) * 0xfff7;
+            ((State_0203df40 *)data_02160098[1])->field_48 = ((State_0203df40 *)data_02160098[1])->field_4c - (prev[4] - 0x40) * 0xaaa;
         ((State_0203df40 *)data_02160098[1])->field_4e &= 0xfff7;
     } else if (flags & 4) {
-        ((State_0203df40 *)data_02160098[1])->field_4e &= 0xfffb;
+        state->field_4e &= 0xfffb;
     } else {
-        ((State_0203df40 *)data_02160098[1])->field_4c = data_02151fc8;
+        state->field_4c = data_02151fc8;
         if (prev[3] == 0x52)
             ((State_0203df40 *)data_02160098[1])->field_48 = data_02151fc8 + (prev[4] - 0x40) * 0xaaa;
         else
@@ -247,12 +316,10 @@ void func_0203df40(Vec_0203d970 *arg) {
     ((State_0203df40 *)data_02160098[1])->field_5c = (f3 << 16) >> 12;
     d = func_0203e5a8(&vec, (Vec_0203e5a8 *)&((State_0203df40 *)data_02160098[1])->field_50, (Vec_0203e5a8 *)&((State_0203df40 *)data_02160098[1])->field_58);
     ((State_0203df40 *)data_02160098[1])->field_40 = d;
-    ((State_0203df40 *)data_02160098[1])->field_44 = d;
+    ((State_0203df40 *)data_02160098[1])->field_44 = ((State_0203df40 *)data_02160098[1])->field_40;
     ((State_0203df40 *)data_02160098[1])->field_4e |= 1;
-    goto L_978;
-
-L_900:
-    d = func_0203e5a8(&vec, (Vec_0203e5a8 *)&((State_0203df40 *)data_02160098[1])->field_50, (Vec_0203e5a8 *)&((State_0203df40 *)data_02160098[1])->field_58);
+    } else {
+    d = func_0203e5a8(&vec, (Vec_0203e5a8 *)&state->field_50, (Vec_0203e5a8 *)&state->field_58);
     if (d > 0) {
         tmp = ((prev[4] - 0x40) * 0xaaa) / ((State_0203df40 *)data_02160098[1])->field_40;
         delta = (((State_0203df40 *)data_02160098[1])->field_44 - d) * tmp;
@@ -261,7 +328,8 @@ L_900:
         ((State_0203df40 *)data_02160098[1])->field_44 = d;
     }
 
-L_978:
+    }
+    }
     if (prev[1] != 0 && prev[1] == *tile) {
         ((State_0203df40 *)data_02160098[1])->field_30 = tile;
         ((State_0203df40 *)data_02160098[1])->field_4e &= 0xfffe;
@@ -275,16 +343,16 @@ L_978:
         ((State_0203df40 *)data_02160098[1])->field_4e &= 0xfff7;
         ((State_0203df40 *)data_02160098[1])->field_4e &= 0xfffe;
     }
+    }
     tileId = *tile;
-    if (prev[0] == tileId || prev[1] == tileId || prev[2] == tileId)
+    if (prev[0] != tileId && prev[1] != tileId && prev[2] != tileId)
         ((State_0203df40 *)data_02160098[1])->field_30 = tile;
-    goto final;
-
-L_a88:
-    ((State_0203df40 *)data_02160098[1])->field_4e &= 0xfffe;
+    } else {
+    state->field_4e &= 0xfffe;
     ((State_0203df40 *)data_02160098[1])->field_30 = tile;
 
-final:
+    }
+
     if (((State_0203df40 *)data_02160098[1])->field_4e & 8) {
         if (data_02151fc8 > ((State_0203df40 *)data_02160098[1])->field_48) {
             data_02151fc8 -= ((State_0203df40 *)data_02160098[1])->field_4a;
@@ -316,34 +384,17 @@ final:
         }
     }
 }
-
+#pragma pop
 s32 func_0203e5a8(Vec_0203e5a8 *a, Vec_0203e5a8 *b, Vec_0203e5a8 *c) {
-    s32 b4 = *(s32 *)((u8 *)b + 4);
-    s32 c4 = *(s32 *)((u8 *)c + 4);
-    s32 a4 = *(s32 *)((u8 *)a + 4);
-    s32 r4 = c4 - b4;
-    s32 r3 = a4 - b4;
-    s32 r12 = r4 * r3;
-    s32 r3b = r4 * r4;
-    s32 b0 = *(s32 *)((u8 *)b + 0);
-    s32 c0 = *(s32 *)((u8 *)c + 0);
-    s32 a0 = *(s32 *)((u8 *)a + 0);
-    s32 r2 = c0 - b0;
-    s32 r5 = a0 - b0;
-    s32 v0 = r12 + r2 * r5;
-    s32 v1 = r3b + r2 * r2;
-    s32 ret = _s32_div_f(v0, v1);
-    if (ret < 0) goto fail;
-    if (ret <= 1) goto body;
-fail:
-    return -1;
-body:
-    {
-        s32 t = r4 * ret;
-        _dflt((t - r5) * (t - r5));
-        func_02020058();
-        func_0201ff80();
-    }
+s32 y=c->field_4-b->field_4;
+s32 ay=a->field_4-b->field_4;
+s32 x=c->field_0-b->field_0;
+s32 ax=a->field_0-b->field_0;
+s32 ret=(x*ax+y*ay)/(x*x+y*y);
+if(ret<0) goto fail;
+if(ret<=1) goto body;
+fail: return -1;
+body: {s32 t=y*ret-ax; _dflt(t*t); func_02020058(); func_0201ff80();}
 }
 
 void func_0203e61c(void) {
