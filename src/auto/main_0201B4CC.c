@@ -9,6 +9,8 @@ extern double func_02019c20(double, s32);
 extern s32 data_02160034;
 extern double func_02020058(double);
 extern double func_0201e014(double);
+#pragma push
+#pragma optimization_level 3
 double func_0201b4cc(double x, double y)
 {
     double z, ax, z_h, z_l, p_h, p_l;
@@ -78,6 +80,7 @@ double func_0201b4cc(double x, double y)
         t1 = u+v; POW_LO(t1) = 0;
         t2 = v-(t1-u);
     } else {
+        const double *bp;
         n = 0;
         if (ix < 0x00100000) {
             ax *= 9007199254740992.0;
@@ -90,13 +93,14 @@ double func_0201b4cc(double x, double y)
         if (j <= 0x3988e) k = 0;
         else if (j < 0xbb67a) k = 1;
         else { k = 0; n++; ix -= 0x00100000; }
+        bp = data_0213ec60;
         POW_HI(ax) = ix;
-        u = ax - data_0213ec60[k];
-        v = 1.0/(ax+data_0213ec60[k]);
+        u = ax - bp[k];
+        v = 1.0/(ax+bp[k]);
         s = u*v; s_h = s; POW_LO(s_h) = 0;
         t_h = 0.0;
         POW_HI(t_h) = ((ix >> 1) | 0x20000000) + 0x00080000 + (k << 18);
-        t_l = ax-(t_h-data_0213ec60[k]);
+        t_l = ax-(t_h-bp[k]);
         s_l = v*((u-s_h*t_h)-s_h*t_l);
         s2 = s*s;
         r = s2*s2*((0.59999999999999465)+s2*((0.42857142857855018)+s2*((0.33333332981837743)+s2*((0.27272812380853401)+s2*((0.23066074577556175)+s2*(0.20697501780033842))))));
@@ -109,7 +113,7 @@ double func_0201b4cc(double x, double y)
         p_h = u+v; POW_LO(p_h) = 0;
         p_l = v-(p_h-u);
         z_h = (0.96179670095443726)*p_h;
-        z_l = (-7.0284616509527583e-9)*p_h+p_l*(0.96179669392597555)+data_0213ec70[k];
+        z_l = data_0213ec70[k]+((-7.0284616509527583e-9)*p_h+p_l*(0.96179669392597555));
         t = (double)n;
         t1 = ((z_h+z_l)+data_0213ec50[k])+t; POW_LO(t1) = 0;
         t2 = z_l-(((t1-t)-data_0213ec50[k])-z_h);
@@ -141,7 +145,8 @@ double func_0201b4cc(double x, double y)
     }
     t = p_l+p_h; POW_LO(t) = 0;
     u = t*(0.69314718246459961);
-    v = (p_l-(t-p_h))*(0.69314718055994529)+t*(-1.9046542999577680e-9);
+    w = (p_l-(t-p_h))*(0.69314718055994529);
+    v = w + t*(-1.9046542999577680e-9);
     z = u+v;
     w = v-(z-u);
     t = z*z;
@@ -151,6 +156,7 @@ double func_0201b4cc(double x, double y)
     j = POW_HI(z);
     j += n<<20;
     if ((j>>20) <= 0) z = func_02019c20(z,n);
-    else POW_HI(z) = j;
+    else POW_HI(z) += n<<20;
     return s*z;
 }
+#pragma pop
