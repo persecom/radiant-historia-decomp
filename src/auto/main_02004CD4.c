@@ -192,29 +192,24 @@ void func_02005168(s32 arg0) {
 
 void func_0200518c(unsigned long arg0)
 {
-  data_0215cd60[0] = (data_0215cd60[0] | data_0215cd60[9]) & (~arg0);
-  data_0215cd60[9] = arg0;
-  switch (arg0)
-  {
-    case 0x4:
-      *((volatile u8 *) 0x04000242) = 0x84;
-      break;
-
-    case 0x180:
-      *((volatile u8 *) 0x04000249) = 0x81;
-
-    case 0x80:
-      *((volatile u8 *) 0x04000248) = 0x81;
-      break;
-
-    case 0:
-
-    case 1:
-      break;
-
-  }
-
-  func_02004810(data_0215cd60[0]);
+ data_0215cd60[0]=(data_0215cd60[0]|data_0215cd60[9])&~arg0;
+ data_0215cd60[9]=arg0;
+ if((s32)arg0<=0x80) {
+ if((s32)arg0>=0x80) goto case80;
+ if((s32)arg0<=4) {
+ if((s32)arg0>=0 && arg0!=0) {
+ if(arg0==4) *(volatile u8 *)0x04000242=0x84;
+ }
+ }
+ } else {
+ if(arg0==0x180) {
+ *(volatile u8 *)0x04000249=0x81;
+ goto case80;
+ }
+ }
+ goto done;
+ case80: *(volatile u8 *)0x04000248=0x81;
+ done: func_02004810(data_0215cd60[0]);
 }
 
 void func_02005228(s32 arg0) {
