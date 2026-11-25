@@ -118,10 +118,10 @@ void func_020020f8(s32 *arg0, s32 *arg1, s32 *arg2)
     arg2[1] = (s32)ay;
     arg2[2] = (s32)(az + bz);
 }
-#pragma optimization_level 4
+#pragma optimization_level 1
 void func_02002128(s32 *arg0, s32 *arg1, s32 *arg2)
 {
-    u32 bx = *(volatile u32 *)arg1;
+    u32 bx = (u32)arg1[0];
     u32 by = (u32)arg1[1];
     u64 a = *(const u64 *)arg0;
     u32 ax = (u32)a;
@@ -187,25 +187,15 @@ void func_02002274(const Vec3 *pSrc, Vec3 *pDst)
   pDst->z = (s32) (((d * pSrc->z) + (((s64) 1) << 44)) >> 45);
 }
 
-s32 func_02002388(s32 *arg0, s32 *arg1)
-{
-  s64 sum;
-  s32 dy;
-  s32 dx;
-  s32 dz;
-  dy = arg0[1] - arg1[1];
-  sum = ((s64) dy) * dy;
-  dx = arg0[0] - arg1[0];
-  dz = arg0[2] - arg1[2];
-  sum += ((s64) dz) * dz;
-  sum += ((s64) dx) * dx;
-  *((volatile u16 *) 0x40002b0) = 1;
-  *((volatile u64 *) 0x40002b8) = ((u64) sum) << 2;
-  while ((*((volatile u16 *) 0x40002b0)) & 0x8000)
-  {
-  }
-
-  return ((*((volatile s32 *) 0x40002b4)) + 1) >> 1;
+s32 func_02002388(s32 *arg0,s32 *arg1) {
+s32 dx=arg0[0]-arg1[0];
+s32 dy=arg0[1]-arg1[1];
+s32 dz=arg0[2]-arg1[2];
+s64 sum=(s64)dx*dx; sum+=(s64)dy*dy; sum+=(s64)dz*dz;
+*(volatile u16 *)0x40002b0=1;
+*(volatile u64 *)0x40002b8=(u64)sum<<2;
+while(*(volatile u16 *)0x40002b0&0x8000){}
+return (*(volatile s32 *)0x40002b4+1)>>1;
 }
 
 u16 func_02002404(s32 y, s32 x)
