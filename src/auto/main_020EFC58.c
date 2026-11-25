@@ -22,6 +22,7 @@ typedef struct {
     u8 pad[0x1a4];
     u16 flags;
 } Unk_020f0154;
+typedef struct { u16 pad:3; u16 bit3:1; u16 bit4:1; u16 bit5:1; u16 bit6:1; u16 rest:9; } Flags_020f0154;
 extern u8 data_02162618[];
 extern void func_021168f8(void *, void *);
 extern void func_0210b4cc(void *);
@@ -226,6 +227,7 @@ extern char data_02151d10[], data_02151d20[], data_02151d24[], data_02151d28[], 
 s32 func_020f0154(u32 arg0) {
     u8 flag = 0;
     s32 tmp;
+    s32 result;
     void *file = NULL;
     u8 *mgr = NULL;
     u8 *node = NULL;
@@ -248,6 +250,7 @@ s32 func_020f0154(u32 arg0) {
     if (arg0 != 0 && arg0 < 1000) {
         func_02005e80(name, data_02151d10);
         file = func_021092d8(name);
+        while (file != NULL) {}
         found = func_02092ab0(file, arg0);
         if (found != -1) {
             ((s32 *)&data_02160af0)[1] = func_0210cd20(file, 0);
@@ -273,6 +276,7 @@ s32 func_020f0154(u32 arg0) {
     } else if (arg0 > 0x2710 && arg0 < 0x2b01) {
         func_02005e80(name, data_02151d30);
         file = func_021092d8(name);
+        while (file != NULL) {}
         found = func_02092ab0(file, arg0);
         if (found != -1) {
             ((s32 *)&data_02160af0)[1] = func_0210cd20(file, 0);
@@ -316,16 +320,16 @@ s32 func_020f0154(u32 arg0) {
             *(u32 *)(node + 0) = (u32)mgr;
             if (tmp != 0) {
                 *(u32 *)(node + 0x18) = 1;
-                ((Unk_020f0154 *)mgr)->flags = (u16)(((u32)((Unk_020f0154 *)mgr)->flags & ~8) | 8);
-                ((Unk_020f0154 *)mgr)->flags = (u16)(((u32)((Unk_020f0154 *)mgr)->flags & ~0x20) | 0x20);
+                *(u16 *)(mgr + 0x1a4) = (*(u16 *)(mgr + 0x1a4) & ~8) | 8;
+                *(u16 *)(mgr + 0x1a4) = (*(u16 *)(mgr + 0x1a4) & ~0x20) | 0x20;
             } else {
                 *(u32 *)(node + 0x18) = 0;
             }
             tmp = func_020f1a1c(mgr, 1);
             if (tmp != 0) {
                 *(u32 *)(node + 0x1c) = 1;
-                ((Unk_020f0154 *)mgr)->flags = (u16)(((u32)((Unk_020f0154 *)mgr)->flags & ~0x10) | 0x10);
-                ((Unk_020f0154 *)mgr)->flags = (u16)(((u32)((Unk_020f0154 *)mgr)->flags & ~0x40) | 0x40);
+                *(u16 *)(mgr + 0x1a4) = (*(u16 *)(mgr + 0x1a4) & ~0x10) | 0x10;
+                *(u16 *)(mgr + 0x1a4) = (*(u16 *)(mgr + 0x1a4) & ~0x40) | 0x40;
             } else {
                 *(u32 *)(node + 0x1c) = 0;
             }
@@ -338,16 +342,16 @@ s32 func_020f0154(u32 arg0) {
         *(u32 *)(node + 0) = (u32)mgr;
         if (tmp != 0) {
             *(u32 *)(node + 0x18) = 1;
-            ((Unk_020f0154 *)mgr)->flags = (u16)(((u32)((Unk_020f0154 *)mgr)->flags & ~8) | 8);
-            ((Unk_020f0154 *)mgr)->flags = (u16)(((u32)((Unk_020f0154 *)mgr)->flags & ~0x20) | 0x20);
+            *(u16 *)(mgr + 0x1a4) = (*(u16 *)(mgr + 0x1a4) & ~8) | 8;
+            *(u16 *)(mgr + 0x1a4) = (*(u16 *)(mgr + 0x1a4) & ~0x20) | 0x20;
         } else {
             *(u32 *)(node + 0x18) = 0;
         }
         tmp = func_020f1b70(mgr, 1);
         if (tmp != 0) {
             *(u32 *)(node + 0x1c) = 1;
-            ((Unk_020f0154 *)mgr)->flags = (u16)(((u32)((Unk_020f0154 *)mgr)->flags & ~0x10) | 0x10);
-            ((Unk_020f0154 *)mgr)->flags = (u16)(((u32)((Unk_020f0154 *)mgr)->flags & ~0x40) | 0x40);
+            *(u16 *)(mgr + 0x1a4) = (*(u16 *)(mgr + 0x1a4) & ~0x10) | 0x10;
+            *(u16 *)(mgr + 0x1a4) = (*(u16 *)(mgr + 0x1a4) & ~0x40) | 0x40;
         } else {
             *(u32 *)(node + 0x1c) = 0;
         }
@@ -356,16 +360,16 @@ s32 func_020f0154(u32 arg0) {
         *(u32 *)(node + 0) = (u32)mgr;
         if (tmp != 0) {
             *(u32 *)(node + 0x18) = 1;
-            ((Unk_020f0154 *)mgr)->flags = (u16)(((u32)((Unk_020f0154 *)mgr)->flags & ~8) | 8);
-            ((Unk_020f0154 *)mgr)->flags = (u16)(((u32)((Unk_020f0154 *)mgr)->flags & ~0x20) | 0x20);
+            *(u16 *)(mgr + 0x1a4) = (*(u16 *)(mgr + 0x1a4) & ~8) | 8;
+            *(u16 *)(mgr + 0x1a4) = (*(u16 *)(mgr + 0x1a4) & ~0x20) | 0x20;
         } else {
             *(u32 *)(node + 0x18) = 0;
         }
         tmp = func_020f1a1c(mgr, 1);
         if (tmp != 0) {
             *(u32 *)(node + 0x1c) = 1;
-            ((Unk_020f0154 *)mgr)->flags = (u16)(((u32)((Unk_020f0154 *)mgr)->flags & ~0x10) | 0x10);
-            ((Unk_020f0154 *)mgr)->flags = (u16)(((u32)((Unk_020f0154 *)mgr)->flags & ~0x40) | 0x40);
+            *(u16 *)(mgr + 0x1a4) = (*(u16 *)(mgr + 0x1a4) & ~0x10) | 0x10;
+            *(u16 *)(mgr + 0x1a4) = (*(u16 *)(mgr + 0x1a4) & ~0x40) | 0x40;
         } else {
             *(u32 *)(node + 0x1c) = 0;
         }
