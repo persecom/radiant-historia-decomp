@@ -18,14 +18,6 @@ typedef struct Callbacks_0211c424 { u8 pad[0x20]; void (*before)(void *, void *,
 
 extern void func_02008df0(s32, void *, s32);
 extern u8 *data_021701f8;
-typedef struct {
-    u8 pad0[0x2c];
-    s32 *self;
-    u8 pad1[4];
-    s32 v34;
-    u8 pad2[8];
-    s32 f40, f44, f48, f4c, f50, f54, f58, f5c, f60, f64, f68, f6c;
-} Dest_0211c544;
 s32 func_0211c5d4(u8 *);
 static inline u16 FlipX_0211c1f8(u32 *p, s32 shape) {
     u16 x;
