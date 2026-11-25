@@ -8,6 +8,10 @@ typedef struct {Vec_02037D1C pos;u8 type;u8 pad0d;u16 a;u8 b;u8 pad11;u16 c;u8 d
 extern u8 *data_02160a74,*data_02160244,*data_02160204;
 extern Vec_02037D1C *data_02160258;
 extern Vec_02037D1C func_020332e8(void);
+static inline void offset_02037D1C(Vec_02037D1C *out, int dx,int dy,int dz){
+int y=data_02160258->y,z=data_02160258->z,x=data_02160258->x;
+out->y=y+dy;out->z=z+dz;out->x=x+dx;
+}
 extern Effect_02037D1C *func_020ec950(int);
 extern Effect_02037D1C *func_020c1370(int,void *,int,int,int);
 extern u8 *func_020f0a5c(int);
@@ -90,10 +94,10 @@ s->timer=(s16)(s->timer+1);
 for(i=0;i<4;i++){
 int delay,speed,height;u16 flag;
 switch(i){
-case 0:pos.y=data_02160258->y-0xa000;pos.z=data_02160258->z;pos.x=data_02160258->x-0xa000;delay=36;speed=15;height=0x3d000;break;
-case 1:pos.y=data_02160258->y-0xf000;pos.z=data_02160258->z;pos.x=data_02160258->x+0x37000;delay=15;speed=15;height=0x42000;break;
-case 2:pos.y=data_02160258->y-0x19000;pos.z=data_02160258->z;pos.x=data_02160258->x-0x32000;delay=24;speed=16;height=0x56000;break;
-case 3:pos.y=data_02160258->y-0x37000;pos.z=data_02160258->z;pos.x=data_02160258->x+0xa000;delay=30;speed=18;height=0x88000;break;
+case 0:pos=*data_02160258;pos.y-=0xa000;pos.x-=0xa000;delay=36;speed=15;height=0x3d000;break;
+case 1:pos=*data_02160258;pos.y-=0xf000;pos.x+=0x37000;delay=15;speed=15;height=0x42000;break;
+case 2:pos=*data_02160258;pos.y-=0x19000;pos.x-=0x32000;delay=24;speed=16;height=0x56000;break;
+case 3:pos=*data_02160258;pos.y-=0x37000;pos.x+=0xa000;delay=30;speed=18;height=0x88000;break;
 }
 flag=4<<i;if(!(s->flags&flag)&&s->timer>delay){Effect_02037D1C *e=func_020ec950(i);func_020ec8cc(e,1,0);if(e){e->y+=speed<<12;if(e->y<height)continue;
 ep.type=2;ep.a=0;ep.b=0;ep.c=0;ep.d=1;ep.pos.x=0;ep.pos.y=0;ep.pos.z=0;func_0206e7a0(18,&pos,&ep,0);func_020ec548(e);}
