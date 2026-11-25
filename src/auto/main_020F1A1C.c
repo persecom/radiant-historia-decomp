@@ -262,73 +262,90 @@ BOOL func_020f2104(void *arg0, s32 arg1, s32 arg2, void *arg3) {
     return 1;
 }
 
-s32 func_020f2198(void *arg0,void *arg1) {
-char path[256];
-u8 *src;
-u32 size;
-s32 total;
-u8 *dst;
-register u16 w;
-u16 col;
-register u16 x;
-u16 y,h;
-u16 sx,sy;
-u8 *obj=arg0;
-u16 width=*(u16 *)(obj+2);
-u16 height=*(u16 *)obj;
-u8 *node=*(u8 **)arg1;
-while(node) {
-x=*(u16 *)(node+0x100);
-y=*(u16 *)(node+0x102);
-sx=*(u16 *)(node+0x104);
-sy=*(u16 *)(node+0x106);
-w=*(u16 *)(node+0x108);
-h=*(u16 *)(node+0x10a);
-col=0;
-dst=*(u8 **)(obj+0x14);
-if(*(s8 *)node){
-void *buf;
-s32 stride;
-s32 sw,sh;
-u16 i;
-u8 *pixels;
-if(*(u16 *)(node+0x10c)==0)func_02005e80(path,data_02151de0,node);
-else func_02005e80(path,data_02151de8,node);
-buf=func_02109c60(path,&size);
-if(!buf)return 0;
-if(*(u16 *)(node+0x10c)==0)func_021177c0(buf,&src);else func_02117774(buf,&src);
-pixels=*(u8 **)(src+0x14);
-sw=*(u16 *)(src+2);sh=*(u16 *)src;
-if(*(u32 *)(obj+4)==3 && *(u32 *)(src+4)==3)stride=32;
-else if(*(u32 *)(obj+4)==4 && *(u32 *)(src+4)==4)stride=64;
-else if(*(u32 *)(obj+4)==4 && *(u32 *)(src+4)==3)stride=32;
-else return 0;
-if(x>width || y>height || x+w>(s32)width || y+h>(s32)height)return 0;
-if(w==0)w=sw-sx;
-if(h==0)h=sh-sy;
-if(*(u16 *)(node+0x10c)==0){
-dst+=stride*(x+y*width);
-pixels+=stride*(sx+sy*sw);
-}else{
-dst+=y*(stride*width)+(x<<2);
-pixels+=sy*(stride*sw)+(sx<<2);
-}
-for(i=0;i<(w*h)*stride;i++){
-if(*(u16 *)(node+0x10c)==0){
-if(col>=w*stride){col=0;dst+=stride*(width-w);pixels+=stride*(sw-w);}
-}else{
-if(col>=w*4){col=0;dst+=(width-w)*4;pixels+=(sw-w)*4;}
-}
-*dst=*pixels;
-col++;
-dst++;
-pixels++;
-}
-if(buf)func_0210c5dc(buf);
-}
-node=*(u8 **)(node+0x118);
-}
-return 1;
+s32 func_020f2198(void *arg0, void *arg1) {
+    char path[256];
+    u8 *src;
+    u32 size;
+    s32 total;
+    u16 w;
+    u8 *dst;
+    u16 col;
+    u32 x;
+    u16 y;
+    u16 h;
+    u16 sx, sy;
+    u8 *obj = arg0;
+    u16 width = *(u16 *)(obj + 2);
+    u16 height = *(u16 *)obj;
+    u8 *node = *(u8 **)arg1;
+    while (node) {
+        x = *(u16 *)(node + 0x100);
+        y = *(u16 *)(node + 0x102);
+        sx = *(u16 *)(node + 0x104);
+        sy = *(u16 *)(node + 0x106);
+        w = *(u16 *)(node + 0x108);
+        h = *(u16 *)(node + 0x10a);
+        col = 0;
+        dst = *(u8 **)(obj + 0x14);
+        if (*(s8 *)node) {
+            void *buf;
+            s32 stride;
+            s32 sw, sh;
+            u16 i;
+            u8 *pixels;
+            if (*(u16 *)(node + 0x10c) == 0) {
+                func_02005e80(path, data_02151de0, node);
+            } else {
+                func_02005e80(path, data_02151de8, node);
+            }
+            buf = func_02109c60(path, &size);
+            if (!buf) return 0;
+            if (*(u16 *)(node + 0x10c) == 0) {
+                func_021177c0(buf, &src);
+            } else {
+                func_02117774(buf, &src);
+            }
+            pixels = *(u8 **)(src + 0x14);
+            sw = *(u16 *)(src + 2);
+            sh = *(u16 *)src;
+            if (*(u32 *)(obj + 4) == 3 && *(u32 *)(src + 4) == 3) stride = 32;
+            else if (*(u32 *)(obj + 4) == 4 && *(u32 *)(src + 4) == 4) stride = 64;
+            else if (*(u32 *)(obj + 4) == 4 && *(u32 *)(src + 4) == 3) stride = 32;
+            else return 0;
+            if (x > width || y > height || (s32)(x + w) > (s32)width || y + h > (s32)height) return 0;
+            if (w == 0) w = sw - sx;
+            if (h == 0) h = sh - sy;
+            if (*(u16 *)(node + 0x10c) == 0) {
+                dst += stride * (x + y * width);
+                pixels += stride * (sx + sy * sw);
+            } else {
+                dst += y * (stride * width) + (x << 2);
+                pixels += sy * (stride * sw) + (sx << 2);
+            }
+            for (i = 0; i < (w * h) * stride; i++) {
+                if (*(u16 *)(node + 0x10c) == 0) {
+                    if (col >= w * stride) {
+                        col = 0;
+                        dst += stride * (width - w);
+                        pixels += stride * (sw - w);
+                    }
+                } else {
+                    if (col >= w * 4) {
+                        col = 0;
+                        dst += (width - w) * 4;
+                        pixels += (sw - w) * 4;
+                    }
+                }
+                *dst = *pixels;
+                col++;
+                dst++;
+                pixels++;
+            }
+            if (buf) func_0210c5dc(buf);
+        }
+        node = *(u8 **)(node + 0x118);
+    }
+    return 1;
 }
 
 extern char data_02151df0[];
