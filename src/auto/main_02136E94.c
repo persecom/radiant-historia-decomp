@@ -226,7 +226,7 @@ void func_02137318(void) {
 void func_02137330(void) {
     data_02175d3c--;
     if (data_02175d3c == 0) {
-        memset(data_02175d40, 0, sizeof(data_02175d40));
+        __clear(data_02175d40, 1728);
     }
 }
 #pragma pop
