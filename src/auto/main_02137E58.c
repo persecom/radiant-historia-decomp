@@ -376,13 +376,17 @@ void func_021385d4(void) {
     *(volatile u32 *)data_02176644 = *(volatile u32 *)data_02176644 + 1;
 }
 
-void func_02138618(void) {
+u32 func_02138618(void) {
+    u32 val;
     *(volatile u32 *)data_02176644 = *(volatile u32 *)data_02176644 - 1;
-    if (*(volatile u32 *)data_02176644 == 0) {
-        func_02138520();
-        data_0217666c[0] = 0;
-        data_0217666c[1] = data_0217666c[0];
+    val = *(volatile u32 *)data_02176644;
+    if (val != 0) {
+        return val;
     }
+    func_02138520();
+    data_0217666c[0] = 0;
+    data_0217666c[1] = 0;
+    return 0;
 }
 
 s32 func_02138658(s32 *arg0) {
