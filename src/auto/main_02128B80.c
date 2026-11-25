@@ -10,7 +10,7 @@ extern void func_021295a4(void *);
 extern void func_0212a9f8(void);
 extern void func_0212bda8(void *);
 extern void func_021293c0();
-extern void func_02128eb4(void);
+extern void func_02128eb4();
 extern void func_0212926c();
 extern u32 data_02173ac0;
 extern s32 func_0212eb2c(u32);
