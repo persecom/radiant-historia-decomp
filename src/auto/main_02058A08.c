@@ -32,6 +32,64 @@ extern void func_020bed54(s32, s32);
 extern u8 *func_020bed94(void);
 extern s32 func_020bedf8(void);
 extern u8 *func_020becfc(void);
+void func_020befd8(void *,void *,s32);
+void func_02058a08(void) {
+ Vec3_02059888 points[4];
+ u8 *obj,*p,*node=0;
+ s32 one=1;
+ switch(*(u16 *)(data_0216020c+0xbe)){
+ case 0:
+ *(s32*)(data_0216020c+148)=0;
+ *(s32*)(*(u8* volatile*)&data_0216020c+152)=0x15a000;
+ *(s32*)(*(u8* volatile*)&data_0216020c+0)=0xbe000;
+ *(s32*)(*(u8* volatile*)&data_0216020c+16)=0;
+ *(s32*)(*(u8* volatile*)&data_0216020c+8)=0x17c000;
+ *(u16*)(*(u8* volatile*)&data_0216020c+142)=1495;
+ *(s32*)(*(u8* volatile*)&data_0216020c+128)=160;
+ *(s32*)(*(u8* volatile*)&data_0216020c+132)=29;
+ *(s32*)(*(u8* volatile*)&data_0216020c+172)=0;
+ *(s32*)(*(u8* volatile*)&data_0216020c+180)=0;
+ *(s32*)(*(u8* volatile*)&data_0216020c+176)=0;
+ func_020bec90(*(u16 *)(data_0216020c+0x8e));
+ func_020bebc8((u16)*(s32 *)(data_0216020c+0x80));
+ func_020bec04((u16)*(s32 *)(data_0216020c+0x84));
+ data_0216020c[0xd8]=one;
+ func_020bed24()[0]=0x77000;func_020bed24()[1]=0xe1000;func_020bed24()[2]=-0x3a3000;
+ func_020beda0(func_020bed94());func_020befc4(func_020befb4());
+ points[0].x=119;points[0].y=225;points[0].z=-931;
+ points[1].x=40;points[1].y=380;points[1].z=-900;
+ points[2].x=120;points[2].y=450;points[2].z=-880;
+ points[3].x=-259;points[3].y=719;points[3].z=-850;
+ func_020befd8(func_020befb4(),points,700);
+ obj=func_020f0a5c(0x3e4);obj[0x45]=2;
+ func_020f0154(0x2764);func_020f0898(*(Vec3_02059888*)(obj+4),0x2764,0x1f5);
+ obj=func_020f0aa4(0x1f5);*(u32*)(obj+20)|=0x11;
+ goto next;
+ loop:
+ if(*(u16*)(node+0x90)==0x1f5){*(s32*)(node+0)=0x10f000;*(s32*)(node+4)=0x43000;*(s32*)(node+8)=0xf7000;}
+ if(*(u16*)(node+0x90)==0x1f6){*(s32*)(node+0)=0xa4000;*(s32*)(node+4)=0x4d000;*(s32*)(node+8)=0xed000;}
+ next:
+ node=node ? *(u8**)(node+*(u16*)(data_021600bc+0x6e)+4):*(u8**)(data_021600bc+0x64);
+ if(node)goto loop;
+ *(s16 *)(data_0216020c+0xba)=0;
+ *(u16 *)(*(u8* volatile*)&data_0216020c+0xbe)=4;
+ func_020bed54(4,1);break;
+ case 2:obj=func_020f0aa4(0x1f5);*(u32 *)(obj+20)|=0x11;func_02109828();*(u16 *)(data_0216020c+0xbe)=one;break;
+ case 3:*(s16 *)(data_0216020c+0xba)=0;*(u16 *)(*(u8* volatile*)&data_0216020c+0xbe)=4;break;
+ case 4:func_020468e0(one);*(u16 *)(data_0216020c+0xbe)=7;break;
+ case 5:
+ ++*(s16 *)(data_0216020c+0xba);
+ p=*(u8* volatile*)&data_0216020c;
+ if(*(s16 *)(p+0xba)>60)*(s16 *)(p+0xba)=60;
+ p=data_0216020c;
+ data_02162884[0]=(*(s16 *)(p+0xba)*16)/60-16;
+ data_02162814[0]=(*(s16 *)(p+0xba)*16)/60-16;
+ if(*(s16 *)(p+0xba)==60){*(s16 *)(p+0xba)=0;*(u16 *)(*(u8* volatile*)&data_0216020c+0xbe)=2;}break;
+ case 6:data_02160204[0x11f]=data_0216020c[0xc1];*(s32 *)(data_021600ac+0xc)=one;data_02160204[0xd8]=18;break;
+ case 7:func_020f0a5c(0x3e4)[0x45]=one;*(u16 *)(data_0216020c+0xbe)=5;break;
+ }
+}
+
 void func_02058e08(void) {
 u8 *node=0; u8 *state=func_02044f70(); u8 *obj;
 switch(*(u32*)(state+16)){
