@@ -23,6 +23,7 @@ typedef struct {
     u16 flags;
 } Unk_020f0154;
 static inline void FileCheck_020f0154(void) {}
+static inline void SetScale_020f0154(u8 *mgr, s32 scale) { *(s32 *)(mgr + 0x78) = scale; *(s32 *)(mgr + 0x7c) = scale; *(s32 *)(mgr + 0x80) = scale; }
 typedef struct { u16 pad:3; u16 bit3:1; u16 bit4:1; u16 bit5:1; u16 bit6:1; u16 rest:9; } Flags_020f0154;
 extern u8 data_02162618[];
 extern void func_021168f8(void *, void *);
@@ -227,8 +228,8 @@ extern void func_020f18ec(u8 *, s32);
 extern char data_02151d10[], data_02151d20[], data_02151d24[], data_02151d28[], data_02151d30[], data_02151d44[], data_02151d48[];
 s32 func_020f0154(u32 arg0) {
     u8 flag = 0;
-    s32 tmp;
     volatile s32 result;
+    s32 tmp;
     void *file = NULL;
     u8 *mgr = NULL;
     u8 *node = NULL;
@@ -251,7 +252,7 @@ s32 func_020f0154(u32 arg0) {
     if (arg0 != 0 && arg0 < 1000) {
         func_02005e80(name, data_02151d10);
         file = func_021092d8(name);
-        if (!file) { (void)*((volatile u8 *)file); }
+        if (!file) { file = file; }
         found = func_02092ab0(file, arg0);
         if (found != -1) {
             ((s32 *)&data_02160af0)[1] = func_0210cd20(file, 0);
@@ -263,7 +264,7 @@ s32 func_020f0154(u32 arg0) {
         func_02005e80(name, data_02151d20, ((s32 *)&data_02160af0)[1]);
         func_02005e80(path, data_02151d24, ((s32 *)&data_02160af0)[2]);
         p = name;
-        while (*p != '.') p++;
+        for (;;) { if (*p == '.') break; p++; }
         if (func_020123f0(p, data_02151d28) == 0) {
             flag = 1;
         }
@@ -277,7 +278,7 @@ s32 func_020f0154(u32 arg0) {
     } else if (arg0 > 0x2710 && arg0 < 0x2b01) {
         func_02005e80(name, data_02151d30);
         file = func_021092d8(name);
-        if (!file) { (void)*((volatile u8 *)file); }
+        if (!file) { file = file; }
         found = func_02092ab0(file, arg0);
         if (found != -1) {
             ((s32 *)&data_02160af0)[1] = func_0210cd20(file, 0);
@@ -295,7 +296,7 @@ s32 func_020f0154(u32 arg0) {
     }
 
     *(u8 *)(mgr + 0x134) = 0;
-    *(u16 *)(mgr + 0x1b8) = (u16)arg0;
+    *(u16 *)(mgr + 0x1b8) = arg0;
     ((s32 *)mgr)[0x80 / 4] = ((s32 *)mgr)[0x7c / 4] = ((s32 *)mgr)[0x78 / 4] = ((s32 *)&data_02160af0)[7];
     *(u32 *)(mgr + 0xf4) = 1;
     *(u16 *)(mgr + 0x94) = 0x8000;
@@ -332,7 +333,8 @@ s32 func_020f0154(u32 arg0) {
             } else {
                 *(u32 *)(node + 0x1c) = 0;
             }
-        } else {
+        }
+        if (arg0 == 0x2774) {
             func_020f18ec(mgr, 0x385);
             *(u32 *)(node + 0x18) = 1;
         }
@@ -375,7 +377,7 @@ s32 func_020f0154(u32 arg0) {
     }
 
     func_021167f0(data_02160af0 + 0x64, node);
-    if (file != NULL) {
+    if (file) {
         func_021093b0(file);
         file = NULL;
     }
