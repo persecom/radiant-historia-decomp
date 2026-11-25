@@ -1,5 +1,6 @@
 /* 13 functions from 0x0209B328 to 0x0209C2AC (main), found by ds-decomp. */
 #include "common.h"
+static inline s32 ge_0209b328(s32 a, s32 b) { return a >= b; }
 typedef struct { u16 unk[10]; } Unk20;
 typedef struct { s16 data[1080]; } Unk870;
 extern const Unk20 data_0214209c;
@@ -38,8 +39,8 @@ void func_0209b328(void) {
             *(s32 *)(r10 + 0x14) += lv * 2;
         }
 
-        if ((s32)*(u32 *)(r10 + 0x14) >= (s32)*(u32 *)(r10 + 8)) {
-            *(u32 *)(r10 + 4) += *(s32 *)(r10 + 8);
+        if ((s32)*(u32 *)(r10 + 0x14) >= *(s32 *)(r10 + 8)) {
+            *(u32 *)(r10 + 4) += *(volatile u32 *)(r10 + 8);
             *(s32 *)(r10 + 8) = 0;
             *(s32 *)(r10 + 0x14) = 0;
             if (*(s32 *)(r10 + 0xc) == 0) {
@@ -348,6 +349,7 @@ buf.unk[1]=0; buf.unk[2]=13; buf.unk[4]=3; buf.unk[9]=3; buf.unk[6]=y+h+3;
 func_021098ac(&buf);
 }
 
+#pragma opt_propagation off
 void func_0209bfa0(s32 val,s32 x,s32 y,s32 arg3,u8 flag) {
 Unk20 buf=data_021420d8;
 *(volatile u32 *)0x40004a4=0x1f0080;
@@ -357,7 +359,7 @@ buf.unk[5]=x-14;
 buf.unk[3]=7;
 buf.unk[4]=8;
 buf.unk[7]=arg3;
-buf.unk[2]=0;
+*(volatile s16 *)&buf.unk[2]=0;
 buf.unk[8]=7;
 buf.unk[9]=8;
 buf.unk[6]=y;
@@ -366,7 +368,7 @@ func_021098ac(&buf);
 buf.unk[5]=x-7; buf.unk[6]=y; buf.unk[1]=(s16)(val%10)*7;
 func_021098ac(&buf); func_021098ac(&buf);
 }
-
+#pragma opt_propagation on
 void *func_0209c0d0(void) {
     void *ptr = func_0210c594(0xc, data_02155c3c);
     func_021167ac(ptr, 0x24);
