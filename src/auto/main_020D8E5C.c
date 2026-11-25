@@ -102,11 +102,13 @@ void func_020d8f78(void) {
 }
 
 void func_020d9018(void) {
-    *(u32 *)(data_02160258 + 0xc) = 0x200000;
-    *(u32 *)(data_02160258 + 0x10) = 0x30000;
-    *(u32 *)(data_02160258 + 0x14) = 0x200000;
-    func_020d9cc0((u8 *)data_02160258 + 0xc);
-    func_020f4668((u8 *)data_02160258 + 0xc);
+u8 *volatile *pp=&data_02160258;
+u8 *p=*pp;
+*(u32 *)(p+12)=0x200000;
+*(u32 *)(p+16)=0x30000;
+*(u32 *)(p+20)=0x200000;
+func_020d9cc0(*pp+12);
+func_020f4668(*pp+12);
 }
 
 void func_020d9058(Unk3Words *arg0) {
