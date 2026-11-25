@@ -27,6 +27,11 @@ extern u8 data_02145f98[];
 extern u8 data_02145f9c[];
 void func_02018b84(void *, void *, s32);
 void func_02018a04(void *, void *, void *);
+extern f32 data_02145c28;
+extern u8 data_02145fa0[];
+extern double data_02145e8c[];
+extern double func_0201de78(double, double);
+extern double func_0201e6c0(double, double);
 
 s32 func_02018fa0(u8 *arg0, u8 *arg1)
 {
