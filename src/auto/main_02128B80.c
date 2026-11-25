@@ -425,21 +425,13 @@ void func_021295a4(void *arg0) {
 }
 
 void func_02129624(void) {
-    u32 *p = (u32 *)data_0217348c;
-    s32 i;
-    for (i = 0; i < 15; i++) {
-        p[0] = 0;
-        p[1] = 0;
-        p[2] = 0;
-        p[3] = 0;
-        p += 4;
-    }
+    __clear(data_0217348c, 240);
 }
 
 u8 *func_0212965c(void) {
     s32 i;
     for (i = 0; i < 4; i++) {
-        if (*(u32 *)(data_0217348c + i * 0x3c) == 0) {
+        if (*(u32 *)((u8 *)data_0217348c + i * 0x3c) == 0) {
             break;
         }
     }
@@ -447,9 +439,9 @@ u8 *func_0212965c(void) {
         return 0;
     }
     {
-        u8 *e = data_0217348c + i * 0x3c;
+        u8 *e = (u8 *)data_0217348c + i * 0x3c;
         func_02013878(e, 0, 0x3c);
-        *(u32 *)(data_0217348c + i * 0x3c) = 1;
+        *(u32 *)((u8 *)data_0217348c + i * 0x3c) = 1;
         *(u32 *)(e + 4) = i;
         *(u32 *)(e + 8) = 0;
         *(u32 *)(e + 0xc) = 0;
