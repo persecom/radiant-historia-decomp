@@ -90,29 +90,18 @@ void func_0210a014(void) {
 }
 
 u32 func_0210a080(const s8 *s, u32 mask) {
-    s32 c = (s8)*s++;
-    if ((u32)c == '\\') {
-        c = '/';
-    }
-    if ((u32)c >= 'A' && (u32)c <= 'Z') {
-        c += 0x20;
-    }
-    if ((u32)c == '/') {
-        c = 0;
-    }
-    if (*s != 0) {
-        do {
-            u32 ch = (s8)*s++;
-            if (ch == '\\') {
-                ch = '/';
-            }
-            if (ch >= 'A' && ch <= 'Z') {
-                ch += 0x20;
-            }
-            c = 0x25 * c + ch;
-        } while (*s != 0);
-    }
-    return (u32)c & (mask - 1);
+ u32 ch;
+ u32 c=*s++;
+ if(c==92) c=47;
+ if(c>=65 && c<=90) c+=32;
+ if(c==47) c=0;
+ while(*s) {
+ ch=*s++;
+ if(ch==92) ch=47;
+ if(ch>=65 && ch<=90) ch+=32;
+ c=37*c+ch;
+ }
+ return c&(mask-1);
 }
 
 s32 func_0210a0f4(s32 arg0, void *out1, void *out2) {
