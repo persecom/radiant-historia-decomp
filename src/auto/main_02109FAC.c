@@ -115,6 +115,87 @@ u32 func_0210a080(const s8 *s, u32 mask) {
     return (u32)c & (mask - 1);
 }
 
+s32 func_0210a0f4(s32 arg0, void *out1, void *out2) {
+    u8 buf[8];
+    u8 *e = buf;
+    const u8 *name = (const u8 *)arg0;
+    u32 len, idx, w0, flag;
+    u8 *table, *ent;
+    u32 result = 0;
+
+    e[6] = 0;
+    e[7] = 0;
+    len = func_02016da4((const char *)name);
+    idx = func_0210a080((const s8 *)name, *(u32 *)data_02162578);
+    table = *(u8 **)(data_02162578 + 4);
+    ent = table + 8 + idx * 6;
+    e[0] = ent[0];
+    e[1] = ent[1];
+    e[2] = ent[2];
+    e[3] = ent[3];
+    e[4] = ent[4];
+    e[5] = ent[5];
+    w0 = *(u32 *)e;
+    flag = (w0 << 31) >> 31;
+    if (flag == 0) {
+        u32 w1 = *(u32 *)(e + 4);
+        u32 a = (w0 << 6) >> 7;
+        u32 b = w1 << 16;
+        *(u32 *)out2 = a << 2;
+        *(u32 *)out1 = (b >> 10) + (w0 >> 26);
+        goto done;
+    }
+    {
+        u8 *list = table + ((w0 << 6) >> 7);
+        s32 count = *list;
+        u32 w1 = *(u32 *)(e + 4);
+        u32 offset = ((w1 << 16) >> 10) + (w0 >> 26);
+        s32 i = result;
+        u8 *p = list + 1;
+        s32 matched = 0;
+        if (count > 0) {
+            for (;;) {
+                u8 *data = p;
+                u8 *pat = p + 4;
+                if (i != 0) pat += 4;
+                {
+                    u8 c = *pat;
+                    s32 ok = 1;
+                    while (c != 0) {
+                        u8 j = pat[1];
+                        if (len <= j) {
+                            ok = 0;
+                        } else {
+                            u8 ch = name[j];
+                            if (ch == '\\') ch = '/';
+                            if (ch >= 'A' && ch <= 'Z') ch = (ch + 0x20) & 0xff;
+                            if (ch != c) ok = 0;
+                        }
+                        pat += 2;
+                        c = *pat;
+                    }
+                    matched = ok;
+                }
+                if (matched != 0) {
+                    u32 a = data[0] + (data[1] << 8) + (data[2] << 16) + (data[3] << 24);
+                    if (i != 0) {
+                        offset = data[4] + (data[5] << 8) + (data[6] << 16) + (data[7] << 24);
+                    }
+                    *(u32 *)out2 = a << 2;
+                    *(u32 *)out1 = offset;
+                    break;
+                }
+                p = pat + 1;
+                i += 1;
+                if (i >= count) break;
+            }
+            if (matched == 0) result = 1;
+        }
+    }
+done:
+    return result;
+}
+
 void func_0210a2f0(u8 *p) {
     u32 zero = 0;
     *(u32 *)p = ~zero;
@@ -123,19 +204,13 @@ void func_0210a2f0(u8 *p) {
     p[0xc] = zero;
 }
 
-s32 func_0210a30c(u32 *arg0, u32 arg1, s32 arg2) {
-    switch (arg2) {
-        case 0:
-            arg0[0] = arg1;
-            break;
-        case 1:
-            arg0[0] += arg1;
-            break;
-        case 2:
-            arg0[0] = arg0[2] - arg1;
-            break;
-    }
-    return 1;
+s32 func_0210a30c(u32 *arg0,u32 arg1,s32 arg2) {
+ switch(arg2) {
+ case 1: arg0[0]+=arg1; break;
+ case 0: arg0[0]=arg1; break;
+ case 2: arg0[0]=arg0[2]-arg1; break;
+ }
+ return 1;
 }
 
 s32 func_0210a348(u8 *arg0, s32 arg1) {
