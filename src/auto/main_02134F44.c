@@ -14,8 +14,6 @@ extern s32 func_02135920();
 extern s32 func_02135960(u8 *, s32, s32);
 extern void func_02135984(u8 *, s32, s32);
 extern u8 data_02175ab8[];
-typedef struct { u32 w[104]; } Block02175ab8;
-typedef struct { u32 w[4]; } Block16_02135ccc;
 extern void func_021147e8(void *, s32, s32);
 extern void func_0211470c(void *);
 extern void func_02135f0c(void *, u16 *, u16 *);
