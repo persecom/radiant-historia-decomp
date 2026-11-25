@@ -1,9 +1,21 @@
 /* 14 functions from 0x02011EF4 to 0x02012E3C (main), found by ds-decomp. */
 #include "common.h"
 
-extern void func_02012634(s32, const char *, char *);
+extern s32 func_02012634(s32, const char *, char *);
 extern int strlen(const char *);
 extern int strcmp(const char *, const char *);
+void func_02011ef4(u32 *ctx) {
+u32 w[16]; u32 a,b,c,d,e,t,i,v;
+for(i=0;i<16;i++){v=ctx[i+5]; w[i]=(v>>24)|((v>>8)&0xff00)|((v<<8)&0xff0000)|(v<<24);}
+a=ctx[0];b=ctx[1];c=ctx[2];d=ctx[3];e=ctx[4];
+for(i=0;i<16;i++) {t=((b&c)|(~b&d))+0x5a827999+e+w[i&15]+((a<<5)|(a>>27)); e=d;d=c;c=(b>>2)|(b<<30);b=a;a=t;}
+for(i=16;i<20;i++) {v=w[(i-16)&15]^w[(i-14)&15]^w[(i-8)&15]^w[(i-3)&15]; w[i&15]=(v<<1)|(v>>31);t=((b&c)|(~b&d))+0x5a827999+e+w[i&15]+((a<<5)|(a>>27)); e=d;d=c;c=(b>>2)|(b<<30);b=a;a=t;}
+for(i=20;i<40;i++) {v=w[(i-16)&15]^w[(i-14)&15]^w[(i-8)&15]^w[(i-3)&15]; w[i&15]=(v<<1)|(v>>31);t=(b^c^d)+0x6ed9eba1+e+w[i&15]+((a<<5)|(a>>27)); e=d;d=c;c=(b>>2)|(b<<30);b=a;a=t;}
+for(i=40;i<60;i++) {v=w[(i-16)&15]^w[(i-14)&15]^w[(i-8)&15]^w[(i-3)&15]; w[i&15]=(v<<1)|(v>>31);t=((b&c)|(b&d)|(c&d))+0x8f1bbcdc+e+w[i&15]+((a<<5)|(a>>27)); e=d;d=c;c=(b>>2)|(b<<30);b=a;a=t;}
+for(i=60;i<80;i++) {v=w[(i-16)&15]^w[(i-14)&15]^w[(i-8)&15]^w[(i-3)&15]; w[i&15]=(v<<1)|(v>>31);t=(b^c^d)+0xca62c1d6+e+w[i&15]+((a<<5)|(a>>27)); e=d;d=c;c=(b>>2)|(b<<30);b=a;a=t;}
+ctx[0]+=a;ctx[1]+=b;ctx[2]+=c;ctx[3]+=d;ctx[4]+=e;
+}
+
 char *func_02012210(char *dst, const char *src) {
     char *p = dst;
     while (*src != 0) {
