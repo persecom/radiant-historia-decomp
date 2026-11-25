@@ -107,13 +107,18 @@ s32 func_02021344(u32 arg0) {
 
 u32 func_02021368(u8 *data, u32 len) {
     u32 hash = 0x23456789;
-    s32 i = 0;
-    for (; i < len; i++) {
-        u32 v = *data++ + hash;
-        u32 shift = (i + v) & 0x1f;
-        hash = hash + ((v << shift) | (v >> (0x20 - shift)));
+    u32 i = 0;
+    if (i < len) {
+        for (; i < len; i++) {
+            u32 v = *data++ + hash;
+            u32 shift = (i + v) & 0x1f;
+            hash += (v << shift) | (v >> (0x20 - shift));
+        }
     }
-    return hash != 0 ? hash : 0xaaaaaaaa;
+    if (hash == 0) {
+        hash = 0xaaaaaaaa;
+    }
+    return hash;
 }
 
 void func_020213c4(void *ptr, s32 len, u32 key) {
