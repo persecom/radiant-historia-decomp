@@ -443,4 +443,4 @@ s32 func_0203aae4(u8 *arg0) {
     func_020331b0(r8, ret);
     return ret;
 }
-#pragma pop
+
