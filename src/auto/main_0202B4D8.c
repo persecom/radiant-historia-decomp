@@ -32,41 +32,39 @@ extern void func_0210c5dc(void *);
 extern void func_0202e874(void *);
 typedef struct { u8 f0, f1, f2, f3; } Node0202bd60;
 
+#pragma optimization_level 4
 u8 *func_0202b4d8(s32 type) {
-u16 count=0;
+u8 *result=0; u16 count=0;
 switch(type) {
-case 1: do {
+case 1: {
 u8 *p=*(u8 **)(data_02160a6c+0xb8); u16 index;
 while(p) {count++;p=*(u8 **)(p+0x174);}
-if(count==0) break;
-{
+if(count) {
 index=0;
 if(count>=2) index=RandomRange_0202b4d8(count);
 p=*(u8 **)(data_02160a6c+0xb8);
 count=0;
 while(p) { if(count==index)break;count++;p=*(u8 **)(p+0x174); }
 *(u8 **)(data_02160080+0x38)=p; return p;
+} break;
 }
-} while(0); break;
-case 2: do {
+case 2: {
 u8 *p=*(u8 **)(data_02160a6c+0xac); u16 index;
 while(p) {if(*(u32 *)(*(u8 **)(p+0x118)+0x70))count++;p=*(u8 **)(p+0x16c);}
-if(count==0) break;
-{
+if(count) {
 index=0;
 if(count>=2) index=RandomRange_0202b4d8(count);
 p=*(u8 **)(data_02160a6c+0xac);
 count=0;
 while(p) { if(*(u32 *)(*(u8 **)(p+0x118)+0x70)) {if(count==index)break;count++;}p=*(u8 **)(p+0x16c); }
 *(u8 **)(data_02160080+0x3c)=p; return p;
+} break;
 }
-} while(0); break;
 default: goto end;
 }
-count=0;
-end: return (u8 *)count;
+result=0;
+end: return result;
 }
-
 void func_0202b694(void) {
     u8 *node;
     s32 i;
@@ -214,15 +212,16 @@ s32 x=data_0214618c[idx],z=((volatile s32 *)data_0214618c)[idx+1];
 func_021167ac(p+0x10,8);return p;
 }
 
-void func_0202bcd4(u32 *arg0, s32 arg1) {
+#pragma opt_propagation off
+void func_0202bcd4(u32 *__restrict arg0, s32 arg1) {
     s16 idx = arg1 * 2;
-    u32 v1 = data_0214618c[idx + 1] << 12;
-    u32 v0 = data_0214618c[idx] << 12;
-    arg0[2] = v1;
-    arg0[0] = v0;
+    u32 a = data_0214618c[idx + 1] << 12;
+    u32 b = data_0214618c[idx] << 12;
+    arg0[0] = b;
+    arg0[2] = a;
     arg0[1] = 0x20000;
 }
-
+#pragma opt_propagation on
 void func_0202bd08(u8 *arg0) {
     u8 *node = *(u8 **)(arg0 + 0x10);
     while (node != NULL) {
