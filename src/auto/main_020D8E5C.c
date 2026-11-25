@@ -240,7 +240,10 @@ void func_020d91bc(s32 arg0) {
         break;
     case 8:
         p = *pp;
-        *(Unk3Words *)(p + 0x30) = *(Unk3Words *)(p + 0x0);
+        {s32 z=*(s32 *)(p+8), y=*(s32 *)(p+4), x=*(s32 *)p;
+*(s32 *)(p+0x30)=x;
+*(s32 *)(p+0x34)=y;
+*(s32 *)(p+0x38)=z;}
         break;
     case 12:
         p = *pp;
