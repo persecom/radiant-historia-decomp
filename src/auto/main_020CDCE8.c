@@ -395,25 +395,18 @@ node = func_020cda08(2,4); node[3] = values[flag]; node[2] = enabled;
 }
 
 u8 func_020ce9c0(u16 arg0) {
-    u8 *node = func_020cda08(2, arg0);
-    s16 *p;
-    s32 bx, by;
-    s32 x1, y1, x2, y2;
+u8 *node = func_020cda08(2,arg0);
+s32 bx,dy,by,x1,y1,x2,y2;
+if(!node) return 0;
+if((u16)data_02162908[2]==0) return 0;
+x1=*(s16*)(node+12)+(*(s32*)(node+20)>>12);
+dy=*(s32*)(node+24)>>12;
 
-    if (node == NULL) {
-        return 0;
-    }
-    p = data_02162908;
-    if ((u16)p[2] == 0) {
-        return 0;
-    }
-    x1 = *(s16 *)(node + 0xc) + (*(s32 *)(node + 0x14) >> 12);
-    bx = p[0];
-    y1 = *(s16 *)(node + 0xe) + (*(s32 *)(node + 0x18) >> 12);
-    x2 = x1 + *(s16 *)(node + 0x10) + (*(s32 *)(node + 0x1c) >> 12);
-    y2 = y1 + *(s16 *)(node + 0x12) + (*(s32 *)(node + 0x20) >> 12);
-    by = p[1];
-    return (bx >= x1 && bx <= x2 && by >= y1 && by <= y2) ? 1 : 0;
+x2=x1+*(s16*)(node+16)+(*(s32*)(node+28)>>12);
+y1=*(s16*)(node+14)+dy;
+y2=y1+*(s16*)(node+18)+(*(s32*)(node+32)>>12);
+bx=data_02162908[0]; by=data_02162908[1];
+return bx>=x1 && bx<=x2 && by>=y1 && by<=y2 ? 1:0;
 }
 
 void func_020cea64(u8 arg0) {
