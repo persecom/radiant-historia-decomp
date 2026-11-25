@@ -11,6 +11,11 @@ extern u8 *func_02047820(u16);
 extern void func_020477dc(void *, s32, s32);
 
 typedef struct {
+    u8 b0 : 1;
+    u8 b1 : 1;
+} Flags_02051344;
+
+typedef struct {
     s32 x, y, z;
 } Vec3_02051344;
 
