@@ -1,5 +1,8 @@
 /* 22 functions from 0x020D8E5C to 0x020D9E48 (main), found by ds-decomp. */
 #include "common.h"
+static inline s32 approach_020d93b8(s32 target, s32 current) {
+    return current - (current - target) / 8;
+}
 
 extern u16 data_02151fc8;
 extern u16 data_02151fca;
@@ -275,10 +278,10 @@ void func_020d91bc(s32 arg0) {
     }
 }
 
+#pragma opt_lifetimes off
 void func_020d93b8(void) {
     u8 *p = data_02160258;
     s16 timer;
-    s32 dx6, dz6;
 
     if (*(s32 *)(p + 0x5c) == 1) {
         return;
@@ -347,12 +350,13 @@ void func_020d93b8(void) {
     }
     case 6: {
         u8 *q;
+        s32 x, z;
         func_020d9ea8(0, 0);
         q = data_02160258;
-        dx6 = (*(s32 *)q - *(s32 *)(q + 12)) / 8;
-        *(s32 *)q -= dx6;
-        dz6 = (*(s32 *)(q + 8) - *(s32 *)(q + 20)) / 8;
-        *(s32 *)(q + 8) -= dz6;
+        x = *(s32 *)q;
+        *(s32 *)q = x - (x - *(s32 *)(q + 12)) / 8;
+        z = *(s32 *)(q + 8);
+        *(s32 *)(q + 8) = z - (z - *(s32 *)(q + 20)) / 8;
         *(s32 *)(q + 4) -= (*(s32 *)(q + 4) - *(s32 *)(q + 16)) / 4;
         break;
     }
@@ -481,7 +485,7 @@ void func_020d93b8(void) {
     }
     func_020f4668(p);
 }
-
+#pragma opt_lifetimes on
 void func_020d9a08(void)
 {
   u8 *p = data_02160258;
