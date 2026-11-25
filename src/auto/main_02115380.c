@@ -382,8 +382,8 @@ return p;
 #pragma optimization_level 4
 void func_02115d10(void *arg0, s32 arg1, s32 arg2)
 {
-  void *r5;
   void *r4;
+  void *r5;
   if (arg1 == 0)
   {
     return;
@@ -393,8 +393,8 @@ void func_02115d10(void *arg0, s32 arg1, s32 arg2)
   if (arg0 == func_02115264((void *) arg2))
   {
     func_0211528c((void *) arg2, NULL);
-    func_02114f58(r4);
   }
+  func_02114f58(r4);
   func_0200813c(r5);
 }
 #pragma peephole on
