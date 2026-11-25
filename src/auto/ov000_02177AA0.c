@@ -295,51 +295,6 @@ return 0;
 }
 
 extern s32 func_ov000_021774e4(u32);
-static inline void decodeword_02178314(u8 *src, u32 i, Rc4State *state, u8 *out, u8 *table) {
-        u32 word = *(u32 *)src;
-        switch (func_ov000_021774e4(word)) {
-        case 1:
-        case 3:
-            state->field_0 += word >> 24;
-            *(u32 *)(out + i) = ((word & 0xff000000) ^ 0x01000000) | (((word & 0x00ffffff) - 0x402) & 0x00ffffff);
-            break;
-        case 2:
-            {
-                u8 b0 = src[0];
-                u32 k0 = func_ov000_0217816c(state);
-                state->field_0 = b0;
-                out[i] = b0 ^ k0;
-                {
-                    u8 b1 = src[1];
-                    u32 k1 = func_ov000_0217816c(state);
-                    state->field_0 = b1;
-                    out[i + 1] = b1 ^ k1;
-                }
-                state->field_0 = (state->field_0 * src[2]) - src[3];
-                out[i + 2] = table[src[2]];
-                out[i + 3] = src[3];
-                *(u32 *)src ^= 0x01000000;
-            }
-            break;
-        default:
-            {
-                u8 b0 = src[0];
-                u32 k0 = func_ov000_0217816c(state);
-                state->field_0 = b0;
-                out[i] = b0 ^ k0;
-                {
-                    u8 b1 = src[1];
-                    u32 k1 = func_ov000_0217816c(state);
-                    state->field_0 = b1;
-                    out[i + 1] = b1 ^ k1;
-                }
-                state->field_0 = (state->field_0 * src[2]) - src[3];
-                out[i + 2] = table[src[2]];
-                out[i + 3] = src[3];
-            }
-            break;
-        }
-}
 
 s32 func_ov000_02178314(void *arg0, void *arg1, u32 arg2, u32 arg3) {
     u8 table[0x100];
@@ -355,9 +310,8 @@ s32 func_ov000_02178314(void *arg0, void *arg1, u32 arg2, u32 arg3) {
     func_ov000_021781c4((u32 *)table);
 
     for (i = 0; i < arg3; i += 4) {
-        u32 *srcword = (u32 *)(in + i);
-        u8 *src = (u8 *)srcword;
-        u32 word = *srcword;
+        u8 *src = in + i;
+        u32 word = *(volatile u32 *)src;
         switch (func_ov000_021774e4(word)) {
         case 1:
         case 3:
