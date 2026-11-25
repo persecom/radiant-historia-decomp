@@ -146,6 +146,7 @@ void func_0208d900(s32 x, s32 y, s32 z, s32 value) {
     s16 i;
     s32 base;
     s32 n;
+    s32 y1;
     s32 z1;
     s32 z2;
 
@@ -156,25 +157,26 @@ void func_0208d900(s32 x, s32 y, s32 z, s32 value) {
     func_021098ac(&a);
 
     base = x + 1;
+    y1 = y + 1;
+    z1 = z + 1;
+    z2 = z + 2;
     n = (value % 100) / 9;
     for (i = 0; i < 11; i++) {
         func_020a3bbc(42);
-        z1 = z + 1;
-        z2 = z + 2;
         b.f5 = base + i * 3;
-        b.f6 = y + 1;
+        b.f6 = y1;
         b.f7 = z1;
         func_021098ac(&b);
         if (value == 100) {
             func_020a3bbc(43);
             c.f5 = base + i * 3;
-            c.f6 = y + 1;
+            c.f6 = y1;
             c.f7 = z2;
             func_021098ac(&c);
         } else if (i < n) {
             func_020a3bbc(43);
             c.f5 = base + i * 3;
-            c.f6 = y + 1;
+            c.f6 = y1;
             c.f7 = z2;
             func_021098ac(&c);
         }
