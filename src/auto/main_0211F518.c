@@ -21,6 +21,9 @@ extern void func_021205ec(s32, void *, s32);
 static inline u32 texcoord_0211fda4(s16 s,s16 t) {
 return (u16)s|((u32)(u16)t<<16);
 }
+static inline u32 texcoord_021200f4(s32 s,s32 t) {
+return texcoord_0211fda4((s16)((s << 8) >> 16),(s16)((t << 8) >> 16));
+}
 static inline u8 *dict_entry_0211fda4(u8 *dict,u32 index) {
 if(dict && index<dict[1]){
 u16 offset=*(u16 *)(dict+6);
@@ -153,6 +156,90 @@ func_021205ec(0x1a,matrix,9);
 }else func_021205ec(0x1a,matrix,9);
 }
 {u32 command=2;func_021205ec(0x10,&command,1);}
+}
+*(u8 **)p+=3;
+}
+
+void func_021200f4(u8 *p){
+s32 matrix[12];
+s32 clip[16];
+s32 zero=0;
+s32 mode,skip;
+if(!(*(u32 *)(p+8)&0x200) && (*(u32 *)(p+8)&1)){
+u8 *material;
+func_021206c8((s32)matrix,0);
+{u32 command=30;func_021205ec(0x13,&command,1);}
+material=*(u8 **)(p+0xb0);
+if((*(u32 *)(material+0x10)&0xc0000000)!=0xc0000000){
+*(u32 *)(material+0x10)&=~0xc0000000;
+*(u32 *)(*(u8 **)(p+0xb0)+0x10)|=0xc0000000;
+data_02155f70[1]=*(u32 *)(*(u8 **)(p+0xb0)+0x10);
+func_021205ec(data_02155f70[0],data_02155f74,1);
+}
+mode=*(void **)(p+0x40)?p[0x99]:0;
+if(mode==1){
+*(u32 *)(p+8)&=~0x40;
+(*(void (**)(u8 *))(p+0x40))(p);
+mode=*(void **)(p+0x40)?p[0x99]:0;
+skip=*(u32 *)(p+8)&0x40;
+}else skip=0;
+if(skip==0){
+s32 width,height;
+height=*(u16 *)(*(u8 **)(p+0xb0)+0x2e);
+width=*(u16 *)(*(u8 **)(p+0xb0)+0x2c);
+data_02155fa0[0]=width<<15;
+data_02155fa0[5]=-height<<15;
+data_02155fa0[12]=width<<15;
+data_02155fa0[13]=height<<15;
+func_021205ec(0x16,data_02155fa0,16);
+}
+if(mode==2){
+*(u32 *)(p+8)&=~0x40;
+(*(void (**)(u8 *))(p+0x40))(p);
+mode=*(void **)(p+0x40)?p[0x99]:0;
+skip=*(u32 *)(p+8)&0x40;
+}else skip=0;
+if(skip==0){
+u8 *data=material_0211fda4(*(u8 **)(p+0xd8),(*(u8 **)p)[1]);
+{
+u16 flags=*(u16 *)(data+0x1e);
+if(flags&0x2000){
+u8 *mtx=data+0x2c;
+if(!(flags&2))mtx+=8;
+if(!(flags&4))mtx+=4;
+if(!(flags&8))mtx+=8;
+func_021205ec(0x18,mtx,16);
+}}
+}
+if(mode==3){
+*(u32 *)(p+8)&=~0x40;
+(*(void (**)(u8 *))(p+0x40))(p);
+
+skip=*(u32 *)(p+8)&0x40;
+}else skip=0;
+if(skip==0){
+if(*(u32 *)(data_021701fc+0xfc)&1){
+func_021205ec(0x1c,data_021702dc,3);
+func_021205ec(0x1a,data_021702b8,9);
+func_021205ec(0x19,matrix,12);
+}else if(*(u32 *)(data_021701fc+0xfc)&2){
+func_021205ec(0x19,matrix,12);
+}else {
+func_021205ec(0x19,func_0211d7d4(),12);
+func_021205ec(0x19,matrix,12);
+}
+func_021204a8();
+*(volatile u32 *)0x4000440=zero;
+*(volatile u32 *)0x4000444=zero;
+*(volatile u32 *)0x4000454=zero;
+while(func_02002f3c(clip)!=0){}
+*(volatile u32 *)0x4000448=1;
+*(volatile u32 *)0x4000440=3;
+func_021205ec(0x16,clip,16);
+{u32 packed=texcoord_0211fda4((s16)((s16)(clip[12]>>4)>>8),(s16)((s16)(clip[13]>>4)>>8));func_021205ec(0x22,&packed,1);}
+}
+{u32 command=2;func_021205ec(0x10,&command,1);}
+{u32 command=30;func_021205ec(0x14,&command,1);}
 }
 *(u8 **)p+=3;
 }
