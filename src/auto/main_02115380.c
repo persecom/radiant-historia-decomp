@@ -277,17 +277,44 @@ s32 func_021157d0(u16 id, u32 flags, void *arg2, s32 arg3, void *out) {
  return 0;
 }
 
-#pragma opt_propagation off
-s32 func_02115910(void *arg0,u32 arg1,void *arg2,s32 arg3,void **arg4) {
-u8 *p=func_021150ac(arg0); s32 v; void *addr; void *val;
-if(!p)return 5; v=*(s32*)p;
-if(arg1&4) { u32 flags=(u32)v>>24; addr=(void*)((u32)(v<<8)>>8); arg0=addr;
-if(flags&1) val=func_02115be8(arg0,arg2,arg3); else val=func_02115b7c(arg0,arg2,arg3);
-if(!val)return 9;
-}else val=func_02115264((void*)((u32)(v<<8)>>8));
-if(arg4)*arg4=val; return 0;
+#pragma opt_peephole off
+s32 func_02115910(void *arg0, u32 arg1, void *arg2, s32 arg3, void **arg4)
+{
+  typedef struct {
+    u32 addr : 24;
+    u32 flags : 8;
+  } Entry;
+  Entry *p = (Entry *)func_021150ac(arg0);
+  void *val;
+  if (!p)
+  {
+    return 5;
+  }
+  if (arg1 & 4)
+  {
+    if (p->flags & 1)
+    {
+      val = func_02115be8((void *)p->addr, arg2, arg3);
+    }
+    else
+    {
+      val = func_02115b7c((void *)p->addr, arg2, arg3);
+    }
+    if (!val)
+    {
+      return 9;
+    }
+  }
+  else
+  {
+    val = func_02115264((void *)p->addr);
+  }
+  if (arg4)
+  {
+    *arg4 = val;
+  }
+  return 0;
 }
-#pragma opt_propagation on
 void *func_02115994(void *arg0,void *arg1,void *arg2,void *arg3,void *arg4) {
  void *p=func_02115174(arg0);
  void *buf;
@@ -361,12 +388,15 @@ void *func_02115b7c(void *arg0, void *arg1, s32 arg2) {
 }
 
 #pragma optimization_level 2
+#pragma opt_common_subs off
 void *func_02115be8(void *arg0,void *arg1,s32 arg2) {
-unsigned long total; u8 *p=func_02115264(arg0); unsigned long size; void *ctx;
+u32 total; u8 *p=func_02115264(arg0); u32 size; void *ctx;
+volatile Header_0216cad4 *v;
 if(!p) {
 ctx=0;
 if((s32)func_0211519c(arg0,&data_0216cad4,(void *)0x3c,0)!=0x3c)return 0;
-size=data_0216cad4.count*4;total=size*2;
+v=(volatile Header_0216cad4 *)&data_0216cad4;
+size=v->count*4;total=size*2;
 if(!arg1)return 0;
 if(arg2)ctx=func_02114f70();
 p=func_0211543c(arg1,total+0x5c,func_02115df0,(u32)ctx,(u32)arg0);
@@ -379,7 +409,8 @@ if(arg2)func_0211528c(arg0,p);
 }
 return p;
 }
-#pragma optimization_level 4
+#pragma opt_common_subs on
+#pragma optimization_level reset
 void func_02115d10(void *arg0, s32 arg1, s32 arg2)
 {
   void *r4;
@@ -420,16 +451,15 @@ void func_02115df0(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     func_0200a2e0(arg0);
 }
 
-#pragma peephole off
+#pragma optimization_level 2
 void func_02115e10(s32 arg0, s32 arg1, void *arg2, s32 arg3) {
     if (func_0200a530(arg2, arg3) != arg0) {
-        goto quit;
+        return;
     }
     func_0200a4fc(arg2, arg3, 0);
     func_02009760((void *)arg0, (void *)(arg0 + arg1));
-quit:
-    return;
 }
+#pragma optimization_level 4
 extern s32 func_0200a4f4(void *);
 s32 func_02115e58(s32 arg0, u16 arg1, s32 arg2, s32 arg3) {
     u8 *obj = (u8 *)arg0;
