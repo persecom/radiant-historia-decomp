@@ -3,7 +3,7 @@
 
 extern u8 *data_02160a74;
 extern u8 *data_02160078;
-extern u8 *func_020e5910();
+extern u8 *func_020e5910(u8 *, s32);
 extern void func_020e26f0(s32, s32, s32);
 extern void func_020e25fc(s32, s32, s32);
 
