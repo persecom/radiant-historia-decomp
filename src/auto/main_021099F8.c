@@ -27,6 +27,18 @@ extern void func_02109ea8(void *);
 extern void *data_02155c3c;
 extern u32 data_02162564[];
 extern u32 func_0210a498(u32 *);
+typedef struct {
+    s16 flags;
+    s16 x;
+    s16 y;
+    s16 z;
+    s16 sx;
+    s16 sy;
+    s16 a6;
+    s16 a7;
+    s16 a8;
+    s16 a9;
+} Args_021099f8;
 
 void func_021099f8(s16 *arg0) {
     s32 x = arg0[1];
