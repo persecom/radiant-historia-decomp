@@ -83,10 +83,12 @@ p=func_020a6360(g+0x118,cur[27]);if(p && *(u32 *)(p+0x18))*(u16 *)(g+0x19c)|=8;
  if(!*(u32 *)(g+0x30)) {
  s32 hit=0;
  if(data_021628f8) {
+ s32 tx=data_02162908[0];
  s32 x=*(s32 *)(g+0x1ac)>>12;
- if(!(x-10<=data_02162908[0] && data_02162908[0]<=x+10)) {
+ if(x-10<=tx && tx<x+10) {
+ s32 ty=data_02162908[1];
  s32 y=*(s32 *)(g+0x1b0)>>12;
- if(!(y-30<=data_02162908[1] && data_02162908[1]<=y))hit=1;
+ if(y-30<=ty && ty<y)hit=1;
  }}
  if(data_021626a8&1)hit=1;
  if(hit) {
@@ -126,8 +128,9 @@ if((*(u16 *)(g+0x19c)&8) && (mask&8)) {*(u8 **)(g+0xd8)=func_020a6360(g+0x118,cu
  break;
  case 1: {
  Vec_020c55bc start,end;
+ s32 distance;
  u8 *node=*(u8 **)(g+0xdc);
- s32 distance=zero;
+ distance=zero;
  while(node) {
  start=*(Vec_020c55bc *)(g+0xc8);
  end.x=*(s16 *)(node+6)<<12;end.z=*(s16 *)(node+8)<<12;
@@ -152,12 +155,26 @@ if((*(u16 *)(g+0x19c)&8) && (mask&8)) {*(u8 **)(g+0xd8)=func_020a6360(g+0x118,cu
  p=func_020a7154(102);if(p){*(s32 *)p-=(*(s16 *)(p+0x2c)/4)*2;if(*(s32 *)p< -*(s16 *)(p+0x2c))*(s32 *)p= -*(s16 *)(p+0x2c)*2;}
  p=func_020a7154(103);if(p){*(s32 *)p+=40;if(*(s32 *)p>160)*(s32 *)p=160;}
  p=func_020a7154(104);if(p){*(s32 *)p+=40;if(*(s32 *)p>160)*(s32 *)p=160;}
- p=func_020a7154(105);if(p){*(s32 *)p-=34;}
- p=func_020a7154(106);if(p){*(s32 *)p-=36;}
+ {s32 id=105;p=func_020a7154(id);if(p){*(s32 *)p-=34;if(*(s32 *)p<id-243)*(s32 *)p=id-243;}}
+ {s32 id=106;p=func_020a7154(id);if(p){*(s32 *)p-=36;if(*(s32 *)p<id-250)*(s32 *)p=id-250;}}
+ {u8 *panel=*(u8 **)(g+0x18c);*(s32 *)(panel+0x6c)-=0x24000;if((*(s32 *)(panel+0x6c)>>12)<-144)*(s32 *)(panel+0x6c)=-144*4096;}
+ func_020a5d0c(*(void **)(g+0x18c));
  p=func_020a7154(107);if(p){*(s32 *)p+=40;if(*(s32 *)p>160)*(s32 *)p=160;}
  break;
  }
- case 2:break;
+ case 2:
+ (*(volatile s16 *)(g+0x13f0))++;
+ if(*(volatile s16 *)(g+0x13f0)<=2)return;
+ *(s16 *)(g+0x13f0)=zero;
+ *(u16 *)(data_02160204+0xf6)=*(u16 *)(g+0xd4);
+ if(*(u16 *)(g+0x13f2)==1) {*(u16 *)(data_02160204+0x11a)=4;func_02065cb8(11);}
+ else if(*(u16 *)(g+0x13f2)==2) {func_02065cb8(29);func_020cea64(zero);}
+ else if(*(u16 *)(g+0x13f2)==3) {
+ *(u16 *)(data_02160204+0x72)=2000;*(u16 *)(data_02160204+0xf4)=4;
+ data_02160204[0x110]=two;*(u16 *)(data_02160204+0x74)=100;*(u16 *)(data_02160204+0x76)=100;func_02065cb8(18);
+ }
+ *(u32 *)(g+0x30)=one;
+ break;
  }
 }
 
