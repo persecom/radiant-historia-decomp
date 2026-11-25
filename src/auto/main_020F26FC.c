@@ -42,18 +42,18 @@ extern s32 func_020020bc(u16, s32);
 extern s32 func_02002080(u16, s32);
 extern u8 *func_0210c594(u32, void *);
 extern s32 func_021086d4(void *, u16);
-#pragma optimization_level 0
-s32 func_020f26fc(u8 *arg0, u16 arg1, u8 arg2) {
+#pragma opt_propagation off
+s32 func_020f26fc(Resource_020f2a5c *arg0, u16 arg1, u8 arg2) {
     char buf0[64];
     char buf1[60];
     char buf2[50];
     char buf3[50];
     s32 line;
-    u8 *mem;
+    Frame_020f2a5c *mem;
     struct { u16 count; u16 n; } sizes;
     void *csv = 0;
-    u8 *cur;
-    u8 *r7;
+    Frame_020f2a5c *cur;
+    Resource_020f2a5c *r7;
     s32 idx;
     s32 i;
     s32 j;
@@ -96,7 +96,7 @@ s32 func_020f26fc(u8 *arg0, u16 arg1, u8 arg2) {
             func_02005e80(buf3, data_02151ed4, data_02160c14[2]);
             break;
         }
-        if (func_02108620(*(void **)arg0, buf1, buf2, buf3, 0) == 0) {
+        if (func_02108620(arg0->model, buf1, buf2, buf3, 0) == 0) {
             return 0;
         }
     }
@@ -106,28 +106,29 @@ s32 func_020f26fc(u8 *arg0, u16 arg1, u8 arg2) {
         csv = 0;
     }
 
-    r7 = func_02109f3c(*(void **)(*(u8 **)(*(u8 **)arg0 + 0x58) + 8));
-    if (*(void **)(r7 + 0x10) == 0) {
-        sizes.n = *(u16 *)(*(u8 **)(*(u8 **)(*(u8 **)arg0 + 0x58) + 0xc));
+    r7 = (Resource_020f2a5c *)func_02109f3c(*(void **)(*(u8 **)((u8 *)arg0->model + 0x58) + 8));
+    if (r7->pack == 0) {
+        sizes.n = *(u16 *)(*(u8 **)(*(u8 **)((u8 *)arg0->model + 0x58) + 0xc));
         sizes.count = (func_020020bc(sizes.n, 2) ? 1 : 0) + func_02002080(sizes.n, 2);
-        mem = func_0210c594(sizes.count * 4, data_02155c3c);
+        mem = (Frame_020f2a5c *)func_0210c594(sizes.count * 4, data_02155c3c);
         cur = mem;
-        for (i = 0; i < sizes.count; i++, cur += 4) {
+        for (i = 0; i < sizes.count; i++, cur++) {
             idx = i * 2;
-            *(u16 *)(cur + 2) = idx;
-            cur[0] = 0;
-            for (j = 0; j < 2; j++, idx++) {
+            cur->index = idx;
+            cur->flags = 0;
+            for (j = 0; j < 2; idx++, j++) {
                 if (sizes.n <= idx) {
                     break;
                 }
-                if ((func_021086d4(*(void **)arg0, idx) == 0) == 0) {
-                    cur[0] |= (u8)(1 << j);
+                if ((func_021086d4(arg0->model, idx) == 0) == 0) {
+                    cur->flags |= (u8)(1 << j);
                 }
             }
         }
-        *(void **)(r7 + 0x10) = mem;
+        r7->pack = mem;
     }
 
-    *(void **)(arg0 + 0x10) = *(void **)(r7 + 0x10);
+    arg0->pack = r7->pack;
     return 1;
 }
+#pragma opt_propagation on
