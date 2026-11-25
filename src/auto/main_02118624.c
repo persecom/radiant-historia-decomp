@@ -7,7 +7,7 @@ static inline void init_02118a54(Unk02118A54Out *p, u32 format, u32 zero, u32 ty
 static inline s32 has_02118f24_data(u8 *p) { s32 r = 1; if (!*(void **)(p + 12)) r = 0; return r; }
 static inline s32 has_02118f24_handle(u8 *p) { s32 r = 1; if (*(s32 *)(p + 0x38) == -1) r = 0; return r; }
 static inline s32 has_data_ptr(u8 *tbl) { s32 r = 1; if (!tbl) r = 0; return r; }
-static inline s32 has_handle_val(s32 h) { s32 r = 1; if (h == -1) r = 0; return r; }
+static inline s32 has_handle_val(s32 h) { if (h == -1) return 0; return 1; }
 
 extern void func_02117df4(void *);
 extern s32 func_02117d80(void *);
