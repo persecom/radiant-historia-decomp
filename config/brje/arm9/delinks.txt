@@ -899,7 +899,10 @@ src/auto/main_020F1A1C.c:
     .text start:0x020f1a1c end:0x020f26fc
 
 src/auto/main_020F26FC.c:
-    .text start:0x020f26fc end:0x020f36b0
+    .text start:0x020f26fc end:0x020f2a5c
+
+src/auto/main_020F2A5C.c:
+    .text start:0x020f2a5c end:0x020f36b0
 
 src/auto/main_020F36B0.c:
     .text start:0x020f36b0 end:0x020f46a0
