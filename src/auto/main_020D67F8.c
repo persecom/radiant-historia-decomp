@@ -27,11 +27,68 @@ extern void func_020bd574(void);
 
 extern u8 *data_02160248;
 extern u8 *data_02160a6c;
-extern s32 func_020bd490(s32, u8);
+extern u16 func_020bd490(s32, u8);
 extern void func_020d6f58(s32);
 extern void func_020dd810(void *, s32, s32);
 extern void *func_0202fb50(s32, s32);
 extern void func_021167f0(void *, void *);
+#pragma optimization_level 0
+void func_020d67f8(void) {
+u8 *p=0;u8 i;u8 *info=0;u8 *unused=0;u8 *node=0;u8 *next=0;u8 *list=0;u8 id;u8 j;void *file=0;u8 temp[12];int unused2;u16 index;u8 found;
+func_021167ac(temp,0x30);
+file=func_021092d8(data_021513c0);
+for(j=0;j<3;j++){
+if(!func_020bd490(0,j))continue;
+*(u16 *)&data_02160248=j;*(int *)((u8 *)&data_02160248+12)=1;
+id=func_020bd490(1,j);
+func_020d6f58(id);
+p=*(u8 **)((u8 *)&data_02160248+4);
+*(u16 *)(p+0x8c)=id;
+*(u8 **)(p+0x1a4)=func_020de160();
+func_020de190(*(u8 **)(p+0x1a4),*(u16 *)(p+0x8e));
+if(func_020bd490(2,j)==0)*(u8 **)(p+0x118)=func_0202ffb0((u8)func_020bd490(3,j));
+else *(u8 **)(p+0x118)=func_0202ffb0((u8)(id-1));
+if(func_020bd490(4,j)){func_020dd810(p,6,0);*(int *)(*(u8 **)(p+0x118)+0x70)=0;*(int *)(*(u8 **)(p+0x118)+4)=0;}
+*(u16 *)(*(u8 **)(p+0x118)+0x56)=*(u16 *)((u8 *)&data_02160248+2);
+**(u8 **)(p+0x118)=0;
+*(u8 **)(p+0x11c)=func_02064be8();
+unused2=0;
+if(id<99){
+if(func_020bd490(2,j)==0)info=func_02021f10(func_020bd490(3,j));
+else info=func_02021f10((u8)(id-1));
+if(info){
+for(i=0;i<30;i++){
+if(info[0x4e + i]){
+if(info[0x4e + i]==11)func_02064fd0(*(u8 **)(p+0x11c),id,info[0x4e + i],-1,file);
+else func_02064fd0(*(u8 **)(p+0x11c),id,info[0x4e + i],i,file);
+}}
+for(i=0;i<15;i++){if(info[0x6c+i])func_02064fd0(*(u8 **)(p+0x11c),id,info[0x6c+i],(s16)(i+100),file);}
+}else func_02064fd0(*(u8 **)(p+0x11c),id,11,-1,file);
+if(info){
+for(i=0;i<30;i++){if(info[0x4e + i])++(**(u8 **)(p+0x11c));}
+for(i=0;i<15;i++){if(info[0x6c+i])++(*(u8 **)(p+0x11c))[2];}
+}else **(u8 **)(p+0x11c)=1;
+func_02064fd0(*(u8 **)(p+0x11c),id,3,-1,file);
+func_02064fd0(*(u8 **)(p+0x11c),id,4,-1,file);
+list=*(u8 **)(p+0x11c);index=0;
+while(*(u16 *)(list+12)){
+found=0;node=*(u8 **)(list+4);
+while(node){next=*(u8 **)(node+0x34);
+if(*(s16 *)(node+0x26)==index){func_021168f8(list+4,node);func_021167f0(temp,node);found=1;break;}
+node=next;}
+if(!found)index++;
+}
+node=*(u8 **)temp;
+while(*(u16 *)(temp+8)){
+next=*(u8 **)(node+0x34);func_021168f8(temp,node);func_021167f0(list+4,node);node=next;
+}
+}
+if(*(u16 *)(temp+8))func_021167f0(data_02160a6c+0xac,p);
+}
+if(file){func_021093b0(file);file=0;}
+}
+#pragma optimization_level 4
+
 void func_020d6c9c(void) {
     u8 *base = (u8 *)&data_02160248;
     u8 *root = (u8 *)&data_02160a6c;
