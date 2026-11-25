@@ -11,6 +11,8 @@ extern void func_0210d9e4(void *);
 extern void func_02063f68(void);
 extern void func_02064590(void);
 extern void func_02064a30(void);
+extern void func_0202d444(void *);
+extern s32 func_0202dd04(void *);
 s16 func_02063e18(void) {
     u8 *entry;
     s32 ret = 0;
@@ -55,3 +57,9 @@ void func_02063f20(void) {
         data_021600c4 = NULL;
     }
 }
+
+extern u8 *data_02160a6c;
+void func_02063f68(void) {
+    if (data_02160a6c == NULL) return;
+}
+
