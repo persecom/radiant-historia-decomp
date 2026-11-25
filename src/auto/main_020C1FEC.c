@@ -16,6 +16,7 @@ extern s32 func_02032294(void *);
 
 extern u8 *data_02160090;
 extern u8 *data_02160a6c;
+extern u8 *data_02160244;
 extern void func_020dde88(u8 *);
 extern s32 func_020dda2c(s32);
 extern s32 func_020c09b0(u8 *, s32, s32);
