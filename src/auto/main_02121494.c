@@ -261,7 +261,7 @@ index>>=2;pos&=0x3fff;scale=4;shift=2;goto interp;
 normal:
 pos&=0xfff;scale=1;shift=0;
 interp:
-if(flags&0x20000000){s16 *q=(s16 *)p+index;a=q[0];b=q[1];}
+if(flags&0x20000000){a=((s16 *)p)[index];s16 *q=(s16 *)p+index;b=q[1];}
 else {s32 *q=(s32 *)p+index; a=*q++; b=*q;}
 *out=(a*scale+((pos*(b-a))>>12))>>shift;
 }
