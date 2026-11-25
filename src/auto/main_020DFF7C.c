@@ -10,6 +10,10 @@ extern void func_020e1b00(void);
 extern s32 func_020e4ad4(void);
 extern void func_020a3bbc(s32);
 extern void func_020e13b0(s32, s32);
+extern s32 func_020e4b88(void);
+extern u32 func_020e4ba8(void);
+extern u32 func_020deaf0(void *, u8, u8);
+extern void func_020c34c8(s32 *, s32, s32, s32, s32, s32, s32, u16);
 
 void func_020dff7c(void) {
     u8 *p5 = 0;
