@@ -29,6 +29,8 @@ extern void func_02013878(void *, s32, u32);
 extern void func_0212a0e4();
 extern void *memset(void *, int, unsigned long);
 extern u32 data_021735a4[244];
+typedef struct { u32 a, b, c, d; } Zero16;
+static inline Zero16 make_zero16(void) { Zero16 z = {0, 0, 0, 0}; return z; }
 extern u8 data_0217358c[12];
 extern volatile u32 data_02173974[2];
 extern s32 func_02129db4(void *, void *, u32);
