@@ -596,23 +596,12 @@ void func_0200fe64(u32 arg0, u32 arg1, u32 arg2) {
     }
 }
 
-void func_0200fe80(u32 arg0, u32 arg1, u32 arg2) {
-    u8 *addr = (u8 *)arg0;
-    u32 off = arg1;
-    u32 rem;
-    if (off >= arg2) {
-        func_02006d58();
-        return;
-    }
-    rem = (u32)addr & 0x1f;
-    if (rem != 0) {
-        u32 base = (u32)addr - rem;
-        func_02006da8(base, 0x20);
-        func_02006da8(base + off, 0x20);
-        off += 0x20;
-        func_02006d8c(base, off);
-        func_02006de8();
-    }
+void func_0200fe80(u32 arg0,u32 arg1,u32 arg2) {
+u32 rem;
+if(arg1>=arg2){func_02006d58(); return;}
+rem=arg0&31;
+if(rem){arg0-=rem;func_02006da8(arg0,32);func_02006da8(arg0+arg1,32);arg1+=32;}
+func_02006d8c(arg0,arg1);func_02006de8();
 }
 
 #pragma peephole off
