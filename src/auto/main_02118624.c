@@ -225,8 +225,8 @@ case 0: func_02004588();func_020045bc(data,addr,size);func_0200462c();break;
 {u32 a=((volatile u32 *)p)[0],b=((volatile u32 *)p)[1];out[0]=a;out[1]=b;}func_021185f4(out,type,addr);
 }
 
-#pragma opt_propagation off
-void func_02118d0c(u32 *p, void *arg1, u32 addr, s32 type, u32 *out) {
+#pragma scheduling off
+void func_02118d0c(u32 *__restrict p, void *arg1, u32 addr, s32 type, u32 *out) {
     u32 unit = (p[0] == 3) ? 0x20 : 0x200;
     u32 count = *(u16 *)arg1;
     u32 dstOff;
@@ -273,7 +273,7 @@ void func_02118d0c(u32 *p, void *arg1, u32 addr, s32 type, u32 *out) {
     }
     func_021185f4(out, type, addr);
 }
-#pragma opt_propagation on
+#pragma scheduling on
 void func_02118e68(s32 *arg0) {
     s32 i;
     for (i = 0; i < 3; i++) {
