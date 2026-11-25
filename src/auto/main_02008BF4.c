@@ -46,10 +46,6 @@ typedef struct { u32 a[8]; } Copy32B;
 typedef struct { u32 a[9]; } Copy36B;
 typedef struct { u32 a[12]; } Copy48B;
 typedef struct { u32 f0, f4, f8, fc; } Queue;
-static inline void queue_push_02009aec(Queue *q, u32 *tail, u32 *value) {
-    if (tail == NULL) q->f8 = (u32)value;
-    else *tail = (u32)value;
-}
 
 void func_02008bf4(void) {
     u32 base;
