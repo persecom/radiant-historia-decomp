@@ -471,7 +471,7 @@ parse_set:
                 neg = 1;
                 f++;
             } else {
-                st.bits[(u32)(u8)ch >> 5] |= 1U << (ch & 31);
+                bits[(u32)(u8)ch >> 5] |= 1U << (ch & 31);
                 i = ch;
                 f++;
             }
