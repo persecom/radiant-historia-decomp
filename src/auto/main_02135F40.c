@@ -3,6 +3,9 @@
 static inline u32 pack_pcm_02136210(u16 low, u16 high) {
     return low | ((u32)high << 16);
 }
+static inline s16 average_pcm_02136210(s16 a, s16 b) {
+    return (a + b) / 2;
+}
 typedef struct {
     u16 flags;
     s16 channel;
@@ -165,10 +168,10 @@ u32 func_021361bc(u8 *arg0, u16 *arg1, u16 *arg2) {
 extern void func_02009008(void *, void *, u32);
 #pragma opt_lifetimes off
 s16 *func_02136210(void *arg0, void *arg1, u32 arg2) {
-    u8 *p = (u8 *)arg0;
+    PcmState_02136210 *p = (PcmState_02136210 *)arg0;
     s16 *src = (s16 *)arg1;
-    u32 pos = *(u16 *)(p + 0x1a);
-    u8 *dst = *(u8 **)(p + 0x4) + pos;
+    u32 pos = p->position;
+    u8 *dst = p->buffer + pos;
     u16 nextPos = pos + arg2;
     u16 mode;
     s16 last;
@@ -177,11 +180,11 @@ s16 *func_02136210(void *arg0, void *arg1, u32 arg2) {
     if (nextPos >= 0x1800) {
         nextPos -= 0x1800;
     }
-    *(u32 *)(p + 0x10) += arg2;
-    *(u16 *)(p + 0x1a) = nextPos;
-    *(u16 *)(p + 0x0) = (*(u16 *)(p + 0x0) | 2) & 0xfffd;
+    p->written += arg2;
+    p->position = nextPos;
+    p->flags = (p->flags | 2) & 0xfffd;
 
-    mode = *(u16 *)(p + 0x28);
+    mode = p->mode;
     if (mode != 8) {
         if (mode == 5) {
             s32 count = (s32)(arg2 >> 1) / 8;
@@ -189,7 +192,7 @@ s16 *func_02136210(void *arg0, void *arg1, u32 arg2) {
             u32 *dst32 = (u32 *)dst;
             for (i = 0; i < count; i++) {
                 s16 s0 = src[0];
-                prev = *(s16 *)(p + 0x2a);
+                prev = p->previous;
                 s16 s1 = src[1];
                 s16 s2 = src[2];
                 s16 a0 = (s16)((prev + s0) / 2);
@@ -201,7 +204,7 @@ s16 *func_02136210(void *arg0, void *arg1, u32 arg2) {
                 dst32[1] = pack_pcm_02136210((u16)s1, (u16)a1);
                 dst32[2] = pack_pcm_02136210((u16)s2, (u16)s3);
                 dst32[3] = pack_pcm_02136210((u16)a2, (u16)s4);
-                *(s16 *)(p + 0x2a) = s4;
+                p->previous = s4;
                 src += 5;
                 dst32 += 4;
             }
@@ -220,14 +223,14 @@ s16 *func_02136210(void *arg0, void *arg1, u32 arg2) {
                 src += 3;
                 dst16 += 4;
             }
-            *(s16 *)(p + 0x2a) = last;
+            p->previous = last;
         } else if (mode == 3) {
             s32 count = (s32)(arg2 >> 1) / 8;
             s32 i;
             s16 *dst16 = (s16 *)dst;
             for (i = 0; i < count; i++) {
                 s16 s0 = src[0];
-                prev = *(s16 *)(p + 0x2a);
+                prev = p->previous;
                 s16 s1 = src[1];
                 s16 s2 = src[2];
                 s16 m1 = (s0 + s1 * 2) / 3;
@@ -240,13 +243,13 @@ s16 *func_02136210(void *arg0, void *arg1, u32 arg2) {
                 dst16[5] = m2;
                 dst16[6] = (s2 + m2) / 2;
                 dst16[7] = s2;
-                *(s16 *)(p + 0x2a) = s2;
+                p->previous = s2;
                 src += 3;
                 dst16 += 8;
             }
         } else if (mode == 4) {
             s32 count = arg2 >> 2;
-            prev = *(s16 *)(p + 0x2a);
+            prev = p->previous;
             u32 *src32 = (u32 *)src;
             u32 *dst32 = (u32 *)dst;
             while (count > 0) {
@@ -261,11 +264,11 @@ s16 *func_02136210(void *arg0, void *arg1, u32 arg2) {
                 prev = s1;
                 dst32 += 2;
             }
-            *(s16 *)(p + 0x2a) = prev;
+            p->previous = prev;
             src = (s16 *)src32;
         } else if (mode == 2) {
             s32 count = arg2 >> 3;
-            prev = *(s16 *)(p + 0x2a);
+            prev = p->previous;
             u32 *src32 = (u32 *)src;
             u32 *dst32 = (u32 *)dst;
             while (count > 0) {
@@ -286,11 +289,11 @@ s16 *func_02136210(void *arg0, void *arg1, u32 arg2) {
                 prev = s1;
                 dst32 += 4;
             }
-            *(s16 *)(p + 0x2a) = prev;
+            p->previous = prev;
             src = (s16 *)src32;
         } else if (mode == 1) {
             s32 count = (s32)(arg2 >> 1) / 8;
-            last = *(s16 *)(p + 0x2a);
+            last = p->previous;
             s32 i;
             u32 *src32 = (u32 *)src;
             u32 *dst32 = (u32 *)dst;
@@ -321,7 +324,7 @@ s16 *func_02136210(void *arg0, void *arg1, u32 arg2) {
                 last = s1;
                 dst32 += 8;
             }
-            *(s16 *)(p + 0x2a) = last;
+            p->previous = last;
             src = (s16 *)src32;
         }
     } else {
@@ -329,8 +332,8 @@ s16 *func_02136210(void *arg0, void *arg1, u32 arg2) {
         src += (s32)(arg2 >> 1);
     }
 
-    if (*(void **)(p + 0x30) != NULL) {
-        ((void (*)(s16, void *, u32))*(void **)(p + 0x30))(*(s16 *)(p + 0x2), *(u8 **)(p + 0x4) + pos, arg2);
+    if (p->callback != NULL) {
+        p->callback(p->channel, p->buffer + pos, arg2);
     }
     return src;
 }
