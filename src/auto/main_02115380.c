@@ -277,30 +277,22 @@ s32 func_021157d0(u16 id, u32 flags, void *arg2, s32 arg3, void *out) {
  return 0;
 }
 
-s32 func_02115910(void *arg0, u32 arg1, void *arg2, s32 arg3, void **arg4) {
-    u8 *p = func_021150ac(arg0);
-    u32 v;
-    void *val;
-    if (p == NULL) {
-        return 5;
-    }
-    v = *(u32 *)p;
-    if ((arg1 & 4) != 0) {
-        if (((v >> 24) & 1) != 0) {
-            val = func_02115be8((void *)((v << 8) >> 8), arg2, arg3);
-        } else {
-            val = func_02115b7c((void *)((v << 8) >> 8), arg2, arg3);
-        }
-        if (val == NULL) {
-            return 9;
-        }
-    } else {
-        val = func_02115264((void *)((v << 8) >> 8));
-    }
-    if (arg4 != NULL) {
-        *arg4 = val;
-    }
-    return 0;
+s32 func_02115910(void *arg0,u32 arg1,void *arg2,s32 arg3,void **arg4) {
+ u8 *p=func_021150ac(arg0);
+ s32 v;
+ void *addr;
+ void *val;
+ if(!p)return 5;
+ v=*(s32 *)p;
+ if(arg1&4) {
+ addr=(void *)((u32)(v<<8)>>8);
+ u32 flags=(u32)v>>24;
+ if(flags&1) val=func_02115be8(addr,arg2,arg3);
+ else val=func_02115b7c(addr,arg2,arg3);
+ if(!val)return 9;
+ }else val=func_02115264((void *)((u32)(v<<8)>>8));
+ if(arg4)*arg4=val;
+ return 0;
 }
 
 void *func_02115994(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4) {
@@ -519,26 +511,22 @@ s32 func_02115f20(s32 arg0, void *arg1, u16 arg2, s32 arg3, s32 arg4) {
 }
 
 s32 func_02115fe0(void *arg0) {
-    s32 i;
-    s32 j;
-    func_02114f70();
-    for (i = 0; i < 0x20; i++) {
-        u8 *p = (u8 *)func_02115110(i);
-        if (p == NULL) {
-            return 0;
-        }
-        func_02113a9c(i, p[0]);
-        func_02113abc(i, *(u16 *)(p + 2));
-        if (*(u32 *)(p + 4) == 0 || arg0 == NULL || p[0] == 0) {
-            return 0;
-        }
-        for (j = 0; j < p[0]; j++) {
-            if (func_02113ad4(i, arg0, *(void **)(p + 4)) == 0) {
-                return 0;
-            }
-        }
-    }
-    return 1;
+ s32 i;
+ u8 *p;
+ s32 j;
+ func_02114f70();
+ for(i=0;i<32;i++){
+ p=(u8 *)func_02115110(i);
+ if(!p)continue;
+ func_02113a9c(i,p[0]);
+ func_02113abc(i,*(u16 *)(p+2));
+ if(*(u32 *)(p+4) && arg0) {
+ for(j=0;j<p[0];j++){
+ if(!func_02113ad4(i,arg0,*(void **)(p+4)))return 0;
+ }
+ }
+ }
+ return 1;
 }
 
 s32 func_02116078(u32 arg0, u32 arg1) {
