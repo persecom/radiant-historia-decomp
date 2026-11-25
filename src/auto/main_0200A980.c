@@ -76,7 +76,6 @@ else if(ret!=0x100)func_0200a884(p,ret);
 return ret;
 }
 
-#pragma opt_propagation off
 s32 func_0200ad00(void *arg0, s32 arg1) {
     u8 *arc = arg0;
     u8 *ret = NULL;
@@ -120,25 +119,22 @@ s32 func_0200ad00(void *arg0, s32 arg1) {
             func_02006560(ret + 0x18);
             ret = NULL;
         }
-    } else {
-        if (arg1 != 0) {
-            if (*(u32 *)(arc + 0x14) & 0x10) {
-                u32 tmp[0x48 / 4];
-                func_0200b888(tmp);
-                tmp[2] = (u32)arc;
-                *(u32 *)(arc + 0x14) &= ~0x10;
-                func_0200a980(tmp, 10);
-            }
-            if (*(u32 *)(arc + 0x14) & 0x40) {
-                *(u32 *)(arc + 0x14) = (*(u32 *)(arc + 0x14) & ~0x40) | 8;
-                func_02006560(arc + 0xc);
-            }
+    } else if (arg1 != 0) {
+        if (*(u32 *)(arc + 0x14) & 0x10) {
+            u32 tmp[0x48 / 4];
+            func_0200b888(tmp);
+            tmp[2] = (u32)arc;
+            *(u32 *)(arc + 0x14) &= ~0x10;
+            func_0200a980(tmp, 10);
+        }
+        if (*(u32 *)(arc + 0x14) & 0x40) {
+            *(u32 *)(arc + 0x14) = (*(u32 *)(arc + 0x14) & ~0x40) | 8;
+            func_02006560(arc + 0xc);
         }
     }
     func_0200813c(irq);
     return (s32)ret;
 }
-#pragma opt_propagation reset
 void func_0200aeac(u8 *arg0) {
     u8 *r4;
     u8 *cur;
