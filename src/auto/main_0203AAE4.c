@@ -38,7 +38,7 @@ extern void func_0206e7a0(s32, void *, void *, s32);
 extern void *func_020ec950(s32);
 extern s32 func_020ec9a0(void *, s32);
 extern void func_020ec548(void *);
-extern void func_020331b0(void *, s32);
+extern s32 func_020331b0(void *, s32);
 extern s32 unk_const_ffc;
 #pragma push
 #pragma opt_propagation off
@@ -48,8 +48,13 @@ s32 func_0203aae4(u8 *arg0) {
     u8 *r5 = *(u8 **)(r7 + 0x0);
     s32 ret = 0;
     Vec3 v1 = {0, 0, 0};
-    struct { u8 a; u16 b; u8 c; u16 d; u8 e; } v3 = {0, 0, 2, 0x258, 0};
+    struct { u8 a; u16 b; u8 c; u16 d; u8 e; } v3;
     Vec3 v2;
+    v3.a = 0;
+    v3.b = 0;
+    v3.c = 2;
+    v3.d = 0x258;
+    v3.e = 0;
 
     switch (*(u16 *)(r8 + 0)) {
     case 0: {
@@ -158,7 +163,7 @@ s32 func_0203aae4(u8 *arg0) {
             arg0[0x192] = 0x64;
             r5[0x192] = 0x64;
             func_02035c3c(r5, 0);
-            if (*(u16 *)(r5 + 0x8e) == 0x353) {
+            if (*(u16 *)(r5 + 0x8e) == v3.d + 0xfb) {
                 s32 id = 0x354;
                 u8 *o = func_020ddc08(id);
                 o[0x192] = 0x64;
@@ -184,9 +189,8 @@ s32 func_0203aae4(u8 *arg0) {
             v2.y = 0x60000;
             v2.z = 0x259000;
             func_020c1370(2, &v2, 0x40000, 2, 0x180);
-            v2.x = *(s32 *)(r8 + 0x24);
-            v2.y = *(s32 *)(r8 + 0x28) + 0xa000;
-            v2.z = *(s32 *)(r8 + 0x2c);
+            v2 = *(Vec3 *)(r8 + 0x24);
+            v2.y += 0xa000;
             func_020d9058(&v2);
             *(Vec3 *)data_02160258 = v2;
             func_0210d27c(0x75);
@@ -197,7 +201,7 @@ s32 func_0203aae4(u8 *arg0) {
         }
         break;
     case 4:
-        if ((*(u16 *)(r8 + 8) & 0x10) == 0 && func_020d2af4(ret, -1, ret, 1, 0x2bc) != 0) {
+        if ((*(u16 *)(r8 + 8) & 0x10) == 0 && func_020d2af4(ret, ret - 3, ret, 1, 0x2bc) != 0) {
             func_020331d0(r8, 0x10, 1);
         }
         if ((*(u16 *)(r8 + 8) & 1) == 0) {
@@ -230,12 +234,12 @@ s32 func_0203aae4(u8 *arg0) {
         }
         if ((*(u16 *)(r8 + 8) & 4) != 0 && arg0[0x104] == 0xe) {
             *(s16 *)(r8 + 2) += 1;
-            if (*(s16 *)(r8 + 2) > 2) {
+            if (*(volatile s16 *)(r8 + 2) > 2) {
                 if ((*(u16 *)(r8 + 8) & 0x10) == 0 && (func_0205bcb0(arg0, 4) & 1) != 0) {
                     *(s32 *)(r5 + 0) += 0x10000;
-                    func_020dd810(r5, 9, ret);
+                    func_020dd810(r5, 9, 0);
                     func_0205db90(arg0, r5, 3, 8);
-                    func_0206e7a0(0xc, r5, &v1, ret);
+                    func_0206e7a0(0xc, r5, &v1, 0);
                     func_0210d27c(0x72);
                 }
                 func_020331d0(r8, 0x10, 1);
@@ -263,8 +267,8 @@ s32 func_0203aae4(u8 *arg0) {
                     func_0206e7a0(0xc, r5, &v1, 0);
                 }
                 func_020331d0(r8, 0x100, 1);
-                if ((func_0205bcb0(arg0, ret) & 2) != 0) {
-                    func_020dd810(arg0, 0xf, ret);
+                if ((func_0205bcb0(arg0, 0) & 2) != 0) {
+                    func_020dd810(arg0, 0xf, 0);
                     ret = 5;
                 }
             }
@@ -274,42 +278,38 @@ s32 func_0203aae4(u8 *arg0) {
         if ((*(u16 *)(r8 + 8) & 1) == 0 && (func_0205bcb0(arg0, 4) & 1) != 0) {
             func_0205db90(arg0, r5, 3, 8);
             func_0210d27c(0x6e);
-            func_0206e7a0(0xc, r5, &v1, ret);
+            func_0206e7a0(0xc, r5, &v1, 0);
             *(s32 *)(r5 + 0) += 0x10000;
             *(s32 *)(arg0 + 0) -= 0x18000;
             func_020331d0(r8, 1, 1);
-            if ((func_0205bcb0(arg0, ret) & 2) != 0) {
-                func_020dd810(arg0, 0x10, ret);
-                ret = 6;
-            }
+        }
+        if ((func_0205bcb0(arg0, 0) & 2) != 0) {
+            func_020dd810(arg0, 0x10, 0);
+            ret = 6;
         }
         break;
     case 6:
         if ((*(u16 *)(r8 + 8) & 1) == 0 && (func_0205bcb0(arg0, 4) & 1) != 0) {
             func_0205db90(arg0, r5, 3, 8);
-            func_0206e7a0(0xc, r5, &v1, ret);
-            if ((func_0205bcb0(arg0, 4) & 1) != 0) {
-                func_0205db90(arg0, r5, 3, 8);
-                func_0206e7a0(0xc, r5, &v1, ret);
-                func_0210d27c(0x73);
-                v2.x = 0xae000;
-                v2.y = 0x60000;
-                v2.z = 0x263000;
-                func_020c1370(3, &v2, 0x7dd, ret, 0x200);
-                *(s32 *)(r5 + 4) += 0x18000;
-                *(s32 *)(arg0 + 0) -= 0x28000;
-                *(s32 *)(arg0 + 4) += 0x18000;
-                func_020331d0(r8, 1, 1);
-                if ((func_0205bcb0(arg0, ret) & 2) != 0) {
-                    func_020dd810(arg0, 0x11, ret);
-                    ret = 7;
-                }
-            }
+            func_0206e7a0(0xc, r5, &v1, 0);
+            func_0210d27c(0x73);
+            v2.x = 0xae000;
+            v2.y = 0x60000;
+            v2.z = 0x263000;
+            func_020c1370(3, &v2, 0x7dd, 0, 0x200);
+            *(s32 *)(r5 + 4) += 0x18000;
+            *(s32 *)(arg0 + 0) -= 0x28000;
+            *(s32 *)(arg0 + 4) += 0x18000;
+            func_020331d0(r8, 1, 1);
+        }
+        if ((func_0205bcb0(arg0, 0) & 2) != 0) {
+            func_020dd810(arg0, 0x11, 0);
+            ret = 7;
         }
         break;
     case 7: {
         u8 *p;
-        if ((*(u16 *)(r8 + 8) & 0x20) == 0 && (func_0205bcb0(arg0, 4) & 1) != 0) {
+        if ((*(u16 *)(r8 + 8) & 0x20) == 0 && (func_0205bcb0(arg0, 2) & 1) != 0) {
             func_0210d27c(0x68);
             func_020331d0(r8, 0x20, 1);
         }
@@ -329,9 +329,10 @@ s32 func_0203aae4(u8 *arg0) {
             func_020331d0(r8, 1, 1);
         }
         if ((*(u16 *)(r8 + 8) & 1) != 0) {
-            s32 y = *(s32 *)(arg0 + 4) - 0x4000;
-            if (y < 0xc000) y = 0xc000;
-            *(s32 *)(arg0 + 4) = y;
+            *(s32 *)(arg0 + 4) -= 0x4000;
+            if (*(s32 *)(arg0 + 4) <= 0xc000) {
+                *(s32 *)(arg0 + 4) = 0xc000;
+            }
             *(s32 *)(r5 + 4) -= 0x4000;
             if (*(s32 *)(r5 + 4) <= *(s32 *)(r5 + 0xd8)) {
                 *(s32 *)(r5 + 4) = *(s32 *)(r5 + 0xd8);
@@ -340,43 +341,50 @@ s32 func_0203aae4(u8 *arg0) {
                 v2.x = 0x58000;
                 v2.y = 0x80000;
                 v2.z = 0x280000;
-                func_020c1370(5, &v2, 0x1200, 1, 0x825);
-                v2.z = 0x27f000;
-                func_020c1370(6, &v2, 0x1a40, 2, 0x825);
+                func_020c1370(5, &v2, 5 + 0x820, 1, 0x1200);
+                v2.x = 0x58000;
+                v2.y = 0x80000;
+                v2.z = 0x280000 - 0x1000;
+                func_020c1370(6, &v2, 5 + 0x820, 2, 0x1a40);
                 func_020dd810(r5, 9, 0);
+                func_0206e7a0(0xc, r5, &v1, 0);
+                func_020331d0(r8, 4, 1);
                 p = func_020ec950(5);
                 if (p != NULL) {
-                    u8 *q = *(u8 **)p;
-                    q[0x20] += 0x100;
-                    q[0x24] += 0x200;
-                    if (q[0x24] >= 0x2000) {
-                        u8 *obj = *(u8 **)p;
+                    s32 *q = (s32 *)p;
+                    q[8] += 0x100;
+                    q[9] += 0x200;
+                    if (q[9] > 0x2000) {
+                        u8 *obj = *(u8 **)(*(u8 **)p + 8);
                         u8 state = obj[0x71];
                         state -= 2;
                         obj[0x71] = state;
-                        if (state < 2) obj[0x71] = 0;
+                        if ((*(u8 **)(*(u8 **)p + 8))[0x71] < 2)
+                            (*(u8 **)(*(u8 **)p + 8))[0x71] = 0;
                     }
                     func_020ec548(p);
                 }
+                func_020331d0(r8, 8, 1);
                 p = func_020ec950(6);
                 if (p != NULL) {
-                    u8 *q = *(u8 **)p;
-                    q[0x20] += 0x200;
-                    if (q[0x20] >= 0x2000) {
-                        u8 *obj = *(u8 **)p;
+                    s32 *q = (s32 *)p;
+                    q[8] += 0x200;
+                    q[9] += 0x200;
+                    if (q[8] > 0x2000) {
+                        u8 *obj = *(u8 **)(*(u8 **)p + 8);
                         u8 state = obj[0x71];
                         state -= 2;
                         obj[0x71] = state;
-                        if (state < 2) obj[0x71] = 0;
+                        if ((*(u8 **)(*(u8 **)p + 8))[0x71] < 2)
+                            (*(u8 **)(*(u8 **)p + 8))[0x71] = 0;
                     }
                     func_020ec548(p);
                 }
+                func_020331d0(r8, 0x10, 1);
                 p = func_020ec950(4);
                 if (p != NULL && (func_020ec9a0(*(void **)p, 0) & 2) != 0) {
                     func_020ec548(p);
                 }
-                func_020331d0(r8, 8, 1);
-                func_020331d0(r8, 0x10, 1);
                 if ((*(u16 *)(r8 + 8) & 2) == 0 && (func_0205bcb0(arg0, 0) & 2) != 0) {
                     func_020dd810(arg0, 0, 0);
                     func_020331d0(r8, 2, 1);
@@ -384,7 +392,7 @@ s32 func_0203aae4(u8 *arg0) {
             }
         }
         if ((*(u16 *)(r8 + 8) & 2) != 0 && (*(u16 *)(r8 + 8) & 8) != 0 && (*(u16 *)(r8 + 8) & 0x10) != 0) {
-            if (func_020d2af4(1, 0x1f, 0, 0, 0x2bc) != 0) {
+            if (func_020d2af4(1, 1, 0x1f, 0, 0x2bc) != 0) {
                 u8 *it = func_0205bad4(r7);
                 while (it != NULL) {
                     u8 *obj = *(u8 **)it;
@@ -402,27 +410,20 @@ s32 func_0203aae4(u8 *arg0) {
     }
     case 8:
         if ((*(u16 *)(r8 + 8) & 1) == 0) {
-            u8 *o = func_020f0a5c(*(u16 *)(*(u8 **)(*(u8 **)data_02160a74 + 0) + 0x7c));
+            u8 *o = func_020f0a5c(*(u16 *)(data_02160204 + 0x7c));
             *(u32 *)(o + 0x14) |= 1;
-            func_020df3f4(arg0, ret);
-            arg0[0x192] = ret;
-            r5[0x192] = 1;
+            func_020df3f4((s32)arg0, 0);
+            arg0[0x192] = 0;
+            r5[0x192] = 0;
             func_02035c3c(r5, 1);
-            {
-                u8 *g = *(u8 **)data_02160244;
-                *(u8 **)(g + 0)[0x10d] = ret;
-            }
+            (*data_02160244)[0x10d] = 0;
             func_0205db90(arg0, r5, 4, 8);
-            func_020a2c38(*(u16 *)(*(u8 **)data_02160260 + 0x48), ret);
+            func_020a2c38(*(u16 *)(data_02160260 + 0x48), 0);
             *(s32 *)(arg0 + 4) = 0x20000;
             *(Vec3 *)r5 = *(Vec3 *)(r8 + 0x24);
+            (*data_02160244)[0x6c] = 0;
             *(u8 **)(r5 + 0xf8) = NULL;
-            {
-                u8 *g = *(u8 **)data_02160244;
-                u8 *h = *(u8 **)g;
-                h[0x6c] = ret;
-                *(u8 **)(g + 0) = NULL;
-            }
+            func_020df56c(0, 0);
             if (func_020ec950(1) != NULL) {
                 func_020ec548(NULL);
             }
@@ -438,5 +439,8 @@ s32 func_0203aae4(u8 *arg0) {
         }
         break;
     }
-    }
+    if (ret == 0) return ret;
+    func_020331b0(r8, ret);
+    return ret;
+}
 #pragma pop
