@@ -126,22 +126,18 @@ void func_021143c0(u8 *arg0, u8 arg1) {
 }
 
 void func_02114420(u8 *arg0) {
-    u32 *flag = &data_0216c8a4;
-    u32 zero = 0;
-    u32 flags;
-    if (*flag != 0) {
-        return;
+    if (data_0216c8a4 == 0) {
+        func_021167ac((u32)data_0216c8a8, 0);
+        data_0216c8a4 = 1;
     }
-    func_021167ac((u32)data_0216c8a8, 0);
-    *flag = 1;
-    flags = *(u32 *)(arg0 + 0x2c) & ~1 & ~2;
     *(u32 *)(arg0 + 8) = (u32)func_0211497c;
     *(u32 *)(arg0 + 0xc) = (u32)arg0;
     *(u32 *)(arg0 + 0x18) = (u32)func_021149c8;
     *(u32 *)(arg0 + 0x1c) = (u32)arg0;
-    *(u32 *)(arg0 + 0x4c) = zero;
-    *(u32 *)(arg0 + 0x50) = zero;
-    *(u32 *)(arg0 + 0x2c) = flags;
+    *(u32 *)(arg0 + 0x4c) = 0;
+    *(u32 *)(arg0 + 0x50) = 0;
+    *(u32 *)(arg0 + 0x2c) &= ~1;
+    *(u32 *)(arg0 + 0x2c) &= ~2;
 }
 
 s32 func_02114494(u8 *arg0, s32 arg1, u8 *arg2) {
