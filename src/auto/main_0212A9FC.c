@@ -11,8 +11,108 @@ extern s32 func_0201ff0c(f32);
 extern s32 data_0217397c;
 extern s32 data_02173980;
 extern const s32 data_02145888[];
-s32 func_0212afc0(s32, s32, s32, s32, s32, s32, s16, s16, s32, s16, s16);
+
 s32 func_0212abac(s32, s32, s32, s32, s32, s32, s16, s16, s32, s16, s16);
+s32 func_0212a9fc(s8 *src, s32 nblk, s16 *dst, s16 *dly, s16 coef1, s16 coef2, s16 *xor_key, s16 mult, s16 inc) {
+    s32 s0, d;
+    s32 s1, s2;
+    s32 i, j;
+
+    s1 = dly[0];
+    s2 = dly[1];
+
+    for (i = 0; i < nblk; i++) {
+        s16 scale = *(s16 *)src;
+        scale = (s16)(((scale >> 8) & 0xff) | ((scale << 8) & 0xff00));
+        if (scale & 0x8000) {
+            return i;
+        }
+        src += 2;
+        scale = (s16)(((scale ^ *xor_key) & 0x1fff) + 1);
+        *xor_key = *xor_key * mult + inc;
+        *xor_key &= 0x7fff;
+
+        for (j = 0; j < 32; j += 2) {
+            s32 min = -0x8000;
+            s0 = coef1 * s1 + coef2 * s2;
+            d = *src++;
+            s2 = ((d >> 4) * scale) + (s0 >> 12);
+            s2 += data_02173980;
+            if (s2 > 0x7fff || s2 < min) {
+                if (s2 < min) {
+                    s2 = min;
+                } else if (s2 > 0x7fff) {
+                    s2 = 0x7fff;
+                }
+            }
+            *dst++ = s2;
+
+            s1 = (data_02145888[d & 0xf] * scale) + ((coef2 * s1 + coef1 * s2) >> 12);
+            s1 += data_02173980;
+            if (s1 > 0x7fff || s1 < min) {
+                if (s1 < min) {
+                    s1 = min;
+                } else if (s1 > 0x7fff) {
+                    s1 = 0x7fff;
+                }
+            }
+            *dst++ = s1;
+        }
+    }
+
+    dly[0] = s1;
+    dly[1] = s2;
+    return nblk;
+}
+
+s32 func_0212afc0(s32 src0, s32 nblk, s32 dst0, s32 dly0, s32 dstR0, s32 dlyR0, s16 coef1, s16 coef2, s32 key0, s16 mult, s16 inc) {
+s8 *src=(s8 *)src0;
+s16 *dst=(s16 *)dst0, *dly=(s16 *)dly0, *dstR=(s16 *)dstR0, *dlyR=(s16 *)dlyR0, *xor_key=(s16 *)key0;
+s32 s0,d,t0,e;
+s32 s1,s2,t1,t2;
+s32 i,j;
+s32 blocks=nblk/2;
+s1=dly[0];s2=dly[1];t1=dlyR[0];t2=dlyR[1];
+for(i=0;i<blocks;i++){
+s16 scale=*(s16 *)src,scaleR;
+scale=(s16)(((scale>>8)&255)|((scale<<8)&0xff00));
+if(scale&0x8000)return i*2;
+scale=(s16)(((scale^*xor_key)&0x1fff)+1);
+*xor_key=*xor_key*mult+inc;
+*xor_key&=0x7fff;
+scaleR=*(s16 *)(src+18);
+scaleR=(s16)(((scaleR>>8)&255)|((scaleR<<8)&0xff00));
+if(scaleR&0x8000)return i*2;
+src+=2;
+scaleR=(s16)(((scaleR^*xor_key)&0x1fff)+1);
+*xor_key=*xor_key*mult+inc;
+*xor_key&=0x7fff;
+for(j=0;j<32;j+=2){
+s32 min=-0x8000;
+d=*src;e=src[18];src++;
+s0=coef1*s1+coef2*s2;
+s2=((d>>4)*scale)+(s0>>12);
+s2+=data_02173980;
+if(s2>0x7fff || s2<min) {if(s2<min) s2=min; else if(s2>0x7fff) s2=0x7fff;}
+t0=coef1*t1+coef2*t2;
+t2=((e>>4)*scaleR)+(t0>>12);
+t2+=data_02173980;
+if(t2>0x7fff || t2<min) {if(t2<min) t2=min; else if(t2>0x7fff) t2=0x7fff;}
+*dst++=s2;*dstR++=t2;
+s1=data_02145888[d&15]*scale+((coef2*s1+coef1*s2)>>12);
+s1+=data_02173980;
+if(s1>0x7fff || s1<min) {if(s1<min) s1=min; else if(s1>0x7fff) s1=0x7fff;}
+t1=data_02145888[e&15]*scaleR+((coef2*t1+coef1*t2)>>12);
+t1+=data_02173980;
+if(t1>0x7fff || t1<min) {if(t1<min) t1=min; else if(t1>0x7fff) t1=0x7fff;}
+*dst++=s1;*dstR++=t1;
+}
+src+=18;
+}
+dly[0]=s1;dly[1]=s2;dlyR[0]=t1;dlyR[1]=t2;
+return nblk;
+}
+
 s32 func_0212b354(s32 a0, s32 a1, s32 a2, s32 a3, s32 a4, s32 a5, s16 a6, s16 a7, s32 a8, s16 a9, s16 a10) {
     if (data_0217397c == 0) {
         return func_0212afc0(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
