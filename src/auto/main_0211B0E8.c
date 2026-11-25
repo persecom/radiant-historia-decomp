@@ -11,19 +11,17 @@ return mode;
 }
  static inline s32 Width_bb3c(u32 a) {
  u32 size; s32 shape;
- const u16 (*tab)[4] = data_02144d84;
  a &= 0xc000c000;
  size=(a&0xc0000000)>>30;
  shape=(s32)(a&0xc000)>>14;
- return size[tab[shape]];
+ return size[data_02144d84[shape]];
  }
  static inline s32 Height_bb3c(u32 a) {
  u32 size; s32 shape;
- const u16 (*tab)[4] = data_02144d6c;
  a &= 0xc000c000;
  size=(a&0xc0000000)>>30;
  shape=(s32)(a&0xc000)>>14;
- return size[tab[shape]];
+ return size[data_02144d6c[shape]];
  }
 static inline s32 Double_bb3c(u32 a) { return Mode_bb3c(a)==0x300; }
 static inline void GetDouble_bb3c(u32 a,s32 *result) { *result=Double_bb3c(a); }
