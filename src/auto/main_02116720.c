@@ -194,18 +194,32 @@ void *func_02116a34(void *memBlock) {
 }
 
 void func_02116a5c(void *heap, u32 signature, void *start, void *end, u16 opt) {
-    typedef struct { u32 opt : 8; u32 pad : 24; } Bits;
-    typedef union { Bits bits; u32 raw; } Attr;
-    *(u32 *)heap = signature;
-    *(void **)((u8 *)heap + 0x18) = start;
-    *(void **)((u8 *)heap + 0x1c) = end;
-    *(u32 *)((u8 *)heap + 0x20) = (Attr){ .bits = { .opt = opt, .pad = 0 } }.raw;
-    func_021167ac((u8 *)heap + 0xc, 4);
+    typedef struct {
+        u32 signature;
+        u8 pad04[0x8];
+        u8 list[0xc];
+        void *start;
+        void *end;
+        union {
+            u32 val;
+            struct {
+                u32 opt : 8;
+                u32 pad : 24;
+            } fields;
+        } attr;
+    } HeapHead;
+    HeapHead *h = (HeapHead *)heap;
+    h->signature = signature;
+    h->start = start;
+    h->end = end;
+    h->attr.val = 0;
+    h->attr.fields.opt = opt;
+    func_021167ac(&h->list, 4);
     if (data_0216e21c == 0) {
         func_021167ac(data_0216e220, 4);
         data_0216e21c = 1;
     }
-    func_021167f0(func_02116a34(heap), heap);
+    func_021167f0(func_02116a34(h), h);
 }
 
 void func_02116ad8(void *heap) {
