@@ -1,7 +1,8 @@
 /* 38 functions from 0x021078D0 to 0x021088CC (main), found by ds-decomp. */
 #include "common.h"
 typedef struct { s32 x, y, z; } Vec_02108258;
-static inline void setvec_02108258(Vec_02108258 *v, s32 x, s32 y, s32 z) { v->x=x; v->y=y; v->z=z; }
+extern void func_02002274(void *, void *);
+static inline void setvec_02108258(Vec_02108258 *v, Vec_02108258 *w, s32 z, s32 x) { v->x=x; v->z=z; func_02002274(v,w); }
 extern char data_021559b0[], data_021559b8[];
 extern u8 data_02161198[], data_021612c8[], data_02161230[];
 extern u32 data_02162834[];
