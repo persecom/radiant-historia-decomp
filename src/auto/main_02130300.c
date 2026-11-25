@@ -21,6 +21,8 @@ extern void func_0212e628(void);
 extern void func_02132568(void);
 
 extern void func_02132ae8(void);
+extern s32 data_0215a07c[];
+extern s32 func_0212f3fc(void *, s32);
 void func_02130858(u32 *arg0, u32 *arg1) {
     if (arg0 != NULL) {
         *arg0 = data_0215a0d8[0];
@@ -110,6 +112,48 @@ delta=func_02132a9c(v);old=*(s32 *)(p+0x88);delta-=old;
 *(s32 *)(p+0x94)=func_02132a94(v);
 if(func_02132734(v)==3){func_02132770(v);*(s32 *)(p+4)=zero;}
 }
+}
+
+void func_02130b48(const s32 *a,const s32 *b,s16 *out) {
+ const s32 *original=b;
+ s16 *last=out+48,*mid=out+16,*hi=out+63,*lo=out+33,*neg=out+32;
+ u32 n=16;
+ do {s32 sum=(s16)a[0]*(s16)b[0]; sum+=(s16)(a[0]>>16)*(s16)(b[0]>>16);
+sum+=(s16)a[1]*(s16)b[1];sum+=(s16)(a[1]>>16)*(s16)(b[1]>>16);
+sum+=(s16)a[2]*(s16)b[2];sum+=(s16)(a[2]>>16)*(s16)(b[2]>>16);
+sum+=(s16)a[3]*(s16)b[3];sum+=(s16)(a[3]>>16)*(s16)(b[3]>>16);
+sum+=(s16)a[4]*(s16)b[4];sum+=(s16)(a[4]>>16)*(s16)(b[4]>>16);
+sum+=(s16)a[5]*(s16)b[5];sum+=(s16)(a[5]>>16)*(s16)(b[5]>>16);
+sum+=(s16)a[6]*(s16)b[6];sum+=(s16)(a[6]>>16)*(s16)(b[6]>>16);
+sum+=(s16)a[7]*(s16)b[7];sum+=(s16)(a[7]>>16)*(s16)(b[7]>>16);
+sum+=(s16)a[8]*(s16)b[8];sum+=(s16)(a[8]>>16)*(s16)(b[8]>>16);
+sum+=(s16)a[9]*(s16)b[9];sum+=(s16)(a[9]>>16)*(s16)(b[9]>>16);
+sum+=(s16)a[10]*(s16)b[10];sum+=(s16)(a[10]>>16)*(s16)(b[10]>>16);
+sum+=(s16)a[11]*(s16)b[11];sum+=(s16)(a[11]>>16)*(s16)(b[11]>>16);
+sum+=(s16)a[12]*(s16)b[12];sum+=(s16)(a[12]>>16)*(s16)(b[12]>>16);
+sum+=(s16)a[13]*(s16)b[13];sum+=(s16)(a[13]>>16)*(s16)(b[13]>>16);
+sum+=(s16)a[14]*(s16)b[14];sum+=(s16)(a[14]>>16)*(s16)(b[14]>>16);
+sum+=(s16)a[15]*(s16)b[15];sum+=(s16)(a[15]>>16)*(s16)(b[15]>>16);
+ s32 value=sum>>12; *out++=value;*neg--=-value;b+=16;}while(--n != 0);
+ *mid=0;b=original+528;n=15;
+ do {s32 sum=(s16)a[0]*(s16)b[0]+(s16)(a[0]>>16)*(s16)(b[0]>>16);
+sum+=(s16)a[1]*(s16)b[1];sum+=(s16)(a[1]>>16)*(s16)(b[1]>>16);
+sum+=(s16)a[2]*(s16)b[2];sum+=(s16)(a[2]>>16)*(s16)(b[2]>>16);
+sum+=(s16)a[3]*(s16)b[3];sum+=(s16)(a[3]>>16)*(s16)(b[3]>>16);
+sum+=(s16)a[4]*(s16)b[4];sum+=(s16)(a[4]>>16)*(s16)(b[4]>>16);
+sum+=(s16)a[5]*(s16)b[5];sum+=(s16)(a[5]>>16)*(s16)(b[5]>>16);
+sum+=(s16)a[6]*(s16)b[6];sum+=(s16)(a[6]>>16)*(s16)(b[6]>>16);
+sum+=(s16)a[7]*(s16)b[7];sum+=(s16)(a[7]>>16)*(s16)(b[7]>>16);
+sum+=(s16)a[8]*(s16)b[8];sum+=(s16)(a[8]>>16)*(s16)(b[8]>>16);
+sum+=(s16)a[9]*(s16)b[9];sum+=(s16)(a[9]>>16)*(s16)(b[9]>>16);
+sum+=(s16)a[10]*(s16)b[10];sum+=(s16)(a[10]>>16)*(s16)(b[10]>>16);
+sum+=(s16)a[11]*(s16)b[11];sum+=(s16)(a[11]>>16)*(s16)(b[11]>>16);
+sum+=(s16)a[12]*(s16)b[12];sum+=(s16)(a[12]>>16)*(s16)(b[12]>>16);
+sum+=(s16)a[13]*(s16)b[13];sum+=(s16)(a[13]>>16)*(s16)(b[13]>>16);
+sum+=(s16)a[14]*(s16)b[14];sum+=(s16)(a[14]>>16)*(s16)(b[14]>>16);
+sum+=(s16)a[15]*(s16)b[15];sum+=(s16)(a[15]>>16)*(s16)(b[15]>>16);
+ s16 value=sum>>12;*lo++=value;*hi--=value;b+=16;}while(--n != 0);
+ *last=-(((const s16 *)a)[0]+((const s16 *)a)[1]+((const s16 *)a)[2]+((const s16 *)a)[3]+((const s16 *)a)[4]+((const s16 *)a)[5]+((const s16 *)a)[6]+((const s16 *)a)[7]+((const s16 *)a)[8]+((const s16 *)a)[9]+((const s16 *)a)[10]+((const s16 *)a)[11]+((const s16 *)a)[12]+((const s16 *)a)[13]+((const s16 *)a)[14]+((const s16 *)a)[15]+((const s16 *)a)[16]+((const s16 *)a)[17]+((const s16 *)a)[18]+((const s16 *)a)[19]+((const s16 *)a)[20]+((const s16 *)a)[21]+((const s16 *)a)[22]+((const s16 *)a)[23]+((const s16 *)a)[24]+((const s16 *)a)[25]+((const s16 *)a)[26]+((const s16 *)a)[27]+((const s16 *)a)[28]+((const s16 *)a)[29]+((const s16 *)a)[30]+((const s16 *)a)[31]);
 }
 
 void func_02130ecc(s16 *samples, s16 *coeff, s16 *out) {
