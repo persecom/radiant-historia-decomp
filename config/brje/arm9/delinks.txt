@@ -872,7 +872,10 @@ src/auto/main_020EA188.c:
     .text start:0x020ea188 end:0x020ea574
 
 src/auto/main_020EA574.c:
-    .text start:0x020ea574 end:0x020eb180
+    .text start:0x020ea574 end:0x020eaae0
+
+src/auto/main_020EAAE0.c:
+    .text start:0x020eaae0 end:0x020eb180
 
 src/auto/main_020EB180.c:
     .text start:0x020eb180 end:0x020ec12c

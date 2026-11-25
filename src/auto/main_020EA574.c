@@ -123,135 +123,190 @@ extern s16 data_0213a394[];
 extern s32 data_02162834[];
 #pragma push
 #pragma opt_propagation off
-void func_020ea64c(void) {
-    u8 *g, *node, *obj, *bank, *seq, *v;
-    s32 flip = 0;
-    s32 scale, vis, sx, sy, idx;
-    struct { u8 b0 : 1; u8 b1 : 1; } *bf;
-    u32 cull = 2;
-
-    *(volatile u32 *)0x040004a4 = (cull << 6) | 0x1f0000;
-    *(volatile u32 *)0x04000480 = 0x7fff;
-    func_0211a4c0(data_021612c8, 0, 0);
-
-    if (data_02162860 == 0) {
-        g = data_02160a80;
-        if (*(s32 *)(g + 0x54) != 0) return;
-    } else {
-        g = data_02160a80;
-        if (*(s32 *)(g + 0x54) == 0) return;
+void func_020ea64c(void)
+{
+  u8 *g;
+  u8 *node;
+  u8 *obj;
+  u8 *bank;
+  u8 *seq;
+  u8 *v;
+  s32 scale;
+  s32 vis;
+  s32 sx;
+  u8 *new_var2;
+  s32 sy;
+  s32 flip = 0;
+  s32 idx;
+  unsigned char new_var;
+  struct 
+  {
+    u8 b0 : 1;
+    u8 b1 : 1;
+  } *bf;
+  u32 cull = 2;
+  *((volatile u32 *) 0x040004a4) = (cull << 6) | 0x1f0000;
+  *((volatile u32 *) 0x04000480) = 0x7fff;
+  func_0211a4c0(data_021612c8, 0, 0);
+  if (data_02162860 == 0)
+  {
+    g = data_02160a80;
+    if ((*((s32 *) (g + 0x54))) != 0)
+    {
+      return;
     }
-
-    node = *(u8 **)(g + 0x3c);
-    while (node != NULL) {
-        u32 flag1 = *(u32 *)(node + 0x18) & 1;
-        obj = *(u8 **)(node + 0);
-        vis = 1;
-        if (flag1 && !(*(u32 *)(node + 0x18) & 0x10)) {
-            sx = *(s32 *)(node + 0x1c) >> 12;
-            sy = *(s32 *)(node + 0x20) >> 12;
-            if (sx < -48 || sx > 0x130 || sy < -24 || sy > 0xd8) {
-                vis = 0;
-            }
-        }
-        if (vis && flag1) {
-            bf = (void *)(obj + 0x70);
-            scale = *(s32 *)(node + 0x28);
-            if (bf->b1) {
-                s32 neg = -1;
-                scale = scale * neg;
-                flip = 1;
-                func_0211ad90(func_02107aec);
-            }
-            bank = *(u8 **)(obj + 0x58);
-            func_0211a4d4(data_021612c8, *(void **)(bank + 0x10), *(void **)(bank + 0x14));
-            func_02119da4(data_021612c8);
-            func_02119f1c();
-            func_0211a178(*(s32 *)(node + 0x1c), *(s32 *)(node + 0x20), *(s32 *)(node + 0x24));
-            if (*(u32 *)(node + 0x18) & 4) {
-                idx = (*(u16 *)(obj + 0x5e) >> 4) << 1;
-                func_0211a3ac(data_0213a394[idx], data_0213a394[idx + 1]);
-            }
-            func_0211a26c(scale, *(s32 *)(node + 0x2c), 0x1000);
-            func_02119eb8(obj);
-            func_0211a128();
-            func_02119e4c();
-            if (flip) {
-                func_0211ada0();
-            }
-        }
-        if (*(s32 *)(node + 0x14) == 0) {
-            s32 step = *(s32 *)(obj + 0x60) << data_02162834[0];
-            s32 changed = 0;
-            *(s32 *)(node + 0x10) = 0;
-            if (*(s32 *)(obj + 0xc) != 0) {
-                s32 delta = (s32)(((s64)*(s32 *)(obj + 0x14) * step + 0x800) >> 12);
-                if (delta < 0) {
-                    delta = -delta;
-                }
-                *(s32 *)(obj + 0x10) += delta;
-                while (*(s32 *)(obj + 0xc) != 0 && *(s32 *)(obj + 0x10) >= (s32)(*(u16 *)(*(u8 **)(obj + 0x0) + 4) << 12)) {
-                    s32 ended;
-                    u8 *cur;
-                    u8 *base;
-                    u8 *end;
-                    changed = 1;
-                    *(s32 *)(obj + 0x10) -= (s32)(*(u16 *)(*(u8 **)(obj + 0x0) + 4) << 12);
-                    *(u8 **)(obj + 0x0) += 8;
-                    cur = *(u8 **)(obj + 0x0);
-                    seq = *(u8 **)(obj + 0x1c);
-                    base = *(u8 **)(seq + 0xc);
-                    if (((*(s32 *)(obj + 0x14) > 0) ^ *(s32 *)(obj + 0x8)) != 0) {
-                        ended = (cur >= base + (*(u16 *)(seq + 0) << 3)) ? 1 : 0;
-                    } else {
-                        ended = (cur <= base + (*(u16 *)(seq + 2) << 3) - 8) ? 1 : 0;
-                    }
-                    if (node != NULL) {
-                        *(s32 *)(node + 0x10) = ended;
-                    }
-                    if (ended != 0) {
-                        s32 mode = *(s32 *)(obj + 0x18);
-                        if (mode == 0) {
-                            mode = *(s32 *)(*(u8 **)(obj + 0x1c) + 8);
-                        }
-                        if (mode != 2 && mode != 4) {
-                            *(s32 *)(obj + 0xc) = 0;
-                        } else {
-                            seq = *(u8 **)(obj + 0x1c);
-                            *(u8 **)(obj + 0x0) = *(u8 **)(seq + 0xc) + (*(u16 *)(seq + 2) << 3);
-                            *(s32 *)(obj + 0x10) = 0;
-                            func_02117be0(obj, 0);
-                        }
-                        seq = *(u8 **)(obj + 0x1c);
-                        cur = *(u8 **)(obj + 0x0);
-                        base = *(u8 **)(seq + 0xc);
-                        end = base + (*(u16 *)(seq + 0) << 3) - 8;
-                        if (cur > end) {
-                            *(u8 **)(obj + 0x0) = end;
-                        } else if (cur < base) {
-                            *(u8 **)(obj + 0x0) = base;
-                        }
-                    }
-                }
-            }
-            if (changed != 0 && *(u16 *)(*(u8 **)(obj + 0x0) + 4) != 0) {
-                v = *(u8 **)(*(u8 **)(obj + 0x0));
-                *(void **)(obj + 0x30) = func_021176b0(*(void **)(obj + 0x34), *(u16 *)v);
-                idx = *(s32 *)(*(u8 **)(obj + 0x1c) + 4) & 0xff;
-                func_02118eec((void *)(obj + 0x3c), 1);
-                if (idx != 0) {
-                    if (idx == 2) {
-                        func_02118e94((void *)(obj + 0x3c), *(s16 *)(v + 4), *(s16 *)(v + 6));
-                    } else {
-                        func_02118ed0((void *)(obj + 0x3c), *(s32 *)(v + 4), *(s32 *)(v + 8));
-                        func_02118eb4((void *)(obj + 0x3c), *(u16 *)(v + 2));
-                        func_02118e94((void *)(obj + 0x3c), *(s16 *)(v + 0xc), *(s16 *)(v + 0xe));
-                    }
-                }
-            }
-        }
-        node = *(u8 **)(node + 0x38);
+  }
+  else
+  {
+    g = data_02160a80;
+    if ((*((s32 *) (g + 0x54))) == 0)
+    {
+      return;
     }
+  }
+  node = *((u8 **) (g + 0x3c));
+  while (node != NULL)
+  {
+    u32 flag1 = (*((u32 *) (node + 0x18))) & 1;
+    obj = *((u8 **) (node + 0));
+    new_var2 = obj + 0x0;
+    vis = 1;
+    if (flag1 && (!((*((u32 *) (node + 0x18))) & 0x10)))
+    {
+      sx = (*((s32 *) (node + 0x1c))) >> 12;
+      sy = (*((s32 *) (node + 0x20))) >> 12;
+      if ((((sx < (-48)) || (sx > 0x130)) || (sy < (-24))) || (sy > 0xd8))
+      {
+        vis = 0;
+      }
+    }
+    if (vis && flag1)
+    {
+      bf = (void *) (obj + 0x70);
+      scale = *((s32 *) (node + 0x28));
+      if (bf->b1)
+      {
+        s32 neg = -1;
+        scale = scale * neg;
+        flip = 1;
+        func_0211ad90(func_02107aec);
+      }
+      bank = *((u8 **) (obj + 0x58));
+      func_0211a4d4(data_021612c8, *((void **) (bank + 0x10)), *((void **) (bank + 0x14)));
+      func_02119da4(data_021612c8);
+      func_02119f1c();
+      func_0211a178(*((s32 *) (node + 0x1c)), *((s32 *) (node + 0x20)), *((s32 *) (node + 0x24)));
+      if ((*((u32 *) (node + 0x18))) & 4)
+      {
+        idx = ((*((u16 *) (obj + 0x5e))) >> 4) << 1;
+        func_0211a3ac(data_0213a394[idx], data_0213a394[idx + 1]);
+      }
+      func_0211a26c(scale, *((s32 *) (node + 0x2c)), 0x1000);
+      func_02119eb8(obj);
+      func_0211a128();
+      func_02119e4c();
+      if (flip)
+      {
+        func_0211ada0();
+      }
+    }
+    if ((*((s32 *) (node + 0x14))) == 0)
+    {
+      s32 step = (*((s32 *) (obj + 0x60))) << data_02162834[0];
+      s32 changed = 0;
+      *((s32 *) (node + 0x10)) = 0;
+      if ((*((s32 *) (obj + 0xc))) != 0)
+      {
+        s32 delta = (s32) (((((s64) (*((s32 *) (obj + 0x14)))) * step) + 0x800) >> 12);
+        if (delta < 0)
+        {
+          delta = -delta;
+        }
+        *((s32 *) (obj + 0x10)) += delta;
+        v = obj + 0x1c;
+        while (((*((s32 *) (obj + 0xc))) != 0) && ((*((s32 *) (obj + 0x10))) >= ((s32) ((*((u16 *) ((*((u8 **) new_var2)) + 4))) << 12))))
+        {
+          s32 ended;
+          u8 *cur;
+          u8 *base;
+          u8 *end;
+          changed = 1;
+          *((s32 *) (obj + 0x10)) -= (s32) ((*((u16 *) ((*((u8 **) new_var2)) + 4))) << 12);
+          *((u8 **) new_var2) += 8;
+          cur = *((u8 **) new_var2);
+          seq = *((u8 **) v);
+          base = *((u8 **) (seq + 0xc));
+          if ((((*((s32 *) (obj + 0x14))) > 0) ^ (*((s32 *) (obj + 0x8)))) != 0)
+          {
+            ended = (cur >= (base + ((*((u16 *) (seq + 0))) << 3))) ? (1) : (0);
+          }
+          else
+          {
+            ended = (cur <= ((base + ((*((u16 *) (seq + 2))) << 3)) - 8)) ? (1) : (0);
+          }
+          if (node != NULL)
+          {
+            *((s32 *) (node + 0x10)) = ended;
+          }
+          if (ended != 0)
+          {
+            s32 mode = *((s32 *) (obj + 0x18));
+            if (mode == 0)
+            {
+              mode = *((s32 *) ((*((u8 **) v)) + 8));
+            }
+            if ((mode != 2) && (mode != 4))
+            {
+              *((s32 *) (obj + 0xc)) = 0;
+            }
+            else
+            {
+              seq = *((u8 **) (obj + (new_var = 0x1c)));
+              *((u8 **) new_var2) = (*((u8 **) (seq + 0xc))) + ((*((u16 *) (seq + 2))) << 3);
+              *((s32 *) (obj + 0x10)) = 0;
+              func_02117be0(obj, 0);
+            }
+            seq = *((u8 **) v);
+            cur = *((u8 **) new_var2);
+            base = *((u8 **) (seq + 0xc));
+            end = (base + ((*((u16 *) (seq + 0))) << 3)) - 8;
+            if (cur > end)
+            {
+              *((u8 **) new_var2) = end;
+            }
+            else
+              if (cur < base)
+            {
+              *((u8 **) new_var2) = base;
+            }
+          }
+        }
+
+      }
+      if ((changed != 0) && ((*((u16 *) ((*((u8 **) new_var2)) + 4))) != 0))
+      {
+        v = *((u8 **) (*((u8 **) new_var2)));
+        *((void **) (obj + 0x30)) = func_021176b0(*((void **) (obj + 0x34)), *((u16 *) v));
+        idx = (*((s32 *) ((*((u8 **) v)) + 4))) & 0xff;
+        func_02118eec((void *) (obj + 0x3c), 1);
+        if (idx != 0)
+        {
+          if (idx == 2)
+          {
+            func_02118e94((void *) (obj + 0x3c), *((s16 *) (v + 4)), *((s16 *) (v + 6)));
+          }
+          else
+          {
+            func_02118ed0((void *) (obj + 0x3c), *((s32 *) (v + 4)), *((s32 *) (v + 8)));
+            func_02118eb4((void *) (obj + 0x3c), *((u16 *) (v + 2)));
+            func_02118e94((void *) (obj + 0x3c), *((s16 *) (v + 0xc)), *((s16 *) (v + 0xe)));
+          }
+        }
+      }
+    }
+    node = *((u8 **) (node + 0x38));
+  }
+
 }
 #pragma pop
 extern u8 *data_02160a80;
@@ -288,96 +343,3 @@ s32 func_020eaacc(void) {
 
 void func_020ebc94(void *,u16,s32);
 #pragma opt_propagation off
-void func_020eaae0(void){
-Vec_EAAE0 pos;
-s32 matrix[12];
-u8 *sub,*node,*obj,*next;
-u8 visible,culled;
-func_02001134(data_02170248,matrix);
-if(!data_02160a6c)return;
-func_020e9dc0();
-node=*(u8 **)(data_02160a6c+0x7c);
-if(!node)return;
-do{
-sub=*(u8 **)(node+0x108);obj=*(u8 **)(sub+8);
-pos=*(Vec_EAAE0 *)node;
-next=*(u8 **)(node+0x15c);
-if((*(u32 *)(node+0x80)&2)==0){*(u32 *)(node+0x80)&=~4;visible=0;}else visible=1;
-if(*(s32 *)(node+0x64)==0)
-{
-s32 sx,sy;
-ProjectRenderPosition(&pos,&sx,&sy);
-*(s32 *)(node+0xfc)=sx;*(s32 *)(node+0x100)=sy;
-if(sx < -48 || sx > 304 || sy < -16 || sy > 240){*(u32 *)(node+0x80)&=~4;culled=1;}
-else{*(u32 *)(node+0x80)|=4;culled=0;}
-}
-else
-{
-s32 sx,sy;
-ProjectRenderPosition(&pos,&sx,&sy);
-*(s32 *)(node+0xfc)=sx;*(s32 *)(node+0x100)=sy;
-*(u32 *)(node+0x80)|=4;culled=0;
-}
-if(node[0xa1]&1){
-*(s32 *)(node+0x54)=4096;
-*(s32 *)(node+0xfc)=*(s32 *)node;
-*(s32 *)(node+0x100)=*(s32 *)(node+4);culled=0;
-}
-if(visible && !culled){
-if(*(s32 *)(sub+0x18) && GetRenderId(node)!=999){
-u32 mode=1;u8 *seq=*(u8 **)(sub+0xc);
-if(*(u16 *)(node+0x94))mode=3;
-if(*(u16 *)(sub+0x1c)!=mode){
-u16 id;
-*(u16 *)(sub+0x1c)=mode;
-id=*(u16 *)(seq+2);
-if(*(u16 *)(node+0x94))id++;
-func_020ebc94(sub,id,0);
-}
-}
-{
-s32 scale=*(s32 *)(node+0x54);
-u32 cull=2,flag=0;
-s32 x,y,z;
-u32 flags;
-if(((u32)obj[0x70]<<30)>>31){scale*=-1;cull=3;}
-if(*(u32 *)(node+0x80)&0x1000)flag=0x8000;
-*(volatile u32 *)0x040004a4=flag|(cull<<6)|(*(s16 *)(node+0x9a)<<16);
-if(*(u32 *)(node+0x80)&0x20000)*(u16 *)(node+0x88)=31;
-*(volatile u32 *)0x04000480=*(u16 *)(node+0x88);
-func_0211a4c0(data_021612c8,0,0);
-func_0211a4d4(data_021612c8,*(void **)(*(u8 **)(obj+0x58)+0x10),*(void **)(*(u8 **)(obj+0x58)+0x14));
-func_02119da4(data_021612c8);func_02119f1c();
-flags=*(u32 *)(node+0x80);x=*(s32 *)(node+0xfc);y=*(s32 *)(node+0x100);
-if(flags&0x80){x+=*(s32 *)(node+0x3c);y+=*(s32 *)(node+0x40);}
-if(flags&0x8000){x+=*(s32 *)(node+0x68);y+=*(s32 *)(node+0x70);}
-z=*(s32 *)(node+0x64);
-if(!z){z=*(s32 *)(node+0x74)<<12;if(node[0x192])z=(node[0x192]+0x212)<<12;func_0211a178(x<<12,y<<12,z);}else func_0211a178(x<<12,y<<12,z<<12);
-func_0211a26c(scale,*(s32 *)(node+0x54),4096);
-func_02119eb8(obj);func_0211a128();func_02119e4c();
-}
-}
-node=next;
-}while(node);
-}
-#pragma opt_propagation on
-void func_020eb0f8(void) {
-    u8 *node = data_02160a6c;
-    u8 *obj = *(u8 **)(node + 0x7c);
-    s32 zero = 0;
-    s32 one = 1;
-    s32 arg = zero;
-    if (obj == NULL) return;
-    while (obj != NULL) {
-        u8 *sub = *(u8 **)(obj + 0x108);
-        func_020ebddc(sub, *(u32 *)(obj + 0xf8) == 0 ? one : zero);
-        if (*(u32 *)(obj + 0xa8) == 0 && *(u32 *)(sub + 0x20) == 1) {
-            u8 v = *(u8 *)(obj + 0x104);
-            if (v == 3 || v == 8) {
-                func_020dd810(obj, arg, arg);
-            }
-        }
-        obj = *(u8 **)(obj + 0x15c);
-    }
-}
-
