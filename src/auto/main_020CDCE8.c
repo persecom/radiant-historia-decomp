@@ -13,11 +13,6 @@ static inline void set_digit_size(DigitSprite *s, s16 width, s16 height) {
  s->field[3]=width; s->field[4]=height;
  s->field[8]=width; s->field[9]=height;
 }
-static inline void set_digit_base(DigitSprite *s, s8 width, s8 height, s16 y) {
- s->field[3]=width; s->field[4]=height;
- s->field[8]=width; s->field[9]=height;
- s->field[2]=0; s->field[6]=y;
-}
 extern void func_020a3bbc(void);
 extern void func_021098ac(void *);
 
@@ -50,12 +45,14 @@ extern void func_020a994c(void *);
 extern void func_020a9610(void *, s32, s32, s32, s32, s32);
 extern void func_020a98ac(void *);
 extern void func_020a98f4(void *);
+#pragma scheduling off
 void func_020cdce8(s32 value, s16 x, s16 y, s16 z, s8 spacing, u16 kind, s32 align, u8 count) {
  DigitSprite sprite=data_02144678;
  s32 n=value;
  s8 width,height;
  u8 digits=0, i;
  s16 padding;
+ s16 zero=0;
  switch(kind) {
  case 7: width=6; height=8; break;
  case 18: case 19: width=8; height=10; break;
@@ -76,15 +73,15 @@ void func_020cdce8(s32 value, s16 x, s16 y, s16 z, s8 spacing, u16 kind, s32 ali
  for(i=0;i<digits;i++) {
  sprite.field[3]=width; sprite.field[4]=height;
  sprite.field[8]=width; sprite.field[9]=height;
- sprite.field[2]=0; sprite.field[6]=y;
+ sprite.field[2]=zero; sprite.field[6]=y;
  { u8 digit=value%10; value/=10; sprite.field[1]=digit*width; }
  if(align) sprite.field[5]=x+i*(-(width+spacing));
- else { s32 left=(digits-1)*(width+spacing); sprite.field[5]=i*(-(width+spacing))+left+x; }
+ else { s32 left=(digits-1)*(width+spacing); s32 off=i*(-(width+spacing))+left; sprite.field[5]=off+x; }
  sprite.field[7]=z+101;
  func_021098ac(&sprite);
  }
 }
-
+#pragma scheduling on
 void func_020cdf18(void) {
     SpriteTable12_020cdf18 first=data_021447c0;
     SpriteTable11_020cdf18 second=data_0214468c;
