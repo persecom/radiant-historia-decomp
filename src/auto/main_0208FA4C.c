@@ -211,10 +211,14 @@ func_0208db04(0x41,*(u16*)(ch+34)+*(s16*)(ch+50),x+0x81+off_34+off_6c,y+65,8,10,
  back.data[5]=x+0x40+col*7;back.data[6]=y+0x67;back.data[7]=z+1;
  func_021098ac(&back);
  s32 amount=*(u16*)(ch+0x34);
- if(amount==100 ? 1 : col<(amount%100)/9) {
- func_020a3bbc(0x51);
- front.data[5]=x+0x40+col*7;front.data[6]=y+0x67;front.data[7]=z+2;
- func_021098ac(&front);
+ if (amount == 100) {
+     func_020a3bbc(0x51);
+     front.data[5]=x+0x40+col*7;front.data[6]=y+0x67;front.data[7]=z+2;
+     func_021098ac(&front);
+ } else if (col < (amount % 100) / 9) {
+     func_020a3bbc(0x51);
+     front.data[5]=x+0x40+col*7;front.data[6]=y+0x67;front.data[7]=z+2;
+     func_021098ac(&front);
  }
  }
  }
