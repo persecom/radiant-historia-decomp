@@ -54,9 +54,19 @@ extern void func_0200fedc(u32, u32, u32);
 
 #pragma peephole off
 
+typedef struct {
+    u8 pad0[4];
+    volatile u32 flag;
+    u8 pad1[0x51c - 8];
+    void *payload;
+} RH0215f120;
+
 void func_0200fedc(u32 arg0, u32 arg1, u32 arg2) {
     volatile u32 *p;
-    if (arg0 != 0xb || arg2 == 0) {
+    if (arg0 != 0xb) {
+        return;
+    }
+    if (arg2 == 0) {
         return;
     }
     p = (volatile u32 *)data_0215f120;
@@ -101,3 +111,49 @@ s32 func_0200ff10(u8 *arg0, s32 arg1, s32 arg2) {
     return res == 0;
 }
 
+#pragma peephole on
+void func_02010060(u8 *p) {
+s32 op=*(u32 *)(p+0x510);
+u32 mode=*(u32 *)(p+0x518);
+s32 retries=*(u32 *)(p+0x514);
+s32 limit=256;
+s32 size;
+func_02000b64((void *)0x02000bac);
+if(op==11) limit=func_0201068c();
+else if(op==15) limit=(*(u32 **)data_0215f120)[8];
+do {
+size=*(u32 *)(p+0x504);
+if((u32)limit<(u32)size) size=limit;
+(*(u32 **)p)[5]=size;
+if(*(volatile u32 *)(p+4)&0x40) {
+*(volatile u32 *)(p+4)&=~0x40;
+(*(u32 **)p)[0]=7;
+return;
+}
+switch(mode) {
+case 0:
+func_02006d8c((u32)data_0215f660,size);
+(*(u32 **)p)[3]=*(u32 *)(p+0x4fc);
+(*(u32 **)p)[4]=(u32)data_0215f660;
+break;
+case 1: case 2:
+func_02009008(*(void **)(p+0x4fc),data_0215f660,size);
+func_02006dc4(data_0215f660,size);
+func_02006de8();
+(*(u32 **)p)[3]=(u32)data_0215f660;
+(*(u32 **)p)[4]=*(u32 *)(p+0x500);
+break;
+case 3:
+(*(u32 **)p)[3]=*(u32 *)(p+0x4fc);
+(*(u32 **)p)[4]=*(u32 *)(p+0x500);
+break;
+}
+if(!func_0200ff10(p,op,retries)) return;
+if(mode==2) {if(!func_0200ff10(p,9,1)) break;}
+else if(mode==0) func_02009008(data_0215f660,*(void **)(p+0x500),size);
+*(u32 *)(p+0x4fc)+=size;
+*(u32 *)(p+0x500)+=size;
+*(u32 *)(p+0x504)-=size;
+} while(*(u32 *)(p+0x504));
+}
+#pragma peephole off
