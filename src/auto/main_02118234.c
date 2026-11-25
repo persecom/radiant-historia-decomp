@@ -2,6 +2,7 @@
 #include "common.h"
 typedef struct { u8 pad[0x100]; u16 entries[128][4]; u8 tail[0x40]; } UnkOamBuffer;
 extern u8 data_0216e274[];
+typedef struct { u32 type; u16 first, last, unk_08, affineFirst, affineLast, affineLimit; u32 unk_10, full; } OamManager_2118234;
 typedef void (*OamFn)(void *, u32, u32);
 extern OamFn data_02155e9c[5];
 extern void func_02003770(void *, u32, u32);
@@ -16,13 +17,14 @@ extern void func_02008e24(u32,void *,u32);
 extern void func_02118234(void *);
 extern void func_02118430(void *);
 void func_02118234(void *arg0) {
+    u8 *oam;
     if (*(u32 *)((u8 *)arg0 + 0x14) != 0) {
+        u32 type = *(u32 *)arg0;
         u16 start = *(u16 *)((u8 *)arg0 + 4);
         u16 end = *(u16 *)((u8 *)arg0 + 6);
-        u8 *oam = GetOamEntries(*(u32 *)arg0);
-        u32 type = *(u32 *)arg0;
         u16 size = (end - start + 1) * 8;
         u16 offset = start * 8;
+        oam = GetOamEntries(type);
 
         func_02006dc4(oam + start * 8, size);
         switch (type) {
@@ -38,13 +40,12 @@ void func_02118234(void *arg0) {
         u32 type = *(u32 *)arg0;
         u16 start = *(u16 *)((u8 *)arg0 + 4);
         u16 end = *(u16 *)((u8 *)arg0 + 6);
-        u8 *oam = GetOamEntries(type);
+        oam = GetOamEntries(type);
         u16 count = end - start + 1;
         u8 *dst = oam + start * 8;
         u16 offset = start * 8;
         OamFn fn = data_02155e9c[type];
         u16 i;
-
         for (i = 0; i < count; i++) {
             fn(dst, offset, 6);
             dst += 8;
@@ -64,14 +65,13 @@ void func_02118234(void *arg0) {
     }
     {
         u32 type = *(u32 *)arg0;
-        u8 *oam = GetOamEntries(type);
+        oam = GetOamEntries(type);
         u16 start = *(u16 *)((u8 *)arg0 + 0xa);
         u16 count = *(u16 *)((u8 *)arg0 + 0xc) - start + 1;
         u16 offset = start * 32;
         u8 *dst = oam + start * 32;
         OamFn fn = data_02155e9c[type];
         u16 i;
-
         for (i = 0; i < count; i++) {
             fn(dst + 6, offset + 6, 2);
             fn(dst + 14, offset + 14, 2);
