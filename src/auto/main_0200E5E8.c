@@ -26,12 +26,14 @@ s32 func_0200ef5c(void) {
 }
 
 void func_0200ef78(void *arg0, u32 arg1, u32 arg2, u32 arg3) {
-    u8 *prev, *cur;
+    s32 intr;
+    u8 *cur;
+    u8 *prev;
     if (arg0 == NULL) return;
     *(s32 *)((u8 *)arg1 + 8) = (s32)arg2;
-    func_02008128();
-    prev = NULL;
+    intr = ((s32 (*)(void))func_02008128)();
     cur = *(u8 **)arg0;
+    prev = NULL;
     if (cur != NULL) {
         do {
             if (arg3 == 0 && *(s32 *)(cur + 8) > (s32)arg2) break;
@@ -50,7 +52,7 @@ void func_0200ef78(void *arg0, u32 arg1, u32 arg2, u32 arg3) {
     } else {
         *(u8 **)arg0 = (u8 *)arg1;
     }
-    func_0200813c();
+    ((void (*)(s32))func_0200813c)(intr);
 }
 
 void func_0200f004(void *arg0, s32 arg1) {
