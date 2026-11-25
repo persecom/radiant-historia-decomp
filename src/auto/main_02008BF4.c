@@ -42,6 +42,8 @@ extern void func_020097a8(u32, s32, s32, s32);
 extern void func_020097f0(u32, u32, u32, u32, u32);
 extern u32 *func_02009a64(s32);
 extern void func_02009aec(u32 *);
+typedef struct { u32 a[3]; } Copy12B;
+typedef struct { u32 a[2]; } Copy8B;
 typedef struct { u32 a[8]; } Copy32B;
 typedef struct { u32 a[9]; } Copy36B;
 typedef struct { u32 a[12]; } Copy48B;
@@ -136,6 +138,20 @@ void func_02008e50(u32 *src, u32 *dst, s32 size) {
             return;
         }
         *dst = *src++;
+    }
+}
+
+void func_02008e68(u32 value, u32 *start, u32 size) {
+    u32 *p = start;
+    u32 *end32 = (u32 *)((u8 *)start + (size & ~0x1fu));
+    u32 *end = (u32 *)((u8 *)start + size);
+    while (p < end32) {
+        p[0] = value; p[1] = value; p[2] = value; p[3] = value;
+        p[4] = value; p[5] = value; p[6] = value; p[7] = value;
+        p += 8;
+    }
+    while (p < end) {
+        *p++ = value;
     }
 }
 
