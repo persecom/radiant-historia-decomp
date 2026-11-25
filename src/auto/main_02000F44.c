@@ -3,15 +3,6 @@
 typedef struct { s32 v[9]; } Mtx33;
 typedef struct { s32 v[12]; } Mtx43;
 typedef struct { s32 v[16]; } Mtx44;
-typedef struct { u32 a, b; } InitPair;
-typedef struct { u32 a, b, c; } InitTriple;
-typedef struct {
-    InitPair p0, p1;
-    InitTriple p2;
-    InitPair p3;
-    InitTriple p4;
-    InitPair p5, p6;
-} InitMatrix;
 
 typedef struct Mtx9 {
     u32 a00, a01, a02;
