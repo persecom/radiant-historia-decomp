@@ -33,7 +33,7 @@ extern void func_0210db70(void *);
 extern void func_0210dbd0(void *);
 extern void func_0203faf4(void);
 void func_0203e8c0(void) {
-    register u8 **g asm("r5") = (u8 **)&data_021600a0;
+    u8 **g = (u8 **)&data_021600a0;
     u16 mask = 0x7fff;
     s32 one = 1;
     s32 zero = 0;
@@ -207,19 +207,14 @@ void func_0203ef0c(s32 arg0) {
 }
 
 void func_0203efc4(void) {
-    u16 v = *(u16 *)(data_021600a0 + 0x36);
-    u16 count;
-    u16 flag;
-    if (!(v & 0x8000)) {
-        return;
-    }
-    count = (u16)(v & ~0xc000);
-    count += 1;
-    flag = v & 0x4000;
-    if (count > 15) {
-        flag ^= 0x4000;
-        count = 0;
-    }
-    *(u16 *)(data_021600a0 + 0x36) = count;
-    *(u16 *)(data_021600a0 + 0x36) |= (u16)(flag | 0x8000);
+ u16 v=*(u16*)(data_021600a0+0x36);
+ u32 count; u16 flag;
+ if(!(v&0x8000)) return;
+ count=(u16)(v&~0xc000);
+ count++;
+ flag=v&0x4000;
+ count=(u16)count;
+ if(count>15) { flag^=0x4000; count=0; }
+ *(u16*)(data_021600a0+0x36)=count;
+ *(u16*)(data_021600a0+0x36)|=(u16)(flag|0x8000);
 }
