@@ -37,6 +37,14 @@ typedef struct {
     s16 unk0e;
 } EntryB_020b77d4;
 
+typedef struct {
+    EntryA_020b77d4 a[10];
+} TblA_020b77d4;
+
+typedef struct {
+    EntryB_020b77d4 a[2];
+} TblB_020b77d4;
+
 void func_020a2c20(void);
 void func_021070c4(void);
 void func_0210f6d4(void);
