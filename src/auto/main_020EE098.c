@@ -41,7 +41,6 @@ extern s32 func_0210e7f0(char *, void *);
 extern s32 func_0210e848(char *, void *);
 extern void func_021167f0(void *, void *);
 
-u8 *func_020ee52c(u16 arg0);
 s32 func_020ee098(void) {
     s32 one = 1;
     s32 zero = 0;
