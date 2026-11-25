@@ -118,7 +118,7 @@ extern u8 *func_021092d8(void *);
 extern u8 *func_02106c9c(int);
 extern char *func_0210cd50(void);
 typedef struct {u8 pad[0x1692];u16 x,z;} Save_02104F68;
-static inline void savepos_02104F68(u16 z,u16 x){Save_02104F68 *p=(Save_02104F68 *)data_02160078;p->x=x;p->z=z;}
+static inline void savepos_02104F68(int z,int x){Save_02104F68 *p=(Save_02104F68 *)data_02160078;p->x=x;p->z=z;}
 
 int func_02104f68(void){
 u8 *ctx=*(u8 **)(data_021626e8+16);
