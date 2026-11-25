@@ -1,5 +1,41 @@
 /* 25 functions from 0x02025F38 to 0x02026F38 (main), found by ds-decomp. */
 #include "common.h"
+extern char data_0214600c[];
+extern char data_0214602c[];
+extern char data_02146050[];
+extern char data_02146054[];
+extern char data_02146058[];
+extern char data_0214605c[];
+extern char data_02146060[];
+extern char data_02146064[];
+extern char data_02146068[];
+extern char data_0214606c[];
+extern char data_02146070[];
+extern char data_02146074[];
+extern char data_0214607c[];
+extern char data_02146080[];
+extern char data_02146084[];
+extern char data_02146088[];
+extern char data_0214608c[];
+extern char data_02146090[];
+extern char data_02146098[];
+extern char data_0214609c[];
+extern char data_021460a0[];
+extern char data_021460a4[];
+extern char data_021460a8[];
+extern char data_021460ac[];
+extern char data_021460b0[];
+extern char data_021460b8[];
+extern char data_021460bc[];
+extern char data_021460c0[];
+extern char data_021460c4[];
+extern char data_021460cc[];
+extern char data_021460d0[];
+extern char data_021460d4[];
+extern char data_021460d8[];
+extern char data_021460dc[];
+extern char data_021460e0[];
+extern char data_021460e4[];
 
 extern void func_0210c5dc(void *);
 extern void func_021168f8(void *, void *);
