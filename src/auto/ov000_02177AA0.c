@@ -17,7 +17,6 @@ extern u32 func_ov000_02177ad0(void *, u32);
 extern void func_02010c40(s32, u32, void *, u32, s32, s32, s32);
 extern void func_0200fa20(u32);
 extern void func_02005e50(u32);
-static inline s32 card_neg(u32 v) { return -(s32)v; }
 #pragma push
 #pragma opt_propagation off
 #pragma opt_loop_invariants off
@@ -149,7 +148,7 @@ u32 func_ov000_02177d4c(void) {
 
 
         *(volatile u16 *)0x04000204 &= ~0x800;
-        pos = -(s32)(addr & (0x204 - c5));
+        pos = card_neg(addr & (0x204 - c5));
         hdr_addr = ((((*(volatile u8 *)(io + 0x4000) & 1) + 5) << 18) - 13) << 5;
         ctrl = (*(volatile u32 *)hdr_addr & ~0x07000000) | 0xa1000000;
         while (*(volatile u32 *)(io + 0x1a4) & 0x80000000) {}
