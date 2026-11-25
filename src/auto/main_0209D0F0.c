@@ -257,8 +257,10 @@ void func_0209df60(void **arr) {
         void **vt = *(void ***)obj;
         ((void (*)(void *))vt[3])(vt);
         obj = arr[i + 1];
-        if (obj != NULL) func_0210c5dc(obj);
-        arr[i + 1] = NULL;
+        if (obj != NULL) {
+            func_0210c5dc(obj);
+            arr[i + 1] = NULL;
+        }
     }
     if (arr[0] != NULL) func_020a957c((void ***)arr);
     if (arr != NULL) func_0210c5dc(arr);
