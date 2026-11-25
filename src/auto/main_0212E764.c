@@ -83,15 +83,14 @@ s32 func_0212e7f0(u32 arg0, void *arg1) {
 void func_0212ea64(void);
 void func_0212ea90(void);
 void func_0212e764(void);
+static inline u32 *ThreadParams_0212e860(void) { return data_021744d8; }
 void func_0212e860(void *arg)
 {
   u32 value;
   u32 stack;
   u32 base;
-  u32 *new_var;
   Config_0212e860 *p = arg;
-  u32 zero = 0;
-  u32 one = 1;
+  u32 *new_var;
   (void) (*((volatile const u32 *) (&data_0214590c)));
   if (!p)
   {
@@ -120,27 +119,27 @@ void func_0212e860(void *arg)
     data_02156dd8 = 15;
   }
   data_02174500 = *p;
-  data_02174524[6] = zero;
-  data_02174524[7] = zero;
-  data_02174524[2] = one;
+  data_02174524[6] = 0;
+  data_02174524[7] = 0;
+  data_02174524[2] = 1;
   func_0212ea90();
   new_var = data_021744d8;
   stack = p->words[3];
   base = ((volatile Config_0212e860 *) p)->words[6];
   stack = ((stack + 3) & (~3)) + base;
-  func_020062d8(data_02174548, func_0212e69c, zero, stack, base, new_var[10]);
-  data_02174524[4] = one;
-  data_02174524[5] = zero;
-  func_020062d8(data_02174608, func_0212e70c, zero, ((p->words[4] + 3) & (~3)) + p->words[7], p->words[7], new_var[11]);
+  func_020062d8(data_02174548, func_0212e69c, 0, stack, base, new_var[10]);
+  data_02174524[4] = 1;
+  data_02174524[5] = 0;
+  func_020062d8(data_02174608, func_0212e70c, 0, ((p->words[4] + 3) & (~3)) + p->words[7], p->words[7], new_var[11]);
   if (data_02174524[8] != 2)
   {
-    data_02174524[0] = zero;
-    data_02174524[1] = one;
+    data_02174524[0] = 0;
+    data_02174524[1] = 1;
     return;
   }
-  data_02174524[0] = one;
-  data_02174524[1] = zero;
-  func_020062d8(data_021746c8, func_0212e764, zero, ((p->words[5] + 3) & (~3)) + p->words[8], p->words[8], new_var[12]);
+  data_02174524[0] = 1;
+  data_02174524[1] = 0;
+  func_020062d8(data_021746c8, func_0212e764, 0, ((p->words[5] + 3) & (~3)) + p->words[8], p->words[8], new_var[12]);
 }
 
 BOOL func_0212ea3c(void) {
@@ -555,7 +554,7 @@ BOOL func_0212f3cc(u8 *arg0, s32 arg1) {
 
 extern void func_0212f178();
 extern u32 data_02145914[];
-#pragma opt_propagation off
+#pragma scheduling off
 s32 func_0212f3fc(u8 *arg0, s32 arg1) {
     s32 rem;
     s32 result;
@@ -573,7 +572,6 @@ s32 func_0212f3fc(u8 *arg0, s32 arg1) {
     *(s32 *)(arg0 + 0x10) += arg1;
     return result;
 }
-#pragma opt_propagation on
 void *func_0212f468(void *arg0) {
     return *(void **)((u8 *)arg0 + 0x10);
 }
