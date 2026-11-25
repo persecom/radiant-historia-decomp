@@ -121,13 +121,11 @@ void func_02139b34(u8 *arg0, s32 arg1, s32 arg2, void *arg3) {
     s32 c;
     *(s32 *)(arg0 + arg2 * 4 + 4) = val;
     c = *(s32 *)(arg0 + 0xc);
-    if ((arg1 & 0x1f) == 0) {
-        if ((c & 0x1f) != 0) {
-            func_02130b48(arg1, c, dst);
+    if ((arg1 & 0x1f) != 0 || (c & 0x1f) != 0) {
+        while (1) {
         }
-    } else {
-        func_02130b48(arg1, c, dst);
     }
+    func_02130b48(arg1, c, dst);
     data_0215cc6c[*(s32 *)((u8 *)arg0 + 4 + arg2 * 4) >> 6](p + *(s32 *)((u8 *)arg0 + 4 + arg2 * 4) * 2, *(u32 *)(arg0 + 0x10), arg3);
 }
 
