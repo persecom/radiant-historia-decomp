@@ -322,9 +322,9 @@ u8 *func_020c9b24(u8 *arg0, s32 arg1, s32 arg2) {
 }
 
 u32 func_020c9b64(u8 *arg0) {
-    register u32 ret = 0;
     u16 count = *(u16 *)(arg0 + 4);
     u16 i;
+    u32 ret = 0;
     for (i = 0; i < count; i++) {
         u8 *obj = (*(u8 ***)arg0)[i];
         if (obj != NULL) {
@@ -335,16 +335,16 @@ u32 func_020c9b64(u8 *arg0) {
 }
 
 u32 func_020c9bb8(u8 *arg0) {
-    register u32 ret = 0;
-    u16 count = *(u16 *)(arg0 + 4);
-    u16 i;
-    for (i = 0; i < count; i++) {
-        u8 *obj = (*(u8 ***)arg0)[i];
-        if (obj != NULL && *(void **)(obj + 0xc) != NULL) {
-            ret |= ((u32 (*)(u8 *))(*(void **)(obj + 0xc)))(obj);
-        }
-    }
-    return ret;
+void *p=arg0;
+s32 ret=0;
+u16 count=*(u16 *)((u8 *)p+4);
+u16 i;
+for(i=0;i<count;i++){
+u8 *obj=(*(u8 ***)p)[i];
+if(obj != NULL && *(void **)(obj+12) != NULL)
+ret |= ((u32 (*)(u8 *))(*(void **)(obj+12)))(obj);
+}
+return ret;
 }
 
 extern u16 func_020c9c34(u8 *);
