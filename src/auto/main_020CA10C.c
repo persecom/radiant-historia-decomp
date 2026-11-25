@@ -10,6 +10,8 @@ extern u8 data_02160a80[16];
 extern u8 *func_020f0aa4(s32);
 extern void func_020f0154(s32);
 typedef struct { s32 x, y, z; } Vec3_ca10c;
+typedef void (*Fn0898)(Vec3_ca10c, s32, s32);
+#define CALL0898(base, id) ((Fn0898)func_020f0898)(*(Vec3_ca10c *)((base) + 0x94), (id), 1000)
 extern void func_020f0898(s32, s32, s32, s32, s32);
 extern void func_020eaa10(s32);
 extern void func_02108680(void *, s32, s32);
