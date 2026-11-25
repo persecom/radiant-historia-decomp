@@ -21,10 +21,6 @@ extern void func_0200bb10(void *, s32, s32);
 extern void func_0200b8b4(void *);
 extern s32 func_02133dd0(s32, void *);
 extern u8 data_021756d8[];
-static inline void clear_manager(void) {
-    extern u8 data_021756d8[] __attribute__((aligned(4)));
-    __clear(data_021756d8, 724);
-}
 extern u32 data_021756d4;
 extern u8 data_02175998[];
 extern u8 data_021759a0[];
