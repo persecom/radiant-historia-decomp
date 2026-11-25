@@ -138,15 +138,17 @@ void func_020e13b0(s32 arg0, s32 arg1) {
 }
 
 void func_020e1850(void) {
-    u8 *root = data_02160a74;
+    struct Inner { u16 a, b, c, d; u32 e, f; };
+    struct Outer { u8 pad[0x110]; struct Inner *arr[10]; };
+    struct Outer *root = (struct Outer *)data_02160a74;
     u16 i;
     for (i = 0; i < 10; i++) {
-        *(u16 *)(*(u8 **)(root + i * 4 + 0x110) + 0x0) = 0;
-        *(u16 *)(*(u8 **)(root + i * 4 + 0x110) + 0x2) = 0;
-        *(u16 *)(*(u8 **)(root + i * 4 + 0x110) + 0x4) = 0;
-        *(u16 *)(*(u8 **)(root + i * 4 + 0x110) + 0x6) = 0;
-        *(u32 *)(*(u8 **)(root + i * 4 + 0x110) + 0x8) = 0;
-        *(u32 *)(*(u8 **)(root + i * 4 + 0x110) + 0xc) = 0;
+        root->arr[i]->a = 0;
+        root->arr[i]->b = 0;
+        root->arr[i]->c = 0;
+        root->arr[i]->d = 0;
+        root->arr[i]->e = 0;
+        root->arr[i]->f = 0;
     }
 }
 
