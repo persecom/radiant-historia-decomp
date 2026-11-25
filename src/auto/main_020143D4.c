@@ -3,8 +3,9 @@
 extern void func_02019580(void *,double,void *);
 extern double func_0201e014(double);
 extern char *strcpy(char *,const char *);
-typedef struct { u8 c[5]; } FormatText5;
-typedef struct { u8 c[4]; } FormatText4;
+typedef struct { u8 c[2]; } FormatText2;
+typedef struct { FormatText2 lo, hi; u8 last; } FormatText5;
+typedef struct { FormatText2 lo, hi; } FormatText4;
 extern FormatText5 data_02145e54,data_02145e5c,data_02145e6c,data_02145e74;
 extern FormatText4 data_02145e64,data_02145e68,data_02145e7c,data_02145e80;
 
@@ -126,7 +127,7 @@ u8 *func_020143d4(double value, u8 *end, FormatSpec spec)
     bytes[7 - i] = temp;
   }
 
-  exponent = ((((u32) (new_var = ((u8 *) (&value))[1])) << 17) | (((u32) ((u8 *) (&value))[0])) << 25) >> 21;
+  exponent = ((((u32) (new_var = ((u8 *) (&value))[1])) << 17) | (((u32) ((u8 *) (&value))[0]) << 25)) >> 21;
   exponent &= 0x7ff;
   if (exponent)
   {
