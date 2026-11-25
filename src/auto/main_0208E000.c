@@ -47,18 +47,25 @@ extern void func_020a30c4(u16);
 extern void func_0208dcc8(s32, s32, s32, s32, s32);
 extern void func_0208dea4(u32, s32, s16, s16, s16, u8);
 extern const Unk10 data_02141008;
-void func_0208e1cc(s32 arg0, s32 arg1) {
+void func_0208e1cc(u8 arg0, u8 arg1) {
+    typedef struct {
+        u8 pad[0x5570];
+        struct {
+            s16 id;
+            u8 cnt;
+            u8 pad[97];
+        } entries[1];
+    } BigS;
     Unk10 a = data_02141008;
     s16 i;
     s16 stride = 0x50;
     u8 *page;
-    s32 diff, off, id, cnt;
+    s32 diff, id, cnt;
     u8 limit;
 
     diff = (u8)(data_0216010c[0x50d7] - data_0216010c[0x50d6]);
     limit = 6;
     if (*(s16 *)(data_0216010c + 0x50d4) < 6) limit = (u8)*(s16 *)(data_0216010c + 0x50d4);
-    off = diff * 100;
     page = data_0216010c + 0x5000;
 
     for (i = 0; i < 6; i++) {
@@ -66,8 +73,8 @@ void func_0208e1cc(s32 arg0, s32 arg1) {
             func_020a994c(((Entry_0208e1cc *)(data_0216010c + 0x74))[i].data);
             continue;
         }
-        id = *(s16 *)(off + data_0216010c + i * 100 + 0x5570);
-        cnt = *(u8 *)(data_0216010c + off + i * 100 + 0x5572);
+        id = ((BigS *)data_0216010c)->entries[diff + i].id;
+        cnt = ((BigS *)data_0216010c)->entries[diff + i].cnt;
         if (i == page[0xd6]) {
             func_0209250c(0x30, 1, 10, (s16)(i * 19 + 53), 156, 18, 8, 16, 4, 2, 4, 4, 177);
             func_020a8810(*(void **)(((Entry_0208e1cc *)data_0216010c)[i].data + 0x70), 19);
@@ -138,7 +145,7 @@ Styles_0208e864 styles=data_02140ef8;
 u8 count=6;
 u8 *base=data_0216010c;
 s32 offset=(u8)(base[0x50d7]-base[0x50d6]);
-s32 texture, row, depth;
+s32 row, depth;
 u8 selected;
 s16 i;
 if(*(s16 *)(base+0x50d4)<6) {
@@ -161,10 +168,11 @@ case 2:func_020a3bbc(72);break;
 case 3:func_020a3bbc(86);break;
 }
 func_021098ac(&icon);
-texture=selected+73;func_020a3bbc(texture);
+{s32 texture=(s32)selected+73;func_020a3bbc(texture);
 amount.f5=x+128;amount.f6=y+31+i*22;amount.f7=z+1;
 func_021098ac(&amount);
 func_0208db04((u16)texture,*(s16 *)(data_0216010c+(offset<<6)+(i<<6)+0x4890),x+150,y+31+i*22,7,8,8,z+1);
+}
 }
 func_0208dcc8((s16)(x+168),(s16)(y+26),94,z,offset);
 if(count) {
