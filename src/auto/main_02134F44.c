@@ -14,6 +14,7 @@ extern s32 func_02135920();
 extern s32 func_02135960(u8 *, s32, s32);
 extern void func_02135984(u8 *, s32, s32);
 extern u8 data_02175ab8[];
+typedef struct { u32 w[104]; } Block02175ab8;
 extern void func_021147e8(void *, s32, s32);
 extern void func_0211470c(void *);
 extern void func_02135f0c(void *, u16 *, u16 *);
@@ -480,21 +481,19 @@ void func_02135d24(u16 arg0) {
     }
 }
 
-#pragma optimization_level 3
+#pragma push
+#pragma opt_propagation off
 void func_02135d4c(s32 arg0, u16 arg1) {
-    s32 i;
-    if (arg0 == 0) {
-        for (i = 0; i < 8; i++) {
-            u8 *entry = data_02175ab8 + i * 0x34;
-            *(u16 *)(entry + 0x26) = arg1;
-            *(u16 *)(entry + 0x28) = 8;
-        }
-        return;
-    }
-    *(u16 *)((u8 *)arg0 + 0x26) = arg1;
-    *(u16 *)((u8 *)arg0 + 0x28) = 8;
+ u16 eight=8; u8 *entry; s32 i;
+ if(arg0==0){
+ i=0; do {entry=data_02175ab8+i*0x34;
+ *(u16*)(entry+0x26)=arg1; *(u16*)(entry+0x28)=eight; i++;} while(i<8);
+ return;
+ }
+ *(u16*)((u8*)arg0+0x26)=arg1;
+ *(u16*)((u8*)arg0+0x28)=eight;
 }
-#pragma optimization_level 4
+#pragma pop
 s16 func_02135d94(u8 *arg0) {
     return *(s16 *)(arg0 + 0x26);
 }
