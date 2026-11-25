@@ -1,5 +1,15 @@
 /* 9 functions from 0x020D7E7C to 0x020D8E5C (main), found by ds-decomp. */
 #include "common.h"
+extern u8 *data_02160090;
+extern u8 *data_02160110[];
+extern void *func_020ddbcc(u32);
+extern void func_02060408(void *);
+extern void func_02093424(void *,s32);
+extern void func_0202fad8(void *),func_02064c18(void *),func_02026e64(void *);
+extern u8 *func_0202fb50(u32,s32);
+extern void *func_02064be8(void),*func_02026e40(u32);
+extern u8 *func_02065298(void *,s32,s32,s32,void *);
+
 
 typedef struct UnkNode_020d60248 {
     void *unk00;
