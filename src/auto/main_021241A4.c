@@ -88,17 +88,15 @@ arg0[13]=(s32)(b>>8)+(h2<<15);
 arg0[4]=(-*(s16 *)(arg1+0x20)*func_02001ff4())>>12;
 }
 
-void func_021243ac(s32 *arg0, u8 *arg1) {
-    s32 lr = *(s32 *)(arg1 + 0x1c);
-    s32 r4 = *(s32 *)(arg1 + 0x18);
-    u16 r3 = *(u16 *)(arg1 + 0x2c);
-    u16 r1 = *(u16 *)(arg1 + 0x2e);
-    arg0[5] = lr;
-    arg0[0] = r4;
-    arg0[1] = 0;
-    arg0[12] = ((0x1000 - r4) * r3) << 3;
-    arg0[13] = ((0x1000 - lr) * r1) << 3;
-    arg0[4] = 0;
+void func_021243ac(s32 *__restrict arg0, u8 *__restrict arg1) {
+ s32 x=*(s32*)(arg1+0x18);
+ s32 y=*(s32*)(arg1+0x1c);
+ arg0[5]=y;
+ arg0[0]=x;
+ arg0[1]=0;
+ arg0[12]=((0x1000-x)* *(u16*)(arg1+0x2c))<<3;
+ arg0[13]=((0x1000-y)* *(u16*)(arg1+0x2e))<<3;
+ arg0[4]=0;
 }
 
 void func_021243f4(s32 *arg0) {
@@ -123,58 +121,45 @@ void func_02124418(u8 *arg0)
 
     Packet packet;
     s32 scale;
-    s32 zero = 0;
     void (*build)(s32 *, u8 *);
 
-    if (*(u32 *)arg0 & 8) {
-        packet.command = 0x101610;
-    } else {
-        packet.command = 0x101810;
-    }
+    packet.command = (*(u32 *)arg0 & 8) ? 0x101610 : 0x101810;
 
     build = data_02156110[*(u32 *)arg0 & 7];
 
     packet.mode = 3;
     packet.endMode = 2;
-    packet.matrix[14] = zero;
-    packet.matrix[11] = zero;
-    packet.matrix[10] = zero;
-    packet.matrix[9] = zero;
-    packet.matrix[8] = zero;
-    packet.matrix[7] = zero;
-    packet.matrix[6] = zero;
-    packet.matrix[3] = zero;
-    packet.matrix[2] = zero;
+    packet.matrix[14] = 0;
+    packet.matrix[11] = 0;
+    packet.matrix[10] = 0;
+    packet.matrix[9] = 0;
+    packet.matrix[8] = 0;
+    packet.matrix[7] = 0;
+    packet.matrix[6] = 0;
+    packet.matrix[3] = 0;
+    packet.matrix[2] = 0;
     packet.matrix[15] = 0x1000;
 
     build(packet.matrix, arg0);
 
     scale = *(s32 *)(arg0 + 0x30);
-
     if (scale != 0x1000) {
-        packet.matrix[0] =
-            (s32)(((s64)scale * packet.matrix[0]) >> 12);
-        packet.matrix[1] =
-            (s32)(((s64)scale * packet.matrix[1]) >> 12);
-        packet.matrix[12] =
-            (s32)(((s64)scale * packet.matrix[12]) >> 12);
+        packet.matrix[0] = (s32)(((s64)scale * packet.matrix[0]) >> 12);
+        packet.matrix[1] = (s32)(((s64)scale * packet.matrix[1]) >> 12);
+        packet.matrix[12] = (s32)(((s64)scale * packet.matrix[12]) >> 12);
     }
 
     scale = *(s32 *)(arg0 + 0x34);
-
     if (scale != 0x1000) {
-        packet.matrix[4] =
-            (s32)(((s64)scale * packet.matrix[4]) >> 12);
-        packet.matrix[5] =
-            (s32)(((s64)scale * packet.matrix[5]) >> 12);
-        packet.matrix[13] =
-            (s32)(((s64)scale * packet.matrix[13]) >> 12);
+        packet.matrix[4] = (s32)(((s64)scale * packet.matrix[4]) >> 12);
+        packet.matrix[5] = (s32)(((s64)scale * packet.matrix[5]) >> 12);
+        packet.matrix[13] = (s32)(((s64)scale * packet.matrix[13]) >> 12);
     }
 
-    func_021205ec(packet.command, &packet.mode, 0x12);
+    func_021205ec(packet.command, (u32 *)&packet + 1, 0x12);
 }
 
-void func_02124550(s32 *arg0, u8 *arg1) {
+void func_02124550(s32 *__restrict arg0, u8 *__restrict arg1) {
     s32 w = *(u16 *)(arg1 + 0x2c) << 12;
     s32 h = *(u16 *)(arg1 + 0x2e) << 12;
     s32 c, s, sx, sy, ss, cy;
@@ -191,16 +176,10 @@ void func_02124550(s32 *arg0, u8 *arg1) {
     arg0[1] = ((s32)(((s64)sy * s) >> 12) * func_02001ff4()) >> 12;
     func_02002058(w, h);
     {
-        s32 w2 = *(u16 *)(arg1 + 0x2c);
-        s32 h2 = *(u16 *)(arg1 + 0x2e);
-        s32 ty = *(s32 *)(arg1 + 0x28);
-        s32 tx = *(s32 *)(arg1 + 0x24);
-        s32 c2 = *(s16 *)(arg1 + 0x22);
-        s32 sx2 = *(s32 *)(arg1 + 0x18);
-        s64 a = ((s64)tx * s - (s64)ty * c2) >> 12;
-        s64 b = ((s64)ty * s + (s64)tx * c2) >> 12;
-        arg0[13] = (-h2 * (cy + (s32)((a * (s64)sy) >> 12) - 0x1000)) << 4;
-        arg0[12] = (w2 * (ss - (s32)((b * (s64)sx2) >> 12))) << 4;
+        s64 a = ((s64)*(s32 *)(arg1 + 0x24) * s - (s64)*(s32 *)(arg1 + 0x28) * *(s16 *)(arg1 + 0x22)) >> 12;
+        s64 b = ((s64)*(s32 *)(arg1 + 0x24) * *(s16 *)(arg1 + 0x22) + (s64)*(s32 *)(arg1 + 0x28) * s) >> 12;
+        arg0[13] = (-*(u16 *)(arg1 + 0x2e) * (cy + (s32)((a * (s64)sy) >> 12) - 0x1000)) << 4;
+        arg0[12] = (*(u16 *)(arg1 + 0x2c) * (ss - (s32)((b * *(s32 *)(arg1 + 0x18)) >> 12))) << 4;
     }
     arg0[4] = (-ss * func_02001ff4()) >> 12;
 }
@@ -304,19 +283,19 @@ void func_0212491c(s32 *arg0, u8 *arg1) {
     arg0[4] = (-*(s16 *)(arg1 + 0x20) * func_02001ff4()) >> 12;
 }
 
+#pragma opt_propagation off
 void func_021249bc(s32 *arg0, u8 *arg1) {
-    u16 h = *(u16 *)(arg1 + 0x2e);
     s32 y = *(s32 *)(arg1 + 0x1c);
+    u16 h = *(u16 *)(arg1 + 0x2e);
     s32 ty = (-h * (y - 0x1000)) << 4;
-    s32 zero = 0;
     arg0[5] = y;
     arg0[0] = *(s32 *)(arg1 + 0x18);
-    arg0[1] = zero;
-    arg0[12] = zero;
+    arg0[1] = 0;
+    arg0[12] = 0;
     arg0[13] = ty;
-    arg0[4] = zero;
+    arg0[4] = 0;
 }
-
+#pragma opt_propagation on
 void func_021249f8(s32 *arg0) {
     arg0[0] = 0x1000;
     arg0[1] = 0;
@@ -326,12 +305,13 @@ void func_021249f8(s32 *arg0) {
     arg0[13] = 0;
 }
 
+#pragma optimization_level 3
 void func_02124a1c(u8 *arg0) {
     s32 data[19];
     s32 scale;
     void (*fn)(s32 *, u8 *);
-    s32 zero = 0;
     s32 one = 0x1000;
+    s32 zero = 0;
 
     if (*(u32 *)arg0 & 8) {
         data[0] = 0x101610;
@@ -380,7 +360,7 @@ void func_02124a1c(u8 *arg0) {
     }
     func_021205ec(data[0], (s32 *)((u8 *)data + 4), 0x12);
 }
-
+#pragma optimization_level 4
 s32 func_02124b90(void) {
     return 0;
 }
@@ -444,11 +424,11 @@ void func_02124c78(void) {
     }
 }
 
-u32 func_02124cf8(u32 input, u32 flag, u32 unused, u32 size)
+u32 func_02124cf8(u32 size, u32 flag)
 {
   u32 addr;
   int i;
-  size = (input == 0) ? (16) : ((input + 15) & (~15));
+  size = (size == 0) ? (16) : ((size + 15) & (~15));
   int ok;
   Row24 *q;
   Row24 *p;
@@ -481,7 +461,7 @@ u32 func_02124cf8(u32 input, u32 flag, u32 unused, u32 size)
 
         if (q->f[2] && ((q->f[1] - q->f[0]) >= (size / 2)))
         {
-          u32 start = *((volatile u32 *) (&p->f[0]));
+          u32 start = *((volatile s32 *) (&p->f[0]));
           p->f[0] = size;
           p->f[0] = start + p->f[0];
           q->f[0] += size / 2;
@@ -500,7 +480,7 @@ u32 func_02124cf8(u32 input, u32 flag, u32 unused, u32 size)
       p = data_02156168[i];
       if (p->f[2] && ((p->f[1] - p->f[0]) >= size))
       {
-        u32 start = (*((volatile u32 *) (&p->f[1]))) - size;
+        u32 start = (*((volatile s32 *) (&p->f[1]))) - size;
         p->f[1] = start;
         addr = start + p->f[5];
         ok = 1;
