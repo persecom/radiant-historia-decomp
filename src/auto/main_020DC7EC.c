@@ -57,7 +57,7 @@ extern u8 *data_02160aa4;
 typedef struct {s32 x,y,z;} Vec_DCE1C;
 extern u8 *func_020eb400(void),*func_020f25f0(void),*func_020f0aa4(s32);
 extern s32 func_020eb44c(void *,u32,u32,s32,s32);
-extern s32 func_020f26fc(void *,u16,u8),func_020f2a5c(void *,u16,u8);
+extern s32 func_020f26fc(),func_020f2a5c();
 extern void func_020f0898(Vec_DCE1C,u32,u16);
 extern void func_021167f0(void *,void *);
 extern void func_020dc4b8(void);
@@ -161,6 +161,121 @@ list=g[1]+0xe8;
 if(list) {while((node=*(void **)list)!=NULL){func_021168f8(list,node);if(node)func_0210c5dc(node);}}
 if(g[1]){func_0210c5dc(g[1]);g[1]=NULL;}
 }
+
+#pragma optimization_level 0
+u8 *func_020dce1c(u32 id,s32 count,u32 offset){
+register u32 original=id;
+register u32 kind=original;
+register u32 flags=2;
+register u8 *resource=0;
+register u8 *node=0;
+if(count==0 && original<50){
+if(kind>0 && kind<99){
+u8 *obj=func_020eb400();
+data_02155bac=0;if(func_020eb44c(obj,kind,*(u32 *)(data_02160aa4+4),0,0)==0){data_02155bac=1;}else{resource=obj;flags|=9;}
+}
+else if(kind>100 && kind<799){
+u8 *obj=func_020f25f0();
+if(func_020f26fc(obj,kind,0)==0){}else{resource=obj;flags|=1;}
+}
+else if(kind>1900 && kind<1999){
+u8 *obj=func_020f25f0();
+if(func_020f26fc(obj,kind,0)==0){}else{resource=obj;flags|=16;}
+}
+else if(kind>1100 && kind<1899){
+u8 *obj=func_020f25f0();
+if(func_020f2a5c(obj,kind,0)==0){}else{resource=obj;flags|=16;}
+}
+else if(kind>1000 && kind<1099){
+u8 *obj=func_020f25f0();
+if(func_020f2a5c(obj,kind,1)==0){}else{resource=obj;flags|=16;}
+}
+else if(kind>3000 && kind<3999){
+u8 *obj=func_020f25f0();
+if(func_020f2a5c(obj,kind,1)==0){}else{resource=obj;flags|=16;}
+}
+else if(kind>4000 && kind<4099){
+u8 *obj=func_020f25f0();
+if(func_020f2a5c(obj,kind,2)==0){}else{resource=obj;flags|=16;}
+}
+else if(kind>5000 && kind<5099){
+u8 *obj=func_020eb400();
+data_02155bac=0;if(func_020eb44c(obj,kind,offset,0,0)==0){data_02155bac=1;}else{resource=obj;flags|=8;flags&=~2;}
+}
+else if(kind>800 && kind<899){
+u8 *obj=func_020f25f0();
+if(func_020f26fc(obj,kind,1)==0){}else{resource=obj;flags|=1;}
+}
+else if(kind>900 && kind<999){
+if(func_020f0154(0x2774)==0){}else{
+Vec_DCE1C pos; s32 unused=0;pos.x=0x64000;pos.y=0;pos.z=0;
+func_020f0898(pos,0x2774,1);
+resource=func_020f0aa4(1);flags|=1;
+}
+}
+else return 0;
+node=func_0210c594(0x1c8,data_02155c3c);
+if(kind>0 && kind<99){
+func_021167f0(data_02160a68[1]+112,node);
+func_021167f0(data_02160a68[1]+124,node);
+}
+else if(kind>100 && kind<799){
+func_021167f0(data_02160a68[1]+112,node);
+func_021167f0(data_02160a68[1]+136,node);
+}
+else if(kind>1900 && kind<1999){
+func_021167f0(data_02160a68[1]+160,node);
+func_021167f0(data_02160a68[1]+136,node);
+}
+else if(kind>1100 && kind<1899){
+*(s32 *)(node+0xa8)=1;
+func_021167f0(data_02160a68[1]+160,node);
+func_021167f0(data_02160a68[1]+136,node);
+}
+else if(kind>1000 && kind<1099){
+func_021167f0(data_02160a68[1]+160,node);
+func_021167f0(data_02160a68[1]+136,node);
+}
+else if(kind>3000 && kind<3999){
+func_021167f0(data_02160a68[1]+160,node);
+func_021167f0(data_02160a68[1]+136,node);
+}
+else if(kind>4000 && kind<4099){
+*(s32 *)(node+0xa8)=1;
+func_021167f0(data_02160a68[1]+160,node);
+func_021167f0(data_02160a68[1]+136,node);
+}
+else if(kind>5000 && kind<5099){
+func_021167f0(data_02160a68[1]+196,node);
+func_021167f0(data_02160a68[1]+124,node);
+}
+else if(kind>800 && kind<899){
+func_021167f0(data_02160a68[1]+112,node);
+func_021167f0(data_02160a68[1]+136,node);
+}
+else if(kind>900 && kind<999){
+func_021167f0(data_02160a68[1]+148,node);
+func_021167f0(data_02160a68[1]+100,node);
+}
+*(u16 *)(node+0x8e)=kind;
+*(u32 *)(node+0x80)=flags;
+*(u8 **)(node+0x108)=resource;
+node[0x104]=999;
+*(u16 *)(node+0x88)=0x7fff;
+*(u16 *)(node+0x9a)=31;
+*(s32 *)(node+0x118)=0;
+*(s32 *)(node+0xb0)=0;
+if(original>0 && original<99){
+*(u32 *)(node+0x10c)=*(u32 *)(data_02160aa4+4);
+*(s32 *)(node+0x110)=count;
+*(u32 *)(data_02160aa4+4)+=count;
+}else if(original>5000 && original<5099){
+*(u32 *)(node+0x10c)=offset;*(s32 *)(node+0x110)=count;
+}
+}
+return node;
+}
+#pragma optimization_level 4
 
 void func_020dd51c(u8 *obj) {
 u16 id=*(u16 *)(obj+0x8e);
