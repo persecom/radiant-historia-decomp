@@ -429,30 +429,21 @@ void func_0200fa4c(u32 arg0) {
 }
 
 void func_0200fa74(void *arg0, s32 arg1) {
-    u8 *p = data_0215f120;
-    u32 state = func_02008128();
-    u32 sentinel;
-    if (*(u32 *)(p + 0x14) != (u32)arg0) {
-        goto update;
-    }
-    if (*(u32 *)(p + 0x24) == (u32)arg1) {
-        goto restore;
-    }
-    func_02008414();
-    goto restore;
-update:
-    sentinel = (u32)-3;
-    while (*(volatile u32 *)(p + 0x14) != sentinel) {
-        func_02006510(p + 0x1c);
-    }
-    *(u32 *)(p + 0x14) = (u32)arg0;
-    *(u32 *)(p + 0x24) = (u32)arg1;
-    {
-        u32 *cnt = (u32 *)(p + 0x18);
-        *cnt = *cnt + 1;
-    }
-restore:
-    func_0200813c(state);
+void *p = data_0215f120;
+u32 state = func_02008128();
+if (*(u32 *)((u8*)p+20)==(u32)arg0) {
+if (*(u32 *)((u8*)p+36)!=(u32)arg1) func_02008414();
+} else {
+goto check;
+again:
+func_02006510((u8*)p+28);
+check:
+if (*(u32 *)((u8*)p+20)!=(u32)-3) goto again;
+*(u32 *)((u8*)p+20)=(u32)arg0;
+*(u32 *)((u8*)p+36)=(u32)arg1;
+}
+*(u32 *)((u8*)p+24)+=1;
+func_0200813c(state);
 }
 
 void func_0200faec(u32 arg0, s32 arg1) {
@@ -569,19 +560,15 @@ void func_0200fd18(void) {
 }
 
 s32 func_0200fd64(u8 *arg0, s32 arg1, u32 arg2, u32 arg3) {
-    u32 token = func_02008128();
-    u32 flags = *(u32 *)(arg0 + 4);
-    if (flags & 4) {
-        func_02006510(arg0 + 0xf4 + 0x400);
-        flags = *(u32 *)(arg0 + 4);
-    }
-    if (!(flags & 4) && arg1 != 0) {
-        *(u32 *)(arg0 + 0x4ec) = arg2;
-        *(u32 *)(arg0 + 4) |= 4;
-        *(u32 *)(arg0 + 0x4f0) = arg3;
-    }
-    func_0200813c(token);
-    return **(u32 **)arg0 == 0;
+u32 token = func_02008128();
+while (*(u32 *)(arg0 + 4) & 4) { func_02006510(arg0 + 0x4f4); }
+if (arg1) {
+*(u32 *)(arg0 + 0x4ec) = arg2;
+*(u32 *)(arg0 + 4) |= 4;
+*(u32 *)(arg0 + 0x4f0) = arg3;
+}
+func_0200813c(token);
+return **(u32 **)arg0 == 0;
 }
 
 void func_0200fddc(u8 *arg0) {
