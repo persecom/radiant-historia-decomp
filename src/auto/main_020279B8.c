@@ -1,5 +1,6 @@
 /* 1 function from 0x020279B8 to 0x02028420 (main), found by ds-decomp. */
 #include "common.h"
+static inline u8 Cell_020279b8(u8 *cells,u32 start,u32 i,u32 n) { return cells[(start+i)%n]; }
 typedef struct { u8 cells[9]; } Grid_020279b8;
 typedef struct {u32 seed, multiplier, increment;} RandomState_020279b8;
 extern RandomState_020279b8 data_0216263c;
