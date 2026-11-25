@@ -8,7 +8,7 @@ typedef struct {Vec_02037D1C pos;u8 type;u8 pad0d;u16 a;u8 b;u8 pad11;u16 c;u8 d
 extern u8 *data_02160a74,*data_02160244,*data_02160204;
 extern Vec_02037D1C *data_02160258;
 extern Vec_02037D1C func_020332e8(void);
-static inline void setpos_02037D1C(Vec_02037D1C *v,int x,int y,int z){v->y=y;v->z=z;v->x=x;}
+static inline void setpos_02037D1C(Vec_02037D1C *v,int x,int y,int z){v->x=x;v->y=y;v->z=z;}
 static inline void offset_02037D1C(Vec_02037D1C *out, int dx,int dy,int dz){
 int y=data_02160258->y,z=data_02160258->z,x=data_02160258->x;
 out->y=y+dy;out->z=z+dz;out->x=x+dx;
