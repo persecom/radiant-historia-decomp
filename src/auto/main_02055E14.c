@@ -182,6 +182,172 @@ func_020a98f4(data_021600ac+0xb8+off);
 *(s32 *)(*(u8 **)(data_021600ac+off+0xb4)+0x48)=(0xc5-(4-n)*25)<<12;
 }
 
+extern void func_02056bb4(s32, s32, s32, s32, s32, u8);
+extern void func_020468b0(s32);
+extern void func_0205443c(s32);
+void func_02056618(void) {
+    u8 i;
+    u8 *p;
+
+    p = NULL;
+    for (i = 0; i < 7; i++) {
+        if (data_021600ac[0x3ac] & (1 << i)) {
+            s32 off = i * 0xa4;
+            if (data_021600ac[0x3b0 + off] == 0) {
+                data_021600ac[0x3b0 + off] = 1;
+                *(u16 *)(data_021600ac + 0x3b0 + off + 0x8a) = 0;
+            }
+        }
+    }
+
+    if (data_021600ac[0x4f8] != 0) {
+        p = data_021600ac + 0x4f8;
+        switch (data_021600ac[0x4f8]) {
+        case 1:
+            *(s16 *)(p + 0x94) = 0;
+            *(s16 *)(p + 0x96) = 0;
+            *(s16 *)(p + 0x98) = 0x8c;
+            *(s16 *)(p + 0x9a) = 0x16;
+            *(s32 *)(p + 0x8c) = 0x8a000;
+            *(s32 *)(p + 0x90) = 0;
+            *(s32 *)(p + 0x9c) = -(*(s16 *)(p + 0x98) - *(s16 *)(p + 0x96)) << 12;
+            *(s32 *)(p + 0xa0) = 0x43000;
+            p[8] = 1;
+            p[0] = 2;
+            break;
+        case 2:
+            *(s32 *)(p + 0x8c) -= *(s32 *)(p + 0x8c) / 3;
+            *(s32 *)(p + 0x9c) = *(s32 *)(p + 0x90) - *(s32 *)(p + 0x8c);
+            if (*(s32 *)(p + 0x8c) < 0xf) {
+                p[0] = 3;
+            }
+            break;
+        case 3:
+            if (!(data_021600ac[0x3ac] & 4)) {
+                p[0] = 4;
+                *(s32 *)(p + 0x8c) = 0x8a000;
+                *(s32 *)(p + 0x90) = -0x8a000;
+            }
+            break;
+        case 4:
+            *(s32 *)(p + 0x8c) -= *(s32 *)(p + 0x8c) / 3;
+            *(s32 *)(p + 0x9c) = *(s32 *)(p + 0x90) + *(s32 *)(p + 0x8c);
+            if (*(s32 *)(p + 0x8c) < 0xf) {
+                p[0] = 0;
+            }
+            break;
+        }
+    }
+
+    if (data_021600ac[0x59c] != 0) {
+        p = data_021600ac + 0x59c;
+        switch (data_021600ac[0x59c]) {
+        case 1:
+            *(s16 *)(p + 0x94) = 0;
+            *(s16 *)(p + 0x96) = 0;
+            *(s16 *)(p + 0x98) = 0x8c;
+            *(s16 *)(p + 0x9a) = 0x16;
+            *(s32 *)(p + 0x8c) = 0x5a000;
+            *(s32 *)(p + 0x90) = -0x32000;
+            *(s32 *)(p + 0x9c) = -(*(s16 *)(p + 0x98) - *(s16 *)(p + 0x96)) << 12;
+            *(s32 *)(p + 0xa0) = 0x2a000;
+            p[8] = 1;
+            p[0] = 2;
+            break;
+        case 2:
+            *(s32 *)(p + 0x8c) -= *(s32 *)(p + 0x8c) / 3;
+            *(s32 *)(p + 0x9c) = *(s32 *)(p + 0x90) - *(s32 *)(p + 0x8c);
+            if (*(s32 *)(p + 0x8c) < 0xf) {
+                p[0] = 3;
+            }
+            break;
+        case 3:
+            if (!(data_021600ac[0x3ac] & 8)) {
+                p[0] = 4;
+                *(s32 *)(p + 0x8c) = 0x5a000;
+                *(s32 *)(p + 0x90) = -0x8c000;
+            }
+            break;
+        case 4:
+            *(s32 *)(p + 0x8c) -= *(s32 *)(p + 0x8c) / 3;
+            *(s32 *)(p + 0x9c) = *(s32 *)(p + 0x90) + *(s32 *)(p + 0x8c);
+            if (*(s32 *)(p + 0x8c) < 0xf) {
+                p[0] = 0;
+            }
+            break;
+        }
+        if (p[0] != 0) {
+            func_02056bb4(0, *(s32 *)(p + 0x9c) + 0x73000, *(s32 *)(p + 0xa0) + 0x5000, 3, *(u16 *)(data_02160204 + 0x72), 2);
+        }
+    }
+
+    if (data_021600ac[0x640] != 0) {
+        p = data_021600ac + 0x640;
+        switch (data_021600ac[0x640]) {
+        case 1:
+            p[0] = 2;
+            func_020a8810(*(void **)(data_021600ac + 0x1f4), 0x10);
+            func_02056bb4(4, 0x80000, 0x52000, 5, *(s32 *)(p + 4), 2);
+            break;
+        case 2:
+            if (data_021626a8 & 1) {
+                *(u32 *)(*(u8 **)(data_021600ac + 0x68) + 0xac) &= ~0x800;
+                func_020468b0(0);
+                func_0205443c(0);
+                func_020a994c(data_021600ac + 0x1f8);
+                func_020a957c(data_021600ac + 0xb0);
+                p[0] = 0;
+                data_021600ac[0x3ac] &= 0xef;
+            }
+            break;
+        }
+    }
+
+    if (data_021600ac[0x6e4] != 0) {
+        p = data_021600ac + 0x6e4;
+        switch (data_021600ac[0x6e4]) {
+        case 1:
+            *(s16 *)(p + 0x94) = 0;
+            *(s16 *)(p + 0x96) = 0;
+            *(s16 *)(p + 0x98) = 0x2e;
+            *(s16 *)(p + 0x9a) = 0xd;
+            *(s32 *)(p + 0x8c) = 0x2e000;
+            *(s32 *)(p + 0x90) = 0;
+            *(s32 *)(p + 0x9c) = -0x2e000;
+            *(s32 *)(p + 0xa0) = 0xb3000;
+            p[8] = 5;
+            p[0] = 2;
+            break;
+        case 2:
+            *(s32 *)(p + 0x8c) -= *(s32 *)(p + 0x8c) / 3;
+            *(s32 *)(p + 0x9c) = *(s32 *)(p + 0x90) - *(s32 *)(p + 0x8c);
+            if (*(s32 *)(p + 0x8c) < 0xc0) {
+                *(s32 *)(p + 0x9c) = 0;
+                p[0] = 3;
+            }
+            break;
+        case 3:
+            if (!(data_021600ac[0x3ac] & 0x20)) {
+                p[0] = 4;
+                *(s32 *)(p + 0x8c) = 0x2e000;
+                *(s32 *)(p + 0x90) = -0x2e000;
+            }
+            break;
+        case 4:
+            *(s32 *)(p + 0x8c) -= *(s32 *)(p + 0x8c) / 3;
+            *(s32 *)(p + 0x9c) = *(s32 *)(p + 0x90) + *(s32 *)(p + 0x8c);
+            if (*(s32 *)(p + 0x8c) < 0xf) {
+                p[0] = 0;
+            }
+            break;
+        }
+    }
+
+    if (p != NULL) {
+        (*(u16 *)(p + 0x8a))++;
+    }
+}
+
 void func_02056ac0(void) {
 Unk20 buf=data_0213f3b0;u8 i;
 *(volatile u32 *)0x040004a4=0x1f00c0;
