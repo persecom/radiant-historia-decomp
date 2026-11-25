@@ -246,7 +246,7 @@ void func_020a6cdc(void *arg0) {
     }
 }
 
-u8 func_020a6d54(u8 *arg0) {
+s32 func_020a6d54(u8 *arg0) {
     s32 left, right, bottom, top;
     s16 x, y;
     if (arg0 == NULL) {
@@ -261,10 +261,10 @@ u8 func_020a6d54(u8 *arg0) {
     top = bottom + *(s16 *)(arg0 + 0x2e);
     x = data_02162908[0];
     y = data_02162908[1];
-    if (x < left || x > right || y < bottom || y > top) {
-        return 0;
+    if (x >= left && x <= right && y >= bottom && y <= top) {
+        return 1;
     }
-    return 1;
+    return 0;
 }
 
 s32 func_020a6dd8(u32 arg0, u32 arg1) {
@@ -306,6 +306,52 @@ void func_020a6e90(void **arg0) {
     }
 }
 
+#pragma optimization_level 3
+void func_020a6ed0(s32 mode) {
+u8 *ctx=data_021600e4;
+s32 zero=0;
+switch(mode) {
+case 0: {
+s16 y,x;
+for(y=0;y<7;y++) for(x=0;x<8;x++) {
+u8 *p=func_020a6e50(ctx+0x13d4);
+*(s32 *)(p+0)=x<<5;*(s32 *)(p+4)=y<<5;*(s32 *)(p+8)=-20;
+*(s16 *)(p+0x20)=5;*(s16 *)(p+0x22)=x+((y<<3)+1);
+*(s16 *)(p+0x24)=x;*(s16 *)(p+0x26)=y;
+*(s16 *)(p+0x28)=zero;*(s16 *)(p+0x2a)=zero;
+*(s16 *)(p+0x2c)=64;*(s16 *)(p+0x2e)=64;
+*(u16 *)(p+0x30)|=1;
+}break;}
+case 1: {
+u8 *p=*(u8 **)(ctx+0x13d4);
+while(p) {
+s32 scale=*(s32 *)(ctx+0x6c);
+s32 x=((*(s16 *)(p+0x24)<<5)*scale)/1536;
+s32 y=((*(s16 *)(p+0x26)<<5)*scale)/1536;
+*(s32 *)(p+0x18)=(scale<<11)/1536;
+*(s32 *)(p+0x1c)=(*(s32 *)(ctx+0x6c)<<11)/1536;
+*(s32 *)p=*(s32 *)(ctx+0x44)+(x-100);
+*(s32 *)(p+4)=*(s32 *)(ctx+0x48)+(y-48);
+p=*(u8 **)(p+0x38);
+}break;}
+case 2: {
+Table_020a6ed0 table=data_021435cc;
+s16 i;
+for(i=0;i<7;i++){
+s16 offset;u8 *p;s16 *v;
+if((i==2||i==3||i==6)&&!(*(u32 *)(data_02160200+0x18)&1))continue;
+offset=i*9;
+p=func_020a6e50(ctx+0x13e0);
+v=table.v+offset;
+*(s16 *)(p+0x28)=v[0];*(s16 *)(p+0x2a)=v[1];*(s16 *)(p+0x2c)=v[2];*(s16 *)(p+0x2e)=v[3];
+*(s32 *)(p+0)=zero;*(s32 *)(p+4)=zero;*(s32 *)(p+8)=zero;
+*(s32 *)(p+0xc)=v[4];*(s32 *)(p+0x10)=v[5];*(s32 *)(p+0x14)=v[6];
+*(s16 *)(p+0x20)=v[7];*(s16 *)(p+0x22)=v[8];
+if(*(u16 *)(p+0x22)==105)*(s32 *)(p+0x18)=0x5e66;
+}break;}
+}
+}
+#pragma optimization_level reset
 void *func_020a7154(u16 arg0) {
     u8 *node = *(u8 **)(data_021600e4 + 0x13e0);
     while (node != NULL) {
