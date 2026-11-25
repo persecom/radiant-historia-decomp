@@ -77,11 +77,12 @@ static inline s32 check_hit_02051344(u8 *other, u8 *arg0) {
     }
     if (*(u8 *)(other + 0x9d) != 0 && *(s32 *)(*(u8 **)(arg0 + 0xb0)) != 0) {
         s32 box2[4];
+        u16 ang;
+        s32 pz, px, hit;
+        s32 s, c;
+        s32 ret;
         u8 i = 0;
         s32 rad = 0;
-        s32 px, pz, hit;
-        u16 ang;
-        s32 ret;
         rad = *(s32 *)(*(u8 **)(arg0 + 0xb0));
         box2[0] = *(s32 *)(arg0 + 0) - rad;
         box2[2] = *(s32 *)(arg0 + 0) + rad;
@@ -90,8 +91,10 @@ static inline s32 check_hit_02051344(u8 *other, u8 *arg0) {
         rad = *(u8 *)(other + 0x9d);
         for (i = 0; i < 8; i++) {
             ang = (u16)(i << 13);
-            px = *(s32 *)(other + 0) + rad * data_0213a394[(((s32)ang % 0x10000) >> 4) * 2];
-            pz = *(s32 *)(other + 8) + rad * data_0213a394[(((s32)ang % 0x10000) >> 4) * 2 + 1];
+            s = data_0213a394[(((s32)ang % 0x10000) >> 4) * 2];
+            px = *(s32 *)(other + 0) + rad * s;
+            c = data_0213a394[(((s32)ang % 0x10000) >> 4) * 2 + 1];
+            pz = *(s32 *)(other + 8) + rad * c;
             if (px >= box2[0] && px <= box2[2] && pz >= box2[1] && pz <= box2[3]) {
                 hit = 1;
             } else {
@@ -108,11 +111,12 @@ static inline s32 check_hit_02051344(u8 *other, u8 *arg0) {
     }
     if (*(u8 *)(arg0 + 0x9d) != 0 && *(s32 *)(*(u8 **)(other + 0xb0)) != 0) {
         s32 box3[4];
+        u16 ang;
+        s32 pz, px, hit;
+        s32 s, c;
+        s32 ret;
         u8 i = 0;
         s32 rad = 0;
-        s32 px, pz, hit;
-        u16 ang;
-        s32 ret;
         rad = *(s32 *)(*(u8 **)(other + 0xb0));
         box3[0] = *(s32 *)(other + 0) - rad;
         box3[2] = *(s32 *)(other + 0) + rad;
@@ -121,8 +125,10 @@ static inline s32 check_hit_02051344(u8 *other, u8 *arg0) {
         rad = *(u8 *)(arg0 + 0x9d);
         for (i = 0; i < 8; i++) {
             ang = (u16)(i << 13);
-            px = *(s32 *)(arg0 + 0) + rad * data_0213a394[(((s32)ang % 0x10000) >> 4) * 2];
-            pz = *(s32 *)(arg0 + 8) + rad * data_0213a394[(((s32)ang % 0x10000) >> 4) * 2 + 1];
+            s = data_0213a394[(((s32)ang % 0x10000) >> 4) * 2];
+            px = *(s32 *)(arg0 + 0) + rad * s;
+            c = data_0213a394[(((s32)ang % 0x10000) >> 4) * 2 + 1];
+            pz = *(s32 *)(arg0 + 8) + rad * c;
             if (px >= box3[0] && px <= box3[2] && pz >= box3[1] && pz <= box3[3]) {
                 hit = 1;
             } else {
