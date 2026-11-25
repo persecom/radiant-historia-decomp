@@ -1,5 +1,6 @@
 /* 32 functions from 0x02128B80 to 0x02129A6C (main), found by ds-decomp. */
 #include "common.h"
+typedef struct ClearBlock29624 { u32 a, b, c, d; } ClearBlock29624;
 extern u32 data_02173478[4];
 extern u32 data_02173488;
 extern u32 data_0217357c[3];
