@@ -9,6 +9,9 @@ extern int func_020137e0(u8 *,void *,int);
 extern u8 *func_0201388c(u8 *,int,int);
 typedef struct { u8 padding,sign,unk2,alternate,unk4,conversion; u16 unk6; s32 width,precision; } FormatSpec;
 typedef struct { u8 sign,pad; s16 exponent; u8 length; u8 digits[35]; } Decimal_02014994;
+static inline int format_secure(int v) { return v; }
+static inline int format_arg_ptrdiff(u8 **p) { *p+=4;return *(int *)(*p-4); }
+static inline unsigned int format_arg_size(u8 **p) { *p+=4;return *(unsigned int *)(*p-4); }
 static inline long format_arg_long(u8 **p) { *p+=4;return *(long *)(*p-4); }
 static inline int format_arg_int(u8 **p) { *p+=4;return *(int *)(*p-4); }
 static inline unsigned long format_arg_ulong(u8 **p) { *p+=4;return *(unsigned long *)(*p-4); }
@@ -118,12 +121,14 @@ u8 *func_020143d4(double, u8 *, FormatSpec);
 s32 func_020150a4(s32 (*write)(void *, const u8 *, u32),void *ctx,const u8 *fmt,u8 *ap,s32 secure) {
     u8 buf[512];
     FormatSpec spec;
+    u8 space;
     u8 pad=' ';
     s64 wide;
+    double v;
     s32 value;
     s32 total=0,len,field;
     u8 *text,*mark;
-    secure=secure;
+    secure=(u8)secure;
     while(*fmt) {
         mark=func_02016f8c(fmt,'%');
         if(!mark) {
@@ -138,45 +143,41 @@ s32 func_020150a4(s32 (*write)(void *, const u8 *, u32),void *ctx,const u8 *fmt,
         fmt=func_020139a4(mark,&ap,&spec);
         switch(spec.conversion) {
         case 'd':case 'i':
-            if(spec.unk4==3) {ap+=4;value=*(s32 *)(ap-4);}
-            else if(spec.unk4==4) {ap+=8;wide=*(s64 *)(ap-8);}
-            else if(spec.unk4==6) {ap+=8;wide=*(s64 *)(ap-8);}
-            else if(spec.unk4==7) {ap+=4;value=*(s32 *)(ap-4);}
-            else if(spec.unk4==8) {ap+=4;value=*(s32 *)(ap-4);}
-            else {ap+=4;value=*(s32 *)(ap-4);}
+            if(spec.unk4==3) {value=format_arg_long(&ap);}
+            else if(spec.unk4==4) {wide=format_arg_ll(&ap);}
+            else if(spec.unk4==6) {wide=format_arg_ll(&ap);}
+            else if(spec.unk4==7) {value=format_arg_int(&ap);}
+            else if(spec.unk4==8) {value=format_arg_int(&ap);}
+            else {value=format_arg_int(&ap);}
             if(spec.unk4==2)value=(s16)value;
             if(spec.unk4==1)value=(s8)value;
-            if(spec.unk4==4 || spec.unk4==6)text=func_02014100(wide,buf+512,spec);
-            else text=func_02013eb0(value,buf+512,spec);
-            if(!text)goto invalid;
+            if(spec.unk4==4 || spec.unk4==6) {text=func_02014100(wide,buf+512,spec);if(!text)goto invalid;}
+            else {text=func_02013eb0(value,buf+512,spec);if(!text)goto invalid;}
             len=buf+511-text;
             break;
         case 'o':case 'u':case 'x':case 'X':
-            if(spec.unk4==3) {ap+=4;value=*(u32 *)(ap-4);}
-            else if(spec.unk4==4) {ap+=8;wide=*(u64 *)(ap-8);}
-            else if(spec.unk4==6) {ap+=8;wide=*(u64 *)(ap-8);}
-            else if(spec.unk4==7) {ap+=4;value=*(u32 *)(ap-4);}
-            else if(spec.unk4==8) {ap+=4;value=*(u32 *)(ap-4);}
-            else {ap+=4;value=*(u32 *)(ap-4);}
+            if(spec.unk4==3) {value=format_arg_ulong(&ap);}
+            else if(spec.unk4==4) {wide=format_arg_ull(&ap);}
+            else if(spec.unk4==6) {wide=format_arg_ull(&ap);}
+            else if(spec.unk4==7) {value=format_arg_uint(&ap);}
+            else if(spec.unk4==8) {value=format_arg_uint(&ap);}
+            else {value=format_arg_uint(&ap);}
             if(spec.unk4==2)value=(u16)value;
             if(spec.unk4==1)value=(u8)value;
-            if(spec.unk4==4 || spec.unk4==6)text=func_02014100(wide,buf+512,spec);
-            else text=func_02013eb0(value,buf+512,spec);
-            if(!text)goto invalid;
+            if(spec.unk4==4 || spec.unk4==6) {text=func_02014100(wide,buf+512,spec);if(!text)goto invalid;}
+            else {text=func_02013eb0(value,buf+512,spec);if(!text)goto invalid;}
             len=buf+511-text;
             break;
         case 'f':case 'F':case 'e':case 'E':case 'g':case 'G': {
-            double v;
-            if(spec.unk4==9) {ap+=8;v=*(double *)(ap-8);}
-            else {ap+=8;v=*(double *)(ap-8);}
+            if(spec.unk4==9) {v=format_arg_ldouble(&ap);}
+            else {v=format_arg_double(&ap);}
             text=func_02014994(v,buf+512,spec);
             if(!text)goto invalid;
             len=buf+511-text;break;
         }
         case 'a':case 'A': {
-            double v;
-            if(spec.unk4==9) {ap+=8;v=*(double *)(ap-8);}
-            else {ap+=8;v=*(double *)(ap-8);}
+            if(spec.unk4==9) {v=format_arg_ldouble(&ap);}
+            else {v=format_arg_double(&ap);}
             text=func_020143d4(v,buf+512,spec);
             if(!text)goto invalid;
             len=buf+511-text;break;
@@ -247,7 +248,8 @@ s32 func_020150a4(s32 (*write)(void *, const u8 *, u32),void *ctx,const u8 *fmt,
         if(len && !write(ctx,text,len))return -1;
         if(!spec.padding) {
             while(field<spec.width) {
-                if(!write(ctx,&pad,1))return -1;
+                space=' ';
+                if(!write(ctx,&space,1))return -1;
                 field++;
             }
         }
