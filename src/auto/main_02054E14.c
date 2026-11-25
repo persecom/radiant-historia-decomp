@@ -199,9 +199,7 @@ void func_0205530c(u8 *p) {
 
     CopyVec_0205530c((Vec_0205530c *)(p + 0xc), (Vec_0205530c *)p);
     CopyVec_0205530c((Vec_0205530c *)(p + 0xd4), (Vec_0205530c *)p);
-    *(s32 *)(p + 0xe0) = *(s32 *)p + *(s32 *)(p + 0x30);
-    *(s32 *)(p + 0xe4) = *(s32 *)(p + 4);
-    *(s32 *)(p + 0xe8) = *(s32 *)(p + 8) + *(s32 *)(p + 0x38);
+    SetVec_0205530c((Vec_0205530c *)(p+0xe0), *(s32 *)p + *(s32 *)(p+0x30), *(s32 *)(p+4), *(s32 *)(p+8) + *(s32 *)(p+0x38));
 
     if (*(u16 *)(p + 0x8e) < 700) {
         func_020477dc(p, 1, 1);
@@ -349,31 +347,132 @@ if (data_021600c0 != NULL) {func_0210c5dc(data_021600c0); data_021600c0 = NULL;}
 }
 
 void *func_02055dd8(u16);
-void func_02055994(void) {
-u8 *p = data_021600c0;
-u8 i, j, k;
-u8 *n;
-s32 active;
-if (!p[0]) return;
-switch (p[1]) {
-case 0:
-for(i=0;i<2;i++){n=func_02055dd8(i); *(s16 *)(n+10)=0; n[2]=1;}
-n=func_02055dd8(2); *(s16 *)(n+16)=4; *(s16 *)(n+12)=125;
-*(u16 *)(p+2)=0; p[1]=1; break;
-case 1:
-for(j=0;j<2;j++){n=func_02055dd8(j); (*(s16 *)(n+10))++;}
-if(*(u16 *)(p+2)>=18){n=func_02055dd8(2); n[2]=1; *(u16 *)(p+2)=0; p[1]=2;} break;
-case 2:
-n=func_02055dd8(2); *(s16 *)(n+16)+=4; *(s16 *)(n+12)-=2;
-if(*(s16 *)(n+16)>=84){p[1]=3; *(u16 *)(p+2)=0;} break;
-case 3: if(*(u16 *)(p+2)>6)p[1]=4; break;
-case 4: n=func_02055dd8(3); n[2]=1; *(s16 *)(n+6)=14; *(s32 *)(n+24)=0xe000; p[1]=5; break;
-case 5: n=func_02055dd8(3); --*(s16 *)(n+6); *(s32 *)(n+24)-=0x1000; if(!*(s32 *)(n+24)){p[1]=6; *(u16 *)(p+2)=0;} break;
-case 6: if(*(u16 *)(p+2)>=64)p[1]=7; break;
-case 7: active=0; for(k=0;k<4;k++){n=func_02055dd8(k); if(n[2]){active=1; if(*(s16 *)(n+18)>=2)*(s16 *)(n+18)-=2; else n[2]=0;}} if(!active)p[1]=8; break;
-case 8: func_020558b4(); return;
-}
-++*(u16 *)(p+2);
+void func_02055994(void)
+{
+  u8 *p = data_021600c0;
+  u8 i;
+  u8 *new_var;
+  u16 *new_var3;
+  u8 j;
+  u8 k;
+  u8 *n;
+  int new_var2;
+  if (!p[0])
+  {
+    return;
+  }
+  switch (p[1])
+  {
+    case 0:
+      for (i = 0; i < 2; i++)
+    {
+      n = func_02055dd8(i);
+      *((s16 *) (n + 10)) = 0;
+      n[2] = 1;
+    }
+
+      n = func_02055dd8(2);
+      *((s16 *) (n + 16)) = 4;
+      new_var = p + 2;
+      new_var3 = (u16 *) new_var;
+      *((s16 *) (n + 12)) = 125;
+      *new_var3 = 0;
+      p[1] = 1;
+      break;
+
+    case 1:
+      for (j = 0; j < 2; j++)
+    {
+      n = func_02055dd8(j);
+      (*((s16 *) (n + 10)))++;
+    }
+
+      if ((*((u16 *) new_var)) >= 18)
+    {
+      n = func_02055dd8(2);
+      n[2] = 1;
+      new_var2 = 0;
+      *((u16 *) (p + 2)) = new_var2;
+      p[1] = 2;
+    }
+      break;
+
+    case 2:
+      n = func_02055dd8(2);
+      *((s16 *) (n + 16)) += 4;
+      *((s16 *) (n + 12)) -= 2;
+      if ((*((s16 *) (n + 16))) >= 84)
+    {
+      p[1] = 3;
+      *new_var3 = 0;
+    }
+      break;
+
+    case 3:
+      if ((*new_var3) > 6)
+    {
+      p[1] = 4;
+    }
+      break;
+
+    case 4:
+      n = func_02055dd8(3);
+      n[2] = 1;
+      *((s16 *) (n + 6)) = 14;
+      *((s32 *) (n + 24)) = 0xe000;
+      p[1] = 5;
+      break;
+
+    case 5:
+      n = func_02055dd8(3);
+      --(*((s16 *) (n + 6)));
+      *((s32 *) (n + 24)) -= 0x1000;
+      if (!(*((s32 *) (n + 24))))
+    {
+      p[1] = 6;
+      *((u16 *) (p + 2)) = 0;
+    }
+      break;
+
+    case 6:
+      if ((*((u16 *) (p + 2))) >= 64)
+    {
+      p[1] = 7;
+    }
+      break;
+
+    case 7:
+      j = 0;
+      for (k = 0; k < 4; k++)
+    {
+      n = func_02055dd8(k);
+      if (n[2])
+      {
+        j = 1;
+        if ((*((s16 *) (n + 18))) >= 2)
+        {
+          *((s16 *) (n + 18)) -= 2;
+        }
+        else
+        {
+          n[2] = 0;
+        }
+      }
+    }
+
+      if (!j)
+    {
+      p[1] = 8;
+    }
+      break;
+
+    case 8:
+      func_020558b4();
+      return;
+
+  }
+
+  ++(*((u16 *) (p + 2)));
 }
 
 void func_02055bac(void) {
