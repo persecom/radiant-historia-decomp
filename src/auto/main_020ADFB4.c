@@ -126,16 +126,29 @@ func_020a9610(p+0x1a4+i*0x50,*(u32 *)(p+0x13c),1,*(u32 *)(p+i*0x50+0x16c),0,0);
 }
 
 void func_020ae35c(u8 *arg0) {
- s32 i,j;
- for(i=0;i<8;i++){ u8 *node=*(u8 **)(arg0+i*4+0x13c); if(node){func_020a9544(node); ((u32 *)(arg0+0x13c))[i]=0;} }
- for(j=0;j<8;j++){ u8 *obj;
- i=j*0x50;
- func_020a994c(arg0+0x170+i); func_020a98a0(arg0+0x170+i);
- obj=*(u8 **)(arg0+i+0x16c);
- if(obj){ if(j!=0&&j!=3&&j!=5) ((void (*)(u8 *))(*(void **)(obj+12)))(obj);
- else ((s32 (*)(u8 *))(*(void **)(obj+12)))(obj);
- *(u32 *)(arg0+i+0x16c)=0; }
- }
+    s32 i;
+    for (i = 0; i < 8; i++) {
+        u8 *node = *(u8 **)(arg0 + i * 4 + 0x13c);
+        if (node) {
+            func_020a9544(node);
+            ((u32 *)(arg0 + 0x13c))[i] = 0;
+        }
+    }
+    for (i = 0; i < 8; i++) {
+        s32 off = i * 0x50;
+        u8 *obj;
+        func_020a994c(arg0 + 0x170 + off);
+        func_020a98a0(arg0 + 0x170 + off);
+        obj = *(u8 **)(arg0 + off + 0x16c);
+        if (obj) {
+            if (i != 0 && i != 3 && i != 5) {
+                ((void (*)(u8 *))(*(void **)(obj + 12)))(obj);
+            } else {
+                ((s32 (*)(u8 *))(*(void **)(obj + 12)))(obj);
+            }
+            *(u32 *)(arg0 + off + 0x16c) = 0;
+        }
+    }
 }
 
 void func_020ae3f8(s32 index,s32 arg1,s32 arg2,s16 x,s16 y,s8 z){
