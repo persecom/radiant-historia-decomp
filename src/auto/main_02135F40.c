@@ -1,5 +1,8 @@
 /* 32 functions from 0x02135F40 to 0x02136E94 (main), found by ds-decomp. */
 #include "common.h"
+static inline u32 pack_pcm_02136210(u16 low, u16 high) {
+    return low | ((u32)high << 16);
+}
 extern void func_02008f74(void *, s32, u32);
 extern void func_02013878(void *, s32, s32);
 extern u8 data_0215beec[];
