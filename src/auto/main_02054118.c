@@ -301,8 +301,11 @@ s32 func_020546c0(u8 *arg0, s32 arg1) {
             u16 val;
             seed = data_0216263c[1] * seed + data_0216263c[2];
             data_0216263c[0] = seed;
-            val = seed >> 16;
-            if (range) val = (val * range) >> 16;
+            if (range == 0) {
+                val = seed >> 16;
+            } else {
+                val = ((seed >> 16) * range) >> 16;
+            }
             radius = (s32)val - arg1;
         } else {
             radius = 0;
