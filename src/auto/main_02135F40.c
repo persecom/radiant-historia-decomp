@@ -148,13 +148,172 @@ u32 func_021361bc(u8 *arg0, u16 *arg1, u16 *arg2) {
 extern void func_02009008(void *, void *, u32);
 s16 *func_02136210(void *arg0, void *arg1, u32 arg2) {
     u8 *p = (u8 *)arg0;
-    u16 val = *(u16 *)(p + 0x1a);
-    s32 sum = val + arg2;
-    if (sum >= 0x1800) sum -= 0x1800;
+    s16 *src = (s16 *)arg1;
+    u32 pos = *(u16 *)(p + 0x1a);
+    u8 *dst = *(u8 **)(p + 0x4) + pos;
+    u16 nextPos = pos + arg2;
+    u16 mode;
+
+    if (nextPos >= 0x1800) {
+        nextPos -= 0x1800;
+    }
     *(u32 *)(p + 0x10) += arg2;
-    *(u16 *)(p + 0x1a) = (u16)sum;
-    *(u16 *)(p + 0) |= 2;
-    return (s16 *)arg1;
+    *(u16 *)(p + 0x1a) = nextPos;
+    *(u16 *)(p + 0x0) = (*(u16 *)(p + 0x0) | 2) & 0xfffd;
+
+    mode = *(u16 *)(p + 0x28);
+    if (mode != 8) {
+        if (mode == 5) {
+            s32 count = (s32)(arg2 >> 1) / 8;
+            s32 i;
+            u32 *dst32 = (u32 *)dst;
+            for (i = 0; i < count; i++) {
+                s16 s0 = src[0];
+                s16 prev = *(s16 *)(p + 0x2a);
+                s16 s1 = src[1];
+                s16 s2 = src[2];
+                s16 s3 = src[3];
+                s16 s4 = src[4];
+                s16 a0 = (s16)((prev + s0) / 2);
+                s16 a1 = (s16)((s1 + s2) / 2);
+                s16 a2 = (s16)((s3 + s4) / 2);
+                dst32[0] = ((u32)(u16)s0 << 16) | (u16)a0;
+                dst32[1] = ((u32)(u16)a1 << 16) | (u16)s1;
+                dst32[2] = ((u32)(u16)s3 << 16) | (u16)s2;
+                dst32[3] = ((u32)(u16)s4 << 16) | (u16)a2;
+                *(s16 *)(p + 0x2a) = s4;
+                src += 5;
+                dst32 += 4;
+            }
+        } else if (mode == 6) {
+            s32 count = (s32)(arg2 >> 1) / 4;
+            s32 i;
+            s16 *dst16 = (s16 *)dst;
+            s16 s2;
+            for (i = 0; i < count; i++) {
+                s16 s0 = src[0];
+                s16 s1 = src[1];
+                s2 = src[2];
+                dst16[0] = s0;
+                dst16[1] = (s0 + s1 * 2) / 3;
+                dst16[2] = (s2 + s1 * 2) / 3;
+                dst16[3] = s2;
+                src += 3;
+                dst16 += 4;
+            }
+            *(s16 *)(p + 0x2a) = s2;
+        } else if (mode == 3) {
+            s32 count = (s32)(arg2 >> 1) / 8;
+            s32 i;
+            s16 *dst16 = (s16 *)dst;
+            for (i = 0; i < count; i++) {
+                s16 s0 = src[0];
+                s16 prev = *(s16 *)(p + 0x2a);
+                s16 s1 = src[1];
+                s16 s2 = src[2];
+                s16 m1 = (s0 + s1 * 2) / 3;
+                s16 m2 = (s2 + s1 * 2) / 3;
+                dst16[0] = (prev + s0) / 2;
+                dst16[1] = s0;
+                dst16[2] = (s0 + m1) / 2;
+                dst16[3] = m1;
+                dst16[4] = (m1 + m2) / 2;
+                dst16[5] = m2;
+                dst16[6] = (s2 + m2) / 2;
+                dst16[7] = s2;
+                *(s16 *)(p + 0x2a) = s2;
+                src += 3;
+                dst16 += 8;
+            }
+        } else if (mode == 4) {
+            s32 count = arg2 >> 2;
+            s16 prev = *(s16 *)(p + 0x2a);
+            u32 *src32 = (u32 *)src;
+            u32 *dst32 = (u32 *)dst;
+            while (count > 0) {
+                u32 pair = *src32++;
+                s16 s0 = (s16)pair;
+                s16 s1 = (s16)(pair >> 16);
+                s16 a0 = (s16)((prev + s0) / 2);
+                s16 a1 = (s16)((s1 + s0) / 2);
+                count -= 2;
+                dst32[0] = ((u32)(u16)s0 << 16) | (u16)a0;
+                dst32[1] = ((u32)(u16)s1 << 16) | (u16)a1;
+                prev = s1;
+                dst32 += 2;
+            }
+            *(s16 *)(p + 0x2a) = prev;
+            src = (s16 *)src32;
+        } else if (mode == 2) {
+            s32 count = arg2 >> 3;
+            s16 prev = *(s16 *)(p + 0x2a);
+            u32 *src32 = (u32 *)src;
+            u32 *dst32 = (u32 *)dst;
+            while (count > 0) {
+                u32 pair = *src32++;
+                s16 s0 = (s16)pair;
+                s16 s1 = (s16)(pair >> 16);
+                s16 m0 = (s16)((prev + s0) / 2);
+                s16 q0 = (s16)((prev + m0) / 2);
+                s16 q1 = (s16)((m0 + s0) / 2);
+                s16 m1 = (s16)((s0 + s1) / 2);
+                s16 q2 = (s16)((s0 + m1) / 2);
+                s16 q3 = (s16)((m1 + s1) / 2);
+                count -= 2;
+                dst32[0] = ((u32)(u16)m0 << 16) | (u16)q0;
+                dst32[1] = ((u32)(u16)s0 << 16) | (u16)q1;
+                dst32[2] = ((u32)(u16)m1 << 16) | (u16)q2;
+                dst32[3] = ((u32)(u16)s1 << 16) | (u16)q3;
+                prev = s1;
+                dst32 += 4;
+            }
+            *(s16 *)(p + 0x2a) = prev;
+            src = (s16 *)src32;
+        } else if (mode == 1) {
+            s32 count = (s32)(arg2 >> 1) / 8;
+            s16 prev = *(s16 *)(p + 0x2a);
+            s32 i;
+            u32 *src32 = (u32 *)src;
+            u32 *dst32 = (u32 *)dst;
+            for (i = 0; i < count; i++) {
+                u32 pair = *src32++;
+                s16 s0 = (s16)pair;
+                s16 s1 = (s16)(pair >> 16);
+                s16 m0 = (s16)((prev + s0) / 2);
+                s16 q0 = (s16)((prev + m0) / 2);
+                s16 e0 = (s16)((prev + q0) / 2);
+                s16 e1 = (s16)((q0 + m0) / 2);
+                s16 q1;
+                s16 m1;
+                s16 q2;
+                s16 q3;
+                dst32[0] = ((u32)(u16)q0 << 16) | (u16)e0;
+                dst32[1] = ((u32)(u16)m0 << 16) | (u16)e1;
+                q1 = (s16)((m0 + s0) / 2);
+                dst32[2] = ((u32)(u16)q1 << 16) | (u16)(s16)((m0 + q1) / 2);
+                dst32[3] = ((u32)(u16)s0 << 16) | (u16)(s16)((q1 + s0) / 2);
+                m1 = (s16)((s0 + s1) / 2);
+                q2 = (s16)((s0 + m1) / 2);
+                dst32[4] = ((u32)(u16)q2 << 16) | (u16)(s16)((s0 + q2) / 2);
+                dst32[5] = ((u32)(u16)m1 << 16) | (u16)(s16)((q2 + m1) / 2);
+                q3 = (s16)((m1 + s1) / 2);
+                dst32[6] = ((u32)(u16)q3 << 16) | (u16)(s16)((m1 + q3) / 2);
+                dst32[7] = ((u32)(u16)s1 << 16) | (u16)(s16)((q3 + s1) / 2);
+                prev = s1;
+                dst32 += 8;
+            }
+            *(s16 *)(p + 0x2a) = prev;
+            src = (s16 *)src32;
+        }
+    } else {
+        func_02009008(src, dst, arg2);
+        src += (s32)(arg2 >> 1);
+    }
+
+    if (*(void **)(p + 0x30) != NULL) {
+        ((void (*)(s16, void *, u32))*(void **)(p + 0x30))(*(s16 *)(p + 0x2), *(u8 **)(p + 0x4) + pos, arg2);
+    }
+    return src;
 }
 
 u16 func_0213689c(u8 *arg0) {
@@ -261,13 +420,8 @@ void func_02136a24(void) {
 }
 
 void func_02136a3c(void) {
-    if (data_02175c60 == 0) {
-        s32 i;
-        for (i = 0; i < 54; i++) {
-            ((u32 *)data_02175c64)[i] = 0;
-        }
-    }
-    data_02175c60++;
+if(data_02175c60==0) __clear(data_02175c64,216);
+data_02175c60++;
 }
 
 void func_02136a9c(void) {
