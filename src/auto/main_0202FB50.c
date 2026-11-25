@@ -16,6 +16,104 @@ extern u8 *func_0202fa9c(void);
 extern void func_0203017c(s32,void *,u16,s32);
 extern void *func_021092d8(void *);
 extern void func_021093b0(void *);
+extern char data_02146204[];
+extern char data_0214621c[];
+extern char data_02146234[];
+extern void func_02005e80(char *, const char *);
+extern s32 func_02092ab0(void *, u16);
+extern s32 func_02092994(void *, s32);
+extern void func_020d85f4(void *);
+extern u32 func_020d865c(void *);
+void *func_0202fb50(u32 id, s32 flag) {
+    u16 a[10];
+    u16 b[8];
+    char path[0x30];
+    void *fp;
+    u8 *res = NULL;
+    u16 i;
+
+    if (id != 0 && id < 9) {
+        func_02005e80(path, data_02146204);
+    } else if (id > 100 && id < 0xea5f) {
+        func_02005e80(path, data_0214621c);
+    } else if (id > 0xea60 && id < 0xea60 + 100) {
+        func_02005e80(path, data_02146234);
+    }
+
+    fp = func_021092d8(path);
+    if (func_02092ab0(fp, (u16)id) != -1) {
+        res = func_0202fa9c();
+        res[0] = 0;
+        *(u16 *)(res + 0x34) = func_02092994(fp, 0);
+        *(s32 *)(res + 8) = *(s32 *)(res + 4) = (s16)func_02092994(fp, 0);
+        *(s16 *)(res + 0xc) = func_02092994(fp, 0);
+        *(s16 *)(res + 0xe) = *(s16 *)(res + 0xc);
+        *(u16 *)(res + 0x10) = func_02092994(fp, 0);
+        *(u16 *)(res + 0x12) = func_02092994(fp, 0);
+        *(u16 *)(res + 0x14) = func_02092994(fp, 0);
+        *(u16 *)(res + 0x16) = func_02092994(fp, 0);
+        *(u16 *)(res + 0x18) = func_02092994(fp, 0);
+        *(u16 *)(res + 0x1a) = func_02092994(fp, 0);
+        *(u8 *)(res + 0x36) = func_02092994(fp, 0);
+        for (i = 0; i < 8; i++) {
+            *(u8 *)(res + 0x37 + i) = func_02092994(fp, 0);
+        }
+        if ((id > 100 && id < 0xea5f) || (id > 0xea60 && id < 0xea60 + 100)) {
+            *(u8 *)(res + 0x3f) = func_02092994(fp, 0);
+            *(u32 *)(res + 0x8c) = func_02092994(fp, 0);
+            *(u16 *)(res + 0x40) = func_02092994(fp, 0);
+            *(u16 *)(res + 0x42) = func_02092994(fp, 0);
+            *(u16 *)(res + 0x44) = func_02092994(fp, 0);
+            *(u16 *)(res + 0x46) = func_02092994(fp, 0);
+            *(u16 *)(res + 0x48) = func_02092994(fp, 0);
+            *(u16 *)(res + 0x4a) = func_02092994(fp, 0);
+            *(u16 *)(res + 0x4c) = func_02092994(fp, 0);
+            *(u32 *)(res + 0x50) = func_02092994(fp, 0);
+            *(u8 *)(res + 0x54) = func_02092994(fp, 0);
+            *(u16 *)(res + 0x56) = func_02092994(fp, 0);
+            *(u16 *)(res + 0x58) = func_02092994(fp, 0);
+            *(u8 *)(res + 0x64) = func_02092994(fp, 0);
+            *(u16 *)(res + 0x74) = func_02092994(fp, 0);
+            *(u32 *)(res + 0x80) = (u16)func_02092994(fp, 0);
+            if (flag == 0) {
+                a[0] = func_02092994(fp, 0);
+                a[3] = func_02092994(fp, 0);
+                a[1] = func_02092994(fp, 0);
+                a[4] = func_02092994(fp, 0);
+                a[2] = func_02092994(fp, 0);
+                a[5] = func_02092994(fp, 0);
+                func_020d85f4(a);
+                b[0] = func_02092994(fp, 0);
+                b[2] = func_02092994(fp, 0);
+                b[1] = func_02092994(fp, 0);
+                b[3] = func_02092994(fp, 0);
+                *(u32 *)(res + 0x88) = func_020d865c(b);
+            }
+        } else {
+            func_02092994(fp, 0);
+            func_02092994(fp, 0);
+            *(u16 *)(res + 0x56) = func_02092994(fp, 0);
+            func_02092994(fp, 0);
+            func_02092994(fp, 0);
+        }
+        *(s32 *)(res + 8) = *(s32 *)(res + 4) = (s16)*(s32 *)(res + 4);
+        *(u16 *)(res + 0xc) = *(s16 *)(res + 0xc);
+        *(u16 *)(res + 0xe) = *(s16 *)(res + 0xc);
+        *(s16 *)(res + 0x28) = *(s16 *)(res + 0x10) + *(s16 *)(res + 0x1c);
+        *(s16 *)(res + 0x2a) = *(s16 *)(res + 0x12) + *(s16 *)(res + 0x1e);
+        *(s16 *)(res + 0x2c) = *(s16 *)(res + 0x14) + *(s16 *)(res + 0x20);
+        *(s16 *)(res + 0x2e) = *(s16 *)(res + 0x16) + *(s16 *)(res + 0x22);
+        *(s32 *)(res + 0x30) = *(s16 *)(res + 0x18);
+        *(s32 *)(res + 0x78) = 0;
+        *(s32 *)(res + 0x70) = 1;
+        *(void **)(res + 0xa0) = func_0203053c();
+    }
+    if (fp != NULL) {
+        func_021093b0(fp);
+    }
+    return res;
+}
+
 void *func_0202ffb0(s32 id) {
  u8 *dst;
  u8 *src;
