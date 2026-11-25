@@ -41,54 +41,55 @@ void func_0208e000(u32 id, s16 x, s16 y, s16 width, s16 z) {
 }
 
 extern void func_020a994c(void *);
-extern void func_0208da7c();
-extern void func_020a30c4();
+extern void func_0208da7c(s16, s32, s16, s16, s16, s16, s16);
+extern void func_020a30c4(u16);
 extern void func_0208dcc8(s32, s32, s32, s32, s32);
 extern void func_0208dea4(s32, s32, s32, s32, s32, s32);
 extern const Unk10 data_02141008;
 void func_0208e1cc(s32 arg0, s32 arg1) {
     Unk10 a = data_02141008;
     s16 i;
-    s32 diff, limit, off, id, cnt;
+    s32 diff, off, id, cnt;
+    u8 limit;
 
     diff = (u8)(data_0216010c[0x50d7] - data_0216010c[0x50d6]);
-    limit = *(s16 *)(data_0216010c + 0x50d4);
-    if (limit >= 6) limit = 6;
+    limit = 6;
+    if (*(s16 *)(data_0216010c + 0x50d4) < 6) limit = (u8)*(s16 *)(data_0216010c + 0x50d4);
     off = diff * 100;
 
     for (i = 0; i < 6; i++) {
-        if (i >= limit) {
-            func_020a994c(data_0216010c + 0x74 + i * 0x50);
-            break;
+        if (limit <= i) {
+            func_020a994c(data_0216010c + 0x74 + i * (s16)0x50);
+            continue;
         }
         id = *(s16 *)(data_0216010c + off + i * 100 + 0x5570);
         cnt = *(u8 *)(data_0216010c + off + i * 100 + 0x5572);
         if (i == data_0216010c[0x50d6]) {
             func_0209250c(0x30, 1, 10, (s16)(i * 19 + 53), 156, 18, 8, 16, 4, 2, 4, 4, 177);
-            func_020a8810(*(void **)(data_0216010c + off + i * 100 + 0x5574), 19);
+            func_020a8810(*(void **)(data_0216010c + i * (s16)0x50 + 0x70), 19);
             if (cnt >= 10) {
-                func_0208da7c(0x3e, (cnt / 10) & 0xff, 0x92, (s16)(i * 19 + 56), 10, 179);
-                func_0208da7c(0x3e, (cnt % 10) & 0xff, 0x9a, (s16)(i * 19 + 56), 10, 179);
+                func_0208da7c(0x3e, (cnt / 10) & 0xff, 0x92, (s16)(i * 19 + 56), 8, 10, 179);
+                func_0208da7c(0x3e, (cnt % 10) & 0xff, 0x9a, (s16)(i * 19 + 56), 8, 10, 179);
             } else {
-                func_0208da7c(0x3e, cnt & 0xff, 0x96, (s16)(i * 19 + 56), 10, 179);
+                func_0208da7c(0x3e, cnt & 0xff, 0x96, (s16)(i * 19 + 56), 8, 10, 179);
             }
-            func_0208da7c(0x3e, 10, 0x86, (s16)(i * 19 + 56), 8, 179);
+            func_0208da7c(0x3e, 10, 0x86, (s16)(i * 19 + 56), 8, 10, 179);
         } else {
             func_0209250c(0x2f, 1, 10, (s16)(i * 19 + 53), 156, 18, 8, 16, 4, 2, 4, 4, 177);
-            func_020a8810(*(void **)(data_0216010c + off + i * 100 + 0x5574), 20);
+            func_020a8810(*(void **)(data_0216010c + i * (s16)0x50 + 0x70), 20);
             if (cnt >= 10) {
-                func_0208da7c(0x3d, (cnt / 10) & 0xff, 0x92, (s16)(i * 19 + 56), 10, 179);
-                func_0208da7c(0x3d, (cnt % 10) & 0xff, 0x9a, (s16)(i * 19 + 56), 10, 179);
+                func_0208da7c(0x3d, (cnt / 10) & 0xff, 0x92, (s16)(i * 19 + 56), 8, 10, 179);
+                func_0208da7c(0x3d, (cnt % 10) & 0xff, 0x9a, (s16)(i * 19 + 56), 8, 10, 179);
             } else {
-                func_0208da7c(0x3d, cnt & 0xff, 0x96, (s16)(i * 19 + 56), 10, 179);
+                func_0208da7c(0x3d, cnt & 0xff, 0x96, (s16)(i * 19 + 56), 8, 10, 179);
             }
-            func_0208da7c(0x3d, 10, 0x86, (s16)(i * 19 + 56), 8, 179);
+            func_0208da7c(0x3d, 10, 0x86, (s16)(i * 19 + 56), 8, 10, 179);
         }
-        func_020895a0((u16)id, (i * 19 + 55) << 12, 0x5a, 4, 0, 0, 0, 0, 0);
-        func_020a30c4((void *)(u32)(u16)id, 11);
-        a.f5 = 11;
+        func_020895a0((u16)i, 0x1e000, (i * 19 + 55) << 12, 0x5a, 0, (u16)id, 0, 0, 0);
+                a.f5 = 11;
         a.f6 = (s16)(i * 19 + 53);
         a.f7 = 179;
+        func_020a30c4((u16)id);
         func_021098ac(&a);
     }
 
@@ -97,9 +98,9 @@ void func_0208e1cc(s32 arg0, s32 arg1) {
     if (*(s16 *)(data_0216010c + 0x50d4) < 1) return;
     {
         s32 flags = *(s16 *)(data_0216010c + 0x5382);
-        if (flags & 2) {
+        if ((flags & 2) || (flags & 4)) {
             func_0208dea4(arg0, arg1, 0xc5, 0x89, 0x8e, 1);
-        } else if (flags & 4) {
+        } else {
             func_0208dea4(arg0, arg1, 0xc5, 0x89, 0x8e, 0);
         }
     }
