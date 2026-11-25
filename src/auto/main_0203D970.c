@@ -49,6 +49,22 @@ typedef struct {
     Unk_0203e61c *field_4;
 } Global_020600a0;
 
+typedef struct {
+    u8 pad[0x30];
+    u16 *field_30;
+    u8 pad2[0xc];
+    s32 field_40;
+    s32 field_44;
+    u16 field_48;
+    u16 field_4a;
+    u16 field_4c;
+    u16 field_4e;
+    s32 field_50;
+    s32 field_54;
+    s32 field_58;
+    s32 field_5c;
+} State_0203df40;
+
 extern Global_020600a0 data_021600a0;
 extern u32 data_02155c3c;
 extern void *func_0210c594(u32, u32);
@@ -68,7 +84,7 @@ s32 x=pos->x/65536,z=pos->z/65536;
 u8 *map=data_02160aec;
 u8 *state=data_02160098[1];
 Vec_0203d970 v;
-s32 tile;
+u32 tile;
 
 s32 zero=0;
 s32 distance,angle;
@@ -82,8 +98,10 @@ if(distance>0xa000) {
 s32 a=(angle%65536)>>4;
 s32 sine=data_0213a394[a*2], cosine=data_0213a394[a*2+1];
 s32 dx=v.x-pos->x, dz=v.z-pos->z;
-dx-=sine*10;dz-=cosine*10;
-v.x-=dx;v.z-=dz;
+sine*=10;cosine*=10;
+sine=dx-sine;cosine=dz-cosine;
+sine=v.x-sine;cosine=v.z-cosine;
+v.x=sine;v.z=cosine;
 }
 func_0203d864(&v);
 }else if(*(u16 *)(state+0x60)==1) {
@@ -115,12 +133,14 @@ if(tile!=255 && (index=(tile-1)*6,*(s32 *)(state+0x1c)!=tile)) {
 data_02151fcc=0xe8000;data_02151fca=0x1900;
 }
 data_02151fc8=*(s32 *)(state+0x24);
-set_vec_d970(&v,table.v[index+2]<<12,zero,table.v[index+3]<<12);
-v.x-=v.x-pos->x;
-if(v.x<=(table.v[index+2]<<12)) v.x=table.v[index+2]<<12;
+s32 minx=table.v[index+2], minz=table.v[index+3];
+s32 vx=minx<<12;
+vx-=vx-pos->x;
+set_vec_d970(&v,vx,zero,minz<<12);
+if(v.x<=(minx<<12)) v.x=minx<<12;
 if(v.x>(table.v[index+4]<<12)) v.x=table.v[index+4]<<12;
 v.z-=v.z-pos->z;
-if(v.z<=(table.v[index+3]<<12)) v.z=table.v[index+3]<<12;
+if(v.z<=(minz<<12)) v.z=minz<<12;
 if(v.z>(table.v[index+5]<<12)) v.z=table.v[index+5]<<12;
 func_0203d864(&v);
 }else if(*(u16 *)(state+0x60)==5 || data_02160204[0x84]==0) {
@@ -154,6 +174,10 @@ set_vec_d970(&v,*(s32 *)(data_02155984+0x20),pos->y-0x4000,*(s32 *)(data_0215598
 if(func_020dddf0(&v,pos)<=0xf000) {
 data_02160204[0x84]=9;*(s32 *)(data_02160204+0x80)=0;
 }
+}
+
+void func_0203df40(void *arg0) {
+    if (data_02160aec == NULL) return;
 }
 
 s32 func_0203e5a8(Vec_0203e5a8 *a, Vec_0203e5a8 *b, Vec_0203e5a8 *c) {
