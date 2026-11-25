@@ -107,7 +107,7 @@ void func_02137f1c(void) {
 void func_02137f34(void) {
     data_02176400--;
     if (data_02176400 == 0) {
-        memset(data_02176404, 0, sizeof(data_02176404));
+        __clear(data_02176404, 576);
     }
 }
 
@@ -234,15 +234,17 @@ void func_0213825c(void *arg0, void *arg1) {
     func_0213808c();
 }
 
-#pragma scheduling off
+#pragma push
+#pragma opt_propagation off
 void func_02138280(u32 arg0,u32 arg1) {
 if(arg1>=6){func_02138130(data_0215c704);return;}
 if(arg0>=8){func_02138130(data_0215c724);return;}
-*(volatile u32 *)(data_021767bc+(s32)arg0*0x48+(s32)arg1*12)=0;
-*(volatile u32 *)(data_021767c0+(s32)arg0*0x48+(s32)arg1*12)=0;
-*(volatile u32 *)(data_021767c4+(s32)arg0*0x48+(s32)arg1*12)=0;
+u32 zero=0;
+*(volatile u32 *)(data_021767bc+arg0*0x48+arg1*12)=zero;
+*(volatile u32 *)(data_021767c0+arg0*0x48+arg1*12)=zero;
+*(volatile u32 *)(data_021767c4+arg0*0x48+arg1*12)=zero;
 }
-#pragma scheduling on
+#pragma pop
 void func_021382fc(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
     func_0213807c();
     func_02138338(arg0, arg1, arg2, arg3, arg4);
@@ -422,11 +424,15 @@ void func_02138a60(u8 *);
 s32 func_02138704(u8 *a, const InitParams *p, u8 *buf, s32 capacity) {
 s32 i;
 s32 used=0;
+InitParams *dstp;
+const InitParams *srcp;
 
 if (*(s32 *)(a+0x58)==1 || *(s32 *)(a+0x5c)==1) {func_02126c20(data_0215c840); return 0;}
 func_021390fc(a);
 *(s32 *)(a+0x5c)=1;
-*(InitParams *)(a+0x80)=*p;
+srcp=p;
+dstp=(InitParams *)(a+0x80);
+*dstp=*srcp;
 {
 s32 cfg[3]={0,0,0};
 if(p->v[7]==1) cfg[1]=p->v[3]; else cfg[1]=1;
