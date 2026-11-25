@@ -31,6 +31,89 @@ extern void func_020ae35c(void *);
 extern void func_020ae6e8(void *);
 extern u8 data_02162908[];
 u8 *func_020adda8(void);
+s32 func_020ace8c(u8 *arg) {
+u8 *player,*menu;
+s32 *touch;
+s32 kind;
+u8 option=0;
+s32 commit=0;
+player=func_020b4044();menu=func_020b3fd8();touch=(s32 *)func_020b442c();
+kind=func_020b3f14(*(u16 *)(player+4));
+if(func_020abf5c(24,59,130,18,0)){
+if(touch[2]==1 && kind==1){*(s32 *)(menu+0x2aa8)=0;func_020abf3c();commit=1;}
+}else if(func_020abf5c(24,79,130,18,0)){
+if(touch[2]==1 && kind==2){*(s32 *)(menu+0x2aa8)=1;func_020abf3c();commit=1;}
+}
+else if(func_020abf5c(24,99,130,18,0)){
+if(kind==3){
+if(touch[0]!=21){
+func_0210d27c(2);
+*(s32 *)(menu+0x2aa8)=2;
+option=(u8)(*(s32 *)(menu+0x2aa8)-2);
+func_020b3be8(*(u16 *)(func_020b4044()+4),option);
+touch[0]=21;
+}else if(touch[2]==1){
+*(s32 *)(menu+0x2aa8)=2;
+option=(u8)(*(s32 *)(menu+0x2aa8)-2);
+func_020b3be8(*(u16 *)(func_020b4044()+4),option);
+func_020abf3c();commit=1;
+}
+}
+}
+else if(func_020abf5c(24,119,130,18,0)){
+if(kind==3){
+if(touch[0]!=22){
+func_0210d27c(2);
+*(s32 *)(menu+0x2aa8)=3;
+option=(u8)(*(s32 *)(menu+0x2aa8)-2);
+func_020b3be8(*(u16 *)(func_020b4044()+4),option);
+touch[0]=22;
+}else if(touch[2]==1){
+*(s32 *)(menu+0x2aa8)=3;
+option=(u8)(*(s32 *)(menu+0x2aa8)-2);
+func_020b3be8(*(u16 *)(func_020b4044()+4),option);
+func_020abf3c();commit=1;
+}
+}
+}
+else if(func_020abf5c(24,139,130,18,0)){
+if(kind==3){
+if(touch[0]!=23){
+func_0210d27c(2);
+*(s32 *)(menu+0x2aa8)=4;
+option=(u8)(*(s32 *)(menu+0x2aa8)-2);
+func_020b3be8(*(u16 *)(func_020b4044()+4),option);
+touch[0]=23;
+}else if(touch[2]==1){
+*(s32 *)(menu+0x2aa8)=4;
+option=(u8)(*(s32 *)(menu+0x2aa8)-2);
+func_020b3be8(*(u16 *)(func_020b4044()+4),option);
+func_020abf3c();commit=1;
+}
+}
+}
+if(func_020abf5c(234,3,18,18,1)){
+*arg=0;func_020220b0(*(u16 *)(player+4),1);func_020ae50c(6);func_020ade30(2);func_020abf3c();func_0210d27c(5);func_020aea84();return 2;
+}
+if(func_020abf5c(194,156,52,16,1))commit=1;
+if(commit){
+*arg=0;
+func_020220b0(func_020b39f4(func_020b3908(),(u8)*(s32 *)(menu+0x2aa8)),1);
+if(kind==3)option=(u8)(*(s32 *)(menu+0x2aa8)-2);
+func_020b3be8(*(u16 *)(player+4),option);
+func_020b3924();func_020ae50c(6);func_020abf3c();func_020ade30(18);func_0210d27c(76);func_020aea84();return 2;
+}
+if(*(u16 *)(data_02162908+4)==0){touch[2]=1;touch[3]=0;touch[1]=0;}
+else{
+touch[2]=0;touch[3]=0;
+if(touch[1]==0)touch[3]=1;
+if(touch[1]>=20 && touch[1]%2==0)touch[3]=1;
+touch[1]++;
+if(touch[1]>100)touch[1]=20;
+}
+return 0;
+}
+
 s32 func_020ad26c(u8 *arg0) {
     u8 *p = func_020b442c();
     if (func_020abf5c(0, 0, 0x100, 0xC0, 1) != 0) {
