@@ -228,6 +228,7 @@ void func_02067de0(u8 *arg0)
             while ((--count) != 0);
             rng = (data_0216263c[1] * rng) + data_0216263c[2];
             random = (u16) (((rng >> 16) * 6) >> 16);
+            new_var = i - 4;
             data_0216263c[0] = rng;
             index = (s8) (random - 3);
             index = (s8) ((index < 0) ? (-index) : (index));
