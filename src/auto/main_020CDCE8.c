@@ -132,6 +132,180 @@ void func_020cdf18(void) {
     }
 }
 
+void func_020ce170(s32 arg0, s32 arg1, s32 arg2) {
+    U16x4_020ce170 tbl1 = data_02144650;
+    u8 *slot = data_02160238 + 0x710 + arg1 * 0x10;
+    u16 base = tbl1.v[arg0];
+    u16 idx = 0;
+    u8 active = 0;
+    u8 *p;
+    s32 i;
+    U16x4_020ce170 tbl2;
+    u16 base2;
+    u16 base3;
+    u16 j;
+    s32 a, b, c;
+    s16 y, x, x2;
+    u8 *vobj;
+
+    if (slot[0] != 0) {
+        active = 1;
+    }
+
+    p = (u8 *)func_020cda08(2, base);
+    if (arg2 != 0) {
+        p[3] = 9;
+    } else {
+        p[3] = 8;
+    }
+
+    idx++;
+    p = (u8 *)func_020cda08(2, (u16)(base + idx));
+    *(u16 *)(p + 4) = 0;
+    *(u16 *)(p + 6) = 0;
+    *(u16 *)(p + 8) = 10;
+    *(u16 *)(p + 0xa) = 10;
+    *(u16 *)(p + 0x10) = 10;
+    *(u16 *)(p + 0x12) = 10;
+    if (arg2 != 0) {
+        p[3] = 10;
+    } else {
+        p[3] = 11;
+    }
+    p[2] = active;
+
+    idx++;
+    p = (u8 *)func_020cda08(2, (u16)(base + idx));
+    if (arg2 != 0) {
+        p[3] = 13;
+    } else {
+        p[3] = 12;
+    }
+    p[2] = active;
+
+    idx++;
+    p = (u8 *)func_020cda08(2, (u16)(base + idx));
+    if (arg2 != 0) {
+        p[3] = 14;
+    } else {
+        p[3] = 15;
+    }
+    p[2] = active;
+
+    idx++;
+    p = (u8 *)func_020cda08(2, (u16)(base + idx));
+    if (arg2 != 0) {
+        p[3] = 14;
+    } else {
+        p[3] = 15;
+    }
+    if (slot[1] != 0 && active != 0) {
+        p[2] = 1;
+    } else {
+        p[2] = 0;
+    }
+
+    idx++;
+    p = (u8 *)func_020cda08(2, (u16)(base + idx));
+    if (arg2 != 0) {
+        p[3] = 14;
+    } else {
+        p[3] = 15;
+    }
+    if (slot[2] != 0 && active != 0) {
+        p[2] = 1;
+    } else {
+        p[2] = 0;
+    }
+
+    idx++;
+    p = (u8 *)func_020cda08(2, (u16)(base + idx));
+    if (arg2 != 0) {
+        p[3] = 19;
+    } else {
+        p[3] = 18;
+    }
+    p[2] = active;
+
+    idx++;
+    p = (u8 *)func_020cda08(2, (u16)(base + idx));
+    if (arg2 != 0) {
+        p[3] = 28;
+    } else {
+        p[3] = 29;
+    }
+    p[2] = 0;
+    if (active != 0 && slot[7] != 0) {
+        p[2] = 1;
+    }
+
+    idx++;
+    for (i = 0; i < 3; i++) {
+        p = (u8 *)func_020cda08(2, (u16)(base + idx));
+        if (slot[0] != 0 && slot[i] != 0) {
+            p[2] = 1;
+            p[3] = slot[i + 3] + 0x1d;
+            p[0x2b] = 1;
+            *(u16 *)(p + 0x28) = 0x29b0;
+        } else {
+            p[2] = 0;
+        }
+        idx++;
+    }
+
+    tbl2 = data_02144670;
+    base2 = tbl2.v[arg0];
+    for (j = 0; j < 5; j++) {
+        p = func_020cdc8c((u16)(base2 + j), 2);
+        if (p != NULL) {
+            if (arg2 != 0) {
+                *(u16 *)(p + 0x1c) = 0x13;
+            } else {
+                *(u16 *)(p + 0x1c) = 0x12;
+            }
+            p[2] = active;
+        }
+    }
+
+    i = 0;
+    base3 = ((volatile u16 *)&tbl2)[arg0];
+    for (; i < 3; i++) {
+        p = func_020cdc8c((u16)(i + base3), 2);
+        *(u32 *)(p + 4) = slot[i];
+        if (slot[0] != 0 && slot[i] != 0) {
+            p[2] = 1;
+        } else {
+            p[2] = 0;
+        }
+    }
+
+    func_020ceb74(&a, &b, &c, *(s32 *)(slot + 8));
+    p = func_020cdc8c((u16)(base2 + 3), 2);
+    *(s32 *)(p + 4) = a;
+    p = func_020cdc8c((u16)(base2 + 4), 2);
+    *(s32 *)(p + 4) = b;
+
+    x = (s16)(arg0 * 0x30 + 0x1e);
+    y = 0xf;
+    if (arg0 == 3) {
+        y = 0x19;
+        x = 0x4e;
+    }
+    func_020a8810(*(void **)(data_02160238 + arg0 * 0x64 + 0x560), arg2 != 0 ? 0x13 : 0x14);
+    func_020ce664(arg0, 5, x, y, slot[6]);
+    *(s32 *)(data_02160238 + arg0 * 0x64 + 0x5b8) = active;
+
+    x2 = (s16)(arg0 * 0x30 + 0x28);
+    vobj = *(u8 **)(data_02160238 + arg0 * 4 + 0x6f0);
+    if (arg0 == 3) {
+        x2 = 0x58;
+    }
+    ((void (*)(void *, s32))(*(void **)(vobj + 0x10)))(vobj, 0x19);
+    ((void (*)(void *, s32))(*(void **)(vobj + 0x14)))(vobj, x2);
+    ((void (*)(void *, s32))(*(void **)(vobj + 0x1c)))(vobj, 0x79);
+    func_020c738c(vobj, active, 1);
+}
+
 void func_020ce664(s32 arg0, s16 arg1, s16 arg2, s16 arg3, u8 arg4) {
     s32 idx = arg0 * 100;
 
@@ -147,16 +321,43 @@ void func_020ce664(s32 arg0, s16 arg1, s16 arg2, s16 arg3, u8 arg4) {
     func_020a98f4(data_02160238 + 0x164 + 0x400 + idx);
 }
 
-void func_020ce738(void) {
-    u8 i;
-    for (i = 0; i < 3; i++) {
-        u8 *p = *(u8 **)data_02160238 + i * 100;
-        Unk738 *s = (Unk738 *)(p + 0x5b0);
-        (*(u32 **)(p + 0x560))[0x4c / 4] = (s->f4 + 0x65) << 12;
-        (*(u32 **)(p + 0x560))[0x44 / 4] = (s->f0 + s->fc) << 12;
-        (*(u32 **)(p + 0x560))[0x48 / 4] = (s->f2 + s->f10) << 12;
-        (*(u32 **)(p + 0x560))[0x40 / 4] = s->f8;
-    }
+void func_020ce738(void)
+{
+    u8 **base = (u8 **)&data_02160238;
+    u32 stride = 0x64;
+    u32 i = 0;
+
+    do {
+        u32 offset = i * stride;
+        u8 *p = *base + offset;
+        u32 next = i + 1;
+        u8 *q = p + 0x500;
+
+        s32 z = *(s16 *)(q + 0xB4);
+        s32 x = *(s16 *)(q + 0xB0);
+        s32 dx = *(s32 *)(p + 0x5BC);
+        s32 height = z + 0x65;
+        s32 y = *(s16 *)(q + 0xB2);
+        s32 dy = *(s32 *)(p + 0x5C0);
+        u32 value = *(u32 *)(p + 0x5B8);
+        u32 *dst;
+
+        dx = x + dx;
+
+        dst = *(u32 **)(p + 0x560);
+        dst[0x13] = (u32)height << 12;
+
+        dst = *(u32 **)(*base + offset + 0x560);
+        dy = y + dy;
+        dst[0x11] = (u32)dx << 12;
+
+        dst = *(u32 **)(*base + offset + 0x560);
+        i = next & 0xFF;
+        dst[0x12] = (u32)dy << 12;
+
+        dst = *(u32 **)(*base + offset + 0x560);
+        dst[0x10] = value;
+    } while (i < 4);
 }
 
 void func_020ce7d8(void) {
@@ -266,24 +467,18 @@ void func_020cec18(void) {
     u8 *p = data_02160238;
     s32 flag = 0;
     u8 *node = NULL;
-    u32 v;
 
     if (p == NULL) {
         return;
     }
-    v = *(u8 *)(p + 0x772);
-    if (v == 0) {
-        goto common;
+    if (*(u8 *)(p + 0x772) != 0) {
+        (*(u8 *)(p + 0x772))--;
+        flag = 1;
+        if (*(u8 *)(p + 0x772) == 0) {
+            func_020cec8c();
+            flag = 0;
+        }
     }
-    v--;
-    *(u8 *)(p + 0x772) = v;
-    flag = 1;
-    if (v != 0) {
-        goto common;
-    }
-    func_020cec8c();
-    flag = 0;
-common:
     node = func_020cda08(2, 1);
     if (node == NULL) {
         return;
