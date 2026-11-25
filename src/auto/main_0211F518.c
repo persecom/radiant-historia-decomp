@@ -30,9 +30,11 @@ return (u16)s|((u32)(u16)t<<16);
 }
 static inline s32 texfixed_021200f4(s32 v) { return (v << 8) >> 16; }
 static inline u32 texcoord_021200f4(s32 s,s32 t) {
-s=texfixed_021200f4(s);
-t=texfixed_021200f4(t);
-return texcoord_0211fda4(s,t);
+u32 x=texfixed_021200f4(s);
+u32 y=texfixed_021200f4(t);
+x=(u16)x;
+y=(u16)y;
+return x | (y << 16);
 }
 static inline u8 *dict_entry_0211fda4(u8 *dict,u32 index) {
 if(dict && index<dict[1]){
