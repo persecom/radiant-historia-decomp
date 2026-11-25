@@ -64,7 +64,7 @@ extern void func_020ecd10(void *, u32, u32);
 extern s16 data_02162908[2];
 extern u8 *data_021600f0;
 extern u32 data_0216bf84;
-extern u8 * volatile data_02160204;
+extern u8 *data_02160204;
 extern u8 *data_021600bc;
 extern u32 func_02109754(u32);
 extern void func_02059888(void);
@@ -236,10 +236,10 @@ extern void func_020a4c98(s32);
 #pragma opt_common_subs off
 void func_02044cfc(void)
 {
-    register s32 one = 1;
-    register s32 one2 = 1;
-    register s32 zero = 0;
-    register u8 *r6 = *(u8 **)(data_021600bc + 0x40);
+    s32 one = 1;
+    s32 one2 = 1;
+    s32 zero = 0;
+    u8 *r6 = *(u8 **)(data_021600bc + 0x40);
     u8 *node;
     s32 flag;
 
