@@ -467,7 +467,7 @@ parse_set:
             if (ch == '-' && i != 0 && f[1] != ']') {
                 f++;
                 ch = *f;
-                func_020125e0(st.bits, i, ch);
+                func_020125e0(bits, i, ch);
                 neg = 1;
                 f++;
             } else {
