@@ -114,4 +114,4 @@ s32 func_020d7c8c(s32 a,s32 b,s32 c,u32 match,u16 index,s16 *out,s32 *text) {
  }
  return value;
 }
-#pragma scheduling on
+
