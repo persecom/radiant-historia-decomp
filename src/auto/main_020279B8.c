@@ -37,7 +37,7 @@ s32 func_020279b8(u8 *self,u8 *parser) {
  col=func_02092994(parser,zero);
  switch(cmd) {
  case 1: {
- u8 idx=(row-1)*3+col-1;
+ u8 idx=(row-1)*3+(col-1);
  if(func_0202b3b0(idx) && func_0202e63c(self,idx)) {func_0202b3d4(self,idx);return 1;}
  break;
  }
@@ -106,3 +106,4 @@ s32 func_020279b8(u8 *self,u8 *parser) {
  }
  return 0;
 }
+static inline u8 Cell_020279b8(u8 *cells,u32 start,u32 i,u32 n) { return cells[(start+i)%n]; }
