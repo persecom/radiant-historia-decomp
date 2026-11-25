@@ -31,6 +31,7 @@ extern void *func_02026e40(u16);
 extern void *func_02026548(void);
 extern void func_021167f0(void*,void*);
 extern void func_021168f8(void*,void*);
+static inline void SetSpecialChild_020d708c(s32 *id){*id=852;(*id)++;}
 static inline void SetSpecialPosition_020d708c(u8 *obj){
 obj[0xa1]|=0x3a;*(s32*)(obj+0x58)=1;*(s32*)(obj+0x68)=0;*(s32*)(obj+0x70)=-110;
 }
