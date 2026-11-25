@@ -1,5 +1,7 @@
 /* 13 functions from 0x0211DDAC to 0x0211EA84 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct {u32 x,y;} Pair_0211e3ec;
+typedef struct {s16 x,y;} ShortPair_0211e3ec;
 extern u8 data_02170464[];
 extern const u32 data_02144f08[];
 extern u8 data_021701fc[];
@@ -217,6 +219,110 @@ void func_0211e320(u8 *arg0) {
  }
  }
  *(u8 **)arg0+=2;
+}
+
+void func_0211e3ec(u8 *ctx,u32 command,u8 *mat,u32 idx) {
+u32 stage,handled;
+u32 zero=0;
+u8 *out;
+u32 packets[7];
+*(u32 *)(ctx+8)|=8;
+stage=*(void **)(ctx+0x1c)?ctx[0x90]:zero;
+ctx[0xad]=idx;
+*(u8 **)(ctx+0xb0)=ctx+0xf4;
+if(stage==1) {
+*(u32 *)(ctx+8)&=~0x40;
+(*(void (**)(void *))(ctx+0x1c))(ctx);
+stage=*(void **)(ctx+0x1c)?ctx[0x90]:0;
+handled=*(u32 *)(ctx+8)&0x40;
+} else handled=0;
+if(!handled) {
+u8 *cache=*(u8 **)(*(u8 **)(ctx+4)+0x38);
+if(cache && !(*(u32 *)(ctx+8)&0x80)) out=cache+idx*0x38;
+else if((command==0x20 || command==0x40) && (*(u32 *)(ctx+0xbc+(idx>>5)*4)&(1<<(idx&31)))) {
+out=cache?cache+idx*0x38:data_02170464+idx*0x38;
+} else {
+u8 *tbl,*entry,*source;
+u32 flags,maska,maskb;
+if(cache) {
+*(u32 *)(ctx+0xbc+(idx>>5)*4)|=1<<(idx&31);
+out=*(u8 **)(*(u8 **)(ctx+4)+0x38)+idx*0x38;
+} else if(command==0x40) {
+*(u32 *)(ctx+0xbc+(idx>>5)*4)|=1<<(idx&31);
+out=data_02170464+idx*0x38;
+} else out=ctx+0xf4;
+*(u32 *)out=zero;
+tbl=*(u8 **)(ctx+0xd8);
+if(tbl) {
+u8 *dict=tbl+4;
+if(dict && idx<tbl[5]) {
+u16 offset=*(u16 *)(tbl+10);
+entry=dict+offset+4+*(u16 *)(dict+offset)*idx;
+} else entry=0;
+source=entry?tbl+*(u32 *)entry:0;
+} else source=0;
+if(*(u16 *)(source+0x1e)&0x20) *(u32 *)out|=0x20;
+flags=*(u16 *)(mat+0x1e);
+maska=data_02144f08[(flags>>6)&7];
+maskb=data_02144f08[(flags>>9)&7];
+*(u32 *)(out+4)=(*(u32 *)(data_021701fc+0x94)&~maska)|(*(u32 *)(mat+4)&maska);
+*(u32 *)(out+8)=(*(u32 *)(data_021701fc+0x98)&~maskb)|(*(u32 *)(mat+8)&maskb);
+*(u32 *)(out+12)=(*(u32 *)(data_021701fc+0x9c)&~*(u32 *)(mat+16))|(*(u32 *)(mat+12)&*(u32 *)(mat+16));
+*(u32 *)(out+16)=*(u32 *)(mat+20);
+*(u32 *)(out+20)=*(u16 *)(mat+28);
+if(flags&1) {
+u8 *p=mat+0x2c;
+if(flags&2) *(u32 *)out|=1;
+else {u32 a=*(u32 *)p,b=*(u32 *)(p+4); *(u32 *)(out+24)=a; *(u32 *)(out+28)=b; p+=8;}
+if(*(u16 *)(mat+30)&4) *(u32 *)out|=2;
+else {s16 a=*(s16 *)p,b=*(s16 *)(p+2); p+=4; *(s16 *)(out+32)=a; *(s16 *)(out+34)=b;}
+if(*(u16 *)(mat+30)&8) *(u32 *)out|=4;
+else {u32 a=*(u32 *)p,b=*(u32 *)(p+4); *(u32 *)(out+36)=a; *(u32 *)(out+40)=b;}
+*(u32 *)out|=8;
+}
+{
+u8 *obj=*(u8 **)(ctx+4);
+void *anim=*(void **)(obj+8);
+if(anim && (*(u32 *)(obj+0x3c+(idx>>5)*4)&(1<<(idx&31))))
+(*(void (**)(void *,void *,u32))(obj+12))(out,anim,idx);
+}
+if(*(u32 *)out&0x18) {
+u16 a=*(u16 *)(mat+32),b=*(u16 *)(mat+34);
+u32 c=*(u32 *)(mat+36);
+*(u16 *)(out+44)=a; *(u16 *)(out+46)=b;
+*(u32 *)(out+48)=c; *(u32 *)(out+52)=*(u32 *)(mat+40);
+}
+}
+*(u8 **)(ctx+0xb0)=out;
+}
+if(stage==2) {
+*(u32 *)(ctx+8)&=~0x40;
+(*(void (**)(void *))(ctx+0x1c))(ctx);
+stage=*(void **)(ctx+0x1c)?ctx[0x90]:0;
+handled=*(u32 *)(ctx+8)&0x40;
+} else handled=0;
+if(!handled) {
+out=*(u8 **)(ctx+0xb0);
+if(*(u32 *)(out+12)&0x1f0000) {
+if(*(u32 *)out&0x20) *(u32 *)(out+12)&=~0x1f0000;
+*(u32 *)(ctx+8)&=~2;
+if(!(*(u32 *)(ctx+8)&0x100)) {
+packets[0]=0x293130;
+packets[1]=*(u32 *)(out+4);
+packets[2]=*(u32 *)(out+8);
+packets[3]=*(u32 *)(out+12);
+packets[4]=0x2b2a;
+packets[5]=*(u32 *)(out+16);
+packets[6]=*(u32 *)(out+20);
+func_021205ec(packets[0],packets+1,6);
+if(*(u32 *)out&0x18) (*(void (**)(void *))(ctx+0xf0))(out);
+}
+} else *(u32 *)(ctx+8)|=2;
+}
+if(stage==3) {
+*(u32 *)(ctx+8)&=~0x40;
+(*(void (**)(void *))(ctx+0x1c))(ctx);
+}
 }
 
 void func_0211e860(u8 *arg0) {
