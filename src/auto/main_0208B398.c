@@ -3,6 +3,10 @@
 typedef struct { s16 v[10]; } Draw_0208bda0;
 typedef struct { s16 x,y,z; } Pos_0208bda0;
 extern const Draw_0208bda0 data_02140e3c, data_02140d88;
+extern const Draw_0208bda0 data_02140e28, data_02140e14, data_02140e00, data_02140dec, data_02140dd8, data_02140dc4, data_02140d38;
+extern void func_0208c250(s32, s32);
+extern void func_0208bff0(s32, s32, s32, s32);
+extern void func_0208bda0(s32, s16, s16, Pos_0208bda0, s16);
 extern void func_020a3bbc(s32);
 extern void func_021098ac(void *);
 extern const Draw_0208bda0 data_02140d74;
@@ -10,6 +14,9 @@ extern u8 *data_021600b0;
 typedef struct { s32 mode; s16 counter; s8 flags; u8 pad[5]; } Entry_0208bff0;
 typedef struct { u8 pad[0x200]; Entry_0208bff0 entries[2]; } State_0208bff0;
 extern void func_020922bc(s32,s32,s32,s32,s32,s32,s32,s32);
+
+void func_0208b398(void) {
+}
 
 void func_0208bda0(s32 mode, s16 x, s16 y, Pos_0208bda0 pos, s16 arg5) {
 s16 py=pos.y;
