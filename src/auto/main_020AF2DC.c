@@ -6,6 +6,28 @@ extern u8 *func_020b3908(void), *func_020b3914(void), *func_020ade60(s32);
 extern void func_020ae004(s16,s16,s16,s16,s16,s16,s16,s16,s16);
 extern void func_020ae0f0(u32,s16,s32,s16,s16,s16);
 extern void func_02076380(void *);
+static inline void draw_change_020af2dc(u8 *menu, s32 x, s16 y, s32 delta, s32 sx, s32 ax, s32 nx, s32 wide) {
+int magnitude=delta;
+int shift;
+s16 left;
+if(delta==0) return;
+if(magnitude<0) magnitude=-magnitude;
+if(wide && magnitude>=100) shift=7;
+else if(magnitude<10) shift=-7;
+else shift=0;
+left=shift+(s16)x;
+if(delta>0) {
+func_02076380(*(void **)(menu+0xbc));
+func_020ae004(102,70,0,7,8,sx,y+52,7,8);
+func_020ae004(102,84,0,7,8,ax,y+51,7,8);
+} else {
+func_02076380(*(void **)(menu+0xc4));
+func_020ae004(102,77,0,7,8,sx,y+52,7,8);
+func_020ae004(102,91,0,7,8,ax,y+51,7,8);
+}
+func_020ae0f0(magnitude,102,(s16)(left+nx),y+52,7,8);
+}
+
 static inline void draw_bar_020af2dc(s32 x, s16 y) {
 func_020ae004(101,0,y,20,11,x+10,y+50,20,11);
 func_020ae004(101,21,y,1,11,x+30,y+50,120,11);
@@ -24,8 +46,9 @@ func_020ae004(101,124,y,4,11,x+211,y+50,4,11);
 
 void func_020af2dc(u8 *menu) {
 s16 y=0;
+u8 *other;
 u8 *item=func_020b3908();
-u8 *other=func_020b3914();
+other=func_020b3914();
 s32 x=*(s32 *)func_020ade60(3);
 int value,delta;
 func_02076380(*(void **)(menu+0xb8));
