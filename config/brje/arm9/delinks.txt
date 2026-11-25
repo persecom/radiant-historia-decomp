@@ -92,7 +92,10 @@ src/auto/main_0200F244.c:
     .text start:0x0200f244 end:0x0200fc34
 
 src/auto/main_0200FC34.c:
-    .text start:0x0200fc34 end:0x0200fedc
+    .text start:0x0200fc34 end:0x0200fca4
+
+src/auto/main_0200FCA4.c:
+    .text start:0x0200fca4 end:0x0200fedc
 
 src/auto/main_0200FEDC.c:
     .text start:0x0200fedc end:0x0200ff10
