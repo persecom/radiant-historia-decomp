@@ -368,7 +368,9 @@ void func_0211c850(void *arg0, s32 arg1) {
 void func_0211c934(s32 *arg0, s32 *arg1, s32 arg2) {
     s32 bg = arg2 & 3;
     s32 size = (*(volatile u16 *)data_02144ee8[arg2] & 0xc000) >> 14;
-    s32 mode = (arg2 <= 3 ? *(volatile u32 *)0x04000000 : *(volatile u32 *)0x04001000) & 7;
+    s32 mode;
+    if(arg2 <= 3) mode = *(volatile u32 *)0x04000000 & 7;
+    else mode = *(volatile u32 *)0x04001000 & 7;
     if ((bg == 2 && (mode == 2 || mode >= 4)) || (bg == 3 && mode >= 1)) {
         s32 v = 0x10 << size;
         *arg0 = v;
