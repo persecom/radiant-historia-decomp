@@ -53,7 +53,10 @@ src/auto/main_02008BF4.c:
     .text start:0x02008bf4 end:0x02009b24
 
 src/auto/main_02009B24.c:
-    .text start:0x02009b24 end:0x0200a980
+    .text start:0x02009b24 end:0x0200a348
+
+src/auto/main_0200A348.c:
+    .text start:0x0200a348 end:0x0200a980
 
 src/auto/main_0200A980.c:
     .text start:0x0200a980 end:0x0200b8fc
