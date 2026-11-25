@@ -174,12 +174,18 @@ void func_020c96b4(u8 *arg0, u8 *arg1) {
     s32 sum;
     func_020c9680(arg0, &b, &a);
     sum = a + func_020c9808(arg0);
-    *(volatile s16 *)(arg1 + 0x3c) = *(s16 *)(arg0 + 0x5a) + (s16)(data_02162908[1] - *(s16 *)(arg0 + 0x5e));
-    if (*(s16 *)(arg1 + 0x3c) < a) {
-        *(volatile s16 *)(arg1 + 0x3c) = a;
-    }
-    if (*(s16 *)(arg1 + 0x3c) + *(s16 *)(arg1 + 0x40) > (s16)sum) {
-        *(volatile s16 *)(arg1 + 0x3c) = (s16)sum - *(s16 *)(arg1 + 0x40);
+    {
+        s16 lim = (s16)sum;
+        *(volatile s16 *)(arg1 + 0x3c) = *(s16 *)(arg0 + 0x5a) + (s16)(data_02162908[1] - *(s16 *)(arg0 + 0x5e));
+        if (*(volatile s16 *)(arg1 + 0x3c) < a) {
+            *(volatile s16 *)(arg1 + 0x3c) = a;
+        }
+        {
+            s16 f40 = *(volatile s16 *)(arg1 + 0x40);
+            if (*(volatile s16 *)(arg1 + 0x3c) + f40 > lim) {
+                *(volatile s16 *)(arg1 + 0x3c) = lim - f40;
+            }
+        }
     }
     func_020c7930(arg1);
 }
@@ -336,13 +342,13 @@ u32 func_020c9b64(u8 *arg0) {
 
 u32 func_020c9bb8(u8 *arg0) {
 void *p=arg0;
-s32 ret=0;
+u32 ret=0;
 u16 count=*(u16 *)((u8 *)p+4);
 u16 i;
 for(i=0;i<count;i++){
 u8 *obj=(*(u8 ***)p)[i];
 if(obj != NULL && *(void **)(obj+12) != NULL)
-ret |= ((u32 (*)(u8 *))(*(void **)(obj+12)))(obj);
+ret = ((u32 (*)(u8 *))(*(void **)(obj+12)))(obj) | ret;
 }
 return ret;
 }
