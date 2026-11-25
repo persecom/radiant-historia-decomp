@@ -429,7 +429,6 @@ s32 func_020b77d4(void) {
                     }
                 }
             }
-#pragma scheduling on
             w = func_020c9c10(*(void **)(r9 + 0x4c), 0xb);
             ((void (*)(u8 *, s32))(*(void **)(w + 0x20)))(w, 0x10);
 
