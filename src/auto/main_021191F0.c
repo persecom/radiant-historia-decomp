@@ -70,6 +70,12 @@ static inline void MI_CpuFill32(void *dest, u32 data, u32 size) {
     func_02008e68((s32)data, dest, (s32)size);
 }
 
+extern void func_0211c850(u32);
+extern void func_0211c79c(u32);
+static inline void draw_02119728(u32 arg) {
+if (*(s32 *)(data_02155eb0+4)!=-1) func_0211c850(arg);
+else func_0211c79c(arg);
+}
 static inline s32 is_valid_id(s32 id) {
     if (id != -1) {
         return 1;
@@ -236,6 +242,128 @@ void func_02119694(void *arg0, s32 arg1, s32 arg2) {
         ctx = data_0216f3c4 + *(volatile u32 *)&data_0216f234.fc * 0x18;
     }
     (*(Cb5_02119694 *)(sub + 0x44))(p, sub, arg1, arg2, ctx);
+}
+
+extern void func_0211c5ac(void *,void *);
+extern void func_0211c850(u32);
+extern void func_0211c79c(u32);
+extern void func_0211c5c4(void *,u32);
+extern void func_0211c544(void *);
+extern void func_0211c5cc(void *,void *);
+extern void func_0211c538(void *,u32,u32);
+extern void func_0211c624(void *);
+void func_02119728(u32 arg) {
+u8 *root=(u8 *)data_0216f234.f8;
+u8 *node=*(u8 **)(root+0x70);
+void *material;
+if(*(u32 *)(root+0x7c)&2) {
+if(*(u32 *)(node+20)) {
+void *matrix=0;
+switch(data_0216f234.f4==0 && *(u16 *)data_02155eb0!=0xfffe) {
+default:
+if(data_0216fdc4.enabled) {
+matrix=data_0216fdc8[data_0216fdc4.index];
+if(!matrix) {
+func_021191f0();
+matrix=&data_0216f9c4[data_0216f2c4[(u16)data_0216f234.fc].f0];
+data_0216fdc8[data_0216fdc4.index]=matrix;
+}
+} else {
+func_021191f0();
+matrix=&data_0216f9c4[data_0216f2c4[(u16)data_0216f234.fc].f0];
+}
+break;
+case 0: break;
+}
+if(data_0216f234.f4==0) material=data_0216f3c4+data_0216f234.fc*24;
+else {
+*(volatile u32 *)(data_02155eb0+24)=*(volatile u32 *)(data_0216f3d4+data_0216f234.fc*24);
+*(volatile u32 *)(data_02155eb0+28)=*(volatile u32 *)(data_0216f3d8+data_0216f234.fc*24);
+material=data_02155eb8;
+}
+func_0211c5ac(material,matrix);
+switch(is_valid_id(*(s32 *)(data_02155eb0+4))) {
+default: func_0211c850(arg); break;
+case 0: func_0211c79c(arg); break;
+}
+} else {
+func_0211c5c4(root,data_0216f244[data_0216f234.fc]);
+if(data_0216f234.f4==0) material=data_0216f3c4+data_0216f234.fc*24;
+else {
+*(volatile u32 *)(data_02155eb0+24)=*(volatile u32 *)(data_0216f3d4+data_0216f234.fc*24);
+*(volatile u32 *)(data_02155eb0+28)=*(volatile u32 *)(data_0216f3d8+data_0216f234.fc*24);
+material=data_02155eb8;
+}
+func_0211c544(material);
+switch(is_valid_id(*(s32 *)(data_02155eb0+4))) {
+default: func_0211c850(arg); break;
+case 0: func_0211c79c(arg); break;
+}
+}
+return;
+}
+while(node) {
+if(*(u32 *)(node+16)) {
+u32 type=*(u32 *)(node+20);
+u8 *current=(u8 *)data_0216f234.f8;
+*(u8 **)(current+0x74)=node;
+if(type) {
+func_0211c5cc(current,node);
+func_0211c538(current,*(u32 *)(node+40),*(u32 *)(node+44));
+func_0211c624(current);
+{
+void *matrix=0;
+switch(data_0216f234.f4==0 && *(u16 *)data_02155eb0!=0xfffe) {
+default:
+if(data_0216fdc4.enabled) {
+matrix=data_0216fdc4.entries[data_0216fdc4.index];
+if(!matrix) {
+func_021191f0();
+matrix=&data_0216f9c4[data_0216f2c4[(u16)data_0216f234.fc].f0];
+data_0216fdc4.entries[data_0216fdc4.index]=matrix;
+}
+} else {
+func_021191f0();
+matrix=&data_0216f9c4[data_0216f2c4[(u16)data_0216f234.fc].f0];
+}
+break;
+case 0: break;
+}
+if(data_0216f234.f4==0) material=data_0216f3c4+data_0216f234.fc*24;
+else {
+u8 *entry=data_0216f3c4+data_0216f234.fc*24;
+*(volatile u32 *)(data_02155eb0+24)=*(volatile u32 *)(entry+16);
+*(volatile u32 *)(data_02155eb0+28)=*(volatile u32 *)(entry+20);
+material=data_02155eb8;
+}
+func_0211c5ac(material,matrix);
+switch(is_valid_id(*(s32 *)(data_02155eb0+4))) {
+default: func_0211c850(arg); break;
+case 0: func_0211c79c(arg); break;
+}
+}
+} else {
+func_0211c5cc(current,node);
+func_0211c624(current);
+func_0211c5c4(root,data_0216f244[data_0216f234.fc]);
+if(data_0216f234.f4==0) material=data_0216f3c4+data_0216f234.fc*24;
+else {
+u8 *entry=data_0216f3c4+data_0216f234.fc*24;
+*(volatile u32 *)(data_02155eb0+24)=*(volatile u32 *)(entry+16);
+*(volatile u32 *)(data_02155eb0+28)=*(volatile u32 *)(entry+20);
+material=data_02155eb8;
+}
+func_0211c544(material);
+switch(is_valid_id(*(s32 *)(data_02155eb0+4))) {
+default: func_0211c850(arg); break;
+case 0: func_0211c79c(arg); break;
+}
+}
+*(u32 *)(data_0216f234.f8+0x74)=0;
+func_0211c738();
+}
+node=*(u8 **)(node+48);
+}
 }
 
 extern s16 data_0213a394[];
