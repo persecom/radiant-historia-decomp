@@ -1,5 +1,6 @@
 /* 37 functions from 0x0212C824 to 0x0212D7BC (main), found by ds-decomp. */
 #include "common.h"
+extern char data_02156d20[],data_02156d44[];
 typedef struct { u32 head; void *ctx; void *obj; void *objs[2]; s32 pair[2]; s32 pairs[2][2]; s32 a,b,c,d,e,f,g; u32 pad[4]; void (*callback)(void *,s32,s32,s32); void *user; } Unk0212CFC4;
 typedef struct { s8 unk00[2]; s8 count; u8 unk03[9]; void *objs[4]; u8 unk1c[0x8c]; s32 unkA8; s32 remaining; } Unk0212D3B4;
 
@@ -21,6 +22,96 @@ static void func_0212d3b4(void *);
 
 extern s32 func_02137d44(void *);
 extern s32 func_0212a1d4(void *);
+extern char data_02156cdc[];
+extern char data_02156cfc[];
+extern void func_02137f80(void *, s32, void *, void *);
+extern s32 func_0212a180(void *, void *);
+extern s32 func_02129bc8(void);
+extern void func_0212be08(const char *, ...);
+extern void func_0212a0e4(void *);
+extern void func_0212a0d0(void *);
+extern void func_02013858(void *, void *, s32);
+void func_0212c824(void *arg0) {
+    u8 *p = (u8 *)arg0;
+    u8 *ctx = *(u8 **)(p + 4);
+    void *obj = *(void **)(p + 8);
+    struct { void *ptr; s32 len; } buf;
+    struct { void *ptr; s32 len; } tmp;
+    s32 ret;
+
+    (*(void (**)(void *, s32, s32, void *))(*(u8 **)obj + 0x18))(obj, 1, 0xc800, &buf);
+    if (buf.len <= 0) {
+        (*(void (**)(void *, s32, void *))(*(u8 **)obj + 0x1c))(obj, 1, &buf);
+        return;
+    }
+
+    if (*(s16 *)(ctx + 0x9a) == 0 && *(s16 *)(ctx + 0x98) != 0xd) {
+        func_02137f80(&buf, 0, &tmp, &buf);
+        (*(void (**)(void *, s32, void *))(*(u8 **)obj + 0x20))(obj, 0, &tmp);
+        if (buf.len < 0x10) {
+            (*(void (**)(void *, s32, void *))(*(u8 **)obj + 0x1c))(obj, 1, &buf);
+            return;
+        }
+    }
+
+    if (*(s16 *)(ctx + 0x9a) == 0 && *(s16 *)(ctx + 0x98) != 0xd) {
+        ret = func_0212a180(ctx, buf.ptr);
+        if (ret == 0 || ret > buf.len) {
+            (*(void (**)(void *, s32, void *))(*(u8 **)obj + 0x1c))(obj, 1, &buf);
+            return;
+        }
+        if (ret < 0) {
+            (*(void (**)(void *, s32, void *))(*(u8 **)obj + 0x1c))(obj, 1, &buf);
+            if (func_02129bc8() == 0) {
+                func_0212be08(data_02156cdc, data_02156cfc);
+            }
+            p[1] = 4;
+            return;
+        }
+    } else {
+        ret = 0;
+        if (*(s16 *)(ctx + 0x98) == 0xd) {
+            func_0212a0e4(ctx);
+        } else {
+            func_0212a0d0(ctx);
+        }
+    }
+
+    *(s32 *)(p + 0xa0) = ret;
+    if (*(void **)(p + 0x50) != NULL) {
+        s32 a = func_0212a1dc(ctx);
+        s32 b = func_0212a1ec(ctx);
+        s32 c = func_0212a1e4(ctx);
+        s32 d = func_0212a228(ctx);
+        (*(void (**)(void *, s32, s32, s32, s32))(p + 0x50))(*(void **)(p + 0x54), a, b, c, d);
+    }
+
+    if (func_0212a1dc(ctx) == 4) {
+        p[3] = 1;
+    }
+
+    if (func_0212a1dc(ctx) == 2) {
+        s32 len = buf.len;
+        if (len >= 0x40) {
+            len = 0x40;
+        }
+        func_02013858(p + 0x60, buf.ptr, len);
+    }
+
+    {
+        s32 v = func_0212a1dc(ctx);
+        if (v == 0xa || v == 0xb || v == 0xc || v == 0x14 || v == 0xf || v == 0xd) {
+            (*(void (**)(void *, s32, void *))(*(u8 **)obj + 0x1c))(obj, 1, &buf);
+        } else {
+            func_02137f80(&buf, ret, &buf, &tmp);
+            (*(void (**)(void *, s32, void *))(*(u8 **)obj + 0x20))(obj, 0, &buf);
+            (*(void (**)(void *, s32, void *))(*(u8 **)obj + 0x1c))(obj, 1, &tmp);
+        }
+    }
+
+    p[1] = 2;
+}
+
 s32 func_0212caec(u8 *arg0, s32 *arg1, s32 *arg2, s32 *arg3) {
     void *first = *(void **)(arg0 + 0xc);
     s32 i;
