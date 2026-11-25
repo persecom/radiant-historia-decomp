@@ -46,6 +46,10 @@ typedef struct { u32 a[8]; } Copy32B;
 typedef struct { u32 a[9]; } Copy36B;
 typedef struct { u32 a[12]; } Copy48B;
 typedef struct { u32 f0, f4, f8, fc; } Queue;
+static inline void queue_push_02009aec(Queue *q, u32 *tail, u32 *value) {
+    if (tail == NULL) q->f8 = (u32)value;
+    else *tail = (u32)value;
+}
 
 void func_02008bf4(void) {
     u32 base;
@@ -125,7 +129,7 @@ again:
  if(i<size) { *(u16 *)(dst+i)=*(u16 *)(src+i); i+=2; goto again; }
 }
 
-void func_02008e24(u32 value, u32 *dst, u32 bytes) { u32 *end=(u32 *)((u8 *)dst+bytes); again: if((s32)dst<(s32)end) { *dst++=value; goto again; } }
+void func_02008e24(u32 value,u32 *dst,u32 bytes) { u32 *end=(u32*)((u8*)dst+bytes); again: if((s32)dst<(s32)end) { *dst++=value; goto again; } }
 
 void func_02008e38(const u32 *src, u32 *dst, u32 size) { u32 *end=(u32 *)((u8 *)dst+size); again: if ((s32)dst < (s32)end) { *dst++=*src++; goto again; } }
 
@@ -150,8 +154,18 @@ void func_02008eec(const Copy32B *src, Copy32B *dst) {
     *dst = *src;
 }
 
-void func_02008f08(const Copy36B *src, Copy36B *dst) {
-    *dst = *src;
+void func_02008f08(const Copy36B *src, Copy36B *dst)
+{
+    typedef struct {
+        u32 words[3];
+    } Copy12B;
+
+    const Copy12B *s = (const Copy12B *)src;
+    Copy12B *d = (Copy12B *)dst;
+
+    *d++ = *s++;
+    *d++ = *s++;
+    *d++ = *s++;
 }
 
 void func_02008f24(const Copy48B *src, Copy48B *dst) {
