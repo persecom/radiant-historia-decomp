@@ -31,6 +31,10 @@ extern UnkStruct_02160134 data_02160134;
 extern u8 *data_02160130;
 extern u32 data_02155c3c;
 extern UnkStruct_02160200 *data_02160200;
+static inline void clear_fade_flags_020a5368(void) {
+    data_02160200->unk160 &= ~0x20;
+    data_02160200->unk160 &= ~4;
+}
 extern void func_0210c5dc(void *);
 extern void *func_0210c594(s32, u32);
 typedef struct UnkStruct_020a48d0 {
@@ -449,7 +453,7 @@ void func_020a5338(void) {
     data_02160134.unk04 = NULL;
 }
 
-#pragma opt_propagation off
+#pragma opt_propagation on
 void func_020a5368(void){
 Unk20 buf=data_0214339c;
 switch(*(u16 *)data_02160134.unk04){
@@ -491,7 +495,8 @@ data_02162814=-16;data_02162884=-16;
 data_02160200->unk160&=~0x20;
 break;
 case 4:case 6:
-if((data_02162814 = (u32)data_02162814 + 4U) <= 0)return;
+data_02162814+=4;
+if(data_02162814<=0)return;
 data_02162814=0;func_02109884(1,0);
 if(*(s32 *)((u8 *)data_02160134.unk04+0x10)==0){data_02162884=0;func_02109884(2,0);}
 func_02108cc8(0);func_02108cc8(1);
@@ -502,7 +507,7 @@ break;
 case 8:break;
 }
 }
-#pragma opt_propagation on
+#pragma opt_propagation off
 void func_020a5644(u16 arg0) {
     u8 *p = data_02160134.unk04;
     if (p == NULL) {
