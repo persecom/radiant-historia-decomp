@@ -334,7 +334,7 @@ else if(arg2==15) arg2=0x7f;
 else arg2=(arg2+15)*128/30;
 u8 *p=*(u8 **)(arg0+arg1*4+0x20);
 *(u16 *)(p+0x20)=arg2;
-func_021147e8(arg0+0x34);
+func_021147e8(arg0+0x34, arg1, arg2);
 }
 
 void func_021359e4(u8 *arg0) {
