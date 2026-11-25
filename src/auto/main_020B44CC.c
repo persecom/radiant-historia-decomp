@@ -187,40 +187,29 @@ void func_020b485c(void) {
 }
 
 void func_020b48bc(void) {
-    if (data_021601e8 == NULL) {
-        return;
-    }
-    while (*(void **)data_021601e8 != NULL) {
-        func_020b4c00(*(u8 **)data_021601e8);
-    }
-    if (*(void **)(data_021601e8 + 0xc) != NULL) {
-        if (*(void **)*(void **)(data_021601e8 + 0xc) != NULL) {
-            func_020ec548(*(void **)*(void **)(data_021601e8 + 0xc));
-        }
-        if (*(void **)(data_021601e8 + 0xc) != NULL) {
-            func_0210c5dc(*(void **)(data_021601e8 + 0xc));
-        }
-    }
-    {
-        void **field = (void **)(data_021601e8 + 0xc);
-        *field = NULL;
-    }
-    if (*(void **)(data_021601e8 + 0x10) != NULL) {
-        if (*(void **)*(void **)(data_021601e8 + 0x10) != NULL) {
-            func_020ec548(*(void **)*(void **)(data_021601e8 + 0x10));
-        }
-        if (*(void **)(data_021601e8 + 0x10) != NULL) {
-            func_0210c5dc(*(void **)(data_021601e8 + 0x10));
-        }
-    }
-    {
-        void **field = (void **)(data_021601e8 + 0x10);
-        *field = NULL;
-    }
-    if (data_021601e8 != NULL) {
-        func_0210c5dc(data_021601e8);
-        data_021601e8 = NULL;
-    }
+if(data_021601e8 == NULL) return;
+while(*(void **)data_021601e8 != NULL)
+func_020b4c00(*(u8 **)data_021601e8);
+if(*(void **)(data_021601e8+12) != NULL) {
+if(**(void ***)(data_021601e8+12) != NULL)
+func_020ec548(**(void ***)(data_021601e8+12));
+if(*(void **)(data_021601e8+12) != NULL) {
+func_0210c5dc(*(void **)(data_021601e8+12));
+*(void **)(data_021601e8+12) = NULL;
+}
+}
+if(*(void **)(data_021601e8+16) != NULL) {
+if(**(void ***)(data_021601e8+16) != NULL)
+func_020ec548(**(void ***)(data_021601e8+16));
+if(*(void **)(data_021601e8+16) != NULL) {
+func_0210c5dc(*(void **)(data_021601e8+16));
+*(void **)(data_021601e8+16) = NULL;
+}
+}
+if(data_021601e8 != NULL) {
+func_0210c5dc(data_021601e8);
+data_021601e8 = NULL;
+}
 }
 
 void *func_020b498c(void *arg0, s32 arg1, s32 arg2) {
