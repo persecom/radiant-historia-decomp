@@ -54,26 +54,28 @@ void func_0200ef78(void *arg0, u32 arg1, u32 arg2, u32 arg3) {
 }
 
 void func_0200f004(void *arg0, s32 arg1) {
-    u8 *prev, *cur, *head;
-    if (arg0 == NULL) return;
-    func_02008128();
-    head = *(u8 **)arg0;
-    prev = head;
-    cur = head;
+    s32 intr;
+    u8 *cur;
+    u8 *prev;
+    if (arg0 == NULL) {
+        return;
+    }
+    intr = ((s32 (*)(void))func_02008128)();
+    cur = *(u8 **)arg0;
+    prev = cur;
     while (cur != NULL) {
         if (cur == (u8 *)arg1) {
-            void *next = *(void **)(cur + 0xc);
             if (cur == prev) {
-                *(u8 **)arg0 = (u8 *)next;
+                *(u8 **)arg0 = *(u8 **)(cur + 0xc);
             } else {
-                *(void **)(prev + 0xc) = next;
+                *(u8 **)(prev + 0xc) = *(u8 **)(cur + 0xc);
             }
-            return;
+            break;
         }
         prev = cur;
         cur = *(u8 **)(cur + 0xc);
     }
-    func_0200813c();
+    ((void (*)(s32))func_0200813c)(intr);
 }
 
 void func_0200f05c(u32 *arg0) {
