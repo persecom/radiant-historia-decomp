@@ -321,19 +321,13 @@ void func_020852a0(void) {
     func_02080d30();
     g = (G_020852a0 **)&data_0216010c;
     if ((*g)->field_44 != NULL) {
-        func_0210c5dc((*g)->field_44);
-        (*g)->field_44 = NULL;
+        if ((*g)->field_44 != NULL) {
+            func_0210c5dc((*g)->field_44);
+            (*g)->field_44 = NULL;
+        }
+        ((G_020852a0 *)data_0216010c)->field_44 = NULL;
     }
-    {
-        void *zero = NULL;
-        u8 *p = data_0216010c;
-        *(void **)(p + 0x44) = zero;
-    }
-    {
-        u8 zero = 0;
-        u8 *p = data_0216010c;
-        *(u8 *)(p + 0x3f) = zero;
-    }
+    *(u8 *)(data_0216010c + 0x3f) = 0;
     func_02089a98();
 }
 
