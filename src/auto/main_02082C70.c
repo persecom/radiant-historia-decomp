@@ -1,5 +1,6 @@
 /* 2 functions from 0x02082C70 to 0x02083580 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { u8 pad[0x1a]; s16 flags; } MenuFlagView;
 extern u16 data_02162908[4];
 extern u8 *data_0216010c;
 extern u8 *data_02160200;
