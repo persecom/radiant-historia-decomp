@@ -315,6 +315,140 @@ void func_020e43e4(u16 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     func_021098ac(arg0);
 }
 
+extern const UnkBuf10_020e3f30 data_021449ac;
+void func_020e441c(void)
+{
+    UnkBuf10_020e3f30 buf = data_021449ac;
+    s32 w;
+    s32 x;
+    s32 y;
+
+    *(volatile u32 *)0x040004a4 = 0x1f00c0;
+    if (*(u32 *)(data_02160a74 + 0x58) & 0x4000) {
+        func_020e3f30(0, -6, 0x2cc);
+    }
+
+    func_020a3bbc(0x11);
+    buf.data[1] = 0x24;
+    buf.data[2] = 0x12;
+    buf.data[3] = 0x11;
+    buf.data[4] = 0x11;
+    buf.data[8] = 0x11;
+    buf.data[9] = 0x11;
+    buf.data[5] = 4;
+    buf.data[6] = 3;
+    func_021098ac(&buf);
+
+    if (func_020df38c(3, 0x80000) != 0) {
+        func_020a3bbc(0x4e);
+        x = 1;
+    } else {
+        func_020a3bbc(0x4d);
+        x = 0;
+    }
+    func_020e3db4((u16 *)&buf, (s16)(x + 0xb), (s16)(x + 0x2f));
+
+    if (func_020df38c(3, 0x80000) != 0) {
+        func_020a3bbc(0x6a);
+        x = 1;
+    } else {
+        func_020a3bbc(0x69);
+        x = 0;
+    }
+    buf.data[1] = 0;
+    buf.data[2] = 1;
+    buf.data[3] = 9;
+    buf.data[4] = 5;
+    buf.data[8] = 9;
+    buf.data[9] = 5;
+    buf.data[5] = x + 0x53;
+    buf.data[6] = x + 0x35;
+    func_021098ac(&buf);
+
+    x = 0;
+    if (func_020df38c(3, 0x200000) != 0) {
+        func_020a3bbc(0x4e);
+        x = 1;
+        y = 1;
+    } else {
+        func_020a3bbc(0x4d);
+        y = 0;
+    }
+    func_020e3db4((u16 *)&buf, (s16)(x + 0xb), (s16)(y + 0x53));
+
+    if (func_020df38c(3, 0x200000) != 0) {
+        func_020a3bbc(0x6a);
+        x = 1;
+    } else {
+        func_020a3bbc(0x69);
+        x = 0;
+    }
+    buf.data[1] = 0;
+    buf.data[2] = 0xa;
+    buf.data[3] = 9;
+    buf.data[4] = 5;
+    buf.data[8] = 9;
+    buf.data[9] = 5;
+    buf.data[5] = x + 0x53;
+    buf.data[6] = x + 0x59;
+    func_021098ac(&buf);
+
+    x = 0;
+    if (func_020df38c(3, 0x100000) != 0) {
+        func_020a3bbc(0x4e);
+        x = 1;
+    } else {
+        func_020a3bbc(0x4d);
+    }
+    if (data_02160a74[0x1c3] == 1) {
+        func_020a3bbc(0x4f);
+    }
+    func_020e3db4((u16 *)&buf, (s16)(x + 0xb), (s16)(x + 0x41));
+
+    func_020a3bbc(0x51);
+    buf.data[1] = 0;
+    buf.data[2] = 0;
+    buf.data[3] = 7;
+    buf.data[4] = 0x11;
+    buf.data[8] = 7;
+    buf.data[9] = 0x11;
+    buf.data[5] = 0x18;
+    buf.data[6] = 4;
+    func_021098ac(&buf);
+
+    buf.data[1] = 0xd;
+    buf.data[2] = 0;
+    buf.data[3] = 1;
+    if (data_02160a74[0x1cd] == 1) {
+        w = 0x29;
+    } else if (data_02160a74[0x1cd] == 0) {
+        w = 0x3d;
+    }
+    buf.data[8] = w;
+    buf.data[9] = 0x11;
+    buf.data[5] = 0x1f;
+    func_021098ac(&buf);
+
+    buf.data[1] = 0x1e;
+    buf.data[2] = 0;
+    buf.data[3] = 2;
+    buf.data[8] = 2;
+    buf.data[9] = 0x11;
+    buf.data[5] = w + 0x1f;
+    func_021098ac(&buf);
+
+    func_020a3bbc(0x52);
+    buf.data[1] = 0;
+    buf.data[2] = *(s16 *)(data_02160a74 + 0xbc) * 0xd;
+    buf.data[3] = 0x40;
+    buf.data[4] = 0xd;
+    buf.data[8] = 0x40;
+    buf.data[9] = 0xd;
+    buf.data[5] = 0x1f;
+    buf.data[6] = 6;
+    func_021098ac(&buf);
+}
+
 void func_020e47cc(TargetState *out,u8 *arg) {
 u8 *p=*(u8 **)(arg+8);
 u8 i=0;
