@@ -11,6 +11,9 @@ extern void func_020a779c(void),func_020a7834(void),func_02066ce8(void),func_020
 typedef struct { s16 v[10]; } Params_02066868;
 extern const Params_02066868 data_0213fc60;
 
+extern u32 data_02155c3c;
+extern u8 *data_02160204;
+extern u32 data_02162834[],data_0216bf84,data_02162830,data_0216281c,data_02162820[];
 extern u8 *data_021600e0[];
 extern void func_021168f8(void *, void *);
 extern void func_0210c5dc(void *);
