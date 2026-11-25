@@ -17,7 +17,7 @@ static inline u16 random_4487c(u16 max) {
  u32 value;
  data_0216263c[0]=seed;
  value=seed>>16;
- if(max) { u32 scaled=value*max; value=scaled>>16; }
+ if(max) value=(value*max)>>16;
  return value;
 }
 extern s32 data_02162870[2], data_02162868[2], data_02162814[2], data_02162884[2];
