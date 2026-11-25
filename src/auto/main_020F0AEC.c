@@ -32,6 +32,8 @@ extern s32 data_02170204[];
 extern void func_02002028(s32);
 extern s64 func_02001fd0(void);
 extern void func_0210d27c(s32);
+static inline void AdvanceFirst_F0FD0(u8 *node,u8 *obj){if(*(s32*)(node+0x18)){u8 *anim=*(u8**)(obj+0xfc);if(((Flags_020f0aec*)(obj+0x1a4))->b3 && anim){s32 step=*(s32*)(obj+0x104);if(*(void(**)(void*))(obj+0x1b0)){(*(void(**)(void*))(obj+0x1b0))(obj);*(void**)(obj+0x1b0)=NULL;}if(anim){s8 j;s32 limit;for(j=0;j<(s32)data_0216281c;j++)*(s32*)anim+=step;limit=*(u16*)(*(u8**)(anim+8)+4)<<12;if(*(s32*)anim>=limit){if(((Flags_020f0aec*)(obj+0x1a4))->b5)*(s32*)anim=0;else{((Flags_020f0aec*)(obj+0x1a4))->b3=0;*(s32*)anim=limit-1;if(*(void(**)(void*))(obj+0x1b4)){(*(void(**)(void*))(obj+0x1b4))(*(void**)(obj+0x1ac));*(void**)(obj+0x1b4)=NULL;}}}}}}}
+static inline void AdvanceSecond_F0FD0(u8 *node,u8 *obj){if(*(s32*)(node+0x1c)){u8 *anim=*(u8**)(obj+0x100);if(((Flags_020f0aec*)(obj+0x1a4))->b4 && anim){s32 step=*(s32*)(obj+0x104);if(*(void(**)(void*))(obj+0x1b0)){(*(void(**)(void*))(obj+0x1b0))(obj);*(void**)(obj+0x1b0)=NULL;}if(anim){s8 j;s32 limit;for(j=0;j<(s32)data_0216281c;j++)*(s32*)anim+=step;limit=*(u16*)(*(u8**)(anim+8)+4)<<12;if(*(s32*)anim>=limit){if(((Flags_020f0aec*)(obj+0x1a4))->b6)*(s32*)anim=0;else{((Flags_020f0aec*)(obj+0x1a4))->b4=0;*(s32*)anim=limit-1;if(*(void(**)(void*))(obj+0x1b4)){(*(void(**)(void*))(obj+0x1b4))(*(void**)(obj+0x1ac));*(void**)(obj+0x1b4)=NULL;}}}}}}}
 typedef struct Vec_F0FD0 {s32 x,y,z;} Vec_F0FD0;
 static inline void Project_F0FD0(const Vec_F0FD0 *pos,s32 *outX,s32 *outY){
  register const s32 *p=data_02170204; register const s32 *m=(s32*)data_02170248;
@@ -242,11 +244,11 @@ void func_020f0aec(void) {
 }
 
 void func_020f0fd0(void){
-s32 zero;u8 *node,*obj;
+u8 *node,*obj;
 if(!data_02160af0)return;
 node=*(u8**)(data_02160af0+0x70);
 if(node){while(node){
-s32 sx,sy;
+s32 sx,sy; s32 zero;
 obj=*(u8**)node;
 Project_F0FD0((Vec_F0FD0*)(node+4),&sx,&sy);
 if(!(*(u32*)(node+20)&16)){u32 id=*(u16*)(obj+0x1b8);if(id>10000&&id<10999){if(sx<-48||sx>304||sy<-48||sy>256)goto next;}}
@@ -267,8 +269,8 @@ case 4:{s32*p=*(s32**)(obj+0xfc);if(p)*p=0x64000;p=*(s32**)(obj+0x100);if(p)*p=0
 }
 if(*(u32*)(node+20)&32){u8*anim=*(u8**)(obj+0xfc);if(anim){u16 i;for(i=0;i<(s32)data_0216281c;i++)*(s32*)anim-=4096;if(*(s32*)anim<=0)*(s32*)anim=(*(u16*)(*(u8**)(anim+8)+4)<<12)-4096;}*(u16*)(obj+0x1a4)&=~8;}
 if(*(u32*)(node+20)&64){u8*anim=*(u8**)(obj+0x100);if(anim){u16 i;for(i=0;i<(s32)data_0216281c;i++)*(s32*)anim-=4096;if(*(s32*)anim<=0)*(s32*)anim=(*(u16*)(*(u8**)(anim+8)+4)<<12)-4096;}*(u16*)(obj+0x1a4)&=~16;}
-if(*(s32*)(node+0x18)){u8 *anim=*(u8**)(obj+0xfc);if(((Flags_020f0aec*)(obj+0x1a4))->b3 && anim){s32 step=*(s32*)(obj+0x104);if(*(void(**)(void*))(obj+0x1b0)){(*(void(**)(void*))(obj+0x1b0))(obj);*(void**)(obj+0x1b0)=NULL;}if(anim){s8 j;s32 limit;for(j=0;j<(s32)data_0216281c;j++)*(s32*)anim+=step;limit=*(u16*)(*(u8**)(anim+8)+4)<<12;if(*(s32*)anim>=limit){if(((Flags_020f0aec*)(obj+0x1a4))->b5)*(s32*)anim=0;else{((Flags_020f0aec*)(obj+0x1a4))->b3=0;*(s32*)anim=limit-1;if(*(void(**)(void*))(obj+0x1b4)){(*(void(**)(void*))(obj+0x1b4))(*(void**)(obj+0x1ac));*(void**)(obj+0x1b4)=NULL;}}}}}}
-if(*(s32*)(node+0x1c)){u8 *anim=*(u8**)(obj+0x100);if(((Flags_020f0aec*)(obj+0x1a4))->b4 && anim){s32 step=*(s32*)(obj+0x104);if(*(void(**)(void*))(obj+0x1b0)){(*(void(**)(void*))(obj+0x1b0))(obj);*(void**)(obj+0x1b0)=NULL;}if(anim){s8 j;s32 limit;for(j=0;j<(s32)data_0216281c;j++)*(s32*)anim+=step;limit=*(u16*)(*(u8**)(anim+8)+4)<<12;if(*(s32*)anim>=limit){if(((Flags_020f0aec*)(obj+0x1a4))->b6)*(s32*)anim=0;else{((Flags_020f0aec*)(obj+0x1a4))->b4=0;*(s32*)anim=limit-1;if(*(void(**)(void*))(obj+0x1b4)){(*(void(**)(void*))(obj+0x1b4))(*(void**)(obj+0x1ac));*(void**)(obj+0x1b4)=NULL;}}}}}}
+if(*(s32*)(node+0x18)){u8 *anim=*(u8**)(obj+0xfc);if(((Flags_020f0aec*)(obj+0x1a4))->b3 && anim){s32 step=*(s32*)(obj+0x104);if(*(void(**)(void*))(obj+0x1b0)){(*(void(**)(void*))(obj+0x1b0))(obj);*(void**)(obj+0x1b0)=NULL;}if(anim){register s8 j;register s32 limit;for(j=0;j<(s32)data_0216281c;j++)*(s32*)anim+=step;limit=*(u16*)(*(u8**)(anim+8)+4)<<12;if(*(s32*)anim>=limit){if(((Flags_020f0aec*)(obj+0x1a4))->b5)*(s32*)anim=0;else{((Flags_020f0aec*)(obj+0x1a4))->b3=0;*(s32*)anim=limit-1;{s32 endZero=0;if(*(void(**)(void*))(obj+0x1b4)){(*(void(**)(void*))(obj+0x1b4))(*(void**)(obj+0x1ac));*(s32*)(obj+0x1b4)=endZero;}}}}}}}
+if(*(s32*)(node+0x1c)){u8 *anim=*(u8**)(obj+0x100);if(((Flags_020f0aec*)(obj+0x1a4))->b4 && anim){s32 step=*(s32*)(obj+0x104);if(*(void(**)(void*))(obj+0x1b0)){(*(void(**)(void*))(obj+0x1b0))(obj);*(void**)(obj+0x1b0)=NULL;}if(anim){register s8 j;register s32 limit;for(j=0;j<(s32)data_0216281c;j++)*(s32*)anim+=step;limit=*(u16*)(*(u8**)(anim+8)+4)<<12;if(*(s32*)anim>=limit){if(((Flags_020f0aec*)(obj+0x1a4))->b6)*(s32*)anim=0;else{((Flags_020f0aec*)(obj+0x1a4))->b4=0;*(s32*)anim=limit-1;{s32 endZero=0;if(*(void(**)(void*))(obj+0x1b4)){(*(void(**)(void*))(obj+0x1b4))(*(void**)(obj+0x1ac));*(s32*)(obj+0x1b4)=endZero;}}}}}}}
 next:node=*(u8**)(node+0x54);
 }}
 func_0211d7a4();func_021204a8();
