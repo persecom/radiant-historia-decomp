@@ -140,7 +140,7 @@ void func_020ca10c(void) {
             }
         }
         *(s16 *)(r9 + 0xac) += 1;
-        if (*(s16 *)(r9 + 0xac) == 1) {
+        if (*(volatile s16 *)(r9 + 0xac) == 1) {
             func_0210d27c(0x22);
         } else if (*(s16 *)(r9 + 0xac) > 6) {
             *(s16 *)(r9 + 0xac) = 0;
