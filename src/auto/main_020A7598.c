@@ -56,9 +56,9 @@ extern u8 *data_021600e4;
 typedef struct {
     u8 pad0[0x7c];
     s32 a, b;
-    u8 pad1[0x44];
+    u8 pad1[0x48];
     s32 c, d;
-    u8 pad2[0x80];
+    u8 pad2[0x84];
     void *ptr;
 } State_020a779c;
 extern void func_020c3850(void *);
