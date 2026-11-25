@@ -21,7 +21,7 @@ extern void *func_020c9c10(void *, u32);
 extern void func_020c738c(void *, u32, u32);
 extern void **data_021601ec;
 extern void *func_020c8b10(void);
-extern void func_020c7894(void *);
+extern void func_020c7894();
 extern u16 data_02143954[];
 extern void func_020c52c0(void);
 extern u8 data_021601f0;
@@ -39,19 +39,23 @@ extern void func_020bad3c(void);
 extern void func_020baeb0(void);
 extern void func_0210dc88(void);
 void func_020ba63c(u32 arg0) {
-    void *root = *data_021601ec;
+    void *root = (void *)data_021601ec;
     void *obj5 = func_020c9c10(*(void **)((u8 *)root + 0x4c), 5);
     void *obj6 = func_020c9c10(*(void **)((u8 *)root + 0x4c), 6);
+    u32 one = 1;
     void *obj4;
     if (arg0 != 0) {
-        func_020c738c(obj5, 0, 1);
+        func_020c738c(obj5, 0, one);
     } else {
-        func_020c738c(obj6, 0, 1);
-        func_020c738c(obj5, 1, 1);
+        func_020c738c(obj6, 0, one);
+        func_020c738c(obj5, one, one);
     }
     obj4 = func_020c9c10(*(void **)((u8 *)root + 0x4c), 4);
-    *(u16 *)((u8 *)obj4 + 0x32) = 0;
-    *(u16 *)((u8 *)obj4 + 0x34) = (arg0 == 0) ? 0xb : 0;
+    {
+        u16 v = (arg0 == 0) ? 0xb : 0;
+        *(u16 *)((u8 *)obj4 + 0x32) = 0;
+        *(u16 *)((u8 *)obj4 + 0x34) = v;
+    }
 }
 
 void func_020ba6d0(u32 arg0) {
