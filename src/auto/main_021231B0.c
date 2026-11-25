@@ -1,5 +1,6 @@
 /* 20 functions from 0x021231B0 to 0x021241A4 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { u8 pad0[0x20]; s16 s1, s2; u8 pad1[8]; u16 w2, h2; } Vals_02123824;
 extern s32 data_02171264[], data_02171268[], data_0217126c[];
 extern void func_02008e38(const void *, void *, u32);
 static inline void ScalePair_02123da4(s32 scale, u32 *a, u32 *b) {
@@ -257,7 +258,7 @@ void func_02123824(s32 *arg0, u8 *arg1)
   func_02002058(w, h);
   {
     u16 w2 = *((u16 *) (arg1 + 0x2c));
-    u16 h2 = *((u16 *) (arg1 + 0x2e));
+    u32 h2 = *((u16 *) (arg1 + 0x2e));
     s32 s1 = *((s16 *) (arg1 + 0x20));
     s32 s2 = *((s16 *) (arg1 + 0x22));
     s32 sum = s1 + s2;
