@@ -297,7 +297,7 @@ void func_02134748(void) {
     data_0215be64 = data_02145aa4;
     if (data_021756d4 == 0) {
         func_02135c18();
-        { u64 *p = (u64 *)data_021756d8; u32 i = 90; do { *p++ = 0; } while (--i); *(u32 *)p=0; }
+        __clear(data_021756d8, 724);
         func_02135ccc();
         *(u32 *)((u8 *)data_021756d8 + 0x2bc) = 2;
         ((u8 *)data_021756d8)[0x2c0] = 4;
