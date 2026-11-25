@@ -2,6 +2,13 @@
 #include "common.h"
 typedef struct { s16 data[10]; } Unk_020bbb1c_10;
 typedef struct { s16 data[18]; } Unk_020bbb1c_18;
+typedef struct { s16 data[24]; } Unk_020bb558_24;
+typedef struct { s16 data[12]; } Unk_020bb558_12;
+#define ABS(x) ((x) >= 0 ? (x) : -(x))
+extern const Unk_020bbb1c_10 data_02143c7c;
+extern const Unk_020bb558_24 data_02143d58, data_02143d88;
+extern const Unk_020bb558_12 data_02143cbc, data_02143cd4, data_02143ca4;
+extern const Unk_020bbb1c_18 data_02143d10;
 extern const Unk_020bbb1c_10 data_02143c90;
 extern const Unk_020bbb1c_18 data_02143cec;
 extern const Unk_020bbb1c_10 data_02143c68;
