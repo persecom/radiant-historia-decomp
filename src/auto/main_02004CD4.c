@@ -508,14 +508,15 @@ u32 func_02005870(u32 arg0) {
     return 0;
 }
 
-void func_020058fc(u32 index, void *arg1, void *arg2) {
-    u32 bit = 1 << (index + 8);
-    *(void **)(data_0215cd7c + index * 12) = arg1;
-    *(void **)(data_0215cd84 + index * 12) = arg2;
-    *(u32 *)(data_0215cd80 + index * 12) = func_020059b4(bit) & bit;
+#pragma push
+#pragma scheduling off
+void func_020058fc(s32 index, u32 arg1, u32 arg2) {
+    s32 offset = index * 12;
+    *(volatile u32 *)(data_0215cd7c + offset) = arg1;
+    *(volatile u32 *)(data_0215cd84 + offset) = arg2;
+    *(volatile u32 *)(data_0215cd80 + offset) = func_020059b4(1 << (index + 8)) & (1 << (index + 8));
 }
-
-#pragma optimization_level 2
+#pragma pop
 void func_02005944(s32 arg0, u32 arg1, u32 arg2) {
     s32 offset = arg0 * 12;
     *(volatile u32 *)((u8 *)data_0215cdac + offset) = arg1;
