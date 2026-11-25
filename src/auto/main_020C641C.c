@@ -133,8 +133,8 @@ void func_020c6d4c(u8 *arg0) {
     (*(void (**)(void *))(arg0 + 4))(arg0);
 }
 
-void *func_020c6d5c(void) {
-    void *ptr = func_020c641c();
+void *func_020c6d5c(u32 type) {
+    void *ptr = ((void *(*)(u32))func_020c641c)(type);
     (*(void (**)(void *))ptr)(ptr);
     return ptr;
 }
