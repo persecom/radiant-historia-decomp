@@ -1,12 +1,11 @@
 /* 5 functions from 0x020139A4 to 0x02014994 (main), found by ds-decomp. */
 #include "common.h"
+extern u8 data_02145e54[],data_02145e5c[],data_02145e64[],data_02145e68[],data_02145e6c[],data_02145e74[],data_02145e7c[],data_02145e80[];
 extern void func_02019580(void *,double,void *);
 extern double func_0201e014(double);
 extern char *strcpy(char *,const char *);
-typedef struct { u8 a, b, c, d, e; } FormatText5;
-typedef struct { u8 a, b, c, d; } FormatText4;
-extern FormatText5 data_02145e54, data_02145e5c, data_02145e6c, data_02145e74;
-extern FormatText4 data_02145e64, data_02145e68, data_02145e7c, data_02145e80;
+typedef struct { u8 c[5]; } FormatText5;
+typedef struct { u8 c[4]; } FormatText4;
 
 
 typedef struct {
