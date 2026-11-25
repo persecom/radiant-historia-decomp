@@ -1,5 +1,12 @@
 /* 3 functions from 0x02014994 to 0x02015994 (main), found by ds-decomp. */
 #include "common.h"
+extern u8 data_02145e84[],data_02145e88[];
+extern u8 *func_02016f8c(const u8 *,int);
+extern int func_02016da4(const u8 *);
+extern u8 *func_020139a4(u8 *,u8 **,void *);
+extern void func_02016d78(int,int,int);
+extern int func_020137e0(u8 *,void *,int);
+extern u8 *func_0201388c(u8 *,int,int);
 typedef struct { u8 padding,sign,unk2,alternate,unk4,conversion; u16 unk6; s32 width,precision; } FormatSpec;
 typedef struct { u8 sign,pad; s16 exponent; u8 length; u8 digits[35]; } Decimal_02014994;
 typedef struct { u8 c[5]; } FormatText5;
