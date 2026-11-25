@@ -167,6 +167,180 @@ s32 func_0202ec9c(s8 *arg0, s32 arg1, s32 arg2) {
     return 0;
 }
 
+extern s32 func_0202d890(s8, u8);
+s32 func_0202ef78(s8 *arg0, s32 arg1, s32 arg2) {
+    u8 *r7 = data_02160244;
+    s32 drow;
+    s32 src_row;
+    s32 src_col;
+    s32 dst_row;
+    s32 dst_col;
+    s32 dcol;
+    s32 cell;
+
+    drow = 0;
+    dcol = 0;
+    src_row = arg0[0] / 3;
+    src_col = arg0[0] % 3;
+    dst_row = arg0[2] / 3;
+    dst_col = arg0[2] % 3;
+
+    switch (arg1) {
+        case 0: {
+            s32 diff = dst_row - src_row;
+            s32 abs_d;
+            if (diff == 0) {
+                return 0;
+            }
+            abs_d = diff;
+            if (diff < 0) {
+                abs_d = -diff;
+            }
+            if (abs_d >= arg2) {
+                if (diff < 0) {
+                    drow = -arg2;
+                } else {
+                    drow = arg2;
+                }
+            } else {
+                return 0;
+            }
+            break;
+        }
+        case 1: {
+            s32 diff = dst_col - src_col;
+            s32 abs_d;
+            if (diff == 0) {
+                return 0;
+            }
+            abs_d = diff;
+            if (diff < 0) {
+                abs_d = -diff;
+            }
+            if (abs_d >= arg2) {
+                if (diff < 0) {
+                    dcol = -arg2;
+                } else {
+                    dcol = arg2;
+                }
+            } else {
+                return 0;
+            }
+            break;
+        }
+        case 2: {
+            s32 abs_r;
+            s32 abs_c;
+            drow = dst_row - src_row;
+            dcol = dst_col - src_col;
+            if (drow == 0 || dcol == 0) {
+                return 0;
+            }
+            abs_r = drow;
+            if (drow < 0) {
+                abs_r = -drow;
+            }
+            abs_c = dcol;
+            if (dcol < 0) {
+                abs_c = -dcol;
+            }
+            if (abs_r < arg2 && abs_c < arg2) {
+                return 0;
+            }
+            if (abs_r >= arg2) {
+                if (drow < 0) {
+                    drow = -arg2;
+                } else {
+                    drow = arg2;
+                }
+            }
+            if (abs_c >= arg2) {
+                if (dcol < 0) {
+                    dcol = -arg2;
+                } else {
+                    dcol = arg2;
+                }
+            }
+            break;
+        }
+    }
+
+    cell = (src_row + drow) * 3 + (src_col + dcol);
+    switch (arg0[1]) {
+        case 0:
+            if (cell >= 0 && cell <= 8 && ((s8 *)(r7 + 0x38))[cell] == -1) {
+                if (func_0202d890((s8)cell, *(s16 *)(arg0 + 0x24) & 0xff) == 0) {
+                    ((s8 *)(r7 + 0x38))[cell] = 1;
+                    arg0[2] = cell;
+                    arg0[3] = -1;
+                    return 1;
+                } else {
+                    arg0[3] = 0x1a;
+                    return 1;
+                }
+            }
+            break;
+        case 1:
+            if (cell >= 0 && cell <= 8 && cell != 2 && cell != 5 && cell != 8) {
+                if (((s8 *)(r7 + 0x38))[cell] == -1 && ((s8 *)(r7 + 0x38))[cell + 1] == -1) {
+                    if (func_0202d890((s8)cell, *(s16 *)(arg0 + 0x24) & 0xff) == 0 &&
+                        func_0202d890((s8)(cell + 1), *(s16 *)(arg0 + 0x24) & 0xff) == 0) {
+                        ((s8 *)(r7 + 0x38))[cell] = 1;
+                        ((s8 *)(r7 + 0x38))[cell + 1] = 1;
+                        arg0[2] = cell;
+                        arg0[3] = -1;
+                        return 1;
+                    } else {
+                        arg0[3] = 0x1a;
+                        return 1;
+                    }
+                }
+            }
+            break;
+        case 2:
+            if (cell >= 0 && cell <= 8 && cell >= 3 && cell <= 8) {
+                if (((s8 *)(r7 + 0x38))[cell] == -1 && ((s8 *)(r7 + 0x38))[cell - 3] == -1) {
+                    if (func_0202d890((s8)cell, *(s16 *)(arg0 + 0x24) & 0xff) == 0 &&
+                        func_0202d890((s8)(cell - 3), *(s16 *)(arg0 + 0x24) & 0xff) == 0) {
+                        ((s8 *)(r7 + 0x38))[cell] = 1;
+                        ((s8 *)(r7 + 0x38))[cell - 3] = 1;
+                        arg0[2] = cell;
+                        arg0[3] = -1;
+                        return 1;
+                    } else {
+                        arg0[3] = 0x1a;
+                        return 1;
+                    }
+                }
+            }
+            break;
+        case 3:
+            if (cell == 3 || cell == 4 || cell == 6 || cell == 7) {
+                if (((s8 *)(r7 + 0x38))[cell] == -1 && ((s8 *)(r7 + 0x38))[cell - 3] == -1 &&
+                    ((s8 *)(r7 + 0x38))[cell - 2] == -1 && ((s8 *)(r7 + 0x38))[cell + 1] == -1) {
+                    if (func_0202d890((s8)cell, *(s16 *)(arg0 + 0x24) & 0xff) == 0 &&
+                        func_0202d890((s8)(cell + 1), *(s16 *)(arg0 + 0x24) & 0xff) == 0 &&
+                        func_0202d890((s8)(cell - 3), *(s16 *)(arg0 + 0x24) & 0xff) == 0 &&
+                        func_0202d890((s8)(cell - 2), *(s16 *)(arg0 + 0x24) & 0xff) == 0) {
+                        ((s8 *)(r7 + 0x38))[cell] = 1;
+                        ((s8 *)(r7 + 0x38))[cell - 3] = 1;
+                        ((s8 *)(r7 + 0x38))[cell - 2] = 1;
+                        ((s8 *)(r7 + 0x38))[cell + 1] = 1;
+                        arg0[2] = cell;
+                        arg0[3] = -1;
+                        return 1;
+                    } else {
+                        arg0[3] = 0x1a;
+                        return 1;
+                    }
+                }
+            }
+            break;
+    }
+
+    return 0;
+}
+
 void func_0202f388(void) {
     void **p = &data_02160084;
     if (*p != NULL) {
