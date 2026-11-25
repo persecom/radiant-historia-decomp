@@ -8,6 +8,7 @@ s32 func_02017f74(s32,s32,void *,void *,s32 *,s32 *,s32 *);
 u64 func_0201843c(s32,s32,void *,void *,s32 *,s32 *,s32 *);
 f64 func_02016fc4(s32,void *,void *,s32 *,s32 *);
 s32 func_0201375c(void *,const void *,u32);
+static inline s32 scan_byte_space_02016018(s32 c) { return (c<0 || c>=128) ? 0 : data_0213eb14[c]&0x100; }
 static inline s32 scan_space_02016018(s32 c) { s32 outside=1; if(c>=0 && c<128) outside=0; return outside ? 0 : data_0213eb14[c]&0x100; }
 
 
@@ -22,7 +23,7 @@ s32 func_02016018(void *arg0, void *arg1, const char *arg2, void *arg3, s32 arg4
  s32 c=*fmt, raw=0;
  s32 signedValue=0;u32 unsignedValue=0;
  s64 signedWide=0;u64 unsignedWide=0;
- s32 failed=0, capacityOK=0;u32 capacity=0;
+ s32 capacityOK=0;u32 capacity=0;s32 failed=0;
  s32 total=0,assigned=0,conversions=0;
  s32 scanned,negative,overflow;
  u8 byte;
@@ -42,9 +43,9 @@ s32 func_02016018(void *arg0, void *arg1, const char *arg2, void *arg3, s32 arg4
  fmt++;
  } else {
  fmt=func_02015b74((u8 *)fmt,&spec);
- if(!spec.suppress && spec.conversion!='%') {dst=*(u8 **)args;args+=4;}else dst=0;
+ if(!spec.suppress && spec.conversion!='%') {args+=4;dst=*(u8 **)(args-4);}else dst=0;
  if(spec.conversion!='n'&&!failed&&read(arg1,0,2)) {if(!arg4)goto done;failed=1;}
- switch(spec.conversion) {
+ switch((s32)spec.conversion) {
  case 'd': c=10;goto signed_number;
  case 'i': c=0;
  signed_number:
@@ -111,10 +112,11 @@ s32 func_02016018(void *arg0, void *arg1, const char *arg2, void *arg3, s32 arg4
  case 'c':
  if(!spec.hasWidth)spec.width=1;
  if(dst){
- u8 *start=dst;
- if(arg4){capacity=*(u32 *)args;args+=4;capacityOK=1;}
+ u8 *start;
+ if(arg4){args+=4;capacity=*(u32 *)(args-4);capacityOK=1;}
  scanned=0;
  if(failed){if(capacity) *dst=0;break;}
+ start=dst;
  while(spec.width-- && (!arg4 || (capacityOK=capacity>(u32)scanned)) && (raw=read(arg1,0,0))!=-1) {
  byte=raw;
  if(spec.length!=10)*dst++=(u8)raw;else {func_0201375c(dst,&byte,1);dst+=2;}
@@ -145,10 +147,11 @@ s32 func_02016018(void *arg0, void *arg1, const char *arg2, void *arg3, s32 arg4
  }
  case '[':
  if(dst) {
- u8 *start=dst;
- if(arg4){capacity=*(u32 *)args-1;args+=4;capacityOK=1;}
+ u8 *start;
+ if(arg4){args+=4;capacity=*(u32 *)(args-4)-1;capacityOK=1;}
  scanned=0;
  if(failed){if(capacity)*dst=0;break;}
+ start=dst;
  while(spec.width-- && (!arg4 || (capacityOK=capacity>=(u32)scanned)) && (raw=read(arg1,0,0))!=-1) {
  byte=raw;
  if(!(spec.set[(u8)raw>>3] & (1<<((u8)raw&7))))break;
@@ -178,9 +181,9 @@ s32 func_02016018(void *arg0, void *arg1, const char *arg2, void *arg3, s32 arg4
  case 'n':
  if(dst)switch(spec.length){
  case 0:*(s32 *)dst=total;break;
- case 1:*(s8 *)dst=total;break;
  case 2:*(s16 *)dst=total;break;
  case 3:*(s32 *)dst=total;break;
+ case 1:*(s8 *)dst=total;break;
  case 7:*(s64 *)dst=total;break;
  }break;
  default:goto done;
