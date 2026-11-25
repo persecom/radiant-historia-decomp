@@ -58,7 +58,7 @@ typedef struct {
 void func_0203c1f0(u8 *, s32);
 void func_0203bd68(u8 *, s32, s32, s32, s32, s32, s32, s32, s32);
 s32 func_0203be60(u8 *, s32, s32);
-void func_0203bc74(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, u8 arg6);
+void func_0203bc74(u8 *arg0, s32 arg1, s32 arg4, s32 arg3, s32 arg2, s32 arg5, u8 arg6);
 void func_0203c0f4(u8 *arg0);
 void func_0203c20c(void);
 extern s32 func_02064cb8(void *,s32);
