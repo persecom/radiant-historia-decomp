@@ -144,7 +144,7 @@ extern u8 *data_02160204;
 extern u8 data_021512f0;
 extern void func_02108e54(s32);
 extern void func_020cb320(void);
-extern void func_020bdf24(void *);
+extern s32 func_020bdf24(const char *, ...);
 extern void func_0210968c(s32, s32, s32);
 extern void func_02109790(s32);
 extern void func_020cbd20(void);
