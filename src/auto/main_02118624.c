@@ -404,20 +404,18 @@ void func_02119130(u8 *arg0) {
 #pragma optimization_level 3
 void func_02119150(void) {
     u32 index = *(u32 *)(data_0216f234 + 0xc);
-    u32 flag = *(u32 *)(data_0216f234 + 4);
-    u32 offset = index * 0x18;
-    if (flag != 0) {
-        *(u32 *)(data_0216f3d4 + offset) = 0;
-        *(u32 *)(data_0216f3d8 + offset) = 0;
+    if (*(u32 *)(data_0216f234 + 4) != 0) {
+        *(u32 *)(data_0216f3d4 + index * 0x18) = 0;
+        *(u32 *)(data_0216f3d8 + index * 0x18) = 0;
     } else {
-        S_02119150 *p = (S_02119150 *)(data_0216f3c4 + offset);
+        S_02119150 *p = &((S_02119150 *)data_0216f3c4)[index];
         p->w[0] = 0x1000;
         p->w[1] = 0;
         p->w[2] = 0;
         p->w[3] = 0x1000;
         p->w[4] = 0;
         p->w[5] = 0;
-        *(S_02119150 *)(data_0216f6c4 + offset) = *p;
+        ((S_02119150 *)data_0216f6c4)[index] = *p;
     }
     data_0216f244[index] = 0;
 }
