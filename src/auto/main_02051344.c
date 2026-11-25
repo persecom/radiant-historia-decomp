@@ -34,6 +34,14 @@ static inline s32 check_id_02051344(u8 *a, u8 *b) {
     return 1;
 }
 
+static inline s32 check_id_0205196c(u8 *a, u8 *b) {
+    if (*(u16 *)(a + 0x8e) > 0x64 && *(u16 *)(a + 0x8e) < 0x2bc &&
+        *(u16 *)(b + 0x8e) == 0x14b5) {
+        return 0;
+    }
+    return 1;
+}
+
 static inline void set_vec_02051344(s32 *dst, s32 x, s32 y, s32 z) {
     dst[0] = x;
     dst[1] = y;
