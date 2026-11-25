@@ -470,7 +470,10 @@ src/auto/main_0206713C.c:
     .text start:0x0206713c end:0x02067744
 
 src/auto/main_02067744.c:
-    .text start:0x02067744 end:0x02068380
+    .text start:0x02067744 end:0x02067de0
+
+src/auto/main_02067DE0.c:
+    .text start:0x02067de0 end:0x02068380
 
 src/auto/main_02068380.c:
     .text start:0x02068380 end:0x0206923c
