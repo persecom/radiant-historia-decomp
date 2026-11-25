@@ -1,5 +1,6 @@
 /* 15 functions from 0x02177AA0 to 0x02178598 (ov000), found by ds-decomp. */
 #include "common.h"
+typedef union EncodedWord { u32 word; u8 byte[4]; } EncodedWord;
 
 extern s32 func_ov000_021781fc(void *, void *, u32, u32);
 
@@ -311,7 +312,7 @@ s32 func_ov000_02178314(void *arg0, void *arg1, u32 arg2, u32 arg3) {
 
     for (i = 0; i < arg3; i += 4) {
         u8 *src = in + i;
-        u32 word = *(volatile u32 *)src;
+        u32 word = *(u32 *)src;
         switch (func_ov000_021774e4(word)) {
         case 1:
         case 3:
