@@ -17,7 +17,7 @@ extern void func_02026ddc(void *);
 extern char data_021460e8[];
 extern char data_021460ec[];
 extern void func_02005e80(char *, const char *, ...);
-extern s32 func_02022558(void *);
+extern s32 func_02022558(void *, ...);
 extern void func_020226c0(void *, ...);
 void func_02025f38(void *arg0, void *arg1, s32 arg2) {
     func_02022584(
