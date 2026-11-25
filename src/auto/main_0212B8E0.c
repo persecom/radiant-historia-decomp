@@ -342,8 +342,7 @@ void func_0212c0b8(void) {
     data_02156b74 = data_021458c8;
     func_02132be0();
     if (data_02173ac0[4] == 0) {
-        typedef struct { u32 x[196]; } Zero784;
-        static const Zero784 z = {0};
+        u32 i;
         func_0212a98c();
         func_0212a9dc();
         func_02137eac();
@@ -358,7 +357,9 @@ void func_0212c0b8(void) {
         func_021385d4();
         func_0212eae0(func_0212c068, 0);
         func_0212e5ec(func_0212c078, 0);
-        *(Zero784 *)data_02173ad4 = (Zero784){0};
+        for (i = 0; i < 196; i++) {
+            ((u32 *)data_02173ad4)[i] = 0;
+        }
         func_021382fc(2, 1, func_0212c098, 0, data_02156b7c);
         data_02173ac0[1] = func_02138190(4, func_0212c0a8, 0, data_02156b8c);
         data_02173ac0[3] = func_02138190(5, func_0212c088, 0, data_02156b9c);
@@ -603,28 +604,44 @@ void func_0212c624(void *arg0) {
     *(u32 *)(p + 0xac) = 0;
 }
 
-u8 *func_0212c660(u32 arg0,s32 count,void **items) {
- s32 width;
- u8 *p;
- s32 half;
- s32 zero=0;
- void *first=items[0];
- s32 i;
- for(i=0;i<4;i++)if(*(volatile s8 *)(i*0xb4+(u32)data_02173e08)==0)break;
- if(i==4)return NULL;
- p=data_02173e08+i*0xb4;
- width=func_02137d44(first);
- half=func_02137dbc(first)/2;
- *(u8 **)(p+4)=func_02129cac(count,width,half,half+func_02137e34(first)/2);
- if(!*(u8 **)(p+4))return NULL;
- func_0212a1c8(*(void **)(p+4),func_0212caec,p);
- *(u32 *)(p+8)=arg0;p[2]=count;
- for(i=0;i<count;i++)*(void **)(p+12+i*4)=items[i];
- p[1]=zero;
- func_0212c624(p);
- *(s32 *)(p+0x48)=zero;*(s32 *)(p+0x4c)=zero;*(s32 *)(p+0x58)=zero;*(s32 *)(p+0x5c)=zero;
- p[0]=1;
- return p;
+u8 *func_0212c660(u32 arg0, s32 count, void **items) {
+    u8 *p;
+    s32 width;
+    s32 half;
+    s32 half2;
+    s32 zero = 0;
+    void *first = items[0];
+    s32 i;
+    for (i = 0; i < 4; i++) {
+        if (*(volatile s8 *)(data_02173e08 + i * 0xb4) == 0) {
+            break;
+        }
+    }
+    if (i == 4) {
+        return NULL;
+    }
+    p = data_02173e08 + i * 0xb4;
+    width = func_02137d44(first);
+    half = func_02137dbc(first) / 2;
+    half2 = func_02137e34(first) / 2;
+    *(u8 **)(p + 4) = func_02129cac(count, width, half, half + half2);
+    if (!*(u8 **)(p + 4)) {
+        return NULL;
+    }
+    func_0212a1c8(*(void **)(p + 4), func_0212caec, p);
+    *(u32 *)(p + 8) = arg0;
+    p[2] = count;
+    for (i = 0; i < count; i++) {
+        *(void **)(p + 12 + i * 4) = items[i];
+    }
+    p[1] = zero;
+    func_0212c624(p);
+    *(s32 *)(p + 0x48) = zero;
+    *(s32 *)(p + 0x4c) = zero;
+    *(s32 *)(p + 0x58) = zero;
+    *(s32 *)(p + 0x5c) = zero;
+    p[0] = 1;
+    return p;
 }
 
 void func_0212c770(u8 *arg0) {
