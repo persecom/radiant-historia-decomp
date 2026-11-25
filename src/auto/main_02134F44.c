@@ -145,9 +145,9 @@ void func_021354ac(u8 *arg0) {
     }
     if (*(u16 *)(arg0 + 0x2c) != 0) {
         func_02134f44(arg0);
-        return;
+    } else {
+        func_0213545c(arg0);
     }
-    func_0213545c(arg0);
     if (func_02136930(*(void **)(arg0 + 0x20)) != 0) {
         return;
     }
