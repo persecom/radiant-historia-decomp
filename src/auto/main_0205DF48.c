@@ -35,7 +35,7 @@ else if(p[0]==9) enabled=0;
 else if(*(u32 *)(q+0x18)&8) enabled=0;
 else if(*(u16 *)(list+14)&0x200) enabled=0;
 if(enabled) {
-if(p[6]==7 || (u8)(p[6]-12)<=4) {
+if(p[6]==7 || (u8)(p[6]+0xf4)<=4) {
 switch(p[6]) {
 case 7: {
 int two=2;
