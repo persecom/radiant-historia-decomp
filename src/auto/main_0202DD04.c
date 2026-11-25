@@ -80,7 +80,7 @@ node=*(u8 **)(node+0xc);
 {
 u8 *p;
 node=*(u8 **)(base+0x44);
-if(node) {p=node; do {p=*(u8 **)(p+0xc);}while(p);}
+if(node && (p=node)) { do {p=*(u8 **)(p+0xc);}while(p);}
 while(node) {
 if(*(s8 *)(node+3)!=-1 &&
 !func_0202ef78(node,255,0) &&
@@ -93,7 +93,7 @@ if(*(s8 *)(node+3)!=-1 &&
 node=*(u8 **)(node+0xc);
 }
 node=*(u8 **)(base+0x44);
-if(node) {p=node; do {p=*(u8 **)(p+0xc);}while(p);}
+if(node && (p=node)) { do {p=*(u8 **)(p+0xc);}while(p);}
 while(node) {
 if(*(s8 *)(node+3)==26 &&
 !func_0202ec9c(node,255,0) &&
