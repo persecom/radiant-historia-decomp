@@ -61,28 +61,13 @@ return value;
 }
 #pragma opt_propagation on
 s32 func_020182e4(const char *str, char **endptr, s32 base) {
-    s32 result;
-    s32 chars_scanned;
-    s32 negative;
-    s32 overflow;
-    struct {
-        const char *p;
-        s32 n;
-    } isc;
-
-    isc.p = str;
-    isc.n = 0;
-    result = func_02017f74(base, 0x7fffffff, (void *)func_02016c84, &isc, &chars_scanned, &negative, &overflow);
-    if (endptr != NULL) {
-        *endptr = (char *)str + chars_scanned;
-    }
-    if (overflow) {
-        data_02160034 = 0x22;
-    }
-    if (overflow) {
-        return -1;
-    }
-    return negative ? -result : result;
+ s32 result, chars_scanned, negative, overflow;
+ struct { const char *p; s32 n; } isc;
+ isc.p=str; isc.n=0;
+ result=func_02017f74(base,0x7fffffff,(void *)func_02016c84,&isc,&chars_scanned,&negative,&overflow);
+ if(endptr) *endptr=(char *)str+chars_scanned;
+ if(overflow) { data_02160034=0x22; return -1; }
+ return negative ? -result : result;
 }
 
 s32 func_02018378(const char *str, char **endptr, s32 base) {
@@ -277,32 +262,24 @@ round_up: func_020188b0(out,out->unk04);
 void func_02018b84(u8 *arg0, u8 *arg1, u16 arg2) {
     s32 i = 0;
     u8 c;
-
-    arg0[0] = 0;
     *(u16 *)(arg0 + 2) = arg2;
+    arg0[0] = 0;
     while (i < 0x20 && *arg1 != 0) {
         (arg0 + 5)[i] = *arg1++ - '0';
         i++;
     }
     c = *arg1;
     arg0[4] = i;
-    if (c == 0) {
-        return;
-    }
-    if (c < 5) {
-        return;
-    }
+    if (c == 0) return;
+    if (c < 5) return;
     if (c <= 5) {
+        c = arg1[1];
         arg1++;
-        while (*arg1 != 0) {
-            if (*arg1 != '0') {
-                goto round_up;
-            }
-            arg1++;
+        while (c != 0) {
+            if (c != '0') goto round_up;
+            c = *++arg1;
         }
-        if (((arg0 + 5)[i - 1] & 1) == 0) {
-            return;
-        }
+        if (((arg0 + 5)[i - 1] & 1) == 0) return;
     }
 round_up:
     func_020188b0((void *)arg0, arg0[4]);
