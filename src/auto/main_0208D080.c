@@ -30,6 +30,68 @@ extern void func_021098ac(void *);
 
 void func_0208d84c(s16,s16,s16,s16);
 void func_0208db04(s16,s32,s16,s16,s16,s16,u8,s16);
+void func_0208d900(s32,s32,s32,s32);
+void func_0208d080(s32 id,s16 x,s16 y,s32 mode) {
+Unk10 a=data_021412b0,b=data_0214129c,c=data_02141288,d=data_02141274,e=data_02141260;
+u8 *p=func_02021f10(id);
+u8 level;
+s16 hp,mp;
+level=p[0x43];hp=*(s16 *)(p+0x10);mp=*(s16 *)(p+0x14);
+f32 value,ratio;
+s32 exp,total;
+a.f5=x+2;a.f6=y+2;
+switch(id) {
+case -1:break;
+case 0:func_020a3bbc(0x22);break;
+case 1:func_020a3bbc(0x24);break;
+case 2:func_020a3bbc(0x28);break;
+case 3:func_020a3bbc(0x25);break;
+case 4:func_020a3bbc(0x26);break;
+case 6:func_020a3bbc(0x23);break;
+case 7:func_020a3bbc(0x29);break;
+}
+func_021098ac(&a);
+b.f5=x+0x2a;b.f6=y+2;
+func_020a3bbc(0x2a);func_021098ac(&b);
+func_0208db04(0x2c,level,x+0x45,y+2,6,8,5,0x8f);
+b.f1=12;b.f5=x+0x2a;b.f6=y+11;
+func_020a3bbc(0x2a);func_021098ac(&b);
+func_0208db04(0x2c,hp,x+0x45,y+11,6,8,5,0x8f);
+value=func_0201f8cc(*(u16 *)(p+0x10));
+ratio=func_02020888(value,func_0201f884(*(u16 *)(p+0x12)+*(s16 *)(p+0x24)));
+func_0208d84c(x+0x2a,y+0x13,0x22,0x8f);
+c.f5=x+0x2b;c.f6=y+0x14;
+c.f8=func_0201ff0c(func_020201f4(func_0201f884(c.f8),ratio));
+func_020a3bbc(0x2b);func_021098ac(&c);
+b.f2=8;b.f1=0;b.f5=x+0x2a;b.f6=y+0x18;
+func_020a3bbc(0x2a);func_021098ac(&b);
+func_0208db04(0x2c,mp,x+0x45,y+0x18,6,8,5,0x8f);
+value=func_0201f8cc(*(u16 *)(p+0x14));
+ratio=func_02020888(value,func_0201f884(*(u16 *)(p+0x16)+*(s16 *)(p+0x26)));
+func_0208d84c(x+0x2a,y+0x20,0x22,0x8f);
+if(ratio>0.0f){
+d.f5=x+0x2b;d.f6=y+0x21;
+d.f8=func_0201ff0c(func_020201f4(func_0201f884(d.f8),ratio));
+func_020a3bbc(0x2b);func_021098ac(&d);
+}
+if(mode==1)return;
+if(data_02160204[0x11c]==1)func_0208d900((s16)(x+0x2a),(s16)(y+0x25),0x8f,*(u16 *)(p+0x34));
+b.f1=12;b.f2=9;b.f5=x+2;b.f6=y+0x2b;b.f8=17;b.f3=17;b.f9=7;b.f4=7;
+func_020a3bbc(0x2a);func_021098ac(&b);
+func_0208d84c(x+0x14,y+0x2d,0x39,0x8f);
+exp=*(s32 *)(p+4)-*(s32 *)(data_0216010c+0x53d4+(p[0x43]-1)*4);
+total=func_02085158(id);
+level=p[0x43];
+value=func_0201f884(exp);
+ratio=func_02020888(value,func_0201f884(total-*(s32 *)(data_0216010c+0x53d4+(level-1)*4)));
+if(level==99)ratio=1.0f;
+if(ratio>0.0f){
+e.f5=x+0x15;e.f6=y+0x2e;
+e.f8=func_0201ff0c(func_020201f4(func_0201f884(e.f8),ratio));
+func_020a3bbc(0x2b);func_021098ac(&e);
+}
+}
+
 void func_0208d5c0(s32 id,s16 x,s16 y,s16 z) {
 Unk10 a=data_0214124c;
 Unk10 b=data_02141238;
