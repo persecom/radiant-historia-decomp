@@ -1,6 +1,12 @@
 /* 2 functions from 0x02077688 to 0x020783E8 (main), found by ds-decomp. */
 #include "common.h"
 
+static inline void storeSinCos781b0(u8 *arg0, s32 a, s32 b) {
+    s32 scale = *(s32 *)(arg0 + 0x78);
+    *(s32 *)(arg0 + 0x38) = a * scale;
+    *(s32 *)(arg0 + 0x30) = b * scale;
+}
+
 extern u8 *data_02160204;
 extern u16 data_021626aa;
 extern s16 data_0213a394[];
@@ -10,6 +16,7 @@ void func_02077688(void)
 {
 }
 
+#pragma optimization_level 3
 void func_020781b0(u8 *arg0, u16 *arg1, u32 *arg2) {
     u32 r12 = 0;
     u16 keys;
@@ -90,3 +97,4 @@ void func_020781b0(u8 *arg0, u16 *arg1, u32 *arg2) {
         *arg1 = data_02151fc8;
     }
 }
+#pragma optimization_level 4
