@@ -151,8 +151,13 @@ s32 func_0211b334(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 s32 func_0211b36c(s32 arg0, s32 *arg1, u16 *arg2, s32 arg3) {
     u16 h6 = arg2[3];
     if (h6 == 0 && arg2[2] == 1) {
-        volatile u32 *reg = (arg0 <= 3) ? (volatile u32 *)0x04000000 : (volatile u32 *)0x04001000;
-        return func_0211b334(arg0, (*reg & 0x40000000) ? 1 : 0, (s32)arg1, arg3);
+        s32 flag;
+        if (arg0 <= 3) {
+            flag = (*(volatile u32 *)0x04000000 & 0x40000000) ? 1 : 0;
+        } else {
+            flag = (*(volatile u32 *)0x04001000 & 0x40000000) ? 1 : 0;
+        }
+        return func_0211b334(arg0, flag, (s32)arg1, arg3);
     } else {
         return func_0211b334(arg0, (*arg1 != 3 && h6 != 1) ? 1 : 0, (s32)arg1, arg3);
     }
@@ -241,9 +246,10 @@ void func_0211b614(void *dst, void *src, s32 sx, s32 sy, s32 dx, s32 dy, s32 dw,
 }
 
 void func_0211b83c(u8 *dst, u8 *src, s32 srcX, s32 srcY, s32 dstX, s32 dstY, s32 dstStride, s32 width, s32 height) {
-    s32 srcStride = *(u16 *)src >> 3;
+    s32 srcStride = (u32)(*(u16 *)src) >> 3;
+    s32 dstOff = dstY * dstStride + dstX;
     u8 *s = (src + 0xc) + srcY * srcStride + srcX;
-    u8 *d = dst + dstY * dstStride + dstX;
+    u8 *d = dst + dstOff;
     s32 endY = srcY + height;
     s32 y;
     for (y = srcY; y < endY; y++) {
@@ -253,22 +259,26 @@ void func_0211b83c(u8 *dst, u8 *src, s32 srcX, s32 srcY, s32 dstX, s32 dstY, s32
     }
 }
 
+#pragma opt_propagation off
 void func_0211b8a4(u8 *dst, u8 *src, s32 srcX, s32 srcY, s32 dstX, s32 dstY, s32 dstStride, s32 width, s32 height) {
-s32 srcStride = (u32)*(u16 *)src >> 3;
+    u32 srcStride = (u32)*(u16 *)src >> 3;
+    s32 y;
+    u32 size;
+    u8 *s;
+    u8 *d;
 
-dstX += dstY * dstStride;
-srcX += srcY * srcStride;
-u32 size = width * 2;
-s32 endY = srcY + height;
-u8 *s = src + 12 + srcX * 2;
-u8 *d = dst + dstX * 2;
-for (; srcY < endY; srcY++) {
-func_02008e08(s, d, size);
-s += srcStride * 2;
-d += dstStride * 2;
+    dstX += dstY * dstStride;
+    srcX += srcY * srcStride;
+    size = width * 2;
+    s = src + 12 + srcX * 2;
+    d = dst + dstX * 2;
+    for (y = srcY; y < srcY + height; y++) {
+        func_02008e08(s, d, size);
+        s += srcStride * 2;
+        d += dstStride * 2;
+    }
 }
-}
-
+#pragma opt_propagation on
 extern void func_0211b3dc(s32, s32, u32);
 extern void func_0211b4b8(s32, s32);
 void func_0211b910(s32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5) {
@@ -283,18 +293,16 @@ void func_0211b910(s32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5) {
     }
 }
 
-void func_0211b96c(s32 arg0, u16 *arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u32 arg6, u32 arg7) {
-    u32 flag = 0;
-    u16 c = arg1[1];
-    u16 a = arg1[3];
-    u16 b = arg1[0];
-    if (arg1[2] != 0) {
-        flag = 1;
-    }
-    func_0211b584(arg0, a, flag, b, c, arg6, arg7);
-    func_0211b910(arg0, (u32)arg1, arg2, arg3, arg4, arg5);
+#pragma push
+#pragma opt_propagation off
+void func_0211b96c(s32 arg0,u16 *arg1,u32 arg2,u32 arg3,u32 arg4,u32 arg5,u32 arg6,u32 arg7) {
+ u32 flag=0;
+ u32 a=arg1[3], b=arg1[0], c=arg1[1];
+ if(arg1[2]!=0) flag=1;
+ func_0211b584(arg0,a,flag,b,c,arg6,arg7);
+ func_0211b910(arg0,(u32)arg1,arg2,arg3,arg4,arg5);
 }
-
+#pragma pop
 extern void func_0211b614(void *, void *, s32,s32,s32,s32,s32,s32,s32,s32);
 void func_0211b9e8(void *dst, void *src, s32 x, s32 y, s32 dx, s32 dy, s32 dw, s32 dh, s32 w, s32 h) {
  if(dx<0) {dx=-dx; x+=dx; w-=dx; dx=0;}
@@ -336,7 +344,11 @@ Transform_bb3c(&pos,m,&pos);
 mode=data_021701f8[1];
 if(mode) {
 mode=mode==2?0x300:0x100;
-SetMode_bb3c(sprite,mode);
+{
+ u32 *p2=sprite;
+ if(mode==0x100) { *p2=(*p2&0xc1fffcff)|mode; }
+ else { *p2=(*p2&0xc1fffcff)|mode; }
+}
 }
 mode=Double_bb3c(*sprite);
 mode=(u32)mode;
@@ -348,11 +360,10 @@ w=(s32)data_02144d84[shape][size]>>1;
 h=(s32)data_02144d6c[shape][size]>>1;
 }
 {
-s32 wx=w<<12,hy=h<<12;
-s32 ox=-wx,oy=-hy;
+s32 ox=-(w<<12),oy=-(h<<12);
 ox+=m[0]*w;oy+=m[1]*w;
 ox+=m[2]*h;oy+=m[3]*h;
-pos.y=oy+pos.y;pos.x=ox+pos.x;
+pos.y+=oy;pos.x+=ox;
 }
 switch(mode) {case 0:break; default:pos.x-=w<<12;pos.y-=h<<12;break;}
 pos.x+=translation->x;pos.y+=translation->y;
