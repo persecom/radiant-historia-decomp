@@ -1,5 +1,10 @@
 /* 30 functions from 0x0211BDE8 to 0x0211CDC8 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { s32 a,b,c,d; } Mat22_0211bd;
+typedef struct { s32 x,y; } Vec2_0211bd;
+typedef struct { u32 tile:10; u32 rest:22; } Tile_0211bd;
+extern const s32 data_02144ed0[6];
+extern void func_0211bb3c(void *,void *,void *);
 extern const u16 data_02144d84[3][4], data_02144d6c[3][4];
 extern void func_02002bd8(void *);
 extern void func_0211ab48(s32, s32, s32, void *, void *, u32, u32);
