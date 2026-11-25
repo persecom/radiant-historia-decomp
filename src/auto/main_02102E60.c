@@ -5,7 +5,7 @@ extern u8 *data_02160c74;
 
 extern char data_021556b8[];
 extern u8 *data_02160200;
-extern void func_02005e80(char *, char *);
+extern void func_02005e80(char *, char *, ...);
 extern void *func_021092d8(char *);
 extern s32 func_021093f0(void *);
 extern s32 func_02092994(void *, s32);
