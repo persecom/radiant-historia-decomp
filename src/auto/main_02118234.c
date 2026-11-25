@@ -85,7 +85,6 @@ void func_02118234(void *arg0) {
         }
     }
 }
-#pragma scheduling on
 void func_02118430(void *arg0)
 {
   u8 *p = arg0;
