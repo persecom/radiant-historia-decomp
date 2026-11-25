@@ -1,5 +1,17 @@
 /* 6 functions from 0x0203F038 to 0x0203FD08 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { s16 v[10]; } Draw_0203f038;
+typedef struct { s16 v[24]; } Table24_0203f038;
+typedef struct { s16 v[12]; } Table12_0203f038;
+typedef struct { s16 v[72]; } Table72_0203f038;
+typedef struct { s16 v[18]; } Table18_0203f038;
+extern Draw_0203f038 data_0213ef90;
+extern Table24_0203f038 data_0213f070, data_0213f0a0;
+extern Table12_0203f038 data_0213f034, data_0213f01c, data_0213efa4, data_0213efbc, data_0213efd4, data_0213efec, data_0213f004;
+extern Table72_0203f038 data_0213f10c;
+extern Table18_0203f038 data_0213f04c;
+void func_021098ac(void *);
+
 
 typedef struct UnkStruct_0203fb58 {
     u8 unk00[4];
@@ -48,8 +60,9 @@ extern void *func_0210c594(s32, u32);
 extern void func_0210c5dc(void *);
 extern void func_021167f0(void *, void *);
 
-void func_0203f038(void)
-{
+void func_0203fc18(u16 arg0);
+void func_0203f038(void) {
+ func_0203fc18(*((u8 *)data_021600a0 + 0x3d));
 }
 
 void func_0203faf4(void) {
