@@ -22,41 +22,125 @@ s32 func_02120e30(void *, void *);
 s32 func_0212251c(s32 *, const s16 *, const s16 *, u32);
 void func_02002274(s32 *, s32 *);
 #pragma opt_propagation off
-void func_021221e4(s32 *out, s32 time, u32 *track, u8 *base) {
-s32 a[9],b[9]; u32 offsetB; u32 offsetA; u32 next; s32 frac,step; u16 *indices; u32 frame; u32 flags; s32 result=0;
-indices=(u16 *)(base+track[1]); frame=time>>12; offsetA=*(u32 *)(base+12); offsetB=*(u32 *)(base+16); flags=track[0];
-if(frame==*(u16 *)(base+4)-1) {
-if(flags&0xc0000000) { if(flags&0x40000000) frame=(frame&1)+(frame>>1); else frame=(frame&3)+(frame>>2); }
-if(*(u32 *)(base+8)&2) {next=0;goto unit;}
-if(func_0212251c(out,(s16 *)(base+offsetA),(s16 *)(base+offsetB),indices[frame])) { s32 y,x,z; s32 by,az,bz; s32 ax,ay,bx; ay=out[1]; bz=out[5]; az=out[2]; by=out[4]; ax=out[0]; bx=out[3]; x=(ay*bz-az*by)>>12; y=(az*bx-ax*bz)>>12; z=(ax*by-ay*bx)>>12; out[6]=x; out[7]=y; out[8]=z; }
-else func_02002274(out+6,out+6);
-return;
-}
-if(flags&0xc0000000) {
-u32 limit=(flags&0x1fff0000)>>16;
-if(flags&0x40000000) {
-if(frame>=limit) {frame=limit>>1;next=frame+1;goto unit;}
-frame>>=1;next=frame+1;frac=time&0x1fff;step=2;
-} else {
-if(frame>=limit) {frame=(frame&3)+(frame>>2);next=frame+1;goto unit;}
-frame>>=2;next=frame+1;frac=time&0x3fff;step=4;
-}
-} else {next=frame+1; unit: frac=time&0xfff;step=1;}
-result|=func_0212251c(a,(s16 *)(base+offsetA),(s16 *)(base+offsetB),indices[frame]);
-result|=func_0212251c(b,(s16 *)(base+offsetA),(s16 *)(base+offsetB),indices[next]);
-out[0]=a[0]*step+((frac*(b[0]-a[0]))>>12);
-out[1]=a[1]*step+((frac*(b[1]-a[1]))>>12);
-out[2]=a[2]*step+((frac*(b[2]-a[2]))>>12);
-out[3]=a[3]*step+((frac*(b[3]-a[3]))>>12);
-out[4]=a[4]*step+((frac*(b[4]-a[4]))>>12);
-out[5]=a[5]*step+((frac*(b[5]-a[5]))>>12);
-func_02002274(out,out);func_02002274(out+3,out+3);
-if(!result) {
-out[6]=a[6]*step+((frac*(b[6]-a[6]))>>12);
-out[7]=a[7]*step+((frac*(b[7]-a[7]))>>12);
-out[8]=a[8]*step+((frac*(b[8]-a[8]))>>12);
-func_02002274(out+6,out+6);
-} else { s32 y,x,z; s32 by,az,bz; s32 ax,ay,bx; ay=out[1]; bz=out[5]; az=out[2]; by=out[4]; ax=out[0]; bx=out[3]; x=(ay*bz-az*by)>>12; y=(az*bx-ax*bz)>>12; z=(ax*by-ay*bx)>>12; out[6]=x; out[7]=y; out[8]=z; }
+void func_021221e4(s32 *out, s32 time, u32 *track, u8 *base)
+{
+  s32 a[9];
+  s32 b[9];
+  u32 offsetB;
+  u32 offsetA;
+  u32 next;
+  s32 frac;
+  s32 step;
+  u16 *indices;
+  u32 frame;
+  u32 flags;
+  s32 result = 0;
+  indices = (u16 *) (base + track[1]);
+  frame = time >> 12;
+  offsetA = *((u32 *) (base + 12));
+  offsetB = *((u32 *) (base + 16));
+  flags = track[0];
+  if (frame == ((*((u16 *) (base + 4))) - 1))
+  {
+    if (flags & 0xc0000000)
+    {
+      if (flags & 0x40000000)
+      {
+        frame = (frame & 1) + (frame >> 1);
+      }
+      else
+      {
+        frame = (frame & 3) + (frame >> 2);
+      }
+    }
+    if ((*((u32 *) (base + 8))) & 2)
+    {
+      next = 0;
+      goto unit;
+    }
+    if (func_0212251c(out, (s16 *) (base + offsetA), (s16 *) (base + offsetB), indices[frame]))
+    {
+      s32 x, y, z;
+      s32 ax, ay, az, bx, by, bz;
+      ax = out[0]; bx = out[3]; bz = out[5];
+      ay = out[1]; az = out[2]; by = out[4];
+      x = ((ay * bz) - (az * by)) >> 12;
+      y = ((az * bx) - (ax * bz)) >> 12;
+      z = ((ax * by) - (ay * bx)) >> 12;
+      out[6] = x; out[7] = y; out[8] = z;
+    }
+    else
+    {
+      func_02002274(out + 6, out + 6);
+    }
+    return;
+  }
+  if (flags & 0xc0000000)
+  {
+    u32 limit = (flags & 0x1fff0000) >> 16;
+    if (flags & 0x40000000)
+    {
+      if (frame >= limit)
+      {
+        frame = limit >> 1;
+        next = frame + 1;
+        goto unit;
+      }
+      frame >>= 1;
+      next = frame + 1;
+      frac = time & 0x1fff;
+      step = 2;
+    }
+    else
+    {
+      if (frame >= limit)
+      {
+        frame = (frame & 3) + (frame >> 2);
+        next = frame + 1;
+        goto unit;
+      }
+      frame >>= 2;
+      next = frame + 1;
+      frac = time & 0x3fff;
+      step = 4;
+    }
+  }
+  else
+  {
+    next = frame + 1;
+    unit:
+    frac = time & 0xfff;
+
+    step = 1;
+  }
+  result |= func_0212251c(a, (s16 *) (base + offsetA), (s16 *) (base + offsetB), indices[frame]);
+  result |= func_0212251c(b, (s16 *) (base + offsetA), (s16 *) (base + offsetB), indices[next]);
+  out[0] = (a[0] * step) + ((frac * (b[0] - a[0])) >> 12);
+  out[1] = (a[1] * step) + ((frac * (b[1] - a[1])) >> 12);
+  out[2] = (a[2] * step) + ((frac * (b[2] - a[2])) >> 12);
+  out[3] = (a[3] * step) + ((frac * (b[3] - a[3])) >> 12);
+  out[4] = (a[4] * step) + ((frac * (b[4] - a[4])) >> 12);
+  out[5] = (a[5] * step) + ((frac * (b[5] - a[5])) >> 12);
+  func_02002274(out, out);
+  func_02002274(out + 3, out + 3);
+  if (!result)
+  {
+    out[6] = (a[6] * step) + ((frac * (b[6] - a[6])) >> 12);
+    out[7] = (a[7] * step) + ((frac * (b[7] - a[7])) >> 12);
+    out[8] = (a[8] * step) + ((frac * (b[8] - a[8])) >> 12);
+    func_02002274(out + 6, out + 6);
+  }
+  else
+  {
+    s32 x, y, z;
+    s32 ax, ay, az, bx, by, bz;
+    ax = out[0]; bx = out[3]; bz = out[5];
+    ay = out[1]; az = out[2]; by = out[4];
+    x = ((ay * bz) - (az * by)) >> 12;
+    y = ((az * bx) - (ax * bz)) >> 12;
+    z = ((ax * by) - (ay * bx)) >> 12;
+    out[6] = x; out[7] = y; out[8] = z;
+  }
 }
 #pragma opt_propagation on
 s32 func_0212251c(s32 *out, const s16 *a, const s16 *b, u32 flags) {
