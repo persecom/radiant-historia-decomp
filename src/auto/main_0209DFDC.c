@@ -8,6 +8,12 @@ extern void func_020a9830(void *,void *,s32,s32,s32,s32);
 extern void func_020a9610(void *,void *,s32,void *,s32,s32);
 
 extern u8 *data_021600b0;
+extern u8 *data_02160204;
+extern u16 data_021626a6, data_021626a8, data_021628f8;
+extern u16 data_02162908[4];
+extern void func_020a957c(void *);
+extern void func_0210d27c(s32);
+extern void func_0210c5dc(void *);
 typedef struct { s16 field[10]; } Unk_0209e688;
 extern const Unk_0209e688 data_02142bc8;
 
