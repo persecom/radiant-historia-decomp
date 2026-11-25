@@ -56,6 +56,14 @@ data_02160218[1]=0;
 
 extern u32 *func_020ec294(int, int, int, int);
 extern void func_020ec88c(void *, int, int);
+extern u8 *func_020dce1c(s32, s32, s32);
+extern void func_020dd810(u8 *, s32, s32);
+extern void func_020ddd5c(u8 *);
+extern u8 *func_020c0924(void);
+extern void func_020dde88(u8 *);
+typedef struct { u32 x, mul, add; } RandCtx_020c17bc;
+extern RandCtx_020c17bc data_0216263c;
+extern s16 data_0213c394[];
 u32 *func_020c1370(int a, u32 *pos, int id, int variant, int arg) {
 int size;
 u32 *p;
@@ -148,5 +156,9 @@ case 6: size=4736; break;
 p=func_020ec294(id,a,size,arg);
 p[5]=pos[0]; p[6]=pos[1]; p[7]=pos[2]; p[8]=0x1000; p[9]=0x1000; p[1]|=1;
 func_020ec88c(p,variant,0); return p;
+}
+
+void *func_020c17bc(void *a, s32 b, u16 c, s32 d) {
+    return NULL;
 }
 
