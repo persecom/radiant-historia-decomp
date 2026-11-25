@@ -1082,7 +1082,10 @@ src/auto/main_0211A178.c:
     .text start:0x0211a178 end:0x0211a4e0
 
 src/auto/main_0211a4e0.c:
-    .text start:0x0211a4e0 end:0x0211b0e8
+    .text start:0x0211a4e0 end:0x0211a5fc
+
+src/auto/main_0211a5fc.c:
+    .text start:0x0211a5fc end:0x0211b0e8
 
 src/auto/main_0211B0E8.c:
     .text start:0x0211b0e8 end:0x0211bde8

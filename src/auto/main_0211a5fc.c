@@ -1,0 +1,411 @@
+/* 28 functions from 0x0211A178 to 0x0211B0E8 (main), found by ds-decomp. */
+#include "common.h"
+typedef union {
+ u32 word[2];
+ struct { u32 unused0:13; u32 format:1; u32 unused1:14; u32 flipX:1; u32 flipY:1; u32 size:2;
+ u32 tile:10; u32 unused2:2; u32 palette:4; u32 unused3:16; } bits;
+} SpriteOam_1a8ac;
+typedef struct { s32 width,height,format,palette,transparent,mapping; } SpriteTex_1a8ac;
+static inline void set_tex_1a8ac(s32 format, u32 address, s32 width, s32 height, s32 transparent) {
+ *(volatile u32 *)0x40004a8 = (format<<26)|(address>>3)|0x40000000|(width<<20)|(height<<23)|(transparent<<29);
+}
+extern u16 data_02144d84[][4];
+extern u16 data_02144d6c[][4];
+extern s32 data_02144db8[8];
+extern s32 data_02144dd8[][4];
+extern s32 data_02144e08[][4];
+extern s32 data_02144db0[2];
+extern u32 data_02145ba4;
+void func_02006dc4(void *, u32);
+void func_02008690(u32, void *, void *, u32, s32);
+void func_02008e08(void *, void *, u32);
+typedef struct { s32 v[6]; } Mtx23;
+
+extern s32 data_0216f234[4];
+extern u16 data_02155eb0[];
+extern u16 data_0216f2c4[][4];
+static inline s32 Active0211a3ac(void) {
+ if(data_0216f234[1]==0 && data_02155eb0[0]!=0xfffe) return 1;
+ return 0;
+}
+extern s32 data_0216f3d4[];
+extern s32 data_0216f3d8[];
+extern s32 data_0216f244[];
+extern s32 data_0216f3c4[][6];
+extern s32 data_0216f6c4[][6];
+void func_0211a4e0(void *, void *, void *);
+extern u32 data_02144d9c[5];
+extern u32 data_021701d8[4];
+extern u32 data_021701cc[3];
+extern u16 data_02144e48[8];
+
+typedef struct {
+    u32 a;
+    u32 b;
+    u32 c;
+} U32x3;
+
+extern u32 data_02155ed0[4];
+
+
+extern void func_0211c5fc(void);
+
+s32 func_02001fc0(s32);
+
+extern void func_0211c52c(void);
+
+extern void func_02118e68(void *);
+extern void func_02118e84(void *, s32, s32);
+extern s32 func_0200283c(s32);
+extern s32 func_020027d4(s32, s32, s32);
+
+void func_0211a5fc(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u32 arg4, u32 arg5, u32 arg6, u32 arg7) {
+    u8 *ptr = (u8 *)data_021701cc[2] + arg0 * 0x30;
+    func_02118e68(ptr);
+    if (arg1 != -1) {
+        func_02118e84(ptr, 0, arg1);
+    }
+    if (arg2 != -1) {
+        func_02118e84(ptr, 1, arg2);
+    }
+    if (arg3 != -1) {
+        func_02118e84(ptr, 2, arg3);
+    }
+    *(u32 *)(ptr + 0xc) = arg4;
+    *(u32 *)(ptr + 0x10) = arg5;
+    *(u32 *)(ptr + 0x14) = arg6;
+    *(u32 *)(ptr + 0x18) = arg7;
+}
+
+#pragma push
+#pragma opt_propagation off
+void func_0211a698(u32 arg0, u32 count, u32 arg2) {
+    u32 i = 0;
+
+    data_021701cc[2] = arg0;
+    data_021701cc[1] = count;
+    data_021701cc[0] = arg2;
+    if (count == 0) {
+        return;
+    }
+    do {
+        u8 *p = (u8 *)arg0 + i * 0x30;
+        func_02118e68(p);
+        *(u32 *)(p + 0xc) = 0;
+        *(u32 *)(p + 0x10) = 0;
+        *(u32 *)(p + 0x14) = 0;
+        *(u32 *)(p + 0x18) = 0;
+        *(u32 *)(p + 0x1c) = 0;
+        *(u32 *)(p + 0x20) = 0;
+        *(u32 *)(p + 0x24) = 0;
+        *(u32 *)(p + 0x28) = 0;
+        *(u32 *)(p + 0x2c) = 0;
+        i++;
+    } while (i < count);
+}
+#pragma opt_propagation off
+void func_0211a700(void) {
+    u32 i;
+    s32 j;
+    u8 *p;
+    u32 base;
+    u32 kind;
+    s32 flag;
+    s32 value;
+    for (i = 0; i < data_021701cc[1]; i++) {
+        p = (u8 *)data_021701cc[2] + i * 0x30;
+        if (*(u32 *)(p + 0x1c) != 0) {
+            for (j = 0; j < 3; j++) {
+                flag = 0;
+                if ((*(u32 *)(p + 0x24) & (1 << j)) && (*(u32 *)(p + 0x20) & (1 << j))) {
+                    flag = 1;
+                }
+                if (flag) {
+                    kind = data_02144d9c[j];
+                    base = j == 0 ? *(u32 *)(p + 0x14) : *(u32 *)(p + 0x10);
+                    value = func_02118e8c(p, j);
+                    if (((s32 (*)(u32, s32, u32, u32))data_021701cc[0])(kind, value, base + *(u32 *)(p + 0x28), *(u32 *)(p + 0x2c)) != 0) {
+                        *(u32 *)(p + 0x24) &= ~(1 << j);
+                    }
+                }
+            }
+            *(u32 *)(p + 0x20) = 0;
+        }
+    }
+}
+#pragma opt_propagation on
+void func_0211a7ec(s32 arg0, u32 arg1, u32 arg2) {
+    u8 *p = func_0211a5e4(arg0);
+    *(u32 *)(p + 0x24) = -1;
+    *(u32 *)(p + 0x28) = arg1;
+    *(u32 *)(p + 0x2c) = arg2;
+}
+
+s32 func_0211a810(void) {
+    u32 i = 0;
+    u32 count = data_021701cc[1];
+
+    for (; i < count; i++) {
+        u8 *p = (u8 *)data_021701cc[2] + i * 0x30;
+        if (*(u32 *)(p + 0x1c) != 1) {
+            *(u32 *)(p + 0x1c) = 1;
+            return i;
+        }
+    }
+    return -1;
+}
+
+void func_0211a860(u32 arg0) {
+    u8 *p = (u8 *)data_021701cc[2] + arg0 * 0x30;
+    func_02118e68(p);
+    *(u32 *)(p + 0xc) = 0;
+    *(u32 *)(p + 0x10) = 0;
+    *(u32 *)(p + 0x14) = 0;
+    *(u32 *)(p + 0x18) = 0;
+    *(u32 *)(p + 0x1c) = 0;
+    *(u32 *)(p + 0x20) = 0;
+    *(u32 *)(p + 0x24) = 0;
+    *(u32 *)(p + 0x28) = 0;
+    *(u32 *)(p + 0x2c) = 0;
+}
+
+void func_0211a8ac(void *oam0, void *tex0, void *image, void *palette, s32 *uv) {
+ SpriteTex_1a8ac *tex=tex0;
+ SpriteOam_1a8ac *oam=oam0;
+ u16 tile=oam->bits.tile;
+ u32 attr=oam->word[0]&0xc000c000;
+ u32 size=(attr&0xc0000000)>>30;
+ s32 shape=(s32)(attr&0xc000)>>14;
+ u32 mapping=tex->mapping;
+ u32 address=(u32)image;
+ 
+ u32 fx,fy;
+ u16 index;
+ s32 format;
+ { u16 w=data_02144d84[shape][size];
+ u16 h=data_02144d6c[shape][size];
+ uv[4]=w;uv[5]=h; }
+ if(mapping==0) {
+ s32 fmt=tex->format;
+ *(volatile u32 *)0x40004a8=(fmt<<26)|(address>>3)|0x40000000|(tex->width<<20)|(tex->height<<23)|(tex->transparent<<29);
+ if(fmt==4) tile>>=1;
+ { s32 width=tex->width;
+ s32 v=(s32)tile>>width;
+ s32 u=tile&(data_02144db8[width]-1);
+ uv[0]=u<<15; uv[1]=v<<15; }
+ } else {
+ address+=tile<<(((s32)(mapping&0x700000)>>20)+5);
+ *(volatile u32 *)0x40004a8=(address>>3)|(tex->format<<26)|0x40000000|(data_02144dd8[(u16)shape][(u16)size]<<20)|(data_02144e08[(u16)shape][(u16)size]<<23)|(tex->transparent<<29);
+ uv[0]=0;uv[1]=0;
+ }
+ uv[2]=uv[0]+(uv[4]<<12);
+ uv[3]=uv[1]+(uv[5]<<12);
+ fx=oam->bits.flipX;fy=oam->bits.flipY;
+ if(fx) { s32 tmp=uv[0];uv[0]=uv[2];uv[2]=tmp; }
+ if(fy) { s32 tmp=uv[1];uv[1]=uv[3];uv[3]=tmp; }
+ if(data_021701d8[0]) ((void (*)(s32 *,s32 *,s32 *,s32 *,u32,u32))data_021701d8[0])(uv,uv+1,uv+2,uv+3,fx,fy);
+ index=oam->bits.palette;
+ format=data_02144db0[oam->bits.format];
+ if(tex->palette) address=index<<9;
+ else if(format==4) address=0;
+ else address=index<<5;
+ *(volatile u32 *)0x40004ac=((u32)palette+address)>>(4-(format==2));
+}
+
+void func_0211ab04(u32 arg0) {
+    data_021701d8[2] = arg0;
+}
+
+void func_0211ab14(void) {
+    data_021701d8[1] = 0;
+}
+
+void func_0211ab28(u32 arg0) {
+    data_02155ed0[0] = arg0;
+}
+
+extern u32 data_02155ed0[4];
+u32 func_0211ab38(void) {
+    return data_02155ed0[0];
+}
+
+extern void func_0211a8ac(void *, void *, void *, void *, s32 *);
+extern u16 data_02144d84[][4];
+extern u16 data_02144d6c[][4];
+#pragma optimization_level 3
+void func_0211ab48(s32 x, s32 y, s32 z, u32 *oam, void *pTex, void *pPltt, void *pChar) {
+    s32 uv[6];
+    u32 mode;
+    u32 attr;
+    s32 xx=x, yy=y, zz=z;
+
+    func_0211a8ac(oam, pTex, pPltt, pChar, uv);
+    x=xx; y=yy; z=zz;
+
+    attr = *oam;
+    mode = attr & 0x300;
+    if (mode != 0x100 && mode != 0x300) {
+        mode |= attr & 0x30000000;
+    }
+    if (mode == 0x300) {
+        u32 shape_size = attr & 0xc000c000;
+        u32 size = (shape_size & 0xc0000000) >> 30;
+        s32 shape = (s32)(shape_size & 0xc000) >> 14;
+        u16 w = data_02144d84[shape][size];
+        u16 h = data_02144d6c[shape][size];
+        s32 zz = data_021701d8[2] ? ((s32)data_021701d8[1] + (z << 12)) : (z << 12);
+        *(volatile s32 *)0x04000470 = (x + ((s32)w >> 1)) << 12;
+        *(volatile s32 *)0x04000470 = (y + ((s32)h >> 1)) << 12;
+        *(volatile s32 *)0x04000470 = zz;
+    } else {
+        s32 zz = data_021701d8[2] ? ((s32)data_021701d8[1] + (z << 12)) : (z << 12);
+        *(volatile s32 *)0x04000470 = x << 12;
+        *(volatile s32 *)0x04000470 = y << 12;
+        *(volatile s32 *)0x04000470 = zz;
+    }
+
+    {
+        s32 sx = uv[4];
+        s32 sy = uv[5];
+        *(volatile s32 *)0x0400046c = sx << 12;
+        *(volatile s32 *)0x0400046c = sy << 12;
+        *(volatile s32 *)0x0400046c = 0x1000;
+    }
+    *(volatile s32 *)0x04000500 = 1;
+
+    *(volatile u32 *)0x04000488 = (u16)(s16)(uv[0] >> 8) | ((u32)(u16)(s16)(uv[3] >> 8) << 16);
+    *(volatile u32 *)0x04000490 = 0x10000;
+
+    *(volatile u32 *)0x04000488 = (u16)(s16)(uv[2] >> 8) | ((u32)(u16)(s16)(uv[3] >> 8) << 16);
+    *(volatile u32 *)0x04000490 = 0x10040;
+
+    *(volatile u32 *)0x04000488 = (u16)(s16)(uv[2] >> 8) | ((u32)(u16)(s16)(uv[1] >> 8) << 16);
+    *(volatile u32 *)0x04000490 = 0x00040;
+
+    *(volatile u32 *)0x04000488 = (u16)(s16)(uv[0] >> 8) | ((u32)(u16)(s16)(uv[1] >> 8) << 16);
+    *(volatile u32 *)0x04000490 = 0x00000;
+
+    *(volatile s32 *)0x04000504 = 0;
+
+    if (data_021701d8[2]) {
+        data_021701d8[1] += data_02155ed0[0];
+    }
+}
+#pragma optimization_level 4
+extern u32 data_021701d8[4];
+void func_0211ad90(u32 arg0) {
+    data_021701d8[0] = arg0;
+}
+
+void func_0211ada0(void) {
+    data_021701d8[0] = 0;
+}
+
+u8 *func_0211adb4(u8 *arg0, s32 arg1, s32 arg2) {
+    s32 i;
+    for (i = 0; i < 4; i++) {
+        u8 *p = arg0 + i * 6;
+        if (arg1 <= *(u16 *)p && arg2 <= *(u16 *)(p + 2)) {
+            return p;
+        }
+    }
+    return arg0 + 0x12;
+}
+
+s32 func_0211adf4(u8 *arg0) {
+    u32 idx = *(volatile u32 *)0x04000000 & 7;
+    s32 val = arg0[idx];
+    s32 is3d = (*(volatile u32 *)0x04000000 & 8) ? 1 : 0;
+    s32 arg2 = 1;
+    if (is3d == 0) {
+        arg2 = 0;
+    }
+    if (val >= 8) {
+        val -= 8;
+    }
+    return func_020027d4(1, val, arg2);
+}
+
+s32 func_0211ae38(u8 *arg0) {
+    u32 idx = *(volatile u32 *)0x04001000 & 7;
+    s32 val = arg0[idx];
+
+    if (val >= 8) {
+        val -= 8;
+    }
+    return func_0200283c(val);
+}
+
+void func_02003ff8(void);
+void func_02004084(void *, u32, u32);
+void func_020040f8(void);
+void func_0200422c(void);
+void func_02004244(void *, u32, u32);
+void func_020042ac(void);
+void func_0211ae60(s32 bank,u32 *p,u8 *map){
+ u32 src;
+ u32 offset=bank<<13;
+ s32 i;
+ u32 index;
+ u32 size;
+ void (*begin)(void);
+ void (*end)(void);
+ void (*copy)(void *,u32,u32);
+ func_02006dc4((void *)p[3],p[2]);
+ if(bank<=3){begin=func_02003ff8;copy=func_02004084;end=func_020040f8;}
+ else {begin=func_0200422c;copy=func_02004244;end=func_020042ac;offset-=0x8000;}
+ if(map){
+ s32 count;
+ switch(p[0]){case 3:size=32;break;case 4:size=512;break;default:size=0;break;}
+ count=*(u16 *)map;
+ for(i=0;i<count;i++){
+ index=(*(u16 **)(map+4))[i];
+ src=p[3];
+ begin();
+ copy((void *)(size*i+src),size*index+offset,size);
+ end();
+ }
+ }else {begin();copy((void *)p[3],offset,p[2]);end();}
+}
+
+void func_0211af90(s32 bank, u32 *arg1, u8 *arg2) {
+ s32 size=bank;
+ u8 *dest;
+ u8 *map=arg2;
+ u32 *p=arg1;
+ s32 count, i;
+ func_02006dc4((void *)p[3],p[2]);
+  if(size<=3) dest=(u8 *)0x5000000; else dest=(u8 *)0x5000400;
+ if(map){
+ switch(p[0]) {case 3:size=32;break;case 4:size=512;break;default:size=0;break;}
+ count=*(u16 *)map;
+ for(i=0;i<count;i++){
+ u32 offset=(*(u16 **)(map+4))[i]*size;
+ u32 srcOff=size*i;
+ u32 channel=data_02145ba4;
+ u8 *src=(u8 *)p[3];
+ if(channel>3) channel=-1;
+ if(channel!=-1) func_02008690(channel,src+srcOff,dest+offset,size,1);
+ else func_02008e08(src+srcOff,dest+offset,size);
+ }
+ }else{
+ u32 channel=data_02145ba4;
+ u32 n=p[2];
+ void *src=(void *)p[3];
+ if(channel>3)channel=-1;
+ if(channel!=-1)func_02008690(channel,src,dest,n,1);
+ else func_02008e08(src,dest,n);
+ }
+}
+
+u32 func_0211b0bc(u32 arg0) {
+    u16 val = data_02144e48[arg0];
+    if (val == 0) {
+        return arg0;
+    }
+    if (*(u16 *)(val + 0x4000000) & 0x2000) {
+        return arg0 + 2;
+    }
+    return arg0;
+}
+
