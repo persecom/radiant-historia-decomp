@@ -647,9 +647,7 @@ void *func_02114284(s32 arg0) {
     return obj;
 }
 
-void func_021142f0(arg0)
-u8 *arg0;
-{
+void func_021142f0(u8 *arg0) {
     u8 *base;
     if (*(void **)arg0 != NULL) {
         **(void ***)arg0 = NULL;
@@ -660,11 +658,11 @@ u8 *arg0;
     *(u32 *)(arg0 + 4) = 0;
     if (*(void **)(arg0 + 8) != NULL) {
         func_021167f0(base + 0xc, *(void **)(arg0 + 8));
-        *(u32 *)((u8 *)*(void * volatile *)(arg0 + 8) + 0xc) = 0;
+        *(u32 *)((u8 *)*(void **)(arg0 + 8) + 0xc) = 0;
         *(u32 *)(arg0 + 8) = 0;
-        func_021168f8(data_0216bfd8, arg0);
-        func_021167f0(data_0216bfcc, arg0);
     }
+    func_021168f8(data_0216bfd8, arg0);
+    func_021167f0(data_0216bfcc, arg0);
     arg0[0x2c] = 0;
 }
 
