@@ -27,12 +27,10 @@ void func_01ff8000(void) {
 }
 
 void func_01ff81b8(void) {
-    s32 zero;
     while (func_02005a74() == 0) {
     }
-    zero = 0;
-    *(volatile u16 *)0x4000208 = zero;
-    func_01ff82c8();
+    *(volatile u16 *)0x4000208 = 0;
+    func_01ff82c8(0);
     func_01ff81e4();
 }
 
