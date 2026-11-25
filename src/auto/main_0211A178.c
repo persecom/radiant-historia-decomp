@@ -329,11 +329,10 @@ void func_0211a860(u32 arg0) {
 }
 
 void func_0211a8ac(void *oam0, void *tex0, void *image, void *palette, s32 *uv) {
- SpriteOam_1a8ac *oam=oam0;
  SpriteTex_1a8ac *tex=tex0;
- u16 tile=(u16)oam->bits.tile;
- u32 first=oam->word[0];
- u32 attr=first&0xc000c000;
+ SpriteOam_1a8ac *oam=oam0;
+ u16 tile=oam->bits.tile;
+ u32 attr=oam->word[0]&0xc000c000;
  u32 size=(attr&0xc0000000)>>30;
  s32 shape=(s32)(attr&0xc000)>>14;
  u32 mapping=tex->mapping;
@@ -392,12 +391,15 @@ u32 func_0211ab38(void) {
 extern void func_0211a8ac(void *, void *, void *, void *, s32 *);
 extern u16 data_02144d84[][4];
 extern u16 data_02144d6c[][4];
+#pragma optimization_level 3
 void func_0211ab48(s32 x, s32 y, s32 z, u32 *oam, void *pTex, void *pPltt, void *pChar) {
     s32 uv[6];
-    u32 attr;
     u32 mode;
+    u32 attr;
+    s32 xx=x, yy=y, zz=z;
 
     func_0211a8ac(oam, pTex, pPltt, pChar, uv);
+    x=xx; y=yy; z=zz;
 
     attr = *oam;
     mode = attr & 0x300;
@@ -448,7 +450,7 @@ void func_0211ab48(s32 x, s32 y, s32 z, u32 *oam, void *pTex, void *pPltt, void 
         data_021701d8[1] += data_02155ed0[0];
     }
 }
-
+#pragma optimization_level 4
 extern u32 data_021701d8[4];
 void func_0211ad90(u32 arg0) {
     data_021701d8[0] = arg0;
@@ -470,17 +472,12 @@ u8 *func_0211adb4(u8 *arg0, s32 arg1, s32 arg2) {
 }
 
 s32 func_0211adf4(u8 *arg0) {
-    u32 v2 = *(volatile u32 *)0x04000000;
-    u32 v1 = *(volatile u32 *)0x04000000;
-    u32 idx = v2 & 7;
-    u8 flag = (v1 & 8) != 0;
+    u32 idx = *(volatile u32 *)0x04000000 & 7;
     s32 val = arg0[idx];
-    s32 arg2 = 0;
-
-    if (flag == 0) {
+    s32 is3d = (*(volatile u32 *)0x04000000 & 8) ? 1 : 0;
+    s32 arg2 = 1;
+    if (is3d == 0) {
         arg2 = 0;
-    } else {
-        arg2 = 1;
     }
     if (val >= 8) {
         val -= 8;
