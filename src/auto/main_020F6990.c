@@ -126,7 +126,7 @@ extern void F(103d30)(void);extern void F(103d78)(s32);extern void F(103d98)(s32
 extern s32 F(104f68)(void);extern void F(10829c)(s32,s32,s32);extern void F(108ffc)(void);extern void F(1091b4)(void);extern void F(109444)(void*);
 extern void*F(10c594)(s32,void*);extern void F(10c5dc)(void*);extern s32 F(10cbd0)(void);extern s32 F(10ccbc)(const char*);
 extern const char*F(10cce4)(const char*);extern void*F(10eb98)(const char*,...);extern void F(1167f0)(void*,void*);extern void F(1168f8)(void*,void*);
-u32 frame[(0x2c4-8)/4],arg5,arg6;u32 r0,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12;u32 cmp_a,cmp_b,base_tmp;{s32 n,value;u32 skip;u8*ctx;Script6990*script;
+u32 frame[(0x2c4-8)/4],arg5,arg6;u32 r0,r1,r2,r3,r12;register u32 r4 asm("r4"),r5 asm("r5"),r6 asm("r6"),r7 asm("r7"),r8 asm("r8"),r9 asm("r9"),r10 asm("r10"),r11 asm("r11");u32 cmp_a,cmp_b,base_tmp;{s32 n,value;u32 skip;u8*ctx;Script6990*script;
 script=(Script6990*)D(626e8)[0];ctx=script->context;skip=(*(u32*)(ctx+0x18))&0x80000000u;if(S(D(60200),0x160)&4)F(0fc50c)();if(CC(050)){
 n=--script->depth;if(n<0)return 0;value=script->returns[n];if(value){(*(s32*)((u8*)(*(u8**)D(626e8)[0])+8))=value;script->returns[n]=0;
 if(script->depth<0)script->depth=0;}return 1;}if(CC(054)){if(skip)return 1;n=0;if(!F(10ce90)())n=NUM;do{value=TOK;if(!n){
@@ -778,100 +778,5 @@ SR(d,g,0x5)c=(u32)(*(const u32*)(e+((u32)(d)<<(x))));a=b+(((u32)(a)>>(0x1b))|((u
 a=c|(((a&255u)<32u)?((u32)(f)<<(a&255u)):0u);*(u32*)(e+((u32)(d)<<(x)))=(u32)a;
 L5ac0:Y
 L5acc:A0(529dc)CK T0 J1 R0(10cbd0)RET(a)
-#undef y
-#undef x
-#undef v
-#undef t
-#undef q
-#undef z
-#undef o
-#undef n
-#undef m
-#undef l
-#undef k
-#undef j
-#undef i
-#undef h
-#undef g
-#undef f
-#undef e
-#undef d
-#undef c
-#undef b
-#undef a
-#undef H1
-#undef H0
-#undef P1
-#undef AY
-#undef AA
-#undef PP
-#undef SR
-#undef SL
-#undef FL
-#undef F0
-#undef T0
-#undef N0
-#undef B0
-#undef A4
-#undef A0
-#undef JR
-#undef JY
-#undef J1
-#undef J0
-#undef CK
-#undef CE
-#undef QT
-#undef ZP
-#undef Q
-#undef L
-#undef F
-#undef D
-#undef PTR
-#undef B8
-#undef H16
-#undef S
-#undef TOK
-#undef INT
-#undef NUM
-#undef CC
-#undef T
-#undef M
-#undef P
-#undef K
-#undef I
-#undef US
-#undef U
-#undef HS
-#undef H
-#undef WS
-#undef W
-#undef ST
-#undef LD
-#undef G
-#undef RET
-#undef Z
-#undef Y
-#undef CN
-#undef C
-#undef A
-#undef BN
-#undef B
-#undef NE
-#undef EQ
-#undef N
-#undef J
-#undef V6
-#undef V5
-#undef V4
-#undef R4
-#undef V3
-#undef R3
-#undef V2
-#undef R2
-#undef V1
-#undef R1
-#undef V0
-#undef R0
-#undef E
 }
 
