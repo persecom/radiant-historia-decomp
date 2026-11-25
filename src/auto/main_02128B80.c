@@ -270,7 +270,7 @@ void func_021295a4(void *arg0) {
         if (code == 3) {
             func_021293c0();
         } else if (code == 1) {
-            func_02128eb4();
+            func_02128eb4(p);
         } else if (code == 2) {
             func_0212926c();
         } else if (code == 4) {
