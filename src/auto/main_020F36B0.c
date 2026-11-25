@@ -91,8 +91,8 @@ const s32 *m=(s32 *)data_02170248,*p=(s32 *)data_02170204;
 register s32 z,x;
 s32 y,py,px,sy,sx;
 long long inv;
-x=m[9]+(s32)(((long long)pos[0]*m[0]+(long long)pos[1]*m[3]+(long long)pos[2]*m[6])>>12);
 y=m[10]+(s32)(((long long)pos[0]*m[1]+(long long)pos[1]*m[4]+(long long)pos[2]*m[7])>>12);
+x=m[9]+(s32)(((long long)pos[0]*m[0]+(long long)pos[1]*m[3]+(long long)pos[2]*m[6])>>12);
 z=m[11]+(s32)(((long long)pos[0]*m[2]+(long long)pos[1]*m[5]+(long long)pos[2]*m[8])>>12);
 func_02002028(p[15]+(s32)(((long long)x*p[3]+(long long)y*p[7]+(long long)z*p[11])>>12));
 px=p[12]+(s32)(((long long)x*p[0]+(long long)y*p[4]+(long long)z*p[8])>>12);
@@ -107,6 +107,7 @@ sy=192-sy;
 *outX=sx;*outY=sy;
 }
 void func_020f37d0(u8 *arg) {
+u8 *link,*anim;
 u8 *entity=0;
 Trip pos;
 s32 update,draw;
@@ -115,8 +116,8 @@ func_020e9dc0();
 func_0211a4c0(data_021612c8,0,0);
 goto next_entity;
 while(entity) {
-u8 *link=*(u8 **)(entity+0x108);
-u8 *anim=*(u8 **)link;
+link=*(u8 **)(entity+0x108);
+anim=*(u8 **)link;
 s32 offscreen;
 s32 one,zero;
 pos=*(Trip *)entity;
@@ -127,9 +128,8 @@ draw=0;
 } else draw=1;
 if(*(s32 *)(entity+0x64)==0) {
 s32 x,y;
-ProjectSpritePosition((s32 *)&pos,&x,&y);
-*(s32 *)(entity+0xfc)=x;
-*(s32 *)(entity+0x100)=y;
+ProjectSpritePosition((s32 *)&pos,(s32 *)(entity+0xfc),(s32 *)(entity+0x100));
+x=*(s32 *)(entity+0xfc);y=*(s32 *)(entity+0x100);
 offscreen=0;
 if(x< -32 || x>288 || y< -16 || y>208) {
 *(u32 *)(entity+0x80)&=~4;
@@ -137,9 +137,8 @@ offscreen=1;
 } else *(u32 *)(entity+0x80)|=4;
 } else {
 s32 x,y;
-ProjectSpritePosition((s32 *)&pos,&x,&y);
-*(s32 *)(entity+0xfc)=x;
-*(s32 *)(entity+0x100)=y;
+ProjectSpritePosition((s32 *)&pos,(s32 *)(entity+0xfc),(s32 *)(entity+0x100));
+x=*(s32 *)(entity+0xfc);y=*(s32 *)(entity+0x100);
 offscreen=0;
 *(u32 *)(entity+0x80)|=4;
 }
@@ -160,10 +159,11 @@ if(draw && !offscreen) {
 s32 sx=*(s32 *)(entity+0x54),sy=sx;
 s32 x,y,z;
 u32 command;
-if((anim[0x70]>>1)&1) sx*=-1;
-else if(anim[0x70]&1) sy*=-1;
+s32 polygon=3;
+if(((SpriteFlipFlags *)(anim+0x70))->flipX) sx*=polygon-4;
+else if(((SpriteFlipFlags *)(anim+0x70))->flipY) sy*=polygon-4;
 command=(*(u32 *)(entity+0x80)&0x1000)?0x8000:0;
-command|=3<<6;
+command|=polygon<<6;
 command|=*(s16 *)(entity+0x9a)<<16;
 func_021205ec(0x29,&command,1);
 *(volatile u32 *)0x04000480=*(u16 *)(entity+0x88);
@@ -238,13 +238,12 @@ type=*(u32 *)(*(u8 **)(anim+0x1c)+4)&255;
 func_02118eec(anim+0x3c,1);
 if(type) {
 s32 x,y;
-if(type==2) {x=*(s16 *)(frame+4);y=*(s16 *)(frame+6);}
+if(type==2) {func_02118e94(anim+0x3c,*(s16 *)(frame+4),*(s16 *)(frame+6));}
 else {
 func_02118ed0(anim+0x3c,*(s32 *)(frame+4),*(s32 *)(frame+8));
 func_02118eb4(anim+0x3c,*(u16 *)(frame+2));
-x=*(s16 *)(frame+12);y=*(s16 *)(frame+14);
+func_02118e94(anim+0x3c,*(s16 *)(frame+12),*(s16 *)(frame+14));
 }
-func_02118e94(anim+0x3c,x,y);
 }
 }
 }
