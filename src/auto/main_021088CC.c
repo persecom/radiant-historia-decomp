@@ -266,16 +266,17 @@ void func_02108e54(u32 arg0) {
     if (arg0 >= 2) {
         return;
     }
-    while (1) {
+    for (;;) {
         if (func_021090f4(arg0, 0) == 2) {
             func_02108b54(arg0);
-            return;
+            break;
         }
         if (func_021090f4(arg0, 0) == 0) {
             return;
         }
         func_02108ffc();
     }
+    return;
 }
 
 void func_02108ea4(u32 arg0, u32 arg1) {
@@ -304,17 +305,14 @@ void func_02108eec(u32 arg0, u32 arg1) {
 }
 
 void func_02108f58(u32 arg0) {
-    u16 i;
-    u16 j;
-    if (arg0 >= 2) {
-        return;
-    }
+    u16 i, j;
+    if (arg0 >= 2) return;
     for (i = 0; i < 100; i++) {
         func_02108d34(arg0, func_02020604(0x3f800000, func_020201f4(0x3dcccccd, func_0201f884(i / 10))));
         func_02108ffc();
     }
     for (j = 0; j < 5; j++) {
-        func_02108c24(arg0, j);
+        func_02108c24(arg0, 0);
         func_02108ffc();
     }
 }
@@ -521,6 +519,7 @@ s32 func_021095d0(u32 arg0) {
     return 0;
 }
 
+#pragma opt_common_subs off
 void func_02109600(void) {
     s32 active = 0;
     s32 i;
@@ -539,10 +538,10 @@ void func_02109600(void) {
     }
     if (active == 0) {
         func_0210da14(data_02162510);
-        *(volatile s32 *)data_02162510 = 0;
+        *(s32 *)data_02162510 = 0;
     }
 }
-
+#pragma opt_common_subs on
 void func_0210968c(u32 arg0, s32 arg1, u32 arg2) {
     s32 sz = arg1;
     s32 i;
@@ -609,7 +608,7 @@ void func_02109840(void) {
         *(s32 *)(data_02162544 + i * 0x10 + 0xc) = 0;
     }
     func_0210da14(data_02162510);
-    *(volatile s32 *)data_02162510 = 0;
+    ((struct { s32 value; } *)data_02162510)->value = 0;
 }
 
 void func_02109884(u32 arg0, u32 arg1) {
