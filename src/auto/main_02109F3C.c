@@ -39,14 +39,22 @@ extern u8 data_02162580[];
 extern u8 data_021625c8[];
 
 #pragma opt_schedule off
-void *func_02109f3c(u32 arg0) {
-    u8 *p = NULL;
-    for (; (p = (p == NULL) ? *(u8 **)((u8 *)data_02162564 + 8) : *(u8 **)(p + *(u16 *)((u8 *)data_02162564 + 0x12) + 4)) != NULL;) {
-        if (*(u32 *)(p + 8) == arg0) {
-            return p;
-        }
+void *func_02109f3c(u32 arg0)
+{
+  unsigned long new_var;
+  u8 *p = NULL;
+  u16 off = *((volatile u16 *) (((u8 *) data_02162564) + 0x12));
+  u8 *head = *((u8 **) (((u8 *) data_02162564) + 8));
+  new_var = off;
+  for (; (p = (p != NULL) ? (*((u8 **) ((p + new_var) + 4))) : (head)) != NULL;)
+  {
+    if ((*((u32 *) (p + 8))) == arg0)
+    {
+      return p;
     }
-    return NULL;
+  }
+
+  return NULL;
 }
 #pragma opt_schedule on
 s32 func_02109f84(u32 arg0) {
