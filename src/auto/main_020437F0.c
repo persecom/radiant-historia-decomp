@@ -304,8 +304,11 @@ extern u8 *func_0210c594(s32, u32);
 extern void func_020477dc(void *, s32, s32);
 void func_02043de4(void)
 {
-    u8 *node = *(u8 **)(data_021600bc + 0xb8);
-    u8 *player = *(u8 **)(*(u8 **)(data_021600a8 + 4) + 0x68);
+    u8 *node;
+    u8 *player;
+
+    player = *(u8 **)(*(u8 **)(data_021600a8 + 4) + 0x68);
+    node = *(u8 **)(data_021600bc + 0xb8);
 
     while (node != NULL) {
         switch (*(u8 *)(node + 0x12)) {
@@ -357,7 +360,7 @@ void func_02043de4(void)
                 u8 *obj = func_02046f90(0x141, (u16)(*(u16 *)(node + 0x10) + 0x1770));
                 *(u32 *)(obj + 0x18) = *(u32 *)(obj + 0) = *(u32 *)(node + 0x20);
                 *(u32 *)(obj + 0x20) = *(u32 *)(obj + 8) = *(u32 *)(node + 0x28);
-                func_02052240();
+                func_02052240(obj);
                 *(u8 **)(obj + 0xd0) = func_0210c594(0x3c, data_02155c3c);
                 *(*(u8 **)(obj + 0xd0) + 0x19) = 3;
                 *(*(u8 **)(obj + 0xd0) + 0x1b) = 0x1e;
