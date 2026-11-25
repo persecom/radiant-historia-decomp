@@ -37,7 +37,8 @@ extern void func_02002028(s32);
 extern s64 func_02001fd0(void);
 static inline void ProjectRenderPosition(const Vec_EAAE0 *pos,s32 *outX,s32 *outY){
 const s32 *m=data_02170248,*p=data_02170204;
-s32 z,y,x,py,px,sy,sx;
+register s32 z,y;
+s32 x,py,px,sy,sx;
 s64 inv;
 x=m[9]+(s32)(((s64)pos->x*m[0]+(s64)pos->y*m[3]+(s64)pos->z*m[6])>>12);
 y=m[10]+(s32)(((s64)pos->x*m[1]+(s64)pos->y*m[4]+(s64)pos->z*m[7])>>12);
