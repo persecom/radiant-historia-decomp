@@ -632,20 +632,18 @@ void func_0211424c(u8 *arg0) {
     func_021142f0(arg0);
 }
 
-void *func_02114284(arg0)
-u8 arg0;
-{
+void *func_02114284(s32 arg0) {
     void *obj = func_02116958(data_0216bfcc, NULL);
     if (obj == NULL) {
         obj = func_02116958(data_0216bfd8, NULL);
-        if (arg0 < ((u8 *)obj)[0x3d]) {
+        if (arg0 < *(u8 *)((u8 *)obj + 0x3d)) {
             return NULL;
         }
         func_0211424c(obj);
-        func_021168f8(data_0216bfcc, obj);
-        ((u8 *)obj)[0x3d] = arg0;
-        func_021141f8(obj);
     }
+    func_021168f8(data_0216bfcc, obj);
+    *(u8 *)((u8 *)obj + 0x3d) = (u8)arg0;
+    func_021141f8(obj);
     return obj;
 }
 
