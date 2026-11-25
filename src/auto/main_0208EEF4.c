@@ -7,6 +7,7 @@ typedef struct {
 
 extern const Unk_0208f7a0_10 data_021410bc, data_021410a8, data_02141094;
 typedef struct { s32 data[4]; } Unk_0208eef4_4;
+typedef struct { u8 data[80]; } Unk_0208eef4_80;
 extern const Unk_0208eef4_4 data_02140f08;
 extern const Unk_0208f7a0_10 data_02141044;
 extern const Unk_0208f7a0_10 data_02141030;
@@ -23,6 +24,63 @@ extern void func_02081f08(void *, u8);
 extern void func_020a8810(void *, s32);
 extern void func_020895a0(s32, s32, s32, s32, s32, u16, s32, s32, s32);
 extern void func_020a30c4(u16);
+extern void func_0209250c(s16,s32,s16,s16,s16,s16,s16,s16,s16,s16,s16,s16,s16);
+extern void func_0208db04(u16,s32,s16,s16,s16,s16,s16,s16);
+extern void func_0208dcc8(s16,s16,s32,s16,u8);
+extern s32 func_02085110(u8);
+void func_0208eef4(s16 x,s16 y,s16 z) {
+Unk_0208f7a0_10 top=data_021410bc;
+Unk_0208f7a0_10 icon=data_021410a8;
+Unk_0208f7a0_10 amount=data_02141094;
+Unk_0208eef4_4 styles=data_02140f08;
+u8 count=6;
+u8 *base=data_0216010c;
+u8 offset=base[0x50d7]-base[0x50d6];
+s32 row, selected;
+s16 i;
+if(*(s16 *)(base+0x50d4)<6) {
+count=(u8)*(s16 *)(base+0x50d4);
+{s32 j;for(j=count;j<6;j=(s16)(j+1)) func_020895a0((u16)j,(x+30)<<12,(y+28+j*22)<<12,90,0,0,0,0,0);}
+}
+for(i=0;i<count;i++) {
+selected=0;
+if(i==base[0x50d6]) selected=1;
+func_020a8810(*(void **)((s32)data_0216010c+(s16)i*(s16)80+0x70),styles.data[selected]);
+row=y+26+i*22;
+func_0209250c(selected+47,1,x+8,row,156,18,8,16,4,2,4,4,z);
+func_020895a0((u16)i,(x+28)<<12,(y+28+i*22)<<12,90,0,*(u16 *)(data_0216010c+(offset<<6)+(i<<6)+0x4894),0,0,0);
+icon.data[6]=row; icon.data[5]=x+9;icon.data[7]=z+1;
+switch(*(u8 *)(data_0216010c+(offset<<6)+(i<<6)+0x489c)) {
+case 0:func_020a3bbc(70);break;
+case 1:func_020a3bbc(71);break;
+case 2:func_020a3bbc(72);break;
+case 3:func_020a3bbc(86);break;
+}
+func_021098ac(&icon);
+if(*(s8 *)(data_0216010c+(offset<<6)+(i<<6)+0x488e)<2) {
+{s32 texture=selected+73;func_020a3bbc(texture);
+amount.data[5]=x+128;amount.data[6]=y+31+i*22;amount.data[7]=z+1;
+func_021098ac(&amount);
+func_0208db04((u16)texture,*(s16 *)(data_0216010c+(offset<<6)+(i<<6)+0x4890),x+150,y+31+i*22,7,8,8,z+1);
+}
+}
+}
+func_0208dcc8(x+168,y+26,94,z,offset);
+func_020a8810(*(void **)(data_0216010c+0x2a0),22);
+func_020895a0(7,(x+34)<<12,(y+5)<<12,90,4,(u16)(func_02085110(data_0216010c[0x50dc])+1),0,0,0);
+if((*(s16 *)(data_0216010c+0x534e)&2)||(*(s16 *)(data_0216010c+0x534e)&4)) {
+func_020a3bbc(56);*(s16 *)(data_0216010c+0x534e)&=~4;
+}else func_020a3bbc(55);
+top.data[1]=0;top.data[2]=0;top.data[5]=x+10;top.data[6]=y+4;top.data[7]=z+1;
+func_021098ac(&top);
+if((*(s16 *)(data_0216010c+0x531a)&2)||(*(s16 *)(data_0216010c+0x531a)&4)) {
+func_020a3bbc(56);*(s16 *)(data_0216010c+0x531a)&=~4;
+}else func_020a3bbc(55);
+top.data[1]=16;top.data[2]=0;top.data[5]=x+87;top.data[6]=y+4;top.data[7]=z+1;
+func_021098ac(&top);
+func_020922f8(8,0,(s16)(x+26),(s16)(y+4),60,15,8,14,4,4,4,4,z+1);
+}
+
 void func_0208f4e4(s16 arg0, s16 arg1, s16 arg2, s32 arg3) {
     u8 buf[0x64];
     Unk_0208f7a0_10 s1 = data_0214106c;
