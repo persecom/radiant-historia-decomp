@@ -1,6 +1,7 @@
 /* 13 functions from 0x0211DDAC to 0x0211EA84 (main), found by ds-decomp. */
 #include "common.h"
 typedef struct {u32 x,y;} Pair_0211e3ec;
+typedef struct {u32 fields[14];} Material_0211e3ec;
 typedef struct {s16 x,y;} ShortPair_0211e3ec;
 static inline u8 *MaterialEntry_0211e3ec(u8 *tbl,u32 idx) {
 if(tbl) {
@@ -275,7 +276,7 @@ u32 zero=0;
 u8 *out;
 u32 packets[7];
 *(u32 *)(ctx+8)|=8;
-stage=*(void **)(ctx+0x1c)?ctx[0x90]:zero;
+stage=MaterialStage_0211e3ec(ctx);
 ctx[0xad]=idx;
 *(u8 **)(ctx+0xb0)=ctx+0xf4;
 if(stage==1) {
@@ -288,7 +289,7 @@ if(!handled) {
 u8 *cache=*(u8 **)(*(u8 **)(ctx+4)+0x38);
 if(cache && !(*(u32 *)(ctx+8)&0x80)) out=cache+idx*0x38;
 else if((command==0x20 || command==0x40) && (*(u32 *)(ctx+0xbc+(idx>>5)*4)&(1<<(idx&31)))) {
-out=cache?cache+idx*0x38:data_02170464+idx*0x38;
+out=MaterialCache_0211e3ec(cache,idx);
 } else {
 u8 *tbl,*entry,*source;
 s32 flags;
@@ -323,12 +324,10 @@ a=*(u32 *)(mat+4); b=*(u32 *)(mat+8);
 *(u32 *)(out+20)=*(u16 *)(mat+28);
 if(flags&1) {
 u8 *p=mat+0x2c;
-if(flags&2) {*(u32 *)out|=1; goto scale_done;}
-*(Pair_0211e3ec *)(out+24)=*(Pair_0211e3ec *)p; p+=8;
-scale_done:
-if(*(u16 *)(mat+30)&4) {*(u32 *)out|=2; goto rotation_done;}
-{s32 a=*(s16 *)p,b=*(s16 *)(p+2); p+=4; *(s16 *)(out+32)=a; *(s16 *)(out+34)=b;}
-rotation_done:
+if(flags&2) *(u32 *)out|=1;
+else {*(Pair_0211e3ec *)(out+24)=*(Pair_0211e3ec *)p; p+=8;}
+if(*(u16 *)(mat+30)&4) *(u32 *)out|=2;
+else {s32 a=*(s16 *)p,b=*(s16 *)(p+2); p+=4; *(s16 *)(out+32)=a; *(s16 *)(out+34)=b;}
 if(!(*(u16 *)(mat+30)&8)) {*(Pair_0211e3ec *)(out+36)=*(Pair_0211e3ec *)p;}
 else *(u32 *)out|=4;
 *(u32 *)out|=8;
