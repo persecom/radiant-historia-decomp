@@ -161,6 +161,7 @@ void func_0211883c(void *arg0, u32 arg1, u32 arg2, void *arg3) {
     func_021185b0((s32 *)arg3, arg2, (s32)arg1);
 }
 
+#pragma opt_propagation off
 void func_02118a54(void *arg0, u32 arg1, s32 arg2, void *arg3) {
     const Unk02118A54 *p=arg0;
     Unk02118A54Out *out=arg3;
@@ -194,16 +195,15 @@ void func_02118a54(void *arg0, u32 arg1, s32 arg2, void *arg3) {
     }
 
 
-    { u32 format=((volatile Unk02118A54 *)p)->format, type=p->type;
-    u32 one=1;
+    { u32 format=((volatile Unk02118A54 *)p)->format, one=1, type=p->type;
     out->format = format;
     out->zero = zero;
-    out->type = type;
     out->one = one;
+    out->type = type;
     }
     func_021185b0((s32 *)arg3, arg2, (s32)arg1);
 }
-
+#pragma opt_propagation on
 extern void func_02004138(void);
 extern void func_02004180(void *,u32,u32);
 extern void func_020041f0(void);
@@ -227,6 +227,7 @@ case 0: func_02004588();func_020045bc(data,addr,size);func_0200462c();break;
 {u32 a=((volatile u32 *)p)[0],b=((volatile u32 *)p)[1];out[0]=a;out[1]=b;}func_021185f4(out,type,addr);
 }
 
+#pragma opt_propagation off
 void func_02118d0c(u32 *p, void *arg1, u32 addr, s32 type, u32 *out) {
     u32 unit = (p[0] == 3) ? 0x20 : 0x200;
     u32 count = *(u16 *)arg1;
@@ -274,7 +275,7 @@ void func_02118d0c(u32 *p, void *arg1, u32 addr, s32 type, u32 *out) {
     }
     func_021185f4(out, type, addr);
 }
-
+#pragma opt_propagation on
 void func_02118e68(s32 *arg0) {
     s32 i;
     for (i = 0; i < 3; i++) {
