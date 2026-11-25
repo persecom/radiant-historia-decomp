@@ -45,11 +45,6 @@ typedef struct {
 static inline void set_zero_0210b10(ZeroTarget_0215f120 *p, u32 v) { p->field_0 = v; }
 extern u8 data_0215f120[1312];
 static inline void set_status_020101f8(u32 status) { (*(ZeroTarget_0215f120 **)data_0215f120)->field_0 = status; }
-static inline void invalid_020101f8(u8 *p) {
-  *((u32 *) (p + 4)) = 0;
-  *((u32 *) (p + 0x18)) = 0;
-  set_status_020101f8(3);
-}
 extern void func_020059e4(u32);
 extern void func_02005a14(u32);
 extern void func_020059b4(u32);
