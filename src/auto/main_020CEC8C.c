@@ -31,26 +31,13 @@ extern void func_020bd8c8(void);
 extern void func_02021a28(void);
 extern void func_020cf3b4(void);
 void func_020cec8c(void) {
-    u8 *p = data_02160238;
-    switch (p[0]) {
-    case 0:
-        p[0x771] = 1;
-        break;
-    case 1:
-    case 6:
-        {
-            u8 v = 0;
-            func_020ccc30();
-            p[0] = v;
-        }
-        break;
-    case 2:
-    case 3:
-    case 4:
-    case 5:
-    default:
-        break;
-    }
+ u8 *p = data_02160238;
+ switch(p[0]) {
+ case 0: p[0x771]=1; break;
+ case 1: { int v=0; func_020ccc30(v); p[0]=v; } break;
+ case 2: case 3: case 4: case 5: break;
+ case 6: { int v=0; func_020ccc30(v); p[0]=v; } break;
+ }
 }
 
 void func_020cecfc(void) {
