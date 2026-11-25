@@ -358,7 +358,6 @@ s32 func_ov000_02178314(void *arg0, void *arg1, u32 arg2, u32 arg3) {
 
     return 0;
 }
-#pragma peephole on
 s32 func_ov000_0217849c(u8 *arg0, u8 *arg1, u32 arg2, u32 arg3) {
     Rc4State state;
     func_ov000_021780e0(&state, arg0, 0x10);
