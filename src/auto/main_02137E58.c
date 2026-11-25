@@ -299,7 +299,7 @@ void func_02138408(u32 arg0, u32 arg1) {
 s32 func_0213841c(s32 arg0) {
     s32 i;
     s32 ret = 0;
-    u8 *base = data_021767bc + arg0 * 0x48;
+    u8 *base = (u8 *)data_021767bc + arg0 * 0x48;
     for (i = 0; i < 6; i++) {
         u32 *entry = (u32 *)(base + i * 0xc);
         u32 cb = entry[0];
