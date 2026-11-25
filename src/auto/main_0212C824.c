@@ -31,6 +31,8 @@ extern void func_0212be08(const char *, ...);
 extern void func_0212a0e4(void *);
 extern void func_0212a0d0(void *);
 extern void func_02013858(void *, void *, s32);
+#pragma push
+#pragma opt_common_subs off
 void func_0212c824(void *arg0) {
     u8 *p = (u8 *)arg0;
     u8 *ctx = *(u8 **)(p + 4);
@@ -111,7 +113,7 @@ void func_0212c824(void *arg0) {
 
     p[1] = 2;
 }
-
+#pragma pop
 s32 func_0212caec(u8 *arg0, s32 *arg1, s32 *arg2, s32 *arg3) {
     void *first = *(void **)(arg0 + 0xc);
     s32 i;
@@ -527,8 +529,6 @@ s32 func_0212d714(void) { if (++data_021740d8[5] == 1) { struct { u32 words[250]
 extern void *memset(void *, int, unsigned long);
 #pragma intrinsic on
 void func_0212d76c(void) {
-    if (--data_021740d8[5] != 0) {
-        return;
-    }
-    memset(data_021740f0, 0, sizeof(data_021740f0));
+ if (--data_021740d8[5] != 0) return;
+ __clear(data_021740f0, 1000);
 }
