@@ -10,6 +10,8 @@ typedef struct {
     u8 s[0x100];
 } Rc4State;
 
+typedef struct { u8 b[4]; } Block4;
+
 extern s32 func_02005df8(void);
 extern void func_0200f9b0(u32);
 extern u32 func_ov000_02177ad0(void *, u32);
@@ -296,6 +298,7 @@ return 0;
 
 extern s32 func_ov000_021774e4(u32);
 
+#pragma optimization_level 4
 s32 func_ov000_02178314(void *arg0, void *arg1, u32 arg2, u32 arg3) {
     u8 table[0x100];
     u32 i;
@@ -358,6 +361,7 @@ s32 func_ov000_02178314(void *arg0, void *arg1, u32 arg2, u32 arg3) {
 
     return 0;
 }
+#pragma optimization_level 3
 s32 func_ov000_0217849c(u8 *arg0, u8 *arg1, u32 arg2, u32 arg3) {
     Rc4State state;
     func_ov000_021780e0(&state, arg0, 0x10);
