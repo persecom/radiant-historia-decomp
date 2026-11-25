@@ -57,8 +57,6 @@ extern const u32 data_02144ee8[8];
 extern void func_0211c1f8(void *);
 s32 func_0211c5d4(u8 *);
 s32 func_0211c5e8(u8 *);
-#pragma push
-#pragma optimization_level 3
 void func_0211bde8(void *__restrict arg0,void *arg1){
 Mat22_0211bd baseMat,flipMat;
 Vec2_0211bd delta;
