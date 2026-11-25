@@ -263,45 +263,47 @@ s32 func_02112ae0(void) {
     return 0x13;
 }
 
-#pragma peephole off
+#pragma opt_propagation off
 s32 func_02112ae8(u8 *p) {
-s16 a[9];
-s16 b[6];
-u32 c[2];
-s16 *t;
-u8 *obj;
-s32 mode;
-func_020c6d78(p);
-if(!*(void **)(p+0x30)) {
-*(u32 *)(p+0x30)=func_0210c594(8,data_02155c3c);
-func_020c992c(*(void **)(p+0x30));
-func_020c9a04(*(void **)(p+0x30),2);
+    InitNine a;
+    InitSix b;
+    InitPair c;
+    s16 *t;
+    u8 *obj;
+    s32 mode;
+    func_020c6d78(p);
+    if (!*(void **)(p + 0x30)) {
+        *(u32 *)(p + 0x30) = func_0210c594(8, data_02155c3c);
+        func_020c992c(*(void **)(p + 0x30));
+    }
+    func_020c9a04(*(void **)(p + 0x30), 2);
+    a = data_02144d0c;
+    t = a.v;
+    mode = t[1];
+    obj = func_020c9b24(*(void **)(p + 0x30), (u16)t[0], (u8)mode);
+    *(s16 *)(obj + 0x32) = t[2];
+    *(s16 *)(obj + 0x34) = t[3];
+    *(s16 *)(obj + 0x36) = t[4];
+    *(s16 *)(obj + 0x38) = t[5];
+    *(s16 *)(obj + 0x3e) = t[6];
+    *(s16 *)(obj + 0x40) = t[7];
+    if (mode == 5) {
+        func_020c7894(obj, (u8)t[8]);
+    }
+    b = data_02144d00;
+    c = data_02155ca0;
+    t = b.v;
+    obj = func_020c9b24(*(void **)(p + 0x30), (u16)t[0], 4);
+    (*(void (**)(void *, s32))(obj + 0x10))(obj, t[1]);
+    (*(void (**)(void *, s32))(obj + 0x14))(obj, t[2]);
+    func_020c8344(obj, 4, 1);
+    func_020c83b0(obj, c.v[0]);
+    func_020c83d0(obj, t[4], 0);
+    func_020c8640(obj, t[5]);
+    func_020c738c(obj, t[3], t[3]);
+    return 0;
 }
-*(InitNine *)a=data_02144d0c;
-t=a;
-mode=t[1];
-obj=func_020c9b24(*(void **)(p+0x30),(u16)t[0],(u8)mode);
-*(s16 *)(obj+0x32)=t[2];
-*(s16 *)(obj+0x34)=t[3];
-*(s16 *)(obj+0x36)=t[4];
-*(s16 *)(obj+0x38)=t[5];
-*(s16 *)(obj+0x3e)=t[6];
-*(s16 *)(obj+0x40)=t[7];
-if(mode==5) func_020c7894(obj,(u8)t[8]);
-*(InitSix *)b=data_02144d00;
-*(InitPair *)c=data_02155ca0;
-t=b;
-obj=func_020c9b24(*(void **)(p+0x30),(u16)t[0],4);
-(*(void (**)(void *,s32))(obj+0x10))(obj,t[1]);
-(*(void (**)(void *,s32))(obj+0x14))(obj,t[2]);
-func_020c8344(obj,4,1);
-func_020c83b0(obj,c[0]);
-func_020c83d0(obj,t[4],0);
-func_020c8640(obj,t[5]);
-func_020c738c(obj,t[3],t[3]);
-return 0;
-}
-#pragma peephole on
+#pragma opt_propagation on
 extern void func_020c9940(void *);
 void func_02112c94(u8 *arg0) {
     if (*(void **)(arg0 + 0x30) != NULL) {
