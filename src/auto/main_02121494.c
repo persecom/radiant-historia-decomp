@@ -369,3 +369,82 @@ interpolate:
  out[1]=(b*scale+((pos*(d-b))>>12))>>shift;
 }
 
+void func_02121de0(void *out, u32 pos, void *descArg, void *dataArg){
+s32 *m=out;
+u32 *desc=descArg;
+u8 *data=dataArg;
+u32 flags=desc[0],offset=desc[1];
+s32 index=(s32)pos>>12;
+u32 ofs2,ofs1;
+u16 *p=(u16 *)(data+offset);
+ofs1=*(u32 *)(data+12);ofs2=*(u32 *)(data+16);
+u32 end,rem,other;
+if(!(flags&0xc0000000))goto direct;
+end=(flags&0x1fff0000)>>16;
+if(flags&0x40000000){
+if(index&1){
+if((u32)index>end){index=(end>>1)+1;goto direct;}
+other=(u32)index>>1;goto half;
+}
+index=(u32)index>>1;goto direct;
+}
+rem=index&3;
+if(rem){
+if((u32)index>end){index=(end>>2)+rem;goto direct;}
+if(index&1){
+s32 tmp[9];u32 cross=0;
+if(index&2){other=(u32)index>>2;index=other+1;}
+else{index=(u32)index>>2;other=index+1;}
+cross|=func_0212251c(m,data+ofs1,data+ofs2,p[index]);
+cross|=func_0212251c(tmp,data+ofs1,data+ofs2,p[other]);
+m[0]=tmp[0]+m[0]*3;
+m[1]=tmp[1]+m[1]*3;
+m[2]=tmp[2]+m[2]*3;
+m[3]=tmp[3]+m[3]*3;
+m[4]=tmp[4]+m[4]*3;
+m[5]=tmp[5]+m[5]*3;
+func_02002274(m,m);func_02002274(m+3,m+3);
+if(!cross){m[6]=tmp[6]+m[6]*3;
+m[7]=tmp[7]+m[7]*3;
+m[8]=tmp[8]+m[8]*3;func_02002274(m+6,m+6);}else {Mtx33_02121 *a=(Mtx33_02121 *)m;
+s32 _12=a->_12,_00=a->_00,_10=a->_10,_02=a->_02,_01=a->_01,_11=a->_11;
+a->_20=(_01*_12-_02*_11)>>12;
+a->_21=(_02*_10-_00*_12)>>12;
+a->_22=(_00*_11-_01*_10)>>12;
+}
+return;
+}
+other=(u32)index>>2;goto half;
+}
+index=(u32)index>>2;goto direct;
+half:{
+s32 tmp[9];u32 cross=0;
+cross|=func_0212251c(m,data+ofs1,data+ofs2,p[other]);
+cross|=func_0212251c(tmp,data+ofs1,data+ofs2,(p+other)[1]);
+m[0]=m[0]+tmp[0];
+m[1]=m[1]+tmp[1];
+m[2]=m[2]+tmp[2];
+m[3]=m[3]+tmp[3];
+m[4]=m[4]+tmp[4];
+m[5]=m[5]+tmp[5];
+func_02002274(m,m);func_02002274(m+3,m+3);
+if(!cross){m[6]=m[6]+tmp[6];
+m[7]=m[7]+tmp[7];
+m[8]=m[8]+tmp[8];func_02002274(m+6,m+6);}else {Mtx33_02121 *a=(Mtx33_02121 *)m;
+s32 _12=a->_12,_00=a->_00,_10=a->_10,_02=a->_02,_01=a->_01,_11=a->_11;
+a->_20=(_01*_12-_02*_11)>>12;
+a->_21=(_02*_10-_00*_12)>>12;
+a->_22=(_00*_11-_01*_10)>>12;
+}
+return;
+}
+direct:
+if(func_0212251c(m,data+ofs1,data+ofs2,p[index])){Mtx33_02121 *a=(Mtx33_02121 *)m;
+s32 _12=a->_12,_00=a->_00,_10=a->_10,_02=a->_02,_01=a->_01,_11=a->_11;
+a->_20=(_01*_12-_02*_11)>>12;
+a->_21=(_02*_10-_00*_12)>>12;
+a->_22=(_00*_11-_01*_10)>>12;
+}
+else func_02002274(m+6,m+6);
+}
+
