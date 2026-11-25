@@ -1,8 +1,5 @@
 /* 22 functions from 0x020D8E5C to 0x020D9E48 (main), found by ds-decomp. */
 #include "common.h"
-static inline s32 approach_020d93b8(s32 target, s32 current) {
-    return current - (current - target) / 8;
-}
 
 extern u16 data_02151fc8;
 extern u16 data_02151fca;
@@ -278,7 +275,7 @@ void func_020d91bc(s32 arg0) {
     }
 }
 
-#pragma opt_lifetimes off
+#pragma opt_strength_reduction off
 void func_020d93b8(void) {
     u8 *p = data_02160258;
     s16 timer;
@@ -485,7 +482,7 @@ void func_020d93b8(void) {
     }
     func_020f4668(p);
 }
-#pragma opt_lifetimes on
+#pragma opt_strength_reduction on
 void func_020d9a08(void)
 {
   u8 *p = data_02160258;
