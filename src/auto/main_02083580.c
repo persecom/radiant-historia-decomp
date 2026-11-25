@@ -41,7 +41,7 @@ void func_02083580(void) {
     register s32 layer = 0x8e;
     register s32 one = 1;
     register s32 zero = 0;
-    register s32 four, two, backLayer;
+    register s32 backLayer, two, four;
     u32 i;
 
     if (g[0x3f] >= 7) return;
