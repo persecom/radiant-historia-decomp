@@ -459,13 +459,13 @@ fail:
     return NULL;
 }
 
-void func_02121138(u8 *arg0, u8 *arg1, u8 *arg2) {
+void func_02121138(u8 *arg0, u8 *arg1, u8 * __restrict arg2) {
     u32 i;
     u8 val;
     u8 *table;
     *(u32 *)(arg0 + 8) = (u32)arg1;
-    val = *(u8 *)(arg2 + 0x17);
     *(u32 *)(arg0 + 0xc) = data_02155edc;
+    val = *(u8 *)(arg2 + 0x17);
     arg0[0x19] = val;
     func_02008df0(0, arg0 + 0x1a, (u32)val * 2);
     table = arg1 + 0x14;
