@@ -173,6 +173,140 @@ void func_020e97ec(u8 *arg0) {
     }
 }
 
+extern u8 *data_02162880;
+extern u8 data_02170248[];
+extern const s16 data_0213a394[];
+extern void func_02001134(void *, void *);
+extern void func_02002bf4(void *);
+extern void func_020029ec(s32, s32);
+extern void func_02002028(s32);
+extern s32 func_02001ff4(void);
+void func_020e9860(void) {
+    s32 mtx[12];
+    s32 inv_x;
+    u8 *mgr = data_02162880;
+    u32 cnt_before;
+    u8 *node2;
+    u8 *node1 = NULL;
+
+    func_02001134(data_02170248, mtx);
+
+    while ((node1 = (node1 == NULL ? *(u8 **)(mgr + 0x14) : *(u8 **)(node1 + *(u16 *)(mgr + 0x1e) + 4))) != NULL) {
+        if (*(u16 *)(node1 + 0x18) == 0) {
+            continue;
+        }
+
+        *(volatile u32 *)0x40004a4 = *(u32 *)(node1 + 0xc);
+        *(volatile u32 *)0x4000500 = 1;
+        node2 = NULL;
+
+        while ((node2 = (node2 == NULL ? *(u8 **)(node1 + 0x10) : *(u8 **)(node2 + *(u16 *)(node1 + 0x1a) + 4))) != NULL) {
+            u8 *r10;
+            if (*(u16 *)(node2 + 0x28) == 0) {
+                continue;
+            }
+
+            r10 = NULL;
+            *(volatile u32 *)0x40004a8 = *(u32 *)(node2 + 0x14);
+            *(volatile u32 *)0x40004ac = *(u32 *)(node2 + 0x18);
+            if (*(u16 **)(node2 + 0x10) != NULL) {
+                *(volatile u32 *)0x4000480 = **(u16 **)(node2 + 0x10);
+            } else {
+                *(volatile u32 *)0x4000480 = 0x7fff;
+            }
+
+            while ((r10 = (r10 != NULL ? *(u8 **)(r10 + *(u16 *)(node2 + 0x2a) + 4) : *(u8 **)(node2 + 0x20))) != NULL) {
+                if (*(u8 *)(r10 + 0x5a) & 1) {
+                    u32 cnt_after;
+                    while (*(volatile u32 *)0x4000600 & 0x8000000) {}
+                    cnt_before = *(volatile u16 *)0x4000604;
+                    *(volatile u32 *)0x4000444 = 0;
+                    mtx[9] = *(s32 *)(r10 + 0xc);
+                    mtx[10] = *(s32 *)(r10 + 0x10);
+                    mtx[11] = *(s32 *)(r10 + 0x14);
+                    func_02002bf4(mtx);
+                    if (*(u16 *)(r10 + 0x58) != 0) {
+                        s32 idx = (*(u16 *)(r10 + 0x58) >> 4) << 1;
+                        func_020029ec(data_0213a394[idx], data_0213a394[idx + 1]);
+                    }
+                    if (*(u16 *)(r10 + 0x54) == 0) {
+                        *(volatile u32 *)0x400046c = *(u32 *)(r10 + 0x18);
+                        *(volatile u32 *)0x400046c = *(u32 *)(r10 + 0x1c);
+                        *(volatile u32 *)0x400046c = 0x1000;
+                        *(volatile u32 *)0x4000488 = *(u32 *)(r10 + 0x20);
+                        *(volatile u32 *)0x4000490 = *(u32 *)(r10 + 0x24);
+                        *(volatile u32 *)0x4000488 = *(u32 *)(r10 + 0x28);
+                        *(volatile u32 *)0x4000490 = *(u32 *)(r10 + 0x2c);
+                        *(volatile u32 *)0x4000488 = *(u32 *)(r10 + 0x30);
+                        *(volatile u32 *)0x4000490 = *(u32 *)(r10 + 0x34);
+                        *(volatile u32 *)0x4000488 = *(u32 *)(r10 + 0x38);
+                        *(volatile u32 *)0x4000490 = *(u32 *)(r10 + 0x3c);
+                        *(volatile u32 *)0x4000448 = 1;
+                        while (*(volatile u32 *)0x4000600 & 0x8000000) {}
+                        cnt_after = *(volatile u16 *)0x4000604;
+                    } else {
+                        s32 inv_y;
+                        u8 *sub;
+                        func_02002028(*(s32 *)(r10 + 0x18));
+                        *(volatile u32 *)0x400046c = *(u32 *)(r10 + 0x18);
+                        *(volatile u32 *)0x400046c = *(u32 *)(r10 + 0x1c);
+                        *(volatile u32 *)0x400046c = 0x1000;
+                        inv_x = func_02001ff4();
+                        func_02002028(*(s32 *)(r10 + 0x1c));
+                        *(volatile u32 *)0x4000488 = *(u32 *)(r10 + 0x20);
+                        *(volatile u32 *)0x4000490 = *(u32 *)(r10 + 0x24);
+                        *(volatile u32 *)0x4000488 = *(u32 *)(r10 + 0x28);
+                        *(volatile u32 *)0x4000490 = *(u32 *)(r10 + 0x2c);
+                        *(volatile u32 *)0x4000488 = *(u32 *)(r10 + 0x30);
+                        *(volatile u32 *)0x4000490 = *(u32 *)(r10 + 0x34);
+                        *(volatile u32 *)0x4000488 = *(u32 *)(r10 + 0x38);
+                        *(volatile u32 *)0x4000490 = *(u32 *)(r10 + 0x3c);
+                        inv_y = func_02001ff4();
+                        *(volatile u32 *)0x400046c = inv_x;
+                        *(volatile u32 *)0x400046c = inv_y;
+                        *(volatile u32 *)0x400046c = 0x1000;
+                        while (*(volatile u32 *)0x4000600 & 0x8000000) {}
+                        cnt_after = *(volatile u16 *)0x4000604;
+                        sub = *(u8 **)(r10 + 0x4c);
+                        while (sub != NULL) {
+                            *(volatile u32 *)0x4000444 = 0;
+                            *(volatile u32 *)0x40004a8 = *(u32 *)(sub + 0x4c);
+                            *(volatile u32 *)0x40004ac = *(u32 *)(sub + 0x50);
+                            *(volatile u32 *)0x4000470 = *(u32 *)(sub + 0xc);
+                            *(volatile u32 *)0x4000470 = *(u32 *)(sub + 0x10);
+                            *(volatile u32 *)0x4000470 = *(u32 *)(sub + 0x14);
+                            *(volatile u32 *)0x400046c = *(u32 *)(sub + 0x18);
+                            *(volatile u32 *)0x400046c = *(u32 *)(sub + 0x1c);
+                            *(volatile u32 *)0x400046c = 0x1000;
+                            *(volatile u32 *)0x4000488 = *(u32 *)(sub + 0x20);
+                            *(volatile u32 *)0x4000490 = *(u32 *)(sub + 0x24);
+                            *(volatile u32 *)0x4000488 = *(u32 *)(sub + 0x28);
+                            *(volatile u32 *)0x4000490 = *(u32 *)(sub + 0x2c);
+                            *(volatile u32 *)0x4000488 = *(u32 *)(sub + 0x30);
+                            *(volatile u32 *)0x4000490 = *(u32 *)(sub + 0x34);
+                            *(volatile u32 *)0x4000488 = *(u32 *)(sub + 0x38);
+                            *(volatile u32 *)0x4000490 = *(u32 *)(sub + 0x3c);
+                            *(volatile u32 *)0x4000448 = 1;
+                            sub = *(u8 **)(sub + 4);
+                        }
+                        *(volatile u32 *)0x40004a8 = *(u32 *)(node2 + 0x14);
+                        *(volatile u32 *)0x40004ac = *(u32 *)(node2 + 0x18);
+                        *(volatile u32 *)0x4000448 = 1;
+                    }
+                    if ((s32)cnt_before < (s32)cnt_after) {
+                        *(u8 *)(r10 + 0x5a) |= 2;
+                    } else {
+                        *(u8 *)(r10 + 0x5a) &= 0xfd;
+                    }
+                } else {
+                    *(u8 *)(r10 + 0x5a) &= 0xfd;
+                }
+            }
+        }
+        *(volatile u32 *)0x4000504 = 0;
+    }
+}
+
 void func_020e9c90(void) {
     u16 i;
     data_02160a7c = (u8 *)func_0210c594(0x3c, data_02155c3c);
