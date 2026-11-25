@@ -111,6 +111,7 @@ void func_020b8718(void);
 
 s32 func_020b77d4(void) {
     u8 *p;
+    u8 *sub;
     TblA_020b77d4 tblA;
     TblC_020b77d4 tblC;
     TblB_020b77d4 tblB;
