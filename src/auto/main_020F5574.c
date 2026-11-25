@@ -64,27 +64,16 @@ extern void func_020f53e4(void);
 #pragma opt_propagation off
 #pragma opt_strength_reduction off
 s32 func_020f5574(void) {
-    s32 ret;
-    const char *name = "";
-
-    func_0200c1a8(0, name);
-    {
-        s32 expected = -1;
-        if (check_f53_result(expected, (void *)func_020f53e4, func_ov000_02176da0)) func_020f56a4();
-        if (check_f53_result(expected, (void *)func_020f53e4, func_ov000_02176e18)) func_020f56a4();
-        if (check_f53_result(expected, (void *)func_020f53e4, func_ov000_02176e90)) func_020f56a4();
-        if (check_f53_result(expected, (void *)func_020f53e4, func_ov000_02176ddc) &&
-            check_f53_result(expected, (void *)func_020f53e4, func_ov000_02176e54) &&
-            check_f53_result(expected, (void *)func_020f53e4, func_ov000_02176ecc)) {
-            func_020cea64(1);
-            ret = 29;
-        } else {
-            func_020f56a4();
-            ret = 2;
-        }
-    }
-    func_0200c1fc(0, name);
-    return ret;
+s32 ret;
+const char *name="";
+func_0200c1a8(0,name);
+{ s32 expected=0; expected=~expected;
+if(check_f53_result(expected,(void *)func_020f53e4,func_ov000_02176da0)) func_020f56a4();
+if(check_f53_result(expected,(void *)func_020f53e4,func_ov000_02176e18)) func_020f56a4();
+if(check_f53_result(expected,(void *)func_020f53e4,func_ov000_02176e90)) func_020f56a4();
+if(check_f53_result(expected,(void *)func_020f53e4,func_ov000_02176ddc)&&check_f53_result(expected,(void *)func_020f53e4,func_ov000_02176e54)&&check_f53_result(expected,(void *)func_020f53e4,func_ov000_02176ecc)) {func_020cea64(1);ret=29;} else {func_020f56a4();ret=2;}
+}
+func_0200c1fc(0,name);return ret;
 }
 #pragma opt_strength_reduction on
 #pragma opt_propagation on
