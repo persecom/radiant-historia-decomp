@@ -30,7 +30,7 @@ extern s32 func_020bf118(s32 *, u8 *, s32, f32);
 extern void func_020befc4(void *);
 extern void func_020bed54(s32, s32);
 extern u8 *func_020bed94(void);
-extern s32 func_020bedf8(void);
+extern s32 func_020bedf8();
 extern u8 *func_020becfc(void);
 void func_020befd8(void *,void *,s32);
 void func_02058a08(void) {
