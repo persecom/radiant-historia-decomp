@@ -9,6 +9,100 @@ extern s32 func_020ef4c8();
 extern u8 *data_021600bc, *data_021600ac;
 extern u8 *func_02047820(u16);
 extern void func_020477dc(void *, s32, s32);
+#pragma optimization_level 4
+void func_0205196c(u8 *arg0) {
+    s32 savedx = *(s32 *)(arg0 + 0xc);
+    s32 savedz = *(s32 *)(arg0 + 0x14);
+    u8 *info = *(u8 **)(arg0 + 0xb0);
+    u8 *other = *(u8 **)(*(u8 **)(data_021600bc) + 0x70);
+    s32 radius;
+    s32 ox0, ox1, oz0, oz1, ax0, ax1, az0, az1;
+    s32 ok = 0, i, idx, px, pz;
+    u16 ang;
+
+    *(u32 *)(arg0 + 0xac) &= ~1;
+
+    for (; other != NULL; other = *(u8 **)(other + 0x17c)) {
+        ok = 0;
+        if (!(*(u32 *)(other + 0xac) & 1)) continue;
+        ang = *(u16 *)(arg0 + 0x8e);
+        if (ang <= 100 || ang >= 0x2bc) continue;
+        if (*(u16 *)(other + 0x8e) != 0x14b5) continue;
+
+        if (*(u32 *)(other + 0xb0) != 0 && *(u32 *)(arg0 + 0xb0) != 0) {
+            radius = *(s32 *)(*(u8 **)(other + 0xb0));
+            ox0 = *(s32 *)(other) - radius;
+            ox1 = *(s32 *)(other) + radius;
+            oz0 = *(s32 *)(other + 8) - radius;
+            oz1 = *(s32 *)(other + 8) + radius;
+            radius = *(s32 *)(*(u8 **)(arg0 + 0xb0));
+            ax0 = *(s32 *)(arg0) - radius;
+            ax1 = *(s32 *)(arg0) + radius;
+            az0 = *(s32 *)(arg0 + 8) - radius;
+            az1 = *(s32 *)(arg0 + 8) + radius;
+            if (ox0 < ax1 && ax0 < ox1 && oz0 < az1 && az0 < oz1) ok = 1;
+            if (!ok) continue;
+        } else if (*(u32 *)(other + 0xb0) == 0 || *(u32 *)(arg0 + 0xb0) == 0) {
+            continue;
+        }
+
+        if (*(u8 *)(other + 0x9d) && *(u8 *)(arg0 + 0x9d)) {
+            if (func_0210c2f4(other, arg0) < (*(u8 *)(other + 0x9d) + *(u8 *)(arg0 + 0x9d)) * 0x1000) {
+                ok = 1;
+                goto found;
+            }
+            continue;
+        }
+
+        if (*(u8 *)(other + 0x9d) && *(u32 *)(*(u8 **)(arg0 + 0xb0)) != 0) {
+            for (i = 0; i < 8; i++) {
+                idx = ((u16)(i << 13) % 0x10000) >> 4;
+                px = *(s32 *)(arg0) + *(s8 *)(other + 0x9d) * data_0213a394[idx * 2] * 2;
+                pz = *(s32 *)(arg0 + 8) + *(s8 *)(other + 0x9d) * data_0213a394[idx * 2 + 1] * 2;
+                radius = *(s32 *)(*(u8 **)(other + 0xb0));
+                ox0 = *(s32 *)(other) - radius;
+                ox1 = *(s32 *)(other) + radius;
+                oz0 = *(s32 *)(other + 8) - radius;
+                oz1 = *(s32 *)(other + 8) + radius;
+                if (px >= ox0 && px <= ox1 && pz >= oz0 && pz <= oz1) break;
+            }
+            if (i >= 8) continue;
+            ok = 1;
+            goto found;
+        }
+
+        if (*(u8 *)(arg0 + 0x9d) && *(u32 *)(*(u8 **)(other + 0xb0)) != 0) {
+            for (i = 0; i < 8; i++) {
+                idx = ((u16)(i << 13) % 0x10000) >> 4;
+                px = *(s32 *)(other) + *(s8 *)(arg0 + 0x9d) * data_0213a394[idx * 2] * 2;
+                pz = *(s32 *)(other + 8) + *(s8 *)(arg0 + 0x9d) * data_0213a394[idx * 2 + 1] * 2;
+                radius = *(s32 *)(*(u8 **)(arg0 + 0xb0));
+                ox0 = *(s32 *)(arg0) - radius;
+                ox1 = *(s32 *)(arg0) + radius;
+                az0 = *(s32 *)(arg0 + 8) - radius;
+                az1 = *(s32 *)(arg0 + 8) + radius;
+                if (px >= ox0 && px <= ox1 && pz >= az0 && pz <= az1) break;
+            }
+            if (i >= 8) continue;
+            ok = 1;
+            goto found;
+        }
+found:
+        if (!ok) continue;
+        *(s32 *)(arg0) -= savedx - *(s32 *)(arg0 + 0xc);
+        *(s32 *)(arg0 + 8) -= savedz - *(s32 *)(arg0 + 0x14);
+        if (*(u16 *)(info + 4) == 0) *(u16 *)(info + 4) = *(u16 *)(other + 0x90);
+        if (*(u16 *)(arg0 + 0x90) == 0) {
+            if (!(*(u32 *)(arg0 + 0xac) & 0x40) && (*(u32 *)(arg0 + 0xac) & 0x80) && *(u16 *)(data_02162908) == 0) {
+                *(u32 *)(arg0 + 0xac) &= ~0x40;
+                *(u32 *)(arg0 + 0xac) &= ~0x80;
+            }
+        }
+        if (*(u32 *)(arg0 + 0xd0) != 0) *(u8 *)(arg0 + 0xa4) |= 4;
+    }
+    *(u32 *)(arg0 + 0xac) |= 1;
+}
+
 void func_02051ef4(void){
 u8 *node,*obj;u32 size;
 *(volatile u32 *)0x40004a4=0x31f00c0;
