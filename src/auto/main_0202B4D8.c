@@ -34,36 +34,63 @@ typedef struct { u8 f0, f1, f2, f3; } Node0202bd60;
 
 #pragma optimization_level 4
 u8 *func_0202b4d8(s32 type) {
-u8 *result=0; u16 count=0;
-switch(type) {
-case 1: {
-u8 *p=*(u8 **)(data_02160a6c+0xb8); u16 index;
-while(p) {count++;p=*(u8 **)(p+0x174);}
-if(count) {
-index=0;
-if(count>=2) index=RandomRange_0202b4d8(count);
-p=*(u8 **)(data_02160a6c+0xb8);
-count=0;
-while(p) { if(count==index)break;count++;p=*(u8 **)(p+0x174); }
-*(u8 **)(data_02160080+0x38)=p; return p;
-} break;
-}
-case 2: {
-u8 *p=*(u8 **)(data_02160a6c+0xac); u16 index;
-while(p) {if(*(u32 *)(*(u8 **)(p+0x118)+0x70))count++;p=*(u8 **)(p+0x16c);}
-if(count) {
-index=0;
-if(count>=2) index=RandomRange_0202b4d8(count);
-p=*(u8 **)(data_02160a6c+0xac);
-count=0;
-while(p) { if(*(u32 *)(*(u8 **)(p+0x118)+0x70)) {if(count==index)break;count++;}p=*(u8 **)(p+0x16c); }
-*(u8 **)(data_02160080+0x3c)=p; return p;
-} break;
-}
-default: goto end;
-}
-result=0;
-end: return result;
+    u8 *result = 0;
+    u16 count = 0;
+    switch (type) {
+    case 1: {
+        u8 *p = *(u8 **)(data_02160a6c + 0xb8);
+        u16 index;
+        while (p) {
+            count++;
+            p = *(u8 **)(p + 0x174);
+        }
+        if (count) {
+            index = 0;
+            if (count >= 2) {
+                index = RandomRange_0202b4d8(count);
+            }
+            p = *(u8 **)(data_02160a6c + 0xb8);
+            count = 0;
+            while (p) {
+                if (count == index) break;
+                count++;
+                p = *(u8 **)(p + 0x174);
+            }
+            *(u8 **)(data_02160080 + 0x38) = p;
+            return p;
+        }
+        result = 0;
+        break;
+    }
+    case 2: {
+        u8 *p = *(u8 **)(data_02160a6c + 0xac);
+        u16 index;
+        while (p) {
+            if (*(u32 *)(*(u8 **)(p + 0x118) + 0x70)) count++;
+            p = *(u8 **)(p + 0x16c);
+        }
+        if (count) {
+            index = 0;
+            if (count >= 2) {
+                index = RandomRange_0202b4d8(count);
+            }
+            p = *(u8 **)(data_02160a6c + 0xac);
+            count = 0;
+            while (p) {
+                if (*(u32 *)(*(u8 **)(p + 0x118) + 0x70)) {
+                    if (count == index) break;
+                    count++;
+                }
+                p = *(u8 **)(p + 0x16c);
+            }
+            *(u8 **)(data_02160080 + 0x3c) = p;
+            return p;
+        }
+        result = 0;
+        break;
+    }
+    }
+    return result;
 }
 void func_0202b694(void) {
     u8 *node;
