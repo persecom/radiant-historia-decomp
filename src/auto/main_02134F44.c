@@ -208,23 +208,15 @@ void func_02135650(u8 *arg0) {
 }
 
 void func_02135698(u8 *arg0, s32 arg1, s32 arg2) {
-    s16 val;
-    s16 clamped;
-    if (arg0 == NULL || arg1 >= *(s8 *)(arg0 + 2)) {
-        return;
-    }
-    if (arg2 >= 15) {
-        arg2 = 15;
-    }
-    val = arg2;
-    clamped = (val <= -15) ? -15 : val;
-    *(s16 *)(arg0 + arg1 * 2 + 0x1a) = clamped;
-    if (*(s8 *)(arg0 + 4) >= 1 && *(s8 *)(arg0 + 3) == 1 && *(s8 *)(arg0 + 2) == 2) {
-        func_02135984(arg0, 0, -15);
-        func_02135984(arg0, 1, 15);
-    } else {
-        func_02135984(arg0, arg1, *(s16 *)(arg0 + arg1 * 2 + 0x1a));
-    }
+ s32 val;
+ if(arg0 == NULL || arg1 >= *(s8 *)(arg0+2)) return;
+ if(arg2 >= 15) arg2=15;
+ val=(s16)arg2;
+ if(-15 >= val) val=-15;
+ ((s16 *)(arg0+0x1a))[arg1]=val;
+ if(*(volatile s8 *)(arg0+4)>=1 && *(s8 *)(arg0+3)==1 && *(s8 *)(arg0+2)==2) {
+ func_02135984(arg0,0,-15); func_02135984(arg0,1,15);
+ } else { func_02135984(arg0,arg1,*(s16 *)(arg0+arg1*2+0x1a)); }
 }
 
 void func_02135724(u16 *arg0, u16 arg1) {
