@@ -11,10 +11,9 @@ extern char data_02146168[];
 extern u32 data_0216263c[3];
 typedef struct {u32 seed, multiplier, increment;} RandomState_020295f0;
 static inline u16 RandomRange_020295f0(u16 max) {
-    RandomState_020295f0 *state = (RandomState_020295f0 *)data_0216263c;
     u32 value;
-    state->seed = state->multiplier * state->seed + state->increment;
-    value = state->seed >> 16;
+    data_0216263c[0] = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
+    value = data_0216263c[0] >> 16;
     if (max) {
         value = (value * max) >> 16;
     }
@@ -36,8 +35,12 @@ s16 func_02029130(u8 *arg0, u8 *arg1) {
             s16 cnt = 0;
             s16 i;
             for (i = 0; i < 3; i++) {
-                s16 idx = (v1 - 1) * 3 + i;
-                if (func_0202e548((u8)idx)[0x1c] == 0) {
+                s32 idx = (v1 - 1) * 3 + i;
+                u8 flag = func_0202e548((u8)idx)[0x1c];
+                if (flag == 0) {
+                    return idx;
+                }
+                if (flag == 0) {
                     arr[cnt++] = idx;
                 }
             }
