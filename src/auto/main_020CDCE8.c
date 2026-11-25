@@ -24,6 +24,14 @@ extern u8 *data_02160238;
 extern s16 data_02162908[4];
 extern void func_020cec8c(void);
 extern void *func_020cda08(u32, u16);
+typedef struct { u16 v[4]; } U16x4_020ce170;
+extern const U16x4_020ce170 data_02144650;
+extern const U16x4_020ce170 data_02144670;
+extern u8 *func_020cdc8c(u16, u32);
+extern void func_020a8810(void *, s32);
+extern void func_020c738c(void *, s32, s32);
+void func_020ce664(s32 arg0, s16 arg1, s16 arg2, s16 arg3, u8 arg4);
+void func_020ceb74(s32 *arg0, s32 *arg1, s32 *arg2, s32 arg3);
 
 typedef struct {
     s16 f0;
@@ -53,20 +61,18 @@ void func_020cdce8(s32 value, s16 x, s16 y, s16 z, s8 spacing, u16 kind, s32 ali
  padding=count-digits;
  for(i=0;i<padding;i++) {
  sprite.field[1]=0; sprite.field[2]=0;
- sprite.field[3]=width; sprite.field[4]=height;
- sprite.field[8]=width; sprite.field[9]=height;
+ set_digit_size(&sprite,width,height);
  sprite.field[6]=y; sprite.field[5]=x+(-(width+spacing))*(digits+i);
  sprite.field[7]=z+101;
  func_021098ac(&sprite);
  }
  *(volatile u32 *)0x40004a4=0x1f00c0;
  for(i=0;i<digits;i++) {
- sprite.field[3]=width; sprite.field[4]=height;
- sprite.field[8]=width; sprite.field[9]=height;
+ set_digit_size(&sprite,width,height);
  sprite.field[2]=0; sprite.field[6]=y;
  { u8 digit=value%10; value/=10; sprite.field[1]=digit*width; }
  if(align) sprite.field[5]=x+i*(-(width+spacing));
- else { s32 left=(digits-1)*(width+spacing); sprite.field[5]=i*(-(width+spacing))+left+x; }
+ else { s32 left=(digits-1)*(width+spacing); sprite.field[5]=x+(i*(-(width+spacing))+left); }
  sprite.field[7]=z+101;
  func_021098ac(&sprite);
  }
