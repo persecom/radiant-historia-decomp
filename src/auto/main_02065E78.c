@@ -48,7 +48,7 @@ u8 *func_020a5f14(void *,u16);
 void *func_020a583c(void);
 void func_02065e78(void){
 u32 zero=0,one=1;
-u8 *v,*node;
+u8 *v,*node,*new_var;
 func_020a2c20();
 {u32 bits=*(volatile u16 *)0x04000304;bits &= ~0x8000U;*(volatile u16 *)0x04000304=bits;}
 func_0210fb24();func_020a31c8(2);func_020e9eb0();func_020f4928();func_02120524(one);
