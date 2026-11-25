@@ -48,8 +48,8 @@ static inline s32 tile_offset(s32 x, s32 y, s32 width, s32 height) {
     s32 ry = y % 32;
     s32 bx = x / 32;
     s32 rx = x % 32;
-    s32 bw = bx == width / 32 ? width % 32 : 32;
     s32 bh = by == height / 32 ? height % 32 : 32;
+    s32 bw = bx == width / 32 ? width % 32 : 32;
     return rx + (by * (width * 32) + bx * (bh * 32) + bw * ry);
 }
 extern void func_02006dc4(void *, u32);
@@ -225,10 +225,11 @@ void func_0211b584(s32 arg0, s32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u
     }
 }
 
+#pragma opt_strength_reduction off
 void func_0211b614(void *dst, void *src, s32 sx, s32 sy, s32 dx, s32 dy, s32 dw, s32 dh, s32 w, s32 h) {
+ s32 ey = sy + h;
  u16 *p = (u16 *)src + 6;
  s32 ex = sx + w;
- s32 ey = sy + h;
  s32 sw = (u32)*(u16 *)src >> 3;
  s32 sh = (u32)*((u16 *)src + 1) >> 3;
  s32 yy = dy;
@@ -236,18 +237,13 @@ void func_0211b614(void *dst, void *src, s32 sx, s32 sy, s32 dx, s32 dy, s32 dw,
  for (; sy < ey; sy++, yy++) {
   x = sx;
   xx = dx;
-  if (x < ex) {
-   do {
-    u16 *q = p + tile_offset(x, sy, sw, sh);
-    u16 v = *q;
-    ((u16 *)dst)[tile_offset(xx, yy, dw, dh)] = v;
-    x++;
-    xx++;
-   } while (x < ex);
+  for (; x < ex; x++, xx++) {
+   u16 *q = p + tile_offset(x, sy, sw, sh);
+   ((u16 *)dst)[tile_offset(xx, yy, dw, dh)] = *q;
   }
  }
 }
-
+#pragma opt_strength_reduction on
 void func_0211b83c(u8 *dst, u8 *src, s32 srcX, s32 srcY, s32 dstX, s32 dstY, s32 dstStride, s32 width, s32 height) {
     s32 srcStride = (u32)(*(u16 *)src) >> 3;
     s32 dstOff = dstY * dstStride + dstX;
@@ -325,7 +321,7 @@ void func_0211bb3c(const s32 *m,u32 *sprite,const Vec2_bb3c *translation) {
 Vec2_bb3c pos;
 s16 x=(s16)((*sprite&0x1ff0000)>>16);
 s16 y;
-s32 mode,h,w;
+s32 mode,w,h;
 s32 dx,dy;
 if(x>255)x|=0xff00;
 pos.x=x<<12;
@@ -346,12 +342,11 @@ if(mode) {
 mode=mode==2?0x300:0x100;
 {
  u32 *p2=sprite;
- if(mode==0x100) { *p2=(*p2&0xc1fffcff)|mode; }
+ if(mode!=0x100) { *(s32 *)p2=(*p2&0xc1fffcff)|mode; }
  else { *p2=(*p2&0xc1fffcff)|mode; }
 }
 }
-mode=Double_bb3c(*sprite);
-mode=(u32)mode;
+GetDouble_bb3c(*sprite,&mode);
 {
 u32 attr=*sprite&0xc000c000;
 u32 size=(attr&0xc0000000)>>30;
