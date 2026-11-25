@@ -613,17 +613,16 @@ u32 *func_02009a64(s32 arg0) {
 void func_02009aec(u32 *arg0)
 {
   s32 irq = func_02008128();
-  u32 **q = data_0215d1b8;
-  u32 *tail = q[3];
-  if (tail == NULL)
+  if (data_0215d1b8[3] == NULL)
   {
-    q[2] = arg0;
+    data_0215d1b8[2] = arg0;
+    data_0215d1b8[3] = arg0;
   }
   else
   {
+    data_0215d1b8[3][0] = (u32) arg0;
+    data_0215d1b8[3] = arg0;
   }
-  tail[0] = (u32) arg0;
-  q[3] = arg0;
   arg0[0] = 0;
   func_0200813c(irq);
 }
