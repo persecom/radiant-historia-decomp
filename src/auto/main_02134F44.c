@@ -34,6 +34,7 @@ void func_02135b1c(u8 *,s16 *,s32,s16 **);
 void func_02137f80(void *,s32,void *,void *);
 #pragma push
 #pragma opt_tail_merge off
+#pragma scheduling off
 void func_02134f44(u8 *arg0){
 struct {s16 *ptr;s32 len;} buf[2],rem[2];
 s16 *out[2];
@@ -129,6 +130,7 @@ func_02137f80(&buf[i],consumed,&buf[i],&rem[i]);
 }
 }
 }
+#pragma scheduling on
 #pragma pop
 void func_0213545c(u8 *arg0) {
     s32 i = 0;
@@ -474,21 +476,35 @@ void func_02135d20(void) {
 void func_02135d24(u16 arg0) {
     s32 i;
     for (i = 0; i < 8; i++) {
-        *(u16 *)(data_02175ab8 + i * 0x34 + 0x2c) = arg0;
+        *(u16 *)((u8 *)data_02175ab8 + i * 0x34 + 0x2c) = arg0;
     }
 }
 
 #pragma push
 #pragma opt_propagation off
-void func_02135d4c(s32 arg0, u16 arg1) {
- u16 eight=8; u8 *entry; s32 i;
- if(arg0==0){
- i=0; do {entry=data_02175ab8+i*0x34;
- *(u16*)(entry+0x26)=arg1; *(u16*)(entry+0x28)=eight; i++;} while(i<8);
- return;
- }
- *(u16*)((u8*)arg0+0x26)=arg1;
- *(u16*)((u8*)arg0+0x28)=eight;
+void func_02135d4c(s32 arg0, u16 arg1)
+{
+  u16 eight = 8;
+  u8 *new_var2;
+  s32 stride;
+  s32 i;
+  if (arg0 == 0)
+  {
+    new_var2 = (u8 *)data_02175ab8;
+    i = 0;
+    stride = 0x34;
+    do
+    {
+      u8 *entry = new_var2 + (i * stride);
+      *((u16 *) (entry + 0x26)) = arg1;
+      *((u16 *) (entry + 0x28)) = eight;
+      i++;
+    }
+    while (i < 8);
+    return;
+  }
+  *((u16 *) (((u8 *) arg0) + 0x26)) = arg1;
+  *((u16 *) (((u8 *) arg0) + 0x28)) = eight;
 }
 #pragma pop
 s16 func_02135d94(u8 *arg0) {
@@ -499,14 +515,14 @@ u8 *func_02135d9c(s32 arg0, s32 arg1, u16 arg2) {
     s32 i;
     u8 *entry;
     for (i = 0; i < 8; i++) {
-        if (*(u16 *)(data_02175ab8 + i * 0x34) == 0) {
+        if (*(u16 *)((u8 *)data_02175ab8 + i * 0x34) == 0) {
             break;
         }
     }
     if (i == 8) {
         return NULL;
     }
-    entry = data_02175ab8 + i * 0x34;
+    entry = (u8 *)data_02175ab8 + i * 0x34;
     *(u32 *)(entry + 4) = arg0 * 0x1800 + arg1;
     *(u32 *)(entry + 8) = 0x10;
     *(u16 *)(entry + 0x18) = 0x1800;
