@@ -161,15 +161,14 @@ void *func_020bb034(s32 arg0) {
             p->unk_00[i]->unk_4c = 0x2bd000;
             p->unk_00[i]->unk_44 = 0x18000;
             p->unk_00[i]->unk_48 = 0x2000;
-            func_020a8810(p->unk_00[i], 7);
         } else if (i == 2) {
             p->unk_00[i] = (UnkObj_020bb034 *)func_020a84b8(4, 1);
             p->unk_00[i]->unk_4c = 0x2bd000;
             p->unk_00[i]->unk_44 = 0x18000;
             p->unk_00[i]->unk_48 = 0x2000;
-            func_020a8810(p->unk_00[i], 7);
         }
 
+        func_020a8810(p->unk_00[i], 7);
         if (i == 1) {
             p->unk_0c[i] = func_020a94b8(data_02151034);
             func_020a9830(p->unk_18[i], p->unk_b4[i], 0xf0, 0x40, 0, 0);
