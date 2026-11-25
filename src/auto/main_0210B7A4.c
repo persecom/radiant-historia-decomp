@@ -9,6 +9,7 @@ extern void func_02000dd8(void *, s32, s32);
 extern void func_02000df0(void *, void *, s32, s32);
 extern void func_02000f44(const void *, const void *, void *);
 
+typedef struct { u16 active:1; u16 reserved:7; u16 removed:1; u16 rest:7; } ObjectFlags;
 extern u8 data_02162618[];
 extern u8 data_02162624[];
 extern void func_02116844(void *, s32);
