@@ -3,6 +3,7 @@
 extern u8 data_02145e54[],data_02145e5c[],data_02145e64[],data_02145e68[],data_02145e6c[],data_02145e74[],data_02145e7c[],data_02145e80[];
 extern void func_02019580(void *,double,void *);
 extern double func_0201e014(double);
+extern char *strcpy(char *,const char *);
 typedef struct { u8 c[5]; } FormatText5;
 typedef struct { u8 c[4]; } FormatText4;
 
@@ -124,34 +125,35 @@ u8 *func_02014100(s64 value, u8 *end, FormatSpec spec) {
 u8 *func_020143d4(double value,u8 *end,FormatSpec spec){
 double original=value;
 u8 fmt[4];
-u8 num[40];
 FormatSpec dec;
-s32 precision=spec.precision;
-s32 conversion=spec.conversion;
-s32 alternate=spec.alternate;
+u8 num[40];
 s32 sign=spec.sign;
+s32 conversion=spec.conversion;
+s32 precision=spec.precision;
+s32 alternate=spec.alternate;
 u8 *p=end;
 s32 exponent=32;
-s32 i,bit;
+s32 i=0,bit;
 u8 digit;
-u8 *bytes=(u8 *)&value;
-if(precision>509)return 0;
-fmt[0]=0;*(u16 *)(fmt+2)=32;
+u8 *bytes;
+if(precision>509)return (u8 *)i;
+fmt[0]=i;*(u16 *)(fmt+2)=32;
 func_02019580(fmt,original,num);
 switch(num[5]){
-case '0':*(s16 *)(num+2)=0;break;
+case '0':*(s16 *)(num+2)=i;break;
 case 'I':
 if(num[0]){
-p-=5;if(conversion=='A')memcpy(p,data_02145e54,5);else memcpy(p,data_02145e5c,5);return p;
+p-=5;if(conversion=='A'){*(FormatText5 *)p=*(FormatText5 *)data_02145e54;return p;}else {*(FormatText5 *)p=*(FormatText5 *)data_02145e5c;return p;}
 }
-p-=4;if(conversion=='A')memcpy(p,data_02145e64,4);else memcpy(p,data_02145e68,4);return p;
+p-=4;if(conversion=='A'){*(FormatText4 *)p=*(FormatText4 *)data_02145e64;return p;}else {*(FormatText4 *)p=*(FormatText4 *)data_02145e68;return p;}
 case 'N':
 if(num[0]){
-p-=5;if(conversion=='A')memcpy(p,data_02145e6c,5);else memcpy(p,data_02145e74,5);return p;
+p-=5;if(conversion=='A'){*(FormatText5 *)p=*(FormatText5 *)data_02145e6c;return p;}else {*(FormatText5 *)p=*(FormatText5 *)data_02145e74;return p;}
 }
-p-=4;if(conversion=='A')memcpy(p,data_02145e7c,4);else memcpy(p,data_02145e80,4);return p;
+p-=4;if(conversion=='A'){*(FormatText4 *)p=*(FormatText4 *)data_02145e7c;return p;}else {*(FormatText4 *)p=*(FormatText4 *)data_02145e80;return p;}
 }
 dec.padding=1;dec.sign=1;dec.unk2=0;dec.alternate=0;dec.unk4=0;dec.conversion='d';dec.width=0;dec.precision=1;
+bytes=(u8 *)&value;
 for(i=0;i<4;i++){u8 temp=bytes[i];bytes[i]=bytes[7-i];bytes[7-i]=temp;}
 exponent=((bytes[0]<<8|bytes[1])>>4)&0x7ff;
 if(exponent)exponent-=1023;
