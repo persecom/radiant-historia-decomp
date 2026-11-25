@@ -416,15 +416,9 @@ void *func_0212a58c(u8 *arg0) {
     return *(void **)(arg0 + 0x90);
 }
 
-void func_0212a594(u8 *arg0, u32 arg1) {
-    u32 *a = (u32 *)arg0;
-    u8 *p = *(u8 **)(arg0 + 8);
-    u32 v = a[0x17] + a[0x1a] * 2;
-    u32 zero = 0;
-    func_021297c0(p, a[0x12], arg1, v, zero);
-    func_02129830(p);
-}
-
+#pragma scheduling off
+void func_0212a594(u8 *arg0, u32 arg1) { u8 *p = *(u8 * volatile *)(arg0 + 8); u32 v = *(u32 *)(arg0 + 0x5c) + *(volatile u32 *)(arg0 + 0x68) * 2; func_021297c0(p, *(u32 *)(arg0 + 0x48), arg1, v, 0); func_02129830(p); }
+#pragma scheduling on
 void func_0212a5d4(u8 *arg0, u32 arg1) {
     u8 *p = *(u8 **)(arg0 + 8);
     u32 v1 = *(u32 *)(arg0 + 0x5c) + *(u32 *)(arg0 + 0x68) * 2;
