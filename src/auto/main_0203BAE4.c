@@ -32,6 +32,15 @@ extern void *func_02109b14(void *, void *);
 
 extern void *data_02155c3c;
 extern u8 *data_02162880;
+typedef struct {
+    u8 pad0[0x2c];
+    u8 f2c;
+    u8 f2d;
+    u8 pad2[6];
+    void **f34;
+    void *f38;
+    u16 f3c;
+} Struct_0203c20c;
 extern void *func_0210c594(u32, void *);
 extern void func_0210c5dc(void *);
 extern void func_0210db70(void *);
@@ -99,21 +108,32 @@ void func_0203bc34(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, u8 arg5) {
 }
 
 extern void func_020a9610(void *, s32, s32, s32, s32, s32);
-void func_0203bc74(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, u8 arg6) {
-    u8 *p = arg0;
-    s32 x;
-    func_020a9610(p, arg1, arg3, arg2, arg4, arg5);
-    if (arg6 == 1) {
-        x = *(s32 *)(p + 8) - (func_020a96f0(*(void **)(p + 0x10)) >> 1);
-    } else if (arg6 == 2) {
-        x = *(s32 *)(p + 8) - func_020a96f0(*(void **)(p + 0x10));
-    } else {
-        goto done;
-    }
-    *(s32 *)(p + 8) = x & ~3;
-done:
-    while (func_020a9648(p) != 0) {
-    }
+void func_0203bc74(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, u8 arg6)
+{
+  s32 x;
+  u8 *new_var;
+  func_020a9610(arg0, arg1, arg3, arg2, arg4, arg5);
+  if (arg6 == 1)
+  {
+    new_var = arg0 + 8;
+    x = (*((s32 *) new_var)) - (func_020a96f0(*((void **) (arg0 + 0x10))) >> 1);
+  }
+  else
+    if (arg6 == 2)
+  {
+    x = (*((s32 *) new_var)) - func_020a96f0(*((void **) (arg0 + 0x10)));
+  }
+  else
+  {
+    goto done;
+  }
+  *((s32 *) (arg0 + 8)) = x & (~3);
+  done:
+  while (func_020a9648(arg0) != 0)
+  {
+  }
+
+
 }
 
 void func_0203bcf8(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7) {
@@ -270,10 +290,10 @@ void func_0203c1f0(u8 *arg0, s32 arg1) {
 
 void func_0203c20c(void) {
     u8 *p = data_02162880;
-    s32 count = 0;
+    register s32 count = 0;
+    s32 n;
     u8 *best;
     s32 i;
-    s32 n;
     p[0x2c] = 0;
     *(void **)(p + 0x38) = NULL;
     if (p[0x2d] != 0) {
@@ -283,21 +303,16 @@ void func_0203c20c(void) {
     best = NULL;
     for (i = 0; i < n; i++) {
         u8 *elem = ((u8 **)(*(void **)(p + 0x34)))[i];
-        if (elem[0xb] != 0) {
-            continue;
-        }
-        if (*(void **)(elem + 0x10) == NULL) {
-            continue;
-        }
-        if (((s32 (*)(u8 *))(*(void **)(elem + 0x10)))(elem) == 0) {
-            continue;
-        }
-        count++;
-        if (best == NULL || *(s16 *)(best + 4) < *(s16 *)(elem + 4)) {
-            best = elem;
+        if (elem[0xb] == 0 && *(void **)(elem + 0x10) != NULL) {
+            if (((s32 (*)(u8 *))(*(void **)(elem + 0x10)))(elem) != 0) {
+                ++count;
+                if (best == NULL || *(s16 *)(best + 4) < *(s16 *)(elem + 4)) {
+                    best = elem;
+                }
+            }
         }
     }
-    if (count != 0) {
+    if (count) {
         p[0x2c] = 1;
         *(void **)(p + 0x38) = best;
     }
