@@ -35,89 +35,133 @@ void func_020c2734(u8 arg0, s8 arg1, u32 arg2);
 #pragma push
 #pragma optimization_level 3
 void func_020c1fec(void) {
- int zero=0,one=1;
- u8 *p,*parent=NULL,*state;
- if(data_02160a6c==NULL||(p=*(u8 **)(data_02160a6c+0xa0))==NULL)return;
- do {
- int id;
- func_020dde88(p);
- id=*(u16 *)(p+0x8e);
- switch(id){
- case 1031:
- if(p[0x104]==18){
- parent=(u8 *)func_020dda2c(*(u16 *)(p+0x90)-150);
- if(parent){*(s32 *)(p)=*(s32 *)parent;*(s32 *)(p+4)=*(s32 *)(parent+4);*(s32 *)(p+8)=*(s32 *)(parent+8);}
- }else if(p[0x104]!=14&&p[0x104]!=13&&p[0x104]!=12)func_020c0954(p);
- break;
- case 1081:
- if(p[0x104]!=14&&p[0x104]!=13&&p[0x104]!=12)func_020c0954(p);
- break;
- case 1092:
- if(p[0x104]==12||p[0x104]==13||p[0x104]==14)break;
- if(p[0x104]>=9&&p[0x104]<=17){
- state=*(u8 **)(p+0x19c);
- if(state&&(*(u16 *)(state+2)&1)&&func_020c09b0(p,5,5)){
- *(u16 *)state=one;p[0xa5]=one;
- if(*(s16 *)(state+14)){func_0210d27c(*(s16 *)(state+14));*(s16 *)(state+14)=zero;}
- func_020c0a58(p);
- }}break;
- case 1931:
- if(p[0x104]<=17){
- state=*(u8 **)(p+0x19c);
- if(state){
- int value=func_020c0954(p);
- if(value==*(s16 *)(state+12)){
- if(*(s16 *)(state+14)){func_0210d27c(*(s16 *)(state+14));*(s16 *)(state+14)=zero;}
- *(u16 *)state=one;func_020c0a58(p);
- }else if(value==-1){if(*(u16 *)state!=1)func_020c0a58(p);p[0xa5]=one;}
- }}break;
- case 1091:case 3002:case 3003:case 3004:case 3005:case 3006:
- case 3009:case 3010:case 3011:case 3012:case 3013:case 4082:break;
- case 3007:case 3008:
- default:
- if(p[0x104]>=9&&p[0x104]<=17){
- state=*(u8 **)(p+0x19c);
- if(state&&(*(u16 *)(state+2)&1)&&func_020c09b0(p,5,5)){
- if(*(s16 *)(state+14)){func_0210d27c(*(s16 *)(state+14));*(s16 *)(state+14)=zero;}
- *(u16 *)state=one;p[0xa5]=one;func_020c0a58(p);
- }}
- if(p[0x104]<=8)func_020c0954(p);
- if(p[0x104]>=22&&p[0x104]<=24){
- state=*(u8 **)(p+0x19c);
- if(state){
- int value=func_020c0954(p);
- if(value==*(s16 *)(state+12)){
- if(*(s16 *)(state+14)){func_0210d27c(*(s16 *)(state+14));*(s16 *)(state+14)=zero;}
- *(u16 *)state=one;func_020c0a58(p);
- }else if(value==-1){if(*(u16 *)state!=1)func_020c0a58(p);p[0xa5]=one;}
- }}
- if(p[0x104]>=25&&p[0x104]<=31)func_020c0954(p);
- break;
- }
- id=*(u16 *)(p+0x8e);
- if(id>1121){
- switch(id){
- case 3002:case 3003:case 3004:case 3005:case 3006:case 3007:
- case 3008:case 3009:case 3010:case 3011:case 3012:case 3013:
- if(*(u16 *)(p+0x90)>=400&&*(u16 *)(p+0x90)<=405)
- parent=(u8 *)func_020dda2c(*(u16 *)(p+0x90)-400);
- else if(*(u16 *)(p+0x90)>=410&&*(u16 *)(p+0x90)<=428)
- parent=(u8 *)func_020dda2c(*(u16 *)(p+0x90)-309);
- if(parent){
- if(data_02160244[0x10c]==0)*(u32 *)(p+0x80)|=2;
- if(parent[0x104]!=0&&parent[0x104]!=13&&parent[0x104]!=7)*(u32 *)(p+0x80)&=~2;
- if(*(u32 *)(p+0x80)&0x2000)*(u32 *)(p+0x80)&=~2;
- {s32 *v=*(s32 **)(parent+0x1a4);
- if(v){
- *(s32 *)p=*(s32 *)(parent+0xfc)-(v[0]**(s32 *)(p+0x54))/4096;
- *(s32 *)(p+4)=*(s32 *)(parent+0x100)-(v[1]**(s32 *)(p+0x54))/4096;
- }}
- }else p[0xa5]=one;
- break;
- }
- }
- p=*(u8 **)(p+0x154);
- }while(p);
+    int zero = 0, one = 1;
+    u8 *p, *parent = NULL, *state;
+    if (data_02160a6c == NULL || (p = *(u8 **)(data_02160a6c + 0xa0)) == NULL) return;
+    do {
+        int id;
+        func_020dde88(p);
+        id = *(u16 *)(p + 0x8e);
+        switch (id) {
+        case 1031:
+            if (p[0x104] == 18) {
+                parent = (u8 *)func_020dda2c(*(u16 *)(p + 0x90) - 150);
+                if (parent) {
+                    *(s32 *)(p) = *(s32 *)parent;
+                    *(s32 *)(p + 4) = *(s32 *)(parent + 4);
+                    *(s32 *)(p + 8) = *(s32 *)(parent + 8);
+                }
+            } else if (p[0x104] != 14 && p[0x104] != 13 && p[0x104] != 12) {
+                func_020c0954(p);
+            }
+            break;
+        case 1081:
+            if (p[0x104] != 14 && p[0x104] != 13 && p[0x104] != 12) {
+                func_020c0954(p);
+            }
+            break;
+        case 1092:
+            if (p[0x104] == 12 || p[0x104] == 13 || p[0x104] == 14) break;
+            if (p[0x104] >= 9 && p[0x104] <= 17) {
+                state = *(u8 **)(p + 0x19c);
+                if (state && (*(u16 *)(state + 2) & 1) && func_020c09b0(p, 5, 5)) {
+                    *(u16 *)state = one;
+                    p[0xa5] = one;
+                    if (*(s16 *)(state + 14)) {
+                        func_0210d27c(*(s16 *)(state + 14));
+                        *(s16 *)(state + 14) = zero;
+                    }
+                    func_020c0a58(p);
+                }
+            }
+            break;
+        case 1931:
+            if (p[0x104] <= 17) {
+                state = *(u8 **)(p + 0x19c);
+                if (state) {
+                    int value = func_020c0954(p);
+                    if (value == *(s16 *)(state + 12)) {
+                        if (*(s16 *)(state + 14)) {
+                            func_0210d27c(*(s16 *)(state + 14));
+                            *(s16 *)(state + 14) = zero;
+                        }
+                        *(u16 *)state = one;
+                        func_020c0a58(p);
+                    } else if (value == -1) {
+                        if (*(u16 *)state != 1) func_020c0a58(p);
+                        p[0xa5] = one;
+                    }
+                }
+            }
+            break;
+        case 1091:
+        case 3002: case 3003: case 3004: case 3005: case 3006:
+        case 3009: case 3010: case 3011: case 3012: case 3013:
+        case 4082:
+            break;
+        default:
+            if (p[0x104] >= 9 && p[0x104] <= 17) {
+                state = *(u8 **)(p + 0x19c);
+                if (state && (*(u16 *)(state + 2) & 1) && func_020c09b0(p, 5, 5)) {
+                    if (*(s16 *)(state + 14)) {
+                        func_0210d27c(*(s16 *)(state + 14));
+                        *(s16 *)(state + 14) = zero;
+                    }
+                    *(u16 *)state = one;
+                    p[0xa5] = one;
+                    func_020c0a58(p);
+                }
+            }
+            if (p[0x104] <= 8) func_020c0954(p);
+            if (p[0x104] >= 22 && p[0x104] <= 24) {
+                state = *(u8 **)(p + 0x19c);
+                if (state) {
+                    int value = func_020c0954(p);
+                    if (value == *(s16 *)(state + 12)) {
+                        if (*(s16 *)(state + 14)) {
+                            func_0210d27c(*(s16 *)(state + 14));
+                            *(s16 *)(state + 14) = zero;
+                        }
+                        *(u16 *)state = one;
+                        func_020c0a58(p);
+                    } else if (value == -1) {
+                        if (*(u16 *)state != 1) func_020c0a58(p);
+                        p[0xa5] = one;
+                    }
+                }
+            }
+            if (p[0x104] >= 25 && p[0x104] <= 31) func_020c0954(p);
+            break;
+        }
+        switch (*(u16 *)(p + 0x8e)) {
+        case 1091:
+            break;
+        case 1121:
+            break;
+        case 3002: case 3003: case 3004: case 3005: case 3006: case 3007:
+        case 3008: case 3009: case 3010: case 3011: case 3012: case 3013:
+            if (*(u16 *)(p + 0x90) >= 400 && *(u16 *)(p + 0x90) <= 405)
+                parent = (u8 *)func_020dda2c(*(u16 *)(p + 0x90) - 400);
+            else if (*(u16 *)(p + 0x90) >= 410 && *(u16 *)(p + 0x90) <= 428)
+                parent = (u8 *)func_020dda2c(*(u16 *)(p + 0x90) - 309);
+            if (parent) {
+                if (data_02160244[0x10c] == 0) *(u32 *)(p + 0x80) |= 2;
+                if (parent[0x104] != 0 && parent[0x104] != 13 && parent[0x104] != 7) *(u32 *)(p + 0x80) &= ~2;
+                if (*(u32 *)(p + 0x80) & 0x2000) *(u32 *)(p + 0x80) &= ~2;
+                {
+                    s32 *v = *(s32 **)(parent + 0x1a4);
+                    if (v) {
+                        *(s32 *)p = *(s32 *)(parent + 0xfc) - (v[0] * *(s32 *)(p + 0x54)) / 4096;
+                        *(s32 *)(p + 4) = *(s32 *)(parent + 0x100) - (v[1] * *(s32 *)(p + 0x54)) / 4096;
+                    }
+                }
+            } else {
+                p[0xa5] = one;
+            }
+            break;
+        }
+        p = *(u8 **)(p + 0x154);
+    } while (p);
 }
 #pragma pop
 u8 *func_020c2584(u8 *arg0,u32 arg1) {
