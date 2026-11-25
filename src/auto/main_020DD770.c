@@ -477,9 +477,9 @@ void func_020de29c(void) {
 void *func_020de2a8(u8 *arg0, u16 arg1, u8 arg2) {
     u8 *node = func_020de33c(arg0, arg1, arg2);
     if (node != NULL) {
-        *(u16 *)(node + 0xa) = *(u16 *)(node + 0xa) + 1;
-        if (*(u16 *)(node + 0xa) >= 99) {
-            *(u16 *)(node + 0xa) = 99;
+        *(volatile u16 *)(node + 0xa) = *(volatile u16 *)(node + 0xa) + 1;
+        if (*(volatile u16 *)(node + 0xa) >= 99) {
+            *(volatile u16 *)(node + 0xa) = 99;
         }
     } else {
         node = func_0210c594(0x10, data_02155c3c);
@@ -487,9 +487,9 @@ void *func_020de2a8(u8 *arg0, u16 arg1, u8 arg2) {
         *(u8 *)(node + 0xc) = arg2;
         *(u16 *)(node + 0xa) = 1;
         func_021167f0(arg0, node);
-        *(u16 *)(arg0 + 0xc) = *(u16 *)(arg0 + 0xc) + 1;
-        if (*(u16 *)(arg0 + 0xc) >= 99) {
-            *(u16 *)(arg0 + 0xc) = 99;
+        *(volatile u16 *)(arg0 + 0xc) = *(volatile u16 *)(arg0 + 0xc) + 1;
+        if (*(volatile u16 *)(arg0 + 0xc) >= 99) {
+            *(volatile u16 *)(arg0 + 0xc) = 99;
         }
     }
     return node;
