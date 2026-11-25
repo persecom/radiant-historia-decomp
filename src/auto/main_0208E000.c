@@ -41,8 +41,8 @@ void func_0208e000(u32 id, s16 x, s16 y, s16 width, s16 z) {
 }
 
 extern void func_020a994c(void *);
-extern void func_0208da7c(s32, s32, s32, s16, s32, s32);
-extern void func_020a30c4(void *, s32);
+extern void func_0208da7c();
+extern void func_020a30c4();
 extern void func_0208dcc8(s32, s32, s32, s32, s32);
 extern void func_0208dea4(s32, s32, s32, s32, s32, s32);
 extern const Unk10 data_02141008;
