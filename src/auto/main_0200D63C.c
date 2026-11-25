@@ -235,26 +235,29 @@ void func_0200dadc(void) {
 }
 
 s32 func_0200db50(u16 *arg0) {
-    volatile u8 *g = (volatile u8 *)0x02fffc80;
-    u16 v58 = *(u16 *)(g + 0x58);
-    u16 v5a = *(u16 *)(g + 0x5a);
-    u16 v5e = *(u16 *)(g + 0x5e);
-    u16 v60 = *(u16 *)(g + 0x60);
+    u16 *h = (u16 *)0x02fffc80;
+    u8 *g = (u8 *)0x02fffc80;
+    u16 v58 = h[0x2c];
+    u16 v5a = h[0x2d];
+    u16 v5e = h[0x2f];
+    u16 v60 = h[0x30];
     u8 b5c = g[0x5c];
     u8 b5d = g[0x5d];
     u8 b62 = g[0x62];
     u8 b63 = g[0x63];
-    if (v58 == 0 && v5e == 0 && v5a == 0 && v60 == 0) {
+    if (!v58 && !v5e && !v5a && !v60) {
         goto clear;
     }
     if (func_0200df4c(arg0, v58, v5a, b5c, b5d, v5e, v60, b62, b63) == 0) {
-        return 1;
+        goto done;
     }
 clear:
     arg0[0] = 0;
     arg0[1] = 0;
     arg0[2] = 0;
     arg0[3] = 0;
+    return 1;
+done:
     return 1;
 }
 
