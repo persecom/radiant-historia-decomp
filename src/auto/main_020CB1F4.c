@@ -1,6 +1,6 @@
 /* 6 functions from 0x020CB1F4 to 0x020CC09C (main), found by ds-decomp. */
 #include "common.h"
-typedef struct { u8 _[0x1698]; } SaveWork1698;
+typedef struct { u32 _[0x5a6]; } SaveWork1698;
 
 extern u32 data_02155c3c;
 extern u8 *data_02160078;
@@ -13,6 +13,18 @@ extern char data_02151304[];
 extern char data_02151318[];
 extern char data_02151334[];
 extern char data_02151340[];
+extern char data_02151350[];
+extern char data_02151368[];
+
+extern void func_02089550(void);
+extern void func_02089578(void);
+extern void func_020cd0ac(void);
+extern void func_020cd0b0(void);
+extern void func_0210d9e4(void *);
+extern void func_0210db70(void *);
+extern void func_0210dbd0(void *);
+extern void func_020cda64(s32, s32, s32, s32, s32, s32, s32, s32, s32);
+extern void func_020ccd34(s32);
 
 extern void *func_0210c594(u32, s32);
 extern void func_0210c5dc(void *);
@@ -76,6 +88,146 @@ void func_020cb1fc(void) {
         data_02162884 = -((*(s16 *)(p + 0x8e) - 12) * 16) / 6;
         data_02162814 = -((*(s16 *)(p + 0x8e) - 12) * 16) / 6;
     }
+}
+
+void func_020cb320(void) {
+    u8 i;
+    u8 j;
+    u8 k;
+    u8 n;
+    s32 off;
+    void *obj;
+    u8 *work;
+    void *buf;
+    u8 *node;
+    s32 best;
+    s32 bestIdx;
+
+    func_020a2c20();
+    func_021070c4();
+    data_02160238 = func_0210c594(0x77c, data_02155c3c);
+    func_0210f6d4();
+    data_02162858[0] = (u32)func_020cc09c;
+    data_02162854 = (u32)func_020ce8d4;
+    func_020a31c8(0xd);
+    func_021167ac(data_02160238 + 0x740, 0x2c);
+    func_021167ac(data_02160238 + 0x74c, 0x2c);
+    func_021167ac(data_02160238 + 0x758, 0x20);
+    func_021167ac(data_02160238 + 0x764, 0x20);
+    *(void **)(data_02160238 + 0x40) = func_020a94b8((s32)data_021512f8);
+    for (i = 0; i < 16; i++) {
+        off = i * 0x50;
+        if ((u8)(i - 2) <= 1) {
+            obj = func_020a8604(5, 2);
+        } else {
+            obj = func_020a84b8(i == 8 ? 5 : 4, 2);
+        }
+        *(void **)(data_02160238 + off + 0x60) = obj;
+        func_020a8810(*(void **)(data_02160238 + off + 0x60), 0x14);
+        func_020a9830(data_02160238 + 0x64 + off, data_02160238 + 0x98 + off, 0xf0, 0x10, 0, 0);
+        func_020a9610((u32 *)(data_02160238 + 0x98 + off), (void **)*(void **)(data_02160238 + 0x40), 1, *(void **)(data_02160238 + off + 0x60), 0, 0);
+    }
+    func_020a8810(*(void **)(data_02160238 + 0x60), 0x16);
+    func_020bdf24(data_02151340);
+    *(void **)(data_02160238 + 0x704) = func_020a94b8((s32)data_02151334);
+    for (j = 0; j < 4; j++) {
+        off = j * 0x64;
+        obj = func_020a8604(4, 1);
+        *(void **)(data_02160238 + off + 0x560) = obj;
+        func_020a9830(data_02160238 + 0x164 + 0x400 + off, data_02160238 + 0x198 + 0x400 + off, 0xf0, 0x10, 0, 0);
+        func_020a9610((u32 *)(data_02160238 + 0x198 + 0x400 + off), (void **)*(void **)(data_02160238 + 0x704), 1, *(void **)(data_02160238 + off + 0x560), 0, 0);
+    }
+    *(void **)(data_02160238 + 0x700) = func_020a94b8((s32)data_02151318);
+    bestIdx = 0;
+    for (k = 0; k < 4; k++) {
+        *(void **)(data_02160238 + k * 4 + 0x6f0) = func_020c6d5c(4);
+        func_020c8344(*(void **)(data_02160238 + k * 4 + 0x6f0), 5, 1);
+        func_020c8640(*(void **)(data_02160238 + k * 4 + 0x6f0), 0x14);
+        func_020c83f4(*(void **)(data_02160238 + k * 4 + 0x6f0), *(void **)(data_02160238 + 0x700), 2, bestIdx);
+        func_020c738c(*(void **)(data_02160238 + k * 4 + 0x6f0), 1, 1);
+    }
+    func_020bdf24(data_02151304);
+    work = data_02160238;
+    buf = func_0210c594(0x1698, data_02155c3c);
+    *(SaveWork1698 *)buf = *(SaveWork1698 *)data_02160078;
+    best = 0;
+    *(u32 *)(buf + 0x24) = func_0210e600();
+    if (data_021512f0 == 0) {
+        work[0x708] = data_02160204[0x7f];
+    }
+    data_02160204[0x14c] = 0;
+    data_02160204[0x14c] |= 8;
+    data_02160204[0x7f] = 0;
+    func_02021a3c();
+    func_0210dc88();
+    for (n = 0; n < 3; n++) {
+        if (func_02021a50() != 1) {
+            func_020bdf24(data_02151334, func_02021a50(), work[n * 16 + 0x710], *(u32 *)(work + n * 16 + 0x718));
+        }
+        if (func_02021a50() == 0) {
+            func_020cea74(work + 0x710 + n * 16);
+            if (*(u32 *)(work + n * 16 + 0x71c) > best) {
+                best = *(u32 *)(work + n * 16 + 0x71c);
+                bestIdx = n;
+            }
+        } else {
+            work[n * 16 + 0x710] = 0;
+            *(u32 *)(work + n * 16 + 0x718) = 0;
+            *(u32 *)(work + n * 16 + 0x71c) = 0;
+        }
+    }
+    data_02160204[0x14c] &= ~8;
+    *(u16 *)(work + 0x776) = best;
+    if (data_021512f0 == 0) {
+        data_02160204[0x7f] = work[0x708];
+    } else if (data_021512f0 == 1) {
+        data_02160204[0x7f] = 0;
+        work[0x708] = bestIdx;
+    }
+    *(SaveWork1698 *)data_02160078 = *(SaveWork1698 *)buf;
+    func_0210e620(*(u32 *)(buf + 0x24));
+    if (buf != NULL) {
+        func_0210c5dc(buf);
+    }
+    *(u32 *)(data_02160078 + 0x2c) = data_02160204[0xd6];
+    func_020bdf24(data_021512f8);
+    func_020cdf18();
+    node = func_020cda08(2, 0);
+    node[0x2] = 0;
+    node[0x26] = 12;
+    node = func_020cda08(2, 6);
+    node[0x2] = 0;
+    node = func_020cda08(2, 7);
+    node[0x2] = 0;
+    node[0x27] = 0;
+    *(u16 *)(node + 0x28) = 0x14;
+    node = func_020cda08(2, 8);
+    node[0x2] = 0;
+    node[0x27] = 1;
+    *(u16 *)(node + 0x28) = 0x14;
+    node = func_020cda08(2, 9);
+    node[0x2] = 0;
+    func_020cdbc4(0xa, 0, 0x64, 0x20, 0x65, 0, 0x12, 1, 2);
+    func_020cdbc4(0xb, 0, 0x8f, 0x20, 0x65, 0, 0x12, 1, 2);
+    func_020cdbc4(0xc, 0, 0xba, 0x20, 0x65, 0, 0x12, 1, 2);
+    node = func_020cdbc4(0xd, 0, 0x24, 0x2c, 0x65, 0, 0x12, 1, 2);
+    node[0x1f] = 3;
+    node = func_020cdbc4(0xe, 0, 0x38, 0x2c, 0x65, 0, 0x12, 1, 2);
+    node[0x1f] = 2;
+    func_020cdbc4(0xf, 0, 0x64, 0x50, 0x65, 0, 0x12, 1, 2);
+    func_020cdbc4(0x10, 0, 0x8f, 0x50, 0x65, 0, 0x12, 1, 2);
+    func_020cdbc4(0x11, 0, 0xba, 0x50, 0x65, 0, 0x12, 1, 2);
+    node = func_020cdbc4(0x12, 0, 0x24, 0x5c, 0x65, 0, 0x12, 1, 2);
+    node[0x1f] = 3;
+    node = func_020cdbc4(0x13, 0, 0x38, 0x5c, 0x65, 0, 0x12, 1, 2);
+    node[0x1f] = 2;
+    func_020cdbc4(0x14, 0, 0x64, 0x80, 0x65, 0, 0x12, 1, 2);
+    func_020cdbc4(0x15, 0, 0x8f, 0x80, 0x65, 0, 0x12, 1, 2);
+    func_020cdbc4(0x16, 0, 0xba, 0x80, 0x65, 0, 0x12, 1, 2);
+    node = func_020cdbc4(0x17, 0, 0x24, 0x8c, 0x65, 0, 0x12, 1, 2);
+    node[0x1f] = 3;
+    node = func_020cdbc4(0x18, 0, 0x38, 0x8c, 0x65, 0, 0x12, 1, 2);
+    node[0x1f] = 2;
 }
 
 extern u8 *data_02160200;
