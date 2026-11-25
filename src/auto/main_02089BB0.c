@@ -4,7 +4,7 @@ extern u8 data_021486a4[];
 extern u8 data_021486bc[];
 extern u8 data_021486d0[];
 extern void *func_021092d8(void *);
-extern u32 func_02022068(s16);
+extern u32 func_02022068(s32);
 extern void func_021093f0(void *);
 extern s32 func_02109444(void *);
 extern void func_021093b0(void *);
@@ -42,6 +42,105 @@ extern u8 data_02148688[];
 extern u8 data_02148694[];
 extern u8 data_0214869c[];
 extern void func_021091b4(void);
+s32 func_02089f94(u8 *, s32, s32, u32 *);
+void func_0208a168(u8 *, s32, s32, u32 *);
+void func_0208a1a0(s32);
+void func_02089bb0(s32 mode, s32 arg1) {
+    u16 i;
+    void *stream;
+
+    *(u16 *)(data_0216010c + 0x50d4) = 0;
+    data_0216010c[0x50d6] = 0;
+    data_0216010c[0x50d7] = data_0216010c[0x50d6];
+
+    if (arg1 == 1) {
+        void **p = *(void ***)(data_0216010c + 0x48);
+        if (p != NULL && *p != NULL) func_020a9544(p);
+        p = *(void ***)(data_0216010c + 0x4c);
+        if (p != NULL && *p != NULL) func_020a9544(p);
+    }
+
+    func_02108ffc();
+    func_02013878(data_0216010c + 0x5570, 0, 0x2ee0);
+
+    switch (mode) {
+    case 0:
+        stream = func_021092d8(data_0214860c);
+        for (i = 1; i < 0x33; i++) {
+            if (func_02022068(i) != 0) {
+                u8 *p = data_0216010c;
+                *(u16 *)(p + *(s16 *)(p + 0x50d4) * 100 + 0x5570) = i;
+                {
+                    u8 *q = data_0216010c;
+                    u32 result = func_02022068(i);
+                    *(u8 *)(q + *(s16 *)(q + 0x50d4) * 100 + 0x5572) = result;
+                }
+                func_02089f94(data_0216010c + *(s16 *)(data_0216010c + 0x50d4) * 100 + 0x5574, i, 5, stream);
+                (*(s16 *)(data_0216010c + 0x50d4))++;
+            }
+        }
+        if (stream != 0) func_021093b0(stream);
+        func_02015a3c(data_0216010c + 0x5570, *(s16 *)(data_0216010c + 0x50d4), 100, func_02089b38);
+        if (arg1 == 1) {
+            *(void **)(data_0216010c + 0x48) = func_020a94b8(data_02148628);
+            *(void **)(data_0216010c + 0x4c) = func_020a94b8(data_02148630);
+        }
+        break;
+    case 1:
+        stream = func_021092d8(data_02148638);
+        for (i = 0xc9; i < 0x10f; i++) {
+            if (func_02022068(i) != 0) {
+                u8 *p = data_0216010c;
+                *(u16 *)(p + *(s16 *)(p + 0x50d4) * 100 + 0x5570) = i;
+                {
+                    u8 *q = data_0216010c;
+                    u32 result = func_02022068(i);
+                    *(u8 *)(q + *(s16 *)(q + 0x50d4) * 100 + 0x5572) = result;
+                }
+                func_0208a168(data_0216010c + *(s16 *)(data_0216010c + 0x50d4) * 100 + 0x5574, i, 5, stream);
+                (*(s16 *)(data_0216010c + 0x50d4))++;
+            }
+        }
+        if (stream != 0) func_021093b0(stream);
+        func_02015a3c(data_0216010c + 0x5570, *(s16 *)(data_0216010c + 0x50d4), 100, func_02089b38);
+        if (arg1 == 1) {
+            *(void **)(data_0216010c + 0x48) = func_020a94b8(data_02148650);
+            *(void **)(data_0216010c + 0x4c) = func_020a94b8(data_0214865c);
+        }
+        break;
+    case 2:
+        func_0208a1a0(0);
+        if (arg1 == 1) {
+            *(void **)(data_0216010c + 0x48) = func_020a94b8(data_0214866c);
+            *(void **)(data_0216010c + 0x4c) = func_020a94b8(data_02148674);
+        }
+        break;
+    case 3:
+        func_0208a1a0(1);
+        if (arg1 == 1) {
+            *(void **)(data_0216010c + 0x48) = func_020a94b8(data_02148680);
+            *(void **)(data_0216010c + 0x4c) = func_020a94b8(data_02148688);
+        }
+        break;
+    case 4:
+        func_0208a1a0(2);
+        if (arg1 == 1) {
+            *(void **)(data_0216010c + 0x48) = func_020a94b8(data_02148694);
+            *(void **)(data_0216010c + 0x4c) = func_020a94b8(data_0214869c);
+        }
+        break;
+    }
+
+    if (*(s16 *)(data_0216010c + 0x50d4) <= 6) {
+        data_0216010c[0x50d8] = 0x4e;
+    } else {
+        data_0216010c[0x50d8] = 0x1d4 / *(s16 *)(data_0216010c + 0x50d4);
+        if (data_0216010c[0x50d8] < 8) data_0216010c[0x50d8] = 8;
+    }
+
+    func_02108ffc();
+}
+
 s32 func_02089f94(u8 *arg0, s32 arg1, s32 arg2, u32 *arg3) {
 s32 id, value;
 arg3[2]=arg3[0];
