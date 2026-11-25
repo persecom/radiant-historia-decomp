@@ -4,6 +4,9 @@
 extern u32 data_02145c2c;
 extern u32 data_02145c8c[];
 extern s32 func_0201f800(u32);
+extern void func_02012d64(u32 *, s8);
+extern void func_02012d90(u32 *, s8, s32);
+extern void func_02012de4(u32 *, const s8 *, s32);
 
 void func_02012e3c(u8 *arg0, u32 *arg1, s8 *fmt, s32 **argp) {
     u32 out[2];
