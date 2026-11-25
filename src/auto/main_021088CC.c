@@ -266,17 +266,14 @@ void func_02108e54(u32 arg0) {
     if (arg0 >= 2) {
         return;
     }
-    for (;;) {
+    while (1) {
         if (func_021090f4(arg0, 0) == 2) {
             func_02108b54(arg0);
-            break;
-        }
-        if (func_021090f4(arg0, 0) == 0) {
+        } else if (func_021090f4(arg0, 0) == 0) {
             return;
         }
         func_02108ffc();
     }
-    return;
 }
 
 void func_02108ea4(u32 arg0, u32 arg1) {
@@ -602,15 +599,15 @@ void func_02109828(void) {
     *(u32 *)(data_02162510 + 0x44) = 0x8000;
 }
 
+#pragma push
+#pragma opt_common_subs off
 void func_02109840(void) {
-    s32 i;
-    for (i = 0; i < 2; i++) {
-        *(s32 *)(data_02162544 + i * 0x10 + 0xc) = 0;
-    }
-    func_0210da14(data_02162510);
-    ((struct { s32 value; } *)data_02162510)->value = 0;
+s32 i;
+for(i=0;i<2;i++) *(s32 *)(data_02162544+i*16+12)=0;
+func_0210da14(data_02162510);
+*(s32 *)(data_02162510 + i - 2)=0;
 }
-
+#pragma pop
 void func_02109884(u32 arg0, u32 arg1) {
     if (arg0 & 1) {
         *(u32 *)(data_02162510 + 0x34) = arg1 << 0xc;
