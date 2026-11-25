@@ -166,9 +166,8 @@ int func_020124a8(const u8 *a, const u8 *b, s32 n)
 {
   u32 aa;
   u32 ba;
-  u32 i;
+  s32 i;
   u32 mask;
-  s32 limit;
   if (n == 0)
   {
     goto done;
@@ -176,8 +175,7 @@ int func_020124a8(const u8 *a, const u8 *b, s32 n)
   aa = ((u32) a) & 3;
   ba = ((u32) b) & 3;
   i = 0;
-  limit = 0x7f7f7f7f;
-  mask = limit;
+  mask = 0x7f7f7f7f;
   if ((aa ^ ba) != 0)
   {
     goto bytes;
@@ -186,7 +184,7 @@ int func_020124a8(const u8 *a, const u8 *b, s32 n)
   {
     goto words;
   }
-  while (((i + aa) < 4) && (((s32) i) < n))
+  while ((((u32)i + aa) < 4) && (i < n))
   {
     u8 x = a[i];
     u8 y = b[i];
@@ -198,10 +196,7 @@ int func_020124a8(const u8 *a, const u8 *b, s32 n)
   }
 
   words:
-  limit = n - 4;
-
-  ba = limit;
-  if (((s32) i) > limit)
+  if (i > n - 4)
   {
     goto bytes;
   }
@@ -225,9 +220,9 @@ int func_020124a8(const u8 *a, const u8 *b, s32 n)
     }
     i += 4;
   }
-  while (((s32) i) <= ba);
+  while (i <= n - 4);
   bytes:
-  if (((s32) i) >= n)
+  if (i >= n)
   {
     goto done;
   }
@@ -242,10 +237,9 @@ int func_020124a8(const u8 *a, const u8 *b, s32 n)
     }
     i++;
   }
-  while (((s32) i) < n);
+  while (i < n);
   done:
   return 0;
-
 }
 
 void func_02012590(s32 arg0, const char *arg1, ...) {
@@ -265,6 +259,7 @@ s32 func_020125b8(s32 c) {
     return ret;
 }
 
+#pragma scheduling off
 void func_020125e0(u32 *bits, u32 start, u32 end)
 {
   u32 endMask;
@@ -275,18 +270,19 @@ void func_020125e0(u32 *bits, u32 start, u32 end)
   endMask = (1U << (end & 0x1f)) - 1;
   do
   {
+    u32 word = start >> 5;
     u32 mask = (~0U) << (start & 0x1f);
-    u32 next = ((start >> 5) + 1) << 5;
+    u32 next = (word + 1) << 5;
     if (end < next)
     {
       mask &= endMask;
     }
-    bits[start >> 5] = bits[start >> 5] | mask;
+    bits[start >> 5] |= mask;
     start = next;
   }
   while (start < end);
 }
-
+#pragma scheduling on
 extern void func_02008e24(u32, void *, u32);
 struct ScanState {
     char **ap;
@@ -299,12 +295,12 @@ struct ScanState {
 s32 func_02012634(s32 arg0, const char *fmt, char *args)
 {
     s32 c = *fmt;
-    s32 flags = 0;
-    s32 width = 0;
+    s32 flags;
+    s32 width;
     s32 ch;
     const char *f = fmt;
     const char *s = (const char *)arg0;
-    s64 val = 0;
+    s64 val;
     struct ScanState st;
     s32 n;
     char *dst;
@@ -312,10 +308,10 @@ s32 func_02012634(s32 arg0, const char *fmt, char *args)
     u32 digit;
     u32 k;
 
-    st.count = 0;
+    st.got = 0;
     st.ap = (char **)args;
     st.start = s;
-    st.got = 0;
+    st.count = 0;
     if (c == 0) goto finish;
 loop:
     if (func_020125b8(c) != 0) {
@@ -343,6 +339,9 @@ loop:
         goto next;
     }
     ch = *++f;
+    val = 0;
+    flags = 0;
+    width = 0;
     if (ch == '*') { flags |= 0x2000; ch = *++f; }
     while (ch >= '0' && ch <= '9') {
         width = width * 10 + ch - '0';
@@ -351,45 +350,26 @@ loop:
     switch (ch) {
     case 'h':
         ch = *++f;
-        if (ch == 'h') { flags |= 0x100; ch = *++f; }
-        else flags |= 0x40;
+        if (ch != 'h') flags |= 0x40;
+        else { flags |= 0x100; ch = *++f; }
         break;
     case 'l':
         ch = *++f;
-        if (ch == 'l') { flags |= 0x80; ch = *++f; }
-        else flags |= 0x20;
+        if (ch != 'l') flags |= 0x20;
+        else { ch = *++f; flags |= 0x80; }
         break;
     }
-    if (ch == 'i') goto case_i;
-    if (ch == 'd') goto case_d;
-    if (ch == 'X') goto case_x;
-    if (ch == '[') goto parse_set;
-    if (ch == 'c') goto parse_str;
-    if (ch == 'n') goto parse_count;
     switch (ch) {
+    case 'd': c = 10; goto parse_num;
+    case 'i': c = -1; goto parse_num;
     case 'o': c = 8; goto parse_num;
-    case 'p': flags |= 0x1000; c = 16; goto parse_num;
-    case 'q': goto finish;
-    case 'r': goto finish;
-    case 's': goto parse_str;
-    case 't': goto finish;
     case 'u': flags |= 0x1000; c = 10; goto parse_num;
-    case 'v': goto finish;
-    case 'w': goto finish;
-    case 'x': flags |= 0x1000; c = 16; goto parse_num;
+    case 'X': case 'p': case 'x': flags |= 0x1000; c = 16; goto parse_num;
+    case 'n': goto parse_count;
+    case 'c': case 's': goto parse_str;
+    case '[': goto parse_set;
     default: goto finish;
     }
-case_i:
-    c = -1;
-    goto parse_num;
-case_d:
-    flags |= 0x1000;
-    c = 10;
-    goto parse_num;
-case_x:
-    flags |= 0x1000;
-    c = 16;
-    goto parse_num;
 
 parse_count:
     if (!(flags & 0x2000)) st.count--;
@@ -405,7 +385,7 @@ parse_num:
     }
 again_sign:
     if (ch == '+') { flags |= 0x2; goto next_sign; }
-    if (ch == '-') { flags |= 0x8; ch = *++s; goto again_sign; }
+    if (ch == '-') { flags |= 0x8; goto next_sign; }
     goto after_sign;
 next_sign:
     ch = *++s;
@@ -421,9 +401,8 @@ after_sign:
     if (c == 16 && ch == '0') {
         if (s[1] == 'x' || s[1] == 'X') { s += 2; ch = *s; }
     }
-    if (width == 0) width = (s32)0x80000000;
+    if (width == 0) width = 0x7fffffff;
     n = 0;
-    val = 0;
     if (width > 0) {
         do {
             digit = ch - '0';
@@ -473,9 +452,9 @@ parse_str:
     f++;
     if (ch == 's') {
         ch = *s;
-        if (width == 0) width = (s32)0x80000000;
+        if (width == 0) width = 0x7fffffff;
         if (func_020125b8(ch) != 0) {
-            while (func_020125b8(*++s) != 0) { }
+            do { ch = *++s; } while (func_020125b8(ch) != 0);
         }
         if (ch == 0 || func_020125b8(ch) != 0) goto str_end;
         do {
@@ -507,45 +486,60 @@ str_end:
 
 parse_set:
     {
-        s32 i = 0;
-        s32 neg = 0;
+        u32 previous = 0;
+        s32 range = 0;
+        dst = NULL;
+        st.inv = 1;
         func_02008e24(0, st.bits, 0x20);
         ch = *++f;
-        st.inv = 1;
-        if (ch == '^') { f++; ch = *f; st.inv = 0; }
-        if (ch == ']') { st.bits[(u32)(u8)ch >> 5] |= 1U << (ch & 31); f++; }
-        while (*f != 0 && *f != ']') {
+        if (ch == '^') { f++; st.inv = 0; }
+        ch = *f;
+        if (ch == ']') { st.bits[(u32)(u8)ch >> 5] |= 1U << ((u8)ch & 31); f++; }
+        for (;;) {
             ch = *f;
-            if (ch == '-' && i != 0 && f[1] != ']') {
-                f++;
-                ch = *f;
-                func_020125e0(st.bits, i, ch);
-                st.bits[1] |= 0x2000;
-                neg = 1;
-                f++;
-            } else {
-                st.bits[(u32)(u8)ch >> 5] |= 1U << (ch & 31);
-                i = ch;
-                f++;
+            if (ch == 0 || ch == ']') {
+                if (range) {
+                    st.bits[previous >> 5] |= 1U << (previous & 31);
+                    st.bits[1] |= 0x2000;
+                }
+                if (*f == ']') f++;
+                break;
             }
+            if (!range) {
+                if (previous != 0 && ch == '-') { range = 1; }
+                else {
+                    st.bits[(u32)(u8)ch >> 5] |= 1U << ((u8)ch & 31);
+                    previous = (u8)*f;
+                }
+            } else {
+                u32 end = (u8)ch;
+                if (previous > end) {
+                    st.bits[previous >> 5] |= 1U << (previous & 31);
+                    st.bits[1] |= 0x2000;
+                    st.bits[end >> 5] |= 1U << (end & 31);
+                } else {
+                    func_020125e0(st.bits, previous, end + 1);
+                }
+                range = 0;
+                previous = 0;
+            }
+            f++;
         }
-        if (*f == ']') f++;
         st.got = 1;
-        if (flags & 0x2000) goto next;
-        st.ap++;
-        dst = st.ap[-1];
-        st.count++;
-        if (width == 0) width = (s32)0x80000000;
+        if (!(flags & 0x2000)) {
+            st.ap++;
+            dst = st.ap[-1];
+            st.count++;
+        }
+        if (width == 0) width = 0x7fffffff;
         ch = *s;
-    set_loop:
-        if (((st.bits[(u32)(u8)ch >> 5] >> ((u8)ch & 31)) & 1) != st.inv) goto set_end;
-        if (dst != 0) *dst++ = ch;
-        ch = *++s;
-        width--;
-        if (ch == 0) goto set_end;
-        if (width > 0) goto set_loop;
-    set_end:
-        if (dst != 0) *dst = 0;
+        while (ch != 0 && width > 0) {
+            if (((st.bits[(u32)(u8)ch >> 5] >> ((u8)ch & 31)) & 1) != st.inv) break;
+            if (dst) *dst++ = ch;
+            ch = *++s;
+            width--;
+        }
+        if (dst) *dst = 0;
     }
     goto next;
 
@@ -554,7 +548,6 @@ next:
     if (c != 0) goto loop;
 finish:
     if (*s == 0) {
-        st.count = st.got;
         if (st.got == 0) st.count = -1;
     }
     return st.count;
