@@ -21,14 +21,11 @@ void func_02002058(s32 arg0, s32 arg1);
 void func_02002028(u32 arg0);
 s32 func_02001ff4(void);
 
-void func_02002708(s32 arg0) {
-    volatile u16 *reg = (volatile u16 *)0x4000004;
-    u16 v = *reg;
-    if (arg0 != 0) {
-        *reg = v | 8;
-    } else {
-        *reg = v & 0xfff7;
-    }
+u32 func_02002708(s32 arg0) {
+volatile u16 *reg=(volatile u16 *)0x4000004;
+u32 old=*reg & 8;
+if(arg0) *reg=*reg | 8;else *reg=*reg & 0xfff7;
+return old;
 }
 
 extern u16 data_02145ba0;
