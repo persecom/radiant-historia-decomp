@@ -13,6 +13,11 @@ static inline void set_digit_size(DigitSprite *s, s16 width, s16 height) {
  s->field[3]=width; s->field[4]=height;
  s->field[8]=width; s->field[9]=height;
 }
+static inline void set_digit_base(DigitSprite *s, s8 width, s8 height, s16 y) {
+ s->field[3]=width; s->field[4]=height;
+ s->field[8]=width; s->field[9]=height;
+ s->field[2]=0; s->field[6]=y;
+}
 extern void func_020a3bbc(void);
 extern void func_021098ac(void *);
 
@@ -61,18 +66,20 @@ void func_020cdce8(s32 value, s16 x, s16 y, s16 z, s8 spacing, u16 kind, s32 ali
  padding=count-digits;
  for(i=0;i<padding;i++) {
  sprite.field[1]=0; sprite.field[2]=0;
- set_digit_size(&sprite,width,height);
+ sprite.field[3]=width; sprite.field[4]=height;
+ sprite.field[8]=width; sprite.field[9]=height;
  sprite.field[6]=y; sprite.field[5]=x+(-(width+spacing))*(digits+i);
  sprite.field[7]=z+101;
  func_021098ac(&sprite);
  }
  *(volatile u32 *)0x40004a4=0x1f00c0;
  for(i=0;i<digits;i++) {
- set_digit_size(&sprite,width,height);
+ sprite.field[3]=width; sprite.field[4]=height;
+ sprite.field[8]=width; sprite.field[9]=height;
  sprite.field[2]=0; sprite.field[6]=y;
  { u8 digit=value%10; value/=10; sprite.field[1]=digit*width; }
  if(align) sprite.field[5]=x+i*(-(width+spacing));
- else { s32 left=(digits-1)*(width+spacing); sprite.field[5]=x+(i*(-(width+spacing))+left); }
+ else { s32 left=(digits-1)*(width+spacing); sprite.field[5]=i*(-(width+spacing))+left+x; }
  sprite.field[7]=z+101;
  func_021098ac(&sprite);
  }
@@ -132,6 +139,8 @@ void func_020cdf18(void) {
     }
 }
 
+#pragma push
+#pragma scheduling off
 void func_020ce170(s32 arg0, s32 arg1, s32 arg2) {
     U16x4_020ce170 tbl1 = data_02144650;
     u8 *slot = data_02160238 + 0x710 + arg1 * 0x10;
@@ -139,14 +148,14 @@ void func_020ce170(s32 arg0, s32 arg1, s32 arg2) {
     u16 idx = 0;
     u8 active = 0;
     u8 *p;
-    s32 i;
+    s32 i, k;
     U16x4_020ce170 tbl2;
     u16 base2;
     u16 base3;
     u16 j;
     s32 a, b, c;
     s16 y, x, x2;
-    u8 *vobj;
+    u8 *vobj; u8 **manager; u8 *m;
 
     if (slot[0] != 0) {
         active = 1;
@@ -267,18 +276,19 @@ void func_020ce170(s32 arg0, s32 arg1, s32 arg2) {
         }
     }
 
-    i = 0;
+    k = 0;
     base3 = ((volatile u16 *)&tbl2)[arg0];
-    for (; i < 3; i++) {
-        p = func_020cdc8c((u16)(i + base3), 2);
-        *(u32 *)(p + 4) = slot[i];
-        if (slot[0] != 0 && slot[i] != 0) {
+    for (; k < 3; k++) {
+        p = func_020cdc8c((u16)(k + base3), 2);
+        *(u32 *)(p + 4) = slot[k];
+        if (slot[0] != 0 && slot[k] != 0) {
             p[2] = 1;
         } else {
             p[2] = 0;
         }
     }
 
+    manager=&data_02160238;
     func_020ceb74(&a, &b, &c, *(s32 *)(slot + 8));
     p = func_020cdc8c((u16)(base2 + 3), 2);
     *(s32 *)(p + 4) = a;
@@ -291,21 +301,23 @@ void func_020ce170(s32 arg0, s32 arg1, s32 arg2) {
         y = 0x19;
         x = 0x4e;
     }
-    func_020a8810(*(void **)(data_02160238 + arg0 * 0x64 + 0x560), arg2 != 0 ? 0x13 : 0x14);
+    m=*manager;
+    if(arg2) func_020a8810(*(void **)(m + arg0 * 0x64 + 0x560), 0x13);
+else func_020a8810(*(void **)(m + arg0 * 0x64 + 0x560), 0x14);
     func_020ce664(arg0, 5, x, y, slot[6]);
-    *(s32 *)(data_02160238 + arg0 * 0x64 + 0x5b8) = active;
+    *(s32 *)(*manager + arg0 * 0x64 + 0x5b8) = active;
 
     x2 = (s16)(arg0 * 0x30 + 0x28);
-    vobj = *(u8 **)(data_02160238 + arg0 * 4 + 0x6f0);
     if (arg0 == 3) {
         x2 = 0x58;
     }
+    vobj = *(u8 **)(*manager + arg0 * 4 + 0x6f0);
     ((void (*)(void *, s32))(*(void **)(vobj + 0x10)))(vobj, 0x19);
     ((void (*)(void *, s32))(*(void **)(vobj + 0x14)))(vobj, x2);
     ((void (*)(void *, s32))(*(void **)(vobj + 0x1c)))(vobj, 0x79);
     func_020c738c(vobj, active, 1);
 }
-
+#pragma pop
 void func_020ce664(s32 arg0, s16 arg1, s16 arg2, s16 arg3, u8 arg4) {
     s32 idx = arg0 * 100;
 
@@ -321,43 +333,41 @@ void func_020ce664(s32 arg0, s16 arg1, s16 arg2, s16 arg3, u8 arg4) {
     func_020a98f4(data_02160238 + 0x164 + 0x400 + idx);
 }
 
-void func_020ce738(void)
+volatile unsigned int func_020ce738(void)
 {
-    u8 **base = (u8 **)&data_02160238;
-    u32 stride = 0x64;
-    u32 i = 0;
-
-    do {
-        u32 offset = i * stride;
-        u8 *p = *base + offset;
-        u32 next = i + 1;
-        u8 *q = p + 0x500;
-
-        s32 z = *(s16 *)(q + 0xB4);
-        s32 x = *(s16 *)(q + 0xB0);
-        s32 dx = *(s32 *)(p + 0x5BC);
-        s32 height = z + 0x65;
-        s32 y = *(s16 *)(q + 0xB2);
-        s32 dy = *(s32 *)(p + 0x5C0);
-        u32 value = *(u32 *)(p + 0x5B8);
-        u32 *dst;
-
-        dx = x + dx;
-
-        dst = *(u32 **)(p + 0x560);
-        dst[0x13] = (u32)height << 12;
-
-        dst = *(u32 **)(*base + offset + 0x560);
-        dy = y + dy;
-        dst[0x11] = (u32)dx << 12;
-
-        dst = *(u32 **)(*base + offset + 0x560);
-        i = next & 0xFF;
-        dst[0x12] = (u32)dy << 12;
-
-        dst = *(u32 **)(*base + offset + 0x560);
-        dst[0x10] = value;
-    } while (i < 4);
+  u8 **base = (u8 **) (&data_02160238);
+  u32 stride = 0x64;
+  u32 i = 0;
+  u32 **new_var;
+  do
+  {
+    u32 offset = i * stride;
+    u8 *p;
+    u32 next = i + 1;
+    u8 *q;
+    s32 z = *((s16 *) ((((0, (*base) + offset)) + 0x500) + 0xB4));
+    s32 x = *((s16 *) ((((0, (*base) + offset)) + 0x500) + 0xB0));
+    s32 dx = *((s32 *) (((0, (*base) + offset)) + 0x5BC));
+    s32 height = z + 0x65;
+    s32 y = *((s16 *) ((((0, (*base) + offset)) + 0x500) + 0xB2));
+    s32 dy;
+    u32 value = *((u32 *) (((0, (*base) + offset)) + 0x5B8));
+    u32 *dst;
+    ;
+    dst = *((u32 **) (p + 0x560));
+    dy = *((s32 *) (((0, (*base) + offset)) + 0x5C0));
+    dst[0x13] = ((u32) height) << 12;
+    dst = *((u32 **) (((*base) + offset) + 0x560));
+    dy = y + dy;
+    dst[0x11] = ((u32) (x + dx)) << 12;
+    ;
+    i = next & 0xFF;
+    (*((u32 **) (((*base) + offset) + 0x560)))[0x12] = ((u32) dy) << 12;
+    new_var = (u32 **) (((*base) + offset) + 0x560);
+    dst = *new_var;
+    dst[0x10] = value;
+  }
+  while (i < 4);
 }
 
 void func_020ce7d8(void) {
