@@ -11,7 +11,7 @@ extern u32 func_0200f984(void);
 extern void func_0210d220(void);
 s32 func_02021284(void);
 void func_02021618(void);
-extern s32 func_02021428(u16 *);
+
 extern void (*ARM9_CTOR_START[])(void);
 extern u32 *data_02162730;
 extern u32 func_021155c8(u32);
@@ -140,24 +140,19 @@ void func_020213c4(void *ptr, s32 len, u32 key) {
 
 extern s32 func_0210723c(void);
 extern void func_0210d9e4(u8 *);
-#pragma optimization_level 2
+#pragma push
+#pragma opt_propagation off
 s32 func_02021428(u16 *arg) {
-    u32 *p;
-    data_02160054[4] = (u32)arg;
-    data_02160054[5] = 1000;
-    func_0210d9e4(data_02160064);
-    *(volatile u32 *)&data_02160054[3] = 1;
-    *(volatile u32 *)&data_02160054[1] = 0;
-    p = *(u32 *volatile *)&data_021626f0;
-    if (p != NULL) {
-        u32 v = *p;
-        data_02160054[0] = v;
-        *p = 0;
-        return (s32)v;
-    }
-    return (s32)&data_021626f0;
+data_02160054[4]=(u32)arg;
+data_02160054[5]=1000;
+func_0210d9e4(data_02160064);
+data_02160054[3]=1;
+data_02160054[1]=0;
+{u32 *p=data_021626f0;
+if(p){u32 v=*p; data_02160054[0]=v; *p=0; return (s32)v;}
+return (s32)&data_021626f0;}
 }
-#pragma optimization_level 4
+#pragma pop
 void func_0202147c(s32 arg0) {
     func_0210da14(data_02160064);
     data_02160054[4] = 0;
