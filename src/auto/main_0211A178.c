@@ -239,14 +239,18 @@ void func_0211a5fc(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u32 arg4, u32 arg5, u
     *(u32 *)(ptr + 0x18) = arg7;
 }
 
+#pragma push
+#pragma opt_propagation off
 void func_0211a698(u32 arg0, u32 count, u32 arg2) {
-    u32 i;
-    u32 n = count;
+    u32 i = 0;
 
     data_021701cc[2] = arg0;
-    data_021701cc[1] = n;
+    data_021701cc[1] = count;
     data_021701cc[0] = arg2;
-    for (i = 0; i < n; i++) {
+    if (count == 0) {
+        return;
+    }
+    do {
         u8 *p = (u8 *)arg0 + i * 0x30;
         func_02118e68(p);
         *(u32 *)(p + 0xc) = 0;
@@ -258,41 +262,40 @@ void func_0211a698(u32 arg0, u32 count, u32 arg2) {
         *(u32 *)(p + 0x24) = 0;
         *(u32 *)(p + 0x28) = 0;
         *(u32 *)(p + 0x2c) = 0;
+        i++;
+    } while (i < count);
+}
+#pragma opt_propagation off
+void func_0211a700(void) {
+    u32 i;
+    s32 j;
+    u8 *p;
+    u32 base;
+    u32 kind;
+    s32 flag;
+    s32 value;
+    for (i = 0; i < data_021701cc[1]; i++) {
+        p = (u8 *)data_021701cc[2] + i * 0x30;
+        if (*(u32 *)(p + 0x1c) != 0) {
+            for (j = 0; j < 3; j++) {
+                flag = 0;
+                if ((*(u32 *)(p + 0x24) & (1 << j)) && (*(u32 *)(p + 0x20) & (1 << j))) {
+                    flag = 1;
+                }
+                if (flag) {
+                    kind = data_02144d9c[j];
+                    base = j == 0 ? *(u32 *)(p + 0x14) : *(u32 *)(p + 0x10);
+                    value = func_02118e8c(p, j);
+                    if (((s32 (*)(u32, s32, u32, u32))data_021701cc[0])(kind, value, base + *(u32 *)(p + 0x28), *(u32 *)(p + 0x2c)) != 0) {
+                        *(u32 *)(p + 0x24) &= ~(1 << j);
+                    }
+                }
+            }
+            *(u32 *)(p + 0x20) = 0;
+        }
     }
 }
-
-#pragma optimization_level 2
-void func_0211a700(void) {
-u32 i;
-s32 j;
-u8 *p;
-u32 base;
-u32 kind;
-s32 flag;
-s32 value;
-i=0;
-if(i>=data_021701cc[1]) return;
-do {
-p=(u8 *)data_021701cc[2]+i*0x30;
-if(*(u32 *)(p+0x1c)!=0){
-j=0;
-if(j<3) do {
-flag=0;
-if((*(u32 *)(p+0x24)&(1<<j)) && (*(u32 *)(p+0x20)&(1<<j))) flag=1;
-if(flag){
-kind=data_02144d9c[j];
-base=j==0 ? *(u32 *)(p+0x14) : *(u32 *)(p+0x10);
-value=func_02118e8c(p,j);
-if(((s32 (*)(u32,s32,u32,u32))data_021701cc[0])(kind,value,base+*(u32 *)(p+0x28),*(u32 *)(p+0x2c))!=0) *(u32 *)(p+0x24)&=~(1<<j);
-}
-j++;
-} while(j<3);
-*(u32 *)(p+0x20)=0;
-}
-i++;
-} while(i<data_021701cc[1]);
-}
-#pragma optimization_level 4
+#pragma opt_propagation on
 void func_0211a7ec(s32 arg0, u32 arg1, u32 arg2) {
     u8 *p = func_0211a5e4(arg0);
     *(u32 *)(p + 0x24) = -1;
