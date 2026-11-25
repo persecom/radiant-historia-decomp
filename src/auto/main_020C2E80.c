@@ -224,8 +224,9 @@ void func_020c32e8(void *arg0, s16 arg1, u8 arg2) {
         func_021167f0((void **)(data_02160090 + 0x60), node);
     } else {
         *(u16 *)node = *(s16 *)node + arg1;
-        if (*(s16 *)node > 0x32) {
-            *(s16 *)node -= 0x32;
+        s32 count = *(volatile s16 *)node;
+        if (count > 0x32) {
+            *(s16 *)node = count - 0x32;
             if (data_02160090[0x80] != 1) {
                 u8 *p = (u8 *)func_020c2584(arg0, 0);
                 p[0] = arg2;
