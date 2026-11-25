@@ -56,25 +56,23 @@ void func_02006c38(u8 *arg0, u32 arg1) {
     u32 cookie = func_02008128();
     u32 flag = 0;
     u32 list = data_0215ce00[1];
-    u32 cnt;
-    if (arg1 != 0 && arg1 != (*(u32 *)(arg0 + 0xc) & 0xff000000)) {
+    if (arg1 != 0 && arg1 != (*(volatile u32 *)(arg0 + 0xc) & 0xff000000)) {
         func_0200813c(cookie);
         return;
     }
-    cnt = *(u32 *)(arg0 + 0xc);
-    switch (cnt & 0xff000000) {
+    switch (*(u32 *)(arg0 + 0xc) & 0xff000000) {
     case 0x10000000:
     case 0x30000000:
-        if (*(u32 *)(arg0 + 8) != list) {
-            goto done;
+        if (*(u32 *)(arg0 + 8) == list) {
+            *(u32 *)(arg0 + 0xc) = (*(u32 *)(arg0 + 0xc) & 0xff000000) | ((*(volatile u32 *)(arg0 + 0xc) - 1) & ~0xff000000u);
+            if ((*(u32 *)(arg0 + 0xc) & ~0xff000000u) == 0) {
+                flag = 1;
+            }
         }
-        cnt = *(u32 *)(arg0 + 0xc);
-        goto do_count;
+        break;
     case 0x20000000:
-    do_count:
-        cnt = ((cnt - 1) & ~0xff000000u) | (cnt & 0xff000000);
-        *(u32 *)(arg0 + 0xc) = cnt;
-        if ((cnt & ~0xff000000u) == 0) {
+        *(u32 *)(arg0 + 0xc) = (*(u32 *)(arg0 + 0xc) & 0xff000000) | ((*(u32 *)(arg0 + 0xc) - 1) & ~0xff000000u);
+        if ((*(u32 *)(arg0 + 0xc) & ~0xff000000u) == 0) {
             flag = 1;
         }
         break;
@@ -82,7 +80,6 @@ void func_02006c38(u8 *arg0, u32 arg1) {
         func_0200813c(cookie);
         return;
     }
-done:
     if (flag != 0) {
         func_02006d34((u8 *)list, arg0);
         *(u32 *)(arg0 + 8) = 0;
@@ -411,22 +408,29 @@ void func_020075d4(s32 arg0, u32 arg1, s32 arg2) {
     func_02007538(arg0, arg2 | (arg1 & mask) | 1);
 }
 
-void func_020075fc(void) {
-    s32 inRange = 0;
-    u32 v = *(volatile u32 *)0x02fffd9c;
-    data_0215d084[2] = v;
-    if (v >= 0x02600000 && v < 0x02800000) {
-        inRange = 1;
-    }
-    if (!inRange) {
-        v = 0;
-    }
-    data_0215d084[0] = v;
-    if (v == 0) {
-        *(volatile u32 *)0x02fffd9c = (u32)func_02007674;
-        *(volatile u32 *)0x027ffd9c = (u32)func_02007674;
-    }
-    data_0215d084[3] = 0;
+void func_020075fc(void)
+{
+  u32 *new_var;
+  s32 inRange = 0;
+  u32 v = *((u32 *) 0x02fffd9c);
+  data_0215d084[2] = v & 0xFFFFFFFFFFFFFFFFu;
+  if ((v >= 0x02600000) && (v < 0x02800000))
+  {
+    inRange = 1;
+  }
+  if (!inRange)
+  {
+    v = 0;
+  }
+  data_0215d084[0] = v;
+  if (v == 0)
+  {
+    u32 addr;
+    *((u32 *) 0x02fffd9c) = (u32) func_02007674;
+    new_var = (u32 *) (addr & (~0x800000));
+    *new_var = (u32) func_02007674;
+  }
+  data_0215d084[3] = 0;
 }
 
 extern u32 data_0215d084[3];
