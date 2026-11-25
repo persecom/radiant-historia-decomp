@@ -58,6 +58,7 @@ extern u32 data_02162834[];
 extern void func_02002128(Vec3 *, void *, void *);
 extern s32 func_02002080(s32, u32);
 extern void func_021167ac(void *, s32);
+typedef struct { u8 *ptr; } Slot_020f4928;
 extern void *data_02160c60[];
 extern void *data_02160c54[];
 s32 func_020f46a0(u16 arg0) {
@@ -127,7 +128,7 @@ void func_020f4928(void) {
 
     ((u8 **)data_02160c3c)[4] = func_0210c594(0x14, data_02155c3c);
     p = func_0210c594(0xc, data_02155c3c);
-    func_021167ac((*(u8 *volatile *)data_02160c3c = p), 0x4c);
+    func_021167ac((void *)((u32)(*(u32 *volatile *)data_02160c3c = (u32)p)), 0x4c);
     p = func_0210c594(0xc, data_02155c3c);
     ((u8 **)data_02160c3c)[2] = p;
     func_021167ac(p, 0x38);
