@@ -435,50 +435,64 @@ if(*(s32 *)(p+4)<0x30000) *(s32 *)(p+4)=0x30000;
 func_020f4668(p);
 }
 
-void func_020d9a08(void) {
-    u8 *p = data_02160258;
-    s32 pos[3];
-    s16 timer;
-
-    pos[0] = *(s32 *)(p + 0);
-    pos[1] = *(s32 *)(p + 4);
-    pos[2] = *(s32 *)(p + 8);
-    timer = *(s16 *)(p + 0x76);
-    if (timer != 0) {
-        if (timer == -1) {
-            s32 idx = ((s32)data_02151fc8 >> 4) * 2;
-            s32 cosv = data_0213a394[idx + 1];
-            s32 dx = (*(u16 *)(p + 0x78) != 0) ? (s32)Rand16_020d9a08(data_0216263c, *(u16 *)(p + 0x78) * 2) - *(u16 *)(p + 0x78) : 0;
-            s32 sinv;
-            s32 dz;
-            pos[0] += cosv * dx;
-            sinv = data_0213a394[idx];
-            dz = (*(u16 *)(p + 0x78) != 0) ? (s32)Rand16_020d9a08(data_0216263c, *(u16 *)(p + 0x78) * 2) - *(u16 *)(p + 0x78) : 0;
-            pos[2] += sinv * dz;
-        } else {
-            if (*(u16 *)(p + 0x78) == 0) {
-                s32 idx = ((s32)data_02151fc8 >> 4) * 2;
-                s32 cosv = data_0213a394[idx + 1];
-                s32 dx = (timer != 0) ? (s32)Rand16_020d9a08(data_0216263c, timer * 2) - *(s16 *)(p + 0x76) : 0;
-                s32 sinv;
-                s32 dz;
-                pos[0] += cosv * dx;
-                sinv = data_0213a394[idx];
-                dz = (*(s16 *)(p + 0x76) != 0) ? (s32)Rand16_020d9a08(data_0216263c, *(s16 *)(p + 0x76) * 2) - *(s16 *)(p + 0x76) : 0;
-                pos[2] += sinv * dz;
-            } else {
-                s32 idx = ((s32)data_02151fc8 >> 4) * 2;
-                s32 cosv = data_0213a394[idx + 1];
-                s32 dx = (*(u16 *)(p + 0x78) != 0) ? (s32)Rand16_020d9a08(data_0216263c, *(u16 *)(p + 0x78) * 2) - *(u16 *)(p + 0x78) : 0;
-                s32 sinv;
-                s32 dz;
-                pos[0] += cosv * dx;
-                sinv = data_0213a394[idx];
-                dz = (*(u16 *)(p + 0x78) != 0) ? (s32)Rand16_020d9a08(data_0216263c, *(u16 *)(p + 0x78) * 2) - *(u16 *)(p + 0x78) : 0;
-                pos[2] += sinv * dz;
-            }
-            (*(s16 *)(p + 0x76))--;
-        }
+void func_020d9a08(void)
+{
+  u8 *p = data_02160258;
+  u8 *new_var2;
+  s32 pos[3];
+  int new_var;
+  s16 timer;
+  pos[0] = *((s32 *) (p + 0));
+  pos[1] = *((s32 *) (p + 4));
+  pos[2] = *((s32 *) (p + 8));
+  timer = *((s16 *) (p + 0x76));
+  if (timer != 0)
+  {
+    if (timer == (-1))
+    {
+      s32 idx = (((s32) data_02151fc8) >> 4) * 2;
+      s32 cosv = data_0213a394[((((s32) data_02151fc8) >> 4) * 2) + 1];
+      s32 dx = ((*((u16 *) (p + 0x78))) != 0) ? (((s32) Rand16_020d9a08(data_0216263c, (*((u16 *) (p + 0x78))) * 2)) - (*((u16 *) (p + 0x78)))) : (0);
+      s32 sinv;
+      s32 dz;
+      pos[0] += cosv * dx;
+      sinv = data_0213a394[idx];
+      dz = ((*((u16 *) (p + 0x78))) != 0) ? (((s32) Rand16_020d9a08(data_0216263c, (*((u16 *) (p + 0x78))) * 2)) - (*((u16 *) (p + 0x78)))) : (0);
+      pos[2] += sinv * dz;
     }
-    func_020f4668(pos);
+    else
+    {
+      new_var = 1;
+      if ((*((u16 *) (p + 0x78))) == 0)
+      {
+        s32 idx = (((s32) data_02151fc8) >> 4) * 2;
+        s32 cosv = data_0213a394[((((s32) data_02151fc8) >> 4) * 2) + new_var];
+        s32 dx = (timer != 0) ? (((s32) Rand16_020d9a08(data_0216263c, timer * 2)) - (*((s16 *) (p + 0x76)))) : (0);
+        s32 sinv;
+        s32 dz;
+        pos[0] += cosv * dx;
+        sinv = data_0213a394[idx];
+        dz = ((*((s16 *) (p + 0x76))) != 0) ? (((s32) Rand16_020d9a08(data_0216263c, (*((s16 *) (p + 0x76))) * 2)) - (*((s16 *) (p + 0x76)))) : (0);
+        pos[2] += sinv * dz;
+      }
+      else
+      {
+        s32 idx = (((s32) data_02151fc8) >> 4) * 2;
+        s32 cosv = data_0213a394[((((s32) data_02151fc8) >> 4) * 2) + new_var];
+        s32 dx = ((*((u16 *) (p + 0x78))) != 0) ? (((s32) Rand16_020d9a08(data_0216263c, (*((u16 *) (p + 0x78))) * 2)) - (*((u16 *) (p + 0x78)))) : (0);
+        s32 sinv;
+        s32 dz;
+        pos[0] += cosv * dx;
+        sinv = data_0213a394[idx];
+        dz = ((*((u16 *) (p + 0x78))) != 0) ? (((s32) Rand16_020d9a08(data_0216263c, (*((u16 *) (p + 0x78))) * 2)) - (*((u16 *) (p + 0x78)))) : (0);
+        pos[2] += sinv * dz;
+      }
+      new_var2 = p + 0x76;
+      (*((s16 *) new_var2))--;
+    }
+    if (new_var)
+    {
+    }
+  }
+  func_020f4668(pos);
 }
