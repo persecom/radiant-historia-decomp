@@ -380,7 +380,10 @@ src/auto/main_02065298.c:
     .text start:0x02065298 end:0x02065e78
 
 src/auto/main_02065E78.c:
-    .text start:0x02065e78 end:0x02066d84
+    .text start:0x02065e78 end:0x0206643c
+
+src/auto/main_0206643C.c:
+    .text start:0x0206643c end:0x02066d84
 
 src/auto/main_02066D84.c:
     .text start:0x02066d84 end:0x0206713c
