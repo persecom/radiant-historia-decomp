@@ -545,6 +545,8 @@ s32 func_0212c54c(u32 arg0) {
     return func_0212ea3c() == 1 ? 2 : 1;
 }
 
+void func_0212c56c(void) { if (data_02173df4[4] == 0) { func_02129bd8(); {struct {u32 words[180];} zero={0}; memcpy(data_02173e08,&zero,720);} } data_02173df4[4]++; }
+
 s32 func_0212c7b0(s8 *arg0) {
     return arg0[1];
 }
@@ -578,16 +580,12 @@ void func_0212c808(u8 *arg0) {
 }
 
 #pragma optimize_for_size off
-extern void *memset(void *, int, unsigned int);
+extern void *memset(void *, int, unsigned long);
 #pragma intrinsics on
 void func_0212c5cc(void) {
-    extern u32 data_02173df4[5];
-    u32 volatile *p = (u32 volatile *)((u8 *)data_02173df4 + 0x10);
-    *p = *p - 1;
-    if (*p != 0) {
-        return;
-    }
-    memset((u32 *)data_02173e08, 0, 0x2d0);
+ volatile u32 *p=data_02173df4;
+ p[4]--;
+ if(p[4]==0) {u32 zero[180]={0}; memcpy(data_02173e08,zero,sizeof zero);}
 }
 void func_0212c624(void *arg0) {
     u8 *p = (u8 *)arg0;
