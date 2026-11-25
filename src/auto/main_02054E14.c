@@ -254,21 +254,13 @@ void func_02055564(u8 *p, s32 speed) {
     s32 dx, dz;
     config[8] = 1;
     *(u16 *)(p + 0x92) = func_020ddc8c(p, p+0x24);
-    angle = *(u16 *)(p + 0x92);
-    angle = (angle % 65536) >> 4;
-    CopyVec_0205530c(&pos, (Vec_0205530c *)p);
-    CopyVec_0205530c(&next, &pos);
-    dz = speed * data_0213a394[angle * 2 + 1];
-    dx = speed * data_0213a394[angle * 2];
-    next.x += dx;
-    next.z += dz;
-    *(s32 *)(p+0x38) = dz;
-    *(s32 *)(p+0x30) = dx;
-    CopyVec_0205530c((Vec_0205530c *)(p+0xc), &pos);
-    CopyVec_0205530c((Vec_0205530c *)(p+0xd4), &pos);
-    SetVec_0205530c((Vec_0205530c *)(p+0xe0), next.x, *(s32 *)(p+4), next.z);
+    *(s32 *)(p+0x30) = speed * Sin_0205530c(*(u16 *)(p+0x92));
+    *(s32 *)(p+0x38) = speed * Cos_0205530c(*(u16 *)(p+0x92));
+    CopyVec_0205530c((Vec_0205530c *)(p+0xc), (Vec_0205530c *)p);
+    CopyVec_0205530c((Vec_0205530c *)(p+0xd4), (Vec_0205530c *)p);
+    SetVec_0205530c((Vec_0205530c *)(p+0xe0), *(s32 *)p + *(s32 *)(p+0x30), *(s32 *)(p+4), *(s32 *)(p+8) + *(s32 *)(p+0x38));
     if (*(u16 *)(p + 0x8e) < 700) func_020477dc(p, 1, 1);
-    else func_020477dc(p, 0, 1);
+    else func_020477dc(p, zero, 1);
     if (*(u32 *)(p + 0xac) & 1) {
         u8 *other;
         *(u16 *)(*(u8 **)(p + 0xb0) + 4) = zero;
