@@ -461,7 +461,7 @@ parse_set:
         ch = *++f;
         st.inv = 1;
         if (ch == '^') { f++; ch = *f; st.inv = 0; }
-        if (ch == ']') { st.bits[(u32)(u8)ch >> 5] |= 1U << (ch & 31); f++; }
+        if (ch == ']') { bits[(u32)(u8)ch >> 5] |= 1U << (ch & 31); f++; }
         while (*f != 0 && *f != ']') {
             ch = *f;
             if (ch == '-' && i != 0 && f[1] != ']') {
