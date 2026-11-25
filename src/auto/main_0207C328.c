@@ -123,19 +123,12 @@ u32 func_0207c578(void) {
 }
 
 void func_0207c5d8(void) {
-    u8 *node = *(u8 **)((u8 *)data_021600f0 + 8);
-    u8 *result = func_02047820(*(u16 *)(node + 0x14));
-    u32 v;
-    if (result == NULL) {
-        *(u8 *)node = 0;
-        return;
-    }
-    if (*(u8 *)node == 0) return;
-    if (*(u16 *)(node + 2) != 0) return;
-    v = 0x18;
-    *(u16 *)(node + 2) = v;
-    func_0206e8f0(0x11, result, 2);
-    (*(u16 *)(node + 2))--;
+u8 *node=*(u8 **)((u8 *)data_021600f0+8);
+u8 *result=func_02047820(*(u16 *)(node+0x14));
+if(result==NULL){*node=0;return;}
+if(*node==0)return;
+if(*(u16 *)(node+2)==0){*(u16 *)(node+2)=0x18;func_0206e8f0(0x11,result,2);}
+(*(u16 *)(node+2))--;
 }
 
 s32 func_0207c640(void) {
