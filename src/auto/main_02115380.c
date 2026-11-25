@@ -116,13 +116,9 @@ void *func_0211543c(void *arg0, u32 arg1, void *arg2, u32 arg3, u32 arg4) {
 
 s32 func_021154a4(void *arg0) {
     s32 ret;
-    if (!func_021172b4(*(void **)arg0, *(u16 *)((u8 *)arg0 + 0xc))) {
-        return -1;
-    }
-    ret = func_02115630(arg0);
-    if (ret != 0) {
-        return *(u16 *)((u8 *)arg0 + 0xc) - 1;
-    }
+    if (!func_021172b4(*(void **)arg0, *(u16 *)((u8 *)arg0 + 0xc))) return -1;
+    if (func_02115630(arg0) != 0) return *(u16 *)((u8 *)arg0 + 0xc) - 1;
+    ret = 0;
     func_02117304(*(void **)arg0, ret);
     return ret - 1;
 }
@@ -391,12 +387,13 @@ void *func_02115b7c(void *arg0, void *arg1, s32 arg2) {
 }
 
 #pragma opt_propagation off
+#pragma scheduling off
 void *func_02115be8(void *arg0,void *arg1,s32 arg2) {
 u32 total; u8 *p=func_02115264(arg0); u32 size; void *ctx;
 if(!p) {
 ctx=0;
-if((s32)func_0211519c(arg0,&data_0216cad4,(void *)0x3c,0)!=0x3c)return 0;
-size=((u32 *)&data_0216cad4)[14]*4;total=size*2;
+if((s32)func_0211519c(arg0,data_0216cad4.header,(void *)0x3c,0)!=0x3c)return 0;
+size=data_0216cad4.count*4;total=size*2;
 if(!arg1)return 0;
 if(arg2)ctx=func_02114f70();
 p=func_0211543c(arg1,total+0x5c,func_02115df0,(u32)ctx,(u32)arg0);
@@ -409,6 +406,7 @@ if(arg2)func_0211528c(arg0,p);
 }
 return p;
 }
+#pragma scheduling on
 #pragma opt_propagation on
 void func_02115d10(void *arg0, s32 arg1, s32 arg2)
 {
@@ -450,14 +448,16 @@ void func_02115df0(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     func_0200a2e0(arg0);
 }
 
+#pragma peephole off
 void func_02115e10(s32 arg0, s32 arg1, void *arg2, s32 arg3) {
     if (func_0200a530(arg2, arg3) != arg0) {
-        return;
+        goto quit;
     }
     func_0200a4fc(arg2, arg3, 0);
     func_02009760((void *)arg0, (void *)(arg0 + arg1));
+quit:
+    return;
 }
-
 extern s32 func_0200a4f4(void *);
 s32 func_02115e58(s32 arg0, u16 arg1, s32 arg2, s32 arg3) {
     u8 *obj = (u8 *)arg0;
