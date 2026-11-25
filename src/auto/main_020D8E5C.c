@@ -1,5 +1,6 @@
 /* 22 functions from 0x020D8E5C to 0x020D9E48 (main), found by ds-decomp. */
 #include "common.h"
+typedef union { u64 pair; struct { u32 low, high; } words; } Pair_020d9058;
 
 extern u16 data_02151fc8;
 extern u16 data_02151fca;
@@ -270,7 +271,10 @@ void func_020d91bc(s32 arg0) {
 }
 
 void func_020d93b8(void) {
-u8 *p=data_02160258;
+u8 **pp=&data_02160258;
+u8 *p=*pp;
+register u32 *rng=data_0216263c;
+register const s16 *trig=data_0213a394;
 s32 zero=0;
 s16 timer;
 if(*(s32 *)(p+0x5c)==1) return;
@@ -279,7 +283,7 @@ case 2:goto smooth;
 case 3: {
 u8 *q;
 func_020d9ea8(zero,zero);
-q=data_02160258;
+q=*pp;
 {
 s32 dx=(*(s32 *)q-*(s32 *)(q+12))/5;
 s32 dz;
@@ -314,7 +318,7 @@ break;
 case 5: {
 u8 *q;
 func_020d9ea8(zero,zero);
-q=data_02160258;
+q=*pp;
 {
 s32 dx=(*(s32 *)q-*(s32 *)(q+12))/5;
 s32 dz;
@@ -325,7 +329,7 @@ dz=(*(s32 *)(q+8)-*(s32 *)(q+20))/5;
 break;
 }
 case 6: {
-u8 *q;func_020d9ea8(zero,zero);q=data_02160258;
+u8 *q;func_020d9ea8(zero,zero);q=*pp;
 *(s32 *)q-=(*(s32 *)q-*(s32 *)(q+12))/8;
 *(s32 *)(q+8)-=(*(s32 *)(q+8)-*(s32 *)(q+20))/8;
 *(s32 *)(q+4)-=(*(s32 *)(q+4)-*(s32 *)(q+16))/4;
@@ -336,7 +340,7 @@ s32 dy=*(s32 *)(p+4)-*(s32 *)(p+16);
 u8 *q;
 if(dy<0x1000) *(s32 *)(p+4)=*(s32 *)(p+16);
 else *(s32 *)(p+4)-=dy>>2;
-q=data_02160258;
+q=*pp;
 {
 s32 dx=(*(s32 *)q-*(s32 *)(q+12))/5;
 s32 dz;
@@ -388,34 +392,34 @@ if(data_02151fc8>0x8000) data_02151fc8=0x8000;
     if (timer != 0) {
         if (timer == -1) {
             s32 idx = ((s32)data_02151fc8 >> 4) * 2;
-            s32 cosv = data_0213a394[idx + 1];
-            s32 dx = (*(u16 *)(p + 0x78) != 0) ? (s32)Rand16_020d9a08(data_0216263c, *(u16 *)(p + 0x78) * 2) - *(u16 *)(p + 0x78) : 0;
+            s32 cosv = trig[idx + 1];
+            s32 dx = (*(u16 *)(p + 0x78) != 0) ? (s32)Rand16_020d9a08(rng, *(u16 *)(p + 0x78) * 2) - *(u16 *)(p + 0x78) : 0;
             s32 sinv;
             s32 dz;
             *(s32 *)(p+0) += cosv * dx;
-            sinv = data_0213a394[idx];
-            dz = (*(u16 *)(p + 0x78) != 0) ? (s32)Rand16_020d9a08(data_0216263c, *(u16 *)(p + 0x78) * 2) - *(u16 *)(p + 0x78) : 0;
+            sinv = trig[idx];
+            dz = (*(u16 *)(p + 0x78) != 0) ? (s32)Rand16_020d9a08(rng, *(u16 *)(p + 0x78) * 2) - *(u16 *)(p + 0x78) : 0;
             *(s32 *)(p+8) += sinv * dz;
         } else {
             if (*(u16 *)(p + 0x78) == 0) {
                 s32 idx = ((s32)data_02151fc8 >> 4) * 2;
-                s32 cosv = data_0213a394[idx + 1];
-                s32 dx = (timer != 0) ? (s32)Rand16_020d9a08(data_0216263c, timer * 2) - *(s16 *)(p + 0x76) : 0;
+                s32 cosv = trig[idx + 1];
+                s32 dx = (timer != 0) ? (s32)Rand16_020d9a08(rng, timer * 2) - *(s16 *)(p + 0x76) : 0;
                 s32 sinv;
                 s32 dz;
                 *(s32 *)(p+0) += cosv * dx;
-                sinv = data_0213a394[idx];
-                dz = (*(s16 *)(p + 0x76) != 0) ? (s32)Rand16_020d9a08(data_0216263c, *(s16 *)(p + 0x76) * 2) - *(s16 *)(p + 0x76) : 0;
+                sinv = trig[idx];
+                dz = (*(s16 *)(p + 0x76) != 0) ? (s32)Rand16_020d9a08(rng, *(s16 *)(p + 0x76) * 2) - *(s16 *)(p + 0x76) : 0;
                 *(s32 *)(p+8) += sinv * dz;
             } else {
                 s32 idx = ((s32)data_02151fc8 >> 4) * 2;
-                s32 cosv = data_0213a394[idx + 1];
-                s32 dx = (*(u16 *)(p + 0x78) != 0) ? (s32)Rand16_020d9a08(data_0216263c, *(u16 *)(p + 0x78) * 2) - *(u16 *)(p + 0x78) : 0;
+                s32 cosv = trig[idx + 1];
+                s32 dx = (*(u16 *)(p + 0x78) != 0) ? (s32)Rand16_020d9a08(rng, *(u16 *)(p + 0x78) * 2) - *(u16 *)(p + 0x78) : 0;
                 s32 sinv;
                 s32 dz;
                 *(s32 *)(p+0) += cosv * dx;
-                sinv = data_0213a394[idx];
-                dz = (*(u16 *)(p + 0x78) != 0) ? (s32)Rand16_020d9a08(data_0216263c, *(u16 *)(p + 0x78) * 2) - *(u16 *)(p + 0x78) : 0;
+                sinv = trig[idx];
+                dz = (*(u16 *)(p + 0x78) != 0) ? (s32)Rand16_020d9a08(rng, *(u16 *)(p + 0x78) * 2) - *(u16 *)(p + 0x78) : 0;
                 *(s32 *)(p+8) += sinv * dz;
             }
             (*(s16 *)(p + 0x76))--;
