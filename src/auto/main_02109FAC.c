@@ -104,67 +104,73 @@ u32 func_0210a080(const s8 *s, u32 mask) {
  return c&(mask-1);
 }
 
+#pragma opt_propagation off
 s32 func_0210a0f4(s32 arg0, void *out1, void *out2) {
-    u8 buf[8];
-    u8 *e = buf;
+    typedef union {
+        u8 b[8];
+        struct {
+            u32 flag : 1;
+            u32 a : 25;
+            u32 off_lo : 6;
+            u32 off_hi : 16;
+        } s;
+    } Entry;
+    Entry u;
+    Entry *e = &u;
     const u8 *name = (const u8 *)arg0;
-    u32 len, idx, w0, flag;
+    s32 len;
+    u32 idx;
     u8 *table, *ent;
-    u32 result = 0;
+    s32 result = 0;
 
-    e[6] = 0;
-    e[7] = 0;
+    e->b[6] = 0;
+    e->b[7] = 0;
     len = func_02016da4((const char *)name);
     idx = func_0210a080((const s8 *)name, *(u32 *)data_02162578);
     table = *(u8 **)(data_02162578 + 4);
     ent = table + 8 + idx * 6;
-    e[0] = ent[0];
-    e[1] = ent[1];
-    e[2] = ent[2];
-    e[3] = ent[3];
-    e[4] = ent[4];
-    e[5] = ent[5];
-    w0 = *(u32 *)e;
-    flag = (w0 << 31) >> 31;
-    if (flag == 0) {
-        u32 w1 = *(u32 *)(e + 4);
-        u32 a = (w0 << 6) >> 7;
-        u32 b = w1 << 16;
-        *(u32 *)out2 = a << 2;
-        *(u32 *)out1 = (b >> 10) + (w0 >> 26);
-        goto done;
-    }
-    {
-        u8 *list = table + ((w0 << 6) >> 7);
-        s32 count = *list;
-        u32 w1 = *(u32 *)(e + 4);
-        u32 offset = ((w1 << 16) >> 10) + (w0 >> 26);
-        s32 i = result;
-        u8 *p = list + 1;
-        s32 matched = 0;
+    e->b[0] = ent[0];
+    e->b[1] = ent[1];
+    e->b[2] = ent[2];
+    e->b[3] = ent[3];
+    e->b[4] = ent[4];
+    e->b[5] = ent[5];
+    if (e->s.flag == 0) {
+        *(u32 *)out2 = e->s.a << 2;
+        *(u32 *)out1 = e->s.off_lo + (e->s.off_hi << 6);
+    } else {
+        s32 i;
+        u8 *p;
+        u8 *data;
+        s32 count;
+        s32 matched;
+        u32 offset;
+        u8 *list = table + e->s.a;
+        count = *list;
+        offset = e->s.off_lo + (e->s.off_hi << 6);
+        matched = 0;
+        i = 0;
+        p = list + 1;
         if (count > 0) {
-            for (;;) {
-                u8 *data = p;
-                u8 *pat = p + 4;
-                if (i != 0) pat += 4;
-                {
-                    u8 c = *pat;
-                    s32 ok = 1;
-                    while (c != 0) {
-                        u8 j = pat[1];
-                        if (len <= j) {
-                            ok = 0;
-                        } else {
-                            u8 ch = name[j];
-                            if (ch == '\\') ch = '/';
-                            if (ch >= 'A' && ch <= 'Z') ch = (ch + 0x20) & 0xff;
-                            if (ch != c) ok = 0;
-                        }
-                        pat += 2;
-                        c = *pat;
+            do {
+                data = p;
+                p += 4;
+                if (i != 0) p += 4;
+                matched = 1;
+                while (*p != 0) {
+                    u8 c = *p;
+                    u8 j = p[1];
+                    if (len > j) {
+                        u8 ch = name[j];
+                        if (ch == '\\') ch = '/';
+                        if (ch >= 'A' && ch <= 'Z') ch = (ch + 0x20) & 0xff;
+                        if (ch != c) matched = 0;
+                    } else {
+                        matched = 0;
                     }
-                    matched = ok;
+                    p += 2;
                 }
+                p++;
                 if (matched != 0) {
                     u32 a = data[0] + (data[1] << 8) + (data[2] << 16) + (data[3] << 24);
                     if (i != 0) {
@@ -174,17 +180,14 @@ s32 func_0210a0f4(s32 arg0, void *out1, void *out2) {
                     *(u32 *)out1 = offset;
                     break;
                 }
-                p = pat + 1;
-                i += 1;
-                if (i >= count) break;
-            }
-            if (matched == 0) result = 1;
+                i++;
+            } while (i < count);
         }
+        if (matched == 0) result = 1;
     }
-done:
     return result;
 }
-
+#pragma opt_propagation on
 void func_0210a2f0(u8 *p) {
     u32 zero = 0;
     *(u32 *)p = ~zero;
