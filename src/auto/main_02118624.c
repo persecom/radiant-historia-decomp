@@ -5,7 +5,7 @@ typedef struct { u16 width,height; u32 format,type,unkC,size; void *data; } Unk0
 typedef struct { u32 unk[3]; u32 height,width,format,zero,one,type; } Unk02118A54Out;
 static inline void init_02118a54(Unk02118A54Out *p, u32 format, u32 zero, u32 type) { p->format=format; p->zero=zero; p->one=1; p->type=type; }
 static inline s32 has_02118f24_data(u8 *p) { s32 r = 1; if (!*(void **)(p + 12)) r = 0; return r; }
-static inline s32 has_02118f24_handle(u8 *p) { s32 r = 1; if (*(s32 *)(p + 0x38) == -1) r = 0; return r; }
+static inline s32 has_02118f24_handle(u8 *p) { return *(s32 *)(p + 0x38) != -1; }
 
 extern void func_02117df4(void *);
 extern s32 func_02117d80(void *);
@@ -61,170 +61,104 @@ void func_02118624(void *arg0, u32 arg1, s32 arg2, void *arg3) {
             break;
     }
 
-    if (*(u32 *)((u8 *)arg0 + 8) == 0) {
-        u32 val;
-        switch (*(u16 *)((u8 *)arg0 + 2)) {
-            case 1: val = 0; break;
-            case 2: val = 1; break;
-            case 4: val = 2; break;
-            case 8: val = 3; break;
-            case 16: val = 4; break;
-            case 32: val = 5; break;
-            default: val = 0; break;
+    {
+        s32 width, height;
+        if (*(u32 *)((u8 *)arg0 + 8) == 0) {
+            switch (*(u16 *)((u8 *)arg0 + 2)) {
+                case 1: width = 0; break;
+                case 2: width = 1; break;
+                case 4: width = 2; break;
+                case 8: width = 3; break;
+                case 16: width = 4; break;
+                case 32: width = 5; break;
+                default: width = 0; break;
+            }
+            height = *(u16 *)((u8 *)arg0 + 0);
+            *(u32 *)((u8 *)arg3 + 0xc) = width;
+            switch (height) {
+                case 1: height = 0; break;
+                case 2: height = 1; break;
+                case 4: height = 2; break;
+                case 8: height = 3; break;
+                case 16: height = 4; break;
+                case 32: height = 5; break;
+                default: height = 0; break;
+            }
+            *(u32 *)((u8 *)arg3 + 0x10) = height;
+        } else {
+            width = *(u16 *)((u8 *)arg0 + 2);
+            height = *(u16 *)((u8 *)arg0 + 0);
+            *(u32 *)((u8 *)arg3 + 0xc) = width;
+            *(u32 *)((u8 *)arg3 + 0x10) = height;
         }
-        *(u32 *)((u8 *)arg3 + 0xc) = val;
-
-        switch (*(u16 *)((u8 *)arg0 + 0)) {
-            case 1: val = 0; break;
-            case 2: val = 1; break;
-            case 4: val = 2; break;
-            case 8: val = 3; break;
-            case 16: val = 4; break;
-            case 32: val = 5; break;
-            default: val = 0; break;
-        }
-        *(u32 *)((u8 *)arg3 + 0x10) = val;
-    } else {
-        *(u32 *)((u8 *)arg3 + 0xc) = *(u16 *)((u8 *)arg0 + 2);
-        *(u32 *)((u8 *)arg3 + 0x10) = *(u16 *)((u8 *)arg0 + 0);
     }
 
-    *(u32 *)((u8 *)arg3 + 0x14) = *(u32 *)((u8 *)arg0 + 4);
-    *(u32 *)((u8 *)arg3 + 0x18) = zero;
-    *(u32 *)((u8 *)arg3 + 0x1c) = 1;
-    *(u32 *)((u8 *)arg3 + 0x20) = *(u32 *)((u8 *)arg0 + 8);
-    func_021185b0((s32 *)arg3, arg2, (s32)arg1);
+    {
+        u32 fmt = *(u32 *)((u8 *)arg0 + 4);
+        u32 mapping = *(u32 *)((u8 *)arg0 + 8);
+        *(u32 *)((u8 *)arg3 + 0x14) = fmt;
+        *(u32 *)((u8 *)arg3 + 0x18) = zero;
+        *(u32 *)((u8 *)arg3 + 0x1c) = 1;
+        *(u32 *)((u8 *)arg3 + 0x20) = mapping;
+        func_021185b0((s32 *)arg3, arg2, (s32)arg1);
+    }
 }
 
-void func_0211883c(void *arg0, u32 arg1, u32 arg2, void *arg3)
-{
-    typedef struct {
-        u16 height;
-        u16 width;
-        u32 format;
-        u32 mapping;
-        u32 characterFormat;
-        u32 size;
-        void *data;
-    } CharacterData;
-
-    typedef struct {
-        u32 location[3];
-        u32 width;
-        u32 height;
-        u32 format;
-        u32 extendedPalette;
-        u32 paletteMode;
-        u32 mapping;
-    } ImageProxy;
-
-    CharacterData *data = (CharacterData *)arg0;
-    ImageProxy *proxy = (ImageProxy *)arg3;
-    u32 mapping = data->mapping;
+void func_0211883c(void *arg0, u32 arg1, u32 arg2, void *arg3) {
+    const Unk02118A54 *p = arg0;
+    Unk02118A54Out *out = arg3;
+    u32 mapType = p->type;
     u32 zero = 0;
-    u32 width;
-    u32 height;
-    u32 format;
-    u32 dimension;
+    s32 widthResult;
 
     switch (arg2) {
-    case 0:
-        break;
-    case 1:
-        *(volatile u32 *)0x04000000 =
-            (*(volatile u32 *)0x04000000 & 0xffcfffef) | mapping;
-        break;
-    case 2:
-        *(volatile u32 *)0x04001000 =
-            (*(volatile u32 *)0x04001000 & 0xffcfffef) | mapping;
-        break;
+        case 0:
+            break;
+        case 1:
+            *(volatile u32 *)0x04000000 = (*(volatile u32 *)0x04000000 & 0xffcfffef) | mapType;
+            break;
+        case 2:
+            *(volatile u32 *)0x04001000 = (*(volatile u32 *)0x04001000 & 0xffcfffef) | mapType;
+            break;
     }
 
-    func_02006dc4(data->data, data->size);
+    func_02006dc4(p->data, p->size);
 
     switch (arg2) {
-    case 0:
-        func_0200439c();
-        func_020043f8(data->data, arg1, data->size);
-        func_02004544();
-        break;
-    case 1:
-        func_02003830(data->data, arg1, data->size);
-        break;
-    case 2:
-        func_02003894(data->data, arg1, data->size);
-        break;
+        case 0:
+            func_0200439c();
+            func_020043f8(p->data, arg1, p->size);
+            func_02004544();
+            break;
+        case 1:
+            func_02003830(p->data, arg1, p->size);
+            break;
+        case 2:
+            func_02003894(p->data, arg1, p->size);
+            break;
     }
 
-    if (data->mapping == 0) {
-        switch (data->width) {
-        case 1:
-            dimension = 0;
-            break;
-        case 2:
-            dimension = 1;
-            break;
-        case 4:
-            dimension = 2;
-            break;
-        case 8:
-            dimension = 3;
-            break;
-        case 16:
-            dimension = 4;
-            break;
-        case 32:
-            dimension = 5;
-            break;
-        default:
-            dimension = 0;
-            break;
-        }
-
-        height = data->height;
-        proxy->width = dimension;
-
-        switch (height) {
-        case 1:
-            dimension = 0;
-            break;
-        case 2:
-            dimension = 1;
-            break;
-        case 4:
-            dimension = 2;
-            break;
-        case 8:
-            dimension = 3;
-            break;
-        case 16:
-            dimension = 4;
-            break;
-        case 32:
-            dimension = 5;
-            break;
-        default:
-            dimension = 0;
-            break;
-        }
-
-        proxy->height = dimension;
+    if (p->type == 0) {
+        s32 height = size_02118a54(p->height);
+        s32 width = p->width;
+        out->height = height;
+        out->width = size_02118a54(width);
     } else {
-        width = data->width;
-        height = data->height;
-        proxy->width = width;
-        proxy->height = height;
+        u32 height = ((volatile Unk02118A54 *)p)->height, width = p->width;
+        out->height = height;
+        out->width = width;
     }
 
-    format = data->format;
-    mapping = data->mapping;
-
-    proxy->format = format;
-    proxy->extendedPalette = zero;
-    proxy->paletteMode = 1;
-    proxy->mapping = mapping;
-
-    func_021185b0(proxy, arg2, arg1);
+#pragma opt_propagation off
+    { u32 format = ((volatile Unk02118A54 *)p)->format, type = p->type;
+      u32 one = 1;
+      out->format = format;
+      out->zero = zero;
+      out->type = type;
+      out->one = one;
+    }
+#pragma opt_propagation on
+    func_021185b0((s32 *)arg3, arg2, (s32)arg1);
 }
 
 void func_02118a54(void *arg0, u32 arg1, s32 arg2, void *arg3) {
