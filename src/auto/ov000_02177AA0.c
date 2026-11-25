@@ -1,6 +1,5 @@
 /* 15 functions from 0x02177AA0 to 0x02178598 (ov000), found by ds-decomp. */
 #include "common.h"
-typedef union EncodedWord { u32 word; u8 byte[4]; } EncodedWord;
 
 extern s32 func_ov000_021781fc(void *, void *, u32, u32);
 
@@ -297,6 +296,7 @@ return 0;
 
 extern s32 func_ov000_021774e4(u32);
 
+#pragma peephole off
 s32 func_ov000_02178314(void *arg0, void *arg1, u32 arg2, u32 arg3) {
     u8 table[0x100];
     u32 i;
@@ -359,7 +359,7 @@ s32 func_ov000_02178314(void *arg0, void *arg1, u32 arg2, u32 arg3) {
 
     return 0;
 }
-
+#pragma peephole on
 s32 func_ov000_0217849c(u8 *arg0, u8 *arg1, u32 arg2, u32 arg3) {
     Rc4State state;
     func_ov000_021780e0(&state, arg0, 0x10);
