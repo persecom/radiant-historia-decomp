@@ -471,7 +471,6 @@ void func_02135ccc(void) {
     func_02135d4c(0, 1);
     func_02135d24(2);
 }
-
 void func_02135d20(void) {
 }
 
