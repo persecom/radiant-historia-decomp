@@ -339,23 +339,15 @@ void func_020dde88(u8 *arg0) {
     s32 dist = ((s32 (*)(void *, void *))func_0210c2f4)(data_02162440, arg0);
     s32 diff = data_0216242c[6] - *(s32 *)(arg0 + 4);
     s64 sq = (s64)diff * diff;
-    s32 q;
-    s32 v;
-
-    *(volatile u16 *)0x40002b0 = 1;
-    *(volatile u32 *)0x40002b8 = (u32)sq;
-    *(volatile u32 *)0x40002bc = (u32)(sq >> 32);
-    while (*(volatile u16 *)0x40002b0 & 0x8000) {
-    }
+    s32 q, v;
+    volatile u16 *hw = (volatile u16 *)0x40002b0;
+    *hw = 1;
+    *(volatile u64 *)(hw + 4) = sq;
+    while (*hw & 0x8000) {}
     q = (dist + (*(volatile s32 *)0x40002b4 + 1 >> 1)) >> 12;
-    v = (0xa00 - q) << 13;
-    v = v / 0xa00;
-    if (v < 0xc00) {
-        v = 0xc00;
-    }
-    if (v > 0x2000) {
-        v = 0x2000;
-    }
+    v = ((0xa00 - q) << 13) / 0xa00;
+    if (v < 0xc00) v = 0xc00;
+    if (v > 0x2000) v = 0x2000;
     *(s32 *)(arg0 + 0x54) = v - 0x600;
 }
 
