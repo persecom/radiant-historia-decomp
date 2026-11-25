@@ -294,28 +294,14 @@ s32 func_0200be78(u8 *arg0) {
 }
 
 s32 func_0200bef8(u8 *arg0, void *arg1, u32 arg2, s32 arg3) {
-    u32 len;
-    u8 work[0x40];
-    u8 buf[0x14];
-    s32 ret = 0;
-    func_02008f74(buf, 0, 0x14);
-    func_02009008((void *)data_0215ef7c[5], work, data_0215ef7c[6]);
-    if (arg3 != 0) {
-        ret = func_020118c0(1);
-        len = data_0215ef7c[6];
-        func_02011bdc(buf, arg1, arg2, work);
-    }
-    if (arg3 != 0) {
-        func_020118c0(ret);
-        s32 i;
-        for (i = 0; i < 0x14; i += 4) {
-            if (*(u32 *)(buf + i) != *(u32 *)(arg0 + i)) {
-                break;
-            }
-        }
-        ret = (i == 0x14) ? 1 : 0;
-    }
-    return ret;
+ u8 buf[0x14]; u8 work[0x40]; u32 ret=0,i;
+ func_02008f74(buf,0,0x14);
+ func_02009008((void *)data_0215ef7c[5],work,data_0215ef7c[6]);
+ if(arg3)ret=func_020118c0(1);
+ func_02011bdc(buf,arg1,arg2,work,data_0215ef7c[6]);
+ if(arg3)func_020118c0(ret);
+ for(i=0;i<0x14;i+=4)if(*(u32 *)(buf+i)!=*(u32 *)(arg0+i))break;
+ return i==0x14 ? 1:0;
 }
 
 extern void func_02008414(void);
