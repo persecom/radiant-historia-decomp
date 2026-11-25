@@ -42,7 +42,7 @@ extern void func_020a033c(void *);
 extern s32 func_020a2754(s32, s32, s32, s32);
 extern void func_0210d27c(s32);
 extern s32 func_020a2664(s32, s32, s32);
-extern s32 func_0210c28c(s16 *, s16 *, void *);
+extern s32 func_0210c28c();
 extern void func_020a994c(void *);
 extern void func_02064b84(s32, s32, s32, s32);
 extern void func_0208a5e0(void);
