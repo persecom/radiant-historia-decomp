@@ -1,6 +1,5 @@
 /* 13 functions from 0x0209B328 to 0x0209C2AC (main), found by ds-decomp. */
 #include "common.h"
-static inline s32 ge_0209b328(s32 a, s32 b) { return a >= b; }
 typedef struct { u16 unk[10]; } Unk20;
 typedef struct { s16 data[1080]; } Unk870;
 extern const Unk20 data_0214209c;
@@ -25,6 +24,7 @@ extern void func_021168f8(void *, void *);
 extern void func_0210c5dc(void *);
 extern u16 func_0209ac28(void *, u16);
 extern void func_0210d448(void);
+#pragma opt_propagation off
 void func_0209b328(void) {
     u8 *r9 = data_02160120;
     u8 *r10 = func_0209ac14();
@@ -39,7 +39,7 @@ void func_0209b328(void) {
             *(s32 *)(r10 + 0x14) += lv * 2;
         }
 
-        if ((s32)*(u32 *)(r10 + 0x14) >= *(s32 *)(r10 + 8)) {
+        if (!(*(s32 *)(r10 + 0x14) < *(s32 *)(r10 + 8))) {
             *(u32 *)(r10 + 4) += *(volatile u32 *)(r10 + 8);
             *(s32 *)(r10 + 8) = 0;
             *(s32 *)(r10 + 0x14) = 0;
@@ -108,7 +108,7 @@ void func_0209b328(void) {
     }
     *(s16 *)(r9 + 0x698) = 0;
 }
-
+#pragma opt_propagation on
 void func_0209b570(void) {
     u8 *base = data_02160120;
     *(s8 *)(base + 0x69a) += 1;
