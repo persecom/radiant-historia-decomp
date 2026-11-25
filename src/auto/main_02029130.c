@@ -39,7 +39,7 @@ s16 func_02029130(u8 *arg0, u8 *arg1) {
                 s32 idx = (v1 - 1) * 3 + i;
                 u8 flag = func_0202e548((u8)idx)[0x1c];
                 if (flag == 0) {
-                    return (s16)idx;
+                    return (v1 - 1) * 3 + i;
                 }
                 if (flag == 0) {
                     arr[cnt++] = idx;
