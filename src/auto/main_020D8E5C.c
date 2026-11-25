@@ -15,6 +15,10 @@ extern void func_020f4668(void *);
 extern const s16 data_0213a394[];
 extern u32 data_0216263c[3];
 
+static inline s32 smooth8_020d93b8(s32 cur, s32 target) {
+    return cur - (cur - target) / 8;
+}
+
 static inline u16 Rand16_020d9a08(u32 *ctx, u16 max) {
     ctx[0] = ctx[1] * ctx[0] + ctx[2];
     if (max == 0) {
@@ -346,15 +350,15 @@ void func_020d93b8(void) {
         break;
     }
     case 6: {
-        u8 *q;
+        s32 *q;
         s32 x, z;
         func_020d9ea8(0, 0);
-        q = data_02160258;
-        x = *(s32 *)q;
-        *(s32 *)q = x - (x - *(s32 *)(q + 12)) / 8;
-        z = *(s32 *)(q + 8);
-        *(s32 *)(q + 8) = z - (z - *(s32 *)(q + 20)) / 8;
-        *(s32 *)(q + 4) -= (*(s32 *)(q + 4) - *(s32 *)(q + 16)) / 4;
+        q = (s32 *)data_02160258;
+        x = q[0];
+        q[0] = x - (x - q[3]) / 8;
+        z = q[2];
+        q[2] = z - (z - q[5]) / 8;
+        q[1] -= (q[1] - q[4]) / 4;
         break;
     }
     case 7: {
