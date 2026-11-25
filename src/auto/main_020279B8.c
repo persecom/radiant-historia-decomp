@@ -33,6 +33,14 @@ static inline u16 Random_020279b8(u16 max) {
  return value;
 }
 
+static inline void Shuffle_020279b8(u8 *cells) {
+ u32 i;
+ for(i=0;i<16;i++){u8 a=Random_020279b8(9),b=Random_020279b8(9);u8 tmp=cells[b];cells[b]=cells[a];cells[a]=tmp;}
+}
+static inline void ShuffleSigned_020279b8(s8 *cells) {
+ u32 i;
+ for(i=0;i<16;i++){s8 a=Random_020279b8(9),b=Random_020279b8(9);s8 tmp=cells[b];cells[b]=cells[a];cells[a]=tmp;}
+}
 s32 func_020279b8(u8 *self,u8 *parser) {
  u32 count=0;
  u8 *info=*(u8 **)(self+0x12c);
@@ -67,7 +75,7 @@ s32 func_020279b8(u8 *self,u8 *parser) {
  case 3:{
  u8 available[9]={0};Grid_020279b8 order=data_0213ee7c;u32 i;
  for(i=0;i<9;i++)if(func_0202c820(i)==self || !func_0202c820(i))available[i]=1;
- for(i=0;i<16;i++){u8 b,a; a=Random_020279b8(9);b=Random_020279b8(9);u8 tmp=order.cells[a];order.cells[a]=order.cells[b];order.cells[b]=tmp;}
+ {u32 j;for(j=0;j<16;j++){u8 b,a; a=Random_020279b8(9);b=Random_020279b8(9);u8 tmp=order.cells[a];order.cells[a]=order.cells[b];order.cells[b]=tmp;}}
  for(i=0;i<9;i++){u8 k=order.cells[i];if(available[k]==1 && func_0202e63c(self,k)){func_0202b3d4(self,k);return 1;}}
  break;
  }
@@ -87,17 +95,17 @@ s32 func_020279b8(u8 *self,u8 *parser) {
  else if(cmd==7){if((u8)sum<=2){p[0]=zero;p[3]=zero;p[6]=zero;}}
  }
  }
- for(i=0;i<16;i++){u8 b,a; a=Random_020279b8(9);b=Random_020279b8(9);u8 tmp=order.cells[a];order.cells[a]=order.cells[b];order.cells[b]=tmp;}
+ {u32 j;for(j=0;j<16;j++){u8 b,a; a=Random_020279b8(9);b=Random_020279b8(9);u8 tmp=order.cells[a];order.cells[a]=order.cells[b];order.cells[b]=tmp;}}
  for(i=0;i<9;i++){u8 k=order.cells[i];if(available.cells[k]==1 && func_0202e63c(self,k)){func_0202b3d4(self,k);return 1;}}
  break;
  }
  case 8:case 9:{
- s8 available[9]={0};Grid_020279b8 order=data_0213ee88,offset=data_0213ee58;u32 i;
+ s8 available[9]={0};SignedGrid_020279b8 order=*(const SignedGrid_020279b8 *)&data_0213ee88,offset=*(const SignedGrid_020279b8 *)&data_0213ee58;u32 i;
  for(i=0;i<9;i++)if(func_0202b3b0(i) && !func_0202c820(i))available[i]=1;
- for(i=0;i<16;i++){s8 b,a; a=Random_020279b8(9);b=Random_020279b8(9);s8 tmp=((s8 *)order.cells)[a];((s8 *)order.cells)[a]=((s8 *)order.cells)[b];((s8 *)order.cells)[b]=tmp;}
+ {u32 j;for(j=0;j<16;j++){s8 b,a; a=Random_020279b8(9);b=Random_020279b8(9);s8 tmp=order.cells[a];order.cells[a]=order.cells[b];order.cells[b]=tmp;}}
  for(i=0;i<9;i++){
- s8 k=((s8 *)order.cells)[i];s32 found=0;u16 j;
- for(j=0;j<8;j++){s8 pos=k+((s8 *)offset.cells)[j];if(pos>=0 && pos<=8 && available[pos]==0)found=1;}
+ s8 k=order.cells[i];s32 found=0;u16 j;
+ for(j=0;j<8;j++){s8 pos=k+offset.cells[j];if(pos>=0 && pos<=8 && available[pos]==0)found=1;}
  if(available[k]==1 && found==1 && cmd==8){if(func_0202e63c(self,k)){func_0202b3d4(self,order.cells[i]);return 1;}}
  else if(available[k]==1 && found==0 && cmd==9){if(func_0202e63c(self,k)){func_0202b3d4(self,order.cells[i]);return 1;}}
  }break;
