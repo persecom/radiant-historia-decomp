@@ -144,7 +144,306 @@ extern u16 data_021626aa;
 void func_020c6ef4(u8 *arg0);
 s32 func_020c6e40(void *arg0, u8 *arg1, s32 arg2, s32 arg3);
 void func_020c6e2c(void *, void *);
-void *func_020c641c(void) { return 0; }
+void *func_020c641c(u32 type) {
+    void **p=0;
+    switch(type) {
+case 0:
+    p=func_0210c594(0x30,data_02155c3c);
+    break;
+case 1:
+    p=func_0210c594(0x4c,data_02155c3c);
+    p[0]=(void *)func_020c6dbc;
+    p[2]=(void *)func_020c6df4;
+    p[1]=(void *)func_020c6de0;
+    p[4]=(void *)func_020c6f04;
+    p[5]=(void *)func_020c6f0c;
+    p[6]=(void *)func_020c6f14;
+    p[8]=(void *)func_020c706c;
+    p[9]=(void *)func_020c7074;
+    p[10]=(void *)func_020c7080;
+    p[7]=(void *)func_020c7088;
+    break;
+case 2:
+    p=func_0210c594(0x54,data_02155c3c);
+    p[0]=(void *)func_020c71bc;
+    p[1]=(void *)func_020c71d8;
+    p[2]=(void *)func_020c71ec;
+    p[4]=(void *)func_020c6f04;
+    p[5]=(void *)func_020c6f0c;
+    p[6]=(void *)func_020c6f14;
+    p[8]=(void *)func_020c706c;
+    p[9]=(void *)func_020c7074;
+    p[10]=(void *)func_020c7384;
+    p[7]=(void *)func_020c7088;
+    break;
+case 3:
+    p=func_0210c594(0x5c,data_02155c3c);
+    p[0]=(void *)func_020c8b90;
+    p[1]=(void *)func_020c8ba0;
+    p[3]=(void *)func_020c8bb4;
+    p[2]=(void *)func_020c71ec;
+    p[4]=(void *)func_020c6f04;
+    p[5]=(void *)func_020c6f0c;
+    p[6]=(void *)func_020c6f14;
+    p[8]=(void *)func_020c706c;
+    p[9]=(void *)func_020c7074;
+    p[10]=(void *)func_020c7384;
+    p[7]=(void *)func_020c7088;
+    break;
+case 4:
+    p=func_0210c594(0x5c,data_02155c3c);
+    p[0]=(void *)func_020c8268;
+    p[1]=(void *)func_020c8278;
+    p[2]=(void *)func_020c82a8;
+    p[4]=(void *)func_020c8588;
+    p[5]=(void *)func_020c8590;
+    p[8]=(void *)func_020c862c;
+    p[9]=(void *)func_020c8634;
+    p[6]=(void *)func_020c8650;
+    p[10]=(void *)func_020c8624;
+    p[7]=(void *)func_020c85ac;
+    break;
+case 5:
+    p=func_0210c594(0x54,data_02155c3c);
+    p[0]=(void *)func_020c77d8;
+    p[1]=(void *)func_020c7818;
+    p[2]=(void *)func_020c786c;
+    p[4]=(void *)func_020c7fe4;
+    p[5]=(void *)func_020c7ff4;
+    p[6]=(void *)func_020c6f14;
+    p[8]=(void *)func_020c805c;
+    p[9]=(void *)func_020c80ac;
+    p[10]=(void *)func_020c8124;
+    p[7]=(void *)func_020c8008;
+    break;
+case 6:
+    p=func_0210c594(0x34,data_02155c3c);
+    p[0]=(void *)func_020c7604;
+    p[1]=(void *)func_020c760c;
+    break;
+case 7:
+    p=func_0210c594(0x3c,data_02155c3c);
+    p[0]=(void *)func_020c812c;
+    p[1]=(void *)func_020c813c;
+    p[3]=(void *)func_020c8150;
+    break;
+case 8:
+    p=func_0210c594(0x3c,data_02155c3c);
+    p[0]=(void *)func_020c7440;
+    p[1]=(void *)func_020c7448;
+    p[3]=(void *)func_020c745c;
+    break;
+case 10:
+    p=func_0210c594(0x38,data_02155c3c);
+    p[0]=(void *)func_02112ae8;
+    p[1]=(void *)func_02112c94;
+    p[2]=(void *)func_02112ce0;
+    p[4]=(void *)func_02112d64;
+    p[5]=(void *)func_02112d74;
+    p[9]=(void *)func_02112cf4;
+    p[6]=(void *)func_02112d88;
+    break;
+case 11:
+    p=func_0210c594(0x54,data_02155c3c);
+    p[0]=(void *)func_02110b94;
+    p[1]=(void *)func_0211104c;
+    p[2]=(void *)func_021110a8;
+    p[4]=(void *)func_0211128c;
+    p[5]=(void *)func_0211129c;
+    p[9]=(void *)func_021111f4;
+    p[6]=(void *)func_021110d0;
+    p[7]=(void *)func_021112b0;
+    break;
+case 12:
+    p=func_0210c594(0x8c,data_02155c3c);
+    p[0]=(void *)func_02111674;
+    p[1]=(void *)func_02111708;
+    p[2]=(void *)func_021117b0;
+    p[3]=(void *)func_021117dc;
+    p[4]=(void *)func_02111a18;
+    p[5]=(void *)func_02111a28;
+    p[7]=(void *)func_02111a3c;
+    break;
+case 13:
+    p=func_0210c594(0x9c,data_02155c3c);
+    p[0]=(void *)func_02112110;
+    p[1]=(void *)func_02112198;
+    p[2]=(void *)func_02112214;
+    p[3]=(void *)func_0211223c;
+    p[4]=(void *)func_02112554;
+    p[5]=(void *)func_02112564;
+    p[7]=(void *)func_02112578;
+    break;
+case 14:
+    p=func_0210c594(0x40,data_02155c3c);
+    p[0]=(void *)func_021100e4;
+    p[1]=(void *)func_021101cc;
+    p[2]=(void *)func_02110228;
+    p[6]=(void *)func_0211023c;
+    p[9]=(void *)func_02110288;
+    p[4]=(void *)func_02110340;
+    p[5]=(void *)func_02110350;
+    p[7]=(void *)func_02110364;
+    break;
+case 15:
+    p=func_0210c594(0x78,data_02155c3c);
+    p[0]=(void *)func_02110428;
+    p[1]=(void *)func_02110464;
+    p[2]=(void *)func_021104c0;
+    p[3]=(void *)func_021104d4;
+    p[4]=(void *)func_02110868;
+    p[5]=(void *)func_02110878;
+    p[7]=(void *)func_0211088c;
+    break;
+case 16:
+    p=func_0210c594(0x54,data_02155c3c);
+    p[0]=(void *)func_02112690;
+    p[1]=(void *)func_0211104c;
+    p[2]=(void *)func_021110a8;
+    p[4]=(void *)func_0211128c;
+    p[5]=(void *)func_0211129c;
+    p[9]=(void *)func_021111f4;
+    p[6]=(void *)func_021110d0;
+    p[7]=(void *)func_021112b0;
+    break;
+case 17:
+    p=func_0210c594(0x9c,data_02155c3c);
+    p[0]=(void *)func_021128c4;
+    p[1]=(void *)func_021128d4;
+    p[2]=(void *)func_02112214;
+    p[3]=(void *)func_0211223c;
+    p[4]=(void *)func_02112554;
+    p[5]=(void *)func_02112564;
+    p[10]=(void *)func_021128f4;
+    p[7]=(void *)func_02112578;
+    break;
+case 18:
+    p=func_0210c594(0x9c,data_02155c3c);
+    p[0]=(void *)func_020c87a4;
+    p[1]=(void *)func_020c87f8;
+    p[2]=(void *)func_020c885c;
+    p[4]=(void *)func_020c8948;
+    p[5]=(void *)func_020c8958;
+    p[10]=(void *)func_020c8b88;
+    p[8]=(void *)func_020c8a14;
+    p[7]=(void *)func_020c896c;
+    p[9]=(void *)func_020c8a6c;
+    p[6]=(void *)func_020c8a08;
+    break;
+case 19:
+    p=func_0210c594(0x60,data_02155c3c);
+    p[0]=(void *)func_021128fc;
+    p[1]=(void *)func_02112ac0;
+    p[2]=(void *)func_020c885c;
+    p[4]=(void *)func_020c8948;
+    p[5]=(void *)func_020c8958;
+    p[10]=(void *)func_02112ae0;
+    p[6]=(void *)func_020c8a08;
+    p[8]=(void *)func_020c8a14;
+    p[7]=(void *)func_020c896c;
+    p[9]=(void *)func_020c8a6c;
+    break;
+case 9:
+    p=func_0210c594(0x50,data_02155c3c);
+    p[0]=(void *)func_020c6324;
+    p[2]=(void *)func_020c636c;
+    p[1]=(void *)func_020c6334;
+    p[4]=(void *)func_020c6f04;
+    p[5]=(void *)func_020c6f0c;
+    p[6]=(void *)func_020c6f14;
+    p[8]=(void *)func_020c706c;
+    p[9]=(void *)func_020c7074;
+    p[7]=(void *)func_020c7088;
+    p[3]=(void *)func_020c6348;
+    p[10]=(void *)func_020c6414;
+    break;
+case 20:
+    p=func_0210c594(0x60,data_02155c3c);
+    p[0]=(void *)func_020c8c08;
+    p[1]=(void *)func_020c8d24;
+    p[2]=(void *)func_020c8d70;
+    p[3]=(void *)func_020c8d98;
+    p[4]=(void *)func_020c8ec0;
+    p[5]=(void *)func_020c8ed0;
+    p[7]=(void *)func_020c8e5c;
+    break;
+case 21:
+    p=func_0210c594(0x54,data_02155c3c);
+    p[0]=(void *)func_020ba78c;
+    p[1]=(void *)func_0211104c;
+    p[2]=(void *)func_021110a8;
+    p[4]=(void *)func_0211128c;
+    p[5]=(void *)func_0211129c;
+    p[9]=(void *)func_021111f4;
+    p[6]=(void *)func_021110d0;
+    p[7]=(void *)func_021112b0;
+    break;
+case 22:
+    p=func_0210c594(0x54,data_02155c3c);
+    p[0]=(void *)func_020ba7f8;
+    p[1]=(void *)func_0211104c;
+    p[2]=(void *)func_021110a8;
+    p[4]=(void *)func_0211128c;
+    p[5]=(void *)func_0211129c;
+    p[9]=(void *)func_021111f4;
+    p[6]=(void *)func_021110d0;
+    p[7]=(void *)func_021112b0;
+    break;
+case 23:
+    p=func_0210c594(0x54,data_02155c3c);
+    p[0]=(void *)func_020baba8;
+    p[1]=(void *)func_0211104c;
+    p[2]=(void *)func_021110a8;
+    p[4]=(void *)func_0211128c;
+    p[5]=(void *)func_0211129c;
+    p[9]=(void *)func_021111f4;
+    p[6]=(void *)func_021110d0;
+    p[7]=(void *)func_021112b0;
+    break;
+case 24:
+    p=func_0210c594(0x54,data_02155c3c);
+    p[0]=(void *)func_020babc8;
+    p[1]=(void *)func_0211104c;
+    p[2]=(void *)func_021110a8;
+    p[4]=(void *)func_0211128c;
+    p[5]=(void *)func_0211129c;
+    p[9]=(void *)func_021111f4;
+    p[6]=(void *)func_021110d0;
+    p[7]=(void *)func_021112b0;
+    break;
+case 25:
+    p=func_0210c594(0x50,data_02155c3c);
+    p[0]=(void *)func_020c874c;
+    p[2]=(void *)func_020c6df4;
+    p[1]=(void *)func_020c8780;
+    p[4]=(void *)func_020c6f04;
+    p[5]=(void *)func_020c6f0c;
+    p[6]=(void *)func_020c6f14;
+    p[8]=(void *)func_020c706c;
+    p[9]=(void *)func_020c7074;
+    p[10]=(void *)func_020c7080;
+    p[7]=(void *)func_020c7088;
+    break;
+case 26:
+    p=func_0210c594(0x4c,data_02155c3c);
+    p[0]=(void *)func_020c6dbc;
+    p[2]=(void *)func_020c6df4;
+    p[1]=(void *)func_020c6de0;
+    p[4]=(void *)func_020c6f04;
+    p[5]=(void *)func_020c6f0c;
+    p[6]=(void *)func_020c6f14;
+    p[8]=(void *)func_020c706c;
+    p[9]=(void *)func_020c7074;
+    p[10]=(void *)func_020c7080;
+    p[7]=(void *)func_020c7088;
+    break;
+    }
+    if(!p[0])p[0]=(void *)func_020c6d78;
+    if(!p[1])p[1]=(void *)func_020c6da0;
+    if(!p[2])p[2]=(void *)func_020c6db4;
+    if(!p[6])p[6]=(void *)func_020c7438;
+    return p;
+}
 
 void func_020c6d4c(u8 *arg0) {
     (*(void (**)(void *))(arg0 + 4))(arg0);
