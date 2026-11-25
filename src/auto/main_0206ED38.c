@@ -106,8 +106,8 @@ void func_0206ed38(void)
     typedef struct { s8 v[3]; } Bytes3;
     typedef struct { Triple v[8]; } Triples8;
     typedef struct { Pose v[8]; } Poses8;
-    register s32 one = 1;
     register Scheduled *scheduled;
+    register s32 one = 1;
     register Effect *e;
     Effect *next;
     s32 zero = 0;
