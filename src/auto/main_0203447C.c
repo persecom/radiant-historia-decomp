@@ -60,8 +60,8 @@ void func_0203447c(u8 *actor)
     extern s32 data_02170204[];
 
     u8 *ctx = *(u8 **)(actor + 0x128);
-    u8 *target = *(u8 **)ctx;
-    State *state = *(State **)(ctx + 0x8c);
+    register u8 *target asm("r5") = *(u8 **)ctx;
+    register State *state asm("r6") = *(State **)(ctx + 0x8c);
     s32 zero = 0;
     s32 next = 0;
     s32 one = 1;
