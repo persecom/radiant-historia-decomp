@@ -27,7 +27,7 @@ extern void func_02129a50(void);
 extern void func_02129798(void *);
 extern void func_02013878(void *, s32, u32);
 extern void func_0212a0e4();
-extern void *memset(void *, int, unsigned long);
+extern void *memset(void *, int, u32);
 extern u32 data_021735a4[244];
 typedef struct { u32 a, b, c, d; } Zero16;
 static inline Zero16 make_zero16(void) { Zero16 z = {0, 0, 0, 0}; return z; }
@@ -56,13 +56,14 @@ u32 func_02129bc8(void) {
     return *(u32 *)(data_0217358c + 8);
 }
 
+#pragma intrinsics on
 void func_02129bd8(void) {
     func_02129624();
     func_02129a50();
-    memset((void *)data_021735a4, 0, 0x3d0UL);
+    __builtin_memset(data_021735a4, 0, 0x3d0);
     func_02129bb8(0);
 }
-
+#pragma intrinsics off
 u32 func_02129c20(u8 *arg0, u32 *arg1, u32 *arg2, u32 *arg3) {
     *arg1 = *(u32 *)(arg0 + 0x8c);
     *arg2 = *(u32 *)(arg0 + 0x40) - *(u32 *)(arg0 + 0x8c);
