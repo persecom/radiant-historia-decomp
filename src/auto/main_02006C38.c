@@ -410,27 +410,22 @@ void func_020075d4(s32 arg0, u32 arg1, s32 arg2) {
 
 void func_020075fc(void)
 {
-  u32 *new_var;
-  s32 inRange = 0;
-  u32 v = *((u32 *) 0x02fffd9c);
-  data_0215d084[2] = v & 0xFFFFFFFFFFFFFFFFu;
-  if ((v >= 0x02600000) && (v < 0x02800000))
-  {
-    inRange = 1;
-  }
-  if (!inRange)
-  {
-    v = 0;
-  }
-  data_0215d084[0] = v;
-  if (v == 0)
-  {
-    u32 addr;
-    *((u32 *) 0x02fffd9c) = (u32) func_02007674;
-    new_var = (u32 *) (addr & (~0x800000));
-    *new_var = (u32) func_02007674;
-  }
-  data_0215d084[3] = 0;
+    s32 inRange = 0;
+    u32 v = *(u32 *)0x02fffd9c;
+    data_0215d084[2] = v;
+    if ((v >= 0x02600000) && (v < 0x02800000)) {
+        inRange = 1;
+    }
+    if (!inRange) {
+        v = 0;
+    }
+    data_0215d084[0] = v;
+    if (v == 0) {
+        u32 *addr = (u32 *)0x02fffd9c;
+        *addr = (u32)func_02007674;
+        *(u32 *)((u32)addr & ~0x800000) = (u32)func_02007674;
+    }
+    data_0215d084[3] = 0;
 }
 
 extern u32 data_0215d084[3];
