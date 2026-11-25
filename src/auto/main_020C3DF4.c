@@ -1,6 +1,7 @@
 /* 16 functions from 0x020C3DF4 to 0x020C4C60 (main), found by ds-decomp. */
 #include "common.h"
 extern u8 *data_02160204;
+typedef struct { u8 flag : 1; u8 rest : 7; } MenuFlag;
 extern u16 data_021626a6;
 u8 *func_020c3d64(int);
 void func_020c3da4(u8 *, int, int);
@@ -88,6 +89,60 @@ void func_020c3df4(u8 **arg0, s32 arg1) {
         }
         p = *(u8 **)(p + 0x30);
     }
+}
+
+void func_020c4574(void);
+void func_020c3fa0(u8 *p) {
+int zero=0, one=1;
+u8 *q; s32 *v; int hit;
+switch (*(u32 *)(p+4)) {
+case 0: case 4: case 6: break;
+case 1:
+func_020c3da4(func_020c3d64(2),one,one);
+func_020c3da4(func_020c3d64(zero),one,one);
+func_020c3da4(func_020c3d64(4),one,one);
+func_020c3da4(func_020c3d64(one),one,one);
+func_020c3da4(func_020c3d64(6),one,zero);
+func_020c3da4(func_020c3d64(7),one,zero);
+func_020c3da4(func_020c3d64(10),one,zero);
+func_020c3da4(func_020c3d64(12),one,zero);
+func_020c3da4(func_020c3d64(11),one,zero);
+if ((data_02160204[0x68]<<31)>>31) {p[0x24]=one;func_020c3da4(func_020c3d64(11),one,one);}
+func_020c3da4(func_020c3d64(13),one,zero);
+q=func_020f0a5c(*(u16 *)(data_0216013c+0x230));
+if(q) *(u32 *)(q+0x14)|=1;
+q=func_020f0aa4(*(u16 *)(data_0216013c+0x232));
+*(u32 *)(q+0x14)|=0x11;
+v=*(s32 **)(*(u8 **)q+0x100);if(v)*v=0x320000;
+func_020c4574();
+*(s16 *)(p+0x1c)=0;p[0x23]|=1;
+func_0210968c(3,0,30);*(s32 *)(p+4)=2;break;
+case 2:
+q=func_020c3d64(5);*(s8 *)(q+0x18)-=2;if(*(s8 *)(q+0x18)<=1)func_020c3da4(q,one,one);
+q=func_020c3d64(3);*(s8 *)(q+0x18)-=2;if(*(s8 *)(q+0x18)<=1)func_020c3da4(q,1,1);
+++*(s16 *)(p+0x1c);if(*(s16 *)(p+0x1c)>16){*(s16 *)(p+0x1c)=zero;*(s32 *)(p+4)=3;}break;
+case 3:
+if(p[0x23]&1){++*(s16 *)(p+0x1c);if(*(s16 *)(p+0x1c)>4){*(s16 *)(p+0x1c)=zero;*(s32 *)(p+4)=5;}}break;
+case 5:
+hit=zero;
+if(!(p[0x23]&2)){
+if((data_021626a6&0x40)||(data_021626a6&0x80)){p[0x24]++;p[0x24]=(int)p[0x24]%2;func_0210d27c(9);}
+else if(func_02064b84(77,118,94,17)){if(p[0x24]==0)hit=one;else func_0210d27c(9);p[0x24]=0;}
+else if(func_02064b84(77,139,94,17)){if(p[0x24]==1)hit=one;else func_0210d27c(9);p[0x24]=one;}
+if((data_021626a8&8)||(data_021626a8&1)||hit){p[0x23]|=2;func_0210d27c(132);}
+}
+if(p[0x24]==0){func_020c3da4(func_020c3d64(11),one,0);func_020c3da4(func_020c3d64(13),one,one);}
+else if(p[0x24]==1){func_020c3da4(func_020c3d64(11),one,one);func_020c3da4(func_020c3d64(13),one,0);}
+if(p[0x23]&2){
+++*(s16 *)(p+0x1c);
+if(*(s16 *)(p+0x1c)==1){
+if(p[0x24]==0){func_020c3da4(func_020c3d64(10),1,1);q=func_020c3d64(11);++*(s32 *)q;++*(s32 *)(q+4);}
+else if(p[0x24]==1){func_020c3da4(func_020c3d64(12),1,1);q=func_020c3d64(13);++*(s32 *)q;++*(s32 *)(q+4);}
+}else if(*(s16 *)(p+0x1c)>4){*(s32 *)(data_0216013c+0x238)=one;data_0216013c[0x23c]=p[0x24];}
+}
+break;
+}
+q=func_020f0aa4(*(u16 *)(data_0216013c+0x232));v=*(s32 **)(*(u8 **)q+0x100);if(v)*v=0x320000;
 }
 
 void func_020c4454(void) {
