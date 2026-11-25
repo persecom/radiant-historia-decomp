@@ -261,8 +261,8 @@ index>>=2;pos&=0x3fff;scale=4;shift=2;goto interp;
 normal:
 pos&=0xfff;scale=1;shift=0;
 interp:
-if(!(flags&0x20000000)){s32 *q=(s32 *)p+index; a=*q++; b=*q;}
-else {s16 *q=(s16 *)p+index;a=q[0];b=q[1];}
+if(flags&0x20000000){s16 *q=(s16 *)p+index;a=q[0];b=q[1];}
+else {s32 *q=(s32 *)p+index; a=*q++; b=*q;}
 *out=(a*scale+((pos*(b-a))>>12))>>shift;
 }
 
@@ -360,12 +360,12 @@ void func_02121c60(s32 *out, s32 pos, u32 *desc, u8 *data) {
 single:
  pos &= 0xfff; scale=1; shift=0;
 interpolate:
- if (!(flags & 0x20000000)) {
+ if (flags & 0x20000000) {
+  a=((s16 (*)[2])p)[index][0]; b=((s16 (*)[2])p)[index][1];
+  c=((s16 (*)[2])p)[next][0]; d=((s16 (*)[2])p)[next][1];
+ } else {
   a=((s32 (*)[2])p)[index][0]; b=((s32 (*)[2])p)[index][1];
   c=((s32 (*)[2])p)[next][0]; d=((s32 (*)[2])p)[next][1];
- } else {
-  b=((s16 (*)[2])p)[index][1]; a=((s16 (*)[2])p)[index][0];
-  c=((s16 (*)[2])p)[next][0]; d=((s16 (*)[2])p)[next][1];
  }
  out[0]=(a*scale+((pos*(c-a))>>12))>>shift;
  out[1]=(b*scale+((pos*(d-b))>>12))>>shift;
