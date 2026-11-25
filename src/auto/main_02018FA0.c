@@ -262,3 +262,141 @@ void func_02019580(u8 *arg0, double arg1, u8 *arg3)
         num->digits[j++] += 0x30;
     } while (j < num->unk04);
 }
+
+double func_0201962c(const Decimal19160 *dec) {
+    Decimal19160 d;
+    Decimal19160 max_dec;
+    Decimal19160 d_val;
+    Decimal19160 d_val2;
+    Decimal19160 diff1;
+    Decimal19160 diff2;
+    double nan_val;
+    double val;
+    double val2;
+    u8 *p;
+    u8 *end;
+    s32 exp;
+    u64 *pval2;
+    s32 up;
+
+    if (dec->length == 0) {
+        return func_0201de78(0.0, dec->sign == 0 ? 1.0 : -1.0);
+    }
+
+    switch (dec->digits[0]) {
+    case '0':
+        return func_0201de78(0.0, dec->sign == 0 ? 1.0 : -1.0);
+    case 'I':
+        return func_0201de78((double)data_02145c28, dec->sign == 0 ? 1.0 : -1.0);
+    case 'N': {
+        u64 *pnan = (u64 *)&nan_val;
+        *pnan = 0x7ff0000000000000ULL;
+        if (dec->sign) {
+            *pnan |= 0x8000000000000000ULL;
+        }
+        *pnan |= 0x0008000000000000ULL;
+        return nan_val;
+    }
+    }
+
+    d = *dec;
+    p = d.digits;
+    end = p + d.length;
+    while (p < end) {
+        *p -= '0';
+        p++;
+    }
+
+    d.exponent += (s16)(d.length - 1);
+    exp = d.exponent;
+
+    func_02018b84(&max_dec, data_02145fa0, 0x134);
+    if (func_02019080((const u8 *)&max_dec, (const u8 *)&d)) {
+        return func_0201de78((double)data_02145c28, dec->sign == 0 ? 1.0 : -1.0);
+    }
+
+    p = d.digits;
+    val = (double)*p++;
+    while (p < end) {
+        s32 i;
+        double tmp;
+        double next;
+        s32 n = (end - p) % 8;
+        u32 chunk = 0;
+        if (n == 0) {
+            n = 8;
+        }
+        for (i = 0; i < n; i++) {
+            chunk = chunk * 10 + *p++;
+        }
+        tmp = val * data_02145e8c[n - 1];
+        next = tmp + (double)chunk;
+        if (chunk != 0 && tmp == next) {
+            break;
+        }
+        val = next;
+        exp -= n;
+    }
+
+    if (exp < 0) {
+        val /= func_0201e6c0(5.0, (double)(-exp));
+    } else {
+        val *= func_0201e6c0(5.0, (double)exp);
+    }
+    val = func_0201e2b8(val, exp);
+    if (func_020136ec(val) == 2) {
+        *(u64 *)&val = 0x7fefffffffffffffULL;
+    }
+
+    pval2 = (u64 *)&val2;
+    up = 0;
+    func_02019400(&d_val, val);
+    if (!func_02018fa0((u8 *)&d_val, (u8 *)&d)) {
+        if (func_02019080((const u8 *)&d_val, (const u8 *)&d)) {
+            up = 1;
+        }
+        val2 = val;
+        while (1) {
+            if (up) {
+                (*pval2)++;
+                if (func_020136ec(val2) == 2) {
+                    goto done;
+                }
+            } else {
+                (*pval2)--;
+            }
+            func_02019400(&d_val2, val2);
+            if (up && !func_02019080((const u8 *)&d_val2, (const u8 *)&d)) {
+                break;
+            }
+            if (!up && !func_02019080((const u8 *)&d, (const u8 *)&d_val2)) {
+                double t;
+                diff1 = d_val;
+                d_val = d_val2;
+                d_val2 = diff1;
+                t = val;
+                val = val2;
+                val2 = t;
+                break;
+            }
+            d_val = d_val2;
+            val = val2;
+        }
+        func_02019160(&diff1, &d, &d_val);
+        func_02019160(&diff2, &d_val2, &d);
+        if (func_02018fa0((u8 *)&diff1, (u8 *)&diff2)) {
+            if ((*(u64 *)&val) & 1) {
+                val = val2;
+            }
+        } else if (!func_02019080((const u8 *)&diff1, (const u8 *)&diff2)) {
+            val = val2;
+        }
+    }
+
+done:
+    if (d.sign) {
+        val = 0.0 - val;
+    }
+    return val;
+}
+
