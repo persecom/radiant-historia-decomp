@@ -222,10 +222,11 @@ void func_0211470c(u8 *arg0) {
 }
 
 void func_02114728(UnkStruct_02114728 *arg0, s32 arg1) {
+    s32 ch;
     s32 i = 0;
     arg0->unk_44 = arg1;
     for (; i < arg0->unk_50; i++) {
-        s32 ch = arg0->unk_54[i];
+        ch = arg0->unk_54[i];
         s32 val = func_0200a108(arg0->unk_44 + *(s32 *)(data_0216c8f4 + ch * 8 + 4));
         func_0200968c(1u << ch, val & 0xff, val >> 8);
     }
