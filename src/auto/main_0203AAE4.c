@@ -2,8 +2,9 @@
 #include "common.h"
 
 typedef struct { s32 x, y, z; } Vec3;
-/* shared epilogue template:
+/* shared epilogue templates:
 if (ret != 0) {
+if (ret == 0) {
 func_020331b0(r8, ret);
 return ret;
 }
@@ -39,32 +40,28 @@ extern s32 func_020ec9a0(void *, s32);
 extern void func_020ec548(void *);
 extern void func_020331b0(void *, s32);
 extern s32 unk_const_ffc;
+#pragma push
+#pragma opt_propagation off
 s32 func_0203aae4(u8 *arg0) {
     u8 *r7 = *(u8 **)(arg0 + 0x128);
     u8 *r8 = *(u8 **)(r7 + 0x8c);
     u8 *r5 = *(u8 **)(r7 + 0x0);
     s32 ret = 0;
-    struct { s32 x, y, z; } v1 = {0, 0, 0};
+    Vec3 v1 = {0, 0, 0};
     struct { u8 a; u16 b; u8 c; u16 d; u8 e; } v3 = {0, 0, 2, 0x258, 0};
-    struct { s32 x, y, z; } v2;
+    Vec3 v2;
 
     switch (*(u16 *)(r8 + 0)) {
     case 0: {
         u8 *it;
         func_020d9ea8(8, 0);
-        *(s32 *)(r8 + 0x24) = *(s32 *)(r5 + 0);
-        *(s32 *)(r8 + 0x28) = *(s32 *)(r5 + 4);
-        *(s32 *)(r8 + 0x2c) = *(s32 *)(r5 + 8);
-        *(s32 *)(r8 + 0x18) = *(s32 *)(arg0 + 0);
-        *(s32 *)(r8 + 0x1c) = *(s32 *)(arg0 + 4);
-        *(s32 *)(r8 + 0x20) = *(s32 *)(arg0 + 8);
+        *(Vec3 *)(r8 + 0x24) = *(Vec3 *)r5;
+        *(Vec3 *)(r8 + 0x18) = *(Vec3 *)arg0;
         it = func_0205bad4(r7);
         while (it != NULL) {
             u8 *obj = *(u8 **)it;
             if (obj != NULL && *(void **)(obj + 0x118) != NULL) {
-                *(s32 *)(obj + 0xd4) = *(s32 *)(obj + 0);
-                *(s32 *)(obj + 0xd8) = *(s32 *)(obj + 4);
-                *(s32 *)(obj + 0xdc) = *(s32 *)(obj + 8);
+                *(Vec3 *)(obj + 0xd4) = *(Vec3 *)obj;
             }
             it = *(u8 **)(it + 0x18);
         }
@@ -170,9 +167,7 @@ s32 func_0203aae4(u8 *arg0) {
             }
             *(u32 *)(r5 + 0x64) = 0;
             arg0[0x192] = 0x78;
-            *(s32 *)(r5 + 0) = *(s32 *)(r8 + 0x24);
-            *(s32 *)(r5 + 4) = *(s32 *)(r8 + 0x28);
-            *(s32 *)(r5 + 8) = *(s32 *)(r8 + 0x2c);
+            *(Vec3 *)r5 = *(Vec3 *)(r8 + 0x24);
             *(s32 *)(r5 + 0) -= 0xc8000;
             *(s32 *)(arg0 + 0) = 0x1d4000;
             *(u32 *)(r5 + 0x80) |= 2;
@@ -191,9 +186,7 @@ s32 func_0203aae4(u8 *arg0) {
             v2.y = *(s32 *)(r8 + 0x28) + 0xa000;
             v2.z = *(s32 *)(r8 + 0x2c);
             func_020d9058(&v2);
-            *(s32 *)(data_02160258 + 0) = v2.x;
-            *(s32 *)(data_02160258 + 4) = v2.y;
-            *(s32 *)(data_02160258 + 8) = v2.z;
+            *(Vec3 *)data_02160258 = v2;
             func_0210d27c(0x75);
             func_020331d0(r8, 1, 1);
         }
@@ -379,9 +372,7 @@ s32 func_0203aae4(u8 *arg0) {
                 while (it != NULL) {
                     u8 *obj = *(u8 **)it;
                     if (obj != NULL && *(void **)(obj + 0x118) != NULL) {
-                        *(s32 *)(obj + 0) = *(s32 *)(obj + 0xd4);
-                        *(s32 *)(obj + 4) = *(s32 *)(obj + 0xd8);
-                        *(s32 *)(obj + 8) = *(s32 *)(obj + 0xdc);
+                        *(Vec3 *)obj = *(Vec3 *)(obj + 0xd4);
                     }
                     it = *(u8 **)(it + 0x18);
                 }
@@ -405,9 +396,7 @@ s32 func_0203aae4(u8 *arg0) {
             func_0205db90(arg0, r5, 4, 8);
             func_020a2c38(*(u16 *)(*(u8 **)data_02160260 + 0x48), ret);
             *(s32 *)(arg0 + 4) = 0x20000;
-            *(s32 *)(r5 + 0) = *(s32 *)(r8 + 0x24);
-            *(s32 *)(r5 + 4) = *(s32 *)(r8 + 0x28);
-            *(s32 *)(r5 + 8) = *(s32 *)(r8 + 0x2c);
+            *(Vec3 *)r5 = *(Vec3 *)(r8 + 0x24);
             *(u8 **)(r5 + 0xf8) = NULL;
             {
                 u8 *g = *(u8 **)data_02160244;
@@ -426,3 +415,4 @@ s32 func_0203aae4(u8 *arg0) {
         break;
     }
     }
+#pragma pop
