@@ -120,12 +120,12 @@ void func_02006d34(u8 *arg0, u8 *arg1) {
 }
 
 void func_02006e1c(void) {
-    volatile u8 *io = (volatile u8 *)0x04000000;
-    u32 ime = *(volatile u32 *)(io + 0x208);
-    *(volatile u32 *)(io + 0x208) = (u32)io;
-    do {
-    } while (*(volatile u16 *)(io + 0x6) != 0);
-    *(volatile u32 *)(io + 0x208) = ime;
+ volatile u32 *io=(volatile u32 *)0x04000000;
+ u32 ime=io[0x82];
+ u16 line;
+ io[0x82]=(u32)io;
+ do { line=*(volatile u16 *)((u8 *)io+6); } while(line);
+ io[0x82]=ime;
 }
 
 void func_02006e3c(void) {
@@ -168,6 +168,13 @@ void func_02006e90(void) {
     func_020071b4(5, func_020070fc(5));
     func_020071a0(6, func_0200701c(6));
     func_020071b4(6, func_020070fc(6));
+}
+
+void func_02006fac(void) {
+    func_02006940();
+    func_020071a0(2, func_0200701c(2));
+    func_020071b4(2, func_020070fc(2));
+    func_020075d4(1, 0x2000000, 0x2a);
 }
 
 u32 func_02006ff4(s32 arg0) {
