@@ -578,18 +578,18 @@ void func_0200893c(u32 dmaNo) {
 }
 
 void func_02008998(u32 arg0) {
-    s32 irq = func_02008128();
-    u32 *p = (u32 *)(0x4000000 + arg0 * 0xc);
-    u32 *q;
-    p[0xb8 / 4] &= ~0x3a000000;
-    p[0xb8 / 4] &= ~0x80000000;
-    if (arg0 == 0) {
-        q = (u32 *)(0x4000000 + arg0 * 0xc + 0xb0);
-        q[0] = 0;
-        q[1] = 0;
-        q[2] = 0x81400001;
-    }
-    func_0200813c(irq);
+s32 irq = func_02008128();
+volatile u32 *p = (volatile u32 *)(0x4000000 + arg0 * 0xc);
+volatile u32 *q;
+p[0xb8/4] &= ~0x3a000000;
+p[0xb8/4] &= ~0x80000000;
+(void)p[0xb8/4];
+(void)p[0xb8/4];
+if (arg0 == 0) {
+q = (volatile u32 *)(0x4000000 + arg0 * 0xc + 0xb0);
+q[0]=0; q[1]=0; q[2]=0x81400001;
+}
+func_0200813c(irq);
 }
 
 extern void func_02008998(u32);
@@ -628,7 +628,7 @@ void func_02008a28(s32 arg0, u32 arg1) {
 void func_02008ab4(s32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     u32 hi;
     u32 hi2;
-    if (arg0 == 0) {
+    if (arg0 != 0) {
         return;
     }
     hi = arg1 & 0xff000000;
@@ -639,17 +639,10 @@ void func_02008ab4(s32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     } else {
         arg1 += arg2;
     }
-    if (hi == 0x4000000) {
-        return;
-    }
-    if (hi >= 0x8000000) {
-        return;
-    }
     hi2 = arg1 & 0xff000000;
-    if (hi2 == 0x4000000 || hi2 >= 0x8000000) {
-        return;
+    if (hi == 0x4000000 || hi >= 0x8000000 || hi2 == 0x4000000 || hi2 >= 0x8000000) {
+        func_02008414();
     }
-    func_02008414();
 }
 
 void func_02008b08(s32 channel, u32 src, u32 size, void (*callback)(void *), void *arg) {
