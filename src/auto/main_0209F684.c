@@ -4,15 +4,23 @@ typedef struct { s16 v[10]; } Draw_020a00ec;
 typedef struct { s16 f0,f1,f2,f3,f4,f5,f6,f7,f8,f9; } Fields_020a00ec;
 typedef struct { s16 x,y,z; } Pos_020a00ec;
 extern const Draw_020a00ec data_02142ccc, data_02142c18;
+extern const Draw_020a00ec data_02142c68, data_02142c7c, data_02142c90, data_02142ca4, data_02142cb8, data_02142ce0, data_02142d1c;
+typedef struct { s16 x, y; } Coord_9f684;
 void func_020a3bbc(s32);
 void func_021098ac(void *);
 
-void func_0209f684(s32 arg0, s32 arg1, s32 arg2, s32 arg3)
+extern u8 *data_021600b0;
+extern void func_020a3bbc(s32);
+extern void func_020a1234(s32, s32, s32, s32);
+void func_0209f684(s32 arg0, s16 arg1, s16 arg2, s32 arg3)
 {
     (void)arg0;
     (void)arg1;
     (void)arg2;
     (void)arg3;
+    func_020a3bbc(8);
+    func_020a1234(0, 0, 0xa3, 0xae);
+    func_020a1234(1, 0, 0xa3, 0x9c);
 }
 
 void func_020a00ec(s32 mode, s16 x, s16 y, Pos_020a00ec pos, s16 arg5) {
