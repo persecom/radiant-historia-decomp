@@ -104,6 +104,7 @@ void func_02118624(void *arg0, u32 arg1, s32 arg2, void *arg3) {
     }
 }
 
+#pragma opt_propagation off
 void func_0211883c(void *arg0, u32 arg1, u32 arg2, void *arg3) {
     const Unk02118A54 *p = arg0;
     Unk02118A54Out *out = arg3;
@@ -149,18 +150,15 @@ void func_0211883c(void *arg0, u32 arg1, u32 arg2, void *arg3) {
         out->width = width;
     }
 
-#pragma opt_propagation off
-    { u32 format = ((volatile Unk02118A54 *)p)->format, type = p->type;
-      u32 one = 1;
+    { u32 format = ((volatile Unk02118A54 *)p)->format, one = 1, type = p->type;
       out->format = format;
       out->zero = zero;
-      out->type = type;
       out->one = one;
+      out->type = type;
     }
-#pragma opt_propagation on
     func_021185b0((s32 *)arg3, arg2, (s32)arg1);
 }
-
+#pragma opt_propagation on
 #pragma opt_propagation off
 void func_02118a54(void *arg0, u32 arg1, s32 arg2, void *arg3) {
     const Unk02118A54 *p=arg0;
