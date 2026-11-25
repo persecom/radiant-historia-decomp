@@ -134,19 +134,25 @@ s32 func_020ea188(u8 *arg0,s32 id,u8 type) {
  return 1;
 }
 
-s32 func_020ea574(u8 *arg0, u32 arg1, s32 arg2) {
-    u8 *r0 = *(u8 **)arg0;
-    u32 count = *(u16 *)(*(u8 **)(*(u8 **)(r0 + 0x58) + 0xc));
-    s32 res;
-    if (count <= arg1) {
-        return 0;
+BOOL func_020ea574(u8 *arg0, s32 arg1, s32 arg2)
+{
+    u8 *obj = *(u8 **)arg0;
+    u8 *table = *(u8 **)(obj + 0x58);
+    BOOL invalid;
+
+    if (**(u16 **)(table + 0xc) <= (u32)arg1) {
+        return FALSE;
     }
-    res = (func_021086d4(r0) == 0) ? 1 : 0;
-    if (res != 0) {
-        return 0;
+
+    invalid = (func_021086d4(obj, arg1) == 0);
+
+    if (invalid != FALSE) {
+        return FALSE;
     }
+
     func_02108680(*(u8 **)arg0, arg1, arg2);
-    return 1;
+
+    return TRUE;
 }
 
 s32 func_020ea5d4(u8 *arg0, s32 arg1) {
