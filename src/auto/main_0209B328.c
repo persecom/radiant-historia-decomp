@@ -24,6 +24,7 @@ extern void func_021168f8(void *, void *);
 extern void func_0210c5dc(void *);
 extern u16 func_0209ac28(void *, u16);
 extern void func_0210d448(void);
+static inline s32 reached_0209b328(s32 limit, s32 value) { return value >= limit; }
 void func_0209b328(void) {
     u8 *r9 = data_02160120;
     u8 *r10 = func_0209ac14();
@@ -38,11 +39,11 @@ void func_0209b328(void) {
             *(s32 *)(r10 + 0x14) += lv * 2;
         }
 
-        if (((s32 *)r10)[5] >= ((s32 *)r10)[2]) {
-            ((u32 *)r10)[1] += ((u32 *)r10)[2];
-            ((s32 *)r10)[2] = 0;
-            ((s32 *)r10)[5] = 0;
-            if (((s32 *)r10)[3] == 0) {
+        if (!(*(s32 *)(r10 + 0x14) < *(s32 *)(r10 + 8))) {
+            *(u32 *)(r10 + 4) += *(u32 *)(r10 + 8);
+            *(s32 *)(r10 + 8) = 0;
+            *(s32 *)(r10 + 0x14) = 0;
+            if (*(s32 *)(r10 + 0xc) == 0) {
                 *(s16 *)(r9 + 0x698) += 1;
             }
         }
