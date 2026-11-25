@@ -123,28 +123,25 @@ void func_020112a4(s32 arg0)
 
 void func_02011334(void) {
     u32 *p = data_0215fa34;
-    s32 val = 1;
-    s32 mode = 0xd;
-    if (p[2] != 0) {
-        return;
-    }
+    if (p[2] != 0) return;
     p[2] = 1;
     func_0201101c();
     p[3] = 0;
     func_0200a56c();
-    if (func_0200a6c0(mode, val) == 0) {
-        goto end;
+    {
+        s32 mode = 0xd;
+        s32 val = 1;
+        while (func_0200a6c0(mode, val) == 0) {}
+        func_0200a674(mode, (void *)func_020115c8);
+        func_020113e4();
+        val = 0;
+        func_0200a674(mode, (void *)val);
+        func_0200a674(mode, (void *)func_020115f0);
+        data_0215fa34[6] = val;
+        func_02011674(data_0215fb20);
+        func_0200a674(0x11, (void *)func_02011660);
+        func_020112a4(val);
     }
-    func_0200a674(mode, (void *)func_020115c8);
-    func_020113e4();
-    val = 0;
-    func_0200a674(mode, (void *)val);
-    func_0200a674(mode, (void *)func_020115f0);
-    p[6] = (u32)val;
-    func_02011674(data_0215fb20);
-    func_0200a674(0x11, (void *)func_02011660);
-end:
-    func_020112a4(val);
 }
 
 #pragma optimization_level 2
