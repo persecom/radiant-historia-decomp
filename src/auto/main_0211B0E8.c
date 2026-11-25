@@ -48,8 +48,8 @@ static inline s32 tile_offset(s32 x, s32 y, s32 width, s32 height) {
     s32 ry = y % 32;
     s32 bx = x / 32;
     s32 rx = x % 32;
-    s32 bh = by == height / 32 ? height % 32 : 32;
     s32 bw = bx == width / 32 ? width % 32 : 32;
+    s32 bh = by == height / 32 ? height % 32 : 32;
     return rx + (by * (width * 32) + bx * (bh * 32) + bw * ry);
 }
 extern void func_02006dc4(void *, u32);
@@ -346,16 +346,17 @@ mode=mode==2?0x300:0x100;
  else { *p2=(*p2&0xc1fffcff)|mode; }
 }
 }
-GetDouble_bb3c(*sprite,&mode);
+mode=Double_bb3c(*sprite);
+mode=(u32)mode;
 {
 u32 attr=*sprite&0xc000c000;
 u32 size=(attr&0xc0000000)>>30;
 s32 shape=(s32)(attr&0xc000)>>14;
-w=(s32)data_02144d84[shape][size]>>1;
 h=(s32)data_02144d6c[shape][size]>>1;
+w=(s32)data_02144d84[shape][size]>>1;
 }
 {
-s32 ox=-(w<<12),oy=-(h<<12);
+s32 oy=-(h<<12),ox=-(w<<12);
 ox+=m[0]*w;oy+=m[1]*w;
 ox+=m[2]*h;oy+=m[3]*h;
 pos.y+=oy;pos.x+=ox;
