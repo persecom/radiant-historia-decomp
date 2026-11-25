@@ -1,6 +1,7 @@
 /* 26 functions from 0x020A7598 to 0x020A84B8 (main), found by ds-decomp. */
 #include "common.h"
 typedef struct {s32 x,y,z;} Position_020a7b18;
+static inline void SetPosition_020a7b18(u8 *obj,s32 x,s32 y,s32 z) {u8 *m=*(u8 **)obj;*(s32 *)(m+0x6c)=x;*(s32 *)(m+0x70)=y;*(s32 *)(m+0x74)=z;*(s32 *)(m+0xf4)=1;}
 extern void func_020a7b18(void);
 extern void func_020a7fe8(void),func_020a8010(void),func_020a8064(void),func_020a809c(void),func_020a80cc(void),func_020a80d0(void),func_020a80d4(void),func_020a80d8(void);
 extern u8 *func_020f0a5c(u32),*func_020f0aa4(u32);
@@ -282,3 +283,56 @@ s32 func_020a79a4(void) {
     data_0216bf84 = 0;
     return result;
 }
+
+void func_020a7b18(void){
+s32 one=1;
+s32 zero;
+u8 *obj;
+if(data_0216013c)return;
+func_020a2c20();func_0210f6d4();
+data_02162858[0]=(u32)func_020a7fe8;data_02162854=(u32)func_020a7fe8;
+func_0210b894();data_02162850=one;func_0210b750(1006);zero=0;data_02162850=zero;
+func_02120524(one);func_020eff5c(one);func_020a31c8(19);
+data_0216013c=func_0210c594(576,data_02155c3c);
+*(u32 *)(data_0216013c+0)=(u32)func_020a8010;*(s32 *)(data_0216013c+4)=1011;func_0210d9e4(data_0216013c+0);
+*(u32 *)(data_0216013c+20)=(u32)func_020a8064;*(s32 *)(data_0216013c+24)=1000;func_0210db70(data_0216013c+20);
+*(u32 *)(data_0216013c+40)=(u32)func_020a809c;*(s32 *)(data_0216013c+44)=1000;func_0210dbd0(data_0216013c+40);
+*(u32 *)(data_0216013c+60)=(u32)func_020a80cc;*(s32 *)(data_0216013c+64)=1002;func_0210dae0(data_0216013c+60);
+*(u32 *)(data_0216013c+80)=(u32)func_020a80d0;*(s32 *)(data_0216013c+84)=1002;func_0210db40(data_0216013c+80);
+*(u32 *)(data_0216013c+100)=(u32)func_020a80d4;*(s32 *)(data_0216013c+104)=1016;func_0210d9e4(data_0216013c+100);
+*(u32 *)(data_0216013c+120)=(u32)func_020a80d8;*(s32 *)(data_0216013c+124)=1016;func_0210dab0(data_0216013c+120);
+*(u16 *)(data_0216013c+0x230)=996;
+{
+Position_020a7b18 pos;pos.x=0;pos.y=0;pos.z=0;
+func_020f0154(*(u16 *)(data_0216013c+0x230));
+obj=func_020f0a5c(*(u16 *)(data_0216013c+0x230));
+if(obj){u8 *model=*(u8 **)obj;*(s32 *)(model+0x6c)=zero;*(s32 *)(model+0x70)=zero;*(s32 *)(model+0x74)=zero;*(s32 *)(model+0xf4)=one;}
+*(u16 *)(data_0216013c+0x232)=501;
+func_020f0154(0x2764);
+func_020f0898(pos,0x2764,501);
+*(u16 *)(data_0216013c+0x234)=998;
+func_020f0154(0x2772);
+pos.x=0;pos.y=-0x32000;pos.z=0;
+func_020f07b0(pos,0x2711,*(u16 *)(data_0216013c+0x234));
+obj=func_020f0aa4(*(u16 *)(data_0216013c+0x234));
+if(obj){
+u8 *model=*(u8 **)obj;
+*(u32 *)(obj+20)|=1;
+*(s32 *)(model+0x6c)=*(s32 *)(obj+4);*(s32 *)(model+0x70)=*(s32 *)(obj+8);*(s32 *)(model+0x74)=*(s32 *)(obj+12);
+*(s32 *)(model+0xf4)=one;
+func_020f1dd4(obj,0);
+}
+}
+*(void **)(data_0216013c+0x8c)=func_020c3ca8();
+*(void **)(data_0216013c+0x90)=func_020c3c78();
+func_020c3660(*(void **)(data_0216013c+0x8c));func_020c46c4();func_020c4454();
+if(data_02160204[0xd6]==39){
+*(s32 *)(*(u8 **)(data_0216013c+0x90)+4)=0;
+data_02162830=30;data_02162834[0]=one;data_0216281c=2;data_02162820[0]=2;
+}else{
+*(s32 *)(*(u8 **)(data_0216013c+0x90)+4)=one;
+data_02162830=30;data_02162834[0]=0;data_0216281c=one;data_02162820[0]=2;
+}
+data_0216bf84=one;
+}
+
