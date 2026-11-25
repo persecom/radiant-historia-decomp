@@ -41,14 +41,14 @@ extern s32 func_0210e7f0(char *, void *);
 extern s32 func_0210e848(char *, void *);
 extern void func_021167f0(void *, void *);
 
+u8 *func_020ee52c(s32 arg0);
 s32 func_020ee098(void) {
-    s32 one = 1;
+    struct S24 { u32 a, b, c, d, e, f; };
     s32 zero = 0;
-    s32 res = zero;
-    char name[0x40];
     s32 id;
     s32 flag;
     s32 s1;
+    s32 one = 1;
     s32 s2;
     s32 s3;
     s32 f1;
@@ -59,11 +59,12 @@ s32 func_020ee098(void) {
     s32 i;
     u8 *node;
     u8 *slot;
+    char name[0x40];
 
     if (func_0210cc54(data_02151ca0) != 0) {
         id = func_0210cd90(zero);
         flag = 0x20;
-        s1 = func_0210cd90(0x20);
+        s1 = func_0210cd90(flag);
         if (id % 10 != 1) {
             flag = 0x10;
         }
@@ -74,7 +75,7 @@ s32 func_020ee098(void) {
         if (id == 0) {
             return zero2;
         }
-        if (0) {
+        if (func_020ee52c(id) != NULL) {
             return zero2;
         }
         switch (s1) {
@@ -141,7 +142,10 @@ s32 func_020ee098(void) {
         func_02008e68(zero, node, 0x28);
         func_02005e80(name, data_02151ca4, id);
         if (func_0210e7f0(name, node + 8) == 0) {
-            return res;
+            return zero;
+        }
+        if (id2 == 0) {
+            id2 = id;
         }
         func_02005e80(name, data_02151cb8, id2);
         if (func_0210e848(name, node + 0x10) == 0) {
@@ -155,73 +159,54 @@ s32 func_020ee098(void) {
         return 1;
     }
     if (func_0210cc54(data_02151ccc) == 0) {
-        return res;
+        return zero;
     }
     i = zero;
     slot = (u8 *)((u32)(data_02160aec + 0x10) + func_0210cd90(i) * 0x78);
     for (; i < 5; i++) {
         id = func_0210cd90(zero);
-        if (id != 0) {
-            node = NULL;
-            if (node == NULL) {
-                return res;
+        if (id == 0) {
+            switch (i) {
+            case 2:
+                *(struct S24 *)(slot + 0x30) = *(struct S24 *)slot;
+                break;
+            case 3:
+                *(struct S24 *)(slot + 0x48) = *(struct S24 *)(slot + 0x30);
+                break;
+            case 4:
+                *(struct S24 *)(slot + 0x60) = *(struct S24 *)(slot + 0x48);
+                break;
+            default:
+                return zero;
             }
-            s1 = *(u32 *)(node + 0x20);
-            s2 = *(u32 *)(node + 0xc);
-            s3 = *(u32 *)(node + 0x18);
-            f1 = *(u32 *)(node + 0x1c);
+        } else {
+            node = func_020ee52c(id);
+            if (node == NULL) {
+                return zero;
+            }
             {
                 u32 off = i * 0x18;
                 u8 *p = slot + off;
-                u32 t1 = one << (s3 + 3);
-                u32 t2 = one << (f1 + 3);
-                s32 shift = 4 - ((s1 == 2) ? one : zero);
+                s32 v1;
+                s32 v2;
+                s16 x;
 
-                *(u32 *)(p + 0x0) = (s1 << 26) | (s2 >> 3) | 0x40000000 | (s3 << 20) | (f1 << 23) | 0xf0000;
-                *(u32 *)(p + 0x4) = *(u32 *)(node + 0x14) >> shift;
-                if (i == 4) {
-                    s32 v = (s16)(t2 << 8);
-                    *(u32 *)(p + 0x8) = (u32)v << 16;
-                    *(u32 *)(p + 0xc) = zero;
-                    *(u32 *)(p + 0x10) = (u32)v & 0xffff;
-                    *(u32 *)(p + 0x14) = ((u32)v & 0xffff) | ((u32)v << 16);
-                } else {
-                    s32 v1 = (s16)(t1 << 8);
-                    s32 v2 = (s16)(t2 << 8);
+                *(u32 *)(p + 0x0) = (*(u32 *)(node + 0x20) << 26) | (*(u32 *)(node + 0xc) >> 3) | 0x40000000 | (*(u32 *)(node + 0x18) << 20) | (*(u32 *)(node + 0x1c) << 23) | 0xf0000;
+                v1 = (one << (*(u32 *)(node + 0x18) + 3)) << 12;
+                v2 = (one << (*(u32 *)(node + 0x1c) + 3)) << 12;
+                *(u32 *)(p + 0x4) = *(u32 *)(node + 0x14) >> (4 - ((*(u32 *)(node + 0x20) == 2) ? one : zero));
+                x = (s16)(v2 >> 8);
+                if (i != 4) {
                     *(u32 *)(p + 0x8) = zero;
-                    *(u32 *)(p + 0xc) = (u32)v2 << 16;
-                    *(u32 *)(p + 0x10) = ((u32)v1 & 0xffff) | ((u32)v2 << 16);
-                    *(u32 *)(p + 0x14) = (u32)v1 & 0xffff;
+                    *(u32 *)(p + 0xc) = (u32)(u16)x << 16;
+                    *(u32 *)(p + 0x10) = (u32)(u16)(v1 >> 8) | ((u32)(u16)x << 16);
+                    *(u32 *)(p + 0x14) = (u32)(u16)(v1 >> 8);
+                } else {
+                    *(u32 *)(p + 0x8) = (u32)(u16)x << 16;
+                    *(u32 *)(p + 0xc) = zero;
+                    *(u32 *)(p + 0x10) = (u32)(u16)(v1 >> 8);
+                    *(u32 *)(p + 0x14) = (u32)(u16)(v1 >> 8) | ((u32)(u16)x << 16);
                 }
-            }
-        } else {
-            switch (i) {
-            case 2:
-                *(u32 *)(slot + 0x30) = *(u32 *)(slot + 0x0);
-                *(u32 *)(slot + 0x34) = *(u32 *)(slot + 0x4);
-                *(u32 *)(slot + 0x38) = *(u32 *)(slot + 0x8);
-                *(u32 *)(slot + 0x3c) = *(u32 *)(slot + 0xc);
-                *(u32 *)(slot + 0x40) = *(u32 *)(slot + 0x10);
-                *(u32 *)(slot + 0x44) = *(u32 *)(slot + 0x14);
-                break;
-            case 3:
-                *(u32 *)(slot + 0x48) = *(u32 *)(slot + 0x30);
-                *(u32 *)(slot + 0x4c) = *(u32 *)(slot + 0x34);
-                *(u32 *)(slot + 0x50) = *(u32 *)(slot + 0x38);
-                *(u32 *)(slot + 0x54) = *(u32 *)(slot + 0x3c);
-                *(u32 *)(slot + 0x58) = *(u32 *)(slot + 0x40);
-                *(u32 *)(slot + 0x5c) = *(u32 *)(slot + 0x44);
-                break;
-            case 4:
-                *(u32 *)(slot + 0x60) = *(u32 *)(slot + 0x48);
-                *(u32 *)(slot + 0x64) = *(u32 *)(slot + 0x4c);
-                *(u32 *)(slot + 0x68) = *(u32 *)(slot + 0x50);
-                *(u32 *)(slot + 0x6c) = *(u32 *)(slot + 0x54);
-                *(u32 *)(slot + 0x70) = *(u32 *)(slot + 0x58);
-                *(u32 *)(slot + 0x74) = *(u32 *)(slot + 0x5c);
-                break;
-            default:
-                return res;
             }
         }
     }
@@ -229,9 +214,8 @@ s32 func_020ee098(void) {
 }
 
 u8 *func_020ee52c(s32 arg0) {
-    u8 *p = data_02160aec;
     u8 *node = NULL;
-    while ((node = (node == NULL) ? *(u8 **)p : *(u8 **)(node + *(u16 *)(p + 0xa) + 4)) != NULL) {
+    for (; (node = (node != NULL) ? *(u8 **)(node + *(u16 *)(data_02160aec + 0xa) + 4) : *(u8 **)data_02160aec) != NULL;) {
         if (*(u16 *)(node + 0x24) == arg0) {
             return node;
         }
