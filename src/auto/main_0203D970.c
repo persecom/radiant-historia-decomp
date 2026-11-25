@@ -1,5 +1,17 @@
 /* 6 functions from 0x0203D970 to 0x0203E8C0 (main), found by ds-decomp. */
 #include "common.h"
+extern u8 *data_02160aec, *data_02160204, *data_02155984;
+extern u8 *data_02160098[2];
+extern const s16 data_0213a394[];
+typedef struct { u16 v[32]; } Table_0203d970_32;
+typedef struct { u16 v[48]; } Table_0203d970_48;
+extern const Table_0203d970_32 data_0213eef0;
+extern const Table_0203d970_48 data_0213ef30;
+extern s32 data_02151fcc;
+extern u16 data_02151fca, data_02151fc8;
+extern s32 func_020dddf0(void *,void *);
+extern s32 func_020ddc8c(void *,void *);
+extern void func_0203d864(void *);
 void func_020ec548(void *);
 u8 *func_020ec294(u32,u32,int,int);
 void func_020ec88c(void *,int,int);
