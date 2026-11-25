@@ -281,13 +281,15 @@ s32 func_020ddcb0(u32 *arg0, u32 *arg1) {
 void func_020ddcd4(u8 *arg0) {
     s32 scale = *(s32 *)data_02160a68.unk00;
     s32 val = *(s32 *)(arg0 + 0x78);
-    s32 angle = (s32)(((s64)(val << 12) * scale + 0x800) >> 12);
+    s32 angle = (s32)(((s64)scale * (val << 12) + 0x800) >> 12);
     s32 idx = *(u16 *)(arg0 + 0x92) >> 4;
-    s32 j = idx << 1;
-    s32 o0 = j << 1;
-    s32 o1 = (j + 1) << 1;
-    *(s32 *)(arg0 + 0x30) = (s32)(((s64)data_0213a394[o0] * angle + 0x800) >> 12);
-    *(s32 *)(arg0 + 0x38) = (s32)(((s64)data_0213a394[o1] * angle + 0x800) >> 12);
+    s32 j = idx * 2;
+    s32 s = data_0213a394[j];
+    s32 c = data_0213a394[j + 1];
+    s32 x = (s32)(((s64)s * angle + 0x800) >> 12);
+    s32 z = (s32)(((s64)c * angle + 0x800) >> 12);
+    *(s32 *)(arg0 + 0x30) = x;
+    *(s32 *)(arg0 + 0x38) = z;
 }
 
 void func_020ddd5c(u8 *arg0) {
@@ -297,8 +299,8 @@ void func_020ddd5c(u8 *arg0) {
 }
 
 void func_020ddd8c(u8 *arg0) {
-    s32 idx = (*(u16 *)(arg0 + 0x92) >> 4) * 2;
     s32 speed = *(s32 *)(arg0 + 0x4c);
+    s32 idx = (*(u16 *)(arg0 + 0x92) >> 4) * 2;
     s32 c = data_0213a394[idx + 1];
     s32 s = data_0213a394[idx];
     *(s32 *)(arg0 + 0x30) = (s32)(((s64)c * speed + 0x800) >> 12);
