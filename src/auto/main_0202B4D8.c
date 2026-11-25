@@ -203,20 +203,15 @@ func_02109444(file);
 *(u16 *)(data_02160244+0x140)=func_02092994(file,zero); func_02109444(file); *(u16 *)(data_02160244+0x142)=func_02092994(file,zero); func_02109444(file); if(file) func_021093b0(file); *(void **)(data_02160244+0x13c)=p; }
 
 u8 *func_0202bc44(s32 arg0) {
-    u8 *p;
-    s16 idx;
-    idx = arg0 * 2;
-    p = func_0210c594(0x3c, data_02155c3c);
-    p[0] = arg0;
-    p[1] = 0;
-    if ((u32)arg0 <= 8) {
-        p[1] = arg0 / 3 + 1;
-    }
-    *(u32 *)(p + 4) = data_0214618c[idx] << 12;
-    *(u32 *)(p + 8) = 0x20000;
-    *(u32 *)(p + 0xc) = data_0214618c[idx + 1] << 12;
-    func_021167ac(p + 0x10, 8);
-    return p;
+u8 *p; s16 idx=arg0*2;
+p=func_0210c594(0x3c,data_02155c3c);
+p[0]=arg0;p[1]=0;
+if((u32)arg0<=8)p[1]=arg0/3+1;
+{
+s32 x=data_0214618c[idx],z=((volatile s32 *)data_0214618c)[idx+1];
+*(u32 *)(p+4)=x<<12;*(u32 *)(p+8)=0x20000;*(u32 *)(p+12)=z<<12;
+}
+func_021167ac(p+0x10,8);return p;
 }
 
 void func_0202bcd4(u32 *arg0, s32 arg1) {
@@ -245,12 +240,10 @@ void func_0202bd08(u8 *arg0) {
 
 u8 *func_0202bd60(s32 arg0, s32 arg1) {
     u8 *node = func_0210c594(0x28, data_02155c3c);
-    s32 v;
     node[0] = arg0;
     node[1] = arg1;
     node[3] = 0;
-    v = node[3] - 1;
-    node[2] = v;
+    node[2] = node[3] - 1;
     func_021167f0(data_02160244 + 0x50, node);
     return node;
 }
