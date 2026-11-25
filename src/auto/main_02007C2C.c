@@ -11,10 +11,6 @@ extern void func_02007a88(void *, u64);
 
 extern u8 data_04000247;
 extern u8 data_0215d144[20];
-
-typedef struct {
-    s32 unk0, unk4, unk8;
-} IrqState0215d144;
 extern u32 data_0215d15c;
 extern u16 data_0215d160[10];
 extern u32 func_02008354(u32);
