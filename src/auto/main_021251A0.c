@@ -579,6 +579,22 @@ value=func_0201ff0c(func_02020888(func_020203d4(0x4184cccd,func_0201f8cc(arg1)),
 func_02126a58(*p,value);
 }
 
+void **func_02125dc4(void *arg0) {
+    void **ret = NULL;
+    if (arg0 == NULL) {
+        s32 i;
+        for (i = 0; i < 4; i++) {
+            if (*(u32 *)(data_02173198 + i * 0x68 + 4) == 0) {
+                ret = (void **)(data_0217319c + i * 0x68);
+                break;
+            }
+        }
+    } else {
+        ret = *(void ***)((u8 *)arg0 + 4);
+    }
+    return ret;
+}
+
 #pragma opt_propagation off
 void func_02125e20(void *arg0) {
     u8 *p = (u8 *)arg0;
