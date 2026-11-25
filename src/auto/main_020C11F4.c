@@ -163,6 +163,7 @@ u8 *func_020c17bc(s32 *pos, s32 id, u16 arg2, u8 arg3, s16 arg4) {
     u8 *p;
     s32 flag = 0;
     s16 val = 0;
+    s32 tmp;
 
     if (id == 0xbbf) {
         return NULL;
@@ -262,15 +263,12 @@ u8 *func_020c17bc(s32 *pos, s32 id, u16 arg2, u8 arg3, s16 arg4) {
             *(s32 *)(p + 0) = r + 10;
             data_0216263c.x = data_0216263c.mul * data_0216263c.x + data_0216263c.add;
             r = (u16)(((data_0216263c.x >> 16) * 0xc8) >> 16);
-            *(s32 *)(p + 4) = -(s32)(r + 10);
-            break;
-        }
-        if (arg3 == 5 || arg3 == 6) {
+            tmp = -(s32)(r + 10);
+            goto store_tmp;
+        } else if (arg3 == 5 || arg3 == 6) {
             *(s32 *)(p + 0) = 0x80;
             *(s32 *)(p + 4) = 0x46;
-            break;
-        }
-        if (arg3 == 7) {
+        } else if (arg3 == 7) {
             *(s32 *)(p + 0) = 0x80;
             *(s32 *)(p + 4) = 0x60;
             *(s32 *)(p + 0x64) = 0x32;
@@ -282,7 +280,9 @@ u8 *func_020c17bc(s32 *pos, s32 id, u16 arg2, u8 arg3, s16 arg4) {
         } else if (arg3 == 19 || arg3 == 20 || arg3 == 21) {
             *(u8 *)(*(u8 **)*(void **)(p + 0x108) + 0x70) |= 2;
             *(s32 *)(p + 0x64) = 0x21c;
-            *(s32 *)(p + 4) += 0x14000;
+            tmp = *(s32 *)(p + 4) + 0x14000;
+        store_tmp:
+            *(s32 *)(p + 4) = tmp;
         }
         break;
     case 1131:
