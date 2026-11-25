@@ -85,11 +85,13 @@ extern void func_021093b0(void *);
 s32 func_02022fb0(u8 *arg0) {
     char buf[0x20];
     void *r6;
-    u16 r10 = *(u16 *)(arg0 + 0);
-    u16 r7 = *(u16 *)(arg0 + 2);
-    s32 r9;
+    u16 r7;
     u16 r8;
+    s32 r9;
+    u16 r10;
 
+    r10 = *(u16 *)(arg0 + 0);
+    r7 = *(u16 *)(arg0 + 2);
     func_02005e80(buf, data_02145ff0);
     r6 = func_021092d8(buf);
     r9 = 1;
