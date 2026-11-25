@@ -10,6 +10,9 @@ extern void *func_02046f90(u32, u16);
 extern void func_020477dc(void *, u32, u32);
 extern void func_021167f0(void *, void *);
 extern u64 data_02162658[3];
+static inline u8 hit_rect_020783e8(s32 tx, s32 ty, s32 x0, s32 y0, s32 x1, s32 y1) {
+    return (tx >= x0 && tx <= x1 && ty >= y0 && ty <= y1);
+}
 static inline u32 random_02078e1c(u32 limit) {
     u64 value = data_02162658[1] * data_02162658[0] + data_02162658[2];
     data_02162658[0] = value;
@@ -65,12 +68,13 @@ extern u16 data_021628fa[];
 extern s32 func_02044c98(void);
 extern void func_02002128(void *, void *, void *);
 extern void func_020020f8(void *, void *, void *);
+#pragma opt_lifetimes off
 void func_020783e8(u8 *arg0)
 {
   u8 *p00ac;
   s32 ty;
   s32 tx;
-  u32 flags;
+  u32 flags[1];
   u8 *p68;
   int new_var = 0xac;
   s32 dx;
@@ -85,10 +89,10 @@ void func_020783e8(u8 *arg0)
     {
       return;
     }
-    flags = *((volatile u32 *) (data_02160200 + 0x34));
+    flags[0] = *((u32 *) (data_02160200 + 0x34));
     tx = *((s16 *) (&data_02162908[0]));
     ty = *((s16 *) (&data_02162908[1]));
-    if (flags & 0x10)
+    if (flags[0] & 0x10)
     {
       if ((u8) ((((tx >= 0xe0) && (tx <= 0x100)) && (ty >= 0xa0)) && (ty <= 0xc0)))
       {
@@ -96,7 +100,7 @@ void func_020783e8(u8 *arg0)
         return;
       }
     }
-    if (flags & 0x20)
+    if (flags[0] & 0x20)
     {
       if ((u8) ((((tx >= 0xb8) && (tx <= 0xd8)) && (ty >= 0xa0)) && (ty <= 0xc0)))
       {
@@ -146,11 +150,11 @@ void func_020783e8(u8 *arg0)
     p68 = *((u8 **) (p00ac + 0x68));
     {
       s32 cx = *((s32 *) (p68 + 0xfc));
-      s32 cy = *((s32 *) (p68 + 0x100));
+      s32 cy[1]; cy[0] = *((s32 *) (p68 + 0x100));
       s32 x0 = cx - 0x46;
       s32 x1 = cx + 0x46;
-      s32 y0 = cy - 0x36;
-      s32 y1 = cy + 0x2a;
+      s32 y0 = cy[0] - 0x36;
+      s32 y1 = cy[0] + 0x2a;
       if ((u8) ((((tx >= x0) && (tx <= x1)) && (ty >= y0)) && (ty <= y1)))
       {
         *((u32 *) (p68 + new_var)) |= 0x80;
@@ -217,7 +221,7 @@ void func_020783e8(u8 *arg0)
     }
   }
 }
-
+#pragma opt_lifetimes on
 void func_0207884c(s32 arg0) {
 s16 z,x;
 u8 *p;
