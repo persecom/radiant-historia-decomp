@@ -74,11 +74,6 @@ static inline void MI_CpuFill32(void *dest, u32 data, u32 size) {
 extern void func_0211c850(u32);
 extern void func_0211c79c(u32);
 
-static inline s32 material_valid_02119728(void) {
-    if (*(s32 *)(data_02155eb0 + 4) != -1) return 1;
-    return 0;
-}
-
 static inline s32 is_valid_id(s32 id) {
     if (id != -1) {
         return 1;
@@ -249,6 +244,8 @@ extern void func_0211c544(void *);
 extern void func_0211c5cc(void *,void *);
 extern void func_0211c538(void *,u32,u32);
 extern void func_0211c624(void *);
+#pragma push
+#pragma opt_propagation off
 void func_02119728(u32 arg) {
 u8 *root=(u8 *)data_0216f234.f8;
 u8 *node=*(u8 **)(root+0x70);
@@ -274,8 +271,11 @@ case 0: break;
 }
 if(data_0216f234.f4==0) material=data_0216f3c4+data_0216f234.fc*24;
 else {
-*(volatile u32 *)(data_02155eb0+24)=*(volatile u32 *)(data_0216f3d4+data_0216f234.fc*24);
-*(volatile u32 *)(data_02155eb0+28)=*(volatile u32 *)(data_0216f3d8+data_0216f234.fc*24);
+u32 offset=data_0216f234.fc*24;
+u32 first=*(volatile u32 *)(data_0216f3d4+offset);
+*(volatile u32 *)(data_02155eb0+24)=first;
+u32 second=*(volatile u32 *)(data_0216f3d8+offset);
+*(volatile u32 *)(data_02155eb0+28)=second;
 material=data_02155eb8;
 }
 func_0211c5ac(material,matrix);
@@ -287,8 +287,11 @@ case 0: func_0211c79c(arg); break;
 func_0211c5c4(root,data_0216f244[data_0216f234.fc]);
 if(data_0216f234.f4==0) material=data_0216f3c4+data_0216f234.fc*24;
 else {
-*(volatile u32 *)(data_02155eb0+24)=*(volatile u32 *)(data_0216f3d4+data_0216f234.fc*24);
-*(volatile u32 *)(data_02155eb0+28)=*(volatile u32 *)(data_0216f3d8+data_0216f234.fc*24);
+u32 offset=data_0216f234.fc*24;
+u32 first=*(volatile u32 *)(data_0216f3d4+offset);
+*(volatile u32 *)(data_02155eb0+24)=first;
+u32 second=*(volatile u32 *)(data_0216f3d8+offset);
+*(volatile u32 *)(data_02155eb0+28)=second;
 material=data_02155eb8;
 }
 func_0211c544(material);
@@ -368,7 +371,7 @@ func_0211c738();
 node=*(u8 **)(node+48);
 }
 }
-
+#pragma pop
 extern s16 data_0213a394[];
 extern void func_02119728(u32);
 extern void func_02119f1c(void);
