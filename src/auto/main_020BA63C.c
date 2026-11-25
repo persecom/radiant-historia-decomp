@@ -39,23 +39,26 @@ extern void func_02108e54(u32);
 extern void func_020bad3c(void);
 extern void func_020baeb0(void);
 extern void func_0210dc88(void);
-void func_020ba63c(u32 arg0) {
+void func_020ba63c(s32 arg0) {
     void *root = (void *)data_021601ec;
     void *obj5 = func_020c9c10(*(void **)((u8 *)root + 0x4c), 5);
     void *obj6 = func_020c9c10(*(void **)((u8 *)root + 0x4c), 6);
-    u32 one = 1;
     void *obj4;
+
     if (arg0 != 0) {
-        func_020c738c(obj5, 0, one);
+        func_020c738c(obj5, 0, 1);
+        func_020c738c(obj6, 1, 1);
     } else {
-        func_020c738c(obj6, 0, one);
-        func_020c738c(obj5, one, one);
+        func_020c738c(obj6, 0, 1);
+        func_020c738c(obj5, 1, 1);
     }
     obj4 = func_020c9c10(*(void **)((u8 *)root + 0x4c), 4);
-    {
-        u16 v = (arg0 == 0) ? 0xb : 0;
+    if (arg0 != 0) {
         *(u16 *)((u8 *)obj4 + 0x32) = 0;
-        *(u16 *)((u8 *)obj4 + 0x34) = v;
+        *(u16 *)((u8 *)obj4 + 0x34) = 0;
+    } else {
+        *(u16 *)((u8 *)obj4 + 0x32) = 0;
+        *(u16 *)((u8 *)obj4 + 0x34) = 0xb;
     }
 }
 
