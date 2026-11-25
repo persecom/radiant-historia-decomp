@@ -29,50 +29,65 @@ void func_021241a4(s32 *__restrict arg0, u8 *__restrict arg1) {
     arg0[4] = 0;
 }
 
-void func_021241f0(s32 *out, u8 *p) {
-s32 w=*(u16 *)(p+0x2c)<<12,h=*(u16 *)(p+0x2e)<<12;
-s32 c,s,sx,sy,cx,ss,cy,ys;
+void func_021241f0(s32 *out, u8 *p)
+{
+  s32 w = (*((u16 *) (p + 0x2c))) << 12;
+  s32 h = (*((u16 *) (p + 0x2e))) << 12;
+  s32 c;
+  s32 s;
+  s32 sx;
+  s32 sy;
+  s32 cx;
+  s32 ss;
+  s32 cy;
+  s32 ys;
+  func_02002058(h, w);
+  c = *((s16 *) (p + 0x22));
+  sx = *((s32 *) (p + 0x18));
+  s = *((s16 *) (p + 0x20));
+  sy = *((s32 *) (p + 0x1c));
+  cx = (((s64) sx) * c) >> 12;
+  ss = (((s64) sx) * s) >> 12;
+  cy = (((s64) sy) * c) >> 12;
+  ys = (((s64) sy) * s) >> 12;
+  out[0] = cx;
+  out[5] = cy;
+  out[1] = (ys * func_02001ff4()) >> 12;
+  func_02002058(w, h);
+  {
+    s32 w2 = *((u16 *) (p + 0x2c));
+    s32 h2 = *((u16 *) (p + 0x2e));
+    s32 x = (-w2) << 11;
+    s32 y = -h2;
+    s64 a = ((s64) cx) * x;
+    y <<= 11;
+    out[12] = ((s32) ((a - (((s64) ss) * y)) >> 8)) + (w2 << 15);
+    out[13] = ((s32) (((((s64) ys) * x) + (((s64) cy) * y)) >> 8)) + (h2 << 15);
+  }
+  out[4] = ((-ss) * func_02001ff4()) >> 12;
+}
+
+#pragma opt_propagation on
+void func_021242e4(s32 *arg0, u8 *arg1) {
+s32 w=*(u16 *)(arg1+0x2c)<<12; s32 h=*(u16 *)(arg1+0x2e)<<12; s32 val;
 func_02002058(h,w);
-c=*(s16 *)(p+0x22);sx=*(s32 *)(p+0x18);s=*(s16 *)(p+0x20);sy=*(s32 *)(p+0x1c);
-cx=((s64)sx*c)>>12;ss=((s64)sx*s)>>12;cy=((s64)sy*c)>>12;ys=((s64)sy*s)>>12;
-out[0]=cx;out[5]=cy;out[1]=(ys*func_02001ff4())>>12;
+val=*(s16 *)(arg1+0x22); arg0[0]=val;arg0[5]=val;
+arg0[1]=(*(s16 *)(arg1+0x20)*func_02001ff4())>>12;
 func_02002058(w,h);
 {
-s32 w2=*(u16 *)(p+0x2c),h2=*(u16 *)(p+0x2e);
-s32 x=(-w2)<<11,y=(-h2)<<11;
-s64 a=(s64)cx*x;
-out[12]=(s32)((a-(s64)ss*y)>>8)+(w2<<15);
-out[13]=(s32)(((s64)ys*x+(s64)cy*y)>>8)+(h2*=32768);
+u16 w2=*(u16 *)(arg1+0x2c);
+u16 h2=*(u16 *)(arg1+0x2e);
+s16 c=*(s16 *)(arg1+0x22);
+s32 y=-h2<<11;
+s16 s=*(s16 *)(arg1+0x20);
+s32 x=-w2<<11;
+s64 a=(s64)c*x;
+s64 b=(s64)s*x+(s64)c*y;
+arg0[12]=(s32)((a-(s64)s*y)>>8)+(w2<<15);
+arg0[13]=(s32)(b>>8)+(h2<<15);
 }
-out[4]=(-ss*func_02001ff4())>>12;
+arg0[4]=(-*(s16 *)(arg1+0x20)*func_02001ff4())>>12;
 }
-
-void func_021242e4(s32 *arg0, u8 *arg1) {
-    s32 w = *(u16 *)(arg1 + 0x2c) << 12;
-    s32 h = *(u16 *)(arg1 + 0x2e) << 12;
-    s32 val;
-
-    func_02002058(h, w);
-    val = *(s16 *)(arg1 + 0x22);
-    arg0[0] = val;
-    arg0[5] = val;
-    arg0[1] = (*(s16 *)(arg1 + 0x20) * func_02001ff4()) >> 12;
-    func_02002058(w, h);
-    {
-        s32 h2 = *(u16 *)(arg1 + 0x2e);
-        s32 w2 = *(u16 *)(arg1 + 0x2c);
-        s32 c = *(s16 *)(arg1 + 0x22);
-        s32 y = -h2 << 11;
-        s32 s = *(s16 *)(arg1 + 0x20);
-        s32 x = -w2 << 11;
-        s64 a = (s64)c * x - (s64)s * y;
-        s64 b = (s64)s * x + (s64)c * y;
-        arg0[12] = (s32)(a >> 8) + (w2 << 15);
-        arg0[13] = (s32)(b >> 8) + (h2 << 15);
-    }
-    arg0[4] = (-*(s16 *)(arg1 + 0x20) * func_02001ff4()) >> 12;
-}
-
 void func_021243ac(s32 *__restrict arg0, u8 *__restrict arg1) {
  s32 x=*(s32*)(arg1+0x18);
  s32 y=*(s32*)(arg1+0x1c);
@@ -95,54 +110,48 @@ void func_021243f4(s32 *arg0) {
 
 void func_02124418(u8 *arg0)
 {
-    typedef struct {
-        u32 command;
-        u32 mode;
-        s32 matrix[16];
-        u32 endMode;
-    } Packet;
-
-    extern void (*data_02156110[])(s32 *, u8 *);
-
-    Packet packet;
-    s32 scale;
-    s32 idx;
-    void (*build)(s32 *, u8 *);
-
-    packet.command = (*(u32 *)arg0 & 8) ? 0x101610 : 0x101810;
-    idx = *(u32 *)arg0 & 7;
-    build = data_02156110[idx];
-
-    packet.mode = 3;
-    packet.endMode = 2;
-    packet.matrix[14] = 0;
-    packet.matrix[11] = 0;
-    packet.matrix[10] = 0;
-    packet.matrix[9] = 0;
-    packet.matrix[8] = 0;
-    packet.matrix[7] = 0;
-    packet.matrix[6] = 0;
-    packet.matrix[3] = 0;
-    packet.matrix[2] = 0;
-    packet.matrix[15] = 0x1000;
-
-    build(packet.matrix, arg0);
-
-    scale = *(s32 *)(arg0 + 0x30);
-    if (scale != 0x1000) {
-        packet.matrix[0] = (s32)(((s64)scale * packet.matrix[0]) >> 12);
-        packet.matrix[1] = (s32)(((s64)scale * packet.matrix[1]) >> 12);
-        packet.matrix[12] = (s32)(((s64)scale * packet.matrix[12]) >> 12);
-    }
-
-    scale = *(s32 *)(arg0 + 0x34);
-    if (scale != 0x1000) {
-        packet.matrix[4] = (s32)(((s64)scale * packet.matrix[4]) >> 12);
-        packet.matrix[5] = (s32)(((s64)scale * packet.matrix[5]) >> 12);
-        packet.matrix[13] = (s32)(((s64)scale * packet.matrix[13]) >> 12);
-    }
-
-    func_021205ec(packet.command, (u32 *)&packet + 1, 0x12);
+  s32 data[19];
+  u32 flags;
+  unsigned int new_var;
+  s32 scale = 0;
+  void (*fn)(s32 *, u8 *);
+  if ((*((u32 *) arg0)) & 8)
+  {
+    data[0] = 0x101610;
+  }
+  else
+  {
+    data[0] = 0x101810;
+  }
+  fn = data_02156110[flags & 7];
+  data[1] = 3;
+  data[18] = 2;
+  data[12] = (new_var = (data[13] = scale));
+  data[16] = scale;
+  data[11] = new_var;
+  data[8] = (data[10] = scale);
+  data[9] = scale;
+  flags++;
+  flags--;
+  data[4] = new_var;
+  data[5] = scale;
+  data[17] = 0x1000;
+  fn(&data[2], arg0);
+  scale = *((s32 *) (arg0 + 0x30));
+  if (scale != 0x1000)
+  {
+    data[2] = (s32) ((((s64) scale) * data[2]) >> 12);
+    data[3] = (s32) ((((s64) scale) * data[3]) >> 12);
+    data[14] = (s32) ((((s64) scale) * data[14]) >> 12);
+  }
+  scale = *((s32 *) (arg0 + 0x34));
+  if (scale != 0x1000)
+  {
+    data[6] = (s32) ((((s64) scale) * data[6]) >> 12);
+    data[7] = (s32) ((((s64) scale) * data[7]) >> 12);
+    data[15] = (s32) ((((s64) scale) * data[15]) >> 12);
+  }
+  func_021205ec(data[0], (s32 *) (((u8 *) data) + 4), 0x12);
 }
 
 #pragma scheduling off
@@ -170,7 +179,6 @@ void func_02124550(s32 *__restrict arg0, u8 *__restrict arg1) {
     }
     arg0[4] = (-ss * func_02001ff4()) >> 12;
 }
-#pragma scheduling on
 void func_021246b0(s32 *arg0, u8 *arg1) {
     s32 w = *(u16 *)(arg1 + 0x2c) << 12;
     s32 h = *(u16 *)(arg1 + 0x2e) << 12;
@@ -194,18 +202,20 @@ void func_021246b0(s32 *arg0, u8 *arg1) {
 }
 
 #pragma optimization_level 2
-void func_02124788(s32 *arg0, u8 *arg1) {
+void func_02124788(s32 *__restrict arg0, u8 *__restrict arg1) {
     s32 ty = *(s32 *)(arg1 + 0x28);
-    s32 sy = *(s32 *)(arg1 + 0x1c);
     s32 sx = *(s32 *)(arg1 + 0x18);
+    s32 sy = *(s32 *)(arg1 + 0x1c);
     s32 tx = *(s32 *)(arg1 + 0x24);
-    s32 h = *(u16 *)(arg1 + 0x2e);
     s32 w = *(u16 *)(arg1 + 0x2c);
+    s32 h = *(u16 *)(arg1 + 0x2e);
+    s64 p1 = (s64)(-ty) * sy;
+    s64 p2 = (s64)tx * sx;
     arg0[0] = sx;
     arg0[5] = sy;
     arg0[1] = 0;
-    arg0[12] = (w * -(s32)(((s64)tx * sx) >> 12)) << 4;
-    arg0[13] = (-h * (sy + (s32)(((s64)(-ty) * sy) >> 12) - 0x1000)) << 4;
+    arg0[12] = (w * -(s32)(p2 >> 12)) << 4;
+    arg0[13] = (-h * (sy + (s32)(p1 >> 12) - 0x1000)) << 4;
     arg0[4] = 0;
 }
 #pragma optimization_level 4
@@ -244,7 +254,6 @@ void func_02124850(s32 *out, u8 *p) {
     }
     out[4] = (-ss * func_02001ff4()) >> 12;
 }
-#pragma opt_propagation on
 void func_0212491c(s32 *arg0, u8 *arg1) {
     s32 w = *(u16 *)(arg1 + 0x2c) << 12;
     s32 h = *(u16 *)(arg1 + 0x2e) << 12;
@@ -268,15 +277,14 @@ void func_0212491c(s32 *arg0, u8 *arg1) {
 }
 
 #pragma opt_propagation off
-void func_021249bc(s32 *arg0, u8 *arg1) {
+void func_021249bc(s32 *__restrict arg0, u8 *__restrict arg1) {
+    s32 x = *(s32 *)(arg1 + 0x18);
     s32 y = *(s32 *)(arg1 + 0x1c);
-    u16 h = *(u16 *)(arg1 + 0x2e);
-    s32 ty = (-h * (y - 0x1000)) << 4;
     arg0[5] = y;
-    arg0[0] = *(s32 *)(arg1 + 0x18);
+    arg0[0] = x;
     arg0[1] = 0;
     arg0[12] = 0;
-    arg0[13] = ty;
+    arg0[13] = (-(*(u16 *)(arg1 + 0x2e)) * (y - 0x1000)) << 4;
     arg0[4] = 0;
 }
 #pragma opt_propagation on
@@ -292,7 +300,7 @@ void func_021249f8(s32 *arg0) {
 #pragma opt_propagation off
 void func_02124a1c(u8 *arg0) {
     s32 data[19];
-    s32 scale;
+    s32 scale = 0;
     void (*fn)(s32 *, u8 *);
 
     if (*(u32 *)arg0 & 8) {
@@ -300,7 +308,6 @@ void func_02124a1c(u8 *arg0) {
     } else {
         data[0] = 0x101810;
     }
-    data[17] = 0x1000;
     if (*(u32 *)arg0 & 1) {
         *(u32 *)(arg0 + 0x1c) = 0x1000;
         *(u32 *)(arg0 + 0x18) = 0x1000;
@@ -316,15 +323,16 @@ void func_02124a1c(u8 *arg0) {
     fn = data_02156130[*(u32 *)arg0 & 7];
     data[1] = 3;
     data[18] = 2;
-    data[16] = 0;
-    data[13] = 0;
-    data[12] = 0;
-    data[11] = 0;
-    data[10] = 0;
-    data[9] = 0;
-    data[8] = 0;
-    data[5] = 0;
-    data[4] = 0;
+    data[16] = scale;
+    data[13] = scale;
+    data[12] = scale;
+    data[11] = scale;
+    data[10] = scale;
+    data[9] = scale;
+    data[8] = scale;
+    data[5] = scale;
+    data[4] = scale;
+    data[17] = 0x1000;
 
     fn(&data[2], arg0);
 
@@ -407,60 +415,79 @@ void func_02124c78(void) {
 }
 
 #pragma opt_strength_reduction off
-u32 func_02124cf8(u32 size, s32 flag) {
-    u32 addr;
-    int i;
-    int ok;
-    Row24 *q;
-    Row24 *p;
-    size = (size == 0) ? (16) : ((size + 15) & (~15));
-    if (size >= 0x7fff0) {
-        return 0;
-    }
-    if (flag) {
-        for (i = 0; i < 2; i++) {
-            p = (Row24 *)data_02156160[i];
-            if (p->f[2] && ((p->f[1] - p->f[0]) >= size)) {
-                switch (*((u16 *)(&p->f[4]))) {
-                case 0:
-                    q = &data_02156194;
-                    break;
-                case 3:
-                    q = &data_021561ac;
-                    break;
-                default:
-                    q = 0;
-                    break;
-                }
-                if (q->f[2] && ((q->f[1] - q->f[0]) >= (size / 2))) {
-                    u32 start = *((volatile u32 *)(&p->f[0]));
-                    p->f[0] = size;
-                    p->f[0] = start + p->f[0];
-                    q->f[0] += size / 2;
-                    addr = start + p->f[5];
-                    ok = 1;
-                    goto done;
-                }
-            }
+u32 func_02124cf8(u32 size, u32 flag)
+{
+  u32 addr;
+  int i;
+  size = (size == 0) ? (16) : ((size + 15) & (~15));
+  int ok;
+  Row24 *q;
+  Row24 *p;
+  if (size >= 0x7fff0)
+  {
+    return 0;
+  }
+  if (flag)
+  {
+    for (i = 0; i < 2; i++)
+    {
+      p = (Row24 *) data_02156160[i];
+      if (p->f[2] && ((p->f[1] - p->f[0]) >= size))
+      {
+        switch (*((u16 *) (&p->f[4])))
+        {
+          case 0:
+            q = &data_02156194;
+            break;
+
+          case 3:
+            q = &data_021561ac;
+            break;
+
+          default:
+            q = 0;
+            break;
+
         }
-    } else {
-        for (i = 0; i < 5; i++) {
-            p = data_02156168[i];
-            if (p->f[2] && ((p->f[1] - p->f[0]) >= size)) {
-                u32 start = (*((volatile u32 *)(&p->f[1]))) - size;
-                p->f[1] = start;
-                addr = start + p->f[5];
-                ok = 1;
-                goto done;
-            }
+
+        if (q->f[2] && ((q->f[1] - q->f[0]) >= (size / 2)))
+        {
+          u32 start = *((volatile u32 *) (&p->f[0]));
+          p->f[0] = size;
+          p->f[0] = start + p->f[0];
+          q->f[0] += size / 2;
+          addr = start + p->f[5];
+          ok = 1;
+          goto done;
         }
+      }
     }
-    ok = 0;
-done:
-    if (!ok) {
-        return 0;
+
+  }
+  else
+  {
+    for (i = 0; i < 5; i++)
+    {
+      p = data_02156168[i];
+      if (p->f[2] && ((p->f[1] - p->f[0]) >= size))
+      {
+        u32 start = (*((volatile u32 *) (&p->f[1]))) - size;
+        p->f[1] = start;
+        addr = start + p->f[5];
+        ok = 1;
+        goto done;
+      }
     }
-    return (((size >> 4) << 16) | ((addr >> 3) & 0xffff)) | ((u32)flag << 31);
+
+  }
+  ok = 0;
+  done:
+  if (!ok)
+  {
+    return 0;
+  }
+
+  return (((size >> 4) << 16) | ((addr >> 3) & 0xffff)) | (flag << 31);
 }
 #pragma opt_strength_reduction on
 s32 func_02124e60(void) {
