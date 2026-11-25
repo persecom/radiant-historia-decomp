@@ -1,5 +1,20 @@
 /* 40 functions from 0x02126F50 to 0x02127E74 (main), found by ds-decomp. */
 #include "common.h"
+static inline void init_playback_02127ad0(u8 *obj) {
+    *(s16 *)(obj + 0x46) = 0;
+    obj[0x6c] = 1;
+    *(s32 *)(obj + 0x54) = 0;
+    *(s32 *)(obj + 0x58) = 0;
+    *(s32 *)(obj + 0x5c) = 0;
+    *(s16 *)(obj + 0x60) = 0;
+    *(s32 *)(obj + 0x64) = 0;
+    *(s16 *)(obj + 0x68) = 0;
+    *(s16 *)(obj + 0x6a) = 0;
+    obj[0x6d] = 1;
+    obj[0x72] = 0;
+    *(s32 *)(obj + 0x88) = 0;
+
+}
 
 extern void func_0212a9f4(void);
 extern void func_0212a9f8(void);
