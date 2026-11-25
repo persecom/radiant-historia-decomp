@@ -48,8 +48,8 @@ static inline s32 tile_offset(s32 x, s32 y, s32 width, s32 height) {
     s32 ry = y % 32;
     s32 bx = x / 32;
     s32 rx = x % 32;
-    s32 bw = bx == width / 32 ? width % 32 : 32;
     s32 bh = by == height / 32 ? height % 32 : 32;
+    s32 bw = bx == width / 32 ? width % 32 : 32;
     return rx + (by * (width * 32) + bx * (bh * 32) + bw * ry);
 }
 extern void func_02006dc4(void *, u32);
