@@ -259,19 +259,22 @@ void func_0211b83c(u8 *dst, u8 *src, s32 srcX, s32 srcY, s32 dstX, s32 dstY, s32
 }
 
 #pragma opt_propagation off
-void func_0211b8a4(u8 *dst, u8 *src, s32 srcX, s32 srcY, s32 dstX, s32 dstY, s32 dstStride, s32 width, s32 height) {
-u32 srcStride = (u32)*(u16 *)src >> 3;
-s32 dstIdx = dstX + dstY * dstStride;
-s32 srcIdx = srcX + srcY * srcStride;
-u32 size = width * 2;
-s32 endY = srcY + height;
-u8 *s = src + 12 + srcIdx * 2;
-u8 *d = dst + dstIdx * 2;
-for (; srcY < endY; srcY++) {
-func_02008e08(s, d, size);
-s += srcStride * 2;
-d += dstStride * 2;
-}
+void func_0211b8a4(u8 *dst, u8 *src, s32 srcX, s32 srcY, s32 dstX, s32 dstY, s32 dstStride, s32 width, s32 height)
+{
+  s32 srcStride = ((u32) (*((u16 *) src))) >> 3;
+  s32 size = width * 2;
+  s32 endY = srcY + height;
+  u8 *s = (src + 0xc) + (((srcY * srcStride) + srcX) * 2);
+  s32 dstOff = (dstY * dstStride) + dstX;
+  u8 *d = dst + (dstOff * 2);
+  s32 y;
+  for (y = srcY; y < endY; y++)
+  {
+    func_02008e08(s, d, size);
+    s += srcStride * 2;
+    d += dstStride * 2;
+  }
+
 }
 #pragma opt_propagation on
 extern void func_0211b3dc(s32, s32, u32);
