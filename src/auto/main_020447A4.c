@@ -17,7 +17,7 @@ static inline u16 random_4487c(u16 max) {
  u32 value;
  data_0216263c[0]=seed;
  value=seed>>16;
- if(max) value=(value*max)>>16;
+ if(max) { u32 scaled=value*max; value=scaled>>16; }
  return value;
 }
 extern s32 data_02162870[2], data_02162868[2], data_02162814[2], data_02162884[2];
@@ -358,7 +358,7 @@ if(obj) {
 if(obj)func_020f5364(data_021600b8,obj);
 func_02045800();data_0216bf84=1;func_020468e0(1);
 *(s32 *)(data_021600ac+16)=12;
-do { func_0210dc88(); if(*(s32 *)(data_021600ac+12)!=0) break; } while(state);
+do { func_0210dc88(); if(*(s32 *)(data_021600ac+12)!=0) break; } while(obj);
 }
 fade:
 do {
