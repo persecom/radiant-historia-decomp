@@ -94,18 +94,17 @@ p[6]=0; p[7]=-a; p[8]=b;
 #pragma thumb on
 void func_02000dbc(volatile s32 *p, s32 a, s32 b)
 {
-  s32 n, one;
   p[0] = b;
   p[8] = b;
   p[1] = 0;
   p[3] = 0;
   p[5] = 0;
   p[7] = 0;
-  n = -a;
-  one = 4096;
+  s32 n = -a;
+  s32 one = 4096;
   p[6] = a;
-  p[2] = n;
   p[4] = one;
+  p[2] = n;
 }
 #pragma thumb off
 void func_02000dd8(s32 *p, s32 a, s32 b) {
