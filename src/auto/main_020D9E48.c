@@ -67,23 +67,14 @@ return (*(u32 *)(p+0x88)&flags)!=0;
 }
 
 BOOL func_020da008(s32 arg0) {
-    s32 val = data_02151fcc;
-    if (val - arg0 < 0) {
-        val += 0x20000;
-        data_02151fcc = val;
-        if (val > (arg0 << 12)) {
-            val = arg0 << 12;
-            data_02151fcc = val;
-        }
+    if (data_02151fcc - arg0 < 0) {
+        data_02151fcc += 0x20000;
+        if (data_02151fcc > (arg0 << 12)) data_02151fcc = arg0 << 12;
     } else {
-        val -= 0x20000;
-        data_02151fcc = val;
-        if (val < (arg0 << 12)) {
-            val = arg0 << 12;
-            data_02151fcc = val;
-        }
+        data_02151fcc -= 0x20000;
+        if (data_02151fcc < (arg0 << 12)) data_02151fcc = arg0 << 12;
     }
-    return val == (arg0 << 12);
+    return data_02151fcc == (arg0 << 12);
 }
 
 BOOL func_020da060(s32 arg0) {
