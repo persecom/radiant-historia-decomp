@@ -11,18 +11,17 @@ extern void func_01ff81e4(void);
 extern void (*data_027e0000[])(void);
 
 void func_01ff8000(void) {
-    u32 flags;
-    u32 bit;
-    u32 n;
-    if (*(volatile u32 *)0x4000208 == 0) return;
-    flags = *(volatile u32 *)0x4000210 & *(volatile u32 *)0x4000214;
+    volatile u32 *p = (volatile u32 *)0x4000210;
+    u32 flags, bit, n;
+    if (p[-2] == 0) return;
+    flags = p[0] & p[1];
     if (flags == 0) return;
     do {
-        n = __clz(flags);
+        n = __builtin_clz(flags);
         bit = 0x80000000U >> n;
         flags &= ~bit;
     } while (flags != 0);
-    *(volatile u32 *)0x4000214 = bit;
+    p[1] = bit;
     data_027e0000[31 - n]();
 }
 
@@ -69,6 +68,11 @@ void func_01ff8388(u32 arg0, u8 *arg1, s32 arg2) {
 
 extern void func_02008128(void);
 extern void func_0200813c(void);
+typedef struct {
+    volatile u32 src;
+    volatile u32 dest;
+    volatile u32 ctrl;
+} Dma_01ff845c;
 void func_01ff845c(u32 dmaNo, u32 src, u32 dest, u32 ctrl, u32 flags) {
     volatile u32 *p;
     u32 noWait = flags & 1;
