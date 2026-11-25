@@ -88,8 +88,8 @@ extern void *func_021176b0(void *,u16);
 extern void func_02118eec(void *,s32),func_02118ed0(void *,s32,s32),func_02118eb4(void *,u16),func_02118e94(void *,s32,s32);
 static inline void ProjectSpritePosition(const s32 *pos,s32 *outX,s32 *outY) {
 const s32 *m=(s32 *)data_02170248,*p=(s32 *)data_02170204;
-register s32 z,x;
-s32 y,py,px,sy,sx;
+s32 x,y,z;
+s32 px,py,sx,sy;
 long long inv;
 y=m[10]+(s32)(((long long)pos[0]*m[1]+(long long)pos[1]*m[4]+(long long)pos[2]*m[7])>>12);
 x=m[9]+(s32)(((long long)pos[0]*m[0]+(long long)pos[1]*m[3]+(long long)pos[2]*m[6])>>12);
@@ -108,6 +108,7 @@ sy=192-sy;
 }
 void func_020f37d0(u8 *arg) {
 u8 *link,*anim;
+s32 offscreen;
 u8 *entity=0;
 Trip pos;
 s32 update,draw;
@@ -118,7 +119,6 @@ goto next_entity;
 while(entity) {
 link=*(u8 **)(entity+0x108);
 anim=*(u8 **)link;
-s32 offscreen;
 s32 one,zero;
 pos=*(Trip *)entity;
 update=*(s32 *)(entity+0xf8)==0;
@@ -128,8 +128,9 @@ draw=0;
 } else draw=1;
 if(*(s32 *)(entity+0x64)==0) {
 s32 x,y;
-ProjectSpritePosition((s32 *)&pos,(s32 *)(entity+0xfc),(s32 *)(entity+0x100));
-x=*(s32 *)(entity+0xfc);y=*(s32 *)(entity+0x100);
+ProjectSpritePosition((s32 *)&pos,&x,&y);
+*(s32 *)(entity+0xfc)=x;
+*(s32 *)(entity+0x100)=y;
 offscreen=0;
 if(x< -32 || x>288 || y< -16 || y>208) {
 *(u32 *)(entity+0x80)&=~4;
@@ -137,8 +138,9 @@ offscreen=1;
 } else *(u32 *)(entity+0x80)|=4;
 } else {
 s32 x,y;
-ProjectSpritePosition((s32 *)&pos,(s32 *)(entity+0xfc),(s32 *)(entity+0x100));
-x=*(s32 *)(entity+0xfc);y=*(s32 *)(entity+0x100);
+ProjectSpritePosition((s32 *)&pos,&x,&y);
+*(s32 *)(entity+0xfc)=x;
+*(s32 *)(entity+0x100)=y;
 offscreen=0;
 *(u32 *)(entity+0x80)|=4;
 }
