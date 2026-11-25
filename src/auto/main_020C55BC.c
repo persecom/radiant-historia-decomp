@@ -35,7 +35,10 @@ extern void func_021167f0(void *, void *);
 typedef struct {
     u8 pad[0x3c];
     u32 field_3c;
-    u8 pad2[0x28];
+    u8 pad2[4];
+    s32 field_44;
+    s32 field_48;
+    u8 pad2b[0x1c];
     s8 field_68;
     u8 pad3[7];
     s32 field_70;
