@@ -244,9 +244,9 @@ void func_02138280(u32 arg0, u32 arg1) {
         func_02138130(data_0215c724);
         return;
     }
-    *(volatile u32 *)((u8 *)data_021767bc + arg0 * 0x48 + arg1 * 0xc) = 0;
-    *(volatile u32 *)((u8 *)data_021767c0 + arg0 * 0x48 + arg1 * 0xc) = 0;
-    *(volatile u32 *)((u8 *)data_021767c4 + arg0 * 0x48 + arg1 * 0xc) = 0;
+    data_021767bc[arg0][arg1].a = 0;
+    data_021767bc[arg0][arg1].b = 0;
+    data_021767bc[arg0][arg1].c = 0;
 }
 #pragma opt_lifetimes reset
 void func_021382fc(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
