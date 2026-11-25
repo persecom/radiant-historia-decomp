@@ -255,20 +255,20 @@ void func_020c8958(u8 *arg0, s32 arg1) {
     func_020c888c(arg0, *(s16 *)(arg0 + 0x58), arg1);
 }
 
-void func_020c896c(u8 *arg0, s32 arg1) {
+void func_020c896c(u8 *arg0, u8 arg1) {
     u8 *obj;
     u16 i;
     u32 count = func_020c9c34(*(void **)(arg0 + 0x54));
     for (i = 0; i < count; i++) {
         obj = func_020c9c10(*(void **)(arg0 + 0x54), i);
         if (obj != NULL) {
-            s32 delta;
+            u8 val;
             if (((s32 (*)(u8 *))(*(void **)(obj + 0x28)))(obj) == 4) {
-                delta = func_020c85cc(obj) - arg0[0x5c];
+                val = arg1 + (func_020c85cc(obj) - arg0[0x5c]);
             } else {
-                delta = obj[0x43] - arg0[0x5c];
+                val = arg1 + (obj[0x43] - arg0[0x5c]);
             }
-            ((void (*)(u8 *, u8))(*(void **)(obj + 0x1c)))(obj, arg1 + delta);
+            ((void (*)(u8 *, u8))(*(void **)(obj + 0x1c)))(obj, val);
         }
     }
     arg0[0x5c] = arg1;
