@@ -373,32 +373,48 @@ void func_020bedb4(u8 *arg0, s32 arg1, u16 arg2, u16 arg3, s32 arg4, s32 arg5) {
 
 #pragma optimization_level 3
 s32 func_020bedf8(u8 *p) {
-long x=*(s16 *)(p+0x10)<<12;
-long y=*(s16 *)(p+0x12)<<12;
-s32 count=(*(s32 *)(p+0x14))++;
-long dx=0,dy=0;
-s32 rx,ry,sx,sy;
-if(count<0) return 1;
-if(count==*(s32 *)(p+0x18)) {func_020beda0(p);return 0;}
-x>>=12;y>>=12;
-if(x>0) dx=RandomRange_bedf8(x)+(x>>1);
-if(y>0) dy=RandomRange_bedf8(y)+(y>>1);
-rx=RandomRange_bedf8(1)*2-1;
-ry=RandomRange_bedf8(1)*2-1;
-sx=*(s16 *)(p+0xc)>0 ? 1:-1;
-sy=*(s16 *)(p+0xe)>0 ? 1:-1;
-if(*(s16 *)(p+0xc)==0 && *(s16 *)(p+0xe)==0) {
-*(s16 *)(p+0xc)=dx*rx;*(s16 *)(p+0xe)=dy*ry;
-} else if(*(s16 *)(p+0xc)==0) {
-*(s16 *)(p+0xc)=dx*rx;*(s16 *)(p+0xe)=dy*sy;
-} else if(*(s16 *)(p+0xe)==0) {
-*(s16 *)(p+0xc)=dx*sx;*(s16 *)(p+0xe)=dy*ry;
-} else if(RandomRange_bedf8(1)==0) {
-*(s16 *)(p+0xc)=dx*rx;*(s16 *)(p+0xe)=dy*sy;
-} else {
-*(s16 *)(p+0xc)=dx*sx;*(s16 *)(p+0xe)=dy*ry;
-}
-return 1;
+    s32 x = *(s16 *)(p + 0x10) << 12;
+    s32 y = *(s16 *)(p + 0x12) << 12;
+    s32 dx = 0, dy = 0;
+    s32 count = (*(s32 *)(p + 0x14))++;
+    s32 rx, ry, sx, sy;
+    if (count < 0) return 1;
+    if (count == *(s32 *)(p + 0x18)) { func_020beda0(p); return 0; }
+    x >>= 12; y >>= 12;
+    if (x > 0) {
+        u16 max = x;
+        u32 *rng = data_0216263c;
+        u16 value;
+        rng[0] = rng[1] * rng[0] + rng[2];
+        if (max == 0) value = rng[0] >> 16;
+        else value = ((rng[0] >> 16) * max) >> 16;
+        dx = value + (x >> 1);
+    }
+    if (y > 0) {
+        u16 max = y;
+        u32 *rng = data_0216263c;
+        u16 value;
+        rng[0] = rng[1] * rng[0] + rng[2];
+        if (max == 0) value = rng[0] >> 16;
+        else value = ((rng[0] >> 16) * max) >> 16;
+        dy = value + (y >> 1);
+    }
+    rx = RandomRange_bedf8(1) * 2 - 1;
+    ry = RandomRange_bedf8(1) * 2 - 1;
+    sx = *(s16 *)(p + 0xc) > 0 ? 1 : -1;
+    sy = *(s16 *)(p + 0xe) > 0 ? 1 : -1;
+    if (*(s16 *)(p + 0xc) == 0 && *(s16 *)(p + 0xe) == 0) {
+        *(s16 *)(p + 0xc) = dx * rx; *(s16 *)(p + 0xe) = dy * ry;
+    } else if (*(s16 *)(p + 0xc) == 0) {
+        *(s16 *)(p + 0xc) = dx * rx; *(s16 *)(p + 0xe) = dy * sy;
+    } else if (*(s16 *)(p + 0xe) == 0) {
+        *(s16 *)(p + 0xc) = dx * sx; *(s16 *)(p + 0xe) = dy * ry;
+    } else if (RandomRange_bedf8(1) == 0) {
+        *(s16 *)(p + 0xc) = dx * rx; *(s16 *)(p + 0xe) = dy * sy;
+    } else {
+        *(s16 *)(p + 0xc) = dx * sx; *(s16 *)(p + 0xe) = dy * ry;
+    }
+    return 1;
 }
 #pragma optimization_level 4
 u8 *func_020befb4(void) {
@@ -423,54 +439,43 @@ out[2] = func_0201ff0c(func_020203d4(func_020201f4(func_02020604(0x3f800000,t),f
 
 s32 func_020bf118(void *out, VecBf118 *input, s32 count, f32 t)
 {
-  s32 j;
-  VecBf118 *new_var;
-  s32 i;
-  s32 factorial;
-  s32 n = 0;
-  u8 *new_var2;
-  s32 consumed = 0;
-  VecBf118 *work;
-  s32 base = 0;
-  factorial = 1;
-  if (t > 1.0f)
-  {
-    return 0;
-  }
-  for (i = count - 1; i > 0; i--)
-  {
-    factorial *= i;
-  }
+    s32 i, j, k, l;
+    s32 factorial = 1;
+    s32 n = 0;
+    s32 consumed = 0;
+    VecBf118 *work;
+    s32 base = 0;
 
-  consumed = factorial + count;
-  new_var2 = func_0210c594(consumed * 0x90, data_02155c3c);
-  new_var = (VecBf118 *) new_var2;
-  work = new_var;
-  for (i = 0; i < count; i++)
-  {
-    work[i] = input[i];
-    n++;
-  }
-
-  for (i = count - 1; i > 0; i--)
-  {
-    for (j = 0; j < i; j++)
-    {
-      ((void (*)(void *, void *, void *, f32)) func_020bf00c)(&work[n], &work[base + j], &work[(base + j) + 1], t);
-      n++;
-      consumed++;
+    if (t > 1.0f) {
+        return 0;
     }
 
-    consumed++;
-    base = consumed;
-  }
+    for (i = count - 1; i > 0; i--) {
+        factorial *= i;
+    }
 
-  func_02009008(&work[base], out, 12);
-  if (work)
-  {
-    func_0210c5dc(work);
-  }
-  return 1;
+    work = (VecBf118 *)func_0210c594((factorial + count) * 0x90, data_02155c3c);
+
+    for (k = 0; k < count; k++) {
+        work[k] = input[k];
+        n++;
+    }
+
+    for (l = count - 1; l > 0; l--) {
+        for (j = 0; j < l; j++) {
+            ((void (*)(void *, void *, void *, f32))func_020bf00c)(&work[n], &work[base + j], &work[(base + j) + 1], t);
+            n++;
+            consumed++;
+        }
+        consumed++;
+        base = consumed;
+    }
+
+    func_02009008(&work[base], out, 12);
+    if (work) {
+        func_0210c5dc(work);
+    }
+    return 1;
 }
 
 void func_020bf24c(s32 arg0, u8 arg1) {
