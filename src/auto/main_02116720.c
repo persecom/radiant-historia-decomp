@@ -28,6 +28,13 @@ extern void func_021167f0(void *, void *);
 extern void func_021168f8(void *, void *);
 extern s32 func_02008128(void);
 extern void func_0200813c(s32);
+typedef struct { u32 opt : 8; u32 pad : 24; } AttrBits;
+typedef union { u32 raw; AttrBits bits; } AttrUnion;
+static inline u32 func_makeAttr(u16 opt) {
+    AttrUnion a = { 0 };
+    a.bits.opt = opt;
+    return a.raw;
+}
 
 void func_02116720(s32 *arg0, s32 arg1, s32 arg2) {
     arg0[0] = func_02116748(arg0);
@@ -195,12 +202,11 @@ void *func_02116a34(void *memBlock) {
 
 void func_02116a5c(void *heap, u32 signature, void *start, void *end, u16 opt) {
     typedef struct { u32 opt : 8; u32 pad : 24; } Bits;
-    u32 flags = 0;
-    ((Bits *)&flags)->opt = opt;
+    typedef union { u32 raw; Bits bits; } Attr;
     *(u32 *)heap = signature;
     *(void **)((u8 *)heap + 0x18) = start;
     *(void **)((u8 *)heap + 0x1c) = end;
-    *(u32 *)((u8 *)heap + 0x20) = flags;
+    *(u32 *)((u8 *)heap + 0x20) = (Attr){ .bits = { .opt = opt, .pad = 0 } }.raw;
     func_021167ac((u8 *)heap + 0xc, 4);
     if (data_0216e21c == 0) {
         func_021167ac(data_0216e220, 4);
