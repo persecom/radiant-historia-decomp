@@ -465,7 +465,7 @@ void func_02135c8c(void *arg0) {
 
 extern void *memset(void *, int, unsigned long);
 void func_02135ccc(void) {
-    memset(data_02175ab8, 0, 0x1a0);
+    __clear(data_02175ab8, 0x1a0);
     data_02175ab4 = 0;
     func_02135d4c(0, 1);
     func_02135d24(2);
