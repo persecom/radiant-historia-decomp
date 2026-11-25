@@ -76,31 +76,25 @@ static inline void *GetMdlByIdx(u8 *res, u32 idx) {
 }
 
 void func_0210b7a4(void) {
-    void *p = *(void **)data_02162618;
-    void *cur = NULL;
-    void *q;
-    u16 off;
-    u16 flag;
-    if (p != NULL) {
-        off = *(u16 *)(data_02162618 + 0xa);
-        if (off != 0) q = *(void **)((u8 *)p + off + 4);
-        else q = p;
-        flag = *(u16 *)((u8 *)*(void **)p + 0x1a4);
-        if (flag & 0x100) {
-            func_0210b860(q);
-            cur = q;
-        }
-    }
-    while (cur != NULL) {
-        p = cur;
-        flag = *(u16 *)((u8 *)p + 0x1a4);
-        if ((flag & 0x8000) && *(void **)((u8 *)p + 0x1a8) != NULL) {
-            ((void (*)(void *))(*(void **)((u8 *)p + 0x1a8)))(p);
-        }
-        off = *(u16 *)(data_02162618 + 0xa);
-        if (off != 0) cur = *(void **)((u8 *)p + off + 4);
-        else cur = p;
-    }
+ u8 *p = *(u8 **)data_02162618;
+ u8 *cur = NULL;
+ u8 *next;
+ while (p != NULL) {
+  u8 *obj = *(u8 **)p;
+  next = p ? *(u8 **)(p + *(u16 *)(data_02162618+10)+4) : *(u8 **)data_02162618;
+  if (((ObjectFlags *)(obj+0x1a4))->removed) func_0210b860((void **)p);
+  p=next;
+ }
+ goto advance;
+ while(cur) {
+  p=*(u8 **)cur;
+  if (((ObjectFlags *)(p+0x1a4))->active) {
+   void (*cb)(void *)=*(void (**)(void *))(p+0x1a8);
+   if(cb) cb(p);
+  }
+ advance:
+  cur = cur ? *(u8 **)(cur+*(u16 *)(data_02162618+10)+4) : *(u8 **)data_02162618;
+ }
 }
 
 void func_0210b848(s32 arg0) {
