@@ -1,6 +1,5 @@
 /* 22 functions from 0x020D8E5C to 0x020D9E48 (main), found by ds-decomp. */
 #include "common.h"
-typedef union { u64 pair; struct { u32 low, high; } words; } Pair_020d9058;
 
 extern u16 data_02151fc8;
 extern u16 data_02151fca;
