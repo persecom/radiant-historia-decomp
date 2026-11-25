@@ -66,9 +66,10 @@ extern s32 func_02044c98(void);
 extern void func_02002128(void *, void *, void *);
 extern void func_020020f8(void *, void *, void *);
 void func_020783e8(u8 *arg0) {
+    u32 flags;
+    u8 *p00ac;
     s32 ty;
     s32 tx;
-    u8 *p00ac;
     u8 *p68;
     s32 dx;
     s32 dy;
@@ -82,17 +83,18 @@ void func_020783e8(u8 *arg0) {
             return;
         }
 
-        ty = *(s16 *)&data_02162908[1];
+        flags = *(u32 *)(data_02160200 + 0x34);
         tx = *(s16 *)&data_02162908[0];
+        ty = *(s16 *)&data_02162908[1];
 
-        if (*(u32 *)(data_02160200 + 0x34) & 0x10) {
+        if (flags & 0x10) {
             if ((u8)(tx >= 0xe0 && tx <= 0x100 && ty >= 0xa0 && ty <= 0xc0)) {
                 *(u32 *)(arg0 + 0xac) |= 0x400000;
                 return;
             }
         }
 
-        if (*(u32 *)(data_02160200 + 0x34) & 0x20) {
+        if (flags & 0x20) {
             if ((u8)(tx >= 0xb8 && tx <= 0xd8 && ty >= 0xa0 && ty <= 0xc0)) {
                 *(u32 *)(arg0 + 0xac) |= 0x800000;
                 return;
@@ -136,8 +138,9 @@ void func_020783e8(u8 *arg0) {
 
         p68 = *(u8 **)(p00ac + 0x68);
         {
+            s32 cy;
             s32 cx = *(s32 *)(p68 + 0xfc);
-            s32 cy = *(s32 *)(p68 + 0x100);
+            cy = *(s32 *)(p68 + 0x100);
             s32 x0 = cx - 0x46;
             s32 x1 = cx + 0x46;
             s32 y0 = cy - 0x36;
@@ -192,17 +195,16 @@ void func_020783e8(u8 *arg0) {
             *(s32 *)(arg0 + 0x2c) = v0[2] << 12;
             *(u32 *)(arg0 + 0xac) |= 0x40;
         }
-        return;
-    }
-
-    if (data_021628fa[0] != 0) {
+    } else {
+        if (data_021628fa[0] != 0) {
+            *(u32 *)(arg0 + 0xac) &= ~0x2000000;
+            return;
+        }
+        *(u32 *)(arg0 + 0xac) &= ~0x400000;
+        *(u32 *)(arg0 + 0xac) &= ~0x8000000;
+        *(u32 *)(arg0 + 0xac) &= ~0x800000;
         *(u32 *)(arg0 + 0xac) &= ~0x2000000;
-        return;
     }
-    *(u32 *)(arg0 + 0xac) &= ~0x400000;
-    *(u32 *)(arg0 + 0xac) &= ~0x8000000;
-    *(u32 *)(arg0 + 0xac) &= ~0x800000;
-    *(u32 *)(arg0 + 0xac) &= ~0x2000000;
 }
 
 void func_0207884c(s32 arg0) {
@@ -401,35 +403,18 @@ extern u32 data_0216263c[3];
 extern u32 data_0216244c[43];
 extern u64 data_02162658[3];
 extern void func_0206e8f0(u32, void *, u32);
-void func_02079094(void) {
-    u32 x = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
-    u16 r;
-    struct {
-        s32 x;
-        s32 y;
-        s32 z;
-    } v;
-    u64 a, b, c, t, res;
-    u32 r1, r2;
-    data_0216263c[0] = x;
-    r = ((x >> 16) * 5) >> 16;
-    if (r != 0) {
-        return;
-    }
-    v = *(typeof(v) *)data_0216244c;
-    a = data_02162658[0];
-    b = data_02162658[1];
-    c = data_02162658[2];
-    t = b * a + c;
-    res = b * t + c;
-    v.y = 0;
-    r1 = (u32)(((u64)(u32)(t >> 32) * 0x180000u) >> 32);
-    data_02162658[0] = res;
-    r2 = (u32)(((u64)(u32)(res >> 32) * 0x180000u) >> 32);
-    v.x += r1 - 0x100000;
-    v.z += r2 - 0xc0000;
-    v.z -= 0x40000;
-    func_0206e8f0(0x7d, &v, 2);
+void func_02079094(void){
+u32 x=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];u16 r;Vec3_02078d8c v;s32 dx,dz;
+data_0216263c[0]=x;
+r=((x>>16)*5)>>16;
+if(r!=0)return;
+v=*(Vec3_02078d8c *)data_0216244c;
+data_02162658[0]=data_02162658[1]*data_02162658[0]+data_02162658[2];
+dx=(s32)(((u64)(u32)(data_02162658[0]>>32)*0x180000)>>32)-0x100000;
+data_02162658[0]=data_02162658[1]*data_02162658[0]+data_02162658[2];
+dz=(s32)(((u64)(u32)(data_02162658[0]>>32)*0x180000)>>32)-0xc0000;
+v.y=0;v.x+=dx;v.z+=dz;v.z-=0x40000;
+func_0206e8f0(0x7d,&v,2);
 }
 
 
