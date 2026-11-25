@@ -96,9 +96,9 @@ void func_02129d80(u8 *);
 u8 *func_02129cac(u32 arg0,u32 arg1,u32 arg2,u32 arg3) {
 s32 i;
 u8 *p;
-for (i=0;i<4;i++) { if (*(s16 *)(data_021735a4+i*0xf4)==0) break; }
+for (i=0;i<4;i++) { if (*(s16 *)((u8 *)data_021735a4+i*0xf4)==0) break; }
 if (i==4) return NULL;
-p = data_021735a4+i*0xf4;
+p = (u8 *)data_021735a4+i*0xf4;
 func_02013878(p,0,0xf4);
 *(s16 *)p=1;
 *(void **)(p+8)=func_0212965c();
