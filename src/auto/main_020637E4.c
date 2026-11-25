@@ -290,8 +290,155 @@ extern void func_020dde88(void *);
 extern void func_020f1dd4(void *, s32);
 extern void *func_02030630(u8 *, u16);
 void func_02063f68(void) {
-    u8 *g = data_02160a6c;
-    if (g == NULL) return;
-    if (*(u8 **)(g + 0xac) != NULL) func_020de0a8(*(void **)(g + 0xac));
+    u8 *p, *q, *n;
+    s32 done = 0;
+    if (data_02160a6c == NULL) return;
+    for (p = *(u8 **)(data_02160a6c + 0xac); p; p = *(u8 **)(p + 0x16c)) {
+        if (p[0x104] != 4) *(u16 *)(p + 0x88) = 0x7fff;
+        switch (p[0x104]) {
+        case 1: case 2: case 4: case 5: case 7: case 8: break;
+        case 3: case 9:
+            *(u16 *)(p + 0x88) = 0x7fff;
+            if (++p[0x9c] < 6 && (s32)p[0x9c] % 4 < 2)
+                *(u16 *)(p + 0x88) = *(u16 *)(p + 0x8a);
+            break;
+        case 0:
+            if (((u8 *)data_02160244)[0x10c] == 0) func_020de0a8(p);
+            break;
+        case 6:
+            q = *(u8 **)(p + 0x128);
+            if (*(u32 *)(q + 0x24) == 0) {
+                while ((n = *(u8 **)(q + 0x58)) != NULL) {
+                    func_021168f8(q + 0x58, n);
+                    if (n) func_0210c5dc(n);
+                }
+            }
+            break;
+        }
+    }
+    for (p = *(u8 **)(data_02160a6c + 0xb8); p; p = *(u8 **)(p + 0x174)) {
+        *(u16 *)(p + 0x88) = 0x7fff;
+        if (p[0x104] == 3 || p[0x104] == 9) {
+            p[0x9c]++;
+            if (p[0x9c] < 6 && (s32)p[0x9c] % 4 < 2)
+                *(u16 *)(p + 0x88) = *(u16 *)(p + 0x8a);
+        }
+        if (p[0x104] == 3) {
+            s32 anim;
+            done = 0;
+            anim = func_020dd9b4(p, &done);
+            switch (*(u16 *)(p + 0x8e)) {
+            case 0x12d: case 0x12e: case 0x12f: case 0x130:
+                if (!(*(u32 *)(*(u8 **)(p + 0x118) + 0x78) & 0x30) && done)
+                    func_020dd810(p, 0, 0);
+                break;
+            default:
+                if (!(*(u32 *)(*(u8 **)(p + 0x118) + 0x78) & 0x20)) {
+                    if (func_02117d80(anim) == 1 && *(u32 *)(*(u8 **)(p + 0x118) + 0x6c) == 0) {
+                        s32 angle = ((data_02151fc8 + 0x8000) % 0x10000) >> 4;
+                        s16 x = data_0213a394[angle * 2 + 1];
+                        s16 z = data_0213a394[angle * 2];
+                        *(s32 *)(p + 0) += x * 30;
+                        *(s32 *)(p + 8) += z * 30;
+                        *(u32 *)(*(u8 **)(p + 0x118) + 0x6c) = 1;
+                    }
+                    if (done) func_020dd810(p, 1, 0);
+                }
+                break;
+            }
+        } else if (p[0x104] != 3 && *(u32 *)(*(u8 **)(p + 0x118) + 0x6c) != 0) {
+            s32 angle = ((data_02151fc8 + 0x8000) % 0x10000) >> 4;
+            s16 x = data_0213a394[angle * 2 + 1];
+            s16 z = data_0213a394[angle * 2];
+            *(s32 *)(p + 0) -= x * 6;
+            *(s32 *)(p + 8) -= z * 6;
+            ++*(u32 *)(*(u8 **)(p + 0x118) + 0x6c);
+            if (*(u32 *)(*(u8 **)(p + 0x118) + 0x6c) > 5) {
+                *(u32 *)(*(u8 **)(p + 0x118) + 0x6c) = 0;
+                func_020de0a8(p);
+            }
+        }
+        if (p[0xa2] & 1) {
+            u16 color;
+            p[0x9c] += 4;
+            if (p[0x9c] > 31) p[0x9c] = 31;
+            if (!(p[0xa2] & 0x20)) {
+                func_0210d27c(0x2b);
+                p[0xa2] |= 0x20;
+            }
+            color = 31 - p[0x9c];
+            *(u16 *)(p + 0x88) = color | (color << 5) | (color << 10);
+            *(s16 *)(p + 0x9a) -= 4;
+            if (*(volatile s16 *)(p + 0x9a) <= 1) {
+                p[0xa2] |= 0x10;
+                *(s16 *)(p + 0x9a) = 1;
+            }
+        }
+    }
+    for (p = *(u8 **)(data_02160a6c + 0x70); p; p = *(u8 **)(p + 0x13c)) {
+        if (p[0xa2] & 4) {
+            --*(s16 *)(p + 0x98);
+            if (*(volatile s16 *)(p + 0x98) < 0) *(s16 *)(p + 0x98) = 0;
+            if (*(volatile s16 *)(p + 0x98) == 0) {
+                done = 0;
+                func_020dd9b4(p, &done);
+                if (done) {
+                    if (*(u32 *)(*(u8 **)(p + 0x128) + 0x18) & 2)
+                        func_020dd810(p, 13, 0);
+                    else func_020de0a8(p);
+                    p[0xa2] &= 0xfb;
+                }
+            }
+        }
+        if (*(u32 *)(p + 0x80) & 0x80) {
+            u32 v;
+            v = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
+            data_0216263c[0] = v;
+            *(u32 *)(p + 0x3c) = (u16)(((v >> 16) * 6) >> 16);
+            v = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
+            data_0216263c[0] = v;
+            *(u32 *)(p + 0x44) = (u16)(((v >> 16) * 6) >> 16);
+            if (++p[0xa6] > 10) {
+                p[0xa6] = 0;
+                *(u32 *)(p + 0x3c) = 0;
+                *(u32 *)(p + 0x44) = 0;
+                *(u32 *)(p + 0x80) &= ~0x80;
+            }
+        }
+        if (*(u16 *)(p + 0x8e) == 0x353) func_020ddf2c(p);
+        else func_020dde88(p);
+    }
+    for (p = *(u8 **)(data_02160a6c + 0x94); p; p = *(u8 **)(p + 0x198)) {
+        if (*(u32 *)(*(u8 **)(p + 0x118) + 0x70)) {
+            q = *(u8 **)(p + 0x108);
+            *(u32 *)(q + 0x14) |= 1;
+            {
+            u32 x = *(u32 *)p, y = *(u32 *)(p + 4), z = *(u32 *)(p + 8);
+            n = *(u8 **)q;
+            *(u32 *)(n + 0x6c) = x;
+            *(u32 *)(n + 0x70) = y;
+            *(u32 *)(n + 0x74) = z;
+            }
+            *(u32 *)(n + 0xf4) = 1;
+            func_020f1dd4(q, 1);
+        }
+    }
+    for (n = *(u8 **)(data_02160a6c + 0xac); n; n = *(u8 **)(n + 0x16c)) {
+        q = *(u8 **)(n + 0x118);
+        p = *(u8 **)(q + 0xa0);
+        if (*(u16 *)(p + 2)) {
+            ++*(s16 *)p;
+            if (*(volatile s16 *)p > 64) {
+                u8 *v;
+                *(s16 *)p = 0;
+                v = *(u8 **)((u8 *)func_02030630(p, *(u16 *)(p + 2)) + 8);
+                if (!v) v = *(u8 **)(p + 8);
+                *(u16 *)(p + 2) = *(u16 *)v;
+            }
+        } else if (*(u32 *)(q + 0x78) && (q = *(u8 **)(p + 8)) != NULL) {
+            *(s16 *)p = 0;
+            *(u16 *)(p + 2) = *(u16 *)q;
+        }
+    }
 }
 
