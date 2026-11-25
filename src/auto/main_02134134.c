@@ -1,6 +1,6 @@
 /* 31 functions from 0x02134134 to 0x02134F44 (main), found by ds-decomp. */
 #include "common.h"
-typedef struct { u32 words[181]; } Clear_02134748;
+typedef struct { u32 words[4]; } Clear_02134748;
 extern u8 data_0215be68[];
 extern void *func_02135d9c(s32,s32,u8);
 extern u8 data_0215bd44[], data_0215bd5c[], data_0215bd80[], data_0215bda4[];
@@ -298,7 +298,7 @@ void func_02134748(void) {
     data_0215be64 = data_02145aa4;
     if (data_021756d4 == 0) {
         func_02135c18();
-        memset(data_021756d8, 0, 0x2d4);
+        { u64 *p = (u64 *)data_021756d8; u32 i = 90; do { *p++ = 0; } while (--i); *(u32 *)p=0; }
         func_02135ccc();
         *(u32 *)(data_021756d8 + 0x2bc) = 2;
         data_021756d8[0x2c0] = 4;
