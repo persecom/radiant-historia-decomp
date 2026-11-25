@@ -90,8 +90,7 @@ extern void func_0210d27c();
     u8 *p=data_02160a74;
     u8 *ui=data_02160110;
     s32 two=2,one=1,count=zero;
-    if(mode==1) return;
-    if(mode==2) return;
+    if(mode==1 || mode==2) return;
     if(!((*(u8 *)((u8 *)(p)+(0x1c0)))&4)) {
         if(((*(u8 *)((u8 *)(p)+(0x1c0)))&1) && !((*(u8 *)((u8 *)(p)+(0x1c0)))&2)) {
             if(func_02064b84(6,5,0x22,0xe) || (data_021626a8&0x802)) {
