@@ -32633,8 +32633,6 @@ from:0x0213a364 kind:arm_call to:0x020a9610 module:main
 from:0x0213a374 kind:arm_call to:0x020a98ac module:main
 from:0x0213a384 kind:arm_call to:0x020a98f4 module:main
 from:0x0213a390 kind:load to:0x021769fc module:main
-from:0x0213b240 kind:load to:0x02150fdd module:main
-from:0x0213d4e8 kind:load to:0x0215f023 module:main
 from:0x0213e930 kind:load to:0x0200cad8 module:main
 from:0x0213e934 kind:load to:0x0200cb08 module:main
 from:0x0213e938 kind:load to:0x0200c2d4 module:main
@@ -33967,7 +33965,6 @@ from:0x02156f54 kind:load to:0x0215705c module:main
 from:0x02156f58 kind:load to:0x02156f5c module:main
 from:0x0215a0d8 kind:load to:0x0215a0e0 module:main
 from:0x0215b1d0 kind:load to:0x0215b1d8 module:main
-from:0x0215b408 kind:load to:0x02150f4d module:main
 from:0x0215b9c4 kind:load to:0x021337c8 module:main
 from:0x0215b9c8 kind:load to:0x02133804 module:main
 from:0x0215b9cc kind:load to:0x02133814 module:main

@@ -1,0 +1,4 @@
+typedef unsigned char u8;
+typedef unsigned int u32;
+
+char data_02151454[40] = "Prm/BtlSetUp/Area%03d/_Enemy_%02d.csv";

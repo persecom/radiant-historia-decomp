@@ -96,7 +96,7 @@ def main() -> None:
                + ("" if sys.platform == "win32" else f" && {PY} tools/transform_dep.py $basefile.d $basefile.d"),
                depfile="$basefile.d")
         n.rule("lcf", f"{DSD} lcf -c {CONFIG}")
-        n.rule("mwld", f"{WRAP}\"{LD}\" {q(LD_FLAGS)} -m Entry @$objects $lcf -o $out")
+        n.rule("mwld", f"{PY} tools/rh_link_align.py {WRAP}\"{LD}\" {q(LD_FLAGS)} -m Entry @$objects $lcf -o $out")
         n.rule("rom_config", f"{DSD} rom config --elf $in --config {CONFIG}")
         n.rule("rom_build", f"{SH}{DSD} rom build --config $in --rom $out && {PY} tools/same.py --header $out {BASEROM}")
         n.rule("same", f"{PY} tools/same.py $in {BASEROM} $out")
@@ -119,7 +119,7 @@ def main() -> None:
         lcf, objects = delinks["arm9_lcf_file"], delinks["arm9_objects_file"]
         n.build([lcf, objects], "lcf", [*dsd_configs, str(EXTRACT / "config.yaml")])
         linked = sorted({x["object_to_link"] for x in files})
-        n.build(str(BUILD / "arm9.o"), "mwld", [*linked, lcf, objects], variables={"lcf": lcf, "objects": objects})
+        n.build(str(BUILD / "arm9.o"), "mwld", [*linked, lcf, objects], implicit=["tools/rh_link_align.py"], variables={"lcf": lcf, "objects": objects})
         rom_config = BUILD / "build" / "rom_config.yaml"
         n.build(str(rom_config), "rom_config", str(BUILD / "arm9.o"))
         n.build(str(rom), "rom_build", str(rom_config))

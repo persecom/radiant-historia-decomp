@@ -7058,7 +7058,6 @@ data_02150f34 kind:data(any) addr:0x02150f34
 data_02150f3c kind:data(any) addr:0x02150f3c
 data_02150f44 kind:data(any) addr:0x02150f44
 data_02150f4c kind:data(any) addr:0x02150f4c
-data_02150f4d kind:data(any) addr:0x02150f4d
 data_02150f50 kind:data(any) addr:0x02150f50
 data_02150f58 kind:data(any) addr:0x02150f58
 data_02150f5c kind:data(any) addr:0x02150f5c
@@ -7082,7 +7081,6 @@ data_02150fc8 kind:data(any) addr:0x02150fc8
 data_02150fcc kind:data(any) addr:0x02150fcc
 data_02150fd4 kind:data(any) addr:0x02150fd4
 data_02150fdc kind:data(any) addr:0x02150fdc
-data_02150fdd kind:data(any) addr:0x02150fdd
 data_02150fe4 kind:data(any) addr:0x02150fe4
 data_02150fec kind:data(any) addr:0x02150fec
 data_02150ff0 kind:data(any) addr:0x02150ff0
@@ -8367,7 +8365,6 @@ data_0215efa0 kind:bss addr:0x0215efa0
 data_0215effc kind:bss addr:0x0215effc
 data_0215f000 kind:bss addr:0x0215f000
 data_0215f01c kind:bss addr:0x0215f01c
-data_0215f023 kind:bss addr:0x0215f023
 data_0215f03c kind:bss addr:0x0215f03c
 data_0215f04c kind:bss addr:0x0215f04c
 data_0215f054 kind:bss addr:0x0215f054

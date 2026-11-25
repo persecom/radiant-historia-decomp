@@ -1,0 +1,4 @@
+typedef unsigned char u8;
+typedef unsigned int u32;
+
+char data_02156804[40] = "E02080805 adxt_Destroy: parameter error";

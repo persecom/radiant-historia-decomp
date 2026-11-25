@@ -1,0 +1,8 @@
+typedef unsigned char u8;
+typedef unsigned int u32;
+
+const u32 data_021400c8[12] = {
+    0x0F0F0011, 0x00250F0F, 0xE0F02010, 0x20100025,
+    0x002520F0, 0x20102010, 0x20100025, 0x1012E0F0,
+    0xF0101010, 0x10101012, 0x1012F010, 0x10101010
+};

@@ -8,3 +8,35 @@ src/auto/ov000_02176A00.c:
 
 src/auto/ov000_02177AA0.c:
     .text start:0x02177ad0 end:0x02178598
+
+src/data/ov000_bss_021785e0.c:
+    complete
+    .bss        start:0x021785e0 end:0x02178600
+
+src/data/ov000_rodata_02178598.c:
+    complete
+    .rodata     start:0x02178598 end:0x021785b0
+
+src/data/ov000_rodata_021785b0.c:
+    complete
+    .rodata     start:0x021785b0 end:0x021785b8
+
+src/data/ov000_ctor_021785b8.c:
+    complete
+    .ctor start:0x021785b8 end:0x021785bc
+
+src/data/ov000_ctor_021785bc.c:
+    complete
+    .ctor start:0x021785bc end:0x021785c0
+
+src/data/ov000_ctor_021785c0.c:
+    complete
+    .ctor start:0x021785c0 end:0x021785c4
+
+src/data/ov000_ctor_021785c4.c:
+    complete
+    .ctor start:0x021785c4 end:0x021785c8
+
+src/data/ov000_ctor_021785c8.c:
+    complete
+    .ctor start:0x021785c8 end:0x021785cc

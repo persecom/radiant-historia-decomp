@@ -1,0 +1,11 @@
+typedef unsigned char u8;
+typedef unsigned int u32;
+
+#pragma explicit_zero_data on
+u32 data_02145e88[1] = {0};
+u32 data_02145e8c[16] = {
+    0x00000000, 0x40240000, 0x00000000, 0x40590000,
+    0x00000000, 0x408F4000, 0x00000000, 0x40C38800,
+    0x00000000, 0x40F86A00, 0x00000000, 0x412E8480,
+    0x00000000, 0x416312D0, 0x00000000, 0x4197D784
+};

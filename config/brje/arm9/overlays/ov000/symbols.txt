@@ -51,9 +51,9 @@ func_ov000_021784f4 kind:function(arm,size=0x58,dsprot=0x58) addr:0x021784f4
 __sinit_ov000_0217854c kind:function(arm,size=0x4c) addr:0x0217854c
 data_ov000_02178598 kind:data(any) addr:0x02178598
 data_ov000_021785b0 kind:data(any) addr:0x021785b0
-.p__sinit_ov000_02176f08 kind:data(word) addr:0x021785b8
-.p__sinit_ov000_021774b0 kind:data(word) addr:0x021785bc
-.p__sinit_ov000_02177838 kind:data(word) addr:0x021785c0
-.p__sinit_ov000_02178094 kind:data(word) addr:0x021785c4
-.p__sinit_ov000_0217854c kind:data(word) addr:0x021785c8
+__sinit_ov000_02176f08_ctor kind:data(word) addr:0x021785b8
+__sinit_ov000_021774b0_ctor kind:data(word) addr:0x021785bc
+__sinit_ov000_02177838_ctor kind:data(word) addr:0x021785c0
+__sinit_ov000_02178094_ctor kind:data(word) addr:0x021785c4
+__sinit_ov000_0217854c_ctor kind:data(word) addr:0x021785c8
 DSProt_BSS kind:bss addr:0x021785e0
