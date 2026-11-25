@@ -1,10 +1,129 @@
 /* 16 functions from 0x0202DD04 to 0x0202EC9C (main), found by ds-decomp. */
 #include "common.h"
 
+static inline u8 *list_end_dd04(u8 *node) {
+ u8 *p;
+ if(node==NULL) return NULL;
+ p=node;
+ do { p=*(u8 **)(p+0xc); } while(p);
+ return p;
+}
+
 extern u8 *data_02160a6c;
 extern u8 **data_02160244;
 extern u8 *func_0202c5a0(u8 *);
 extern u32 func_0202e98c(u32, u32);
+
+extern s32 func_0202d890(s32,u8);
+extern s32 func_0202ef78(void *,s32,s32);
+extern s32 func_0202ec9c(void *,s32,s32);
+extern void func_0202dbc8(void *,void *,s32);
+extern void func_021168f8(void *,void *);
+s32 func_0202dd04(void) {
+u8 *base=(u8 *)data_02160244;
+u8 *node=*(u8 **)(base+0x44);
+s32 result=0;
+s32 one=1;
+s32 minus=-1;
+while(node) {
+s8 index;
+u8 *slot;
+s32 old=*(s8 *)(node+2);
+index=*(s8 *)node;
+if(index==old && *(s8 *)(base+0x38+old)==minus) {
+base[0x38+old]=one; *(s8 *)(node+3)=minus;
+}else if(*(s8 *)((slot=base+index)+0x38)==minus) {
+switch(*(s8 *)(node+1)) {
+case 0:
+if(!func_0202d890(index,(u8)*(s16 *)(node+0x24))) {slot[0x38]=one;node[2]=index;*(s8 *)(node+3)=minus;}
+break;
+case 1: {
+s8 next=index+1;
+if(index%3<=1 && *(s8 *)(slot+0x39)==minus &&
+!func_0202d890(index,(u8)*(s16 *)(node+0x24)) &&
+!func_0202d890(next,(u8)*(s16 *)(node+0x24))) {
+base[0x38+*(s8 *)node]=one; base[0x38+next]=one;
+node[2]=*(s8 *)node;*(s8 *)(node+3)=minus;
+}
+break;
+}
+case 2: {
+s8 up=index-3;
+u8 *upslot;
+if(index/3>=1 && *(s8 *)((upslot=base+up)+0x38)==minus &&
+!func_0202d890(index,(u8)*(s16 *)(node+0x24)) &&
+!func_0202d890(up,(u8)*(s16 *)(node+0x24))) {
+base[0x38+*(s8 *)node]=one; upslot[0x38]=one;
+node[2]=*(s8 *)node;*(s8 *)(node+3)=minus;
+}
+break;
+}
+case 3: {
+s8 up=index-3, diag=index-2, next=index+1;
+u8 *upslot,*diagslot,*nextslot;
+if(index/3>=1 && index%3<=1 &&
+*(s8 *)((upslot=base+up)+0x38)==minus && *(s8 *)((diagslot=base+diag)+0x38)==minus && *(s8 *)((nextslot=base+next)+0x38)==minus &&
+!func_0202d890(index,(u8)*(s16 *)(node+0x24)) &&
+!func_0202d890(up,(u8)*(s16 *)(node+0x24)) &&
+!func_0202d890(diag,(u8)*(s16 *)(node+0x24)) &&
+!func_0202d890(next,(u8)*(s16 *)(node+0x24))) {
+base[0x38+*(s8 *)node]=one;upslot[0x38]=one;diagslot[0x38]=one;nextslot[0x38]=one;
+node[2]=*(s8 *)node;*(s8 *)(node+3)=minus;
+}
+break;
+}
+case 4: break;
+}
+}
+node=*(u8 **)(node+0xc);
+}
+{
+u8 *p;
+node=*(u8 **)(base+0x44);
+if(node) {p=node; do {p=*(u8 **)(p+0xc);}while(p);}
+while(node) {
+if(*(s8 *)(node+3)!=-1 &&
+!func_0202ef78(node,255,0) &&
+!func_0202ef78(node,0,1) &&
+!func_0202ef78(node,1,1) &&
+!func_0202ef78(node,2,1) &&
+!func_0202ef78(node,0,2) &&
+!func_0202ef78(node,1,2) &&
+!func_0202ef78(node,2,2)) node[3]=26;
+node=*(u8 **)(node+0xc);
+}
+node=*(u8 **)(base+0x44);
+if(node) {p=node; do {p=*(u8 **)(p+0xc);}while(p);}
+while(node) {
+if(*(s8 *)(node+3)==26 &&
+!func_0202ec9c(node,255,0) &&
+!func_0202ec9c(node,0,1) &&
+!func_0202ec9c(node,1,1) &&
+!func_0202ec9c(node,2,1) &&
+!func_0202ec9c(node,0,2) &&
+!func_0202ec9c(node,1,2)) func_0202ec9c(node,2,2);
+node=*(u8 **)(node+0xc);
+}
+}
+node=*(u8 **)(base+0x44);
+while(node) {
+if(*(s8 *)(node+3)!=-1) func_0202dbc8(base,node,*(s8 *)node);
+node=*(u8 **)(node+0xc);
+}
+node=*(u8 **)(base+0x44);
+while(node) {
+if(*(s8 *)(node+3)!=-1) result=1;
+node=*(u8 **)(node+0xc);
+}
+node=*(u8 **)(base+0x44);
+while(node) {
+u8 *next=*(u8 **)(node+0xc);
+func_021168f8((u8 *)data_02160244+0x44,node);
+node=next;
+}
+node=*(u8 **)(base+0x44);while(node) node=*(u8 **)(node+0xc);
+return result;
+}
 
 s32 func_0202e260(u32 arg0) {
     u32 i;
