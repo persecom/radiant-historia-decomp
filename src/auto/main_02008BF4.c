@@ -42,7 +42,6 @@ extern void func_020097a8(u32, s32, s32, s32);
 extern void func_020097f0(u32, u32, u32, u32, u32);
 extern u32 *func_02009a64(s32);
 extern void func_02009aec(u32 *);
-typedef struct { u32 v; } OneWord_02008e24;
 typedef struct { u32 a[8]; } Copy32B;
 typedef struct { u32 a[9]; } Copy36B;
 typedef struct { u32 a[12]; } Copy48B;
