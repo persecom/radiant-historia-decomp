@@ -312,21 +312,18 @@ u32 func_020081f0(void) {
 void func_020081fc(void) { if (data_0215d158 != 0) return; data_0215d158=1; func_0200a56c(); while (func_0200a6c0(12,1)==0) {} func_0200a674(12,func_02005a84); }
 
 void func_02008250(u32 arg0) {
-    if (*(u16 *)0x2fffc40 != 2) {
-        return;
-    }
-    func_02008414();
-    func_0200f9b0((u16)func_02005df8());
-    func_02005988(0x40000);
-    func_02005a14(-1);
-    func_02008a00();
-    {
-        u32 *dst = (u32 *)0x2fffc20;
-        *dst = arg0;
-        func_02005ab4(0x10);
-        dst[0xdf] = func_02007664();
-    }
-    func_01ff81b8();
+if (*(u16 *)0x2fffc40 == 2) func_02008414();
+func_0200f9b0((u16)func_02005df8());
+func_02005988(0x40000);
+func_02005a14(-1);
+func_02008a00();
+{
+u32 *dst=(u32 *)0x2fffc20;
+*dst=arg0;
+func_02005ab4(0x10);
+dst[0xdf]=func_02007664();
+}
+func_01ff81b8();
 }
 
 extern void func_02009008(u32, u32, u32);
