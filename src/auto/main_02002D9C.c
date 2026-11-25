@@ -117,9 +117,8 @@ void func_02002fd8(void) {
         func_02008e24(0, (void *)0x04000330, 0x10);
         func_02008e24(0, (void *)0x04000360, 0x60);
     }
-    i = 0;
-    for (; i < 0x20;) {
-        *(volatile u32 *)0x040004d0 = i++;
+    for (i = 0; i < 0x20; i++) {
+        *(volatile u32 *)0x040004d0 = 0;
     }
 }
 
@@ -226,9 +225,13 @@ void func_020030e4(u32 arg0) {
 }
 
 void func_020030f4(void *arg0) {
+    volatile u32 *p = (volatile u32 *)arg0;
     s32 i;
-    for (i = 0; i < 0x80; i++) {
-        ((u32 *)arg0)[i] = 0;
+    for (i = 0; i < 32; i++) {
+        p[0] = 0;
+        p[1] = 0;
+        p[2] = 0;
+        p[3] = 0;
     }
 }
 
