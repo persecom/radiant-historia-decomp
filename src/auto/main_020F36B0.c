@@ -87,8 +87,8 @@ extern void *func_021176b0(void *,u16);
 extern void func_02118eec(void *,s32),func_02118ed0(void *,s32,s32),func_02118eb4(void *,u16),func_02118e94(void *,s32,s32);
 static inline void ProjectSpritePosition(const s32 *pos,s32 *outX,s32 *outY) {
 const s32 *m=(s32 *)data_02170248,*p=(s32 *)data_02170204;
-register s32 z,y;
-s32 x,py,px,sy,sx;
+register s32 z,x;
+s32 y,py,px,sy,sx;
 long long inv;
 x=m[9]+(s32)(((long long)pos[0]*m[0]+(long long)pos[1]*m[3]+(long long)pos[2]*m[6])>>12);
 y=m[10]+(s32)(((long long)pos[0]*m[1]+(long long)pos[1]*m[4]+(long long)pos[2]*m[7])>>12);
@@ -106,10 +106,153 @@ sy=192-sy;
 *outX=sx;*outY=sy;
 }
 void func_020f37d0(u8 *arg) {
-    u8 *p = *(u8 **)&data_02160a6c;
-    if (p == NULL) return;
-    func_020e9dc0();
-    func_0211a4c0(data_021612c8, 0, 0);
+u8 *entity=0;
+Trip pos;
+s32 update,draw;
+if(!data_02160a6c) return;
+func_020e9dc0();
+func_0211a4c0(data_021612c8,0,0);
+goto next_entity;
+while(entity) {
+u8 *link=*(u8 **)(entity+0x108);
+u8 *anim=*(u8 **)link;
+s32 offscreen;
+s32 one,zero;
+pos=*(Trip *)entity;
+update=*(s32 *)(entity+0xf8)==0;
+if(!(*(u32 *)(entity+0x80)&2)) {
+*(u32 *)(entity+0x80)&=~4;
+draw=0;
+} else draw=1;
+if(*(s32 *)(entity+0x64)==0) {
+s32 x,y;
+ProjectSpritePosition((s32 *)&pos,&x,&y);
+*(s32 *)(entity+0xfc)=x;
+*(s32 *)(entity+0x100)=y;
+offscreen=0;
+if(x< -32 || x>288 || y< -16 || y>208) {
+*(u32 *)(entity+0x80)&=~4;
+offscreen=1;
+} else *(u32 *)(entity+0x80)|=4;
+} else {
+s32 x,y;
+ProjectSpritePosition((s32 *)&pos,&x,&y);
+*(s32 *)(entity+0xfc)=x;
+*(s32 *)(entity+0x100)=y;
+offscreen=0;
+*(u32 *)(entity+0x80)|=4;
+}
+one=1;zero=0;
+if(entity[0xa1]&1) {
+*(s32 *)(entity+0x54)=4096;
+*(s32 *)(entity+0xfc)=*(s32 *)entity;
+*(s32 *)(entity+0x100)=*(s32 *)(entity+4);
+offscreen=zero;
+}
+if(entity[0xa1]&8) {
+*(u32 *)(entity+0x80)|=4;
+offscreen=0;
+}
+if(entity[0xa1]&16) *(s32 *)(entity+0x54)+=*(s32 *)(entity+0x58);
+if(entity[0xa1]&32) {draw=1;offscreen=0;}
+if(draw && !offscreen) {
+s32 sx=*(s32 *)(entity+0x54),sy=sx;
+s32 x,y,z;
+u32 command;
+if((anim[0x70]>>1)&1) sx*=-1;
+else if(anim[0x70]&1) sy*=-1;
+command=(*(u32 *)(entity+0x80)&0x1000)?0x8000:0;
+command|=3<<6;
+command|=*(s16 *)(entity+0x9a)<<16;
+func_021205ec(0x29,&command,1);
+*(volatile u32 *)0x04000480=*(u16 *)(entity+0x88);
+func_0211a4d4(data_021612c8,*(s32 *)(*(u8 **)(anim+0x58)+0x10),*(s32 *)(*(u8 **)(anim+0x58)+0x14));
+func_02119da4(data_021612c8);
+func_02119f1c();
+y=*(s32 *)(entity+0x100);
+x=*(s32 *)(entity+0xfc);
+if(entity[0xa1]&2) {y+=*(s32 *)(entity+0x70);x+=*(s32 *)(entity+0x68);}
+if(*(u32 *)(entity+0x80)&0x80) {y+=*(s32 *)(entity+0x40);x+=*(s32 *)(entity+0x3c);}
+z=*(s32 *)(entity+0x64);
+if(z==0) {
+z=*(s32 *)(entity+0x74)<<12;
+if(entity[0x192]) {
+u16 v=*(u16 *)(entity+0x190);
+if(v==0) z=(entity[0x192]+0x212)<<12;
+else z=(v+400)<<12;
+}
+x<<=12;y<<=12;
+} else {x<<=12;y<<=12;z<<=12;}
+func_0211a178(x,y,z);
+func_0211a26c(sx,sy,4096);
+func_02119eb8(anim);
+func_0211a128();
+func_02119e4c();
+}
+if(update) {
+s32 changed=0;
+s32 speed=*(s32 *)(anim+0x60)<<*(s32 *)data_02162834;
+*(s32 *)(link+0x14)=0;
+if(*(s32 *)(anim+0xc)) {
+s32 delta=(s32)(((long long)*(s32 *)(anim+0x14)*speed+2048)>>12);
+*(s32 *)(anim+0x10)+=func_02013630(delta);
+while(*(s32 *)(anim+0xc) && *(s32 *)(anim+0x10)>=(*(u16 *)(*(u8 **)anim+4)<<12)) {
+u8 *seq;
+u8 *entry;
+u8 *start;
+s32 finished;
+s32 direction=one;
+*(s32 *)(anim+0x10)-=*(u16 *)(*(u8 **)anim+4)<<12;
+changed=one;
+*(u8 **)anim+=8;
+entry=*(u8 **)anim;
+if(*(s32 *)(anim+0x14)<=0) direction=zero;
+seq=*(u8 **)(anim+0x1c);
+start=*(u8 **)(seq+12);
+if(direction!=*(s32 *)(anim+8)) finished=entry>=start+*(u16 *)seq*8;
+else finished=entry<=start+*(u16 *)(seq+2)*8-8;
+if(link) *(s32 *)(link+0x14)=finished;
+if(finished) {
+s32 mode=*(s32 *)(anim+0x18);
+if(!mode) mode=*(s32 *)(*(u8 **)(anim+0x1c)+8);
+if(mode==2 || mode==4) {
+seq=*(u8 **)(anim+0x1c);
+*(u8 **)anim=*(u8 **)(seq+12)+*(u16 *)(seq+2)*8;
+*(s32 *)(anim+0x10)=zero;
+func_02117be0(anim,zero);
+} else *(s32 *)(anim+0xc)=zero;
+seq=*(u8 **)(anim+0x1c);
+entry=*(u8 **)anim;
+start=*(u8 **)(seq+12);
+if(entry>start+*(u16 *)seq*8-8) *(u8 **)anim=start+*(u16 *)seq*8-8;
+else if(entry<start) *(u8 **)anim=start;
+}
+}
+}
+if(changed && *(u16 *)(*(u8 **)anim+4)!=0) {
+u8 *frame=**(u8 ***)anim;
+s32 type;
+*(void **)(anim+0x30)=func_021176b0(*(void **)(anim+0x34),*(u16 *)frame);
+type=*(u32 *)(*(u8 **)(anim+0x1c)+4)&255;
+func_02118eec(anim+0x3c,1);
+if(type) {
+s32 x,y;
+if(type==2) {x=*(s16 *)(frame+4);y=*(s16 *)(frame+6);}
+else {
+func_02118ed0(anim+0x3c,*(s32 *)(frame+4),*(s32 *)(frame+8));
+func_02118eb4(anim+0x3c,*(u16 *)(frame+2));
+x=*(s16 *)(frame+12);y=*(s16 *)(frame+14);
+}
+func_02118e94(anim+0x3c,x,y);
+}
+}
+}
+next_entity:
+if(!entity) entity=*(u8 **)(data_02160a6c+0x88);
+else {
+entity=*(u8 **)(entity+*(u16 *)(data_02160a6c+0x92)+4);
+}
+}
 }
 
 BOOL func_020f3fcc(u8 *arg0, s32 arg1, s32 arg2)
