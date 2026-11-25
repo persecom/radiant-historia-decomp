@@ -32,6 +32,81 @@ extern s32 func_020dddfc(void *arg0, void *arg1, s32 arg2);
 extern void func_020020f8(void *arg0, void *arg1, void *arg2);
 extern void func_020bfd78(s32, s32, s32, s32, s32, void *, s32, s32);
 extern u8 *data_02160a6c;
+extern u32 data_0216263c[3];
+extern u8 *func_02022558();
+extern void func_02025f84(void *, s32);
+s32 func_0205b710(u8 *arg0, s32 arg1)
+{
+    u8 *p;
+    u8 *sub;
+
+    if (arg0 == NULL) {
+        return 0;
+    }
+    sub = *(u8 **)(arg0 + 0x118);
+    if (*(u32 *)(sub + 0x70) == 0) {
+        return 0;
+    }
+    p = func_02022558(*(void **)(sub + 0x60));
+    if (p != NULL) {
+        switch (*(u16 *)p) {
+        case 0x98: {
+            s32 val;
+            val = ((*(s8 *)(p + 2) + (*(s16 *)(p + 4) + (*(s16 *)(*(u8 **)(arg0 + 0x118) + 0x2c) / 5))) * (s32)((u16)((((data_0216263c[0] = data_0216263c[1] * data_0216263c[0] + data_0216263c[2]) >> 16) * 4) >> 16) + 0x62)) / 100;
+            if (val >= *(s16 *)(p + 6)) {
+                val = (*(s16 *)(p + 6) * (s32)((u16)((((data_0216263c[0] = data_0216263c[1] * data_0216263c[0] + data_0216263c[2]) >> 16) * 4) >> 16) + 0x62)) / 100;
+            } else {
+                val = (val * (s32)((u16)((((data_0216263c[0] = data_0216263c[1] * data_0216263c[0] + data_0216263c[2]) >> 16) * 4) >> 16) + 0x62)) / 100;
+            }
+            *(s32 *)(*(u8 **)(arg0 + 0x118) + 4) += val;
+            if (*(s32 *)(*(u8 **)(arg0 + 0x118) + 4) > *(s32 *)(*(u8 **)(arg0 + 0x118) + 8)) {
+                *(s32 *)(*(u8 **)(arg0 + 0x118) + 4) = *(s32 *)(*(u8 **)(arg0 + 0x118) + 8);
+            }
+            func_020bfd78(0x80, 0x60, 1, 7, val, arg0, *(u16 *)(arg0 + 0x90), 0);
+            return 1;
+        }
+
+        case 0x99: {
+            s32 val;
+            val = (((*(s8 *)(p + 2) / 10) + (*(s16 *)(p + 4) + (*(s16 *)(*(u8 **)(arg0 + 0x118) + 0x2c) / 50))) * (s32)((u16)((((data_0216263c[0] = data_0216263c[1] * data_0216263c[0] + data_0216263c[2]) >> 16) * 4) >> 16) + 0x62)) / 100;
+            if (val >= *(s16 *)(p + 6)) {
+                val = (*(s16 *)(p + 6) * (s32)((u16)((((data_0216263c[0] = data_0216263c[1] * data_0216263c[0] + data_0216263c[2]) >> 16) * 4) >> 16) + 0x62)) / 100;
+            } else {
+                val = (val * (s32)((u16)((((data_0216263c[0] = data_0216263c[1] * data_0216263c[0] + data_0216263c[2]) >> 16) * 4) >> 16) + 0x62)) / 100;
+            }
+            *(s16 *)(*(u8 **)(arg0 + 0x118) + 0xc) += (s16)val;
+            if (*(s16 *)(*(u8 **)(arg0 + 0x118) + 0xc) > *(s16 *)(*(u8 **)(arg0 + 0x118) + 0xe)) {
+                *(s16 *)(*(u8 **)(arg0 + 0x118) + 0xc) = *(s16 *)(*(u8 **)(arg0 + 0x118) + 0xe);
+            }
+            func_020bfd78(0x80, 0x60, 1, 8, val, arg0, *(u16 *)(arg0 + 0x90), 0);
+            return 1;
+        }
+
+        case 0x9c:
+        case 0x9d:
+        case 0x9e: {
+            s32 ret = 1;
+            if (*(s16 *)(p + 4) < 1) {
+                ret = 0;
+            }
+            *(s16 *)(p + 4) -= 1;
+            if (*(s16 *)(p + 4) <= 0) {
+                func_02025f84(arg0, arg1);
+            }
+            return ret;
+        }
+
+        case 0x87:
+        case 0x88:
+        case 0x89:
+        case 0x8a:
+            return 1;
+        }
+    }
+
+    return 0;
+}
+
 s32 func_0205ba98(void *arg0, s32 arg1) {
     if (func_020dddfc(arg0, (u8 *)arg0 + 0x24, arg1 << 12) != 0) {
         return 1;
