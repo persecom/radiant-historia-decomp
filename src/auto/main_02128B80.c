@@ -587,17 +587,14 @@ void func_0212999c(u8 *arg0, s32 arg1) {
 }
 
 void func_021299c0(u8 *arg0, s32 arg1) {
-    if (*(s32 *)(arg0 + 0xb8) != 0) {
-        ((void (*)(s32))data_0217357c[1])(*(s32 *)(arg0 + 0xb8));
-    }
-    {
-        s32 val = arg1 / 0x60;
-        *(s32 *)(arg0 + 0xc0) = val;
-        *(s32 *)(arg0 + 0xbc) = arg1;
-        if (val <= 0) {
-            *(s32 *)(arg0 + 0xc0) = 1;
-        }
-    }
+s32 val;
+if (*(s32 *)(arg0+0xb8)!=0) {
+((void (*)(s32,s32))data_0217357c[1])(*(s32 *)(arg0+0xb8),arg1);
+}
+val=arg1/0x60;
+*(s32 *)(arg0+0xc0)=val;
+*(s32 *)(arg0+0xbc)=arg1;
+if(val<=0) *(s32 *)(arg0+0xc0)=1;
 }
 
 void func_02129a14(u8 *arg0) {
