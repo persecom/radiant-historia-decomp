@@ -73,8 +73,10 @@ static inline void MI_CpuFill32(void *dest, u32 data, u32 size) {
 extern void func_0211c850(u32);
 extern void func_0211c79c(u32);
 static inline void draw_02119728(u32 arg) {
-if (*(s32 *)(data_02155eb0+4)!=-1) func_0211c850(arg);
-else func_0211c79c(arg);
+switch (*(s32 *)(data_02155eb0+4)!=-1) {
+default: func_0211c850(arg); break;
+case 0: func_0211c79c(arg); break;
+}
 }
 static inline s32 is_valid_id(s32 id) {
     if (id != -1) {
