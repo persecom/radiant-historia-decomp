@@ -524,7 +524,10 @@ u32 func_0212d70c(void *arg0) {
     return *(u32 *)((u8 *)arg0 + 0xb0);
 }
 
-s32 func_0212d714(void) { if (++data_021740d8[5] == 1) { struct { u32 words[250]; } zero = {0}; memcpy(data_021740f0, &zero, 1000); } return 1; }
+s32 func_0212d714(void) {
+ if (++data_021740d8[5] == 1) __clear(data_021740f0, 1000);
+ return 1;
+}
 
 extern void *memset(void *, int, unsigned long);
 #pragma intrinsic on
