@@ -76,7 +76,7 @@ else if(ret!=0x100)func_0200a884(p,ret);
 return ret;
 }
 
-#pragma optimization_level 3
+#pragma opt_propagation off
 s32 func_0200ad00(void *arg0, s32 arg1) {
     u8 *arc = arg0;
     u8 *ret = NULL;
@@ -116,31 +116,29 @@ s32 func_0200ad00(void *arg0, s32 arg1) {
             ret = *(u8 **)(arc + 8);
             *(u32 *)(ret + 0xc) |= 0x40;
         }
-        if (arg1 != 0 && (*(volatile u32 *)(ret + 0xc) & 4)) {
+        if (arg1 != 0 && (*(u32 *)(ret + 0xc) & 4)) {
             func_02006560(ret + 0x18);
             ret = NULL;
-        } else {
-            goto done;
         }
-        goto done;
-    } else if (arg1 != 0) {
-        if (*(u32 *)(arc + 0x14) & 0x10) {
-            u32 tmp[0x48 / 4];
-            func_0200b888(tmp);
-            tmp[2] = (u32)arc;
-            *(u32 *)(arc + 0x14) &= ~0x10;
-            func_0200a980(tmp, 10);
-        }
-        if (*(u32 *)(arc + 0x14) & 0x40) {
-            *(u32 *)(arc + 0x14) = (*(u32 *)(arc + 0x14) & ~0x40) | 8;
-            func_02006560(arc + 0xc);
+    } else {
+        if (arg1 != 0) {
+            if (*(u32 *)(arc + 0x14) & 0x10) {
+                u32 tmp[0x48 / 4];
+                func_0200b888(tmp);
+                tmp[2] = (u32)arc;
+                *(u32 *)(arc + 0x14) &= ~0x10;
+                func_0200a980(tmp, 10);
+            }
+            if (*(u32 *)(arc + 0x14) & 0x40) {
+                *(u32 *)(arc + 0x14) = (*(u32 *)(arc + 0x14) & ~0x40) | 8;
+                func_02006560(arc + 0xc);
+            }
         }
     }
-done:
     func_0200813c(irq);
     return (s32)ret;
 }
-#pragma optimization_level 4
+#pragma opt_propagation reset
 void func_0200aeac(u8 *arg0) {
     u8 *r4;
     u8 *cur;
@@ -471,129 +469,3 @@ void func_0200b594(u8 *arg0) {
 }
 
 #pragma optimization_level 4
-s32 func_0200b5b8(u8 *arg0, s8 *arg1, u32 arg2) {
-    s32 ret = 0;
-    u32 lock = func_02008128();
-    if (func_0200b0ec(arg1, arg2) == NULL) {
-        u8 *cur = head_0200b5b8();
-        u8 **slot = &data_0215ed68;
-        while (cur != NULL) {
-            slot = (u8 **)(cur + 4);
-            cur = *(u8 **)(cur + 4);
-        }
-        *slot = arg0;
-        if (arg2 <= 3) {
-            *(u32 *)arg0 = 0;
-            func_02012244(arg0, arg1, arg2 + 1);
-        } else if (arg2 <= 0xf) {
-            s32 i;
-            for (i = 0; ; i++) {
-                if (i >= 0x10) {
-                    func_02008414();
-                } else if (((s8 (*)[16])data_0215ed78)[i][0] == 0) {
-                    func_02012244(((s8 (*)[16])data_0215ed78)[i], arg1, arg2 + 1);
-                    *(void **)arg0 = ((s8 (*)[16])data_0215ed78)[i];
-                    break;
-                }
-            }
-        } else {
-            func_02008414();
-        }
-        *(u32 *)(arg0 + 0x14) |= 1;
-        ret = 1;
-    }
-    func_0200813c(lock);
-    return ret;
-}
-u8 *func_0200b6b8(u8 *arg0) {
-    if (*(s8 *)(arg0 + 3) != 0) {
-        return *(u8 **)(arg0 + 0);
-    }
-    return arg0;
-}
-
-s32 func_0200b6c8(u32 *arg0, u32 arg1, u32 arg2) {
-    u32 sp[18];
-    arg0[8] = arg1;
-    arg0[9] = arg2;
-    func_0200b888(sp);
-    sp[2] = (u32)arg0;
-    func_0200a980(sp, 0x11);
-    arg0[5] |= 2;
-    return 1;
-}
-
-void func_0200b710(u32 *arg0, u32 arg1) {
-    u32 *arc = (u32 *)arg0[2];
-    if (arc[3] & 4) {
-        u32 bak = func_02008128();
-        arc[3] |= 8;
-        arc[5] = arg1;
-        func_02006560(&arc[6]);
-        func_0200813c(bak);
-    } else {
-        func_0200a884(arc);
-        void *res = (void *)func_0200ad00(arg0, 1);
-        if (res != 0) {
-            func_0200aeac(res);
-        }
-    }
-}
-
-s32 func_0200b77c(const char *str, s32 pos) {
-    s32 i = pos - 1;
-    while (i > 0 && ((u32)(((u8)str[i - 1] ^ 0x20) - 0xa1) < 0x3c)) {
-        i--;
-    }
-    return (pos - 1) - (((pos - 1) - i) & 1);
-}
-
-s32 func_0200b7bc(const char *str, s32 pos) {
-    s32 c;
-    while ((c = str[pos]) != '\0' && (u8)c != '/' && (u8)c != '\\') {
-        s32 step = ((u32)(((u8)c ^ 0x20) - 0xa1) < 0x3c) ? 1 : 0;
-        pos += 1;
-        pos += step;
-    }
-    return pos;
-}
-
-s32 func_0200b810(const char *str, s32 pos) {
-    for (;;) {
-        pos = func_0200b77c(str, pos);
-        if (pos < 0 || (u8)str[pos] == '/' || (u8)str[pos] == '\\') {
-            break;
-        }
-    }
-    return pos;
-}
-
-s32 func_0200b844(char *str) {
-    s32 len = func_02012348(str);
-    s32 pos = func_0200b77c(str, len);
-    if (pos >= 0 && ((u8)str[pos] == '/' || (u8)str[pos] == '\\')) {
-        str[pos] = '\0';
-        len = pos;
-    }
-    return len;
-}
-
-void func_0200b888(u32 *arg0) {
-    arg0[2] = 0;
-    arg0[1] = 0;
-    arg0[0] = 0;
-    arg0[7] = 0;
-    arg0[6] = 0;
-    arg0[3] = 0;
-    arg0[3] |= 0x2300;
-    arg0[4] = 0;
-    arg0[5] = 0;
-}
-
-void func_0200b8b4(u32 *arg0) {
-u32 bak=func_02008128();
-u32 flag=(arg0[3]&1)!=0;
-if(flag){u32 *arc=(u32 *)arg0[2];arg0[3]|=2;arc[5]|=0x20;}
-func_0200813c(bak);
-}
-
