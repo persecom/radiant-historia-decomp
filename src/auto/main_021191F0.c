@@ -590,13 +590,23 @@ void func_02119f1c(void) {
         }
     }
 }
-void func_0211a128(void) {
-    if ((*(volatile s32 *)&data_0216f234.fc <= 0) != 0) {
-        return;
-    }
-    data_0216f234.fc--;
-    if (*(u16 *)data_02155eb0 > (s32)data_0216f234.fc) {
-        *(u16 *)data_02155eb0 = 0xfffe;
-    }
+#pragma push
+#pragma opt_propagation off
+void func_0211a128(void)
+{
+  int empty = (*((volatile s32 *) (&data_0216f234.fc))) <= 0;
+  if (empty)
+  {
+    return;
+  }
+  int count = data_0216f234.fc;
+  count = --count;
+  int index = *((u16 *) data_02155eb0);
+  data_0216f234.fc = count;
+  if (index > count)
+  {
+ do { } while (0);
+    *((u16 *) data_02155eb0) = 0xfffe;
+  }
 }
-
+#pragma pop
