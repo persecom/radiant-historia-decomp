@@ -590,36 +590,29 @@ s32 func_02103c2c(s32 arg0, s32 arg1, void *arg2) {
 }
 
 void *func_02103c6c(void *arg0, s32 arg1) {
-    char buf[0x50];
-    char *p = buf;
-    void *node;
-    u8 wanted;
-    if (arg1 < 0) {
-        return NULL;
-    }
-    func_02005e80(p, data_021556b8);
-    node = func_021092d8(p);
-    if (node == NULL) {
-        return NULL;
-    }
-    wanted = *(u8 *)(data_02160200 + 0x16c);
-    for (;;) {
-        u16 v;
-        func_021093f0(node);
-        v = (u16)func_02092994(node, 0);
-        if (v == wanted) {
-            *(u16 *)((u8 *)arg0 + 2) = v;
-            *(u16 *)arg0 = (u16)func_02092994(node, 0);
-            break;
-        }
-        if (func_02109444(node) == 0) {
-            break;
-        }
-    }
-    if (node != NULL) {
-        func_021093b0(node);
-    }
-    return arg0;
+char buf[0x50];
+char *p;
+void *node;
+u8 wanted;
+if (arg1 < 0) return NULL;
+p = buf;
+func_02005e80(p, data_021556b8, arg1);
+node = func_021092d8(p);
+if (node == NULL) return NULL;
+wanted = *(u8 *)(data_02160200 + 0x16c);
+for (;;) {
+u16 v;
+func_021093f0(node);
+v = (u16)func_02092994(node,0);
+if (v == wanted) {
+*(u16 *)((u8 *)arg0+2) = v;
+*(u16 *)arg0 = (u16)func_02092994(node,0);
+break;
+}
+if (func_02109444(node) == 0) break;
+}
+if (node != NULL) func_021093b0(node);
+return arg0;
 }
 
 s32 func_02103d30(void) {
