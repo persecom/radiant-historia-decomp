@@ -2,6 +2,20 @@
 #include "common.h"
 
 extern u8 *data_02160aec;
+extern u32 data_02155c3c;
+extern void func_020eec70(void);
+extern void *func_0210c594(u32, u32);
+extern void func_021091b4(void);
+extern void func_0210ca6c(u32, u32);
+extern void *func_021092d8(char *);
+extern s32 func_02092ab0(void *, s32);
+extern s32 func_02092994(void *, s32);
+extern void func_021093b0(void *);
+extern void func_020e95ec(void *);
+extern void func_020e965c(u8 *, u8 *);
+extern void func_0210eb98(u8 *, u8 *, u8 *);
+extern void func_02109b14(s32);
+extern void func_02009150(void *, void *);
 extern u8 data_02151c8c[20];
 extern void func_0210eb80(u8 *);
 extern void func_021168f8(u8 *, u8 *);
