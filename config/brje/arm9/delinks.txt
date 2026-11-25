@@ -104,7 +104,10 @@ src/auto/main_02012E3C.c:
     .text start:0x02012e3c end:0x020139a4
 
 src/auto/main_020139A4.c:
-    .text start:0x020139a4 end:0x02014880
+    .text start:0x020139a4 end:0x020143d4
+
+src/auto/main_020143D4.c:
+    .text start:0x020143d4 end:0x02014880
 
 src/auto/main_02014880.c:
     .text start:0x02014880 end:0x02014994
