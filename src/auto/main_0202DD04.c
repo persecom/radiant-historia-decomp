@@ -126,22 +126,28 @@ return result;
 }
 
 s32 func_0202e260(u32 arg0) {
+    u8 *sub;
     u32 i;
-    u32 start = (arg0 == 0) ? 0 : 9;
-    u32 end = (arg0 == 0) ? 9 : 12;
+    u32 start;
+    u32 end;
+    if (arg0 == 0) {
+        start = 0;
+        end = 9;
+    } else if (arg0 == 1) {
+        start = 9;
+        end = 12;
+    }
     for (i = start; i < end; i++) {
         u8 *entry = data_02160244[2 + i];
-        u8 *sub = *(u8 **)(entry + 0x10);
-        if (sub != NULL) {
+        sub = *(u8 **)(entry + 0x10);
+        while (sub != NULL) {
             u8 *a = *(u8 **)(sub + 0);
             if (a != NULL && *(u8 **)(a + 0x118) != NULL) {
                 if (*(u8 **)(*(u8 **)(a + 0x118) + 0x70) != NULL) {
                     return (s32)a;
                 }
             }
-            if (*(u8 **)(sub + 0xc) != NULL) {
-                return (s32)a;
-            }
+            sub = *(u8 **)(sub + 0xc);
         }
     }
     return 0;
