@@ -260,7 +260,7 @@ void func_02138338(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
         func_02138130(data_0215c770);
         return;
     }
-    entry = data_021767bc + arg0 * 0x48 + arg1 * 0xc;
+    entry = (u8 *)data_021767bc + arg0 * 0x48 + arg1 * 0xc;
     if (*(u32 *)entry != 0) {
         func_02138130(data_0215c798);
     }
