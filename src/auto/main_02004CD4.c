@@ -443,17 +443,17 @@ void func_020057d0(void) {
 }
 
 void func_020057e8(u32 arg0, u32 arg1) {
-    u8 (*base)[12] = (u8 (*)[12])data_0215cd7c;
     s32 i;
     for (i = 0; i < 0x16; i++) {
         if (arg0 & 1) {
             u8 *rec = NULL;
             if (i >= 8 && i <= 0xb) {
-                rec = base[i - 8];
+                rec = ((u8 (*)[12])data_0215cd7c)[i - 8];
             } else if (i >= 3 && i <= 6) {
-                rec = base[i + 1];
+                rec = ((u8 (*)[12])data_0215cd7c)[i + 1];
+            } else {
+                *(u32 *)(data_027e0000 + i * 4) = arg1;
             }
-            *(u32 *)(data_027e0000 + i * 4) = arg1;
             if (rec != NULL) {
                 *(u32 *)(rec + 0) = arg1;
                 *(u32 *)(rec + 8) = 0;
@@ -483,14 +483,11 @@ u32 func_02005870(u32 arg0) {
     return 0;
 }
 
-void func_020058fc(u32 index, u32 arg1, u32 arg2) {
-    u32 offset = index * 12;
-    *(u32 *)(data_0215cd7c + offset) = arg1;
-    {
-        u32 bit = 1 << (index + 8);
-        *(u32 *)(data_0215cd84 + offset) = arg2;
-        *(u32 *)(data_0215cd80 + offset) = func_020059b4(bit) & bit;
-    }
+void func_020058fc(u32 index, void *arg1, void *arg2) {
+    u32 bit = 1 << (index + 8);
+    *(void **)(data_0215cd7c + index * 12) = arg1;
+    *(void **)(data_0215cd84 + index * 12) = arg2;
+    *(u32 *)(data_0215cd80 + index * 12) = func_020059b4(bit) & bit;
 }
 
 #pragma optimization_level 2
