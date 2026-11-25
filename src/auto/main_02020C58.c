@@ -36,6 +36,8 @@ void func_020211f0(void *arg0, s32 arg1);
 void func_0202147c(s32 arg0);
 void func_02021514(void);
 void func_02021bd0(s32);
+double func_02020c58(double a, double b) { return a / b; }
+
 void func_0202119c(void) {
 }
 
@@ -133,15 +135,13 @@ void func_020213c4(void *ptr, s32 len, u32 key) {
 
 extern s32 func_0210723c(void);
 extern void func_0210d9e4(u8 *);
+#pragma optimization_level 2
 s32 func_02021428(u16 *arg) {
     data_02160054[4] = (u32)arg;
     data_02160054[5] = 1000;
     func_0210d9e4(data_02160064);
-    {
-        s32 zero = 0;
-        data_02160054[3] = 1;
-        data_02160054[1] = zero;
-    }
+    data_02160054[3] = 1;
+    data_02160054[1] = 0;
     if (data_021626f0 != NULL) {
         u32 v = *data_021626f0;
         data_02160054[0] = v;
@@ -150,7 +150,7 @@ s32 func_02021428(u16 *arg) {
     }
     return (s32)&data_021626f0;
 }
-
+#pragma optimization_level 4
 void func_0202147c(s32 arg0) {
     func_0210da14(data_02160064);
     data_02160054[4] = 0;
@@ -386,17 +386,13 @@ extern void func_02107334(u32, u32, u32);
 extern void func_020106a0(void);
 extern u32 func_0200f984(void);
 void func_02021bd0(s32 arg0) {
-    u32 buf[4];
-    register u32 *p;
     if (func_02021344(1) == 0) {
         return;
     }
-    p = buf;
-    p[0] = 0;
-    p[1] = 0;
-    p[2] = 0;
-    p[3] = 0;
-    func_021072d0(arg0, (u32)p, 0x10);
+    {
+        u32 buf[4] = {0};
+        func_021072d0(arg0, (u32)buf, 0x10);
+    }
     while (func_02107294() != 0) {
     }
 }
