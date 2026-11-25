@@ -88,3 +88,81 @@ void func_02107d84(u32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     *(u32 *)(p + 0x94) = arg3;
     func_02108240();
 }
+
+extern u32 data_02162834[];
+extern u8 data_02170204[];
+extern u32 data_021701fc[];
+extern VecFx32 data_0217043c;
+extern VecFx32 data_02170448;
+extern u8 data_02170248[];
+extern VecFx32 data_02170454;
+extern void func_0210c398(void *);
+extern void func_021205ec(s32, void *, s32);
+extern void func_02001c50(s32, s32, s32, s32, s32, s32, void *);
+extern void func_02108258(void *);
+extern void func_02001720(VecFx32 *, VecFx32 *, VecFx32 *, void *);
+extern void func_0211d7a4(void);
+extern void func_02001134(void *, void *);
+void func_02107e4c(void *arg0)
+{
+    u8 *p = (u8 *)arg0;
+    VecFx32 pos = *(VecFx32 *)(p + 0x14);
+    VecFx32 target = *(VecFx32 *)(p + 0x20);
+    s32 mode;
+    s32 mode2;
+
+    if (*(s32 *)(p + 0x9c) != 0 || *(s32 *)(p + 0xa4) != 0) {
+        s32 offset;
+        *(u16 *)(p + 0xa8) += (u16)(*(s32 *)(p + 0xac) << data_02162834[0]);
+        func_0210c398(p + 0x98);
+        offset = FX_Mul12(FX_CosIdx(*(u16 *)(p + 0xa8)), *(s32 *)(p + 0x98));
+        *(s32 *)(p + 0xb0) = offset;
+        pos.y += offset;
+        target.y += offset;
+        if (*(s32 *)(p + 0x9c) == 0 && *(s32 *)(p + 0xa4) == 0) {
+            *(u16 *)(p + 0xa8) = 0;
+        }
+    } else {
+        *(s32 *)(p + 0xb0) = 0;
+    }
+
+    if (*(u8 *)(p + 0xc9) != 0) {
+        s32 shake;
+        shake = (*(u8 *)(p + 0xc8) != 0) ? ((s32)rand_range_02107e4c((u16)(*(u8 *)(p + 0xc8) * 2)) - *(u8 *)(p + 0xc8)) : 0;
+        pos.x += shake << 12;
+        shake = (*(u8 *)(p + 0xc8) != 0) ? ((s32)rand_range_02107e4c((u16)(*(u8 *)(p + 0xc8) * 2)) - *(u8 *)(p + 0xc8)) : 0;
+        pos.y += shake << 12;
+        shake = (*(u8 *)(p + 0xc8) != 0) ? ((s32)rand_range_02107e4c((u16)(*(u8 *)(p + 0xc8) * 2)) - *(u8 *)(p + 0xc8)) : 0;
+        target.x += shake << 12;
+        shake = (*(u8 *)(p + 0xc8) != 0) ? ((s32)rand_range_02107e4c((u16)(*(u8 *)(p + 0xc8) * 2)) - *(u8 *)(p + 0xc8)) : 0;
+        target.y += shake << 12;
+        (*(u8 *)(p + 0xc9))--;
+    }
+
+    mode = 0;
+    func_021205ec(0x10, &mode, 1);
+    func_021205ec(0x15, NULL, 0);
+    func_02001c50(*(s32 *)(p + 0), *(s32 *)(p + 4), *(s32 *)(p + 8), *(s32 *)(p + 0xc), *(s32 *)(p + 0x10), 0x1000, data_02170204);
+    data_021701fc[0x3f] &= ~0x50;
+    mode2 = 0;
+    func_021205ec(0x13, &mode2, 1);
+    func_02108258(p);
+    func_0210c398(p + 0x38);
+    if (*(s32 *)(p + 0x38) != 0) {
+        s32 dx = FX_Mul12(*(s32 *)(p + 0x5c), *(s32 *)(p + 0x38));
+        s32 dz = FX_Mul12(-(*(s32 *)(p + 0x54)), *(s32 *)(p + 0x38));
+        pos.x += dx;
+        pos.z += dz;
+        target.x += dx;
+        target.z += dz;
+    }
+
+    data_0217043c = pos;
+    data_02170448 = *(VecFx32 *)(p + 0x2c);
+    data_02170454 = target;
+    func_02001720(&pos, (VecFx32 *)(p + 0x2c), &target, data_02170248);
+    data_021701fc[0x3f] &= ~0xe8;
+    func_0211d7a4();
+    func_02001134(data_02170248, p + 0x60);
+}
+
