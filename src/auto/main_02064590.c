@@ -71,28 +71,27 @@ p=*(u8 **)(p+0x144);q=0;
 }
 
 void func_02064a30(void) {
-    u8 *p = data_02160a6c;
-    u8 *node;
-    if (p == NULL) {
-        return;
-    }
-    node = *(u8 **)(p + 0x70);
-    if (node == NULL) {
-        return;
-    }
-    do {
-        u8 *sub = *(u8 **)(node + 0x1a4);
-        if (sub == NULL) {
-            *(s32 *)(node + 0x1a8) = *(s32 *)(node + 0x0);
-            *(s32 *)(node + 0x1ac) = *(s32 *)(node + 0x4);
-            *(s32 *)(node + 0x1b0) = *(s32 *)(node + 0x8);
-        } else {
-            *(s32 *)(node + 0x1a8) = *(s32 *)(node + 0x0) + *(s32 *)(sub + 0x18);
-            *(s32 *)(node + 0x1ac) = *(s32 *)(node + 0x4) + *(s32 *)(sub + 0x1c);
-            *(s32 *)(node + 0x1b0) = *(s32 *)(node + 0x8) + *(s32 *)(sub + 0x20);
-        }
-        node = *(u8 **)(node + 0x13c);
-    } while (node != NULL);
+ u8 *p=data_02160a6c;
+ u8 *node;
+ if (!p) return;
+ node=*(u8 **)(p+0x70);
+ while (node) {
+  u8 *sub=*(u8 **)(node+0x1a4);
+  s32 z;
+  if (sub) {
+   *(s32 *)(node+0x1a8)=*(s32 *)node+*(s32 *)(sub+0x18);
+   *(s32 *)(node+0x1ac)=*(s32 *)(node+4)+*(s32 *)(sub+0x1c);
+   z=*(s32 *)(node+8)+*(s32 *)(sub+0x20);
+  } else {
+   *(s32 *)(node+0x1a8)=*(s32 *)node;
+   *(s32 *)(node+0x1ac)=*(s32 *)(node+4);
+   z=*(s32 *)(node+8);
+   goto store_z;
+  }
+store_z:
+  *(s32 *)(node+0x1b0)=z;
+  node=*(u8 **)(node+0x13c);
+ }
 }
 
 s32 func_02064aac(s32 *rect) {
