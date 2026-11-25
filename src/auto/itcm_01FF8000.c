@@ -6,7 +6,7 @@ typedef struct {
 } Word_01ff82b4;
 
 extern u32 func_02005a74(void);
-extern void func_01ff82c8(void);
+extern void func_01ff82c8();
 extern void func_01ff81e4(void);
 extern void (*data_027e0000[])(void);
 
@@ -27,8 +27,11 @@ void func_01ff8000(void) {
 }
 
 void func_01ff81b8(void) {
-    if (func_02005a74() == 0) return;
-    *(u16 *)0x4000208 = 0;
+    s32 zero;
+    while (func_02005a74() == 0) {
+    }
+    zero = 0;
+    *(volatile u16 *)0x4000208 = zero;
     func_01ff82c8();
     func_01ff81e4();
 }
