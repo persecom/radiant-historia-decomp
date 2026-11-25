@@ -1,5 +1,11 @@
 /* 10 functions from 0x020F36B0 to 0x020F46A0 (main), found by ds-decomp. */
 #include "common.h"
+static inline s32 positionSide(const s32 *target, const s32 *current) {
+s32 z = target[2]-current[2]>=0;
+s32 x = target[0]-current[0]>=0;
+s32 y = target[1]-current[1]>=0;
+return x | (y<<1) | (z<<2);
+}
 
 typedef struct UnkF_020f36b0 {
     u8 unk00[4];
@@ -127,6 +133,87 @@ void func_020f4174(void) {
         *(u16 *)data_02151fc8 = *(u16 *)(((u8 *)data_02160c34.field_4) + 0x18);
     }
     func_02107d58(*(u32 *)(data_02151fc8 + 4), *(u16 *)(data_02151fc8 + 2), *(u16 *)data_02151fc8);
+}
+
+extern void func_020020f8(void *,void *,void *);
+extern void func_020f4774(u32,u8);
+void func_020f4210(void){
+s32 before=0,after=0,zero=0,changed=0;
+u8 *q;
+u8 *p=data_02160c34.field_4;
+Unk_02151fc8 *c;
+s32 side;
+if(*(u16 *)(p+0x38)==0){
+{u32 moving=*(u32 *)(p+0x2c)|*(u32 *)(p+0x30)|*(u32 *)(p+0x34);if(moving!=0){
+q=data_02155984;
+changed=((s32)(*(u32 *)(p+0x20)-*(u32 *)(q+0x20))>=0) | (((s32)(*(u32 *)(p+0x24)-*(u32 *)(q+0x24))>=0)<<1) | (((s32)(*(u32 *)(p+0x28)-*(u32 *)(q+0x28))>=0)<<2);
+func_020020f8(q+0x20,p+0x2c,data_02155984+0x20);
+p=data_02160c34.field_4;q=data_02155984;
+side=((s32)(*(u32 *)(p+0x20)-*(u32 *)(q+0x20))>=0) | (((s32)(*(u32 *)(p+0x24)-*(u32 *)(q+0x24))>=0)<<1) | (((s32)(*(u32 *)(p+0x28)-*(u32 *)(q+0x28))>=0)<<2);
+if(changed!=side){p=data_02160c34.field_4;*(Trip *)(q+0x20)=*(Trip *)(p+0x20);*(u32 *)(p+0x2c)=before;*(u32 *)(p+0x30)=before;*(u32 *)(p+0x34)=before;}changed=1;
+}}
+}else if(*(u16 *)(p+0x38)&1){
+func_020f4774(*(u32 *)(p+0x3c),p[0x40]);
+p=data_02160c34.field_4;
+{u32 moving=*(u32 *)(p+0x2c)|*(u32 *)(p+0x30)|*(u32 *)(p+0x34);if(moving!=0){
+s32 distance=0,d;
+q=data_02155984;
+before=((s32)(*(u32 *)(p+0x20)-*(u32 *)(q+0x20))>=0) | (((s32)(*(u32 *)(p+0x24)-*(u32 *)(q+0x24))>=0)<<1) | (((s32)(*(u32 *)(p+0x28)-*(u32 *)(q+0x28))>=0)<<2);
+func_020020f8(q+0x20,p+0x2c,data_02155984+0x20);
+p=data_02160c34.field_4;q=data_02155984;
+side=((s32)(*(u32 *)(p+0x20)-*(u32 *)(q+0x20))>=0) | (((s32)(*(u32 *)(p+0x24)-*(u32 *)(q+0x24))>=0)<<1) | (((s32)(*(u32 *)(p+0x28)-*(u32 *)(q+0x28))>=0)<<2);
+d=*(s32 *)(p+32)-*(s32 *)(q+32);distance+=(d<0?-d:d);
+d=*(s32 *)(p+36)-*(s32 *)(q+36);distance+=(d<0?-d:d);
+d=*(s32 *)(p+40)-*(s32 *)(q+40);distance+=(d<0?-d:d);
+if(before!=side || distance<0x2000){
+p=data_02160c34.field_4;*(Trip *)(q+0x20)=*(Trip *)(p+0x20);*(u32 *)(p+0x2c)=after;*(u32 *)(p+0x30)=after;*(u32 *)(p+0x34)=after;
+p=data_02160c34.field_4;*(u16 *)(p+0x38)&=0xfffe;
+p=data_02160c34.field_4;*(u32 *)(p+0x3c)=after;
+}changed=1;
+}}
+}
+p=data_02160c34.field_4;
+c=(Unk_02151fc8 *)data_02151fc8;
+if(*(u16 *)(p+0x4c)){
+c->field_4+=*(u32 *)(p+0x48);
+--*(u16 *)(p+0x4c);
+p=data_02160c34.field_4;
+if(*(u16 *)(p+0x4c)==0){c->field_4=*(u32 *)(p+0x48);*(u32 *)(p+0x44)=zero;}
+}
+p=data_02160c34.field_4;
+if(*(u16 *)(p+26)){
+s32 step=*(u16 *)(p+26),next;
+u16 target=*(u16 *)(p+24),current=c->field_0;
+if(current<target){if(target-current>=0x8000)goto negate0;}else{if(current-target<0x8000){
+negate0:
+step=-step;}}
+c->field_0+=(u16)step;
+{u8 *n=data_02160c34.field_4;
+current=c->field_0;target=*(u16 *)(n+24);next=*(u16 *)(n+26);
+if(current<target){if(target-current>=0x8000)goto negate1;}else{if(current-target<0x8000){
+negate1:
+next=-next;}}
+}
+if(step!=next){*(u16 *)(p+26)=zero;p=data_02160c34.field_4;c->field_0=*(u16 *)(p+24);}
+changed=1;
+}
+if(*(u16 *)(p+30)){
+s32 step=*(u16 *)(p+30),next;
+u16 target=*(u16 *)(p+28),current=c->field_2;
+if(current<target){if(target-current>=0x8000)goto negate2;}else{if(current-target<0x8000){
+negate2:
+step=-step;}}
+c->field_2+=(u16)step;
+{u8 *n=data_02160c34.field_4;
+current=c->field_2;target=*(u16 *)(n+28);next=*(u16 *)(n+30);
+if(current<target){if(target-current>=0x8000)goto negate3;}else{if(current-target<0x8000){
+negate3:
+next=-next;}}
+}
+if(step!=next){*(u16 *)(p+30)=zero;p=data_02160c34.field_4;c->field_2=*(u16 *)(p+28);}
+changed=1;
+}
+if(changed)func_02107d58(c->field_4,c->field_2,c->field_0);
 }
 
 void func_020f4640(void) {
