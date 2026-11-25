@@ -2,7 +2,7 @@
 #include "common.h"
 
 typedef struct {
-    u16 data[10];
+    s16 data[10];
 } Unk14;
 
 extern u8 *data_0216010c;
