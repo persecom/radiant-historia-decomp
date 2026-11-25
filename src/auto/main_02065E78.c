@@ -1,5 +1,12 @@
 /* 13 functions from 0x02065E78 to 0x02066D84 (main), found by ds-decomp. */
 #include "common.h"
+extern u8 *data_02160204;
+static inline void ApplyPendingLocation(void) {
+if (*(s16 *)(data_02160204+0xf6)!=-1) {
+*(s16 *)(data_02160204+0x72)=*(s16 *)(data_02160204+0xf6);
+*(s16 *)(data_02160204+0xf6)=-1;
+}
+}
 typedef struct {s32 x,y,z;} Vec_6662c;
 extern const s16 data_0213a394[];
 extern void func_020c55bc(void),func_02066d84(void),func_020c627c(void);
