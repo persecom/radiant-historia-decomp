@@ -1,0 +1,81 @@
+/* 33 functions from 0x021098AC to 0x0210A7E4 (main), found by ds-decomp. */
+#include "common.h"
+static inline void SetTranslation_021098ac(s32 x, s32 y, s32 z) {
+ *(volatile s32 *)0x4000470=x; *(volatile s32 *)0x4000470=y; *(volatile s32 *)0x4000470=z;
+}
+static inline void SetScale_021098ac(s32 x, s32 y) {
+ *(volatile s32 *)0x400046c=x; *(volatile s32 *)0x400046c=y;
+}
+
+extern u8 data_02162610[64];
+
+extern s32 func_0210a38c();
+extern void func_0210a014(void);
+extern u32 data_0216256c[];
+extern void func_021167ac(void *, s32);
+extern void func_0210a2f0(void);
+extern void func_0210a348(u32, u32);
+extern void func_0210a30c(u32, u32, s32);
+extern void func_0210a3d8(u32, u32, u32);
+extern void *func_0210c518(u32, void *);
+extern void func_02006dc4(void *, u32);
+extern void func_021168f8(void *, void *);
+extern void func_0210c674(void *);
+extern void func_0210c5dc(void *);
+extern void *func_02109f3c(void);
+extern void func_02109ea8(void *);
+extern void *data_02155c3c;
+extern u32 data_02162564[];
+extern u32 func_0210a498(u32 *);
+
+void func_021099f8(s16 *arg0) {
+    s32 x = arg0[1];
+    s32 y = arg0[2];
+    s32 z = arg0[3];
+    s32 sx, sy, flags;
+    s32 vx, vy, vz, vsx, vsy;
+
+    *(volatile u32 *)0x40004a8 = 0;
+
+    sy = arg0[5];
+    flags = arg0[0];
+    sx = arg0[4];
+
+    *(volatile u32 *)0x4000444 = 0;
+
+    vx = x << 12;
+    vy = y << 12;
+    vz = z << 12;
+    vsx = sx << 12;
+    vsy = sy << 12;
+
+    *(volatile s32 *)0x4000470 = vx;
+    *(volatile s32 *)0x4000470 = vy;
+    *(volatile s32 *)0x4000470 = vz;
+
+    *(volatile s32 *)0x400046c = vsx;
+    *(volatile s32 *)0x400046c = vsy;
+    *(volatile s32 *)0x400046c = 0x1000;
+
+    *(volatile u32 *)0x4000500 = 1;
+
+    if (flags & 2) {
+        *(volatile u32 *)0x4000480 = arg0[6];
+        *(volatile u32 *)0x4000490 = 0;
+        *(volatile u32 *)0x4000480 = arg0[7];
+        *(volatile u32 *)0x4000490 = 0x10000;
+        *(volatile u32 *)0x4000480 = arg0[8];
+        *(volatile u32 *)0x4000490 = 0x10040;
+        *(volatile u32 *)0x4000480 = arg0[9];
+        *(volatile u32 *)0x4000490 = 0x40;
+    } else {
+        *(volatile u32 *)0x4000480 = arg0[6];
+        *(volatile u32 *)0x4000490 = 0;
+        *(volatile u32 *)0x4000490 = 0x10000;
+        *(volatile u32 *)0x4000490 = 0x10040;
+        *(volatile u32 *)0x4000490 = 0x40;
+    }
+
+    *(volatile u32 *)0x4000504 = 0;
+    *(volatile u32 *)0x4000448 = 1;
+}
