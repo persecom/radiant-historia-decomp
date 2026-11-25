@@ -1,5 +1,14 @@
 /* 4 functions from 0x020DB864 to 0x020DC7EC (main), found by ds-decomp. */
 #include "common.h"
+extern u32 data_02162870[],data_02162868[],data_02160668[];
+extern char *data_02160268[];
+extern char data_021514bc[],data_021514cc[],data_021514d8[],data_021514e4[],data_021514f8[],data_0215150c[];
+extern s32 data_02162814,data_02162884;
+extern u64 func_02007904(void);
+extern void func_02108d34(s32,f32);
+extern void func_020a2c20(void);
+extern void func_020dc170(void);
+
 extern u32 data_02155c3c, data_02162830, data_02162834[], data_0216281c, data_02162820[], data_0216bf84;
 extern void func_020dc994(void), func_020dc998(void), func_020dc99c(void);
 extern u8 *func_0210c594(s32, u32);
