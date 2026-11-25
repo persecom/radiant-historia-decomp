@@ -168,16 +168,19 @@ s32 func_020295f0(u8 *arg0, u8 *arg1) {
     return -1;
 }
 
-#pragma opt_propagation off
-s32 func_02029704(u8 *arg0,u8 *arg1) {
- s32 zero=0; u8 *p; s16 idx; const char *s;
- p=*(u8 **)(arg0+0x12c);
- s=func_020929f4(arg1,zero);
- if(func_02026e9c(3,s,data_0214616c)==0) return 1;
- func_02092994(arg1,zero);
- idx=(s16)func_02092994(arg1,zero);
- func_02092994(arg1,zero);
- p[0x22] = p[0x22] | ((1u << (idx-1)) % 256u);
- return zero;
+#pragma push
+#pragma opt_scheduling off
+s32 func_02029704(u8 *arg0, u8 *arg1) {
+    u8 *p = *(u8 **)(arg0 + 0x12c);
+    const char *s = func_020929f4(arg1, 0);
+    if (func_02026e9c(3, s, data_0214616c) != 0) {
+        s16 idx;
+        func_02092994(arg1, 0);
+        idx = (s16)func_02092994(arg1, 0);
+        func_02092994(arg1, 0);
+        p[0x22] |= (u8)(1 << (idx - 1));
+        return 0;
+    }
+    return 1;
 }
-#pragma opt_propagation on
+#pragma pop
