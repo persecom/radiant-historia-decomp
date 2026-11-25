@@ -71,55 +71,78 @@ void func_0212e7e4(void) {
 }
 
 s32 func_0212e7f0(u32 arg0, void *arg1) {
-    s32 ret = 1;
-    *(volatile u32 *)&data_02174524[8] = arg0;
-    *(volatile u32 *)&data_021744ec[0] = 0;
-    *(volatile u32 *)&data_021744ec[1] = 0;
-    *(volatile u32 *)&data_021744ec[2] = 0;
-    *(volatile u32 *)&data_021744ec[3] = 0;
-    *(volatile u32 *)&data_021744ec[4] = 0;
-    if (arg0 <= 1) {
-        func_0212c4b8(ret);
-        return ret;
-    }
-    if (arg0 == 2) {
-        func_0212c4b8(2);
-    }
-    func_0212e860(arg1);
-    return ret;
+ s32 ret=1;
+ data_02174524[8]=arg0;
+ __clear(data_021744ec,20);
+ if(arg0<=1){func_0212c4b8(ret);return ret;}
+ if(arg0==2)func_0212c4b8(2);
+ func_0212e860(arg1);
+ return ret;
 }
 
 void func_0212ea64(void);
 void func_0212ea90(void);
 void func_0212e764(void);
-void func_0212e860(void *arg) {
- u32 value; s32 stack; u32 base;
- Config_0212e860 *p=arg;
- u32 zero,one;
- (void)*(volatile const u32 *)&data_0214590c;
- 
- if(!p) {func_021380bc(data_02156e0c);return;}
- func_0212ea64();
- if(func_0212ea54()!=1)return;
- data_02174524[0x264/4]=data_0215ce00[1];
- if(data_02174524[8]!=2)data_02174524[8]=2;
- func_021385d4();
- func_021383f4(func_0212e634,0);
- func_02138408(func_0212e670,0);
- if(func_02132ba4(data_02156e4c,&value)==0)data_02156dd8=value;
- else data_02156dd8=15;
- data_02174500=*p;
- zero=0;one=1;
- data_02174524[6]=zero;data_02174524[7]=zero;data_02174524[2]=one;
- func_0212ea90();
- stack=p->words[3];
- base=*(volatile u32 *)((u8 *)p+0x18); stack=((stack+3)>>2<<2)+base;
- func_020062d8(data_02174548,func_0212e69c,zero,stack,base,data_021744d8[10]);
- data_02174524[4]=one;data_02174524[5]=zero;
- func_020062d8(data_02174608,func_0212e70c,zero,((p->words[4]+3)&~3)+p->words[7],p->words[7],data_021744d8[11]);
- if(data_02174524[8]!=2){data_02174524[0]=zero;data_02174524[1]=one;return;}
- data_02174524[0]=one;data_02174524[1]=zero;
- func_020062d8(data_021746c8,func_0212e764,zero,((p->words[5]+3)&~3)+p->words[8],p->words[8],data_021744d8[12]);
+void func_0212e860(void *arg)
+{
+  u32 value;
+  u32 stack;
+  u32 base;
+  u32 *new_var;
+  Config_0212e860 *p = arg;
+  u32 zero;
+  u32 one;
+  (void) (*((volatile const u32 *) (&data_0214590c)));
+  if (!p)
+  {
+    func_021380bc(data_02156e0c);
+    return;
+  }
+  func_0212ea64();
+  if (func_0212ea54() != 1)
+  {
+    return;
+  }
+  data_02174524[0x264 / 4] = data_0215ce00[1];
+  if (data_02174524[8] != 2)
+  {
+    data_02174524[8] = 2;
+  }
+  func_021385d4();
+  func_021383f4(func_0212e634, 0);
+  func_02138408(func_0212e670, 0);
+  if (func_02132ba4(data_02156e4c, &value) == 0)
+  {
+    data_02156dd8 = value;
+  }
+  else
+  {
+    data_02156dd8 = 15;
+  }
+  data_02174500 = *p;
+  new_var = data_021744d8;
+  zero = 0;
+  one = 1;
+  data_02174524[6] = zero;
+  data_02174524[7] = zero;
+  data_02174524[2] = one;
+  func_0212ea90();
+  stack = ((volatile Config_0212e860 *) p)->words[3];
+  base = p->words[6];
+  stack = ((stack + 3) & (~3)) + base;
+  func_020062d8(data_02174548, func_0212e69c, zero, stack, base, new_var[10]);
+  data_02174524[4] = one;
+  data_02174524[5] = zero;
+  func_020062d8(data_02174608, func_0212e70c, zero, ((p->words[4] + 3) & (~3)) + p->words[7], p->words[7], new_var[11]);
+  if (data_02174524[8] != 2)
+  {
+    data_02174524[0] = zero;
+    data_02174524[1] = one;
+    return;
+  }
+  data_02174524[0] = one;
+  data_02174524[1] = zero;
+  func_020062d8(data_021746c8, func_0212e764, zero, ((p->words[5] + 3) & (~3)) + p->words[8], p->words[8], new_var[12]);
 }
 
 BOOL func_0212ea3c(void) {
@@ -530,6 +553,7 @@ BOOL func_0212f3cc(u8 *arg0, s32 arg1) {
 
 extern void func_0212f178();
 extern u32 data_02145914[];
+#pragma opt_propagation off
 s32 func_0212f3fc(u8 *arg0, s32 arg1) {
     s32 rem;
     s32 result;
@@ -547,7 +571,7 @@ s32 func_0212f3fc(u8 *arg0, s32 arg1) {
     *(s32 *)(arg0 + 0x10) += arg1;
     return result;
 }
-
+#pragma opt_propagation on
 void *func_0212f468(void *arg0) {
     return *(void **)((u8 *)arg0 + 0x10);
 }
