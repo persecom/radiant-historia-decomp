@@ -8,6 +8,8 @@ extern double _dsub(double,double);
 extern double _dmul(double,double);
 extern double _dadd(double,double);
 extern double _dflt(s32);
+extern s32 _deq(double, double);
+extern double data_0216003c;
 
 double func_0201b2f4(double x) {
 s32 hx=((s32 *)&x)[1];
