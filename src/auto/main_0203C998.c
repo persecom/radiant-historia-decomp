@@ -67,9 +67,12 @@ static inline void update_selection_c998(u8 *p, s32 zero) {
  func_020e86c0(14);
 }
 
+#pragma push
+#pragma opt_propagation off
 void func_0203c998(void) {
+ s32 zero;
  u8 *p=*(u8 **)(data_02160a74+0x94);
- s32 zero=0;
+ zero=0;
  s32 one,eight;
  u8 *left,*right;
  *(u16 *)(data_02160110+0xde)=zero;
@@ -111,13 +114,14 @@ void func_0203c998(void) {
  s32 selector;
  u8 *obj=*(u8 **)func_02032254(*(s16 *)(data_02160110+0xde)+1);
  selector=*(s8 *)(data_02160a74+0x1ca);
- data_02160a74[0x1c3]=zero;
  if(selector<=-1) {
+ data_02160a74[0x1c3]=zero;
  if(**(u8 **)(obj+0x118)!=1) {
  data_02160a74[0x1c3]=1;
  func_020a8810(*(void **)(p+4),23);
  }else func_020a8810(*(void **)(p+4),20);
  }else {
+ data_02160a74[0x1c3]=zero;
  if(*(u16 *)(obj+0x90)!=data_02160a74[0x1ca]) {
  data_02160a74[0x1c3]=1;
  func_020a8810(*(void **)(p+4),23);
@@ -126,7 +130,7 @@ void func_0203c998(void) {
  }else *(u16 *)(data_02160a74+0x1b8)|=0x40;
  func_020e86c0(14);
 }
-
+#pragma pop
 void func_0203cc60(void) {
 u8 *screen=*(u8 **)(data_02160a74+0x94);
 s32 zero=0, one=1;
