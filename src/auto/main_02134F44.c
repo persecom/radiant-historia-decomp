@@ -329,6 +329,7 @@ u8 *p=*(u8 **)(arg0+arg1*4+0x20);
 func_021147e8(arg0+0x34, arg1, arg2);
 }
 
+#pragma opt_common_subs off
 void func_021359e4(u8 *arg0) {
     s32 i;
     u16 a;
@@ -336,9 +337,7 @@ void func_021359e4(u8 *arg0) {
     func_0211470c(arg0 + 0x34);
     for (i = 0; i < *(s8 *)(arg0 + 2); i++) {
         u16 v = *(u16 *)(*(void **)(arg0 + i * 4 + 0x20));
-        if ((v & 8) == 0) {
-            return;
-        }
+        if ((v & 8) == 0) return;
         *(u16 *)(*(void **)(arg0 + i * 4 + 0x20)) = v & 0xfff7;
         func_02135f0c(*(void **)(arg0 + i * 4 + 0x20), &a, &b);
         if (b != 0) {
@@ -346,7 +345,7 @@ void func_021359e4(u8 *arg0) {
         }
     }
 }
-
+#pragma opt_common_subs on
 void func_02135a80(u8 *arg0) {
     s32 i = 0;
     while (i < *(s8 *)(arg0 + 2)) {
