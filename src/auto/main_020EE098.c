@@ -3,6 +3,8 @@
 
 extern u8 *data_02160aec;
 extern u32 data_02155c3c;
+extern char data_02151cd0[];
+extern u8 *data_02160204;
 extern void func_020eec70(void);
 extern void *func_0210c594(u32, u32);
 extern void func_021091b4(void);
