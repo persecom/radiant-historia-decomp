@@ -1,5 +1,10 @@
 /* 1 function from 0x0201B4CC to 0x0201C654 (main), found by ds-decomp. */
 #include "common.h"
+#define POW_HI(x) (((s32 *)&(x))[1])
+#define POW_LO(x) (((u32 *)&(x))[0])
+extern double data_0213ec60[], data_0213ec70[], data_0213ec50[];
+extern float data_02145c2c;
+extern double func_02019c20(double, s32);
 
 extern s32 data_02160034;
 extern double func_02020058(double);
