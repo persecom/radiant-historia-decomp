@@ -494,19 +494,17 @@ void func_02119d48(u8 *arg0) {
 }
 
 void func_02119da4(u32 arg0) {
-    s32 i;
-    data_0216f234.f8 = arg0;
-    *(u16 *)data_02155eb0 = 0xfffe;
-    data_0216f234.fc = 0;
-    for (i = 0; i < (s32)data_0216f234.f0; i++) {
-        MI_CpuFill32(data_0216f9c4[i].f10, 0xffffffff, 0x10);
-    }
-    data_0216f234.f0 = 0;
-    data_0216f234.f2 = 0;
-    MI_CpuFill32(&data_0216f2c4[0], 0, 0x100);
-    *(u32 *)&data_0216f2c4[0] = 0;
-    *(u32 *)&data_0216f2c4[2] = 0;
-    func_02119150();
+ s32 i;
+ data_0216f234.f8 = arg0;
+ data_0216f234.fc = 0;
+ *(volatile u16 *)data_02155eb0 = 0xfffe;
+ for (i=0;i<(s32)*(volatile u16 *)&data_0216f234.f0;i++) MI_CpuFill32(data_0216f9c4[i].f10,0xffffffff,0x10);
+ data_0216f234.f0=0;
+ data_0216f234.f2=0;
+ MI_CpuFill32(data_0216f2c4,0,0x100);
+ *(volatile u32 *)0x04000444=0;
+ *(volatile u32 *)0x04000454=0;
+ func_02119150();
 }
 
 void func_02119e4c(void) {
