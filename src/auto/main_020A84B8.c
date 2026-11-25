@@ -184,26 +184,30 @@ void func_020a8958(void *arg0) {
     }
 }
 
+#pragma opt_propagation off
 void func_020a899c(void *arg0) {
-u8 *p=arg0; u32 ctx[4];
-u32 tex=*(u32 *)(p+0x34)<<16;
-s32 w=*(s32 *)(p+0x18);
-u32 h=*(u32 *)(p+0x1c);
-register u32 off=tex>>13, src=*(u32 *)(p+0x10);
-s32 len=w>>2;
-register u32 i=0;
-func_0210fd24(ctx,i);
-while(i<h){
-
-if(*(u32 *)((u8 *)*(void **)(p+0x50)+((i>>5)<<2)+8)&(1<<(i&31))){
-func_0210fd38(ctx,off,src,len);
-*(u32 *)((u8 *)*(void **)(p+0x50)+((i>>5)<<2)+8)&=~(1<<(i&31));
+    u8 *p = arg0;
+    u32 ctx[4];
+    u32 i = 0;
+    u32 tex = *(u32 *)(p + 0x34) << 16;
+    s32 w = *(s32 *)(p + 0x18);
+    u32 h = *(u32 *)(p + 0x1c);
+    u32 off = tex >> 13;
+    u32 src = *(u32 *)(p + 0x10);
+    s32 len = w >> 2;
+    func_0210fd24(ctx, i);
+    while (i < h) {
+        if (((u32 *)((u8 *)*(void **)(p + 0x50) + 8))[i >> 5] & (1 << (i & 31))) {
+            func_0210fd38(ctx, off, src, len);
+            *(u32 *)((u8 *)*(void **)(p + 0x50) + ((i >> 5) << 2) + 8) &= ~(1 << (i & 31));
+        }
+        i++;
+        off += len;
+        src += len;
+    }
+    func_0210fd94(ctx);
 }
-i++; off+=len;src+=len;
-}
-func_0210fd94(ctx);
-}
-
+#pragma opt_propagation on
 void func_020a8a50(void *arg0) {
     u8 *p = arg0;
     func_02008e68(0, *(void **)(p + 0x10), *(u32 *)(p + 0x14));
@@ -259,12 +263,12 @@ if(ch < 0) {src = (u8 *)data_02160148[33] + (ch<<4) + (ch<<3); n=2;}
 else {src = (u8 *)data_02160148[33] + (ch<<5) + (ch<<2); n=3;}
 skip = width - n*4;
 for(row=0;row<12;row++) {
-u32 sh=shift;
+s32 sh=shift;
 u8 value = *dst;
 for(col=zero;col<n;col++) {
 u8 bits=*src++;
 for(pixel=zero;pixel<4;pixel++) {
-u8 v=bits&3;
+s32 v=bits&3;
 bits = (u8)(bits >> 2);
 { u8 mask = ~(3<<sh); u8 part = v<<sh;
 value &= mask;
