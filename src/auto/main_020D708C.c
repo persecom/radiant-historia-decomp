@@ -111,8 +111,9 @@ void *func_020d7a68(u32 arg0, u8 *arg1, u32 arg2) {
 }
 
 u16 func_020d7ab8(int a, int b, int c) {
-char name[64]; u8 weights[20]; int zero=0; void *p; char *buf=name; int active; u16 chosen,total,count; int result; int i; u16 roll;
-{u8 *q=weights; u32 n=5; do {q[0]=zero;q[1]=zero;q[2]=zero;q[3]=zero;q+=4;} while(--n);}
+char name[64]; u8 weights[20]={0}; int zero=0; void *p; char *buf; int active; u16 chosen,total,count; int result; u32 roll; int i;
+
+buf=name;
 func_02005e80(buf,data_0215142c,a,b);
 p=func_021092d8(buf);
 result=0; chosen=0; total=0; count=0; active=1;
@@ -144,7 +145,6 @@ extern s32 func_021094a4(void *,void *);
 extern u8 *func_0202fb50(s32,s32);
 extern void func_0202fad8(void *);
 s32 func_020d7c8c(s32 a,s32 b,s32 c,u32 match,u16 index,s16 *out,s32 *text) {
- char name[64];
  s32 zero;
  u8 *fp;
  s32 active;
@@ -152,6 +152,7 @@ s32 func_020d7c8c(s32 a,s32 b,s32 c,u32 match,u16 index,s16 *out,s32 *text) {
  s32 result;
  s32 value;
  s32 id;
+ char name[64];
  func_02005e80(name,data_02151454,a,b);
  fp=func_021092d8(name);
  id=-1;
@@ -160,15 +161,13 @@ s32 func_020d7c8c(s32 a,s32 b,s32 c,u32 match,u16 index,s16 *out,s32 *text) {
  *out=-1;
  active=1;
  while(result<512) {
- if(active) {
+ while(active) {
  zero=0;
- do {
  result=func_02092ab0(fp,c);
  if(result!=-1) {
  if(match==(u16)func_02092994(fp,zero)) {
  if(func_02092a28(*(void **)(fp+8),data_0215147c)) {
  if(index==count) {
-special:
  value=99;
  active=zero;
  result=513;
@@ -176,7 +175,10 @@ special:
  }
  } else if(func_02092a28(*(void **)(fp+8),data_02151484)) {
  if(index==count) {
- goto special;
+ value=99;
+ active=zero;
+ result=513;
+ *text=func_021094a4(fp,*(void **)(fp+8));
  }
  } else {
  s32 n=func_02092994(fp,zero);
@@ -196,7 +198,6 @@ special:
  active=0;
  }
  if(result<512)func_02109444(fp);
- }while(active);
  }
  }
  if(fp)func_021093b0(fp);
