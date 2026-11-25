@@ -51,7 +51,7 @@ extern void func_02013878(void *, s32, u32);
 extern void func_02132c68(void *, u32, const char *, char *);
 extern void func_021380bc(const char *, ...);
 extern u8 data_0215c6a4[40];
-extern u8 data_021767bc[576];
+extern u32 data_021767bc[144];
 extern u8 data_0215c6cc[8];
 extern u8 data_0215c6d4[48];
 extern u8 data_0215c704[32];
