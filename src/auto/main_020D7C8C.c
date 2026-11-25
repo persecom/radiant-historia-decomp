@@ -48,7 +48,7 @@ extern s32 func_02092a28(void *,void *);
 extern s32 func_021094a4(void *,void *);
 extern u8 *func_0202fb50(s32,s32);
 extern void func_0202fad8(void *);
-#pragma optimization_level 3
+#pragma optimization_level 2
 
 s32 func_020d7c8c(s32 a,s32 b,s32 c,u32 match,u16 index,s16 *out,s32 *text) {
  char name[64];
