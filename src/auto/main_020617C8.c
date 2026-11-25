@@ -43,7 +43,7 @@ extern s32 func_0205bcb0(void *, u16);
 extern u8 *func_0205bad4(void *);
 extern u8 *func_020d56d8(void *, void *, void *, s32);
 extern void func_0210d27c(s32);
-extern void func_0202f41c(void *,void *,void *,s32,void *,s32,s32);
+extern void func_0202f41c(void *,void *,void *,void *,void *,s32,s32);
 extern void func_0205baf8(void *);
 extern s32 func_020d9df4(void);
 extern void func_020d9e48(void *,void *);
@@ -52,7 +52,7 @@ extern void func_020d9da8(s32);
 extern void func_020d9ea8(s32,s32);
 extern void func_020d5fd0(void *);
 extern void func_020d4eb8(void *);
-#pragma scheduling off
+#pragma opt_propagation off
 void func_020617c8(u8 *obj) {
  u8 *data;
  u8 *selected;
@@ -112,4 +112,4 @@ void func_020617c8(u8 *obj) {
  }
  if(flags&2) func_020d4eb8(obj);
 }
-#pragma scheduling on
+#pragma opt_propagation on
