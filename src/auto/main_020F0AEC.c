@@ -34,7 +34,7 @@ extern s64 func_02001fd0(void);
 extern void func_0210d27c(s32);
 typedef struct Vec_F0FD0 {s32 x,y,z;} Vec_F0FD0;
 static inline void Project_F0FD0(const Vec_F0FD0 *pos,s32 *outX,s32 *outY){
- const s32 *m=(s32*)data_02170248,*p=data_02170204;
+ register const s32 *p=data_02170204; register const s32 *m=(s32*)data_02170248;
  register s32 z,y; s32 x,py,px,sy,sx; s64 inv;
  x=m[9]+(s32)(((s64)pos->x*m[0]+(s64)pos->y*m[3]+(s64)pos->z*m[6])>>12);
  y=m[10]+(s32)(((s64)pos->x*m[1]+(s64)pos->y*m[4]+(s64)pos->z*m[7])>>12);
@@ -242,24 +242,13 @@ void func_020f0aec(void) {
 }
 
 void func_020f0fd0(void){
-u8 *node,*obj;
+s32 zero;u8 *node,*obj;
 if(!data_02160af0)return;
 node=*(u8**)(data_02160af0+0x70);
 if(node){while(node){
-const s32 *m=(s32*)data_02170248,*p=data_02170204;
-s32 vy=*(s32*)(node+8),vx=*(s32*)(node+4),vz=*(s32*)(node+12);
-register s32 z,y;
-s32 x,py,px,sy,sx; s64 inv; s32 zero;
-y=m[10]+(s32)(((s64)vy*m[4]+(s64)vx*m[1]+(s64)vz*m[7])>>12);
-x=m[9]+(s32)(((s64)vy*m[3]+(s64)vx*m[0]+(s64)vz*m[6])>>12);
-z=m[11]+(s32)(((s64)vy*m[5]+(s64)vx*m[2]+(s64)vz*m[8])>>12);
+s32 sx,sy;
 obj=*(u8**)node;
-func_02002028(p[15]+(s32)(((s64)y*p[7]+(s64)x*p[3]+(s64)z*p[11])>>12));
-px=p[12]+(s32)(((s64)y*p[4]+(s64)x*p[0]+(s64)z*p[8])>>12);
-py=p[13]+(s32)(((s64)y*p[5]+(s64)x*p[1]+(s64)z*p[9])>>12);
-inv=func_02001fd0();
-sy=(s32)((inv*py+0x80000000LL)>>32);sy=(sy+4096)>>1;sy=((sy<<7)+(sy<<6)+2048)>>12;
-sx=(s32)((inv*px+0x80000000LL)>>32);sx=((((sx+4096)>>1)<<8)+2048)>>12;sy=192-sy;
+Project_F0FD0((Vec_F0FD0*)(node+4),&sx,&sy);
 if(!(*(u32*)(node+20)&16)){u32 id=*(u16*)(obj+0x1b8);if(id>10000&&id<10999){if(sx<-48||sx>304||sy<-48||sy>256)goto next;}}
 zero=0;
 if(*(u32*)(node+20)&1){u32 param;if(*(u32*)(obj+0xf4))func_0210bcc8(obj);func_021205ec(0x17,data_02170248,12);func_021205ec(0x19,obj+0xa0,12);param=0x1f0080;func_021205ec(0x29,&param,1);func_0211e078(obj);}
