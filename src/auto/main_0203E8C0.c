@@ -2,6 +2,22 @@
 #include "common.h"
 
 extern u8 *data_021600a0;
+extern u16 data_021626a6;
+extern u8 *data_02160200;
+extern u32 data_0216263c[3];
+extern void func_020ec8cc(void *, s32, s32);
+extern void func_020ec548(void *);
+static inline s32 rand_0203e8c0(s32 max) {
+    u32 seed;
+    s32 r;
+    if (max == 0) {
+        return 0;
+    }
+    seed = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
+    data_0216263c[0] = seed;
+    r = ((seed >> 16) * (max * 2)) >> 16;
+    return (u16)r - max;
+}
 extern void func_021168f8(void *, void *);
 extern void func_0210c5dc(void *);
 extern void func_0210da14(u8 *);
