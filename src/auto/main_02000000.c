@@ -45,19 +45,22 @@ void func_02000bec(u32 *p) { p[2]=0; p[1]=0; p[3]=0x1000; p[0]=0x1000; }
 #pragma opt_propagation on
 void func_02000c04(const MatA *a, Mat4 *b, Mat4 *out) {
     Mat4 tmp;
-    Mat4 *dst;
-    s32 av0, av1, av2, av3;
-    av1 = *(const s32 *)((const u8 *)a + 4);
-    av0 = *(const s32 *)((const u8 *)a + 0);
-    av3 = *(const s32 *)((const u8 *)a + 12);
-    av2 = *(const s32 *)((const u8 *)a + 8);
-    dst = &tmp;
-    if (out != b) dst = out;
-    dst->v[0] = (s32)(((s64)av0 * b->v[0] + (s64)av1 * b->v[2]) >> 12);
-    dst->v[1] = (s32)(((s64)av0 * b->v[1] + (s64)av1 * b->v[3]) >> 12);
-    dst->v[2] = (s32)(((s64)av2 * b->v[0] + (s64)av3 * b->v[2]) >> 12);
-    dst->v[3] = (s32)(((s64)av2 * b->v[1] + (s64)av3 * b->v[3]) >> 12);
-    if (dst == &tmp) {
+    Mat4 *p;
+    s32 x, y;
+    if (out == b) {
+        p = &tmp;
+    } else {
+        p = out;
+    }
+    x = a->v[0];
+    y = a->v[1];
+    p->v[0] = (s32)(((s64)x * b->v[0] + (s64)y * b->v[2]) >> 12);
+    p->v[1] = (s32)(((s64)x * b->v[1] + (s64)y * b->v[3]) >> 12);
+    x = a->v[2];
+    y = a->v[3];
+    p->v[2] = (s32)(((s64)x * b->v[0] + (s64)y * b->v[2]) >> 12);
+    p->v[3] = (s32)(((s64)x * b->v[1] + (s64)y * b->v[3]) >> 12);
+    if (p == &tmp) {
         *out = tmp;
     }
 }
