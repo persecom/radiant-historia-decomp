@@ -2,6 +2,25 @@
 #include "common.h"
 typedef struct {u32 x,y;} Pair_0211e3ec;
 typedef struct {s16 x,y;} ShortPair_0211e3ec;
+static inline u8 *MaterialEntry_0211e3ec(u8 *tbl,u32 idx) {
+if(tbl) {
+u8 *dict=tbl+4;
+u8 *entry;
+if(dict && idx<tbl[5]) {
+u16 offset=*(u16 *)(tbl+10);
+entry=dict+offset+4+idx**(u16 *)(dict+offset);
+} else entry=0;
+if(entry) return tbl+*(u32 *)entry;
+}
+return 0;
+}
+static inline u8 *MaterialCopy_0211e3ec(u8 *out,u8 *p) {
+*(Pair_0211e3ec *)out=*(Pair_0211e3ec *)p; return p+8;
+}
+static inline u8 *MaterialShortCopy_0211e3ec(u8 *out,u8 *p) {
+s16 a=*(s16 *)p,b=*(s16 *)(p+2);
+*(s16 *)out=a; *(s16 *)(out+2)=b; return p+4;
+}
 extern u8 data_02170464[];
 extern const u32 data_02144f08[];
 extern u8 data_021701fc[];
@@ -243,7 +262,8 @@ else if((command==0x20 || command==0x40) && (*(u32 *)(ctx+0xbc+(idx>>5)*4)&(1<<(
 out=cache?cache+idx*0x38:data_02170464+idx*0x38;
 } else {
 u8 *tbl,*entry,*source;
-u32 flags,maska,maskb;
+s32 flags;
+u32 maska,maskb;
 if(cache) {
 *(u32 *)(ctx+0xbc+(idx>>5)*4)|=1<<(idx&31);
 out=*(u8 **)(*(u8 **)(ctx+4)+0x38)+idx*0x38;
@@ -257,12 +277,13 @@ if(tbl) {
 u8 *dict=tbl+4;
 if(dict && idx<tbl[5]) {
 u16 offset=*(u16 *)(tbl+10);
-entry=dict+offset+4+*(u16 *)(dict+offset)*idx;
+entry=dict+offset+4+idx**(u16 *)(dict+offset);
 } else entry=0;
-source=entry?tbl+*(u32 *)entry:0;
+if(entry) {source=tbl+*(u32 *)entry; goto source_done;} source=0;
 } else source=0;
-if(*(u16 *)(source+0x1e)&0x20) *(u32 *)out|=0x20;
+source_done:
 flags=*(u16 *)(mat+0x1e);
+if(*(u16 *)(source+0x1e)&0x20) *(u32 *)out|=0x20;
 maska=data_02144f08[(flags>>6)&7];
 maskb=data_02144f08[(flags>>9)&7];
 *(u32 *)(out+4)=(*(u32 *)(data_021701fc+0x94)&~maska)|(*(u32 *)(mat+4)&maska);
@@ -273,11 +294,11 @@ maskb=data_02144f08[(flags>>9)&7];
 if(flags&1) {
 u8 *p=mat+0x2c;
 if(flags&2) *(u32 *)out|=1;
-else {u32 a=*(u32 *)p,b=*(u32 *)(p+4); *(u32 *)(out+24)=a; *(u32 *)(out+28)=b; p+=8;}
+else {*(Pair_0211e3ec *)(out+24)=*(Pair_0211e3ec *)p; p+=8;}
 if(*(u16 *)(mat+30)&4) *(u32 *)out|=2;
-else {s16 a=*(s16 *)p,b=*(s16 *)(p+2); p+=4; *(s16 *)(out+32)=a; *(s16 *)(out+34)=b;}
-if(*(u16 *)(mat+30)&8) *(u32 *)out|=4;
-else {u32 a=*(u32 *)p,b=*(u32 *)(p+4); *(u32 *)(out+36)=a; *(u32 *)(out+40)=b;}
+else {*(ShortPair_0211e3ec *)(out+32)=*(ShortPair_0211e3ec *)p; p+=4;}
+if(!(*(u16 *)(mat+30)&8)) {*(Pair_0211e3ec *)(out+36)=*(Pair_0211e3ec *)p;}
+else *(u32 *)out|=4;
 *(u32 *)out|=8;
 }
 {
