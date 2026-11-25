@@ -1,6 +1,7 @@
 /* 9 functions from 0x02081D3C to 0x02082C70 (main), found by ds-decomp. */
 #include "common.h"
 void func_02082958(void);
+void func_02082584(void);
 
 typedef struct Block_02081f08 {
     u32 w0, w1, w2, w3;
