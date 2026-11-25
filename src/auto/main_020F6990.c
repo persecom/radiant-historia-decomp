@@ -293,7 +293,7 @@ apply_item:F(0fce30)(kind,id,(u8)quantity,negative);continue;}
  }
  if(pending){if(!(S(ctx,0x18)&0x400))S(ctx,0x18)|=1;F(10cef8)();}return 1;
 }
-r9=(u32)script;r6=(u32)ctx;r7=skip;r4=(u32)&D(600ac);r5=1;r8=0;}
+}
 #define Q R0(10ce5c)
 #define ZP R0(0f5948)
 #define QT R0(10cd50)
