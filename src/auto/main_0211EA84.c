@@ -1,5 +1,19 @@
 /* 3 functions from 0x0211EA84 to 0x0211F518 (main), found by ds-decomp. */
 #include "common.h"
+extern const u8 data_02144f28[],data_02144f29[],data_02144f2a[],data_02144f2b[];
+extern void func_02009138(void *);
+static inline u8 *dict_entry_0211ea84(u8 *dict,u32 index) {
+if(dict && index<dict[1]){
+u16 offset=*(u16 *)(dict+6);
+u16 unit=*(u16 *)(dict+offset);
+return dict+offset+4+unit*index;
+}
+return 0;
+}
+static inline u8 *node_0211ea84(u8 *base,u32 index) {
+if(base){u32 *entry=(u32 *)dict_entry_0211ea84(base,index);if(entry)return base+*entry;}
+return 0;
+}
 extern s32 data_02156010[3],data_0215601c[3];
 extern u8 data_021701fc[],data_02170248[],data_02155fe4[],data_02155fec[],data_02155fe0[];
 extern void func_021205ec(s32,void *,s32),func_021204a8(void);
