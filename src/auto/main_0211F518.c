@@ -22,7 +22,7 @@ static inline u32 texcoord_0211fda4(s16 s,s16 t) {
 return (u16)s|((u32)(u16)t<<16);
 }
 static inline s32 texfixed_021200f4(s32 v) { return (v << 8) >> 16; }
-static inline u32 texcoord_021200f4(s32 s,s32 t) {
+static inline u32 texcoord_021200f4(s32 t,s32 s) {
 u16 x=texfixed_021200f4(s), y=texfixed_021200f4(t);
 return x | ((u32)y << 16);
 }
