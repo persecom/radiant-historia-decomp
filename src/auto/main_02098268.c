@@ -128,23 +128,12 @@ void func_02098694(u32 arg0) {
     *(s16 *)(out + 0x3c) = v1;
 }
 
-void func_02098710(u32 arg0) {
+void func_02098710(u16 arg0) {
     u8 *out = (u8 *)data_0216011c;
-    u16 buf[20];
-    u16 *src = (u16 *)data_0214202c;
-    u16 *dst = buf;
-    u32 n = 10;
-    u32 idx;
-    s16 v0, v1;
-    do {
-        dst[1] = src[1];
-        dst[0] = src[0];
-        src += 2;
-        dst += 2;
-    } while (--n != 0);
-    idx = (arg0 << 17) >> 16;
-    v0 = ((s16 *)buf)[idx];
-    v1 = ((s16 *)buf)[idx + 1];
+    struct Table40 { s16 v[20]; } buf = *(const struct Table40 *)data_0214202c;
+    u16 idx = arg0 * 2;
+    s16 v0 = buf.v[idx];
+    s16 v1 = buf.v[idx + 1];
     *(s16 *)(out + 0x3a) = v0;
     *(s16 *)(out + 0x3c) = v1;
 }
