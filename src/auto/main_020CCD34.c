@@ -295,7 +295,7 @@ u8 *func_020cdbc4(u16 arg0, u32 arg1, u16 arg2, u16 arg3, s16 arg4, s8 arg5, u16
     *(u32 *)(node + 0x18) = 0;
     node[3] = 0x1f;
     if (mode == 1) {
-        func_021167f0((u8 *)data_02160238 + 0x358, node);
+        func_021167f0((u8 *)data_02160238 + 0x758, node);
     } else if (mode == 2) {
         func_021167f0((u8 *)data_02160238 + 0x764, node);
     }
