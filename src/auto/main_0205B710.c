@@ -38,16 +38,14 @@ extern void func_02025f84(void *, s32);
 s32 func_0205b710(u8 *arg0, s32 arg1)
 {
     u8 *p;
-    u8 *sub;
 
     if (arg0 == NULL) {
         return 0;
     }
-    sub = *(u8 **)(arg0 + 0x118);
-    if (*(u32 *)(sub + 0x70) == 0) {
+    if (*(u32 *)(*(u8 **)(arg0 + 0x118) + 0x70) == 0) {
         return 0;
     }
-    p = func_02022558(*(void **)(sub + 0x60));
+    p = func_02022558(*(void **)(*(u8 **)(arg0 + 0x118) + 0x60), arg1);
     if (p != NULL) {
         switch (*(u16 *)p) {
         case 0x98: {
