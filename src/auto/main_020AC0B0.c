@@ -7,6 +7,12 @@ extern void func_0210d27c(s32);
 extern void func_020abf3c(void);
 extern void func_020aed5c(s32);
 extern void func_020ade30(s32);
+extern u8 *func_020b3890(void);
+extern u8 *func_020b4044(void);
+extern u8 *func_020b3fd8(void);
+extern void func_020ade8c(s32);
+extern void func_020ae50c(s32);
+extern void func_020aaf88(s32 *, s32, s32, s32, s32);
 
 
 #pragma optimization_level 3
