@@ -35,6 +35,7 @@ extern void func_0210b750(s32);
 extern void func_020bf414(s32);
 extern void func_02120524(s32);
 extern void func_020eff5c(s32);
+static inline s32 scale1000(s16 d) { return d * 1000; }
 
 extern u8 *data_02160234;
 extern u32 data_02162858[], data_02162854, data_02162850;
@@ -192,19 +193,17 @@ void func_020c96b4(u8 *arg0, u8 *arg1) {
 
 u16 func_020c9744(u8 *arg0, u8 *arg1) {
  s16 x=0,y=0;
- s16 delta;
- s32 scale, value;
+ s32 delta;
+ s32 value;
+ s32 scale;
  u16 result;
- s16 quotient, remainder;
  func_020c9680(arg0,&x,&y);
  delta=*(s16 *)(arg1+0x3c)-y;
  func_020201f4(0x447a0000,func_020c9888(arg0));
  scale=func_0201ff0c();
- value=delta*1000;
- quotient=(s16)(value/scale);
- remainder=(s16)((value%scale)/1000);
- result=quotient;
- if(remainder > (scale/1000)/2) result++;
+ value=(s16)delta*1000;
+ result=(s16)(value/scale);
+ if((s16)((value%scale)/1000) > (scale/1000)/2) result++;
  return result;
 }
 
