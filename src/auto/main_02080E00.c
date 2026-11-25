@@ -52,11 +52,9 @@ if(!handled && (((Menu02080E00 *)data_0216010c)->unk_5382&1) && func_02089ae4(19
 if(!handled){
 if(((Menu02080E00 *)data_0216010c)->unk_50d4<6) count=((Menu02080E00 *)data_0216010c)->unk_50d4;
 for(i=0;i<6;i++) if(i<count && func_02089ae4(10,(s16)(i*19+53),156,18)==1){
-s16 delta;
-handled=((Menu02080E00 *)data_0216010c)->unk_50d6;
-delta=(s16)(handled-i);
+s16 delta = (s16)(((Menu02080E00 *)data_0216010c)->unk_50d6 - i);
 if(delta==0){if(((Menu02080E00 *)data_0216010c)->unk_52e6&2) ((Menu02080E00 *)data_0216010c)->unk_5382 |=2;}
-else {u8 d=(u8)delta;((Menu02080E00 *)data_0216010c)->unk_50d6=handled-d;((Menu02080E00 *)data_0216010c)->unk_50d7=((Menu02080E00 *)data_0216010c)->unk_50d7-d;((Menu02080E00 *)data_0216010c)->unk_52e6 &=~2;func_0210d27c(2);}
+else {((Menu02080E00 *)data_0216010c)->unk_50d6 -= (u8)delta;((Menu02080E00 *)data_0216010c)->unk_50d7 -= (u8)delta;((Menu02080E00 *)data_0216010c)->unk_52e6 &=~2;func_0210d27c(2);}
 handled=1;
 }}
 ((Menu02080E00 *)data_0216010c)->unk_5300 &=~2;
