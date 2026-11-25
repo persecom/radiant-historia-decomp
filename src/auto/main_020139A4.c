@@ -6,14 +6,117 @@ extern double func_0201e014(double);
 extern char *strcpy(char *,const char *);
 typedef struct { u8 c[5]; } FormatText5;
 typedef struct { u8 c[4]; } FormatText4;
-static inline u8 *copy_format5(u8 *d,const u8 *s) { *(FormatText5 *)d=*(const FormatText5 *)s;return d; }
-static inline u8 *copy_format4(u8 *d,const u8 *s) { *(FormatText4 *)d=*(const FormatText4 *)s;return d; }
+
 
 typedef struct {
     u8 padding, sign, unk2, alternate, unk4, conversion;
     u16 unk6;
     s32 width, precision;
 } FormatSpec;
+
+extern const u16 data_0213eb14[];
+u8 *func_020139a4(u8 *fmt, s32 **argp, FormatSpec *out) {
+    FormatSpec spec;
+    u8 *p = fmt + 1;
+    u8 c = p[0];
+    s32 v, neg;
+
+    spec.padding = 1;
+    spec.sign = 0;
+    spec.unk2 = 0;
+    spec.alternate = 0;
+    spec.unk4 = 0;
+    spec.width = 0;
+    spec.precision = 0;
+
+    if (c == '%') {
+        spec.conversion = '%';
+        *out = spec;
+        return p + 1;
+    }
+
+    for (;;) {
+        switch (c) {
+        case '-': spec.padding = 0; break;
+        case '+': spec.sign = 1; break;
+        case ' ': if (spec.sign != 1) spec.sign = 2; break;
+        case '#': spec.alternate = 1; break;
+        case '0': if (spec.padding != 0) spec.padding = 2; break;
+        default: goto flags_done;
+        }
+        c = *++p;
+    }
+flags_done:
+
+    if (c == '*') {
+        v = *(*argp)++;
+        spec.width = v;
+        if (v < 0) {
+            spec.padding = 0;
+            spec.width = -v;
+        }
+        c = *++p;
+    } else {
+        while (c >= '0' && c <= '9') {
+            spec.width = spec.width * 10 + (c - '0');
+            c = *++p;
+        }
+    }
+
+    if (c == '.') {
+        c = *++p;
+        spec.alternate = 0;
+        if (c == '*') {
+            v = *(*argp)++;
+            spec.precision = v;
+            if (v < 0) spec.precision = -1;
+            c = *++p;
+        } else {
+            spec.precision = 0;
+            while (c >= '0' && c <= '9') {
+                spec.precision = spec.precision * 10 + (c - '0');
+                c = *++p;
+            }
+        }
+    }
+
+    switch (c) {
+    case 'h': spec.unk4 = 2; c = *++p; break;
+    case 'l': spec.unk4 = 3; c = *++p; break;
+    case 'L': spec.unk4 = 4; c = *++p; break;
+    case 't': spec.unk4 = 6; c = *++p; break;
+    case 'z': spec.unk4 = 7; c = *++p; break;
+    }
+
+    spec.conversion = c;
+
+    switch (c) {
+    case 'd': case 'i': case 'u': case 'o': case 'x': case 'X':
+        break;
+    case 'f': case 'F': case 'e': case 'E': case 'g': case 'G':
+        break;
+    case 'a': case 'A':
+        if (spec.precision == 0) spec.precision = 13;
+        break;
+    case 'c':
+        if (spec.padding == 2) spec.width = 1;
+        break;
+    case 'p':
+        spec.alternate = 1;
+        spec.conversion = 'x';
+        break;
+    case 'n':
+        break;
+    case 's':
+        break;
+    default:
+        spec.conversion = 0xff;
+        break;
+    }
+
+    *out = spec;
+    return p + 1;
+}
 
 u8 *func_02013eb0(s32 value, u8 *end, FormatSpec spec) {
     u32 base;
