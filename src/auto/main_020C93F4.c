@@ -127,22 +127,15 @@ void func_020c94dc(u8 *arg0) {
 }
 
 void func_020c9590(u8 *arg0) {
-    s16 v = func_020c9808(arg0);
-    s16 diff = (s16)(*(u16 *)(arg0 + 0x42) - *(u16 *)(arg0 + 0x40));
-    u8 *obj1 = func_020c9c10(*(void **)(arg0 + 0x30), 1);
-    s16 v1 = *(s16 *)(obj1 + 0x3e);
-    u8 *obj2 = func_020c9c10(*(void **)(arg0 + 0x30), 2);
-    if (diff <= 0) {
-        return;
-    }
-    {
-        s16 val = v - (s16)(diff + func_020c9924(obj2 + 0x30));
-        if (val < 0xc) {
-            val = 0xc;
-        }
-        *(u16 *)(obj2 + 0x40) = val;
-        *(u16 *)(obj2 + 0x3e) = v1;
-    }
+ s16 v=func_020c9808(arg0);
+ s16 diff=(s16)(*(u16 *)(arg0+0x42)-*(u16 *)(arg0+0x40));
+ u8 *obj1=func_020c9c10(*(void **)(arg0+0x30),1);
+ s16 v1=*(s16 *)(obj1+0x3e);
+ u8 *obj2=func_020c9c10(*(void **)(arg0+0x30),2);
+ if(diff>0) v-=(s16)(diff+func_020c9924(obj2+0x30));
+ if(v<0xc) v=0xc;
+ *(u16 *)(obj2+0x40)=v;
+ *(u16 *)(obj2+0x3e)=v1;
 }
 
 void func_020c9610(u8 *arg0) {
@@ -338,19 +331,20 @@ u32 func_020c9b64(u8 *arg0) {
     return ret;
 }
 
+#pragma opt_lifetimes off
 u32 func_020c9bb8(u8 *arg0) {
-void *p=arg0;
-u32 ret=0;
-u16 count=*(u16 *)((u8 *)p+4);
-u16 i;
-for(i=0;i<count;i++){
-u8 *obj=(*(u8 ***)p)[i];
-if(obj != NULL && *(void **)(obj+12) != NULL)
-ret = ((u32 (*)(u8 *))(*(void **)(obj+12)))(obj) | ret;
+    u32 ret = 0;
+    u16 count = *(u16 *)(arg0 + 4);
+    u16 i;
+    for (i = 0; i < count; i++) {
+        u8 *obj = (*(u8 ***)arg0)[i];
+        if (obj != NULL && *(void **)(obj + 0xc) != NULL) {
+            ret |= ((u32 (*)(u8 *))(*(void **)(obj + 0xc)))(obj);
+        }
+    }
+    return ret;
 }
-return ret;
-}
-
+#pragma opt_lifetimes on
 extern u16 func_020c9c34(u8 *);
 u8 *func_020c9c10(void *arg0, s32 arg1) {
     if ((u32)arg1 >= func_020c9c34(arg0)) {
