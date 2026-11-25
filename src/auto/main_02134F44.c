@@ -14,7 +14,7 @@ extern s32 func_02135920();
 extern s32 func_02135960(u8 *, s32, s32);
 extern void func_02135984(u8 *, s32, s32);
 extern u8 data_02175ab8[];
-extern void func_021147e8(void *);
+extern void func_021147e8(void *, ...);
 extern void func_0211470c(void *);
 extern void func_02135f0c(void *, u16 *, u16 *);
 
@@ -32,15 +32,19 @@ void func_02136138(void *,void *,u16);
 void func_02135abc(u8 *,s16 *,s32);
 void func_02135b1c(u8 *,s16 *,s32,s16 **);
 void func_02137f80(void *,s32,void *,void *);
-void func_02134f44(u8 *p){
+void func_02134f44(u8 *arg0){
 struct {s16 *ptr;s32 len;} buf[2],rem[2];
 s16 *out[2];
 u16 count,ca,cb;
-s32 n, len, samples;
-u32 used,ua,ub;
-u32 consumed;
+register u32 used;
+register u32 samples;
+register s32 len;
+register u32 consumed;
+register s16 *src=0;
+register s32 n;
+register u8 *p=arg0;
+u32 ua,ub;
 u16 i;
-s16 *src=0;
 if(*(s8 *)(p+3)==1){
 len=*(u16 *)(p+0x2c);
 if((u32)len>=6){buf[0].ptr=0;src=*(s16 **)(p+0x28)+*(u16 *)(p+0x2e);}
@@ -52,30 +56,31 @@ src=buf[0].ptr;len=buf[0].len;
 if(p[5]){
 if(n>=*(u16 *)(p+0x32)*2){
 samples=*(u16 *)(p+0x32);
-if(len>=(samples<<1))consumed=(u16)(samples*2);
+if(len>=(s32)(samples<<1))consumed=(u16)(samples*2);
 else{
 func_02013858(*(void **)((u8 *)data_021756d8+0x2b0),src,len);
 (*( void (**)(void *, s32, void *))(*(u8 **)(*(void **)(p+0x10+0*4))+0x20))(*(void **)(p+0x10+0*4),0,&buf[0]);
-consumed=(u16)((samples<<1)-len);
+consumed=(u16)((u32)samples*2-len);
 (*( void (**)(void *, s32, s32, void *))(*(u8 **)(*(void **)(p+0x10+0*4))+0x18))(*(void **)(p+0x10+0*4),1,consumed,&buf[0]);
 func_02013858(*(s16 **)((u8 *)data_021756d8+0x2b0)+len/2,buf[0].ptr,buf[0].len);
 src=*(s16 **)((u8 *)data_021756d8+0x2b0);len=buf[0].len;
 }
-}else if(p[1]&4){consumed=(u16)len;samples=len/2;}else{src=0;len=0;consumed=0;}
+}else if(p[1]&4){samples=len/2;consumed=(u16)len;}else{src=0;len=0;consumed=0;}
 if(len){
-s32 size=(samples*p[5]/100)&~3;
-func_0212761c(src,samples,*(s16 **)(p+0x28)+*(u16 *)(p+0x30),size);
+s32 size=((s32)(samples*p[5])/100)&~3;
 len=size*2;
+func_0212761c(src,samples,*(s16 **)(p+0x28)+*(u16 *)(p+0x30),size);
 *(u16 *)(p+0x30)+=(u16)size;
 *(u16 *)(p+0x2c)+=(u16)len;
-src=*(s16 **)(p+0x28)+*(u16 *)(p+0x2e);
+src=*(s16 **)(p+0x28);src+=*(u16 *)(p+0x2e);goto ready;
 }
 }
 }else{
 len=*(u16 *)(p+0x2c);if(len==0)return;
-buf[0].ptr=src;src=*(s16 **)(p+0x28)+*(u16 *)(p+0x2e);
+src=*(s16 **)(p+0x28)+*(u16 *)(p+0x2e);buf[0].ptr=0;
 }
 }
+ready:
 if(*(s8 *)(p+2)==2 && *(s8 *)(p+4)>=1){
 used=func_02135f7c(*(u8 **)(p+0x20),len,&ca);
 ub=func_02135f7c(*(u8 **)(p+0x24),len,&cb);
@@ -111,12 +116,12 @@ if(count){func_02136138(*(void **)(p+0x20),buf[0].ptr,count);func_02136138(*(voi
 }
 if(buf[0].ptr){
 for(i=0;i<*(s8 *)(p+3);i++){
-if(consumed==buf[i].len){(*( void (**)(void *, s32, void *))(*(u8 **)(*(void **)(p+i*4+0x10))+0x20))(*(void **)(p+i*4+0x10),0,&buf[i]);}
-else if(consumed==0){(*( void (**)(void *, s32, void *))(*(u8 **)(*(void **)(p+i*4+0x10))+0x1c))(*(void **)(p+i*4+0x10),1,&buf[i]);}
+if(consumed==buf[i].len){(*( void (**)(void *, s32, void *))(*(u8 **)(*(void **)(p+(u32)i*4+0x10))+0x20))(*(void **)(p+(u32)i*4+0x10),0,&buf[i]);}
+else if(consumed==0){(*( void (**)(void *, s32, void *))(*(u8 **)(*(void **)(p+(u32)i*4+0x10))+0x1c))(*(void **)(p+(u32)i*4+0x10),1,&buf[i]);}
 else{
 func_02137f80(&buf[i],consumed,&buf[i],&rem[i]);
-(*( void (**)(void *, s32, void *))(*(u8 **)(*(void **)(p+i*4+0x10))+0x20))(*(void **)(p+i*4+0x10),0,&buf[i]);
-(*( void (**)(void *, s32, void *))(*(u8 **)(*(void **)(p+i*4+0x10))+0x1c))(*(void **)(p+i*4+0x10),1,&rem[i]);
+(*( void (**)(void *, s32, void *))(*(u8 **)(*(void **)(p+(u32)i*4+0x10))+0x20))(*(void **)(p+(u32)i*4+0x10),0,&buf[i]);
+(*( void (**)(void *, s32, void *))(*(u8 **)(*(void **)(p+(s32)i*4+0x10))+0x1c))(*(void **)(p+(s32)i*4+0x10),1,&rem[i]);
 }
 }
 }
@@ -323,17 +328,13 @@ s32 func_02135960(u8 *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_02135984(u8 *arg0, s32 arg1, s32 arg2) {
-    if (arg2 == 0) {
-        arg2 = 0x40;
-    } else if (arg2 == -15) {
-        arg2 = 0;
-    } else if (arg2 == 15) {
-        arg2 = 0x7f;
-    } else {
-        arg2 = (arg2 + 15) * 128 / 30;
-    }
-    *(u16 *)(*(void **)(arg0 + arg1 * 4 + 0x20) + 0x20) = (u16)arg2;
-    func_021147e8(arg0 + 0x34);
+if(arg2==0) arg2=0x40;
+else if(arg2==-15) arg2=0;
+else if(arg2==15) arg2=0x7f;
+else arg2=(arg2+15)*128/30;
+u8 *p=*(u8 **)(arg0+arg1*4+0x20);
+*(u16 *)(p+0x20)=arg2;
+func_021147e8(arg0+0x34);
 }
 
 void func_021359e4(u8 *arg0) {
@@ -456,21 +457,21 @@ void func_02135d24(u16 arg0) {
     }
 }
 
+#pragma optimization_level 3
 void func_02135d4c(s32 arg0, u16 arg1) {
-    u16 eight = 8;
     s32 i;
     if (arg0 == 0) {
-        for (i = 0; i < eight; i++) {
+        for (i = 0; i < 8; i++) {
             u8 *entry = data_02175ab8 + i * 0x34;
             *(u16 *)(entry + 0x26) = arg1;
-            *(u16 *)(entry + 0x28) = eight;
+            *(u16 *)(entry + 0x28) = 8;
         }
         return;
     }
     *(u16 *)((u8 *)arg0 + 0x26) = arg1;
-    *(u16 *)((u8 *)arg0 + 0x28) = eight;
+    *(u16 *)((u8 *)arg0 + 0x28) = 8;
 }
-
+#pragma optimization_level 4
 s16 func_02135d94(u8 *arg0) {
     return *(s16 *)(arg0 + 0x26);
 }
