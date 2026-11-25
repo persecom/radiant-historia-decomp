@@ -158,6 +158,7 @@ s32 func_020e4d40(void) {
     u8 *action=*(u8 **)(state+8);
     u8 *target;
     s32 index;
+    u8 *node;
     s16 count;
     if(!(*(u16 *)(g+0x1ba)&2)) return zero;
     if(*cursor&2) {
@@ -308,33 +309,18 @@ case 510:
         u8 *effect=func_02023100(*(void **)(action+0x2c));
         if(effect) {
             switch(*(u16 *)effect) {
- 
-
-
-case 108:break;
-case 110:break;
 case 111:break;
-case 112:break;
 case 113:break;
-case 114:break;
-case 115:break;
 case 116:break;
-case 117:break;
 case 118:break;
-case 119:break;
-case 120:break;
 case 121:break;
-case 122:break;
 case 123:break;
-case 124:break;
-case 125:break;
 case 126:break;
-case 127:break;
 case 128:break;
-            case 0x65:case 0x1f5:
+            case 0x65: case 0x1f5:
                 if((*(u16 *)effect==0x1f5 && action[6]==12)||*(u16 *)effect==0x65) {
+                    node=*(u8 **)((u8 *)data_02160a6c+0xac);
                     count=0;
-                    u8 *node=*(u8 **)((u8 *)data_02160a6c+0xac);
                     while(node) {
                         u8 *stats=*(u8 **)(node+0x118);
                         if(*(s32 *)(stats+4)!=*(s32 *)(stats+8))count++;
@@ -345,8 +331,8 @@ case 128:break;
                 } break;
             case 0x1f6:
                 if(action[6]==12) {
+                    node=*(u8 **)((u8 *)data_02160a6c+0xac);
                     count=0;
-                    u8 *node=*(u8 **)((u8 *)data_02160a6c+0xac);
                     while(node) {
                         u8 *stats=*(u8 **)(node+0x118);
                         if(*(s16 *)(stats+12)!=*(s16 *)(stats+14))count++;
@@ -355,11 +341,11 @@ case 128:break;
                     }
                     if(!count)zero=0;
                 } break;
-            case 0x6d: {count=0;u8 *node=*(u8 **)((u8 *)data_02160a6c+0xac);
+            case 0x6d: {node=*(u8 **)((u8 *)data_02160a6c+0xac);count=0;
                 while(node) {if(!*(u32 *)(*(u8 **)(node+0x118)+0x70))count++;node=*(u8 **)(node+0x16c);}
                 if(!count)zero=0;break;
             }
-            case 0x6b:case 0x1f8: if((*(u16 *)effect==0x1f8 && action[6]==12)||*(u16 *)effect==0x6b) {count=0;u8 *node=*(u8 **)((u8 *)data_02160a6c+0xac);
+            case 0x6b:case 0x1f8: if((*(u16 *)effect==0x1f8 && action[6]==12)||*(u16 *)effect==0x6b) {node=*(u8 **)((u8 *)data_02160a6c+0xac);count=0;
                 while(node) {if(*(u32 *)(*(u8 **)(node+0x118)+0x70) && (*(u32 *)(*(u8 **)(node+0x118)+0x78)&0x45553f))count++;node=*(u8 **)(node+0x16c);}
                 if(!count)zero=0;break;
             }
