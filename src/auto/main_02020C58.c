@@ -137,15 +137,17 @@ extern s32 func_0210723c(void);
 extern void func_0210d9e4(u8 *);
 #pragma optimization_level 2
 s32 func_02021428(u16 *arg) {
+    u32 *p;
     data_02160054[4] = (u32)arg;
     data_02160054[5] = 1000;
     func_0210d9e4(data_02160064);
-    data_02160054[3] = 1;
-    data_02160054[1] = 0;
-    if (data_021626f0 != NULL) {
-        u32 v = *data_021626f0;
+    *(volatile u32 *)&data_02160054[3] = 1;
+    *(volatile u32 *)&data_02160054[1] = 0;
+    p = *(u32 *volatile *)&data_021626f0;
+    if (p != NULL) {
+        u32 v = *p;
         data_02160054[0] = v;
-        *data_021626f0 = 0;
+        *p = 0;
         return (s32)v;
     }
     return (s32)&data_021626f0;
@@ -209,13 +211,14 @@ s32 func_02021570(u32 *arg0, u32 arg1, u32 arg2) {
 }
 
 s32 func_020215bc(void) {
-    u32 *p = data_02160078;
+    void *p = data_02160078;
+    u32 size = 0x1698;
     s32 res = 0;
-    if (func_02021570(p, 0, 0x1698) == 0) {
+    if (func_02021570(p, res, size) == 0) {
         return res;
     }
     func_02021514();
-    if (p[2] == func_02021368((u8 *)(p + 4), 0x1698 - 0x10)) {
+    if (*(u32 *)((u8 *)p + 8) == func_02021368((u8 *)p + 16, size - 0x10)) {
         res = 1;
     }
     return res;
