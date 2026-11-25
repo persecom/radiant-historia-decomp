@@ -33,7 +33,7 @@ extern void func_02002028(s32);
 extern s64 func_02001fd0(void);
 extern void func_0210d27c(s32);
 typedef struct Vec_F0FD0 {s32 x,y,z;} Vec_F0FD0;
-static inline void ProjectMatrices_F0FD0(const Vec_F0FD0 *pos,const s32 *p,const s32 *m,s32 *outX,s32 *outY){
+static inline void ProjectMatrices_F0FD0(const Vec_F0FD0 *pos,s32 *outX,s32 *outY,const s32 *p,const s32 *m){
  register s32 z,y; s32 x,py,px,sy,sx; s64 inv;
  x=m[9]+(s32)(((s64)pos->x*m[0]+(s64)pos->y*m[3]+(s64)pos->z*m[6])>>12);
  y=m[10]+(s32)(((s64)pos->x*m[1]+(s64)pos->y*m[4]+(s64)pos->z*m[7])>>12);
@@ -249,7 +249,7 @@ node=*(u8**)(data_02160af0+0x70);
 if(node){p=data_02170204;m=(s32*)data_02170248;while(node){
 s32 sx,sy; s32 zero;
 obj=*(u8**)node;
-ProjectMatrices_F0FD0((Vec_F0FD0*)(node+4),&sx,&sy,p,m);
+ProjectMatrices_F0FD0((Vec_F0FD0*)(node+4),p,m,&sx,&sy);
 if(!(*(u32*)(node+20)&16)){u32 id=*(u16*)(obj+0x1b8);if(id>10000&&id<10999){if(sx<-48||sx>304||sy<-48||sy>256)goto next;}}
 zero=0;
 if(*(u32*)(node+20)&1){u32 param;if(*(u32*)(obj+0xf4))func_0210bcc8(obj);func_021205ec(0x17,data_02170248,12);func_021205ec(0x19,obj+0xa0,12);param=0x1f0080;func_021205ec(0x29,&param,1);func_0211e078(obj);}
