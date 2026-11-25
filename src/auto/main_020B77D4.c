@@ -237,7 +237,6 @@ s32 func_020b77d4(void) {
         {
             u8 *r9 = data_021601ec;
             u8 *w;
-            u8 *sub;
             u8 *sub2;
             w = func_020c9b24(*(void **)(r9 + 0x4c), 8, 0x12);
             *(u16 *)(w + 0x30) = 0x20;
