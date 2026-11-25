@@ -325,33 +325,26 @@ obj=func_020c9c10(*(void **)(p+0x4c),2);
 }
 
 void func_020b90f0(void) {
-    void *obj;
-    u8 *item = NULL;
-    u8 *p;
-    void *node;
-    obj = func_020c9c10(*(void **)(data_021601ec + 0x4c), 2);
-    p = *(u8 **)(data_02160204 + 0x10c);
-    if (p != NULL) {
-        item = *(u8 **)p;
-    }
-    func_02111ccc(obj);
-    if (item != NULL) {
-        do {
-            s32 v;
-            node = func_02111d3c(obj);
-            v = *(u16 *)(item + 8);
-            *(u16 *)((u8 *)node + 2) = v;
-            *(u16 *)((u8 *)node + 4) = func_02110b38(v);
-            *(u32 *)((u8 *)node + 8) = *(u16 *)(item + 0xa);
-            *((u8 *)node + 6) |= 4;
-            item = *(u8 **)(item + 4);
-        } while (item != NULL);
-    }
-    func_02112688(obj);
-    func_021108f0(obj, 0);
-    func_02112068(obj);
-    func_02111bf0(obj);
-    func_02111ff0(obj);
+void *obj;
+u8 *item = NULL;
+u8 *p;
+void *node;
+obj = func_020c9c10(*(void **)(data_021601ec + 0x4c),2);
+p = *(u8 **)(data_02160204 + 0x10c);
+if(p != NULL) item = *(u8 **)p;
+func_02111ccc(obj);
+while(item != NULL) {
+node = func_02111d3c(obj);
+*(u16 *)((u8 *)node+2) = *(u16 *)(item+8);
+*(u16 *)((u8 *)node+4) = func_02110b38(*(u16 *)((u8 *)node+2));
+*(u32 *)((u8 *)node+8) = *(u16 *)(item+10);
+*((u8 *)node+6) |= 4;
+item = *(u8 **)(item+4);
+}
+func_021108f0(func_02112688(obj),0);
+func_02112068(obj);
+func_02111bf0(obj);
+func_02111ff0(obj);
 }
 
 void func_020b91a8(void) {
