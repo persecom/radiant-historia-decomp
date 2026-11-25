@@ -1,5 +1,6 @@
 /* 36 functions from 0x0210F550 to 0x02110518 (main), found by ds-decomp. */
 #include "common.h"
+enum { MASK1_0210f7b0 = 0xffcfffef, MASK2_0210f7b0 = 0xffffcffd };
 typedef struct { s16 v[10]; } Config_021100e4;
 extern const Config_021100e4 data_02144bb8;
 extern u8 *func_020c9b24(void *, u16, u8);
@@ -41,10 +42,12 @@ extern void func_020bdf38(void);
 extern void func_020a8440(void);
 s32 func_020a47c8(void);
 
-#pragma scheduling off
+#pragma opt_common_subs off
 void func_0210f7b0(void)
 {
-  s32 one = 1, four = 4, zero = 0, threef = 0x3f;
+  s32 one = 1;
+  s32 four = 4;
+  s32 zero = 0;
   func_0210f448();
   func_02004d70(15);
   func_02004ee8(0x70);
@@ -63,7 +66,7 @@ void func_0210f7b0(void)
   *((volatile u16 *) 0x4000060) = ((*((volatile u16 *) 0x4000060)) & (~0x3000)) | 0x10;
   *((volatile u16 *) 0x4000060) = ((*((volatile u16 *) 0x4000060)) & (~0x3000)) | 8;
   func_02002920((void *) 0x4000050, one, 0x20, zero, zero);
-  func_02002fb0(zero, zero, 0x7fff, threef, zero);
+  func_02002fb0(zero, zero, 0x7fff, 0x3f, zero);
   func_0210f410(four, 0x10000);
   *((volatile u32 *) 0x4001000) &= 0xffcfffef;
   func_0200283c(2);
@@ -75,6 +78,6 @@ void func_0210f7b0(void)
   *((volatile u16 *) 0x400100a) &= ~3;
   *((volatile u16 *) 0x400100c) &= 0xffbfULL;
 }
-#pragma scheduling on
+#pragma opt_common_subs reset
 int func_02002fb0(s32,s32,s32,s32,s32);
 #pragma scheduling off
