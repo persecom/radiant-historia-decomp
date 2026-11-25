@@ -1,7 +1,7 @@
 /* 1 function from 0x020495FC to 0x020508FC (main), found by ds-decomp. */
 #include "common.h"
 
-#pragma optimization_level 3
+#pragma optimization_level 0
 void func_020495fc(register u8*aI,u8 aB){
 typedef struct {u8 pad[0xBC8];u8 type,sub;} tile;typedef struct o{u32 D;s32 aa;s32 x,y,z;s32 a[2];s32 b[2];struct o*prev;
 struct o*next;}o;typedef struct ac{s32 x,y,z;u8 pad0C[0x24];s32 al,deltaY,am;
