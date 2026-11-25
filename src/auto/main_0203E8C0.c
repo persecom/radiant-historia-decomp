@@ -9,7 +9,7 @@ extern void func_020ec8cc(void *, s32, s32);
 extern void func_020ec548(void *);
 static inline u32 random_0203e8c0(u16 limit) {
     u32 seed;
-    u16 r;
+    u32 r;
     seed = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
     data_0216263c[0] = seed;
     r = seed >> 16;
