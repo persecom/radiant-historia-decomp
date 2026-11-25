@@ -114,7 +114,7 @@ default:goto invalid;
 if(flag==0x2000||flag==0x8000){
 *(u32 *)(p+0x24)=flag;*(u32 *)(p+0x1c)=flag;*(u32 *)(p+0x28)=2;p[0x54]=0;*(u32 *)(p+0x58)|=0x140;*(u32 *)(p+0x58)|=0x4200;return;
 }}
-invalid:*(u32 *)(p+4)=0;*(u32 *)(p+0x18)=0;set_zero_0210b10(*(ZeroTarget_0215f120 **)data_0215f120,3);
+invalid:*(u32 *)(p+4)=0;*(u32 *)(p+0x18)=0;{u32 status=3; ZeroTarget_0215f120 *state=*(ZeroTarget_0215f120 **)data_0215f120;state->field_0=status;}
 }
 
 void func_02010540(u32 **arg0) {
@@ -251,12 +251,14 @@ void func_0201082c(u32 arg0)
 }
 
 void func_0201088c(void) {
-    u32 zero = 0;
-    u32 mask = zero - 0x2000;
-    func_020106b8(0xb5, zero);
-    do {
-        *(volatile u32 *)0x40001a4 = ((*(volatile u32 *)0x2fffae0 & ~0x07000000) | 0xa0000000) & mask;
-    } while (*(volatile u32 *)0x40001a4 & 0x80000000);
+ u32 zero=0;
+ func_020106b8(0xb5,zero);
+ {
+ u32 v=*(volatile u32 *)0x2fffae0;
+ v=(v & ~0x07000000)|0xa0000000;
+ *(volatile u32 *)0x40001a4=v & (zero-0x2000);
+ }
+ while(*(volatile u32 *)0x40001a4 & 0x80000000) {}
 }
 
 extern u32 data_02145c1c;
