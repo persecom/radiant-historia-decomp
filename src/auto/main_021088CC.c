@@ -38,7 +38,8 @@ typedef struct {
 } Unk02109444;
 
 extern u8 data_02162544[];
-extern u8 data_02162510[];
+typedef struct { s32 unk_00; u8 rest[0x48]; } Unk02162510;
+extern Unk02162510 data_02162510;
 extern s32 data_02162884;
 extern s32 data_02162814;
 extern s32 data_02162878;
@@ -518,25 +519,20 @@ s32 func_021095d0(u32 arg0) {
 
 #pragma opt_common_subs off
 void func_02109600(void) {
-    s32 active = 0;
-    s32 i;
-    for (i = 0; i < 2; i++) {
-        u8 *p = data_02162544 + i * 0x10;
-        if (func_0210c398(p) != 0) {
-            s32 val = *(s32 *)p >> 12;
-            if (i == 0) {
-                data_02162814 = val;
-            } else {
-                data_02162884 = val;
-            }
-            func_02108ffc();
-            active = 1;
-        }
-    }
-    if (active == 0) {
-        func_0210da14((void *)data_02162510);
-        *(s32 *)((u8 *)data_02162510) = 0;
-    }
+ s32 active=0;
+ s32 i;
+ for(i=0;i<2;i++){
+ u8 *p=data_02162544+i*0x10;
+ if(func_0210c398(p)!=0){
+ s32 val=*(s32 *)p>>12;
+ if(i==0) data_02162814=val; else data_02162884=val;
+ func_02108ffc(); active=1;
+ }
+ }
+ if(active==0){
+ func_0210da14(&data_02162510);
+ data_02162510.unk_00=0;
+ }
 }
 #pragma opt_common_subs on
 void func_0210968c(u32 arg0, s32 arg1, u32 arg2) {
@@ -551,14 +547,14 @@ void func_0210968c(u32 arg0, s32 arg1, u32 arg2) {
         if (arg0 & (1 << i)) {
             func_0210c35c((s32 *)(data_02162544 + i * 0x10), *(s32 *)(data_02162544 + i * 0x10), sz << 12, arg2);
             if (arg2 != 0) {
-                if (*(s32 *)data_02162510 == 0) {
-                    *(u32 *)data_02162510 = (u32)func_02109600;
-                    *(u32 *)((u8 *)data_02162510 + 4) = 0x15f90;
+                if (data_02162510.unk_00 == 0) {
+                    *(u32 *)&data_02162510 = (u32)func_02109600;
+                    *(u32 *)((u8 *)&data_02162510 + 4) = 0x15f90;
                     func_0210d9e4(&data_02162814);
                 }
             } else {
                 if (i == 0) {
-                    *(s32 *)data_02162510 = sz;
+                    data_02162510.unk_00 = sz;
                 } else {
                     data_02162884 = sz;
                 }
@@ -591,12 +587,12 @@ void func_02109790(u32 arg0) {
 
 void func_021097f4(void) {
     func_02008f74(data_02162544, 0, 0x20);
-    func_02008f74(data_02162510, 0, 0x14);
+    func_02008f74(&data_02162510, 0, 0x14);
 }
 
 void func_02109828(void) {
-    *(u32 *)(data_02162510 + 0x34) = 0x8000;
-    *(u32 *)(data_02162510 + 0x44) = 0x8000;
+    *(u32 *)((u8 *)&data_02162510 + 0x34) = 0x8000;
+    *(u32 *)((u8 *)&data_02162510 + 0x44) = 0x8000;
 }
 
 #pragma push
@@ -604,16 +600,16 @@ void func_02109828(void) {
 void func_02109840(void) {
 s32 i;
 for(i=0;i<2;i++) *(s32 *)(data_02162544+i*16+12)=0;
-func_0210da14(data_02162510);
-*(s32 *)(data_02162510 + i - 2)=0;
+func_0210da14(&data_02162510);
+*(s32 *)((u8 *)&data_02162510 + i - 2)=0;
 }
 #pragma pop
 void func_02109884(u32 arg0, u32 arg1) {
     if (arg0 & 1) {
-        *(u32 *)(data_02162510 + 0x34) = arg1 << 0xc;
+        *(u32 *)((u8 *)&data_02162510 + 0x34) = arg1 << 0xc;
     }
     if (arg0 & 2) {
-        *(u32 *)(data_02162510 + 0x44) = arg1 << 0xc;
+        *(u32 *)((u8 *)&data_02162510 + 0x44) = arg1 << 0xc;
     }
 }
 s32 func_021090f4(u32 arg0, s32 arg1) {
