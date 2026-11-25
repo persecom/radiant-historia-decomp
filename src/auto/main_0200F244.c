@@ -24,6 +24,247 @@ extern s32 func_0200fd64(u8 *, s32, u32, u32);
 extern s32 func_02005da4(u16);
 extern void func_0200851c(void *, s32);
 extern void func_02007e58(void *, s32, s32, void *, void *);
+extern u32 data_0215f078[10];
+u32 func_0200f684(u32);
+s32 func_0200f6ec(void);
+s32 func_0200f728(s32 *);
+void func_0200f244(s32 tag, u32 data, BOOL err) {
+    struct RtcRawDate {
+        u32 year : 8;
+        u32 month : 5;
+        u32 dummy0 : 3;
+        u32 day : 6;
+        u32 dummy1 : 2;
+        u32 week : 3;
+        u32 dummy2 : 5;
+    };
+    struct RtcRawTime {
+        u32 hour : 6;
+        u32 dummy0 : 2;
+        u32 minute : 7;
+        u32 dummy1 : 1;
+        u32 second : 7;
+        u32 dummy2 : 9;
+    };
+    struct RtcRawAlarm {
+        u32 week : 3;
+        u32 dummy0 : 4;
+        u32 we : 1;
+        u32 hour : 6;
+        u32 dummy1 : 1;
+        u32 he : 1;
+        u32 minute : 7;
+        u32 me : 1;
+        u32 dummy2 : 8;
+    };
+    struct RtcRawStatus2 {
+        u16 int1_mode : 4;
+        u16 dummy0 : 2;
+        u16 int2_mode : 1;
+        u16 dummy1 : 9;
+    };
+    s32 result;
+    u8 command;
+    u8 pxiResult;
+    void (*cb)(s32, void *);
+
+    if (err) {
+        if (data_0215f078[7] != 0) {
+            data_0215f078[7] = 0;
+        }
+        if (data_0215f078[1] != 0) {
+            data_0215f078[1] = 0;
+        }
+        if (data_0215f078[2] != 0) {
+            cb = (void (*)(s32, void *))data_0215f078[2];
+            data_0215f078[2] = 0;
+            cb(6, (void *)data_0215f078[5]);
+        }
+        return;
+    }
+
+    command = (u8)((data & 0x7f00) >> 8);
+    pxiResult = (u8)(data & 0xff);
+
+    if (command == 0x30) {
+        if (data_0215f078[8] != 0) {
+            ((void (*)(void))data_0215f078[8])();
+        }
+        return;
+    }
+
+    if (pxiResult == 0) {
+        result = 0;
+        switch (data_0215f078[6]) {
+            case 0: {
+                struct RtcRawDate *raw = (struct RtcRawDate *)0x02fffde8;
+                s32 *dst = (s32 *)data_0215f078[3];
+                dst[0] = func_0200f684(raw->year);
+                dst[1] = func_0200f684(raw->month);
+                dst[2] = func_0200f684(raw->day);
+                dst[3] = func_0200f728(dst);
+                break;
+            }
+            case 1: {
+                struct RtcRawTime *raw = (struct RtcRawTime *)0x02fffdec;
+                s32 *dst = (s32 *)data_0215f078[3];
+                dst[0] = func_0200f684(raw->hour);
+                dst[1] = func_0200f684(raw->minute);
+                dst[2] = func_0200f684(raw->second);
+                break;
+            }
+            case 2: {
+                struct RtcRawDate *rawDate = (struct RtcRawDate *)0x02fffde8;
+                struct RtcRawTime *rawTime = (struct RtcRawTime *)0x02fffdec;
+                s32 *dst = (s32 *)data_0215f078[3];
+                dst[0] = func_0200f684(*(u32 *)rawDate & 0xff);
+                dst[1] = func_0200f684(rawDate->month);
+                dst[2] = func_0200f684(rawDate->day);
+                dst[3] = func_0200f728(dst);
+                dst = (s32 *)data_0215f078[4];
+                dst[0] = func_0200f684(rawTime->hour);
+                dst[1] = func_0200f684(rawTime->minute);
+                dst[2] = func_0200f684(rawTime->second);
+                break;
+            }
+            case 3:
+            case 4:
+            case 5:
+                break;
+            case 6: {
+                struct RtcRawStatus2 *st = (struct RtcRawStatus2 *)0x02fffdea;
+                s32 *dst = (s32 *)data_0215f078[3];
+                if (st->int1_mode == 4) {
+                    *dst = 1;
+                } else {
+                    *dst = 0;
+                }
+                break;
+            }
+            case 7: {
+                struct RtcRawStatus2 *st = (struct RtcRawStatus2 *)0x02fffdea;
+                s32 *dst = (s32 *)data_0215f078[3];
+                if (st->int2_mode != 0) {
+                    *dst = 1;
+                } else {
+                    *dst = 0;
+                }
+                break;
+            }
+            case 8: {
+                struct RtcRawAlarm *raw = (struct RtcRawAlarm *)0x02fffdec;
+                s32 *dst = (s32 *)data_0215f078[3];
+                dst[0] = raw->week;
+                dst[1] = func_0200f684(raw->hour);
+                dst[2] = func_0200f684(raw->minute);
+                dst[3] = 0;
+                if (raw->we) {
+                    dst[3] += 1;
+                }
+                if (((struct RtcRawAlarm *)0x02fffdec)->he) {
+                    dst[3] += 2;
+                }
+                if (((struct RtcRawAlarm *)0x02fffdec)->me) {
+                    dst[3] += 4;
+                }
+                break;
+            }
+            case 9: {
+                struct RtcRawStatus2 *st = (struct RtcRawStatus2 *)0x02fffdea;
+                if (data_0215f078[7] == 0) {
+                    if (*(s32 *)data_0215f078[3] == 1) {
+                        if (st->int1_mode != 4) {
+                            data_0215f078[7]++;
+                            st->int1_mode = 4;
+                            if (!func_0200f6ec()) {
+                                data_0215f078[7] = 0;
+                                result = 3;
+                            }
+                        }
+                    } else {
+                        if (st->int1_mode != 0) {
+                            data_0215f078[7]++;
+                            st->int1_mode = 0;
+                            if (!func_0200f6ec()) {
+                                data_0215f078[7] = 0;
+                                result = 3;
+                            }
+                        }
+                    }
+                } else {
+                    data_0215f078[7] = 0;
+                }
+                break;
+            }
+            case 10: {
+                struct RtcRawStatus2 *st = (struct RtcRawStatus2 *)0x02fffdea;
+                if (data_0215f078[7] == 0) {
+                    if (*(s32 *)data_0215f078[3] == 1) {
+                        if (st->int2_mode == 0) {
+                            data_0215f078[7]++;
+                            st->int2_mode = 1;
+                            if (!func_0200f6ec()) {
+                                data_0215f078[7] = 0;
+                                result = 3;
+                            }
+                        }
+                    } else {
+                        if (st->int2_mode != 0) {
+                            data_0215f078[7]++;
+                            st->int2_mode = 0;
+                            if (!func_0200f6ec()) {
+                                data_0215f078[7] = 0;
+                                result = 3;
+                            }
+                        }
+                    }
+                } else {
+                    data_0215f078[7] = 0;
+                }
+                break;
+            }
+            case 11:
+            case 12:
+            case 13:
+            case 14:
+            case 15:
+                break;
+            default:
+                data_0215f078[7] = 0;
+                result = 4;
+                break;
+        }
+    } else {
+        data_0215f078[7] = 0;
+        switch (pxiResult) {
+            case 1:
+                result = 4;
+                break;
+            case 2:
+                result = 5;
+                break;
+            case 3:
+                result = 1;
+                break;
+            case 4:
+            default:
+                result = 6;
+                break;
+        }
+    }
+
+    if (data_0215f078[7] == 0) {
+        if (data_0215f078[1] != 0) {
+            data_0215f078[1] = 0;
+        }
+        if (data_0215f078[2] != 0) {
+            cb = (void (*)(s32, void *))data_0215f078[2];
+            data_0215f078[2] = 0;
+            cb(result, (void *)data_0215f078[5]);
+        }
+    }
+}
+
 u32 func_0200f684(u32 arg0) {
     u32 result = 0;
     s32 i;
