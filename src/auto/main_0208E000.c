@@ -11,6 +11,7 @@ typedef struct { s16 f0, f1, f2, f3, f4, f5, f6, f7, f8, f9; } Unk10;
 extern const Unk10 data_02141148, data_02141134;
 extern const Unk10 data_0214101c,data_021410f8,data_021410e4;
 typedef struct { s32 data[4]; } Styles_0208e864;
+typedef struct { u8 data[0x50]; } Entry_0208e1cc;
 extern const Styles_0208e864 data_02140ef8;
 extern s32 func_02087754(u8);
 extern void func_0208db04(u16,s32,s16,s16,s16,s16,s16,s16);
@@ -49,7 +50,10 @@ extern const Unk10 data_02141008;
 void func_0208e1cc(s32 arg0, s32 arg1) {
     Unk10 a = data_02141008;
     s16 i;
-    s32 diff, off, id, cnt;
+    s16 stride = 0x50;
+    u8 *page = data_0216010c + 0x5000;
+    s32 id;
+    s32 diff, off, cnt;
     u8 limit;
 
     diff = (u8)(data_0216010c[0x50d7] - data_0216010c[0x50d6]);
@@ -59,14 +63,14 @@ void func_0208e1cc(s32 arg0, s32 arg1) {
 
     for (i = 0; i < 6; i++) {
         if (limit <= i) {
-            func_020a994c(data_0216010c + 0x74 + i * (s16)0x50);
+            func_020a994c(data_0216010c + 0x74 + i * stride);
             continue;
         }
-        id = *(s16 *)(data_0216010c + off + i * 100 + 0x5570);
+        id = *(s16 *)(off + data_0216010c + i * 100 + 0x5570);
         cnt = *(u8 *)(data_0216010c + off + i * 100 + 0x5572);
-        if (i == data_0216010c[0x50d6]) {
+        if (i == page[0xd6]) {
             func_0209250c(0x30, 1, 10, (s16)(i * 19 + 53), 156, 18, 8, 16, 4, 2, 4, 4, 177);
-            func_020a8810(*(void **)(data_0216010c + i * (s16)0x50 + 0x70), 19);
+            func_020a8810(*(void **)(data_0216010c + i * stride + 0x70), 19);
             if (cnt >= 10) {
                 func_0208da7c(0x3e, (cnt / 10) & 0xff, 0x92, (s16)(i * 19 + 56), 8, 10, 179);
                 func_0208da7c(0x3e, (cnt % 10) & 0xff, 0x9a, (s16)(i * 19 + 56), 8, 10, 179);
@@ -76,7 +80,7 @@ void func_0208e1cc(s32 arg0, s32 arg1) {
             func_0208da7c(0x3e, 10, 0x86, (s16)(i * 19 + 56), 8, 10, 179);
         } else {
             func_0209250c(0x2f, 1, 10, (s16)(i * 19 + 53), 156, 18, 8, 16, 4, 2, 4, 4, 177);
-            func_020a8810(*(void **)(data_0216010c + i * (s16)0x50 + 0x70), 20);
+            func_020a8810(*(void **)(data_0216010c + i * stride + 0x70), 20);
             if (cnt >= 10) {
                 func_0208da7c(0x3d, (cnt / 10) & 0xff, 0x92, (s16)(i * 19 + 56), 8, 10, 179);
                 func_0208da7c(0x3d, (cnt % 10) & 0xff, 0x9a, (s16)(i * 19 + 56), 8, 10, 179);
@@ -85,11 +89,12 @@ void func_0208e1cc(s32 arg0, s32 arg1) {
             }
             func_0208da7c(0x3d, 10, 0x86, (s16)(i * 19 + 56), 8, 10, 179);
         }
-        func_020895a0((u16)i, 0x1e000, (i * 19 + 55) << 12, 0x5a, 0, (u16)id, 0, 0, 0);
+        { u16 item = (u16)id;
+        func_020895a0((u16)i, 0x1e000, (i * 19 + 55) << 12, 0x5a, 0, item, 0, 0, 0);
                 a.f5 = 11;
         a.f6 = (s16)(i * 19 + 53);
         a.f7 = 179;
-        func_020a30c4((u16)id);
+        func_020a30c4(item); }
         func_021098ac(&a);
     }
 
