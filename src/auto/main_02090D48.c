@@ -16,6 +16,17 @@ extern const Unk20 data_02140fb8;
 
 extern void func_020a3bbc(s32);
 extern void func_021098ac(void *);
+extern const Unk20 data_02140fa4, data_02140f90;
+extern u8 *data_0216010c;
+extern void func_02092814(s32, s32, s16, s16, s16, s16, s16);
+extern void func_0209250c(s16, s32, s16, s16, s16, s16, s16, s16, s16, s16, s16, s16, s16);
+extern void func_020895a0(s32, s32, s32, s32, s32, s32, s32, s32, s32);
+extern void func_0208dc14(s16, s16, s16, s16, s32);
+extern void func_020a30c4(u16);
+extern void func_020a8810(void *, s32);
+extern void func_020a994c(void *);
+extern s32 func_02085110(u8);
+extern u8 *func_02021f10(s32);
 void func_02090d48(s32 kind,s16 x,s16 y,s16 w,s16 w2,s16 z) {
 Unk20 b=data_02140fb8;
 s32 extra=0;
