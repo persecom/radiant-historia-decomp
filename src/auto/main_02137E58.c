@@ -237,11 +237,11 @@ void func_0213825c(void *arg0, void *arg1) {
 #pragma push
 #pragma opt_propagation off
 void func_02138280(u32 arg0,u32 arg1) {
-if(arg1>=6){func_02138130(data_0215c704);return;}
-if(arg0>=8){func_02138130(data_0215c724);return;}
-*(volatile u32 *)(data_021767bc+arg0*0x48+arg1*12)=0;
-*(volatile u32 *)(data_021767c0+arg0*0x48+arg1*12)=0;
-*(volatile u32 *)(data_021767c4+arg0*0x48+arg1*12)=0;
+    if(arg1>=6){func_02138130(data_0215c704);return;}
+    if(arg0>=8){func_02138130(data_0215c724);return;}
+    *(volatile u32 *)((u8 *)data_021767bc + arg0 * 0x48 + arg1 * 0xc)=0;
+    *(volatile u32 *)((u8 *)data_021767c0 + arg0 * 0x48 + arg1 * 0xc)=0;
+    *(volatile u32 *)((u8 *)data_021767c4 + arg0 * 0x48 + arg1 * 0xc)=0;
 }
 #pragma pop
 void func_021382fc(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
@@ -349,18 +349,14 @@ void func_02138510(void) {
 #pragma optimization_level 3
 void func_02138520(void) {
     s32 i;
-    __clear(data_0217667c, sizeof(data_0217667c));
-    data_02176654[0] = 0;
-    data_02176654[1] = 0;
-    data_02176674[0] = 0;
-    data_02176674[1] = 0;
-    data_0217665c[0] = 0;
-    data_0217665c[1] = 0;
-    data_02176664[0] = 0;
-    data_02176664[1] = 0;
+    __clear(data_0217667c, 0x20);
+    __clear(data_02176654, 8);
+    __clear(data_02176674, 8);
+    __clear(data_0217665c, 8);
+    __clear(data_02176664, 8);
     for (i = 0; i < 6; i++) data_0217669c[i] = 0;
     data_02176644[2] = 0;
-    __clear(data_021767bc, sizeof(data_021767bc));
+    __clear(data_021767bc, 0x240);
 }
 #pragma optimization_level 4
 void func_021385d4(void) {
@@ -423,19 +419,16 @@ void func_02138a60(u8 *);
 s32 func_02138704(u8 *a, const InitParams *p, u8 *buf, s32 capacity) {
 s32 i;
 s32 used=0;
-InitParams *dstp;
-const InitParams *srcp;
 
 if (*(s32 *)(a+0x58)==1 || *(s32 *)(a+0x5c)==1) {func_02126c20(data_0215c840); return 0;}
 func_021390fc(a);
 *(s32 *)(a+0x5c)=1;
-srcp=p;
-dstp=(InitParams *)(a+0x80);
-*dstp=*srcp;
+*(InitParams *)(a+0x80)=*p;
 {
 s32 cfg[3]={0,0,0};
+const long channels=p->v[1];
 if(p->v[7]==1) cfg[1]=p->v[3]; else cfg[1]=1;
-cfg[0]=p->v[1]; cfg[2]=p->v[9];
+cfg[0]=channels; cfg[2]=p->v[9];
 if(p->v[6]==1){*(s32 *)(a+0x64)=1;*(s32 *)(a+0xa8)=2;}
 else {*(s32 *)(a+0x64)=0;*(s32 *)(a+0xa8)=1;}
 for(i=0;i<*(s32 *)(a+0xa8);i++){
