@@ -10,9 +10,6 @@ extern void *func_02046f90(u32, u16);
 extern void func_020477dc(void *, u32, u32);
 extern void func_021167f0(void *, void *);
 extern u64 data_02162658[3];
-static inline u8 hit_rect_020783e8(s32 tx, s32 ty, s32 x0, s32 y0, s32 x1, s32 y1) {
-    return (tx >= x0 && tx <= x1 && ty >= y0 && ty <= y1);
-}
 static inline u32 random_02078e1c(u32 limit) {
     u64 value = data_02162658[1] * data_02162658[0] + data_02162658[2];
     data_02162658[0] = value;
