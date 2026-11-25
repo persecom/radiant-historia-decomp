@@ -1193,7 +1193,10 @@ src/auto/main_0210F550.c:
     .text start:0x0210f550 end:0x0210f7b0
 
 src/auto/main_0210F7B0.c:
-    .text start:0x0210f7b0 end:0x02110518
+    .text start:0x0210f7b0 end:0x0210fb24
+
+src/auto/main_0210FB24.c:
+    .text start:0x0210fb24 end:0x02110518
 
 src/auto/main_02110518.c:
     complete
