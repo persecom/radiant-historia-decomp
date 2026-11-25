@@ -1,6 +1,5 @@
 /* 37 functions from 0x0212C824 to 0x0212D7BC (main), found by ds-decomp. */
 #include "common.h"
-typedef struct { s32 a; s32 b; } Pair_0212c824;
 extern char data_02156d20[],data_02156d44[];
 typedef struct { u32 head; void *ctx; void *obj; void *objs[2]; s32 pair[2]; s32 pairs[2][2]; s32 a,b,c,d,e,f,g; u32 pad[4]; void (*callback)(void *,s32,s32,s32); void *user; } Unk0212CFC4;
 typedef struct { s8 unk00[2]; s8 count; u8 unk03[9]; void *objs[4]; u8 unk1c[0x8c]; s32 unkA8; s32 remaining; } Unk0212D3B4;
@@ -38,11 +37,11 @@ void func_0212c824(void *arg0) {
     u8 *p = (u8 *)arg0;
     u8 *ctx = *(u8 **)(p + 4);
     void *obj = *(void **)(p + 8);
-    long buf[2];
-    long tmp[2];
+    s32 buf[2];
+    s32 tmp[2];
     s32 ret;
 
-    (*(void (**)(void *, s32, s32, void *))(*(u8 **)obj + 0x18))(obj, 1, 0xc800, buf);
+    ret = (*(s32 (**)(void *, s32, s32, void *))(*(u8 **)obj + 0x18))(obj, 1, 0xc800, buf);
     if (buf[1] <= 0) {
         (*(void (**)(void *, s32, void *))(*(u8 **)obj + 0x1c))(obj, 1, buf);
         return;
