@@ -82,24 +82,17 @@ void func_02008ca8(void) {
 }
 
 void func_02008d08(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
-    if (arg2 == 0) {
-        if (arg3 != 0) {
-            ((Fn_U32)arg3)(arg4);
-        }
-        return;
-    }
-    if (data_0215d17c.field_0 != 0) goto done;
-    data_0215d17c.field_0 = 1;
-    data_0215d17c.field_4 = arg0;
-    data_0215d17c.field_10 = arg3;
-    data_0215d17c.field_14 = arg4;
-    func_02008a28(arg0, 0x38000000);
-    func_02008ab4(arg0, arg1, arg2, 0);
-    func_0200893c(arg0);
-    func_020058fc(arg0, (u32)func_02008dc4, 0);
-    func_01ff845c(arg0, arg1, 0x4000400, (-0x3c00000) | (arg2 >> 2), 0);
-done:
-    return;
+ if(arg2==0) { if(arg3) ((Fn_U32)arg3)(arg4); return; }
+ while(*(volatile u32 *)&data_0215d17c.field_0) {}
+ *(volatile u32 *)&data_0215d17c.field_0=1;
+ *(volatile u32 *)&data_0215d17c.field_4=arg0;
+ data_0215d17c.field_10=arg3;
+ data_0215d17c.field_14=arg4;
+ func_02008a28(arg0,0x38000000);
+ func_02008ab4(arg0,arg1,arg2,0);
+ func_0200893c(arg0);
+ func_020058fc(arg0,(u32)func_02008dc4,0);
+ func_01ff845c(arg0,arg1,0x4000400,(-0x3c00000)|(arg2>>2),0);
 }
 
 void func_02008dc4(void) {
@@ -187,6 +180,37 @@ void func_02008f48(const void *src, void *dst) {
     const Copy64B *s = (const Copy64B *)src;
     Copy64B *d = (Copy64B *)dst;
     *d = *s;
+}
+
+void func_02008f74(u8 *p, u32 value, u32 size) {
+u32 count;
+if(size==0) return;
+if((u32)p&1) {
+u32 old=*(u16 *)(p-1)&255;
+*(u16 *)(p-1)=old|(value<<8);
+p++; if(--size==0) return;
+}
+if(size>=2) {
+value|=value<<8;
+if((u32)p&2) {
+*(u16 *)p=value; p+=2; size-=2; if(size==0) return;
+}
+value|=value<<16;
+count=size&~3;
+if(count) {
+u8 *end;
+size-=count;
+end=count+p;
+do { *(u32 *)p=value; p+=4; } while(p<end);
+}
+if(size&2) { *(u16 *)p=value; p+=2; }
+}
+if(!(size&1)) return;
+{
+u32 old=*(u16 *)p&0xff00;
+value&=255;
+*(u16 *)p=value|old;
+}
 }
 
 void func_02009008(u8 *src, u8 *dst, u32 size)
