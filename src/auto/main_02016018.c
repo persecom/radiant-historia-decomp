@@ -8,7 +8,7 @@ s32 func_02017f74(s32,s32,void *,void *,s32 *,s32 *,s32 *);
 u64 func_0201843c(s32,s32,void *,void *,s32 *,s32 *,s32 *);
 f64 func_02016fc4(s32,void *,void *,s32 *,s32 *);
 s32 func_0201375c(void *,const void *,u32);
-static inline s32 scan_space_02016018(s32 c) { return (c<0 || c>=128) ? 0 : data_0213eb14[c]&0x100; }
+static inline s32 scan_space_02016018(s32 c) { s32 outside=1; if(c>=0 && c<128) outside=0; return outside ? 0 : data_0213eb14[c]&0x100; }
 
 
 extern s32 func_02016cfc(s32, const char *, char *);
@@ -17,9 +17,180 @@ extern void (*data_02160038)(void);
 extern void func_02016da0(void);
 s32 func_02016018(void *arg0, void *arg1, const char *arg2, void *arg3, s32 arg4) {
  s32 (*read)(void *,s32,s32)=arg0;
- s32 n=0;
- while(*arg2) { if(read(arg1,0,0)!=(u8)*arg2++) break; n++; }
- return n;
+ const u8 *fmt=(const u8 *)arg2;
+ u8 *args=arg3, *dst;
+ s32 c=*fmt, raw=0;
+ s32 signedValue=0;u32 unsignedValue=0;
+ s64 signedWide=0;u64 unsignedWide=0;
+ s32 failed=0, capacityOK=0;u32 capacity=0;
+ s32 total=0,assigned=0,conversions=0;
+ s32 scanned,negative,overflow;
+ u8 byte;
+ ScanSpec_02015 spec;
+ while(c) {
+ if(scan_space_02016018(c)) {
+ do {c=*++fmt;}while(scan_space_02016018(c));
+ if(!failed) {
+ while(scan_space_02016018(byte=read(arg1,0,0))) total++;
+ if((s32)byte==-1) {if(!arg4)goto done; failed=1;}
+ read(arg1,byte,1);
+ }
+ } else if(c!='%' && !failed) {
+ byte=read(arg1,0,0);
+ if(c!=byte) {failed=1;read(arg1,byte,1);if(!arg4)goto done;}
+ else total++;
+ fmt++;
+ } else {
+ fmt=func_02015b74((u8 *)fmt,&spec);
+ if(!spec.suppress && spec.conversion!='%') {dst=*(u8 **)args;args+=4;}else dst=0;
+ if(spec.conversion!='n'&&!failed&&read(arg1,0,2)) {if(!arg4)goto done;failed=1;}
+ switch(spec.conversion) {
+ case 'd': c=10;goto signed_number;
+ case 'i': c=0;
+ signed_number:
+ if(failed) {signedValue=0;signedWide=0;}
+ else {
+ if(spec.length==7||spec.length==4) unsignedWide=func_0201843c(c,spec.width,arg0,arg1,&scanned,&negative,&overflow);
+ else unsignedValue=func_02017f74(c,spec.width,arg0,arg1,&scanned,&negative,&overflow);
+ if(!scanned) {if(!arg4)goto done;failed=1;signedValue=0;signedWide=0;}
+ else {total+=scanned;
+ if(spec.length==7||spec.length==4) signedWide=negative?-unsignedWide:unsignedWide;
+ else signedValue=negative?-unsignedValue:unsignedValue;
+ }
+ }
+ if(dst) {
+ switch(spec.length) {
+ case 0:*(s32 *)dst=signedValue;break;
+ case 1:*(s8 *)dst=signedValue;break;
+ case 2:*(s16 *)dst=signedValue;break;
+ case 3:*(s32 *)dst=signedValue;break;
+ case 4:*(s64 *)dst=signedWide;break;
+ case 5:*(s32 *)dst=signedValue;break;
+ case 6:*(s32 *)dst=signedValue;break;
+ case 7:*(s64 *)dst=signedWide;break;
+ }
+ if(!failed)assigned++;
+ }
+ conversions++;break;
+ case 'o':c=8;goto unsigned_number;
+ case 'u':c=10;goto unsigned_number;
+ case 'x':case 'X':c=16;
+ unsigned_number:
+ if(failed){unsignedValue=0;unsignedWide=0;}
+ else {
+ if(spec.length==7||spec.length==4)unsignedWide=func_0201843c(c,spec.width,arg0,arg1,&scanned,&negative,&overflow);
+ else unsignedValue=func_02017f74(c,spec.width,arg0,arg1,&scanned,&negative,&overflow);
+ if(!scanned){if(!arg4)goto done;failed=1;unsignedValue=0;unsignedWide=0;}
+ else {total+=scanned;if(negative){if(spec.length==7)unsignedWide=-unsignedWide;else unsignedValue=-unsignedValue;}}
+ }
+ if(dst){
+ switch(spec.length){
+ case 0:*(u32 *)dst=unsignedValue;break;
+ case 1:*(u8 *)dst=unsignedValue;break;
+ case 2:*(u16 *)dst=unsignedValue;break;
+ case 3:*(u32 *)dst=unsignedValue;break;
+ case 4:*(u64 *)dst=unsignedWide;break;
+ case 5:*(u32 *)dst=unsignedValue;break;
+ case 6:*(u32 *)dst=unsignedValue;break;
+ case 7:*(u64 *)dst=unsignedWide;break;
+ }
+ if(!failed)assigned++;
+ }conversions++;break;
+ case 'a':case 'A':case 'e':case 'E':case 'f':case 'F':case 'g':case 'G':{
+ f64 value;
+ if(failed)value=data_02145c2c;
+ else {
+ value=func_02016fc4(spec.width,arg0,arg1,&scanned,&overflow);
+ if(!scanned) {if(!arg4)goto done;failed=1;value=data_02145c2c;}else total+=scanned;
+ }
+ if(dst) {
+ switch(spec.length){case 0:*(f32 *)dst=value;break;case 8:*(f64 *)dst=value;break;case 9:*(f64 *)dst=value;break;}
+ if(!failed)assigned++;
+ }conversions++;break;
+ }
+ case 'c':
+ if(!spec.hasWidth)spec.width=1;
+ if(dst){
+ u8 *start=dst;
+ if(arg4){capacity=*(u32 *)args;args+=4;capacityOK=1;}
+ scanned=0;
+ if(failed){if(capacity) *dst=0;break;}
+ while(spec.width-- && (!arg4 || (capacityOK=capacity>(u32)scanned)) && (raw=read(arg1,0,0))!=-1) {
+ byte=raw;
+ if(spec.length!=10)*dst++=(u8)raw;else {func_0201375c(dst,&byte,1);dst+=2;}
+ scanned++;
+ }
+ byte=raw;
+ if(!scanned || (arg4&&!capacityOK)){
+ if(!arg4)goto done;failed=1;if(capacity)*start=0;break;
+ }
+ total+=scanned;assigned++;
+ }else{
+ scanned=0;
+ while(spec.width-- && (raw=read(arg1,0,0))!=-1){byte=raw;scanned++;}
+ byte=raw;
+ if(!scanned)goto done;
+ }
+ conversions++;break;
+ case '%':
+ if(!failed) {
+ while(scan_space_02016018(byte=read(arg1,0,0)))total++;
+ if(byte!='%'){failed=1;read(arg1,byte,1);if(!arg4)goto done;}
+ else total++;
+ }break;
+ case 's':
+ if(!failed) {
+ while(scan_space_02016018(byte=read(arg1,0,0)))total++;
+ read(arg1,byte,1);
+ }
+ case '[':
+ if(dst) {
+ u8 *start=dst;
+ if(arg4){capacity=*(u32 *)args-1;args+=4;capacityOK=1;}
+ scanned=0;
+ if(failed){if(capacity)*dst=0;break;}
+ while(spec.width-- && (!arg4 || (capacityOK=capacity>=(u32)scanned)) && (raw=read(arg1,0,0))!=-1) {
+ byte=raw;
+ if(!(spec.set[(u8)raw>>3] & (1<<((u8)raw&7))))break;
+ if(spec.length!=10)*dst++=(u8)raw;else{func_0201375c(dst,&byte,1);dst+=2;}
+ scanned++;
+ }
+ byte=raw;
+ if(!scanned || (arg4&&!capacityOK)) {
+ failed=1;read(arg1,(u8)raw,1);if(!arg4)goto done;if(capacity)*start=0;break;
+ }
+ total+=scanned;
+ if(spec.length==10)*(u16 *)dst=0;else *dst=0;
+ assigned++;
+ }else {
+ scanned=0;
+ while(spec.width-- && (raw=read(arg1,0,0))!=-1) {
+ byte=raw;
+ if(!(spec.set[(u8)raw>>3] & (1<<((u8)raw&7))))break;
+ scanned++;
+ }
+ byte=raw;
+ if(!scanned){read(arg1,(u8)raw,1);break;}
+ total+=scanned;
+ }
+ if(spec.width>=0)read(arg1,byte,1);
+ conversions++;break;
+ case 'n':
+ if(dst)switch(spec.length){
+ case 0:*(s32 *)dst=total;break;
+ case 1:*(s8 *)dst=total;break;
+ case 2:*(s16 *)dst=total;break;
+ case 3:*(s32 *)dst=total;break;
+ case 7:*(s64 *)dst=total;break;
+ }break;
+ default:goto done;
+ }
+ }
+ c=*fmt;
+ }
+ done:
+ if(read(arg1,0,2)&&!conversions)return -1;
+ return assigned;
 }
 
 s32 func_02016c84(void *p, s32 ch, s32 act) {
