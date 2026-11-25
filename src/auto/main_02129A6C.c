@@ -73,9 +73,11 @@ void func_02129c50(u8 *arg0, s32 arg1, s32 arg2) {
     *(s32 *)(arg0 + 0x88) += arg2;
 }
 
+#pragma opt_propagation off
 void func_02129c6c(u8 *arg0) {
-    u8 *p;
+    u8 z = 0;
     u32 i;
+    u8 *p;
     *(u32 *)(arg0 + 0xc4) = 0;
     *(s16 *)(arg0 + 0xd8) = 0;
     *(s16 *)(arg0 + 0xda) = -0x80;
@@ -83,14 +85,14 @@ void func_02129c6c(u8 *arg0) {
     p = arg0 + 0xc8;
     i = 4;
     do {
-        p[0] = 0;
-        p[1] = 0;
-        p[2] = 0;
-        p[3] = 0;
+        p[0] = z;
+        p[1] = z;
+        p[2] = z;
+        p[3] = z;
         p += 4;
     } while (--i != 0);
 }
-
+#pragma opt_propagation on
 void *func_0212965c(void);
 void func_02129d80(u8 *);
 u8 *func_02129cac(u32 arg0,u32 arg1,u32 arg2,u32 arg3) {
