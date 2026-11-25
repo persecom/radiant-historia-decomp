@@ -199,13 +199,14 @@ s32 func_0202a5a4(u32 arg0, s32 arg1, s32 arg2, u8 *arg3) {
 }
 
 int func_0202aa68(int mode, int name, int unused, u8 *obj) {
-    char path[32];
-    u16 values[11] = {0};
-    int found;
+    void *file;
+    u16 parse;
+    u16 i;
     s16 count;
     u16 row = 0;
-    u16 i;
-    void *file;
+    int found;
+    char path[32];
+    u16 values[11] = {0};
     u8 *state = *(u8 **)(obj + 0x12c);
 
     func_02005e80(path, data_02146170, name);
@@ -213,18 +214,18 @@ int func_0202aa68(int mode, int name, int unused, u8 *obj) {
     found = 0;
     do {
         count = 0;
-        i = 0;
-        values[i] = func_02092994(file, count); i++;
-        values[i] = func_02092994(file, count); i++;
-        values[i] = func_02092994(file, count); i++;
-        values[i] = func_02092994(file, count); i++;
-        values[i] = func_02092994(file, count); i++;
-        values[i] = func_02092994(file, count); i++;
-        values[i] = func_02092994(file, count); i++;
-        values[i] = func_02092994(file, count); i++;
-        values[i] = func_02092994(file, count); i++;
-        values[i] = func_02092994(file, count); i++;
-        values[i] = func_02092994(file, count);
+        parse = 0;
+        values[parse] = func_02092994(file, count); parse++;
+        values[parse] = func_02092994(file, count); parse++;
+        values[parse] = func_02092994(file, count); parse++;
+        values[parse] = func_02092994(file, count); parse++;
+        values[parse] = func_02092994(file, count); parse++;
+        values[parse] = func_02092994(file, count); parse++;
+        values[parse] = func_02092994(file, count); parse++;
+        values[parse] = func_02092994(file, count); parse++;
+        values[parse] = func_02092994(file, count); parse++;
+        values[parse] = func_02092994(file, count); parse++;
+        values[parse] = func_02092994(file, count);
         if (row % 2 == 0) {
             for (i = 0; i < 9; i++) {
                 if (func_0202bf4c(values[i + 2], (u8)i)) {
