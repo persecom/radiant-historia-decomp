@@ -258,27 +258,18 @@ void func_02007f24(void) {
 }
 
 s32 func_0200808c(u8 *arg0, s32 arg1, s32 arg2) {
-    s32 a = arg1 - *(s32 *)(arg0 + 0xc);
-    s32 b = arg2 - *(s16 *)(arg0 + 0x10);
-    if (a >= 0) {
-        if (a != 0 || b >= 0) {
-            return 2;
-        }
-        return 0;
-    }
-    if (b < 0) {
-        a = b + 7;
-        b = a + 0x100;
-    }
-    if (b <= *(s16 *)(arg0 + 0x12)) {
-        return 1;
-    }
-    return 2;
+s32 a = arg1 - *(s32 *)(arg0 + 0xc);
+s32 b = arg2 - *(s16 *)(arg0 + 0x10);
+if (a < 0 || (a == 0 && b < 0)) return 0;
+if (b < 0) b += 0x107;
+if (b <= *(s16 *)(arg0 + 0x12)) return 1;
+return 2;
 }
 
 u32 func_020080d8(u32 arg0) {
     u32 irq = func_02008128();
-    if ((s32)arg0 < ((s32 *)data_0215d144)[1]) {
+    s32 old = ((s32 *)data_0215d144)[1];
+    if ((s32)arg0 < old) {
         ((s32 *)data_0215d144)[2]++;
     }
     ((s32 *)data_0215d144)[1] = arg0;
