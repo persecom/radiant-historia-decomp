@@ -180,27 +180,15 @@ void func_021281b0(void *arg0) {
 }
 
 void func_021281cc(void *arg0) {
-    Unk_02128030 *a = (Unk_02128030 *)arg0;
-    void *p;
-    func_0212a9dc();
-    func_0212eb10(*(void **)((u8 *)a + 0xc), 0);
-    func_0212eb1c(*(void **)((u8 *)a + 0xc), 0);
-    func_0212c808(a->f4);
-    if (a->f2 != 2 || a->f14 == 0) {
-        goto tail;
-    }
-    p = (void *)a->f14;
-    a->f14 = 0;
-    ((void (**)(void *))*(void **)p)[3](p);
-    if (a->f74 != NULL) {
-        func_0212e5bc(a->f74);
-        goto tail;
-    }
-tail:
-    a->f14 = 0;
-    a->f1 = 0;
-    *(u8 *)((u8 *)a + 0xa8) = 0;
-    func_0212a9e8();
+Unk_02128030 *a=(Unk_02128030 *)arg0; void *p;
+func_0212a9dc();
+func_0212eb10(*(void **)((u8 *)a+0xc),0);
+func_0212eb1c(*(void **)((u8 *)a+0xc),0);
+func_0212c808(a->f4);
+if(a->f2==2 && a->f14!=0) {p=(void *)a->f14;a->f14=0;((void (**)(void *))*(void **)p)[3](p);}
+if(a->f74!=NULL) func_0212e5bc(a->f74);
+a->f14=0; a->f1=0; *(u8 *)((u8 *)a+0xa8)=0;
+func_0212a9e8();
 }
 
 extern void func_02128268(void *);
