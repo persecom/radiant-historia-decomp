@@ -62,22 +62,18 @@ if(!(state&52)) {*scanned=0;value=0;} else *scanned=used-1+spaces;
 return value;
 }
 #pragma opt_lifetimes on
-u32 func_020182e4(const char *str, char **endptr, s32 base) {
-    u32 result;
-    s32 chars_scanned, negative, overflow;
-    struct { const char *p; s32 n; } isc;
-    isc.p = str;
-    isc.n = 0;
-    result = func_02017f74(base, 0x7fffffff, (void *)func_02016c84, &isc, &chars_scanned, &negative, &overflow);
-    if (endptr) *endptr = (char *)str + chars_scanned;
-    if (overflow) {
-        data_02160034 = 0x22;
-        return 0xffffffff;
-    }
-    if (negative) {
-        return -result;
-    }
-    return result;
+s32 func_020182e4(const char *str, char **endptr, s32 base) {
+ s32 result, chars_scanned, negative, overflow;
+ struct { const char *p; s32 n; } isc;
+ isc.p=str; isc.n=0;
+ result=func_02017f74(base,0x7fffffff,(void *)func_02016c84,&isc,&chars_scanned,&negative,&overflow);
+ if(endptr) *endptr=(char *)str+chars_scanned;
+ if(overflow) {
+  s32 ret = -1;
+  data_02160034=0x22;
+  return ret;
+ }
+ return negative ? -result : result;
 }
 #pragma opt_propagation on
 s32 func_02018378(const char *str, char **endptr, s32 base) {
@@ -198,6 +194,7 @@ void func_020188b0(UnkNum_02018844 *arg0, s32 arg1) {
         }
         *p-- = 0;
     } while (1);
+    while (1) {}
 }
 
 void func_020188fc(void) {
