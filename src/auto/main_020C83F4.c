@@ -224,25 +224,22 @@ s32 func_020c885c(u8 *arg0) {
     return 0;
 }
 
-void func_020c888c(u8 *arg0, s32 arg1, s32 arg2) {
-    u8 *obj;
-    s16 y;
-    s16 x;
-    u16 i;
-    u32 count = func_020c9c34(*(void **)(arg0 + 0x54));
-    for (i = 0; i < count; i++) {
-        obj = func_020c9c10(*(void **)(arg0 + 0x54), i);
-        if (obj != NULL) {
-            ((void (*)(u8 *))(*(void **)(obj + 0x28)))(obj);
-            x = (*(s16 *)(obj + 0x3a) - *(s16 *)(arg0 + 0x58)) + arg1;
-            y = (*(s16 *)(obj + 0x3c) - *(s16 *)(arg0 + 0x5a)) + arg2;
-            ((void (*)(u8 *, s32))(*(void **)(obj + 0x10)))(obj, x);
-            ((void (*)(u8 *, s32))(*(void **)(obj + 0x14)))(obj, y);
-        }
-    }
-    *(s16 *)(arg0 + 0x58) = arg1;
-    *(s16 *)(arg0 + 0x5a) = arg2;
-    func_020c7f6c(arg0, arg1, arg2);
+void func_020c888c(u8 *arg0,s32 arg1,s32 arg2){
+u8 *obj; s32 y,x; u16 i;
+u32 count=func_020c9c34(*(void **)(arg0+0x54));
+for(i=0;i<count;i++){
+obj=func_020c9c10(*(void **)(arg0+0x54),i);
+if(obj!=NULL){
+((void (*)(u8 *))(*(void **)(obj+0x28)))(obj);
+s32 dx=arg1+(*(s16 *)(obj+0x3a)-*(s16 *)(arg0+0x58));
+s32 dy=arg2+(*(s16 *)(obj+0x3c)-*(s16 *)(arg0+0x5a));
+y=(dy<<16)>>16; x=(dx<<16)>>16;
+((void (*)(u8 *,s32))(*(void **)(obj+0x10)))(obj,x);
+((void (*)(u8 *,s32))(*(void **)(obj+0x14)))(obj,y);
+}}
+*(s16 *)(arg0+0x58)=arg1;
+*(s16 *)(arg0+0x5a)=arg2;
+func_020c7f6c(arg0,arg1,arg2);
 }
 
 extern void func_020c888c(u8 *, s32, s32);
@@ -553,29 +550,19 @@ if(p[0x44]) func_020c9348(p,*(u16 *)(p+0x3c)>*(u16 *)(p+0x3a));
 }
 
 void func_020c9348(u8 *arg0, s32 arg1) {
-    u16 cur = *(u16 *)(arg0 + 0x3e);
-    s16 val = (s16)cur;
-    u16 end = *(u16 *)(arg0 + 0x3a);
-    u16 step = *(u16 *)(arg0 + 0x40);
-    u16 limit = *(u16 *)(arg0 + 0x42);
-    if (end < cur) {
-        switch (arg1) {
-        case 0: val = (s16)(end - step + 1); break;
-        case 1: val = (s16)end; break;
-        }
-    }
-    if (end >= cur + step) {
-        switch (arg1) {
-        case 0: val = (s16)(end - step + 1); break;
-        case 1: val = (s16)end; break;
-        }
-    }
-    if (val < 0) val = 0;
-    if (limit >= step) {
-        s16 max = limit - step;
-        if (val > max) val = max;
-    }
-    *(u16 *)(arg0 + 0x3e) = val;
-    func_020c9610(arg0);
+u32 limit;
+u32 step;
+s16 val;
+u16 cur=*(u16 *)(arg0+0x3e);
+u16 end=*(u16 *)(arg0+0x3a);
+step=*(u16 *)(arg0+0x40);
+val=(s16)cur;
+limit=*(u16 *)(arg0+0x42);
+if(end<cur){switch(arg1){case 0:val=end-step+1;break;case 1:val=end;break;}}
+if(end>=(s32)(cur+step)){switch(arg1){case 0:val=end-step+1;break;case 1:val=end;break;}}
+if(val<0)val=0;
+if(limit>=step){s32 max=limit-step;if(val>max)val=max;}
+*(u16 *)(arg0+0x3e)=val;
+func_020c9610(arg0);
 }
 
