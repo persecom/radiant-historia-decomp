@@ -150,23 +150,43 @@ void func_02092190(void) {
 }
 
 #pragma opt_propagation off
-void func_02092194(s32 id,s32 x,s32 y,s32 w,s16 h,s16 tw,s16 th,s16 z,s32 edge,s16 mid){
-Unk_02092194 buf=data_02140f2c;
-func_020a3bbc(id);
-buf.data[8]=edge;
-buf.data[2]=0;buf.data[1]=0;buf.data[3]=buf.data[8];buf.data[4]=th;buf.data[9]=h;
-buf.data[5]=x;buf.data[6]=y;buf.data[7]=z;
-func_021098ac(&buf);
-buf.data[8]=w+(-2*edge);
-buf.data[1]=mid;buf.data[2]=0;buf.data[3]=edge;buf.data[4]=th;buf.data[9]=h;
-buf.data[5]=edge+x;buf.data[6]=y;buf.data[7]=z;
-func_021098ac(&buf);
-buf.data[8]=edge;
-buf.data[2]=0;buf.data[1]=(s16)tw-edge;buf.data[3]=buf.data[8];buf.data[4]=th;buf.data[9]=h;
-buf.data[5]=x+w-edge;buf.data[6]=y;buf.data[7]=z;
-func_021098ac(&buf);
+void func_02092194(s32 id, s32 x, s32 y, s32 w, s16 h, s16 tw, s16 th, s16 z, s32 edge, s16 mid) {
+    Unk_02092194 buf = data_02140f2c;
+    s32 t;
+    func_020a3bbc(id);
+    buf.data[8] = edge;
+    buf.data[2] = 0;
+    buf.data[1] = 0;
+    buf.data[3] = buf.data[8];
+    buf.data[4] = th;
+    buf.data[9] = h;
+    buf.data[5] = x;
+    buf.data[6] = y;
+    buf.data[7] = z;
+    func_021098ac(&buf);
+    buf.data[1] = mid;
+    t = -2 * edge;
+    buf.data[8] = t + w;
+    buf.data[2] = 0;
+    buf.data[3] = edge;
+    buf.data[4] = th;
+    buf.data[9] = h;
+    buf.data[5] = x + edge;
+    buf.data[6] = y;
+    buf.data[7] = z;
+    func_021098ac(&buf);
+    buf.data[8] = edge;
+    buf.data[2] = 0;
+    buf.data[1] = (s16)tw - edge;
+    buf.data[3] = buf.data[8];
+    buf.data[4] = th;
+    buf.data[9] = h;
+    buf.data[5] = x + w - edge;
+    buf.data[6] = y;
+    buf.data[7] = z;
+    func_021098ac(&buf);
 }
-#pragma opt_propagation on
+#pragma opt_propagation reset
 void func_020922bc(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s16 arg4, s16 arg5, s16 arg6, s16 arg7) {
     func_02092194(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, 5, 5);
 }
