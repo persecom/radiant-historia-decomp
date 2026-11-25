@@ -226,6 +226,7 @@ extern s32 func_020f1a1c(u8 *, s32);
 extern s32 func_020f1b70(u8 *, s32);
 extern void func_020f18ec(u8 *, s32);
 extern char data_02151d10[], data_02151d20[], data_02151d24[], data_02151d28[], data_02151d30[], data_02151d44[], data_02151d48[];
+void func_0210b080(u8 *);
 s32 func_020f0154(u16 arg0) {
     u8 flag = 0;
     s32 tmp;
@@ -291,7 +292,7 @@ s32 func_020f0154(u16 arg0) {
         func_02005e80(path, data_02151d48, ((s32 *)&data_02160af0)[2]);
         func_0210bbc8(mgr, (u32)name, (u32)path, 0);
         func_02120c34(*(u8 **)(mgr + 0x54), 1);
-        func_0210b0ac(mgr);
+        func_0210b080(mgr);
         func_02108ffc();
     }
 
