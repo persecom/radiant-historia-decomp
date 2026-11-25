@@ -17,6 +17,7 @@ extern void func_0200aeac();
 extern void func_02008f74(void *, s32, s32);
 extern s32 func_020124a8(s32, u8 *, s8 *);
 extern u8 *data_0215ed68;
+static __inline u8 **head_slot_0200b5b8(void) { return &data_0215ed68; }
 extern char data_02145c00[];
 s32 func_0200b810(const char *str, s32 pos);
 s32 func_0200b844(char *str);
