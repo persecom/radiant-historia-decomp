@@ -1,5 +1,23 @@
 /* 2 functions from 0x02082C70 to 0x02083580 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { s16 field[10]; } MenuDrawParams;
+extern const MenuDrawParams data_02140c8c;
+extern void func_0208b110(void);
+extern void func_02084a70(void *);
+extern void func_020a3bbc(s32);
+extern void func_021098ac(void *);
+extern void func_0208c8b8(s32);
+extern void func_0208cb1c(s32);
+extern void func_0208cbcc(void);
+extern void func_020899e8(u8);
+extern void func_020a994c(void *);
+extern void func_02092190(void);
+extern void func_02089878(void);
+extern s32 func_02085110(u8);
+extern u8 *func_02021f10(s32);
+extern void func_0208a3a4(u8);
+extern void func_0208fa4c(s32,s32,s32,s32,s32);
+extern void func_0208994c(s32);
 typedef struct { u8 pad[0x1a]; s16 flags; } MenuFlagView;
 typedef struct { u8 bytes[0x1a]; } MenuItem;
 extern u16 data_02162908[4];
