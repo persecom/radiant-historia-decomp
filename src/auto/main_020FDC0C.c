@@ -32,10 +32,17 @@ extern void func_020f67a8(void *);
 extern void func_020f4668(void *);
 extern void func_020a9610(void *, void *, u32, void *, s32, s32);
 extern void func_020a98ac(void *);
-extern void func_020a9738(void *, s32);
+extern s32 func_020a9738(void *, u16);
 extern void func_020a8810(void *, s32);
 extern void func_0210d6a4(s32, s32);
 extern void func_0210d27c(s32);
+extern void func_0210cba0(void *, u32);
+extern void func_0210c9cc(void *);
+extern s32 func_020f5364(void *, void *);
+extern void func_0205443c(s32);
+extern void func_020f58c0(void *);
+extern void func_020468b0(s32);
+extern void func_02044c48(s32);
 void func_020fdc0c(void) {
     u8 *mgr = data_02162880;
     u8 *node = *(u8 **)(mgr + 0x14);
