@@ -306,7 +306,7 @@ data_0216013c=func_0210c594(576,data_02155c3c);
 Position_020a7b18 pos;pos.x=0;pos.y=0;pos.z=0;
 func_020f0154(*(u16 *)(data_0216013c+0x230));
 obj=func_020f0a5c(*(u16 *)(data_0216013c+0x230));
-if(obj){u8 *model=*(u8 **)obj;*(s32 *)(model+0x6c)=zero;*(s32 *)(model+0x70)=zero;*(s32 *)(model+0x74)=zero;*(s32 *)(model+0xf4)=one;}
+if(obj){u8 *model=*(u8 **)obj;*(s32 *)(model+0x6c)=pos.x;*(s32 *)(model+0x70)=pos.y;*(s32 *)(model+0x74)=pos.z;*(s32 *)(model+0xf4)=one;}
 *(u16 *)(data_0216013c+0x232)=501;
 func_020f0154(0x2764);
 func_020f0898(pos,0x2764,501);
