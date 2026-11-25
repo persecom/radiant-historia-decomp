@@ -183,6 +183,91 @@ node=*(u8 **)(node+0x24);
 }
 }
 
+u32 func_020deaf0(u8 *arg0, s32 arg1) {
+    u32 mask = 1u << arg1;
+    if (arg0 == NULL) return 0;
+    switch (arg0[6]) {
+    case 2:
+        if ((arg1 + 3) % 3 == arg1 % 3) mask |= 1u << (arg1 + 3);
+        if ((arg1 + 6) % 3 == arg1 % 3) mask |= 1u << (arg1 + 6);
+        break;
+    case 3:
+        if ((arg1 + 1) / 3 == arg1 / 3) mask |= 1u << (arg1 + 1);
+        if ((arg1 - 1) / 3 == arg1 / 3 && (arg1 - 1) >= 0) mask |= 1u << (arg1 - 1);
+        break;
+    case 4:
+        if ((arg1 + 1) / 3 == arg1 / 3) mask |= 1u << (arg1 + 1);
+        if ((arg1 - 1) / 3 == arg1 / 3 && (arg1 - 1) >= 0) mask |= 1u << (arg1 - 1);
+        if ((arg1 + 3) % 3 == arg1 % 3) mask |= 1u << (arg1 + 3);
+        if ((arg1 - 3) % 3 == arg1 % 3 && (arg1 - 3) >= 0) mask |= 1u << (arg1 - 3);
+        break;
+    case 5:
+        if ((arg1 + 1) / 3 == arg1 / 3) mask |= 1u << (arg1 + 1);
+        if ((arg1 - 1) / 3 == arg1 / 3 && (arg1 - 1) >= 0) mask |= 1u << (arg1 - 1);
+        if ((arg1 + 3) / 3 == arg1 / 3 && arg1 + 3 < 9) mask |= 1u << (arg1 + 3);
+        if ((arg1 - 3) / 3 == arg1 / 3 && (arg1 - 3) >= 0) mask |= 1u << (arg1 - 3);
+        break;
+    case 7: {
+        s32 i;
+        u16 bits = *(u16 *)(arg0 + 0x38);
+        for (i = 0; i < 12; i++) {
+            if (bits & (1u << i)) mask |= 1u << i;
+        }
+        break;
+    }
+    case 8:
+        if ((arg1 + 1) / 3 == arg1 / 3) mask |= 1u << (arg1 + 1);
+        if ((arg1 - 3) / 3 == (arg1 / 3) - 1 && (arg1 - 3) >= 0) mask |= 1u << (arg1 - 3);
+        if ((arg1 - 2) / 3 == (arg1 / 3) - 1 && (arg1 - 2) >= 0) mask |= 1u << (arg1 - 2);
+        break;
+    case 9:
+        if ((arg1 + 1) / 3 == arg1 / 3) mask |= 1u << (arg1 + 1);
+        if ((arg1 - 1) / 3 == arg1 / 3 && (arg1 - 1) >= 0) mask |= 1u << (arg1 - 1);
+        if ((arg1 + 3) / 3 == arg1 / 3 + 1) mask |= 1u << (arg1 + 3);
+        if ((arg1 - 3) / 3 == arg1 / 3 - 1 && (arg1 - 3) >= 0) mask |= 1u << (arg1 - 3);
+        break;
+    case 10:
+        if ((arg1 + 1) / 3 == arg1 / 3) mask |= 1u << (arg1 + 1);
+        if ((arg1 - 1) / 3 == arg1 / 3 && (arg1 - 1) >= 0) mask |= 1u << (arg1 - 1);
+        if (arg1 / 3 <= 1 && (arg1 - 2) >= 0) mask |= 1u << (arg1 - 2);
+        if (arg1 / 3 <= 1) mask |= 1u << (arg1 + 4);
+        if (arg1 % 3 <= 1 && arg1 / 3 <= 1) mask |= 1u << (arg1 + 2);
+        if (arg1 / 3 <= 1 && arg1 % 3 >= 1) mask |= 1u << (arg1 - 4);
+        break;
+    case 11:
+        if (arg1 == 0) mask |= 0xe00;
+        else if (arg1 == 1) mask |= 0x1ff;
+        break;
+    case 12:
+        if ((arg1 + 1) / 3 == arg1 / 3 && (arg1 + 1) < 9) mask |= 1u << (arg1 + 1);
+        break;
+    case 13:
+        mask |= 0xe00;
+        break;
+    case 14: {
+        s32 q = arg1 % 3;
+        if (q == 0) mask |= 0x49;
+        else if (q == 1) mask |= 0x92;
+        else if (q == 2) mask |= 0x124;
+        break;
+    }
+    case 15:
+        if (arg1 / 3 == 0) mask |= 0x7;
+        else if (arg1 / 3 == 1) mask |= 0x38;
+        else if (arg1 / 3 == 2) mask |= 0x1c0;
+        break;
+    case 16:
+        if ((arg1 + 1) / 3 == arg1 / 3) mask |= 1u << (arg1 + 1);
+        if ((arg1 - 1) / 3 == arg1 / 3 && (arg1 - 1) >= 0) mask |= 1u << (arg1 - 1);
+        if ((arg1 + 3) % 3 == arg1 % 3 && arg1 + 3 < 9) mask |= 1u << (arg1 + 3);
+        if ((arg1 - 3) % 3 == arg1 % 3 && (arg1 - 3) >= 0) mask |= 1u << (arg1 - 3);
+        if (arg1 % 3 == 0) mask |= 0x3f;
+        else mask |= 0x1f8;
+        break;
+    }
+    return mask;
+}
+
 void *func_020defcc(u16 arg0) {
     u8 *root = data_02160a6c;
     u8 *node;
@@ -315,29 +400,18 @@ void func_020df260(u8 *arg0, u8 *arg1) {
 }
 
 BOOL func_020df2ec(u8 *arg0, u8 *arg1) {
-    u8 v;
-    u8 *p;
-    s16 mask;
-    if (arg1[0] == 5) {
-        if ((u32)func_02022068(arg1[1]) < 1) {
-            return FALSE;
-        }
-        func_020220b0(arg1[1], -1);
-        return TRUE;
-    }
-    v = (u8)((s8)(*(s8 *)(arg1 + 0x1a) - 2));
-    if (v > 1) {
-        goto done;
-    }
-    p = *(u8 **)(arg0 + 0x118);
-    if (*(s16 *)(p + 0x5a) < 100) {
-        return FALSE;
-    }
-    *(s16 *)(p + 0x5a) -= 100;
-    mask = (s16)(1U << *(u16 *)(arg0 + 0x90));
-    func_020e2788((u32)mask);
-done:
-    return TRUE;
+u8 v; u8 *p;
+if(arg1[0]==5){if((u32)func_02022068(arg1[1])<1)return FALSE;func_020220b0(arg1[1],-1);return TRUE;}
+v=(u8)(s8)(*(s8 *)(arg1+0x1a)-2);
+if(v<=1){
+u32 one=1;
+p=*(u8 **)(arg0+0x118);
+if(*(s16 *)(p+0x5a)<100)return FALSE;
+*(s16 *)(p+0x5a)-=100;
+((void (*)(u32,s32))func_020e2788)((s16)(one << *(u16 *)(arg0+0x90)),0);
+return one;
+}
+return TRUE;
 }
 
 extern void func_020220b0(u32, u32);
