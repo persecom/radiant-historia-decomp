@@ -1186,7 +1186,10 @@ src/auto/main_0210B7A4.c:
     .text start:0x0210b7a4 end:0x0210c6e0
 
 src/auto/main_0210C6E0.c:
-    .text start:0x0210c6e0 end:0x0210d6d8
+    .text start:0x0210c6e0 end:0x0210c898
+
+src/auto/main_0210C898.c:
+    .text start:0x0210c898 end:0x0210d6d8
 
 src/auto/main_0210D6D8.c:
     .text start:0x0210d6d8 end:0x0210e694
