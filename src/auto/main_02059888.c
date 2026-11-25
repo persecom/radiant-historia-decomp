@@ -27,6 +27,10 @@ extern u8 *func_020f0a5c(s32);
 extern void func_020f0154(s32);
 extern void func_020f0898();
 extern u8 *func_020f0aa4(s32);
+extern u8 *func_020bed24(void),*func_020bed34(void);
+extern void func_020bf330(void *);
+extern s32 func_0205965c(void *);
+extern void func_0206e8f0(s32,void *,s32);
 void func_02059888(void) {
     u8 *r7 = *(u8 **)(data_021600ac + 0x68);
     s32 vec2[3];
