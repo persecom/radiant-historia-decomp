@@ -21,6 +21,10 @@ extern void func_0200bb10(void *, s32, s32);
 extern void func_0200b8b4(void *);
 extern s32 func_02133dd0(s32, void *);
 extern u8 data_021756d8[];
+static inline void clear_manager(void) {
+    extern u8 data_021756d8[] __attribute__((aligned(4)));
+    __clear(data_021756d8, 724);
+}
 extern u32 data_021756d4;
 extern u8 data_02175998[];
 extern u8 data_021759a0[];
@@ -336,25 +340,25 @@ void func_02134844(u8 *arg0, s32 arg1) {
     func_02013858(data_02175998, arg0, arg1);
 }
 
+#pragma opt_propagation off
 u8 func_02134884(void) {
-    u8 result = 0xff;
-    void (*cb)(u8 *) = *(void **)(data_021756d8 + 0x2d0);
-    if (cb != NULL) {
-        cb(&result);
-    } else {
-        s32 count = *(s32 *)(data_021756d8 + 0x2bc);
-        s32 i;
-        for (i = 0; i < count; i++) {
-            if (*(u8 *)(data_021756d8 + i + 0x2c8) == 0) {
-                data_021759a0[i] = 1;
-                result = data_02175998[i];
-                break;
-            }
-        }
-    }
-    return result;
+ volatile u8 result = 0xff;
+ void (*cb)(u8 *) = *(void * volatile *)(data_021756d8 + 0x2d0);
+ if (cb != NULL) cb((u8 *)&result);
+ else {
+ s32 count = *(s32 *)(data_021756d8 + 0x2bc);
+ s32 i;
+ for(i=0;i<count;i++) {
+ if(data_021756d8[i+0x2c8]==0) {
+ ((volatile u8 *)data_021759a0)[i]=1;
+ result=((volatile u8 *)data_02175998)[i];
+ break;
+ }
+ }
+ }
+ return result;
 }
-
+#pragma opt_propagation on
 u8 *func_02134908(void **items,s32 count,s32 arg){
  s32 zero=0;
  u8 *p;
