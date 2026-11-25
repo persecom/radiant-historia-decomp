@@ -1,7 +1,7 @@
 /* 10 functions from 0x020EA188 to 0x020EB180 (main), found by ds-decomp. */
 #include "common.h"
 typedef struct {s32 x,y,z;} Vec_EAAE0;
-static inline s32 IsValidRenderId(u32 id) {return id!=999;}
+static inline u32 GetRenderId(const u8 *node) {return node[0x104];}
 extern u8 *data_02160a80;
 
 extern u32 data_02160a90[5];
