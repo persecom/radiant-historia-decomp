@@ -299,10 +299,10 @@ void func_02134748(void) {
         func_02135c18();
         { u64 *p = (u64 *)data_021756d8; u32 i = 90; do { *p++ = 0; } while (--i); *(u32 *)p=0; }
         func_02135ccc();
-        *(u32 *)(data_021756d8 + 0x2bc) = 2;
-        data_021756d8[0x2c0] = 4;
-        data_021756d8[0x2c1] = 5;
-        *(u32 *)(data_021756d8 + 0x2b4) = 0;
+        *(u32 *)((u8 *)data_021756d8 + 0x2bc) = 2;
+        ((u8 *)data_021756d8)[0x2c0] = 4;
+        ((u8 *)data_021756d8)[0x2c1] = 5;
+        *(u32 *)((u8 *)data_021756d8 + 0x2b4) = 0;
     }
     data_021756d4++;
 }
@@ -313,7 +313,7 @@ void func_021347e8(void) {
         return;
     }
     for (i = 0; i < 4; i++) {
-        p = data_021756d8 + i * 0xac;
+        p = (u8 *)data_021756d8 + i * 0xac;
         if (*(s8 *)p == 1) {
             func_02134b34(p);
         }
@@ -326,7 +326,7 @@ void func_02134844(u8 *arg0, s32 arg1) {
     if (arg1 > 8) {
         return;
     }
-    *(s32 *)(data_021756d8 + 0x2bc) = arg1;
+    *(s32 *)((u8 *)data_021756d8 + 0x2bc) = arg1;
     if (arg1 <= 0) {
         return;
     }
@@ -339,13 +339,13 @@ void func_02134844(u8 *arg0, s32 arg1) {
 #pragma opt_propagation off
 u8 func_02134884(void) {
  volatile u8 result = 0xff;
- void (*cb)(u8 *) = *(void * volatile *)(data_021756d8 + 0x2d0);
+ void (*cb)(u8 *) = *(void * volatile *)((u8 *)data_021756d8 + 0x2d0);
  if (cb != NULL) cb((u8 *)&result);
  else {
- s32 count = *(s32 *)(data_021756d8 + 0x2bc);
+ s32 count = *(s32 *)((u8 *)data_021756d8 + 0x2bc);
  s32 i;
  for(i=0;i<count;i++) {
- if(data_021756d8[i+0x2c8]==0) {
+ if(((u8 *)data_021756d8)[i+0x2c8]==0) {
  ((volatile u8 *)data_021759a0)[i]=1;
  result=((volatile u8 *)data_02175998)[i];
  break;
@@ -363,9 +363,9 @@ u8 *func_02134908(void **items,s32 count,s32 arg){
  if(count<=0)return (u8 *)zero;
  if(!items)return (u8 *)zero;
  for(i=zero;i<count;i++)if(!items[i])return 0;
- for(slot=0;slot<4;slot++)if(!*(s8 *)(data_021756d8+slot*0xac))break;
+ for(slot=0;slot<4;slot++)if(!*(s8 *)((u8 *)data_021756d8+slot*0xac))break;
  if(slot==4){func_02135c8c(data_0215be68);return 0;}
- p=data_021756d8+slot*0xac;
+ p=(u8 *)data_021756d8+slot*0xac;
  p[3]=count;p[2]=*(s8 *)(p+3);
  for(i=0;i<*(s8 *)(p+2);i++)*(void **)(p+0x10+i*4)=items[i];
  *(u16 *)(p+0x18)=0;
@@ -392,9 +392,9 @@ s32 i=0,j; s32 zero=0;
 if(!p)return;
 func_02134cb4(p,0,1);func_02134c00(p,0);
 for(i=0;i<*(s8 *)(p+2);i++){
-for(j=0;j<*(s32 *)(data_021756d8+0x2bc);j++){
-if(data_021756d8[0x2c0+j]==*(s16 *)(*(u8 **)(p+4*i+0x20)+2)){
-data_021756d8[0x2c8+j]=zero;break;
+for(j=0;j<*(s32 *)((u8 *)data_021756d8+0x2bc);j++){
+if(((u8 *)data_021756d8)[0x2c0+j]==*(s16 *)(*(u8 **)(p+4*i+0x20)+2)){
+((u8 *)data_021756d8)[0x2c8+j]=zero;break;
 }}
 if(**(u16 **)(p+4*i+0x20)!=0){
 *(u32 *)(*(u8 **)(p+4*i+0x20)+0x30)=zero;
