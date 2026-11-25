@@ -76,7 +76,7 @@ if((s->flags&2)&&(s->flags&4)&&(s->flags&8))next=12;break;}
 case 12:
 if(!(s->flags&1)){func_020ec548(func_020ec950(26));func_020ec8cc(func_020ec950(8),1,0);func_020331d0(s,1,1);}
 if(!(s->flags&2)){Effect_02037D1C *e=func_020ec950(8);if(e&&func_020332c8(e)==2){func_0210d27c(116);e->flag38=1;func_020331d0(s,2,1);}}
-if((s->flags&2)&&!(s->flags&4)){Effect_02037D1C *e=func_020ec950(8);if(e){s->timer2=(s16)(s->timer2+1);if(s->timer2==1)func_0210d27c(117);if(s->timer2>15){e->y+=(15-s->timer2)<<12;if(e->y<=-0x3c000){func_020ec548(e);func_020331d0(s,4,1);}}}}
+if((s->flags&2)&&!(s->flags&4)){Effect_02037D1C *e=func_020ec950(8);if(e){s->timer2=(s16)(s->timer2+1);if(s->timer2==1)func_0210d27c(117);{int t=s->timer2;if(t>15){e->y+=(15-t)<<12;if(e->y<=-0x3c000){func_020ec548(e);func_020331d0(s,4,1);}}}}}
 if((s->flags&4))next=13;break;
 case 13:
 if(!(s->flags&1)){pos.x=524288;pos.y=393216;pos.z=2256896;func_020ec8cc(func_020c1370(12,&pos,2043,13,128),0,0);pos.x=524288;pos.y=393216;pos.z=2375680;func_020ec8cc(func_020c1370(14,&pos,2045,15,1664),0,0);func_020331d0(s,1,1);}
@@ -95,10 +95,10 @@ s->timer=(s16)(s->timer+1);
 for(i=0;i<4;i++){
 int delay,speed,height;u16 flag;
 switch(i){
-case 0:setpos_02037D1C(&pos,data_02160258->x-0xa000,data_02160258->y-0xa000,data_02160258->z);delay=36;speed=15;height=0x3d000;break;
-case 1:setpos_02037D1C(&pos,data_02160258->x+0x37000,data_02160258->y-0xf000,data_02160258->z);delay=15;speed=15;height=0x42000;break;
-case 2:setpos_02037D1C(&pos,data_02160258->x-0x32000,data_02160258->y-0x19000,data_02160258->z);delay=24;speed=16;height=0x56000;break;
-case 3:setpos_02037D1C(&pos,data_02160258->x+0xa000,data_02160258->y-0x37000,data_02160258->z);delay=30;speed=18;height=0x88000;break;
+case 0:delay=36;speed=15;height=0x3d000;setpos_02037D1C(&pos,data_02160258->x-0xa000,data_02160258->y-0xa000,data_02160258->z);break;
+case 1:delay=15;speed=15;height=0x42000;setpos_02037D1C(&pos,data_02160258->x+0x37000,data_02160258->y-0xf000,data_02160258->z);break;
+case 2:delay=24;speed=16;height=0x56000;setpos_02037D1C(&pos,data_02160258->x-0x32000,data_02160258->y-0x19000,data_02160258->z);break;
+case 3:delay=30;speed=18;height=0x88000;setpos_02037D1C(&pos,data_02160258->x+0xa000,data_02160258->y-0x37000,data_02160258->z);break;
 }
 flag=4<<i;if(!(s->flags&flag)&&s->timer>delay){Effect_02037D1C *e=func_020ec950(i);func_020ec8cc(e,1,0);if(e){e->y+=speed<<12;if(e->y>=height){
 ep.type=2;ep.a=0;ep.b=0;ep.c=0;ep.d=1;ep.pos.x=0;ep.pos.y=0;ep.pos.z=0;func_0206e7a0(18,&pos,&ep,0);func_020ec548(e);func_020331d0(s,flag,1);}} else func_020331d0(s,flag,1);}
