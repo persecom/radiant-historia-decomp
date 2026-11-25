@@ -594,8 +594,8 @@ void func_0200fddc(u8 *arg0) {
 }
 
 u32 func_0200fe28(u32 arg0) {
-    u32 flag = (arg0 & 0x10) != 0;
     u32 result = 0;
+    u32 flag = (arg0 & 0x10) != 0;
     arg0 &= ~0x10;
     if (arg0 > 3) {
         goto end;
