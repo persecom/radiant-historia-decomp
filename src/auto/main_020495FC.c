@@ -34,7 +34,7 @@ l++;break;case 6:A[l]=(x)+(z+1)**(s16*)(data_02160aec+0x58D36);l++;break;case 7:
 break;case 8:A[l]=(x-1)+(z)**(s16*)(data_02160aec+0x58D36);l++;break;}}}}for(i=0;i<l;i++){u32 aH=A[i];
 for(K=1;K<l;K++){if(aH==A[K]&&i!=K&&A[K]!=0){A[K]=0;}}}if(l!=0){K=1;i=1;
 for(;;){if(A[K]==0){A[K]=A[K+i];A[K+i]=0;i++;if((s32)(K+i)>=16){break;}}
-else{i=1;K++;}}l=K;}F=8;e=8;for(i=0;i<l;i++){x=(u32)(func_0201fd28(A[i],*(s16*)(data_02160aec+0x58D36))>>32);z=(u32)func_0201fd28(A[i],*(s16*)(data_02160aec+0x58D36));
+else{i=1;K++;}}l=K;}F=8;e=8;for(i=0;i<l;i++){x=A[i]%*(s16*)(data_02160aec+0x58D36);z=A[i]/ *(s16*)(data_02160aec+0x58D36);
 C=x<<16;w=(x<<16)+0x10000;G=z<<16;n=(z<<16)+0x10000; c[0]=0;c[1]=0;m[0]=(((ac*)aI)->X-((ac*)aI)->s)>>12;m[1]=(((ac*)aI)->M-((ac*)aI)->v)>>12;Y=((tile*)(data_02160aec+(A[i])*0xC))->type;
 H=0;switch(Y){case 1:case 6:case 7:case 8:case 9:case 10:{switch(Y){case 6:H|=0xA;break;case 7:H|=5;break;}if((H&1)==0){h[0]=(w-((ac*)aI)->s)>>12;k[0]=(w-((ac*)aI)->s)>>12;h[1]=F+((n-((ac*)aI)->v)>>12);k[1]=((G-((ac*)aI)->v)>>12)-F;{s32 R;s32 P;s32 U;s32 Q;s32 V;register s32 W;f32 E;R=c[0]-h[0];U=c[1]-h[1];P=m[0]-c[0]; Q=m[1]-c[1];W=k[0]-h[0];V=k[1]-h[1];E=(f32)(P*V-Q*W);if(0.0f!=E){register f32 t=(f32)((U*W-R*V)*100)/E; f32 u=(f32)((U*P-R*Q)*100)/E;if(t<0.0||100.0<t||u<0.0||100.0<u){d=FALSE; }else{volatile f32 bx,by;bx=(f32)c[0];B[0]=(s32)(bx+((f32)P*t)/100.0f); by=(f32)c[1];B[1]=(s32)(by+((f32)Q*t)/100.0f);d=TRUE;}}else{d=FALSE;}} if(d){
 f=(o*)func_0210c594(0x2C,data_02155c3c);f->D|=1;f->aa=A[i]; f->a[0]=w>>12;f->b[0]=w>>12;f->a[1]=(n>>12)+F;f->b[1]=(G>>12)-F;{register s32 zz;zz=((ac*)aI)->v+((B[1])<<12);f->x=((ac*)aI)->s+((B[0])<<12);f->y=0;f->z=zz;} func_020477c0(((ac*)aI),f);r=TRUE; H|=4;}
