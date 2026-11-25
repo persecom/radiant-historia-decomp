@@ -186,7 +186,7 @@ s32 func_020c5f08(void)
   s32 i;
   u8 *n;
   s32 y;
-  int xOffset;
+  int new_var2;
   s32 x;
   u8 *p;
   s32 result = 0;
@@ -194,6 +194,9 @@ s32 func_020c5f08(void)
   if (data_021626a8 & 0x40)
   {
     result |= 1;
+    if (1)
+    {
+    }
   }
   if (data_021626a8 & 0x80)
   {
@@ -203,7 +206,7 @@ s32 func_020c5f08(void)
   {
     result |= 4;
   }
-  xOffset = 6;
+  new_var2 = 6;
   if (data_021626a8 & 0x10)
   {
     result |= 8;
@@ -220,14 +223,12 @@ s32 func_020c5f08(void)
       n = func_020a5f40(p + 0x124, (u16) i);
       if (n)
       {
-        s32 ny;
-        s32 nx = *((s16 *)(n + xOffset));
-        nx *= *((s32 *)(p+0x70));
-        nx -= 22;
-        nx += *((s32 *)(p+0x44));
-        ny = *((s32 *) (p + 0x70));
-        ny = (*((s16 *) (n + 8))) * ny;
-        ny = (ny + 4) + (*((s32 *) (p + 0x48)));
+        s32 nx = *((s16 *)(n + 6));
+        s32 ny = *((s16 *)(n + 8));
+        nx *= *((s32 *)(p + 0x70));
+        nx = (nx - 22) + *((s32 *)(p + 0x44));
+        ny *= *((s32 *)(p + 0x70));
+        ny = (ny + 4) + *((s32 *)(p + 0x48));
         s32 left = nx - 14;
         s32 right = nx + 14;
         s32 top = ny - 14;
