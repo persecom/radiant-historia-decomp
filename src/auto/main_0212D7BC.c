@@ -339,6 +339,78 @@ void func_0212de24(void) {
     data_021740d8[0]++;
 }
 
+extern void func_02133300(void *,s32,s32);
+extern void func_02137f80(void *,s32,void *,void *);
+extern s32 func_0213363c(void *);
+extern s32 func_02133358(void *,s32,void *);
+void func_0212de3c(void *arg0) {
+s8 *p=arg0;
+void *obj=*(void **)(p+4);
+s32 zero=0;
+s32 status=func_021333e8(*(void **)(p+8));
+s32 b[2],c[2],a[2];
+s32 n,total;
+func_0212e57c();
+if(p[2]==1) {
+if(status==1) {
+p[2]=zero;func_0212e588();
+n=*(s32 *)(p+0x24);
+func_02137f80(p+0x28,n<<11,b,c);
+((void (*)(void *,s32,void *))(*(u32 **)obj)[8])(obj,1,b);
+((void (*)(void *,s32,void *))(*(u32 **)obj)[7])(obj,zero,c);
+*(s32 *)(p+0x38)+=n<<11;
+*(s32 *)(p+0x28)=zero;*(s32 *)(p+0x2c)=zero;
+*(s32 *)(p+0x5c)+=*(s32 *)(p+0x24);
+total=*(s32 *)(p+0x18);
+if(*(s32 *)(p+0x5c)==*(s32 *)(p+0x34)) {
+void (*cb)(void *)=*(void (**)(void *))(p+0x3c);
+if(cb) cb(*(void **)(p+0x40));
+}
+if(*(s32 *)(p+0x5c)>=total) p[1]=3;
+else if(*(u32 *)(p+0x60)<=(*(u32 *)(p+0x38)>>11) && *(u32 *)(p+0x60)<0xfffff) p[1]=3;
+*(s32 *)(p+0x50)=0;
+} else if(status==3) {
+p[2]=zero;func_0212e588();
+((void (*)(void *,s32,void *))(*(u32 **)obj)[7])(obj,zero,p+0x28);
+*(s32 *)(p+0x28)=zero;*(s32 *)(p+0x2c)=zero;
+if(func_0213363c(*(void **)(p+8))==0) p[1]=4;
+else if(data_021740d8[1]>=0 && *(s32 *)(p+0x50)>=data_021740d8[1]) p[1]=4;
+else if(*(s32 *)(p+0x50)<0x7fffffff) ++*(s32 *)(p+0x50);
+} else func_0212e588();
+} else func_0212e588();
+zero=0;
+if(p[1]==4)return;
+func_0212e57c();
+if(p[2]==0) {
+p[2]=1;*(s32 *)(p+0x28)=zero;*(s32 *)(p+0x2c)=zero;
+func_0212e588();
+if(p[0x48]==1 || p[0x4c]==1) {p[2]=zero;return;}
+if(*(s32 *)(p+0x18)==0) {p[2]=zero;*(s32 *)(p+0x24)=zero;p[1]=3;return;}
+if(!obj || !*(void **)obj) {p[2]=zero;func_0212de24();return;}
+n=((s32 (*)(void *,s32))(*(u32 **)obj)[9])(obj,zero);
+if(*(s32 *)(p+0x44)-n>=*(s32 *)(p+0x20)) {p[2]=zero;return;}
+((void (*)(void *,s32,s32,void *))(*(u32 **)obj)[6])(obj,zero,*(s32 *)(p+0x1c),a);
+n=a[1]/0x800;
+if(*(s32 *)(p+0x34)-*(s32 *)(p+0x5c)<=n) n=*(s32 *)(p+0x34)-*(s32 *)(p+0x5c);
+if(n>=*(s32 *)(p+0x18)-*(s32 *)(p+0x5c)) n=*(s32 *)(p+0x18)-*(s32 *)(p+0x5c);
+if(n>=*(s32 *)(p+0x30)) n=*(s32 *)(p+0x30);
+func_02133300(*(void **)(p+8),*(s32 *)(p+0xc)+*(s32 *)(p+0x5c),0);
+if(*(s32 *)(p+0x60)!=0xfffff) {
+s32 remain=*(s32 *)(p+0x60)-*(s32 *)(p+0x38)/0x800;
+if(n>=remain)n=remain;
+}
+*(s32 *)(p+0x24)=func_02133358(*(void **)(p+8),n,(void *)a[0]);
+*(s32 *)(p+0x28)=a[0];*(s32 *)(p+0x2c)=a[1];
+if(*(s32 *)(p+0x24)>0)return;
+((void (*)(void *,s32,void *))(*(u32 **)obj)[7])(obj,zero,p+0x28);
+*(s32 *)(p+0x28)=zero;*(s32 *)(p+0x2c)=zero;p[2]=zero;
+if(func_021333e8(*(void **)(p+8))!=3)return;
+if(func_0213363c(*(void **)(p+8))==0) {p[1]=4;return;}
+if(data_021740d8[1]>=0 && *(s32 *)(p+0x50)>=data_021740d8[1]) {p[1]=4;return;}
+if(*(s32 *)(p+0x50)<0x7fffffff) ++*(s32 *)(p+0x50);
+} else func_0212e588();
+}
+
 extern char data_02156d80[];
 extern char data_02156dac[];
 extern void func_02133258(void *);
