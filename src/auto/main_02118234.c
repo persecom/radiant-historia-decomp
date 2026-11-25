@@ -17,14 +17,14 @@ extern void func_02008e24(u32,void *,u32);
 extern void func_02118234(void *);
 extern void func_02118430(void *);
 void func_02118234(void *arg0) {
-    u16 start,end,size,offset,count;
-    u8 *dst,*oam;
+    u16 start, end, size, offset, count;
+    u8 *dst, *oam;
     u32 type;
     OamFn fn;
     u16 i;
-    OamManager_2118234 *p=arg0;
+    register OamManager_2118234 *p asm("r7") = arg0;
     if (p->full != 0) {
-        type = p->type;
+        type = ((volatile OamManager_2118234 *)p)->type;
         start = p->first;
         end = p->last;
         size = (end - start + 1) * 8;
@@ -47,9 +47,8 @@ void func_02118234(void *arg0) {
         end = p->last;
         oam = GetOamEntries(type);
         dst = oam + start * 8;
+        count = end - start + 1;
         offset = start * 8;
-        start = end - start + 1;
-        count = start;
         fn = data_02155e9c[type];
         for (i = 0; i < count; i++) {
             fn(dst, offset, 6);
@@ -73,9 +72,8 @@ void func_02118234(void *arg0) {
         oam = GetOamEntries(type);
         start = p->affineFirst;
         offset = start * 32;
+        count = ((volatile OamManager_2118234 *)p)->affineLast - start + 1;
         dst = oam + start * 32;
-        start = p->affineLast - start + 1;
-        count = start;
         fn = data_02155e9c[type];
         for (i = 0; i < count; i++) {
             fn(dst + 6, offset + 6, 2);
@@ -87,44 +85,57 @@ void func_02118234(void *arg0) {
         }
     }
 }
-
-#pragma scheduling off
-void func_02118430(void *arg0) {
-    OamManager_2118234 *p = arg0;
-    if (p->full) {
-        u32 size;
-        u16 (*dst)[4];
-        s32 valid = 0;
-        u32 channel;
-        if (p->unk_08 <= p->last + 1 && p->first <= p->last) {
-            valid = 1;
-        }
-        if (!valid) {
-            size = 0;
-        } else {
-            size = (u16)(p->last - p->first + 1) * 8;
-        }
-        dst = &((UnkOamBuffer *)data_0216e274)[p->type].entries[p->first];
-        func_02006d8c(dst, size);
-        channel = data_02145ba4;
-        if (channel > 3) {
-            channel = -1;
-        }
-        if (channel != -1) {
-            func_02008568(channel, dst, 0xc0, size, 1);
-        } else {
-            func_02008e24(0xc0, dst, size);
-        }
-    } else {
-        u16 count = p->last - p->first + 1;
-        u16 (*dst)[4] = &((UnkOamBuffer *)data_0216e274)[p->type].entries[p->first];
-        u16 i;
-        for (i = 0; i < count; i++) {
-            (*dst)[0] = 0xc0;
-            dst++;
-        }
-    }
-    p->unk_08 = p->first;
-    p->affineLimit = p->affineFirst;
-}
 #pragma scheduling on
+void func_02118430(void *arg0)
+{
+  u8 *p = arg0;
+  if (*((u32 *) (p + 0x14)))
+  {
+    u32 size;
+    u8 *dst;
+    s32 valid = 0;
+    u32 channel;
+    if (((*((u16 *) (p + 8))) <= ((*((u16 *) (p + 6))) + 1)) && ((*((u16 *) (p + 4))) <= (*((u16 *) (p + 6)))))
+    {
+      valid = 1;
+    }
+    if (!valid)
+    {
+      size = 0;
+    }
+    else
+    {
+      size = ((u16) (((*((u16 *) (p + 6))) - (*((u16 *) (p + 4)))) + 1)) * 8;
+    }
+    dst = ((u8 *)data_0216e274 + (((s32) *((u32 *) p)) * 0x540)) + 0x100 + ((*((u16 *) (p + 4))) * 8);
+    func_02006d8c(dst, size);
+    channel = data_02145ba4;
+    if (channel > 3)
+    {
+      channel = -1;
+    }
+    if (channel != (-1))
+    {
+      func_02008568(channel, dst, 0xc0, size, 1);
+    }
+    else
+    {
+      func_02008e24(0xc0, dst, size);
+    }
+  }
+  else
+  {
+    u16 count = ((*((u16 *) (p + 6))) - (*((u16 *) (p + 4)))) + 1;
+    u8 *dst = ((u8 *)data_0216e274 + (((s32) *((u32 *) p)) * 0x540)) + 0x100 + ((*((u16 *) (p + 4))) * 8);
+    u16 i;
+    for (i = 0; i < count; i++)
+    {
+      *((u16 *) dst) = 0xc0;
+      dst += 8;
+    }
+
+  }
+  *((u16 *) (p + 8)) = *((u16 *) (p + 4));
+  *((u16 *) (p + 0xe)) = *((u16 *) (p + 0xa));
+}
+#pragma opt_lifetimes reset
