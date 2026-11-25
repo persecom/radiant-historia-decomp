@@ -5,19 +5,7 @@ extern u8 data_02170464[];
 extern const u32 data_02144f08[];
 extern u8 data_021701fc[];
 extern void *data_02170460;
-static inline u8 *MaterialSource_0211e3ec(u8 *tbl, u32 idx)
-{
-    if (tbl) {
-        u8 *dict = tbl + 4;
-        u8 *entry;
-        if (dict && idx < tbl[5]) {
-            u16 offset = *(u16 *)(tbl + 10);
-            entry = dict + offset + 4 + idx * *(u16 *)(dict + offset);
-        } else entry = 0;
-        if (entry) return tbl + *(u32 *)entry;
-    }
-    return 0;
-}
+
 extern void func_02008e24(u32, void *, u32);
 extern void func_02008e68(void *, u32, u32);
 extern u32 data_02155f54[];
@@ -240,7 +228,7 @@ u32 zero=0;
 u8 *out;
 u32 packets[7];
 *(u32 *)(ctx+8)|=8;
-if(*(void **)(ctx+0x1c)) stage=ctx[0x90]; else stage=zero;
+stage=*(void **)(ctx+0x1c)?ctx[0x90]:zero;
 ctx[0xad]=idx;
 *(u8 **)(ctx+0xb0)=ctx+0xf4;
 if(stage==1) {
@@ -253,7 +241,8 @@ if(!handled) {
 u8 *cache=*(u8 **)(*(u8 **)(ctx+4)+0x38);
 if(cache && !(*(u32 *)(ctx+8)&0x80)) out=cache+idx*0x38;
 else if((command==0x20 || command==0x40) && (*(u32 *)(ctx+0xbc+(idx>>5)*4)&(1<<(idx&31)))) {
-out=cache?cache+idx*0x38:data_02170464+idx*0x38;
+if(cache) out=cache+idx*0x38;
+else out=data_02170464+idx*0x38;
 } else {
 u8 *tbl,*entry,*source;
 u16 flags;
