@@ -15,14 +15,16 @@ extern const s32 data_02145888[];
 s32 func_0212abac(s8 *, s32, s16 *, s16 *, s16 *, s16 *, s16, s16, s16 *, s16, s16);
 s32 func_0212a9fc(s8 *src, s32 nblk, s16 *dst, s16 *dly, s16 coef1, s16 coef2, s16 *xor_key, s16 mult, s16 inc) {
     s32 s0, d;
+    
     s32 s1, s2;
     s32 i, j;
+    s16 scale;
 
     s1 = dly[0];
     s2 = dly[1];
 
     for (i = 0; i < nblk; i++) {
-        s16 scale = *(s16 *)src;
+        scale = *(s16 *)src;
         scale = (s16)(((scale >> 8) & 0xff) | ((scale << 8) & 0xff00));
         if (scale & 0x8000) {
             return i;
@@ -33,25 +35,25 @@ s32 func_0212a9fc(s8 *src, s32 nblk, s16 *dst, s16 *dly, s16 coef1, s16 coef2, s
         *xor_key &= 0x7fff;
 
         for (j = 0; j < 32; j += 2) {
-            s32 min = -0x8000;
             s0 = coef1 * s1 + coef2 * s2;
             d = *src++;
             s2 = ((d >> 4) * scale) + (s0 >> 12);
             s2 += data_02173980;
-            if (s2 > 0x7fff || s2 < min) {
-                if (s2 < min) {
-                    s2 = min;
+            if (s2 > 0x7fff || s2 < -0x8000) {
+                if (s2 < -0x8000) {
+                    s2 = -0x8000;
                 } else if (s2 > 0x7fff) {
                     s2 = 0x7fff;
                 }
             }
             *dst++ = s2;
 
-            s1 = (data_02145888[d & 0xf] * scale) + ((coef2 * s1 + coef1 * s2) >> 12);
+            s0 = coef2 * s1 + coef1 * s2;
+            s1 = data_02145888[d & 0xf] * scale + (s0 >> 12);
             s1 += data_02173980;
-            if (s1 > 0x7fff || s1 < min) {
-                if (s1 < min) {
-                    s1 = min;
+            if (s1 > 0x7fff || s1 < -0x8000) {
+                if (s1 < -0x8000) {
+                    s1 = -0x8000;
                 } else if (s1 > 0x7fff) {
                     s1 = 0x7fff;
                 }
@@ -215,8 +217,8 @@ s32 func_0212abac(s8 *src, s32 nblk, s16 *dst, s16 *dly, s16 *dstR, s16 *dlyR, s
 
 s32 func_0212afc0(s8 *src,s32 nblk,s16 *dst,s16 *dly,s16 *dstR,s16 *dlyR,s16 coef1,s16 coef2,s16 *xor_key,s16 mult,s16 inc) {
 s32 s0,d,e;
-register s32 s2,t1,s1,t2;
 s32 i,j;
+register s32 s2,t1,s1,t2;
 s32 blocks=nblk/2;
 s1=dly[0];s2=dly[1];t1=dlyR[0];t2=dlyR[1];
 for(i=0;i<blocks;i++){
@@ -225,31 +227,28 @@ scale=(s16)(((scale>>8)&255)|((scale<<8)&0xff00));
 if(scale&0x8000)return i*2;
 scale=(s16)(((scale^*xor_key)&0x1fff)+1);
 *xor_key=*xor_key*mult+inc;
-*xor_key&=0x7fff;
+*(volatile s16 *)xor_key&=0x7fff;
 scaleR=*(s16 *)(src+18);
 scaleR=(s16)(((scaleR>>8)&255)|((scaleR<<8)&0xff00));
 if(scaleR&0x8000)return i*2;
+e=*xor_key*mult+inc;
 src+=2;
 scaleR=(s16)(((scaleR^*xor_key)&0x1fff)+1);
-*xor_key=*xor_key*mult+inc;
-*xor_key&=0x7fff;
+*xor_key=e;
+*(volatile s16 *)xor_key&=0x7fff;
 for(j=0;j<32;j+=2){
 s32 min=-0x8000;
-s0=coef1*s1+coef2*s2;
 d=*src;e=src[18];src++;
-s2=((d>>4)*scale)+(s0>>12);
-s2+=data_02173980;
+s2=((d>>4)*scale)+((coef1*s1+coef2*s2)>>12);
 if(s2>0x7fff || s2<min) {if(s2<min) s2=min; else if(s2>0x7fff) s2=0x7fff;}
-s0=coef1*t1+coef2*t2;
-t2=((e>>4)*scaleR)+(s0>>12);
-t2+=data_02173980;
+t2=((e>>4)*scaleR)+((coef1*t1+coef2*t2)>>12);
 if(t2>0x7fff || t2<min) {if(t2<min) t2=min; else if(t2>0x7fff) t2=0x7fff;}
 d=data_02145888[d&15];e=data_02145888[e&15];
 *dst++=s2;*dstR++=t2;
-s1=d*scale+((coef2*s1+coef1*s2)>>12);
+s1=d*scale+((coef1*s2+coef2*s1)>>12);
 s1+=data_02173980;
 if(s1>0x7fff || s1<min) {if(s1<min) s1=min; else if(s1>0x7fff) s1=0x7fff;}
-t1=e*scaleR+((coef2*t1+coef1*t2)>>12);
+t1=e*scaleR+((coef1*t2+coef2*t1)>>12);
 t1+=data_02173980;
 if(t1>0x7fff || t1<min) {if(t1<min) t1=min; else if(t1>0x7fff) t1=0x7fff;}
 *dst++=s1;*dstR++=t1;

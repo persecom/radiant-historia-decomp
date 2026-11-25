@@ -110,12 +110,12 @@ void func_0203e8c0(void) {
         *(u16 *)(((u8 **)&data_021600a0)[1] + 0x3c) = *(u16 *)(((u8 **)&data_021600a0)[1] + 0x3a);
     }
     if (((u8 **)&data_021600a0)[1][0x40]&2) {
-{ u8 *cfg=((u8 **)&data_021600a0)[1]; s32 value; if(cfg[0x42]) value=(u16)random_0203e8c0((u16)(cfg[0x42]*2))-cfg[0x42]; else value=0; *(s16 *)(cfg+0x44)=value; }
-{ u8 *cfg=((u8 **)&data_021600a0)[1]; s32 value; if(cfg[0x42]) value=(u16)random_0203e8c0((u16)(cfg[0x42]*2))-cfg[0x42]; else value=0; *(s16 *)(cfg+0x46)=value; }
+{ u8 *cfg=((u8 **)&data_021600a0)[1]; s32 value; if(cfg[0x42]) value=random_0203e8c0((u16)(cfg[0x42]*2))-cfg[0x42]; else value=0; *(s16 *)(cfg+0x44)=value; }
+{ u8 *cfg=((u8 **)&data_021600a0)[1]; s32 value; if(cfg[0x42]) value=random_0203e8c0((u16)(cfg[0x42]*2))-cfg[0x42]; else value=0; *(s16 *)(cfg+0x46)=value; }
 }
 if(((u8 **)&data_021600a0)[1][0x41]&2) {
-{ u8 *cfg=((u8 **)&data_021600a0)[1]; s32 value; if(cfg[0x48]) value=(u16)random_0203e8c0((u16)(cfg[0x48]*2))-cfg[0x48]; else value=0; *(s16 *)(cfg+0x4a)=value; }
-{ u8 *cfg=((u8 **)&data_021600a0)[1]; s32 value; if(cfg[0x48]) value=(u16)random_0203e8c0((u16)(cfg[0x48]*2))-cfg[0x48]; else value=0; *(s16 *)(cfg+0x4c)=value; }
+{ u8 *cfg=((u8 **)&data_021600a0)[1]; s32 value; if(cfg[0x48]) value=random_0203e8c0((u16)(cfg[0x48]*2))-cfg[0x48]; else value=0; *(s16 *)(cfg+0x4a)=value; }
+{ u8 *cfg=((u8 **)&data_021600a0)[1]; s32 value; if(cfg[0x48]) value=random_0203e8c0((u16)(cfg[0x48]*2))-cfg[0x48]; else value=0; *(s16 *)(cfg+0x4c)=value; }
 }
 node=*(u8 **)(((u8 **)&data_021600a0)[1]+0x28);
 while(node) {

@@ -40,41 +40,36 @@ typedef struct {
     s16 a9;
 } Args_021099f8;
 
-void func_021099f8(s16 *arg0) {
-    s32 x = arg0[1], y = arg0[2], z = arg0[3];
-    s32 sy, flags, sx;
-
-    *(volatile u32 *)0x40004a8 = 0;
-
-    sy = arg0[5];
-    flags = arg0[0];
-    sx = arg0[4];
-
-    *(volatile u32 *)0x4000444 = 0;
-
-    SetTranslation_021098ac(x, y, z);
-    SetScale_021098ac(sx, sy);
-    *(volatile s32 *)0x400046c = 0x1000;
-
-    *(volatile u32 *)0x4000500 = 1;
-
-    if (flags & 2) {
-        *(volatile u32 *)0x4000480 = arg0[6];
-        *(volatile u32 *)0x4000490 = 0;
-        *(volatile u32 *)0x4000480 = arg0[7];
-        *(volatile u32 *)0x4000490 = 0x10000;
-        *(volatile u32 *)0x4000480 = arg0[8];
-        *(volatile u32 *)0x4000490 = 0x10040;
-        *(volatile u32 *)0x4000480 = arg0[9];
-        *(volatile u32 *)0x4000490 = 0x40;
-    } else {
-        *(volatile u32 *)0x4000480 = arg0[6];
-        *(volatile u32 *)0x4000490 = 0;
-        *(volatile u32 *)0x4000490 = 0x10000;
-        *(volatile u32 *)0x4000490 = 0x10040;
-        *(volatile u32 *)0x4000490 = 0x40;
-    }
-
-    *(volatile u32 *)0x4000504 = 0;
-    *(volatile u32 *)0x4000448 = 1;
+#pragma opt_propagation off
+void func_021099f8(s16 *__restrict arg0) {
+s32 x=arg0[1]<<12,y=arg0[2]<<12,z=arg0[3]<<12; s32 sx,sy,flags;
+*(volatile u32 *)0x40004a8=0;
+sy=*(volatile s16 *)&arg0[5]; flags=*(volatile s16 *)&arg0[0]; sx=*(volatile s16 *)&arg0[4];
+*(volatile u32 *)0x4000444=0;
+*(volatile s32 *)0x4000470=x;
+*(volatile s32 *)0x4000470=y;
+*(volatile s32 *)0x4000470=z;
+*(volatile s32 *)0x400046c=sx<<12;
+*(volatile s32 *)0x400046c=sy<<12;
+*(volatile s32 *)0x400046c=0x1000;
+*(volatile u32 *)0x4000500=1;
+if(flags&2) {
+*(volatile u32 *)0x4000480=arg0[6];
+*(volatile u32 *)0x4000490=0;
+*(volatile u32 *)0x4000480=arg0[7];
+*(volatile u32 *)0x4000490=0x10000;
+*(volatile u32 *)0x4000480=arg0[8];
+*(volatile u32 *)0x4000490=0x10040;
+*(volatile u32 *)0x4000480=arg0[9];
+*(volatile u32 *)0x4000490=0x40;
+} else {
+*(volatile u32 *)0x4000480=arg0[6];
+*(volatile u32 *)0x4000490=0;
+*(volatile u32 *)0x4000490=0x10000;
+*(volatile u32 *)0x4000490=0x10040;
+*(volatile u32 *)0x4000490=0x40;
 }
+*(volatile u32 *)0x4000504=0;
+*(volatile u32 *)0x4000448=1;
+}
+#pragma opt_propagation on

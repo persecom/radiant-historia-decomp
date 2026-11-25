@@ -32,6 +32,17 @@ s32 func_02036514(u8 *arg0) {
         ret = 1;
         break;
     }
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 9:
+    case 10:
+    case 11:
+    case 19:
+    case 20:
+        break;
     }
     return ret;
 }

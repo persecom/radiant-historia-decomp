@@ -226,12 +226,13 @@ extern char data_02151d10[], data_02151d20[], data_02151d24[], data_02151d28[], 
 s32 func_020f0154(u32 arg0) {
     u8 flag = 0;
     s32 tmp;
-    s32 found = 0;
+    void *file = NULL;
+    u8 *mgr = NULL;
+    u8 *node = NULL;
+    s32 zero = 0;
     char name[50];
     char path[50];
-    u8 *mgr;
-    u8 *node;
-    void *file = NULL;
+    s32 found;
     char *p;
 
     if (!data_02160af0) return 0;
@@ -262,7 +263,7 @@ s32 func_020f0154(u32 arg0) {
         if (func_020123f0(p, data_02151d28) == 0) {
             flag = 1;
         }
-        if (flag != 0) {
+        if (flag == 0) {
             func_0210b8f8(mgr, (u32)name, (u32)path, 0);
         } else {
             func_0210ba48(mgr, (u32)name, (u32)path, 0);
@@ -310,61 +311,61 @@ s32 func_020f0154(u32 arg0) {
         *(u32 *)(mgr + 0x1a8) = (u32)func_020eff58;
         *(u32 *)(mgr + 0x104) = 0x1000;
         *(u32 *)(node + 0) = (u32)mgr;
-        if (arg0 == 0x2774) {
-            func_020f18ec(mgr, 0x385);
-            *(u32 *)(node + 0x18) = 1;
-        } else {
+        if (arg0 != 0x2774) {
             tmp = func_020f1a1c(mgr, 0);
             *(u32 *)(node + 0) = (u32)mgr;
             if (tmp != 0) {
                 *(u32 *)(node + 0x18) = 1;
-                ((u16 *)mgr)[0xd2] = (((u16 *)mgr)[0xd2] & ~8) | 8;
-                ((u16 *)mgr)[0xd2] = (((u16 *)mgr)[0xd2] & ~0x20) | 0x20;
+                ((Unk_020f0154 *)mgr)->flags = (u16)(((u32)((Unk_020f0154 *)mgr)->flags & ~8) | 8);
+                ((Unk_020f0154 *)mgr)->flags = (u16)(((u32)((Unk_020f0154 *)mgr)->flags & ~0x20) | 0x20);
             } else {
                 *(u32 *)(node + 0x18) = 0;
             }
             tmp = func_020f1a1c(mgr, 1);
             if (tmp != 0) {
                 *(u32 *)(node + 0x1c) = 1;
-                ((u16 *)mgr)[0xd2] = (((u16 *)mgr)[0xd2] & ~0x10) | 0x10;
-                ((u16 *)mgr)[0xd2] = (((u16 *)mgr)[0xd2] & ~0x40) | 0x40;
+                ((Unk_020f0154 *)mgr)->flags = (u16)(((u32)((Unk_020f0154 *)mgr)->flags & ~0x10) | 0x10);
+                ((Unk_020f0154 *)mgr)->flags = (u16)(((u32)((Unk_020f0154 *)mgr)->flags & ~0x40) | 0x40);
             } else {
                 *(u32 *)(node + 0x1c) = 0;
             }
-        }
-    } else if (arg0 == 0 || arg0 >= 0x3e8) {
-        tmp = func_020f1a1c(mgr, 0);
-        *(u32 *)(node + 0) = (u32)mgr;
-        if (tmp != 0) {
+        } else {
+            func_020f18ec(mgr, 0x385);
             *(u32 *)(node + 0x18) = 1;
-            ((u16 *)mgr)[0xd2] = (((u16 *)mgr)[0xd2] & ~8) | 8;
-            ((u16 *)mgr)[0xd2] = (((u16 *)mgr)[0xd2] & ~0x20) | 0x20;
-        } else {
-            *(u32 *)(node + 0x18) = 0;
         }
-        tmp = func_020f1a1c(mgr, 1);
-        if (tmp != 0) {
-            *(u32 *)(node + 0x1c) = 1;
-            ((u16 *)mgr)[0xd2] = (((u16 *)mgr)[0xd2] & ~0x10) | 0x10;
-            ((u16 *)mgr)[0xd2] = (((u16 *)mgr)[0xd2] & ~0x40) | 0x40;
-        } else {
-            *(u32 *)(node + 0x1c) = 0;
-        }
-    } else {
+    } else if (arg0 != 0 && arg0 < 0x3e8) {
         tmp = func_020f1b70(mgr, 0);
         *(u32 *)(node + 0) = (u32)mgr;
         if (tmp != 0) {
             *(u32 *)(node + 0x18) = 1;
-            ((u16 *)mgr)[0xd2] = (((u16 *)mgr)[0xd2] & ~8) | 8;
-            ((u16 *)mgr)[0xd2] = (((u16 *)mgr)[0xd2] & ~0x20) | 0x20;
+            ((Unk_020f0154 *)mgr)->flags = (u16)(((u32)((Unk_020f0154 *)mgr)->flags & ~8) | 8);
+            ((Unk_020f0154 *)mgr)->flags = (u16)(((u32)((Unk_020f0154 *)mgr)->flags & ~0x20) | 0x20);
         } else {
             *(u32 *)(node + 0x18) = 0;
         }
         tmp = func_020f1b70(mgr, 1);
         if (tmp != 0) {
             *(u32 *)(node + 0x1c) = 1;
-            ((u16 *)mgr)[0xd2] = (((u16 *)mgr)[0xd2] & ~0x10) | 0x10;
-            ((u16 *)mgr)[0xd2] = (((u16 *)mgr)[0xd2] & ~0x40) | 0x40;
+            ((Unk_020f0154 *)mgr)->flags = (u16)(((u32)((Unk_020f0154 *)mgr)->flags & ~0x10) | 0x10);
+            ((Unk_020f0154 *)mgr)->flags = (u16)(((u32)((Unk_020f0154 *)mgr)->flags & ~0x40) | 0x40);
+        } else {
+            *(u32 *)(node + 0x1c) = 0;
+        }
+    } else {
+        tmp = func_020f1a1c(mgr, 0);
+        *(u32 *)(node + 0) = (u32)mgr;
+        if (tmp != 0) {
+            *(u32 *)(node + 0x18) = 1;
+            ((Unk_020f0154 *)mgr)->flags = (u16)(((u32)((Unk_020f0154 *)mgr)->flags & ~8) | 8);
+            ((Unk_020f0154 *)mgr)->flags = (u16)(((u32)((Unk_020f0154 *)mgr)->flags & ~0x20) | 0x20);
+        } else {
+            *(u32 *)(node + 0x18) = 0;
+        }
+        tmp = func_020f1a1c(mgr, 1);
+        if (tmp != 0) {
+            *(u32 *)(node + 0x1c) = 1;
+            ((Unk_020f0154 *)mgr)->flags = (u16)(((u32)((Unk_020f0154 *)mgr)->flags & ~0x10) | 0x10);
+            ((Unk_020f0154 *)mgr)->flags = (u16)(((u32)((Unk_020f0154 *)mgr)->flags & ~0x40) | 0x40);
         } else {
             *(u32 *)(node + 0x1c) = 0;
         }

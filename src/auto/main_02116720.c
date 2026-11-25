@@ -303,6 +303,7 @@ extern void *func_02116b1c(void *, void *);
 extern void *func_02116b44(void *, void *, void *);
 extern void *func_02116b74(void *, u16);
 extern void func_02008e24(u32, void *, u32);
+#pragma opt_propagation off
 void *func_02116c10(void *expHeap, void *found, void *foundMem, s32 size, u16 flag)
 {
   u8 *prev;
@@ -358,7 +359,7 @@ void *func_02116c10(void *expHeap, void *found, void *foundMem, s32 size, u16 fl
   func_02116b44(((u8 *) expHeap) + 8, block3, *((u32 *) (((u8 *) expHeap) + 0xc)));
   return foundMem;
 }
-
+#pragma opt_propagation on
 void* func_02116d7c(void* heap, u32 size, s32 alignment)
 {
     typedef struct Block {

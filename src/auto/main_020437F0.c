@@ -136,6 +136,7 @@ extern u32 data_02146324[4];
 extern u16 data_02160098;
 extern void func_0207af60(void);
 extern void func_0207c2dc(void);
+#pragma scheduling off
 u32 func_020439a8(void) {
     u8 *node, *pos;
     u16 ret = 0;
@@ -175,7 +176,7 @@ u32 func_020439a8(void) {
                     goto stores;
                 }
                 ret = 1;
-                data_02146324[3] = 4;
+                *(volatile u32 *)&data_02146324[3] = 4;
                 *(u32 *)(*(u8 **)(data_021600a8 + 4) + 0xc) = ret;
 call:
                 func_0207af60();
@@ -195,7 +196,7 @@ end:
     }
     return ret;
 }
-
+#pragma scheduling on
 extern u8 *data_0216009c;
 void func_02043b28(void) {
     u32 val = 9;

@@ -35,7 +35,7 @@ u8 *target,*aux,*ctx,*action,*node,*entry;
 u8 *filter;
 s32 done,flags,one;
 s32 zero;
-ctx=*(u8**)(self+0x128);zero=0;filter=(u8*)zero;one=1;
+ctx=*(u8**)(self+0x128);one=1;filter=0;zero=0;
 func_020d9da8(32);func_020d9ea8(8,48);
 flags=func_0205bcb0(self,(u16)*(u32*)(ctx+52));
 if((flags&1) && *(s16*)(ctx+28)==0){

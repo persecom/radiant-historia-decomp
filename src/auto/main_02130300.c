@@ -23,7 +23,7 @@ extern void func_02132568(void);
 extern void func_02132ae8(void);
 extern s32 data_0215a07c[];
 extern s32 func_0212f3fc(void *, s32);
-void func_02130300(void *bs, u8 *hdr, s32 bit_alloc[][32], s32 scalefactor[][3][32], s32 gr, s16 *samples, s32 *sf_table) {
+void func_02130300(void *bs, u8 *hdr, s32 bit_alloc[][32], s32 scalefactor[][3][32], u32 gr, s16 *samples, s32 *sf_table) {
     s32 sblimit = *(s32 *)(hdr + 0x10);
     s32 nch = *(s32 *)(hdr + 0x4);
     s32 jsbound = *(s32 *)(hdr + 0x14);
@@ -36,8 +36,8 @@ void func_02130300(void *bs, u8 *hdr, s32 bit_alloc[][32], s32 scalefactor[][3][
             if (ba != 0) {
                 s32 *entry = (s32 *)(alloc_tbl + sb * 0x180 + ba * 0x18);
                 s32 d = entry[5];
-                s32 sf = sf_table[scalefactor[ch][gr][sb]];
                 s32 c = entry[4];
+                s32 sf = sf_table[scalefactor[ch][gr][sb]];
                 if (entry[2] == 3) {
                     s32 bits = entry[1];
                     if (bits <= 8) {

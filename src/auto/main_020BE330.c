@@ -373,10 +373,10 @@ void func_020bedb4(u8 *arg0, s32 arg1, u16 arg2, u16 arg3, s32 arg4, s32 arg5) {
 
 #pragma optimization_level 3
 s32 func_020bedf8(u8 *p) {
-s32 x=*(s16 *)(p+0x10)<<12;
-s32 y=*(s16 *)(p+0x12)<<12;
+long x=*(s16 *)(p+0x10)<<12;
+long y=*(s16 *)(p+0x12)<<12;
 s32 count=(*(s32 *)(p+0x14))++;
-s32 dx=0,dy=0;
+long dx=0,dy=0;
 s32 rx,ry,sx,sy;
 if(count<0) return 1;
 if(count==*(s32 *)(p+0x18)) {func_020beda0(p);return 0;}

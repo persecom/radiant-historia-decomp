@@ -545,10 +545,12 @@ void func_0211405c(void) {
 }
 
 extern void func_02114160(u8 *);
+#pragma push
+#pragma opt_propagation off
 void func_02114068(u8 *arg0) {
-    s32 *p = *(s32 **)(arg0 + 4);
+    u8 *p = *(u8 **)(arg0 + 4);
     func_020094e0(arg0[0x3c]);
-    if (0 != p[7]) {
+    if (*(s32 *)(p + 0x1c) != 0) {
         func_02009558(arg0[0x3c], 0xffff);
     }
     func_02114160(arg0);
@@ -556,7 +558,7 @@ void func_02114068(u8 *arg0) {
     arg0[0x2f] = 1;
     arg0[0x2c] = 1;
 }
-
+#pragma pop
 void func_021140b8(void *arg0p, s32 arg1) {
     u8 *arg0 = (u8 *)arg0p;
     if (arg0 == NULL || arg0[0x2c] == 0) {

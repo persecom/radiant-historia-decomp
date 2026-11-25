@@ -69,8 +69,19 @@ s32 func_02108240(void) {
     return func_02108258(data_02155984);
 }
 
-s32 func_02108258(u32 arg0) { u8 *p=(u8 *)arg0; s32 x,z; Vec_02108258 *a=(Vec_02108258 *)(p+0x48), *b=(Vec_02108258 *)(p+0x54); func_02002128(p+0x20,p+0x14,a); func_02002274(a,a); x=*(volatile s32 *)&a->x; z=*(volatile s32 *)&a->z; setvec_02108258(b,b,z,x); }
-
+#pragma opt_propagation off
+s32 func_02108258(u32 arg0) {
+    u8 *p = (u8 *)arg0;
+    s32 x, z;
+    func_02002128(p + 0x20, p + 0x14, p + 0x48);
+    func_02002274(p + 0x48, p + 0x48);
+    x = *(volatile s32 *)(p + 0x48);
+    z = *(volatile s32 *)(p + 0x50);
+    *(s32 *)(p + 0x54) = x;
+    *(s32 *)(p + 0x5c) = z;
+    func_02002274(p + 0x54, p + 0x54);
+}
+#pragma opt_propagation on
 extern void func_0210c35c(void *, u32, u32, u32);
 extern void func_0210a76c(void *);
 extern void func_0210aa14(void *);

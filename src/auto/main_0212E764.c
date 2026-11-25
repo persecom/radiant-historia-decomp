@@ -90,8 +90,8 @@ void func_0212e860(void *arg)
   u32 base;
   u32 *new_var;
   Config_0212e860 *p = arg;
-  u32 zero;
-  u32 one;
+  u32 zero = 0;
+  u32 one = 1;
   (void) (*((volatile const u32 *) (&data_0214590c)));
   if (!p)
   {
@@ -120,15 +120,13 @@ void func_0212e860(void *arg)
     data_02156dd8 = 15;
   }
   data_02174500 = *p;
-  new_var = data_021744d8;
-  zero = 0;
-  one = 1;
   data_02174524[6] = zero;
   data_02174524[7] = zero;
   data_02174524[2] = one;
   func_0212ea90();
-  stack = ((volatile Config_0212e860 *) p)->words[3];
-  base = p->words[6];
+  new_var = data_021744d8;
+  stack = p->words[3];
+  base = ((volatile Config_0212e860 *) p)->words[6];
   stack = ((stack + 3) & (~3)) + base;
   func_020062d8(data_02174548, func_0212e69c, zero, stack, base, new_var[10]);
   data_02174524[4] = one;

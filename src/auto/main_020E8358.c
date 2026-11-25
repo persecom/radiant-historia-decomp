@@ -152,7 +152,7 @@ extern void func_02095a9c(void *, void *, u16, s32);
 extern void func_02096360(s32);
 extern void func_020d3c98(s32);
 #pragma push
-#pragma peephole off
+#pragma optimization_level 3
 void func_020e86c0(u16 state) {
     u8 *p = data_02160a74;
     u8 *a0 = *(u8 **)(p + 0xa0);
@@ -189,7 +189,7 @@ void func_020e86c0(u16 state) {
             *(u32 *)(p + 0x58) &= ~0x4000;
         }
         *(u16 *)(p + 0xb4) = func_020e2be4(a0, *(u16 *)(p + 0xbc), 1);
-        *(s16 *)(p + 0xb4) -= 1;
+        --*(s16 *)(p + 0xb4);
         func_020e26f0(1 << *(u16 *)(c + 0x90), 3, 999);
         *(u32 *)(c + 0x80) |= 0x1000;
         func_0202eac4(0, *(u16 *)(c + 0x8e));
@@ -239,7 +239,7 @@ void func_020e86c0(u16 state) {
                     *(s16 *)(p + 0xce) = *(s16 *)(e + 8);
                     *(s16 *)(e + 4) = 6;
                     *(s16 *)(p + 0xbc) = 6;
-                    if (func_020e8358(c) == 0) {
+                    if (!func_020e8358(c)) {
                         *(s16 *)(e + 6) = 0;
                         *(s16 *)(e + 8) = 0;
                     }
@@ -301,7 +301,7 @@ void func_020e86c0(u16 state) {
             *(u16 *)(*(u8 **)(p + 0x110 + *(s16 *)(p + 0xc8) * 4)) |= 1;
         }
         *(u16 *)(p + 0xb4) = func_020e2be4(a0, *(u16 *)(p + 0xbc), 1);
-        *(s16 *)(p + 0xb4) -= 1;
+        --*(s16 *)(p + 0xb4);
         if (*(s16 *)(p + 0xb4) < 6) {
             *(u16 *)(p + 0x1b2) = 0x47;
             *(u16 *)(p + 0x150) = 0;

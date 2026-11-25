@@ -183,22 +183,24 @@ void func_020c96b4(u8 *arg0, u8 *arg1) {
     func_020c7930(arg1);
 }
 
+#pragma opt_propagation off
 u16 func_020c9744(u8 *arg0, u8 *arg1) {
  s16 x=0,y=0;
- s16 delta;
- s32 value;
- s32 scale;
+ s32 delta, scale;
  u16 result;
+ s32 numerator;
  func_020c9680(arg0,&x,&y);
  delta=*(s16 *)(arg1+0x3c)-y;
  func_020201f4(0x447a0000,func_020c9888(arg0));
  scale=func_0201ff0c();
- value=scale1000(delta);
- result=(s16)(value/scale);
- if((s16)((value%scale)/1000) > (scale/1000)/2) result++;
+ delta=(s16)delta*(s16)1000;
+ numerator=delta;
+ delta=(s16)(delta/scale);
+ result=delta;
+ if((s16)((numerator%scale)/1000) > (scale/1000)/2) result++;
  return result;
 }
-
+#pragma opt_propagation on
 u16 func_020c9808(u8 *arg0) {
     u16 vals[4];
     u16 *dst = vals;

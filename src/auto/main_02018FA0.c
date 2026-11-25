@@ -116,9 +116,11 @@ s32 func_02019080(const u8 *a, const u8 *b) {
     return *(const s16 *)(a + 2) < *(const s16 *)(b + 2);
 }
 
+#pragma opt_propagation off
 void func_02019160(Decimal19160 *a,const Decimal19160 *b,const Decimal19160 *c){
 s32 i,n,shift;
 u8 *start,*end,*q,*scan;
+s32 digit;
 const u8 *cs,*cp,*stop;
 s32 round;
 *a=*b;
@@ -175,7 +177,7 @@ end=start+a->length;
 while(end>start){if(*--end!=0)break;}
 a->length=end-start+1;
 }
-
+#pragma opt_propagation on
 extern s32 func_020136d0(double);
 extern s32 func_020136ec(double);
 extern double func_0201e1f8(double, s32 *);

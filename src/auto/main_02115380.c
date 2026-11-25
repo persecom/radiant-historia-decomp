@@ -277,24 +277,17 @@ s32 func_021157d0(u16 id, u32 flags, void *arg2, s32 arg3, void *out) {
  return 0;
 }
 
+#pragma opt_propagation off
 s32 func_02115910(void *arg0,u32 arg1,void *arg2,s32 arg3,void **arg4) {
- u8 *p=func_021150ac(arg0);
- s32 v;
- void *addr;
- void *val;
- if(!p)return 5;
- v=*(s32 *)p;
- if(arg1&4) {
- addr=(void *)((u32)(v<<8)>>8);
- u32 flags=(u32)v>>24;
- if(flags&1) val=func_02115be8(addr,arg2,arg3);
- else val=func_02115b7c(addr,arg2,arg3);
- if(!val)return 9;
- }else val=func_02115264((void *)((u32)(v<<8)>>8));
- if(arg4)*arg4=val;
- return 0;
+u8 *p=func_021150ac(arg0); s32 v; void *addr; void *val;
+if(!p)return 5; v=*(s32*)p;
+if(arg1&4) { u32 flags=(u32)v>>24; addr=(void*)((u32)(v<<8)>>8); arg0=addr;
+if(flags&1) val=func_02115be8(arg0,arg2,arg3); else val=func_02115b7c(arg0,arg2,arg3);
+if(!val)return 9;
+}else val=func_02115264((void*)((u32)(v<<8)>>8));
+if(arg4)*arg4=val; return 0;
 }
-
+#pragma opt_propagation on
 void *func_02115994(void *arg0,void *arg1,void *arg2,void *arg3,void *arg4) {
  void *p=func_02115174(arg0);
  void *buf;
@@ -367,13 +360,13 @@ void *func_02115b7c(void *arg0, void *arg1, s32 arg2) {
     return r4;
 }
 
-#pragma scheduling off
+#pragma optimization_level 2
 void *func_02115be8(void *arg0,void *arg1,s32 arg2) {
-u32 total; u8 *p=func_02115264(arg0); u32 size; void *ctx;
+unsigned long total; u8 *p=func_02115264(arg0); unsigned long size; void *ctx;
 if(!p) {
 ctx=0;
 if((s32)func_0211519c(arg0,&data_0216cad4,(void *)0x3c,0)!=0x3c)return 0;
-size=*(volatile u32 *)&((u32 *)&data_0216cad4)[14]*4;total=size*2;
+size=data_0216cad4.count*4;total=size*2;
 if(!arg1)return 0;
 if(arg2)ctx=func_02114f70();
 p=func_0211543c(arg1,total+0x5c,func_02115df0,(u32)ctx,(u32)arg0);
@@ -386,7 +379,7 @@ if(arg2)func_0211528c(arg0,p);
 }
 return p;
 }
-#pragma scheduling on
+#pragma optimization_level 4
 void func_02115d10(void *arg0, s32 arg1, s32 arg2)
 {
   void *r5;

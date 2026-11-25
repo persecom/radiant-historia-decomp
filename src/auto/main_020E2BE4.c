@@ -36,20 +36,28 @@ extern s32 func_020e5630(u8, u8 *, u8);
 extern s32 func_02022068(u8);
 extern s32 func_020a30d4(u8);
 extern s32 func_020e55d8(u8, u8);
+#pragma push
+#pragma optimization_level 3
 s32 func_020e2be4(u8 ***arg0, u32 type, u32 flags) {
-    u16 idx = 0;
-    s32 count = 0;
+    u16 idx;
+    s32 count;
     u16 i;
     UnkMenuState *g = (UnkMenuState *)data_02160a74;
     u8 *obj = **arg0;
     u8 *entry = NULL;
+    u8 *node;
+    u8 *item;
 
-    for (i = 0; i < 6; i++) {
+    count = 0;
+    i = 0;
+    while (i < 6) {
         g->unk_174[i] = -1;
         g->unk_182[i] = 0;
         g->unk_18e[i] = 0;
+        i++;
     }
 
+    idx = 0;
     g->unk_180 = 0x2d;
 
     switch (type) {
@@ -85,7 +93,7 @@ s32 func_020e2be4(u8 ***arg0, u32 type, u32 flags) {
         count++;
         break;
     case 1: {
-        u8 *node = *(u8 **)(*(u8 **)(obj + 0x11c) + 4);
+        node = *(u8 **)(*(u8 **)(obj + 0x11c) + 4);
         while (node != NULL) {
             if (*(s16 *)(node + 0x26) != 0 && *(s16 *)(node + 0x3c) != -1 && *(s16 *)(node + 0x3c) < 100) {
                 u16 slot = idx - g->unk_ce;
@@ -134,7 +142,7 @@ s32 func_020e2be4(u8 ***arg0, u32 type, u32 flags) {
         break;
     }
     case 3: {
-        u8 *node = *(u8 **)(*data_021600c8 + 4);
+        node = *(u8 **)(*data_021600c8 + 4);
         while (node != NULL) {
             if (func_02022068(*(u8 *)(node + 1)) != 0) {
                 u16 slot = idx - g->unk_ce;
@@ -174,7 +182,7 @@ s32 func_020e2be4(u8 ***arg0, u32 type, u32 flags) {
         for (k = 0; k < 15; k++) {
             s32 id = func_020e55d8((u8)*(u16 *)(obj + 0x90), (u8)k);
             if (id != 0) {
-                u8 *item = func_02064cb8(*(void **)(obj + 0x11c), id);
+                item = func_02064cb8(*(void **)(obj + 0x11c), id);
                 if (item != NULL) {
                     u16 slot = idx - g->unk_ce;
                     if ((flags & 2) && slot < 6) {
@@ -219,12 +227,9 @@ s32 func_020e2be4(u8 ***arg0, u32 type, u32 flags) {
     }
     }
 
-    if (!(flags & 1)) {
-        count = 0;
-    }
-    return count;
+    return (flags & 1) ? count : 0;
 }
-
+#pragma pop
 void func_020e3310(void) {
     s16 x, y;
     u16 i;

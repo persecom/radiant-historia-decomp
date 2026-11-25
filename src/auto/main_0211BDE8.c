@@ -76,7 +76,7 @@ delta.x=base[4];by=base[5];delta.x-=x;delta.y=by-y;}
 {u8 *ctx=*(u8 *volatile *)&data_021701f8;
 tile=*(u32 *)(ctx+0x10);
 if(*(u32 *)(ctx+0x24)==0 && *(u32 *)(ctx+0x28)!=0)affine=1;else affine=0;}
-i=0;while(i<list->count){
+for(i=0;i<list->count;i++){
 Unk_0211c424 *entry;
 void (*cb)(void *,void *,u16);
 *(s32 *)(data_021701f8+0x30)=1;
@@ -86,7 +86,7 @@ entry=list->entries+i;
 *(u16 *)(state+0x3a)=entry->y;
 *(u16 *)(state+0x3c)=entry->z;
 if(cb)cb(data_021701f8,list,i);
-if(!*(s32 *)(data_021701f8+0x30))goto next;
+if(!*(s32 *)(data_021701f8+0x30))continue;
 ((Tile_0211bd *)(state+0x3c))->tile+=tile;
 if(affine){
 flip=(((Obj_0211c1f8 *)(state+0x38))->flipy<<1) | ((Obj_0211c1f8 *)(state+0x38))->flipx;
@@ -130,7 +130,6 @@ u32 height=data_02144d6c[(shape&0xc000)>>14][(shape&0xc0000000)>>30];
 if(((s32 (*)(void *,u32,s32))*(void **)(data_021701f8+0x1c))(state+0x38,idx,0)!=1)return;
 cb=((Callbacks_0211c424 *)input)->after;
 if(cb)cb(data_021701f8,list,i);
-next:i++;
 }
 }
 
@@ -161,23 +160,26 @@ void func_0211c1f8(void *arg) {
     }
 }
 
+#pragma opt_propagation off
 void func_0211c424(void *arg0, void *arg1) {
- State_0211c424 *p=(State_0211c424 *)data_021701f8;
- u16 i;
- for(i=0;i<((List_0211c424 *)arg1)->count;i++) {
-  Unk_0211c424 *entry;
-  void (*callback)(void *,void *,u16);
-  ((State_0211c424 *)data_021701f8)->enabled=1;
-  entry=((List_0211c424 *)arg1)->entries+i;
-  p->x=entry->x;
-  callback=((Callbacks_0211c424 *)arg0)->before; p->y=entry->y; p->z=entry->z;
-  if(callback) callback(data_021701f8,arg1,i);
-  if(((State_0211c424 *)data_021701f8)->enabled) func_0211c1f8(&p->x);
-  callback=((Callbacks_0211c424 *)arg0)->after;
-  if(callback) callback(data_021701f8,arg1,i);
- }
+    State_0211c424 *p = (State_0211c424 *)data_021701f8;
+    u16 i;
+    for (i = 0; i < ((List_0211c424 *)arg1)->count; i++) {
+        Unk_0211c424 *entry;
+        void (*callback)(void *, void *, u16);
+        ((State_0211c424 *)data_021701f8)->enabled = 1;
+        entry = ((List_0211c424 *)arg1)->entries + i;
+        p->x = entry->x;
+        callback = ((Callbacks_0211c424 *)arg0)->before;
+        p->y = entry->y;
+        p->z = entry->z;
+        if (callback) callback(data_021701f8, arg1, i);
+        if (((State_0211c424 *)data_021701f8)->enabled) func_0211c1f8(&p->x);
+        callback = ((Callbacks_0211c424 *)arg0)->after;
+        if (callback) callback(data_021701f8, arg1, i);
+    }
 }
-
+#pragma opt_propagation on
 void func_0211c4ec(u8 *arg0) {
     func_02008df0(0, arg0, 0x70);
     *(s32 *)(arg0 + 0x0) = 0;
@@ -199,33 +201,27 @@ void func_0211c538(u8 *arg0, s32 arg1, s32 arg2) {
     *(s32 *)(arg0 + 0x20) = arg2;
 }
 
-void func_0211c544(s32 *arg0) {
-    u8 *ptr = data_021701f8;
-    s32 a = arg0[0], b = arg0[1];
-    *(s32 **)(ptr + 0x2c) = arg0;
-    *(s32 *)(ptr + 0x40) = a;
-    *(s32 *)(ptr + 0x44) = b;
-    {
-        s32 z = 0;
-        s32 c = arg0[2];
-        *(s32 *)(ptr + 0x48) = z;
-        *(s32 *)(ptr + 0x4c) = c;
-        s32 d = arg0[3];
-        *(s32 *)(ptr + 0x50) = d;
-        *(s32 *)(ptr + 0x54) = z;
-        *(s32 *)(ptr + 0x58) = z;
-        *(s32 *)(ptr + 0x5c) = z;
-        {
-            s32 big = 0x1000;
-            s32 e = arg0[4];
-            *(s32 *)(ptr + 0x60) = big;
-            *(s32 *)(ptr + 0x64) = e;
-            *(s32 *)(ptr + 0x68) = arg0[5];
-            *(s32 *)(ptr + 0x6c) = *(s32 *)(ptr + 0x34);
-        }
-    }
+#pragma push
+#pragma opt_propagation off
+void func_0211c544(s32 *__restrict arg0) {
+u8 *ptr=data_021701f8;
+s32 a=arg0[0], b=arg0[1];
+*(s32 **)(ptr+0x2c)=arg0;
+*(s32 *)(ptr+0x40)=a; *(s32 *)(ptr+0x44)=b;
+{ s32 c=arg0[2];
+*(s32 *)(ptr+0x48)=0;
+s32 d=arg0[3];
+*(s32 *)(ptr+0x4c)=c; *(s32 *)(ptr+0x50)=d;
+*(s32 *)(ptr+0x54)=0; *(s32 *)(ptr+0x58)=0; *(s32 *)(ptr+0x5c)=0;
 }
-
+{ s32 e=arg0[4];
+*(s32 *)(ptr+0x60)=0x1000;
+s32 f=arg0[5];
+*(s32 *)(ptr+0x64)=e; *(s32 *)(ptr+0x68)=f;
+}
+*(s32 *)(ptr+0x6c)=*(s32 *)(ptr+0x34);
+}
+#pragma pop
 void func_0211c5ac(s32 arg0, s32 arg1) {
     u8 *ptr = data_021701f8;
     *(s32 *)(ptr + 0x2c) = arg0;

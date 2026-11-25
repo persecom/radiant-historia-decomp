@@ -283,6 +283,8 @@ extern s32 func_0200788c(void);
 extern void func_02005988(u32);
 extern u16 func_020081e0(void);
 extern s32 func_02011054(void);
+#pragma push
+#pragma optimization_level 3
 void func_0200ea34(u32 trigger, u32 logic, u32 keyPattern) {
     s32 flag = 0;
     u32 intr;
@@ -331,11 +333,12 @@ void func_0200ea34(u32 trigger, u32 logic, u32 keyPattern) {
     func_0200e350();
     func_0200e9a0();
     {
+        s32 light1 = backLight1;
         u32 r8 = 0;
         u32 r9;
         u32 param;
-        data_0215f03c[3] = 0;
-        if (backLight1 != 0) {
+        *(volatile u32 *)&data_0215f03c[3] = 0;
+        if (light1 != 0) {
             r8 = 0x80;
         }
         r9 = (backLight2 != 0) ? 0x40 : 0;
@@ -362,8 +365,12 @@ void func_0200ea34(u32 trigger, u32 logic, u32 keyPattern) {
                 func_020081a4(0x51d23);
             }
         }
-        *(u32 *)0x4000000 = dispCnt;
-        *(u32 *)0x4001000 = subDispCnt;
+        {
+            volatile u32 *display = (volatile u32 *)0x4000000;
+            *display = dispCnt;
+            display += 0x400;
+            *display = subDispCnt;
+        }
         func_020081a4(0x360000);
     }
     (void)*(volatile u16 *)0x4000208;
@@ -377,7 +384,7 @@ void func_0200ea34(u32 trigger, u32 logic, u32 keyPattern) {
     }
     func_0200f05c((u32 *)data_0215f03c[6]);
 }
-
+#pragma pop
 extern void func_0200e350(void);
 s32 func_0200ed20(s32 mode,s32 arg,s32 force,s32 sync) {
 switch(mode) {

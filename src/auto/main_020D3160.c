@@ -52,7 +52,6 @@ void func_0210c5dc(void *);
 
 s32 func_020d3160(s32 cmd, s32 a1, s32 a2, s32 a3) {
     s32 r = 0;
-    s32 sum = a1 + a2 + a3;
     switch (cmd) {
     case 0: r = 0; break;
     case 1: r = 1; break;
@@ -64,7 +63,8 @@ s32 func_020d3160(s32 cmd, s32 a1, s32 a2, s32 a3) {
     case 7: r = 7; break;
     case 8: r = 8; break;
     }
-    return r + sum - sum;
+    (void)a1; (void)a2; (void)a3;
+    return r;
 }
 
 void func_020d3c98(s32 arg0) {

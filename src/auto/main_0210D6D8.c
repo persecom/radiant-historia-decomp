@@ -476,9 +476,8 @@ set:
         q[0] = q[1] * q[0] + q[2];
     }
     {
-        u64 *q = (u64 *)&data_02162658;
-        u64 value = q[1] * q[0] + q[2];
-        *(volatile u64 *)q = value;
+        Rng64_0210ddfc *q = (Rng64_0210ddfc *)&data_02162658;
+        q->state = q->state * q->multiplier + q->increment;
     }
     if (data_0216267c != NULL && *(void **)((u8 *)data_0216267c + 0x24) != NULL)
         func_0210c470();

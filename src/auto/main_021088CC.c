@@ -517,6 +517,7 @@ s32 func_021095d0(u32 arg0) {
     return 0;
 }
 
+#pragma push
 #pragma opt_common_subs off
 void func_02109600(void) {
  s32 active=0;
@@ -531,36 +532,30 @@ void func_02109600(void) {
  }
  if(active==0){
  func_0210da14(&data_02162510);
- data_02162510.unk_00=0;
+ *(s32 *)((u8 *)&data_02162510+i-2)=0;
  }
 }
-#pragma opt_common_subs on
+#pragma pop
 void func_0210968c(u32 arg0, s32 arg1, u32 arg2) {
-    s32 sz = arg1;
-    s32 i;
-    if (sz > 0x10) {
-        sz = 0x10;
-    } else if (sz < -0x10) {
-        sz = -0x10;
-    }
-    for (i = 0; i < 2; i++) {
-        if (arg0 & (1 << i)) {
-            func_0210c35c((s32 *)(data_02162544 + i * 0x10), *(s32 *)(data_02162544 + i * 0x10), sz << 12, arg2);
-            if (arg2 != 0) {
-                if (data_02162510.unk_00 == 0) {
-                    *(u32 *)&data_02162510 = (u32)func_02109600;
-                    *(u32 *)((u8 *)&data_02162510 + 4) = 0x15f90;
-                    func_0210d9e4(&data_02162814);
-                }
-            } else {
-                if (i == 0) {
-                    data_02162510.unk_00 = sz;
-                } else {
-                    data_02162884 = sz;
-                }
-            }
-        }
-    }
+ s32 sz=arg1;
+ s32 i;
+ 
+ if(sz>16) sz=16; else if(sz< -16) sz=-16;
+ for(i=0;i<2;i++) {
+ if(arg0 & (1<<i)) {
+ s32 value=*(s32 *)(data_02162544+i*16);
+ func_0210c35c((s32 *)(data_02162544+i*16),value,sz<<12,arg2);
+ if(arg2!=0) {
+ if(data_02162510.unk_00==0) {
+ *(void (**)(void))&data_02162510=func_02109600;
+ *(u32 *)((u8 *)&data_02162510+4)=0x15f90;
+ func_0210d9e4((u8 *)&data_02162510);
+ }
+ } else {
+ if(i==0) data_02162814=sz; else data_02162884=sz;
+ }
+ }
+ }
 }
 
 s32 func_02109754(u32 arg0) {

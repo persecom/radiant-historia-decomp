@@ -63,13 +63,15 @@ extern void func_0207ace8(u8 *);
 extern s32 func_0207ab34(u8 *);
 
 void func_02041a58(void) {
-u8 *screen=data_021600a8[1];
-s32 one=1;
+u8 *screen;
+s32 one;
 u16 id;
 s32 done;
 u8 *player,*obj;
 u16 kind;
 s32 zero=0;
+screen=data_021600a8[1];
+one=1;
 player=*(u8 **)(screen+0x68);
 done=zero;
 if(!func_02044dd0()) return;

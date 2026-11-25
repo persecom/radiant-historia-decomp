@@ -306,17 +306,18 @@ u16 func_020a30d4(u16 arg0) {
     return 0;
 }
 
+#pragma optimization_level 3
 void func_020a3128(u16 arg0) {
-UnkStruct_020a3128 *d; u32 idx; s32 shift;
-if(arg0==0)return;
-d=*(UnkStruct_020a3128 **)data_02160128;
-idx=arg0-1;
-*(volatile u32 *)0x040004a8=(d[idx].unk18<<26)|(d[idx].unk4>>3)|0x40000000|(d[idx].unk10<<20)|(d[idx].unk14<<23)|0x20000000;
-if(d[idx].unk18==2) shift=1;else shift=0;
-*(volatile u32 *)0x040004ac=d[idx].unkC>>(4-shift);
-*(volatile u32 *)0x04000480=0x7fff;
+    UnkStruct_020a3128 *d; u32 idx; s32 shift;
+    if(arg0==0)return;
+    d=*(UnkStruct_020a3128 **)data_02160128;
+    idx=arg0-1;
+    *(volatile u32 *)0x040004a8=(d[idx].unk18<<26)|(d[idx].unk4>>3)|0x40000000|(d[idx].unk10<<20)|(d[idx].unk14<<23)|0x20000000;
+    if(d[idx].unk18==2) shift=1;else shift=0;
+    *(volatile u32 *)0x040004ac=d[idx].unkC>>(4-shift);
+    *(volatile u32 *)0x04000480=0x7fff;
 }
-
+#pragma optimization_level 4
 extern u32 *data_0216012c;
 extern void func_02108ffc(void);
 extern u32 func_0203c0d8(void);

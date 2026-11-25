@@ -35,11 +35,10 @@ void func_021098ac(s16 *arg0) {
     s32 height = arg0[4] << 12;
     s32 flags;
     s32 right, bottom;
-    s32 zero = 0;
     u16 x0, y0, x1, y1;
     if (width < 0) { right = x - 1; width = -width; x = width + right; } else right = width + x;
     if (height < 0) { bottom = y - 1; height = -height; y = height + bottom; } else bottom = height + y;
-    *(volatile u32 *)0x4000444 = zero;
+    *(volatile u32 *)0x4000444 = 0;
     flags = arg0[0];
     *(volatile s32 *)0x4000470 = tx << 12;
     *(volatile s32 *)0x4000470 = ty << 12;

@@ -78,10 +78,150 @@ void func_020b2520(u8 *arg0, s32 arg1, s32 arg2) {
     func_020adfe8(0x1f,0);
 }
 
-void func_020b2aac(u8 *arg0) {
-    s32 zero = 0;
-    func_020adfe8(0x1f, zero);
-    func_02076380(*(void **)(arg0 + 0x24));
+void func_020b2aac(u8 * arg0)
+{
+    u8 *info;
+    s32 offset = 0;
+    s32 selected = 0;
+    s32 extended = 0;
+    u8 *kind;
+    s32 slot = 2;
+    info = (u8 *)func_020b3908();
+    kind = (u8 *)func_020ade60(4);
+    func_020adfe8(0x1f, offset);
+    if (kind[0xd] == 2) extended = 1;
+    {
+        s32 zero = 0;
+        s32 six = 6;
+        s32 edge = 0x9a;
+        if (extended) {
+            func_020adfe8(kind[0xc], 2);
+            slot++;
+        }
+        func_02076380(*(void **)(arg0 + 0x24));
+        func_020ae004(0x6a, 0x1a, zero, six, six, edge, 0x37, six, six);
+        func_020ae004(0x6a, 0x1a, 0x1a, six, six, edge, 0x9d, six, six);
+        func_020ae004(0x6a, six, zero, 1, six, zero, 0x37, edge, six);
+        func_020ae004(0x6a, six, zero, 1, six, zero, 0x9d, edge, six);
+        func_020ae004(0x6a, six, six, 1, 1, zero, 0x3d, 0xa0, 0x60);
+    }
+    {
+        s32 six = 6;
+        s32 two = 2;
+        if (extended) {
+            func_020adfe8(kind[0xc], slot);
+            slot++;
+        }
+        func_02076380(*(void **)(arg0 + 0x28));
+        func_020ae004(0x6b, 0, 0, six, six, two, 0x39, six, six);
+        func_020ae004(0x6b, 0, 0x1a, six, six, two, 0x5c, six, six);
+        func_020ae004(0x6b, 0x1a, 0, six, six, 0x97, 0x39, six, six);
+        func_020ae004(0x6b, 0x1a, 0x1a, six, six, 0x97, 0x5c, six, six);
+        func_020ae004(0x6b, six, 0, 1, six, 8, 0x39, 0x8f, six);
+        func_020ae004(0x6b, six, 0, 1, six, 8, 0x5c, 0x8f, six);
+        func_020ae004(0x6b, six, six, 1, 1, two, 0x3f, 0x9b, 0x1d);
+    }
+    {
+        s32 six = 6;
+        s32 two = 2;
+        if (extended) {
+            func_020adfe8(kind[0xc], slot);
+            slot++;
+        }
+        func_02076380(*(void **)(arg0 + 0x28));
+        func_020ae004(0x6b, 0, 0, six, six, two, 0x64, six, six);
+        func_020ae004(0x6b, 0, 0x1a, six, six, two, 0x9b, six, six);
+        func_020ae004(0x6b, 0x1a, 0, six, six, 0x97, 0x64, six, six);
+        func_020ae004(0x6b, 0x1a, 0x1a, six, six, 0x97, 0x9b, six, six);
+        func_020ae004(0x6b, six, 0, 1, six, 8, 0x64, 0x8f, six);
+        func_020ae004(0x6b, six, 0, 1, six, 8, 0x9b, 0x8f, six);
+        func_020ae004(0x6b, six, six, 1, 1, two, 0x6a, 0x9b, 0x31);
+    }
+    if (extended) func_020adfe8(kind[0xc], slot);
+    {
+        s32 four = 4;
+        s32 one = 1;
+        s32 panel = 0x6c;
+        s32 row;
+        s32 stride, y0, y1, y2;
+        u16 ready;
+        func_020aea50();
+        for (row = 0; row < 5; row++) {
+            if (row == 2) offset = 3;
+            if (row == *(s32 *)((u8 *)func_020b3fd8() + 0x2aa8)) selected = one;
+            if (selected) func_02076380(*(void **)(arg0 + 0x3c));
+            else func_02076380(*(void **)(arg0 + 0x38));
+            stride = row * 0x14;
+            y0 = offset + (stride + 0x3b);
+            func_020ae004(panel, 0, 0, four, four, 0x18, (s16)y0, four, four);
+            func_020ae004(panel, 0x1c, 0, four, four, 0x96, (s16)y0, four, four);
+            y1 = offset + (stride + 0x49);
+            func_020ae004(panel, 0, 0xb, four, four, 0x18, (s16)y1, four, four);
+            func_020ae004(panel, 0x1c, 0xb, four, four, 0x96, (s16)y1, four, four);
+            func_020ae004(panel, four, 0, one, four, 0x1c, (s16)y0, 0x7a, four);
+            func_020ae004(panel, four, 0xb, one, four, 0x1c, (s16)y1, 0x7a, four);
+            y2 = offset + (stride + 0x3f);
+            func_020ae004(panel, 0, four, four, one, 0x18, (s16)y2, four, 0xa);
+            func_020ae004(panel, 0x1c, four, four, one, 0x96, (s16)y2, four, 0xa);
+            func_020ae004(panel, four, four, one, one, 0x1c, (s16)y2, 0x7a, 0xa);
+            if (selected) func_02076380(*(void **)(arg0 + 0x5c));
+            else func_02076380(*(void **)(arg0 + 0x58));
+            if (row == 0) {
+                func_020ae004(0x6c, 0x12, 0, 0x12, 0x12, four, (s16)y0, 0x12, 0x12);
+            }
+            else if (row == 1) {
+                func_020ae004(0x6c, 0x24, 0, 0x12, 0x12, four, (s16)y0, 0x12, 0x12);
+            }
+            else {
+                func_020ae004(0x6c, 0, 0x13, 0x12, 0x12, four, (s16)y0, 0x12, 0x12);
+            }
+            if (row == 0) {
+                ready = *(u16 *)(info + 0x38);
+                if (ready != 0) {
+                    func_020a30d4(ready);
+                    func_020a3128();
+                    func_020ae004(0x6d, 0, 0, 0x10, 0x10, 0x19, (s16)y0, 0x10, 0x10);
+                    if (!extended) {
+                        if (selected) func_020ae7e0(row, 0x13, one);
+                        else func_020ae7e0(row, 0x14, one);
+                    } else {
+                        func_020ae9cc(row, one);
+                    }
+                }
+            }
+            else if (row == 1) {
+                ready = *(u16 *)(info + 0x3a);
+                if (ready != 0) {
+                    func_020a30d4(ready);
+                    func_020a3128();
+                    func_020ae004(0x6d, 0, 0, 0x10, 0x10, 0x19, (s16)y0, 0x10, 0x10);
+                    if (!extended) {
+                        if (selected) func_020ae7e0(row, 0x13, one);
+                        else func_020ae7e0(row, 0x14, one);
+                    } else {
+                        func_020ae9cc(row, one);
+                    }
+                }
+            }
+            else {
+                ready = *(u16 *)(info + 0x38 + row * 2);
+                if (ready != 0) {
+                    func_020a30d4(ready);
+                    func_020a3128();
+                    func_020ae004(0x6d, 0, 0, 0x10, 0x10, 0x19, (s16)y0, 0x10, 0x10);
+                    if (!extended) {
+                        if (selected) func_020ae7e0(row, 0x13, one);
+                        else func_020ae7e0(row, 0x14, one);
+                    } else {
+                        func_020ae9cc(row, one);
+                    }
+                }
+            }
+            next_row:
+            selected = 0;
+        }
+    }
+    func_020adfe8(0x1f, selected);
 }
 
 void func_020b33b8(u8 *p) {

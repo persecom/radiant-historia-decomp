@@ -48,7 +48,9 @@ extern void func_021098ac(void *);
 void func_0209dfdc(void) {
     s16 i;
     u8 *p = *(u8 **)(data_021600b0 + 0x1c0);
-    if (p == NULL) return;
+    if (p == NULL) {
+        return;
+    }
     switch (p[0x20]) {
     case 0:
         p[0x20] = 5;
@@ -56,52 +58,72 @@ void func_0209dfdc(void) {
         p[0x8e] = 0;
         for (i = 0; i < 7; i++) {
             *(s32 *)(p + i * 4 + 0x28) = 0x100000;
-            if (i == p[0x8f]) func_020a8810(*(void **)*(u8 **)(p + i * 4 + 4), 0x13);
-            else func_020a8810(*(void **)*(u8 **)(p + i * 4 + 4), 0x14);
+            if (i == p[0x8f]) {
+                func_020a8810(*(void **)*(u8 **)(p + i * 4 + 4), 0x13);
+            } else {
+                func_020a8810(*(void **)*(u8 **)(p + i * 4 + 4), 0x14);
+            }
         }
-        if (*(void **)p != NULL) func_020a957c(p);
+        if (*(void **)p != NULL) {
+            func_020a957c(p);
+        }
         if ((s8)p[0x4e] != 0) {
             *(void **)p = func_020a94b8(p + 0x4e);
-            *(u16 *)(p + 0x4c) = *(u16 *)(p + 0x4c) + 1;
         }
         break;
-    case 1:
+    case 1: {
+        u16 row = 0;
+        s32 cnt = 0;
+        s32 last = 0;
         for (i = 0; i < 7; i++) {
-            u8 *entry = p + i;
-            u8 *obj;
-            if (entry[0x44] == 0) continue;
-            if (*(u16 *)(p + 0x4c) > i * 3) {
-                s32 *value = (s32 *)(p + i * 4 + 0x28);
-                *value -= *value / 7;
-                if (*value <= 0x89000) *value = 0x89000;
+            if (p[0x44 + i] == 0) {
+                continue;
             }
-            obj = *(u8 **)(p + i * 4 + 4);
-            if (!(p[0x8e] & (u8)(1 << i)) && entry[0x44] != 0) {
-                u8 *o2 = *(u8 **)obj;
+            cnt++;
+            if (*(u16 *)(p + 0x4c) > (cnt - 1) * 4) {
+                *(s32 *)(p + i * 4 + 0x28) -= *(s32 *)(p + i * 4 + 0x28) / 7;
+                if (*(s32 *)(p + i * 4 + 0x28) <= 0x89000) {
+                    *(s32 *)(p + i * 4 + 0x28) = 0x89000;
+                }
+            }
+            if (!(p[0x8e] & (1 << i)) && p[0x44 + i] != 0) {
+                u8 *o2 = *(u8 **)*(u8 **)(p + i * 4 + 4);
                 ((void (*)(void *))*(void **)(o2 + 4))(o2);
-                func_0203bc34(*(void **)p, o2, (void *)(s32)entry[0x44], 0, 0, 0);
-                func_020a899c(obj);
+                func_0203bc34(*(void **)p, *(void **)*(u8 **)(p + i * 4 + 4), (void *)(s32)p[0x44 + i], 0, 0, 0);
+                func_020a899c(*(void **)*(u8 **)(p + i * 4 + 4));
                 p[0x8e] |= (u8)(1 << i);
             }
-            if (entry[0x44] != 0) {
-                u8 *o2 = *(u8 **)obj;
-                *(s32 *)(o2 + 0x44) = *(s32 *)(p + i * 4 + 0x28) + 0x6000;
-                *(s32 *)(o2 + 0x48) = (0xc5 - (p[0x90] - i) * 0x19) << 12;
-                *(s32 *)(o2 + 0x4c) = 0x276000;
-                i++;
+            if (p[0x44 + i] != 0) {
+                *(s32 *)(*(u8 **)*(u8 **)(p + i * 4 + 4) + 0x44) = *(s32 *)(p + i * 4 + 0x28) + 0x6000;
+                *(s32 *)(*(u8 **)*(u8 **)(p + i * 4 + 4) + 0x48) = (0xc5 - (p[0x90] - row) * 0x19) << 12;
+                row++;
+                *(s32 *)(*(u8 **)*(u8 **)(p + i * 4 + 4) + 0x4c) = 0x276000;
             }
+            last = i;
         }
-        if (*(s32 *)(p + (i - 1) * 4 + 0x28) == 0x89000) p[0x20] = 2;
+        if (*(s32 *)(p + last * 4 + 0x28) == 0x89000) {
+            p[0x20] = 2;
+        }
         func_0209e688();
         break;
+    }
     case 2:
         if (data_021626a6 & 0x40) {
             func_0210d27c(2);
-            do { if (p[0x8f] == 0) p[0x8f] = 6; else p[0x8f]--; } while (p[p[0x8f] + 0x21] == 0);
+            do {
+                if (p[0x8f] == 0) {
+                    p[0x8f] = 6;
+                } else {
+                    p[0x8f]--;
+                }
+            } while (p[p[0x8f] + 0x21] == 0);
         }
         if (data_021626a6 & 0x80) {
             func_0210d27c(2);
-            do { p[0x8f]++; p[0x8f] = (s32)p[0x8f] % 7; } while (p[p[0x8f] + 0x21] == 0);
+            do {
+                p[0x8f]++;
+                p[0x8f] = (s32)p[0x8f] % 7;
+            } while (p[p[0x8f] + 0x21] == 0);
         }
         if (data_021626a8 & 1) {
             func_0210d27c(3);
@@ -109,99 +131,119 @@ void func_0209dfdc(void) {
             p[0x20] = 3;
         }
         if ((data_021626a8 & 2) && p[0x20] != 3) {
-            for (i = 0; i < 7; i++) if (p[0x21 + i] == 2) {
-                p[0x8f] = i;
-                *(u16 *)(p + 0x4c) = 0;
-                p[0x20] = 3;
-                func_0210d27c(5);
-                break;
+            for (i = 0; i < 7; i++) {
+                if (p[0x21 + i] == 2) {
+                    p[0x8f] = i;
+                    func_0210d27c(5);
+                    *(u16 *)(p + 0x4c) = 0;
+                    p[0x20] = 3;
+                    break;
+                }
             }
         }
         if (p[0x20] != 3) {
-            u16 count = 0;
-            for (i = 0; i < 7; i++) if (p[0x21 + i]) count++;
+            s16 count = 0;
+            s16 row;
             for (i = 0; i < 7; i++) {
-                s32 y = 0xbf - (count - i) * 0x18;
-                s32 bottom = y + 0x10;
-                s32 touchY, x, inside;
-                if (p[0x21 + i] == 0) continue;
-                touchY = data_02162908[1];
-                x = data_02162908[0];
-                if (x >= 0x89 && x <= 0x100 && touchY >= y && touchY <= bottom) inside = 1;
-                else inside = 0;
-                if (inside && data_021628f8) {
-                    if (p[0x8f] == i) {
-                        *(u16 *)(p + 0x4c) = 0;
-                        p[0x20] = 3;
-                        func_0210d27c(0xb);
+                if (p[0x21 + i] != 0) {
+                    count++;
+                }
+            }
+            row = 0;
+            for (i = 0; i < 7; i++) {
+                if (p[0x21 + i] != 0) {
+                    s32 y = 0xbf - (count - row) * 0x18;
+                    s32 bottom = y + 0x10;
+                    s32 touchY = data_02162908[1];
+                    s32 x = data_02162908[0];
+                    s32 inside;
+                    if (x >= 0x89 && x <= 0x100 && touchY >= y && touchY <= bottom) {
+                        inside = 1;
                     } else {
-                        p[0x8f] = i;
-                        func_0210d27c(2);
+                        inside = 0;
                     }
+                    if (inside && data_021628f8) {
+                        if (p[0x8f] == i) {
+                            func_0210d27c(0xb);
+                            *(u16 *)(p + 0x4c) = 0;
+                            p[0x20] = 3;
+                        } else {
+                            func_0210d27c(2);
+                            p[0x8f] = i;
+                        }
+                    }
+                    row++;
                 }
             }
         }
         for (i = 0; i < 7; i++) {
-            if (i == p[0x8f]) func_020a8810(*(void **)*(u8 **)(p + i * 4 + 4), 0x13);
-            else func_020a8810(*(void **)*(u8 **)(p + i * 4 + 4), 0x14);
+            if (i == p[0x8f]) {
+                func_020a8810(*(void **)*(u8 **)(p + i * 4 + 4), 0x13);
+            } else {
+                func_020a8810(*(void **)*(u8 **)(p + i * 4 + 4), 0x14);
+            }
         }
         func_0209e688();
         break;
-    case 3:
+    case 3: {
+        u16 row = 0;
+        s32 cnt = 0;
+        s32 last = 0;
         for (i = 0; i < 7; i++) {
-            u8 *entry = p + i;
-            u8 *obj;
-            if (entry[0x44] == 0) continue;
-            if (*(u16 *)(p + 0x4c) > i * 3) {
-                s32 *value = (s32 *)(p + i * 4 + 0x28);
-                *value += *value / 6;
-                if (*value >= 0x100000) *value = 0x100000;
+            if (p[0x44 + i] == 0) {
+                continue;
             }
-            obj = *(u8 **)(p + i * 4 + 4);
-            if (entry[0x44] == 0) continue;
-            {
-                u8 *o2 = *(u8 **)obj;
-                ((void (*)(void *))*(void **)(o2 + 4))(o2);
-                func_0203bc34(*(void **)p, o2, (void *)(s32)entry[0x44], 0, 0, 0);
-                func_020a899c(obj);
-                *(s32 *)(o2 + 0x44) = *(s32 *)(p + i * 4 + 0x28) + 0x6000;
-                *(s32 *)(o2 + 0x48) = (0xc5 - (p[0x90] - i) * 0x19) << 12;
-                *(s32 *)(o2 + 0x4c) = 0x276000;
+            cnt++;
+            if (*(u16 *)(p + 0x4c) > (cnt - 1) * 4) {
+                *(s32 *)(p + i * 4 + 0x28) += *(s32 *)(p + i * 4 + 0x28) / 6;
+                if (*(s32 *)(p + i * 4 + 0x28) >= 0x100000) {
+                    *(s32 *)(p + i * 4 + 0x28) = 0x100000;
+                }
             }
+            if (p[0x44 + i] != 0) {
+                *(s32 *)(*(u8 **)*(u8 **)(p + i * 4 + 4) + 0x44) = *(s32 *)(p + i * 4 + 0x28) + 0x6000;
+                *(s32 *)(*(u8 **)*(u8 **)(p + i * 4 + 4) + 0x48) = (0xc5 - (p[0x90] - row) * 0x19) << 12;
+                row++;
+                *(s32 *)(*(u8 **)*(u8 **)(p + i * 4 + 4) + 0x4c) = 0x276000;
+            }
+            last = i;
         }
-        if (*(s32 *)(p + (i - 1) * 4 + 0x28) == 0x100000) {
+        if (*(s32 *)(p + last * 4 + 0x28) == 0x100000) {
             data_02160204[0x86] = p[0x8f];
             p[0x20] = 4;
-            goto sound_tail;
         }
-        /* fall through */
+        func_0209e688();
+        break;
+    }
     case 4:
-        data_02160204[0x86] = -1;
+        *(s8 *)(data_02160204 + 0x86) = -1;
         func_020a957c(p);
         p[0x20] = 5;
         return;
     case 5:
+        *(u16 *)(p + 0x4c) = 0;
+        break;
+    case 6:
         p[0x20] = 1;
         *(u16 *)(p + 0x4c) = 0;
         p[0x8e] = 0;
         for (i = 0; i < 7; i++) {
             *(s32 *)(p + i * 4 + 0x28) = 0x100000;
-            if (i == p[0x8f]) func_020a8810(*(void **)*(u8 **)(p + i * 4 + 4), 0x13);
-            else func_020a8810(*(void **)*(u8 **)(p + i * 4 + 4), 0x14);
+            if (i == p[0x8f]) {
+                func_020a8810(*(void **)*(u8 **)(p + i * 4 + 4), 0x13);
+            } else {
+                func_020a8810(*(void **)*(u8 **)(p + i * 4 + 4), 0x14);
+            }
         }
-        if (*(void **)p != NULL) func_020a957c(p);
+        if (*(void **)p != NULL) {
+            func_020a957c(p);
+        }
         if ((s8)p[0x4e] != 0) {
             *(void **)p = func_020a94b8(p + 0x4e);
-            *(u16 *)(p + 0x4c) = *(u16 *)(p + 0x4c) + 1;
         }
         break;
-    case 6:
-        *(u16 *)(p + 0x4c) = 0;
-        break;
     }
-    return;
-sound_tail:
-    func_0209e688();
+    (*(u16 *)(p + 0x4c))++;
 }
 
 void func_0209e688(void)

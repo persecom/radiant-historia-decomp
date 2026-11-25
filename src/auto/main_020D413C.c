@@ -41,35 +41,51 @@ void func_020d4184(u8 *arg0) {
     }
 }
 
+extern void *data_02160a6c;
+extern void *data_02160244;
 void func_020d4200(void) {
-    volatile s32 state = 0;
-    volatile s32 sink = 0;
+    void *root = data_02160a6c;
+    if (root == NULL) return;
+    u8 *mgr = (u8 *)root + 0x70;
+    u8 *p = *(u8 **)mgr;
+    if (p == NULL) return;
+    u8 *r = *(u8 **)*(u8 **)data_02160244;
+    u8 *s = *(u8 **)(p + 0x118);
+    s32 flag = 1;
+    if (*(u8 *)s != 0) flag = 0;
+    if (*(u8 *)(r + 0x8d) != 0) flag = 0;
+    void *sub = *(void **)(p + 0x13c);
+    u8 *btl = *(u8 **)(p + 0x128);
+    if (flag == 0) return;
+    s32 state = *(s32 *)(btl + 0x24);
     switch (state) {
-    case 0x1: sink = 1; break;
-    case 0xa: sink = 2; break;
-    case 0xb: sink = 3; break;
-    case 0xc: sink = 4; break;
-    case 0x14: sink = 5; break;
-    case 0x3c: sink = 6; break;
-    case 0x3d: sink = 7; break;
-    case 0x46: sink = 8; break;
-    case 0x47: sink = 9; break;
-    case 0x64: sink = 10; break;
-    case 0x67: sink = 11; break;
-    case 0x68: sink = 12; break;
-    case 0x69: sink = 13; break;
-    case 0x6a: sink = 14; break;
-    case 0x8c: sink = 15; break;
-    case 0x96: sink = 16; break;
-    case 0xbe: sink = 17; break;
-    case 0xfa: sink = 18; break;
-    case 0x12c: sink = 19; break;
-    case 0x190: sink = 20; break;
-    case 0x1f4: sink = 21; break;
-    case 0x258: sink = 22; break;
-    case 0x320: sink = 23; break;
-    case 0x384: sink = 24; break;
+    case 0x1: *(volatile s32 *)&state = 1; break;
+    case 0xa: *(volatile s32 *)&state = 2; break;
+    case 0xb: *(volatile s32 *)&state = 3; break;
+    case 0xc: *(volatile s32 *)&state = 4; break;
+    case 0x14: *(volatile s32 *)&state = 5; break;
+    case 0x3c: *(volatile s32 *)&state = 6; break;
+    case 0x3d: *(volatile s32 *)&state = 7; break;
+    case 0x46: *(volatile s32 *)&state = 8; break;
+    case 0x47: *(volatile s32 *)&state = 9; break;
+    case 0x64: *(volatile s32 *)&state = 10; break;
+    case 0x67: *(volatile s32 *)&state = 11; break;
+    case 0x68: *(volatile s32 *)&state = 12; break;
+    case 0x69: *(volatile s32 *)&state = 13; break;
+    case 0x6a: *(volatile s32 *)&state = 14; break;
+    case 0x8c: *(volatile s32 *)&state = 15; break;
+    case 0x96: *(volatile s32 *)&state = 16; break;
+    case 0xbe: *(volatile s32 *)&state = 17; break;
+    case 0xfa: *(volatile s32 *)&state = 18; break;
+    case 0x12c: *(volatile s32 *)&state = 19; break;
+    case 0x190: *(volatile s32 *)&state = 20; break;
+    case 0x1f4: *(volatile s32 *)&state = 21; break;
+    case 0x258: *(volatile s32 *)&state = 22; break;
+    case 0x320: *(volatile s32 *)&state = 23; break;
+    case 0x384: *(volatile s32 *)&state = 24; break;
+    default: break;
     }
+    (void)sub;
 }
 
 void func_020d4e54(u8 *arg0, void *arg1, void *arg2) {

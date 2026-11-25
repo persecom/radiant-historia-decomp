@@ -288,7 +288,7 @@ if(index&1){
 if(index&2){a=index>>2;b=a+1;}else {b=index>>2;a=b+1;}
 if(flags&0x20000000){
 Pair16_02121 *q=(Pair16_02121 *)p;
-s32 bx=q[b].x, by=q[b].y, ax=q[a].x, ay=q[a].y;
+s32 bx=((volatile Pair16_02121 *)q)[b].x, ax=((volatile Pair16_02121 *)q)[a].x, by=((volatile Pair16_02121 *)q)[b].y, ay=((volatile Pair16_02121 *)q)[a].y;
 s32 x=ax+bx*3;
 s32 y=ay+by*3;
 out[0]=x>>2;out[1]=y>>2;
@@ -297,10 +297,9 @@ return;
 Pair32_02121 *q=(Pair32_02121 *)p;
 Pair32_02121 *pb=q+b,*pa=q+a;
 s32 bx=pb->x, by=pb->y;
-s32 ax=pa->x,ay=pa->y;
-s64 x=(s64)bx*3+ax;
-s64 y=(s64)by*3+ay;
-out[0]=x>>2;out[1]=y>>2;
+s64 x=(s64)bx*3+pa->x;
+s64 y=(s64)by*3+pa->y;
+((volatile s32 *)out)[1]=y>>2;out[0]=x>>2;
 }
 return;
 }

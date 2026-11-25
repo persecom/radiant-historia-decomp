@@ -240,15 +240,17 @@ func_021167f0(data_021600ac+0x8c4,obj);
 }
 }
 
+#pragma push
+#pragma scheduling off
 u8 *func_02057764(u16 a0, s32 a1, s16 a2, s16 a3, s16 a4, s8 a5, u16 a6, u8 a7, s32 a8) {
-    s32 v = a1;
-    u8 count;
     u32 local[5] = {0, 0, 0, 0, 0};
-    u8 *node;
-    u8 *buf;
     u8 *p;
-    u8 *result;
+    u8 *buf;
+    s32 v = a1;
     u8 j;
+    u8 count = 0;
+    u8 *result;
+    u8 *node;
     u8 digit;
 
     p = func_0210c594(0x28, data_02155c3c);
@@ -261,9 +263,10 @@ u8 *func_02057764(u16 a0, s32 a1, s16 a2, s16 a3, s16 a4, s8 a5, u16 a6, u8 a7, 
     *(u8 *)(p + 0xe) = a5;
     *(u16 *)(p + 0x10) = a6;
     *(u8 *)(p + 0x12) = a7;
-    count = 0;
-    for (; v != 0; v = v / 10) {
+    for (;;) {
+        if (v == 0) break;
         count++;
+        v /= 10;
     }
     if (count == 0) {
         count = 1;
@@ -280,11 +283,12 @@ u8 *func_02057764(u16 a0, s32 a1, s16 a2, s16 a3, s16 a4, s8 a5, u16 a6, u8 a7, 
         digit = (u8)(a1 % 10);
         a1 /= 10;
         *(s32 *)(result + 8) = (a7 != 0) ? (a2 - j * a5) : (a5 * (count - 1 - j) + a2);
-        *(s32 *)(result + 0xc) = (a8 != 0) ? a3 : a3 - 1;
+        *(s32 *)(result + 0xc) = (a8 == 0) ? (a3 - 1) : a3;
         *(u16 *)(result + 0x44) = a4;
         *(u32 *)(result + 0x48) = a0;
-        local[1] = 0x8000;
-        if (a8 != 0) {
+        if (a8 == 0) {
+            local[1] = 0x8000;
+        } else {
             local[1] = 0;
         }
         local[3] = 0;
@@ -300,7 +304,7 @@ u8 *func_02057764(u16 a0, s32 a1, s16 a2, s16 a3, s16 a4, s8 a5, u16 a6, u8 a7, 
     func_021167f0(data_021600ac + 0x8d0, p);
     return p;
 }
-
+#pragma pop
 void *func_020579dc(u16 arg0) {
     u8 *node = *(u8 **)(data_021600ac + 0x8d0);
     while (node != NULL) {

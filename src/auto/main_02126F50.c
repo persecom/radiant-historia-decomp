@@ -151,22 +151,24 @@ void func_021273f0(void *arg0) {
     }
 }
 
+#pragma push
+#pragma optimization_level 2
 BOOL func_02127404(void *arg0, void *arg1, void *arg2, s32 arg3) {
-    u32 p;
+    void *p;
     if (*(s32 *)((u8 *)arg1 + 8) != 0) {
-        p = (u32)func_02127dec(arg2, arg3 - 0xc);
+        p = func_02127dec(arg2, arg3 - 0xc);
     } else {
-        p = (u32)func_02127a9c(*(void **)arg1, arg2, arg3 - 0xc);
+        p = func_02127a9c(*(void **)arg1, arg2, arg3 - 0xc);
     }
-    *(u32 *)((u8 *)arg0 + 4) = p;
-    if (p != 0) {
-        *(void **)((u8 *)arg0 + 8) = *(void **)arg1;
-        return TRUE;
+    *(void **)((u8 *)arg0 + 4) = p;
+    if (p == NULL) {
+        func_02126c20(data_0215665c);
+        return FALSE;
     }
-    func_02126c20(data_0215665c);
-    return FALSE;
+    *(void **)((u8 *)arg0 + 8) = *(void **)arg1;
+    return TRUE;
 }
-
+#pragma pop
 void func_02127468(void *arg0) {
     if (*(void **)((u8 *)arg0 + 4) != NULL) {
         func_02127e58(*(void **)((u8 *)arg0 + 4));
@@ -454,16 +456,17 @@ extern void *func_0212e5e4(void *);
 extern void func_0212e5f4(void *, void *);
 extern void func_021288a4(void *);
 extern void func_02128578(void *, s32);
-#pragma optimization_level 3
+#pragma push
+#pragma opt_loop_invariants off
 void *func_02127ad0(void *arg0, void *arg1, s32 arg2) {
+    u8 *obj;
+    s32 i;
     s32 n = (s32)arg0;
     u32 aligned = ((u32)arg1 + 0x3f) & ~0x3f;
     s32 size = arg2 - (aligned - (u32)arg1);
-    s32 i;
-    u8 *obj;
     s32 ch_size;
 
-    if (n < 0 || arg1 == NULL || arg2 < 0) {
+    if (!(n >= 0 && arg1 != NULL && arg2 >= 0)) {
         func_0212bda8(data_02156780);
         return NULL;
     }
@@ -566,7 +569,7 @@ void *func_02127ad0(void *arg0, void *arg1, s32 arg2) {
     func_0212a9e8();
     return obj;
 }
-#pragma optimization_level 4
+#pragma pop
 extern void *func_02127e18(void *, s32);
 extern void *func_02127ad0(void *, void *, s32);
 extern void (*data_02173428[])(void *);

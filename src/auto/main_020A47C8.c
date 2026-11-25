@@ -128,116 +128,111 @@ void func_020a48d0(u32 arg0, s32 arg1, s16 arg2, s16 arg3, s16 arg4, s32 arg5, s
     }
 }
 
-void func_020a49a4(s16 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4,
-                   s32 arg5, s32 arg6, s16 arg7, s16 arg8) {
-    S16x10_020a49a4 buf = data_02143360;
-    s16 wl, hl;
-    s16 dx = arg3 / 3;
-    s16 dy = arg4 / 3;
-
-    if (arg3 > arg7)
-        dx = arg7 / 3;
-    wl = arg7 - dx * 2;
-    hl = arg8 - dy * 2;
-
-    buf.m[2] = arg2;
-    buf.m[3] = dx;
-    buf.m[4] = dy;
-    buf.m[6] = arg6;
-    buf.m[1] = arg1;
-    buf.m[5] = arg5;
-    buf.m[8] = dx;
-    buf.m[9] = dy;
-    buf.m[7] = arg0;
-    func_021098ac(&buf);
-
-    buf.m[2] = arg2;
-    buf.m[3] = dx;
-    buf.m[4] = dy;
-    buf.m[6] = arg6;
-    buf.m[8] = wl;
-    buf.m[1] = arg1 + dx;
-    buf.m[5] = arg5 + dx;
-    buf.m[9] = dy;
-    buf.m[7] = arg0;
-    func_021098ac(&buf);
-
-    buf.m[1] = arg1 + arg3 - dx;
-    buf.m[5] = arg5 + arg7 - dx;
-    buf.m[3] = dx;
-    buf.m[4] = dy;
-    buf.m[8] = dx;
-    buf.m[2] = arg2;
-    buf.m[6] = arg6;
-    buf.m[9] = dy;
-    buf.m[7] = arg0;
-    func_021098ac(&buf);
-
-    buf.m[1] = arg1;
-    buf.m[3] = dx;
-    buf.m[4] = dy;
-    buf.m[5] = arg5;
-    buf.m[8] = dx;
-    buf.m[9] = hl;
-    buf.m[2] = arg2 + dy;
-    buf.m[6] = arg6 + dy;
-    buf.m[7] = arg0;
-    func_021098ac(&buf);
-
-    buf.m[3] = dx;
-    buf.m[1] = arg1 + dx;
-    buf.m[4] = dy;
-    buf.m[2] = arg2 + dy;
-    buf.m[5] = arg5 + dx;
-    buf.m[6] = arg6 + dy;
-    buf.m[8] = wl;
-    buf.m[9] = hl;
-    buf.m[7] = arg0;
-    func_021098ac(&buf);
-
-    buf.m[2] = arg2 + dy;
-    buf.m[6] = arg6 + dy;
-    buf.m[9] = hl;
-    buf.m[1] = arg1 + arg3 - dx;
-    buf.m[5] = arg5 + arg7 - dx;
-    buf.m[3] = dx;
-    buf.m[4] = dy;
-    buf.m[8] = dx;
-    buf.m[7] = arg0;
-    func_021098ac(&buf);
-
-    buf.m[1] = arg1;
-    buf.m[5] = arg5;
-    buf.m[2] = arg2 + arg4 - dy;
-    buf.m[3] = dx;
-    buf.m[4] = dy;
-    buf.m[6] = arg6 + arg8 - dy;
-    buf.m[8] = dx;
-    buf.m[9] = dy;
-    buf.m[7] = arg0;
-    func_021098ac(&buf);
-
-    buf.m[2] = arg2 + arg4 - dy;
-    buf.m[1] = arg1 + dx;
-    buf.m[3] = dx;
-    buf.m[4] = dy;
-    buf.m[6] = arg6 + arg8 - dy;
-    buf.m[5] = arg5 + dx;
-    buf.m[8] = wl;
-    buf.m[9] = dy;
-    buf.m[7] = arg0;
-    func_021098ac(&buf);
-
-    buf.m[1] = arg1 + arg3 - dx;
-    buf.m[2] = arg2 + arg4 - dy;
-    buf.m[3] = dx;
-    buf.m[4] = dy;
-    buf.m[5] = arg5 + arg7 - dx;
-    buf.m[6] = arg6 + arg8 - dy;
-    buf.m[8] = dx;
-    buf.m[9] = dy;
-    buf.m[7] = arg0;
-    func_021098ac(&buf);
+void func_020a49a4(s16 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s32 arg5, s32 arg6, s16 arg7, s16 arg8)
+{
+  S16x10_020a49a4 buf = *((const S16x10_020a49a4 *) (&data_02143360));
+  s16 dx = arg3 / 3;
+  s16 dy = arg4 / 3;
+  s16 wl;
+  int new_var;
+  s16 hl;
+  if (arg3 > arg7)
+  {
+    dx = arg7 / 3;
+  }
+  wl = arg7 - (dx * 2);
+  hl = arg8 - (dy * 2);
+  buf.m[2] = arg2;
+  buf.m[3] = dx;
+  buf.m[4] = dy;
+  buf.m[6] = arg6;
+  buf.m[1] = arg1;
+  buf.m[5] = arg5;
+  buf.m[8] = dx;
+  buf.m[9] = dy;
+  buf.m[7] = arg0;
+  func_021098ac(&buf);
+  buf.m[2] = arg2;
+  buf.m[3] = dx;
+  new_var = arg1 + dx;
+  buf.m[4] = dy;
+  buf.m[6] = arg6;
+  buf.m[8] = wl;
+  buf.m[1] = new_var;
+  buf.m[5] = arg5 + dx;
+  buf.m[9] = dy;
+  buf.m[7] = arg0;
+  func_021098ac(&buf);
+  buf.m[1] = (arg1 + arg3) - dx;
+  buf.m[5] = (arg5 + arg7) - dx;
+  buf.m[3] = dx;
+  buf.m[4] = dy;
+  buf.m[8] = dx;
+  buf.m[2] = arg2;
+  buf.m[6] = arg6;
+  buf.m[9] = dy;
+  buf.m[7] = arg0;
+  func_021098ac(&buf);
+  buf.m[1] = arg1;
+  buf.m[3] = dx;
+  buf.m[4] = dy;
+  buf.m[5] = arg5;
+  buf.m[8] = dx;
+  buf.m[9] = hl;
+  buf.m[2] = arg2 + dy;
+  buf.m[6] = arg6 + dy;
+  buf.m[7] = arg0;
+  func_021098ac(&buf);
+  buf.m[3] = dx;
+  buf.m[1] = new_var;
+  buf.m[4] = dy;
+  buf.m[5] = arg5 + dx;
+  buf.m[6] = arg6 + dy;
+  buf.m[8] = wl;
+  buf.m[9] = hl;
+  buf.m[7] = arg0;
+  func_021098ac(&buf);
+  buf.m[2] = arg2 + dy;
+  buf.m[6] = arg6 + dy;
+  buf.m[9] = hl;
+  buf.m[1] = (arg1 + arg3) - dx;
+  buf.m[5] = (arg5 + arg7) - dx;
+  buf.m[3] = dx;
+  buf.m[4] = dy;
+  buf.m[8] = dx;
+  buf.m[2] = arg2 + dy;
+  buf.m[7] = arg0;
+  func_021098ac(&buf);
+  buf.m[1] = arg1;
+  buf.m[5] = arg5;
+  buf.m[2] = (arg2 + arg4) - dy;
+  buf.m[3] = dx;
+  buf.m[4] = dy;
+  buf.m[6] = (arg6 + arg8) - dy;
+  buf.m[8] = dx;
+  buf.m[9] = dy;
+  buf.m[7] = arg0;
+  func_021098ac(&buf);
+  buf.m[2] = (arg2 + arg4) - dy;
+  buf.m[1] = arg1 + dx;
+  buf.m[3] = dx;
+  buf.m[4] = dy;
+  buf.m[6] = (arg6 + arg8) - dy;
+  buf.m[5] = arg5 + dx;
+  buf.m[8] = wl;
+  buf.m[9] = dy;
+  buf.m[7] = arg0;
+  func_021098ac(&buf);
+  buf.m[1] = (arg1 + arg3) - dx;
+  buf.m[2] = (arg2 + arg4) - dy;
+  buf.m[3] = dx;
+  buf.m[4] = dy;
+  buf.m[5] = (arg5 + arg7) - dx;
+  buf.m[6] = (arg6 + arg8) - dy;
+  buf.m[8] = dx;
+  buf.m[9] = dy;
+  buf.m[7] = arg0;
+  func_021098ac(&buf);
 }
 
 void func_020a4c98(s32 arg0)
@@ -454,6 +449,7 @@ void func_020a5338(void) {
     data_02160134.unk04 = NULL;
 }
 
+#pragma opt_propagation off
 void func_020a5368(void){
 Unk20 buf=data_0214339c;
 switch(*(u16 *)data_02160134.unk04){
@@ -495,8 +491,8 @@ data_02162814=-16;data_02162884=-16;
 data_02160200->unk160&=~0x20;
 break;
 case 4:case 6:
-if((data_02162814+=4)<=0) return;
-func_02109884(1,(data_02162814=0));
+if((data_02162814 = (u32)data_02162814 + 4U) <= 0)return;
+data_02162814=0;func_02109884(1,0);
 if(*(s32 *)((u8 *)data_02160134.unk04+0x10)==0){data_02162884=0;func_02109884(2,0);}
 func_02108cc8(0);func_02108cc8(1);
 data_02160200->unk160&=~0x20;
@@ -506,7 +502,7 @@ break;
 case 8:break;
 }
 }
-
+#pragma opt_propagation on
 void func_020a5644(u16 arg0) {
     u8 *p = data_02160134.unk04;
     if (p == NULL) {

@@ -694,12 +694,21 @@ void *func_02133df8(void) {
 }
 
 extern void *memset(void *, int, unsigned long);
-void func_02133e04(void) {
-    s32 i;
+void func_02133e04(void)
+{
+    u32 *dst;
+    u32 count;
+
     data_0215bbb4 = data_02145a60;
-    for (i = 0; i < 0x738 / 4; i++) {
-        data_02174f9c[i] = 0;
-    }
+    dst = data_02174f9c;
+    count = 115;
+
+    do {
+        dst[0] = dst[1] = dst[2] = dst[3] = 0;
+        dst += 4;
+    } while (--count != 0);
+
+    dst[0] = dst[1] = 0;
 }
 
 void func_02133e54(s8 *arg0, s8 *arg1) {

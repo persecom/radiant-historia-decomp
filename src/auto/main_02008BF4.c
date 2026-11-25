@@ -137,18 +137,15 @@ void func_02008e50(u32 *src, u32 *dst, s32 size) {
     }
 }
 
-void func_02008e68(u32 value, u32 *start, u32 size) {
-    u32 *p = start;
-    u32 *end32 = (u32 *)((u8 *)start + (size & ~0x1fu));
-    u32 *end = (u32 *)((u8 *)start + size);
-    while (p < end32) {
-        p[0] = value; p[1] = value; p[2] = value; p[3] = value;
-        p[4] = value; p[5] = value; p[6] = value; p[7] = value;
-        p += 8;
-    }
-    while (p < end) {
-        *p++ = value;
-    }
+void func_02008e68(u32 value,u32 *start,u32 size) {
+ s32 end=(s32)start+size;
+ s32 end32=(s32)start+((size>>5)<<5);
+ while((s32)start<end32){
+ start[0]=value;start[1]=value;start[2]=value;start[3]=value;
+ start[4]=value;start[5]=value;start[6]=value;start[7]=value;
+ start+=8;
+ }
+ while((s32)start<end)*start++=value;
 }
 
 void func_02008eb4(u32 *src, u32 *dst, u32 bytes) {
@@ -187,6 +184,8 @@ void func_02008f48(const void *src, void *dst) {
     *d = *s;
 }
 
+#pragma push
+#pragma opt_tail_merge off
 void func_02008f74(u8 *p, u32 value, u32 size) {
 u32 count;
 if(size==0) return;
@@ -217,7 +216,7 @@ value&=255;
 *(u16 *)p=value|old;
 }
 }
-
+#pragma pop
 void func_02009008(u8 *src, u8 *dst, u32 size)
 {
   u32 align;
@@ -357,40 +356,31 @@ u32 func_02009148(u32 val, u32 *ptr) {
     return __swp(val, ptr);
 }
 
-void func_02009150(const u8 *src, u8 *dst) {
- u32 header=*(const u32 *)src;
- s32 remaining=header>>8;
- u32 extended=(header&15)!=0;
- src+=4;
- while(remaining>0) {
- u32 flags=*src++;
- s32 n=8;
- while(n-- && remaining>0) {
- if(!(flags&128)) { *dst++=*src++; remaining--; }
- else {
- u32 byte=*src;
- s32 base=3, length;
- u32 offset;
- if(extended) {
- base=1;
- if(!(byte&224)) {
- src++;
- base=(byte&15)<<4;
- if(byte&16) { base<<=8; base+=*src++<<4; base+=256; }
- base+=17;
- byte=*src;
- }
- }
- length=base+(byte>>4);
- src++;
- offset=((byte&15)<<8)|*src++;
- offset++;
- remaining-=length;
- do { *dst=dst[-(s32)offset]; dst++; } while(--length>0);
- }
- flags<<=1;
- }
- }
+void func_02009150(const u8 *src,u8 *dst) {
+u32 header=*(const u32*)src; s32 remaining=header>>8; u32 extended=0;
+src+=4; if(header&15)extended=1;
+outer:
+if(remaining<=0)return;
+{u32 flags=*src++; s32 n=8;
+inner:
+if(--n<0)goto outer;
+if(!(flags&128)){u8 value=*src++; *(volatile u8*)dst=value; dst++; remaining--;}
+else {
+s32 byte=*src; s32 base,length; u32 offset;
+if(!extended)base=3;
+else if(byte&224)base=1;
+else {
+src++; base=(byte&15)<<4;
+if(byte&16){base<<=8; base+=*src++<<4; base+=256;}
+base+=17; byte=*src;
+}
+length=base+(byte>>4); src++; offset=(byte&15)<<8; offset|=*src++; offset++;
+remaining-=length;
+do {u8 value=dst[-(s32)offset]; *(volatile u8*)dst=value; dst++;}while(--length>0);
+}
+if(remaining>0){flags<<=1;goto inner;}
+goto outer;
+}
 }
 
 void func_02009230(u8 *src, u16 *dst) {
@@ -454,32 +444,27 @@ void func_02009230(u8 *src, u16 *dst) {
     }
 }
 
-void func_02009354(const u8 *src, u32 *dst) {
- const u8 *tree=src+5;
- const u8 *node=tree;
- const u32 *bits=(const u32 *)(src+4+2*(src[4]+1));
- s32 remaining=(*(const u32 *)src)>>8;
- u32 width=src[0]&15;
- u32 count=0, out=0;
- u32 limit=(width&7)+4;
- while(remaining>0) {
- u32 word=*bits++;
- s32 n=32;
- next_bit:
- if(--n<0) continue;
- {
- u32 right=(word>>31)&1;
- u32 leaf=*node<<right;
- node=(const u8 *)(((u32)node>>1)<<1)+2*((*node&63)+1)+right;
- if(leaf&128) {
- out=(out>>width)|((u32)*node<<(32-width));
- node=tree;
- count++;
- if(count==limit) { *dst++=out; remaining-=4; count=0; }
- }
- if(remaining>0) { word<<=1; goto next_bit; }
- }
- }
+void func_02009354(const u8 *src,u32 *dst) {
+const u8 *table=src+4; const u8 *tree=table+1; const u8 *node;
+u32 width=src[0]&15; u32 out=0,count=0; u32 limit=(width&7)+4;
+s32 remaining=*(const u32*)src>>8;
+const u32 *bits=(const u32*)(table+2*(table[0]+1));
+node=tree;
+outer:
+if(remaining<=0)return;
+{ s32 n=32; u32 word=*bits++;
+inner:
+if(--n<0)goto outer;
+{ u32 right=(word>>31)&1; u32 leaf=*(const volatile u8*)node<<right;
+node=(const u8*)(((u32)node>>1)<<1)+((*(const volatile u8*)node&63)+1)*2+right;
+if(leaf&128) {
+out>>=width; out|=(u32)*node<<(32-width); node=tree; count++;
+if(count==limit){*dst++=out; remaining-=4; count=0;}
+}
+if(remaining>0){word<<=1;goto inner;}
+goto outer;
+}
+}
 }
 
 void func_0200942c(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
@@ -640,27 +625,27 @@ void func_02009894(void) {
     s32 i;
     u32 *p;
     func_02009e60();
-    data_0215d1b8[0] = (u32 *)data_0215d480;
+    data_0215d1b8[0] = (u32)data_0215d480;
     for (i = 0; i < 255; i++) {
-        *(u32 **)(data_0215d480 + i * 24) = (u32 *)(data_0215d480 + (i + 1) * 24);
+        *(u32 *)(data_0215d480 + i * 24) = (u32)(data_0215d480 + (i + 1) * 24);
     }
-    *(u32 *volatile *)(data_0215e480 + 0x7e8) = 0;
-    data_0215d1b8[4] = data_0215ec68;
+    *(u32 *)(data_0215e480 + 0x7e8) = 0;
+    data_0215d1b8[4] = (u32)data_0215ec68;
     data_0215d1b8[2] = 0;
     data_0215d1b8[3] = 0;
     data_0215d1b8[7] = 0;
     data_0215d1b8[5] = 0;
     data_0215d1b8[6] = 0;
-    data_0215d1b8[8] = (u32 *)1;
+    data_0215d1b8[8] = 1;
     data_0215d1b8[1] = 0;
-    data_0215ece0 = data_0215d200;
+    data_0215ece0 = (u32)data_0215d200;
     func_0200a08c();
-    p = func_02009a64(1);
+    p = (u32 *)func_02009a64(1);
     if (!p) {
         return;
     }
     p[1] = 0x1d;
-    p[2] = (u32)data_0215ece0;
+    p[2] = data_0215ece0;
     func_02009aec(p);
     func_02009b24(1);
 }

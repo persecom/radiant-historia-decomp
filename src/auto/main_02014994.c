@@ -52,7 +52,7 @@ pad='0';
 switch(num.digits[0]){
 case '0':num.exponent=0;break;
 case 'I':
-if(value<0.0){p=(u8*)((u32)end-5);if((u32)conversion>=128?0:data_0213eb14[conversion]&0x200){*(FormatText5*)p=*(FormatText5*)data_02145e54;return p;}else{*(FormatText5*)p=*(FormatText5*)data_02145e5c;return p;}}
+if(value<0){p=(u8*)((u32)end-5);if((u32)conversion>=128?0:data_0213eb14[conversion]&0x200){*(FormatText5*)p=*(FormatText5*)data_02145e54;return p;}else{*(FormatText5*)p=*(FormatText5*)data_02145e5c;return p;}}
 p=(u8*)((u32)end-4);if((u32)conversion>=128?0:data_0213eb14[conversion]&0x200){*(FormatText4*)p=*(FormatText4*)data_02145e64;return p;}else{*(FormatText4*)p=*(FormatText4*)data_02145e68;return p;}
 case 'N':
 if(num.sign){p=(u8*)((u32)end-5);if((u32)conversion>=128?0:data_0213eb14[conversion]&0x200){*(FormatText5*)p=*(FormatText5*)data_02145e6c;return p;}else{*(FormatText5*)p=*(FormatText5*)data_02145e74;return p;}}

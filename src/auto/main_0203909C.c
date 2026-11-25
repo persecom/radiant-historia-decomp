@@ -35,7 +35,7 @@ void func_0203909c(u8 *actor) {
     Vec_3909C pos;
 
     switch (*(u16 *)state) {
-    case 0:
+    case 1:
         *(u16 *)(data_02160a6c + 0x1e0) = 0;
         (*(u8 **)data_02160244)[0x6c] = 2;
         pos.x = 0x1e0000;
@@ -45,7 +45,7 @@ void func_0203909c(u8 *actor) {
         *(Vec_3909C *)(state + 0x18) = *(Vec_3909C *)actor;
         next = 1;
         break;
-    case 1:
+    case 2:
         if (!(*(u16 *)(state + 8) & 1)) {
             func_020331d0(state, 1, 1);
             func_020dd810(actor, 1, 0);
@@ -79,7 +79,7 @@ void func_0203909c(u8 *actor) {
             next = 3;
         }
         break;
-    case 3:
+    case 4:
         if (!(*(u16 *)(state + 8) & 1)) {
             *(s32 *)actor = *(s32 *)data_02160258 + 0x6c000;
             *(s32 *)(actor + 4) = *(s32 *)(data_02160258 + 4) - 0xd000;
@@ -111,14 +111,14 @@ void func_0203909c(u8 *actor) {
             func_020331d0(state, 8, 1);
         }
         break;
-    case 4:
+    case 5:
         if (*(s16 *)(state + 0x30) == 0) {
             *(s16 *)(state + 0x30) = 1;
             func_0210d27c(0x7e);
         }
         if (!(*(u16 *)(state + 8) & 1)) {
             *(s16 *)(state + 2) += 1;
-            *(s32 *)actor += 0x1000;
+            *(s32 *)actor += 0xffffde67;
             if (*(s16 *)(state + 2) >= 20) {
                 *(s16 *)(state + 2) = 0;
                 func_020331d0(state, 1, 1);
@@ -139,21 +139,21 @@ void func_0203909c(u8 *actor) {
             }
         }
         break;
-    case 9:
+    case 10:
         if (!(*(u16 *)(state + 8) & 1)) {
             u8 *eff;
             func_0210d27c(0x73);
             pos.x = 0xc0000;
             pos.y = 0x80000;
             pos.z = 0x258000;
-            eff = func_020c1370(0, &pos, 0x82d, 0, 0);
+            eff = func_020c1370(0, &pos, 0x7f1, 0, 0);
             *(s32 *)(eff + 0x38) = 1;
             *(s32 *)(eff + 0x20) = (*(s32 *)(eff + 0x20) * 3) / 5;
             *(s32 *)(eff + 0x24) = (*(s32 *)(eff + 0x24) * 3) / 5;
             pos.x = 0x80000;
             pos.y = 0x60000;
             pos.z = 0x258000 - 0x27000;
-            func_020c1370(1, &pos, 0x82d, 1, 0x380);
+            func_020c1370(1, &pos, 0x7f1, 1, 0x380);
             func_020331d0(state, 1, 1);
         }
         if (!(*(u16 *)(state + 8) & 2)) {
@@ -181,10 +181,48 @@ void func_0203909c(u8 *actor) {
             next = 10;
         }
         break;
-    case 10:
     case 11:
+        if (!(*(u16 *)(state + 8) & 1)) {
+            u8 *node;
+            int found = 0;
+            for (node = *(u8 **)(*(u8 **)data_02160a6c + 0xb8); node; node = *(u8 **)(node + 0x174)) {
+                if (*(u16 *)(node + 0x8e) == 0x8fc) {
+                    found = 1;
+                }
+            }
+            pos.x = 0x80000;
+            pos.y = 0x60000;
+            pos.z = (found == 1) ? 0x28f000 : 0x24e000;
+            func_020ec8cc(func_020c1370(4, &pos, 0x7f1, 7, 0x200), 0, 0);
+            func_020ec8cc(func_020c1370(6, &pos, 0x7f1, 6, 0x700), 0, 0);
+            func_020331d0(state, 1, 1);
+        }
+        if (!(*(u16 *)(state + 8) & 2)) {
+            func_020331d0(state, 2, 1);
+        }
+        if (!(*(u16 *)(state + 8) & 4)) {
+            u8 *eff = func_020ec950(6);
+            if (*(s32 *)(*(u8 **)eff + 0x20)) {
+                func_020ec950(6);
+                func_020ec548();
+                func_020ec8cc(func_020ec950(4), 1, 0);
+                func_020331d0(state, 4, 1);
+            }
+        }
+        *(s16 *)(state + 0x30) += 1;
+        if (*(s16 *)(state + 0x30) % 3 == 0) {
+            func_0210d27c(0x91);
+        }
+        if ((*(u16 *)(state + 8) & 2) && (*(u16 *)(state + 8) & 4)) {
+            *(s16 *)(state + 2) += 1;
+            if (*(s16 *)(state + 2) >= 15) {
+                next = 0xb;
+            }
+        }
+        break;
     case 12:
     case 13:
+    case 14:
     case 19:
         break;
     }

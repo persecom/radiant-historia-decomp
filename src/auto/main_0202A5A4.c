@@ -198,76 +198,111 @@ s32 func_0202a5a4(u32 arg0, s32 arg1, s32 arg2, u8 *arg3) {
     return 0;
 }
 
-int func_0202aa68(int mode,int name,int unused,u8 *obj) {
-char path[32];
-u16 values[11]={0};
-u16 row=0;
-int found;
-s16 count;
-u16 i;
-void *file;
-u8 *state=*(u8 **)(obj+0x12c);
-func_02005e80(path,data_02146170,name);
-file=func_021092d8(path);
-found=0;
-do {
-i=0;
-values[i]=func_02092994(file,0); i++;
-values[i]=func_02092994(file,0); i++;
-values[i]=func_02092994(file,0); i++;
-values[i]=func_02092994(file,0); i++;
-values[i]=func_02092994(file,0); i++;
-values[i]=func_02092994(file,0); i++;
-values[i]=func_02092994(file,0); i++;
-values[i]=func_02092994(file,0); i++;
-values[i]=func_02092994(file,0); i++;
-values[i]=func_02092994(file,0); i++;
-values[i]=func_02092994(file,0);
-if ((int)row%2==0) {
-count=0;
-for(i=0;i<9;i++) if(func_0202bf4c(values[i+2],(u8)i)) count++;
-if(data_02160080[0]&16) {
-for(i=0;i<9;i++) data_02160080[i+18]=values[i+2];
-break;
-}
-if(count==values[1] && count!=0) {
-if(mode==0) {
-int slot=func_0202c658(obj);
-u16 id=*(u16 *)(obj+0x8c);
-for(i=0;i<9;i++) {
-if(id==values[i+2] && slot==i) {
-if(*(s16 *)((u8 *)data_02160244+0xf8)==0 && *(u16 *)((u8 *)data_02160244+0xf6)==0) {
-*(u16 *)((u8 *)data_02160244+0xf6)=values[0];
-*(s16 *)((u8 *)data_02160244+0xf8)=count-1;
-found=1;
-} else if(*(u16 *)((u8 *)data_02160244+0xf6)==values[0]) {
-if(*(s16 *)((u8 *)data_02160244+0xf8)-1>=0) {
-(*(s16 *)((u8 *)data_02160244+0xf8))--;
-found=1;
-}
-}
-break;
-}
-}
-} else {found=1; break;}
-}
-} else if((int)row%2==1 && found) {
-if(data_02160080[0]&8) {
-for(i=0;i<9;i++) data_02160080[i+1]=values[i+2];
-}
-break;
-}
-if(func_02109444(file)==0) break;
-row++;
-} while(1);
-if(file) func_021093b0(file);
-switch(mode) {
-case 0: *(u32 *)(state+16)&=~2; if(found) {*(u32 *)(state+16)|=2; return 1;} break;
-case 1: *(u32 *)(state+16)&=~2; if(found) {*(u32 *)(state+16)|=2; return 1;} break;
-case 2: *(u32 *)(state+16)&=~2; if(found) {*(u32 *)(state+16)|=2; return 0;} return 1;
-case 3: return 0;
-}
-return 0;
+int func_0202aa68(int mode, int name, int unused, u8 *obj) {
+    char path[32];
+    u16 values[11] = {0};
+    int found;
+    s16 count;
+    u16 row = 0;
+    u16 i;
+    void *file;
+    u8 *state = *(u8 **)(obj + 0x12c);
+
+    func_02005e80(path, data_02146170, name);
+    file = func_021092d8(path);
+    found = 0;
+    do {
+        count = 0;
+        i = 0;
+        values[i] = func_02092994(file, count); i++;
+        values[i] = func_02092994(file, count); i++;
+        values[i] = func_02092994(file, count); i++;
+        values[i] = func_02092994(file, count); i++;
+        values[i] = func_02092994(file, count); i++;
+        values[i] = func_02092994(file, count); i++;
+        values[i] = func_02092994(file, count); i++;
+        values[i] = func_02092994(file, count); i++;
+        values[i] = func_02092994(file, count); i++;
+        values[i] = func_02092994(file, count); i++;
+        values[i] = func_02092994(file, count);
+        if (row % 2 == 0) {
+            for (i = 0; i < 9; i++) {
+                if (func_0202bf4c(values[i + 2], (u8)i)) {
+                    count++;
+                }
+            }
+            if (data_02160080[0] & 16) {
+                for (i = 0; i < 9; i++) {
+                    data_02160080[i + 18] = values[i + 2];
+                }
+                break;
+            }
+            if (count == values[1] && count != 0) {
+                if (mode == 0) {
+                    int slot = func_0202c658(obj);
+                    u16 id = *(u16 *)(obj + 0x8c);
+                    for (i = 0; i < 9; i++) {
+                        if (id == values[i + 2] && slot == i) {
+                            if (*(s16 *)((u8 *)data_02160244 + 0xf8) == 0 && *(u16 *)((u8 *)data_02160244 + 0xf6) == 0) {
+                                *(u16 *)((u8 *)data_02160244 + 0xf6) = values[0];
+                                *(s16 *)((u8 *)data_02160244 + 0xf8) = count - 1;
+                                found = 1;
+                            } else if (*(u16 *)((u8 *)data_02160244 + 0xf6) == values[0]) {
+                                if (*(s16 *)((u8 *)data_02160244 + 0xf8) - 1 >= 0) {
+                                    (*(s16 *)((u8 *)data_02160244 + 0xf8))--;
+                                    found = 1;
+                                }
+                            }
+                            break;
+                        }
+                    }
+                } else {
+                    found = 1;
+                    break;
+                }
+            }
+        } else if (row % 2 == 1 && found) {
+            if (data_02160080[0] & 8) {
+                for (i = 0; i < 9; i++) {
+                    data_02160080[i + 1] = values[i + 2];
+                }
+            }
+            break;
+        }
+        if (func_02109444(file) == 0) {
+            break;
+        }
+        row++;
+    } while (1);
+    if (file) {
+        func_021093b0(file);
+    }
+    switch (mode) {
+    case 0:
+        *(u32 *)(state + 16) &= ~2;
+        if (found) {
+            *(u32 *)(state + 16) |= 2;
+            return 1;
+        }
+        break;
+    case 1:
+        *(u32 *)(state + 16) &= ~2;
+        if (found) {
+            *(u32 *)(state + 16) |= 2;
+            return 1;
+        }
+        break;
+    case 2:
+        *(u32 *)(state + 16) &= ~2;
+        if (found) {
+            *(u32 *)(state + 16) |= 2;
+            return 0;
+        }
+        return 1;
+    case 3:
+        return 0;
+    }
+    return 0;
 }
 
 s32 func_0202aec4(s32 arg0, s32 arg1, s32 arg2, u8 *arg3) {

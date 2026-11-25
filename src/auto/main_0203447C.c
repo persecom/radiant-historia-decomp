@@ -117,6 +117,22 @@ void func_0203447c(u8 *actor) {
         }
         break;
     case 10:
+        {
+            s32 y = *(s32 *)(actor + 4);
+            s32 sy = y >> 12;
+            if (sy < 0x4b0) {
+                y += 0x14000;
+                *(s32 *)(actor + 4) = y;
+                sy = y >> 12;
+                if (sy >= 0x384 && sy <= 0x4b0) *(s32 *)(actor + 4) = 0x4b0000;
+            }
+        }
+        *(s16 *)(state + 2) += 1;
+        if (*(s16 *)(state + 2) > 20) {
+            func_020331d0(state, 4, 1);
+            next = 11;
+        }
+        break;
     case 11:
     case 12:
     case 13:

@@ -55,11 +55,11 @@ s32 func_02001fc0(s32);
 extern void func_0211c52c(void);
 
 void func_0211a4e0(void *arg0, void *arg1, void *arg2) {
+register s32 x asm("r8"), y asm("r6");
 s32 *a=arg0,*b=arg1;
 Mtx23 tmp;
 void *out=arg2;
-s32 x,y,x2,y2,x3,y3;
-s64 t0,t1;
+s32 x2,y2,x3,y3;
 if(arg2==arg1) arg2=&tmp;
 x=a[0];y=a[1];
 ((s32 *)arg2)[0]=((s64)b[0]*x+(s64)b[2]*y)>>12;

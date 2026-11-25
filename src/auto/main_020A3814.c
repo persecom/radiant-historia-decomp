@@ -167,6 +167,8 @@ void func_020a3b84(void) {
 void func_020a3bb8(void) {
 }
 
+#pragma push
+#pragma optimization_level 3
 void func_020a3bbc(s32 arg0) {
     UnkStruct_020a3bbc *base = *(UnkStruct_020a3bbc **)((u8 *)*data_0216012c + 0x30);
     *(volatile u32 *)0x040004a8 = (base[arg0].unk4 >> 3) | (base[arg0].unk18 << 26) |
@@ -175,7 +177,7 @@ void func_020a3bbc(s32 arg0) {
     *(volatile u32 *)0x040004ac = base[arg0].unkc >> (4 - (base[arg0].unk18 == 2));
     *(volatile u32 *)0x04000480 = 0x7fff;
 }
-
+#pragma pop
 void func_020a3c54(s32 arg0) {
     UnkStruct_020a3bbc *base = *(UnkStruct_020a3bbc **)((u8 *)*data_0216012c + 0x30);
     *(volatile u32 *)0x040004a8 = (base[arg0].unk4 >> 3) | (base[arg0].unk18 << 26) |
@@ -184,7 +186,7 @@ void func_020a3c54(s32 arg0) {
     *(volatile u32 *)0x040004ac = base[arg0].unkc >> (4 - (base[arg0].unk18 == 2));
     *(volatile u32 *)0x04000480 = 0x7fff;
 }
-
+#pragma opt_propagation on
 void func_020a3ce8(s16 *arg0) {
     s16 sp[10];
     sp[1] = arg0[0];

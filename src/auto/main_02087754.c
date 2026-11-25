@@ -35,7 +35,7 @@ s32 func_02087754(s32 arg) {
 s32 func_020877b4(s32 arg,s16 who){
 u8 *actor;
 s32 all=1;
-
+s32 amount;
 s32 cost=*(s16 *)((u8 *)data_0216010c+arg*64+0x4890);
 u8 *entry;
 s16 i;
@@ -43,7 +43,6 @@ s32 count;
 actor=func_02021f10(func_02085110(((u8 *)data_0216010c)[0x50dc]));
 entry=(u8 *)data_0216010c+arg*64+0x4800;
 if(*(s16 *)(entry+0x78)==101){
-s32 amount;
 amount=((actor[0x43]*5+(data_02140d10[*(s16 *)(entry+0x76)-1]+((*(u16 *)(actor+0x1c)+*(s16 *)(actor+0x28))*150)/100))*(s32)((u16)((((data_0216263c[0]=data_0216263c[1]*data_0216263c[0]+data_0216263c[2])>>16)*4)>>16)+98))/100;
 if(amount>=data_02140cfc[*(s16 *)(entry+0x76)-1])amount=(data_02140cfc[*(s16 *)(entry+0x76)-1]*(s32)((u16)((((data_0216263c[0]=data_0216263c[1]*data_0216263c[0]+data_0216263c[2])>>16)*4)>>16)+98))/100;
 else amount=(amount*(s32)((u16)((((data_0216263c[0]=data_0216263c[1]*data_0216263c[0]+data_0216263c[2])>>16)*4)>>16)+98))/100;
@@ -65,7 +64,6 @@ if(*(u16 *)(p+16)==*(u16 *)(p+18)+*(s16 *)(p+36))return 0;
 if(*(volatile u16 *)(p+16)>*(u16 *)(p+18)+*(s16 *)(p+36))*(u16 *)(p+16)=*(u16 *)(p+18)+*(s16 *)(p+36);
 }
 }else if(*(s16 *)(entry+0x78)==102){
-s32 amount;
 amount=((actor[0x43]/5+(data_02140ce8[*(s16 *)(entry+0x76)-1]+(*(u16 *)(actor+0x1c)+*(s16 *)(actor+0x28))/20))*(s32)((u16)((((data_0216263c[0]=data_0216263c[1]*data_0216263c[0]+data_0216263c[2])>>16)*4)>>16)+98))/100;
 if(amount>=data_02140d24[*(s16 *)(entry+0x76)-1])amount=(data_02140d24[*(s16 *)(entry+0x76)-1]*(s32)((u16)((((data_0216263c[0]=data_0216263c[1]*data_0216263c[0]+data_0216263c[2])>>16)*4)>>16)+98))/100;
 else amount=(amount*(s32)((u16)((((data_0216263c[0]=data_0216263c[1]*data_0216263c[0]+data_0216263c[2])>>16)*4)>>16)+98))/100;

@@ -151,7 +151,7 @@ void func_0211a3ac(s32 sine, s32 cosine)
   m[3] = (m[0] = cosine);
   m[2] = -sine;
   m[5] = m[4] = 0;
-  func_0211a4e0((void *) m, ((u8 *) data_0216f3c4) + offset, data_0216f3c4[index]);
+  func_0211a4e0((void *) m, ((u8 *) data_0216f3c4) + offset, ((u8 *) data_0216f3c4) + (index * stride));
   func_0211a4e0((void *) m, ((u8 *) data_0216f6c4) + (state[3] * stride), data_0216f6c4[data_0216f234[3]]);
   active = Active0211a3ac();
   if (!active)

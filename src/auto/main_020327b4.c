@@ -50,11 +50,12 @@ extern void func_020020f8(void *, void *, void *);
 extern void func_020c2e80(void);
 
 void func_020327b4(void) {
-u16 i, count;
+register volatile u16 n asm("r5");
+u16 count, i;
 u8 *p;
 func_020321cc(4);
 if (*(u16 *)(data_02160090+0x50)==0) {
-register volatile u16 n=0;
+n=0;
 data_02160090[0x7f]=0;
 if (*(u32 *)(data_02160244+0x7c)&0x20) {
 if (*(u16 *)(data_02160244+0xf4)==3) func_02032488(3);

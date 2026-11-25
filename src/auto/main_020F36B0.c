@@ -108,7 +108,6 @@ sy=192-sy;
 }
 void func_020f37d0(u8 *arg) {
 u8 *link,*anim;
-s32 offscreen;
 u8 *entity=0;
 Trip pos;
 s32 update,draw;
@@ -119,6 +118,7 @@ goto next_entity;
 while(entity) {
 link=*(u8 **)(entity+0x108);
 anim=*(u8 **)link;
+s32 offscreen;
 s32 one,zero;
 pos=*(Trip *)entity;
 update=*(s32 *)(entity+0xf8)==0;
@@ -218,12 +218,12 @@ if(link) *(s32 *)(link+0x14)=finished;
 if(finished) {
 s32 mode=*(s32 *)(anim+0x18);
 if(!mode) mode=*(s32 *)(*(u8 **)(anim+0x1c)+8);
-if(mode==2 || mode==4) {
+switch(mode) {case 2:case 4: {
 seq=*(u8 **)(anim+0x1c);
 *(u8 **)anim=*(u8 **)(seq+12)+*(u16 *)(seq+2)*8;
 *(s32 *)(anim+0x10)=zero;
 func_02117be0(anim,zero);
-} else *(s32 *)(anim+0xc)=zero;
+break;} default: *(s32 *)(anim+0xc)=zero;break;}
 seq=*(u8 **)(anim+0x1c);
 entry=*(u8 **)anim;
 start=*(u8 **)(seq+12);

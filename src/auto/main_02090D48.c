@@ -47,7 +47,8 @@ s32 end=extra+(px+w);
 ((s16 *)b.unk)[1]=2;((s16 *)b.unk)[2]=0;((s16 *)b.unk)[8]=2;((s16 *)b.unk)[3]=2;((s16 *)b.unk)[5]=w2+end;((s16 *)b.unk)[6]=y;func_021098ac(&b);
 }
 
-void func_02090ea8(s16 x, s16 y, s16 z) {
+void func_02090ea8(s16 arg0, s16 arg1, s16 arg2) {
+    s16 x = arg0, y = arg1, z = arg2;
     Unk20 a = data_02140fa4;
     Unk20 b = data_02140f90;
     u8 *g = data_0216010c;

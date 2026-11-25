@@ -79,11 +79,11 @@ void func_02069f80(u8 *arg0)
 
     Effect *e = (Effect *)arg0;
     s32 posY = ((volatile Effect *)e)->y;
-    u16 state = ((volatile Effect *)e)->state;
+    
 
     e->y = posY + 0x18000;
 
-    switch (state) {
+    switch (e->state) {
     case 0: {
         u16 i;
         s32 active = 1;
@@ -123,7 +123,7 @@ void func_02069f80(u8 *arg0)
         const Pair *src;
         Pair *dst;
         u32 count;
-        s16 (*trig)[2];
+        
         u16 i;
 
         src = (const Pair *)data_0213fd0c;
@@ -131,6 +131,7 @@ void func_02069f80(u8 *arg0)
         count = 4;
 
         do {
+#pragma opt_propagation off
             u8 y;
             u8 x;
 
@@ -141,8 +142,9 @@ void func_02069f80(u8 *arg0)
             dst++->x = x;
 
         } while (--count != 0);
+#pragma opt_propagation on
 
-        trig = (s16 (*)[2])data_0213a394;
+        
 
         for (i = 0; i < 4; i++) {
             Particle *p;
@@ -159,14 +161,14 @@ void func_02069f80(u8 *arg0)
 
             dir = &directions[i];
 
-            wave = trig[angle][0];
-            dx = (s8)directions[i].x;
+            wave = ((s16 *)data_0213a394)[angle * 2];
+            dx = (s8)dir->x;
 
             p->fxScaleX = dx * (0x2d000 - wave * 8);
 
             angle = ((e->timer * 0x400) % 0x10000) >> 4;
 
-            wave = trig[angle][0];
+            wave = ((s16 *)data_0213a394)[angle * 2];
             dy = (s8)dir->y;
 
             sy = dy * (0x2d000 - wave * 8);

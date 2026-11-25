@@ -252,38 +252,92 @@ if(flags&2)func_020d4eb8(p);
 }
 
 void func_0202f41c(u8 *,u8 *,s32,u8 *,u8 *,s32,s32);
-void func_02060ff8(u8 *p){
- s32 id,first;
- u8 *actor;
- u8 *r=*(u8 **)(p+0x128);
- u8 *node;
- u16 i;
- s32 zero=0;
- u8 *a;
- s32 mode,mark;
- s32 flags=func_0205bcb0(p,(u16)*(s32 *)(r+0x34));
- if((flags&1)&&!*(s16 *)(r+0x1c)){
- mode=1;*(s16 *)(r+0x1c)=1;
- if(!(r[0x76]&1)){node=func_0205bad4(r);a=*(u8 **)(r+8);first=*(s32 *)r;mode=zero;}
- else{u8 *q=*(u8 **)(r+0x78);u8 *b=*(u8 **)(q+12);a=*(u8 **)(q+4);node=*(u8 **)(b+0x28);first=zero;}
- for(i=0;node;i++,node=*(u8 **)(node+0x18)){
- id=*(s32 *)node;if(!first)first=id;
- actor=func_020d56d8(p,id,zero,1);
- if(actor){
- *(u16 *)(actor+0x90)=(*(u16 *)(p+0x90)-101)*10+(i+630);
- func_020d2b78(actor,id,zero,1);
- if(!*(s32 *)(r+0x30)){*(u16 *)(node+4)|=16;mark=1;}else mark=zero;
- if(*(s16 *)(r+0x90)){func_0210d27c(*(s16 *)(r+0x90));*(s16 *)(r+0x90)=zero;}
- func_0202f41c(actor,p,id,a,node,mode,mark);
- *(s32 *)(actor+0x28)+=0x10000;
- if(*(s32 *)(actor+4)!=*(s32 *)(actor+0x28))func_0205baf8(actor);
- {u8 *q=*data_02160244;if(q[0x6c]==6){q[0x6c]=7;func_020d9e48(actor,first);func_020d9dc8(actor,*(u16 *)(actor+0x90),10,1);func_020d9da8(32);func_020d9ea8(8,zero);}}
- func_020d56d8(p,id,(s32)actor,2);
- }
- }
- func_020d5fd0(p);
- }
- if(flags&2)func_020d4eb8(p);
+void func_02060ff8(u8 *p)
+{
+  s32 id;
+  s32 first;
+  u8 *actor;
+  u8 *r = *((u8 **) (p + 0x128));
+  u8 *node;
+  u16 i;
+  s32 zero = 0;
+  u8 *a;
+  s32 mode;
+  s32 mark;
+  s32 flags = func_0205bcb0(p, (u16) (*((s32 *) (r + 0x34))));
+  if ((flags & 1) && (!(*((s16 *) (r + 0x1c)))))
+  {
+    mode = 1;
+    *((s16 *) (r + 0x1c)) = 1;
+    if (!(r[0x76] & 1))
+    {
+      node = func_0205bad4(r);
+      a = *((u8 **) (r + 8));
+      first = *((s32 *) r);
+      mode = zero;
+    }
+    else
+    {
+      u8 *q = *((u8 **) (r + 0x78));
+      u8 *b = *((u8 **) (q + 12));
+      a = *((u8 **) (q + 4));
+      node = *((u8 **) (b + 0x28));
+      first = zero;
+    }
+    for (i = 0; node; i++, node = *((u8 **) (node + 0x18)))
+    {
+      id = *((s32 *) node);
+      if (!first)
+      {
+        first = id;
+      }
+      actor = func_020d56d8(p, id, zero, 1);
+      if (actor)
+      {
+        *((u16 *) (actor + 0x90)) = (((*((u16 *) (p + 0x90))) - 101) * 10) + (i + 630);
+        func_020d2b78(actor, id, zero, 1);
+        if (!(*((s32 *) (r + 0x30))))
+        {
+          *((u16 *) (node + 4)) |= 16;
+          mark = 1;
+        }
+        else
+        {
+          mark = zero;
+        }
+        if (*((s16 *) (r + 0x90)))
+        {
+          func_0210d27c(*((s16 *) (r + 0x90)));
+          *((s16 *) (r + 0x90)) = zero;
+          first = id;
+        }
+        func_0202f41c(actor, p, id, a, *((u8 **) (node + 0x18)), mode, mark);
+        *((s32 *) (actor + 0x28)) += 0x10000;
+        if ((*((s32 *) (actor + 4))) != (*((s32 *) (actor + 0x28))))
+        {
+          func_0205baf8(actor);
+        }
+        {
+          u8 *q = *data_02160244;
+          if (q[0x6c] == 6)
+          {
+            q[0x6c] = 7;
+            func_020d9e48(actor, first);
+            func_020d9dc8(actor, *((u16 *) (actor + 0x90)), 10, 1);
+            func_020d9da8(32);
+            func_020d9ea8(8, zero);
+          }
+        }
+        func_020d56d8(p, id, (s32) actor, 2);
+      }
+    }
+
+    func_020d5fd0(p);
+  }
+  if (flags & 2)
+  {
+    func_020d4eb8(p);
+  }
 }
 
 void func_02061214(u8 *p) {

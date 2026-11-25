@@ -119,25 +119,27 @@ void func_02000dd8(s32 *p, s32 a, s32 b) {
     p[8] = 0x1000;
 }
 
+#pragma optimization_level 4
+#pragma opt_propagation off
 void func_02000df0(MtxFields *m, const MtxFields *v, s32 sn, s32 cs) {
 s32 t=4096-cs;
 s32 x=v->a0, y=v->a1, z=v->a2;
-s64 tx=(s64)t*x;
-s32 xy=(tx*y)>>24;
-s32 xz=(tx*z)>>24;
-s32 sx=((s64)sn*x)>>12;
-s32 sy,sz,yz;
-m->a0=(s32)((t*((s64)x*x))>>24); m->a0+=cs;
-m->a4=(s32)((t*((s64)y*y))>>24); m->a4+=cs;
-m->a8=(s32)((t*((s64)z*z))>>24); m->a8+=cs;
+s32 sx,sy,sz;
+s32 yz,xz,xy;
+{ s32 d=(t*((s64)x*x))>>24; d+=cs; m->a0=d; }
+{ s32 d=(t*((s64)y*y))>>24; d+=cs; m->a4=d; }
+{ s32 d=(t*((s64)z*z))>>24; d+=cs; m->a8=d; }
+xy=((s64)t*x*y)>>24;
+xz=((s64)t*x*z)>>24;
 yz=((s64)t*y*z)>>24;
+sx=((s64)sn*x)>>12;
 sy=((s64)sn*y)>>12;
 sz=((s64)sn*z)>>12;
+m->a1=xy+sz;
 m->a3=xy-sz;
 m->a2=xz-sy;
 m->a6=xz+sy;
-m->a1=xy+sz;
 m->a5=yz+sx;
 m->a7=yz-sx;
 }
-
+#pragma opt_propagation on

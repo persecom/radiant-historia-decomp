@@ -100,7 +100,7 @@ void func_02044820(u32 arg0) {
     func_020a98f4(p + 0x300);
 }
 
-#pragma optimization_level 3
+#pragma opt_peephole off
 void func_0204487c(u8 *obj) {
     u8 *p = data_021600a8[1];
     u8 *actor = *(u8 **)(p + 0x68);
@@ -149,7 +149,7 @@ void func_0204487c(u8 *obj) {
     }
     data_02160204[0x85] = 5;
 }
-#pragma optimization_level 4
+#pragma opt_peephole on
 void func_02044a98(s32 arg0)
 {
   u8 *new_var;

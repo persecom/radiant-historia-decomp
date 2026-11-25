@@ -16,15 +16,15 @@ extern s32 func_02016cfc(s32, const char *, char *);
 extern s32 func_02016018(void *, void *, const char *, void *, s32);
 extern void (*data_02160038)(void);
 extern void func_02016da0(void);
+#pragma optimization_level 3
 s32 func_02016018(void *arg0, void *arg1, const char *arg2, void *arg3, s32 arg4) {
  s32 (*read)(void *,s32,s32)=arg0;
  const u8 *fmt=(const u8 *)arg2;
  u8 *args=arg3, *dst;
  s32 c=*fmt, raw=0;
- s32 signedValue=0;u32 unsignedValue=0;
- s64 signedWide=0;u64 unsignedWide=0;
- s32 capacityOK=0;u32 capacity=0;s32 failed=0;
- s32 total=0,assigned=0,conversions=0;
+ s32 signedValue; s64 signedWide; s32 assigned,conversions; u32 unsignedValue;u64 unsignedWide;register s32 failed;
+ s32 capacityOK;u32 capacity; s32 total;
+ signedValue=0;unsignedValue=0;signedWide=0;unsignedWide=0;capacityOK=0;capacity=0;failed=0;total=0;assigned=0;conversions=0;
  s32 scanned,negative,overflow;
  u8 byte;
  ScanSpec_02015 spec;
@@ -32,15 +32,16 @@ s32 func_02016018(void *arg0, void *arg1, const char *arg2, void *arg3, s32 arg4
  if(scan_space_02016018(c)) {
  do {c=*++fmt;}while(scan_space_02016018(c));
  if(!failed) {
- while(scan_space_02016018(byte=read(arg1,0,0))) total++;
+ while(scan_byte_space_02016018(byte=read(arg1,0,0))) total++;
  if((s32)byte==-1) {if(!arg4)goto done; failed=1;}
  read(arg1,byte,1);
  }
  } else if(c!='%' && !failed) {
- byte=read(arg1,0,0);
- if(c!=byte) {failed=1;read(arg1,byte,1);if(!arg4)goto done;}
- else total++;
- fmt++;
+ {s32 input=read(arg1,0,0);byte=input;
+ if(c==byte)goto literal_match;
+ read(arg1,(u8)input,1);failed=1;if(!arg4)goto done;
+ advance_literal:fmt++;goto next_format;
+ literal_match:total++;goto advance_literal;}
  } else {
  fmt=func_02015b74((u8 *)fmt,&spec);
  if(!spec.suppress && spec.conversion!='%') {args+=4;dst=*(u8 **)(args-4);}else dst=0;
@@ -97,7 +98,7 @@ s32 func_02016018(void *arg0, void *arg1, const char *arg2, void *arg3, s32 arg4
  }
  if(!failed)assigned++;
  }conversions++;break;
- case 'a':case 'A':case 'e':case 'E':case 'f':case 'F':case 'g':case 'G':{
+ case 'A':case 'E':case 'F':case 'G':case 'a':case 'e':case 'f':case 'g':{
  f64 value;
  if(failed)value=data_02145c2c;
  else {
@@ -118,31 +119,31 @@ s32 func_02016018(void *arg0, void *arg1, const char *arg2, void *arg3, s32 arg4
  if(failed){if(capacity) *dst=0;break;}
  start=dst;
  while(spec.width-- && (!arg4 || (capacityOK=capacity>(u32)scanned)) && (raw=read(arg1,0,0))!=-1) {
- byte=raw;
- if(spec.length!=10)*dst++=(u8)raw;else {func_0201375c(dst,&byte,1);dst+=2;}
+ byte=(char)raw;
+ if(spec.length==10){func_0201375c(dst,&byte,1);dst+=2;}else {*dst++=(u8)raw;}
  scanned++;
  }
- byte=raw;
+ byte=(char)raw;
  if(!scanned || (arg4&&!capacityOK)){
  if(!arg4)goto done;failed=1;if(capacity)*start=0;break;
  }
  total+=scanned;assigned++;
  }else{
  scanned=0;
- while(spec.width-- && (raw=read(arg1,0,0))!=-1){byte=raw;scanned++;}
- byte=raw;
+ while(spec.width-- && (raw=read(arg1,0,0))!=-1){byte=(char)raw;scanned++;}
+ byte=(char)raw;
  if(!scanned)goto done;
  }
  conversions++;break;
  case '%':
  if(!failed) {
- while(scan_space_02016018(byte=read(arg1,0,0)))total++;
- if(byte!='%'){failed=1;read(arg1,byte,1);if(!arg4)goto done;}
+ while(scan_byte_space_02016018(byte=read(arg1,0,0)))total++;
+ if(byte!='%'){read(arg1,byte,1);failed=1;if(!arg4)goto done;}
  else total++;
  }break;
  case 's':
  if(!failed) {
- while(scan_space_02016018(byte=read(arg1,0,0)))total++;
+ while(scan_byte_space_02016018(byte=read(arg1,0,0)))total++;
  read(arg1,byte,1);
  }
  case '[':
@@ -153,14 +154,14 @@ s32 func_02016018(void *arg0, void *arg1, const char *arg2, void *arg3, s32 arg4
  if(failed){if(capacity)*dst=0;break;}
  start=dst;
  while(spec.width-- && (!arg4 || (capacityOK=capacity>=(u32)scanned)) && (raw=read(arg1,0,0))!=-1) {
- byte=raw;
+ byte=(char)raw;
  if(!(spec.set[(u8)raw>>3] & (1<<((u8)raw&7))))break;
- if(spec.length!=10)*dst++=(u8)raw;else{func_0201375c(dst,&byte,1);dst+=2;}
+ if(spec.length!=10)*dst++=byte;else{func_0201375c(dst,&byte,1);dst+=2;}
  scanned++;
  }
- byte=raw;
+ byte=(char)raw;
  if(!scanned || (arg4&&!capacityOK)) {
- failed=1;read(arg1,(u8)raw,1);if(!arg4)goto done;if(capacity)*start=0;break;
+ read(arg1,(u8)raw,1);failed=1;if(!arg4)goto done;if(capacity)*start=0;break;
  }
  total+=scanned;
  if(spec.length==10)*(u16 *)dst=0;else *dst=0;
@@ -168,11 +169,11 @@ s32 func_02016018(void *arg0, void *arg1, const char *arg2, void *arg3, s32 arg4
  }else {
  scanned=0;
  while(spec.width-- && (raw=read(arg1,0,0))!=-1) {
- byte=raw;
+ byte=(char)raw;
  if(!(spec.set[(u8)raw>>3] & (1<<((u8)raw&7))))break;
  scanned++;
  }
- byte=raw;
+ byte=(char)raw;
  if(!scanned){read(arg1,(u8)raw,1);break;}
  total+=scanned;
  }
@@ -186,16 +187,16 @@ s32 func_02016018(void *arg0, void *arg1, const char *arg2, void *arg3, s32 arg4
  case 1:*(s8 *)dst=total;break;
  case 7:*(s64 *)dst=total;break;
  }break;
- default:goto done;
+ case 255:default:goto done;
  }
  }
- c=*fmt;
+ next_format:c=*fmt;
  }
  done:
  if(read(arg1,0,2)&&!conversions)return -1;
  return assigned;
 }
-
+#pragma optimization_level 4
 s32 func_02016c84(void *p, s32 ch, s32 act) {
     struct {
         u8 *str;
@@ -269,62 +270,39 @@ u32 func_02016da4(const char *s) {
     return len;
 }
 
-void func_02016dc0(u8 *dst, u8 *src) {
-    u8 *p = dst;
-    s32 c;
-    u32 align = (u32)src & 3;
-    if (((u32)dst & 3) != align) {
-        goto tail;
-    }
-    if (align != 0) {
-        u32 n;
-        c = *src;
-        *dst = c;
-        if ((c & 0xff) == 0) {
-            return;
-        }
-        n = 3 - align;
-        if (n == 0) {
-            goto word;
-        }
-        do {
-            c = *++src;
-            if ((c & 0xff) == 0) {
-                *++p = c;
-                return;
-            }
-            *++p = c;
-        } while (--n != 0);
-        src++;
-        p++;
-    }
-word:
-    {
-        u32 w = *(u32 *)src;
-        u32 *wp;
-        u32 *ws;
-        if (((w + 0xfefefeffu) & ~w & 0x80808080u) != 0) {
-            goto tail;
-        }
-        wp = (u32 *)p - 1;
-        ws = (u32 *)src;
-        do {
-            *++wp = w;
-            w = *++ws;
-        } while (((w + 0xfefefeffu) & ~w & 0x80808080u) == 0);
-        p = (u8 *)(wp + 1);
-        src = (u8 *)ws;
-    }
-tail:
-    do {
-        c = *src;
-        *p = c;
-        if ((c & 0xff) == 0) {
-            return;
-        }
-        c = *++src;
-        *++p = c;
-    } while ((c & 0xff) != 0);
+u8 *func_02016dc0(u8 *dst, u8 *src) {
+ u8 *p=dst;
+ s32 c;
+ u32 align=(u32)src&3;
+ if(((u32)dst&3)!=align) goto tail;
+ if(align!=0) {
+ c=*src; *p=c;
+ if((c&255)==0) return dst;
+ align=3-align;
+ if(align!=0) do {
+ c=*++src;
+ *++p=c;
+ if((c&255)==0) return dst;
+ } while(--align!=0);
+ p++; src++;
+ }
+ {
+ u32 w=*(u32 *)src;
+ if(((w+0xfefefeffu)&~w&0x80808080u)!=0) goto tail;
+ p-=4;
+ do {
+ p+=4; *(u32 *)p=w;
+ src+=4; w=*(u32 *)src;
+ }while(((w+0xfefefeffu)&~w&0x80808080u)==0);
+ p+=4;
+ }
+ tail:
+ c=*src; *p=c;
+ if((c&255)==0) return dst;
+ do {
+ c=*++src; *++p=c;
+ }while((c&255)!=0);
+ return dst;
 }
 
 char *func_02016e88(char *dst, const char *src, u32 n) {

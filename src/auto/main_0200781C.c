@@ -74,6 +74,8 @@ u16 func_0200788c(void) {
     return data_0215d128;
 }
 
+#pragma push
+#pragma opt_tail_calls off
 void func_0200789c(void) {
     UnkStruct_0215d128 *s = (UnkStruct_0215d128 *)&data_0215d128;
     s->unk08++;
@@ -83,7 +85,6 @@ void func_0200789c(void) {
         *(volatile u16 *)0x04000102 = 0xc1;
         s->unk04 = 0;
     }
-    do {
-        func_02005944(0, func_0200789c, 0);
-    } while (0);
+    func_02005944(0, func_0200789c, 0);
 }
+#pragma pop

@@ -17,13 +17,18 @@ extern void func_02008e24(u32,void *,u32);
 extern void func_02118234(void *);
 extern void func_02118430(void *);
 void func_02118234(void *arg0) {
-    u8 *oam;
-    if (*(u32 *)((u8 *)arg0 + 0x14) != 0) {
-        u32 type = *(u32 *)arg0;
-        u16 start = *(u16 *)((u8 *)arg0 + 4);
-        u16 end = *(u16 *)((u8 *)arg0 + 6);
-        u16 size = (end - start + 1) * 8;
-        u16 offset = start * 8;
+    u16 start,end,size,offset,count;
+    u8 *dst,*oam;
+    u32 type;
+    OamFn fn;
+    u16 i;
+    OamManager_2118234 *p=arg0;
+    if (p->full != 0) {
+        type = p->type;
+        start = p->first;
+        end = p->last;
+        size = (end - start + 1) * 8;
+        offset = start * 8;
         oam = GetOamEntries(type);
 
         func_02006dc4(oam + start * 8, size);
@@ -37,25 +42,25 @@ void func_02118234(void *arg0) {
         }
         return;
     } else {
-        u32 type = *(u32 *)arg0;
-        u16 start = *(u16 *)((u8 *)arg0 + 4);
-        u16 end = *(u16 *)((u8 *)arg0 + 6);
+        type = p->type;
+        start = p->first;
+        end = p->last;
         oam = GetOamEntries(type);
-        u16 count = end - start + 1;
-        u8 *dst = oam + start * 8;
-        u16 offset = start * 8;
-        OamFn fn = data_02155e9c[type];
-        u16 i;
+        dst = oam + start * 8;
+        offset = start * 8;
+        start = end - start + 1;
+        count = start;
+        fn = data_02155e9c[type];
         for (i = 0; i < count; i++) {
             fn(dst, offset, 6);
-            dst += 8;
             offset += 8;
+            dst += 8;
         }
     }
     {
         s32 t = 0;
-        if (*(u16 *)((u8 *)arg0 + 0xe) <= *(u16 *)((u8 *)arg0 + 0xc) + 1) {
-            if (*(u16 *)((u8 *)arg0 + 0xa) <= *(u16 *)((u8 *)arg0 + 0xc)) {
+        if (p->affineLimit <= p->affineLast + 1) {
+            if (p->affineFirst <= p->affineLast) {
                 t = 1;
             }
         }
@@ -64,26 +69,26 @@ void func_02118234(void *arg0) {
         }
     }
     {
-        u32 type = *(u32 *)arg0;
+        type = p->type;
         oam = GetOamEntries(type);
-        u16 start = *(u16 *)((u8 *)arg0 + 0xa);
-        u16 count = *(u16 *)((u8 *)arg0 + 0xc) - start + 1;
-        u16 offset = start * 32;
-        u8 *dst = oam + start * 32;
-        OamFn fn = data_02155e9c[type];
-        u16 i;
+        start = p->affineFirst;
+        offset = start * 32;
+        dst = oam + start * 32;
+        start = p->affineLast - start + 1;
+        count = start;
+        fn = data_02155e9c[type];
         for (i = 0; i < count; i++) {
             fn(dst + 6, offset + 6, 2);
             fn(dst + 14, offset + 14, 2);
             fn(dst + 22, offset + 22, 2);
             fn(dst + 30, offset + 30, 2);
-            dst += 32;
             offset += 32;
+            dst += 32;
         }
     }
 }
 
-#pragma peephole off
+#pragma scheduling off
 void func_02118430(void *arg0) {
     u8 *p = arg0;
     if (*(u32 *)(p + 0x14)) {
@@ -99,7 +104,7 @@ void func_02118430(void *arg0) {
         } else {
             size = (u16)(*(u16 *)(p + 6) - *(u16 *)(p + 4) + 1) * 8;
         }
-        dst = data_0216e274 + *(u32 *)p * 0x540 + 0x100 + *(u16 *)(p + 4) * 8;
+        dst = data_0216e274 + *(volatile u32 *)p * 0x540 + 0x100 + *(u16 *)(p + 4) * 8;
         func_02006d8c(dst, size);
         channel = data_02145ba4;
         if (channel > 3) {
@@ -112,7 +117,7 @@ void func_02118430(void *arg0) {
         }
     } else {
         u16 count = *(u16 *)(p + 6) - *(u16 *)(p + 4) + 1;
-        u8 *dst = data_0216e274 + *(u32 *)p * 0x540 + 0x100 + *(u16 *)(p + 4) * 8;
+        u8 *dst = data_0216e274 + *(volatile u32 *)p * 0x540 + 0x100 + *(u16 *)(p + 4) * 8;
         u16 i;
         for (i = 0; i < count; i++) {
             *(u16 *)dst = 0xc0;
@@ -122,7 +127,7 @@ void func_02118430(void *arg0) {
     *(u16 *)(p + 8) = *(u16 *)(p + 4);
     *(u16 *)(p + 0xe) = *(u16 *)(p + 0xa);
 }
-#pragma peephole on
+#pragma scheduling on
 void func_02118570(void *arg0) {
     func_02118234(arg0);
     func_02118430(arg0);

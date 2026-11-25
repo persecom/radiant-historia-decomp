@@ -48,11 +48,9 @@ s32 func_020f26fc(u8 *arg0, u16 arg1, u8 arg2) {
     char buf1[60];
     char buf2[50];
     char buf3[50];
-    register u8 *self = arg0;
     s32 line;
     u8 *mem;
-    u16 n;
-    u16 count;
+    struct { u16 count; u16 n; } sizes;
     void *csv = 0;
     u8 *cur;
     u8 *r7;
@@ -98,7 +96,7 @@ s32 func_020f26fc(u8 *arg0, u16 arg1, u8 arg2) {
             func_02005e80(buf3, data_02151ed4, data_02160c14[2]);
             break;
         }
-        if (func_02108620(*(void **)self, buf1, buf2, buf3, 0) == 0) {
+        if (func_02108620(*(void **)arg0, buf1, buf2, buf3, 0) == 0) {
             return 0;
         }
     }
@@ -108,21 +106,21 @@ s32 func_020f26fc(u8 *arg0, u16 arg1, u8 arg2) {
         csv = 0;
     }
 
-    r7 = func_02109f3c(*(void **)(*(u8 **)(*(u8 **)self + 0x58) + 8));
+    r7 = func_02109f3c(*(void **)(*(u8 **)(*(u8 **)arg0 + 0x58) + 8));
     if (*(void **)(r7 + 0x10) == 0) {
-        n = *(u16 *)(*(u8 **)(*(u8 **)(*(u8 **)self + 0x58) + 0xc));
-        count = (func_020020bc(n, 2) ? 1 : 0) + func_02002080(n, 2);
-        mem = func_0210c594(count * 4, data_02155c3c);
+        sizes.n = *(u16 *)(*(u8 **)(*(u8 **)(*(u8 **)arg0 + 0x58) + 0xc));
+        sizes.count = (func_020020bc(sizes.n, 2) ? 1 : 0) + func_02002080(sizes.n, 2);
+        mem = func_0210c594(sizes.count * 4, data_02155c3c);
         cur = mem;
-        for (i = 0; i < count; i++, cur += 4) {
+        for (i = 0; i < sizes.count; i++, cur += 4) {
             idx = i * 2;
             *(u16 *)(cur + 2) = idx;
             cur[0] = 0;
             for (j = 0; j < 2; j++, idx++) {
-                if (n <= idx) {
+                if (sizes.n <= idx) {
                     break;
                 }
-                if ((func_021086d4(*(void **)self, idx) == 0) == 0) {
+                if ((func_021086d4(*(void **)arg0, idx) == 0) == 0) {
                     cur[0] |= (u8)(1 << j);
                 }
             }
@@ -130,6 +128,6 @@ s32 func_020f26fc(u8 *arg0, u16 arg1, u8 arg2) {
         *(void **)(r7 + 0x10) = mem;
     }
 
-    *(void **)(self + 0x10) = *(void **)(r7 + 0x10);
+    *(void **)(arg0 + 0x10) = *(void **)(r7 + 0x10);
     return 1;
 }

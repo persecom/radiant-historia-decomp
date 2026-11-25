@@ -178,55 +178,116 @@ if((*(u16 *)(g+0x19c)&8) && (mask&8)) {*(u8 **)(g+0xd8)=func_020a6360(g+0x118,cu
  }
 }
 
-s32 func_020c5f08(void){
- Touch_020c5f08 touch;
- s32 i;
- u8 *n;
- s32 y,x;
- u8 *p;
- s32 result=0;
- u16 *current;
- if(data_021626a8&0x40)result|=1;
- if(data_021626a8&0x80)result|=2;
- if(data_021626a8&0x20)result|=4;
- if(data_021626a8&0x10)result|=8;
- touch=*(Touch_020c5f08 *)data_02162908;
- p=data_021600e4;
- current=func_020a5f14(p+0x124,*(u16 *)(p+0xd4));
- if(data_021628f8){
- y=touch.y;x=touch.x;
- for(i=0;i<37;i++){
- n=func_020a5f40(p+0x124,(u16)i);
- if(n){
- s32 ny,nx=*(s16 *)(n+6)**(s32 *)(p+0x70)-22+*(s32 *)(p+0x44);
- ny=*(s16 *)(n+8)**(s32 *)(p+0x70)+4+*(s32 *)(p+0x48);
- s32 left=nx-14,right=nx+14,top=ny-14,bottom=ny+14;
- s32 hit;
- if(x>=left && x<=right && y>=top && y<=bottom)hit=1;else hit=0;
- if(hit==1){
- u16 id=*(u16 *)n,old=*(u16 *)(p+0xd4);
- if(old==id){
- s32 one=1;
- func_020a6dd8(one,8);
- *(u16 *)(data_02160204+0x72)=*(u16 *)((u8 *)data_021600e4+0xd4);
- data_02160204[0x85]=one;
- func_02065cb8(2);
- *(s32 *)((u8 *)data_021600e4+0x30)=one;
- func_0210d27c(11);
- return 0;
- }else{
- s32 dir=func_020a5f6c(p+0x124,current,old,id);
- if(dir>=0 && func_020a5f6c(p+0x124,n,*(u16 *)n,*(u16 *)(p+0xd4))>=0){
- switch(dir){case 0:return result|1;case 1:return result|8;case 2:return result|2;case 3:return result|4;}
- }
- }
- }
- }
- }
- }
- return result;
-}
+#pragma scheduling off
+s32 func_020c5f08(void)
+{
+  Touch_020c5f08 touch;
+  u8 *new_var;
+  s32 i;
+  u8 *n;
+  s32 y;
+  int xOffset;
+  s32 x;
+  u8 *p;
+  s32 result = 0;
+  u16 *current;
+  if (data_021626a8 & 0x40)
+  {
+    result |= 1;
+  }
+  if (data_021626a8 & 0x80)
+  {
+    result |= 2;
+  }
+  if (data_021626a8 & 0x20)
+  {
+    result |= 4;
+  }
+  xOffset = 6;
+  if (data_021626a8 & 0x10)
+  {
+    result |= 8;
+  }
+  touch = *((Touch_020c5f08 *) data_02162908);
+  p = data_021600e4;
+  current = func_020a5f14(p + 0x124, *((u16 *) (p + 0xd4)));
+  if (data_021628f8)
+  {
+    y = touch.y;
+    x = touch.x;
+    for (i = 0; i < 37; i++)
+    {
+      n = func_020a5f40(p + 0x124, (u16) i);
+      if (n)
+      {
+        s32 ny;
+        s32 nx = *((s16 *)(n + xOffset));
+        nx *= *((s32 *)(p+0x70));
+        nx -= 22;
+        nx += *((s32 *)(p+0x44));
+        ny = *((s32 *) (p + 0x70));
+        ny = (*((s16 *) (n + 8))) * ny;
+        ny = (ny + 4) + (*((s32 *) (p + 0x48)));
+        s32 left = nx - 14;
+        s32 right = nx + 14;
+        s32 top = ny - 14;
+        s32 bottom = ny + 14;
+        s32 hit;
+        if ((((x >= left) && (x <= right)) && (y >= top)) && (y <= bottom))
+        {
+          hit = 1;
+        }
+        else
+        {
+          hit = 0;
+        }
+        if (hit == 1)
+        {
+          u16 id = *((u16 *) n);
+          u16 old = *((u16 *) (p + 0xd4));
+          if (old == id)
+          {
+            s32 one = 1;
+            func_020a6dd8(one, 8);
+            *((u16 *) (data_02160204 + 0x72)) = *((u16 *) (((u8 *) data_021600e4) + 0xd4));
+            data_02160204[0x85] = one;
+            func_02065cb8(2);
+            new_var = (u8 *) data_021600e4;
+            *((s32 *) (new_var + 0x30)) = one;
+            func_0210d27c(11);
+            return 0;
+          }
+          else
+          {
+            s32 dir = func_020a5f6c(p + 0x124, current, old, id);
+            if ((dir >= 0) && (func_020a5f6c(p + 0x124, n, *((u16 *) n), *((u16 *) (p + 0xd4))) >= 0))
+            {
+              switch (dir)
+              {
+                case 0:
+                  return result | 1;
 
+                case 1:
+                  return result | 8;
+
+                case 2:
+                  return result | 2;
+
+                case 3:
+                  return result | 4;
+
+              }
+
+            }
+          }
+        }
+      }
+    }
+
+  }
+  return result;
+}
+#pragma scheduling on
 void func_020c6124(void) {
     u8 *ptr = data_021600e4;
     u16 *res = func_020a5f14(ptr + 0x124, *(u16 *)(ptr + 0xd4));

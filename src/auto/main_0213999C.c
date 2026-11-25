@@ -141,36 +141,26 @@ void func_0212be08(const char *, const char *);
 void func_0212bf38(u32,u32,void *,s32);
 s32 func_0212e5d4(u32,u32,u32,u32 *,u32 *,u32 *);
 void func_02128880(void *,s32);
-#pragma optimization_level 3
+#pragma push
+#pragma optimization_level 2
 void func_02139be8(u32 arg0, u32 arg1, u32 arg2) {
-    u8 *p = (u8 *)arg0;
-    char buf[16];
-    u32 c, b, a;
-    if (p == 0) {
-        func_0212bda8(data_0215ccac);
-        return;
-    }
-    func_0212824c(p);
-    if (func_0212e5d4(arg1, arg2, *(u32 *)(p + 0xac), &a, &c, &b) != 0) {
-        return;
-    }
-    if (*(u32 *)(p + 8) == 0) {
-        func_0212bf38(arg1, arg2, buf, 16);
-        func_0212be08(data_0215ccd8, buf);
-        *(s16 *)(p + 0x60) = -1;
-        p[1] = 6;
-        return;
-    }
-    {
-        u32 *q = (u32 *)p;
-        q[0xb0 / 4] = q[0xac / 4];
-        q[0xb4 / 4] = a;
-        q[0xb8 / 4] = c;
-        q[0xbc / 4] = b;
-    }
-    p[1] = 1;
-    p[0xa8] = 1;
-    p[2] = 1;
-    func_02128880(p, 0);
+ u8 *p=(u8 *)arg0;
+ char buf[16];
+ u32 c,b,a;
+ if(p==0) { func_0212bda8(data_0215ccac); return; }
+ func_0212824c(p);
+ if(func_0212e5d4(arg1,arg2,*(u32 *)(p+0xac),&a,&c,&b)!=0) return;
+ if(*(u32 *)(p+8)==0) {
+ s32 size=16;
+ func_0212bf38(arg1,arg2,buf,size);
+ func_0212be08(data_0215ccd8,buf);
+ *(s16 *)(p+0x60)=size-17;
+ p[1]=6;
+ return;
+ }
+ *(u32 *)(p+0xb0)=*(u32 *)(p+0xac);
+ *(u32 *)(p+0xb4)=a; *(u32 *)(p+0xb8)=c; *(u32 *)(p+0xbc)=b;
+ p[1]=1;p[0xa8]=1;p[2]=1;
+ func_02128880(p,0);
 }
-#pragma optimization_level 4
+#pragma pop

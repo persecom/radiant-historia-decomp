@@ -43,43 +43,45 @@ neg_result:
 }
 
 int func_0201ff80(u32 lo, u32 hi) {
-    s32 bias = 0x41e;
     s32 e;
     u32 m;
     s32 r;
-    e = bias;
+    e = 0x41e;
     e -= (s32)((hi & 0x7fffffffu) >> 20);
     if (e < 0) goto saturate;
     if (e >= 32) goto zero;
     m = (hi << 11) | 0x80000000u | (lo >> 21);
-    if ((s32)hi < 0) return -(s32)(m >> e);
-    return (s32)(m >> e);
+    r = (s32)(m >> e);
+    if ((s32)hi < 0) r = -r;
+    return r;
 zero:
     return 0;
 saturate:
     return ~((s32)hi >> 31) + 0x80000000;
 }
 
-#pragma optimization_level 2
+#pragma push
+#pragma scheduling off
 u64 func_0201ffcc(u64 bits) {
     u32 lo = bits, hi = bits >> 32;
     s32 shift;
-    register u64 mantissa;
+    u32 mh, ml;
     if (!(hi & 0x80000000)) {
         shift = 0x43e - (hi >> 20);
         if (shift < 0) goto overflow;
         if (shift >= 64) goto zero;
-        mantissa = (bits << 11) | 0x8000000000000000ULL;
-        if (shift > 32) { shift -= 32; return (u32)(mantissa >> 32) >> shift; } else
-        return mantissa >> shift;
+        mh = (hi << 11) | 0x80000000U | (lo >> 21);
+        ml = lo << 11;
+        if (shift > 32) return (u64)(mh >> (shift - 32));
+        return ((u64)(mh >> shift) << 32) | (u32)((ml >> shift) | (mh << (32 - shift)));
     }
-    if (bits > 0xfff0000000000000ULL) goto overflow;
+    if ((u32)hi >= 0xfff00000U && (hi != 0xfff00000U || lo != 0)) goto overflow;
 zero:
     return 0;
 overflow:
-    return ~(u64)0;
+    return -1ULL;
 }
-#pragma optimization_level 4
+#pragma pop
 u64 func_02020058(u64 value) {
 u32 lo=(u32)value,hi=(u32)(value>>32);
 s32 exponent;

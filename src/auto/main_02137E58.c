@@ -346,9 +346,10 @@ void func_02138510(void) {
     func_0213841c(7);
 }
 
+#pragma optimization_level 3
 void func_02138520(void) {
     s32 i;
-    __clear(data_0217667c, 0x20);
+    __clear(data_0217667c, sizeof(data_0217667c));
     data_02176654[0] = 0;
     data_02176654[1] = 0;
     data_02176674[0] = 0;
@@ -359,9 +360,9 @@ void func_02138520(void) {
     data_02176664[1] = 0;
     for (i = 0; i < 6; i++) data_0217669c[i] = 0;
     data_02176644[2] = 0;
-    __clear(data_021767bc, 0x240);
+    __clear(data_021767bc, sizeof(data_021767bc));
 }
-
+#pragma optimization_level 4
 void func_021385d4(void) {
     *(volatile u32 *)&data_0215c658 = (u32)data_02145b48;
     if (*(volatile u32 *)data_02176644 == 0) {

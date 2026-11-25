@@ -58,7 +58,7 @@ u32 func_02129bc8(void) {
 void func_02129bd8(void) {
     func_02129624();
     func_02129a50();
-    memset(data_021735a4, 0, 0x3d0);
+    memset(data_021735a4, 0, sizeof(data_021735a4));
     func_02129bb8(0);
 }
 #pragma intrinsics off
@@ -418,6 +418,8 @@ void func_0212a5d4(u8 *arg0, u32 arg1) {
     func_02129830(p);
 }
 
+#pragma push
+#pragma scheduling off
 void func_0212a61c(u8 *p) {
 s32 remaining, end, format;
 format = *(s32 *)(p+0x50);
@@ -445,7 +447,7 @@ count = count <= blocks ? count : blocks;
 if (format == 2) func_0212a5d4(p,count);
 else func_0212a594(p,count);
 }
-
+#pragma pop
 void func_0212a71c(u16 *arg0, s16 *arg1, s32 arg2) {
     if (arg2 > 0) {
         do {

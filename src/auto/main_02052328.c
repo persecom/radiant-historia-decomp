@@ -39,7 +39,7 @@ void func_02052328(void) {
     data_02155984[1] = 0xff0;
 }
 
-#pragma opt_propagation off
+#pragma opt_propagation on
 s32 func_02052350(s32 arg0)
 {
   if ((data_02162908[2] != 0) && (data_021628f8 != 0))
@@ -77,27 +77,41 @@ s32 func_02052350(s32 arg0)
   }
   return 0;
 }
-#pragma opt_propagation on
-s32 func_02052520(s32 *v) {
- s32 x,y,z,px,py,sx,sy;
- long long inv; s32 vx,vy,vz;
- if (data_02162908[2] && data_021628f8) {
- vy=v[1];vx=v[0];vz=v[2];
- x = (s32)(((long long)vx*((volatile s32 *)data_02170248)[0]+(long long)vy*data_02170248[3]+(long long)vz*data_02170248[6])>>12);
- y = (s32)(((long long)vx*data_02170248[1]+(long long)vy*data_02170248[4]+(long long)vz*data_02170248[7])>>12);
- z = (s32)(((long long)vx*data_02170248[2]+(long long)vy*data_02170248[5]+(long long)vz*data_02170248[8])>>12);
- x=data_02170248[9]+x; y=data_02170248[10]+y; z=data_02170248[11]+z;
- func_02002028(data_02170204[15]+(s32)(((long long)x*data_02170204[3]+(long long)y*data_02170204[7]+(long long)z*data_02170204[11])>>12));
- px=data_02170204[12]+(s32)(((long long)x*data_02170204[0]+(long long)y*data_02170204[4]+(long long)z*data_02170204[8])>>12);
- py=data_02170204[13]+(s32)(((long long)x*data_02170204[1]+(long long)y*data_02170204[5]+(long long)z*data_02170204[9])>>12);
- inv=func_02001fd0();
- sy=192-((((((s32)((inv*py+0x80000000LL)>>32)+4096)>>1)*192)+2048)>>12);
- sx=((((((s32)((inv*px+0x80000000LL)>>32)+4096)>>1)*256)+2048)>>12);
- if(data_02162908[0]-16<sx && sx<data_02162908[0]+16 && data_02162908[1]<sy && sy<data_02162908[1]+32) return 1;
- }
- return 0;
+#pragma opt_propagation off
+s32 func_02052520(Vec3_02052350 *pos)
+{
+  if ((data_02162908[2] != 0) && (data_021628f8 != 0))
+  {
+    const s32 *m = data_02170248;
+    const s32 *p = data_02170204;
+    s32 x = (s32) ((((((s64) pos->x) * m[0]) + (((s64) pos->y) * m[3])) + (((s64) pos->z) * m[6])) >> 12) + m[9];
+    s32 y = (s32) ((((((s64) pos->x) * m[1]) + (((s64) pos->y) * m[4])) + (((s64) pos->z) * m[7])) >> 12) + m[10];
+    s32 z = (s32) ((((((s64) pos->x) * m[2]) + (((s64) pos->y) * m[5])) + (((s64) pos->z) * m[8])) >> 12) + m[11];
+    s32 w;
+    s32 sx;
+    s32 sy;
+    s64 inv;
+    s32 screenX;
+    s32 screenY;
+    w = p[15] + ((s32) ((((((s64) x) * p[3]) + (((s64) y) * p[7])) + (((s64) z) * p[11])) >> 12));
+    func_02002028(w);
+    sx = p[12] + ((s32) ((((((s64) x) * p[0]) + (((s64) y) * p[4])) + (((s64) z) * p[8])) >> 12));
+    sy = p[13] + ((s32) ((((((s64) x) * p[1]) + (((s64) y) * p[5])) + (((s64) z) * p[9])) >> 12));
+    inv = func_02001fd0();
+    screenY = (s32) (((inv * sy) + 0x80000000LL) >> 32);
+    sy = (screenY + 4096) >> 1;
+    sy = (((sy << 7) + (sy << 6)) + 2048) >> 12;
+    screenX = (s32) (((inv * sx) + 0x80000000LL) >> 32);
+    sx = ((((screenX + 4096) >> 1) << 8) + 2048) >> 12;
+    sy = 192 - sy;
+    if (((((data_02162908[0] - 16) < sx) && (sx < (data_02162908[0] + 16))) && (data_02162908[1] < sy)) && (sy < (data_02162908[1] + 32)))
+    {
+      return 1;
+    }
+  }
+  return 0;
 }
-
+#pragma opt_propagation on
 extern void func_020ea5d4(void *, s32);
 static void func_020526f0(Vec2_02052844 pos, u16 id, s32 mode, s32 enable) {
  u8 *node = find_node_02052844(id);

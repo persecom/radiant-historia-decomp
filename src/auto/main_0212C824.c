@@ -37,33 +37,33 @@ void func_0212c824(void *arg0) {
     u8 *p = (u8 *)arg0;
     u8 *ctx = *(u8 **)(p + 4);
     void *obj = *(void **)(p + 8);
-    struct { void *ptr; s32 len; } buf;
-    struct { void *ptr; s32 len; } tmp;
+    s32 buf[2];
+    s32 tmp[2];
     s32 ret;
 
-    (*(void (**)(void *, s32, s32, void *))(*(u8 **)obj + 0x18))(obj, 1, 0xc800, &buf);
-    if (buf.len <= 0) {
-        (*(void (**)(void *, s32, void *))(*(u8 **)obj + 0x1c))(obj, 1, &buf);
+    (*(void (**)(void *, s32, s32, void *))(*(u8 **)obj + 0x18))(obj, 1, 0xc800, buf);
+    if (buf[1] <= 0) {
+        (*(void (**)(void *, s32, void *))(*(u8 **)obj + 0x1c))(obj, 1, buf);
         return;
     }
 
     if (*(s16 *)(ctx + 0x9a) == 0 && *(s16 *)(ctx + 0x98) != 0xd) {
-        func_02137f80(&buf, 0, &tmp, &buf);
-        (*(void (**)(void *, s32, void *))(*(u8 **)obj + 0x20))(obj, 0, &tmp);
-        if (buf.len < 0x10) {
-            (*(void (**)(void *, s32, void *))(*(u8 **)obj + 0x1c))(obj, 1, &buf);
+        func_02137f80(buf, 0, tmp, buf);
+        (*(void (**)(void *, s32, void *))(*(u8 **)obj + 0x20))(obj, 0, tmp);
+        if (buf[1] < 0x10) {
+            (*(void (**)(void *, s32, void *))(*(u8 **)obj + 0x1c))(obj, 1, buf);
             return;
         }
     }
 
     if (*(s16 *)(ctx + 0x9a) == 0 && *(s16 *)(ctx + 0x98) != 0xd) {
-        ret = func_0212a180(ctx, buf.ptr);
-        if (ret == 0 || ret > buf.len) {
-            (*(void (**)(void *, s32, void *))(*(u8 **)obj + 0x1c))(obj, 1, &buf);
+        ret = func_0212a180(ctx, (void *)buf[0]);
+        if (ret == 0 || ret > buf[1]) {
+            (*(void (**)(void *, s32, void *))(*(u8 **)obj + 0x1c))(obj, 1, buf);
             return;
         }
         if (ret < 0) {
-            (*(void (**)(void *, s32, void *))(*(u8 **)obj + 0x1c))(obj, 1, &buf);
+            (*(void (**)(void *, s32, void *))(*(u8 **)obj + 0x1c))(obj, 1, buf);
             if (func_02129bc8() == 0) {
                 func_0212be08(data_02156cdc, data_02156cfc);
             }
@@ -93,21 +93,21 @@ void func_0212c824(void *arg0) {
     }
 
     if (func_0212a1dc(ctx) == 2) {
-        s32 len = buf.len;
+        s32 len = buf[1];
         if (len >= 0x40) {
             len = 0x40;
         }
-        func_02013858(p + 0x60, buf.ptr, len);
+        func_02013858(p + 0x60, (void *)buf[0], len);
     }
 
     {
         s32 v = func_0212a1dc(ctx);
         if (v == 0xa || v == 0xb || v == 0xc || v == 0x14 || v == 0xf || v == 0xd) {
-            (*(void (**)(void *, s32, void *))(*(u8 **)obj + 0x1c))(obj, 1, &buf);
+            (*(void (**)(void *, s32, void *))(*(u8 **)obj + 0x1c))(obj, 1, buf);
         } else {
-            func_02137f80(&buf, ret, &buf, &tmp);
-            (*(void (**)(void *, s32, void *))(*(u8 **)obj + 0x20))(obj, 0, &buf);
-            (*(void (**)(void *, s32, void *))(*(u8 **)obj + 0x1c))(obj, 1, &tmp);
+            func_02137f80(buf, ret, buf, tmp);
+            (*(void (**)(void *, s32, void *))(*(u8 **)obj + 0x20))(obj, 0, buf);
+            (*(void (**)(void *, s32, void *))(*(u8 **)obj + 0x1c))(obj, 1, tmp);
         }
     }
 

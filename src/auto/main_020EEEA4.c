@@ -4,8 +4,9 @@
 extern u8 *data_02160aec;
 extern void func_0211d7a4(void);
 void func_020eeea4(void) {
-    u8 *map = data_02160aec;
-    if (*(u16 *)(map + 0xc) == 0) return;
+    if (*(u16 *)(data_02160aec + 0xc) == 0) {
+        return;
+    }
     func_0211d7a4();
 }
 

@@ -90,6 +90,9 @@ void func_020cb1fc(void) {
     }
 }
 
+#pragma push
+#pragma opt_common_subs off
+#pragma opt_loop_invariants off
 void func_020cb320(void) {
     u8 i;
     u8 j;
@@ -120,9 +123,10 @@ void func_020cb320(void) {
     *(void **)(data_02160238 + 0x40) = func_020a94b8((s32)data_021512f8);
     zero = 0;
     for (i = 0; i < 16; i++) {
-        if (i == 2 || i == 3) {
+        if (i < 8) {
             off = i * stride;
-            obj = func_020a8604(5, texH);
+            if (i == 2 || i == 3) obj = func_020a8604(5, texH);
+            else obj = func_020a8604(4, texH);
         } else {
             off = i * stride;
             if (i != 8) {
@@ -140,9 +144,9 @@ void func_020cb320(void) {
     func_020bdf24(data_02151304);
     *(void **)(data_02160238 + 0x704) = func_020a94b8((s32)data_02151318);
     texH = 1;
-    stride = 0x64;
+    s32 stride2 = 0x64;
     for (j = 0; j < 4; j++) {
-        off = j * stride;
+        off = j * stride2;
         obj = func_020a8604(4, texH);
         *(void **)(data_02160238 + off + 0x560) = obj;
         func_020a9830(data_02160238 + 0x164 + 0x400 + off, data_02160238 + 0x198 + 0x400 + off, 0xf0, 0x10, 0, 0);
@@ -170,10 +174,10 @@ void func_020cb320(void) {
     data_02160204[0x14c] = 0;
     data_02160204[0x14c] |= 8;
     data_02160204[0x7f] = 0;
-    func_02021a3c();
-    func_0210dc88();
     for (n = 0; n < 3; n++) {
-        if (func_02021a50() != 1) {
+        func_02021a3c();
+        do { func_0210dc88(); } while(func_02021a50() == 1);
+        {
             func_020bdf24(data_02151350, func_02021a50(), work[n * 16 + 0x710], *(u32 *)(work + n * 16 + 0x718));
         }
         if (func_02021a50() == 0) {
@@ -228,9 +232,9 @@ void func_020cb320(void) {
     node[0x1f] = 3;
     node = func_020cdbc4(0xe, 0, 0x38, 0x2c, 0x65, 0, 0x12, 1, 2);
     node[0x1f] = 2;
-    func_020cdbc4(0xf, 0, 0x64, 0x50, 0x65, 0, 0x12, 1, 2);
-    func_020cdbc4(0x10, 0, 0x8f, 0x50, 0x65, 0, 0x12, 1, 2);
-    func_020cdbc4(0x11, 0, 0xba, 0x50, 0x65, 0, 0x12, 1, 2);
+    func_020cdbc4(0xf, 0, 0x64, stride, 0x65, 0, 0x12, 1, 2);
+    func_020cdbc4(0x10, 0, 0x8f, stride, 0x65, 0, 0x12, 1, 2);
+    func_020cdbc4(0x11, 0, 0xba, stride, 0x65, 0, 0x12, 1, 2);
     node = func_020cdbc4(0x12, 0, 0x24, 0x5c, 0x65, 0, 0x12, 1, 2);
     node[0x1f] = 3;
     node = func_020cdbc4(0x13, 0, 0x38, 0x5c, 0x65, 0, 0x12, 1, 2);
@@ -242,19 +246,18 @@ void func_020cb320(void) {
     node[0x1f] = 3;
     node = func_020cdbc4(0x18, 0, 0x38, 0x8c, 0x65, 0, 0x12, 1, 2);
     node[0x1f] = 2;
-    func_020cdbc4(0x19, 0, 0x64, 0x50, 0x65, 0, 0x12, 1, 2);
-    func_020cdbc4(0x1a, 0, 0x8f, 0x50, 0x65, 0, 0x12, 1, 2);
-    func_020cdbc4(0x1b, 0, 0xba, 0x50, 0x65, 0, 0x12, 1, 2);
+    func_020cdbc4(0x19, 0, 0x64, stride, 0x65, 0, 0x12, 1, 2);
+    func_020cdbc4(0x1a, 0, 0x8f, stride, 0x65, 0, 0x12, 1, 2);
+    func_020cdbc4(0x1b, 0, 0xba, stride, 0x65, 0, 0x12, 1, 2);
     node = func_020cdbc4(0x1c, 0, 0x24, 0x5c, 0x65, 0, 0x12, 1, 2);
     node[0x1f] = 3;
     node = func_020cdbc4(0x1d, 0, 0x38, 0x5c, 0x65, 0, 0x12, 1, 2);
     node[0x1f] = 2;
     func_020ccd34(0);
-    if (data_021512f0 == 0) {
-        func_020cda64(3, 0x10000, 0x5000, 6, 0, 8, 0, 0, 0);
-    } else if (data_021512f0 == 1) {
-        func_020cda64(3, 0x10000, 0x5000, 6, 0, 7, 0, 0, 0);
-    }
+    switch (data_021512f0) {
+ case 0: func_020cda64(3, 0x10000, 0x5000, 6, 0, 8, 0, 0, 0);break;
+ case 1: func_020cda64(3, 0x10000, 0x5000, 6, 0, 7, 0, 0, 0);break;
+ }
     func_020a8810(*(void **)(data_02160238 + 0x150), 0x16);
     *(u8 *)(data_02160238 + 0x770) = 1;
     *(u32 *)(data_02160238 + 4) = (u32)func_020cc09c;
@@ -267,7 +270,7 @@ void func_020cb320(void) {
     *(u32 *)(data_02160238 + 0x30) = 1000;
     func_0210dbd0(data_02160238 + 0x2c);
 }
-
+#pragma pop
 extern u8 *data_02160200;
 extern void func_021168f8(void *, void *);
 extern void func_0210c5dc(void *);

@@ -72,49 +72,161 @@ extern void func_0200fca4(void (*)(void), u32);
 extern void func_020101f8(void *);
 
 extern void func_0200fb84(void);
-void func_020101f8(void *arg){
-u8 *p=*(u8 **)data_0215f120;
-s32 value=(s32)arg;
-u32 flag,kind,version;
-func_02008f74(p+0x18,0,0x48);
-*(s32 *)(p+4)=value;*(u32 *)(p+0x58)=0x203f;
-if(value==0)return;
-flag=1<<((value>>8)&255);kind=value&255;version=(value>>16)&255;
-*(u32 *)(p+0x18)=flag;p[0x54]=255;
-if(kind==1){
-switch(flag){
-case 0x200:*(u32 *)(p+0x24)=16;*(u32 *)(p+0x28)=1;*(u32 *)(p+0x2c)=5;p[0x54]=240;break;
-case 0x2000:*(u32 *)(p+0x24)=32;*(u32 *)(p+0x28)=2;*(u32 *)(p+0x2c)=5;p[0x54]=0;break;
-case 0x10000:*(u32 *)(p+0x24)=128;*(u32 *)(p+0x28)=2;*(u32 *)(p+0x2c)=10;p[0x54]=0;break;
-case 0x20000:*(u32 *)(p+0x24)=256;*(u32 *)(p+0x28)=3;*(u32 *)(p+0x2c)=5;p[0x54]=0;break;
-default:goto invalid;
-}
-*(u32 *)(p+0x1c)=*(u32 *)(p+0x24);
-*(u32 *)(p+0x58)|=0x140;*(u32 *)(p+0x58)|=0x4200;return;
-}else if(kind==2){
-switch(flag){
-case 0x40000:case 0x80000:case 0x100000:
-*(u32 *)(p+0x30)=25;*(u32 *)(p+0x34)=300;*(u32 *)(p+0x50)=300;*(u32 *)(p+0x40)=5000;*(u32 *)(p+0x58)|=0x480;break;
-case 0x200000:
-*(u32 *)(p+0x30)=23;*(u32 *)(p+0x34)=300;*(u32 *)(p+0x40)=500;*(u32 *)(p+0x44)=5000;
-*(u32 *)(p+0x38)=10000;*(u32 *)(p+0x3c)=60000;p[0x54]=0;*(u32 *)(p+0x58)|=0x480;*(u32 *)(p+0x58)|=0x5000;break;
-case 0x400000:
-*(u32 *)(p+0x40)=600;*(u32 *)(p+0x44)=3000;*(u32 *)(p+0x48)=70;*(u32 *)(p+0x4c)=150;
-*(u32 *)(p+0x38)=23000;*(u32 *)(p+0x3c)=800000;p[0x54]=0;*(u32 *)(p+0x20)=4096;*(u32 *)(p+0x58)|=0xd000;break;
-case 0x800000:
-if(version==0){
-*(u32 *)(p+0x40)=1000;*(u32 *)(p+0x44)=3000;*(u32 *)(p+0x38)=68000;*(u32 *)(p+0x3c)=160000;p[0x54]=0;*(u32 *)(p+0x58)|=0x5000;
-}else if(version==1){
-*(u32 *)(p+0x40)=1000;*(u32 *)(p+0x44)=3000;*(u32 *)(p+0x38)=68000;*(u32 *)(p+0x3c)=160000;p[0x54]=0x84;*(u32 *)(p+0x58)|=0x5000;
-}break;
-default:goto invalid;
-}
-*(u32 *)(p+0x1c)=0x10000;*(u32 *)(p+0x24)=256;*(u32 *)(p+0x28)=3;*(u32 *)(p+0x2c)=5;*(u32 *)(p+0x58)|=0xb40;return;
-}else if(kind==3){
-if(flag==0x2000||flag==0x8000){
-*(u32 *)(p+0x24)=flag;*(u32 *)(p+0x1c)=flag;*(u32 *)(p+0x28)=2;p[0x54]=0;*(u32 *)(p+0x58)|=0x140;*(u32 *)(p+0x58)|=0x4200;return;
-}}
-invalid:*(u32 *)(p+4)=0;*(u32 *)(p+0x18)=0;{u32 status=3; ZeroTarget_0215f120 *state=*(ZeroTarget_0215f120 **)data_0215f120;state->field_0=status;}
+void func_020101f8(void *arg)
+{
+  u8 *p = *((u8 **) data_0215f120);
+  s32 value = (s32) arg;
+  u32 flag;
+  u32 kind;
+  u32 version;
+  func_02008f74(p + 0x18, 0, 0x48);
+  *((s32 *) (p + 4)) = value;
+  *((u32 *) (p + 0x58)) = 0x203f;
+  if (value == 0)
+  {
+    return;
+  }
+  flag = 1 << ((value >> 8) & 255);
+  kind = value & 255;
+  version = (value >> 16) & 255;
+  *((u32 *) (p + 0x18)) = flag;
+  p[0x54] = 255;
+  if (kind == 1)
+  {
+    switch (flag)
+    {
+      case 0x200:
+        *((u32 *) (p + 0x24)) = 16;
+        *((u32 *) (p + 0x28)) = 1;
+        *((u32 *) (p + 0x2c)) = 5;
+        p[0x54] = 240;
+        break;
+
+      case 0x2000:
+        *((u32 *) (p + 0x24)) = 32;
+        *((u32 *) (p + 0x28)) = 2;
+        *((u32 *) (p + 0x2c)) = 5;
+        p[0x54] = 0;
+        break;
+
+      case 0x10000:
+        *((u32 *) (p + 0x24)) = 128;
+        *((u32 *) (p + 0x28)) = 2;
+        *((u32 *) (p + 0x2c)) = 10;
+        p[0x54] = 0;
+        break;
+
+      case 0x20000:
+        *((u32 *) (p + 0x24)) = 256;
+        *((u32 *) (p + 0x28)) = 3;
+        *((u32 *) (p + 0x2c)) = 5;
+        p[0x54] = 0;
+        break;
+
+      default:
+        goto invalid;
+
+    }
+
+    *((u32 *) (p + 0x1c)) = *((u32 *) (p + 0x24));
+    *((u32 *) (p + 0x58)) |= 0x140;
+    *((u32 *) (p + 0x58)) |= 0x4200;
+    return;
+  }
+  else
+    if (kind == 2)
+  {
+    switch (flag)
+    {
+      case 0x40000:
+
+      case 0x80000:
+
+      case 0x100000:
+        *((u32 *) (p + 0x30)) = 25;
+        *((u32 *) (p + 0x34)) = 300;
+        *((u32 *) (p + 0x50)) = 300;
+        *((u32 *) (p + 0x40)) = 5000;
+        *((u32 *) (p + 0x58)) |= 0x480;
+        break;
+
+      case 0x200000:
+        *((u32 *) (p + 0x30)) = 23;
+        *((u32 *) (p + 0x34)) = 300;
+        *((u32 *) (p + 0x40)) = 500;
+        *((u32 *) (p + 0x44)) = 5000;
+        *((u32 *) (p + 0x38)) = 10000;
+        *((u32 *) (p + 0x3c)) = 60000;
+        p[0x54] = 0;
+        *((u32 *) (p + 0x58)) |= 0x480;
+        *((u32 *) (p + 0x58)) |= 0x5000;
+        break;
+
+      case 0x400000:
+        *((u32 *) (p + 0x40)) = 600;
+        *((u32 *) (p + 0x44)) = 3000;
+        *((u32 *) (p + 0x48)) = 70;
+        *((u32 *) (p + 0x4c)) = 150;
+        *((u32 *) (p + 0x38)) = 23000;
+        *((u32 *) (p + 0x3c)) = 800000;
+        p[0x54] = (*((u32 *) (p + 0x24))) * 0;
+        *((u32 *) (p + 0x20)) = 4096;
+        *((u32 *) (p + 0x58)) |= 0xd000;
+        break;
+
+      case 0x800000:
+        if (version == 0)
+      {
+        *((u32 *) (p + 0x40)) = 1000;
+        *((u32 *) (p + 0x44)) = 3000;
+        *((u32 *) (p + 0x38)) = 68000;
+        *((u32 *) (p + 0x3c)) = 160000;
+        p[0x54] = 0;
+        *((u32 *) (p + 0x58)) |= 0x5000;
+      }
+      else
+        if (version == 1)
+      {
+        *((u32 *) (p + 0x40)) = 1000;
+        *((u32 *) (p + 0x44)) = 3000;
+        *((u32 *) (p + 0x38)) = 68000;
+        *((u32 *) (p + 0x3c)) = 160000;
+        p[0x54] = 0x84;
+        *((u32 *) (p + 0x58)) |= 0x5000;
+      }
+        break;
+
+      default:
+        goto invalid;
+
+    }
+
+    *((u32 *) (p + 0x1c)) = 0x10000;
+    *((u32 *) (p + 0x24)) = 256;
+    *((u32 *) (p + 0x28)) = 3;
+    *((u32 *) (p + 0x2c)) = 5;
+    *((u32 *) (p + 0x58)) |= 0xb40;
+    return;
+  }
+  else
+    if (kind == 3)
+  {
+    if ((flag == 0x2000) || (flag == 0x8000))
+    {
+      *((u32 *) (p + 0x24)) = flag;
+      *((u32 *) (p + 0x1c)) = flag;
+      *((u32 *) (p + 0x28)) = 2;
+      p[0x54] = 0;
+      *((u32 *) (p + 0x58)) |= 0x140;
+      *((u32 *) (p + 0x58)) |= 0x4200;
+      return;
+    }
+  }
+  invalid:
+  *((u32 *) (p + 4)) = 0;
+
+  *((u32 *) ((*((u8 **) data_0215f120)) + 0x18)) = 0;
+  set_zero_0210b10(*((ZeroTarget_0215f120 **) data_0215f120), 3);
 }
 
 void func_02010540(u32 **arg0) {
@@ -266,64 +378,28 @@ extern u32 data_0215f820[128];
 extern void func_02010738(u32);
 extern void func_02009008(const void *, void *, u32);
 #pragma optimization_level 2
-#pragma peephole off
+#pragma opt_propagation off
 u32 func_020108d8(u32 arg0, void *arg1, u32 arg2, u32 arg3) {
-    u32 ret = arg3;
-    u32 cached_page = data_02145c1c;
-    u32 *buf;
-    u32 page;
-    u32 chunk;
-
-    while (arg3 > 0) {
-        page = arg2 & -0x200;
-        buf = (u32 *)arg1;
-        chunk = 0x200;
-
-        if (page == cached_page) {
-            buf = data_0215f820;
-        } else {
-            if (page != arg2 || ((u32)arg1 & 3) != 0 || arg3 < chunk) {
-                buf = data_0215f820;
-                cached_page = page;
-            }
-            func_02010738(page);
-            {
-                u32 i = 0;
-                u32 ctrl;
-                do {
-                    ctrl = *(volatile u32 *)0x040001a4;
-                    if (ctrl & 0x800000) {
-                        u32 word = *(volatile u32 *)0x04100010;
-                        if (i < 0x80) {
-                            buf[i] = word;
-                            i++;
-                        }
-                    }
-                } while (ctrl & 0x80000000);
-            }
-        }
-
-        if (buf == data_0215f820) {
-            u32 off = arg2 - page;
-            chunk = 0x200 - off;
-            if (arg3 <= chunk) {
-                chunk = arg3;
-            }
-            func_02009008((u8 *)data_0215f820 + off, arg1, chunk);
-        }
-
-        arg1 = (u8 *)arg1 + chunk;
-        arg2 += chunk;
-        arg3 -= chunk;
-    }
-
-    func_0201076c();
-    func_02010f58();
-    data_02145c1c = cached_page;
-    return ret;
+u32 ret=arg3,cached_page=data_02145c1c;
+u32 *buf;u32 page,chunk;
+while(arg3>0) {
+page=arg2&-0x200;buf=(u32 *)arg1;chunk=0x200;
+if(page==cached_page) buf=data_0215f820;
+else {
+if(page!=arg2 || ((u32)arg1&3)!=0 || arg3<chunk) {buf=data_0215f820;cached_page=page;}
+func_02010738(page);
+{u32 i=0,ctrl;do {
+ctrl=*(volatile u32 *)0x040001a4;
+if(ctrl&0x800000) {arg0=*(volatile u32 *)0x04100010;if(i<0x80){buf[i]=arg0;i++;}}
+}while(ctrl&0x80000000);}
 }
-#pragma peephole on
+if(buf==data_0215f820){u32 off=arg2-page;chunk=0x200-off;if(arg3<=chunk)chunk=arg3;func_02009008((u8 *)data_0215f820+off,arg1,chunk);}
+arg1=(u8 *)arg1+chunk;arg2+=chunk;arg3-=chunk;
+}
+func_0201076c();func_02010f58();data_02145c1c=cached_page;return ret;
+}
 #pragma optimization_level 3
+#pragma opt_propagation on
 void func_020109f4(void) {
     u32 *p = *(u32 **)(data_0215f760 + 8);
     if (p == NULL) {

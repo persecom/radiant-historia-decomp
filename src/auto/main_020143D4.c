@@ -22,63 +22,92 @@ u8 *func_020143d4(double value, u8 *end, FormatSpec spec)
   u8 fmt[4];
   FormatSpec dec;
   u8 num[40];
-  s32 sign, conversion, precision, exponent, i, bit, alternate;
-  u8 new_var, digit;
+  s32 sign;
+  s32 conversion;
+  u8 new_var;
+  s32 precision;
   u8 *p = 0;
-  u8 *bytes;
+  s32 exponent;
+  s32 i;
+  s32 bit;
+  s32 alternate;
+  u8 digit;
   precision = spec.precision;
   conversion = spec.conversion;
   alternate = spec.alternate;
   sign = spec.sign;
-  if (precision > 509) return p;
+  u8 *bytes;
+  if (precision > 509)
+  {
+    return p;
+  }
   p = end;
   fmt[0] = 0;
   exponent = 32;
   *((u16 *) (fmt + 2)) = exponent;
   func_02019580(fmt, original, num);
-  switch (num[5]) {
+  switch (num[5])
+  {
     case '0':
       *((s16 *) (num + 2)) = 0;
       break;
+
     case 'I':
-      if (num[0]) {
-        p = (u8 *)(((u32) p) - 5);
-        if (conversion == 'A') {
-          *((FormatText5 *) p) = *((FormatText5 *) &data_02145e54);
-          return p;
-        } else {
-          *((FormatText5 *) p) = *((FormatText5 *) &data_02145e5c);
-          return p;
-        }
-      }
-      p = (u8 *)(((u32) p) - 4);
-      if (conversion == 'A') {
-        *((FormatText4 *) p) = *((FormatText4 *) &data_02145e64);
-        return p;
-      } else {
-        *((FormatText4 *) p) = *((FormatText4 *) &data_02145e68);
+      if (num[0])
+    {
+      p = (u8 *) (((u32) p) - 5);
+      if (conversion == 'A')
+      {
+        *((FormatText5 *) p) = *((FormatText5 *) data_02145e54);
         return p;
       }
+      else
+      {
+        *((FormatText5 *) p) = *((FormatText5 *) data_02145e5c);
+        return p;
+      }
+    }
+      p = (u8 *) (((u32) p) - 4);
+      if (conversion == 'A')
+    {
+      *((FormatText4 *) p) = *((FormatText4 *) data_02145e64);
+      return p;
+    }
+    else
+    {
+      *((FormatText4 *) p) = *((FormatText4 *) data_02145e68);
+      return p;
+    }
+
     case 'N':
-      if (num[0]) {
-        p = (u8 *)(((u32) p) - 5);
-        if (conversion == 'A') {
-          *((FormatText5 *) p) = *((FormatText5 *) &data_02145e6c);
-          return p;
-        } else {
-          *((FormatText5 *) p) = *((FormatText5 *) &data_02145e74);
-          return p;
-        }
-      }
-      p = (u8 *)(((u32) p) - 4);
-      if (conversion == 'A') {
-        *((FormatText4 *) p) = *((FormatText4 *) &data_02145e7c);
-        return p;
-      } else {
-        *((FormatText4 *) p) = *((FormatText4 *) &data_02145e80);
+      if (num[0])
+    {
+      p = (u8 *) (((u32) p) - 5);
+      if (conversion == 'A')
+      {
+        *((FormatText5 *) p) = *((FormatText5 *) data_02145e6c);
         return p;
       }
+      else
+      {
+        *((FormatText5 *) p) = *((FormatText5 *) data_02145e74);
+        return p;
+      }
+    }
+      p = (u8 *) (((u32) p) - 4);
+      if (conversion == 'A')
+    {
+      *((FormatText4 *) p) = *((FormatText4 *) data_02145e7c);
+      return p;
+    }
+    else
+    {
+      *((FormatText4 *) p) = *((FormatText4 *) data_02145e80);
+      return p;
+    }
+
   }
+
   dec.padding = 1;
   dec.sign = 1;
   dec.unk2 = 0;
@@ -88,42 +117,92 @@ u8 *func_020143d4(double value, u8 *end, FormatSpec spec)
   dec.precision = 1;
   dec.conversion = 'd';
   bytes = (u8 *) (&value);
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < 4; i++)
+  {
     u8 temp = bytes[i];
     bytes[i] = bytes[7 - i];
     bytes[7 - i] = temp;
   }
+
   exponent = ((((u32) (new_var = ((u8 *) (&value))[1])) << 17) | (((u32) ((u8 *) (&value))[0]) << 25)) >> 21;
   exponent &= 0x7ff;
-  if (exponent) exponent += -1023;
-  else exponent = 0;
+  if (exponent)
+  {
+    exponent += -1023;
+  }
+  else
+  {
+    exponent = 0;
+  }
   p = func_02013eb0(exponent, end, dec) - 1;
-  if (conversion == 'a') *p = 'p';
-  else *p = 'P';
+  if (conversion == 'a')
+  {
+    *p = 'p';
+  }
+  else
+  {
+    *p = 'P';
+  }
   bytes = (u8 *) (&value);
-  for (i = precision, bit = (precision * 4) + 11; i >= 1; i--, bit -= 4) {
-    if (bit < 64) {
+  for (i = precision, bit = (precision * 4) + 11; i >= 1; i--, bit -= 4)
+  {
+    if (bit < 64)
+    {
       digit = bytes[bit >> 3] >> (7 - (bit & 7));
-      if ((bit & (~7)) != ((bit - 4) & (~7))) {
+      if ((bit & (~7)) != ((bit - 4) & (~7)))
+      {
         digit |= (u8) ((bytes[(bit >> 3) - 1] << 8) >> (7 - (bit & 7)));
       }
       digit &= 15;
-      if (digit < 10) digit += '0';
-      else if (conversion == 'a') digit += 87;
-      else digit += 55;
-    } else {
+      if (digit < 10)
+      {
+        digit += '0';
+      }
+      else
+        if (conversion == 'a')
+      {
+        digit += 87;
+      }
+      else
+      {
+        digit += 55;
+      }
+    }
+    else
+    {
       digit = '0';
     }
     *(--p) = digit;
   }
-  if (precision || alternate) *(--p) = '.';
+
+  if (precision || alternate)
+  {
+    *(--p) = '.';
+  }
   *(--p) = (func_0201e014(original) != 0.0) ? ('1') : ('0');
-  if (conversion == 'a') *(--p) = 'x';
-  else *(--p) = 'X';
+  if (conversion == 'a')
+  {
+    *(--p) = 'x';
+  }
+  else
+  {
+    *(--p) = 'X';
+  }
   *(--p) = '0';
-  if (num[0]) *(--p) = '-';
-  else if (sign == 1) *(--p) = '+';
-  else if (sign == 2) *(--p) = ' ';
+  if (num[0])
+  {
+    *(--p) = '-';
+  }
+  else
+    if (sign == 1)
+  {
+    *(--p) = '+';
+  }
+  else
+    if (sign == 2)
+  {
+    *(--p) = ' ';
+  }
   return p;
 }
 

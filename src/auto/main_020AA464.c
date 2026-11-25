@@ -448,18 +448,21 @@ s32 func_020aadf8(void) {
     return 0;
 }
 
+#pragma push
+#pragma optimization_level 2
 s32 func_020aae98(void) {
- u8 *p; s32 id; s32 result;
- id=3; p=func_020ade60(id);
- if (p[13]!=0) goto increment;
- {
- if(func_020aaaec((s32*)p,id-0xdf,0,4,*(s32*)(p+8))) {
- p[13]=1; *(s32*)(p+8)=0; return 1;
- }}
- increment: *(s32*)(p+8)+=1;
- result=0; return result;
+    s32 *p = func_020ade60(3);
+    if (((u8 *)p)[0xd] == 0) {
+        if (func_020aaaec(p, -220, 0, 4, p[2]) != 0) {
+            ((u8 *)p)[0xd] = 1;
+            p[2] = 0;
+            return 1;
+        }
+    }
+    p[2]++;
+    return 0;
 }
-
+#pragma pop
 s32 func_020aaf08(void) {
  u8 *p=func_020ade60(4);
  if(p[13]!=0) {

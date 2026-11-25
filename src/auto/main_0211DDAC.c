@@ -220,11 +220,12 @@ void func_0211e320(u8 *arg0) {
  *(u8 **)arg0+=2;
 }
 
+#pragma peephole off
 void func_0211e3ec(u8 *ctx,u32 command,u8 *mat,u32 idx) {
 u32 stage,handled;
-u32 zero=0;
 u8 *out;
 u32 packets[7];
+u32 zero=0;
 *(u32 *)(ctx+8)|=8;
 stage=*(void **)(ctx+0x1c)?ctx[0x90]:zero;
 ctx[0xad]=idx;
@@ -328,7 +329,7 @@ if(stage==3) {
 (*(void (**)(void *))(ctx+0x1c))(ctx);
 }
 }
-
+#pragma peephole on
 void func_0211e860(u8 *arg0, u32 arg1) {
 u32 flags=*(u32 *)(arg0+8);u8 *p;u8 idx;u8 *tbl;u8 *node;
 if(flags&0x200)goto advance;

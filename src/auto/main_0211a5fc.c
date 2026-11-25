@@ -169,6 +169,7 @@ void func_0211a860(u32 arg0) {
     *(u32 *)(p + 0x2c) = 0;
 }
 
+#pragma opt_propagation off
 void func_0211a8ac(void *oam0, void *tex0, void *image, void *palette, s32 *uv) {
  SpriteTex_1a8ac *tex=tex0;
  SpriteOam_1a8ac *oam=oam0;
@@ -187,7 +188,13 @@ void func_0211a8ac(void *oam0, void *tex0, void *image, void *palette, s32 *uv) 
  uv[4]=w;uv[5]=h; }
  if(mapping==0) {
  s32 fmt=tex->format;
- *(volatile u32 *)0x40004a8=(fmt<<26)|(address>>3)|0x40000000|(tex->width<<20)|(tex->height<<23)|(tex->transparent<<29);
+ u32 packed = fmt << 26;
+ packed |= address >> 3;
+ packed |= 0x40000000;
+ packed |= tex->width << 20;
+ packed |= tex->height << 23;
+ packed |= tex->transparent << 29;
+ *(volatile u32 *)0x40004a8=packed;
  if(fmt==4) tile>>=1;
  { s32 width=tex->width;
  s32 v=(s32)tile>>width;
@@ -200,7 +207,7 @@ void func_0211a8ac(void *oam0, void *tex0, void *image, void *palette, s32 *uv) 
  }
  uv[2]=uv[0]+(uv[4]<<12);
  uv[3]=uv[1]+(uv[5]<<12);
- fx=oam->bits.flipX;fy=oam->bits.flipY;
+ fy=oam->bits.flipY;fx=oam->bits.flipX;
  if(fx) { s32 tmp=uv[0];uv[0]=uv[2];uv[2]=tmp; }
  if(fy) { s32 tmp=uv[1];uv[1]=uv[3];uv[3]=tmp; }
  if(data_021701d8[0]) ((void (*)(s32 *,s32 *,s32 *,s32 *,u32,u32))data_021701d8[0])(uv,uv+1,uv+2,uv+3,fx,fy);
@@ -211,7 +218,7 @@ void func_0211a8ac(void *oam0, void *tex0, void *image, void *palette, s32 *uv) 
  else address=index<<5;
  *(volatile u32 *)0x40004ac=((u32)palette+address)>>(4-(format==2));
 }
-
+#pragma opt_propagation on
 void func_0211ab04(u32 arg0) {
     data_021701d8[2] = arg0;
 }
@@ -232,15 +239,15 @@ u32 func_0211ab38(void) {
 extern void func_0211a8ac(void *, void *, void *, void *, s32 *);
 extern u16 data_02144d84[][4];
 extern u16 data_02144d6c[][4];
-#pragma optimization_level 3
-void func_0211ab48(s32 x, s32 y, s32 z, u32 *oam, void *pTex, void *pPltt, void *pChar) {
+#pragma opt_propagation off
+void func_0211ab48(long x, long y, long z, u32 *oam, void *pTex, void *pPltt, void *pChar) {
     s32 uv[6];
     u32 mode;
     u32 attr;
-    s32 xx=x, yy=y, zz=z;
+    
 
     func_0211a8ac(oam, pTex, pPltt, pChar, uv);
-    x=xx; y=yy; z=zz;
+
 
     attr = *oam;
     mode = attr & 0x300;
@@ -291,7 +298,7 @@ void func_0211ab48(s32 x, s32 y, s32 z, u32 *oam, void *pTex, void *pPltt, void 
         data_021701d8[1] += data_02155ed0[0];
     }
 }
-#pragma optimization_level 4
+#pragma opt_propagation on
 extern u32 data_021701d8[4];
 void func_0211ad90(u32 arg0) {
     data_021701d8[0] = arg0;

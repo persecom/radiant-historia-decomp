@@ -65,146 +65,157 @@ extern u16 data_021628fa[];
 extern s32 func_02044c98(void);
 extern void func_02002128(void *, void *, void *);
 extern void func_020020f8(void *, void *, void *);
-void func_020783e8(u8 *arg0) {
-    u32 flags;
-    u8 *p00ac;
-    s32 ty;
-    s32 tx;
-    u8 *p68;
-    s32 dx;
-    s32 dy;
-
-    if (data_02162908[2] != 0) {
-        *(u32 *)(arg0 + 0xac) &= ~0x400000;
-        *(u32 *)(arg0 + 0xac) &= ~0x800000;
-        *(u32 *)(arg0 + 0xac) &= ~0x8000000;
-
-        if (func_02044c98() != 0) {
-            return;
-        }
-
-        flags = *(u32 *)(data_02160200 + 0x34);
-        tx = *(s16 *)&data_02162908[0];
-        ty = *(s16 *)&data_02162908[1];
-
-        if (flags & 0x10) {
-            if ((u8)(tx >= 0xe0 && tx <= 0x100 && ty >= 0xa0 && ty <= 0xc0)) {
-                *(u32 *)(arg0 + 0xac) |= 0x400000;
-                return;
-            }
-        }
-
-        if (flags & 0x20) {
-            if ((u8)(tx >= 0xb8 && tx <= 0xd8 && ty >= 0xa0 && ty <= 0xc0)) {
-                *(u32 *)(arg0 + 0xac) |= 0x800000;
-                return;
-            }
-        }
-
-        p00ac = (u8 *)data_021600ac;
-        if (*(s32 *)(p00ac + 0x844) == 1) {
-            s32 *r = (s32 *)(p00ac + 0x84c);
-            if ((u8)(tx >= r[0] && tx <= r[2] && ty >= r[1] && ty <= r[3])) {
-                *(u32 *)(arg0 + 0xac) |= 0x2000000;
-                *(s32 *)((u8 *)data_021600ac + 0x848) = 1;
-                return;
-            }
-            r = (s32 *)(p00ac + 0x85c);
-            if ((u8)(tx >= r[0] && tx <= r[2] && ty >= r[1] && ty <= r[3])) {
-                *(u32 *)(arg0 + 0xac) |= 0x2000000;
-                *(s32 *)((u8 *)data_021600ac + 0x848) = 1;
-                return;
-            }
-        }
-
-        if (*(s32 *)(p00ac + 0x884) == 1) {
-            s32 *r = (s32 *)(p00ac + 0x88c);
-            if ((u8)(tx >= r[0] && tx <= r[2] && ty >= r[1] && ty <= r[3])) {
-                *(u32 *)(arg0 + 0xac) |= 0x8000000;
-                *(s32 *)((u8 *)data_021600ac + 0x888) = 1;
-                return;
-            }
-            r = (s32 *)(p00ac + 0x89c);
-            if ((u8)(tx >= r[0] && tx <= r[2] && ty >= r[1] && ty <= r[3])) {
-                *(u32 *)(arg0 + 0xac) |= 0x8000000;
-                *(s32 *)((u8 *)data_021600ac + 0x888) = 1;
-                return;
-            }
-        }
-
-        if ((u8)(tx >= 0 && tx <= 0x2e && ty >= 0xb3 && ty <= 0xc0)) {
-            return;
-        }
-
-        p68 = *(u8 **)(p00ac + 0x68);
-        {
-            s32 cy;
-            s32 cx = *(s32 *)(p68 + 0xfc);
-            cy = *(s32 *)(p68 + 0x100);
-            s32 x0 = cx - 0x46;
-            s32 x1 = cx + 0x46;
-            s32 y0 = cy - 0x36;
-            s32 y1 = cy + 0x2a;
-            if ((u8)(tx >= x0 && tx <= x1 && ty >= y0 && ty <= y1)) {
-                *(u32 *)(p68 + 0xac) |= 0x80;
-            } else {
-                *(u32 *)(p68 + 0xac) &= ~0x80;
-            }
-        }
-
-        {
-            u16 *t = data_02162908;
-            dx = *(s32 *)(arg0 + 0xfc) - t[0];
-            dy = *(s32 *)(arg0 + 0x100) - t[1];
-            if (dx < 0) {
-                dx = -dx;
-            }
-            if (dx <= 8) {
-                if (dy < 0) {
-                    dy = -dy;
-                }
-                if (dy <= 8) {
-                    return;
-                }
-            }
-        }
-
-        {
-            s32 v4[3] = {0, 0, 0};
-            s32 v3[3] = {0, 0, 0};
-            s32 v2[3];
-            s32 v1[3];
-            s32 v0[3];
-
-            v4[0] = *(s32 *)(arg0 + 0xfc);
-            v4[2] = *(s32 *)(arg0 + 0x100);
-            v3[0] = ((volatile u16 *)data_02162908)[0];
-            v3[2] = ((volatile u16 *)data_02162908)[1];
-            func_02002128(v4, v3, v2);
-
-            v1[0] = *(s32 *)(arg0 + 0);
-            v1[1] = *(s32 *)(arg0 + 4);
-            v1[2] = *(s32 *)(arg0 + 8);
-            v1[0] >>= 12;
-            v1[1] >>= 12;
-            v1[2] >>= 12;
-            func_020020f8(v1, v2, v0);
-
-            *(s32 *)(arg0 + 0x24) = v0[0] << 12;
-            *(s32 *)(arg0 + 0x28) = v0[1] << 12;
-            *(s32 *)(arg0 + 0x2c) = v0[2] << 12;
-            *(u32 *)(arg0 + 0xac) |= 0x40;
-        }
-    } else {
-        if (data_021628fa[0] != 0) {
-            *(u32 *)(arg0 + 0xac) &= ~0x2000000;
-            return;
-        }
-        *(u32 *)(arg0 + 0xac) &= ~0x400000;
-        *(u32 *)(arg0 + 0xac) &= ~0x8000000;
-        *(u32 *)(arg0 + 0xac) &= ~0x800000;
-        *(u32 *)(arg0 + 0xac) &= ~0x2000000;
+void func_020783e8(u8 *arg0)
+{
+  u8 *p00ac;
+  s32 ty;
+  s32 tx;
+  u32 flags;
+  u8 *p68;
+  int new_var = 0xac;
+  s32 dx;
+  s32 dy;
+  if (data_02162908[2] != 0)
+  {
+    *((u32 *) (arg0 + 0xac)) &= ~0x400000;
+    new_var = 0xac;
+    *((u32 *) (arg0 + new_var)) &= ~0x800000;
+    *((u32 *) (arg0 + 0xac)) &= ~0x8000000;
+    if (func_02044c98() != 0)
+    {
+      return;
     }
+    flags = *((volatile u32 *) (data_02160200 + 0x34));
+    tx = *((s16 *) (&data_02162908[0]));
+    ty = *((s16 *) (&data_02162908[1]));
+    if (flags & 0x10)
+    {
+      if ((u8) ((((tx >= 0xe0) && (tx <= 0x100)) && (ty >= 0xa0)) && (ty <= 0xc0)))
+      {
+        *((u32 *) (arg0 + new_var)) |= 0x400000;
+        return;
+      }
+    }
+    if (flags & 0x20)
+    {
+      if ((u8) ((((tx >= 0xb8) && (tx <= 0xd8)) && (ty >= 0xa0)) && (ty <= 0xc0)))
+      {
+        *((u32 *) (arg0 + new_var)) |= 0x800000;
+        return;
+      }
+    }
+    p00ac = (u8 *) data_021600ac;
+    if ((*((s32 *) (p00ac + 0x844))) == 1)
+    {
+      s32 *r = (s32 *) (p00ac + 0x84c);
+      if ((u8) ((((tx >= r[0]) && (tx <= r[2])) && (ty >= r[1])) && (ty <= r[3])))
+      {
+        *((u32 *) (arg0 + new_var)) |= 0x2000000;
+        *((s32 *) (((u8 *) data_021600ac) + 0x848)) = 1;
+        return;
+      }
+      r = (s32 *) (p00ac + 0x85c);
+      if ((u8) ((((tx >= r[0]) && (tx <= r[2])) && (ty >= r[1])) && (ty <= r[3])))
+      {
+        *((u32 *) (arg0 + 0xac)) |= 0x2000000;
+        *((s32 *) (((u8 *) data_021600ac) + 0x848)) = 1;
+        return;
+      }
+    }
+    if ((*((s32 *) (p00ac + 0x884))) == 1)
+    {
+      s32 *r = (s32 *) (p00ac + 0x88c);
+      if ((u8) ((((tx >= r[0]) && (tx <= r[2])) && (ty >= r[1])) && (ty <= r[3])))
+      {
+        *((u32 *) (arg0 + 0xac)) |= 0x8000000;
+        *((s32 *) (((u8 *) data_021600ac) + 0x888)) = 1;
+        return;
+      }
+      r = (s32 *) (p00ac + 0x89c);
+      if ((u8) ((((tx >= r[0]) && (tx <= r[2])) && (ty >= r[1])) && (ty <= r[3])))
+      {
+        *((u32 *) (arg0 + 0xac)) |= 0x8000000;
+        *((s32 *) (((u8 *) data_021600ac) + 0x888)) = 1;
+        return;
+      }
+    }
+    if ((u8) ((((tx >= 0) && (tx <= 0x2e)) && (ty >= 0xb3)) && (ty <= 0xc0)))
+    {
+      return;
+    }
+    p68 = *((u8 **) (p00ac + 0x68));
+    {
+      s32 cx = *((s32 *) (p68 + 0xfc));
+      s32 cy = *((s32 *) (p68 + 0x100));
+      s32 x0 = cx - 0x46;
+      s32 x1 = cx + 0x46;
+      s32 y0 = cy - 0x36;
+      s32 y1 = cy + 0x2a;
+      if ((u8) ((((tx >= x0) && (tx <= x1)) && (ty >= y0)) && (ty <= y1)))
+      {
+        *((u32 *) (p68 + new_var)) |= 0x80;
+      }
+      else
+      {
+        *((u32 *) (p68 + 0xac)) &= ~0x80;
+      }
+    }
+    {
+      u16 *t = data_02162908;
+      dx = (*((s32 *) (arg0 + 0xfc))) - t[0];
+      dy = (*((s32 *) (arg0 + 0x100))) - t[1];
+      if (dx < 0)
+      {
+        dx = -dx;
+      }
+      if (dx <= 8)
+      {
+        if (dy < 0)
+        {
+          dy = -dy;
+        }
+        if (dy <= 8)
+        {
+          return;
+        }
+      }
+    }
+    {
+      s32 v4[3] = {0, 0, 0};
+      s32 v3[3] = {0, 0, 0};
+      s32 v2[3];
+      s32 v1[3];
+      s32 v0[3];
+      v4[0] = *((s32 *) (arg0 + 0xfc));
+      v4[2] = *((s32 *) (arg0 + 0x100));
+      v3[0] = ((u16 *) data_02162908)[0];
+      v3[2] = ((u16 *) data_02162908)[1];
+      func_02002128(v4, v3, v2);
+      v1[0] = *((s32 *) (arg0 + 0));
+      v1[1] = *((s32 *) (arg0 + 4));
+      v1[2] = *((s32 *) (arg0 + 8));
+      v1[0] >>= 12;
+      v1[1] >>= 12;
+      v1[2] >>= 12;
+      func_020020f8(v1, v2, v0);
+      *((s32 *) (arg0 + 0x24)) = v0[0] << 12;
+      *((s32 *) (arg0 + 0x28)) = v0[1] << 12;
+      *((s32 *) (arg0 + 0x2c)) = v0[2] << 12;
+      *((u32 *) (arg0 + new_var)) |= 0x40;
+    }
+  }
+  else
+  {
+    if (data_021628fa[0] == 0) {
+      *(u32 *)(arg0 + 0xac) &= ~0x400000;
+      *(u32 *)(arg0 + 0xac) &= ~0x8000000;
+      *(u32 *)(arg0 + 0xac) &= ~0x800000;
+      *(u32 *)(arg0 + 0xac) &= ~0x2000000;
+    } else {
+      *(u32 *)(arg0 + 0xac) &= ~0x2000000;
+      return;
+    }
+  }
 }
 
 void func_0207884c(s32 arg0) {
@@ -418,36 +429,43 @@ func_0206e8f0(0x7d,&v,2);
 }
 
 
-void func_02079174(void) {
-u32 seed=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
-u16 r;
-Vec3_02078d8c pos;
-s32 x,y,z,sx,sy,w;
-s64 inv;
-s32 screenX,screenY;
-const s32 *m;
-const s32 *p;
-data_0216263c[0]=seed;
-r=((seed>>16)*16)>>16;
-if(r!=0) return;
-m=data_02170248;
- pos=*(Vec3_02078d8c *)data_0216244c;
-y=m[10]+(s32)(((s64)pos.x*m[1]+(s64)pos.y*m[4]+(s64)pos.z*m[7])>>12);
-x=m[9]+(s32)(((s64)pos.x*m[0]+(s64)pos.y*m[3]+(s64)pos.z*m[6])>>12);
-z=m[11]+(s32)(((s64)pos.x*m[2]+(s64)pos.y*m[5]+(s64)pos.z*m[8])>>12);
-p=data_02170204;
-w=p[15]+(s32)(((s64)x*p[3]+(s64)y*p[7]+(s64)z*p[11])>>12);
-func_02002028(w);
-sx=p[12]+(s32)(((s64)x*p[0]+(s64)y*p[4]+(s64)z*p[8])>>12);
-sy=p[13]+(s32)(((s64)x*p[1]+(s64)y*p[5]+(s64)z*p[9])>>12);
-inv=func_02001fd0();
-screenX=(s32)((inv*sx+0x80000000LL)>>32);
-screenY=(s32)((inv*sy+0x80000000LL)>>32);
-pos.z=0;
-sy=(screenY+4096)>>1;
-sy=(sy<<7)+(sy<<6);
-pos.y=((192-((sy+2048)>>12))/2)<<13;
-pos.x=(((((screenX+4096)>>1)*256+2048)>>12)/2)<<13;
-func_0206e8f0(126,&pos,3);
+#pragma opt_propagation off
+void func_02079174(void)
+{
+  u32 seed = (data_0216263c[1] * data_0216263c[0]) + data_0216263c[2];
+  u16 r;
+  Vec3_02078d8c pos;
+  s32 x;
+  s32 y;
+  s32 z;
+  s32 sx;
+  s32 sy;
+  s32 w;
+  s64 inv;
+  const s32 *m;
+  const s32 *p;
+  data_0216263c[0] = seed;
+  r = ((seed >> 16) * 16) >> 16;
+  if (r != 0)
+  {
+    return;
+  }
+  pos = *((Vec3_02078d8c *) data_0216244c);
+  m = data_02170248;
+  x = m[9] + ((s32) ((((((s64) pos.x) * m[0]) + (((s64) pos.y) * m[3])) + (((s64) pos.z) * m[6])) >> 12));
+  y = m[10] + ((s32) ((((((s64) pos.x) * m[1]) + (((s64) pos.y) * m[4])) + (((s64) pos.z) * m[7])) >> 12));
+  z = m[11] + ((s32) ((((((s64) pos.x) * m[2]) + (((s64) pos.y) * m[5])) + (((s64) pos.z) * m[8])) >> 12));
+  p = data_02170204;
+  w = p[15] + ((s32) ((((((s64) x) * p[3]) + (((s64) y) * p[7])) + (((s64) z) * p[11])) >> 12));
+  func_02002028(w);
+  sx = p[12] + ((s32) ((((((s64) x) * p[0]) + (((s64) y) * p[4])) + (((s64) z) * p[8])) >> 12));
+  sy = p[13] + ((s32) ((((((s64) x) * p[1]) + (((s64) y) * p[5])) + (((s64) z) * p[9])) >> 12));
+  inv = func_02001fd0();
+  pos.z = 0;
+  sy = (((s32) (((inv * sy) + 0x80000000LL) >> 32)) + 4096) >> 1;
+  sy = (sy << 7) + (sy << 6);
+  pos.y = ((192 - ((sy + (2048 & 0xFFFFu)) >> 12)) / 2) << 13;
+  pos.x = ((((((((s32) (((inv * sx) + 0x80000000LL) >> 32)) + 4096) >> 1) * 256) + 2048) >> 12) / 2) << 13;
+  func_0206e8f0(126, &pos, 3);
 }
-
+#pragma opt_propagation on

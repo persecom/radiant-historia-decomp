@@ -20,6 +20,7 @@ extern s32 func_0210cd20(void *, s32);
 extern s32 func_0210cdfc(void *, s32);
 extern u8 *data_02160200;
 extern u8 *data_02160204;
+#pragma optimization_level 0
 void func_020a033c(s32 id) {
     s32 i;
     s32 zero = 0;
@@ -29,6 +30,7 @@ void func_020a033c(s32 id) {
     s32 v[24];
     s16 a[5], b[5];
     s32 pad[16];
+    s32 extra[12];
 
     g = (s8 *)data_02160204;
     fp = func_021092d8((const char *)data_02160200);
@@ -43,9 +45,9 @@ void func_020a033c(s32 id) {
         a[i] = (s16)func_0210cdfc(fp, 0);
         b[i] = (s16)func_0210cdfc(fp, 0);
     }
-    (void)id; (void)zero; (void)func_0210cd20; (void)pad; (void)b; (void)a; (void)v;
+    (void)id; (void)zero; (void)func_0210cd20; (void)pad; (void)b; (void)a; (void)v; (void)extra;
 }
-
+#pragma optimization_level 4
 void func_020a0da8(void) {
 }
 

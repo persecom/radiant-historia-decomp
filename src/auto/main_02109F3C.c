@@ -38,6 +38,7 @@ extern u8 data_02162578[];
 extern u8 data_02162580[];
 extern u8 data_021625c8[];
 
+#pragma opt_schedule off
 void *func_02109f3c(u32 arg0) {
     u8 *p = NULL;
     for (; (p = (p == NULL) ? *(u8 **)((u8 *)data_02162564 + 8) : *(u8 **)(p + *(u16 *)((u8 *)data_02162564 + 0x12) + 4)) != NULL;) {
@@ -47,7 +48,7 @@ void *func_02109f3c(u32 arg0) {
     }
     return NULL;
 }
-
+#pragma opt_schedule on
 s32 func_02109f84(u32 arg0) {
     u8 *p = func_02109f3c(arg0);
     if (p == NULL) {

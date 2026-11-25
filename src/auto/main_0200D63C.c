@@ -394,12 +394,13 @@ void func_0200df30(u32 arg0) {
     func_0200e138(arg0, arg0);
 }
 
+#pragma optimization_level 3
 s32 func_0200df4c(s16 *calibrate, u16 raw_x1, u16 raw_y1, u16 dx1, u16 dy1, u16 raw_x2, u16 raw_y2, u16 dx2, u16 dy2) {
     s32 xDotSize;
     s32 yDotSize;
     s32 x0;
     s32 y0;
-    s32 dy;
+    s32 rawdy; s32 dy; s32 irq;
 
     if (raw_x1 >= 0x1000 || raw_y1 >= 0x1000 || raw_x2 >= 0x1000 || raw_y2 >= 0x1000) {
         return 1;
@@ -411,37 +412,38 @@ s32 func_0200df4c(s16 *calibrate, u16 raw_x1, u16 raw_y1, u16 dx1, u16 dy1, u16 
         return 1;
     }
 
-    func_02008128();
+    irq=func_02008128();
 
     *(volatile u16 *)0x04000280 = 0;
     *(volatile s32 *)0x04000290 = (raw_x1 - raw_x2) << 8;
     *(volatile u64 *)0x04000298 = (u32)(dx1 - dx2);
 
-    dy = dy1 - dy2;
+    rawdy=raw_y1-raw_y2;
+dy = dy1 - dy2;
 
     while (*(volatile u16 *)0x04000280 & 0x8000) {}
     xDotSize = *(volatile s32 *)0x040002a0;
 
     *(volatile u16 *)0x04000280 = 0;
-    *(volatile s32 *)0x04000290 = (raw_y1 - raw_y2) << 8;
-    *(volatile u64 *)0x04000298 = (u32)dy;
+    *(volatile s32 *)0x04000290 = rawdy << 8;
+    *(u64 *)0x04000298 = (u32)dy;
 
     if (xDotSize >= 0x8000 || xDotSize < -0x8000) {
-        func_0200813c();
+        func_0200813c(irq);
         return 1;
     }
     calibrate[2] = (s16)xDotSize;
 
-    x0 = ((((raw_x1 + raw_x2) << 8) - (s32)calibrate[2] * (dx1 + dx2)) << 9) >> 16;
+    x0 = ((((raw_x1 + raw_x2) << 8) - (s32)((volatile s16 *)calibrate)[2] * (dx1 + dx2)) << 9) >> 16;
     if (x0 >= 0x8000 || x0 < -0x8000) {
-        func_0200813c();
+        func_0200813c(irq);
         return 1;
     }
     calibrate[0] = (s16)x0;
 
     while (*(volatile u16 *)0x04000280 & 0x8000) {}
     yDotSize = *(volatile s32 *)0x040002a0;
-    func_0200813c();
+    func_0200813c(irq);
 
     if (yDotSize >= 0x8000 || yDotSize < -0x8000) {
         return 1;
@@ -456,4 +458,4 @@ s32 func_0200df4c(s16 *calibrate, u16 raw_x1, u16 raw_y1, u16 dx1, u16 dy1, u16 
 
     return 0;
 }
-
+#pragma optimization_level 4

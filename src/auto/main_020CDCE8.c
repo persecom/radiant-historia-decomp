@@ -52,7 +52,6 @@ void func_020cdce8(s32 value, s16 x, s16 y, s16 z, s8 spacing, u16 kind, s32 ali
  s8 width,height;
  u8 digits=0, i;
  s16 padding;
- s16 zero=0;
  switch(kind) {
  case 7: width=6; height=8; break;
  case 18: case 19: width=8; height=10; break;
@@ -73,7 +72,7 @@ void func_020cdce8(s32 value, s16 x, s16 y, s16 z, s8 spacing, u16 kind, s32 ali
  for(i=0;i<digits;i++) {
  sprite.field[3]=width; sprite.field[4]=height;
  sprite.field[8]=width; sprite.field[9]=height;
- sprite.field[2]=zero; sprite.field[6]=y;
+ sprite.field[2]=0; sprite.field[6]=y;
  { u8 digit=value%10; value/=10; sprite.field[1]=digit*width; }
  if(align) sprite.field[5]=x+i*(-(width+spacing));
  else { s32 left=(digits-1)*(width+spacing); s32 off=i*(-(width+spacing))+left; sprite.field[5]=off+x; }

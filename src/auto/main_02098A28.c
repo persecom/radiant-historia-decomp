@@ -32,12 +32,12 @@ extern u32 data_021488c4[3];
 #pragma push
 #pragma opt_common_subs off
 void func_02098a28(void) {
-s32 zero=0;
+s32 a=2,b=3,c=1,zero=0;
 s16 i,j,k,n; s32 index; u8 *p,*work,*node; s32 highest,id,diff;
 func_020a2c20();func_0210f6d4();
 data_02162854=(u32)func_020988c0;data_02162858[0]=(u32)func_020988c0;
 *(volatile u16*)0x4000304|=0x8000;
-func_020a31c8(3);func_020a2dd0();func_020a2e64();
+func_020a31c8(b);func_020a2dd0();func_020a2e64();
 func_020eb180(zero,zero);func_020eaaa0(1002);func_020f25b0(1002);func_020dcad8();
 *(u32*)((u8*)data_02160a6c+0x100)=zero;
 work=func_0210c594(0x7ac,data_02155c3c);data_02160120=work;
@@ -50,8 +50,8 @@ func_02113630(work+0x6a4,work+0x6bc);
 *(void**)(work+0x704)=func_0209c0d0();func_0209c198();
 for(i=0;i<3;i++) {
 if(func_020bd490(zero,(u8)i)) {
-if(func_020bd490(2,(u8)i)) id=func_020bd490(1,(u8)i)-1;
-else id=func_020bd490(3,(u8)i);
+if(func_020bd490(a,(u8)i)) id=func_020bd490(c,(u8)i)-1;
+else id=func_020bd490(b,(u8)i);
 p=func_02021f10(id);if(p)func_0209c510((u16)i,p[0x42]);
 }}
 *(void**)(work+0x6a0)=func_020a94b8(data_021488c4);
@@ -65,8 +65,8 @@ func_021167ac(work+0x6ec,4);func_021167ac(work+0x6f8,4);
 highest=0;work[0x694]=0;
 for(j=0;j<3;j++) {
 if(func_020bd490(zero,(u8)j)) {
-if(func_020bd490(2,(u8)j)) id=func_020bd490(1,(u8)j)-1;
-else id=func_020bd490(3,(u8)j);
+if(func_020bd490(a,(u8)j)) id=func_020bd490(c,(u8)j)-1;
+else id=func_020bd490(b,(u8)j);
 p=func_02021f10(id);
 if(!highest)highest=p[0x43];else if(highest<p[0x43])highest=p[0x43];
 }}

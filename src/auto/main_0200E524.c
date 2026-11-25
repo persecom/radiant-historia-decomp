@@ -77,15 +77,26 @@ extern s32 func_02008128(void);
 extern void func_0200813c(s32);
 extern void func_0200e974(u32);
 
+#pragma opt_propagation off
 void func_0200e524(u32 *arg0, s32 arg1) {
-volatile s32 result; s32 status;
-for (;;) {
-result = -0x10000;
-status = func_0200e4a0(arg0,arg1,0,(u32)func_0200e314,(u32)&result);
-while (status != 0) {func_020081a4(0x51d23); status = func_0200e4a0(arg0,arg1,0,(u32)func_0200e314,(u32)&result);}
-while (result == -0x10000) func_020081a4(0x51d23);
-if (result == 0) return;
-func_020081a4(0x51d23);
-}
-}
+    volatile s32 result;
+    s32 status;
 
+    while (1) {
+        result = -0x10000;
+        status = func_0200e4a0(arg0, arg1, 0, (u32)func_0200e314, (u32)&result);
+        while (status != 0) {
+            func_020081a4(0x51d23);
+            status = func_0200e4a0(arg0, arg1, 0, (u32)func_0200e314, (u32)&result);
+        }
+        while (result == -0x10000) {
+            func_020081a4(0x51d23);
+        }
+        if (result != 0) {
+            func_020081a4(0x51d23);
+            continue;
+        }
+        return;
+    }
+}
+#pragma opt_propagation on

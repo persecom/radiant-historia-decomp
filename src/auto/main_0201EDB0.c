@@ -1,15 +1,16 @@
 /* 21 functions from 0x0201EDB0 to 0x0201FD28 (main), found by ds-decomp. */
 #include "common.h"
 
+#pragma opt_propagation off
 u32 func_0201f114(u32 lo, u32 hi) {
-    u32 sign = hi & 0x80000000;
     u32 exp = hi >> 20;
-    u32 r3, m;
+    u32 sign = hi & 0x80000000;
     s32 e, shift;
+    u32 m, r3;
 
     exp &= ~0x800;
     if (exp == 0) goto L_zero;
-    if ((exp << 21) >= 0xffe00000U) goto L_nan;
+    if ((exp << 21) > 0xffdfffffU) goto L_nan;
     e = exp - 0x380;
     if (exp <= 0x380) goto L_denorm;
     if (e >= 0xff) goto L_inf;
@@ -26,7 +27,8 @@ u32 func_0201f114(u32 lo, u32 hi) {
 
 L_nan:
     if ((lo | (hi << 12)) != 0) goto L_nan2;
-    return sign | 0x7f800000;
+    lo = 0xff000000U;
+    return sign | (lo >> 1);
 L_nan2:
     return 0x7fffffff;
 L_zero:
@@ -54,9 +56,10 @@ L_440:
 L_zero2:
     return sign;
 L_inf:
-    return sign | 0x7f800000;
+    lo = 0xff000000U;
+    return sign | (lo >> 1);
 }
-
+#pragma opt_propagation on
 u64 _dflt(s32 arg0) {
     u32 sign = (u32)arg0 & 0x80000000;
     u32 x = (u32)arg0;
@@ -120,39 +123,29 @@ u64 func_0201f800(u32 arg0) {
     return ((u64)hi << 32) | lo;
 }
 
+#pragma push
+#pragma opt_propagation off
 u32 func_0201f884(s32 arg0) {
-    u32 sign = (u32)arg0 & 0x80000000;
-    u32 x = (u32)arg0;
-    if (arg0 < 0) {
-        x = -x;
-    }
-    if (x == 0) {
-        return 0;
-    }
-    {
-        u32 lz = __clz(x);
-        u32 low, result, round;
-        x <<= lz;
-        low = x & 0xff;
-        result = sign | ((x + x) >> 9) | ((0x9e - lz) << 23);
-        if (low == 0) {
-            return result;
-        }
-        if ((low & 0x80) == 0) {
-            return result;
-        }
-        round = low & 0x7f;
-        if (round == 0) {
-            round = result & 1;
-        }
-        if (round != 0) {
-            result++;
-        }
-        return result;
-    }
+ u32 sign=(u32)arg0 & 0x80000000;
+ u32 x=(u32)arg0;
+ if((s32)sign<0) x=-x;
+ if(!x) return x;
+ {
+ u32 lz=0, probe=x;
+ while ((s32)probe>=0) { ++lz; probe<<=1; }
+ u32 low, result;
+ x<<=lz;
+ low=x&255;
+ result=sign|((x+x)>>9)|((158-lz)<<23);
+ if(low==0) return result;
+ if(!(low&128)) return result;
+ u32 round=low&127;
+ if(round==0) round=result&1;
+ if(round) ++result;
+ return result;
+ }
 }
-
-#pragma optimization_level 2
+#pragma pop
 u32 func_0201f8cc(u32 x) {
  u32 exp, rem, round;
  if (!x) return x;
@@ -165,5 +158,23 @@ u32 func_0201f8cc(u32 x) {
  return x;
 }
 #pragma optimization_level 4
-long long func_0201f914(long long a, long long b) { return b ? a % b : a; }
+long long func_0201f914(long long a, long long b) {
+    unsigned long long dividend, divisor, bit, remainder;
+    int negative = a < 0;
+    if (b == 0) return a;
+    dividend = negative ? -(unsigned long long)a : (unsigned long long)a;
+    divisor = b < 0 ? -(unsigned long long)b : (unsigned long long)b;
+    remainder = dividend;
+    bit = 1;
+    while (divisor < remainder && !(divisor >> 63)) {
+        divisor <<= 1;
+        bit <<= 1;
+    }
+    while (bit) {
+        if (remainder >= divisor) remainder -= divisor;
+        divisor >>= 1;
+        bit >>= 1;
+    }
+    return negative ? -(long long)remainder : (long long)remainder;
+}
 

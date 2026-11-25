@@ -145,50 +145,60 @@ void func_02011334(void) {
 }
 
 #pragma optimization_level 2
-void func_020113e4(void){
-volatile u16 *reg;
-u32 irq,ime;
-s32 bit;
-u32 lock[2],state[2];
-s32 i;
-if(data_0215fa34[0])return;
-{ u16 power=*(volatile u16*)0x4000300; data_0215fa34[0]=1;
-if(!(power&1))return; }
-irq=func_02005988(0x40000);
-ime=*(volatile u16*)0x4000208;
-*(volatile u16*)0x4000208=1;
-func_020111d4((&data_0215fa30)[1],lock);
-reg=(volatile u16*)0x4000200;
-bit=(reg[2]&0x8000)>>15;
-func_02011158(state);
-reg[2]&=~0x8000;
-func_02006d8c((void*)((u32)data_0215fa60+0x80),0x40);
-func_02008690(1,(void*)0x8000080,(void*)((u32)data_0215fa60+0x80),0x40,1);
-reg[2]=(reg[2]&~0x8000)|(bit<<15);
-func_020111a0(state);
-func_02011230((&data_0215fa30)[1],lock);
-if(*(u8*)0x2ffff9b || !*(u8*)0x2ffff9a){
-{ u8 *src=data_0215fa60;
-Unk_020113e4_Info *dest=(Unk_020113e4_Info*)0x2fffc30;
-dest->x=*(u16*)(src+0xbe);
-i=0; goto copyTest;
-copyLoop: dest->bytes[i]=*(u8*)((u32)src+i+0xb5);i++;
-copyTest: if(i<3)goto copyLoop;
-dest->y=*(u16*)(src+0xb0);
-dest->z=*(u32*)(src+0xac);
+#pragma opt_common_subs off
+void func_020113e4(void) {
+    Unk_020113e4_Info *dest;
+    volatile u16 *reg;
+    u32 irq, ime;
+    s32 bit;
+    u32 lock[2], state[2];
+    s32 i;
+    if (data_0215fa34[0]) return;
+    {
+        u16 power = *(volatile u16 *)0x4000300;
+        data_0215fa34[0] = 1;
+        if (!(power & 1)) return;
+    }
+    irq = func_02005988(0x40000);
+    ime = *(volatile u16 *)0x4000208;
+    *(volatile u16 *)0x4000208 = 1;
+    func_020111d4((&data_0215fa30)[1], lock);
+    reg = (volatile u16 *)0x4000204;
+    bit = (*reg & 0x8000) >> 15;
+    func_02011158(state);
+    *reg &= ~0x8000;
+    func_02006d8c((void *)((u32)data_0215fa60 + 0x80), 0x40);
+    func_02008690(1, (void *)0x8000080, (void *)((u32)data_0215fa60 + 0x80), 0x40, 1);
+    *reg = (*reg & ~0x8000) | (bit << 15);
+    func_020111a0(state);
+    func_02011230((&data_0215fa30)[1], lock);
+    if (*(u8 *)0x2ffff9b || !*(u8 *)0x2ffff9a) {
+        {
+            u8 *src = data_0215fa60;
+            dest = (Unk_020113e4_Info *)0x2fffc30;
+            dest->x = *(u16 *)(src + 0xbe);
+            for (i = 0; i < 3; i++) {
+                dest->bytes[i] = *(u8 *)((u32)src + i + 0xb5);
+            }
+            dest->y = *(u16 *)(src + 0xb0);
+            dest->z = *(u32 *)(src + 0xac);
+        }
+        *(u8 *)0x2ffff9b = func_02011054() != 0;
+        *(u8 *)0x2ffff9a = 1;
+    }
+    func_02008e38((void *)0xffff0020, data_0215fa64, 0x9c);
+    func_02006d58();
+    func_02011254(((((u32)data_0215fa60 - 0x2000000) >> 5) << 6) | 1);
+    while (*(volatile u16 *)&data_0215fa30 != 1) {
+        WaitByLoop(1);
+    }
+    {
+        u16 old = *(volatile u16 *)0x4000208;
+        *(volatile u16 *)0x4000208 = ime;
+    }
+    func_02005988(irq);
 }
-*(u8*)0x2ffff9b=func_02011054()!=0;
-*(u8*)0x2ffff9a=1;
-}
-func_02008e38((void*)0xffff0020,data_0215fa64,0x9c);
-func_02006d58();
-func_02011254((((u32)data_0215fa60-0x2000000)>>5)<<6|1);
-goto waitTest;
-waitLoop: WaitByLoop(1);
-waitTest: if(*(volatile u16*)&data_0215fa30!=1)goto waitLoop;
-{u16 old=*(volatile u16*)0x4000208;*(volatile u16*)0x4000208=ime;}
-func_02005988(irq);
-}
+#pragma opt_common_subs on
 #pragma optimization_level reset
 void func_020115c8(u32 arg0, u32 arg1) {
     if ((arg1 & 0x3f) != 1) {

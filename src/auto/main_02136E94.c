@@ -208,8 +208,10 @@ void *memset(void *, int, unsigned long);
 #pragma iso_inline on
 #pragma inline_intrinsics on
 void func_021372c0(void) {
- if (data_02175d3c == 0) memset(data_02175d40, 0, sizeof(data_02175d40));
- data_02175d3c++;
+    if (data_02175d3c == 0) {
+        memset(data_02175d40, 0, sizeof(data_02175d40));
+    }
+    data_02175d3c++;
 }
 #pragma pop
 void func_02137318(void) {

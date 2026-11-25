@@ -144,7 +144,9 @@ extern s32 func_02092a28(void *,void *);
 extern s32 func_021094a4(void *,void *);
 extern u8 *func_0202fb50(s32,s32);
 extern void func_0202fad8(void *);
+#pragma optimization_level 3
 s32 func_020d7c8c(s32 a,s32 b,s32 c,u32 match,u16 index,s16 *out,s32 *text) {
+ char name[64];
  s32 zero;
  u8 *fp;
  s32 active;
@@ -152,7 +154,6 @@ s32 func_020d7c8c(s32 a,s32 b,s32 c,u32 match,u16 index,s16 *out,s32 *text) {
  s32 result;
  s32 value;
  s32 id;
- char name[64];
  func_02005e80(name,data_02151454,a,b);
  fp=func_021092d8(name);
  id=-1;
@@ -208,4 +209,4 @@ s32 func_020d7c8c(s32 a,s32 b,s32 c,u32 match,u16 index,s16 *out,s32 *text) {
  }
  return value;
 }
-
+#pragma optimization_level 4

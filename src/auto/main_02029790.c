@@ -3,7 +3,7 @@
 
 extern s32 func_0202c658(s32);
 extern s32 func_0202c820(u8);
-s32 func_02029790(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+s32 func_02029790(u32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     u8 pos;
     u16 count;
     u16 i;
@@ -18,7 +18,10 @@ s32 func_02029790(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
         if (arg2 == pos % 3 + 1) {
             count++;
         }
-        return (count == 2) ? 1 : 0;
+        if (count == 2) {
+            return 1;
+        }
+        return 0;
 
     case 2:
         count = 0;
@@ -29,7 +32,10 @@ s32 func_02029790(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
         if (arg2 == pos % 3 + 1) {
             count++;
         }
-        return (count == 2) ? 0 : 1;
+        if (count == 2) {
+            return 0;
+        }
+        return 1;
 
     case 3:
         pos = func_0202c658(arg3);
@@ -222,7 +228,7 @@ s32 func_02029790(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
         break;
 
     case 40:
-        break;
+        return 1;
     }
     return 0;
 }

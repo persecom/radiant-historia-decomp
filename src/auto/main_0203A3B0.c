@@ -77,11 +77,10 @@ void func_0203a3b0(u8 *actor) {
                 func_0210d27c(0x61);
             }
             if (*(s16 *)(state + 2) > 30) {
-                u8 *s = state;
                 func_020ec950(1);
                 func_020ec548();
                 func_020dd810(actor, 17, 0);
-                func_020331d0(s, 2, 1);
+                func_020331d0(state, 2, 1);
             }
         }
         if ((*(u16 *)(state + 8) & 2) && (func_0205bcb0(actor, 6) & 2)) {

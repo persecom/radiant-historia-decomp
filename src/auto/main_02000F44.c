@@ -168,10 +168,12 @@ s32 func_02001194(const Mtx43 *a, Mtx43 *b)
     return 0;
 }
 
+#pragma opt_propagation off
 void func_02001508(const Mtx43 *a, const Mtx43 *b, Mtx43 *out) {
     Mtx43 tmp;
     Mtx43 *dst = out;
     s32 x, y, z, t, t2;
+    s32 bx, by, bz;
 
     if (out == b) {
         dst = &tmp;
@@ -182,32 +184,38 @@ void func_02001508(const Mtx43 *a, const Mtx43 *b, Mtx43 *out) {
     z = a->v[2];
     dst->v[0] = ((((s64)x * b->v[0]) + ((s64)y * b->v[3])) + ((s64)z * b->v[6])) >> 12;
     dst->v[1] = ((((s64)x * b->v[1]) + ((s64)y * b->v[4])) + ((s64)z * b->v[7])) >> 12;
-    t = ((((s64)x * b->v[2]) + ((s64)y * b->v[5])) + ((s64)z * b->v[8])) >> 12;
+    bx=b->v[2]; by=b->v[5]; bz=b->v[8];
+    t = ((((s64)x * bx) + ((s64)y * by)) + ((s64)z * bz)) >> 12;
 
     x = a->v[3];
     y = a->v[4];
     z = a->v[5];
-    t2 = ((((s64)x * b->v[2]) + ((s64)y * b->v[5])) + ((s64)z * b->v[8])) >> 12;
+    t2 = ((((s64)x * bx) + ((s64)y * by)) + ((s64)z * bz)) >> 12;
     dst->v[2] = t;
     dst->v[5] = t2;
     dst->v[4] = ((((s64)x * b->v[1]) + ((s64)y * b->v[4])) + ((s64)z * b->v[7])) >> 12;
-    t = ((((s64)x * b->v[0]) + ((s64)y * b->v[3])) + ((s64)z * b->v[6])) >> 12;
+    bx=b->v[0]; by=b->v[3]; bz=b->v[6];
+    t = ((((s64)x * bx) + ((s64)y * by)) + ((s64)z * bz)) >> 12;
 
     x = a->v[6];
     y = a->v[7];
     z = a->v[8];
-    t2 = ((((s64)x * b->v[0]) + ((s64)y * b->v[3])) + ((s64)z * b->v[6])) >> 12;
+    t2 = ((((s64)x * bx) + ((s64)y * by)) + ((s64)z * bz)) >> 12;
     dst->v[3] = t;
     dst->v[6] = t2;
     dst->v[7] = ((((s64)x * b->v[1]) + ((s64)y * b->v[4])) + ((s64)z * b->v[7])) >> 12;
     t = ((((s64)x * b->v[2]) + ((s64)y * b->v[5])) + ((s64)z * b->v[8])) >> 12;
 
-    x = a->v[9];
     y = a->v[10];
+    x = a->v[9];
     z = a->v[11];
-    t2 = b->v[11] + (((((s64)x * b->v[2]) + ((s64)y * b->v[5])) + ((s64)z * b->v[8])) >> 12);
+    { s64 value;
+    value = ((((s64)x * b->v[2]) + ((s64)y * b->v[5])) + ((s64)z * b->v[8])) >> 12;
     dst->v[8] = t;
-    dst->v[11] = t2;
+    value += b->v[11];
+    dst->v[11] = value; }
+
+
     dst->v[10] = b->v[10] + (((((s64)x * b->v[1]) + ((s64)y * b->v[4])) + ((s64)z * b->v[7])) >> 12);
     dst->v[9] = b->v[9] + (((((s64)x * b->v[0]) + ((s64)y * b->v[3])) + ((s64)z * b->v[6])) >> 12);
 
@@ -215,7 +223,7 @@ void func_02001508(const Mtx43 *a, const Mtx43 *b, Mtx43 *out) {
         *out = tmp;
     }
 }
-
+#pragma opt_propagation on
 extern void func_02002274(const s32 *, s32 *);
 extern void func_02002194(const s32 *, const s32 *, s32 *);
 extern s32 func_02002158(const s32 *, const s32 *);

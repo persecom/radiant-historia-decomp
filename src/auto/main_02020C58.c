@@ -141,7 +141,7 @@ void func_020213c4(void *ptr, s32 len, u32 key) {
 extern s32 func_0210723c(void);
 extern void func_0210d9e4(u8 *);
 #pragma push
-#pragma opt_propagation off
+#pragma scheduling off
 s32 func_02021428(u16 *arg) {
 data_02160054[4]=(u32)arg;
 data_02160054[5]=1000;

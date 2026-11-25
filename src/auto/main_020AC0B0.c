@@ -16,11 +16,12 @@ extern void func_020aaf88(s32 *, s32, s32, s32, s32);
 extern s32 func_02022068(u16);
 
 
-#pragma optimization_level 3
+#pragma scheduling on
 s32 func_020ac0b0(u8 *self) {
 s32 *state=func_020b442c(self);
-s32 x=148,zero=0,height=18,width=108;
-if(func_020abf5c(x,111,width,height,zero)) {
+s32 width=108,height=18,zero=0,x=148;
+s32 y=111;
+if(func_020abf5c(x,height*6+3,width,height,zero)) {
 if(state[0]!=0) {
 func_0210d27c(2);*(s32 *)(self+0x3438)=0;state[0]=0;
 } else if(state[2]==1) {
@@ -50,7 +51,7 @@ if(func_020abf5c(234,3,18,18,1)) {
 if(!data_02162908[2]) { state[1]=0;state[2]=1; } else state[2]=0;
 return 0;
 }
-
+#pragma scheduling off
 extern void func_020b40a4(s32, s32 *, s32 *);
 extern void func_020ade44(s32);
 extern void func_020ac094(s32 *, s32 *);

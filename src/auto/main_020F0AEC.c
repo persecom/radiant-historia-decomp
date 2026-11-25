@@ -249,7 +249,7 @@ node=*(u8**)(data_02160af0+0x70);
 if(node){p=data_02170204;m=(s32*)data_02170248;while(node){
 s32 sx,sy; s32 zero;
 obj=*(u8**)node;
-ProjectMatrices_F0FD0((Vec_F0FD0*)(node+4),&sx,&sy,m,p);
+ProjectMatrices_F0FD0((Vec_F0FD0*)(node+4),&sx,&sy,p,m);
 if(!(*(u32*)(node+20)&16)){u32 id=*(u16*)(obj+0x1b8);if(id>10000&&id<10999){if(sx<-48||sx>304||sy<-48||sy>256)goto next;}}
 zero=0;
 if(*(u32*)(node+20)&1){u32 param;if(*(u32*)(obj+0xf4))func_0210bcc8(obj);func_021205ec(0x17,data_02170248,12);func_021205ec(0x19,obj+0xa0,12);param=0x1f0080;func_021205ec(0x29,&param,1);func_0211e078(obj);}

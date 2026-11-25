@@ -28,50 +28,49 @@ void func_020eb3dc(void);
 u32 func_02124cf8(u32, u32, u32);
 void func_0210db70(void *);
 void func_0210dbd0(void *);
-#pragma optimization_level 3
+#pragma opt_propagation on
 void func_020eb180(u32 arg0, s32 arg1) {
  u32 mode = arg0;
  u8 *p;
  s32 enabled = arg1;
- u8 **state = &data_02160aa4;
- if ((*state) != 0) return;
- (*state) = func_0210c594(0x44, data_02155c3c);
- *(u32 *)((*state) + 0) = 0;
- *(u32 *)((*state) + 4) = 0;
- *(u32 *)((*state) + 8) = 0;
- *(u32 *)((*state) + 12) = 0;
- *(u32 *)((*state) + 16) = 0;
- *(u32 *)((*state) + 20) = 0;
- *(u32 *)((*state) + 0x18) = 1;
+ u8 *(*state)[1] = (u8 *(*)[1])&data_02160aa4;
+ if (((*state)[0]) != 0) return;
+ ((*state)[0]) = func_0210c594(0x44, data_02155c3c);
+ *(u32 *)(((*state)[0]) + 0) = 0;
+ *(u32 *)(((*state)[0]) + 4) = 0;
+ *(u32 *)(((*state)[0]) + 8) = 0;
+ *(u32 *)(((*state)[0]) + 12) = 0;
+ *(u32 *)(((*state)[0]) + 16) = 0;
+ *(u32 *)(((*state)[0]) + 20) = 0;
+ *(u32 *)(((*state)[0]) + 0x18) = 1;
  if (mode == 0) {
- *(u32 *)((*state) + 0) = func_02124cf8(0x4000,0,0);
- *(u32 *)((*state) + 4) = (u16)*(u32 *)((*state) + 0) * 8;
+ *(u32 *)(((*state)[0]) + 0) = func_02124cf8(0x4000,0,0);
+ *(u32 *)(((*state)[0]) + 4) = (u16)*(u32 *)(((*state)[0]) + 0) * 8;
  }
  if (mode <= 1) {
- *(u32 *)((*state) + 8) = func_02124cf8(0x8000,0,0);
- p = (*state);
+ *(u32 *)(((*state)[0]) + 8) = func_02124cf8(0x8000,0,0);
+ p = ((*state)[0]);
  *(u32 *)(p + 12) = (u16)*(u32 *)(p + 8) * 8;
  }
  if (mode == 2) {
- *(u32 *)((*state) + 8) = func_02124cf8(0x20000,0,0);
- *(u32 *)((*state) + 12) = (u16)*(u32 *)((*state) + 8) * 8;
- *(u32 *)((*state) + 16) = func_02124cf8(0x4000,0,0);
- *(u32 *)((*state) + 20) = (u16)*(u32 *)((*state) + 16) * 8;
+ *(u32 *)(((*state)[0]) + 8) = func_02124cf8(0x20000,0,0);
+ *(u32 *)(((*state)[0]) + 12) = (u16)*(u32 *)(((*state)[0]) + 8) * 8;
+ *(u32 *)(((*state)[0]) + 16) = func_02124cf8(0x4000,0,0);
+ *(u32 *)(((*state)[0]) + 20) = (u16)*(u32 *)(((*state)[0]) + 16) * 8;
  }
  if (mode == 3) {
- *(u32 *)((*state) + 8) = func_02124cf8(0x8000,0,0);
- *(u32 *)((*state) + 12) = (u16)*(u32 *)((*state) + 8) * 8;
+ *(u32 *)(((*state)[0]) + 8) = func_02124cf8(0x8000,0,0);
+ *(u32 *)(((*state)[0]) + 12) = (u16)*(u32 *)(((*state)[0]) + 8) * 8;
  }
- *(void (**)(void))((*state) + 0x1c) = func_020eb3dc;
- *(u32 *)((*state) + 0x20) = 0x3eb;
- func_0210db70((*state) + 0x1c);
+ *(void (**)(void))(((*state)[0]) + 0x1c) = func_020eb3dc;
+ *(u32 *)(((*state)[0]) + 0x20) = 0x3eb;
+ func_0210db70(((*state)[0]) + 0x1c);
  if (enabled == 1) {
- *(void (**)(void))((*state) + 0x30) = func_020eb3dc;
- *(u32 *)((*state) + 0x34) = 0x3eb;
- func_0210dbd0((*state) + 0x30);
+ *(void (**)(void))(((*state)[0]) + 0x30) = func_020eb3dc;
+ *(u32 *)(((*state)[0]) + 0x34) = 0x3eb;
+ func_0210dbd0(((*state)[0]) + 0x30);
  }
 }
-#pragma optimization_level 4
 void func_020eb344(s32 arg0, s32 arg1) {
     if (arg0 == 0) {
         data_02156154(*(void **)data_02160aa4);

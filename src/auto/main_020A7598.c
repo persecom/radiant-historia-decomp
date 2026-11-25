@@ -172,17 +172,20 @@ void func_020a773c(void) {
     }
 }
 
+#pragma push
+#pragma opt_propagation off
 void func_020a779c(void) {
-    u8 *p = data_021600e4;
-    s32 a = *(s32 *)(p + 0x7c);
-    s32 b = *(s32 *)(p + 0x80);
-    s32 c = *(s32 *)(p + 0xc8);
-    s32 d = *(s32 *)(p + 0xd0);
-    s32 x = (-235 * a) / 0x1000 + 0x80 + ((c >> 12) * a) / 0x1000;
-    s32 y = (-235 * b) / 0x1000 + 0x60 + ((d >> 12) * b) / 0x1000;
-    func_020c7760(*(void **)(p + 0x154), (s16)(x - 8), (s16)(y - 0x18));
+ u8 *p = data_021600e4;
+ s32 c,d,a,b;
+ a=*(s32 *)(p+0x7c); b=*(s32 *)(p+0x80);
+ c=*(s32 *)(p+0xc8); d=*(s32 *)(p+0xd0);
+ s32 ax=a*-235, by=b*-235;
+ s32 cx=(c>>12)*a, dy=(d>>12)*b;
+ ax/=4096; by/=4096; cx/=4096; dy/=4096;
+ s32 x=ax+128+cx, y=by+96+dy;
+ func_020c7760(*(void **)(p+0x154),(s16)(x-8),(s16)(y-24));
 }
-
+#pragma pop
 void func_020a7834(void) {
     u8 *p = data_021600e4;
     if (*(u8 *)(p + 0x159) == 0) {

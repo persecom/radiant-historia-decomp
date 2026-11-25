@@ -161,31 +161,38 @@ void func_020aa94c(void);
 void func_020a638c(void *,s32,void *,s32);
 void func_020a6020(void);
 void func_02066868(void) {
- u8 *base=data_021600e0[1];
- s32 i;
- Params_02066868 p=data_0213fc60;
- *(volatile u32 *)0x40004a4= 0x1f0080;
- *(volatile u32 *)0x4000480= 0x7fff;
- p.v[1]=0; p.v[2]=0; p.v[3]=256; p.v[4]=256;
- { u8 *current=*(u8 *volatile *)&data_021600e0[1];
- p.v[8]=(*(s32 *)(current+0x6c)*256)/4096;
- p.v[9]=(*(s32 *)(current+0x6c)*256)/4096; }
- for(i=0;i<4;i++) {
-  func_020a3bbc(i);
-  s32 x=i%2; s32 y=i/2;
-  s32 scale=*(s32 *)(data_021600e0[1]+0x6c);
-  x=(x<<8)-(x<<3); y=(y<<8)-(y<<3);
-  x=(x * scale)/4096;
-  y=(y * scale)/4096;
-  p.v[5]=*(s32 *)(data_021600e0[1]+0x44)+(x-32);
-  p.v[6]=*(s32 *)(data_021600e0[1]+0x48)+(y+8);
-  func_021098ac(&p);
- }
- func_020a7194(base+0x13d4);
- func_020a72b8(base+0x13e0);
- func_020be0ec(); func_020aa94c();
- func_020a638c(base+0x118,*(s32 *)(base+0x6c),base+0x44,0);
- func_020a6020();
+    u8 *base = data_021600e0[1];
+    s32 i;
+    Params_02066868 p = data_0213fc60;
+
+    *(volatile u32 *)0x40004a4 = 0x1f0080;
+    *(volatile u32 *)0x4000480 = 0x7fff;
+    p.v[1] = 0;
+    p.v[2] = 0;
+    p.v[3] = 256;
+    p.v[4] = 256;
+    {
+        u8 *current = *(u8 *volatile *)&data_021600e0[1];
+        p.v[8] = (*(s32 *)(current + 0x6c) * 256) / 4096;
+        p.v[9] = (*(s32 *)(current + 0x6c) * 256) / 4096;
+    }
+    for (i = 0; i < 4; i++) {
+        s32 x, y;
+        func_020a3bbc(i);
+        x = ((i % 2) << 8) - ((i % 2) << 3);
+        y = i / 2;
+        x = (x * *(s32 *)(data_021600e0[1] + 0x6c)) / 4096;
+        y = (((y << 8) - (y << 3)) * *(s32 *)(data_021600e0[1] + 0x6c)) / 4096;
+        p.v[5] = *(s32 *)(data_021600e0[1] + 0x44) + (x - 32);
+        p.v[6] = *(s32 *)(data_021600e0[1] + 0x48) + (y + 8);
+        func_021098ac(&p);
+    }
+    func_020a7194(base + 0x13d4);
+    func_020a72b8(base + 0x13e0);
+    func_020be0ec();
+    func_020aa94c();
+    func_020a638c(base + 0x118, *(s32 *)(base + 0x6c), base + 0x44, 0);
+    func_020a6020();
 }
 
 void func_020ea5d4(void *, s32);

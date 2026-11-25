@@ -86,7 +86,7 @@ sy=192-sy;
 *outX=sx;*outY=sy;
 }
 void func_02067744(void) {
-s16 table[10];
+u16 table[10];
 u8 *owner=*(u8 **)(data_021600e8+0x48);
 s32 signX,signY;
 u32 count=5;
@@ -104,7 +104,7 @@ if(owner[0x40]&4) signY=-1;
 if(*(void **)(owner+0x44)) {
 u8 *part=*(u8 **)(owner+0x54);
 while(part) {
-s32 draw=1;
+u32 draw=1;
 *(volatile u32 *)0x040004a4=(((owner[0x18]+24)%24+32)<<24)|0xc0|(part[0x26]<<16);
 if(*(s32 *)(part+0x30) && part[0x26]) {
 s32 texture=*(u16 *)(part+0x28);
@@ -130,7 +130,7 @@ func_02002028(pw);
 px=data_02170204[12]+(s32)(((long long)ty*data_02170204[4]+(long long)tx*data_02170204[0]+(long long)tz*data_02170204[8])>>12);
 py=data_02170204[13]+(s32)(((long long)ty*data_02170204[5]+(long long)tx*data_02170204[1]+(long long)tz*data_02170204[9])>>12);
 inv=func_02001fd0();
-screenY=192-(((((s32)((inv*py+0x80000000LL)>>32)+4096)>>1)*192+2048)>>12);
+{s32 sy=((s32)((inv*py+0x80000000LL)>>32)+4096)>>1;screenY=192-(((sy<<6)+(sy<<7)+2048)>>12);}
 screenX=((((s32)((inv*px+0x80000000LL)>>32)+4096)>>1)*256+2048)>>12;
 }
 table[5]=screenX+((-*(s32 *)part*signX)>>12)-(*(s16 *)(part+0x10)*signX)/2;
@@ -148,7 +148,7 @@ func_02002028(pw);
 px=data_02170204[12]+(s32)(((long long)ty*data_02170204[4]+(long long)tx*data_02170204[0]+(long long)tz*data_02170204[8])>>12);
 py=data_02170204[13]+(s32)(((long long)ty*data_02170204[5]+(long long)tx*data_02170204[1]+(long long)tz*data_02170204[9])>>12);
 inv=func_02001fd0();
-screenY=192-(((((s32)((inv*py+0x80000000LL)>>32)+4096)>>1)*192+2048)>>12);
+{s32 sy=((s32)((inv*py+0x80000000LL)>>32)+4096)>>1;screenY=192-(((sy<<6)+(sy<<7)+2048)>>12);}
 screenX=((((s32)((inv*px+0x80000000LL)>>32)+4096)>>1)*256+2048)>>12;
 }
 table[5]=screenX-(*(s16 *)(part+0x10)*signX)/2;
@@ -160,7 +160,7 @@ if(actor) {
 if(*(u32 *)(actor+0x80)&0x40) {
 u8 **disp=*(u8 ***)(actor+0x108);
 if(disp) {
-if(*disp) table[6]+=*(s16 *)(*disp+0x4a);
+if(*disp) table[6]=(s16)table[6]+*(s16 *)(*disp+0x4a);
 else draw=0;
 } else draw=0;
 }
@@ -169,19 +169,19 @@ else draw=0;
 switch(owner[0x20]) {
 case 0: {
 u8 *actor=*(u8 **)(owner+0x4c);
-if(actor) table[7]=*(s16 *)(owner+0x1e)+*(s32 *)(actor+0x74)-(*(s32 *)(part+8)>>12);
+if(actor) table[7]=*(s16 *)(owner+0x1e)+(*(s32 *)(actor+0x74)-(*(s32 *)(part+8)>>12));
 else draw=0;
 break;
 }
 case 1: case 2: {
 s32 depth=func_0210c2f4((u8 *)data_02155984+0x14,*(void **)(owner+0x4c))>>12;
-table[7]=*(s16 *)(owner+0x1e)+500-depth/10-(*(s32 *)(part+8)>>12);
+table[7]=*(s16 *)(owner+0x1e)+(500-depth/10-(*(s32 *)(part+8)>>12));
 break;
 }
 case 3: table[7]=*(s16 *)(owner+0x1e)+500;break;
 case 4: {
 u8 *actor=*(u8 **)(owner+0x4c);
-if(actor) table[7]=*(s16 *)(owner+0x1e)+*(s32 *)(actor+0x1c)-(*(s32 *)(part+8)>>12);
+if(actor) table[7]=*(s16 *)(owner+0x1e)+(*(s32 *)(actor+0x1c)-(*(s32 *)(part+8)>>12));
 else draw=0;
 break;
 }

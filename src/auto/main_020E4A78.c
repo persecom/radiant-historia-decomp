@@ -158,7 +158,7 @@ s32 func_020e4d40(void) {
     u8 *action=*(u8 **)(state+8);
     u8 *target;
     s32 index;
-    s32 count;
+    s16 count;
     if(!(*(u16 *)(g+0x1ba)&2)) return zero;
     if(*cursor&2) {
         s32 found=zero;
@@ -337,8 +337,8 @@ case 128:break;
                     u8 *node=*(u8 **)((u8 *)data_02160a6c+0xac);
                     while(node) {
                         u8 *stats=*(u8 **)(node+0x118);
-                        if(*(s32 *)(stats+4)!=*(s32 *)(stats+8))count=(s16)(count+1);
-                        else if(!*(u32 *)(stats+0x70))count=(s16)(count+1);
+                        if(*(s32 *)(stats+4)!=*(s32 *)(stats+8))count++;
+                        else if(!*(u32 *)(stats+0x70))count++;
                         node=*(u8 **)(node+0x16c);
                     }
                     if(!count)zero=0;
@@ -349,18 +349,18 @@ case 128:break;
                     u8 *node=*(u8 **)((u8 *)data_02160a6c+0xac);
                     while(node) {
                         u8 *stats=*(u8 **)(node+0x118);
-                        if(*(s16 *)(stats+12)!=*(s16 *)(stats+14))count=(s16)(count+1);
-                        else if(!*(u32 *)(stats+0x70))count=(s16)(count+1);
+                        if(*(s16 *)(stats+12)!=*(s16 *)(stats+14))count++;
+                        else if(!*(u32 *)(stats+0x70))count++;
                         node=*(u8 **)(node+0x16c);
                     }
                     if(!count)zero=0;
                 } break;
             case 0x6d: {count=0;u8 *node=*(u8 **)((u8 *)data_02160a6c+0xac);
-                while(node) {if(!*(u32 *)(*(u8 **)(node+0x118)+0x70))count=(s16)(count+1);node=*(u8 **)(node+0x16c);}
+                while(node) {if(!*(u32 *)(*(u8 **)(node+0x118)+0x70))count++;node=*(u8 **)(node+0x16c);}
                 if(!count)zero=0;break;
             }
             case 0x6b:case 0x1f8: if((*(u16 *)effect==0x1f8 && action[6]==12)||*(u16 *)effect==0x6b) {count=0;u8 *node=*(u8 **)((u8 *)data_02160a6c+0xac);
-                while(node) {if(*(u32 *)(*(u8 **)(node+0x118)+0x70) && (*(u32 *)(*(u8 **)(node+0x118)+0x78)&0x45553f))count=(s16)(count+1);node=*(u8 **)(node+0x16c);}
+                while(node) {if(*(u32 *)(*(u8 **)(node+0x118)+0x70) && (*(u32 *)(*(u8 **)(node+0x118)+0x78)&0x45553f))count++;node=*(u8 **)(node+0x16c);}
                 if(!count)zero=0;break;
             }
             }

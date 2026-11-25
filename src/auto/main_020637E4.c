@@ -22,25 +22,17 @@ void func_020637e4(void) {
         s8 f3;
         u8 f4;
     } Info020637e4;
-    typedef struct {
-        u8 *p0;
-        u32 unk4;
-        u8 *cells[9];
-        u8 unk2c[0xc];
-        s8 flags[9];
-        u8 pad41[3];
-        u8 *list;
-    } Mgr020637e4;
-    u8 *p0 = ((Mgr020637e4 *)data_02160244)->p0;
+    u8 *p0 = *data_02160244;
     s32 saved[9];
     s32 i;
     s32 count;
+    u8 *cell;
     u8 *list;
 
     *(s32 *)(p0 + 0xc) = 0x1a;
     ((s16 (*)(s32))func_02063e18)(0);
     for (i = 0; i < 9; i++) {
-        ((Mgr020637e4 *)data_02160244)->flags[i] = -1;
+        ((s8 *)data_02160244)[0x38 + i] = -1;
     }
 
     for (i = 0; i < 9; i++) {
@@ -49,7 +41,7 @@ void func_020637e4(void) {
 
     count = 0;
     for (i = 0; i < 9; i++) {
-        u8 *cell = ((Mgr020637e4 *)data_02160244)->cells[i];
+        cell = ((u8 **)((u8 *)data_02160244 + 8))[i];
         u8 *node = *(u8 **)(cell + 0x10);
         while (node != NULL && node[4] == 0) {
             u8 *unit = *(u8 **)(node + 0);
@@ -62,7 +54,7 @@ void func_020637e4(void) {
     }
 
     for (i = 0; i < 9; i++) {
-        u8 *cell = ((Mgr020637e4 *)data_02160244)->cells[i];
+        cell = ((u8 **)((u8 *)data_02160244 + 8))[i];
         u8 *node = *(u8 **)(cell + 0x10);
         while (node != NULL && node[4] == 0) {
             u8 *unit = *(u8 **)(node + 0);
@@ -71,7 +63,7 @@ void func_020637e4(void) {
                 info->f4 = 0;
                 if (info->f0 == info->f2) {
                     info->f4 |= 1;
-                    ((Mgr020637e4 *)data_02160244)->flags[i] = 1;
+                    ((u8 *)data_02160244)[0x38 + i] = 1;
                     switch (info->f1) {
                     case 0:
                     case 4:
@@ -80,7 +72,7 @@ void func_020637e4(void) {
                         if ((u8)cell[0] == info->f0) {
                             s8 idx = (s8)(i + 1);
                             if (idx >= 0 && idx <= 8) {
-                                ((Mgr020637e4 *)data_02160244)->flags[idx] = 1;
+                                ((u8 *)data_02160244)[0x38 + idx] = 1;
                             }
                         }
                         break;
@@ -88,7 +80,7 @@ void func_020637e4(void) {
                         if ((u8)cell[0] == info->f0) {
                             s8 idx = (s8)(i - 3);
                             if (idx >= 0 && idx <= 8) {
-                                ((Mgr020637e4 *)data_02160244)->flags[idx] = 1;
+                                ((u8 *)data_02160244)[0x38 + idx] = 1;
                             }
                         }
                         break;
@@ -98,13 +90,13 @@ void func_020637e4(void) {
                             s8 idx2 = (s8)(i + 1);
                             s8 idx3 = (s8)(i - 2);
                             if (idx1 >= 0 && idx1 <= 8) {
-                                ((Mgr020637e4 *)data_02160244)->flags[idx1] = 1;
+                                ((u8 *)data_02160244)[0x38 + idx1] = 1;
                             }
                             if (idx2 >= 0 && idx2 <= 8) {
-                                ((Mgr020637e4 *)data_02160244)->flags[idx2] = 1;
+                                ((u8 *)data_02160244)[0x38 + idx2] = 1;
                             }
                             if (idx3 >= 0 && idx3 <= 8) {
-                                ((Mgr020637e4 *)data_02160244)->flags[idx3] = 1;
+                                ((u8 *)data_02160244)[0x38 + idx3] = 1;
                             }
                         }
                         break;
@@ -112,31 +104,31 @@ void func_020637e4(void) {
                 } else if (info->f0 != info->f2 && info->f1 != 0) {
                     if (info->f1 == 1) {
                         if ((i + 1) / 3 == i / 3 && i + 1 <= 8) {
-                            u8 *c1 = ((Mgr020637e4 *)data_02160244)->cells[i + 1];
+                            u8 *c1 = ((u8 **)((u8 *)data_02160244 + 8))[i + 1];
                             if (*(u16 *)(cell + 0x18) == 1 && *(u16 *)(c1 + 0x18) == 1) {
                                 info->f4 |= 1;
                                 info->f2 = info->f0;
                                 info->f3 = -1;
-                                ((Mgr020637e4 *)data_02160244)->flags[i] = 1;
-                                ((Mgr020637e4 *)data_02160244)->flags[i + 1] = 1;
+                                ((u8 *)data_02160244)[0x38 + i] = 1;
+                                ((u8 *)data_02160244)[0x39 + i] = 1;
                             }
                         }
                     } else if (info->f1 == 2) {
                         if ((i - 3) % 3 == i % 3 && i - 3 >= 0) {
-                            u8 *c1 = ((Mgr020637e4 *)data_02160244)->cells[i - 3];
+                            u8 *c1 = ((u8 **)((u8 *)data_02160244 + 8))[i - 3];
                             if (*(u16 *)(cell + 0x18) == 1 && *(u16 *)(c1 + 0x18) == 1) {
                                 info->f4 |= 1;
                                 info->f2 = info->f0;
                                 info->f3 = -1;
-                                ((Mgr020637e4 *)data_02160244)->flags[i] = 1;
-                                ((Mgr020637e4 *)data_02160244)->flags[i - 3] = 1;
+                                ((u8 *)data_02160244)[0x38 + i] = 1;
+                                ((u8 *)data_02160244)[0x35 + i] = 1;
                             }
                         }
                     } else if (info->f1 == 3) {
                         if ((i - 3) % 3 == i % 3 && i - 3 >= 0 && (i + 1) / 3 == i / 3 && i + 1 <= 8) {
-                            u8 *c1 = ((Mgr020637e4 *)data_02160244)->cells[i - 3];
-                            u8 *c2 = ((Mgr020637e4 *)data_02160244)->cells[i + 1];
-                            u8 *c3 = ((Mgr020637e4 *)data_02160244)->cells[i - 2];
+                            u8 *c1 = ((u8 **)((u8 *)data_02160244 + 8))[i - 3];
+                            u8 *c2 = ((u8 **)((u8 *)data_02160244 + 8))[i + 1];
+                            u8 *c3 = ((u8 **)((u8 *)data_02160244 + 8))[i - 2];
                             if (*(u16 *)(cell + 0x18) == 1 &&
                                 *(u16 *)(c1 + 0x18) == 1 &&
                                 *(u16 *)(c2 + 0x18) == 1 &&
@@ -144,10 +136,10 @@ void func_020637e4(void) {
                                 info->f4 |= 1;
                                 info->f2 = info->f0;
                                 info->f3 = -1;
-                                ((Mgr020637e4 *)data_02160244)->flags[i] = 1;
-                                ((Mgr020637e4 *)data_02160244)->flags[i - 3] = 1;
-                                ((Mgr020637e4 *)data_02160244)->flags[i + 1] = 1;
-                                ((Mgr020637e4 *)data_02160244)->flags[i - 2] = 1;
+                                ((u8 *)data_02160244)[0x38 + i] = 1;
+                                ((u8 *)data_02160244)[0x35 + i] = 1;
+                                ((u8 *)data_02160244)[0x39 + i] = 1;
+                                ((u8 *)data_02160244)[0x36 + i] = 1;
                             }
                         }
                     }
@@ -158,7 +150,7 @@ void func_020637e4(void) {
     }
 
     for (i = 0; i < 9; i++) {
-        u8 *cell = ((Mgr020637e4 *)data_02160244)->cells[i];
+        cell = ((u8 **)((u8 *)data_02160244 + 8))[i];
         s32 flag = 1;
         if (*(u16 *)(cell + 0x18) == 1) {
             u8 *node = *(u8 **)(cell + 0x10);
@@ -170,23 +162,23 @@ void func_020637e4(void) {
                     flag = 0;
                     break;
                 case 1:
-                    if (((Mgr020637e4 *)data_02160244)->cells[i + 1][2] == 1) {
+                    if (((u8 **)((u8 *)data_02160244 + 8))[i + 1][2] == 1) {
                         flag = 0;
                     }
                     break;
                 case 2:
-                    if (((Mgr020637e4 *)data_02160244)->cells[i - 3][2] == 1) {
+                    if (((u8 **)((u8 *)data_02160244 + 8))[i - 3][2] == 1) {
                         flag = 0;
                     }
                     break;
                 case 3:
-                    if (((Mgr020637e4 *)data_02160244)->cells[i - 3][2] == 1) {
+                    if (((u8 **)((u8 *)data_02160244 + 8))[i - 3][2] == 1) {
                         flag = 0;
                     }
-                    if (((Mgr020637e4 *)data_02160244)->cells[i + 1][2] == 1) {
+                    if (((u8 **)((u8 *)data_02160244 + 8))[i + 1][2] == 1) {
                         flag = 0;
                     }
-                    if (((Mgr020637e4 *)data_02160244)->cells[i - 2][2] == 1) {
+                    if (((u8 **)((u8 *)data_02160244 + 8))[i - 2][2] == 1) {
                         flag = 0;
                     }
                     break;
@@ -200,7 +192,7 @@ void func_020637e4(void) {
         }
     }
 
-    list = ((Mgr020637e4 *)data_02160244)->list;
+    list = *(u8 **)((u8 *)data_02160244 + 0x44);
     if (list != NULL) {
         u8 *cur = list;
         while (cur != NULL) {
@@ -211,9 +203,9 @@ void func_020637e4(void) {
         return;
     }
     if (func_0202dd04(list) != 0) {
-        count = 0;
+        register count = 0;
         for (i = 0; i < 9; i++) {
-            u8 *cell = ((Mgr020637e4 *)data_02160244)->cells[i];
+            cell = ((u8 **)((u8 *)data_02160244 + 8))[i];
             u8 *node = *(u8 **)(cell + 0x10);
             while (node != NULL && node[4] == 0) {
                 u8 *unit = *(u8 **)(node + 0);

@@ -132,7 +132,7 @@ int func_020123f0(const u8 *a, const u8 *b)
     {
       break;
     }
-    t = ((((((((x & 0xFFFFFFFFFFFFFFFF) & 0xFFFFFFFFFFFFFFFF) & 0xFFFFFFFFFFFFFFFF) & 0xFFFFFFFFFFFFFFFF) & 0xFFFFFFFFFFFFFFFF) & 0xFFFFFFFFFFFFFFFF) & 0xFFFFFFFFFFFFFFFF) & mask) + (u32)mask;
+    t = ((((((((x & 0xFFFFFFFFFFFFFFFF) & 0xFFFFFFFFFFFFFFFF) & 0xFFFFFFFFFFFFFFFF) & 0xFFFFFFFFFFFFFFFF) & 0xFFFFFFFFFFFFFFFF) & 0xFFFFFFFFFFFFFFFF) & 0xFFFFFFFFFFFFFFFF) & mask) + mask;
     t |= x;
     t |= mask;
     z = ~t;
@@ -145,6 +145,8 @@ int func_020123f0(const u8 *a, const u8 *b)
       break;
     }
   }
+
+
   bytes:
   for (;;)
   {
@@ -156,6 +158,8 @@ int func_020123f0(const u8 *a, const u8 *b)
     }
     i++;
   }
+
+
 }
 
 int func_020124a8(const u8 *a, const u8 *b, s32 n)
@@ -263,10 +267,7 @@ s32 func_020125b8(s32 c) {
 
 void func_020125e0(u32 *bits, u32 start, u32 end)
 {
-  u32 word;
   u32 endMask;
-  u32 mask;
-  u32 next;
   if (start >= end)
   {
     return;
@@ -274,14 +275,13 @@ void func_020125e0(u32 *bits, u32 start, u32 end)
   endMask = (1U << (end & 0x1f)) - 1;
   do
   {
-    word = start >> 5;
-    mask = (~0U) << (start & 0x1f);
-    next = (word + 1) << 5;
+    u32 mask = (~0U) << (start & 0x1f);
+    u32 next = ((start >> 5) + 1) << 5;
     if (end < next)
     {
       mask &= endMask;
     }
-    bits[start >> 5] |= mask;
+    bits[start >> 5] = bits[start >> 5] | mask;
     start = next;
   }
   while (start < end);
@@ -312,11 +312,10 @@ s32 func_02012634(s32 arg0, const char *fmt, char *args)
     u32 digit;
     u32 k;
 
-    st.ap = (char **)args;
     st.count = 0;
-    st.inv = 1;
-    st.got = 0;
+    st.ap = (char **)args;
     st.start = s;
+    st.got = 0;
     if (c == 0) goto finish;
 loop:
     if (func_020125b8(c) != 0) {

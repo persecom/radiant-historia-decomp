@@ -496,26 +496,21 @@ void func_0200fbe8(void) {
     func_0200a674(0xb, (void *)func_0200fedc);
 }
 
+#pragma push
+#pragma opt_common_subs off
 void func_0200fc34(u32 arg0, u32 arg1) {
-    u32 irq = func_02008128();
-    void **node = (void **)data_0215f640[0];
-    u32 *prev = (u32 *)data_0215f640;
-    while (node != NULL) {
-        void (*cb)(void *, u32, u32) = (void (*)(void *, u32, u32))node[2];
-        if (cb != NULL) {
-            cb(node[1], arg0, arg1);
-        }
-        {
-            void **cur = (void **)*prev;
-            if (cur == node) {
-                prev = (u32 *)cur;
-            }
-        }
-        node = (void **)*prev;
-    }
-    func_0200813c(irq);
+u32 irq=func_02008128();
+void **node=(void **)data_0215f640[0];
+u32 *prev=(u32 *)data_0215f640;
+if(node != NULL) do {
+void (*cb)(void *,u32,u32)=(void (*)(void *,u32,u32))node[2];
+if(cb) cb(node[1],arg0,arg1);
+{void **cur=(void **)*prev; if(cur==node) prev=(u32 *)cur;}
+node=(void **)*prev;
+} while(node != NULL);
+func_0200813c(irq);
 }
-
+#pragma pop
 s32 func_0200fca4(void (*cb)(void *), s32 arg1) {
     u8 *base = data_0215f120;
     if (arg1 != 0) {

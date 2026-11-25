@@ -271,8 +271,7 @@ void func_021357e8(s32 arg0, s32 count, s32 arg2, u32 arg3, s32 arg4, u8 **arg5)
     s32 i = 0;
     s32 flag = 0;
 
-    if(count<=0)return;
-    do {
+    while (i < count) {
         if (arg0 == 1) {
             *(u32 *)(arg5[i + 8] + 0xc) += arg3;
             if (*(u16 *)(arg5[i + 8] + 0x1c) != 0) {
@@ -283,7 +282,7 @@ void func_021357e8(s32 arg0, s32 count, s32 arg2, u32 arg3, s32 arg4, u8 **arg5)
                 *(u32 *)(arg5[i + 8] + 0x14) += arg3 >> 1;
             }
             if ((*(u16 *)(arg5[i + 8] + 0) & 2) == 0) {
-                if (*(u32 *)(arg5[i + 8] + 0xc) > *(u32 *)(arg5[i + 8] + 0x10)) {
+                if (*(u32 *)(arg5[i + 8] + 0x10) < *(u32 *)(arg5[i + 8] + 0xc)) {
                     if (*(u32 *)(arg5[i + 8] + 0xc) - *(u32 *)(arg5[i + 8] + 0x10) < 0x80000000U) {
                         flag = 1;
                     }
@@ -304,7 +303,7 @@ void func_021357e8(s32 arg0, s32 count, s32 arg2, u32 arg3, s32 arg4, u8 **arg5)
         }
         *(u16 *)(arg5[i + 8] + 0x1e) = 0x1800 - *(u16 *)(arg5[i + 8] + 0x1c);
         i++;
-    }while(i<count);
+    }
 }
 
 s32 func_02135920(u8 *arg0, s32 arg1) {

@@ -61,7 +61,9 @@ s32 func_0203aae4(u8 *arg0) {
         while (it != NULL) {
             u8 *obj = *(u8 **)it;
             if (obj != NULL && *(void **)(obj + 0x118) != NULL) {
-                *(Vec3 *)(obj + 0xd4) = *(Vec3 *)obj;
+                *(s32 *)(obj + 0xd4) = *(s32 *)(obj + 0);
+                *(s32 *)(obj + 0xd8) = *(s32 *)(obj + 4);
+                *(s32 *)(obj + 0xdc) = *(s32 *)(obj + 8);
             }
             it = *(u8 **)(it + 0x18);
         }
@@ -292,7 +294,7 @@ s32 func_0203aae4(u8 *arg0) {
                 func_0210d27c(0x73);
                 v2.x = 0xae000;
                 v2.y = 0x60000;
-                v2.z = unk_const_ffc;
+                v2.z = 0x263000;
                 func_020c1370(3, &v2, 0x7dd, ret, 0x200);
                 *(s32 *)(r5 + 4) += 0x18000;
                 *(s32 *)(arg0 + 0) -= 0x28000;
@@ -321,7 +323,7 @@ s32 func_0203aae4(u8 *arg0) {
             func_0206e7a0(0xc, r5, &v1, 0);
             v2.x = 0xa0000;
             v2.y = 0x60000;
-            v2.z = unk_const_ffc;
+            v2.z = 0x263000;
             func_020c1370(4, &v2, 0x7dd, 1, 0xa00);
             *(s32 *)(r5 + 4) -= 0x20000;
             func_020331d0(r8, 1, 1);
@@ -345,21 +347,36 @@ s32 func_0203aae4(u8 *arg0) {
                 p = func_020ec950(5);
                 if (p != NULL) {
                     u8 *q = *(u8 **)p;
-                    q[0x71] -= 2;
-                    if ((s32)q[0x71] < 2) q[0x71] = 0;
+                    q[0x20] += 0x100;
+                    q[0x24] += 0x200;
+                    if (q[0x24] >= 0x2000) {
+                        u8 *obj = *(u8 **)p;
+                        u8 state = obj[0x71];
+                        state -= 2;
+                        obj[0x71] = state;
+                        if (state < 2) obj[0x71] = 0;
+                    }
                     func_020ec548(p);
                 }
                 p = func_020ec950(6);
                 if (p != NULL) {
                     u8 *q = *(u8 **)p;
-                    q[0x71] -= 2;
-                    if ((s32)q[0x71] < 2) q[0x71] = 0;
+                    q[0x20] += 0x200;
+                    if (q[0x20] >= 0x2000) {
+                        u8 *obj = *(u8 **)p;
+                        u8 state = obj[0x71];
+                        state -= 2;
+                        obj[0x71] = state;
+                        if (state < 2) obj[0x71] = 0;
+                    }
                     func_020ec548(p);
                 }
                 p = func_020ec950(4);
                 if (p != NULL && (func_020ec9a0(*(void **)p, 0) & 2) != 0) {
                     func_020ec548(p);
                 }
+                func_020331d0(r8, 8, 1);
+                func_020331d0(r8, 0x10, 1);
                 if ((*(u16 *)(r8 + 8) & 2) == 0 && (func_0205bcb0(arg0, 0) & 2) != 0) {
                     func_020dd810(arg0, 0, 0);
                     func_020331d0(r8, 2, 1);
@@ -372,7 +389,9 @@ s32 func_0203aae4(u8 *arg0) {
                 while (it != NULL) {
                     u8 *obj = *(u8 **)it;
                     if (obj != NULL && *(void **)(obj + 0x118) != NULL) {
-                        *(Vec3 *)obj = *(Vec3 *)(obj + 0xd4);
+                        *(s32 *)(obj + 0) = *(s32 *)(obj + 0xd4);
+                        *(s32 *)(obj + 4) = *(s32 *)(obj + 0xd8);
+                        *(s32 *)(obj + 8) = *(s32 *)(obj + 0xdc);
                     }
                     it = *(u8 **)(it + 0x18);
                 }
@@ -391,7 +410,7 @@ s32 func_0203aae4(u8 *arg0) {
             func_02035c3c(r5, 1);
             {
                 u8 *g = *(u8 **)data_02160244;
-                g[0x10d] = ret;
+                *(u8 **)(g + 0)[0x10d] = ret;
             }
             func_0205db90(arg0, r5, 4, 8);
             func_020a2c38(*(u16 *)(*(u8 **)data_02160260 + 0x48), ret);
@@ -400,11 +419,16 @@ s32 func_0203aae4(u8 *arg0) {
             *(u8 **)(r5 + 0xf8) = NULL;
             {
                 u8 *g = *(u8 **)data_02160244;
+                u8 *h = *(u8 **)g;
+                h[0x6c] = ret;
                 *(u8 **)(g + 0) = NULL;
-                *(u8 **)(g + 0)[0x6c] = 0;
             }
-            if (func_020ec950(1) != NULL) func_020ec548(NULL);
-            if (func_020ec950(2) != NULL) func_020ec548(NULL);
+            if (func_020ec950(1) != NULL) {
+                func_020ec548(NULL);
+            }
+            if (func_020ec950(2) != NULL) {
+                func_020ec548(NULL);
+            }
             func_020331d0(r8, 1, 1);
         }
         if ((*(u16 *)(r8 + 8) & 1) != 0) {

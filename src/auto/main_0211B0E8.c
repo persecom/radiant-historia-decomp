@@ -239,7 +239,8 @@ void func_0211b614(void *dst, void *src, s32 sx, s32 sy, s32 dx, s32 dy, s32 dw,
   xx = dx;
   for (; x < ex; x++, xx++) {
    u16 *q = p + tile_offset(x, sy, sw, sh);
-   ((u16 *)dst)[tile_offset(xx, yy, dw, dh)] = *q;
+   u16 *d = (u16 *)dst + tile_offset(xx, yy, dw, dh);
+   *d = *q;
   }
  }
 }
@@ -347,13 +348,13 @@ mode=mode==2?0x300:0x100;
 }
 }
 mode=Double_bb3c(*sprite);
-mode=(u32)mode;
+mode=(long)mode;
 {
 u32 attr=*sprite&0xc000c000;
 u32 size=(attr&0xc0000000)>>30;
 s32 shape=(s32)(attr&0xc000)>>14;
-h=(s32)data_02144d6c[shape][size]>>1;
 w=(s32)data_02144d84[shape][size]>>1;
+h=(s32)data_02144d6c[shape][size]>>1;
 }
 {
 s32 oy=-(h<<12),ox=-(w<<12);

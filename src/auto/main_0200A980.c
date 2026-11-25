@@ -76,6 +76,7 @@ else if(ret!=0x100)func_0200a884(p,ret);
 return ret;
 }
 
+#pragma optimization_level 3
 s32 func_0200ad00(void *arg0, s32 arg1) {
     u8 *arc = arg0;
     u8 *ret = NULL;
@@ -118,7 +119,10 @@ s32 func_0200ad00(void *arg0, s32 arg1) {
         if (arg1 != 0 && (*(volatile u32 *)(ret + 0xc) & 4)) {
             func_02006560(ret + 0x18);
             ret = NULL;
+        } else {
+            goto done;
         }
+        goto done;
     } else if (arg1 != 0) {
         if (*(u32 *)(arc + 0x14) & 0x10) {
             u32 tmp[0x48 / 4];
@@ -132,10 +136,11 @@ s32 func_0200ad00(void *arg0, s32 arg1) {
             func_02006560(arc + 0xc);
         }
     }
+done:
     func_0200813c(irq);
     return (s32)ret;
 }
-
+#pragma optimization_level 4
 void func_0200aeac(u8 *arg0) {
     u8 *r4;
     u8 *cur;
@@ -465,42 +470,36 @@ void func_0200b594(u8 *arg0) {
     *(u32 *)(r5 + 0xc) = r4;
 }
 
-#pragma optimization_level 3
+#pragma opt_propagation off
 s32 func_0200b5b8(u8 *arg0, s8 *arg1, u32 arg2) {
-    s32 ret = 0;
-    u32 lock = func_02008128();
-    if (func_0200b0ec(arg1, arg2) == NULL) {
-        u8 *cur = data_0215ed68;
-        u8 **slot = &data_0215ed68;
-        while (cur != NULL) {
-            slot = (u8 **)(cur + 4);
-            cur = *(u8 **)(cur + 4);
-        }
-        *slot = arg0;
-        if (arg2 <= 3) {
-            *(u32 *)arg0 = 0;
-            func_02012244(arg0, arg1, arg2 + 1);
-        } else if (arg2 <= 0xf) {
-            s32 i;
-            for (i = 0; ; i++) {
-                if (i >= 0x10) {
-                    func_02008414();
-                } else if (((s8 (*)[16])data_0215ed78)[i][0] == 0) {
-                    func_02012244(((s8 (*)[16])data_0215ed78)[i], arg1, arg2 + 1);
-                    *(void **)arg0 = ((s8 (*)[16])data_0215ed78)[i];
-                    break;
-                }
-            }
-        } else {
-            func_02008414();
-        }
-        *(u32 *)(arg0 + 0x14) |= 1;
-        ret = 1;
-    }
-    func_0200813c(lock);
-    return ret;
+ s32 ret=0;
+ u32 lock=func_02008128();
+ if(func_0200b0ec(arg1,arg2)==NULL) {
+ u8 *cur=data_0215ed68;
+ u8 **slot=&data_0215ed68;
+ if(cur!=NULL) do {slot=(u8 **)(cur+4); cur=*slot;} while(cur!=NULL);
+ *slot=arg0;
+ if(arg2<=3) {
+ *(u32 *)arg0=0;
+ func_02012244(arg0,arg1,arg2+1);
+ }else if(arg2<=15) {
+ s32 i;
+ for(i=0;;i++) {
+ if(i>=16) func_02008414();
+ else if(((s8 (*)[16])data_0215ed78)[i][0]==0) {
+ func_02012244(((s8 (*)[16])data_0215ed78)[i],arg1,arg2+1);
+ *(void **)arg0=((s8 (*)[16])data_0215ed78)[i];
+ break;
+ }
+ }
+ }else func_02008414();
+ *(u32 *)(arg0+0x14)|=1;
+ ret=1;
+ }
+ func_0200813c(lock);
+ return ret;
 }
-#pragma optimization_level 4
+#pragma opt_propagation on
 u8 *func_0200b6b8(u8 *arg0) {
     if (*(s8 *)(arg0 + 3) != 0) {
         return *(u8 **)(arg0 + 0);

@@ -135,74 +135,182 @@ extern void func_02054118(void *);
 extern void func_02054018(void *);
 void func_02053824(u8 *p) {
     u8 *ctx = *(u8 **)(p + 0xd0);
-    u8 *g = data_02160200;
-    int zero = 0, two = 2, one = 1;
-
-    if (*(u32 *)(g + 0x160) & 0x400) return;
-    if (*(u16 *)(p + 0x8e) == 0x1f5) return;
-
-    if (ctx[0x25] == 0x51 && *(u16 *)(ctx + 6) == two) {
-        if (ctx[0x25] == 0x47 && *(u16 *)(ctx + 6) == two) {
-            if (ctx[0x25] != 0x16 && ctx[0x25] != 0x15) {
-                if (ctx[0xd] == 1) {
-                    *(u32 *)(ctx + 0x10) = *(u32 *)(p + 4);
-                    *(u32 *)(ctx + 0x14) = 0x8000;
-                    ctx[0xd] = two;
-                    func_02052844(p, zero, -1);
-                    func_02052844(p, zero, zero);
+    if ((*(u32 *)(data_02160200 + 0x160) & 0x400) == 0 &&
+        *(u16 *)(p + 0x8e) != 0x1f5 &&
+        (ctx[0x25] != 0x51 || *(u16 *)(ctx + 6) == 2) &&
+        (ctx[0x25] != 0x47 || *(u16 *)(ctx + 6) == 2) &&
+        ctx[0x25] != 0x16 && ctx[0x25] != 0x15) {
+        if (ctx[0xd] == 1) {
+            *(u32 *)(ctx + 0x10) = *(u32 *)(p + 4);
+            *(u32 *)(ctx + 0x14) = 0x8000;
+            ctx[0xd] = 2;
+            func_02052844(p, 0, -1);
+            func_02052844(p, 0, 0);
+            return;
+        }
+        if (ctx[0xd] == 2) {
+            *(s32 *)(p + 4) += *(s32 *)(ctx + 0x14);
+            *(s32 *)(ctx + 0x14) -= 0x1700;
+            if (*(s32 *)(p + 4) <= *(s32 *)(ctx + 0x10)) {
+                *(s32 *)(p + 4) = *(s32 *)(ctx + 0x10);
+                ctx[0xd] = 0;
+                *(s32 *)(ctx + 0x14) = 0;
+            }
+            return;
+        }
+    }
+    ctx[0xd] = 0;
+    switch (*(u16 *)(ctx + 0x26)) {
+    case 0x16:
+        switch (*(u16 *)(ctx + 6)) {
+        case 0:
+            if ((*(u32 *)(data_02160200 + 0x160) & 0x400) != 0) {
+                return;
+            }
+            if (func_02054330(p) != 0) {
+                *(u16 *)(ctx + 6) = 1;
+                ctx[1] = 6;
+                func_02052844(p, 2, 0);
+            }
+            break;
+        case 1: {
+            u8 *target = *(u8 **)(data_021600ac + 0x68);
+            if ((*(u32 *)(data_02160200 + 0x160) & 0x400) != 0) {
+                return;
+            }
+            if (func_0205428c(p) == 0) {
+                if (*(u16 *)(ctx + 0x26) % 10 != 4) {
+                    *(u16 *)(ctx + 6) = 2;
                 } else {
-                    *(u32 *)(p + 4) += *(u32 *)(ctx + 0x14);
-                    *(u32 *)(ctx + 0x14) -= 0x1700;
-                    if (*(s32 *)(p + 4) <= *(s32 *)(ctx + 0x10)) {
-                        *(u32 *)(p + 4) = *(u32 *)(ctx + 0x10);
-                        ctx[0xd] = zero;
-                        *(u32 *)(ctx + 0x14) = 0;
+                    *(u16 *)(ctx + 6) = 4;
+                    *(u16 *)(p + 0x92) = func_020ddc8c(p, target);
+                }
+            } else {
+                if (func_020541d8(p) != 0) {
+                    *(u16 *)(ctx + 6) = 3;
+                    ctx[0xd] = 1;
+                } else {
+                    func_020477dc(p, 2, 1);
+                }
+            }
+            break;
+        }
+        case 2: {
+            u8 *target = *(u8 **)(data_021600ac + 0x68);
+            if (target == 0) {
+                return;
+            }
+            {
+                u32 r = *(u16 *)(ctx + 0x20);
+                if (func_0210c2f4(p, target) > (s32)((r + (r >> 2)) << 12)) {
+                    *(u16 *)(ctx + 6) = 0;
+                    ctx[1] = 1;
+                    func_02052844(p, 1, 0);
+                    func_020477dc(p, 2, 1);
+                } else {
+                    if (func_020541d8(p) != 0) {
+                        *(u16 *)(ctx + 6) = 3;
+                        return;
+                    }
+                    if (func_02054800(p) == 1) {
+                        *(u16 *)(ctx + 4) = 0;
+                        *(u16 *)(ctx + 6) = 0;
+                        ctx[1] = 5;
+                    }
+                    if (func_02054330(p) != 0) {
+                        *(u16 *)(ctx + 6) = 1;
                     }
                 }
             }
+            break;
         }
-    }
-
-    switch (*(u16 *)(ctx + 0x26)) {
-    case 0x16:
-        if (*(u16 *)(ctx + 6) == one) {
-            u32 val = *(u32 *)(ctx + 0x14);
-            *(u32 *)(p + 4) += val;
-            *(u32 *)(ctx + 0x14) = val - 0x1700;
+        case 3:
+            func_0205530c(p);
+            if (func_02054330(p) == 0) {
+                *(u16 *)(ctx + 6) = 1;
+            }
+            break;
+        case 4:
+            if (func_02054a94(p) == 1) {
+                *(u16 *)(ctx + 4) = 0;
+                *(u16 *)(ctx + 6) = 0;
+                ctx[1] = 5;
+            }
+            break;
+        }
+        break;
+    case 0x20:
+    case 0x21:
+    case 0x22:
+        if (*(u16 *)(ctx + 6) == 1) {
+            func_02055564(p, 6);
+            *(s32 *)(p + 4) += *(s32 *)(ctx + 0x14);
+            *(s32 *)(ctx + 0x14) -= 0x1700;
             if (*(s32 *)(p + 4) <= *(s32 *)(ctx + 0x10)) {
-                *(u32 *)(p + 4) = *(u32 *)(ctx + 0x10);
-                ctx[0xd] = zero;
-                func_0205440c(p, one);
-                *(u16 *)(ctx + 6) = two;
+                *(s32 *)(p + 4) = *(s32 *)(ctx + 0x10);
+            }
+            if (ctx[8] == 0) {
+                *(u16 *)(ctx + 6) = 2;
+                func_0205440c(p, 1);
+                func_020477dc(p, 2, 1);
             }
         }
-        return;
-    case 0x2a: case 0x2b: case 0x2c: case 0x2d: case 0x2e:
-    case 0x2f: case 0x30: case 0x31: case 0x32: case 0x33: case 0x34: case 0x35:
-        if (*(u16 *)(ctx + 6) == one) {
-            u32 val = *(u32 *)(ctx + 0x14);
-            *(u32 *)(p + 4) += val;
-            *(u32 *)(ctx + 0x14) = val - 0x1700;
+        break;
+    case 0x2a:
+    case 0x2b:
+    case 0x2c:
+        if (*(u16 *)(ctx + 6) == 1) {
+            *(s32 *)(p + 4) += *(s32 *)(ctx + 0x14);
+            *(s32 *)(ctx + 0x14) -= 0x1700;
             if (*(s32 *)(p + 4) <= *(s32 *)(ctx + 0x10)) {
-                *(u32 *)(p + 4) = *(u32 *)(ctx + 0x10);
-                func_0205440c(p, one);
-                *(u16 *)(ctx + 6) = two;
+                *(s32 *)(p + 4) = *(s32 *)(ctx + 0x10);
+                func_0205440c(p, 1);
+                *(u16 *)(ctx + 6) = 2;
             }
         }
-        return;
-    case 0x20: case 0x21: case 0x22: case 0x3d: case 0x3e: case 0x49:
-    case 0x51: case 0x5c: case 0x65: case 0x66: case 0x70: case 0x7a:
-    case 0x83: case 0x85:
-        return;
+        break;
+    case 0x32:
+    case 0x33:
+    case 0x34:
+    case 0x35:
+    case 0x3d:
+    case 0x3e:
+    case 0x49:
+    case 0x51:
+    case 0x53:
+    case 0x5c:
+    case 0x65:
+    case 0x66:
+    case 0x70:
+    case 0x7a:
+    case 0x83:
+    case 0x85:
+    default:
+        break;
     case 0xc9:
-        if (*(u16 *)(ctx + 6) == zero) {
-            func_02052844(p, zero, zero);
-            *(u16 *)(ctx + 6) = one;
+        if (*(u16 *)(ctx + 6) == 0) {
+            u32 flags = *(u32 *)(*(u8 **)(data_021600ac + 0x68) + 0xac);
+            if ((flags & 0x10) != 0 || (flags & 0x80) != 0) {
+                *(u16 *)(ctx + 6) = 1;
+                func_02052844(p, 0, 0);
+                *(u16 *)(ctx + 4) = 1;
+            }
             func_02053fdc(ctx);
             func_02054118(p);
             func_02054018(p);
+        } else {
+            if (func_02054800(p) == 1) {
+                *(u16 *)(ctx + 4) = 0;
+                *(u16 *)(ctx + 6) = 0;
+                ctx[1] = 5;
+            }
+            if (func_0210c2f4(p, p + 0x18) > (*(u16 *)(ctx + 0x1c) << 12)) {
+                *(u16 *)(ctx + 4) = 0;
+                *(u16 *)(ctx + 6) = 0;
+                ctx[1] = 4;
+            }
         }
-        return;
+        break;
     }
 }
 

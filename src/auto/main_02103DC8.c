@@ -57,8 +57,8 @@ s32 func_02103dc8(void) {
     u8 *r9 = *(u8 **)(data_021626e8 + 0x10);
     if (func_0210cc54(data_021556cc) != 0) {
         s32 id;
-        u8 sp_c[0x28];
         u8 sp_4[8];
+        u8 sp_c[0x28];
         func_02108ffc();
         func_020ee6c8(func_0210ce5c());
         func_020eed30(0);

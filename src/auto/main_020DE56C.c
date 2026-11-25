@@ -116,6 +116,7 @@ u8 *func_020de844(s32 arg0) {
     return NULL;
 }
 
+#pragma opt_propagation off
 void func_020de888(void)
 {
   u8 *node;
@@ -179,22 +180,20 @@ void func_020de888(void)
     else
       if (index >= 1)
     {
-      u8 expected;
-      u8 *info2;
-      u8 *obj2;
+      u16 expected;
       u8 *state2;
-      s32 valid;
+      u8 valid;
       s32 i;
       u8 kind;
-      obj2 = *((u8 **) node);
+      info = *((u8 **) node);
       expected = base[0x38];
-      info2 = *((u8 **) (node + 8));
-      kind = *(*((u8 **) (obj2 + 0x118)));
+      obj = *((u8 **) (node + 8));
+      kind = *(*((u8 **) (info + 0x118)));
       if (kind != expected)
       {
         return;
       }
-      if ((kind == 1) && (info2[0x14] == 1))
+      if ((kind == 1) && (obj[0x14] == 1))
       {
         return;
       }
@@ -207,7 +206,7 @@ void func_020de888(void)
       {
         for (i = 0; i < (*((s8 *) (base + 0x39))); i++)
         {
-          if (obj2 == (*(*((u8 ***) ((base + 0x10) + (i * 4))))))
+          if (info == (*(*((u8 ***) ((base + 0x10) + (i * 4))))))
           {
             valid = 0;
           }
@@ -219,27 +218,27 @@ void func_020de888(void)
       }
       if (kind == expected)
       {
-        state2 = *((u8 **) (obj2 + 0x128));
+        state2 = *((u8 **) (info + 0x128));
         (*((s8 *) (state2 + 0x50)))++;
         *((u32 *) (state2 + 0x18)) |= 1;
         *((u32 *) (state2 + 0x18)) &= ~0x10;
-        if (info2[0] == 3)
+        if (obj[0] == 3)
         {
           *((u32 *) (state2 + 0x18)) |= 0x10;
         }
+        (*((s8 *) (base + 0x39)))++;
+        *((u8 **) ((base + 0x10) + (index * 4))) = node;
       }
     }
-    (*((s8 *) (base + 0x39)))++;
-    *((u8 **) ((base + 0x10) + (index * 4))) = node;
-    if (((*((s8 *) (base + 0x39))) + 1) >= (10 + 1))
+    index++;
+    if (*((s8 *) (base + 0x39)) >= 10)
     {
       return;
     }
-    index++;
     node = *((u8 **) (node + 0x24));
   }
 }
-
+#pragma opt_propagation on
 u32 func_020deaf0(u8 *arg0, s32 arg1, s32 side) {
     s32 neighbor;
     u32 mask = 1u << arg1;

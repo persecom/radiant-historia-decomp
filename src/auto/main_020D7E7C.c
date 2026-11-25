@@ -61,6 +61,10 @@ void func_020d7e7c(s32 arg0, s32 arg1) {
     s32 idx;
     u8 **list_head;
     u8 *node;
+    u8 *skill_obj;
+    u8 *skill_tmp;
+    u32 pos_mask;
+    s32 pos;
 
     func_02005e80(buf, data_02151488, arg0, arg1);
     idx = 0;
@@ -85,13 +89,13 @@ void func_020d7e7c(s32 arg0, s32 arg1) {
                 tok = func_02092a40(fp, 0);
                 if (tok != NULL) {
                     if (func_02092a28(tok, data_021514b0) != 0) {
-                        s32 pos = func_02092994(fp, 0);
+                        pos = func_02092994(fp, 0);
                         s32 unit_id = func_02092994(fp, 0);
                         s32 skill_id = func_02092994(fp, 0);
                         u8 *actor = NULL;
-                        u8 *skill_tmp = NULL;
-                        u8 *skill_obj = NULL;
-                        u32 pos_mask;
+                        skill_tmp = NULL;
+                        skill_obj = NULL;
+
                         u32 mask;
                         u16 cell_idx;
 
@@ -99,7 +103,7 @@ void func_020d7e7c(s32 arg0, s32 arg1) {
                             skill_tmp = func_02065298(NULL, (u16)skill_id, 0xb, 0, NULL);
                         }
                         pos_mask = 1 << pos;
-                        mask = func_020deaf0(skill_tmp, (u8)pos);
+                        mask = ((u32 (*)(void *,u8,s32))func_020deaf0)(skill_tmp, (u8)pos, 1);
                         for (cell_idx = 0; cell_idx < 9; cell_idx++) {
                             if (mask & (1 << cell_idx)) {
                                 u8 *cell = func_0202e548((u8)cell_idx);
@@ -121,21 +125,21 @@ void func_020d7e7c(s32 arg0, s32 arg1) {
                         func_02064c80(skill_tmp);
                     } else if (func_02092a28(tok, data_021514b4) != 0) {
                         s32 target_id = func_02092994(fp, 0);
-                        s32 pos = func_02092994(fp, 0);
+                        pos = func_02092994(fp, 0);
                         s32 skill_id = func_02092994(fp, 0);
-                        u8 *skill_tmp = NULL;
-                        u8 *skill_obj = NULL;
+                        skill_tmp = NULL;
+                        skill_obj = NULL;
                         void *actor = func_020ddbcc((u16)target_id);
                         if (actor != NULL) {
                             s8 pos8 = (s8)pos;
-                            u32 pos_mask;
+    
                             u32 mask;
                             u16 cell_idx;
                             if (skill_id != 0) {
                                 skill_tmp = func_02065298(NULL, (u16)skill_id, 0xb, 0, NULL);
                             }
                             pos_mask = 1 << pos8;
-                            mask = func_020deaf0(skill_tmp, (u8)pos8);
+                            mask = ((u32 (*)(void *,u8,s32))func_020deaf0)(skill_tmp, (u8)pos8, 1);
                             for (cell_idx = 0; cell_idx < 9; cell_idx++) {
                                 if (mask & (1 << cell_idx)) {
                                     u8 *cell = func_0202e548((u8)cell_idx);
@@ -296,7 +300,8 @@ u8 one=1;
 u8 *state=data_02160244;
 u8 *base=*(u8 **)state;
 u8 *node,*p;
-p=func_020ddbcc(0xea67);
+#define BID 0xea67
+p=func_020ddbcc(BID);
 if(p){
 *(u16 *)(state+0x112)=0;*(u16 *)(state+0x114)=0;
 func_020d91bc(6);func_020d9e7c();
@@ -304,11 +309,11 @@ node=*(u8 **)(data_02160090+8);
 while(node){if(*(u8 **)(node+20))func_02093424(*(void **)(*(u8 **)(node+20)+8),zero);node=*(u8 **)(node+28);}
 state[0xe8]=one;func_02060408(p);func_020d0a40(28);return;
 }
-id=0xea65;
+id=BID-2;
 p=func_020ddbcc(id);
 if(p){func_02060408(p);found=one;}
 else {
-id=0xea66;p=func_020ddbcc(id);
+id=BID-1;p=func_020ddbcc(id);
 if(p){func_02060408(p);found=one;}
 }
 if(!found)return;
@@ -335,12 +340,13 @@ func_02033060();func_02032de8();func_02033010();func_02032f34();
 func_020327b4();func_0202b754();func_02094bf4();*(u16 *)(base+8)=0;func_020df9c8(0);
 node=*(u8 **)(data_02160090+8);
 while(node){if(*(u8 **)(node+20))func_02093424(*(void **)(*(u8 **)(node+20)+8),0);node=*(u8 **)(node+28);}
-if(id==0xea65)*(u16 *)(state+0x116)=0xea66;
-else if(id==0xea66)*(u16 *)(state+0x116)=0xea67;
+if(id==BID-2)*(u16 *)(state+0x116)=BID-1;
+else if(id==BID-1)*(u16 *)(state+0x116)=BID;
 func_020d0a40(26);
 *(u16 *)(state+0x112)=0;*(u16 *)(state+0x114)=0;*(u16 *)(state+0x118)=0;
 state[0xe8]=one;
 *(u16 *)(data_02160110[0]+0x72)&=(0xf800-one);
+#undef BID
 }
 
 void *func_020ddbcc(u32);

@@ -245,11 +245,9 @@ void func_020a8ab8(u8 *p) {
 
 void func_020a8ba4(u8 *p, s32 x, s32 y, s32 ch) {
 s32 zero = 0;
-
-u8 *src, *dst;
-s32 valid;
-s32 width, n, skip, row, col, pixel, shift;
-
+s32 width, n, skip, row, col, pixel, valid;
+u8 *dst, *src;
+s32 shift;
 if(x < 0) valid = 0;
 else if(x + func_020a916c(ch) > *(s32 *)(p+0x18)) valid = 0;
 else if(y < 0) valid = 0;

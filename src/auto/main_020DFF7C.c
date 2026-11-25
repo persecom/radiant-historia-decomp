@@ -45,11 +45,8 @@ void func_020dff7c(void) {
     }
     if (p5 != 0) {
         actor = *(u8 **)(p5 + 4);
-    }
-    if (p5 == 0 || (flags & 0x80) == 0) {
-        return;
-    }
-    if (1) {
+    } else return;
+    if ((flags & 0x80) != 0) {
     r8 = func_020e4ad4();
 
     if (r8 >= 0 && r8 <= 11) {
@@ -320,7 +317,7 @@ if (*(u16 *)(data_02160a74 + 0x1d0) > 0x154) { *(u16 *)(data_02160a74 + 0x1d0)=0
         s32 alpha;
         s32 index;
         u32 mask;
-        u16 color;
+        s32 color;
         s16 i;
         *(volatile u32 *)0x040004a4=0x1f00c0;
         func_020a3bbc(0x27);

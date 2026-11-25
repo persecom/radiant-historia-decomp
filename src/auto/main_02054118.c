@@ -242,7 +242,7 @@ s32 func_0205453c(u8 *arg0) {
         u32 half;
         u16 r;
 
-        data_0216263c[0] = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
+        { u32 addend = data_0216263c[2]; u32 seed = data_0216263c[0]; u32 multiplier = data_0216263c[1]; data_0216263c[0] = addend + seed * multiplier; }
         r = ((data_0216263c[0] >> 16) * 0xfffe) >> 16;
         angle = (s32)r - 0xffff;
         if (angle < 0) {

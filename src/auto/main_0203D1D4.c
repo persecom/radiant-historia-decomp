@@ -145,7 +145,7 @@ void func_0203d2d4(void) {
         a = func_02032254((u16)(*(s16 *)(data_02160110 + 0xb6) - 1));
         b = func_02032254((u16)(*(s16 *)(data_02160110 + 0xde) + 1));
         obj = *(u8 **)a;
-        two = one;
+        two = 1;
         *(u32 *)(obj + 0x80) |= 0x20000;
         *(u16 *)(*(u8 **)(obj + 0x118) + 0xbc) = two;
         if (data_0216011c == NULL) {

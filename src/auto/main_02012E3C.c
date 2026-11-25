@@ -18,27 +18,27 @@ s32 func_02012e3c(s8 *dst, u32 size, const s8 *fmt, u8 *ap) {
     out[2] = (u32)dst;
     out[1] = (u32)dst;
     if (*fmt != 0) do {
-        s8 ch = *fmt;
-        if ((((u32)(u8)ch ^ 0x20) - 0xa1) < 0x3c) {
-            func_02012d64(out, ch);
-            ch = *++fmt;
-            if (ch == 0) continue;
+        s32 c = *fmt;
+        if ((((u32)(u8)c ^ 0x20) - 0xa1) < 0x3c) {
+            func_02012d64(out, c);
+            c = *++fmt;
+            if (c == 0) continue;
             func_02012d64(out, *fmt++);
             continue;
         }
-        if (ch != '%') {
+        if (c != '%') {
             fmt++;
-            func_02012d64(out, ch);
+            func_02012d64(out, c);
             continue;
         }
         {
-            s32 c;
+            s32 prefixes;
             s32 flags, width, precision;
             flags = 0; width = 0; precision = -1;
             const s8 *start = fmt;
             s32 base = 10;
             s32 hex = 0x57;
-            s32 prefixes, count;
+            s32 count;
             u64 value;
             for (;;) {
                 c = *++fmt;
@@ -80,16 +80,12 @@ flags_done:
             }
             switch (*fmt) {
             case 'h':
-                if (*++fmt == 'h') {
-                    fmt++;
-                    flags |= 0x100;
-                } else flags |= 0x40;
+                if (*++fmt != 'h') flags |= 0x40;
+                else { fmt++; flags |= 0x100; }
                 break;
             case 'l':
-                if (*++fmt == 'l') {
-                    fmt++;
-                    flags |= 0x80;
-                } else flags |= 0x20;
+                if (*++fmt != 'l') flags |= 0x20;
+                else { fmt++; flags |= 0x80; }
                 break;
             }
             switch (*fmt) {
@@ -97,9 +93,6 @@ flags_done:
             case 'u': flags |= 0x1000; break;
             case 'X': hex = 0x37; goto hexadecimal;
             case 'p': flags |= 4; precision = 8; goto hexadecimal;
-            case 'x':
-hexadecimal:
-                flags |= 0x1000; base = 16; break;
             case 'd': case 'i': break;
             case 'c':
                 if (precision >= 0) goto invalid;
@@ -109,15 +102,17 @@ hexadecimal:
                         func_02012d64(out, (s8)c);
                         func_02012d90(out, ' ', width - 1);
                     } else {
-                        func_02012d90(out, (flags & 16) ? '0' : ' ', width - 1);
+                        func_02012d90(out, (s8)((flags & 16) ? '0' : ' '), width - 1);
                         func_02012d64(out, (s8)c);
                     }
                 }
-                goto next;
+                fmt++;
+                continue;
             case 's':
                 {
+                    s32 len;
                     const s8 *str = (const s8 *)*(u32 *)((ap += 4) - 4);
-                    s32 len = 0;
+                    len = 0;
                     if (precision < 0) {
                         while (str[len]) len++;
                     } else {
@@ -128,11 +123,12 @@ hexadecimal:
                         func_02012de4(out, str, len);
                         func_02012d90(out, ' ', width);
                     } else {
-                        func_02012d90(out, (flags & 16) ? '0' : ' ', width);
+                        func_02012d90(out, (s8)((flags & 16) ? '0' : ' '), width);
                         func_02012de4(out, str, len);
                     }
                 }
-                goto next;
+                fmt++;
+                continue;
             case '%':
                 if (start + 1 == fmt) {
                     func_02012d64(out, *fmt++);
@@ -142,11 +138,14 @@ hexadecimal:
 invalid:
                 func_02012de4(out, start, fmt-start);
                 continue;
+            case 'x':
+hexadecimal:
+                flags |= 0x1000; base = 16; break;
             }
+            prefixes = 0;
             if (flags & 8) flags &= ~16;
             if (precision >= 0) flags &= ~16;
             else precision = 1;
-            prefixes = 0;
             if (flags & 0x1000) {
                 if (flags & 0x100) value = (u8)*(u32 *)((ap += 4) - 4);
                 else if (flags & 0x40) value = (u16)*(u32 *)((ap += 4) - 4);
@@ -170,9 +169,10 @@ invalid:
                 else if (flags & 0x40) value = (s64)(s16)*(u32 *)((ap += 4) - 4);
                 else if (flags & 0x80) { value = *(u64 *)((ap += 8) - 8); }
                 else value = (s64)(s32)*(u32 *)((ap += 4) - 4);
-                if (value & 0x8000000000000000ULL) {
+                if (((value >> 32) & 0x80000000) != 0) {
+                    value = ~value;
                     prefix[0] = '-';
-                    value = ~value + 1;
+                    value += 1;
                     prefixes = 1;
                 } else if (value != 0 || precision != 0) {
                     if (flags & 2) {
@@ -188,8 +188,9 @@ invalid:
             switch (base) {
             case 8:
                 while (value != 0) {
-                    digits[count++] = '0' + (u32)(value & 7);
+                    s32 digit = value & 7;
                     value >>= 3;
+                    digits[count++] = digit + '0';
                 }
                 break;
             case 10:
@@ -218,10 +219,12 @@ invalid:
                 break;
             }
             {
+            s8 *buffer = digits;
+            s32 zero = '0';
             u32 *output = out;
             s32 left;
-            if (prefixes > 0 && prefix[0] == '0') {
-                digits[count++] = '0';
+            if (prefixes > 0 && prefix[0] == zero) {
+                buffer[count++] = zero;
                 prefixes = 0;
             }
             precision -= count;

@@ -561,11 +561,12 @@ void func_02119f1c(void) {
         }
         {
             u16 now = data_0216f234.fc;
-            ((volatile Struct0216f2c4 *)data_0216f2c4)[now] = ((Struct0216f2c4 *)data_0216f2c4)[old];
+            u32 newOffset = now * 8, oldOffset = old * 8;
+            *(volatile Struct0216f2c4 *)((u8 *)data_0216f2c4 + newOffset) = *(volatile Struct0216f2c4 *)((u8 *)data_0216f2c4 + oldOffset);
             {
-                u16 v = *(volatile u16 *)((u8 *)data_0216f2c8 + old * 8);
-                if (v == 1) *(u16 *)((u8 *)data_0216f2c8 + now * 8) = 2;
-                else *(u16 *)((u8 *)data_0216f2c8 + now * 8) = v;
+                u16 v = *(volatile u16 *)((u8 *)data_0216f2c8 + oldOffset);
+                if (v == 1) *(u16 *)((u8 *)data_0216f2c8 + newOffset) = 2;
+                else *(u16 *)((u8 *)data_0216f2c8 + newOffset) = v;
             }
         }
     } else {
