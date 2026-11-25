@@ -49,40 +49,27 @@ extern void *func_02109b14(const char *, s32);
 extern void func_0210b0c8(void *, void *);
 extern void func_0210b130(void *, void *);
 s32 func_020f1a1c(void *arg0, s32 arg1) {
-    char path[0x20];
-    char ext[8];
-    s32 ret = 0;
-
-    if (arg1 == 0) {
-        func_02005e80(path, data_02151d9c, data_02160af0[3]);
-    } else {
-        func_02005e80(path, data_02151da0, data_02160af0[4]);
-    }
-
-    if (func_02109cf0(path) != 0) {
-        u16 i;
-        for (i = 0; i < 0x20; i++) {
-            if (path[i] == 0) {
-                u16 len = i;
-                for (i = len - 5; i < len; i++) {
-                    ext[5 - (len - i)] = path[i];
-                }
-                ext[5 - (len - i)] = 0;
-                break;
-            }
-        }
-
-        if (func_020123f0(data_02151da4, ext) == 0 || func_020123f0(data_02151dac, ext) == 0) {
-            if (arg1 == 0) {
-                func_0210b0c8(arg0, func_02109b14(path, 0));
-            } else {
-                func_0210b130(arg0, func_02109b14(path, 0));
-            }
-            ret = 1;
-        }
-    }
-
-    return ret;
+char path[0x20]; char ext[8]; s32 ret=0;
+if(arg1==0) func_02005e80(path,data_02151d9c,data_02160af0[3]);
+else func_02005e80(path,data_02151da0,data_02160af0[4]);
+if(func_02109cf0(path)!=0) {
+u16 i;
+for(i=0;i<0x20;i++) {
+if(path[i]==0) {
+const u16 len=i;
+i -= 5;
+for(;i<len;++i) ext[5-(len-i)]=path[i];
+ext[5-(len-i)]=0;
+break;
+}
+}
+if(func_020123f0(data_02151da4,ext)==0 || func_020123f0(data_02151dac,ext)==0) {
+if(arg1==0) func_0210b0c8(arg0,func_02109b14(path,0));
+else func_0210b130(arg0,func_02109b14(path,0));
+ret=1;
+}
+}
+return ret;
 }
 
 s32 func_020f1b70(void *obj, s32 mode) {
