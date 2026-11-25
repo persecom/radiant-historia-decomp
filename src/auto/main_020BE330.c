@@ -70,19 +70,17 @@ void func_020be330(u8 *arg0) {
     }
 }
 
-#pragma opt_strength_reduction off
+#pragma opt_propagation off
 void func_020be3a8(u8 *arg0) {
-    s16 a = *(s16 *)(arg0 + 0x1a);
-    s16 b = *(s16 *)(arg0 + 0x1c);
-    s32 w = (*(s32 *)(data_021600e4 + 0x6c) << 5) / 4096;
-    func_020be30c(&a, &b);
-    func_020a9e38(&a, &b);
-    func_020a9d9c(a, b, (s16)(a + w), b);
-    func_020a9d9c((s16)(a + w), b, (s16)(a + w), (s16)(b + w));
-    func_020a9d9c(a, (s16)(b + w), (s16)(a + w), (s16)(b + w));
-    func_020a9d9c(a, b, a, (s16)(b + w));
+s16 a=*(s16*)(arg0+0x1a); s16 b=*(s16*)(arg0+0x1c);
+s32 w=(*(s32*)(data_021600e4+0x6c)<<5)/4096;
+func_020be30c(&a,&b); func_020a9e38(&a,&b); w=(s16)w;
+func_020a9d9c(a,b,(s16)(a+w),b);
+{ s16 x=a+w; func_020a9d9c(x,b,(s16)(a+w),(s16)(b+w)); }
+func_020a9d9c(a,(s16)(b+w),(s16)(a+w),(s16)(b+w));
+func_020a9d9c(a,b,a,(s16)(b+w));
 }
-#pragma opt_strength_reduction on
+#pragma opt_propagation on
 void func_020be490(u8 *p,s16 x,s16 y) {
 Unk_020be490 desc=data_02143db8;
 s16 width=30,height=15;
