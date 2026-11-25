@@ -51,7 +51,7 @@ extern void func_02013878(void *, s32, u32);
 extern void func_02132c68(void *, u32, const char *, char *);
 extern void func_021380bc(const char *, ...);
 extern u8 data_0215c6a4[40];
-extern u32 data_021767bc[144];
+extern InitConfig data_021767bc[8][6];
 extern u8 data_0215c6cc[8];
 extern u8 data_0215c6d4[48];
 extern u8 data_0215c704[32];
@@ -234,16 +234,21 @@ void func_0213825c(void *arg0, void *arg1) {
     func_0213808c();
 }
 
-#pragma push
-#pragma opt_propagation off
-void func_02138280(u32 arg0,u32 arg1) {
-    if(arg1>=6){func_02138130(data_0215c704);return;}
-    if(arg0>=8){func_02138130(data_0215c724);return;}
-    *(volatile u32 *)((u8 *)data_021767bc + arg0 * 0x48 + arg1 * 0xc)=0;
-    *(volatile u32 *)((u8 *)data_021767c0 + arg0 * 0x48 + arg1 * 0xc)=0;
-    *(volatile u32 *)((u8 *)data_021767c4 + arg0 * 0x48 + arg1 * 0xc)=0;
+#pragma opt_lifetimes off
+void func_02138280(u32 arg0, u32 arg1) {
+    if (arg1 >= 6) {
+        func_02138130(data_0215c704);
+        return;
+    }
+    if (arg0 >= 8) {
+        func_02138130(data_0215c724);
+        return;
+    }
+    *(volatile u32 *)((u8 *)data_021767bc + arg0 * 0x48 + arg1 * 0xc) = 0;
+    *(volatile u32 *)((u8 *)data_021767c0 + arg0 * 0x48 + arg1 * 0xc) = 0;
+    *(volatile u32 *)((u8 *)data_021767c4 + arg0 * 0x48 + arg1 * 0xc) = 0;
 }
-#pragma pop
+#pragma opt_lifetimes reset
 void func_021382fc(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
     func_0213807c();
     func_02138338(arg0, arg1, arg2, arg3, arg4);
@@ -422,24 +427,26 @@ s32 used=0;
 
 if (*(s32 *)(a+0x58)==1 || *(s32 *)(a+0x5c)==1) {func_02126c20(data_0215c840); return 0;}
 func_021390fc(a);
-*(s32 *)(a+0x5c)=1;
-*(InitParams *)(a+0x80)=*p;
+{
+s32 one = 1;
+const InitParams *src = p;
+*(s32 *)(a+0x5c)=one;
+*(InitParams *)(a+0x80)=*src;
 {
 s32 cfg[3]={0,0,0};
-const long channels=p->v[1];
-if(p->v[7]==1) cfg[1]=p->v[3]; else cfg[1]=1;
-cfg[0]=channels; cfg[2]=p->v[9];
-if(p->v[6]==1){*(s32 *)(a+0x64)=1;*(s32 *)(a+0xa8)=2;}
+if(src->v[7]==1) cfg[1]=src->v[3]; else cfg[1]=one;
+cfg[0]=src->v[1]; cfg[2]=src->v[9];
+if(src->v[6]==1){*(s32 *)(a+0x64)=1;*(s32 *)(a+0xa8)=2;}
 else {*(s32 *)(a+0x64)=0;*(s32 *)(a+0xa8)=1;}
 for(i=0;i<*(s32 *)(a+0xa8);i++){
-if(p->v[7]==0){
+if(src->v[7]==0){
 void *obj; s32 size;
 obj=func_021273a8(buf+used,12);
 *(void **)(a+i*4)=obj;
 if(!obj){func_02126c20(data_0215c870);func_02138a60(a);return 0;}
 used+=12;
-if(p->v[9]) size=0x2900+p->v[4]*((((p->v[0]+1)*((p->v[2]/1000*2500)/16)+2048)/2048)*2048+36);
-else {s32 overhead=p->v[1]*5216; s32 scale=p->v[1]*2500; size=p->v[4]*((((p->v[0]+1)*((p->v[2]/1000*scale)/16)+2048)/2048)*2048+36)+(overhead<<1)+64;}
+if(src->v[9]) size=0x2900+src->v[4]*((((src->v[0]+1)*((src->v[2]/1000*2500)/16)+2048)/2048)*2048+36);
+else {s32 overhead=src->v[1]*5216; s32 scale=src->v[1]*2500; size=src->v[4]*((((src->v[0]+1)*((src->v[2]/1000*scale)/16)+2048)/2048)*2048+36)+(overhead<<1)+64;}
 if(!((s32 (*)(void *,void *,void *,s32))(*(u32 **)obj)[0])(obj,cfg,buf+used,size)){func_02126c20(data_0215c8a8);func_02138a60(a);return 0;}
 *(void **)(a+i*12+0x18)=*(void **)(a+i*4);
 used+=size;
@@ -447,6 +454,7 @@ used+=size;
 *(void **)(a+i*12+0x20)=func_02126c2c(buf+used,68);
 if(!*(void **)(a+i*12+0x20)){func_02126c20(data_0215c8e0);func_02138a60(a);return 0;}
 used+=68;
+}
 }
 }
 i=0; *(s32 *)(a+0x10)=i;
