@@ -12,22 +12,28 @@ void *func_0205817c(u32);
 
 extern u8 *data_021600ac;
 extern u8 *data_02160078;
+extern u8 *data_0216020c;
 extern u8 *data_02160204;
+extern s32 data_02162884[], data_02162814[];
+extern u32 data_0216263c[];
+extern void func_020477dc(void *, s32, s32);
+extern void func_020468e0(u8);
+extern u8 *func_02044f70(void);
 extern void func_0208c788(u8, u8, s32 *, s32 *);
 void func_02057ae4(void) {
-    u32 i;
-    u32 j;
+    u8 i;
+    u16 j;
     u8 *slot;
-    u8 *actor;
     u8 *widget;
-    u8 *bar;
+    register u8 *bar;
     f32 ratio;
+    u8 *actor;
     s32 sp2c;
     s32 sp28;
 
     func_02057a18(999, *(u32 *)(data_02160078 + 0x28), 0);
 
-    for (i = 0; i < 3; i = (u8)(i + 1)) {
+    for (i = 0; i < 3; i++) {
         slot = func_020bd438(i);
         if (slot != NULL && (*(u16 *)slot & 1)) {
             s32 base;
@@ -39,95 +45,93 @@ void func_02057ae4(void) {
         }
     }
 
-    for (i = 0; i < 3; i = (u8)(i + 1)) {
+    for (i = 0; i < 3; i++) {
         slot = func_020bd438(i);
-        if (slot == NULL || !(*(u16 *)slot & 1)) {
-            continue;
-        }
-        for (j = 0; j < 23; j = (u16)(j + 1)) {
-            actor = func_02021f10(slot[2]);
-            widget = func_0205817c((u16)(j + i * 23));
-            if (widget == NULL || actor == NULL) {
-                continue;
-            }
-            switch (j) {
-                case 7:
-                    bar = func_020f4d40(i + 1);
-                    if (*(u16 *)(actor + 0x10) == 0) {
-                        *(s32 *)(widget + 0x20) = 0;
-                    } else {
-                        ratio = (f32)*(u16 *)(actor + 0x10) / (f32)(*(u16 *)(actor + 0x12) + *(s16 *)(actor + 0x24));
-                        *(s32 *)(bar + 0x20) = (s32)(4096.0f * ratio);
-                        *(s32 *)(widget + 0x8) = (s32)((f32)(i * 81 + 52) - (32.0f - 32.0f * ratio) / 2.0f);
-                        *(s32 *)(bar + 0x28) = 1;
-                        *(s32 *)(widget + 0x20) = 1;
+        if (slot != NULL && (*(u16 *)slot & 1)) {
+            for (j = 0; j < 23; j++) {
+                actor = func_02021f10(slot[2]);
+                widget = func_0205817c((u16)(j + i * 23));
+                if (widget != NULL && actor != NULL) {
+                    switch (j) {
+                        case 7:
+                            bar = func_020f4d40(i + 1);
+                            if (*(u16 *)(actor + 0x10) != 0) {
+                                ratio = (f32)*(u16 *)(actor + 0x10) / (f32)(*(u16 *)(actor + 0x12) + *(s16 *)(actor + 0x24));
+                                *(s32 *)(bar + 0x20) = (s32)(4096.0f * ratio);
+                                *(s32 *)(widget + 0x8) = (s32)((f32)(i * 81 + 52) - (32.0f - 32.0f * ratio) / 2.0f);
+                                *(s32 *)(bar + 0x28) = 1;
+                                *(s32 *)(widget + 0x20) = 1;
+                            } else {
+                                *(s32 *)(widget + 0x20) = 0;
+                            }
+                            break;
+                        case 8:
+                            bar = func_020f4d40(i + 4);
+                            if (*(u16 *)(actor + 0x14) != 0) {
+                                ratio = (f32)*(u16 *)(actor + 0x14) / (f32)(*(u16 *)(actor + 0x16) + *(s16 *)(actor + 0x26));
+                                *(s32 *)(bar + 0x20) = (s32)(4096.0f * ratio);
+                                *(s32 *)(widget + 0x8) = (s32)((f32)(i * 81 + 52) - (32.0f - 32.0f * ratio) / 2.0f);
+                                *(s32 *)(bar + 0x28) = 1;
+                                *(s32 *)(widget + 0x20) = 1;
+                            } else {
+                                *(s32 *)(widget + 0x20) = 0;
+                            }
+                            break;
+                        case 20:
+                            bar = func_020f4d40(i + 7);
+                            sp2c = 0;
+                            sp28 = 0;
+                            func_0208c788(*(u8 *)(actor + 0x42), *(u8 *)(actor + 0x43), &sp2c, &sp28);
+                            if (*(u32 *)(actor + 0x4) != 0) {
+                                ratio = (f32)(*(u32 *)(actor + 0x4) - sp28) / (f32)sp2c;
+                                if (*(u8 *)(actor + 0x43) == 99) {
+                                    ratio = 1.0f;
+                                }
+                                if (0.0f == ratio) {
+                                    *(s32 *)(widget + 0x20) = 0;
+                                } else {
+                                    *(s32 *)(bar + 0x20) = (s32)(4096.0f * ratio);
+                                    *(s32 *)(widget + 0x8) = (s32)((f32)(i * 81 + 29) - (64.0f - 64.0f * ratio) / 2.0f);
+                                    *(s32 *)(widget + 0x20) = 1;
+                                }
+                            } else {
+                                *(s32 *)(widget + 0x20) = 0;
+                            }
+                            *(s32 *)(bar + 0x28) = 1;
+                            break;
+                        case 21:
+                        case 22:
+                            break;
                     }
-                    break;
-                case 8:
-                    bar = func_020f4d40(i + 4);
-                    if (*(u16 *)(actor + 0x14) == 0) {
-                        *(s32 *)(widget + 0x20) = 0;
-                    } else {
-                        ratio = (f32)*(u16 *)(actor + 0x14) / (f32)(*(u16 *)(actor + 0x16) + *(s16 *)(actor + 0x26));
-                        *(s32 *)(bar + 0x20) = (s32)(4096.0f * ratio);
-                        *(s32 *)(widget + 0x8) = (s32)((f32)(i * 81 + 52) - (32.0f - 32.0f * ratio) / 2.0f);
-                        *(s32 *)(bar + 0x28) = 1;
-                        *(s32 *)(widget + 0x20) = 1;
-                    }
-                    break;
-                case 20:
-                    bar = func_020f4d40(i + 7);
-                    sp2c = 0;
-                    sp28 = 0;
-                    func_0208c788(*(u8 *)(actor + 0x42), *(u8 *)(actor + 0x43), &sp2c, &sp28);
-                    if (*(u32 *)(actor + 0x4) != 0) {
-                        ratio = (f32)(*(u32 *)(actor + 0x4) - sp28) / (f32)sp2c;
-                        if (*(u8 *)(actor + 0x43) == 99) {
-                            ratio = 1.0f;
-                        }
-                        if (0.0f == ratio) {
-                            *(s32 *)(widget + 0x20) = 0;
+                    if (j >= 9 && j <= 19) {
+                        if (*(u8 *)(data_02160204 + 0x11c) != 0) {
+                            u16 val = *(u16 *)(actor + 0x34);
+                            if (val == 100) {
+                                *(s32 *)(widget + 0x20) = 1;
+                            } else if ((s32)(j - 9) < (val % 100) / 9) {
+                                *(s32 *)(widget + 0x20) = 1;
+                            } else {
+                                *(s32 *)(widget + 0x20) = 0;
+                            }
                         } else {
-                            *(s32 *)(bar + 0x20) = (s32)(4096.0f * ratio);
-                            *(s32 *)(widget + 0x8) = (s32)((f32)(i * 81 + 29) - (64.0f - 64.0f * ratio) / 2.0f);
+                            *(s32 *)(widget + 0x20) = 0;
+                        }
+                    }
+                    if (*(u8 *)(data_02160204 + 0x11c) == 0) {
+                        if (j == 21) {
+                            *(s32 *)(widget + 0x20) = 1;
+                        }
+                        if (j == 22) {
                             *(s32 *)(widget + 0x20) = 1;
                         }
                     } else {
-                        *(s32 *)(widget + 0x20) = 0;
+                        if (j == 21) {
+                            *(s32 *)(widget + 0x20) = 0;
+                        }
+                        if (j == 22) {
+                            *(s32 *)(widget + 0x20) = 0;
+                        }
                     }
-                    *(s32 *)(bar + 0x28) = 1;
-                    break;
-                case 21:
-                case 22:
-                    break;
-            }
-            if (j >= 9 && j <= 19) {
-                if (*(u8 *)(data_02160204 + 0x11c) != 0) {
-                    u16 val = *(u16 *)(actor + 0x34);
-                    if (val == 100) {
-                        *(s32 *)(widget + 0x20) = 1;
-                    } else if ((s32)(j - 9) < (val % 100) / 9) {
-                        *(s32 *)(widget + 0x20) = 1;
-                    } else {
-                        *(s32 *)(widget + 0x20) = 0;
-                    }
-                } else {
-                    *(s32 *)(widget + 0x20) = 0;
-                }
-            }
-            if (*(u8 *)(data_02160204 + 0x11c) == 0) {
-                if (j == 21) {
-                    *(s32 *)(widget + 0x20) = 1;
-                }
-                if (j == 22) {
-                    *(s32 *)(widget + 0x20) = 1;
-                }
-            } else {
-                if (j == 21) {
-                    *(s32 *)(widget + 0x20) = 0;
-                }
-                if (j == 22) {
-                    *(s32 *)(widget + 0x20) = 0;
                 }
             }
         }
