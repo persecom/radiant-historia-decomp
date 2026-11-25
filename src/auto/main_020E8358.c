@@ -22,7 +22,7 @@ typedef struct {
 
 extern Entry516c4 data_021516c4[];
 
-s32 func_020e8358(u8 *arg0, s32 unused) {
+s32 func_020e8358(u8 *arg0) {
 u8 *p=data_02160a74;
 u16 flags=*(volatile u16*)(p+0x1b8);
 s16 shift=*(volatile s16*)(p+0xb2);
@@ -225,7 +225,7 @@ void func_020e86c0(u16 state) {
                     *(s16 *)(p + 0xce) = *(s16 *)(e + 8);
                     *(s16 *)(e + 4) = 1;
                     *(s16 *)(p + 0xbc) = *(s16 *)(e + 4);
-                    if (func_020e8358(c, *(s16 *)(e + 4)) == 0) {
+                    if (func_020e8358(c) == 0) {
                         *(s16 *)(e + 6) = 0;
                         *(s16 *)(e + 8) = 0;
                     }
@@ -239,7 +239,7 @@ void func_020e86c0(u16 state) {
                     *(s16 *)(p + 0xce) = *(s16 *)(e + 8);
                     *(s16 *)(e + 4) = 6;
                     *(s16 *)(p + 0xbc) = 6;
-                    if (func_020e8358(c, *(s16 *)(e + 4)) == 0) {
+                    if (func_020e8358(c) == 0) {
                         *(s16 *)(e + 6) = 0;
                         *(s16 *)(e + 8) = 0;
                     }
