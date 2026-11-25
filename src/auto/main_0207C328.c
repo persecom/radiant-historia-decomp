@@ -284,16 +284,12 @@ void func_0207cc20(u32 arg0) {
 }
 
 void func_0207cc6c(u32 arg0) {
-    u8 *base = (u8 *)data_021600f0;
-    u8 *p = *(u8 **)(base + 4);
-    u8 *node = *(u8 **)(p + 4);
-    while (node != NULL) {
-        if (node == (u8 *)arg0) {
-            func_021168f8(p + 4, node);
-            return;
-        }
-        node = *(u8 **)(node + 0x3c);
-    }
+u8 *p=*(u8 **)((u8 *)data_021600f0+4);
+u8 *node=*(u8 **)(p+4);
+while(node!=NULL) {
+if((u8 *)arg0==node) {func_021168f8(p+4,(void *)arg0);return;}
+node=*(u8 **)(node+0x3c);
+}
 }
 
 void func_0207ccb4(s32 arg0) {
