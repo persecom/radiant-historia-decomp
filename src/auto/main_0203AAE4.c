@@ -2,6 +2,12 @@
 #include "common.h"
 
 typedef struct { s32 x, y, z; } Vec3;
+/* shared epilogue template:
+if (ret != 0) {
+func_020331b0(r8, ret);
+return ret;
+}
+*/
 
 extern u8 *data_02160a74;
 extern u8 **data_02160244;
