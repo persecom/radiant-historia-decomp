@@ -1,5 +1,8 @@
 /* 25 functions from 0x020A28E0 to 0x020A3814 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct {u32 words[156];} Table_020a3244;
+extern const Table_020a3244 data_021430e0;
+extern u8 data_0214e304[],data_0214f1f0[],data_0214fd14[],data_0214fcf8[],data_0214fcdc[],data_0214fcc0[],data_0214fca4[],data_0214fd30[],data_0214fd4c[],data_0214fd68[],data_0214fd84[],data_02149d64[],data_02149e18[],data_0214d508[],data_02149da0[],data_02149dc8[],data_0214eb24[],data_0214d738[],data_0214dff8[],data_0214da1c[],data_0214e624[],data_0214dd00[],data_0214d3e0[],data_0214d430[],data_0214d490[],data_02149df0[],data_02149d78[],data_0214fda0[],data_0214fdb8[],data_0214fdd0[],data_0214fde8[],data_0214fe00[];
 extern u8 data_02148b08[], data_02148b1c[], data_02148b28[], data_02148b34[];
 extern void *func_02092a40(void *, int);
 extern u32 *func_02107390(void);
