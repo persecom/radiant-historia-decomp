@@ -350,6 +350,85 @@ void func_02026608(u8 *arg0) {
     *(u32 *)(arg0 + 8) |= 0x40;
 }
 
+extern void *func_021092d8(char *);
+extern s32 func_02092ab0(void *,u16);
+extern void *func_020929f4(void *,s32);
+extern s32 func_02092a28(void *,const char *);
+extern void func_021093f0(void *);
+extern s32 func_02092994(void *,s32);
+extern void func_02109444(void *);
+void *func_0202662c(u32 id,u32 number) {
+char path[48];
+s32 zero=0;
+u8 *list,*entry;
+void *parser;
+void *word;
+u16 i,count;
+if(!number) goto fail;
+if(id<=99) func_02005e80(path,data_0214600c,id,number);
+else func_02005e80(path,data_0214602c,id);
+parser=func_021092d8(path);
+list=func_0210c594(16,data_02155c3c);
+count=0;
+*(u16 *)(list+12)=count;*(u16 *)(list+14)=count;
+func_021167ac(list,28);
+for(i=0;i<256;i++) {
+if(func_02092ab0(parser,(u16)number)!=-1) {
+word=func_020929f4(parser,zero);
+if(word && func_02092a28(word,data_02146050)) break;
+entry=func_0210c594(36,data_02155c3c);
+if(word) {if(func_02092a28(word,data_02146054)) *(u16 *)entry=1;
+else if(func_02092a28(word,data_02146058)) *(u16 *)entry=2;
+else if(func_02092a28(word,data_0214605c)) *(u16 *)entry=30;
+else if(func_02092a28(word,data_02146060)) *(u16 *)entry=3;
+else if(func_02092a28(word,data_02146064)) *(u16 *)entry=4;
+else if(func_02092a28(word,data_02146068)) *(u16 *)entry=5;
+else if(func_02092a28(word,data_0214606c)) *(u16 *)entry=6;
+else if(func_02092a28(word,data_02146070)) *(u16 *)entry=7;
+else if(func_02092a28(word,data_02146074)) *(u16 *)entry=8;
+else if(func_02092a28(word,data_0214607c)) *(u16 *)entry=9;
+else if(func_02092a28(word,data_02146080)) *(u16 *)entry=10;
+else if(func_02092a28(word,data_02146084)) *(u16 *)entry=11;
+else if(func_02092a28(word,data_02146088)) *(u16 *)entry=12;
+else if(func_02092a28(word,data_0214608c)) *(u16 *)entry=13;
+else if(func_02092a28(word,data_02146090)) *(u16 *)entry=14;
+else if(func_02092a28(word,data_02146098)) *(u16 *)entry=18;
+else if(func_02092a28(word,data_0214609c)) *(u16 *)entry=19;
+else if(func_02092a28(word,data_021460a0)) *(u16 *)entry=20;
+else if(func_02092a28(word,data_021460a4)) *(u16 *)entry=21;
+else if(func_02092a28(word,data_021460a8)) *(u16 *)entry=22;
+else if(func_02092a28(word,data_021460ac)) *(u16 *)entry=24;
+else if(func_02092a28(word,data_021460b0)) *(u16 *)entry=25;
+else if(func_02092a28(word,data_021460b8)) *(u16 *)entry=15;
+else if(func_02092a28(word,data_021460bc)) *(u16 *)entry=16;
+else if(func_02092a28(word,data_021460c0)) *(u16 *)entry=17;
+else if(func_02092a28(word,data_021460c4)) *(u16 *)entry=23;
+else if(func_02092a28(word,data_021460cc)) *(u16 *)entry=26;
+else if(func_02092a28(word,data_021460d0)) *(u16 *)entry=28;
+else if(func_02092a28(word,data_021460d4)) *(u16 *)entry=29;
+else if(func_02092a28(word,data_021460d8)) *(u16 *)entry=32;
+else if(func_02092a28(word,data_021460dc)) *(u16 *)entry=33;
+else if(func_02092a28(word,data_021460e0)) *(u16 *)entry=34;
+else if(func_02092a28(word,data_021460e4)) *(u16 *)entry=35;else *(u16 *)entry=zero;}
+else *(u16 *)entry=zero;
+func_021093f0(parser);
+*(s32 *)(entry+4)=func_02092994(parser,zero);
+*(s32 *)(entry+8)=func_02092994(parser,zero);
+*(s32 *)(entry+12)=func_02092994(parser,zero);
+*(s32 *)(entry+16)=func_02092994(parser,zero);
+*(s32 *)(entry+20)=func_02092994(parser,zero);
+*(u16 *)(entry+24)=func_02092994(parser,zero);
+func_021167f0(list,entry);
+count++;
+}
+func_02109444(parser);
+}
+*(u16 *)(list+14)=count;
+if(parser) func_021093b0(parser);
+return list;
+fail: return (void *)zero;
+}
+
 void func_02026c00(void **arg0) {
     void *ptr;
     void *next;
