@@ -167,6 +167,7 @@ out[4]=(ss*func_02001ff4())>>12;
 }
 
 void func_021235c0(s32 *arg0, u8 *arg1) {
+s32 s1, s2, w2, f24, h2, f28, sum, diff, neg;
 s32 w=*(u16*)(arg1+0x2c)<<12;
 s32 h=*(u16*)(arg1+0x2e)<<12;
 s32 val;
@@ -174,37 +175,27 @@ func_02002058(h,w);
 val=*(s16*)(arg1+0x22); arg0[0]=val; arg0[5]=val;
 arg0[1]=(-*(s16*)(arg1+0x20)*func_02001ff4())>>12;
 func_02002058(w,h);
-{
-s32 s1=*(s16*)(arg1+0x20), s2=*(s16*)(arg1+0x22);
-s32 w2=*(u16*)(arg1+0x2c), f24=*(s32*)(arg1+0x24);
-s32 h2=*(u16*)(arg1+0x2e), f28=*(s32*)(arg1+0x28);
-s32 sum=s1+s2, diff=s1-s2;
-s32 neg=(s32)(0U-(u32)sum);
+s1=*(s16*)(arg1+0x20); s2=*(s16*)(arg1+0x22);
+w2=*(u16*)(arg1+0x2c); f24=*(s32*)(arg1+0x24);
+sum=s1+s2; diff=s1-s2; neg=(s32)(0U-(u32)sum);
+h2=*(u16*)(arg1+0x2e); f28=*(s32*)(arg1+0x28);
 w=((w2*(neg+0x1000))<<3)-((f24*w2)<<4);
 s2=h2*(diff+0x1000U);
 h=(s2<<3)+((f28*h2)<<4); arg0[12]=w; arg0[13]=h;
-}
 arg0[4]=(*(s16*)(arg1+0x20)*func_02001ff4())>>12;
 }
 
-void func_02123684(s32 *arg0, u8 *arg1) {
-    s32 scaleS = *(s32 *)(arg1 + 0x18);
-    s32 scaleT = *(s32 *)(arg1 + 0x1c);
-    s32 transS = *(s32 *)(arg1 + 0x24);
-    s32 transT = *(s32 *)(arg1 + 0x28);
-    u16 origW = *(u16 *)(arg1 + 0x2c);
-    u16 origH = *(u16 *)(arg1 + 0x2e);
-    s32 ts = (s32)(((s64)scaleS * transS) >> 8);
-    s32 tt = (s32)(((s64)scaleT * transT) >> 8);
-    u32 v = (u32)-(scaleT << 1);
-    arg0[0] = scaleS;
-    arg0[5] = scaleT;
-    arg0[1] = 0;
-    arg0[12] = origW * -ts;
-    arg0[13] = origH * tt + ((origH * (v + 0x2000U)) << 3);
-    arg0[4] = 0;
+#pragma opt_propagation off
+void func_02123684(s32 *__restrict arg0, u8 *__restrict arg1) {
+s32 scaleS=*(s32 *)(arg1+0x18), scaleT=*(s32 *)(arg1+0x1c);
+s32 ts=(s32)(((s64)scaleS * *(s32 *)(arg1+0x24))>>8);
+s32 tt=(s32)(((s64)scaleT * *(s32 *)(arg1+0x28))>>8);
+arg0[0]=scaleS; arg0[5]=scaleT; arg0[1]=0;
+arg0[12]=*(u16 *)(arg1+0x2c)*-ts;
+arg0[13]=*(u16 *)(arg1+0x2e)*tt+((*(u16 *)(arg1+0x2e)*(-(scaleT<<1)+0x2000U))<<3);
+arg0[4]=0;
 }
-
+#pragma opt_propagation on
 void func_021236f8(s32 *__restrict arg0, u8 *__restrict arg1) {
 arg0[0]=0x1000; arg0[5]=0x1000; arg0[1]=0;
 arg0[12]=(-(*(s32 *)(arg1+0x24) * *(u16 *)(arg1+0x2c)))<<4;
@@ -212,38 +203,31 @@ arg0[13]=(*(s32 *)(arg1+0x28) * *(u16 *)(arg1+0x2e))<<4;
 arg0[4]=0;
 }
 
-void func_02123744(s32 *out, u8 *p)
-{
-  s32 w = (*((u16 *) (p + 0x2c))) << 12;
-  s32 h = (*((u16 *) (p + 0x2e))) << 12;
-  s32 s;
-  s32 c;
-  s32 new_var[2];
-  s32 sy;
-  s32 xs;
-  s32 xc;
-  s32 ys;
-  volatile unsigned short new_var2;
-  func_02002058(h, w);
-  s = *((s16 *) (p + 0x20));
-  new_var[0] = *((s32 *) (p + 0x18));
-  c = *((s16 *) (p + 0x22));
-  sy = *((s32 *) (p + 0x1c));
-  xs = (((s64) new_var[0]) * s) >> 12;
-  xc = (((s64) new_var[0]) * c) >> 12;
-  new_var2 = *((u16 *) (p + 0x2e));
-  ys = (((s64) sy) * s) >> 12;
-  new_var[1] = (((s64) sy) * c) >> 12;
-  out[0] = xc;
-  out[5] = new_var[1];
-  out[1] = ((-ys) * func_02001ff4()) >> 12;
-  func_02002058(w, h);
-  {
-    u16 w2 = *((u16 *) (p + 0x2c));
-    out[12] = (w2 * ((*((s32 *) (p + 0x18))) - (xs + xc))) << 3;
-    out[13] = (new_var2 * (((ys - new_var[1]) - (*((s32 *) (p + 0x1c)))) + 0x2000)) << 3;
-  }
-  out[4] = (xs * func_02001ff4()) >> 12;
+void func_02123744(s32 *__restrict out, u8 *p) {
+    s32 w = *(u16 *)(p + 0x2c) << 12;
+    s32 h = *(u16 *)(p + 0x2e) << 12;
+    s32 s, c, sx, sy, xs, xc, ys, cy;
+
+    func_02002058(h, w);
+    s = *(s16 *)(p + 0x20);
+    sx = *(s32 *)(p + 0x18);
+    c = *(s16 *)(p + 0x22);
+    sy = *(s32 *)(p + 0x1c);
+    xs = ((s64)sx * s) >> 12;
+    xc = ((s64)sx * c) >> 12;
+    ys = ((s64)sy * s) >> 12;
+    cy = ((s64)sy * c) >> 12;
+    out[0] = xc;
+    out[5] = cy;
+    out[1] = (-ys * func_02001ff4()) >> 12;
+    func_02002058(w, h);
+    {
+        s32 a = ys - cy;
+        s32 b = xs + xc;
+        out[12] = (*(u16 *)(p + 0x2c) * (*(s32 *)(p + 0x18) - b)) << 3;
+        out[13] = (*(u16 *)(p + 0x2e) * ((a - *(s32 *)(p + 0x1c)) + 0x2000)) << 3;
+    }
+    out[4] = (xs * func_02001ff4()) >> 12;
 }
 
 void func_02123824(s32 *arg0, u8 *arg1)
@@ -273,7 +257,7 @@ void func_02123824(s32 *arg0, u8 *arg1)
 }
 
 void func_021238d0(s32 *arg0, u8 *arg1) {
- s32 t=*(s32 *)(arg1+0x1c); u32 h=*(u16 *)(arg1+0x2e); s32 v= -(t<<1); s32 s=*(s32 *)(arg1+0x18);
+ s32 t=*(s32 *)(arg1+0x1c); s32 h=*(u16 *)(arg1+0x2e); s32 v= (s32)(-(t<<1)); s32 s=*(s32 *)(arg1+0x18);
  arg0[5]=t; arg0[0]=s; arg0[1]=0; arg0[12]=0; arg0[13]=(h*(v+0x2000U))<<3; arg0[4]=0;
 }
 
@@ -557,10 +541,10 @@ void func_02124058(s32 *arg0, u8 *arg1)
   {
     u16 h2 = *((u16 *) (arg1 + 0x2e));
     unsigned int w2 = *((u16 *) (arg1 + 0x2c));
-    s32 y = ((*((s32 *) (arg1 + 0x28))) * h2) + (((-h2) << 11));
+    s16 c = *((s16 *) (arg1 + 0x22));
+    s32 y = ((-h2) << 11) + ((*((s32 *) (arg1 + 0x28))) * h2);
     s16 s = *((s16 *) (arg1 + 0x20));
     s32 x = ((-w2) << 11) - ((*((s32 *) (arg1 + 0x24))) * w2);
-    s16 c = *((s16 *) (arg1 + 0x22));
     s64 a = x * ((s64) c);
     s64 b = (((s64) s) * x) + (((s64) c) * y);
     a -= y * ((s64) s);
@@ -572,20 +556,14 @@ void func_02124058(s32 *arg0, u8 *arg1)
 
 extern void func_02002058(s32, s32);
 extern s32 func_02001ff4(void);
-#pragma optimization_level 2
-void func_02124130(s32 *arg0, u8 *arg1) {
-    s32 h = *(u16 *)(arg1 + 0x2e);
-    s32 w = *(u16 *)(arg1 + 0x2c);
-    s32 y = *(s32 *)(arg1 + 0x28);
-    s32 x = *(s32 *)(arg1 + 0x24);
-    s32 a = *(s32 *)(arg1 + 0x18);
-    s32 b = *(s32 *)(arg1 + 0x1c);
-
-    arg0[0] = a;
-    arg0[5] = b;
-    arg0[1] = 0;
-    arg0[12] = (s32)(((s64)a * (((-w) << 11) - (x * w))) >> 8) + (w << 15);
-    arg0[13] = (s32)(((s64)b * ((y * h) + ((-h) << 11))) >> 8) + (h << 15);
-    arg0[4] = 0;
+#pragma opt_propagation off
+void func_02124130(s32 *__restrict arg0,u8 *__restrict arg1){
+u32 h=*(u16 *)(arg1+0x2e),w=*(u16 *)(arg1+0x2c);
+s32 y=*(s32 *)(arg1+0x28),x=*(s32 *)(arg1+0x24);
+s32 a=*(s32 *)(arg1+0x18),b=*(s32 *)(arg1+0x1c);
+arg0[0]=a;arg0[5]=b;arg0[1]=0;
+s32 t=(s32)(((s64)b*(s32)((y*h)+((-h)<<11)))>>8)+(h<<15);
+s32 s=(s32)(((s64)a*(s32)(((-w)<<11)-(x*w)))>>8)+(w<<15);
+arg0[12]=s;arg0[13]=t;arg0[4]=0;
 }
-#pragma optimization_level 4
+#pragma opt_propagation on
