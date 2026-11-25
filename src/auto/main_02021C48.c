@@ -29,7 +29,10 @@ extern void func_02021e78(void);
 extern void func_020bddb0(void *);
 extern void func_0210e620(s32);
 void func_02021c7c(void) {
-    s32 i, j;
+    u8 *p;
+    s32 i;
+    s32 j;
+    s32 k;
 
     func_02008e68(0, (void *)data_02160078, 0x1698);
     *(u8 *)(data_02160078 + 0x10) &= ~7;
@@ -37,7 +40,7 @@ void func_02021c7c(void) {
     *(u8 *)(data_02160078 + 0x10) = (*(u8 *)(data_02160078 + 0x10) & ~0x38) | 0x10;
 
     for (i = 0; i < 8; i++) {
-        u8 *p = func_02021f10(i);
+        p = func_02021f10(i);
         func_020bbd2c();
         for (j = 0; j < 0x1e; j++) {
             p[0x4e + j] = 0;
@@ -62,12 +65,12 @@ void func_02021c7c(void) {
     func_020bd574();
     func_02021e78();
     func_020bddb0((u8 *)data_02160078 + 0x14ec);
-    for (i = 0; i < 0x2e; i++) {
-        *(u32 *)(data_02160078 + 0x14f4 + i * 4) = 0;
+    for (k = 0; k < 0x2e; k++) {
+        *(u32 *)(data_02160078 + 0x14f4 + k * 4) = 0;
     }
     *(u32 *)(data_02160078 + 0x28) = 0;
     func_0210e620(0);
-    *(u8 *)(data_02160078 + 0x34) = 0xff;
+    *(s8 *)(data_02160078 + 0x34) = -1;
     *(u8 *)(data_02160078 + 0x35) = 0;
     *(u32 *)(data_02160078 + 0x00) = 0x6d63;
     *(u32 *)(data_02160078 + 0x04) = 0;
