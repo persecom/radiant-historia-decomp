@@ -21,10 +21,9 @@ extern void func_021205ec(s32, void *, s32);
 static inline u32 texcoord_0211fda4(s16 s,s16 t) {
 return (u16)s|((u32)(u16)t<<16);
 }
+static inline s16 texfixed_021200f4(s32 v) { return (v << 8) >> 16; }
 static inline u32 texcoord_021200f4(s32 s,s32 t) {
-s = (s << 8) >> 16;
-t = (t << 8) >> 16;
-return (u16)s | ((u32)(u16)t << 16);
+return texcoord_0211fda4(texfixed_021200f4(s),texfixed_021200f4(t));
 }
 static inline u8 *dict_entry_0211fda4(u8 *dict,u32 index) {
 if(dict && index<dict[1]){
