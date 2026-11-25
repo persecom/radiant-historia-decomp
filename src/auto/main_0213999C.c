@@ -58,13 +58,15 @@ void func_0213999c(u8 *arg0, u8 *arg1) {
     void *p = *(void **)(arg1 + 8);
     if (*(s32 *)(arg0 + 0x9c) == 1) {
         for (i = 0; i < *(s32 *)(arg0 + 0x8c); i++) {
-            u32 v = func_02126c90(p);
-            s32 extra = v + (*(s32 **)(arg0 + 0xc8))[i] + *(s32 *)(arg0 + 0xcc);
-            (*(void (**)(void *, s32, u32))(*(u8 **)arg1 + 0x38))(*(void **)arg1, i, extra);
+            s32 extra = *(s32 *)(arg0 + 0xcc) + ((*(s32 **)(arg0 + 0xc8))[i] + (s32)func_02126c90(p));
+            void *obj = *(void **)arg1;
+            (*(void (**)(void *, s32, s32))(*(u8 **)obj + 0x38))(obj, i, extra);
         }
     } else {
-        u32 v = func_02126c90(p);
-        (*(void (**)(void *, s32))(*(u8 **)arg1 + 0x30))(*(void **)arg1, *(s32 *)(arg0 + 0xcc) + v);
+        s32 v = func_02126c90(p);
+        void *obj = *(void **)arg1;
+        (*(void (**)(void *, s32))(*(u8 **)obj + 0x30))(
+            obj, *(s32 *)(arg0 + 0xcc) + v);
     }
 }
 
