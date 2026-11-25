@@ -250,15 +250,14 @@ void func_020bdbe8(s32 arg0, volatile s32 x, s32 unused, volatile s32 arg3, ...)
 }
 
 s32 func_020bdcc0(s32 arg0) {
-    u8 *table = data_02160200;
-    u16 v = *(u16 *)(table + arg0 * 2 + 0x17c);
-    if (v == 0 || *(void **)(table + arg0 * 4 + 0x184) == NULL) {
+    u16 v = *(u16 *)(data_02160200 + arg0 * 2 + 0x17c);
+    if (v == 0 || *(void **)(data_02160200 + arg0 * 4 + 0x184) == NULL) {
         return 0;
     }
     *(u16 *)(data_02160204 + 0x72) = v;
-    *(u16 *)(data_02160204 + 0x74) = *(u16 *)(table + arg0 * 4 + 0x170);
-    *(u16 *)(data_02160204 + 0x76) = *(u16 *)(table + arg0 * 4 + 0x172);
-    table[0x16c] = table[arg0 + 1 + 0x16c];
+    *(BDPair *)(data_02160204 + 0x74) = *(BDPair *)(data_02160200 + arg0 * 4 + 0x170);
+    s32 next = arg0 + 1;
+    data_02160200[0x16c] = *(u8 *)(data_02160200 + next + 0x16c);
     return 1;
 }
 
