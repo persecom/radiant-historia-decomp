@@ -23,6 +23,7 @@ extern void **data_021601ec;
 extern void *func_020c8b10(void);
 extern void func_020c7894();
 extern u16 data_02143954[];
+typedef struct { s16 values[6]; } Unk_020ba6d0_Values;
 extern void func_020c52c0(void);
 extern u8 data_021601f0;
 extern u32 data_02162868;
@@ -60,27 +61,26 @@ void func_020ba63c(u32 arg0) {
 
 void func_020ba6d0(u32 arg0) {
     u16 vals[6];
-    void *root = *data_021601ec;
+    void *root = (void *)data_021601ec;
     void *obj, *obj2;
-    s16 v;
+    s16 *v = (s16 *)vals;
     vals[0] = data_02143954[0];
     vals[1] = data_02143954[1];
     vals[2] = data_02143954[2];
     vals[3] = data_02143954[3];
     vals[4] = data_02143954[4];
-    vals[5] = data_02143954[5];
+    v[5] = data_02143954[5];
     obj = func_020c9c10(*(void **)((u8 *)root + 0x4c), 0xe);
     obj2 = func_020c8b10();
     *(u16 *)((u8 *)obj2 + 0x32) = 0;
     *(u16 *)((u8 *)obj2 + 0x34) = arg0 * 13;
-    v = ((s16 *)vals)[arg0];
-    *(u16 *)((u8 *)obj + 0x3e) = v + 0xc;
+    *(u16 *)((u8 *)obj + 0x3e) = v[arg0] + 0xc;
     *(u16 *)((u8 *)obj + 0x32) = 0;
     *(u16 *)((u8 *)obj + 0x34) = 0;
     *(u16 *)((u8 *)obj + 0x36) = 0x20;
     *(u16 *)((u8 *)obj + 0x38) = 0x11;
     *(u16 *)((u8 *)obj + 0x40) = 0x11;
-    func_020c7894(obj);
+    func_020c7894(obj,1);
 }
 
 s32 func_020ba78c(u8 *arg0) {
