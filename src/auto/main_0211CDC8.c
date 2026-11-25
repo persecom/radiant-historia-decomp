@@ -190,7 +190,7 @@ if(arg1) found=func_02120c74((u8 *)arg1+0x3c,name);
 else found=(void *)zero;
 if(found){
 u8 *entry;
-if(dict && i<dict[1]) { u32 stride; u32 offset=*(u16 *)(dict+6); stride=*(u16 *)(dict+offset); entry=dict+offset; entry+=4; entry+=stride*i; }
+if(dict && i<dict[1]) { entry=dict+*(u16 *)(dict+6); entry = *(u16 *)entry * i + (entry + 4); }
 else entry=(u8 *)zero;
 if(!(entry[3]&1)) func_0211cf5c(p,entry,arg1,found);
 } else result=zero;
