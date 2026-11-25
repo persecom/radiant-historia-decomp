@@ -11,6 +11,13 @@ extern void func_021206c8(s32, void *);
 
 extern u8 data_02173164[12];
 extern void func_02120500(void);
+extern u8 data_02171864[];
+extern u8 data_021718a4[];
+extern void func_02008e68(u32, u32 *, u32, u32);
+extern void func_02002bf4(void *);
+extern void func_02002c10(void *);
+extern void func_02002bd8(u32 *);
+extern s32 func_02002f6c(void *);
 
 typedef struct {
     s32 m0;
@@ -238,7 +245,7 @@ while(func_02002f3c(clip)!=0){}
 *(volatile u32 *)0x4000448=1;
 *(volatile u32 *)0x4000440=3;
 func_021205ec(0x16,clip,16);
-{s32 x=clip[12]>>4, y=clip[13]>>4; u32 packed=texcoord_021200f4(x,y);func_021205ec(0x22,&packed,1);}
+{u32 packed=texcoord_021200f4(clip[12]>>4,clip[13]>>4);func_021205ec(0x22,&packed,1);}
 }
 {u32 command=2;func_021205ec(0x10,&command,1);}
 {u32 command=30;func_021205ec(0x14,&command,1);}
