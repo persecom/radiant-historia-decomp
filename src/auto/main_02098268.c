@@ -106,24 +106,13 @@ break;
 
 void func_02098694(u32 arg0) {
     u8 *out = (u8 *)data_0216011c;
-    u16 buf[16];
-    u16 *src = (u16 *)data_0214200c;
-    u16 *dst = buf;
-    u32 n = 8;
-    u32 idx;
-    s16 v0, v1;
-    do {
-        dst[1] = src[1];
-        dst[0] = src[0];
-        src += 2;
-        dst += 2;
-    } while (--n != 0);
+    struct Table32 { s16 v[16]; } buf = *(const struct Table32 *)data_0214200c;
     if (arg0 == 4 || arg0 == 6) {
         return;
     }
-    idx = (arg0 << 17) >> 16;
-    v0 = ((s16 *)buf)[idx];
-    v1 = ((s16 *)buf)[idx + 1];
+    u16 idx = arg0 * 2;
+    s16 v0 = buf.v[idx];
+    s16 v1 = buf.v[idx + 1];
     *(s16 *)(out + 0x3a) = v0;
     *(s16 *)(out + 0x3c) = v1;
 }
