@@ -329,41 +329,19 @@ void func_020ce664(s32 arg0, s16 arg1, s16 arg2, s16 arg3, u8 arg4) {
     func_020a98f4(data_02160238 + 0x164 + 0x400 + idx);
 }
 
-volatile unsigned int func_020ce738(void)
-{
-  u8 **base = (u8 **) (&data_02160238);
-  u32 stride = 0x64;
-  u32 i = 0;
-  u32 **new_var;
-  do
-  {
-    u32 offset = i * stride;
-    u8 *p;
-    u32 next = i + 1;
-    u8 *q;
-    s32 z = *((s16 *) ((((0, (*base) + offset)) + 0x500) + 0xB4));
-    s32 x = *((s16 *) ((((0, (*base) + offset)) + 0x500) + 0xB0));
-    s32 dx = *((s32 *) (((0, (*base) + offset)) + 0x5BC));
-    s32 height = z + 0x65;
-    s32 y = *((s16 *) ((((0, (*base) + offset)) + 0x500) + 0xB2));
-    s32 dy;
-    u32 value = *((u32 *) (((0, (*base) + offset)) + 0x5B8));
-    u32 *dst;
-    ;
-    dst = *((u32 **) (p + 0x560));
-    dy = *((s32 *) (((0, (*base) + offset)) + 0x5C0));
-    dst[0x13] = ((u32) height) << 12;
-    dst = *((u32 **) (((*base) + offset) + 0x560));
-    dy = y + dy;
-    dst[0x11] = ((u32) (x + dx)) << 12;
-    ;
-    i = next & 0xFF;
-    (*((u32 **) (((*base) + offset) + 0x560)))[0x12] = ((u32) dy) << 12;
-    new_var = (u32 **) (((*base) + offset) + 0x560);
-    dst = *new_var;
-    dst[0x10] = value;
-  }
-  while (i < 4);
+void func_020ce738(void) {
+    u8 i;
+    for (i = 0; i < 4; i++) {
+        u8 *p = data_02160238 + i * 0x64;
+        s32 z = *(s16 *)(p + 0x5b4) + 0x65;
+        s32 x = *(s16 *)(p + 0x5b0) + *(s32 *)(p + 0x5bc);
+        s32 y = *(s16 *)(p + 0x5b2) + *(s32 *)(p + 0x5c0);
+        s32 v = *(s32 *)(p + 0x5b8);
+        *(s32 *)(*(u8 **)(data_02160238 + i * 0x64 + 0x560) + 0x4c) = z << 12;
+        *(s32 *)(*(u8 **)(data_02160238 + i * 0x64 + 0x560) + 0x44) = x << 12;
+        *(s32 *)(*(u8 **)(data_02160238 + i * 0x64 + 0x560) + 0x48) = y << 12;
+        *(s32 *)(*(u8 **)(data_02160238 + i * 0x64 + 0x560) + 0x40) = v;
+    }
 }
 
 void func_020ce7d8(void) {
