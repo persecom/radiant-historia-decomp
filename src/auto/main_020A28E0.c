@@ -307,20 +307,14 @@ u16 func_020a30d4(u16 arg0) {
 }
 
 void func_020a3128(u16 arg0) {
-    UnkStruct_020a3128 *d;
-    u32 idx;
-    u32 val;
-    if (arg0 == 0) {
-        return;
-    }
-    d = *(UnkStruct_020a3128 **)data_02160128;
-    idx = arg0 - 1;
-    val = (d[idx].unk4 >> 3) | (d[idx].unk18 << 26) |
-          0x40000000 | (d[idx].unk10 << 20) |
-          (d[idx].unk14 << 23) | 0x20000000;
-    *(volatile u32 *)0x040004a8 = val;
-    *(volatile u32 *)0x040004ac = d[idx].unkC >> (4 - (d[idx].unk18 == 2));
-    *(volatile u32 *)0x04000480 = 0x7fff;
+UnkStruct_020a3128 *d; u32 idx; s32 shift;
+if(arg0==0)return;
+d=*(UnkStruct_020a3128 **)data_02160128;
+idx=arg0-1;
+*(volatile u32 *)0x040004a8=(d[idx].unk18<<26)|(d[idx].unk4>>3)|0x40000000|(d[idx].unk10<<20)|(d[idx].unk14<<23)|0x20000000;
+if(d[idx].unk18==2) shift=1;else shift=0;
+*(volatile u32 *)0x040004ac=d[idx].unkC>>(4-shift);
+*(volatile u32 *)0x04000480=0x7fff;
 }
 
 extern u32 *data_0216012c;
@@ -331,8 +325,8 @@ extern void func_0203c1c0(u32, u32, u32);
 extern void func_020a3bb8(void);
 extern void *func_0203be10(s32);
 extern void func_0203be60(void *, s32, s32);
-extern void func_0203bef0(void *, s32);
-extern void func_0203bfdc(void *, s32);
+extern void func_0203bef0();
+extern void func_0203bfdc();
 void func_020a31c8(s32 arg0) {
     if (data_0216012c != 0) {
         return;
@@ -407,8 +401,8 @@ void *func_020a36ac(void *arg0, s32 arg1) {
     first = func_0203be10(arg1);
     dst = first;
     i = 0;
-    while (i < arg1) {
-        u8 *src = (u8 *)arg0 + i * 0x14;
+    if (arg1 > 0) for (; i < arg1; i++) {
+        u8 *src = (u8 *)&((s32 (*)[5])arg0)[i];
         s32 a = *(s32 *)src;
         s32 b = *(s32 *)(src + 4);
         if (b == 0) {
@@ -420,7 +414,6 @@ void *func_020a36ac(void *arg0, s32 arg1) {
         *(u32 *)((u8 *)dst + 0x14) = *(u32 *)(src + 0xc);
         *(u32 *)((u8 *)dst + 0x18) = *(u32 *)(src + 0x10);
         dst = (u8 *)dst + 0x1c;
-        i++;
     }
     return first;
 }
