@@ -470,3 +470,136 @@ void func_0211d94c(s32 *arg0, s32 *arg1, s32 arg2, s32 arg3) {
     }
 }
 
+extern void func_02008e68(u8, void *, u32);
+extern void func_02008e38(const void *, void *, u32);
+extern s32 func_02001fb0(s32, s32);
+extern void func_02002194(void *, void *, void *);
+extern void func_02002274(void *, void *);
+BOOL func_0211d9bc(u8 *pResult, u8 *pAnmObj, u32 nodeID) {
+    u8 r[0x58];
+    u8 tmp_c[0xc];
+    u8 tmp_0[0xc];
+    s32 sumOfRatio;
+    u8 *p;
+    s32 numBlend;
+    s32 i1;
+    u8 *pLastValid;
+
+    if (pAnmObj == NULL) {
+        return FALSE;
+    }
+
+    if (*(u8 **)(pAnmObj + 0x10) == NULL) {
+        if (nodeID < *(u8 *)(pAnmObj + 0x19)) {
+            u16 data = *(u16 *)(pAnmObj + 0x1a + nodeID * 2);
+            if ((data & 0x300) == 0x100) {
+                void (*func)(u8 *, u8 *, u32) = *(void (**)(u8 *, u8 *, u32))(pAnmObj + 0xc);
+                if (func == NULL) {
+                    return FALSE;
+                }
+                func(pResult, pAnmObj, data & 0xff);
+                return TRUE;
+            }
+            return FALSE;
+        }
+        return FALSE;
+    }
+
+    sumOfRatio = 0;
+    numBlend = 0;
+    i1 = 0;
+    p = pAnmObj;
+
+    do {
+        if (nodeID < *(u8 *)(p + 0x19)) {
+            u16 data = *(u16 *)(p + 0x1a + nodeID * 2);
+            if ((data & 0x300) == 0x100) {
+                s32 ratio = *(s32 *)(p + 4);
+                if (ratio > 0x1000) {
+                    sumOfRatio += 0x1000;
+                } else if (ratio > 0) {
+                    sumOfRatio += ratio;
+                }
+                pLastValid = p;
+                numBlend++;
+            }
+        }
+        p = *(u8 **)(p + 0x10);
+    } while (p != NULL);
+
+    if (sumOfRatio == 0) {
+        return FALSE;
+    }
+
+    if (numBlend == 1) {
+        void (*func)(u8 *, u8 *, u32) = *(void (**)(u8 *, u8 *, u32))(pLastValid + 0xc);
+        u16 data = *(u16 *)(pLastValid + 0x1a + nodeID * 2);
+        if (func == NULL) {
+            return FALSE;
+        }
+        func(pResult, pLastValid, data & 0xff);
+        return TRUE;
+    }
+
+    func_02008e68(0, pResult, 0x58);
+    *(u32 *)pResult = 0xffffffff;
+
+    do {
+        if (nodeID < *(u8 *)(pAnmObj + 0x19)) {
+            u16 data = *(u16 *)(pAnmObj + 0x1a + nodeID * 2);
+            if ((data & 0x300) == 0x100 && *(s32 *)(pAnmObj + 4) > 0) {
+                void (*func)(u8 *, u8 *, u32) = *(void (**)(u8 *, u8 *, u32))(pAnmObj + 0xc);
+                if (func != NULL) {
+                    s32 ratio;
+                    func(r, pAnmObj, data & 0xff);
+                    if (i1 == 0) {
+                        func_02008e38(r + 0x28, tmp_c, 0xc);
+                        func_02008e38(r + 0x40, tmp_0, 0xc);
+                    }
+                    if (sumOfRatio != 0x1000) {
+                        ratio = func_02001fb0(*(s32 *)(pAnmObj + 4), sumOfRatio);
+                    } else {
+                        ratio = *(s32 *)(pAnmObj + 4);
+                    }
+                    func_0211d94c((s32 *)(pResult + 4), (s32 *)(r + 4), ratio, *(u32 *)r & 1);
+                    func_0211d94c((s32 *)(pResult + 0x10), (s32 *)(r + 0x10), ratio, *(u32 *)r & 8);
+                    func_0211d94c((s32 *)(pResult + 0x1c), (s32 *)(r + 0x1c), ratio, *(u32 *)r & 0x10);
+                    if (!(*(u32 *)r & 4)) {
+                        *(s32 *)(pResult + 0x4c) += (s32)(((s64)ratio * *(s32 *)(r + 0x4c)) >> 12);
+                        *(s32 *)(pResult + 0x50) += (s32)(((s64)ratio * *(s32 *)(r + 0x50)) >> 12);
+                        *(s32 *)(pResult + 0x54) += (s32)(((s64)ratio * *(s32 *)(r + 0x54)) >> 12);
+                    }
+                    if (!(*(u32 *)r & 2)) {
+                        *(s32 *)(pResult + 0x28) += (ratio * *(s32 *)(r + 0x28)) >> 12;
+                        *(s32 *)(pResult + 0x2c) += (ratio * *(s32 *)(r + 0x2c)) >> 12;
+                        *(s32 *)(pResult + 0x30) += (ratio * *(s32 *)(r + 0x30)) >> 12;
+                        *(s32 *)(pResult + 0x34) += (ratio * *(s32 *)(r + 0x34)) >> 12;
+                        *(s32 *)(pResult + 0x38) += (ratio * *(s32 *)(r + 0x38)) >> 12;
+                        *(s32 *)(pResult + 0x3c) += (ratio * *(s32 *)(r + 0x3c)) >> 12;
+                    } else {
+                        *(s32 *)(pResult + 0x28) += ratio;
+                        *(s32 *)(pResult + 0x38) += ratio;
+                    }
+                    *(u32 *)pResult &= *(u32 *)r;
+                }
+            }
+        }
+        pAnmObj = *(u8 **)(pAnmObj + 0x10);
+        i1++;
+    } while (pAnmObj != NULL);
+
+    func_02002194(pResult + 0x28, pResult + 0x34, pResult + 0x40);
+    if (*(s32 *)(pResult + 0x28) == 0 && *(s32 *)(pResult + 0x2c) == 0 && *(s32 *)(pResult + 0x30) == 0) {
+        func_02008e38(tmp_c, pResult + 0x28, 0xc);
+    } else {
+        func_02002274(pResult + 0x28, pResult + 0x28);
+    }
+    if (*(s32 *)(pResult + 0x40) == 0 && *(s32 *)(pResult + 0x44) == 0 && *(s32 *)(pResult + 0x48) == 0) {
+        func_02008e38(tmp_0, pResult + 0x40, 0xc);
+    } else {
+        func_02002274(pResult + 0x40, pResult + 0x40);
+    }
+    func_02002194(pResult + 0x40, pResult + 0x28, pResult + 0x34);
+    return TRUE;
+}
+
