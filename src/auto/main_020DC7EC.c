@@ -51,7 +51,15 @@ void func_020dc99c(void) {
 extern u8 *data_02160204;
 extern u8 *data_0216025c[2];
 extern u8 *data_02160a74;
-extern void func_020f0154(s32);
+extern s32 func_020f0154(s32);
+extern s32 data_02155bac;
+extern u8 *data_02160aa4;
+typedef struct {s32 x,y,z;} Vec_DCE1C;
+extern u8 *func_020eb400(void),*func_020f25f0(void),*func_020f0aa4(s32);
+extern s32 func_020eb44c(void *,u32,u32,s32,s32);
+extern s32 func_020f26fc(void *,u16,u8),func_020f2a5c(void *,u16,u8);
+extern void func_020f0898(Vec_DCE1C,u32,u16);
+extern void func_021167f0(void *,void *);
 extern void func_020dc4b8(void);
 extern void func_020d914c(s32);
 extern void func_020d0a40(s32);
