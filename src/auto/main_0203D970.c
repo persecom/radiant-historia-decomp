@@ -1,6 +1,11 @@
 /* 6 functions from 0x0203D970 to 0x0203E8C0 (main), found by ds-decomp. */
 #include "common.h"
 typedef struct { s32 x,y,z; } Vec_0203d970;
+static inline void adjust_vec_d970(Vec_0203d970 *v,Vec_0203d970 *p,s16 sine,s16 cosine) {
+ s32 dx=v->x-p->x,dz=v->z-p->z;
+ dx-=sine*10;dz-=cosine*10;
+ v->x-=dx;v->z-=dz;
+}
 static inline void set_vec_d970(Vec_0203d970 *v,s32 x,s32 y,s32 z) { v->x=x;v->y=y;v->z=z; }
 extern u8 *data_02160aec, *data_02160204, *data_02155984;
 extern u8 *data_02160098[2];
@@ -58,27 +63,27 @@ extern u32 _dflt(s32);
 extern void func_02020058(void);
 extern void func_0201ff80(void);
 
-void func_0203d970(Vec_0203d970 *pos) {
+void func_0203d970(Vec_0203d970 *pos,s32 unused,s32 index) {
 s32 x=pos->x/65536,z=pos->z/65536;
 u8 *map=data_02160aec;
 u8 *state=data_02160098[1];
 Vec_0203d970 v;
 s32 tile;
-s32 index;
+
 s32 zero=0;
 s32 distance,angle;
 if(!map) tile=0;
 else tile=*(u8 *)(map+(z* *(s16 *)(map+0x58d36)+x)*12+0xbcd);
 if(*(u16 *)(state+0x60)==0 && data_02160204[0x84]==9) {
-v.x=*(s32 *)(data_02155984+0x20);
-v.y=pos->y-0x4000;
-v.z=*(s32 *)(data_02155984+0x28);
+set_vec_d970(&v,*(s32 *)(data_02155984+0x20),pos->y-0x4000,*(s32 *)(data_02155984+0x28));
 distance=func_020dddf0(&v,pos);
 angle=func_020ddc8c(pos,&v);
 if(distance>0xa000) {
 s32 a=(angle%65536)>>4;
-v.x-=(v.x-pos->x)-data_0213a394[a*2]*10;
-v.z-=(v.z-pos->z)-data_0213a394[a*2+1]*10;
+s32 sine=data_0213a394[a*2], cosine=data_0213a394[a*2+1];
+s32 dx=v.x-pos->x, dz=v.z-pos->z;
+dx-=sine*10;dz-=cosine*10;
+v.x-=dx;v.z-=dz;
 }
 func_0203d864(&v);
 }else if(*(u16 *)(state+0x60)==1) {
@@ -110,10 +115,8 @@ if(tile!=255 && (index=(tile-1)*6,*(s32 *)(state+0x1c)!=tile)) {
 data_02151fcc=0xe8000;data_02151fca=0x1900;
 }
 data_02151fc8=*(s32 *)(state+0x24);
-v.x=table.v[index+2]<<12;
+set_vec_d970(&v,table.v[index+2]<<12,zero,table.v[index+3]<<12);
 v.x-=v.x-pos->x;
-v.y=0;
-v.z=table.v[index+3]<<12;
 if(v.x<=(table.v[index+2]<<12)) v.x=table.v[index+2]<<12;
 if(v.x>(table.v[index+4]<<12)) v.x=table.v[index+4]<<12;
 v.z-=v.z-pos->z;
@@ -128,9 +131,7 @@ data_02160204[0x85]=3;
 *(s32 *)(data_02155984+0x28)+=*(s32 *)(data_02160204+0x80);
 data_02160204[0x85]=zero;
 }
-v.x=*(s32 *)(data_02155984+0x20);
-v.y=pos->y-0x4000;
-v.z=*(s32 *)(data_02155984+0x28);
+set_vec_d970(&v,*(s32 *)(data_02155984+0x20),pos->y-0x4000,*(s32 *)(data_02155984+0x28));
 distance=func_020dddf0(&v,pos);
 angle=func_020ddc8c(pos,&v);
 if(distance>0xa000) v.x-=(v.x-pos->x)-data_0213a394[((angle%65536)>>4)*2]*10;
@@ -143,15 +144,13 @@ data_02160204[0x85]=3;
 *(s32 *)(data_02155984+0x20)+=*(s32 *)(data_02160204+0x80);
 data_02160204[0x85]=zero;
 }
-v.x=*(s32 *)(data_02155984+0x20);
-v.y=pos->y-0x4000;
-v.z=*(s32 *)(data_02155984+0x28);
+set_vec_d970(&v,*(s32 *)(data_02155984+0x20),pos->y-0x4000,*(s32 *)(data_02155984+0x28));
 distance=func_020dddf0(&v,pos);
 angle=func_020ddc8c(pos,&v);
 if(distance>0xa000) v.z-=(v.z-pos->z)-data_0213a394[((angle%65536)>>4)*2+1]*10;
 func_0203d864(&v);
 }
-v.x=*(s32 *)(data_02155984+0x20);v.y=pos->y-0x4000;v.z=*(s32 *)(data_02155984+0x28);
+set_vec_d970(&v,*(s32 *)(data_02155984+0x20),pos->y-0x4000,*(s32 *)(data_02155984+0x28));
 if(func_020dddf0(&v,pos)<=0xf000) {
 data_02160204[0x84]=9;*(s32 *)(data_02160204+0x80)=0;
 }
