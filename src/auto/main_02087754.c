@@ -5,12 +5,7 @@ typedef struct { u8 pad[0x76]; s16 level,kind; } RecoveryEntry;
 extern const u16 data_02140d10[10],data_02140cfc[10],data_02140ce8[10],data_02140d24[10];
 extern void func_0210d27c(s32);
 
-static inline s32 recovery_amount0(u8 *actor,u8 *entry) { s32 amount; amount=((actor[0x43]*5+(data_02140d10[*(s16 *)(entry+0x76)-1]+((*(u16 *)(actor+0x1c)+*(s16 *)(actor+0x28))*150)/100))*(s32)((u16)((((data_0216263c[0]=data_0216263c[1]*data_0216263c[0]+data_0216263c[2])>>16)*4)>>16)+98))/100;
-if(amount>=data_02140cfc[*(s16 *)(entry+0x76)-1])amount=(data_02140cfc[*(s16 *)(entry+0x76)-1]*(s32)((u16)((((data_0216263c[0]=data_0216263c[1]*data_0216263c[0]+data_0216263c[2])>>16)*4)>>16)+98))/100;
-else amount=(amount*(s32)((u16)((((data_0216263c[0]=data_0216263c[1]*data_0216263c[0]+data_0216263c[2])>>16)*4)>>16)+98))/100; return amount; }
-static inline s32 recovery_amount1(u8 *actor,u8 *entry) { s32 amount; amount=((actor[0x43]/5+(data_02140ce8[*(s16 *)(entry+0x76)-1]+(*(u16 *)(actor+0x1c)+*(s16 *)(actor+0x28))/20))*(s32)((u16)((((data_0216263c[0]=data_0216263c[1]*data_0216263c[0]+data_0216263c[2])>>16)*4)>>16)+98))/100;
-if(amount>=data_02140d24[*(s16 *)(entry+0x76)-1])amount=(data_02140d24[*(s16 *)(entry+0x76)-1]*(s32)((u16)((((data_0216263c[0]=data_0216263c[1]*data_0216263c[0]+data_0216263c[2])>>16)*4)>>16)+98))/100;
-else amount=(amount*(s32)((u16)((((data_0216263c[0]=data_0216263c[1]*data_0216263c[0]+data_0216263c[2])>>16)*4)>>16)+98))/100; return amount; }
+
 typedef struct {
     u8 pad[0x44];
     void *field_44;
