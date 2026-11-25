@@ -90,21 +90,21 @@ void func_02118234(void *arg0) {
 
 #pragma scheduling off
 void func_02118430(void *arg0) {
-    u8 *p = arg0;
-    if (*(u32 *)(p + 0x14)) {
+    OamManager_2118234 *p = arg0;
+    if (p->full) {
         u32 size;
         u8 *dst;
         s32 valid = 0;
         u32 channel;
-        if (*(u16 *)(p + 8) <= *(u16 *)(p + 6) + 1 && *(u16 *)(p + 4) <= *(u16 *)(p + 6)) {
+        if (p->unk_08 <= p->last + 1 && p->first <= p->last) {
             valid = 1;
         }
         if (!valid) {
             size = 0;
         } else {
-            size = (u16)(*(u16 *)(p + 6) - *(u16 *)(p + 4) + 1) * 8;
+            size = (u16)(p->last - p->first + 1) * 8;
         }
-        dst = data_0216e274 + *(volatile u32 *)p * 0x540 + 0x100 + *(u16 *)(p + 4) * 8;
+        dst = (u8 *)((UnkOamBuffer *)data_0216e274)[p->type].entries[p->first];
         func_02006d8c(dst, size);
         channel = data_02145ba4;
         if (channel > 3) {
@@ -116,68 +116,15 @@ void func_02118430(void *arg0) {
             func_02008e24(0xc0, dst, size);
         }
     } else {
-        u16 count = *(u16 *)(p + 6) - *(u16 *)(p + 4) + 1;
-        u8 *dst = data_0216e274 + *(volatile u32 *)p * 0x540 + 0x100 + *(u16 *)(p + 4) * 8;
+        u16 count = p->last - p->first + 1;
+        u8 *dst = (u8 *)((UnkOamBuffer *)data_0216e274)[p->type].entries[p->first];
         u16 i;
         for (i = 0; i < count; i++) {
             *(u16 *)dst = 0xc0;
             dst += 8;
         }
     }
-    *(u16 *)(p + 8) = *(u16 *)(p + 4);
-    *(u16 *)(p + 0xe) = *(u16 *)(p + 0xa);
+    p->unk_08 = p->first;
+    p->affineLimit = p->affineFirst;
 }
 #pragma scheduling on
-void func_02118570(void *arg0) {
-    func_02118234(arg0);
-    func_02118430(arg0);
-}
-
-u16 func_02118588(u16 *arg0, s32 arg1) {
-    return arg0[arg1];
-}
-
-void func_02118594(s32 *arg0) {
-    s32 i;
-    for (i = 0; i < 3; i++) {
-        arg0[i] = -1;
-    }
-}
-
-void func_021185b0(s32 *arg0, s32 arg1, s32 arg2) {
-    arg0[arg1] = arg2;
-}
-
-s32 func_021185b8(s32 *arg0, s32 arg1) {
-    return arg0[arg1];
-}
-
-s32 func_021185c0(s32 *arg0, s32 arg1) {
-    return arg0[arg1] != -1;
-}
-
-void func_021185d4(s32 *arg0) {
-    s32 i;
-    for (i = 0; i < 3; i++) {
-        arg0[i + 2] = -1;
-    }
-}
-
-void func_021185f4(u8 *arg0, s32 arg1, s32 arg2) {
-    *(s32 *)(arg0 + 8 + arg1 * 4) = arg2;
-}
-
-s32 func_02118600(u8 *arg0, s32 arg1) {
-    return *(s32 *)(arg0 + 8 + arg1 * 4);
-}
-
-s32 func_0211860c(u8 *arg0, s32 arg1) {
-    return *(s32 *)(arg0 + arg1 * 4 + 8) != -1;
-}
-
-extern void func_02006dc4(void *, u32);
-extern void func_0200439c(void);
-extern void func_020043f8(void *, u32, u32);
-extern void func_02004544(void);
-extern void func_02003830(void *, u32, u32);
-extern void func_02003894(void *, u32, u32);
