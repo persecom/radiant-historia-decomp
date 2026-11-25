@@ -4,6 +4,23 @@
 extern void *data_02155c3c;
 extern u8 *data_0216010c;
 extern u8 data_021484dc[8];
+extern u8 *data_021600ac;
+extern u8 *data_02160af0;
+extern s32 data_02162884;
+extern s32 data_02162814;
+extern u8 *data_02160204;
+
+typedef struct {
+    s32 x, y, z;
+} Vec3_0207cdd4;
+
+extern void func_0210d27c(s32);
+extern void func_020477dc(void *, s32, s32);
+extern void func_0206e8f0(s32, void *, s32);
+extern u32 func_02052a88(void *, s32);
+extern u8 *func_020f0aa4(s32);
+extern void func_020bdbe8(s32, Vec3_0207cdd4);
+extern void func_020bdd80(s32, s32);
 
 extern void func_0207d4cc(void);
 extern void *func_0210c594(s32, void *);
