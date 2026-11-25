@@ -26,6 +26,7 @@ extern u32 data_02156f4c[4];
 extern u8 data_0215a0d0[8];
 extern u32 data_02174524[0x100];
 extern u32 data_021744ec[5];
+typedef struct { u32 f0, f1, f2, f3, f4; } Zeros_0212e7f0;
 extern u32 data_021744d8[4];
 extern s32 func_02138500(void);
 extern void func_0213807c(void);
@@ -71,21 +72,25 @@ void func_0212e7e4(void) {
 }
 
 s32 func_0212e7f0(u32 arg0, void *arg1) {
-    data_02174524[8] = arg0;
-    data_021744ec[0] = 0;
-    data_021744ec[1] = 0;
-    data_021744ec[2] = 0;
-    data_021744ec[3] = 0;
-    data_021744ec[4] = 0;
+    u32 *zp = data_021744ec;
+    void *p = arg1;
+    u32 *dp = data_02174524;
+    s32 ret = 1;
+    *(volatile u32 *)&dp[8] = arg0;
+    *(volatile u32 *)&zp[0] = 0;
+    *(volatile u32 *)&zp[1] = 0;
+    *(volatile u32 *)&zp[2] = 0;
+    *(volatile u32 *)&zp[3] = 0;
+    *(volatile u32 *)&zp[4] = 0;
     if (arg0 <= 1) {
-        func_0212c4b8(1);
-        return 1;
+        func_0212c4b8(ret);
+        return ret;
     }
     if (arg0 == 2) {
         func_0212c4b8(2);
     }
-    func_0212e860(arg1);
-    return 1;
+    func_0212e860(p);
+    return ret;
 }
 
 void func_0212ea64(void);
@@ -521,23 +526,18 @@ BOOL func_0212f3cc(u8 *arg0, s32 arg1) {
 extern void func_0212f178();
 extern u32 data_02145914[];
 s32 func_0212f3fc(u8 *arg0, s32 arg1) {
-    s32 value = *(s32 *)(arg0 + 0xc);
     s32 rem;
     s32 result;
-    s32 mask, tbl;
-    if (value < arg1) {
-        func_0212f178();
+    if (*(s32 *)(arg0 + 0xc) < arg1) {
+        func_0212f178(arg0);
     }
-    value = *(s32 *)(arg0 + 0xc);
-    if (arg1 > value) {
-        *(s32 *)(arg0 + 0x10) += value;
+    if (arg1 > *(s32 *)(arg0 + 0xc)) {
+        *(s32 *)(arg0 + 0x10) += *(s32 *)(arg0 + 0xc);
         *(s32 *)(arg0 + 0xc) = 0;
         return 0;
     }
-    rem = value - arg1;
-    mask = *(s32 *)(arg0 + 8);
-    tbl = data_02145914[arg1];
-    result = tbl & (mask >> rem);
+    rem = *(s32 *)(arg0 + 0xc) - arg1;
+    result = data_02145914[arg1] & (*(s32 *)(arg0 + 8) >> rem);
     *(s32 *)(arg0 + 0xc) = rem;
     *(s32 *)(arg0 + 0x10) += arg1;
     return result;
