@@ -35,6 +35,13 @@ static inline void set_vec_02051344(s32 *dst, s32 x, s32 y, s32 z) {
     dst[2] = z;
 }
 
+static inline s32 point_in_box_02051344(s32 x, s32 z, s32 *box) {
+    if (x >= box[0] && x <= box[2] && z >= box[1] && z <= box[3]) {
+        return 1;
+    }
+    return 0;
+}
+
 static inline s32 check_hit_02051344(u8 *other, u8 *arg0) {
     if (!*(u32 *)(other + 0xb0) || !*(u32 *)(arg0 + 0xb0)) {
         return 0;
@@ -53,10 +60,16 @@ static inline s32 check_hit_02051344(u8 *other, u8 *arg0) {
         box0[2] = *(s32 *)(arg0 + 0) + rad;
         box0[1] = *(s32 *)(arg0 + 8) - rad;
         box0[3] = *(s32 *)(arg0 + 8) + rad;
-        return (box1[0] < box0[2] && box0[0] < box1[2] && box1[1] < box0[3] && box0[1] < box1[3]) ? 1 : 0;
+        if (box1[0] < box0[2] && box0[0] < box1[2] && box1[1] < box0[3] && box0[1] < box1[3]) {
+            return 1;
+        }
+        return 0;
     }
     if (*(u8 *)(other + 0x9d) != 0 && *(u8 *)(arg0 + 0x9d) != 0) {
-        return (func_0210c2f4(other, arg0) < ((*(u8 *)(other + 0x9d) + *(u8 *)(arg0 + 0x9d)) << 12)) ? 1 : 0;
+        if (func_0210c2f4(other, arg0) < ((*(u8 *)(other + 0x9d) + *(u8 *)(arg0 + 0x9d)) << 12)) {
+            return 1;
+        }
+        return 0;
     }
     if (*(u8 *)(other + 0x9d) != 0 && *(s32 *)(*(u8 **)(arg0 + 0xb0)) != 0) {
         s32 box2[4];
@@ -73,7 +86,7 @@ static inline s32 check_hit_02051344(u8 *other, u8 *arg0) {
             u16 ang = (u16)(i << 13);
             s32 px = r * data_0213a394[(((s32)ang % 0x10000) >> 4) * 2] + *(s32 *)(other + 0);
             s32 pz = r * data_0213a394[(((s32)ang % 0x10000) >> 4) * 2 + 1] + *(s32 *)(other + 8);
-            if ((px >= box2[0] && px <= box2[2] && pz >= box2[1] && pz <= box2[3]) ? 1 : 0) {
+            if (point_in_box_02051344(px, pz, box2)) {
                 return 1;
             }
         }
@@ -94,7 +107,7 @@ static inline s32 check_hit_02051344(u8 *other, u8 *arg0) {
             u16 ang = (u16)(i << 13);
             s32 px = r * data_0213a394[(((s32)ang % 0x10000) >> 4) * 2] + *(s32 *)(arg0 + 0);
             s32 pz = r * data_0213a394[(((s32)ang % 0x10000) >> 4) * 2 + 1] + *(s32 *)(arg0 + 8);
-            if ((px >= box3[0] && px <= box3[2] && pz >= box3[1] && pz <= box3[3]) ? 1 : 0) {
+            if (point_in_box_02051344(px, pz, box3)) {
                 return 1;
             }
         }
