@@ -91,9 +91,21 @@ void func_02000da0(volatile s32 *p,s32 a,s32 b) {
 p[0]=4096; p[1]=0; p[2]=0; p[3]=0; p[4]=b; p[5]=a;
 p[6]=0; p[7]=-a; p[8]=b;
 }
-#pragma optimization_level 4
-#pragma thumb off
-void func_02000dbc(volatile s32 *p,s32 a,s32 b){s32 n=-a; s32 one=4096; p[0]=b;p[8]=b;p[1]=0;p[3]=0;p[5]=0;p[7]=0;p[6]=a;p[2]=n;p[4]=one;}
+#pragma thumb on
+void func_02000dbc(volatile s32 *p, s32 a, s32 b)
+{
+  p[0] = b;
+  p[8] = b;
+  p[1] = 0;
+  p[3] = 0;
+  p[5] = 0;
+  p[7] = 0;
+  s32 n = -a;
+  s32 one = 4096;
+  p[6] = a;
+  p[4] = one;
+  p[2] = n;
+}
 #pragma thumb off
 void func_02000dd8(s32 *p, s32 a, s32 b) {
     p[0] = b;
