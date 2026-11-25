@@ -15,9 +15,6 @@ static inline u32 random_02078e1c(u32 limit) {
     data_02162658[0] = value;
     return (u32)(((u64)(u32)(value >> 32) * limit) >> 32);
 }
-static inline u8 in_rect_020783e8(s32 x, s32 y, s32 x0, s32 y0, s32 x1, s32 y1) {
-    return (x >= x0 && x <= x1 && y >= y0 && y <= y1);
-}
 extern u32 data_0216263c[3];
 extern u32 data_0216244c[43];
 extern u64 data_02162658[3];
