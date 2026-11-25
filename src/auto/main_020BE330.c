@@ -398,21 +398,17 @@ s32 func_020bedf8(u8 *p) {
     if (count == *(s32 *)(p + 0x18)) { func_020beda0(p); return 0; }
     x >>= 12; y >>= 12;
     if (x > 0) {
-        u16 max = x;
-        u32 *rng = data_0216263c;
         u16 value;
-        rng[0] = rng[1] * rng[0] + rng[2];
-        if (max == 0) value = rng[0] >> 16;
-        else value = ((rng[0] >> 16) * max) >> 16;
+        data_0216263c[0] = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
+        if ((u16)x == 0) value = data_0216263c[0] >> 16;
+        else value = ((data_0216263c[0] >> 16) * (u16)x) >> 16;
         dx = value + (x >> 1);
     }
     if (y > 0) {
-        u16 max = y;
-        u32 *rng = data_0216263c;
         u16 value;
-        rng[0] = rng[1] * rng[0] + rng[2];
-        if (max == 0) value = rng[0] >> 16;
-        else value = ((rng[0] >> 16) * max) >> 16;
+        data_0216263c[0] = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
+        if ((u16)y == 0) value = data_0216263c[0] >> 16;
+        else value = ((data_0216263c[0] >> 16) * (u16)y) >> 16;
         dy = value + (y >> 1);
     }
     rx = RandomRange_bedf8(1) * 2 - 1;
