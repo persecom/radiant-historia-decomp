@@ -88,6 +88,16 @@ void func_02022088(u16, u8);
 void func_02089bb0(s32, s32);
 s32 func_02082328(s32);
 s32 func_02081f4c(s32 arg0) {
+    struct Char {
+        u8 pad_00[0x10];
+        u16 hp;
+        u16 max_hp;
+        u16 mp;
+        u16 max_mp;
+        u8 pad_18[0xc];
+        s16 bonus_hp;
+        s16 bonus_mp;
+    };
     struct Item {
         u16 id;
         u8 count;
@@ -118,8 +128,8 @@ s32 func_02081f4c(s32 arg0) {
         if (((struct Mgr *)data_0216010c)->items[arg0].target == 12) {
             s16 i;
             for (i = 0; i < ((struct Mgr *)data_0216010c)->party_count; i++) {
-                u8 *ch = func_02021f10(func_02085110((u8)i));
-                if (*(u16 *)(ch + 0x10) != *(u16 *)(ch + 0x12) + *(s16 *)(ch + 0x24)) {
+                struct Char *ch = (struct Char *)func_02021f10(func_02085110((u8)i));
+                if (ch->hp != ch->max_hp + ch->bonus_hp) {
                     all_full = 0;
                 }
             }
@@ -127,28 +137,28 @@ s32 func_02081f4c(s32 arg0) {
                 return 0;
             }
             for (i = 0; i < ((struct Mgr *)data_0216010c)->party_count; i++) {
-                u8 *ch = func_02021f10(func_02085110((u8)i));
-                *(u16 *)(ch + 0x10) += data_02140c50[((struct Mgr *)data_0216010c)->items[arg0].val - 1];
-                if (*(u16 *)(ch + 0x10) > *(u16 *)(ch + 0x12) + *(s16 *)(ch + 0x24)) {
-                    *(u16 *)(ch + 0x10) = *(u16 *)(ch + 0x12) + *(s16 *)(ch + 0x24);
+                struct Char *ch = (struct Char *)func_02021f10(func_02085110((u8)i));
+                ch->hp += data_02140c50[((struct Mgr *)data_0216010c)->items[arg0].val - 1];
+                if (ch->hp > ch->max_hp + ch->bonus_hp) {
+                    ch->hp = ch->max_hp + ch->bonus_hp;
                 }
             }
         } else {
-            u8 *ch = func_02021f10(func_02085110(((struct Mgr *)data_0216010c)->target_idx));
-            if (*(u16 *)(ch + 0x10) == *(u16 *)(ch + 0x12) + *(s16 *)(ch + 0x24)) {
+            struct Char *ch = (struct Char *)func_02021f10(func_02085110(((struct Mgr *)data_0216010c)->target_idx));
+            if (ch->hp == ch->max_hp + ch->bonus_hp) {
                 return 0;
             }
-            *(u16 *)(ch + 0x10) += data_02140c50[((struct Mgr *)data_0216010c)->items[arg0].val - 1];
-            if (*(u16 *)(ch + 0x10) > *(u16 *)(ch + 0x12) + *(s16 *)(ch + 0x24)) {
-                *(u16 *)(ch + 0x10) = *(u16 *)(ch + 0x12) + *(s16 *)(ch + 0x24);
+            ch->hp += data_02140c50[((struct Mgr *)data_0216010c)->items[arg0].val - 1];
+            if (ch->hp > ch->max_hp + ch->bonus_hp) {
+                ch->hp = ch->max_hp + ch->bonus_hp;
             }
         }
     } else if (((struct Mgr *)data_0216010c)->items[arg0].type == 502) {
         if (((struct Mgr *)data_0216010c)->items[arg0].target == 12) {
             s16 i;
             for (i = 0; i < ((struct Mgr *)data_0216010c)->party_count; i++) {
-                u8 *ch = func_02021f10(func_02085110((u8)i));
-                if (*(u16 *)(ch + 0x14) != *(u16 *)(ch + 0x16) + *(s16 *)(ch + 0x26)) {
+                struct Char *ch = (struct Char *)func_02021f10(func_02085110((u8)i));
+                if (ch->mp != ch->max_mp + ch->bonus_mp) {
                     all_full = 0;
                 }
             }
@@ -156,20 +166,20 @@ s32 func_02081f4c(s32 arg0) {
                 return 0;
             }
             for (i = 0; i < ((struct Mgr *)data_0216010c)->party_count; i++) {
-                u8 *ch = func_02021f10(func_02085110((u8)i));
-                *(u16 *)(ch + 0x14) += data_02140c5e[((struct Mgr *)data_0216010c)->items[arg0].val - 1];
-                if (*(u16 *)(ch + 0x14) > *(u16 *)(ch + 0x16) + *(s16 *)(ch + 0x26)) {
-                    *(u16 *)(ch + 0x14) = *(u16 *)(ch + 0x16) + *(s16 *)(ch + 0x26);
+                struct Char *ch = (struct Char *)func_02021f10(func_02085110((u8)i));
+                ch->mp += data_02140c5e[((struct Mgr *)data_0216010c)->items[arg0].val - 1];
+                if (ch->mp > ch->max_mp + ch->bonus_mp) {
+                    ch->mp = ch->max_mp + ch->bonus_mp;
                 }
             }
         } else {
-            u8 *ch = func_02021f10(func_02085110(((struct Mgr *)data_0216010c)->target_idx));
-            if (*(u16 *)(ch + 0x14) == *(u16 *)(ch + 0x16) + *(s16 *)(ch + 0x26)) {
+            struct Char *ch = (struct Char *)func_02021f10(func_02085110(((struct Mgr *)data_0216010c)->target_idx));
+            if (ch->mp == ch->max_mp + ch->bonus_mp) {
                 return 0;
             }
-            *(u16 *)(ch + 0x14) += data_02140c5e[((struct Mgr *)data_0216010c)->items[arg0].val - 1];
-            if (*(u16 *)(ch + 0x14) > *(u16 *)(ch + 0x16) + *(s16 *)(ch + 0x26)) {
-                *(u16 *)(ch + 0x14) = *(u16 *)(ch + 0x16) + *(s16 *)(ch + 0x26);
+            ch->mp += data_02140c5e[((struct Mgr *)data_0216010c)->items[arg0].val - 1];
+            if (ch->mp > ch->max_mp + ch->bonus_mp) {
+                ch->mp = ch->max_mp + ch->bonus_mp;
             }
         }
     } else {
@@ -182,9 +192,11 @@ s32 func_02081f4c(s32 arg0) {
         func_02089bb0(0, 1);
         r4[0x36] = 1;
     } else {
+        s32 off;
         r4[0x36] = r4[0];
-        ((struct Mgr *)data_0216010c)->items[arg0].count--;
-        func_02022088(((struct Mgr *)data_0216010c)->items[arg0].id, ((struct Mgr *)data_0216010c)->items[arg0].count);
+        off = arg0 * 0x64;
+        ((u8 *)((u32)data_0216010c + 0x5572))[off]--;
+        func_02022088(*(u16 *)((u32)data_0216010c + off + 0x5570), *(u8 *)((u32)data_0216010c + off + 0x5572));
         if (func_02082328(((struct Mgr *)data_0216010c)->unk_50d7) == 1) {
             ((struct Mgr *)data_0216010c)->flags_5382 |= 1;
         } else {
