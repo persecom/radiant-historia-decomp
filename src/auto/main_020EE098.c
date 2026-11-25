@@ -228,7 +228,7 @@ s32 func_020ee098(void) {
     return 1;
 }
 
-u8 *func_020ee52c(u16 arg0) {
+u8 *func_020ee52c(s32 arg0) {
     u8 *p = data_02160aec;
     u8 *node = NULL;
     while ((node = (node == NULL) ? *(u8 **)p : *(u8 **)(node + *(u16 *)(p + 0xa) + 4)) != NULL) {
