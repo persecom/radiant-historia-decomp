@@ -109,9 +109,10 @@ void func_020b7360(void);
 void func_020b8aac(void);
 void func_020b8718(void);
 
+#pragma push
+#pragma opt_loop_invariants off
 s32 func_020b77d4(void) {
     u8 *p;
-    u8 *sub;
     TblA_020b77d4 tblA;
     TblC_020b77d4 tblC;
     TblB_020b77d4 tblB;
@@ -237,6 +238,7 @@ s32 func_020b77d4(void) {
         {
             u8 *r9 = data_021601ec;
             u8 *w;
+            u8 *sub;
             u8 *sub2;
             w = func_020c9b24(*(void **)(r9 + 0x4c), 8, 0x12);
             *(u16 *)(w + 0x30) = 0x20;
@@ -427,6 +429,7 @@ s32 func_020b77d4(void) {
                     }
                 }
             }
+#pragma scheduling on
             w = func_020c9c10(*(void **)(r9 + 0x4c), 0xb);
             ((void (*)(u8 *, s32))(*(void **)(w + 0x20)))(w, 0x10);
 
@@ -479,3 +482,4 @@ s32 func_020b77d4(void) {
     func_020b8718();
     return 1;
 }
+#pragma pop
