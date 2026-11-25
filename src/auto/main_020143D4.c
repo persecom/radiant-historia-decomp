@@ -1,11 +1,12 @@
 /* 5 functions from 0x020139A4 to 0x02014994 (main), found by ds-decomp. */
 #include "common.h"
-extern u8 data_02145e54[],data_02145e5c[],data_02145e64[],data_02145e68[],data_02145e6c[],data_02145e74[],data_02145e7c[],data_02145e80[];
 extern void func_02019580(void *,double,void *);
 extern double func_0201e014(double);
 extern char *strcpy(char *,const char *);
 typedef struct { u8 a, b, c, d, e; } FormatText5;
 typedef struct { u8 a, b, c, d; } FormatText4;
+extern FormatText5 data_02145e54, data_02145e5c, data_02145e6c, data_02145e74;
+extern FormatText4 data_02145e64, data_02145e68, data_02145e7c, data_02145e80;
 
 
 typedef struct {
@@ -44,38 +45,38 @@ u8 *func_020143d4(double value, u8 *end, FormatSpec spec)
       if (num[0]) {
         p = (u8 *)(((u32) p) - 5);
         if (conversion == 'A') {
-          *((FormatText5 *) p) = *((FormatText5 *) data_02145e54);
+          *((FormatText5 *) p) = *((FormatText5 *) &data_02145e54);
           return p;
         } else {
-          *((FormatText5 *) p) = *((FormatText5 *) data_02145e5c);
+          *((FormatText5 *) p) = *((FormatText5 *) &data_02145e5c);
           return p;
         }
       }
       p = (u8 *)(((u32) p) - 4);
       if (conversion == 'A') {
-        *((FormatText4 *) p) = *((FormatText4 *) data_02145e64);
+        *((FormatText4 *) p) = *((FormatText4 *) &data_02145e64);
         return p;
       } else {
-        *((FormatText4 *) p) = *((FormatText4 *) data_02145e68);
+        *((FormatText4 *) p) = *((FormatText4 *) &data_02145e68);
         return p;
       }
     case 'N':
       if (num[0]) {
         p = (u8 *)(((u32) p) - 5);
         if (conversion == 'A') {
-          *((FormatText5 *) p) = *((FormatText5 *) data_02145e6c);
+          *((FormatText5 *) p) = *((FormatText5 *) &data_02145e6c);
           return p;
         } else {
-          *((FormatText5 *) p) = *((FormatText5 *) data_02145e74);
+          *((FormatText5 *) p) = *((FormatText5 *) &data_02145e74);
           return p;
         }
       }
       p = (u8 *)(((u32) p) - 4);
       if (conversion == 'A') {
-        *((FormatText4 *) p) = *((FormatText4 *) data_02145e7c);
+        *((FormatText4 *) p) = *((FormatText4 *) &data_02145e7c);
         return p;
       } else {
-        *((FormatText4 *) p) = *((FormatText4 *) data_02145e80);
+        *((FormatText4 *) p) = *((FormatText4 *) &data_02145e80);
         return p;
       }
   }
