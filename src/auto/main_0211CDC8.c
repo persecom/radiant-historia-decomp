@@ -204,23 +204,13 @@ return result;
 #pragma opt_common_subs on
 #pragma opt_propagation on
 void func_0211d238(u8 *arg0) {
+    u8 *mat = (arg0 != NULL && *(u32 *)(arg0 + 8) != 0) ? (arg0 + *(u32 *)(arg0 + 8)) : NULL;
+    u8 *dict = mat + *(u16 *)mat;
     u32 i;
-    u8 *p, *name, *q;
-    if (arg0 != NULL && *(u32 *)(arg0 + 8) != 0) {
-        p = arg0 + *(u32 *)(arg0 + 8);
-    } else {
-        p = NULL;
-    }
-    q = p + *(u16 *)p;
-    if (*(u8 *)(q + 1) <= 0) return;
-    for (i = 0; i < *(u8 *)(q + 1); i++) {
-        name = NULL;
-        if (i < *(u8 *)(q + 1)) {
-            u8 *base = q + *(u16 *)(q + 6);
-            name = *(u16 *)base * i + (base + 4);
-        }
-        if (*(u8 *)(name + 3) & 1) {
-            func_0211d08c(p, name);
+    for (i = 0; i < *(u8 *)(dict + 1); i++) {
+        u8 *entry = (u8 *)get_res_data_by_idx(dict, i);
+        if (entry[3] & 1) {
+            func_0211d08c(mat, entry);
         }
     }
 }
@@ -452,22 +442,20 @@ s32 func_0211d8e0(u32 *arg0, u8 *arg1, u32 arg2) {
 }
 
 void func_0211d94c(s32 *arg0, s32 *arg1, s32 arg2, s32 arg3) {
-    if (arg3 != 0) {
-        volatile s32 *v = arg0;
-        s32 b = v[1];
-        s32 c = v[2];
-        s32 a = v[0];
-        v[1] = b + arg2;
-        v[2] = c + arg2;
-        v[0] = a + arg2;
-    } else {
-        s32 p0 = arg1[0] * arg2;
-        s32 p1 = arg1[1] * arg2;
-        s32 p2 = arg1[2] * arg2;
-        arg0[0] += p0 >> 12;
-        arg0[1] += p1 >> 12;
-        arg0[2] += p2 >> 12;
-    }
+if(arg3) {
+s32 b=*(volatile s32 *)(arg0+1);
+s32 c=*(volatile s32 *)(arg0+2);
+s32 a=*(volatile s32 *)arg0;
+b+=arg2; c+=arg2; a+=arg2;
+*(volatile s32 *)(arg0+1)=b;
+*(volatile s32 *)(arg0+2)=c;
+*(volatile s32 *)arg0=a;
+} else {
+s32 a=arg0[0]+((arg2*arg1[0])>>12);
+s32 b=arg0[1]+((arg2*arg1[1])>>12);
+s32 c=arg0[2]+((arg2*arg1[2])>>12);
+*(volatile s32 *)arg0=a; *(volatile s32 *)(arg0+1)=b; *(volatile s32 *)(arg0+2)=c;
+}
 }
 
 extern void func_02008e68(u8, void *, u32);
