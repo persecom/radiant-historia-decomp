@@ -1,5 +1,7 @@
 /* 9 functions from 0x0202A5A4 to 0x0202B4D8 (main), found by ds-decomp. */
 #include "common.h"
+extern char data_02146170[];
+extern u16 *data_02160080;
 
 typedef struct {
     u8 pad[0x70];
