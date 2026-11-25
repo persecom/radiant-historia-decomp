@@ -289,6 +289,208 @@ void func_0210dd1c(void) {
     *(volatile u32 *)0x4000484 = 0;
 }
 
+extern void func_02002d30(void);
+extern void func_02002e58(void);
+extern void func_02125448(void);
+extern void func_02108ffc(void);
+extern void func_02002858(void *, void *);
+extern void func_02107820(void);
+extern void func_02107840(void);
+extern void func_0210763c(void);
+extern void func_02107774(void);
+extern void func_02109040(void);
+extern void func_0210d710(void);
+extern void func_0210c6e0(void);
+extern void func_0210e740(void);
+extern void func_0210c898(void);
+extern void func_0210e6f0(void);
+extern void func_0210c470(void);
+extern void func_0210dd1c(void);
+extern u8 data_02155c84[];
+extern u32 data_02162b80;
+extern u32 data_021624f8;
+extern u32 data_021626f8;
+extern u32 data_0216263c;
+extern u32 data_02162658;
+extern void *data_0216267c;
+void func_0210ddfc(void) {
+    u8 *base = data_0216280c;
+    u8 *cfg = data_02155c84;
+    u8 *list1, *list2, *list3, *node, *p;
+    u32 *rng;
+    s32 v;
+
+    if (*(u8 *)base != 0 && *(s32 *)(base + 0x54) == 0 && *(void **)(base + 0x2c) != NULL) {
+        if (((s32 (*)(void))*(void **)(base + 0x2c))() == 0) {
+            func_020081c0();
+            if (*(void **)(base + 0xc) != NULL)
+                ((void (*)(void))*(void **)(base + 0xc))();
+            return;
+        }
+    }
+
+    if (*(s32 *)(base + 0x54) == 0) {
+        list1 = data_021628e0; list2 = data_021628d4; list3 = data_021628a4;
+    } else {
+        list1 = data_021628b0; list2 = data_02162898; list3 = data_0216288c;
+    }
+
+    if (*(s32 *)(cfg + 4) != 0) {
+        node = *(u8 **)list1;
+        while (node != NULL) {
+            *(u32 *)(base + 0x74) = *(u32 *)(node + 8);
+            *(u8 **)(base + 0x7c) = node;
+            if (*(s32 *)(node + 4) >= 0)
+                ((void (*)(void))*(void **)node)();
+            if (*(u8 **)(base + 0x30) == NULL)
+                node = *(u8 **)(node + 0x10);
+            else
+                node = *(u8 **)(base + 0x30);
+            *(u8 **)(base + 0x7c) = NULL;
+            *(u8 **)(base + 0x30) = NULL;
+        }
+    }
+
+    func_02002d30();
+    func_02002e58();
+
+    if (*(s32 *)(cfg + 8) != 0) {
+        node = *(u8 **)list2;
+        while (node != NULL) {
+            *(u32 *)(base + 0x74) = *(u32 *)(node + 8);
+            *(u8 **)(base + 0x7c) = node;
+            if (*(s32 *)(node + 4) >= 0)
+                ((void (*)(void))*(void **)node)();
+            if (*(u8 **)(base + 0x30) == NULL)
+                node = *(u8 **)(node + 0x10);
+            else
+                node = *(u8 **)(base + 0x30);
+            *(u8 **)(base + 0x7c) = NULL;
+            *(u8 **)(base + 0x30) = NULL;
+        }
+    }
+
+    if (*(s32 *)cfg != 0) {
+        func_0210dd1c();
+        node = *(u8 **)list3;
+        while (node != NULL) {
+            *(u32 *)(base + 0x74) = *(u32 *)(node + 8);
+            *(u8 **)(base + 0x7c) = node;
+            if (*(s32 *)(node + 4) >= 0)
+                ((void (*)(void))*(void **)node)();
+            if (*(u8 **)(base + 0x30) == NULL)
+                node = *(u8 **)(node + 0x10);
+            else
+                node = *(u8 **)(base + 0x30);
+            *(u8 **)(base + 0x7c) = NULL;
+            *(u8 **)(base + 0x30) = NULL;
+        }
+    }
+
+    if (*(s32 *)(base + 0x58) == 0) {
+        *(volatile u32 *)0x04000540 = *(u32 *)(cfg + 0xc);
+        if (*(s32 *)(base + 0x5c) != 0) {
+            func_020081c0();
+            func_02125448();
+            func_02108ffc();
+            p = *(u8 **)(base + 0xb0);
+            if (p != NULL) {
+                while (p != NULL) {
+                    *(u32 *)(base + 0x74) = *(u32 *)(p + 8);
+                    *(u8 **)(base + 0x7c) = p;
+                    if (*(s32 *)(p + 4) >= 0)
+                        ((void (*)(void))*(void **)p)();
+                    if (*(u8 **)(base + 0x30) == NULL)
+                        p = *(u8 **)(p + 0x10);
+                    else
+                        p = *(u8 **)(base + 0x30);
+                    *(u8 **)(base + 0x7c) = NULL;
+                    *(u8 **)(base + 0x30) = NULL;
+                }
+            }
+            func_020081c0();
+            func_02125448();
+            func_02108ffc();
+            *(s32 *)(base + 0x60) = 0;
+        } else {
+            v = func_02008128();
+            if (*(u32 *)(base + 0x40) != *(u32 *)(base + 0x3c)) {
+                if (*(s32 *)(base + 0x54) == 0) {
+                    if (*(u32 *)(base + 0x40) != 0) {
+                        *(volatile u16 *)0x04000060 &= 0xcfdf;
+                    } else {
+                        *(volatile u16 *)0x04000060 = (*(volatile u16 *)0x04000060 & ~0x3000) | 0x20;
+                        *(volatile u32 *)0x04000540 = *(u32 *)(cfg + 0xc);
+                        *(s32 *)(base + 0x50) = 1;
+                        func_0200813c(v);
+                        func_020081c0();
+                        func_02125448();
+                        func_02108ffc();
+                    }
+                }
+            }
+        }
+    }
+
+    if (*(u8 *)base != 0 && *(void **)(base + 0xc) != NULL)
+        ((void (*)(void))*(void **)(base + 0xc))();
+
+    if (*(s32 *)(base + 0x58) != 0) {
+        if (*(s32 *)(base + 0x54) != 0) {
+            func_02002858((void *)data_0216263c, *(void **)(base + 8));
+            p = *(void **)(base + 0x78);
+        } else {
+            func_02002858((void *)data_0216263c, *(void **)(base + 0x78));
+            func_02002858((void *)((u8 *)data_0216263c + 0x1000), *(void **)(base + 8));
+            p = *(void **)(base + 0x78);
+        }
+        if (*(s32 *)(base + 0x58) != 0 && *(void **)(base + 0x38) != NULL)
+            func_02107820();
+    } else {
+        if (*(void **)(base + 0x38) != NULL) func_02107820();
+        if (*(void **)(base + 0x34) != NULL) {
+            func_02107840();
+            func_0210763c();
+            func_02107774();
+        }
+    }
+
+    if (*(u32 *)data_02162b80 != 0 && *(s32 *)(base + 0x58) != 0 && *(s32 *)(base + 0x54) != 0)
+        func_02125448();
+    if (*(u32 *)data_021624f8 != 0) func_02109040();
+    if (*(u32 *)data_02162730 != 0) func_0210d710();
+    if (*(s32 *)(base + 0x54) != 0) return;
+
+    if (*(u32 *)data_021626f8 == 0) {
+        func_0210c6e0();
+        func_0210e740();
+    } else {
+        func_0210c898();
+        func_0210e6f0();
+    }
+
+    (*(s32 *)(base + 0x68))++;
+    rng = &data_0216263c;
+    {
+        u32 a = rng[0], b = rng[1], c = rng[2];
+        rng[0] = b * a + c;
+    }
+    {
+        u32 *q = &data_02162658;
+        u64 p = (u64)q[2] * q[0];
+        u32 lo = (u32)p;
+        u32 hi = (u32)(p >> 32);
+        hi = q[2] * q[1] + hi;
+        hi = q[3] * q[0] + hi;
+        lo += q[4];
+        hi += q[5] + ((lo < q[4]) ? 1 : 0);
+        q[0] = lo;
+        q[1] = hi;
+    }
+    if (*(u32 *)data_0216267c != 0 && *(void **)(*(void **)data_0216267c + 0x24) != NULL)
+        func_0210c470();
+}
+
 void func_0210e290(s32 arg0) {
  s32 i,x,y,z; Sprite_0210e290 *p;
  *(volatile s32 *)(data_0216280c+0x54)=0;
