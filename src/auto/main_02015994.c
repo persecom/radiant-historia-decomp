@@ -1,5 +1,8 @@
 /* 6 functions from 0x02015994 to 0x02016018 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { u8 suppress,hasWidth,length,conversion; s32 width; u8 set[32]; } ScanSpec_02015;
+extern const ScanSpec_02015 data_0213ec14;
+extern const u16 data_0213eb14[128];
 
 typedef struct {
     u32 field_0;
