@@ -144,33 +144,36 @@ void func_021221e4(s32 *out, s32 time, u32 *track, u8 *base)
 }
 #pragma opt_propagation on
 s32 func_0212251c(s32 *out, const s16 *a, const s16 *b, u32 flags) {
- if (flags & 0x8000) {
-  const s16 *p = a + (flags & 0x7fff)*3;
-  s32 v = p[0];
-  s32 idx = v & 15;
-  s32 x, y;
-  out[0]=out[1]=out[2]=out[3]=out[4]=out[5]=out[6]=out[7]=out[8]=0;
-  x=p[1]; y=p[2];
-  out[idx] = (v & 16) ? -4096 : 4096;
-  out[data_02144f4c[idx*4]]=x;
-  out[data_02144f4d[idx*4]]=y;
-  out[data_02144f4e[idx*4]]=(p[0]&32) ? -y : y;
-  out[data_02144f4f[idx*4]]=(p[0]&64) ? -x : x;
-  return 0;
- } else {
-  const s16 *p=b+(flags&0x7fff)*5;
-  s32 a3, a2, a1, a0, e;
-  e=p[4]; a0=p[0]; a1=p[1]; a2=p[2]; a3=p[3];
-  s16 bits=e&7;
-  bits=(bits<<3)|(a0&7);
-  bits=(bits<<3)|(a1&7);
-  bits=(bits<<3)|(a2&7);
-  bits=(bits<<3)|(a3&7);
-  out[4]=e>>3;
-  out[0]=a0>>3;out[1]=a1>>3;out[2]=a2>>3;out[3]=a3>>3;
-  out[5]=(bits<<19)>>19;
-  return 1;
- }
+    if (flags & 0x8000) {
+        const s16 *p = a + (flags & 0x7fff) * 3;
+        s32 v = p[0];
+        s32 idx = v & 15;
+        s32 x, y;
+        out[0] = out[1] = out[2] = out[3] = out[4] = out[5] = out[6] = out[7] = out[8] = 0;
+        x = p[1];
+        y = p[2];
+        out[idx] = (v & 16) ? -4096 : 4096;
+        out[data_02144f4c[idx * 4]] = x;
+        out[data_02144f4d[idx * 4]] = y;
+        out[data_02144f4e[idx * 4]] = (p[0] & 32) ? -y : y;
+        out[data_02144f4f[idx * 4]] = (p[0] & 64) ? -x : x;
+        return 0;
+    } else {
+        const s16 *p = b + (flags & 0x7fff) * 5;
+        s16 bits;
+        bits = p[4] & 7;
+        out[4] = p[4] >> 3;
+        bits = (bits << 3) | (p[0] & 7);
+        out[0] = p[0] >> 3;
+        bits = (bits << 3) | (p[1] & 7);
+        out[1] = p[1] >> 3;
+        bits = (bits << 3) | (p[2] & 7);
+        out[2] = p[2] >> 3;
+        bits = (bits << 3) | (p[3] & 7);
+        out[3] = p[3] >> 3;
+        out[5] = (bits << 19) >> 19;
+        return 1;
+    }
 }
 #pragma opt_propagation on
 u16 func_02122684(u8 *base, u32 flags, u32 frame) {
@@ -582,21 +585,17 @@ void func_02122fa0(void *arg0_, u8 arg1, u8 *arg2) {
 }
 
 void func_02123074(u8 *arg0, void *arg1, u32 *arg2) {
-    u32 off;
-    u32 result;
-    if (arg0 == NULL || (off = *(u16 *)(arg0 + 0x34)) == 0) {
-        result = 0;
-    } else {
-        u16 *p = func_02120c74(arg0 + off);
-        u32 v = p[0];
-        u32 w = (u16)(((u16)*(u32 *)(arg0 + 0x2c)) & ~0xe0000000u);
-        if ((p[1] & 1) == 0) {
-            v = (v << 15) >> 16;
-            w = (w << 15) >> 16;
-        }
-        result = v + w;
-    }
-    arg2[5] = result;
+u32 off,result;
+if(arg0==NULL || (off=*(u16 *)(arg0+0x34))==0) result=0;
+else {
+u16 *p=func_02120c74(arg0+off);
+u32 w=(u16)(((u16)*(u32 *)(arg0+0x2c)) & ~0xe0000000u);
+u32 flags=p[1];
+u32 v=p[0];
+if((flags&1)==0) {w=(w<<15)>>16;v=(v<<15)>>16;}
+result=v+w;
+}
+arg2[5]=result;
 }
 
 void func_021230d8(u8 *arg0, u8 *arg1, s32 arg2) {
