@@ -220,11 +220,13 @@ hexadecimal:
             }
             {
             s8 *buffer = digits;
-            s32 zero = '0';
             u32 *output = out;
             s32 left;
-            if (prefixes > 0 && prefix[0] == zero) {
-                buffer[count++] = zero;
+            u32 *output2 = out;
+            if (prefixes > 0 && prefix[0] == '0') {
+                buffer[count] = '0';
+                (void)output2;
+                count++;
                 prefixes = 0;
             }
             precision -= count;
