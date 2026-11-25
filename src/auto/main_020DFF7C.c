@@ -16,13 +16,13 @@ extern u32 func_020deaf0(void *, u8, u8);
 extern void func_020c34c8(s32 *, s32, s32, s32, s32, s32, s32, u16);
 
 void func_020dff7c(void) {
+    s16 r8;
     u8 *p5 = 0;
     u8 *p9 = 0;
     u32 flags;
     s32 one=1;
     u8 *actor;
     s32 pos[3];
-    s16 r8;
 
     func_020e18b4();
     func_020e1998();
