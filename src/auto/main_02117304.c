@@ -583,33 +583,19 @@ check:
     return 1;
 }
 
-s32 func_02118008(u8 *arg0, u16 arg1, u16 arg2) {
-    u32 idx = *(u32 *)(arg0 + 0);
-    u8 *row = data_0216e274 + idx * 0x540 + 0x500;
-    u16 *end;
-    u16 *p;
-    s32 ok;
-    p = (u16 *)row + arg1;
-    end = (u16 *)row + arg2;
-    for (; p <= end; p++) {
-        if (*p != 0xffff) {
-            ok = 0;
-            goto check;
-        }
-    }
-    ok = 1;
-check:
-    if (!ok) {
-        return 0;
-    }
-    *(u16 *)(arg0 + 0xc) = arg2;
-    *(u16 *)(arg0 + 0xa) = arg1;
-    *(u16 *)(arg0 + 0xe) = arg1;
-    *(u32 *)(arg0 + 0x14) = 0;
-    func_02008df0(*(u16 *)(arg0 + 0x10), row + ((u32)arg1 << 1), (arg2 - arg1 + 1) * 2);
-    return 1;
+#pragma opt_propagation off
+s32 func_02118008(u8 *arg0,u16 arg1,u16 arg2) {
+u32 idx=*(u32*)arg0; u8 *row=data_0216e274+idx*0x540+0x500;
+u16 *end; u16 *p; s32 ok;
+p=(u16*)row+arg1; end=(u16*)row+arg2;
+for(;p<=end;p++){ if(*p!=0xffff){ok=0;goto check;} }
+ok=1;
+check: if(!ok)return 0;
+*(u16*)(arg0+0xc)=arg2; *(u16*)(arg0+0xa)=arg1; *(u16*)(arg0+0xe)=arg1; *(u32*)(arg0+0x14)=0;
+func_02008df0(*(u16*)(arg0+0x10),row+((u32)arg1<<1),(arg2-arg1+1)*2);
+return 1;
 }
-
+#pragma opt_propagation on
 s32 func_0211809c(u8 *arg0, u16 *arg1, u16 arg2) {
     u16 end = *(u16 *)(arg0 + 6);
     u16 cur = *(u16 *)(arg0 + 8);
