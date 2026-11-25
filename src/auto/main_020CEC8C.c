@@ -159,16 +159,13 @@ if(*(u32 *)(data_02160200+0x160)&0x80) {
 }
 #pragma optimization_level 4
 
+#pragma optimization_level 0
 void func_020cf228(void) {
     s32 x = 0;
     func_02021a3c();
-    goto check;
-loop:
-    func_0210dc88();
-check:
-    if (func_02021a50() == 1) {
-        goto loop;
-    }
+    do {
+        func_0210dc88();
+    } while (func_02021a50() == 1);
     if (func_02021a50() != 0) {
         func_020bdd88();
         func_02021c7c();
@@ -179,7 +176,7 @@ check:
     }
     (void)x;
 }
-
+#pragma optimization_level 4
 s32 func_020cf284(void) {
 func_0210968c(3,0,30);
 data_0216023c=0;
