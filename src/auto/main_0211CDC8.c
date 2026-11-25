@@ -91,19 +91,10 @@ void func_0211cee4(u8 *arg0, u32 arg1) {
 }
 
 void func_0211ceec(u8 *arg0, BOOL arg1) {
-    u32 a, b;
-    if (arg1) {
-        func_02004588();
-        a = *(u32 *)(arg0 + 0x2c);
-        b = *(u16 *)(arg0 + 0x30);
-        a = (a & 0xffff) << 3;
-        b = b << 3;
-        func_020045bc(arg0 + *(u32 *)(arg0 + 0x38), a, b);
-    }
-    *(u16 *)(arg0 + 0x32) |= 1;
-    if (arg1) {
-        func_0200462c();
-    }
+if(arg1) func_02004588();
+func_020045bc(arg0+*(u32 *)(arg0+0x38),(*(u32 *)(arg0+0x2c)&0xffff)<<3,*(u16 *)(arg0+0x30)<<3);
+*(u16 *)(arg0+0x32)|=1;
+if(arg1)func_0200462c();
 }
 
 #pragma schedule off
