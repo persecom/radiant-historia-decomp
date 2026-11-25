@@ -140,6 +140,147 @@ void func_02128b80(u8 *arg0) {
     func_0212d580(r6, 0);
 }
 
+extern u8 data_02156a14[];
+extern s32 func_0212dbe8(void *);
+extern void func_021280f0(void *, u32, u32, u32, u32);
+extern s32 func_0212d5b0(u32);
+extern void func_0212bf38(s32, s32, void *, s32);
+extern void func_0212be08(void *, void *);
+extern void func_0212824c(void *);
+extern s32 func_0212d5a0(u32);
+extern s32 func_0212d5f0(u32);
+extern s32 func_0212d63c(u32);
+extern void func_0212ddf0(void *, s32);
+extern void func_0212ddb8(void *, void *, void *);
+extern void func_02128ab0();
+extern void func_0212d62c(u32);
+extern s32 func_0212d600(u32);
+extern void func_021288c0();
+extern void func_0212d56c(u32, void *, void *);
+extern s32 func_0212d5c0(u32);
+extern void func_0212eb8c(void *, s32);
+extern void func_0212eb68(void *, s32);
+extern void func_0212eb5c(void *, s32);
+extern void func_0212ebbc(void *, s32);
+extern void func_021284bc(void *, s32);
+extern void func_0212884c(void *, s32 *, s32 *);
+extern void func_02128820(void *, s32, s32);
+extern void func_02128b3c(void *);
+extern void func_0212e5c0(void *, s32);
+extern s32 func_0212d6e4(u32);
+extern void func_0212ebc0(void *, s32);
+extern void func_0212eb10(void *, s32);
+void func_02128eb4(u8 *arg0) {
+    u8 buf[0x20];
+    s32 sp8;
+    s32 sp4;
+    u32 r5;
+    s32 status;
+
+    r5 = *(u32 *)(arg0 + 4);
+    sp8 = 0;
+    sp4 = 0;
+
+    if (*(u8 *)(arg0 + 2) <= 1 && *(s8 *)(arg0 + 0xa8) == 1) {
+        if (func_0212dbe8(*(void **)(arg0 + 8)) == 2) {
+            return;
+        }
+        if (*(void **)(arg0 + 0x10) != NULL) {
+            (*(void (**)(void *))(**(u8 ***)(arg0 + 0x10) + 0x14))(*(void **)(arg0 + 0x10));
+        }
+        func_021280f0(arg0, *(u32 *)(arg0 + 0xb0), *(u32 *)(arg0 + 0xb4), *(u32 *)(arg0 + 0xb8), *(u32 *)(arg0 + 0xbc));
+        *(u8 *)(arg0 + 0xa8) = 0;
+    }
+
+    status = func_0212c7b0(r5);
+    if (status == 2) {
+        s32 r6;
+        s32 r7;
+        s32 r4;
+        s32 ch;
+        s32 rate;
+        void (*cb)(void *, s32, s32, s32);
+
+        r7 = func_0212d5b0(r5);
+        if (r7 > *(s8 *)(arg0 + 3)) {
+            func_0212bf38(r7, *(s8 *)(arg0 + 3), buf, 0x10);
+            func_0212be08(data_02156a14, buf);
+            func_0212824c(arg0);
+            return;
+        }
+
+        r7 = func_0212d5a0(r5);
+        r6 = func_0212d5f0(r5);
+        if (func_0212d590(r5) == 10) {
+            *(s32 *)(arg0 + 0x48) = r7 / *(s32 *)(arg0 + 0x38);
+            r7 = func_0212d5d0(r5);
+        } else {
+            if (r6 > 0) {
+                *(s32 *)(arg0 + 0x48) = (r7 / *(s32 *)(arg0 + 0x38)) * 3;
+            } else {
+                *(s32 *)(arg0 + 0x48) = ((r7 / *(s32 *)(arg0 + 0x38)) * 3) / 2;
+            }
+            r7 = func_0212d5d0(r5) * 2;
+        }
+        *(s32 *)(arg0 + 0x48) = ((*(s32 *)(arg0 + 0x48) + r7) / r7) * r7;
+        func_0212c7cc(r5, *(s32 *)(arg0 + 0x48));
+
+        if (r6 > 0) {
+            if (*(s8 *)(arg0 + 2) == 2) {
+                *(s32 *)(arg0 + 0x50) = 0;
+            } else {
+                s32 v = func_0212d63c(r5);
+                *(s32 *)(arg0 + 0x50) = (0x800 - (v % 0x800)) % 0x800;
+                *(s32 *)(arg0 + 0x8c) = (v + 0x7ff) / 0x800;
+                func_0212ddf0(*(void **)(arg0 + 8), *(s32 *)(arg0 + 0x8c));
+                func_0212ddb8(*(void **)(arg0 + 8), (void *)func_02128ab0, arg0);
+            }
+            func_0212d62c(r5);
+            *(s32 *)(arg0 + 0x90) = func_0212d600(r5);
+            func_0212d578(r5, *(s32 *)(arg0 + 0x90));
+            func_0212d588(r5, 0);
+            func_0212d580(r5, 0);
+            func_0212d56c(r5, (void *)func_021288c0, arg0);
+        } else {
+            if (*(void **)(arg0 + 8) != NULL) {
+                func_0212ddf0(*(void **)(arg0 + 8), 0x7fffffff);
+            }
+            func_0212d578(r5, func_0212d5e0(r5));
+            func_0212d588(r5, 0);
+            func_0212d580(r5, 0);
+            func_0212d56c(r5, (void *)func_02128b80, arg0);
+        }
+
+        rate = func_0212d5a0(r5);
+        ch = func_0212d5b0(r5);
+        r4 = func_0212d5e0(r5);
+        func_0212eb8c(*(void **)(arg0 + 0xc), func_0212d5c0(r5));
+        func_0212eb68(*(void **)(arg0 + 0xc), rate);
+        func_0212eb5c(*(void **)(arg0 + 0xc), ch);
+        func_0212ebbc(*(void **)(arg0 + 0xc), r4);
+        func_021284bc(arg0, *(s16 *)(arg0 + 0x40));
+        func_0212884c(arg0, &sp8, &sp4);
+        if (sp8 != 0 || sp4 != 0) {
+            func_02128820(arg0, sp8, sp4);
+        }
+        func_02128b3c(arg0);
+        if (*(void **)(arg0 + 0x74) != NULL) {
+            func_0212e5c0(*(void **)(arg0 + 0x74), rate);
+        }
+        if (func_0212d590(r5) == 2) {
+            func_0212ebc0(*(void **)(arg0 + 0xc), func_0212d6e4(r5));
+        }
+        func_0212eb10(*(void **)(arg0 + 0xc), 1);
+        cb = (void (*)(void *, s32, s32, s32))data_02173478[2];
+        if (cb != NULL) {
+            cb(arg0, rate, ch, r4);
+        }
+        *(u8 *)(arg0 + 1) = 2;
+    } else if (status == 4) {
+        *(u8 *)(arg0 + 1) = 6;
+    }
+}
+
 void func_0212926c(arg0)
     u8 *arg0;
 {
