@@ -26,7 +26,6 @@ extern u32 data_02156f4c[4];
 extern u8 data_0215a0d0[8];
 extern u32 data_02174524[0x100];
 extern u32 data_021744ec[5];
-typedef struct { u32 f0, f1, f2, f3, f4; } Zeros_0212e7f0;
 extern u32 data_021744d8[4];
 extern s32 func_02138500(void);
 extern void func_0213807c(void);
