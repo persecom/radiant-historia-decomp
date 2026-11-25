@@ -156,7 +156,6 @@ void func_020bbe20(u32 arg0, u32 arg1) {
             }
         } else if (data_02160204[0x135] == 0) {
             u32 mask1 = ((struct Entry *)data_02160078)[arg0].f44;
-            u16 mask2;
             j = 0;
             for (i = 0; i < 30; i++) {
                 if (mask1 & (1 << i)) {
@@ -164,12 +163,12 @@ void func_020bbe20(u32 arg0, u32 arg1) {
                     j++;
                 }
             }
-            k = 0;
-            mask2 = ((struct Entry *)data_02160078)[arg0].f6e;
-            for (i = 0; i < 15; i++) {
-                if (mask2 & (1 << i)) {
-                    ((struct Entry *)data_02160078)[arg0].fa4[k] = i + 101;
-                    k++;
+            i = 0;
+            mask1 = ((struct Entry *)data_02160078)[arg0].f6e;
+            for (k = 0; k < 15; k++) {
+                if (mask1 & (1 << k)) {
+                    ((struct Entry *)data_02160078)[arg0].fa4[i] = k + 101;
+                    i++;
                 }
             }
         }
