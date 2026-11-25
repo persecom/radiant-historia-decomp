@@ -2,6 +2,18 @@
 #include "common.h"
 extern u8 data_0216007c[];
 extern char data_021460f4[],data_02146110[],data_02146114[],data_02146118[],data_0214611c[],data_02146120[];
+extern char data_02146124[],data_02146128[],data_02146130[],data_02146138[],data_0214613c[];
+extern char data_02146140[],data_02146144[],data_02146148[],data_0214614c[],data_02146150[];
+extern char data_02146154[],data_02146158[];
+extern u32 data_0216263c[3];
+extern s32 _s32_div_f(s32, s32);
+extern s32 func_02026e9c(s32, char *, char *);
+extern s32 func_02092994(u8 *, s32);
+extern s32 func_0202af90(u16, s16, s16, u8 *);
+extern s32 func_02029790(u16, s16, s16, u8 *);
+extern s32 func_0202a5a4(u16, s16, s16, u8 *);
+extern s32 func_0202aa68(u16, s16, s16, u8 *);
+extern s32 func_0202aec4(u16, s16, s16, u8 *);
 void *func_021092d8(void *);
 char *func_020929f4(void *,int);
 int func_02092a28(void *,void *);
