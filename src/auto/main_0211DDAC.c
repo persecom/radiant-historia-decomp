@@ -24,6 +24,29 @@ s16 a=*(s16 *)p,b=*(s16 *)(p+2);
 extern u8 data_02170464[];
 extern const u32 data_02144f08[];
 extern u8 data_021701fc[];
+static inline void MaterialBuild_0211e3ec(u8 *out,u8 *mat,u8 *source) {
+s32 flags; u32 maska,maskb,a,b;
+flags=*(u16 *)(mat+0x1e);
+if(*(u16 *)(source+0x1e)&0x20) *(u32 *)out|=0x20;
+maska=data_02144f08[(flags>>6)&7];
+maskb=data_02144f08[(flags>>9)&7];
+a=*(u32 *)(mat+4); b=*(u32 *)(mat+8);
+*(u32 *)(out+4)=(*(u32 *)(data_021701fc+0x94)&~maska)|(a&maska);
+*(u32 *)(out+8)=(*(u32 *)(data_021701fc+0x98)&~maskb)|(b&maskb);
+*(u32 *)(out+12)=(*(u32 *)(data_021701fc+0x9c)&~*(u32 *)(mat+16))|(*(u32 *)(mat+12)&*(u32 *)(mat+16));
+*(u32 *)(out+16)=*(u32 *)(mat+20);
+*(u32 *)(out+20)=*(u16 *)(mat+28);
+if(flags&1) {
+u8 *p=mat+0x2c;
+if(flags&2) *(u32 *)out|=1;
+else {*(Pair_0211e3ec *)(out+24)=*(Pair_0211e3ec *)p; p+=8;}
+if(*(u16 *)(mat+30)&4) *(u32 *)out|=2;
+else {s32 a=*(s16 *)p,b=*(s16 *)(p+2); p+=4; *(s16 *)(out+32)=a; *(s16 *)(out+34)=b;}
+if(!(*(u16 *)(mat+30)&8)) {*(Pair_0211e3ec *)(out+36)=*(Pair_0211e3ec *)p;}
+else *(u32 *)out|=4;
+*(u32 *)out|=8;
+}
+}
 extern void *data_02170460;
 extern void func_02008e24(u32, void *, u32);
 extern void func_02008e68(void *, u32, u32);
@@ -263,7 +286,7 @@ out=cache?cache+idx*0x38:data_02170464+idx*0x38;
 } else {
 u8 *tbl,*entry,*source;
 s32 flags;
-u32 maska,maskb;
+u32 maska,maskb,a,b;
 if(cache) {
 *(u32 *)(ctx+0xbc+(idx>>5)*4)|=1<<(idx&31);
 out=*(u8 **)(*(u8 **)(ctx+4)+0x38)+idx*0x38;
@@ -286,8 +309,9 @@ flags=*(u16 *)(mat+0x1e);
 if(*(u16 *)(source+0x1e)&0x20) *(u32 *)out|=0x20;
 maska=data_02144f08[(flags>>6)&7];
 maskb=data_02144f08[(flags>>9)&7];
-*(u32 *)(out+4)=(*(u32 *)(data_021701fc+0x94)&~maska)|(*(u32 *)(mat+4)&maska);
-*(u32 *)(out+8)=(*(u32 *)(data_021701fc+0x98)&~maskb)|(*(u32 *)(mat+8)&maskb);
+a=*(u32 *)(mat+4); b=*(u32 *)(mat+8);
+*(u32 *)(out+4)=(*(u32 *)(data_021701fc+0x94)&~maska)|(a&maska);
+*(u32 *)(out+8)=(*(u32 *)(data_021701fc+0x98)&~maskb)|(b&maskb);
 *(u32 *)(out+12)=(*(u32 *)(data_021701fc+0x9c)&~*(u32 *)(mat+16))|(*(u32 *)(mat+12)&*(u32 *)(mat+16));
 *(u32 *)(out+16)=*(u32 *)(mat+20);
 *(u32 *)(out+20)=*(u16 *)(mat+28);
@@ -296,7 +320,7 @@ u8 *p=mat+0x2c;
 if(flags&2) *(u32 *)out|=1;
 else {*(Pair_0211e3ec *)(out+24)=*(Pair_0211e3ec *)p; p+=8;}
 if(*(u16 *)(mat+30)&4) *(u32 *)out|=2;
-else {*(ShortPair_0211e3ec *)(out+32)=*(ShortPair_0211e3ec *)p; p+=4;}
+else {s32 a=*(s16 *)p,b=*(s16 *)(p+2); p+=4; *(s16 *)(out+32)=a; *(s16 *)(out+34)=b;}
 if(!(*(u16 *)(mat+30)&8)) {*(Pair_0211e3ec *)(out+36)=*(Pair_0211e3ec *)p;}
 else *(u32 *)out|=4;
 *(u32 *)out|=8;
@@ -308,7 +332,7 @@ if(anim && (*(u32 *)(obj+0x3c+(idx>>5)*4)&(1<<(idx&31))))
 (*(void (**)(void *,void *,u32))(obj+12))(out,anim,idx);
 }
 if(*(u32 *)out&0x18) {
-u16 a=*(u16 *)(mat+32),b=*(u16 *)(mat+34);
+u32 a=*(u16 *)(mat+32),b=*(u16 *)(mat+34);
 u32 c=*(u32 *)(mat+36);
 *(u16 *)(out+44)=a; *(u16 *)(out+46)=b;
 *(u32 *)(out+48)=c; *(u32 *)(out+52)=*(u32 *)(mat+40);
