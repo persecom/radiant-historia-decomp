@@ -157,32 +157,33 @@ void func_020f1dfc(s32 arg0, s32 arg1) {
 
 #pragma optimization_level 2
 void func_020f1e2c(void) {
- s32 j;
- s32 off;
  s32 i;
+ s32 off;
+ s32 off2;
+ s32 j;
  if(data_02160c10==NULL) return;
  i=0;
  goto test1;
  loop1:
  off=i*12;
  if(*(u16 *)(data_02160c10+off+8)!=0) {
- do {func_020f1f28(*(u8 **)(off+data_02160c10));}
- while(*(u16 *)(off+data_02160c10+8)!=0);
+ do {func_020f1f28(*(u8 **)((off+(u32)data_02160c10)));}
+ while(*(u16 *)((off+(u32)data_02160c10)+8)!=0);
  }
  i++;
  test1:
  if(i<6) goto loop1;
- i=0;
+ j=0;
  goto test2;
  loop2:
- off=i*12;
- if(*(u16 *)(data_02160c10+off+0x50)!=0) {
- do {func_020f1fa4(*(u8 **)(off+data_02160c10+0x48));}
- while(*(u16 *)(off+data_02160c10+0x50)!=0);
+ off2=j*12;
+ if(*(u16 *)(data_02160c10+off2+0x50)!=0) {
+ do {func_020f1fa4(*(u8 **)((off2+(u32)data_02160c10)+0x48));}
+ while(*(u16 *)((off2+(u32)data_02160c10)+0x50)!=0);
  }
- i++;
+ j++;
  test2:
- if(i<6) goto loop2;
+ if(j<6) goto loop2;
  func_0210da14(data_02160c10+0x9c);
  func_0210dba0(data_02160c10+0xb0);
  func_0210db10(data_02160c10+0xc4);
