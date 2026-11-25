@@ -37,6 +37,7 @@ typedef struct {
 } Struct0216f9c4;
 
 extern Struct0216f234 data_0216f234;
+static inline s32 empty_0211a128(void) { if ((s32)data_0216f234.fc <= 0) return 1; else return 0; }
 extern Struct0216f2c4 data_0216f2c4[];
 extern Struct0216f9c4 data_0216f9c4[];
 extern u8 data_0216f6c4[];
