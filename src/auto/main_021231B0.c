@@ -125,7 +125,7 @@ void func_02123370(u32 *out, const u32 *in, const u8 *p, u32 flags)
     out[3] = z;
     if (bits & 2)
     {
-      u32 index = p[1];
+      register u32 index = p[1];
       u32 *map = (u32 *) (data_02170460 + 0xc4);
       map[index >> 5] &= ~(1 << (index & 31));
       *((volatile u32 *)((u8 *)data_02171270 + (s16)index * 24)) = in[3];
@@ -348,9 +348,11 @@ void func_02123a6c(u8 *arg0)
     else
     {
       s32 v[3];
-      s32 y = (((s64) (*((s32 *) (arg0 + 0x50)))) * (*((s32 *) (arg0 + 0x14)))) >> 12;
-      s32 x = ((s64) (*((s32 *) (arg0 + 0x4c)))) * (*((s32 *) (arg0 + 0x10)));
+      s32 x;
+      s32 y;
+      x = ((s64) (*((s32 *) (arg0 + 0x4c)))) * (*((s32 *) (arg0 + 0x10)));
       x = x >> 12;
+      y = (((s64) (*((s32 *) (arg0 + 0x50)))) * (*((s32 *) (arg0 + 0x14)))) >> 12;
       {
         s32 az = *((s32 *) (arg0 + 0x54));
         s32 bz = *((s32 *) (arg0 + 0x18));
@@ -420,14 +422,8 @@ if(flags&4) {
 void func_02123da4(const u8 *p)
 {
   u32 v[15];
-  const u16 *new_var2;
-  int new_var;
-  register s32 x;
-  register s32 y;
-  register s32 sx;
-  register s32 sy;
-  register s32 tx;
-  register s32 ty;
+  s32 sx;
+  s32 sy;
   if ((*((u32 *) p)) & 8)
   {
     v[0] = 0x101710;
@@ -437,7 +433,6 @@ void func_02123da4(const u8 *p)
     v[0] = 0x101910;
   }
   v[1] = 3;
-  new_var2 = &(*((const u16 *) (p + (new_var = 46))));
   v[14] = 2;
   v[13] = 0;
   v[10] = 0;
@@ -458,69 +453,34 @@ void func_02123da4(const u8 *p)
     }
     else
     {
-      x = *((const s32 *) (p + 24));
-      ;
-      v[2] = x;
+      v[2] = *((const s32 *) (p + 24));
       v[6] = *((const s32 *) (p + 28));
     }
   }
-  else
-    if ((*((u32 *) p)) & 1)
+  else if ((*((u32 *) p)) & 1)
   {
-    register s32 x;
-    register s32 y;
-    register s32 tx;
-    register s32 ty;
-    x = (*((const s32 *) (p + 36))) << 4;
-    y = (*((const s32 *) (p + 40))) << 4;
-    tx = -x;
-    ty = -y;
-    x = *((const u16 *) (p + 44));
-    y = *new_var2;
-    ;
-    ty = y * ty;
-    v[11] = x * tx;
-    v[12] = ty;
+    v[11] = -((*((const s32 *) (p + 36))) << 4) * (*((const u16 *) (p + 44)));
+    v[12] = -((*((const s32 *) (p + 40))) << 4) * (*((const u16 *) (p + 46)));
     v[2] = 4096;
     v[6] = 4096;
   }
   else
   {
-    register s32 x;
-    register s32 y;
-    register s32 sx;
-    register s32 sy;
-    register s32 tx;
-    register s32 ty;
-    sx = *((const s32 *) (p + 24));
-    sy = *((const s32 *) (p + 28));
-    x = (((s64) sx) * (*((const s32 *) (p + 36)))) >> 8;
-    y = (((s64) sy) * (*((const s32 *) (p + 40)))) >> 8;
-    tx = -x;
-    ty = -y;
-    x = *((const u16 *) (p + 44));
-    y = *((const u16 *) (p + new_var));
-    v[6] = sy;
-    tx = x * tx;
-    ty = y * ty;
-    v[11] = tx;
-    v[12] = ty;
-    v[6] = sy;
-    v[2] = sx;
+    v[11] = -((s32)((((s64) *((const s32 *) (p + 24))) * (*((const s32 *) (p + 36)))) >> 8)) * (*((const u16 *) (p + 44)));
+    v[12] = -((s32)((((s64) *((const s32 *) (p + 28))) * (*((const s32 *) (p + 40)))) >> 8)) * (*((const u16 *) (p + 46)));
+    v[2] = *((const s32 *) (p + 24));
+    v[6] = *((const s32 *) (p + 28));
   }
   sx = *((const s32 *) (p + 48));
   if (sx != 4096)
   {
-    v[2] = (x = (((s64) sx) * ((s32) v[2])) >> ((0, 12)));
-    y = (((s64) sx) * ((s32) v[11])) >> 12;
-    v[11] = y;
+    v[2] = (((s64) sx) * ((s32) v[2])) >> 12;
+    v[11] = (((s64) sx) * ((s32) v[11])) >> 12;
   }
   sy = *((const s32 *) (p + 52));
   if (sy != 4096)
   {
-    x = (((s64) sy) * ((s32) v[6])) >> 12;
-    ;
-    v[6] = x;
+    v[6] = (((s64) sy) * ((s32) v[6])) >> 12;
     v[12] = (((s64) sy) * ((s32) v[12])) >> 12;
   }
   func_021205ec(v[0], (void *) (((u32) v) + 4), 14);
