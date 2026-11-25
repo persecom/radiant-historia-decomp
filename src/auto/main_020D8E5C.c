@@ -111,14 +111,16 @@ func_020d9cc0(*pp+12);
 func_020f4668(*pp+12);
 }
 
+#pragma optimization_level 2
 void func_020d9058(Unk3Words *arg0) {
-    u64 ab = *(u64 *)arg0;
-    u32 c = arg0->unk8;
-    u8 *p = data_02160258;
-    *(u64 *)(p + 0xc) = ab;
-    *(u32 *)(p + 0x14) = c;
+u64 ab = *(u64 *)arg0;
+u8 *p = data_02160258;
+u32 c = arg0->unk8;
+*(u32 *)(p+0xc) = (u32)ab;
+*(u32 *)(p+0x10) = (u32)(ab>>32);
+*(u32 *)(p+0x14) = c;
 }
-
+#pragma optimization_level 4
 void func_020d907c(u32 arg0) {
     *(u32 *)(data_02160258 + 0x54) = arg0;
 }
