@@ -17,6 +17,7 @@ extern u32 func_ov000_02177ad0(void *, u32);
 extern void func_02010c40(s32, u32, void *, u32, s32, s32, s32);
 extern void func_0200fa20(u32);
 extern void func_02005e50(u32);
+static inline s32 card_neg(u32 v) { return -(s32)v; }
 #pragma push
 #pragma opt_propagation off
 #pragma opt_loop_invariants off
@@ -41,18 +42,16 @@ u32 func_ov000_02177b0c(void) {
         u32 c5 = 5;
         volatile u8 *io = (volatile u8 *)(c1 << 26);
         u16 exmem = *(volatile u16 *)0x04000204;
-        u32 hdr_addr;
-        u8 bank;
+        u32 mask;
         u32 ctrl;
         s32 pos;
         u32 cur_addr;
 
 
         *(volatile u16 *)0x04000204 &= ~0x800;
-        pos = -(s32)(addr & (0x204 - c5));
-        bank = *(volatile u8 *)(io + 0x4000);
-        hdr_addr = ((((bank & 1) + 5) << 18) - 13) << 5;
-        ctrl = (*(volatile u32 *)hdr_addr & ~0x07000000) | 0xa1000000;
+        mask = 0x204 - c5;
+        pos = -(s32)(addr & mask);
+        ctrl = (*(volatile u32 *)(((((*(volatile u8 *)(io + 0x4000) & 1) + 5) << 18) - 13) << 5) & ~0x07000000) | 0xa1000000;
         while (*(volatile u32 *)(io + 0x1a4) & 0x80000000) {}
         *(volatile u8 *)(io + 0x1a1) = 0x80;
         saved=saved_cmd;
@@ -126,7 +125,7 @@ u32 func_ov000_02177d4c(void) {
     u32 buf[0x80];
     u32 hash[7];
     u8 saved_cmd[8];
-    u8 *saved;
+ u8 *saved;
     u32 lock_id;
     u32 addr = 0x1000;
     s32 i, j;
@@ -137,32 +136,34 @@ u32 func_ov000_02177d4c(void) {
     func_0200f9b0(lock_id);
 
     dst = (u8 *)buf;
-    i = 0;
-    do {
+    i=0;
+ do {
         u32 c1 = 1;
         u32 c5 = 5;
         volatile u8 *io = (volatile u8 *)(c1 << 26);
         u16 exmem = *(volatile u16 *)0x04000204;
-        u32 mask;
+        u32 hdr_addr;
         u32 ctrl;
         s32 pos;
         u32 cur_addr;
 
+
         *(volatile u16 *)0x04000204 &= ~0x800;
-        mask = 0x204 - c5;
-        pos = -(s32)(addr & mask);
-        ctrl = (*(volatile u32 *)(((((*(volatile u8 *)(io + 0x4000) & 1) + 5) << 18) - 13) << 5) & ~0x07000000) | 0xa1000000;
+        pos = -(s32)(addr & (0x204 - c5));
+        hdr_addr = ((((*(volatile u8 *)(io + 0x4000) & 1) + 5) << 18) - 13) << 5;
+        ctrl = (*(volatile u32 *)hdr_addr & ~0x07000000) | 0xa1000000;
         while (*(volatile u32 *)(io + 0x1a4) & 0x80000000) {}
         *(volatile u8 *)(io + 0x1a1) = 0x80;
-        saved = saved_cmd;
-        j = 0;
-        do {
+        saved=saved_cmd;
+ j=0;
+ do {
             *saved++ = ((volatile u8 *)0x040001a8)[j];
         } while (++j < 8);
         cur_addr = addr + pos;
         while (pos < 0x200) {
-            volatile u8 *cmd = (volatile u8 *)0x04000000;
-            cmd[0x1a8] = 0xb7;
+ u8 command = 0xb7;
+ volatile u8 *cmd=(volatile u8 *)0x04000000;
+            cmd[0x1a8] = command;
             cmd[0x1a9] = (u8)(cur_addr >> 24);
             cmd[0x1aa] = (u8)(cur_addr >> 16);
             cmd[0x1ab] = (u8)(cur_addr >> 8);
@@ -182,9 +183,9 @@ u32 func_ov000_02177d4c(void) {
             } while (*(volatile u32 *)(io + 0x1a4) & 0x80000000);
             cur_addr += 0x200;
         }
-        saved = saved_cmd;
-        j = 0;
-        do {
+        saved=saved_cmd;
+ j=0;
+ do {
             ((volatile u8 *)0x040001a8)[j] = *saved++;
         } while (++j < 8);
         *(volatile u16 *)(io + 0x204) = exmem;
@@ -197,8 +198,8 @@ u32 func_ov000_02177d4c(void) {
     func_0200fa20(lock_id);
     func_02005e50(lock_id);
 
-    j = 0;
-    do {
+    j=0;
+ do {
         if (hash[3 + 0] != hash[0 + j]) {
             res = 0xf1;
             goto clear;
@@ -211,13 +212,12 @@ u32 func_ov000_02177d4c(void) {
     }
 
 clear:
-    j = 0;
-    do {
+    j=0;
+ do {
         buf[j] = j;
     } while (++j < 0x80);
     return res * 0xbf;
 }
-#pragma pop
 u32 func_ov000_02178004(void) {
     return 0xaa65;
 }
