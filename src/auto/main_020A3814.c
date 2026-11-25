@@ -43,6 +43,24 @@ extern char data_0214fe40[];
 extern void *func_0210c594(s32, u32);
 extern void *func_02109c60(char *, u32 *);
 extern void func_02005e80(char *, const char *, ...);
+extern u16 data_021430c8[2];
+extern u8 *data_02160204;
+extern void func_020a3ce8(s16 *);
+extern void func_020a48d0(s32, s32, s32, s32, s32, s32, s32);
+
+static inline void draw_quad_020a3d8c(s16 a0, s16 a1, s16 a2, s16 a3, s16 a4, s16 a5, s16 a6, s16 a7, s16 a8) {
+    s16 buf[9];
+    buf[0] = a0;
+    buf[1] = a1;
+    buf[2] = a2;
+    buf[3] = a3;
+    buf[4] = a4;
+    buf[5] = a5;
+    buf[6] = a6;
+    buf[7] = a7;
+    buf[8] = a8;
+    func_020a3ce8(buf);
+}
 
 void *func_020a3814(void *arg0,s32 arg1,char *arg2) {
 u32 size;
@@ -186,6 +204,9 @@ void func_020a3ce8(s16 *arg0) {
         sp[9] = arg0[3];
     }
     func_021098ac(sp);
+}
+
+void func_020a3d8c(u8 *arg0, u8 *arg1) {
 }
 
 void func_020a46cc(s16 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s16 arg5, s16 arg6) {
