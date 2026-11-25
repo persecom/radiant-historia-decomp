@@ -180,16 +180,14 @@ void func_020de888(void)
     else
       if (index >= 1)
     {
-      u16 expected;
       u8 *state2;
-      u8 valid;
+      s32 valid;
       s32 i;
       u8 kind;
       info = *((u8 **) node);
-      expected = base[0x38];
       obj = *((u8 **) (node + 8));
       kind = *(*((u8 **) (info + 0x118)));
-      if (kind != expected)
+      if (kind != base[0x38])
       {
         return;
       }
@@ -216,7 +214,7 @@ void func_020de888(void)
       {
         return;
       }
-      if (kind == expected)
+      if (kind == base[0x38])
       {
         state2 = *((u8 **) (info + 0x128));
         (*((s8 *) (state2 + 0x50)))++;
