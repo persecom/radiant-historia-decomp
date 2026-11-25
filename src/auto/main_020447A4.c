@@ -232,8 +232,6 @@ u8 func_02044c98(void)
 #pragma opt_propagation on
 extern void func_020544d8(void *, s32);
 extern void func_020a4c98(s32);
-#pragma push
-#pragma opt_common_subs off
 void func_02044cfc(void)
 {
     s32 one = 1;
@@ -266,7 +264,6 @@ void func_02044cfc(void)
     func_020a4c98(0);
     *(u32 *)(data_021600a8[1] + 0x10) = 10;
 }
-#pragma pop
 u32 func_02044dd0(void) {
     u8 *q;
     u8 *p = data_021600a8[1];
