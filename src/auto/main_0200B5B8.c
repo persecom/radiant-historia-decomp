@@ -16,7 +16,7 @@ extern s32 func_0200ad00(void *, s32);
 extern void func_0200aeac();
 extern void func_02008f74(void *, s32, s32);
 extern s32 func_020124a8(s32, u8 *, s8 *);
-extern u8 *data_0215ed68;
+extern volatile u8 *data_0215ed68;
 extern char data_02145c00[];
 s32 func_0200b810(const char *str, s32 pos);
 s32 func_0200b844(char *str);
@@ -42,7 +42,7 @@ s32 func_0200b5b8(u8 *arg0, s8 *arg1, u32 arg2) {
     s32 ret = 0;
     u32 lock = func_02008128();
     if (func_0200b0ec(arg1, arg2) == NULL) {
-        u8 *cur = data_0215ed68;
+        u8 *cur = *(volatile u8 **)&data_0215ed68;
         u8 **slot = &data_0215ed68;
         while (cur != NULL) {
             slot = (u8 **)(cur + 4);
