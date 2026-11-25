@@ -12,8 +12,8 @@ void func_02014880(u8 *arg0, s32 arg1) {
     if (arg1 < 0) {
     L_reset:
         arg0[4] = one;
-        arg0[5] = '0';
         *(s16 *)(arg0 + 2) = 0;
+        arg0[5] = '0';
         return;
     }
     if (arg1 >= arg0[4]) {
@@ -39,11 +39,12 @@ void func_02014880(u8 *arg0, s32 arg1) {
         do {
             dig = (*--dp - '0') + up;
             up = dig > 9 ? one : 0;
-            if (up == 0 && dig != 0) {
+            if (up != 0 || dig == 0) {
+                arg1--;
+            } else {
                 *dp = dig + '0';
                 break;
             }
-            arg1--;
         } while (arg1 != 0);
     }
     if (up != 0) {
