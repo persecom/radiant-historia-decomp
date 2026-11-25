@@ -48,29 +48,17 @@ lo&=~(m>>shift);
 return x;
 }
 
-u64 func_0201e1f8(u64 x, s32 *exp, ...) {
-    union { u64 d; struct { u32 lo, hi; } w; } u;
-    u32 hx;
-    s32 e;
-    u.d = x;
-    hx = u.w.hi & 0x7fffffff;
-    e = 0;
-    *exp = e;
-    if (hx >= 0x7ff00000) {
-        return x;
-    }
-    if ((hx | u.w.lo) == 0) {
-        return x;
-    }
-    if (hx < 0x100000) {
-        u.d = _dmul(u.d, 0x4350000000000000ULL);
-        hx = u.w.hi & 0x7fffffff;
-        e = e - 54;
-        *exp = e;
-    }
-    u.w.hi = (u.w.hi & 0x800fffff) | 0x3fe00000;
-    *exp += ((s32)hx >> 20) - 1022;
-    return u.d;
+double func_0201e1f8(double x, s32 *exp) {
+s32 hi=((s32 *)&x)[1];
+s32 lo=((s32 *)&x)[0];
+s32 hx=hi&0x7fffffff;
+s32 e=0;
+*exp=e;
+if(hx>=0x7ff00000 || (hx|lo)==0)return x;
+if(hx<0x100000){x*=18014398509481984.0;e-=54;*exp=e;hi=((s32 *)&x)[1];hx=hi&0x7fffffff;}
+*exp+=(hx>>20)-1022;
+((u32 *)&x)[1]=(hi&0x800fffff)|0x3fe00000;
+return x;
 }
 
 extern int func_020136ec(double);
@@ -146,5 +134,42 @@ void func_0201e6b4(void) {
 extern void func_0201b4cc(void);
 void func_0201e6c0(void) {
     func_0201b4cc();
+}
+
+double _dadd(double a, double b) {
+    return a + b;
+}
+
+double _dsub(double aa,double bb) {
+ DoubleBits a,b,r;
+ u64 sign,x,y,lost,result;
+ s32 ex,ey,shift;
+ a.d=*(u64 *)&aa;b.d=*(u64 *)&bb;
+ sign=a.d&0x8000000000000000ULL;
+ x=a.d&0x7fffffffffffffffULL;y=b.d&0x7fffffffffffffffULL;
+ if((a.d^b.d)&0x8000000000000000ULL){b.d^=0x8000000000000000ULL;return _dadd(aa,*(double *)&b.d);}
+ if(x<y){u64 t=x;x=y;y=t;sign^=0x8000000000000000ULL;}
+ ex=x>>52;ey=y>>52;
+ if(ex==2047) {
+ if((x&0xfffffffffffffULL)||(ey==2047))r.d=0x7fffffffffffffffULL;
+ else r.d=sign|0x7ff0000000000000ULL;
+ return *(double *)&r.d;
+ }
+ if(x==y){r.d=0;return *(double *)&r.d;}
+ x=(x&0xfffffffffffffULL)|(ex?0x10000000000000ULL:0);
+ y=(y&0xfffffffffffffULL)|(ey?0x10000000000000ULL:0);
+ if(!ex)ex=1;if(!ey)ey=1;
+ x<<=11;y<<=11;shift=ex-ey;
+ if(shift>=64)y=y!=0;
+ else if(shift){lost=y<<(64-shift);y=(y>>shift)|(lost!=0);}
+ result=x-y;
+ while(!(result&0x8000000000000000ULL)&&ex>1){result<<=1;ex--;}
+ if(ex==1 && !(result&0x8000000000000000ULL))ex=0;
+ lost=result&2047;result>>=11;
+ if(lost>1024 || (lost==1024 && (result&1)))result++;
+ if(result&0x20000000000000ULL){result>>=1;ex++;}
+ if(!ex && (result&0x10000000000000ULL))ex=1;
+ r.d=sign|((u64)ex<<52)|(result&0xfffffffffffffULL);
+ return *(double *)&r.d;
 }
 
