@@ -23,8 +23,6 @@ extern void func_0210d27c(s32);
 extern void func_020d0884(void);
 extern void func_020d3160(s32, s32, s32, s32);
 #pragma push
-#pragma optimization_level 3
-#pragma opt_propagation off
 void func_0205df48(u8 *arg0) {
 u8 *q=*(u8 **)(arg0+0x128);
 u8 *p=*(u8 **)(q+8);
