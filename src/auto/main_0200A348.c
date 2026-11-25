@@ -1,7 +1,5 @@
 /* 37 functions from 0x02009B24 to 0x0200A980 (main), found by ds-decomp. */
 #include "common.h"
-typedef struct { u16 a,b,c,d,e; } Unk0200A348Five;
-typedef struct { u16 a,b,c,d,e,f; } Unk0200A348Six;
 
 extern u32 data_0215d1b8[9];
 extern u8 data_0215ec80[0x60];
