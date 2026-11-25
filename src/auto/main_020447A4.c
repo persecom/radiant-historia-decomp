@@ -115,9 +115,10 @@ void func_0204487c(u8 *obj) {
  *(u16 *)(data_02160204+0x6a)=*(u16 *)(*(u8 **)(obj+0xb0)+8);
  if((*(u8 **)(obj+0xb0))[13]!=0) {
  s32 n=0;
- if((*(u8 **)(obj+0xb0))[13])
- { n=random_4487c((*(u8 **)(obj+0xb0))[13]*2);
- n-=(*(u8 **)(obj+0xb0))[13]; }
+ u8 *rangeData;
+ rangeData=*(u8 **)(obj+0xb0);
+ if(rangeData[13])
+ n=(s32)random_4487c((*(u8 **)(obj+0xb0))[13]*2)-(*(u8 **)(obj+0xb0))[13];
  *(u16 *)(data_02160204+0x6a)=*(u16 *)(*(u8 **)(obj+0xb0)+8)+abs_4487c(n);
  }
  *(u16 *)(data_021600a8[1]+0x88)=*(u16 *)(obj+0x90);
@@ -146,11 +147,13 @@ void func_0204487c(u8 *obj) {
  data_02160204[0x85]=5;
 }
 
-void func_02044a98(s32 arg0) {
-    u8 *p = data_021600a8[1];
-    S_02044a98 local[1];
-    local[0] = data_0213f2d0;
-    func_02044aec(&local[arg0], *(u16 *)(p + 0x8b4));
+void func_02044a98(s32 arg0)
+{
+  u8 *new_var;
+  S_02044a98 local[1];
+  local[0] = data_0213f2d0;
+  new_var = (u16 *) (new_var = data_021600a8[1] + 0x8b4);
+  func_02044aec(&local[arg0], *new_var);
 }
 
 void *func_02044aec(void *arg0, u16 arg1) {
@@ -214,19 +217,18 @@ void func_02044c48(u32 arg0) {
     func_020ecd10(*(void **)(r5 + 0x108), arg0, 0);
 }
 
-u8 func_02044c98(void) {
-    u8 *p = data_021600a8[1];
-    s32 a;
-    s32 b;
-    s32 x = data_02162908[0];
-    u8 *q = *(u8 **)(p + 0x68);
-    s32 y = data_02162908[1];
-    a = *(s32 *)(q + 0xfc);
-    b = *(s32 *)(q + 0x100);
-    s32 lo = a - 0x10;
-    s32 hi = a + 0x10;
-    s32 lo2 = b - 0x20;
-    return x >= lo && x <= hi && y >= lo2 && y <= b;
+u8 func_02044c98(void)
+{
+  u8 *p = data_021600a8[1];
+  u8 *q = *((u8 **) (p + 0x68));
+  s32 y = data_02162908[1];
+  s32 a = *((s32 *) (q + 0xfc));
+  s32 b = *((s32 *) (q + 0x100));
+  s32 xmin = a - 0x10;
+  s32 xmax = a + 0x10;
+  s32 x = data_02162908[0];
+  s32 ymin = b - 0x20;
+  return (((x >= xmin) && (x <= xmax)) && (y >= ymin)) && (y <= b);
 }
 
 extern void func_020544d8(void *, s32);
@@ -324,16 +326,13 @@ void func_02044fb0(u32 arg0, u32 arg1) {
         *(u32 *)(p + 0xc) |= 5;
         if (arg0 == 1) {
             *(u32 *)(p + 0xc) |= 0x10;
+            if (arg1 != 0) *(u32 *)(p + 0xc) |= 0x40;
         } else if (arg0 == 2) {
             *(u32 *)(p + 0xc) |= 0x20;
-            if (arg1 != 0) {
-                *(u32 *)(p + 0xc) |= 0x40;
-            }
+            if (arg1 != 0) *(u32 *)(p + 0xc) |= 0x40;
         }
     }
-    if (!(*(u32 *)(p + 0xc) & 0x40)) {
-        func_02059888();
-    }
+    if (!(*(u32 *)(p + 0xc) & 0x40)) func_02059888();
 }
 
 extern void func_02045800(void);
