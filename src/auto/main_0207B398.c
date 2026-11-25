@@ -16,6 +16,10 @@ extern void func_020477dc(void *, s32, s32);
 extern void *func_02021f10(u32);
 extern void func_0210d27c(s32);
 
+void func_0207b398(void)
+{
+}
+
 s32 func_0207be40(s32 *arg0, s32 *arg1, s32 arg2, s32 arg3) {
     s32 v[2];
     s64 sq;
@@ -101,7 +105,7 @@ void func_0207c17c(void) {
     u8 *p = *(u8 **)(data_021600f0 + 0x10);
     void *res = func_02021f10(0);
     u8 *node;
-    s16 v;
+    s32 v;
     if (*(u8 *)(p + 0) == 1) {
         return;
     }
