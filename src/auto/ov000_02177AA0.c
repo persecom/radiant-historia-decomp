@@ -10,6 +10,188 @@ typedef struct {
     u8 s[0x100];
 } Rc4State;
 
+extern s32 func_02005df8(void);
+extern void func_0200f9b0(u32);
+extern u32 func_ov000_02177ad0(void *, u32);
+extern void func_02010c40(s32, u32, void *, u32, s32, s32, s32);
+extern void func_0200fa20(u32);
+extern void func_02005e50(u32);
+#pragma optimization_level 3
+u32 func_ov000_02177b0c(void) {
+    u32 buf[0x80];
+    u32 hash[2][3];
+    u8 saved_cmd[8];
+    u32 lock_id;
+    u32 addr = 0x1000;
+    s32 i, j;
+    u8 *dst;
+    u32 res;
+
+    lock_id = (u16)func_02005df8();
+    func_0200f9b0(lock_id);
+
+    dst = (u8 *)buf;
+    for (i = 0; i < 3; i++) {
+        u32 c1 = 1;
+        u32 c5 = 5;
+        volatile u8 *io = (volatile u8 *)(c1 << 26);
+        u16 exmem = *(volatile u16 *)0x04000204;
+        u32 hdr_addr;
+        u32 ctrl;
+        s32 pos;
+        u32 cur_addr;
+
+        *(volatile u16 *)0x04000204 &= ~0x800;
+        hdr_addr = ((((*(volatile u8 *)(io + 0x4000) & 1) + 5) << 18) - 13) << 5;
+        pos = -(s32)(addr & (0x204 - c5));
+        ctrl = (*(volatile u32 *)hdr_addr & ~0x07000000) | 0xa1000000;
+        while (*(volatile u32 *)(io + 0x1a4) & 0x80000000) {}
+        *(volatile u8 *)(io + 0x1a1) = 0x80;
+        for (j = 0; j < 8; j++) {
+            saved_cmd[j] = ((volatile u8 *)0x040001a8)[j];
+        }
+        cur_addr = addr + pos;
+        while (pos < 0x200) {
+            io[0x1a8] = 0xb7;
+            io[0x1a9] = (u8)(cur_addr >> 24);
+            io[0x1aa] = (u8)(cur_addr >> 16);
+            io[0x1ab] = (u8)(cur_addr >> 8);
+            io[0x1ac] = (u8)cur_addr;
+            io[0x1ad] = 0;
+            io[0x1ae] = 0;
+            io[0x1af] = 0;
+            *(volatile u32 *)(io + 0x1a4) = ctrl;
+            do {
+                if (*(volatile u32 *)(io + 0x1a4) & 0x00800000) {
+                    u32 word = *(volatile u32 *)(io + 0x100010);
+                    if (pos >= 0 && pos < 0x200) {
+                        *(u32 *)(dst + pos) = word;
+                    }
+                    pos += 4;
+                }
+            } while (*(volatile u32 *)(io + 0x1a4) & 0x80000000);
+            cur_addr += 0x200;
+        }
+        for (j = 0; j < 8; j++) {
+            ((volatile u8 *)0x040001a8)[j] = saved_cmd[j];
+        }
+        *(volatile u16 *)(io + 0x204) = exmem;
+        hash[0][i] = func_ov000_02177ad0(buf, 0x200);
+        func_02010c40(-1, addr + 0x7000, buf, 0x200, 0, 0, 0);
+        hash[1][i] = func_ov000_02177ad0(buf, 0x200);
+        addr += 0x200;
+    }
+
+    func_0200fa20(lock_id);
+    func_02005e50(lock_id);
+
+    for (j = 0; j < 3; j++) {
+        if (hash[1][0] != hash[0][j]) {
+            res = 0xfb;
+            goto clear;
+        }
+    }
+    if (hash[1][0] == hash[1][1] && hash[1][0] == hash[1][2]) {
+        res = 0xfb;
+    } else {
+        res = 0xf1;
+    }
+
+clear:
+    for (j = 0; j < 0x80; j++) {
+        buf[j] = j;
+    }
+    return res * 0xb3;
+}
+
+u32 func_ov000_02177d4c(void) {
+    u32 buf[0x80];
+    u32 hash[2][3];
+    u8 saved_cmd[8];
+    u32 lock_id;
+    u32 addr = 0x1000;
+    s32 i, j;
+    u8 *dst;
+    u32 res;
+
+    lock_id = (u16)func_02005df8();
+    func_0200f9b0(lock_id);
+
+    dst = (u8 *)buf;
+    for (i = 0; i < 3; i++) {
+        const u32 c1 = 1;
+        const u32 c5 = 5;
+        volatile u8 *io = (volatile u8 *)(c1 << 26);
+        u16 exmem = *(volatile u16 *)0x04000204;
+        u32 hdr_addr;
+        u32 ctrl;
+        s32 pos;
+        u32 cur_addr;
+
+        *(volatile u16 *)0x04000204 &= ~0x800;
+        hdr_addr = ((((*(volatile u8 *)(io + 0x4000) & 1) + 5) << 18) - 13) << 5;
+        pos = -(s32)(addr & (0x204 - c5));
+        ctrl = (*(volatile u32 *)hdr_addr & ~0x07000000) | 0xa1000000;
+        while (*(volatile u32 *)(io + 0x1a4) & 0x80000000) {}
+        *(volatile u8 *)(io + 0x1a1) = 0x80;
+        for (j = 0; j < 8; j++) {
+            saved_cmd[j] = ((volatile u8 *)0x040001a8)[j];
+        }
+        cur_addr = addr + pos;
+        while (pos < 0x200) {
+            io[0x1a8] = 0xb7;
+            io[0x1a9] = (u8)(cur_addr >> 24);
+            io[0x1aa] = (u8)(cur_addr >> 16);
+            io[0x1ab] = (u8)(cur_addr >> 8);
+            io[0x1ac] = (u8)cur_addr;
+            io[0x1ad] = 0;
+            io[0x1ae] = 0;
+            io[0x1af] = 0;
+            *(volatile u32 *)(io + 0x1a4) = ctrl;
+            do {
+                if (*(volatile u32 *)(io + 0x1a4) & 0x00800000) {
+                    u32 word = *(volatile u32 *)(io + 0x100010);
+                    if (pos >= 0 && pos < 0x200) {
+                        *(u32 *)(dst + pos) = word;
+                    }
+                    pos += 4;
+                }
+            } while (*(volatile u32 *)(io + 0x1a4) & 0x80000000);
+            cur_addr += 0x200;
+        }
+        for (j = 0; j < 8; j++) {
+            ((volatile u8 *)0x040001a8)[j] = saved_cmd[j];
+        }
+        *(volatile u16 *)(io + 0x204) = exmem;
+        hash[0][i] = func_ov000_02177ad0(buf, 0x200);
+        func_02010c40(-1, addr + 0x7000, buf, 0x200, 0, 0, 0);
+        hash[1][i] = func_ov000_02177ad0(buf, 0x200);
+        addr += 0x200;
+    }
+
+    func_0200fa20(lock_id);
+    func_02005e50(lock_id);
+
+    for (j = 0; j < 3; j++) {
+        if (hash[1][0] != hash[0][j]) {
+            res = 0xf1;
+            goto clear;
+        }
+    }
+    if (hash[1][0] == hash[1][1] && hash[1][0] == hash[1][2]) {
+        res = 0xf1;
+    } else {
+        res = 0xfb;
+    }
+
+clear:
+    for (j = 0; j < 0x80; j++) {
+        buf[j] = j;
+    }
+    return res * 0xbf;
+}
+
+#pragma optimization_level reset
 u32 func_ov000_02178004(void) {
     return 0xaa65;
 }
@@ -66,6 +248,160 @@ s32 func_ov000_021781c4(u32 *p) {
         *p++ = v ^ mask;
         v += 0x04040404;
     } while (p < end);
+    return 0;
+}
+
+s32 func_ov000_021774e4(u32);
+s32 func_ov000_021781fc(void *arg0, void *arg1, u32 arg2, u32 size) {
+u32 table[64];
+Rc4State *state=arg0;
+u8 *src=arg1, *dst=(u8 *)arg2;
+u8 *p;
+u8 *q;
+u32 i;
+if(size&3) return -1;
+func_ov000_021781c4((u32 *)table);
+for(i=0;i<size;i+=4) {
+s32 kind;
+p=src+i;
+kind=func_ov000_021774e4(*(u32 *)p);
+switch(kind) {
+case 1: case 2: {
+u32 v;
+u32 low;
+u32 high;
+*(u32 *)(dst+i)=*(u32 *)p;
+v=*(u32 *)(dst+i);
+low=v&0xffffff;
+high=v&0xff000000;
+low+=0x402;
+high^=0x1000000;
+state->field_0+=high>>24;
+*(u32 *)(dst+i)=high|(low&0xffffff);
+break; }
+case 3: *(u32 *)p^=0x1000000;
+default:
+state->field_0=p[0]^func_ov000_0217816c(state);
+q=dst+i;
+q[0]=state->field_0;
+state->field_0=p[1]^func_ov000_0217816c(state);
+q[1]=state->field_0;
+q[2]=((u8 *)table)[p[2]];
+q[3]=p[3];
+state->field_0=state->field_0*q[2]-q[3];
+}
+}
+return 0;
+}
+
+extern s32 func_ov000_021774e4(u32);
+static inline void decodeword_02178314(u8 *src, u32 i, Rc4State *state, u8 *out, u8 *table) {
+        u32 word = *(u32 *)src;
+        switch (func_ov000_021774e4(word)) {
+        case 1:
+        case 3:
+            state->field_0 += word >> 24;
+            *(u32 *)(out + i) = ((word & 0xff000000) ^ 0x01000000) | (((word & 0x00ffffff) - 0x402) & 0x00ffffff);
+            break;
+        case 2:
+            {
+                u8 b0 = src[0];
+                u32 k0 = func_ov000_0217816c(state);
+                state->field_0 = b0;
+                out[i] = b0 ^ k0;
+                {
+                    u8 b1 = src[1];
+                    u32 k1 = func_ov000_0217816c(state);
+                    state->field_0 = b1;
+                    out[i + 1] = b1 ^ k1;
+                }
+                state->field_0 = (state->field_0 * src[2]) - src[3];
+                out[i + 2] = table[src[2]];
+                out[i + 3] = src[3];
+                *(u32 *)src ^= 0x01000000;
+            }
+            break;
+        default:
+            {
+                u8 b0 = src[0];
+                u32 k0 = func_ov000_0217816c(state);
+                state->field_0 = b0;
+                out[i] = b0 ^ k0;
+                {
+                    u8 b1 = src[1];
+                    u32 k1 = func_ov000_0217816c(state);
+                    state->field_0 = b1;
+                    out[i + 1] = b1 ^ k1;
+                }
+                state->field_0 = (state->field_0 * src[2]) - src[3];
+                out[i + 2] = table[src[2]];
+                out[i + 3] = src[3];
+            }
+            break;
+        }
+}
+
+s32 func_ov000_02178314(void *arg0, void *arg1, u32 arg2, u32 arg3) {
+    u8 table[0x100];
+    u32 i;
+    Rc4State *state = (Rc4State *)arg0;
+    u8 *in = (u8 *)arg1;
+    u8 *out = (u8 *)arg2;
+
+    if ((arg3 & 3) != 0) {
+        return -1;
+    }
+
+    func_ov000_021781c4((u32 *)table);
+
+    for (i = 0; i < arg3; i += 4) {
+        u32 *srcword = (u32 *)(in + i);
+        u8 *src = (u8 *)srcword;
+        u32 word = *srcword;
+        switch (func_ov000_021774e4(word)) {
+        case 1:
+        case 3:
+            state->field_0 += word >> 24;
+            *(u32 *)(out + i) = ((word & 0xff000000) ^ 0x01000000) | (((word & 0x00ffffff) - 0x402) & 0x00ffffff);
+            break;
+        case 2:
+            {
+                u8 b0 = src[0];
+                u32 k0 = func_ov000_0217816c(state);
+                state->field_0 = b0;
+                out[i] = b0 ^ k0;
+                {
+                    u8 b1 = src[1];
+                    u32 k1 = func_ov000_0217816c(state);
+                    state->field_0 = b1;
+                    out[i + 1] = b1 ^ k1;
+                }
+                state->field_0 = (state->field_0 * src[2]) - src[3];
+                out[i + 2] = table[src[2]];
+                out[i + 3] = src[3];
+                *(u32 *)src ^= 0x01000000;
+            }
+            break;
+        default:
+            {
+                u8 b0 = src[0];
+                u32 k0 = func_ov000_0217816c(state);
+                state->field_0 = b0;
+                out[i] = b0 ^ k0;
+                {
+                    u8 b1 = src[1];
+                    u32 k1 = func_ov000_0217816c(state);
+                    state->field_0 = b1;
+                    out[i + 1] = b1 ^ k1;
+                }
+                state->field_0 = (state->field_0 * src[2]) - src[3];
+                out[i + 2] = table[src[2]];
+                out[i + 3] = src[3];
+            }
+            break;
+        }
+    }
+
     return 0;
 }
 
