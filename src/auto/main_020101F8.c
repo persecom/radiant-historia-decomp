@@ -202,13 +202,13 @@ void func_0201076c(void) {
 
 u32 func_020107c4(void) {
     u32 zero = 0;
-    u32 *p = (u32 *)0x2fffc00;
-    if ((*(volatile u32 *)p & 0x20000000) == 0) {
+    u32 base = 0x2fffc00;
+    if ((*(volatile u32 *)base & 0x20000000) == 0) {
         return 0x20;
     }
     func_020106b8(0xd6, zero);
     {
-        u32 v = *(volatile u32 *)(p - 0x48);
+        u32 v = *(volatile u32 *)(base - 0x120);
         v = (v & ~0x07000000) | 0xa7000000;
         *(volatile u32 *)0x40001a4 = v & (zero - 0x2000);
     }
