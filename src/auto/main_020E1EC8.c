@@ -9,7 +9,6 @@ extern void func_020a98ac(void *);
 extern void func_020a98f4(void *);
 extern void func_020e24bc(u32, u32, u32, u32, u32);
 extern void func_020b52f4(u32);
-#define SELF ((u8 *)self)
 
 extern void func_0203bc34(void *, void *, void *, s32, s32, s32);
 extern void func_0203bcf8(void *, void *, void *, s32, s32, s32, s32, s32);
