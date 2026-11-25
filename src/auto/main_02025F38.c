@@ -31,6 +31,140 @@ void func_02025f38(void *arg0, void *arg1, s32 arg2) {
     );
 }
 
+extern void func_020306c4(void *, s32);
+extern void func_02022a48(void *, u32);
+void func_02025f84(u8 *arg0, u16 arg1) {
+    u32 mask = 0;
+    u8 *p118;
+    void *p60;
+    s32 node;
+
+    switch (arg1) {
+        case 0x85: mask = 0x1; break;
+        case 0x86: mask = 0x2; break;
+        case 0x87: mask = 0x4; break;
+        case 0x88: mask = 0x8; break;
+        case 0x89: mask = 0x10; break;
+        case 0x8a: mask = 0x20; break;
+        case 0x8c: mask = 0x80; break;
+        case 0x8d: mask = 0x100; break;
+        case 0x8e: mask = 0x200; break;
+        case 0x8f: mask = 0x400; break;
+        case 0x90: mask = 0x800; break;
+        case 0x91: mask = 0x1000; break;
+        case 0x92: mask = 0x2000; break;
+        case 0x93: mask = 0x4000; break;
+        case 0x94: mask = 0x8000; break;
+        case 0x95: mask = 0x10000; break;
+        case 0x96: mask = 0x20000; break;
+        case 0x97: mask = 0x40000; break;
+        case 0x98: mask = 0x80000; break;
+        case 0x99: mask = 0x100000; break;
+        case 0x9a: mask = 0x200000; break;
+        case 0x9b: mask = 0x400000; break;
+        case 0x9c: mask = 0x800000; break;
+        case 0x9d: mask = 0x1000000; break;
+        case 0x9e: mask = 0x2000000; break;
+        case 0xa5: mask = 0x20000000; break;
+        case 0x9f: mask = 0x4000000; break;
+        case 0xa0: mask = 0x8000000; break;
+        case 0xa1: mask = 0x10000000; break;
+        case 0xad: mask = 0x40000000; break;
+        case 0xae: mask = 0x80000000; break;
+    }
+
+    p118 = *(u8 **)(arg0 + 0x118);
+    p60 = *(void **)(p118 + 0x60);
+    if (!(*(u32 *)(p118 + 0x78) & mask)) {
+        return;
+    }
+
+    node = func_02022558(p60, arg1);
+    if (node != 0) {
+        func_020226c0(p60, (void *)node);
+    }
+
+    switch (arg1) {
+        case 0x88:
+            *(u32 *)(*(u8 **)(arg0 + 0x118) + 0x8c) &= ~0x400;
+            break;
+        case 0x8c:
+            func_020306c4(*(void **)(arg0 + 0x118), 0);
+            break;
+        case 0x8d:
+            func_020306c4(*(void **)(arg0 + 0x118), 1);
+            break;
+        case 0x8e:
+            func_020306c4(*(void **)(arg0 + 0x118), 2);
+            break;
+        case 0x8f:
+            func_020306c4(*(void **)(arg0 + 0x118), 3);
+            break;
+        case 0x90:
+            func_020306c4(*(void **)(arg0 + 0x118), 4);
+            break;
+        case 0x91:
+            func_020306c4(*(void **)(arg0 + 0x118), 5);
+            break;
+        case 0x92:
+            func_020306c4(*(void **)(arg0 + 0x118), 6);
+            break;
+        case 0x93:
+            func_020306c4(*(void **)(arg0 + 0x118), 7);
+            break;
+        case 0x94:
+            func_020306c4(*(void **)(arg0 + 0x118), 8);
+            break;
+        case 0x95:
+            func_020306c4(*(void **)(arg0 + 0x118), 9);
+            break;
+        case 0x96:
+            *(u16 *)(*(u8 **)(arg0 + 0x118) + 0x7c) = 0;
+            break;
+        case 0x97:
+            *(u16 *)(*(u8 **)(arg0 + 0x118) + 0x7e) = 0;
+            break;
+        case 0x98:
+            mask = 0x80000;
+            break;
+        case 0x99:
+            mask = 0x100000;
+            break;
+        case 0x9a:
+            *(u16 *)(*(u8 **)(arg0 + 0x118) + 0x84) = 0;
+            break;
+        case 0x9b:
+            *(u16 *)(*(u8 **)(arg0 + 0x118) + 0x86) = 0;
+            break;
+        case 0xa5:
+            func_020306c4(*(void **)(arg0 + 0x118), 10);
+            break;
+        case 0xad:
+            func_020306c4(*(void **)(arg0 + 0x118), 11);
+            func_020306c4(*(void **)(arg0 + 0x118), 12);
+            break;
+        case 0xae:
+            func_020306c4(*(void **)(arg0 + 0x118), 14);
+            func_020306c4(*(void **)(arg0 + 0x118), 15);
+            func_020306c4(*(void **)(arg0 + 0x118), 16);
+            func_020306c4(*(void **)(arg0 + 0x118), 17);
+            break;
+    }
+
+    *(u32 *)(*(u8 **)(arg0 + 0x118) + 0x78) &= ~mask;
+    func_02022a48(arg0, mask);
+    if (arg1 == 0xa5) {
+        *(u32 *)(*(u8 **)(arg0 + 0x118) + 0x78) &= ~0x40;
+        func_02022a48(arg0, 0x40);
+    }
+    if (arg1 == 0x89 || arg1 == 0x8a) {
+        u8 *p128 = *(u8 **)(arg0 + 0x128);
+        if (p128 != NULL) {
+            *(u32 *)(p128 + 0x18) &= ~8;
+        }
+    }
+}
+
 void func_020263b4(void *arg0, u32 arg1)
 {
   void *obj;
