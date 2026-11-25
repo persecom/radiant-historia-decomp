@@ -136,24 +136,14 @@ u16 func_02005df0(u8 *arg0) {
 }
 
 s32 func_02005df8(void) {
-    volatile u32 *p = (volatile u32 *)0x02ffffb0;
-    u32 lz;
-    s32 id;
-
-    lz = __clz(*p);
-    if (lz != 32) {
-        id = 0x40;
-    } else {
-        p++;
-        lz = __clz(*p);
-        if (lz == 32) {
-            return -3;
-        }
-        id = 0x60;
-    }
-    id += lz;
-    *p &= ~(0x80000000U >> lz);
-    return id;
+volatile u32 *p=(volatile u32 *)0x02ffffb0;
+u32 lz=__clz(*p);
+s32 id;
+if(lz!=32) id=0x40;
+else {++p;lz=__clz(*p);if(lz==32)return -3;id=0x60;}
+id+=lz;
+{u32 mask=0x80000000U>>lz;u32 bits=*p;*p=bits&~mask;}
+return id;
 }
 
 void func_02005e50(s32 id) {
@@ -626,24 +616,29 @@ void func_0200683c(u8 *arg0, u32 arg1) {
 
 #pragma scheduling off
 void func_02006844(volatile u32 *arg0, u32 arg1, u32 arg2) {
-arg1 += 4; arg0[16]=arg1; arg0[17]=arg2;
-arg2-=0x40; if(arg2&4) arg2-=4; arg0[14]=arg2;
-arg1 &= 1; if(arg1) arg1=0x3f; else arg1=0x1f;
-arg0[0]=arg1;
-arg0[1]=0;
-arg0[2]=0;
-arg0[3]=0;
-arg0[4]=0;
-arg0[5]=0;
-arg0[6]=0;
-arg0[7]=0;
-arg0[8]=0;
-arg0[9]=0;
-arg0[10]=0;
-arg0[11]=0;
-arg0[12]=0;
-arg0[13]=0;
-arg0[15]=0;
+    u32 pc = arg1 + 4;
+    arg0[16] = pc;
+    arg0[17] = arg2;
+    arg2 -= 0x40;
+    if (arg2 & 4) {
+        arg2 -= 4;
+    }
+    arg0[14] = arg2;
+    arg0[0] = (pc & 1) ? 0x3f : 0x1f;
+    arg0[1] = 0;
+    arg0[2] = 0;
+    arg0[3] = 0;
+    arg0[4] = 0;
+    arg0[5] = 0;
+    arg0[6] = 0;
+    arg0[7] = 0;
+    arg0[8] = 0;
+    arg0[9] = 0;
+    arg0[10] = 0;
+    arg0[11] = 0;
+    arg0[12] = 0;
+    arg0[13] = 0;
+    arg0[15] = 0;
 }
 #pragma scheduling on
 u32 func_02006940(void) {
@@ -688,29 +683,25 @@ extern u32 data_0215ce00[];
 extern void func_02006d10(u8 *, u8 *);
 extern u64 _s32_div_f(u32, u32);
 #pragma opt_propagation off
-s32 func_02006a38(Unk69A4 *arg0, u32 *arg1, u32 arg2) {
-    u32 cookie = func_02008128();
-    if (arg0->usedCount == 0) {
-        u8 flag = arg2 & 1;
-        if (flag == 0) {
-            func_0200813c(cookie);
+BOOL func_02006a38(Unk69A4 *arg0, void **arg1, s32 arg2) {
+    u32 enabled = func_02008128();
+
+    while (arg0->usedCount == 0) {
+        if (!(arg2 & 1)) {
+            func_0200813c(enabled);
             return 0;
         }
         func_02006510(&arg0->unk8);
-        if (arg0->usedCount == 0) goto fail;
     }
+
     if (arg1 != NULL) {
         *arg1 = arg0->msgArray[arg0->firstIndex];
     }
-    u32 next = _s32_div_f(arg0->firstIndex + 1, arg0->msgCount) >> 32;
-    arg0->firstIndex = next;
-    arg0->usedCount -= 1;
+    arg0->firstIndex = (arg0->firstIndex + 1) % arg0->msgCount;
+    arg0->usedCount--;
     ((void (*)(void *))func_02006560)(arg0);
-    func_0200813c(cookie);
+    func_0200813c(enabled);
     return 1;
-fail:
-    func_0200813c(cookie);
-    return 0;
 }
 #pragma opt_propagation on
 extern u32 data_02145bb8[2];
