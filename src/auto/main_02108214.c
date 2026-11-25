@@ -1,5 +1,7 @@
 /* 38 functions from 0x021078D0 to 0x021088CC (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { s32 x, y, z; } Vec_02108258;
+static inline void setvec_02108258(Vec_02108258 *v, s32 x, s32 y, s32 z) { v->x=x; v->y=y; v->z=z; }
 extern char data_021559b0[], data_021559b8[];
 extern u8 data_02161198[], data_021612c8[], data_02161230[];
 extern u32 data_02162834[];
@@ -66,19 +68,7 @@ s32 func_02108240(void) {
     return func_02108258(data_02155984);
 }
 
-s32 func_02108258(u32 arg0) {
-    u8 *p = (u8 *)arg0;
-    u8 *dst;
-    u32 x, z;
-    func_02002128(p + 0x20, p + 0x14, p + 0x48);
-    func_02002274(p + 0x48, p + 0x48);
-    dst = p + 0x54;
-    x = *(u32 *)(p + 0x48);
-    z = *(u32 *)(p + 0x50);
-    *(u32 *)dst = x;
-    *(u32 *)(dst + 8) = z;
-    func_02002274(dst, dst);
-}
+s32 func_02108258(u32 arg0){u8 *p=(u8 *)arg0;u32 x,z;func_02002128(p+0x20,p+0x14,p+0x48);func_02002274(p+0x48,p+0x48);x=*(volatile u32 *)(p+0x48);z=*(volatile u32 *)(p+0x50);*(u32 *)(p+0x54)=x;*(u32 *)(p+0x5c)=z;func_02002274(p+0x54,p+0x54);}
 
 extern void func_0210c35c(void *, u32, u32, u32);
 extern void func_0210a76c(void *);
