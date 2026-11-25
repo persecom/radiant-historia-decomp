@@ -14,6 +14,68 @@ typedef struct {
     u32 pad2[14];
 } Unk_02089b38;
 
+extern char data_021485f0[];
+void *func_021092d8(void *);
+s32 func_02092994(void *,s32);
+s32 func_02109444(void *);
+void func_021093b0(void *);
+void func_02088e90(void)
+{
+  void *file = func_021092d8(data_021485f0);
+  s16 i;
+  for (i = 0; i < 8; i++)
+  {
+    data_0216010c[(i * 0x844) + 0x650] = 0;
+  }
+
+  do
+  {
+    s16 group = func_02092994(file, 0);
+    if (group > 0)
+    {
+      s32 off = ((s16) (group - 1)) * 0x844;
+      unsigned char index = data_0216010c[off + 0x650];
+      *((s16 *) (((data_0216010c + off) + (index << 6)) + 0x690)) = (u8) func_02092994(file, 0);
+      *((u8 *) (((data_0216010c + off) + (index << 6)) + 0x654)) = func_02092994(file, 0);
+      *((s16 *) (((data_0216010c + off) + (index << 6)) + 0x656)) = func_02092994(file, 0);
+      *((s16 *) (((data_0216010c + off) + (index << 6)) + 0x658)) = func_02092994(file, 0);
+      *((u8 *) (((data_0216010c + off) + (index << 6)) + 0x65a)) = func_02092994(file, 0);
+      *((u8 *) (((data_0216010c + off) + (index << 6)) + 0x65b)) = func_02092994(file, 0);
+      *((s16 *) (((data_0216010c + off) + (index << 6)) + 0x66a)) = func_02092994(file, 0);
+      *((s16 *) (((data_0216010c + off) + (index << 6)) + 0x66c)) = func_02092994(file, 0);
+      *((s8 *) (((data_0216010c + off) + (index << 6)) + 0x66e)) = func_02092994(file, 0);
+      *((s16 *) (((data_0216010c + off) + (index << 6)) + 0x670)) = func_02092994(file, 0);
+      *((u8 *) (((data_0216010c + off) + (index << 6)) + 0x668)) = func_02092994(file, 0);
+      *((s32 *) (((data_0216010c + off) + (index << 6)) + 0x65c)) = func_02092994(file, 0);
+      *((s16 *) (((data_0216010c + off) + (index << 6)) + 0x658)) = func_02092994(file, 0);
+      *((s16 *) (((data_0216010c + off) + ((((((((((index & 0xFFFFFFFFFFFFFFFF) & 0xFFFFFFFFFFFFFFFF) & 0xFFFFFFFFFFFFFFFF) & 0xFFFFFFFFFFFFFFFF) & 0xFFFFFFFFFFFFFFFF) & 0xFFFFFFFFFFFFFFFF) & 0xFFFFFFFFFFFFFFFF) & 0xFFFFFFFFFFFFFFFF) & 0xFFFFFFFFFFFFFFFF) << 6)) + 0x656)) = func_02092994(file, 0);
+      func_02092994(file, 0);
+      *((u8 *) (((data_0216010c + off) + (index << 6)) + 0x672)) = func_02092994(file, 0);
+      *((u8 *) (((data_0216010c + off) + (index << 6)) + 0x678)) = func_02092994(file, 0);
+      *((s16 *) (((off + data_0216010c) + (index << 6)) + 0x68c)) = func_02092994(file, 0);
+      *((u8 *) (((data_0216010c + off) + (index << 6)) + 0x68e)) = func_02092994(file, 0);
+      *((s16 *) (((data_0216010c + off) + (index << 6)) + 0x674)) = func_02092994(file, 0);
+      *((s16 *) (((data_0216010c + off) + (index << 6)) + 0x676)) = func_02092994(file, 0);
+      *((s16 *) (((data_0216010c + off) + (index << 6)) + 0x67a)) = func_02092994(file, 0);
+      *((u8 *) (((data_0216010c + off) + (index << 6)) + 0x67c)) = func_02092994(file, 0);
+      if ((*((s16 *) (((data_0216010c + off) + (index << 6)) + 0x670))) > 0)
+      {
+        data_0216010c[off + 0x650]++;
+      }
+      else
+        if ((*((s8 *) (((data_0216010c + off) + (index << 6)) + 0x66e))) >= 2)
+      {
+        data_0216010c[off + 0x650]++;
+      }
+    }
+  }
+  while (func_02109444(file));
+  if (file)
+  {
+    func_021093b0(file);
+  }
+}
+
 s32 func_02089220(s32 arg0, s16 arg1) {
     volatile u8 *base = data_0216010c + arg0 * 0x844;
     s16 i;
