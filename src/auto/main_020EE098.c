@@ -163,7 +163,7 @@ s32 func_020ee098(void) {
     for (; i < 5; i++) {
         id = func_0210cd90(zero);
         if (id != 0) {
-            node = func_020ee52c(id);
+            node = NULL;
             if (node == NULL) {
                 return res;
             }
