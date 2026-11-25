@@ -82,7 +82,7 @@ extern void func_020e24bc();
 extern void func_020e26f0();
 extern void func_020e2788();
 extern void func_02108ffc();
-    u8 *mgr = data_02160244;
+    register u8 *mgr = data_02160244;
     u8 *st = (*(u8 **)((u8 *)(mgr)+(0)));
     s32 one = 1;
     s32 zero = 0;
