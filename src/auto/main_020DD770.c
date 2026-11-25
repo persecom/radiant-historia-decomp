@@ -357,21 +357,14 @@ void func_020ddf2c(u8 *arg0) {
     s64 sq = (s64)diff * diff;
     s32 q;
     s32 v;
-
     *(volatile u16 *)0x40002b0 = 1;
-    *(volatile u32 *)0x40002b8 = (u32)sq;
-    *(volatile u32 *)0x40002bc = (u32)(sq >> 32);
-    while (*(volatile u16 *)0x40002b0 & 0x8000) {
-    }
+    *(volatile u64 *)0x40002b8 = sq;
+    while (*(volatile u16 *)0x40002b0 & 0x8000) {}
     q = (dist + (*(volatile s32 *)0x40002b4 + 1 >> 1)) >> 12;
     v = (0xa00 - q) << 13;
     v = v / 0xa00;
-    if (v < 0x800) {
-        v = 0x800;
-    }
-    if (v > 0x2000) {
-        v = 0x2000;
-    }
+    if (v < 0x800) v = 0x800;
+    if (v > 0x2000) v = 0x2000;
     *(s32 *)(arg0 + 0x54) = v - 0x600;
 }
 
