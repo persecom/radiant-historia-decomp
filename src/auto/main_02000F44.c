@@ -2,6 +2,7 @@
 #include "common.h"
 typedef struct { s32 v[9]; } Mtx33;
 typedef struct { s32 v[12]; } Mtx43;
+typedef struct { s32 v[16]; } Mtx44;
 
 typedef struct Mtx9 {
     u32 a00, a01, a02;
