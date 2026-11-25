@@ -1,7 +1,7 @@
 /* 4 functions from 0x0208E000 to 0x0208EEF4 (main), found by ds-decomp. */
 #include "common.h"
 extern u8 *data_0216010c;
-void func_0209250c(s32,s32,s32,s16,s32,s32,s32,s32,s32,s32,s32,s32,s32);
+void func_0209250c(s16,s32,s16,s16,s16,s16,s16,s16,s16,s16,s16,s16,s16);
 void func_020a8810(void *,s32);
 u32 func_02085110(u32);
 void func_020895a0(s32,s32,s32,s32,s32,s32,s32,s32,s32);
