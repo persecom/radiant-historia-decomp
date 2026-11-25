@@ -96,11 +96,12 @@ if(*(s16 *)(data_02160204+0xf6)!=-1){
 {Vec_6662c *v=(Vec_6662c *)((*(u8 *volatile *)&data_021600e0[1])+180);v->x=zero;v->y=zero;v->z=zero;}
 *(s32 *)((*(u8 *volatile *)&data_021600e0[1])+0xc0)=zero;*(s32 *)((*(u8 *volatile *)&data_021600e0[1])+0xc4)=zero;
 func_020a6ed0(zero);func_020a6ed0(2);func_020669e0(zero);
+new_var=data_02160204;
 func_020a6184(data_021600e0[1]+0x118,zero);
 func_020a5d68(data_021600e0[1]+0x124,zero);
-if(*(u16 *)(data_02160204+0x72)==0)*(u16 *)(data_02160204+0x72)=one;
+if(*(u16 *)(new_var+0x72)==0)*(u16 *)(new_var+0x72)=one;
 func_020c6208();
-v=func_020a5f14((*(u8 *volatile *)&data_021600e0[1])+0x124,*(u16 *)(data_02160204+0x72));
+v=func_020a5f14((*(u8 *volatile *)&data_021600e0[1])+0x124,*(u16 *)(new_var+0x72));
 if(v){
 *(s32 *)((*(u8 *volatile *)&data_021600e0[1])+0xc8)=*(s16 *)(v+6)<<12;
 *(s32 *)((*(u8 *volatile *)&data_021600e0[1])+0xd0)=*(s16 *)(v+8)<<12;
