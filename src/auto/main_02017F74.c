@@ -18,8 +18,9 @@ typedef struct UnkNum_02018844 {
 
 #pragma opt_propagation off
 extern u32 func_0201fd28(u32, u32);
+#pragma opt_lifetimes off
 s32 func_02017f74(s32 base,s32 width,void *reader,void *ctx,s32 *scanned,s32 *negative,s32 *overflow) {
-u32 value; s32 spaces,state,used,c; u32 limit;
+u32 value; s32 spaces,state,used; long c; u32 limit;
 *overflow=0; limit=0; *negative=0; spaces=0; used=0;value=0;state=1;
 if(base<0 || base==1 || base>36 || width<1) state=64;
 else {used++;c=((s32 (*)(void *,s32,s32))reader)(ctx,0,0);}
@@ -60,7 +61,7 @@ if(!(state&52)) {*scanned=0;value=0;} else *scanned=used-1+spaces;
 ((s32 (*)(void *,s32,s32))reader)(ctx,c,1);
 return value;
 }
-#pragma opt_propagation off
+#pragma opt_lifetimes on
 u32 func_020182e4(const char *str, char **endptr, s32 base) {
     u32 result;
     s32 chars_scanned, negative, overflow;
@@ -95,13 +96,23 @@ s32 func_02018378(const char *str, char **endptr, s32 base) {
 }
 
 #pragma push
-#pragma opt_propagation off
+#pragma opt_propagation on
 u64 func_0201843c(s32 base,s32 width,void *reader,void *ctx,s32 *scanned,s32 *negative,s32 *overflow) {
-s32 spaces; u64 value,limit; s32 c,used,state;
-*overflow=0; value=0; *negative=0; spaces=0; used=0; c=0; limit=value; state=1;
+s32 state = 1;
+s32 spaces;
+s32 used;
+u64 value;
+u64 limit;
+s32 c;
+*overflow=0;
+spaces=0;
+*negative=0;
+value=0;
+used=0;
+limit=0;
 if(base<0 || base==1 || base>36 || width<1) state=64;
 else {used++;c=((s32 (*)(void *,s32,s32))reader)(ctx,0,0);}
-if(base!=0) limit=0xffffffffffffffffULL/base;
+if(base) limit=0xffffffffffffffffULL/base;
 while(used<=width && c!=-1 && !(state&96)) {
 switch(state) {
 case 1:
@@ -117,11 +128,11 @@ if(c=='X' || c=='x') {base=16;state=8;used++;c=((s32 (*)(void *,s32,s32))reader)
 if(base==0) base=8;state=16;break;
 case 8: case 16:
 if(base==0) base=10;
-if(!limit) limit=0xffffffffffffffffULL/base;
+if(limit==0) limit=0xffffffffffffffffULL/base;
 if((u32)c>=128 ? 0 : data_0213eb14[c]&8) {
-c-='0'; if(c>=base) {state=state==16?32:64; c+='0';break;}
+c-='0'; if(c>=base) {if(state==16) state=32; else state=64; c+='0';break;}
 } else {
-if(!((u32)c>=128 ? 0 : data_0213eb14[c]&1) || ((u32)c>=128?c:data_0213ea94[c])-55>=base) {state=state==16?32:64;break;}
+if(!((u32)c>=128 ? 0 : data_0213eb14[c]&1) || ((u32)c>=128?c:data_0213ea94[c])-55>=base) {if(state==16) state=32; else state=64;break;}
 if(c>=0 && c<128) c=data_0213ea94[c]; c-=55;
 }
 if(value>limit) *overflow=1;
@@ -129,7 +140,6 @@ value*=base;
 if((u64)c>0xffffffffffffffffULL-value) *overflow=1;
 value+=c;
 state=16;
-advance:
 used++;c=((s32 (*)(void *,s32,s32))reader)(ctx,0,0);
 break;
 }
