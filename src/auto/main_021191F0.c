@@ -1,5 +1,8 @@
 /* 15 functions from 0x021191F0 to 0x0211A178 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct {u16 index,pad; void *entries[256]; u32 enabled;} Cache02119728;
+extern Cache02119728 data_0216fdc4;
+extern void *data_0216fdc8[];
 static inline s32 palette_021194cc(u8 *p) { return (*(volatile u16 *)(p+0x3c)&0xf000)>>12; }
 static inline void attr_021194cc(u8 *p,s32 palette,u32 mode) { u32 attr; u32 word; word=*(u16 *)(p+0x3c); attr=*(u32 *)(p+0x38); attr=(attr&~0xc00)|(mode<<10); word=(word&~0xf000)|(palette<<12); *(u32 *)(p+0x38)=attr; *(u16 *)(p+0x3c)=word; }
 typedef struct {
@@ -410,47 +413,57 @@ void func_02119eb8(u32 arg0) {
     func_02119b34(arg0);
 }
 
+#pragma optimization_level 2
 void func_02119f1c(void) {
     if (!(*(u32 *)((u8 *)data_0216f234.f8 + 0x7c) & 1)) {
         u16 old = data_0216f234.fc;
         s32 next = (s32)data_0216f234.fc + 1;
-        s32 valid = next < 32;
+        s32 valid = (s32)(next < 32 ? 1 : 0);
         if (valid) {
-            s32 current = data_0216f234.fc;
             if (data_0216f234.f4) {
-                *(u32 *)(data_0216f3d4 + next * 24) = *(u32 *)(data_0216f3d4 + current * 24);
-                data_0216f244[next] = data_0216f244[current];
-                *(u32 *)(data_0216f3d8 + next * 24) = *(u32 *)(data_0216f3d8 + current * 24);
+                s32 current = *(volatile u32 *)&data_0216f234.fc;
+                u32 a = *(volatile u32 *)(data_0216f3d4 + current * 24);
+                u32 b = *(volatile u32 *)&data_0216f244[current];
+                *(volatile u32 *)(data_0216f3d4 + next * 24) = a;
+                a = *(volatile u32 *)(data_0216f3d8 + current * 24);
+                *(volatile u32 *)&data_0216f244[next] = b;
+                *(volatile u32 *)(data_0216f3d8 + next * 24) = a;
             } else {
+                s32 current = *(volatile u32 *)&data_0216f234.fc;
                 ((Struct24_02119f1c *)data_0216f3c4)[next] = ((Struct24_02119f1c *)data_0216f3c4)[current];
                 ((Struct24_02119f1c *)data_0216f6c4)[next] = ((Struct24_02119f1c *)data_0216f6c4)[current];
-                data_0216f244[next] = data_0216f244[current];
+                *(volatile u32 *)&data_0216f244[next] = *(volatile u32 *)&data_0216f244[current];
             }
             data_0216f234.fc = next;
         }
         {
             u16 now = data_0216f234.fc;
-            data_0216f2c4[now] = data_0216f2c4[old];
-            if (data_0216f2c8[old * 4] == 1) data_0216f2c8[now * 4] = 2;
-            else data_0216f2c8[now * 4] = data_0216f2c8[old * 4];
+ u32 newOffset = now * 8, oldOffset = old * 8;
+            *(volatile Struct0216f2c4 *)((u8 *)data_0216f2c4 + newOffset) = *(volatile Struct0216f2c4 *)((u8 *)data_0216f2c4 + oldOffset);
+            { u16 v = *(volatile u16 *)((u8 *)data_0216f2c8 + oldOffset);
+ if (v == 1) *(u16 *)((u8 *)data_0216f2c8 + newOffset) = 2;
+ else *(u16 *)((u8 *)data_0216f2c8 + newOffset) = v; }
         }
     } else { s32 next = (s32)data_0216f234.fc + 1;
-        s32 valid = next < 32;
+        s32 valid = (s32)(next < 32 ? 1 : 0);
         if (valid) {
-            s32 current = data_0216f234.fc;
             if (data_0216f234.f4) {
-                *(u32 *)(data_0216f3d4 + next * 24) = *(u32 *)(data_0216f3d4 + current * 24);
-                data_0216f244[next] = data_0216f244[current];
-                *(u32 *)(data_0216f3d8 + next * 24) = *(u32 *)(data_0216f3d8 + current * 24);
+                s32 current = *(volatile u32 *)&data_0216f234.fc;
+                u32 a = *(volatile u32 *)(data_0216f3d4 + current * 24);
+                u32 b = *(volatile u32 *)&data_0216f244[current];
+                *(volatile u32 *)(data_0216f3d4 + next * 24) = a;
+                a = *(volatile u32 *)(data_0216f3d8 + current * 24);
+                *(volatile u32 *)&data_0216f244[next] = b;
+                *(volatile u32 *)(data_0216f3d8 + next * 24) = a;
             } else {
+                s32 current = *(volatile u32 *)&data_0216f234.fc;
                 ((Struct24_02119f1c *)data_0216f3c4)[next] = ((Struct24_02119f1c *)data_0216f3c4)[current];
                 ((Struct24_02119f1c *)data_0216f6c4)[next] = ((Struct24_02119f1c *)data_0216f6c4)[current];
-                data_0216f244[next] = data_0216f244[current];
+                *(volatile u32 *)&data_0216f244[next] = *(volatile u32 *)&data_0216f244[current];
             }
             data_0216f234.fc = next;
         } }
 }
-
 void func_0211a128(void) {
     if ((*(volatile s32 *)&data_0216f234.fc <= 0) != 0) {
         return;
