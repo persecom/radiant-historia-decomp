@@ -1,11 +1,6 @@
 /* 36 functions from 0x0210D6D8 to 0x0210E694 (main), found by ds-decomp. */
 #include "common.h"
 typedef struct { u64 state, multiplier, increment; } Rng64_0210ddfc;
-static inline u64 advance_0210ddfc(Rng64_0210ddfc *q) {
-    u64 value = q->multiplier * q->state + q->increment;
-    q->state = value;
-    return value;
-}
 typedef struct { u32 attr; u32 tile; } Sprite_0210e290;
 extern s32 data_02155c3c;
 extern void func_0210c5dc(void *);
@@ -436,8 +431,9 @@ void func_0210ddfc(void) {
                 }
             }
         }
-        *(volatile u32 *)0x04000540 = *(u32 *)(cfg + 0xc);
-        *(s32 *)(base + 0x50) = 1;
+        { u32 value = *(u32 *)(cfg + 0xc);
+          *(volatile u32 *)0x04000540 = value;
+          *(s32 *)(base + 0x50) = !null; }
         func_0200813c(v);
         func_020081c0();
         func_02125448();
