@@ -13,6 +13,7 @@ typedef struct {
 typedef struct {
     u8 unk0[8];
     u32 count;
+    u8 unk1;
     u8 flag;
 } UnkAae98;
 extern const Unk20 data_0214386c;
@@ -257,15 +258,17 @@ void func_020aa894(void *arg0) {
 
 void func_020aa8e8(void)
 {
-    u8 *p = data_021600e4;
-    u8 *node = func_020aa7fc(*(void **)(p + 0x13f4));
+    s32 *p = (s32 *)data_021600e4;
+    u8 *node = func_020aa7fc(*(void **)((u8 *)p + 0x13f4));
     if (node == NULL) return;
     do {
-        s32 scale = *(s32 *)(p + 0x70);
-        s32 a = scale * *(s32 *)(node + 4);
-        s32 b = scale * *(s32 *)(node + 8);
-        *(u16 *)(node + 0x10) = *(s32 *)(p + 0x44) + (a - 0x20);
-        *(u16 *)(node + 0x12) = *(s32 *)(p + 0x48) + (b + 0xc);
+        s32 scale = p[0x70 / 4];
+        s32 x = *(s32 *)(node + 4);
+        s32 y = *(s32 *)(node + 8);
+        s32 a = scale * x;
+        s32 b = scale * y;
+        *(u16 *)(node + 0x10) = p[0x44 / 4] + (a - 0x20);
+        *(u16 *)(node + 0x12) = p[0x48 / 4] + (b + 0xc);
         node = *(u8 **)(node + 0x18);
     } while (node != NULL);
 }
