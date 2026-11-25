@@ -549,10 +549,13 @@ void func_02117e80(void) {
     func_02008df0(0xffff, data_0216f1f4, 0x40);
 }
 
+#pragma opt_propagation off
 s32 func_02117f54(u8 *arg0, u16 arg1, u16 arg2, s32 arg3) {
     u16 *row = (u16 *)(data_0216e274 + arg3 * 0x540);
-    u16 *p = &row[arg1];
-    u16 *end = &row[arg2];
+    u16 *end;
+    u16 *p;
+    p = &row[arg1];
+    end = &row[arg2];
     s32 ok;
     while (p <= end) {
         if (*p != 0xffff) {
@@ -577,13 +580,10 @@ check:
         *(u16 *)(arg0 + 0xc) = 0;
         *(u32 *)(arg0 + 0) = arg3;
         *(u32 *)(arg0 + 0x14) = 0;
-        func_02008df0(id, &row[arg1], (arg2 - arg1 + 1) * 2);
+        func_02008df0(id, (u8 *)row + ((u32)arg1 << 1), (arg2 - arg1 + 1) * 2);
     }
     return 1;
 }
-
-#pragma opt_propagation off
-#pragma opt_common_subs on
 s32 func_02118008(u8 *arg0,u16 arg1,u16 arg2) {
 u32 idx=*(u32*)arg0; u8 *row=data_0216e274+idx*0x540+0x500;
 u16 *end; u16 *p; s32 ok;
@@ -595,7 +595,7 @@ check: if(!ok)return 0;
 func_02008df0(*(u16*)(arg0+0x10),row+((u32)arg1<<1),(arg2-arg1+1)*2);
 return 1;
 }
-#pragma opt_propagation on
+#pragma opt_propagation off
 s32 func_0211809c(u8 *arg0, const u16 * __restrict arg1, u16 arg2) {
     u16 end = *(u16 *)(arg0 + 6);
     u16 cur = *(u16 *)(arg0 + 8);
@@ -616,8 +616,7 @@ s32 func_0211809c(u8 *arg0, const u16 * __restrict arg1, u16 arg2) {
     }
     return 0;
 }
-
-#pragma opt_propagation off
+#pragma opt_propagation on
 s32 func_02118178(u8 *arg0,s32 *arg1) {
 u16 count=*(u16*)(arg0+12); u16 idx=*(u16*)(arg0+14); s32 ok=0; u32 room; s32 has_room;
 if(idx<=count+1){if(*(u16*)(arg0+10)<=count)ok=1;}
@@ -628,7 +627,7 @@ u32 bank=*(u32*)arg0;
 u8 *row=data_0216e274+bank*0x540+0x100;
 s32 a=((volatile s32*)arg1)[0]; u16 cur=*(volatile u16*)(arg0+14); s32 b=((volatile s32*)arg1)[1]; s32 c=((volatile s32*)arg1)[2]; s32 d=((volatile s32*)arg1)[3];
 u16 *entry=(u16*)(row+cur*32);
-a>>=4; entry[3]=a; b>>=4; entry[7]=b; c>>=4; entry[11]=c; d>>=4; entry[15]=d;
+entry[3]=a>>4; entry[7]=b>>4; entry[11]=c>>4; entry[15]=d>>4;
 *(u16*)(arg0+14)=cur+1; return cur;
 }
 }
