@@ -350,7 +350,7 @@ extern void *func_02126b68(void *, s32);
 extern void func_021357dc(void *, s32);
 extern void func_0200b888(void *);
 #pragma opt_propagation off
-s32 func_02125708(u32 *arg0) {
+s32 func_02125708(u32 *__restrict arg0) {
     struct Alloc {
         void *(*alloc)(u32);
         void (*free)(void *);
@@ -361,7 +361,7 @@ s32 func_02125708(u32 *arg0) {
         u32 f8;
         u32 fc;
         u32 f10;
-    } *a = (void *)arg0;
+    } *__restrict a = (void *)arg0;
     struct Obj {
         void *f0;
         void *f4;
@@ -372,7 +372,7 @@ s32 func_02125708(u32 *arg0) {
         u32 f1c;
     };
     s32 zero = 0;
-    struct Obj *obj;
+    struct Obj *__restrict obj;
     s32 val;
     struct {
         u32 f0;
@@ -388,7 +388,6 @@ s32 func_02125708(u32 *arg0) {
         u32 f24;
     } buf;
     u32 size;
-    void *h;
     s32 i;
 
     if (data_02173194 == 0) {
@@ -413,21 +412,15 @@ s32 func_02125708(u32 *arg0) {
     }
     val = ((s8)data_02173198[2] + 1) * 0x1ff6;
     func_02008f74(&buf, zero, sizeof(buf));
-    {
-        u32 one = 1;
-        buf.f0 = one;
-        long a2 = a->f8;
-        long a3 = a->fc;
-        long a4 = a->f10;
-        buf.f4 = a2;
-        buf.f8 = val;
-        buf.fc = zero;
-        buf.f10 = one;
-        buf.f14 = one;
-        buf.f18 = a3;
-        buf.f20 = a4;
-        buf.f1c = zero;
-    }
+    buf.f0 = 1;
+    buf.f4 = a->f8;
+    buf.f8 = val;
+    buf.fc = zero;
+    buf.f10 = 1;
+    buf.f14 = 1;
+    buf.f18 = a->fc;
+    buf.f20 = a->f10;
+    buf.f1c = zero;
     size = func_02126900(&buf);
     if (a->f0 != NULL) {
         obj->f4 = a->f0->alloc(size);
@@ -447,16 +440,12 @@ s32 func_02125708(u32 *arg0) {
     if (a->f10 != 0) {
         func_02126b18(obj->f0);
     }
-    {
-    u32 value = a->f10;
-    struct Alloc *allocator = a->f0;
-    obj->f18 = value;
-    if (allocator != NULL) {
-        obj->alloc = *allocator;
+    obj->f18 = a->f10;
+    if (a->f0 != NULL) {
+        obj->alloc = *a->f0;
     } else {
         obj->alloc.alloc = (void *(*)(u32))zero;
         obj->alloc.free = (void (*)(void *))zero;
-    }
     }
     obj->fc = obj;
     for (i = 0; i < func_02126ba0(obj->f0); i++) {
