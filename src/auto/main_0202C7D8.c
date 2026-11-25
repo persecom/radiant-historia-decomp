@@ -16,15 +16,17 @@ static inline void mark_first_c950(u8 *node) {
 }
 
 u8 *func_0202c7d8(s32 arg0) {
-    u8 *result = NULL;
-    if (arg0 >= 0 && arg0 <= 8) {
-        u8 *entry = *(u8 **)((u8 *)data_02160244 + arg0 * 4 + 8);
-        u8 *sub = *(u8 **)(entry + 0x10);
-        if (sub != NULL && *(u8 *)(sub + 4) == 0) {
-            result = *(u8 **)sub;
+    u8 *sub = NULL;
+    if (arg0 >= 0) {
+        if (arg0 <= 8) {
+            u8 *entry = *(u8 **)((u8 *)data_02160244 + arg0 * 4 + 8);
+            sub = *(u8 **)(entry + 0x10);
         }
     }
-    return result;
+    if (sub != NULL && *(u8 *)(sub + 4) == 0) {
+        return *(u8 **)sub;
+    }
+    return NULL;
 }
 
 u8 *func_0202c820(u32 arg0) {
