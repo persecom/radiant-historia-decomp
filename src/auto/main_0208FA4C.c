@@ -1,6 +1,9 @@
 /* 1 function from 0x0208FA4C to 0x02090D48 (main), found by ds-decomp. */
 #include "common.h"
+#pragma push
+#pragma opt_propagation off
 static inline s32 GaugeRemainder_0208(s32 value) { return value%100; }
+#pragma pop
 static inline s32 GaugeSegment_0208(s32 value,s32 index) {
  if(value==100)return 1;
  return index<(value%100)/9;
@@ -216,7 +219,7 @@ func_0208db04(0x41,*(u16*)(ch+34)+*(s16*)(ch+50),x+0x81+off_34+off_6c,y+65,8,10,
  func_021098ac(&back);
  s32 amount=*(u16*)(ch+0x34);
  if(amount==100) goto draw_segment;
- if(col>=(amount%100)/9)continue;
+ if(col>=GaugeRemainder_0208(amount)/9)continue;
  draw_segment: {
  func_020a3bbc(0x51);
  front.data[5]=x+0x40+col*7;front.data[6]=y+0x67;front.data[7]=z+2;
