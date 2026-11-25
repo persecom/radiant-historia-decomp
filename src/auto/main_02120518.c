@@ -465,7 +465,7 @@ void func_02121138(u8 *arg0, u8 *arg1, u8 *arg2) {
     u8 *table;
     *(u32 *)(arg0 + 8) = (u32)arg1;
     val = *(u8 *)(arg2 + 0x17);
-    ((u32 *)arg0)[3] = data_02155edc;
+    *(u32 *)(arg0 + 0xc) = data_02155edc;
     arg0[0x19] = val;
     func_02008df0(0, arg0 + 0x1a, (u32)val * 2);
     table = arg1 + 0x14;
@@ -520,9 +520,11 @@ got_node:
     *(u32 *)(arg0 + 0x54) = *(u32 *)(node + 0xc);
 }
 
-void func_02121284(void) {
-    u8 index = *(u8 *)(data_02170460->unk00 + 1);
-    u8 *dict = data_02170460->unkd4;
+void func_02121284(void *arg0) {
+    Unk_02170460 *p = data_02170460;
+    u8 *base = p->unk00;
+    u8 index = base[1];
+    u8 *dict = p->unkd4;
     u8 *node;
     u16 flags;
     u8 *v;
@@ -532,30 +534,20 @@ void func_02121284(void) {
             u16 off = *(u16 *)(dict + 6);
             u16 size = *(u16 *)(dict + off);
             entry = (u32 *)(dict + off + 4 + size * index);
-        } else {
-            entry = NULL;
-        }
-        if (entry != NULL) {
-            node = dict + *entry;
-            goto got_node;
-        }
+        } else { entry = NULL; }
+        if (entry != NULL) { node = dict + *entry; goto got_node; }
     }
     node = NULL;
 got_node:
     flags = *(u16 *)node;
     node += 4;
     v = node;
-    if (!(flags & 1)) {
-        v += 0xc;
-    }
+    if (!(flags & 1)) v += 0xc;
     if (!(flags & 2)) {
-        if (flags & 8) {
-            v += 4;
-        } else {
-            v += 0x10;
-        }
+        if (flags & 8) v += 4;
+        else v += 0x10;
     }
-    data_02170460->unke8(v);
+    ((void (*)(void *, u8 *, u8 *, u32))p->unke8)(arg0, v, base, flags);
 }
 
 void func_02121314(u8 *arg0) {
