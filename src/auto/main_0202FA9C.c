@@ -34,17 +34,14 @@ void func_021167f0(void *, void *);
 void func_021168f8(void *, void *);
 void func_0202f4d8(void *);
 
+#pragma optimization_level 0
 void *func_0202fa9c(void) {
     u8 *ptr = NULL;
-    while (ptr == NULL) {
-        ptr = (u8 *)func_0210c594(0xcc, data_02155c3c);
-        break;
-    }
+    ptr = (u8 *)func_0210c594(0xcc, data_02155c3c);
     *(void **)(ptr + 0x60) = func_020224cc();
     func_021167ac(ptr + 0xc0, 8);
     return ptr;
 }
-
 void func_0202fad8(u8 *arg0) {
     if (*(void **)(arg0 + 0x60) != NULL) {
         func_02022508(*(void **)(arg0 + 0x60));
