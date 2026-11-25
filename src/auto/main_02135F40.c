@@ -145,7 +145,7 @@ u32 func_021361bc(u8 *arg0, u16 *arg1, u16 *arg2) {
     return a;
 }
 
-extern void func_02009008(void *, s32);
+extern void func_02009008(void *, void *, u32);
 s16 *func_02136210(void *arg0, void *arg1, u32 arg2) {
     u8 *p = (u8 *)arg0;
     u16 val = *(u16 *)(p + 0x1a);
