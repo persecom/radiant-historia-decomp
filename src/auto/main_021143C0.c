@@ -472,25 +472,21 @@ u32 func_02114f70(void) {
     return data_0216cad0[0];
 }
 
+#pragma optimization_level 2
 void *func_02114f80(s32 arg0) {
     u8 *base = (u8 *)data_0216cad0[0];
-    u8 *hdr = *(u8 * volatile *)(base + 0x98);
+    u8 *hdr = *(u8 **)(base + 0x98);
     u32 off = *(u32 *)(hdr + 8);
     u8 *tbl = off == 0 ? NULL : hdr + off;
     u32 entryOff;
-    if (tbl == NULL) {
-        return NULL;
-    }
-    if (arg0 < 0) {
-        return NULL;
-    }
-    if ((u32)arg0 >= *(u32 *)tbl) {
-        return NULL;
-    }
+    if (tbl == NULL) return NULL;
+    if (arg0 < 0) return NULL;
+    if ((u32)arg0 >= *(u32 *)tbl) return NULL;
     entryOff = *(u32 *)(tbl + arg0 * 4 + 4);
-    return entryOff == 0 ? NULL : *(u8 * volatile *)(base + 0x98) + entryOff;
+    hdr = *(u8 **)((volatile u8 *)base + 0x98);
+    return entryOff == 0 ? NULL : hdr + entryOff;
 }
-
+#pragma optimization_level 4
 void *func_02114fe4(s32 arg0) {
     u8 *base = (u8 *)data_0216cad0[0];
     u8 *hdr = *(u8 * volatile *)(base + 0x98);
