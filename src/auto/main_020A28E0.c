@@ -425,29 +425,32 @@ void *func_020a3730(void *arg0, s32 arg1) {
     first = func_0203be10(arg1);
     dst = first;
     i = 0;
-    while (i < arg1) {
-        u8 *src = (u8 *)arg0 + i * 0x18;
-        s32 type = src[0x14];
-        if (type == 1) {
-            s32 a = *(s32 *)src;
-            func_0203bef0(dst, a);
-        } else if (type == 2) {
-            s32 a = *(s32 *)src;
-            func_0203bfdc(dst, a);
-        } else {
-            s32 a = *(s32 *)src;
-            s32 b = *(s32 *)(src + 4);
-            if (b == 0) {
-                func_0203be60(dst, a, a);
+    if (arg1 > 0 && i < arg1) {
+        do {
+            u8 *src = (u8 *)arg0 + i * 0x18;
+            s32 type = src[0x14];
+            if (type == 1) {
+                s32 a = *(s32 *)src;
+                func_0203bef0(dst, a, a);
+            } else if (type == 2) {
+                s32 a = *(s32 *)src;
+                func_0203bfdc(dst, a, a);
             } else {
-                func_0203be60(dst, a, b);
+                s32 b = *(s32 *)(src + 4);
+                if (b == 0) {
+                    s32 a = *(s32 *)src;
+                    func_0203be60(dst, a, a);
+                } else {
+                    s32 a = *(s32 *)src;
+                    func_0203be60(dst, a, b);
+                }
             }
-        }
-        *(u32 *)((u8 *)dst + 0x10) = *(u32 *)(src + 8);
-        *(u32 *)((u8 *)dst + 0x14) = *(u32 *)(src + 0xc);
-        *(u32 *)((u8 *)dst + 0x18) = *(u32 *)(src + 0x10);
-        dst = (u8 *)dst + 0x1c;
-        i++;
+            *(u32 *)((u8 *)dst + 0x10) = *(u32 *)(src + 8);
+            *(u32 *)((u8 *)dst + 0x14) = *(u32 *)(src + 0xc);
+            *(u32 *)((u8 *)dst + 0x18) = *(u32 *)(src + 0x10);
+            dst = (u8 *)dst + 0x1c;
+            i++;
+        } while (i < arg1);
     }
     return first;
 }
