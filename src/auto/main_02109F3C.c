@@ -16,7 +16,7 @@ extern void func_02006dc4(void *, u32);
 extern void func_021168f8(void *, void *);
 extern void func_0210c674(void *);
 extern void func_0210c5dc(void *);
-extern void *func_02109f3c(void);
+extern void *func_02109f3c(u32);
 extern void func_02109ea8(void *);
 extern void *data_02155c3c;
 extern u32 data_02162564[];
@@ -38,7 +38,7 @@ extern u8 data_02162578[];
 extern u8 data_02162580[];
 extern u8 data_021625c8[];
 
-void *func_02109f3c(void) {
+void *func_02109f3c(u32 arg0) {
     void *node = NULL;
     u8 *base = (u8 *)data_02162564;
     u16 offset = *(u16 *)(base + 0x12);
@@ -48,14 +48,14 @@ void *func_02109f3c(void) {
         if (node == NULL) {
             return NULL;
         }
-        if (*(s32 *)((u8 *)node + 8) == 0) {
+        if (*(u32 *)((u8 *)node + 8) == arg0) {
             return node;
         }
     }
 }
 
-s32 func_02109f84(void) {
-    u8 *p = func_02109f3c();
+s32 func_02109f84(u32 arg0) {
+    u8 *p = func_02109f3c(arg0);
     if (p == NULL) {
         return 0;
     }
