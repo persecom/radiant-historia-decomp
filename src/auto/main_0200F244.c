@@ -474,7 +474,7 @@ void func_0200fb84(void) {
 }
 
 extern u8 data_0215f0c0[];
-extern void *data_0215f640[];
+extern void *volatile data_0215f640[];
 extern void func_02008e68(s32, void *, s32);
 extern void func_02006dc4(void *, s32);
 extern void func_0200a674(s32, void *);
