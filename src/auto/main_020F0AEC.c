@@ -33,8 +33,6 @@ extern void func_02002028(s32);
 extern s64 func_02001fd0(void);
 extern void func_0210d27c(s32);
 typedef struct Vec_F0FD0 {s32 x,y,z;} Vec_F0FD0;
-#pragma push
-#pragma opt_propagation off
 static inline void ProjectMatrices_F0FD0(const Vec_F0FD0 *pos,s32 *outX,s32 *outY,const s32 *p,const s32 *m){
  register s32 z,y; s32 x,py,px,sy,sx; s64 inv;
  x=m[9]+(s32)(((s64)pos->x*m[0]+(s64)pos->y*m[3]+(s64)pos->z*m[6])>>12);
@@ -48,7 +46,6 @@ static inline void ProjectMatrices_F0FD0(const Vec_F0FD0 *pos,s32 *outX,s32 *out
  sx=(s32)((inv*px+0x80000000LL)>>32);sx=((((sx+4096)>>1)<<8)+2048)>>12;
  sy=192-sy;*outX=sx;*outY=sy;
 }
-#pragma pop
 void func_020f0aec(void) {
     u8 *mgr = data_02160af0;
     u8 *node;
@@ -246,7 +243,7 @@ void func_020f0aec(void) {
 #pragma push
 #pragma opt_loop_invariants off
 void func_020f0fd0(void){
-register const s32 *m;u8 *node,*obj;register const s32 *p;
+const s32 *m;u8 *node,*obj;const s32 *p;
 if(!data_02160af0)return;
 node=*(u8**)(data_02160af0+0x70);
 if(node){p=data_02170204;m=(s32*)data_02170248;while(node){
