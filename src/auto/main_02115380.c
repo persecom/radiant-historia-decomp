@@ -474,29 +474,21 @@ s32 func_02115e58(s32 arg0, u16 arg1, s32 arg2, s32 arg3) {
     return 1;
 }
 
-s32 func_02115f20(s32 arg0, void *arg1, u16 arg2, s32 arg3, s32 arg4) {
-    u32 a[2];
-    u32 b[2];
-    u8 c[0xc];
-    func_0200a328(a);
-    b[0] = a[1];
-    b[1] = a[0];
-    if (arg1 == NULL) {
-        return 0;
-    }
-    for (;;) {
-        if (func_0200a348(arg1, c, b) == 0) {
-            return 0;
-        }
-        if (c[0] == 1 && *(u16 *)(c + 4) == arg2) {
-            if (func_02115e58(arg0, *(u16 *)(c + 2), arg3, arg4) == 0) {
-                return 0;
-            }
-        }
-        if (func_0200a348(arg1, c, b) == 0) {
-            return 1;
-        }
-    }
+s32 func_02115f20(s32 arg0,void *arg1,u16 arg2,s32 arg3,s32 arg4) {
+ u8 c[12];
+ u32 b[2];
+ u32 a[2];
+ u32 *p;
+ func_0200a328(a);
+ b[0]=a[0];b[1]=a[1];
+ p=b;
+ if(!arg1)return 0;
+ while(func_0200a348(arg1,c,p)){
+ if(c[0]==1 && arg2==*(u16 *)(c+4)){
+ if(!func_02115e58(arg0,*(u16 *)(c+2),arg3,arg4))return 0;
+ }
+ }
+ return 1;
 }
 
 s32 func_02115fe0(void *arg0) {
