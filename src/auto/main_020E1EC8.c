@@ -94,21 +94,8 @@ void func_020e1ec8(u8 *arg0, u32 arg1) {
         *(u32 *)(*(u8 **)(self + 4) + 0x4c) = dark;
         *(u16 *)(self + 0x5c) |= 1;
         return;
-    case 5:
-        if (*(u8 **)(self + 4) == NULL) {
-            *(u8 **)(self + 4) = func_020a84b8(5, 2);
-        }
-        func_020a8810(*(u8 **)(self + 4), 0x16);
-        *(u8 **)self = func_020a94b8(data_02151574);
-        goto common5;
-    case 6:
-    case 7:
-    case 8:
-    case 9:
-    case 10:
-        if (*(u8 **)(self + 4) == NULL) {
-            *(u8 **)(self + 4) = func_020a84b8(5, 2);
-        }
+    case 5: case 6: case 7: case 8: case 9:
+        *(u8 **)(self + 4) = func_020a84b8(5, 2);
         func_020a8810(*(u8 **)(self + 4), 0x16);
         if (mode == 5) {
             *(u8 **)self = func_020a94b8(data_02151574);
@@ -121,7 +108,6 @@ void func_020e1ec8(u8 *arg0, u32 arg1) {
         } else if (mode == 9) {
             *(u8 **)self = func_020a94b8(data_021515e4);
         }
-    common5:
         func_020a9830(self + 0xc, self + 0x40, 0xf0, 0x20, zero, zero);
         func_020a9610(self + 0x40, *(u32 *)self, 0x3e9, *(u32 *)(self + 4), zero, zero);
         func_020a994c(self + 0xc);
@@ -130,13 +116,12 @@ void func_020e1ec8(u8 *arg0, u32 arg1) {
         *(u32 *)(*(u8 **)(self + 4) + 0x4c) = 0x2d4000;
         *(u16 *)(self + 0x5c) |= 1;
         return;
-    case 11:
-    case 12:
+    case 10:
         if (*(u8 **)(self + 4) == NULL) {
             *(u8 **)(self + 4) = func_020a84b8(5, 2);
         }
         func_020a8810(*(u8 **)(self + 4), 0x16);
-        *(u8 **)self = func_020a94b8(mode == 11 ? data_02151600 : data_02151608);
+        *(u8 **)self = func_020a94b8(data_02151600);
         if ((*(u16 *)(self + 0x5c) & 0x10) == 0) {
             func_020a9830(self + 0xc, self + 0x40, 0xf0, 0x20, zero, zero);
             func_020a9610(self + 0x40, *(u32 *)self, 1, *(u32 *)(self + 4), zero, zero);
@@ -148,8 +133,26 @@ void func_020e1ec8(u8 *arg0, u32 arg1) {
         *(u32 *)(*(u8 **)(self + 4) + 0x4c) = dark;
         *(u16 *)(self + 0x5c) |= 1;
         return;
+    case 11:
+        if (*(u8 **)(self + 4) == NULL) {
+            *(u8 **)(self + 4) = func_020a84b8(5, 2);
+        }
+        func_020a8810(*(u8 **)(self + 4), 0x16);
+        *(u8 **)self = func_020a94b8(data_02151608);
+        if ((*(u16 *)(self + 0x5c) & 0x10) == 0) {
+            func_020a9830(self + 0xc, self + 0x40, 0xf0, 0x20, zero, zero);
+            func_020a9610(self + 0x40, *(u32 *)self, 1, *(u32 *)(self + 4), zero, zero);
+            func_020a994c(self + 0xc);
+            *(u16 *)(self + 0x5c) |= 0x10;
+        }
+        *(u32 *)(*(u8 **)(self + 4) + 0x44) = 0x9000;
+        *(u32 *)(*(u8 **)(self + 4) + 0x48) = 0x9e000;
+        *(u32 *)(*(u8 **)(self + 4) + 0x4c) = dark;
+        *(u16 *)(self + 0x5c) |= 1;
+        return;
+    case 12:
     case 13:
-    case 14:
+    case 15:
     case 16:
     case 17:
         if (*(u8 **)(self + 4) == NULL) {
@@ -171,22 +174,12 @@ void func_020e1ec8(u8 *arg0, u32 arg1) {
         *(u32 *)(*(u8 **)(self + 4) + 0x48) = zero;
         *(u32 *)(*(u8 **)(self + 4) + 0x4c) = dark;
         return;
-    case 15:
+    case 14:
         if (*(u8 **)(self + 4) == NULL) {
             *(u8 **)(self + 4) = func_020a84b8(5, 2);
         }
         func_020a8810(*(u8 **)(self + 4), 0x16);
         *(u8 **)self = func_020a94b8(data_021516ac);
-        *(u32 *)(*(u8 **)(self + 4) + 0x44) = zero;
-        *(u32 *)(*(u8 **)(self + 4) + 0x48) = zero;
-        *(u32 *)(*(u8 **)(self + 4) + 0x4c) = dark;
-        return;
-    default:
-        if (*(u8 **)(self + 4) == NULL) {
-            *(u8 **)(self + 4) = func_020a84b8(5, 2);
-        }
-        func_020a8810(*(u8 **)(self + 4), 0x16);
-        *(u8 **)self = func_020a94b8(data_0215152c);
         *(u32 *)(*(u8 **)(self + 4) + 0x44) = zero;
         *(u32 *)(*(u8 **)(self + 4) + 0x48) = zero;
         *(u32 *)(*(u8 **)(self + 4) + 0x4c) = dark;
