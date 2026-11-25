@@ -269,19 +269,17 @@ u32 func_0200f684(u32 arg0) {
     u32 result = 0;
     s32 i;
     u32 mult;
-
     for (i = 0; i < 8; i++) {
         if (((arg0 >> (i << 2)) & 0xf) >= 10) {
             return 0;
         }
     }
-
+    i = 0;
     mult = 1;
-    for (i = 0; i < 8; i++) {
+    for (; i < 8; i++) {
         result += ((arg0 >> (i << 2)) & 0xf) * mult;
         mult *= 10;
     }
-
     return result;
 }
 
