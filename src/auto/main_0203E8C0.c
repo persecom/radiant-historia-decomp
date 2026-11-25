@@ -7,7 +7,7 @@ extern u8 *data_02160200;
 extern u32 data_0216263c[3];
 extern void func_020ec8cc(void *, s32, s32);
 extern void func_020ec548(void *);
-static inline u32 random_0203e8c0(u16 limit) {
+static inline u16 random_0203e8c0(u16 limit) {
     u32 seed;
     u32 r;
     seed = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
@@ -34,6 +34,8 @@ extern void func_0210d9e4(void *);
 extern void func_0210db70(void *);
 extern void func_0210dbd0(void *);
 extern void func_0203faf4(void);
+#pragma push
+#pragma opt_expression off
 void func_0203e8c0(void) {
     u8 **g = (u8 **)&data_021600a0;
     u16 mask = 0x7fff;
@@ -108,12 +110,12 @@ void func_0203e8c0(void) {
         *(u16 *)(((u8 **)&data_021600a0)[1] + 0x3c) = *(u16 *)(((u8 **)&data_021600a0)[1] + 0x3a);
     }
     if (((u8 **)&data_021600a0)[1][0x40]&2) {
-{ u8 *cfg=((u8 **)&data_021600a0)[1]; s32 value; if(cfg[0x42]) value=(u16)random_0203e8c0((u16)(cfg[0x42]*2))-*(volatile u8 *)(cfg+0x42); else value=0; *(s16 *)(cfg+0x44)=value; }
-{ u8 *cfg=((u8 **)&data_021600a0)[1]; s32 value; if(cfg[0x42]) value=(u16)random_0203e8c0((u16)(cfg[0x42]*2))-*(volatile u8 *)(cfg+0x42); else value=0; *(s16 *)(cfg+0x46)=value; }
+{ u8 *cfg=((u8 **)&data_021600a0)[1]; s32 value; if(cfg[0x42]) value=(u16)random_0203e8c0((u16)(cfg[0x42]*2))-cfg[0x42]; else value=0; *(s16 *)(cfg+0x44)=value; }
+{ u8 *cfg=((u8 **)&data_021600a0)[1]; s32 value; if(cfg[0x42]) value=(u16)random_0203e8c0((u16)(cfg[0x42]*2))-cfg[0x42]; else value=0; *(s16 *)(cfg+0x46)=value; }
 }
 if(((u8 **)&data_021600a0)[1][0x41]&2) {
-{ u8 *cfg=((u8 **)&data_021600a0)[1]; s32 value; if(cfg[0x48]) value=(u16)random_0203e8c0((u16)(cfg[0x48]*2))-*(volatile u8 *)(cfg+0x48); else value=0; *(s16 *)(cfg+0x4a)=value; }
-{ u8 *cfg=((u8 **)&data_021600a0)[1]; s32 value; if(cfg[0x48]) value=(u16)random_0203e8c0((u16)(cfg[0x48]*2))-*(volatile u8 *)(cfg+0x48); else value=0; *(s16 *)(cfg+0x4c)=value; }
+{ u8 *cfg=((u8 **)&data_021600a0)[1]; s32 value; if(cfg[0x48]) value=(u16)random_0203e8c0((u16)(cfg[0x48]*2))-cfg[0x48]; else value=0; *(s16 *)(cfg+0x4a)=value; }
+{ u8 *cfg=((u8 **)&data_021600a0)[1]; s32 value; if(cfg[0x48]) value=(u16)random_0203e8c0((u16)(cfg[0x48]*2))-cfg[0x48]; else value=0; *(s16 *)(cfg+0x4c)=value; }
 }
 node=*(u8 **)(((u8 **)&data_021600a0)[1]+0x28);
 while(node) {
@@ -157,7 +159,7 @@ obj=*(u8 **)node;
 node=next;
 }
 }
-
+#pragma pop
 void func_0203ee20(s32 arg0) {
     s32 val = 0x3f6;
     if (data_021600a0 != NULL) {
