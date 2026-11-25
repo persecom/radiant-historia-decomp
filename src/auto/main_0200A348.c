@@ -1,5 +1,7 @@
 /* 37 functions from 0x02009B24 to 0x0200A980 (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { u16 a,b,c,d,e; } Unk0200A348Five;
+typedef struct { u16 a,b,c,d,e,f; } Unk0200A348Six;
 
 extern u32 data_0215d1b8[9];
 extern u8 data_0215ec80[0x60];
@@ -63,9 +65,9 @@ extern s32 func_0200698c(void);
 s32 func_0200a348(u8 *arg0, u8 *arg1, u32 *arg2) {
     while (arg2[0] < *(u32 *)(arg0 + 0x38)) {
         u32 entry = *(u32 *)(arg0 + 0x3c + arg2[0] * 4);
-        u8 type = (u8)(entry & 0xff);
+        arg1[0] = entry;
+        int type = entry & 0xff;
         u32 offset = entry >> 8;
-        arg1[0] = type;
         switch (type) {
         case 1:
         case 2:
@@ -74,27 +76,27 @@ s32 func_0200a348(u8 *arg0, u8 *arg1, u32 *arg2) {
         case 5: {
             u16 *src = (u16 *)(arg0 + offset);
             u16 *dst = (u16 *)(arg1 + 2);
-            u16 a = src[0], b = src[1], c = src[2], d = src[3], e = src[4];
-            dst[0] = a;
-            dst[1] = b;
+            u16 e = src[4], d = src[3], c = src[2], b = src[1], a = src[0];
             dst[4] = e;
             dst[2] = c;
             dst[3] = d;
+            dst[0] = a;
+            dst[1] = b;
             arg2[0]++;
             return 1;
         }
         case 0x10: {
             u8 *drum = arg0 + offset;
             while (arg2[1] < (u32)(drum[1] - drum[0] + 1)) {
-                u16 *src = (u16 *)(drum + 2 + arg2[1] * 12);
+                u16 *src = (u16 *)(drum + arg2[1] * 12);
                 u16 *dst = (u16 *)arg1;
-                u16 a = src[0], b = src[1], c = src[2], d = src[3], e = src[4], f = src[5];
-                dst[0] = a;
-                dst[1] = b;
+                u16 f = src[6], e = src[5], d = src[4], c = src[3], b = src[2], a = src[1];
                 dst[5] = f;
                 dst[2] = c;
                 dst[3] = d;
                 dst[4] = e;
+                dst[0] = a;
+                dst[1] = b;
                 arg2[1]++;
                 return 1;
             }
@@ -106,17 +108,15 @@ s32 func_0200a348(u8 *arg0, u8 *arg1, u32 *arg2) {
                 if (key[arg2[1]] == 0) {
                     break;
                 }
-                {
-                    u16 *src = (u16 *)(key + 8 + arg2[1] * 12);
-                    u16 *dst = (u16 *)arg1;
-                    u16 a = src[0], b = src[1], c = src[2], d = src[3], e = src[4], f = src[5];
-                    dst[0] = a;
-                    dst[1] = b;
-                    dst[5] = f;
-                    dst[2] = c;
-                    dst[3] = d;
-                    dst[4] = e;
-                }
+                u16 *src = (u16 *)(key + arg2[1] * 12);
+                u16 *dst = (u16 *)arg1;
+                u16 f = src[9], e = src[8], d = src[7], c = src[6], b = src[5], a = src[4];
+                dst[5] = f;
+                dst[2] = c;
+                dst[3] = d;
+                dst[4] = e;
+                dst[0] = a;
+                dst[1] = b;
                 arg2[1]++;
                 return 1;
             }
