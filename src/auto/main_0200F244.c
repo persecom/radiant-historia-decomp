@@ -554,14 +554,17 @@ s32 func_0200fca4(void (*cb)(void *), s32 arg1) {
 }
 
 void func_0200fd18(void) {
-    s32 zero = 0;
     u8 *base = data_0215f120;
-    u32 token = func_02008128();
-    if (*(u32 *)(base + 4) & 8) {
+    for (;;) {
+        u32 token = func_02008128();
+        for (;;) {
+            if ((*(u32 *)(base + 4) & 8) != 0) {
+                break;
+            }
+            func_02006510(NULL);
+        }
         func_0200813c(token);
-        func_0200fca4(*(void (**)(void *))(base + 0x4e8), zero);
-    } else {
-        func_02006510((void *)zero);
+        func_0200fca4(*(void (**)(void *))(base + 0x4e8), 0);
     }
 }
 
@@ -618,24 +621,22 @@ void func_0200fe64(u32 arg0, u32 arg1, u32 arg2) {
 }
 
 void func_0200fe80(u32 arg0, u32 arg1, u32 arg2) {
+    u8 *addr = (u8 *)arg0;
+    u32 off = arg1;
     u32 rem;
-    u32 base;
-    if (arg1 >= arg2) {
+    if (off >= arg2) {
         func_02006d58();
         return;
     }
-    rem = arg0 & 0x1f;
-    if (rem == 0) {
-        goto end;
+    rem = (u32)addr & 0x1f;
+    if (rem != 0) {
+        u32 base = (u32)addr - rem;
+        func_02006da8(base, 0x20);
+        func_02006da8(base + off, 0x20);
+        off += 0x20;
+        func_02006d8c(base, off);
+        func_02006de8();
     }
-    base = arg0 - rem;
-    func_02006da8(base, 0x20);
-    func_02006da8(base + arg1, 0x20);
-    arg1 += 0x20;
-    func_02006d8c(base, arg1);
-    func_02006de8();
-end:
-    return;
 }
 
 #pragma peephole off
