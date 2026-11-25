@@ -21,6 +21,7 @@ typedef struct {
 
 extern u8 *data_021600ac;
 extern u8 *data_021600c0;
+typedef struct { u8 f0; u8 f1; u16 f2; u8 pad[0x20]; } State_02055994;
 extern u32 data_02155c3c;
 extern const UnkData_02055c90 data_0213f31c;
 extern char data_02146550[];
