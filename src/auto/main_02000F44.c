@@ -3,6 +3,15 @@
 typedef struct { s32 v[9]; } Mtx33;
 typedef struct { s32 v[12]; } Mtx43;
 typedef struct { s32 v[16]; } Mtx44;
+typedef struct { u32 a, b; } InitPair;
+typedef struct { u32 a, b, c; } InitTriple;
+typedef struct {
+    InitPair p0, p1;
+    InitTriple p2;
+    InitPair p3;
+    InitTriple p4;
+    InitPair p5, p6;
+} InitMatrix;
 
 typedef struct Mtx9 {
     u32 a00, a01, a02;
@@ -169,13 +178,11 @@ s32 func_02001194(const Mtx43 *a, Mtx43 *b)
 
 void func_02001508(const Mtx43 *a, const Mtx43 *b, Mtx43 *out) {
     Mtx43 tmp;
-    Mtx43 *dst;
+    Mtx43 *dst = out;
     s32 x, y, z, t, t2;
 
     if (out == b) {
         dst = &tmp;
-    } else {
-        dst = out;
     }
 
     x = a->v[0];
