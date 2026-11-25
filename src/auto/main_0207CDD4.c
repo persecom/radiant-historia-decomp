@@ -30,7 +30,6 @@ extern void func_02080d30(void);
 extern void func_0210c5dc(void *);
 extern void func_02089a98(void);
 
-#pragma optimization_level 0
 void func_0207cdd4(void) {
     u8 *s = data_021600ac;
     u8 *p = *(u8 **)(s + 0x68);
