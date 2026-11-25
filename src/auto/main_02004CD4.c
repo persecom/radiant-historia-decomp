@@ -161,20 +161,27 @@ func_02004810(data_0215cd60[0]);
 void func_020050c4(s32 arg0) {
     data_0215cd60[0] = (data_0215cd60[0] | data_0215cd60[3]) & ~arg0;
     data_0215cd60[3] = arg0;
-    switch (arg0) {
-    case 4:
-        *(volatile u8 *)0x04000242 = 0x82;
-        break;
-    case 8:
-        *(volatile u8 *)0x04000243 = 0x82;
-        break;
-    case 0xc:
-        *(volatile u8 *)0x04000243 = 0x8a;
-        *(volatile u8 *)0x04000242 = 0x82;
-        break;
-    case 0:
-        break;
+    if (arg0 <= 8) {
+        if (arg0 >= 8) {
+            goto case_8;
+        }
+        if (arg0 <= 4) {
+            if (arg0 >= 0 && arg0 != 0) {
+                if (arg0 == 4) {
+                    *(volatile u8 *)0x04000242 = 0x82;
+                }
+            }
+        }
+    } else {
+        if (arg0 == 0xc) {
+            *(volatile u8 *)0x04000243 = 0x8a;
+            *(volatile u8 *)0x04000242 = 0x82;
+        }
     }
+    goto done;
+case_8:
+    *(volatile u8 *)0x04000243 = 0x82;
+done:
     func_02004810(data_0215cd60[0]);
 }
 
@@ -183,23 +190,31 @@ void func_02005168(s32 arg0) {
     func_02004810(arg0);
 }
 
-void func_0200518c(s32 arg0) {
-    data_0215cd60[0] = (data_0215cd60[0] | data_0215cd60[9]) & ~arg0;
-    data_0215cd60[9] = arg0;
-    switch (arg0) {
+void func_0200518c(unsigned long arg0)
+{
+  data_0215cd60[0] = (data_0215cd60[0] | data_0215cd60[9]) & (~arg0);
+  data_0215cd60[9] = arg0;
+  switch (arg0)
+  {
     case 0x4:
-        *(volatile u8 *)0x04000242 = 0x84;
-        break;
+      *((volatile u8 *) 0x04000242) = 0x84;
+      break;
+
     case 0x180:
-        *(volatile u8 *)0x04000249 = 0x81;
+      *((volatile u8 *) 0x04000249) = 0x81;
+
     case 0x80:
-        *(volatile u8 *)0x04000248 = 0x81;
-        break;
+      *((volatile u8 *) 0x04000248) = 0x81;
+      break;
+
     case 0:
+
     case 1:
-        break;
-    }
-    func_02004810(data_0215cd60[0]);
+      break;
+
+  }
+
+  func_02004810(data_0215cd60[0]);
 }
 
 void func_02005228(s32 arg0) {
