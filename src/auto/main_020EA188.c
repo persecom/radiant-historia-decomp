@@ -6,9 +6,6 @@ extern u32 data_02160a90[5];
 extern u8 data_021518c0[8];
 extern s32 func_0210dba0(void *);
 extern s32 func_021086d4();
-static inline s32 ResourceFrameAbsent(void *resource, u16 index) {
-    return func_021086d4(resource, index) == 0 ? 1 : 0;
-}
 extern char data_02151784[],data_0215179c[],data_021517b4[],data_021517c8[],data_021517e4[],data_02151800[],data_0215181c[],data_0215183c[],data_02151860[],data_0215187c[],data_0215189c[];
 extern u32 data_02155c3c;
 extern void *func_0210957c(s32);
@@ -38,8 +35,7 @@ extern u8 *data_02160a6c;
 s32 func_020ea188(u8 *arg0,s32 id,u8 type) {
  char filename[40],pathA[50],pathB[50],pathC[50];
  void *file=0;
- u8 cached=0;
- s32 zero=0;
+ s32 cached=0,zero=0;
  u8 *resource;
  if(type==0)func_02005e80(filename,data_02151784);
  else if((u8)(type+255)<=1) {
@@ -74,21 +70,24 @@ s32 func_020ea188(u8 *arg0,s32 id,u8 type) {
  resource=func_02109f3c(*(void **)(*(u8 **)(*(u8 **)arg0+0x58)+8));
  if(!*(u8 **)(resource+0x10)){
  if(type<=1){
+ s32 i;
+ u8 *allocation;
+ s32 count;
+ s32 j,index;
  s32 total=*(u16 *)(*(u8 **)(*(u8 **)(*(u8 **)arg0+0x58)+0xc));
  s32 extra=func_020020bc(total,2)!=0;
- s32 count=(u16)(extra+func_02002080(total,2));
- u8 *allocation=func_0210c594(count*4,data_02155c3c);
+ count=(u16)(extra+func_02002080(total,2));
+ allocation=func_0210c594(count*4,data_02155c3c);
  u8 *p=allocation;
- s32 i;
  s32 yes=1,no=0,bit=1;
  for(i=0;i<count;i++){
- s32 j;
- s32 index=i*2;
+ index=i*2;
  *(u16 *)(p+2)=index;p[0]=0;
  for(j=0;j<2;j++,index++){
  if(total>index){
- s32 absent=func_021086d4(*(void **)arg0,(u16)index)==0 ? yes : no;
- if(!absent)p[0]|=(u8)(bit<<j);
+ s32 absent;
+ if(func_021086d4(*(void **)arg0,(u16)index)!=0)absent=no;else absent=yes;
+ if(absent==0)p[0]|=(u8)(bit<<j);
  }
  }
  p+=4;
