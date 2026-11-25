@@ -22,6 +22,9 @@ extern void func_021099f8(void *);
 extern void func_0210c5dc(void *);
 extern void func_021168f8(void *, void *);
 extern u8 **data_02160244;
+extern u8 *func_0202c820(u8);
+extern void func_020c34c8(u32 *, u32, u32, u32, u32, u32, u32, u32);
+extern void func_020c35c4(u32 *, u32, u32, u32, u32, u32, u32, u32);
 
 void func_020e1850(void) {
     u8 *root = data_02160a74;
