@@ -395,25 +395,20 @@ void func_020d64c8(Struct020d64c8 *arg0) {
 }
 
 void func_020d64e4(void *arg0) {
-    u8 *sub = *(u8 **)((u8 *)arg0 + 0x128);
-    s32 flag;
-    if ((*(u16 *)(sub + 0x22) & 1) != 0) {
-        goto end;
-    }
-    *(u16 *)(sub + 0x22) |= 1;
-    func_020d626c(arg0);
-    flag = *(u32 *)(sub + 0x18) & 8;
-    if ((*(u32 *)(*(void **)((u8 *)arg0 + 0x118) + 0x78) & 0x30) != 0) {
-        goto end;
-    }
-    if ((*(u16 *)(*(void **)(sub + 0xc) + 0xe) & 0x200) != 0 || flag != 0) {
-        goto end;
-    }
-    func_020dd810(arg0, 0x12, 0);
-    *(u32 *)(sub + 0x24) = 0x14;
-    *(u16 *)(sub + 0x1c) = 0;
-    *(u32 *)(sub + 0x14) = 0;
-end:
-    return;
+ u8 *sub=*(u8 **)((u8 *)arg0+0x128);
+ s32 flag;
+ u8 *other;
+ if (!(*(u16 *)(sub+0x22)&1)) {
+  *(u16 *)(sub+0x22)|=1;
+  func_020d626c(arg0);
+ }
+ flag=*(u32 *)(sub+0x18)&8;
+ other=*(u8 **)(sub+0xc);
+ if (!(*(u32 *)(*(u8 **)((u8 *)arg0+0x118)+0x78)&0x30) &&
+     !(*(u16 *)(other+0xe)&0x200) && !flag)
+  func_020dd810(arg0,0x12,0);
+ *(u32 *)(sub+0x24)=0x14;
+ *(u16 *)(sub+0x1c)=0;
+ *(u32 *)(sub+0x14)=0;
 }
 
