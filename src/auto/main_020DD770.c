@@ -36,6 +36,10 @@ extern void func_020ec548(void *);
 extern void func_0210c5dc(void *);
 
 extern void func_0210c2f4(void);
+
+static inline s32 fx_mul_12(s32 a, s32 b) {
+    return (s32)(((s64)a * b + 0x800) >> 12);
+}
 typedef union {
     s64 q;
     struct {
@@ -298,15 +302,17 @@ void func_020ddd5c(u8 *arg0) {
     *(s32 *)(arg0 + 0x4c) = (s32)(((s64)a * b + 0x800) >> 12);
 }
 
+#pragma push
+#pragma optimization_level 3
 void func_020ddd8c(u8 *arg0) {
-    s32 speed = *(s32 *)(arg0 + 0x4c);
     s32 idx = (*(u16 *)(arg0 + 0x92) >> 4) * 2;
+    s32 speed = *(s32 *)(arg0 + 0x4c);
     s32 c = data_0213a394[idx + 1];
     s32 s = data_0213a394[idx];
     *(s32 *)(arg0 + 0x30) = (s32)(((s64)c * speed + 0x800) >> 12);
     *(s32 *)(arg0 + 0x38) = (s32)(((s64)s * speed + 0x800) >> 12);
 }
-
+#pragma pop
 void func_020dddf0(void) {
     func_0210c2f4();
 }
