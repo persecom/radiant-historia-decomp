@@ -8,6 +8,7 @@ static inline s16 Cos_0205530c(s32 a) { return data_0213a394[((a % 65536) >> 4)*
 static inline void SetVec_0205530c(Vec_0205530c *dst, s32 x, s32 y, s32 z) { dst->x=x; dst->y=y; dst->z=z; }
 static inline void AddVec_0205530c(Vec_0205530c *dst, const Vec_0205530c *a, const Vec_0205530c *b) { dst->x = a->x+b->x; dst->y = a->y+b->y; dst->z = a->z+b->z; }
 static inline void CopyVec_0205530c(Vec_0205530c *dst, const Vec_0205530c *src) { dst->x = src->x; dst->y = src->y; dst->z = src->z; }
+static inline s16 Table_02055564(s32 index) { return data_0213a394[index]; }
 
 typedef struct {
     void *f0;
