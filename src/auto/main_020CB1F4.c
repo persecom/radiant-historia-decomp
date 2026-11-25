@@ -1,5 +1,46 @@
 /* 6 functions from 0x020CB1F4 to 0x020CC09C (main), found by ds-decomp. */
 #include "common.h"
+typedef struct { u8 _[0x1698]; } SaveWork1698;
+
+extern u32 data_02155c3c;
+extern u8 *data_02160078;
+extern u32 data_02162858[2];
+extern u32 data_02162854;
+extern char data_021512f8[];
+extern char data_02151304[];
+extern char data_02151318[];
+extern char data_02151334[];
+extern char data_02151340[];
+
+extern void *func_0210c594(u32, s32);
+extern void func_0210c5dc(void *);
+extern void func_020a2c20(void);
+extern void func_021070c4(void);
+extern void func_0210f6d4(void);
+extern void func_020a31c8(s32);
+extern void func_021167ac(void *, u16);
+extern void *func_020a94b8(s32);
+extern void *func_020a8604(s32, s32);
+extern void *func_020a84b8(s32, s32);
+extern void func_020a8810(void *, u32);
+extern void func_020a9830(void *, void *, u32, u32, u32, u32);
+extern void func_020a9610(u32 *, void **, u32, u32, u32, u32);
+extern void *func_020c6d5c(u32);
+extern s32 func_020c8344(void *, s32, s32);
+extern void func_020c8640(void *, u32);
+extern void func_020c83f4(void *, s32, s32, s32);
+extern void func_020c738c(void *, s32, s32);
+extern s32 func_0210e600(void);
+extern void func_0210e620(s32);
+extern void func_02021a3c(void);
+extern u32 func_02021a50(void);
+extern void func_0210dc88(void);
+extern void func_020cea74(void *);
+extern void func_020cdf18(void);
+extern u8 *func_020cda08(u32, u16);
+extern u8 *func_020cdbc4(u16, u32, u16, u16, s16, s8, u16, u8, u8);
+extern void func_020cc09c(void);
+extern void func_020ce8d4(void);
 extern u8 *data_02160238;
 
 void func_020cb1f4(void) {
