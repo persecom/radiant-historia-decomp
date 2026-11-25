@@ -296,22 +296,17 @@ s32 func_0200f6fc(s32 arg0) {
 }
 
 s32 func_0200f728(s32 *arg0) {
-    s32 month = arg0[1] - 2;
     s32 year = arg0[0] + 2000;
+    s32 month = arg0[1] - 2;
     s32 day = arg0[2];
-    s32 century;
-    s32 yearInCentury;
-    s32 monthTerm;
-    s32 total;
+    s32 c, y;
     if (month < 1) {
-        year -= 1;
+        year--;
         month += 12;
     }
-    century = year / 100;
-    yearInCentury = year % 100;
-    monthTerm = (month * 26 - 2) / 10;
-    total = day + monthTerm + yearInCentury + yearInCentury / 4 + century / 4 + century * 5;
-    return total % 7;
+    c = year / 100;
+    y = year % 100;
+    return (day + (month * 26 - 2) / 10 + y + y / 4 + c / 4 + c * 5) % 7;
 }
 
 void func_0200f7e4(u8 *arg0) {
