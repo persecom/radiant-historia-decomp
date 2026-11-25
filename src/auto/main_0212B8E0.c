@@ -1,5 +1,6 @@
 /* 40 functions from 0x0212B8E0 to 0x0212C824 (main), found by ds-decomp. */
 #include "common.h"
+extern void *memset(void *, int, unsigned long);
 extern u32 data_02173df4[5];
 typedef struct { s8 active; u8 rest[0xb3]; } UnkSlot_0212c660;
 extern u8 data_02173e08[720];
