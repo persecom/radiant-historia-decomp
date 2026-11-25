@@ -2,7 +2,7 @@
 #include "common.h"
 
 typedef struct { s32 x, y, z; } Vec_0205530c;
-extern s16 data_0213a394[];
+extern const s16 data_0213a394[];
 static inline s16 Sin_0205530c(s32 a) { return data_0213a394[((a % 65536) >> 4)*2]; }
 static inline s16 Cos_0205530c(s32 a) { return data_0213a394[((a % 65536) >> 4)*2+1]; }
 static inline void SetVec_0205530c(Vec_0205530c *dst, s32 x, s32 y, s32 z) { dst->x=x; dst->y=y; dst->z=z; }
@@ -43,6 +43,130 @@ extern void *func_0203be60(void *, void *, void *);
 extern void func_021167f0(void *, void *);
 extern void func_0210c5dc(void *);
 
+extern u32 data_0216263c[3];
+extern void func_02052844(void *, s32, s32);
+extern void func_0210d27c(s32);
+extern s32 func_020ddc8c(void *, void *);
+extern void func_020477dc(void *, s32, s32);
+extern void func_020495fc(void *, s32);
+extern void func_02050b0c(void *, s32);
+extern void func_0205103c(void *);
+extern void func_020510e8(void *);
+extern void func_02051344(void *);
+extern void func_0205196c(void *);
+s32 func_02054e14(u8 *p) {
+    u8 *config = *(u8 **)(p + 0xd0);
+    s32 i;
+    s32 angle;
+    s32 scale;
+    Vec_0205530c vel;
+
+    if ((func_02002388(p, p + 0x1b4) >> 12) < 3) {
+        u32 r;
+        *(s16 *)(p + 0x98) = 0;
+        r = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
+        data_0216263c[0] = r;
+        if ((u16)(((r >> 16) * 100) >> 16) < 50) {
+            func_02052844(p, 0, -1);
+            func_02052844(p, 3, 0);
+            config[1] = 8;
+            *(u16 *)(config + 4) = 0;
+            if (config[0x25] != 0x47 && config[0x25] != 0x51) {
+                *(u16 *)(config + 6) = 0;
+            }
+            func_0210d27c(0x8a);
+        } else {
+            *(u16 *)(config + 4) = 0;
+            if (config[0x25] == 0x47 || config[0x25] == 0x51) {
+                *(u16 *)(config + 6) = 2;
+                config[1] = 3;
+            } else {
+                *(u16 *)(config + 6) = 0;
+                config[1] = 1;
+            }
+        }
+        return 0;
+    }
+
+    angle = func_020ddc8c(p, p + 0x1b4);
+    *(s32 *)(p + 0x30) = (Sin_0205530c(angle) * 8);
+    *(s32 *)(p + 0x38) = (Cos_0205530c(angle) * 8);
+    scale = *(s16 *)(p + 0x98) + 10;
+    *(s32 *)(p + 0x30) = (*(s32 *)(p + 0x30) * (s32)((f32)scale / 10.0f)) / 2;
+    *(s32 *)(p + 0x38) = (*(s32 *)(p + 0x38) * (s32)((f32)(*(s16 *)(p + 0x98) + 10) / 10.0f)) / 2;
+    CopyVec_0205530c(&vel, (Vec_0205530c *)(p + 0x30));
+
+    for (i = 0; i < 2; i++) {
+        CopyVec_0205530c((Vec_0205530c *)(p + 0x30), &vel);
+        CopyVec_0205530c((Vec_0205530c *)(p + 0xc), (Vec_0205530c *)p);
+        CopyVec_0205530c((Vec_0205530c *)(p + 0xd4), (Vec_0205530c *)p);
+        SetVec_0205530c((Vec_0205530c *)(p + 0xe0), *(s32 *)p + vel.x, *(s32 *)(p + 4), *(s32 *)(p + 8) + vel.z);
+        func_020477dc(p, 2, 1);
+        if (*(u32 *)(p + 0xac) & 1) {
+            u8 *other;
+            *(u16 *)(*(u8 **)(p + 0xb0) + 4) = 0;
+            func_020495fc(p, 0);
+            func_02050b0c(p, 0);
+            func_02050b0c(p, 0x8000);
+            func_0205103c(p);
+            CopyVec_0205530c((Vec_0205530c *)(p + 0xd4), (Vec_0205530c *)(p + 0xc));
+            CopyVec_0205530c((Vec_0205530c *)(p + 0xe0), (Vec_0205530c *)p);
+            *(s32 *)(p + 0x30) = *(s32 *)p - *(s32 *)(p + 0xc);
+            *(s32 *)(p + 0x38) = *(s32 *)(p + 8) - *(s32 *)(p + 0x14);
+            if (*(s32 *)(p + 0x30) == 0 && *(s32 *)(p + 0x38) == 0) {
+                p[0xa4] |= 8;
+            }
+            func_020510e8(p);
+            p[0xa4] &= 0xfe;
+            p[0xa4] &= 0xfd;
+            p[0xa4] &= 0xfb;
+            other = *(u8 **)(data_021600ac + 0x68);
+            if (other && *(u16 *)(p + 0x90) == *(u16 *)(*(u8 **)(other + 0xb0) + 4)) {
+                *(u16 *)(*(u8 **)(p + 0xb0) + 4) = 0;
+                *(u16 *)(*(u8 **)(other + 0xb0) + 4) = 0;
+            }
+            func_02051344(p);
+            func_0205196c(p);
+            *(s32 *)(p + 0x30) = 0;
+            *(s32 *)(p + 0x38) = 0;
+            if (*(s32 *)(p + 0xec) != *(s32 *)p || *(s32 *)(p + 0xf4) != *(s32 *)(p + 8)) {
+                CopyVec_0205530c((Vec_0205530c *)(p + 0xec), (Vec_0205530c *)p);
+            }
+        } else {
+            *(s32 *)p += vel.x;
+            *(s32 *)(p + 8) += vel.z;
+        }
+    }
+
+    *(s16 *)(p + 0x98) += 1;
+    if (*(s16 *)(p + 0x98) > 7) {
+        u32 r;
+        *(s16 *)(p + 0x98) = 0;
+        r = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
+        data_0216263c[0] = r;
+        if ((u16)(((r >> 16) * 100) >> 16) < 50) {
+            func_02052844(p, 0, -1);
+            func_02052844(p, 3, 0);
+            config[1] = 8;
+            *(u16 *)(config + 4) = 0;
+            if (config[0x25] != 0x47 && config[0x25] != 0x51) {
+                *(u16 *)(config + 6) = 0;
+            }
+            func_0210d27c(0x8a);
+        } else {
+            *(u16 *)(config + 4) = 0;
+            if (config[0x25] == 0x47 || config[0x25] == 0x51) {
+                *(u16 *)(config + 6) = 2;
+                config[1] = 3;
+            } else {
+                *(u16 *)(config + 6) = 0;
+                config[1] = 1;
+            }
+        }
+    }
+    return 0;
+}
+
 void func_02055240(u8 *arg0) {
     u8 *p = *(u8 **)(data_021600ac + 0x68);
     struct { s32 x, y, z; } vec1 = { 0, 0, 0 };
@@ -70,25 +194,89 @@ s32 func_020552e4(u8 *arg0) {
 
 void func_0205530c(u8 *p) {
     u8 *config = *(u8 **)(p + 0xd0);
-    u16 id;
-    s32 angle;
-    Vec_0205530c pos, next;
+
     *(u16 *)(p + 0x92) = func_020ddc8c(*(u8 **)(data_021600ac + 0x68), p);
-    angle = *(u16 *)(p + 0x92);
-    id = *(u16 *)(p + 0x8e);
-    angle = (angle % 65536) >> 4;
-    *(s32 *)(p + 0x30) = (s16)config[0x1a] * data_0213a394[angle * 2];
-    *(s32 *)(p + 0x38) = (s16)config[0x1a] * data_0213a394[angle * 2 + 1];
-    CopyVec_0205530c((Vec_0205530c *)(p+0xc), (Vec_0205530c *)p);
-    CopyVec_0205530c((Vec_0205530c *)(p+0xd4), (Vec_0205530c *)p);
-    SetVec_0205530c((Vec_0205530c *)(p+0xe0), *(s32 *)p+*(s32 *)(p+0x30), *(s32 *)(p+4), *(s32 *)(p+8)+*(s32 *)(p+0x38));
-    if (id < 700) func_020477dc(p, 1, 1);
-    else func_020477dc(p, 0, 1);
+    *(s32 *)(p + 0x30) = (s16)config[0x1a] * data_0213a394[((*(u16 *)(p + 0x92) % 65536) >> 4) * 2];
+    *(s32 *)(p + 0x38) = (s16)config[0x1a] * data_0213a394[((*(u16 *)(p + 0x92) % 65536) >> 4) * 2 + 1];
+
+    CopyVec_0205530c((Vec_0205530c *)(p + 0xc), (Vec_0205530c *)p);
+    CopyVec_0205530c((Vec_0205530c *)(p + 0xd4), (Vec_0205530c *)p);
+    *(s32 *)(p + 0xe0) = *(s32 *)p + *(s32 *)(p + 0x30);
+    *(s32 *)(p + 0xe4) = *(s32 *)(p + 4);
+    *(s32 *)(p + 0xe8) = *(s32 *)(p + 8) + *(s32 *)(p + 0x38);
+
+    if (*(u16 *)(p + 0x8e) < 700) {
+        func_020477dc(p, 1, 1);
+    } else {
+        func_020477dc(p, 0, 1);
+    }
+
     if (*(u32 *)(p + 0xac) & 1) {
         u8 *other;
         *(u16 *)(*(u8 **)(p + 0xb0) + 4) = 0;
         func_020495fc(p, 0);
         func_02050b0c(p, 0);
+        func_02050b0c(p, 0x8000);
+        func_0205103c(p);
+        CopyVec_0205530c((Vec_0205530c *)(p + 0xd4), (Vec_0205530c *)(p + 0xc));
+        CopyVec_0205530c((Vec_0205530c *)(p + 0xe0), (Vec_0205530c *)p);
+        *(s32 *)(p + 0x30) = *(s32 *)p - *(s32 *)(p + 0xc);
+        *(s32 *)(p + 0x38) = *(s32 *)(p + 8) - *(s32 *)(p + 0x14);
+        if (*(s32 *)(p + 0x30) == 0 && *(s32 *)(p + 0x38) == 0) {
+            p[0xa4] |= 8;
+        }
+        func_020510e8(p);
+        p[0xa4] &= 0xfe;
+        p[0xa4] &= 0xfd;
+        p[0xa4] &= 0xfb;
+        other = *(u8 **)(data_021600ac + 0x68);
+        if (other && *(u16 *)(p + 0x90) == *(u16 *)(*(u8 **)(other + 0xb0) + 4)) {
+            *(u16 *)(*(u8 **)(p + 0xb0) + 4) = 0;
+            *(u16 *)(*(u8 **)(other + 0xb0) + 4) = 0;
+        }
+        func_02051344(p);
+        func_0205196c(p);
+        *(s32 *)(p + 0x30) = 0;
+        *(s32 *)(p + 0x38) = 0;
+        if (*(s32 *)(p + 0xec) != *(s32 *)p || *(s32 *)(p + 0xf4) != *(s32 *)(p + 8)) {
+            CopyVec_0205530c((Vec_0205530c *)(p + 0xec), (Vec_0205530c *)p);
+        }
+    } else {
+        *(s32 *)p += *(s32 *)(p + 0x30);
+        *(s32 *)(p + 8) += *(s32 *)(p + 0x38);
+    }
+}
+
+void func_02055564(u8 *p, s32 speed) {
+    u8 *config = *(u8 **)(p + 0xd0);
+    u16 id;
+    s32 distance;
+    s32 zero = 0;
+    s32 angle;
+    Vec_0205530c pos, next;
+    s32 dx, dz;
+    config[8] = 1;
+    *(u16 *)(p + 0x92) = func_020ddc8c(p, p+0x24);
+    angle = *(u16 *)(p + 0x92);
+    angle = (angle % 65536) >> 4;
+    CopyVec_0205530c(&pos, (Vec_0205530c *)p);
+    CopyVec_0205530c(&next, &pos);
+    dz = speed * data_0213a394[angle * 2 + 1];
+    dx = speed * data_0213a394[angle * 2];
+    next.x += dx;
+    next.z += dz;
+    *(s32 *)(p+0x38) = dz;
+    *(s32 *)(p+0x30) = dx;
+    CopyVec_0205530c((Vec_0205530c *)(p+0xc), &pos);
+    CopyVec_0205530c((Vec_0205530c *)(p+0xd4), &pos);
+    SetVec_0205530c((Vec_0205530c *)(p+0xe0), next.x, *(s32 *)(p+4), next.z);
+    if (*(u16 *)(p + 0x8e) < 700) func_020477dc(p, 1, 1);
+    else func_020477dc(p, 0, 1);
+    if (*(u32 *)(p + 0xac) & 1) {
+        u8 *other;
+        *(u16 *)(*(u8 **)(p + 0xb0) + 4) = zero;
+        func_020495fc(p, zero);
+        func_02050b0c(p, zero);
         func_02050b0c(p, 0x8000);
         func_0205103c(p);
         CopyVec_0205530c((Vec_0205530c *)(p+0xd4), (Vec_0205530c *)(p+0xc));
@@ -102,18 +290,27 @@ void func_0205530c(u8 *p) {
         p[0xa4] &= ~4;
         other = *(u8 **)(data_021600ac + 0x68);
         if (other && *(u16 *)(p + 0x90) == *(u16 *)(*(u8 **)(other + 0xb0) + 4)) {
-            *(u16 *)(*(u8 **)(p + 0xb0) + 4) = 0;
-            *(u16 *)(*(u8 **)(other + 0xb0) + 4) = 0;
+            *(u16 *)(*(u8 **)(p + 0xb0) + 4) = zero;
+            *(u16 *)(*(u8 **)(other + 0xb0) + 4) = zero;
         }
         func_02051344(p);
         func_0205196c(p);
-        *(s32 *)(p + 0x30) = 0;
-        *(s32 *)(p + 0x38) = 0;
+        *(s32 *)(p + 0x30) = zero;
+        *(s32 *)(p + 0x38) = zero;
         if (*(s32 *)(p + 0xec) != *(s32 *)p || *(s32 *)(p + 0xf4) != *(s32 *)(p + 8))
             CopyVec_0205530c((Vec_0205530c *)(p + 0xec), (Vec_0205530c *)p);
     } else {
         *(s32 *)p += *(s32 *)(p + 0x30);
         *(s32 *)(p + 8) += *(s32 *)(p + 0x38);
+    }
+    distance = speed << 12;
+    if (func_0210c2f4(p, p+0x24) < distance || p[0xa4]) {
+        func_020477dc(p, 2, 1);
+        if (distance > func_0210c2f4(p, p+0x24)) {
+            *(s32 *)p = *(s32 *)(p+0x24);
+            *(s32 *)(p+8) = *(s32 *)(p+0x2c);
+        }
+        config[8] = zero;
     }
 }
 
