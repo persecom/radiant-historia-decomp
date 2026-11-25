@@ -329,31 +329,29 @@ if(stage==3) {
 }
 }
 
-void func_0211e860(u8 *arg0) {
-    u32 flags = *(u32 *)(arg0 + 8);
-    u8 *p;
-    u8 idx;
-    u8 *tbl;
-    u16 cmd;
-    if (flags & 0x200) goto advance;
-    p = *(u8 **)arg0;
-    idx = p[1];
-    if (flags & 1) goto parse;
-    if (!(flags & 8)) goto parse;
-    if (idx == *(u8 *)(arg0 + 0xad)) goto advance;
+void func_0211e860(u8 *arg0, u32 arg1) {
+u32 flags=*(u32 *)(arg0+8);u8 *p;u8 idx;u8 *tbl;u8 *node;
+if(flags&0x200)goto advance;
+p=*(u8 **)arg0;idx=p[1];
+if(flags&1)goto parse;
+if(!(flags&8))goto parse;
+if(idx==arg0[0xad])goto advance;
 parse:
-    tbl = *(u8 **)(arg0 + 0xd8);
-    if (tbl == NULL) goto advance;
-    if (idx >= tbl[5]) goto advance;
-    {
-        u16 off = *(u16 *)(tbl + 0xa);
-        u16 size = *(u16 *)(tbl + 4 + off);
-        u32 *ptr = (u32 *)(tbl + 8 + off + size * idx);
-        cmd = *(u16 *)(tbl + *ptr);
-        data_02155f80[cmd](arg0);
-    }
+tbl=*(u8 **)(arg0+0xd8);
+if(tbl!=NULL){
+u8 *dict=tbl+4;u32 *entry;
+if(dict!=NULL && idx<tbl[5]){
+u16 off=*(u16 *)(tbl+10);
+u16 size=*(u16 *)(dict+off);
+entry=(u32 *)(dict+off+4+size*idx);
+}else entry=NULL;
+if(entry!=NULL){node=tbl+*entry;goto got_node;}
+}
+node=NULL;
+got_node:
+((void (*)(void *,u32,void *,u32))data_02155f80[*(u16 *)node])(arg0,arg1,node,idx);
 advance:
-    *(u8 **)arg0 += 2;
+*(u8 **)arg0+=2;
 }
 
 extern void func_02120534(void *, u32);
