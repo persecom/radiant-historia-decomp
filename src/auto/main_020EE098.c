@@ -41,6 +41,194 @@ extern s32 func_0210e7f0(char *, void *);
 extern s32 func_0210e848(char *, void *);
 extern void func_021167f0(void *, void *);
 
+u8 *func_020ee52c(u16 arg0);
+s32 func_020ee098(void) {
+    s32 one = 1;
+    s32 zero = 0;
+    s32 res = zero;
+    char name[0x40];
+    s32 id;
+    s32 flag;
+    s32 s1;
+    s32 s2;
+    s32 s3;
+    s32 f1;
+    s32 f2;
+    s32 f3;
+    s32 id2;
+    s32 zero2;
+    s32 i;
+    u8 *node;
+    u8 *slot;
+
+    if (func_0210cc54(data_02151ca0) != 0) {
+        id = func_0210cd90(zero);
+        flag = 0x20;
+        s1 = func_0210cd90(0x20);
+        if (id % 10 != 1) {
+            flag = 0x10;
+        }
+        s2 = func_0210cd90(flag);
+        s3 = func_0210cd90(0x10);
+        zero2 = 0;
+        id2 = func_0210cd90(zero2);
+        if (id == 0) {
+            return zero2;
+        }
+        if (0) {
+            return zero2;
+        }
+        switch (s1) {
+        case 8:
+            f1 = zero2;
+            break;
+        case 0x10:
+            f1 = 1;
+            break;
+        case 0x20:
+            f1 = 2;
+            break;
+        case 0x40:
+            f1 = 3;
+            break;
+        case 0x80:
+            f1 = 4;
+            break;
+        case 0x100:
+            f1 = 5;
+            break;
+        default:
+            return 0;
+        }
+        switch (s2) {
+        case 8:
+            f2 = 0;
+            break;
+        case 0x10:
+            f2 = 1;
+            break;
+        case 0x20:
+            f2 = 2;
+            break;
+        case 0x40:
+            f2 = 3;
+            break;
+        case 0x80:
+            f2 = 4;
+            break;
+        case 0x100:
+            f2 = 5;
+            break;
+        default:
+            return 0;
+        }
+        switch (s3) {
+        case 0:
+            f3 = zero2;
+            break;
+        case 4:
+            f3 = 2;
+            break;
+        case 0x10:
+            f3 = 3;
+            break;
+        default:
+            return 0;
+        }
+        node = func_0210c518(0x28, (void *)data_02155c3c);
+        if (node == NULL) {
+            return 0;
+        }
+        func_02008e68(zero, node, 0x28);
+        func_02005e80(name, data_02151ca4, id);
+        if (func_0210e7f0(name, node + 8) == 0) {
+            return res;
+        }
+        func_02005e80(name, data_02151cb8, id2);
+        if (func_0210e848(name, node + 0x10) == 0) {
+            return 0;
+        }
+        *(u32 *)(node + 0x18) = f1;
+        *(u32 *)(node + 0x1c) = f2;
+        *(u32 *)(node + 0x20) = f3;
+        *(u16 *)(node + 0x24) = id;
+        func_021167f0(data_02160aec, node);
+        return 1;
+    }
+    if (func_0210cc54(data_02151ccc) == 0) {
+        return res;
+    }
+    i = zero;
+    slot = (u8 *)((u32)(data_02160aec + 0x10) + func_0210cd90(i) * 0x78);
+    for (; i < 5; i++) {
+        id = func_0210cd90(zero);
+        if (id != 0) {
+            node = func_020ee52c(id);
+            if (node == NULL) {
+                return res;
+            }
+            s1 = *(u32 *)(node + 0x20);
+            s2 = *(u32 *)(node + 0xc);
+            s3 = *(u32 *)(node + 0x18);
+            f1 = *(u32 *)(node + 0x1c);
+            {
+                u32 off = i * 0x18;
+                u8 *p = slot + off;
+                u32 t1 = one << (s3 + 3);
+                u32 t2 = one << (f1 + 3);
+                s32 shift = 4 - ((s1 == 2) ? one : zero);
+
+                *(u32 *)(p + 0x0) = (s1 << 26) | (s2 >> 3) | 0x40000000 | (s3 << 20) | (f1 << 23) | 0xf0000;
+                *(u32 *)(p + 0x4) = *(u32 *)(node + 0x14) >> shift;
+                if (i == 4) {
+                    s32 v = (s16)(t2 << 8);
+                    *(u32 *)(p + 0x8) = (u32)v << 16;
+                    *(u32 *)(p + 0xc) = zero;
+                    *(u32 *)(p + 0x10) = (u32)v & 0xffff;
+                    *(u32 *)(p + 0x14) = ((u32)v & 0xffff) | ((u32)v << 16);
+                } else {
+                    s32 v1 = (s16)(t1 << 8);
+                    s32 v2 = (s16)(t2 << 8);
+                    *(u32 *)(p + 0x8) = zero;
+                    *(u32 *)(p + 0xc) = (u32)v2 << 16;
+                    *(u32 *)(p + 0x10) = ((u32)v1 & 0xffff) | ((u32)v2 << 16);
+                    *(u32 *)(p + 0x14) = (u32)v1 & 0xffff;
+                }
+            }
+        } else {
+            switch (i) {
+            case 2:
+                *(u32 *)(slot + 0x30) = *(u32 *)(slot + 0x0);
+                *(u32 *)(slot + 0x34) = *(u32 *)(slot + 0x4);
+                *(u32 *)(slot + 0x38) = *(u32 *)(slot + 0x8);
+                *(u32 *)(slot + 0x3c) = *(u32 *)(slot + 0xc);
+                *(u32 *)(slot + 0x40) = *(u32 *)(slot + 0x10);
+                *(u32 *)(slot + 0x44) = *(u32 *)(slot + 0x14);
+                break;
+            case 3:
+                *(u32 *)(slot + 0x48) = *(u32 *)(slot + 0x30);
+                *(u32 *)(slot + 0x4c) = *(u32 *)(slot + 0x34);
+                *(u32 *)(slot + 0x50) = *(u32 *)(slot + 0x38);
+                *(u32 *)(slot + 0x54) = *(u32 *)(slot + 0x3c);
+                *(u32 *)(slot + 0x58) = *(u32 *)(slot + 0x40);
+                *(u32 *)(slot + 0x5c) = *(u32 *)(slot + 0x44);
+                break;
+            case 4:
+                *(u32 *)(slot + 0x60) = *(u32 *)(slot + 0x48);
+                *(u32 *)(slot + 0x64) = *(u32 *)(slot + 0x4c);
+                *(u32 *)(slot + 0x68) = *(u32 *)(slot + 0x50);
+                *(u32 *)(slot + 0x6c) = *(u32 *)(slot + 0x54);
+                *(u32 *)(slot + 0x70) = *(u32 *)(slot + 0x58);
+                *(u32 *)(slot + 0x74) = *(u32 *)(slot + 0x5c);
+                break;
+            default:
+                return res;
+            }
+        }
+    }
+    return 1;
+}
+
 u8 *func_020ee52c(u16 arg0) {
     u8 *p = data_02160aec;
     u8 *node = NULL;
