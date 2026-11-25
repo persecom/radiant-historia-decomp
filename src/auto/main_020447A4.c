@@ -13,12 +13,12 @@ extern void func_0207c124(void);
 extern void func_0203d970(void *);
 extern void func_0203df40(void *);
 static inline u16 random_4487c(u16 max) {
- u32 seed=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
  u32 value;
- data_0216263c[0]=seed;
- value=seed>>16;
+ value=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
+ data_0216263c[0]=value;
+ value>>=16;
  if(max) value=(value*max)>>16;
- return value;
+ return (u16)value;
 }
 extern s32 data_02162870[2], data_02162868[2], data_02162814[2], data_02162884[2];
 static inline s32 abs_4487c(s32 x) { return x < 0 ? -x : x; }
