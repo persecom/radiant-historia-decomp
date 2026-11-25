@@ -4,6 +4,12 @@ extern u32 data_0216263c[3];
 typedef struct { u8 pad[0x76]; s16 level,kind; } RecoveryEntry;
 extern const u16 data_02140d10[10],data_02140cfc[10],data_02140ce8[10],data_02140d24[10];
 extern void func_0210d27c(s32);
+static inline s32 recovery_amount0(u8 *actor,u8 *entry) { s32 amount; amount=((actor[0x43]*5+(data_02140d10[*(s16 *)(entry+0x76)-1]+((*(u16 *)(actor+0x1c)+*(s16 *)(actor+0x28))*150)/100))*(s32)((u16)((((data_0216263c[0]=data_0216263c[1]*data_0216263c[0]+data_0216263c[2])>>16)*4)>>16)+98))/100;
+if(amount>=data_02140cfc[*(s16 *)(entry+0x76)-1])amount=(data_02140cfc[*(s16 *)(entry+0x76)-1]*(s32)((u16)((((data_0216263c[0]=data_0216263c[1]*data_0216263c[0]+data_0216263c[2])>>16)*4)>>16)+98))/100;
+else amount=(amount*(s32)((u16)((((data_0216263c[0]=data_0216263c[1]*data_0216263c[0]+data_0216263c[2])>>16)*4)>>16)+98))/100; return amount; }
+static inline s32 recovery_amount1(u8 *actor,u8 *entry) { s32 amount; amount=((actor[0x43]/5+(data_02140ce8[*(s16 *)(entry+0x76)-1]+(*(u16 *)(actor+0x1c)+*(s16 *)(actor+0x28))/20))*(s32)((u16)((((data_0216263c[0]=data_0216263c[1]*data_0216263c[0]+data_0216263c[2])>>16)*4)>>16)+98))/100;
+if(amount>=data_02140d24[*(s16 *)(entry+0x76)-1])amount=(data_02140d24[*(s16 *)(entry+0x76)-1]*(s32)((u16)((((data_0216263c[0]=data_0216263c[1]*data_0216263c[0]+data_0216263c[2])>>16)*4)>>16)+98))/100;
+else amount=(amount*(s32)((u16)((((data_0216263c[0]=data_0216263c[1]*data_0216263c[0]+data_0216263c[2])>>16)*4)>>16)+98))/100; return amount; }
 typedef struct {
     u8 pad[0x44];
     void *field_44;
@@ -30,56 +36,57 @@ s32 func_02087754(s32 arg) {
     return 2;
 }
 
-s32 func_020877b4(s32 arg,s32 who){
-u8 *entry;
+s32 func_020877b4(s32 arg,s16 who){
 u8 *actor;
 s32 all=1;
 s32 amount;
 s32 cost=*(s16 *)((u8 *)data_0216010c+arg*64+0x4890);
+u32 entry;
 s16 i;
+s32 count;
 actor=func_02021f10(func_02085110(((u8 *)data_0216010c)[0x50dc]));
-entry=(u8 *)data_0216010c+arg*64+0x4800;
+entry=(u32)data_0216010c+arg*64+0x4800;
 if(*(s16 *)(entry+0x78)==101){
 amount=((actor[0x43]*5+(data_02140d10[*(s16 *)(entry+0x76)-1]+((*(u16 *)(actor+0x1c)+*(s16 *)(actor+0x28))*150)/100))*(s32)((u16)((((data_0216263c[0]=data_0216263c[1]*data_0216263c[0]+data_0216263c[2])>>16)*4)>>16)+98))/100;
 if(amount>=data_02140cfc[*(s16 *)(entry+0x76)-1])amount=(data_02140cfc[*(s16 *)(entry+0x76)-1]*(s32)((u16)((((data_0216263c[0]=data_0216263c[1]*data_0216263c[0]+data_0216263c[2])>>16)*4)>>16)+98))/100;
 else amount=(amount*(s32)((u16)((((data_0216263c[0]=data_0216263c[1]*data_0216263c[0]+data_0216263c[2])>>16)*4)>>16)+98))/100;
 if(who==-1){
-for(i=0;i<((u8 *)data_0216010c)[0x614];i++){
+for(i=0;i<(count=((u8 *)data_0216010c)[0x614]);i++){
 u8 *p=func_02021f10(func_02085110((u8)i));
 if(*(u16 *)(p+16)!=*(u16 *)(p+18)+*(s16 *)(p+36))all=0;
 }
 if(all==1)return 0;
-for(i=0;i<((u8 *)data_0216010c)[0x614];i++){
+for(i=0;i<count;i++,count=((u8 *)data_0216010c)[0x614]){
 u8 *p=func_02021f10(func_02085110((u8)i));
 *(u16 *)(p+16)+=(u16)amount;
-if(*(u16 *)(p+16)>*(u16 *)(p+18)+*(s16 *)(p+36))*(u16 *)(p+16)=*(u16 *)(p+18)+*(s16 *)(p+36);
+if(*(volatile u16 *)(p+16)>*(u16 *)(p+18)+*(s16 *)(p+36))*(u16 *)(p+16)=*(u16 *)(p+18)+*(s16 *)(p+36);
 }
 }else{
 u8 *p=func_02021f10(func_02085110(((u8 *)data_0216010c)[0x50de]));
 if(*(u16 *)(p+16)==*(u16 *)(p+18)+*(s16 *)(p+36))return 0;
 *(u16 *)(p+16)+=(u16)amount;
-if(*(u16 *)(p+16)>*(u16 *)(p+18)+*(s16 *)(p+36))*(u16 *)(p+16)=*(u16 *)(p+18)+*(s16 *)(p+36);
+if(*(volatile u16 *)(p+16)>*(u16 *)(p+18)+*(s16 *)(p+36))*(u16 *)(p+16)=*(u16 *)(p+18)+*(s16 *)(p+36);
 }
 }else if(*(s16 *)(entry+0x78)==102){
 amount=((actor[0x43]/5+(data_02140ce8[*(s16 *)(entry+0x76)-1]+(*(u16 *)(actor+0x1c)+*(s16 *)(actor+0x28))/20))*(s32)((u16)((((data_0216263c[0]=data_0216263c[1]*data_0216263c[0]+data_0216263c[2])>>16)*4)>>16)+98))/100;
 if(amount>=data_02140d24[*(s16 *)(entry+0x76)-1])amount=(data_02140d24[*(s16 *)(entry+0x76)-1]*(s32)((u16)((((data_0216263c[0]=data_0216263c[1]*data_0216263c[0]+data_0216263c[2])>>16)*4)>>16)+98))/100;
 else amount=(amount*(s32)((u16)((((data_0216263c[0]=data_0216263c[1]*data_0216263c[0]+data_0216263c[2])>>16)*4)>>16)+98))/100;
 if(who==-1){
-for(i=0;i<((u8 *)data_0216010c)[0x614];i++){
+for(i=0;i<(count=((u8 *)data_0216010c)[0x614]);i++){
 u8 *p=func_02021f10(func_02085110((u8)i));
 if(*(u16 *)(p+20)!=*(u16 *)(p+22)+*(s16 *)(p+38))all=0;
 }
 if(all==1)return 0;
-for(i=0;i<((u8 *)data_0216010c)[0x614];i++){
+for(i=0;i<count;i++,count=((u8 *)data_0216010c)[0x614]){
 u8 *p=func_02021f10(func_02085110((u8)i));
 *(u16 *)(p+20)+=(u16)amount;
-if(*(u16 *)(p+20)>*(u16 *)(p+22)+*(s16 *)(p+38))*(u16 *)(p+20)=*(u16 *)(p+22)+*(s16 *)(p+38);
+if(*(volatile u16 *)(p+20)>*(u16 *)(p+22)+*(s16 *)(p+38))*(u16 *)(p+20)=*(u16 *)(p+22)+*(s16 *)(p+38);
 }
 }else{
 u8 *p=func_02021f10(func_02085110(((u8 *)data_0216010c)[0x50de]));
 if(*(u16 *)(p+20)==*(u16 *)(p+22)+*(s16 *)(p+38))return 0;
 *(u16 *)(p+20)+=(u16)amount;
-if(*(u16 *)(p+20)>*(u16 *)(p+22)+*(s16 *)(p+38))*(u16 *)(p+20)=*(u16 *)(p+22)+*(s16 *)(p+38);
+if(*(volatile u16 *)(p+20)>*(u16 *)(p+22)+*(s16 *)(p+38))*(u16 *)(p+20)=*(u16 *)(p+22)+*(s16 *)(p+38);
 }
 }
 *(u16 *)(actor+0x14)-=(u16)cost;
