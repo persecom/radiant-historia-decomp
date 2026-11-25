@@ -231,7 +231,7 @@ void func_02067de0(u8 *arg0)
             data_0216263c[0] = rng;
             index = (s8) (random - 3);
             index = (s8) ((index < 0) ? (-index) : (index));
-            entry = &tables.temp.values[new_var];
+            entry = &tables.temp.values[i - 4];
             dir = &tables.directions.values[index];
             tx = entry->x;
             dx = dir->x;
