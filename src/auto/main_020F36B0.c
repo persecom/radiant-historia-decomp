@@ -36,6 +36,7 @@ extern u32 data_02155c3c;
 extern u8 *data_02155984;
 
 typedef struct { u32 a, b, c; } Trip;
+typedef struct {u8 flipY:1;u8 flipX:1;u8 rest:6;} SpriteFlipFlags;
 
 typedef struct {
     u16 field_0;
