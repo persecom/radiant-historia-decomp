@@ -11,106 +11,131 @@ extern char data_02146168[];
 extern u32 data_0216263c[3];
 typedef struct {u32 seed, multiplier, increment;} RandomState_020295f0;
 static inline u16 RandomRange_020295f0(u16 max) {
- RandomState_020295f0 *state=(RandomState_020295f0 *)data_0216263c;
- u32 value;
- state->seed=state->seed*state->multiplier+state->increment;
- value=state->seed>>16;
- if(max) value = (value * max) >> 16;
- return value;
+    u32 seed = data_0216263c[0];
+    u32 multiplier = data_0216263c[1];
+    u32 increment = data_0216263c[2];
+    u32 value = (multiplier * seed) + increment;
+    data_0216263c[0] = value;
+    value >>= 16;
+    if (max != 0) {
+        value = (value * max) >> 16;
+    }
+    return value;
 }
-s32 func_02029130(u8 *arg0, u8 *arg1) {
-    s32 zero = 0;
-    const char *s = func_020929f4(arg1, zero);
-    if (func_02026e9c(2, s, data_02146168) != zero) {
+s16 func_02029130(u8 *arg0, u8 *arg1) {
+    const char *s = func_020929f4(arg1, 0);
+    if (func_02026e9c(2, s, data_02146168) != 0) {
         s16 cmd = func_02026f38((char *)s);
         s16 v1, v2;
-        func_02092994(arg1, zero);
-        v1 = (s16)func_02092994(arg1, zero);
-        v2 = (s16)func_02092994(arg1, zero);
+        func_02092994(arg1, 0);
+        v1 = (s16)func_02092994(arg1, 0);
+        v2 = (s16)func_02092994(arg1, 0);
         switch (cmd) {
         case 1:
-            return (v1 - 1) + (v2 - 1) * 3;
+            return (v1 - 1) * 3 + (v2 - 1);
         case 2: {
-            s16 arr[3];
-            s16 i, cnt = 0, k;
-            u8 *info;
-            u32 x;
-            s16 base = v1 - 1;
-            for (i = 0; i < 3; i++) arr[i] = zero;
+            s16 arr[3] = {0};
+            s16 cnt = 0;
+            s16 i;
             for (i = 0; i < 3; i++) {
-                k = i + base * 3;
-                info = func_0202e548(i & 0xff);
-                if (info[0x1c] == zero) {
-                    if (k == 0) return k;
-                    arr[cnt++] = k;
+                s16 idx = (v1 - 1) * 3 + i;
+                if (func_0202e548((u8)idx)[0x1c] == 0) {
+                    arr[cnt++] = idx;
                 }
             }
-            if (cnt == 0) return -1;
-            if (cnt == 1) return arr[0];
-            x = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
-            data_0216263c[0] = x;
-            i = (x >> 16) * 100;
-            i = i >> 16;
-            if (cnt == 2) {
-                if (i < 50) return arr[0];
-                return arr[1];
+            if (cnt == 0) {
+                return -1;
             }
-            if (cnt == 3) {
-                if (i < 30) return arr[0];
-                if (i < 60) return arr[1];
-                return arr[2];
+            if (cnt == 1) {
+                return arr[0];
             }
-            return -1;
-        }
-        case 3:
-            return *(s8 *)(*(u8 **)(arg0 + 0x128) + 0x54);
-        case 4: {
-            s16 arr[9];
-            s16 i, cnt = 0;
-            u8 *info;
-            u32 x;
-            for (i = 0; i < 9; i++) arr[i] = zero;
-            for (i = 0; i < 9; i++) {
-                info = func_0202e548(i & 0xff);
-                if (info[0x1c] == zero && *(u32 *)(info + 0x10) != zero) {
-                    arr[cnt++] = i;
+            {
+                s16 r = RandomRange_020295f0(100);
+                if (cnt == 2) {
+                    if (r < 50) {
+                        return arr[0];
+                    }
+                    return arr[1];
+                }
+                if (cnt == 3) {
+                    if (r < 30) {
+                        return arr[0];
+                    }
+                    if (r < 60) {
+                        return arr[1];
+                    }
+                    return arr[2];
                 }
             }
-            if (cnt == 0) return -1;
-            if (cnt == 1) return arr[0];
-            x = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
-            data_0216263c[0] = x;
-            i = ((x >> 16) * cnt) >> 15;
-            if (cnt == 2 && i < 50) return arr[0];
-            if (cnt == 2) return arr[1];
-            if (cnt >= 3) {
-                if (i < 30) return arr[0];
-                if (i < 60) return arr[1];
-                return arr[2];
-            }
-            return -1;
-        }
-        case 5: {
-            s16 arr[9];
-            s16 i, cnt = 0, idx;
-            u8 *info;
-            u32 x;
-            for (i = 0; i < 9; i++) arr[i] = zero;
-            for (i = 0; i < 9; i++) {
-                info = func_0202e548(i & 0xff);
-                if (info[0x1c] == zero && *(u32 *)(info + 0x10) != zero) {
-                    arr[cnt++] = i;
-                }
-            }
-            if (cnt == 0) return -1;
-            if (cnt == 1) return arr[0] / 3 + v2 - 1;
-            x = data_0216263c[1] * data_0216263c[0] + data_0216263c[2];
-            data_0216263c[0] = x;
-            idx = ((x >> 16) * cnt) >> 15;
-            return arr[idx] / 3 + v2 - 1;
-        }
-        default:
             break;
+        }
+        case 3: {
+            s16 arr[9] = {0};
+            s16 cnt = 0;
+            s16 i;
+            for (i = 0; i < 9; i++) {
+                if (func_0202e548((u8)i)[0x1c] == 0) {
+                    arr[cnt++] = i;
+                }
+            }
+            if (cnt == 0) {
+                return -1;
+            }
+            if (cnt == 1) {
+                return arr[0];
+            }
+            if (cnt >= 2) {
+                s16 r = RandomRange_020295f0(cnt);
+                return arr[r];
+            }
+            break;
+        }
+        case 4:
+            return **(s8 **)(*(u8 **)(arg0 + 0x128) + 0x54);
+        case 5: {
+            s16 arr[9] = {0};
+            s16 cnt = 0;
+            s16 i;
+            for (i = 0; i < 9; i++) {
+                u8 *info = func_0202e548((u8)i);
+                if (info[0x1c] == 0 && *(u32 *)(info + 0x10) != 0) {
+                    arr[cnt++] = i;
+                }
+            }
+            if (cnt == 0) {
+                return -1;
+            }
+            if (cnt == 1) {
+                return arr[0];
+            }
+            if (cnt >= 2) {
+                s16 r = RandomRange_020295f0(cnt);
+                return arr[r];
+            }
+            break;
+        }
+        case 6: {
+            s16 arr[9] = {0};
+            s16 cnt = 0;
+            s16 i;
+            for (i = 0; i < 9; i++) {
+                u8 *info = func_0202e548((u8)i);
+                if (info[0x1c] == 0 && *(u32 *)(info + 0x10) != 0) {
+                    arr[cnt++] = i;
+                }
+            }
+            if (cnt == 0) {
+                return -1;
+            }
+            if (cnt == 1) {
+                return (arr[0] / 3) * 3 + (v2 - 1);
+            }
+            if (cnt >= 2) {
+                s16 r = RandomRange_020295f0(cnt);
+                return (arr[r] / 3) * 3 + (v2 - 1);
+            }
+            break;
+        }
         }
     }
     return -1;
