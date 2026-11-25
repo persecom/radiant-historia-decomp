@@ -29,6 +29,175 @@ extern int func_0202bf4c(u16,u8);
 extern int func_0202c658(void *);
 extern int func_02109444(void *);
 extern void func_021093b0(void *);
+s32 func_0202a5a4(u32 arg0, s32 arg1, s32 arg2, u8 *arg3) {
+    s32 flag = 0;
+    u32 mask = 0;
+    u8 *state = *(u8 **)(arg3 + 0x12c);
+    u8 *p;
+
+    switch (arg0) {
+    case 1:
+    case 2:
+    case 8:
+    case 9:
+    case 10:
+    case 11:
+        if (arg1 == 0x20) {
+            flag = 1;
+        } else {
+            mask |= 1 << arg1;
+        }
+        switch (arg0) {
+        case 1:
+            for (p = *(u8 **)(data_02160a6c + 0xb8); p != NULL; p = *(u8 **)(p + 0x174)) {
+                u8 *stat = *(u8 **)(p + 0x118);
+                if (*(s32 *)(stat + 0x70) != 0 && (*(u32 *)(stat + 0x78) & mask) != 0) {
+                    *(u8 **)(state + 0x14) = p;
+                    return 1;
+                }
+            }
+            break;
+        case 2:
+            if (flag == 0) {
+                for (p = *(u8 **)(data_02160a6c + 0xac); p != NULL; p = *(u8 **)(p + 0x16c)) {
+                    u8 *stat = *(u8 **)(p + 0x118);
+                    if (*(s32 *)(stat + 0x70) != 0 && (*(u32 *)(stat + 0x78) & mask) != 0) {
+                        *(u8 **)(state + 0x14) = p;
+                        return 1;
+                    }
+                }
+            } else {
+                for (p = *(u8 **)(data_02160a6c + 0xac); p != NULL; p = *(u8 **)(p + 0x16c)) {
+                    if (*(s32 *)(*(u8 **)(p + 0x118) + 0x70) != 0 && (*(u32 *)(p + 0x80) & 0x20000) != 0) {
+                        *(u8 **)(state + 0x14) = p;
+                        return 1;
+                    }
+                }
+            }
+            break;
+        case 8: {
+            u8 *stat = *(u8 **)(arg3 + 0x118);
+            if (*(s32 *)(stat + 0x70) != 0 && (*(u32 *)(stat + 0x78) & mask) != 0) {
+                *(u8 **)(state + 0x14) = arg3;
+                return 1;
+            }
+            break;
+        }
+        case 9:
+            for (p = *(u8 **)(data_02160a6c + 0xb8); p != NULL; p = *(u8 **)(p + 0x174)) {
+                u8 *stat = *(u8 **)(p + 0x118);
+                if (*(s32 *)(stat + 0x70) != 0 && (*(u32 *)(stat + 0x78) & mask) == 0) {
+                    *(u8 **)(state + 0x14) = p;
+                    return 1;
+                }
+            }
+            *(u8 **)(state + 0x14) = NULL;
+            break;
+        case 10:
+            if (flag == 0) {
+                for (p = *(u8 **)(data_02160a6c + 0xac); p != NULL; p = *(u8 **)(p + 0x16c)) {
+                    u8 *stat = *(u8 **)(p + 0x118);
+                    if (*(s32 *)(stat + 0x70) != 0 && (*(u32 *)(stat + 0x78) & mask) == 0) {
+                        *(u8 **)(state + 0x14) = p;
+                        return 1;
+                    }
+                }
+            } else {
+                for (p = *(u8 **)(data_02160a6c + 0xac); p != NULL; p = *(u8 **)(p + 0x16c)) {
+                    if (*(s32 *)(*(u8 **)(p + 0x118) + 0x70) != 0 && (*(u32 *)(p + 0x80) & 0x20000) != 0) {
+                        *(u8 **)(state + 0x14) = p;
+                        return 1;
+                    }
+                }
+            }
+            break;
+        case 11: {
+            u8 *stat = *(u8 **)(arg3 + 0x118);
+            if (*(s32 *)(stat + 0x70) != 0 && (*(u32 *)(stat + 0x78) & mask) == 0) {
+                *(u8 **)(state + 0x14) = arg3;
+                return 1;
+            }
+            break;
+        }
+        }
+        break;
+    case 3:
+    case 4:
+        if (arg0 == 3) {
+            *(u8 **)(state + 0x14) = NULL;
+            for (p = *(u8 **)(data_02160a6c + 0xb8); p != NULL; p = *(u8 **)(p + 0x174)) {
+                u8 *stat = *(u8 **)(p + 0x118);
+                if (*(s32 *)(stat + 0x70) != 0) {
+                    s32 pct = (*(s32 *)(stat + 4) * 100) / *(s32 *)(stat + 8);
+                    if (arg1 <= pct && pct <= arg2) {
+                        *(u8 **)(state + 0x14) = p;
+                        return 1;
+                    }
+                }
+            }
+        } else if (arg0 == 4) {
+            for (p = *(u8 **)(data_02160a6c + 0xac); p != NULL; p = *(u8 **)(p + 0x16c)) {
+            }
+        } else if (arg0 == 12) {
+            for (p = *(u8 **)(data_02160a6c + 0xac); p != NULL; p = *(u8 **)(p + 0x16c)) {
+            }
+        }
+        break;
+    case 5:
+        for (p = *(u8 **)(data_02160a6c + 0xb8); p != NULL; p = *(u8 **)(p + 0x174)) {
+            if (*(s32 *)(*(u8 **)(p + 0x118) + 0x70) != 0) {
+                if (*(u16 *)(p + 0x8c) == arg1) {
+                    return 0;
+                }
+            }
+        }
+        return 1;
+    case 6: {
+        u16 count = 0;
+        for (p = *(u8 **)(data_02160a6c + 0xac); p != NULL; p = *(u8 **)(p + 0x16c)) {
+            if (*(s32 *)(*(u8 **)(p + 0x118) + 0x70) == 0) {
+                count++;
+            }
+        }
+        if (count == arg1) {
+            return 1;
+        }
+        break;
+    }
+    case 7: {
+        u8 *stat = *(u8 **)(arg3 + 0x118);
+        s32 pct = (*(s32 *)(stat + 4) * 100) / *(s32 *)(stat + 8);
+        if (arg1 <= pct && pct <= arg2) {
+            return 1;
+        }
+        break;
+    }
+    case 13:
+        *(u8 **)(state + 0x14) = NULL;
+        for (p = *(u8 **)(data_02160a6c + 0xac); p != NULL; p = *(u8 **)(p + 0x16c)) {
+            u8 *stat = *(u8 **)(p + 0x118);
+            if (*(s32 *)(stat + 0x70) != 0) {
+                s32 pct = (*(s16 *)(stat + 0xc) * 100) / *(s16 *)(stat + 0xe);
+                if (arg1 <= pct && pct <= arg2) {
+                    *(u8 **)(state + 0x14) = p;
+                    return 1;
+                }
+            }
+        }
+        break;
+    case 14:
+        for (p = *(u8 **)(data_02160a6c + 0xb8); p != NULL; p = *(u8 **)(p + 0x174)) {
+            if (*(s32 *)(*(u8 **)(p + 0x118) + 0x70) != 0) {
+                if (*(u16 *)(p + 0x8c) == arg1) {
+                    return 1;
+                }
+            }
+        }
+        break;
+    }
+    return 0;
+}
+
 int func_0202aa68(int mode,int name,int unused,u8 *obj) {
 char path[32];
 u16 values[11]={0};
