@@ -35,6 +35,135 @@ extern void func_0207c3bc(void);
 extern void func_02041a58(void);
 extern s32 func_0207c578(void);
 extern void func_0207b398(void);
+extern u16 data_021628fa;
+extern u8 *data_021600a8[2];
+extern u8 *data_021600f0;
+extern u8 *data_02160204;
+extern s32 func_02109754(s32);
+extern s32 func_0207b32c(void);
+extern s32 func_02044c98(void);
+extern s32 func_0207ae24(void);
+extern void func_0207c640(void);
+extern void func_0207adbc(u8 *);
+extern void func_0207c528(void);
+extern void func_0207b2c0(void);
+extern void func_0207c328(void);
+extern void func_0207ace8(u8 *);
+extern s32 func_0207ab34(u8 *);
+s32 func_020416d4(u8 *arg0)
+{
+    u8 *r0;
+    u8 *r5;
+    s32 r6 = 0;
+    s32 r8 = (data_021628fa != 0) ? 1 : 0;
+
+    r0 = data_021600a8[1];
+    if (r0 == NULL) {
+        return 0;
+    }
+    r5 = *(u8 **)(r0 + 0x68);
+    if (r5 == NULL) {
+        return 0;
+    }
+    if (*(u32 *)(r5 + 0xac) & 0x800) {
+        return 0;
+    }
+    if (func_02109754(3) == 1) {
+        return 0;
+    }
+    if (data_021600f0 == NULL) {
+        return 0;
+    }
+    if (!(*(u32 *)(data_02160200 + 0x34) & 0x20) &&
+        !(*(u32 *)(data_02160200 + 0x34) & 0x40) &&
+        !(*(u32 *)(data_02160200 + 0x34) & 0x8) &&
+        !(*(u32 *)(data_02160200 + 0x34) & 0x10)) {
+        return 0;
+    }
+    if (func_0207b32c() != 0) {
+        return 1;
+    }
+    if (**(u8 **)(data_021600f0 + 0xc) != 0) {
+        r6 = 1;
+    }
+
+    if (*(u32 *)(data_02160200 + 0x34) & 0x8) {
+        s32 r7 = 0;
+        if ((data_021626a8 & 0x200) ||
+            (func_02044c98() != 0 &&
+             data_021628f8 != 0 &&
+             *(u32 *)(data_021600a8[1] + 0xc) == 0 &&
+             !(*(u32 *)(*(u8 **)(data_021600a8[1] + 0x68) + 0xac) & 0x400) &&
+             !(*(u32 *)(*(u8 **)(data_021600a8[1] + 0x68) + 0xac) & 0x800) &&
+             *(u32 *)(data_021600a8[1] + 0x10) == 0 &&
+             *(u8 *)(data_02160204 + 0x7e) == 0) ||
+            (r8 != 0 && (*(u32 *)(r5 + 0xac) & 0x8000000))) {
+            if (func_0207ae24() != 0) {
+                r7 = 1;
+            } else if (arg0 != NULL) {
+                if (*(u16 *)(arg0 + 0x8e) == 0x13c5 ||
+                    (*(u16 *)(arg0 + 0x8e) == 0x14bf && (*(u32 *)(data_02160200 + 0x34) & 0x40))) {
+                    r7 = 1;
+                }
+            }
+        }
+        if (r7 != 0) {
+            if (func_0207ae24() == 1) {
+                func_0207c640();
+                return 1;
+            }
+            if (r6 == 0 && arg0 != NULL) {
+                func_0207adbc(arg0);
+                return 1;
+            }
+        }
+    }
+
+    if (r6 != 0) {
+        if ((data_021626a8 & 0x100) || (r8 != 0 && (*(u32 *)(r5 + 0xac) & 0x800000))) {
+            func_0207c528();
+        }
+        return 1;
+    }
+
+    if (*(u32 *)(data_02160200 + 0x34) & 0x10) {
+        if ((data_021626a8 & 0x800) ||
+            (func_02044c98() != 0 &&
+             data_021628f8 != 0 &&
+             *(u32 *)(data_021600a8[1] + 0xc) == 0 &&
+             !(*(u32 *)(*(u8 **)(data_021600a8[1] + 0x68) + 0xac) & 0x400) &&
+             !(*(u32 *)(*(u8 **)(data_021600a8[1] + 0x68) + 0xac) & 0x800) &&
+             *(u32 *)(data_021600a8[1] + 0x10) == 0 &&
+             *(u8 *)(data_02160204 + 0x7e) == 0) ||
+            (r8 != 0 && (*(u32 *)(r5 + 0xac) & 0x400000))) {
+            func_0207b2c0();
+            return 1;
+        }
+    }
+
+    if (*(u32 *)(data_02160200 + 0x34) & 0x20) {
+        if ((data_021626a8 & 0x100) || (r8 != 0 && (*(u32 *)(r5 + 0xac) & 0x800000))) {
+            func_0207c328();
+            return 1;
+        }
+    }
+
+    if ((*(u32 *)(data_02160200 + 0x34) & 0x4) && arg0 != NULL) {
+        u8 b = *(u8 *)(*(u8 **)(arg0 + 0xb0) + 0x26);
+        if ((b & 0x40) || (b & 0x80)) {
+            if (*(u32 *)(r5 + 0xac) & 0x2000000) {
+                func_0207ace8(arg0);
+                return 1;
+            }
+            if (func_0207ab34(arg0) != 0) {
+                return 1;
+            }
+        }
+    }
+
+    return 0;
+}
+
 s32 func_02042118(void) {
     u8 *obj;
     u8 *p = data_021600a8[1];
