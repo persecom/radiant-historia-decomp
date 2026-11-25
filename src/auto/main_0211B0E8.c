@@ -1,7 +1,6 @@
 /* 18 functions from 0x0211B0E8 to 0x0211BDE8 (main), found by ds-decomp. */
 #include "common.h"
 typedef struct { s32 x,y; } Vec2_bb3c;
-typedef struct { u16 f0, f1, f2, f3; } Unk1B96C;
 extern const u16 data_02144d84[3][4];
 extern const u16 data_02144d6c[3][4];
 extern u32 *data_021701f8;
@@ -291,7 +290,7 @@ void func_0211b910(s32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5) {
 
 #pragma push
 #pragma opt_propagation off
-void func_0211b96c(s32 arg0, u16 *arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u32 arg6, u32 arg7) {
+void func_0211b96c(s32 arg0, u16 *__restrict arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u32 arg6, u32 arg7) {
     u32 flag = 0;
     u16 a = arg1[3];
     u16 b = arg1[0];
