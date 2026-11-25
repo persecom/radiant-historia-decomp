@@ -123,21 +123,20 @@ void func_020d907c(u32 arg0) {
     *(u32 *)(data_02160258 + 0x54) = arg0;
 }
 
+#pragma optimize_for_size on
 void func_020d9090(void) {
     u8 *q = data_02160258;
     Unk3Words *p = *(Unk3Words **)(q + 0x54);
-    if (p == NULL) {
-    } else {
+    if (p != NULL) {
         s32 a = p->unk0;
-        s32 b = p->unk4;
         s32 c = p->unk8;
+        s32 b = p->unk4;
         *(s32 *)(q + 0xc) = a;
         *(s32 *)(q + 0x10) = b;
         *(s32 *)(q + 0x14) = c;
     }
-    return;
 }
-
+#pragma optimize_for_size off
 s32 func_020d90bc(s32 arg0) {
     u8 *p = data_02160258;
     u8 *q = *(u8 **)(p + 0x54);
