@@ -281,18 +281,25 @@ void func_02089a98(void) {
     }
 }
 
-BOOL func_02089ae4(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    s32 x1 = arg0 + arg2;
-    u16 x = data_02162908[0];
-    u16 y = data_02162908[1];
-    s32 y1 = arg1 + arg3;
-    s32 ret;
-    if (x >= arg0 && x <= x1 && y >= arg1 && y <= y1) {
-        ret = 1;
-    } else {
-        ret = 0;
-    }
-    return !!ret;
+s32 func_02089ae4(s32 arg0, s32 arg1, s32 arg2, s32 arg3)
+{
+  s32 x1 = arg0 + arg2;
+  u16 x;
+  s32 y1 = arg1 + arg3;
+  int new_var;
+  u16 y = data_02162908[1];
+  s32 ret;
+  x = data_02162908[0];
+  new_var = x >= arg0;
+  if (((new_var && (x <= x1)) && (y >= arg1)) && (y <= y1))
+  {
+    ret = 1;
+  }
+  else
+  {
+    ret = 0;
+  }
+  return !(!ret);
 }
 
 s32 func_02089b38(Unk_02089b38 *arg0, Unk_02089b38 *arg1)
