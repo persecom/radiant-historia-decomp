@@ -199,5 +199,8 @@ s32 func_0203aae4(u8 *arg0) {
     case 8:
         break;
     }
+    if (ret != 0) {
+        func_020331b0(r8, ret);
+    }
     return ret;
 }
