@@ -347,43 +347,47 @@ void func_0212ee04(u8 *arg0, u8 *arg1) {
     }
 }
 
+#pragma opt_common_subs off
 s32 func_0212ee80(u8 *src, s32 size, s32 *length, u8 *out) {
- u8 *base;
- s32 i;
- s32 step;
- u8 *s = src;
- u8 *o = out;
- s32 left;
- if (length) *length = 0;
- if (size < 4) return -1;
- if ((u16)((s[0] << 8) | s[1]) != 0x8000) return -4;
- left = (s[2] << 8) | s[3];
- if (length) *length = left;
- if (!o) return 0;
- if (size < left + 4) return -2;
- if (left - 6 < 16) return -2;
- func_0212ecb0(s + 4, o);
- s += 0x14;
- left -= 0x16;
- if (*(s8 *)(o + 0x3c) == 4) {s += 12; left -= 12;}
- if (left < 4) return 0;
- func_0212ed3c(s, o);
- s += 4;
- if (left < *(s16 *)(o+14) * 20) return 0;
- step = 20;
- base = o + 16;
- for (i=0; i<*(s16 *)(o+14); i++) func_0212ed50(s, base+i*step);
- left -= *(s16 *)(o+14) * (s16)20;
- step = 12;
- base = o + 36;
- for (i=0; i<*(s8 *)(o+3); i++) {
-  if (left < 12) return 0;
-  func_0212ee04(s, base+i*step);
-  s += 12; left -= 12;
- }
- return 0;
+    s32 i;
+    u8 *s = src;
+    u8 *o = out;
+    s32 left;
+    s16 count;
+    if (length) *length = 0;
+    if (size < 4) return -1;
+    if ((u16)((s[0] << 8) | s[1]) != 0x8000) return -4;
+    left = (s[2] << 8) | s[3];
+    if (length) *length = left;
+    if (!o) return 0;
+    if (size < left + 4) return -2;
+    if (left - 6 < 16) return -2;
+    func_0212ecb0(s + 4, o);
+    s += 0x14;
+    left -= 0x16;
+    if (*(s8 *)(o + 0x3c) == 4) {
+        s += 12;
+        left -= 12;
+    }
+    if (left < 4) return 0;
+    func_0212ed3c(s, o);
+    s += 4;
+    count = *(s16 *)(o + 14);
+    if (left < count * 20) return 0;
+    for (i = 0; i < count; i++) {
+        func_0212ed50(s, o + 16 + i * 20);
+        count = *(s16 *)(o + 14);
+    }
+    left -= count * 20;
+    for (i = 0; i < *(s8 *)(o + 3); i++) {
+        if (left < 12) return 0;
+        func_0212ee04(s, o + 36 + i * 12);
+        s += 12;
+        left -= 12;
+    }
+    return 0;
 }
-
+#pragma opt_common_subs on
 void func_0212efe8(u32 *arg0, u32 *arg1) {
     if (arg0 != NULL) {
         *arg0 = data_02156f4c[2];
