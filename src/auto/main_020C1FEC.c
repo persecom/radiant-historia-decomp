@@ -31,6 +31,83 @@ extern void func_021167f0(u8 *, u8 *);
 extern void func_02108ffc(void);
 
 void func_020c2734(u8 arg0, s8 arg1, u32 arg2);
+void func_020c1fec(void) {
+    s32 zero = 0;
+    s32 one = 1;
+    u8 *g = data_02160a6c;
+    u8 *r7;
+    u8 *r8, *r9;
+    u16 angle;
+    s32 a, b;
+
+    if (g == NULL) return;
+    r7 = *(u8 **)(g + 0xa0);
+    if (r7 == NULL) return;
+
+    a = 0xbbb - 0x430;
+    b = 0x461 - 0x430;
+    {
+        s32 c = 0x461 - 0x28;
+        s32 d = 0x461 - 0x5a;
+        s32 e = 0x461 - 0x1d;
+        s32 f = 0x461 - 0x1e;
+        s32 g1 = 0x584 + 0xa;
+        s32 h = 0x584 - 1;
+        s32 i = 0x58c + 0xa20;
+        s32 j = 0xd50 - 0xbbb;
+        s32 k = 0xbbb - 0xcf0;
+        s32 l = 0x460 - 0x461;
+
+        func_020dde88(r7);
+        angle = *(u16 *)(r7 + 0x8e);
+        if (angle > a) {
+            if (angle > 0x461) goto tail;
+            r9 = *(u8 **)(r7 + 0x19c);
+            if (r9 != NULL) {
+                if (func_020c0954(r7) == *(s16 *)(r9 + 0xc)) {
+                    if (*(s16 *)(r9 + 0xe) != 0) func_0210d27c(0);
+                    *(s16 *)(r9 + 0xe) = zero;
+                    *(s16 *)(r9 + 0) = one;
+                    func_020c0a58(r7);
+                } else if (angle - i <= 0xb) {
+                    r8 = func_020dda2c(*(s16 *)(r7 + 0x90) + k);
+                }
+            }
+        } else if (angle >= b) {
+            if (angle >= c) {
+                r9 = *(u8 **)(r7 + 0x19c);
+                if (r9 != NULL && (*(u16 *)(r9 + 2) & 1) && func_020c09b0(r7, 5, 5)) {
+                    *(s16 *)(r9 + 0) = one;
+                    r7[0xa5] = one;
+                    if (*(s16 *)(r9 + 0xe) != 0) func_0210d27c(0);
+                    *(s16 *)(r9 + 0xe) = zero;
+                    func_020c0a58(r7);
+                }
+            }
+        } else if (angle > c) {
+            r9 = *(u8 **)(r7 + 0x19c);
+        } else if (angle >= c) {
+            if (angle > e) goto tail;
+            if (angle < f) goto tail;
+            if (angle == f || angle == e) goto tail;
+        } else if (angle == d) {
+            goto tail;
+        }
+        if (r7[0x104] == 0x12) {
+            r8 = func_020dda2c(*(u16 *)(r7 + 0x90) - 0x96);
+            if (r8 != NULL) {
+                *(u32 *)(r7 + 0) = *(u32 *)(r8 + 0);
+                *(u32 *)(r7 + 4) = *(u32 *)(r8 + 4);
+                *(u32 *)(r7 + 8) = *(u32 *)(r8 + 8);
+            }
+        }
+    }
+tail:
+    r7[0xa5] = one;
+    r7 = *(u8 **)(r7 + 0x154);
+    if (r7 != NULL) goto tail;
+}
+
 u8 *func_020c2584(u8 *arg0,u32 arg1) {
  u8 *p; s32 val=0; s16 sum;
  p=func_0210c594(0x2c,data_02155c3c);
@@ -268,14 +345,19 @@ void *func_020c2d94(u8 arg0, u8 arg1) {
 }
 
 void func_020c2dd8(u16 arg0) {
-    s16 i = 0;
-    u16 x = 0;
-    u16 count = 0;
-    u16 y = 1;
-
-    while ((s16)(++i) <= 50) {
-        i = 0;
-        func_02108ffc();
+    u16 x;
+    u16 y;
+    u16 count;
+    s16 i;
+    i = 0;
+    x = 0;
+    count = 0;
+    y = 1;
+    while (1) {
+        if (++i > 50) {
+            i = 0;
+            func_02108ffc();
+        }
         if (func_020c2d94((u8)x, (u8)y) != NULL) {
             if (count == arg0) return;
             count = (u16)(count + 1);
