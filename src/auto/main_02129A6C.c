@@ -28,7 +28,7 @@ extern void func_02129798(void *);
 extern void func_02013878(void *, s32, u32);
 extern void func_0212a0e4();
 extern void *memset(void *, int, unsigned long);
-extern u8 data_021735a4[976];
+extern u32 data_021735a4[244];
 extern u8 data_0217358c[12];
 extern volatile u32 data_02173974[2];
 extern s32 func_02129db4(void *, void *, u32);
