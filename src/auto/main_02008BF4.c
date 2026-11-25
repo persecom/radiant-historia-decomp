@@ -73,7 +73,7 @@ void func_02008ca8(void) {
     Fn_U32 fn;
     u32 arg;
     func_020059e4(0x200000);
-    *(volatile u32 *)0x04000600 = (*(volatile u32 *)0x04000600 & 0x3fffffff) | (data_0215d17c.field_18 << 30);
+    *(volatile u32 *)0x04000600 = (data_0215d17c.field_18 << 30) | (*(volatile u32 *)0x04000600 & ~0xc0000000);
     func_020057e8(0x200000, data_0215d17c.field_1c);
     data_0215d17c.field_0 = 0;
     fn = (Fn_U32)data_0215d17c.field_10;
