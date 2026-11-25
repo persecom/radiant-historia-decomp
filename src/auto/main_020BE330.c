@@ -11,7 +11,7 @@ u32 value;
 const u16 max=limit;
 data_0216263c[0]=data_0216263c[1]*data_0216263c[0]+data_0216263c[2];
 value=data_0216263c[0]>>16;
-if(max) value=(value*max)>>16;
+if(max) return (value*max)>>16;
 return value;
 }
 
