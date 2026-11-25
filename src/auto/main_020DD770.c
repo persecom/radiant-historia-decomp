@@ -303,14 +303,14 @@ void func_020ddd5c(u8 *arg0) {
 }
 
 #pragma push
-#pragma optimization_level 3
+#pragma optimization_level 2
 void func_020ddd8c(u8 *arg0) {
     s32 idx = (*(u16 *)(arg0 + 0x92) >> 4) * 2;
-    s32 speed = *(s32 *)(arg0 + 0x4c);
+    
     s32 c = data_0213a394[idx + 1];
     s32 s = data_0213a394[idx];
-    *(s32 *)(arg0 + 0x30) = (s32)(((s64)c * speed + 0x800) >> 12);
-    *(s32 *)(arg0 + 0x38) = (s32)(((s64)s * speed + 0x800) >> 12);
+    *(s32 *)(arg0 + 0x30) = (s32)(((s64)c * *(s32 *)(arg0 + 0x4c) + 0x800) >> 12);
+    *(s32 *)(arg0 + 0x38) = (s32)(((s64)s * *(s32 *)(arg0 + 0x4c) + 0x800) >> 12);
 }
 #pragma pop
 void func_020dddf0(void) {
