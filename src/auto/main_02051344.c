@@ -10,11 +10,15 @@ extern u8 *data_021600bc, *data_021600ac;
 extern u8 *func_02047820(u16);
 extern void func_020477dc(void *, s32, s32);
 
+typedef struct {
+    s32 x, y, z;
+} Vec3_02051344;
+
 static inline s32 check_active_02051344(u8 *other) {
-    if (*(u32 *)(other + 0xac) & 1) {
-        return 1;
+    if ((*(u32 *)(other + 0xac) & 1) == 0) {
+        return 0;
     }
-    return 0;
+    return 1;
 }
 
 static inline s32 check_id_02051344(u8 *a, u8 *b) {
@@ -25,13 +29,20 @@ static inline s32 check_id_02051344(u8 *a, u8 *b) {
     return 1;
 }
 
+static inline s32 point_in_box_02051344(s32 x, s32 z, s32 *box) {
+    if (x >= box[0] && x <= box[2] && z >= box[1] && z <= box[3]) {
+        return 1;
+    }
+    return 0;
+}
+
 static inline s32 check_hit_02051344(u8 *other, u8 *arg0) {
-    if (*(void **)(other + 0xb0) == NULL || *(void **)(arg0 + 0xb0) == NULL) {
+    if (!*(u32 *)(other + 0xb0) || !*(u32 *)(arg0 + 0xb0)) {
         return 0;
     }
     if (*(s32 *)(*(u8 **)(other + 0xb0)) != 0 && *(s32 *)(*(u8 **)(arg0 + 0xb0)) != 0) {
-        s32 box1[4];
         s32 box0[4];
+        s32 box1[4];
         s32 rad = 0;
         rad = *(s32 *)(*(u8 **)(other + 0xb0));
         box1[0] = *(s32 *)(other + 0) - rad;
@@ -67,9 +78,9 @@ static inline s32 check_hit_02051344(u8 *other, u8 *arg0) {
         r = *(u8 *)(other + 0x9d);
         for (i = 0; i < 8; i++) {
             u16 ang = (u16)(i << 13);
-            s32 px = *(s32 *)(other + 0) + r * data_0213a394[(((s32)ang % 0x10000) >> 4) * 2];
-            s32 pz = *(s32 *)(other + 8) + r * data_0213a394[(((s32)ang % 0x10000) >> 4) * 2 + 1];
-            if (px >= box2[0] && px <= box2[2] && pz >= box2[1] && pz <= box2[3]) {
+            s32 px = r * data_0213a394[(((s32)ang % 0x10000) >> 4) * 2] + *(s32 *)(other + 0);
+            s32 pz = r * data_0213a394[(((s32)ang % 0x10000) >> 4) * 2 + 1] + *(s32 *)(other + 8);
+            if (point_in_box_02051344(px, pz, box2)) {
                 return 1;
             }
         }
@@ -88,9 +99,9 @@ static inline s32 check_hit_02051344(u8 *other, u8 *arg0) {
         r = *(u8 *)(arg0 + 0x9d);
         for (i = 0; i < 8; i++) {
             u16 ang = (u16)(i << 13);
-            s32 px = *(s32 *)(arg0 + 0) + r * data_0213a394[(((s32)ang % 0x10000) >> 4) * 2];
-            s32 pz = *(s32 *)(arg0 + 8) + r * data_0213a394[(((s32)ang % 0x10000) >> 4) * 2 + 1];
-            if (px >= box3[0] && px <= box3[2] && pz >= box3[1] && pz <= box3[3]) {
+            s32 px = r * data_0213a394[(((s32)ang % 0x10000) >> 4) * 2] + *(s32 *)(arg0 + 0);
+            s32 pz = r * data_0213a394[(((s32)ang % 0x10000) >> 4) * 2 + 1] + *(s32 *)(arg0 + 8);
+            if (point_in_box_02051344(px, pz, box3)) {
                 return 1;
             }
         }
@@ -99,6 +110,70 @@ static inline s32 check_hit_02051344(u8 *other, u8 *arg0) {
     return 0;
 }
 #pragma optimization_level 4
+#pragma optimization_level 0
+void func_02051344(u8 *arg0) {
+    u8 *other = NULL;
+    u8 *info = NULL;
+    s32 saved[3];
+    s32 diff[3];
+
+    info = *(u8 **)(arg0 + 0xb0);
+    saved[0] = *(s32 *)(arg0 + 0xc);
+    saved[1] = *(s32 *)(arg0 + 0x10);
+    saved[2] = *(s32 *)(arg0 + 0x14);
+    *(u32 *)(arg0 + 0xac) &= ~1;
+
+    for (other = *(u8 **)(data_021600bc + 0x40); other != NULL; other = *(u8 **)(other + 0x13c)) {
+        if (!check_active_02051344(other)) {
+            continue;
+        }
+        if (!check_id_02051344(arg0, other)) {
+            continue;
+        }
+        if (check_hit_02051344(other, arg0)) {
+            diff[0] = *(s32 *)(arg0 + 0) - saved[0];
+            diff[2] = *(s32 *)(arg0 + 8) - saved[2];
+            *(s32 *)(arg0 + 0) -= diff[0];
+            *(s32 *)(arg0 + 8) -= diff[2];
+            if (*(u16 *)(arg0 + 0x90) == 0) {
+                if (*(u16 *)(info + 4) == 0) {
+                    *(u16 *)(info + 4) = *(u16 *)(other + 0x90);
+                }
+                if (*(u16 *)(other + 0x8e) != 0 && *(u16 *)(other + 0x8e) < 0x1388) {
+                    *(u16 *)(info + 0xa) = *(u16 *)(*(u8 **)(other + 0xb0) + 0xa);
+                    *(s32 *)(arg0 + 0x24) = *(s32 *)(arg0 + 0);
+                    *(s32 *)(arg0 + 0x28) = *(s32 *)(arg0 + 4);
+                    *(s32 *)(arg0 + 0x2c) = *(s32 *)(arg0 + 8);
+                }
+            }
+            if (*(u16 *)(other + 0x90) == 0) {
+                if (*(u16 *)(*(u8 **)(arg0 + 0xb0) + 8) != 0 ||
+                    *(u16 *)(arg0 + 0x8e) == 0x141 ||
+                    *(u16 *)(arg0 + 0x8e) == 0x1f5) {
+                    if (*(u16 *)(info + 4) == 0) {
+                        *(u16 *)(info + 4) = *(u16 *)(other + 0x8e);
+                    }
+                    *(u16 *)(*(u8 **)(other + 0xb0) + 4) = *(u16 *)(arg0 + 0x90);
+                }
+            }
+            if (*(void **)(arg0 + 0xd0) != NULL) {
+                if (*(u16 *)(other + 0x90) == 0) {
+                    *(u8 *)(arg0 + 0xa4) |= 1;
+                } else {
+                    *(u8 *)(arg0 + 0xa4) |= 2;
+                }
+            }
+        } else {
+            if (*(u16 *)(arg0 + 0x90) == 0) {
+                if (*(u16 *)(*(u8 **)(other + 0xb0) + 4) == *(u16 *)(arg0 + 0x8e)) {
+                    *(u16 *)(info + 4) = *(u16 *)(other + 0x90);
+                }
+            }
+        }
+    }
+    *(u32 *)(arg0 + 0xac) |= 1;
+}
+
 void func_0205196c(u8 *arg0) {
     s32 savedx = *(s32 *)(arg0 + 0xc);
     s32 savedz = *(s32 *)(arg0 + 0x14);
