@@ -393,12 +393,12 @@ s32 func_020b77d4(void) {
             *(s16 *)(w + 0x3e) = 0x58;
             *(s16 *)(w + 0x40) = 0x11;
             func_020c7894(w, 1);
-            sub2 = func_020c8adc(w);
-            func_020c8344(sub2, 4, 2);
-            func_020c83f4(sub2, *(void **)(r9 + 0x88), 1, 0);
-            func_020c8640(sub2, 9);
-            ((void (*)(u8 *, s32))(*(void **)(sub2 + 0x10)))(sub2, 8);
-            ((void (*)(u8 *, s32))(*(void **)(sub2 + 0x14)))(sub2, 2);
+            sub = func_020c8adc(w);
+            func_020c8344(sub, 4, 2);
+            func_020c83f4(sub, *(void **)(r9 + 0x88), 1, 0);
+            func_020c8640(sub, 9);
+            ((void (*)(u8 *, s32))(*(void **)(sub + 0x10)))(sub, 8);
+            ((void (*)(u8 *, s32))(*(void **)(sub + 0x14)))(sub, 2);
             ((void (*)(u8 *, s32))(*(void **)(w + 0x10)))(w, 0x1c);
             ((void (*)(u8 *, s32))(*(void **)(w + 0x14)))(w, 0x1c);
             ((void (*)(u8 *, u8))(*(void **)(w + 0x1c)))(w, *(u8 *)(w + 0x43));
