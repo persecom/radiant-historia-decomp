@@ -618,15 +618,12 @@ void func_021230d8(u8 *arg0, u8 *arg1, s32 arg2) {
     }
 }
 
-void func_02123168(u8 *arg0, u8 *arg1, u8 *arg2) {
+void func_02123168(u8 *arg0, u8 *arg1, u8 * __restrict arg2) {
     u32 i;
-    u8 count = arg2[0x17];
-    void *d = data_02155ed8;
-    *(void **)(arg0 + 0xc) = d;
-    arg0[0x19] = count;
+    *(void **)(arg0 + 0xc) = data_02155ed8;
+    arg0[0x19] = arg2[0x17];
     *(void **)(arg0 + 8) = arg1;
-    i = 0;
-    for (; i < arg0[0x19]; i++) {
+    for (i = 0; i < arg0[0x19]; i++) {
         *(u16 *)(arg0 + 0x1a + i * 2) = (u16)(i | 0x100);
     }
 }
