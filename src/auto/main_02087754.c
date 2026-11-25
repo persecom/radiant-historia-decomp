@@ -1,7 +1,7 @@
 /* 5 functions from 0x02087754 to 0x02087F70 (main), found by ds-decomp. */
 #include "common.h"
 extern u32 data_0216263c[3];
-typedef struct { u8 pad[0x76]; s16 level,kind; } RecoveryEntry;
+
 extern const u16 data_02140d10[10],data_02140cfc[10],data_02140ce8[10],data_02140d24[10];
 extern void func_0210d27c(s32);
 
