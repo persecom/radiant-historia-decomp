@@ -16,7 +16,10 @@ extern u8 *data_02160110;
 extern u8 *data_02160258;
 extern BOOL func_020df03c(s32);
 extern void func_020a5ce4(void *);
-extern void func_020df38c(s32, s32);
+extern s32 func_020df38c(s32, s32);
+extern u16 data_021626a8, data_021626a6;
+extern s32 func_02064b84(s32,s32,s32,s32);
+extern void func_0210d27c(s32);
 extern void func_020de078(void);
 extern void func_020df3f4(s32,s32);
 extern u8 *data_0216011c;
@@ -65,8 +68,8 @@ static inline void update_selection_c998(u8 *p, s32 zero) {
 }
 
 void func_0203c998(void) {
- s32 zero=0;
  u8 *p=*(u8 **)(data_02160a74+0x94);
+ s32 zero=0;
  s32 one,eight;
  u8 *left,*right;
  *(u16 *)(data_02160110+0xde)=zero;
@@ -105,8 +108,9 @@ void func_0203c998(void) {
  func_020a8810(*(void **)(p+4),23);
  }
  if(data_0216011c && *(u16 *)(data_0216011c+0x2a) && *(u16 *)(data_0216011c+0x38)) {
+ s32 selector;
  u8 *obj=*(u8 **)func_02032254(*(s16 *)(data_02160110+0xde)+1);
- s32 selector=*(s8 *)(data_02160a74+0x1ca);
+ selector=*(s8 *)(data_02160a74+0x1ca);
  data_02160a74[0x1c3]=zero;
  if(selector<=-1) {
  if(**(u8 **)(obj+0x118)!=1) {
