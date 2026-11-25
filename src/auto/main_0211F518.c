@@ -48,6 +48,38 @@ return 0;
 extern void func_02008e50(void *, u32, u32);
 
 extern void func_02120534(u32 *, u32);
+void func_0211f518(u8 *arg0) {
+    u8 *obj = *(u8 **)(arg0 + 4);
+    u8 *src = *(u8 **)arg0;
+    u8 *node = *(u8 **)(obj + 4);
+    s32 count = src[2];
+    u8 *base = node + *(s32 *)(node + 0x10);
+    u32 buf[0x15];
+    s32 i, idx;
+    u32 *flags;
+
+    func_02008e68(0, buf, 0x54, 0);
+    func_021204a8();
+    *(u32 *)(data_02171864 + 0x0) = 0;
+    *(u32 *)(data_02171864 + 0xc) = 1;
+    *(u32 *)(data_02171864 + 0x14) = 0;
+    *(u32 *)(data_02171864 + 0x0) = 2;
+    if (count <= 0) goto finish;
+    for (i = 0; i < count; i++) {
+        idx = src[i + 1];
+        flags = (u32 *)(arg0 + (idx >> 5) * 4 + 0xcc);
+        if (*flags & (1u << (idx & 0x1f))) goto next;
+        *flags |= 1u << (idx & 0x1f);
+        *(u8 *)(0x4000440 + idx * 0x54) = src[0];
+        *(u32 *)(0x4000440 + idx * 0x54 - 0x10) = 1;
+        func_02002bf4(base + idx * 0x54);
+    next:
+        ;
+    }
+finish:
+    *(u8 **)arg0 += 3;
+}
+
 void func_0211fc60(u8 *arg0) {
     s32 mode;
     s32 r1;
@@ -254,15 +286,12 @@ func_021205ec(0x16,clip,16);
 }
 
 void func_021204a8(void) {
-    u8 *p;
-
-    if (*(s32 *)(data_02173164 + 4) != 0) {
-        func_02120500();
-    }
-    p = *(u8 **)data_02173164;
-    if (p == 0 || *(s32 *)p == 0) return;
-    func_02008e50(p + 4, (void *)0x4000400, *(s32 *)p * 4);
-    *(s32 *)p = 0;
+ u8 *p;
+ if (*(s32 *)(data_02173164+4)!=0) func_02120500();
+ p=*(u8 **)data_02173164;
+ if(p==0 || *(s32 *)p==0) return;
+ func_02008e50(p+4,(void *)0x4000400,*(s32 *)p*4);
+ **(s32 **)data_02173164=0;
 }
 
 void func_02120500(void) {
