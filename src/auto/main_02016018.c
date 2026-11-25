@@ -1,15 +1,25 @@
 /* 13 functions from 0x02016018 to 0x02016FC4 (main), found by ds-decomp. */
 #include "common.h"
+#include "scan_02015.h"
+extern const u16 data_0213eb14[];
+extern f32 data_02145c2c;
+u8 *func_02015b74(u8 *,ScanSpec_02015 *);
+s32 func_02017f74(s32,s32,void *,void *,s32 *,s32 *,s32 *);
+u64 func_0201843c(s32,s32,void *,void *,s32 *,s32 *,s32 *);
+f64 func_02016fc4(s32,void *,void *,s32 *,s32 *);
+s32 func_0201375c(void *,const void *,u32);
+static inline s32 scan_space_02016018(s32 c) { return (c<0 || c>=128) ? 0 : data_0213eb14[c]&0x100; }
+
 
 extern s32 func_02016cfc(s32, const char *, char *);
 extern s32 func_02016018(void *, void *, const char *, void *, s32);
 extern void (*data_02160038)(void);
 extern void func_02016da0(void);
 s32 func_02016018(void *arg0, void *arg1, const char *arg2, void *arg3, s32 arg4) {
-    if (arg2[0] == 0 || arg4 == 0) {
-        return 0;
-    }
-    return 0;
+ s32 (*read)(void *,s32,s32)=arg0;
+ s32 n=0;
+ while(*arg2) { if(read(arg1,0,0)!=(u8)*arg2++) break; n++; }
+ return n;
 }
 
 s32 func_02016c84(void *p, s32 ch, s32 act) {
