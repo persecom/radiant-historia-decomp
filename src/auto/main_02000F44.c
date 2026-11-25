@@ -68,26 +68,42 @@ void func_020010d8(u32 *p)
     *q++ = 0ULL;
 }
 
-void func_02001134(const u32 *in,u32 *out) {
-u64 a=*(const u64 *)(in+0),b=*(const u64 *)(in+2),c=*(const u64 *)(in+4),d=*(const u64 *)(in+6);
-u32 e=in[8];
-out[0]=(u32)a;out[1]=(u32)(b>>32);out[2]=(u32)d;
-out[3]=(u32)(a>>32);out[4]=(u32)c;out[5]=(u32)(d>>32);
-out[6]=(u32)b;out[7]=(u32)(c>>32);out[8]=e;
-out+=9;out[0]=0;out[1]=0;out[2]=0;
+void func_02001134(const u32 *in, u32 *out)
+{
+    typedef struct {
+        u32 x, y, z;
+    } Row;
+
+    register u32 a = in[0];
+    register u32 b = in[1];
+    register u32 c = in[2];
+    register u32 d = in[3];
+    register u32 e = in[4];
+    register u32 f = in[5];
+    register u32 g = in[6];
+    register u32 h = in[7];
+    register u32 i = in[8];
+
+    Row r0 = {a, d, g};
+    Row r1 = {b, e, h};
+    Row r2 = {c, f, i};
+
+    Row *dst = (Row *)out;
+
+    *dst++ = r0;
+    *dst++ = r1;
+    *dst++ = r2;
+
+    dst->x = 0;
+    dst->y = 0;
+    dst->z = 0;
 }
 
-void func_02001160(u8 *arg0, u8 *arg1, u32 arg2, u32 arg3, u32 arg4) {
-    u8 *a = arg0;
-    u8 *b = arg1;
-    u32 c, x, y;
-    func_02000cd8(arg0, arg1, arg2, arg3, arg4);
-    c = *(u32 *)(a + 0x2c);
-    x = *(u32 *)(a + 0x24);
-    y = *(u32 *)(a + 0x28);
-    *(u32 *)(b + 0x24) = x;
-    *(u32 *)(b + 0x28) = y;
-    *(u32 *)(b + 0x2c) = c;
+void func_02001160(const Mtx43 *src, Mtx43 *dst, s32 x, s32 y, s32 z) {
+    func_02000cd8((void *)src, dst, x, y, z);
+    dst->v[9] = src->v[9];
+    dst->v[10] = src->v[10];
+    dst->v[11] = src->v[11];
 }
 
 extern void func_02002028(s32);
@@ -249,6 +265,64 @@ void func_02001860(const s32 (*src)[4], s32 (*dst)[3]) {
         dst[i][0] = src[i][0];
         dst[i][1] = src[i][1];
         dst[i][2] = src[i][2];
+    }
+}
+
+void func_02001894(const Mtx44 *a, const Mtx44 *b, Mtx44 *out) {
+    Mtx44 tmp;
+    Mtx44 *dst;
+    s32 x, y, z, w, t, t2;
+
+    if (out == b) {
+        dst = &tmp;
+    } else {
+        dst = out;
+    }
+
+    x = a->v[0];
+    y = a->v[1];
+    z = a->v[2];
+    w = a->v[3];
+    dst->v[0] = (((((s64)x * b->v[0]) + ((s64)y * b->v[4])) + ((s64)z * b->v[8])) + ((s64)w * b->v[12])) >> 12;
+    dst->v[1] = (((((s64)x * b->v[1]) + ((s64)y * b->v[5])) + ((s64)z * b->v[9])) + ((s64)w * b->v[13])) >> 12;
+    dst->v[3] = (((((s64)x * b->v[3]) + ((s64)y * b->v[7])) + ((s64)z * b->v[11])) + ((s64)w * b->v[15])) >> 12;
+    t = (((((s64)x * b->v[2]) + ((s64)y * b->v[6])) + ((s64)z * b->v[10])) + ((s64)w * b->v[14])) >> 12;
+
+    x = a->v[4];
+    y = a->v[5];
+    z = a->v[6];
+    w = a->v[7];
+    t2 = (((((s64)x * b->v[2]) + ((s64)y * b->v[6])) + ((s64)z * b->v[10])) + ((s64)w * b->v[14])) >> 12;
+    dst->v[2] = t;
+    dst->v[6] = t2;
+    dst->v[5] = (((((s64)x * b->v[1]) + ((s64)y * b->v[5])) + ((s64)z * b->v[9])) + ((s64)w * b->v[13])) >> 12;
+    dst->v[7] = (((((s64)x * b->v[3]) + ((s64)y * b->v[7])) + ((s64)z * b->v[11])) + ((s64)w * b->v[15])) >> 12;
+    t = (((((s64)x * b->v[0]) + ((s64)y * b->v[4])) + ((s64)z * b->v[8])) + ((s64)w * b->v[12])) >> 12;
+
+    x = a->v[8];
+    y = a->v[9];
+    z = a->v[10];
+    w = a->v[11];
+    t2 = (((((s64)x * b->v[0]) + ((s64)y * b->v[4])) + ((s64)z * b->v[8])) + ((s64)w * b->v[12])) >> 12;
+    dst->v[4] = t;
+    dst->v[8] = t2;
+    dst->v[9] = (((((s64)x * b->v[1]) + ((s64)y * b->v[5])) + ((s64)z * b->v[9])) + ((s64)w * b->v[13])) >> 12;
+    dst->v[11] = (((((s64)x * b->v[3]) + ((s64)y * b->v[7])) + ((s64)z * b->v[11])) + ((s64)w * b->v[15])) >> 12;
+    t = (((((s64)x * b->v[2]) + ((s64)y * b->v[6])) + ((s64)z * b->v[10])) + ((s64)w * b->v[14])) >> 12;
+
+    x = a->v[12];
+    y = a->v[13];
+    z = a->v[14];
+    w = a->v[15];
+    t2 = (((((s64)x * b->v[2]) + ((s64)y * b->v[6])) + ((s64)z * b->v[10])) + ((s64)w * b->v[14])) >> 12;
+    dst->v[10] = t;
+    dst->v[14] = t2;
+    dst->v[13] = (((((s64)x * b->v[1]) + ((s64)y * b->v[5])) + ((s64)z * b->v[9])) + ((s64)w * b->v[13])) >> 12;
+    dst->v[12] = (((((s64)x * b->v[0]) + ((s64)y * b->v[4])) + ((s64)z * b->v[8])) + ((s64)w * b->v[12])) >> 12;
+    dst->v[15] = (((((s64)x * b->v[3]) + ((s64)y * b->v[7])) + ((s64)z * b->v[11])) + ((s64)w * b->v[15])) >> 12;
+
+    if (dst == &tmp) {
+        *out = *dst;
     }
 }
 
