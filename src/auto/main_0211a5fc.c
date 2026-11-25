@@ -81,10 +81,11 @@ void func_0211a5fc(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u32 arg4, u32 arg5, u
 #pragma opt_propagation off
 void func_0211a698(u32 arg0, u32 count, u32 arg2) {
     u32 i = 0;
+    u32 *g = data_021701cc;
 
-    data_021701cc[2] = arg0;
-    data_021701cc[1] = count;
-    data_021701cc[0] = arg2;
+    g[1] = count;
+    g[2] = arg0;
+    g[0] = arg2;
     if (count == 0) {
         return;
     }
